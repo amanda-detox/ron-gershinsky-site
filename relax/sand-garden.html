@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#e4d6bb">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Rake slow patterns into warm sand and set smooth stones.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23c9b8ff%22/%3E%3C/svg%3E">
+<title>Sand Garden</title>
+<style>
+  :root {
+    --ui-fg: rgba(92,78,58,0.8); --ui-bg: rgba(250,244,230,0.45); --ui-bd: rgba(120,100,70,0.18);
+    --ui-on: rgba(150,105,60,0.95); --ui-on-bd: rgba(150,105,60,0.4);
+  }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #e4d6bb; overscroll-behavior: none; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #5c4e3a; -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .ui {
+    position: fixed; z-index: 10;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0; box-sizing: border-box;
+    font: inherit; color: var(--ui-fg);
+    background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; touch-action: manipulation; outline: none;
+    -webkit-tap-highlight-color: transparent; text-decoration: none;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .ui svg { width: 22px; height: 22px; }
+  .ui:focus-visible { border-color: var(--ui-on); }
+  #home { left: calc(14px + env(safe-area-inset-left, 0px)); }
+  #fs { left: calc(74px + env(safe-area-inset-left, 0px)); }
+  #sound { right: calc(14px + env(safe-area-inset-right, 0px)); }
+  #sound[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  #sound .on { display: none; }
+  #sound[aria-pressed="true"] .on { display: inline; }
+  #sound[aria-pressed="true"] .off { display: none; }
+
+  #tools {
+    position: fixed; left: 50%; transform: translateX(-50%);
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    display: flex; padding: 4px; gap: 3px; border-radius: 999px;
+    background: rgba(250,244,230,0.55); border: 1px solid rgba(120,100,70,0.16);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .seg {
+    font: inherit; min-width: 74px; min-height: 48px; padding: 0 12px; border-radius: 999px;
+    background: transparent; border: 1px solid transparent; color: rgba(92,78,58,0.62);
+    font-size: 15px; letter-spacing: 0.04em; cursor: pointer; outline: none;
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  .seg[aria-pressed="true"] { background: rgba(160,120,70,0.13); border-color: rgba(160,120,70,0.25); color: rgba(80,60,36,0.92); }
+  .seg:focus-visible { border-color: rgba(150,105,60,0.6); }
+  #hint {
+    position: fixed; left: 24px; right: 24px; text-align: center; pointer-events: none;
+    bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+    font-size: 17px; font-weight: 300; letter-spacing: 0.05em; color: rgba(92,74,50,0.72);
+    text-shadow: 0 0 12px rgba(255,250,236,0.9); transition: opacity 1.2s ease; opacity: 0;
+  }
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="A zen sand garden. Draw with your finger to rake the sand."></canvas>
+<a id="home" class="ui" href="index.html" aria-label="Back to all games">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v8.5h11V10"/></svg>
+</a>
+<button id="fs" class="ui" aria-label="Full screen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9V4.5H9M19.5 9V4.5H15M4.5 15v4.5H9M19.5 15v4.5H15"/></svg>
+</button>
+<button id="sound" class="ui" aria-pressed="false" aria-label="Turn sound on">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+    <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+    <g class="on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g>
+  </svg>
+</button>
+
+<div id="hint"></div>
+<div id="tools" role="group" aria-label="Tool">
+  <button class="seg" data-tool="rake" aria-pressed="true">Rake</button>
+  <button class="seg" data-tool="stone" aria-pressed="false">Stone</button>
+  <button class="seg" data-tool="smooth" aria-pressed="false">Smooth</button>
+  <button class="seg" id="fresh" aria-label="Fresh sand">Fresh</button>
+</div>
+<script>
+(function () {
+  'use strict';
+  // ---------- Shared: gentle Web Audio core (off until the player taps the sound button) ----------
+  function AudioCore(build, level) {
+    var core = { ctx: null, master: null, reverb: null, on: false };
+    level = level || 0.8;
+    function impulse(sec) {
+      var a = core.ctx, rate = a.sampleRate, len = Math.floor(rate * sec);
+      var buf = a.createBuffer(2, len, rate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      }
+      return buf;
+    }
+    core.noise = function (sec) {
+      var a = core.ctx, len = Math.floor(a.sampleRate * sec), buf = a.createBuffer(1, len, a.sampleRate);
+      var d = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; last = (last + 0.04 * w) / 1.04; d[i] = last * 3.2 + w * 0.12; }
+      return buf;
+    };
+    core.loop = function (buf) {
+      var s = core.ctx.createBufferSource(); s.buffer = buf; s.loop = true; s.start(); return s;
+    };
+    function init() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      var a = core.ctx = new AC();
+      var comp = a.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      core.master = a.createGain(); core.master.gain.value = 0;
+      core.master.connect(comp); comp.connect(a.destination);
+      core.reverb = a.createConvolver(); core.reverb.buffer = impulse(3.2);
+      var rev = a.createGain(); rev.gain.value = 0.55;
+      core.reverb.connect(rev); rev.connect(core.master);
+      if (build) build(core);
+      return true;
+    }
+    core.setOn = function (v) {
+      if (v) {
+        if (!core.ctx && !init()) return false;
+        core.on = true;
+        if (core.ctx.state !== 'running') core.ctx.resume();
+        var t = core.ctx.currentTime, g = core.master.gain;
+        g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(level, t + 1.5);
+      } else {
+        core.on = false;
+        if (!core.ctx) return true;
+        var t2 = core.ctx.currentTime, g2 = core.master.gain;
+        g2.cancelScheduledValues(t2); g2.setValueAtTime(g2.value, t2); g2.linearRampToValueAtTime(0, t2 + 0.6);
+        setTimeout(function () { if (!core.on && core.ctx) core.ctx.suspend(); }, 800);
+      }
+      return true;
+    };
+    core.isOn = function () { return core.on; };
+    core.ready = function () { return core.on && core.ctx && core.ctx.state === 'running'; };
+    core.visibility = function (hidden) {
+      if (!core.ctx) return;
+      if (hidden) core.ctx.suspend(); else if (core.on) core.ctx.resume();
+    };
+    // soft bell / kalimba-like tone
+    core.bell = function (freq, vel, opt) {
+      if (!core.ready()) return;
+      opt = opt || {};
+      var a = core.ctx, t = a.currentTime + (opt.delay || 0), dec = opt.decay || 3;
+      var g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16 * vel, t + (opt.attack || 0.02));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+      var dry = a.createGain(); dry.gain.value = opt.dry == null ? 0.55 : opt.dry;
+      g.connect(dry); dry.connect(core.master);
+      var wet = a.createGain(); wet.gain.value = opt.wet == null ? 1 : opt.wet;
+      g.connect(wet); wet.connect(core.reverb);
+      var partials = opt.partials || [[1, 1], [2.0, 0.22], [3.01, 0.07]];
+      for (var i = 0; i < partials.length; i++) {
+        var o = a.createOscillator(); o.type = 'sine';
+        o.frequency.value = freq * partials[i][0];
+        var pg = a.createGain(); pg.gain.value = partials[i][1];
+        o.connect(pg); pg.connect(g);
+        o.start(t); o.stop(t + dec + 0.1);
+      }
+    };
+    // a quiet, slowly breathing chord pad
+    core.pad = function (notes, vol, cutoff) {
+      var a = core.ctx;
+      var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = cutoff || 600; f.Q.value = 0.5;
+      var pg = a.createGain(); pg.gain.value = 0;
+      f.connect(pg); pg.connect(core.master);
+      var send = a.createGain(); send.gain.value = 0.5; pg.connect(send); send.connect(core.reverb);
+      for (var i = 0; i < notes.length; i++) {
+        var vg = a.createGain(); vg.gain.value = vol;
+        var o1 = a.createOscillator(); o1.type = 'sine'; o1.frequency.value = notes[i];
+        var o2 = a.createOscillator(); o2.type = 'triangle'; o2.frequency.value = notes[i]; o2.detune.value = (i % 2 ? 6 : -6);
+        var g2 = a.createGain(); g2.gain.value = 0.3;
+        o1.connect(vg); o2.connect(g2); g2.connect(vg);
+        var lfo = a.createOscillator(); lfo.frequency.value = 0.035 + i * 0.015;
+        var depth = a.createGain(); depth.gain.value = vol * 0.7;
+        lfo.connect(depth); depth.connect(vg.gain);
+        vg.connect(f);
+        o1.start(); o2.start(); lfo.start();
+      }
+      pg.gain.setTargetAtTime(1, a.currentTime, 2.5);
+      return { filter: f, gain: pg };
+    };
+    return core;
+  }
+
+  // ---------- Shared: sound + full-screen buttons ----------
+  function setupUI(Sound) {
+    var sb = document.getElementById('sound');
+    sb.addEventListener('click', function () {
+      var want = !Sound.isOn();
+      if (!Sound.setOn(want)) return;
+      sb.setAttribute('aria-pressed', want ? 'true' : 'false');
+      sb.setAttribute('aria-label', want ? 'Turn sound off' : 'Turn sound on');
+    });
+    document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
+    var fb = document.getElementById('fs'), de = document.documentElement;
+    var req = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!req) { fb.style.display = 'none'; return; }
+    fb.addEventListener('click', function () {
+      var fe = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fe) { var ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) ex.call(document); }
+      else { var r = req.call(de); if (r && r.catch) r.catch(function () {}); }
+    });
+  }
+
+
+  var canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  var hint = document.getElementById('hint');
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 0, DPR = 1;
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function smooth(p) { p = clamp(p, 0, 1); return p * p * (3 - 2 * p); }
+
+  // ---------- Sand ----------
+  var BASE = [228, 214, 187];
+  var GROOVE = '#cdb993', RIDGE = '#f3e9d4';
+  var sand = document.createElement('canvas'), sctx = sand.getContext('2d');
+  var grain = (function () {
+    var c = document.createElement('canvas'); c.width = c.height = 160;
+    var g = c.getContext('2d'), img = g.createImageData(160, 160), d = img.data;
+    for (var i = 0; i < d.length; i += 4) {
+      var n = (Math.random() - 0.5) * 16 + (Math.random() < 0.03 ? rand(-18, 14) : 0);
+      d[i] = BASE[0] + n; d[i + 1] = BASE[1] + n; d[i + 2] = BASE[2] + n * 0.85; d[i + 3] = 255;
+    }
+    g.putImageData(img, 0, 0);
+    return c;
+  })();
+  var pattern = null;
+
+  var TINES = 5, SP = 7, HALF = (TINES - 1) / 2 * SP + SP * 0.65;
+
+  function groove(x0, y0, x1, y1) {
+    sctx.strokeStyle = GROOVE; sctx.lineWidth = 2.6;
+    sctx.beginPath(); sctx.moveTo(x0, y0); sctx.lineTo(x1, y1); sctx.stroke();
+    sctx.strokeStyle = RIDGE; sctx.lineWidth = 1.3;
+    sctx.beginPath(); sctx.moveTo(x0 + 1.5, y0 + 1.7); sctx.lineTo(x1 + 1.5, y1 + 1.7); sctx.stroke();
+  }
+
+  function rakeSeg(ax, ay, anx, any, bx, by, bnx, bny) {
+    sctx.fillStyle = pattern;
+    sctx.beginPath();
+    sctx.moveTo(ax + anx * HALF, ay + any * HALF); sctx.lineTo(bx + bnx * HALF, by + bny * HALF);
+    sctx.lineTo(bx - bnx * HALF, by - bny * HALF); sctx.lineTo(ax - anx * HALF, ay - any * HALF);
+    sctx.closePath(); sctx.fill();
+    for (var k = 0; k < TINES; k++) {
+      var o = (k - (TINES - 1) / 2) * SP;
+      groove(ax + anx * o, ay + any * o, bx + bnx * o, by + bny * o);
+    }
+  }
+
+  function ringsAround(st, count) {
+    sctx.fillStyle = pattern;
+    sctx.beginPath(); sctx.arc(st.x, st.y, st.r + 5 + count * 9, 0, Math.PI * 2); sctx.fill();
+    for (var k = 0; k < count; k++) {
+      var rr = st.r + 9 + k * 9;
+      sctx.strokeStyle = GROOVE; sctx.lineWidth = 2.6;
+      sctx.beginPath(); sctx.arc(st.x, st.y, rr, 0, Math.PI * 2); sctx.stroke();
+      sctx.strokeStyle = RIDGE; sctx.lineWidth = 1.3;
+      sctx.beginPath(); sctx.arc(st.x + 1.5, st.y + 1.7, rr, 0, Math.PI * 2); sctx.stroke();
+    }
+  }
+
+  function flatSand() {
+    sctx.globalAlpha = 1; sctx.fillStyle = pattern; sctx.fillRect(0, 0, W, H);
+  }
+
+  function initialPattern() {
+    flatSand();
+    var step = TINES * SP + 1, row = 0;
+    for (var y = 30; y < H + step; y += step, row++) {
+      var px = -30, py = y + Math.sin(-30 * 0.012 + row * 0.5) * 5, pn = [0, 1];
+      for (var x = -10; x <= W + 30; x += 10) {
+        var ny = y + Math.sin(x * 0.012 + row * 0.5) * 5;
+        var dx = x - px, dy = ny - py, L = Math.sqrt(dx * dx + dy * dy);
+        var n = [-dy / L, dx / L];
+        rakeSeg(px, py, pn[0], pn[1], x, ny, n[0], n[1]);
+        px = x; py = ny; pn = n;
+      }
+    }
+    for (var i = 0; i < stones.length; i++) ringsAround(stones[i], 3);
+  }
+
+  // ---------- Stones ----------
+  function makeStone(r, tone) {
+    var size = Math.ceil(r * 2.6), m = size / 2, c = document.createElement('canvas');
+    c.width = c.height = size;
+    var g = c.getContext('2d'), N = 22, pts = [], seed = Math.random() * 10;
+    var sx = rand(0.92, 1.12), sy = 2 - sx;
+    for (var i = 0; i < N; i++) {
+      var a = i / N * Math.PI * 2;
+      var rr = r * (1 + 0.05 * Math.sin(a * 2 + seed) + 0.03 * Math.sin(a * 3 + seed * 2));
+      pts.push([m + Math.cos(a) * rr * sx, m + Math.sin(a) * rr * sy]);
+    }
+    g.beginPath();
+    for (var j = 0; j < N; j++) {
+      var p = pts[j], q = pts[(j + 1) % N], mx = (p[0] + q[0]) / 2, my = (p[1] + q[1]) / 2;
+      if (j === 0) g.moveTo(mx, my); else g.quadraticCurveTo(p[0], p[1], mx, my);
+    }
+    g.quadraticCurveTo(pts[0][0], pts[0][1], (pts[0][0] + pts[1][0]) / 2, (pts[0][1] + pts[1][1]) / 2);
+    g.closePath();
+    var body = g.createRadialGradient(m - r * 0.35, m - r * 0.4, r * 0.1, m, m, r * 1.1);
+    body.addColorStop(0, 'rgb(' + tone[0] + ')'); body.addColorStop(1, 'rgb(' + tone[1] + ')');
+    g.fillStyle = body; g.fill();
+    var hl = g.createRadialGradient(m - r * 0.4, m - r * 0.45, 0, m - r * 0.4, m - r * 0.45, r * 0.6);
+    hl.addColorStop(0, 'rgba(255,255,255,0.28)'); hl.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = hl; g.fill();
+    return c;
+  }
+  var TONES = [['150,152,150', '88,90,92'], ['140,132,122', '84,78,72'], ['128,138,140', '70,80,84'], ['160,150,138', '96,88,80']];
+  var stones = [];
+  function addStone(x, y, r, instant) {
+    var st = { x: x, y: y, r: r, sprite: makeStone(r, TONES[(Math.random() * TONES.length) | 0]), born: instant ? -10 : now, dying: -1 };
+    stones.push(st);
+    return st;
+  }
+  function stoneAt(x, y) {
+    for (var i = stones.length - 1; i >= 0; i--) {
+      var s = stones[i], dx = s.x - x, dy = s.y - y;
+      if (s.dying < 0 && dx * dx + dy * dy < (s.r + 14) * (s.r + 14)) return s;
+    }
+    return null;
+  }
+  function drawStones() {
+    for (var i = stones.length - 1; i >= 0; i--) {
+      var s = stones[i];
+      var inp = smooth((now - s.born) / 0.9), out = s.dying >= 0 ? 1 - smooth((now - s.dying) / 1.2) : 1;
+      if (out <= 0) { stones.splice(i, 1); continue; }
+      var a = inp * out, sc = 0.85 + 0.15 * inp;
+      // soft shadow
+      ctx.globalAlpha = a;
+      var sh = ctx.createRadialGradient(s.x + s.r * 0.18, s.y + s.r * 0.28, s.r * 0.6, s.x + s.r * 0.18, s.y + s.r * 0.28, s.r * 1.35);
+      sh.addColorStop(0, 'rgba(90,70,40,0.32)'); sh.addColorStop(1, 'rgba(90,70,40,0)');
+      ctx.fillStyle = sh;
+      ctx.beginPath(); ctx.arc(s.x + s.r * 0.18, s.y + s.r * 0.28, s.r * 1.35, 0, Math.PI * 2); ctx.fill();
+      var sz = s.sprite.width * sc;
+      ctx.drawImage(s.sprite, s.x - sz / 2, s.y - sz / 2, sz, sz);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  // ---------- Petals drifting by ----------
+  var petals = [], nextPetal = 4;
+  function petalsStep(dt) {
+    if (!reduceMotion) {
+      nextPetal -= dt;
+      if (nextPetal <= 0 && petals.length < 5) {
+        nextPetal = rand(6, 14);
+        petals.push({ x: -20, y: rand(H * 0.05, H * 0.7), vx: rand(14, 24), vy: rand(3, 9), rot: rand(0, 6), vr: rand(-0.6, 0.6), s: rand(4, 6.5), ph: rand(0, 6), h: 0 });
+      }
+    }
+    for (var i = petals.length - 1; i >= 0; i--) {
+      var p = petals[i];
+      p.ph += dt; p.x += (p.vx + Math.sin(p.ph * 0.7) * 6) * dt; p.y += (p.vy + Math.sin(p.ph * 1.1) * 5) * dt; p.rot += p.vr * dt;
+      if (p.x > W + 30 || p.y > H + 30) { petals.splice(i, 1); continue; }
+      ctx.save(); ctx.translate(p.x + 3, p.y + 5); ctx.rotate(p.rot);
+      ctx.fillStyle = 'rgba(120,90,60,0.12)'; ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.fillStyle = 'rgba(243,192,200,0.92)'; ctx.beginPath(); ctx.ellipse(0, 0, p.s, p.s * 0.55, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,230,234,0.8)'; ctx.beginPath(); ctx.ellipse(-p.s * 0.25, -p.s * 0.1, p.s * 0.45, p.s * 0.22, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  // ---------- Sound ----------
+  var Sound = AudioCore(function (core) {
+    var a = core.ctx, buf = core.noise(3);
+    // raking: soft sandy shush that follows your finger speed
+    var src = core.loop(buf);
+    var bp = a.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1400; bp.Q.value = 0.7;
+    var hp = a.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 300;
+    core.rakeGain = a.createGain(); core.rakeGain.gain.value = 0;
+    src.connect(hp); hp.connect(bp); bp.connect(core.rakeGain); core.rakeGain.connect(core.master);
+    // faint wind
+    var src2 = core.loop(buf);
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 420;
+    var wg = a.createGain(); wg.gain.value = 0.05;
+    var lfo = a.createOscillator(); lfo.frequency.value = 0.07; var ld = a.createGain(); ld.gain.value = 0.03;
+    lfo.connect(ld); ld.connect(wg.gain); lfo.start();
+    src2.connect(lp); lp.connect(wg); wg.connect(core.master);
+    core.pad([110, 164.81, 220, 277.18], 0.018, 480);
+  }, 0.8);
+  var lastRakeSet = 0;
+  Sound.rake = function (speed) {
+    if (!Sound.ready() || !Sound.rakeGain) return;
+    var t = Sound.ctx.currentTime;
+    if (t - lastRakeSet < 0.05) return;
+    lastRakeSet = t;
+    Sound.rakeGain.gain.setTargetAtTime(clamp(speed / 900, 0, 1) * 0.35, t, 0.08);
+  };
+  Sound.stone = function (r) {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime;
+    var o = a.createOscillator(), g = a.createGain(); o.type = 'sine';
+    o.frequency.setValueAtTime(190, t); o.frequency.exponentialRampToValueAtTime(110, t + 0.18);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.35, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.35);
+    o.connect(g); g.connect(Sound.master); o.start(t); o.stop(t + 0.4);
+    // singing bowl
+    var f = [196, 220, 261.63, 293.66][(Math.random() * 4) | 0];
+    Sound.bell(f, 0.5, { decay: 6, attack: 0.08, partials: [[1, 1], [2.76, 0.25], [5.4, 0.06]], delay: 0.05 });
+  };
+  Sound.whoosh = function () {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime, s = a.createBufferSource(); s.buffer = Sound.noise(2.4);
+    var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(300, t); f.frequency.linearRampToValueAtTime(1600, t + 1); f.frequency.linearRampToValueAtTime(300, t + 2.2);
+    var g = a.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.25, t + 0.9); g.gain.exponentialRampToValueAtTime(0.0001, t + 2.3);
+    s.connect(f); f.connect(g); g.connect(Sound.master); s.start(t); s.stop(t + 2.4);
+  };
+  setupUI(Sound);
+
+  // ---------- Tools ----------
+  var tool = 'rake';
+  var segs = document.querySelectorAll('.seg[data-tool]');
+  for (var i = 0; i < segs.length; i++) segs[i].addEventListener('click', function () {
+    tool = this.getAttribute('data-tool');
+    for (var j = 0; j < segs.length; j++) segs[j].setAttribute('aria-pressed', segs[j] === this ? 'true' : 'false');
+    showHint(tool === 'rake' ? 'Draw slowly with your finger' : tool === 'stone' ? 'Tap to set a stone \u00b7 tap a stone to lift it' : 'Brush the sand smooth');
+  });
+  var fresh = -1;
+  document.getElementById('fresh').addEventListener('click', function () { if (fresh < 0) { fresh = 0; Sound.whoosh(); } });
+
+  var hintTok = 0;
+  function showHint(text) {
+    var tok = ++hintTok;
+    hint.style.opacity = '0';
+    setTimeout(function () {
+      if (tok !== hintTok) return;
+      hint.textContent = text; hint.style.opacity = '1';
+      setTimeout(function () { if (tok === hintTok) hint.style.opacity = '0'; }, 4200);
+    }, 500);
+  }
+
+  // ---------- Input ----------
+  var strokes = {};
+  function down(id, x, y) {
+    if (tool === 'stone') {
+      var s = stoneAt(x, y);
+      if (s) { s.dying = now; }
+      else {
+        var live = 0; for (var i = 0; i < stones.length; i++) if (stones[i].dying < 0) live++;
+        if (live >= 9) for (var j = 0; j < stones.length; j++) if (stones[j].dying < 0) { stones[j].dying = now; break; }
+        var st = addStone(x, y, rand(0.045, 0.075) * Math.max(320, Math.min(W, H)) + 6);
+        ringJobs.push({ st: st, k: 0, next: now + 0.3 });
+        Sound.stone(st.r);
+      }
+      return;
+    }
+    strokes[id] = { x: x, y: y, n: null, t: now, lx: x, ly: y };
+  }
+  function move(id, x, y) {
+    var s = strokes[id]; if (!s) return;
+    var dx = x - s.x, dy = y - s.y, L = Math.sqrt(dx * dx + dy * dy);
+    if (tool === 'smooth') {
+      if (L < 2) return;
+      sctx.fillStyle = pattern; sctx.strokeStyle = pattern; sctx.lineCap = 'round'; sctx.lineWidth = 64;
+      sctx.beginPath(); sctx.moveTo(s.x, s.y); sctx.lineTo(x, y); sctx.stroke();
+      sctx.lineCap = 'round';
+      s.x = x; s.y = y;
+      Sound.rake(L / Math.max(0.016, now - s.t) * 0.6); s.t = now;
+      return;
+    }
+    if (L < 5) return;
+    var nx = -dy / L, ny = dx / L;
+    if (!s.n) s.n = [nx, ny];
+    else {
+      if (s.n[0] * nx + s.n[1] * ny < 0) { nx = -nx; ny = -ny; }
+      var mx = s.n[0] * 0.55 + nx * 0.45, my = s.n[1] * 0.55 + ny * 0.45, ml = Math.sqrt(mx * mx + my * my) || 1;
+      nx = mx / ml; ny = my / ml;
+    }
+    rakeSeg(s.x, s.y, s.n[0], s.n[1], x, y, nx, ny);
+    s.n = [nx, ny]; s.x = x; s.y = y;
+    Sound.rake(L / Math.max(0.016, now - s.t)); s.t = now;
+  }
+  function up(id) { delete strokes[id]; Sound.rake(0); }
+
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; down('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; move('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  function tend(e) { for (var i = 0; i < e.changedTouches.length; i++) up('t' + e.changedTouches[i].identifier); }
+  canvas.addEventListener('touchend', tend); canvas.addEventListener('touchcancel', tend);
+  canvas.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') return; down('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointermove', function (e) { if (e.pointerType === 'touch') return; move('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointerup', function (e) { if (e.pointerType === 'touch') return; up('p' + e.pointerId); });
+  window.addEventListener('pointercancel', function (e) { if (e.pointerType === 'touch') return; up('p' + e.pointerId); });
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  // ---------- Resize ----------
+  function resize() {
+    var oldW = W, oldH = H;
+    var copy = null;
+    if (oldW) { copy = document.createElement('canvas'); copy.width = sand.width; copy.height = sand.height; copy.getContext('2d').drawImage(sand, 0, 0); }
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    sand.width = Math.round(W * DPR); sand.height = Math.round(H * DPR);
+    sctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    sctx.lineCap = 'round';
+    pattern = sctx.createPattern(grain, 'repeat');
+    if (copy) { flatSand(); sctx.drawImage(copy, 0, 0, copy.width / DPR, copy.height / DPR); }
+  }
+
+  // ---------- Loop ----------
+  var ringJobs = [];
+  var now = performance.now() / 1000, last = now;
+  function frame(ms) {
+    now = ms / 1000;
+    var dt = clamp(now - last, 0, 0.05); last = now;
+    for (var i = ringJobs.length - 1; i >= 0; i--) {
+      var j = ringJobs[i];
+      if (now >= j.next) { j.k++; ringsAround(j.st, j.k); j.next = now + 0.28; if (j.k >= 3) ringJobs.splice(i, 1); }
+    }
+    if (fresh >= 0) {
+      fresh += dt;
+      sctx.globalAlpha = 0.07; sctx.fillStyle = pattern; sctx.fillRect(0, 0, W, H); sctx.globalAlpha = 1;
+      if (fresh > 1.8) {
+        fresh = -1; flatSand();
+        for (var k = 0; k < stones.length; k++) if (stones[k].dying < 0) ringJobs.push({ st: stones[k], k: 0, next: now + 0.2 + k * 0.15 });
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.drawImage(sand, 0, 0, W, H);
+    drawStones();
+    petalsStep(dt);
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  var unit = Math.max(320, Math.min(W, H));
+  addStone(W * 0.68, H * 0.34, unit * 0.08 + 6, true);
+  addStone(W * 0.3, H * 0.6, unit * 0.06 + 6, true);
+  addStone(W * 0.3 + unit * 0.13, H * 0.6 + unit * 0.05, unit * 0.035 + 5, true);
+  initialPattern();
+  showHint('Draw slowly with your finger');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

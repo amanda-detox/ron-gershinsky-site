@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0d3a43">
+<meta name="color-scheme" content="dark">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Touch the water for ripples and soft chimes while koi drift by.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23c9b8ff%22/%3E%3C/svg%3E">
+<title>Still Pond</title>
+<style>
+  :root {
+    --ui-fg: rgba(215,240,236,0.8); --ui-bg: rgba(4,30,36,0.35); --ui-bd: rgba(200,240,235,0.14);
+    --ui-on: rgba(235,250,220,0.95); --ui-on-bd: rgba(220,245,200,0.35);
+  }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0d3a43; overscroll-behavior: none; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #dff3ef; -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .ui {
+    position: fixed; z-index: 10;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0; box-sizing: border-box;
+    font: inherit; color: var(--ui-fg);
+    background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; touch-action: manipulation; outline: none;
+    -webkit-tap-highlight-color: transparent; text-decoration: none;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .ui svg { width: 22px; height: 22px; }
+  .ui:focus-visible { border-color: var(--ui-on); }
+  #home { left: calc(14px + env(safe-area-inset-left, 0px)); }
+  #fs { left: calc(74px + env(safe-area-inset-left, 0px)); }
+  #sound { right: calc(14px + env(safe-area-inset-right, 0px)); }
+  #sound[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  #sound .on { display: none; }
+  #sound[aria-pressed="true"] .on { display: inline; }
+  #sound[aria-pressed="true"] .off { display: none; }
+
+  #rain {
+    position: fixed; left: 50%; transform: translateX(-50%);
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    min-width: 132px; min-height: 50px; padding: 0 22px; border-radius: 999px;
+    font: inherit; font-size: 16px; letter-spacing: 0.05em;
+    color: rgba(215,240,236,0.6); background: rgba(4,30,36,0.4); border: 1px solid rgba(200,240,235,0.12);
+    cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  #rain[aria-pressed="true"] { color: rgba(235,250,240,0.92); background: rgba(160,220,210,0.14); border-color: rgba(190,235,225,0.3); }
+  #hint {
+    position: fixed; left: 24px; right: 24px; top: 58%; text-align: center; pointer-events: none;
+    font-size: 20px; font-weight: 300; letter-spacing: 0.06em; color: rgba(225,245,240,0.8);
+    text-shadow: 0 0 16px rgba(120,210,200,0.5); transition: opacity 1.4s ease; opacity: 0;
+  }
+</style>
+</head>
+<body>
+<canvas id="c" aria-label="A still pond. Touch the water to make ripples."></canvas>
+<a id="home" class="ui" href="index.html" aria-label="Back to all games">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v8.5h11V10"/></svg>
+</a>
+<button id="fs" class="ui" aria-label="Full screen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9V4.5H9M19.5 9V4.5H15M4.5 15v4.5H9M19.5 15v4.5H15"/></svg>
+</button>
+<button id="sound" class="ui" aria-pressed="false" aria-label="Turn sound on">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+    <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+    <g class="on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g>
+  </svg>
+</button>
+
+<div id="hint">Touch the water</div>
+<button id="rain" aria-pressed="false">Soft rain</button>
+<script>
+(function () {
+  'use strict';
+  // ---------- Shared: gentle Web Audio core (off until the player taps the sound button) ----------
+  function AudioCore(build, level) {
+    var core = { ctx: null, master: null, reverb: null, on: false };
+    level = level || 0.8;
+    function impulse(sec) {
+      var a = core.ctx, rate = a.sampleRate, len = Math.floor(rate * sec);
+      var buf = a.createBuffer(2, len, rate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      }
+      return buf;
+    }
+    core.noise = function (sec) {
+      var a = core.ctx, len = Math.floor(a.sampleRate * sec), buf = a.createBuffer(1, len, a.sampleRate);
+      var d = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; last = (last + 0.04 * w) / 1.04; d[i] = last * 3.2 + w * 0.12; }
+      return buf;
+    };
+    core.loop = function (buf) {
+      var s = core.ctx.createBufferSource(); s.buffer = buf; s.loop = true; s.start(); return s;
+    };
+    function init() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      var a = core.ctx = new AC();
+      var comp = a.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      core.master = a.createGain(); core.master.gain.value = 0;
+      core.master.connect(comp); comp.connect(a.destination);
+      core.reverb = a.createConvolver(); core.reverb.buffer = impulse(3.2);
+      var rev = a.createGain(); rev.gain.value = 0.55;
+      core.reverb.connect(rev); rev.connect(core.master);
+      if (build) build(core);
+      return true;
+    }
+    core.setOn = function (v) {
+      if (v) {
+        if (!core.ctx && !init()) return false;
+        core.on = true;
+        if (core.ctx.state !== 'running') core.ctx.resume();
+        var t = core.ctx.currentTime, g = core.master.gain;
+        g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(level, t + 1.5);
+      } else {
+        core.on = false;
+        if (!core.ctx) return true;
+        var t2 = core.ctx.currentTime, g2 = core.master.gain;
+        g2.cancelScheduledValues(t2); g2.setValueAtTime(g2.value, t2); g2.linearRampToValueAtTime(0, t2 + 0.6);
+        setTimeout(function () { if (!core.on && core.ctx) core.ctx.suspend(); }, 800);
+      }
+      return true;
+    };
+    core.isOn = function () { return core.on; };
+    core.ready = function () { return core.on && core.ctx && core.ctx.state === 'running'; };
+    core.visibility = function (hidden) {
+      if (!core.ctx) return;
+      if (hidden) core.ctx.suspend(); else if (core.on) core.ctx.resume();
+    };
+    // soft bell / kalimba-like tone
+    core.bell = function (freq, vel, opt) {
+      if (!core.ready()) return;
+      opt = opt || {};
+      var a = core.ctx, t = a.currentTime + (opt.delay || 0), dec = opt.decay || 3;
+      var g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16 * vel, t + (opt.attack || 0.02));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+      var dry = a.createGain(); dry.gain.value = opt.dry == null ? 0.55 : opt.dry;
+      g.connect(dry); dry.connect(core.master);
+      var wet = a.createGain(); wet.gain.value = opt.wet == null ? 1 : opt.wet;
+      g.connect(wet); wet.connect(core.reverb);
+      var partials = opt.partials || [[1, 1], [2.0, 0.22], [3.01, 0.07]];
+      for (var i = 0; i < partials.length; i++) {
+        var o = a.createOscillator(); o.type = 'sine';
+        o.frequency.value = freq * partials[i][0];
+        var pg = a.createGain(); pg.gain.value = partials[i][1];
+        o.connect(pg); pg.connect(g);
+        o.start(t); o.stop(t + dec + 0.1);
+      }
+    };
+    // a quiet, slowly breathing chord pad
+    core.pad = function (notes, vol, cutoff) {
+      var a = core.ctx;
+      var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = cutoff || 600; f.Q.value = 0.5;
+      var pg = a.createGain(); pg.gain.value = 0;
+      f.connect(pg); pg.connect(core.master);
+      var send = a.createGain(); send.gain.value = 0.5; pg.connect(send); send.connect(core.reverb);
+      for (var i = 0; i < notes.length; i++) {
+        var vg = a.createGain(); vg.gain.value = vol;
+        var o1 = a.createOscillator(); o1.type = 'sine'; o1.frequency.value = notes[i];
+        var o2 = a.createOscillator(); o2.type = 'triangle'; o2.frequency.value = notes[i]; o2.detune.value = (i % 2 ? 6 : -6);
+        var g2 = a.createGain(); g2.gain.value = 0.3;
+        o1.connect(vg); o2.connect(g2); g2.connect(vg);
+        var lfo = a.createOscillator(); lfo.frequency.value = 0.035 + i * 0.015;
+        var depth = a.createGain(); depth.gain.value = vol * 0.7;
+        lfo.connect(depth); depth.connect(vg.gain);
+        vg.connect(f);
+        o1.start(); o2.start(); lfo.start();
+      }
+      pg.gain.setTargetAtTime(1, a.currentTime, 2.5);
+      return { filter: f, gain: pg };
+    };
+    return core;
+  }
+
+  // ---------- Shared: sound + full-screen buttons ----------
+  function setupUI(Sound) {
+    var sb = document.getElementById('sound');
+    sb.addEventListener('click', function () {
+      var want = !Sound.isOn();
+      if (!Sound.setOn(want)) return;
+      sb.setAttribute('aria-pressed', want ? 'true' : 'false');
+      sb.setAttribute('aria-label', want ? 'Turn sound off' : 'Turn sound on');
+    });
+    document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
+    var fb = document.getElementById('fs'), de = document.documentElement;
+    var req = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!req) { fb.style.display = 'none'; return; }
+    fb.addEventListener('click', function () {
+      var fe = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fe) { var ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) ex.call(document); }
+      else { var r = req.call(de); if (r && r.catch) r.catch(function () {}); }
+    });
+  }
+
+
+  var canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  var hint = document.getElementById('hint'), rainBtn = document.getElementById('rain');
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 0, DPR = 1;
+  var TAU = Math.PI * 2;
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function smooth(p) { p = clamp(p, 0, 1); return p * p * (3 - 2 * p); }
+
+  function makeGlow(size, stops) {
+    var c = document.createElement('canvas'); c.width = c.height = size;
+    var g = c.getContext('2d'), gr = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    for (var i = 0; i < stops.length; i++) gr.addColorStop(stops[i][0], stops[i][1]);
+    g.fillStyle = gr; g.fillRect(0, 0, size, size); return c;
+  }
+  var lightBlob = makeGlow(256, [[0, 'rgba(150,230,215,0.22)'], [0.5, 'rgba(120,210,200,0.08)'], [1, 'rgba(100,200,190,0)']]);
+  var warmBlob = makeGlow(128, [[0, 'rgba(255,240,200,0.9)'], [0.25, 'rgba(255,220,170,0.35)'], [1, 'rgba(255,210,160,0)']]);
+
+  // ---------- Pond floor ----------
+  var bg = document.createElement('canvas'), bctx = bg.getContext('2d');
+  function buildBg() {
+    bg.width = Math.round(W * DPR); bg.height = Math.round(H * DPR);
+    var g = bctx; g.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var gr = g.createLinearGradient(0, 0, W * 0.3, H);
+    gr.addColorStop(0, '#15505a'); gr.addColorStop(0.5, '#0e3d47'); gr.addColorStop(1, '#0a2e38');
+    g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    // soft pebbles far below
+    var n = Math.round(clamp(W * H / 5000, 40, 160));
+    for (var i = 0; i < n; i++) {
+      var x = Math.random() * W, y = Math.random() * H, r = rand(4, 16);
+      g.fillStyle = Math.random() < 0.5 ? 'rgba(160,200,190,0.05)' : 'rgba(0,20,25,0.12)';
+      g.beginPath(); g.ellipse(x, y, r, r * rand(0.6, 0.9), rand(0, 3), 0, TAU); g.fill();
+    }
+    // vignette
+    var v = g.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.3, W / 2, H / 2, Math.max(W, H) * 0.75);
+    v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,15,20,0.45)');
+    g.fillStyle = v; g.fillRect(0, 0, W, H);
+  }
+
+  // ---------- Light patches ----------
+  var patches = [];
+  function buildPatches() {
+    patches = [];
+    for (var i = 0; i < 6; i++) patches.push({ x: Math.random() * W, y: Math.random() * H, r: rand(0.5, 0.9) * Math.max(W, H), ph: rand(0, TAU), sp: rand(0.03, 0.07) });
+  }
+
+  // ---------- Koi ----------
+  var KOI_COLORS = [
+    { body: '236,122,62', spot: '250,240,228' },
+    { body: '248,242,232', spot: '232,96,58' },
+    { body: '242,184,86', spot: '255,232,180' },
+    { body: '232,110,70', spot: '40,40,44' }
+  ];
+  var koi = [];
+  function makeKoi(i) {
+    var scale = rand(0.8, 1.15) * clamp(Math.min(W, H) / 420, 0.75, 1.3);
+    var k = { x: rand(0.1, 0.9) * W, y: rand(0.1, 0.9) * H, a: rand(0, TAU), sp: rand(22, 34), scale: scale,
+      col: KOI_COLORS[i % KOI_COLORS.length], seg: [], tx: 0, ty: 0, ph: rand(0, TAU), curious: 0 };
+    for (var j = 0; j < 11; j++) k.seg.push([k.x - Math.cos(k.a) * j * 7 * scale, k.y - Math.sin(k.a) * j * 7 * scale]);
+    newTarget(k);
+    return k;
+  }
+  function newTarget(k) { k.tx = rand(0.08, 0.92) * W; k.ty = rand(0.1, 0.9) * H; }
+  function updateKoi(k, dt) {
+    var dx = k.tx - k.x, dy = k.ty - k.y;
+    if (dx * dx + dy * dy < 3600) { newTarget(k); k.curious = 0; }
+    var want = Math.atan2(dy, dx), da = want - k.a;
+    while (da > Math.PI) da -= TAU; while (da < -Math.PI) da += TAU;
+    var turn = clamp(da, -0.8 * dt, 0.8 * dt);
+    k.a += turn + Math.sin(k.ph * 0.9) * 0.08 * dt;
+    k.ph += dt * (1.6 + k.curious);
+    var sp = k.sp * (1 + k.curious * 0.6);
+    k.x += Math.cos(k.a) * sp * dt; k.y += Math.sin(k.a) * sp * dt;
+    k.seg[0][0] = k.x; k.seg[0][1] = k.y;
+    var L = 7 * k.scale;
+    for (var i = 1; i < k.seg.length; i++) {
+      var p = k.seg[i - 1], q = k.seg[i], ex = q[0] - p[0], ey = q[1] - p[1], d = Math.sqrt(ex * ex + ey * ey) || 1;
+      q[0] = p[0] + ex / d * L; q[1] = p[1] + ey / d * L;
+    }
+  }
+  function koiPath(k, ox, oy, widthMul) {
+    var s = k.seg, N = s.length, left = [], right = [];
+    for (var i = 0; i < N; i++) {
+      var p = s[i], q = s[Math.min(i + 1, N - 1)], r0 = s[Math.max(i - 1, 0)];
+      var dx = r0[0] - q[0], dy = r0[1] - q[1], d = Math.sqrt(dx * dx + dy * dy) || 1;
+      var nx = -dy / d, ny = dx / d;
+      var u = i / (N - 1);
+      var w = (u < 0.25 ? 0.55 + u * 1.8 : 1 - Math.pow((u - 0.25) / 0.75, 1.2) * 0.86) * 8.5 * k.scale * widthMul;
+      var sway = Math.sin(k.ph * 2 - u * 3) * u * 2.2 * k.scale;
+      left.push([p[0] + nx * (w + sway) + ox, p[1] + ny * (w + sway) + oy]);
+      right.push([p[0] - nx * (w - sway) + ox, p[1] - ny * (w - sway) + oy]);
+    }
+    ctx.beginPath();
+    ctx.moveTo(left[0][0], left[0][1]);
+    for (var a = 1; a < N; a++) ctx.lineTo(left[a][0], left[a][1]);
+    for (var b = N - 1; b >= 0; b--) ctx.lineTo(right[b][0], right[b][1]);
+    ctx.closePath();
+  }
+  function drawKoi(k) {
+    var s = k.seg, N = s.length, tail = s[N - 1], pre = s[N - 3];
+    // shadow on the pond floor
+    ctx.fillStyle = 'rgba(0,18,22,0.28)';
+    koiPath(k, 10, 14, 1.05); ctx.fill();
+    // fins
+    var h = s[2], hn = s[1], fa = Math.atan2(hn[1] - h[1], hn[0] - h[0]);
+    ctx.fillStyle = 'rgba(' + k.col.body + ',0.55)';
+    for (var side = -1; side <= 1; side += 2) {
+      var flap = Math.sin(k.ph * 1.6 + side) * 0.3;
+      ctx.save(); ctx.translate(h[0], h[1]); ctx.rotate(fa + side * (2.2 + flap));
+      ctx.beginPath(); ctx.ellipse(8 * k.scale, 0, 8 * k.scale, 3.4 * k.scale, 0, 0, TAU); ctx.fill(); ctx.restore();
+    }
+    // tail fin
+    var ta = Math.atan2(tail[1] - pre[1], tail[0] - pre[0]) + Math.sin(k.ph * 2 - 3) * 0.35;
+    ctx.save(); ctx.translate(tail[0], tail[1]); ctx.rotate(ta);
+    ctx.beginPath(); ctx.moveTo(-2, 0);
+    ctx.quadraticCurveTo(8 * k.scale, -9 * k.scale, 14 * k.scale, -8 * k.scale);
+    ctx.quadraticCurveTo(9 * k.scale, 0, 14 * k.scale, 8 * k.scale);
+    ctx.quadraticCurveTo(8 * k.scale, 9 * k.scale, -2, 0);
+    ctx.fill(); ctx.restore();
+    // body
+    ctx.fillStyle = 'rgba(' + k.col.body + ',0.92)';
+    koiPath(k, 0, 0, 1); ctx.fill();
+    // spots
+    ctx.save(); koiPath(k, 0, 0, 1); ctx.clip();
+    ctx.fillStyle = 'rgba(' + k.col.spot + ',0.85)';
+    var spots = [1, 4, 6];
+    for (var i = 0; i < spots.length; i++) {
+      var p = s[spots[i]];
+      ctx.beginPath(); ctx.arc(p[0] + (i - 1) * 2 * k.scale, p[1] + (i % 2 ? 3 : -3) * k.scale, (6 - i) * k.scale, 0, TAU); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  // ---------- Lily pads ----------
+  function makePad(r, flower) {
+    var size = Math.ceil(r * 2.4), m = size / 2, c = document.createElement('canvas'); c.width = c.height = size;
+    var g = c.getContext('2d');
+    g.fillStyle = 'rgba(0,15,18,0.25)';
+    g.beginPath(); g.arc(m + 3, m + 4, r, 0.18, TAU - 0.18); g.lineTo(m + 3, m + 4); g.closePath(); g.fill();
+    var gr = g.createRadialGradient(m - r * 0.3, m - r * 0.3, r * 0.1, m, m, r);
+    gr.addColorStop(0, '#6fa878'); gr.addColorStop(1, '#3f7658');
+    g.fillStyle = gr;
+    g.beginPath(); g.arc(m, m, r, 0.18, TAU - 0.18); g.lineTo(m, m); g.closePath(); g.fill();
+    g.strokeStyle = 'rgba(190,230,180,0.22)'; g.lineWidth = 1;
+    for (var i = 1; i < 9; i++) { var a = 0.18 + i * (TAU - 0.36) / 9; g.beginPath(); g.moveTo(m, m); g.lineTo(m + Math.cos(a) * r * 0.9, m + Math.sin(a) * r * 0.9); g.stroke(); }
+    if (flower) {
+      for (var layer = 0; layer < 2; layer++) {
+        var n = 8, pr = r * (layer ? 0.3 : 0.44);
+        for (var j = 0; j < n; j++) {
+          var pa = j / n * TAU + layer * 0.4;
+          g.save(); g.translate(m + Math.cos(pa) * pr * 0.55, m + Math.sin(pa) * pr * 0.55); g.rotate(pa);
+          g.fillStyle = layer ? 'rgba(255,226,236,0.95)' : 'rgba(244,176,200,0.95)';
+          g.beginPath(); g.ellipse(0, 0, pr * 0.6, pr * 0.26, 0, 0, TAU); g.fill(); g.restore();
+        }
+      }
+      g.fillStyle = 'rgba(255,220,120,0.95)'; g.beginPath(); g.arc(m, m, r * 0.09, 0, TAU); g.fill();
+    }
+    return c;
+  }
+  var pads = [];
+  function buildPads() {
+    pads = [];
+    var n = W * H > 500000 ? 5 : 4, base = clamp(Math.min(W, H) * 0.09, 26, 60);
+    for (var i = 0; i < n; i++) {
+      var r = base * rand(0.75, 1.2);
+      pads.push({ x: rand(0.1, 0.9) * W, y: rand(0.12, 0.88) * H, r: r, rot: rand(0, TAU), vr: rand(-0.03, 0.03),
+        vx: rand(-3, 3), vy: rand(-2, 2), bob: 0, bv: 0, sprite: makePad(r, i === 0 || i === 3) });
+    }
+  }
+
+  // ---------- Ripples ----------
+  var ripples = [];
+  function addRipple(x, y, strength, speed, life) {
+    ripples.push({ x: x, y: y, age: 0, s: strength, v: speed || 62, life: life || 4.2 });
+    if (ripples.length > 70) ripples.shift();
+  }
+  function drawRipples(dt) {
+    ctx.save();
+    for (var i = ripples.length - 1; i >= 0; i--) {
+      var r = ripples[i]; r.age += dt;
+      if (r.age > r.life) { ripples.splice(i, 1); continue; }
+      var q = r.age / r.life, fade = (1 - q) * (1 - q) * smooth(r.age / 0.15);
+      for (var j = 0; j < 3; j++) {
+        var rad = r.age * r.v - j * 13;
+        if (rad <= 1) continue;
+        var a = r.s * fade * (1 - j * 0.3);
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.strokeStyle = 'rgba(0,25,30,' + (a * 0.35) + ')'; ctx.lineWidth = 2.2;
+        if (rad > 4) { ctx.beginPath(); ctx.arc(r.x, r.y, rad - 3, 0, TAU); ctx.stroke(); }
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = 'rgba(200,245,238,' + (a * 0.5) + ')'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(r.x, r.y, rad, 0, TAU); ctx.stroke();
+      }
+      // pads bob when a ring passes
+      for (var p = 0; p < pads.length; p++) {
+        var pd = pads[p], dx = pd.x - r.x, dy = pd.y - r.y, d = Math.sqrt(dx * dx + dy * dy);
+        var front = r.age * r.v;
+        if (Math.abs(d - front) < r.v * dt * 1.2 + 0.5) { pd.bv += r.s * (1 - q) * 1.4; pd.vx += dx / (d || 1) * r.s * 2; pd.vy += dy / (d || 1) * r.s * 2; }
+      }
+    }
+    ctx.restore();
+  }
+
+  // ---------- Sound ----------
+  var SCALE = [146.83, 164.81, 185.0, 220.0, 246.94, 293.66, 329.63, 369.99, 440.0, 493.88, 587.33, 659.25, 739.99, 880.0];
+  var Sound = AudioCore(function (core) {
+    var a = core.ctx, buf = core.noise(3);
+    var src = core.loop(buf);
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 520;
+    var wg = a.createGain(); wg.gain.value = 0.045;
+    src.connect(lp); lp.connect(wg); wg.connect(core.master);
+    // rain bed (silent until rain is on)
+    var src2 = core.loop(buf);
+    var hp = a.createBiquadFilter(); hp.type = 'bandpass'; hp.frequency.value = 2600; hp.Q.value = 0.4;
+    core.rainGain = a.createGain(); core.rainGain.gain.value = rainOn ? 0.06 : 0;
+    src2.connect(hp); hp.connect(core.rainGain); core.rainGain.connect(core.master);
+    core.pad([73.42, 110, 146.83, 220], 0.016, 420);
+  }, 0.8);
+  var lastChime = 0;
+  function chime(x, y, vel) {
+    if (!Sound.ready()) return;
+    var t = Sound.ctx.currentTime; if (t - lastChime < 0.12) return; lastChime = t;
+    var span = SCALE.length - 5, u = clamp(x / W, 0, 1), up = (1 - clamp(y / H, 0, 1)) > 0.5 ? 3 : 0;
+    var idx = clamp(Math.round(u * (span - 1)) + up + ((Math.random() * 2) | 0), 0, SCALE.length - 1);
+    Sound.bell(SCALE[idx], vel, { decay: 3.6, partials: [[1, 1], [2.0, 0.18], [3.98, 0.05]] });
+  }
+  function plip() {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime, o = a.createOscillator(), g = a.createGain();
+    var f = rand(1400, 2400);
+    o.type = 'sine'; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 0.55, t + 0.07);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.025, t + 0.005); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.12);
+    o.connect(g); g.connect(Sound.master); g.connect(Sound.reverb); o.start(t); o.stop(t + 0.15);
+  }
+  setupUI(Sound);
+
+  var rainOn = false, nextDrop = 0;
+  rainBtn.addEventListener('click', function () {
+    rainOn = !rainOn;
+    rainBtn.setAttribute('aria-pressed', rainOn ? 'true' : 'false');
+    if (Sound.rainGain) Sound.rainGain.gain.setTargetAtTime(rainOn ? 0.06 : 0, Sound.ctx.currentTime, 1.2);
+  });
+
+  // ---------- Input ----------
+  var trails = {};
+  var hintShown = true;
+  function touchWater(x, y, strong) {
+    if (hintShown) { hintShown = false; hint.style.opacity = '0'; }
+    addRipple(x, y, strong ? 1 : 0.55, strong ? 62 : 52, strong ? 4.2 : 3.2);
+    chime(x, y, strong ? 0.8 : 0.45);
+    if (strong && Math.random() < 0.6) {
+      var best = null, bd = Infinity;
+      for (var i = 0; i < koi.length; i++) { var dx = koi[i].x - x, dy = koi[i].y - y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = koi[i]; } }
+      if (best) { best.tx = x; best.ty = y; best.curious = 0.7; }
+    }
+  }
+  function down(id, x, y) { trails[id] = { x: x, y: y, t: now }; touchWater(x, y, true); }
+  function move(id, x, y) {
+    var s = trails[id]; if (!s) return;
+    var dx = x - s.x, dy = y - s.y;
+    if (dx * dx + dy * dy > 900 && now - s.t > 0.09) { s.x = x; s.y = y; s.t = now; touchWater(x, y, false); }
+  }
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; down('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; move('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  function tend(e) { for (var i = 0; i < e.changedTouches.length; i++) delete trails['t' + e.changedTouches[i].identifier]; }
+  canvas.addEventListener('touchend', tend); canvas.addEventListener('touchcancel', tend);
+  canvas.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') return; down('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointermove', function (e) { if (e.pointerType === 'touch') return; move('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointerup', function (e) { delete trails['p' + e.pointerId]; });
+  window.addEventListener('pointercancel', function (e) { delete trails['p' + e.pointerId]; });
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  // ---------- Resize / loop ----------
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildBg(); buildPatches();
+    if (!pads.length) buildPads();
+    for (var i = 0; i < pads.length; i++) { pads[i].x = clamp(pads[i].x, 0, W); pads[i].y = clamp(pads[i].y, 0, H); }
+    if (!koi.length) for (var k = 0; k < 3; k++) koi.push(makeKoi(k));
+  }
+  window.addEventListener('resize', resize);
+
+  var now = performance.now() / 1000, last = now, nextKiss = 6;
+  function frame(ms) {
+    now = ms / 1000;
+    var dt = clamp(now - last, 0, 0.05); last = now;
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    ctx.drawImage(bg, 0, 0, W, H);
+    // slow light
+    ctx.globalCompositeOperation = 'lighter';
+    for (var i = 0; i < patches.length; i++) {
+      var p = patches[i], px = p.x + Math.sin(now * p.sp + p.ph) * W * 0.2, py = p.y + Math.cos(now * p.sp * 0.8 + p.ph) * H * 0.15;
+      ctx.globalAlpha = 0.5 + 0.3 * Math.sin(now * p.sp * 2 + p.ph);
+      ctx.drawImage(lightBlob, px - p.r / 2, py - p.r / 2, p.r, p.r);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    // koi below the surface
+    for (var k = 0; k < koi.length; k++) { updateKoi(koi[k], dt); drawKoi(koi[k]); }
+    // a soft layer of water over the fish
+    ctx.fillStyle = 'rgba(14,60,70,0.16)'; ctx.fillRect(0, 0, W, H);
+    // ripples
+    drawRipples(dt);
+    // pads on the surface
+    for (var q = 0; q < pads.length; q++) {
+      var pd = pads[q];
+      pd.bv += -pd.bob * 6 * dt; pd.bv *= Math.pow(0.35, dt); pd.bob += pd.bv * dt;
+      pd.vx *= Math.pow(0.8, dt); pd.vy *= Math.pow(0.8, dt);
+      pd.x += (pd.vx + Math.sin(now * 0.05 + q) * 2) * dt; pd.y += (pd.vy + Math.cos(now * 0.04 + q) * 1.5) * dt; pd.rot += pd.vr * dt;
+      var m = pd.r * 1.4;
+      if (pd.x < -m) pd.x = W + m; if (pd.x > W + m) pd.x = -m; if (pd.y < -m) pd.y = H + m; if (pd.y > H + m) pd.y = -m;
+      var sc = 1 + clamp(pd.bob, -0.4, 0.4) * 0.06, sz = pd.sprite.width * sc;
+      ctx.save(); ctx.translate(pd.x, pd.y); ctx.rotate(pd.rot + pd.bob * 0.05);
+      ctx.drawImage(pd.sprite, -sz / 2, -sz / 2, sz, sz); ctx.restore();
+    }
+    // fish kisses the surface now and then
+    nextKiss -= dt;
+    if (nextKiss <= 0) { nextKiss = rand(8, 16); var f = koi[(Math.random() * koi.length) | 0]; addRipple(f.x, f.y, 0.4, 40, 3); }
+    if (rainOn) {
+      nextDrop -= dt;
+      if (nextDrop <= 0) { nextDrop = rand(0.18, 0.6) * (reduceMotion ? 2 : 1); addRipple(rand(0, W), rand(0, H), rand(0.25, 0.45), rand(38, 50), rand(1.8, 2.6)); plip(); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  setTimeout(function () { if (hintShown) hint.style.opacity = '1'; }, 900);
+  setTimeout(function () { hint.style.opacity = '0'; hintShown = false; }, 7000);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
