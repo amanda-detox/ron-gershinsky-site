@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי.">
+<title>רון גרשינסקי</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --bg-end: #1e293b;
+    --surface: #1e293b;
+    --surface-2: #334155;
+    --fg: #f8fafc;
+    --muted: #cbd5e1;
+    --faint: #64748b;
+    --line: #334155;
+    --field: #475569;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --ink: #ffffff;
+    --violet: #8b5cf6;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--fg);
+    font-family: var(--sans);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-end) 100%) fixed;
+  }
+  button, a { -webkit-tap-highlight-color: transparent; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  button:disabled { cursor: default; opacity: 0.6; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .wrap {
+    width: 100%;
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: 1rem 1rem 4rem;
+    text-align: center;
+  }
+  .langs { display: flex; justify-content: flex-start; gap: 0.5rem; direction: ltr; }
+  .langs button {
+    min-height: 2.75rem;
+    border: 0;
+    border-radius: 999px;
+    padding: 0 0.75rem;
+    background: var(--surface-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .langs button[aria-pressed="true"] { background: var(--accent); }
+  .mark {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin: 2.5rem auto 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom right, var(--accent), var(--violet));
+    color: var(--ink);
+    font-size: 1.875rem;
+    font-weight: 600;
+  }
+  h1 { margin: 1rem 0 0; font-size: 1.875rem; font-weight: 700; text-wrap: balance; }
+  .bio { margin: 0.25rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
+  ul { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
+  .card, .topic {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    color: var(--fg);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1rem 1.25rem;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover, .topic:hover { background: var(--surface-2); transform: translateY(-2px); }
+  .price { display: block; margin-top: 0.25rem; color: var(--accent); font-size: 0.875rem; }
+  .panel {
+    margin-top: 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    padding: 0.75rem 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    text-align: start;
+  }
+  .panel a { color: var(--accent); }
+  .box {
+    margin-top: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    background: var(--surface);
+    padding: 1.25rem;
+  }
+  .box + .box { margin-top: 1rem; }
+  h2 { margin: 0; font-size: 1rem; font-weight: 500; }
+  .desc { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
+  label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  input {
+    width: 100%;
+    margin-top: 0.75rem;
+    border: 1px solid var(--field);
+    border-radius: 0.5rem;
+    background: var(--bg);
+    color: var(--fg);
+    font: inherit;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  input::placeholder { color: var(--faint); }
+  .go, .mail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 3rem;
+    margin-top: 0.75rem;
+    border: 0;
+    border-radius: 0.5rem;
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .go:hover, .mail:hover { background: var(--accent-hover); }
+  .note, .err { margin: 0.75rem 0 0; font-size: 0.875rem; line-height: 1.6; }
+  .note { color: var(--muted); }
+  .err { color: var(--accent); }
+  footer { margin-top: 2rem; color: var(--faint); font-size: 0.875rem; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="langs" role="group" aria-label="שפה">
+    <button type="button" id="he" aria-pressed="true">עברית</button>
+    <button type="button" id="en" aria-pressed="false">English</button>
+  </div>
+  <div class="mark" id="mark">רג</div>
+  <h1 id="name">רון גרשינסקי</h1>
+  <p class="bio" id="bio"></p>
+  <ul id="list"></ul>
+  <section class="box" aria-labelledby="wait-title">
+    <h2 id="wait-title"></h2>
+    <p class="desc" id="wait-desc"></p>
+    <form id="form" novalidate>
+      <label class="sr" id="email-label" for="email"></label>
+      <input id="email" name="email" type="text" inputmode="email" autocomplete="email" required>
+      <p class="err" id="invalid" hidden></p>
+      <button class="go" id="join" type="submit"></button>
+    </form>
+    <p class="note" id="thanks" hidden></p>
+  </section>
+  <section class="box" aria-labelledby="contact-title">
+    <h2 id="contact-title"></h2>
+    <a class="mail" id="contact" href="mailto:detoxify.ai@proton.me"></a>
+  </section>
+  <footer id="foot"></footer>
+</main>
+<script>
+var CONTACT = "detoxify.ai@proton.me";
+// Paste a checkout link here (Lemon Squeezy or similar). Empty keeps the button honest.
+var CHECKOUT_URL = "";
+
+var topics = [
+  { id: "challenges", he: "המלצות למי שמתמודד עם אתגרים נפשיים ואו פיזיים (כמעט תמיד זה בא ביחד, צרוף היטב)", en: "Recommendations for those dealing with mental and/or physical challenges (they almost always come together, well combined)" },
+  { id: "youth", he: "המלצות לצעירים (בני 16 עד 28 בערך)", en: "Recommendations for young people (ages 16 to 28 approximately)" },
+  { id: "apps", he: "המלצות לאפליקציות", en: "App recommendations" },
+  { id: "bored", he: "המלצות למי שמרגיש משועמם", en: "Recommendations for those who feel bored" },
+  { id: "psychedelics", he: "המלצות למי שרוצה או כבר משתמש בפסיכדליה", en: "Recommendations for those who want to or already use psychedelics" },
+  { id: "order", he: "המלצות למי שאוהב ניקיון וסדר (או חרד לגבי זה כמו ב אוסידי של ניקיון)", en: "Recommendations for those who love cleanliness and order (or are anxious about it like in OCD of cleanliness)" },
+  { id: "distress", crisis: true, he: "המלצות למי שמרגיש אובדני, על כל הספקטרום של זה", en: "Recommendations for those who feel suicidal, across the entire spectrum of it" },
+  { id: "money", he: "המלצות למי שרוב הכסף שלו נמצא בבנק אחד או במדינה אחת", en: "Recommendations for those whose most money is in one bank or one country" },
+  { id: "health", he: "המלצות למי שרוצה לשדרג את הבריאות שלו משמעותית (כולל מי שכבר בריא ובכושר על)", en: "Recommendations for those who want to significantly upgrade their health (including those already healthy and in top shape)" },
+  { id: "business", paid: true, he: "המלצות למי שרוצה להקים עסק ולהרוויח אונליין ואין לו רעיון טוב", en: "Recommendations for those who want to start a business and earn online and don't have a good idea" },
+  { id: "employed", he: "המלצות למי שעובד כשכיר (כולל בכירים)", en: "Recommendations for those who work as employees (including seniors)" },
+  { id: "compassion", he: "המלצות למי שרוצה לפתח את החמלה שלו, האקטיביזם ולמצוא את עצמו בעולם טוב יותר", en: "Recommendations for those who want to develop their compassion, activism and find themselves in a better world" },
+  { id: "psychiatry", he: "המלצות לכיצד להתנהל עם פסיכיאטרים", en: "Recommendations on how to deal with psychiatrists" },
+  { id: "therapy", he: "המלצות לכיצד להתנהל עם מטפלים רגשיים (והאם כדאי בכלל)", en: "Recommendations on how to deal with emotional therapists (and whether it's worth it at all)" },
+  { id: "tests", he: "בחן את עצמך - בדיקות עצמיות קלות וזריזות אונליין, כולל להתמכרות (במיוחד אם לדעתך אינך מכור!)", en: "Test yourself - easy and quick online self-tests, including for addiction (especially if you think you're not addicted!)" }
+];
+
+var copy = {
+  he: {
+    title: "רון גרשינסקי",
+    name: "רון גרשינסקי",
+    mark: "רג",
+    bio: "טכנולוג, תלמיד של וולנס אינטגרלי (בכל התחומים בחיים)",
+    soon: "ההמלצות האלה עדיין נכתבות. אם זה רלוונטי, ההרשמה לרשימה תעזור לי לדעת מה לפרסם קודם.",
+    crisis: "אם יש מצוקה עכשיו, לא צריך לחכות למדריך. ער״ן זמינים כל השעה: חייגו 1201, או וואטסאפ 052-8451201.",
+    crisisLink: "eran.org.il",
+    waitlistTitle: "הרשמה מהירה לרשימת המתנה",
+    waitlistDesc: "למוצרים, שירותים, פלטפורמות, אפליקציות ומרכזים שאני עובד על להקים",
+    waitlistBtn: "הצטרף לרשימה",
+    emailPlaceholder: "האימייל שלך",
+    emailLabel: "אימייל",
+    thanks: "נרשמת. האימייל נשלח אליי, ואעדכן כשיהיה משהו חדש.",
+    invalid: "צריך כתובת אימייל תקינה.",
+    sendFail: "השליחה לא הצליחה. נסה שוב, או כתוב אליי ישירות.",
+    contactTitle: "יצירת קשר",
+    contactBtn: "שלח אליי מייל",
+    footer: "© רון גרשינסקי",
+    games: "משחקים להרגעה ושלווה עמוקה",
+    buy: "הורדה ב־5 דולר",
+    payMissing: "התשלום עדיין לא מחובר. צריך לינק לדף תשלום."
+  },
+  en: {
+    title: "Ron Gershinsky",
+    name: "Ron Gershinsky",
+    mark: "RG",
+    bio: "Technologist, student of integral wellness (in all areas of life)",
+    soon: "These notes are still being written. If this is relevant, joining the list tells me what to publish first.",
+    crisis: "If there is distress right now, don't wait for a guide. In Israel, ERAN is there around the clock: call 1201, or WhatsApp 052-8451201. Elsewhere, contact local emergency services.",
+    crisisLink: "eran.org.il",
+    waitlistTitle: "Quick waitlist signup",
+    waitlistDesc: "For products, services, platforms, apps and centers I'm building",
+    waitlistBtn: "Join the list",
+    emailPlaceholder: "Your email",
+    emailLabel: "Email",
+    thanks: "You're on the list. The email was sent to me, and I'll write when there's something new.",
+    invalid: "Enter a valid email address.",
+    sendFail: "Sending failed. Try again, or email me directly.",
+    contactTitle: "Contact",
+    contactBtn: "Send email",
+    footer: "© Ron Gershinsky",
+    games: "Games for calm and deep quiet",
+    buy: "Download for $5",
+    payMissing: "Payment is not connected yet. A checkout link is required."
+  }
+};
+
+var lang = localStorage.getItem("rg-lang") === "en" ? "en" : "he";
+var openId = null;
+
+function isEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function text(id, value) {
+  document.getElementById(id).textContent = value;
+}
+
+function render() {
+  var t = copy[lang];
+  var he = lang === "he";
+  document.documentElement.lang = lang;
+  document.documentElement.dir = he ? "rtl" : "ltr";
+  document.title = t.title;
+  document.getElementById("he").setAttribute("aria-pressed", he ? "true" : "false");
+  document.getElementById("en").setAttribute("aria-pressed", he ? "false" : "true");
+  text("mark", t.mark);
+  text("name", t.name);
+  text("bio", t.bio);
+  text("wait-title", t.waitlistTitle);
+  text("wait-desc", t.waitlistDesc);
+  text("email-label", t.emailLabel);
+  text("join", t.waitlistBtn);
+  text("contact-title", t.contactTitle);
+  text("contact", t.contactBtn);
+  text("foot", t.footer);
+  var email = document.getElementById("email");
+  email.placeholder = t.emailPlaceholder;
+  email.dir = he ? "rtl" : "ltr";
+  email.style.textAlign = he ? "right" : "left";
+  localStorage.setItem("rg-lang", lang);
+
+  var list = document.getElementById("list");
+  list.innerHTML = "";
+  var games = document.createElement("li");
+  var link = document.createElement("a");
+  link.className = "card";
+  link.href = "relax/index.html";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = t.games;
+  games.appendChild(link);
+  list.appendChild(games);
+
+  topics.forEach(function (topic) {
+    var li = document.createElement("li");
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "topic";
+    if (topic.paid) {
+      var name = document.createElement("span");
+      name.textContent = he ? topic.he : topic.en;
+      var price = document.createElement("span");
+      price.className = "price";
+      price.textContent = t.buy;
+      button.appendChild(name);
+      button.appendChild(price);
+      button.addEventListener("click", function () {
+        if (!CHECKOUT_URL) {
+          showPay(t.payMissing);
+          return;
+        }
+        window.open(CHECKOUT_URL, "_blank", "noopener");
+      });
+    } else {
+      button.textContent = he ? topic.he : topic.en;
+      button.setAttribute("aria-expanded", openId === topic.id ? "true" : "false");
+      button.addEventListener("click", function () {
+        openId = openId === topic.id ? null : topic.id;
+        render();
+      });
+    }
+    li.appendChild(button);
+    if (!topic.paid && openId === topic.id) {
+      var panel = document.createElement("div");
+      panel.className = "panel";
+      var p = document.createElement("p");
+      p.textContent = t.soon;
+      panel.appendChild(p);
+      if (topic.crisis) {
+        var c = document.createElement("p");
+        c.style.marginTop = "0.75rem";
+        c.style.color = "var(--fg)";
+        c.appendChild(document.createTextNode(t.crisis + " "));
+        var a = document.createElement("a");
+        a.href = "https://www.eran.org.il/";
+        a.textContent = t.crisisLink;
+        c.appendChild(a);
+        panel.appendChild(c);
+      }
+      li.appendChild(panel);
+    }
+    list.appendChild(li);
+  });
+}
+
+function showPay(message) {
+  var old = document.getElementById("pay-note");
+  if (old) old.remove();
+  var note = document.createElement("p");
+  note.id = "pay-note";
+  note.className = "err";
+  note.textContent = message;
+  document.getElementById("list").appendChild(note);
+}
+
+document.getElementById("he").addEventListener("click", function () { lang = "he"; render(); });
+document.getElementById("en").addEventListener("click", function () { lang = "en"; render(); });
+
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  var input = document.getElementById("email");
+  var value = input.value.trim();
+  var invalid = document.getElementById("invalid");
+  var thanks = document.getElementById("thanks");
+  var t = copy[lang];
+  if (!isEmail(value)) {
+    invalid.hidden = false;
+    invalid.textContent = t.invalid;
+    thanks.hidden = true;
+    return;
+  }
+  invalid.hidden = true;
+  var join = document.getElementById("join");
+  join.disabled = true;
+  fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      email: value,
+      _subject: "Waitlist — Ron Gershinsky",
+      _template: "table"
+    })
+  }).then(function (response) {
+    if (!response.ok) throw new Error("fail");
+    input.value = "";
+    thanks.hidden = false;
+    thanks.textContent = t.thanks;
+  }).catch(function () {
+    thanks.hidden = true;
+    invalid.hidden = false;
+    invalid.textContent = t.sendFail;
+  }).finally(function () {
+    join.disabled = false;
+  });
+});
+
+render();
+</script>
+</body>
+</html>
