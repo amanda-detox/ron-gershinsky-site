@@ -144,6 +144,7 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
   }
+  .game-frame { display:block; width:100%; height:26rem; margin-top:0.75rem; border:1px solid var(--line); border-radius:0.75rem; background:var(--bg); }
 </style>
 </head>
 <body>
@@ -170,6 +171,12 @@
   <section class="box" aria-labelledby="contact-title">
     <h2 id="contact-title"></h2>
     <a class="mail" id="contact" href="mailto:detoxify.ai@proton.me"></a>
+  </section>
+  <section class="box" aria-labelledby="game-title">
+    <h2 id="game-title"></h2>
+    <p class="desc" id="game-desc"></p>
+    <iframe class="game-frame" id="game-frame" src="relax/still-pond.html" title="Still Pond" loading="lazy"></iframe>
+    <a class="mail" id="game-open" href="relax/still-pond.html"></a>
   </section>
   <footer id="foot"></footer>
 </main>
@@ -218,7 +225,10 @@ var copy = {
     footer: "© רון גרשינסקי",
     games: "משחקים להרגעה ושלווה עמוקה",
     buy: "הורדה ב־5 דולר",
-    payMissing: "התשלום עדיין לא מחובר. צריך לינק לדף תשלום."
+    payMissing: "התשלום עדיין לא מחובר. צריך לינק לדף תשלום.",
+    gameTitle: "משחק מומלץ",
+    gameDesc: "בריכה שקטה: געו במים, ראו אדוות וצלילים רכים, ודגי קוי ששטים לאט.",
+    gameOpen: "לפתוח במסך מלא"
   },
   en: {
     title: "Ron Gershinsky",
@@ -241,7 +251,10 @@ var copy = {
     footer: "© Ron Gershinsky",
     games: "Games for calm and deep quiet",
     buy: "Download for $5",
-    payMissing: "Payment is not connected yet. A checkout link is required."
+    payMissing: "Payment is not connected yet. A checkout link is required.",
+    gameTitle: "Recommended game",
+    gameDesc: "Still Pond: touch the water for ripples and soft chimes while koi drift by.",
+    gameOpen: "Open full screen"
   }
 };
 
@@ -274,6 +287,9 @@ function render() {
   text("contact-title", t.contactTitle);
   text("contact", t.contactBtn);
   text("foot", t.footer);
+  text("game-title", t.gameTitle);
+  text("game-desc", t.gameDesc);
+  text("game-open", t.gameOpen);
   var email = document.getElementById("email");
   email.placeholder = t.emailPlaceholder;
   email.dir = he ? "rtl" : "ltr";
