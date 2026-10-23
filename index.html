@@ -184,6 +184,8 @@
 var CONTACT = "detoxify.ai@proton.me";
 // Paste a checkout link here (Lemon Squeezy or similar). Empty keeps the button honest.
 var CHECKOUT_URL = "";
+// Waitlist server (server/worker.js). Paste the Worker URL here once deployed; empty falls back to FormSubmit email only.
+var WAITLIST_URL = "";
 
 var topics = [
   { id: "challenges", he: "המלצות למי שמתמודד עם אתגרים נפשיים ואו פיזיים (כמעט תמיד זה בא ביחד, צרוף היטב)", en: "Recommendations for those dealing with mental and/or physical challenges (they almost always come together, well combined)" },
@@ -389,15 +391,22 @@ document.getElementById("form").addEventListener("submit", function (event) {
   invalid.hidden = true;
   var join = document.getElementById("join");
   join.disabled = true;
-  fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT), {
-    method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
-    body: JSON.stringify({
-      email: value,
-      _subject: "Waitlist — Ron Gershinsky",
-      _template: "table"
-    })
-  }).then(function (response) {
+  var request = WAITLIST_URL
+    ? fetch(WAITLIST_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: value, lang: lang })
+      })
+    : fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT), {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          email: value,
+          _subject: "Waitlist — Ron Gershinsky",
+          _template: "table"
+        })
+      });
+  request.then(function (response) {
     if (!response.ok) throw new Error("fail");
     input.value = "";
     thanks.hidden = false;
