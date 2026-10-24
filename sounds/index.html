@@ -107,6 +107,10 @@
   .cat-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; font-size: 13.5px; color: var(--soft); }
   .cat-tools .chip { min-height: 34px; }
   .cat-tools label { display: inline-flex; align-items: center; gap: 6px; }
+  .tile.wide { grid-column: 1 / -1; }
+  .mtext { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.6; font-weight: 300; color: rgba(248,244,255,0.8); text-align: center; max-width: 34em; margin-inline: auto; }
+  .tile.on .mtext { color: rgba(255,255,255,0.95); }
+  .soon { margin: 12px 0 0; font-size: 13.5px; color: var(--faint); font-style: italic; }
   .cat-note { margin: 0 0 12px; font-size: 13.5px; line-height: 1.55; font-weight: 300; color: var(--soft); }
   .glyph { font-size: 34px; line-height: 40px; height: 40px; font-weight: 300; color: color-mix(in srgb, var(--c) 75%, white); font-family: Georgia, "Times New Roman", serif; }
   .hzbig { font-size: 26px; line-height: 40px; height: 40px; font-weight: 400; letter-spacing: 0.02em; color: color-mix(in srgb, var(--c) 75%, white); direction: ltr; }
@@ -176,12 +180,18 @@
     { id: "rain", e: "🌧️", he: "גשם", en: "Rain", c: "#93c5fd" },
     { id: "thunder", e: "⛈️", he: "רעם וברקים", en: "Thunder & lightning", c: "#a78bfa" },
     { id: "crickets", e: "🦗", he: "צרצרים", en: "Crickets", c: "#86efac" },
-    { id: "fireplace", e: "🔥", he: "אח בוערת", en: "Fireplace", c: "#fb923c" },
+    { id: "fireplace", e: "🔥", he: "מדורה", en: "Campfire", c: "#fb923c" },
     { id: "birds", e: "🐦", he: "ציפורי בר", en: "Wild birds", c: "#fde047" },
     { id: "dinosaurs", e: "🦕", he: "דינוזאורים", en: "Dinosaurs", c: "#4ade80" },
     { id: "aliens", e: "👽", he: "חייזרים מגניבים", en: "Cool aliens", c: "#e879f9" }
   ];
   SOUNDS.forEach(function (s) { s.cat = "nature"; s.kind = "nature"; });
+  // Instruments: synthesized the same way (seamless loops), kind "nature" = pre-rendered loop.
+  SOUNDS.push({ id: "jawharp", e: "🎶", he: "נבל פה", en: "Jaw Harp", c: "#fbbf24", cat: "instruments", kind: "nature" });
+  [["didgeridoo", "🪵", "דיג׳רידו", "Didgeridoo", "#d97706"], ["flute", "🪈", "חליל", "Flute", "#a5f3fc"],
+   ["bansuri", "🎋", "בנסורי", "Bansuri", "#bef264"], ["clarinet", "🎷", "קלרינט", "Clarinet", "#c4b5fd"]].forEach(function (x) {
+    SOUNDS.push({ id: x[0], e: x[1], he: x[2], en: x[3], c: x[4], cat: "instruments", kind: "nature" });
+  });
   // Brainwaves: beat frequency range and a typical default.
   [["epsilon", "ε", "אפסילון", "Epsilon", 0, 0.5, 0.3, 0.01, "#7dd3fc"], ["delta", "δ", "דלתא", "Delta", 0.5, 4, 2, 0.1, "#818cf8"],
    ["theta", "θ", "תטא", "Theta", 4, 8, 6, 0.1, "#a78bfa"], ["alpha", "α", "אלפא", "Alpha", 8, 13, 10, 0.1, "#5eead4"],
@@ -196,7 +206,27 @@
     SOUNDS.push({ id: "f-" + f[0], cat: "special", kind: "freq", hz: f[0], he: f[1], en: f[2], c: f[3] });
   });
   SOUNDS.push({ id: "f-custom", cat: "special", kind: "custom", he: "תדר מותאם אישית", en: "Custom frequency", min: 20, max: 2000, def: 440, step: 1, c: "#e2e8f0" });
-  var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
+  // Mantras: pre-recorded speech (mantras/<lang>-<m|f>-<n>.mp3), looped with a calm pause after each line.
+  var MANTRAS = [
+    { he: "מנטרה 1 – בריאות", en: "Mantra 1 – Health", c: "#86efac",
+      m: "אני מודה על כך שאני בריא שאני בכושר שאני בטוב ושלום פנימי",
+      f: "אני מודה על כך שאני בריאה שאני בכושר שאני בטוב ושלום פנימי",
+      t: "I am grateful that I am healthy, fit, well, and at inner peace." },
+    { he: "מנטרה 2 – שפע וחופש", en: "Mantra 2 – Abundance & Freedom", c: "#fde047",
+      m: "אני מודה על כך שאני חווה שפע וחופש מתמשכים בחיי ובחיי אהוביי",
+      f: "אני מודה על כך שאני חווה שפע וחופש מתמשכים בחיי ובחיי אהוביי",
+      t: "I am grateful that I experience lasting abundance and freedom in my life and in the lives of my loved ones." },
+    { he: "מנטרה 3 – תשוקה ומשמעות", en: "Mantra 3 – Passion & Meaning", c: "#fb923c",
+      m: "אני מודה על כך שאני פועל על מה שמדליק אותי, מעניין אותי ומשמעותי עבורי כל יום",
+      f: "אני מודה על כך שאני פועלת על מה שמדליק אותי, מעניין אותי ומשמעותי עבורי כל יום",
+      t: "I am grateful that every day I act on what excites me, interests me, and is meaningful to me." },
+    { he: "מנטרה 4 – בית נקי ובטוח", en: "Mantra 4 – A Clean, Safe Home", c: "#7dd3fc",
+      m: "אני מודה על כך שהבתים שלי נקיים מרעלים, יפים ברמות על ובטוחים עד מאוד עבורי ועבור אהוביי.",
+      f: "אני מודה על כך שהבתים שלי נקיים מרעלים, יפים ברמות על ובטוחים עד מאוד עבורי ועבור אהוביי.",
+      t: "I am grateful that my homes are free of toxins, supremely beautiful, and deeply safe for me and my loved ones." }
+  ];
+  MANTRAS.forEach(function (x, i) { SOUNDS.push({ id: "mantra-" + (i + 1), n: i + 1, cat: "mantras", kind: "mantra", e: "🙏", he: x.he, en: x.en, c: x.c, m: x.m, f: x.f, t: x.t }); });
+  var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "instruments", he: "כלי נגינה", en: "Instruments" }, { id: "mantras", he: "מנטרות", en: "Mantras" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
   var T = {
     he: {
       doc: "מיקסר צלילים", title: "מיקסר צלילים", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
@@ -213,7 +243,8 @@
       active: function (n) { return n + " פעילים"; }, binaural: "🎧 בינאורלי", iso: "🔊 איזוכרוני", carrier: "תדר נושא", hz: "הרץ",
       brainNote: "<b>🎧 בינאורלי</b> דורש אוזניות: כל אוזן שומעת תדר מעט שונה, וההפרש הוא הפעימה. <b>איזוכרוני</b> הוא פולסים של צליל ועובד גם בלי אוזניות.",
       specialNote: "צלילי סינוס רכים בתדרים פופולריים. התיאורים הם שמות מקובלים בלבד, בלי טענות רפואיות.",
-      freq: "תדר", actual: function (v) { return "בפועל " + v + " הרץ (דיוק הלופ)"; }
+      freq: "תדר", actual: function (v) { return "בפועל " + v + " הרץ (דיוק הלופ)"; },
+      male: "🧔 זכר", female: "👩 נקבה", voice: "קול:", mantraSoon: "עוד מנטרות – יצורף בקרוב"
     },
     en: {
       doc: "Sound Mixer", title: "Sound Mixer", sub: "Tap a sound to turn it on. Mix several together and set each one’s volume.",
@@ -230,7 +261,8 @@
       active: function (n) { return n + " on"; }, binaural: "🎧 Binaural", iso: "🔊 Isochronic", carrier: "Carrier", hz: "Hz",
       brainNote: "<b>🎧 Binaural</b> beats need headphones: each ear hears a slightly different tone and the difference is the beat. <b>Isochronic</b> pulses work without headphones.",
       specialNote: "Soft sine tones at popular frequencies. Labels are common names only, with no medical claims.",
-      freq: "Frequency", actual: function (v) { return "Actual " + v + " Hz (loop precision)"; }
+      freq: "Frequency", actual: function (v) { return "Actual " + v + " Hz (loop precision)"; },
+      male: "🧔 Male voice", female: "👩 Female voice", voice: "Voice:", mantraSoon: "More mantras – coming soon"
     }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -249,19 +281,19 @@
   function byId(id) { for (var i = 0; i < SOUNDS.length; i++) if (SOUNDS[i].id === id) return SOUNDS[i]; }
 
   /* ---------- state ---------- */
-  var st = { on: [], vols: {}, master: 0.8, freqs: {}, mode: "binaural", carrier: 200, cats: { nature: true, brain: false, special: false } };
+  var st = { on: [], vols: {}, master: 0.8, freqs: {}, mode: "binaural", carrier: 200, gender: "m", cats: { nature: true, instruments: true, mantras: true, brain: false, special: false } };
   try {
     var sv = JSON.parse(localStorage.getItem(KEY));
     if (sv && Array.isArray(sv.on)) {
       st.on = sv.on.filter(byId); st.vols = sv.vols || {}; st.master = typeof sv.master === "number" ? sv.master : 0.8;
-      st.freqs = sv.freqs || {}; st.mode = sv.mode === "iso" ? "iso" : "binaural";
+      st.freqs = sv.freqs || {}; st.mode = sv.mode === "iso" ? "iso" : "binaural"; st.gender = sv.gender === "f" ? "f" : "m";
       st.carrier = clamp(+sv.carrier || 200, 100, 500); if (sv.cats) for (var ck in st.cats) if (typeof sv.cats[ck] === "boolean") st.cats[ck] = sv.cats[ck];
     }
   } catch (e) {}
   function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
   function freq(id) { var s = byId(id), v = st.freqs[id]; return typeof v === "number" && isFinite(v) ? clamp(v, s.min, s.max) : s.def; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
-  function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : (byId(id).kind === "nature" ? 0.7 : 0.5); }
+  function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : ({ nature: 0.7, mantra: 0.8 }[byId(id).kind] || 0.5); }
   function isOn(id) { return st.on.indexOf(id) >= 0; }
   var playing = false;          // what the user wants
   var buffers = {};             // id -> {L, R, flashes}
@@ -381,10 +413,36 @@
       L[i] += sinc(i * il) * a * e; R[i] += sinc(i * ir) * a * e;
     }
   }
-  function voiceKey(id) { var s = byId(id); if (s.kind === "nature") return id; var p = toneSpec(id); return [p.fl, p.fr, p.pulse, p.amp].join("/"); }
+  function voiceKey(id) { var s = byId(id); if (s.kind === "nature") return id; if (s.kind === "mantra") return mantraFile(s); var p = toneSpec(id); return [p.fl, p.fr, p.pulse, p.amp].join("/"); }
   // Seamless loop buffer for one sound (nature: converted once and kept; tones: built for the current frequency).
+  /* mantras: decode the mp3, normalise the speech level, add 0.6 s before and 3.6 s of calm silence after, loop that */
+  var mantraBufs = {}, mantraLoad = {};
+  function mantraFile(s) { return "mantras/" + (lang === "en" ? "en" : "he") + "-" + (st.gender === "f" ? "f" : "m") + "-" + s.n + ".mp3"; }
+  function decode(ab) {
+    return new Promise(function (res, rej) { var p = ctx.decodeAudioData(ab, res, rej); if (p && p.then) p.then(res, rej); });
+  }
+  function mantraBuffer(id) {
+    var s = byId(id), file = mantraFile(s);
+    if (mantraBufs[file]) return Promise.resolve(mantraBufs[file]);
+    if (mantraLoad[file]) return mantraLoad[file];
+    var p = fetch(file).then(function (r) { if (!r.ok) throw new Error("mantra " + r.status); return r.arrayBuffer(); }).then(decode).then(function (d) {
+      var sr = d.sampleRate, pre = Math.round(0.6 * sr), post = Math.round(3.6 * sr), len = d.length, i, c, ss = 0, cnt = 0;
+      var out = ctx.createBuffer(2, pre + len + post, sr), src = [];
+      for (c = 0; c < d.numberOfChannels; c++) src.push(d.getChannelData(c));
+      for (i = 0; i < len; i++) { var v = src[0][i]; if (Math.abs(v) > 0.01) { ss += v * v; cnt++; } }
+      var g = Math.min(4, 0.11 / (Math.sqrt(ss / Math.max(1, cnt)) || 1));
+      for (c = 0; c < 2; c++) {
+        var o = out.getChannelData(c), x = src[Math.min(c, src.length - 1)];
+        for (i = 0; i < len; i++) { var e = Math.min(1, i / 240, (len - 1 - i) / 240); o[pre + i] = x[i] * g * e; }   // tiny edge fades, no clicks
+      }
+      mantraBufs[file] = out; delete mantraLoad[file]; delete loading[id]; renderTiles(); return out;
+    }, function (err) { delete mantraLoad[file]; delete loading[id]; renderTiles(); throw err; });
+    mantraLoad[file] = p; loading[id] = p; renderTiles();
+    return p;
+  }
   function bufferFor(id) {
     var s = byId(id), n = SR * LOOP;
+    if (s.kind === "mantra") return mantraBuffer(id);
     if (s.kind !== "nature") {
       var ab = ctx.createBuffer(2, n, SR);
       addTone(ab.getChannelData(0), ab.getChannelData(1), toneSpec(id), 1);
@@ -420,7 +478,9 @@
         delete pend[id];
         if (!playing || !isOn(id) || voiceKey(id) !== key) return;
         var old = voices[id], now = ctx.currentTime;
-        var off = old ? ((now - old.t0) % LOOP + LOOP) % LOOP : 0;   // a frequency change continues at the same loop position
+        var kind = byId(id).kind, dur = ab.duration;
+        // a frequency change continues at the same loop position; a mantra in another language/voice starts from the top
+        var off = old && kind !== "mantra" ? ((now - old.t0) % dur + dur) % dur : 0;
         var src = ctx.createBufferSource(), g = ctx.createGain();
         src.buffer = ab; src.loop = true; src.loopStart = 0; src.loopEnd = ab.duration;
         g.gain.setValueAtTime(0, now); g.gain.linearRampToValueAtTime(mixGain(id), now + 0.25);
@@ -526,13 +586,14 @@
 
   /* ---------- UI ---------- */
   function tileHtml(s) {
-    var icon = s.kind === "nature" ? '<span class="emo" aria-hidden="true">' + s.e + "</span>" :
+    var icon = s.kind === "nature" || s.kind === "mantra" ? '<span class="emo" aria-hidden="true">' + s.e + "</span>" :
       s.kind === "bw" ? '<span class="glyph" aria-hidden="true">' + s.g + "</span>" :
       s.kind === "freq" ? '<span class="hzbig" aria-hidden="true">' + s.hz + "<small>Hz</small></span>" : '<span class="hzbig" aria-hidden="true">∿</span>';
     var fr = (s.kind === "bw" || s.kind === "custom") ?
       '<div class="frow"><input type="range" class="fr" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '">' +
       '<input type="number" class="fin" inputmode="decimal" step="any" min="' + s.min + '" max="' + s.max + '"><span class="unit">Hz</span></div><span class="actual"></span>' : "";
-    return '<button type="button" class="tbtn" aria-pressed="false">' + icon + '<span class="nm"></span><span class="st"></span></button>' + fr +
+    var mt = s.kind === "mantra" ? '<span class="mtext" dir="auto"></span>' : "";
+    return '<button type="button" class="tbtn" aria-pressed="false">' + icon + '<span class="nm"></span>' + mt + '<span class="st"></span></button>' + fr +
       '<div class="volrow"><span class="ico" aria-hidden="true">🔈</span><input type="range" min="0" max="100" class="vol"><span class="ico" aria-hidden="true">🔊</span></div>';
   }
   var freqTimers = {};
@@ -552,14 +613,17 @@
       var tools = c.id === "brain" ? '<p class="cat-note" data-t="brainNote"></p><div class="cat-tools"><div role="group" style="display:flex;gap:6px">' +
         '<button type="button" class="chip" id="mode-bin"></button><button type="button" class="chip" id="mode-iso"></button></div>' +
         '<label><span data-t="carrier"></span><input type="number" class="num" id="carrier" inputmode="decimal" step="any" min="100" max="500"><span class="unit">Hz</span></label></div>' :
-        c.id === "special" ? '<p class="cat-note" data-t="specialNote"></p>' : "";
+        c.id === "special" ? '<p class="cat-note" data-t="specialNote"></p>' :
+        c.id === "mantras" ? '<div class="cat-tools"><span data-t="voice"></span><div role="group" style="display:flex;gap:6px">' +
+        '<button type="button" class="chip" id="g-m"></button><button type="button" class="chip" id="g-f"></button></div></div>' : "";
+      var soon = c.id === "mantras" ? '<p class="soon" data-t="mantraSoon"></p>' : "";
       sec.innerHTML = '<button type="button" class="cat-h" aria-expanded="true" aria-controls="cat-' + c.id + '"><span class="ct"></span><span class="cnt" hidden></span><span class="chev" aria-hidden="true">▾</span></button>' +
-        '<div class="cat-body" id="cat-' + c.id + '">' + tools + '<ul class="grid"></ul></div>';
+        '<div class="cat-body" id="cat-' + c.id + '">' + tools + '<ul class="grid"></ul>' + soon + '</div>';
       sec.querySelector(".cat-h").addEventListener("click", function () { st.cats[c.id] = !st.cats[c.id]; save(); renderCats(); });
       var ul = sec.querySelector(".grid");
       SOUNDS.filter(function (s) { return s.cat === c.id; }).forEach(function (s) {
         var li = document.createElement("li");
-        li.className = "tile"; li.dataset.id = s.id; li.style.setProperty("--c", s.c);
+        li.className = s.kind === "mantra" ? "tile wide" : "tile"; li.dataset.id = s.id; li.style.setProperty("--c", s.c);
         li.innerHTML = tileHtml(s);
         li.querySelector(".tbtn").addEventListener("click", function () { toggleSound(s.id); });
         var r = li.querySelector(".vol");
@@ -577,6 +641,9 @@
       root.appendChild(sec);
     });
     function setMode(m) { st.mode = m; save(); renderCats(); renderStatus(); if (playing && st.on.some(function (id) { return byId(id).kind === "bw"; })) scheduleRefresh(); }
+    function setGender(g) { st.gender = g; save(); renderAll(); if (playing && st.on.some(function (id) { return byId(id).kind === "mantra"; })) syncVoices(); }
+    $("g-m").onclick = function () { setGender("m"); };
+    $("g-f").onclick = function () { setGender("f"); };
     $("mode-bin").onclick = function () { setMode("binaural"); };
     $("mode-iso").onclick = function () { setMode("iso"); };
     $("carrier").value = fmtHz(st.carrier);
@@ -596,6 +663,8 @@
       sec.querySelector(".cat-body").hidden = !open;
       var tx = sec.querySelectorAll("[data-t]"); for (var i = 0; i < tx.length; i++) tx[i].innerHTML = t[tx[i].getAttribute("data-t")];
     });
+    $("g-m").textContent = t.male; $("g-f").textContent = t.female;
+    $("g-m").setAttribute("aria-pressed", String(st.gender !== "f")); $("g-f").setAttribute("aria-pressed", String(st.gender === "f"));
     $("mode-bin").textContent = t.binaural; $("mode-iso").textContent = t.iso;
     $("mode-bin").setAttribute("aria-pressed", String(st.mode === "binaural")); $("mode-iso").setAttribute("aria-pressed", String(st.mode === "iso"));
     $("carrier").setAttribute("aria-label", t.carrier + " (Hz)");
@@ -607,6 +676,7 @@
       li.classList.toggle("on", on);
       var b = li.querySelector(".tbtn"); b.setAttribute("aria-pressed", String(on));
       li.querySelector(".nm").textContent = nameOf(s);
+      if (s.kind === "mantra") li.querySelector(".mtext").textContent = lang === "en" ? s.t : (st.gender === "f" ? s.f : s.m);
       var sub = s.kind === "bw" ? ltr(on ? fmtHz(freq(id)) + " Hz" : s.min + "–" + s.max + " Hz") : s.kind === "custom" ? ltr(on ? fmtHz(freq(id)) + " Hz" : "20–2000 Hz") : (on ? L().on : "");
       li.querySelector(".st").textContent = on && loading[id] ? L().preparing : sub;
       var r = li.querySelector(".vol"); r.setAttribute("aria-label", L().vol + ": " + nameOf(s)); r.tabIndex = on ? 0 : -1;
@@ -644,7 +714,8 @@
     if (hintKey) $("install-hint").innerHTML = t[hintKey];
     renderAll();
   }
-  function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
+  function langChanged() { if (playing && st.on.some(function (id) { return byId(id).kind === "mantra"; })) syncVoices(); }
+  function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); langChanged(); }
   $("lang-he").onclick = function () { setLang("he"); };
   $("lang-en").onclick = function () { setLang("en"); };
   $("play").onclick = function () { if (playing) pause(); else play(); };
@@ -685,8 +756,8 @@
   document.addEventListener("visibilitychange", onBack);
   document.addEventListener("resume", function () { onBack(true); setTimeout(function () { onBack(true); }, 1200); });   // page was frozen by the OS and is back
   window.addEventListener("focus", onBack);
-  window.addEventListener("storage", function (e) { if (e.key === LANG_KEY && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
-  window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem(LANG_KEY) === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
+  window.addEventListener("storage", function (e) { if (e.key === LANG_KEY && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); langChanged(); } });
+  window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem(LANG_KEY) === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); langChanged(); } });
 
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).

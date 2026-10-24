@@ -447,9 +447,222 @@
     return { L: L, R: R };
   }
 
+  // Jaw harp (mouth harp) in D: a twangy metallic reed drone, rhythmic plucks, and "wah" overtones from the mouth
+  // shape (two resonant formants that jump and glide between harmonics). 110 BPM so exactly 132 beats fill the loop.
+  function jawharp() {
+    var r = rng(121), f0 = Math.round(146.83 * LOOP) / LOOP, BPM = 110, STEP = 60 / BPM / 4, BARS = Math.round(LOOP / (STEP * 16));
+    var PAT = ["x..x..x.x..x..x.", "x.x.x.x.x.x.x.x.", "x...x...x.xxx...", "x..x..x...x.x.x.", "xx.x.xx.x.xx.x..",
+      "x.......x..x....", "x.xxx.x.x.xxx.x.", "x..xx..xx..x.x..", "x...............", "x.x..x.x..x.x.x."];
+    var MOT = [[4, 6, 8, 6], [5, 8, 10, 8, 6], [3, 4, 6, 8, 10, 12], [8, 6, 4, 3], [6, 9, 6, 12], [4, 4, 8, 5, 10, 6]];
+    var Aamp = new Float32Array(M), tgt = [], ev = [], bar = 0, pat = PAT[0], mot = MOT[0], mi = 0, left = 0, i, j;
+    while (bar < BARS) {
+      if (left <= 0) {
+        left = 2 + Math.floor(r() * 3);
+        if (bar >= BARS - left) left = BARS - bar;
+        pat = PAT[Math.floor(r() * PAT.length)]; mot = pick(r, MOT); mi = 0;
+      }
+      var trip = r() < 0.12;   // now and then a triplet bar
+      for (var k = 0, steps = trip ? 12 : 16; k < steps; k++) {
+        var on = trip ? (k % 3 === 0 || r() < 0.35) : pat[k] === "x";
+        if (!on) continue;
+        var t = bar * 16 * STEP + (trip ? k * STEP * 16 / 12 : k * STEP) + (r() - 0.5) * 0.008;
+        var acc = (trip ? k % 3 === 0 : k % 4 === 0) ? 1 : 0.55 + 0.3 * r();
+        ev.push({ t: t, a: acc, h: mot[mi++ % mot.length] * (r() < 0.15 ? 1.5 : 1), glide: r() < 0.3 });
+      }
+      bar++; left--;
+    }
+    // amplitude: each pluck is a sharp attack with a ringing decay; the reed never quite stops between plucks (drone)
+    for (i = 0; i < M; i++) Aamp[i] = 0.06;
+    ev.forEach(function (e) {
+      var s0 = Math.floor(e.t * SR / CR), tau = 0.18 + 0.35 * r(), len = Math.floor(tau * 5 * SR / CR);
+      for (j = 0; j < len; j++) { var tt = j * CR / SR; Aamp[(s0 + j) % M] += e.a * Math.min(1, tt / 0.003) * Math.exp(-tt / tau); }
+    });
+    // mouth formant: jumps to the pluck's harmonic, some notes glide ("wah") towards the next one; cyclic smoothing
+    var F = new Float32Array(M), cur = ev.length ? ev[ev.length - 1].h * f0 : 6 * f0;
+    var target = new Float32Array(M);
+    for (var n = 0; n < ev.length; n++) {
+      var e = ev[n], nx = ev[(n + 1) % ev.length], a0 = Math.floor(e.t * SR / CR), a1 = Math.floor(nx.t * SR / CR);
+      if (a1 <= a0) a1 += M;
+      for (j = a0; j < a1; j++) { var u = (j - a0) / (a1 - a0); target[j % M] = f0 * (e.glide ? e.h + (nx.h - e.h) * u * u : e.h); }
+    }
+    var kf = 1 - Math.exp(-1 / (0.012 * SR / CR));
+    for (var pass = 0; pass < 2; pass++) for (j = 0; j < M; j++) { cur += kf * (target[j] - cur); if (pass) F[j] = cur; }
+    var F2 = new Float32Array(M);
+    for (j = 0; j < M; j++) F2[j] = Math.min(5200, F[j] * 1.9 + 380);
+    // reed source: buzzy harmonic-rich wave with whole cycles per loop (seamless)
+    var TS = 4096, SINT = new Float32Array(TS + 1), H = 36, amps = [];
+    for (i = 0; i <= TS; i++) SINT[i] = Math.sin(TAU * i / TS);
+    for (var h = 1; h <= H; h++) amps.push(Math.pow(h, -0.75) * (h % 2 ? 1 : 0.8));
+    var src = new Float32Array(N), inc = f0 / SR, out = [];
+    for (i = 0; i < N; i++) {
+      var ph = i * inc, v = 0;
+      for (h = 1; h <= H; h++) { var x = ph * h; x = (x - Math.floor(x)) * TS; var q = x | 0; v += amps[h - 1] * (SINT[q] + (SINT[q + 1] - SINT[q]) * (x - q)); }
+      src[i] = v * 0.25;
+    }
+    for (var c = 0; c < 2; c++) {
+      var b1 = bq(src, BP, F, 9 + c), b2 = bq(src, BP, F2, 6), dry = bq(src, LP, 900, 0.7), y = new Float32Array(N);
+      for (i = 0; i < N; i++) y[i] = b1[i] * 1.2 + b2[i] * 0.55 + dry[i] * 0.18;
+      out.push(mulCtl(y, Aamp));
+    }
+    var L = out[0], R = out[1];
+    // finger pluck: a tiny metallic click on every attack
+    ev.forEach(function (e) {
+      var ck = env(bqLin(noiseBurst(r, 0.012), HP, 2500, 0.7), function (u) { return Math.exp(-u * 9); });
+      put(L, R, S(e.t), ck, (r() - 0.5) * 0.2, 0.05 * e.a);
+    });
+    echo(L, R, 0.07, 0.105, 0.18, 0.15, 3500);
+    return { L: L, R: R };
+  }
+
+  /* ---------- wind instruments, all in D so they blend with each other and with the jaw harp ---------- */
+  var D3 = 146.83;
+  function sinTab() { var t = new Float32Array(4097); for (var i = 0; i <= 4096; i++) t[i] = Math.sin(TAU * i / 4096); return t; }
+  var SINT = sinTab();
+  function sn(ph) { ph -= Math.floor(ph); var x = ph * 4096, k = x | 0; return SINT[k] + (SINT[k + 1] - SINT[k]) * (x - k); }
+  // Light cyclic room: early reflections plus a softer longer tail (wraps around the loop, so no seam).
+  function room(L, R, amt) {
+    echo(L, R, 0.029, 0.041, 0.42, amt * 0.45, 5000);
+    echo(L, R, 0.113, 0.167, 0.48, amt * 0.5, 3200);
+    echo(L, R, 0.31, 0.43, 0.38, amt * 0.35, 2200);
+  }
+  // One blown note: harmonics + vibrato (fading in) + optional glide from the previous pitch + breath noise + onset chiff.
+  function blowNote(r, f, fPrev, dur, c) {
+    var rel = c.rel, n = Math.floor((dur + rel) * SR), o = new Float32Array(n), ph = r(), vph = r() * TAU, H = c.harm, i, h;
+    var hmax = Math.min(H.length, Math.floor(14000 / (f * 1.1)));
+    var gl = fPrev && c.glideP && r() < c.glideP ? c.glideT[0] + r() * (c.glideT[1] - c.glideT[0]) : 0;
+    var vib = c.vib * (0.7 + 0.6 * r()), vr = c.vibRate * (0.9 + 0.2 * r());
+    if (c.andolan && r() < c.andolan) { vib = 0.014; vr = 1.6 + r() * 0.8; }   // slow wide oscillation, bansuri style
+    var nz = bqLin(noiseBurst(r, n / SR), BP, Math.min(9000, f * c.breathF), 1.2), ck = c.chiff;
+    for (i = 0; i < n; i++) {
+      var t = i / SR, ff = f;
+      if (gl && t < gl) { var u = t / gl, s = (1 - Math.cos(Math.PI * u)) / 2; ff = fPrev * Math.pow(f / fPrev, s); }
+      var vd = vib * Math.min(1, Math.max(0, (t - c.vibDelay) / 0.5));
+      ff *= 1 + vd * Math.sin(vph + TAU * vr * t);
+      ph += ff / SR; ph -= Math.floor(ph);
+      var a = t < c.att ? (1 - Math.cos(Math.PI * t / c.att)) / 2 : 1;
+      if (t > dur) a *= 0.5 + 0.5 * Math.cos(Math.PI * Math.min(1, (t - dur) / rel));
+      a *= 0.82 + 0.18 * Math.sin(Math.PI * Math.min(1, t / (dur + rel * 0.5)));   // gentle swell inside the note
+      var v = 0;
+      for (h = 0; h < hmax; h++) v += H[h] * sn(ph * (h + 1));
+      v += nz[i] * c.breath * (0.5 + 0.5 * a) * 3;
+      if (ck) v += nz[i] * ck * Math.exp(-t / 0.035) * 4;
+      o[i] = v * a;
+    }
+    return o;
+  }
+  // Slow meandering phrases on a scale with rests between them; the loop starts and ends inside a rest (silence + room tail).
+  function melodic(seed, c) {
+    var r = rng(seed), L = new Float32Array(N), R = new Float32Array(N), lad = [], i;
+    for (var oc = -2; oc <= 3; oc++) c.scale.forEach(function (x) { var f = c.base * x * Math.pow(2, oc); if (f >= c.lo * 0.999 && f <= c.hi * 1.001) lad.push(f); });
+    lad.sort(function (a, b) { return a - b; });
+    var homes = []; lad.forEach(function (f, k) { var x = Math.log2(f / c.base); x -= Math.floor(x + 1e-9); if (x < 0.01 || Math.abs(x - Math.log2(1.5)) < 0.01) homes.push(k); });
+    var idx = homes[Math.floor(homes.length / 2)], t = 1 + r() * 1.5, prev = 0, endT = LOOP - c.tail;
+    while (t < endT) {
+      var notes, tt, i0 = idx, fits = false;
+      for (var att = 0; att < 10 && !fits; att++) {   // near the end, retry with shorter phrases so the loop ends in a short rest
+      var len = Math.max(2, c.phrase[0] + Math.floor(r() * (c.phrase[1] - c.phrase[0] + 1)) - (att >> 1)); notes = []; tt = t; idx = i0;
+      for (i = 0; i < len; i++) {
+        var st = pick(r, [-2, -1, -1, 1, 1, 2, 0, -3, 3]);
+        idx = Math.max(0, Math.min(lad.length - 1, idx + st));
+        if (i === len - 1) { var best = homes[0]; homes.forEach(function (k) { if (Math.abs(k - idx) < Math.abs(best - idx)) best = k; }); idx = best; }
+        var d = pick(r, c.durs) * (i === len - 1 ? 1.6 : 1) * (1 - 0.06 * att);
+        notes.push({ t: tt, f: lad[idx], d: d }); tt += d + c.gap;
+      }
+      fits = tt + c.rel <= endT;
+      }
+      if (!fits) break;
+      notes.forEach(function (nt, k) {
+        var sig = blowNote(r, nt.f, k ? notes[k - 1].f : prev, nt.d, c);
+        put(L, R, S(nt.t), sig, c.pan + (r() - 0.5) * 0.15, c.gain * (0.8 + 0.2 * r()));
+      });
+      prev = notes[notes.length - 1].f;
+      t = tt + c.rest[0] + r() * (c.rest[1] - c.rest[0]);
+    }
+    room(L, R, c.room);
+    return { L: L, R: R };
+  }
+  var MAJP = [1, 9 / 8, 5 / 4, 3 / 2, 5 / 3], DORIAN = [1, 9 / 8, 6 / 5, 4 / 3, 3 / 2, 5 / 3, 16 / 9], DURGA = [1, 9 / 8, 4 / 3, 3 / 2, 5 / 3];
+  function flute() {
+    return melodic(131, { base: D3, scale: MAJP, lo: 293.66, hi: 1174.7, harm: [1, 0.32, 0.11, 0.05, 0.025, 0.012],
+      vib: 0.0055, vibRate: 4.8, vibDelay: 0.25, att: 0.14, rel: 0.45, breath: 0.16, breathF: 2.2, chiff: 0.18,
+      glideP: 0.15, glideT: [0.06, 0.12], durs: [0.9, 1.3, 1.8, 2.6, 3.4], gap: 0.06, phrase: [3, 6], rest: [2.2, 5], tail: 2.2,
+      pan: -0.15, gain: 0.32, room: 0.6 });
+  }
+  function bansuri() {
+    // Raga Durga flavour (Sa Re Ma Pa Dha) on D, long notes joined by meend glides, andolan on some notes.
+    return melodic(141, { base: D3, scale: DURGA, lo: 220, hi: 880, harm: [1, 0.22, 0.07, 0.025, 0.01],
+      vib: 0.006, vibRate: 5.2, vibDelay: 0.45, andolan: 0.25, att: 0.2, rel: 0.6, breath: 0.26, breathF: 2.6, chiff: 0.1,
+      glideP: 0.6, glideT: [0.25, 0.55], durs: [1.2, 1.8, 2.4, 3.2, 4.2], gap: 0, phrase: [3, 7], rest: [2, 4.5], tail: 2.6,
+      pan: 0.1, gain: 0.34, room: 0.7 });
+  }
+  function clarinet() {
+    // Chalumeau-to-clarion range, odd harmonics dominate (closed cylindrical bore).
+    return melodic(151, { base: D3, scale: DORIAN, lo: 146.83, hi: 587.33, harm: [1, 0.04, 0.5, 0.035, 0.28, 0.03, 0.15, 0.02, 0.08, 0.012, 0.04, 0.008, 0.02],
+      vib: 0.0025, vibRate: 4.6, vibDelay: 0.5, att: 0.09, rel: 0.4, breath: 0.045, breathF: 3.5, chiff: 0.04,
+      glideP: 0.08, glideT: [0.05, 0.09], durs: [0.8, 1.2, 1.6, 2.4, 3.2], gap: 0.05, phrase: [4, 7], rest: [1.8, 4], tail: 2,
+      pan: 0.15, gain: 0.26, room: 0.55 });
+  }
+  // Didgeridoo on D2: continuous buzzing drone whose vowel formants keep changing, breath pulses on a 110 BPM groove,
+  // circular-breathing sniffs, and occasional "toots" on the overtone. Whole cycles per loop, so the drone itself is seamless.
+  function didgeridoo() {
+    var r = rng(161), f0 = Math.round(D3 / 2 * LOOP) / LOOP, STEP = 60 / 110 / 4, BARS = Math.round(LOOP / (STEP * 16)), i, j;
+    var V = [[300, 800], [450, 950], [700, 1150], [550, 1700], [350, 2200], [250, 1300], [600, 1000]];
+    var PAT = ["x...x...x...x...", "x..x..x.x..x..x.", "x.x...x.x.x...x.", "x...x.x...x.x.x.", "x..x.x..x..x.x..", "x.......x.......", "xx..x.x.xx..x.x."];
+    var F1 = new Float32Array(M), F2 = new Float32Array(M), A = new Float32Array(M), t1 = new Float32Array(M), t2 = new Float32Array(M);
+    var events = [], toots = [], sniffs = [], bar = 0, left = 0, pat = PAT[0], vseq = [0, 2];
+    for (i = 0; i < M; i++) A[i] = 0.5;
+    while (bar < BARS) {
+      if (left <= 0) {
+        left = Math.min(BARS - bar, 2 + Math.floor(r() * 3)); pat = pick(r, PAT);
+        vseq = []; for (var k = 0, nv = 2 + Math.floor(r() * 3); k < nv; k++) vseq.push(Math.floor(r() * V.length));
+        if (r() < 0.35) toots.push({ t: (bar + left - 1) * 16 * STEP + pick(r, [0, 8, 12]) * STEP, d: 0.25 + r() * 0.45 });
+        if (r() < 0.6) sniffs.push((bar + left - 1) * 16 * STEP + 14 * STEP);
+      }
+      var vi = 0;
+      for (var s = 0; s < 16; s++) if (pat[s] === "x") events.push({ t: (bar * 16 + s) * STEP, a: s % 4 === 0 ? 1 : 0.6, v: vseq[vi++ % vseq.length] });
+      bar++; left--;
+    }
+    events.forEach(function (e) {
+      var s0 = Math.floor(e.t * SR / CR), len = Math.floor(0.6 * SR / CR);
+      for (j = 0; j < len; j++) { var tt = j * CR / SR; A[(s0 + j) % M] += 0.55 * e.a * Math.min(1, tt / 0.02) * Math.exp(-tt / 0.13); }
+    });
+    sniffs.forEach(function (st) {   // circular breathing: the drone thins out for a moment
+      var s0 = Math.floor(st * SR / CR), len = Math.floor(0.28 * SR / CR);
+      for (j = 0; j < len; j++) A[(s0 + j) % M] *= 1 - 0.6 * Math.sin(Math.PI * j / len);
+    });
+    for (var n = 0; n < events.length; n++) {
+      var e = events[n], nx = events[(n + 1) % events.length], a0 = Math.floor(e.t * SR / CR), a1 = Math.floor(nx.t * SR / CR);
+      if (a1 <= a0) a1 += M;
+      for (j = a0; j < a1; j++) { t1[j % M] = V[e.v][0]; t2[j % M] = V[e.v][1]; }
+    }
+    var kf = 1 - Math.exp(-1 / (0.035 * SR / CR)), c1 = t1[M - 1], c2 = t2[M - 1];
+    for (var pass = 0; pass < 2; pass++) for (j = 0; j < M; j++) { c1 += kf * (t1[j] - c1); c2 += kf * (t2[j] - c2); if (pass) { F1[j] = c1; F2[j] = c2; } }
+    var H = 34, amps = [], src = new Float32Array(N), inc = f0 / SR;
+    for (var h = 1; h <= H; h++) amps.push(Math.pow(h, -0.85) * (h % 2 ? 1 : 0.75));
+    for (i = 0; i < N; i++) { var ph = i * inc, v = 0; for (h = 0; h < H; h++) v += amps[h] * sn(ph * (h + 1)); src[i] = v * 0.3; }
+    var out = [];
+    for (var c = 0; c < 2; c++) {
+      var rr = rng(1610 + c), b1 = bq(src, BP, F1, 4 + c * 0.5), b2 = bq(src, BP, F2, 7), lo = bq(src, LP, 260, 0.7), br = bq(pink(rr), BP, F2, 2), y = new Float32Array(N);
+      for (i = 0; i < N; i++) y[i] = lo[i] * 0.6 + b1[i] * 1.1 + b2[i] * 0.9 + br[i] * 0.05;
+      out.push(mulCtl(y, A));
+    }
+    var L = out[0], R = out[1];
+    toots.forEach(function (tt) {
+      var sig = tone(tt.d, function (u) { return f0 * 3 * (1 + 0.02 * Math.sin(Math.PI * u)); }, function (u) { return Math.min(1, u * 8) * Math.min(1, (1 - u) * 5); }, 0.45, 0.25);
+      put(L, R, S(tt.t), sig, 0, 0.22);
+    });
+    sniffs.forEach(function (st) {
+      var sz = env(bqLin(noiseBurst(r, 0.22), BP, 1800, 1.5), function (u) { return Math.sin(Math.PI * u); });
+      put(L, R, S(st), sz, 0, 0.05);
+    });
+    room(L, R, 0.35);
+    return { L: L, R: R };
+  }
+
   var DEFS = {
     ocean: [ocean, 1], river: [river, 0.9], waterfall: [waterfall, 0.85], rain: [rain, 0.9], thunder: [thunder, 1],
-    crickets: [crickets, 0.6], fireplace: [fireplace, 0.95], birds: [birds, 0.7], dinosaurs: [dinosaurs, 0.85], aliens: [aliens, 0.75]
+    crickets: [crickets, 0.6], fireplace: [fireplace, 0.95], birds: [birds, 0.7], dinosaurs: [dinosaurs, 0.85], aliens: [aliens, 0.75], jawharp: [jawharp, 0.8],
+    didgeridoo: [didgeridoo, 0.9], flute: [flute, 0.7], bansuri: [bansuri, 0.7], clarinet: [clarinet, 0.7]
   };
 
   // Loudness-match: scale so the 90th percentile of 0.5 s RMS hits a common target, then a soft limiter.
