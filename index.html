@@ -7,6 +7,7 @@
 <meta name="color-scheme" content="dark">
 <meta name="description" content="רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי.">
 <title>רון גרשינסקי</title>
+<script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="app-icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="app-icon-192.png">
@@ -165,6 +166,9 @@
   .install:hover { background: var(--surface-2); }
   .install-hint { margin-top: 0.75rem; }
   .game-frame { display:block; width:100%; height:26rem; margin-top:0.75rem; border:1px solid var(--line); border-radius:0.75rem; background:var(--bg); }
+
+  .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; text-align: start; }
+  .install-hint li { margin: 0.15rem 0; }
 </style>
 </head>
 <body>
@@ -176,9 +180,9 @@
   <div class="mark" id="mark">רג</div>
   <h1 id="name">רון גרשינסקי</h1>
   <p class="bio" id="bio"></p>
-  <div class="install-wrap" id="install-wrap" hidden>
+  <div class="install-wrap" id="install-wrap">
     <button type="button" class="install" id="install-btn"></button>
-    <p class="panel install-hint" id="install-hint" hidden></p>
+    <div class="panel install-hint" id="install-hint" hidden></div>
   </div>
   <ul id="list"></ul>
   <section class="box" aria-labelledby="wait-title">
@@ -269,7 +273,7 @@ var copy = {
     gameTitle: "Recommended game",
     gameDesc: "Still Pond: touch the water for ripples and soft chimes while koi drift by.",
     gameOpen: "Open full screen",
-    install: "📲 Add to home screen",
+    install: "📲 Install to home screen",
     installIos: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
     installOther: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”."
   }
@@ -277,7 +281,6 @@ var copy = {
 
 var lang = localStorage.getItem("rg-lang") === "en" ? "en" : "he";
 var openId = null;
-var installHint = null;
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -309,7 +312,7 @@ function render() {
   text("game-desc", t.gameDesc);
   text("game-open", t.gameOpen);
   text("install-btn", t.install);
-  if (installHint) text("install-hint", t[installHint]);
+  if (!document.getElementById("install-hint").hidden) document.getElementById("install-hint").innerHTML = instHint(lang);
   var email = document.getElementById("email");
   email.placeholder = t.emailPlaceholder;
   email.dir = he ? "rtl" : "ltr";
@@ -438,30 +441,50 @@ document.getElementById("form").addEventListener("submit", function (event) {
   });
 });
 
-// Add to home screen (same approach as alarm/ and relax/).
-var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || "") || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-var installPrompt = null;
-function isStandalone() {
-  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+/* ---------- Install to home screen ----------
+   Always visible unless already running as an installed app. Tap: native prompt when
+   the browser offers one, otherwise short instructions for this device. */
+var INST_TXT = {
+  he: {
+    iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>.</li></ol>",
+    iosOther: "<ol><li>קודם פותחים את הדף ב־<b>Safari</b>: בתפריט (⋯ או ⋮) בוחרים <b>„פתח ב־Safari”</b> או <b>„פתח בדפדפן”</b>.</li><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>",
+    android: "<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b> (ב־Samsung: <b>„הוסף דף אל” ← „מסך הבית”</b>).</li></ol>פתחת מתוך וואטסאפ, אינסטגרם או פייסבוק? קודם בוחרים בתפריט <b>„פתח בדפדפן”</b>.",
+    desktop: "<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>"
+  },
+  en: {
+    iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>.</li></ol>",
+    iosOther: "<ol><li>First open this page in <b>Safari</b>: from the menu (⋯ or ⋮) choose <b>“Open in Safari”</b> or <b>“Open in browser”</b>.</li><li>In Safari, tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>",
+    android: "<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b> (Samsung: <b>“Add page to” → “Home screen”</b>).</li></ol>Opened from WhatsApp, Instagram or Facebook? First choose <b>“Open in browser”</b> from its menu.",
+    desktop: "<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>"
+  }
+};
+var instDeferred = null, instDone = false;
+function instStandalone() {
+  return (window.matchMedia && (window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: minimal-ui)").matches)) || navigator.standalone === true;
 }
+function instKey() {
+  var ua = navigator.userAgent || "";
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (ios) return (/Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|YaBrowser|DuckDuckGo|FBAN|FBAV|Instagram|WhatsApp|Line\//.test(ua)) ? "iosSafari" : "iosOther";
+  if (/Android/i.test(ua)) return "android";
+  return "desktop";
+}
+function instHint(l) { return INST_TXT[l === "en" ? "en" : "he"][instKey()]; }
 function updateInstall() {
-  var show = !isStandalone() && (installPrompt || isIOS);
+  var show = !instStandalone() && !instDone;
   document.getElementById("install-wrap").hidden = !show;
   if (!show) document.getElementById("install-hint").hidden = true;
 }
-window.addEventListener("beforeinstallprompt", function (event) { event.preventDefault(); installPrompt = event; updateInstall(); });
-window.addEventListener("appinstalled", function () { installPrompt = null; document.getElementById("install-wrap").hidden = true; });
+window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
+window.addEventListener("appinstalled", function () { instDeferred = null; instDone = true; updateInstall(); });
+if (window.matchMedia) { var instMq = window.matchMedia("(display-mode: standalone)"); if (instMq.addEventListener) instMq.addEventListener("change", updateInstall); else if (instMq.addListener) instMq.addListener(updateInstall); }
 document.getElementById("install-btn").addEventListener("click", function () {
-  if (installPrompt) {
-    var p = installPrompt;
-    installPrompt = null;
-    p.prompt();
-    (p.userChoice || Promise.resolve()).then(updateInstall);
-    return;
-  }
-  installHint = isIOS ? "installIos" : "installOther";
   var hint = document.getElementById("install-hint");
-  hint.textContent = copy[lang][installHint];
+  if (instDeferred) {
+    var d = instDeferred; instDeferred = null;
+    try { d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall, updateInstall); return; } catch (e) {}
+  }
+  hint.innerHTML = instHint(lang);
   hint.hidden = !hint.hidden;
 });
 
