@@ -86,6 +86,7 @@
     font-size: 14px; line-height: 1.6; font-weight: 300; color: var(--soft); }
   .note b { font-weight: 500; color: rgba(245,240,255,0.85); }
   .install-wrap { text-align: center; margin: 20px 0 0; }
+  .install-wrap.top { margin: 4px 0 14px; }
   .install { font-size: 15.5px; padding: 11px 20px; color: #f5f0ff; background: rgba(201,184,255,0.14); border: 1px solid rgba(201,184,255,0.3);
     border-radius: 999px; box-shadow: 0 0 22px rgba(190,170,255,0.18); }
   .install-hint { margin: 12px auto 0; max-width: 420px; font-size: 14px; line-height: 1.55; font-weight: 300; color: rgba(225,215,250,0.7); }
@@ -94,6 +95,31 @@
   .flash { position: fixed; inset: 0; pointer-events: none; z-index: 20; opacity: 0; background: radial-gradient(120% 90% at 50% 10%, rgba(220,225,255,0.55), rgba(180,190,255,0.15) 60%, transparent); }
   .flash.go { animation: flash 0.9s ease-out; }
   @keyframes flash { 0% { opacity: 0; } 6% { opacity: var(--fo, 0.6); } 14% { opacity: 0.05; } 22% { opacity: calc(var(--fo, 0.6) * 0.7); } 100% { opacity: 0; } }
+  .cat { margin: 0 0 14px; }
+  .cat-h { width: 100%; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 10px 16px; border-radius: 18px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--line); text-align: start; }
+  .cat-h .ct { font-size: 18px; letter-spacing: 0.04em; color: rgba(248,244,255,0.92); flex: 1; }
+  .cat-h .cnt { font-size: 12.5px; color: #1a1d44; background: var(--lav); border-radius: 999px; padding: 2px 9px; }
+  .cat-h .chev { font-size: 14px; color: var(--soft); transition: transform 0.3s; }
+  .cat-h[aria-expanded="false"] .chev { transform: rotate(-90deg); }
+  html[dir="rtl"] .cat-h[aria-expanded="false"] .chev { transform: rotate(90deg); }
+  .cat-body { padding: 12px 0 0; }
+  .cat-tools { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; font-size: 13.5px; color: var(--soft); }
+  .cat-tools .chip { min-height: 34px; }
+  .cat-tools label { display: inline-flex; align-items: center; gap: 6px; }
+  .cat-note { margin: 0 0 12px; font-size: 13.5px; line-height: 1.55; font-weight: 300; color: var(--soft); }
+  .glyph { font-size: 34px; line-height: 40px; height: 40px; font-weight: 300; color: color-mix(in srgb, var(--c) 75%, white); font-family: Georgia, "Times New Roman", serif; }
+  .hzbig { font-size: 26px; line-height: 40px; height: 40px; font-weight: 400; letter-spacing: 0.02em; color: color-mix(in srgb, var(--c) 75%, white); direction: ltr; }
+  .hzbig small { font-size: 13px; opacity: 0.75; margin-inline-start: 2px; }
+  .frow { padding: 0 12px 6px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; }
+  .frow .fr { flex: 1 1 100%; }
+  .tile:not(.on) .frow { display: none; }
+  .fin, .num { width: 76px; flex: none; font: inherit; font-size: 14px; color: var(--text); background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 10px; padding: 6px 6px; min-height: 34px; direction: ltr; text-align: center; color-scheme: dark; }
+  .num { width: 70px; }
+  .unit { font-size: 12px; color: var(--faint); }
+  .actual { display: block; font-size: 11px; color: var(--faint); text-align: center; padding: 0 12px 4px; min-height: 0; }
+  .tile:not(.on) .actual { display: none; }
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(150px + env(safe-area-inset-bottom, 0px)); z-index: 30;
     background: rgba(44,42,98,0.95); border: 1px solid rgba(201,184,255,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
 </style>
@@ -106,12 +132,12 @@
   </div>
   <h1 id="title"></h1>
   <p class="sub" id="sub"></p>
-  <p class="status" id="status" aria-live="polite"></p>
-  <ul class="grid" id="grid"></ul>
-  <div class="install-wrap" id="install-wrap" hidden>
+  <div class="install-wrap top" id="install-wrap" hidden>
     <button type="button" class="install" id="install-btn"></button>
     <p class="install-hint" id="install-hint" hidden></p>
   </div>
+  <p class="status" id="status" aria-live="polite"></p>
+  <div id="cats"></div>
   <p class="note" id="note"></p>
   <footer><a href="../" id="back"></a> · <a href="../relax/" id="games"></a></footer>
 </main>
@@ -155,6 +181,22 @@
     { id: "dinosaurs", e: "🦕", he: "דינוזאורים", en: "Dinosaurs", c: "#4ade80" },
     { id: "aliens", e: "👽", he: "חייזרים מגניבים", en: "Cool aliens", c: "#e879f9" }
   ];
+  SOUNDS.forEach(function (s) { s.cat = "nature"; s.kind = "nature"; });
+  // Brainwaves: beat frequency range and a typical default.
+  [["epsilon", "ε", "אפסילון", "Epsilon", 0, 0.5, 0.3, 0.01, "#7dd3fc"], ["delta", "δ", "דלתא", "Delta", 0.5, 4, 2, 0.1, "#818cf8"],
+   ["theta", "θ", "תטא", "Theta", 4, 8, 6, 0.1, "#a78bfa"], ["alpha", "α", "אלפא", "Alpha", 8, 13, 10, 0.1, "#5eead4"],
+   ["beta", "β", "בטא", "Beta", 13, 30, 18, 0.1, "#fcd34d"], ["gamma", "γ", "גמא", "Gamma", 40, 100, 40, 0.5, "#f9a8d4"]].forEach(function (b) {
+    SOUNDS.push({ id: "bw-" + b[0], cat: "brain", kind: "bw", g: b[1], he: b[2], en: b[3], min: b[4], max: b[5], def: b[6], step: b[7], c: b[8] });
+  });
+  // Special frequencies: neutral labels only.
+  [[432, "כיוון ורדי", "Verdi tuning", "#86efac"], [528, "סולפג׳יו", "Solfeggio", "#fde68a"], [174, "סולפג׳יו", "Solfeggio", "#fca5a5"],
+   [285, "סולפג׳יו", "Solfeggio", "#fdba74"], [396, "סולפג׳יו", "Solfeggio", "#fcd34d"], [417, "סולפג׳יו", "Solfeggio", "#bef264"],
+   [639, "סולפג׳יו", "Solfeggio", "#67e8f9"], [741, "סולפג׳יו", "Solfeggio", "#93c5fd"], [852, "סולפג׳יו", "Solfeggio", "#c4b5fd"],
+   [963, "סולפג׳יו", "Solfeggio", "#f0abfc"]].forEach(function (f) {
+    SOUNDS.push({ id: "f-" + f[0], cat: "special", kind: "freq", hz: f[0], he: f[1], en: f[2], c: f[3] });
+  });
+  SOUNDS.push({ id: "f-custom", cat: "special", kind: "custom", he: "תדר מותאם אישית", en: "Custom frequency", min: 20, max: 2000, def: 440, step: 1, c: "#e2e8f0" });
+  var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
   var T = {
     he: {
       doc: "מיקסר צלילים", title: "מיקסר צלילים", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
@@ -167,7 +209,11 @@
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.",
       note: "<b>💡 ניגון ברקע:</b> הצלילים ממשיכים לנגן כשעוברים לאפליקציה אחרת או נועלים את המסך, ואפשר לשלוט בהם ממסך הנעילה. באנדרואיד זה עובד הכי טוב. באייפון זה עובד ברוב המקרים, אבל iOS עלול לעצור את הניגון אחרי זמן רב ברקע או בשיחת טלפון. אם זה קורה, לוחצים ▶ במסך הנעילה או באפליקציה. כל הצלילים נוצרים במכשיר עצמו, בלי הורדות ובלי אינטרנט.",
-      back: "← חזרה לאתר", games: "משחקי רגיעה", artist: "מיקסר צלילים"
+      back: "← חזרה לאתר", games: "משחקי רגיעה", artist: "מיקסר צלילים",
+      active: function (n) { return n + " פעילים"; }, binaural: "🎧 בינאורלי", iso: "🔊 איזוכרוני", carrier: "תדר נושא", hz: "הרץ",
+      brainNote: "<b>🎧 בינאורלי</b> דורש אוזניות: כל אוזן שומעת תדר מעט שונה, וההפרש הוא הפעימה. <b>איזוכרוני</b> הוא פולסים של צליל ועובד גם בלי אוזניות.",
+      specialNote: "צלילי סינוס רכים בתדרים פופולריים. התיאורים הם שמות מקובלים בלבד, בלי טענות רפואיות.",
+      freq: "תדר", actual: function (v) { return "בפועל " + v + " הרץ (דיוק הלופ)"; }
     },
     en: {
       doc: "Sound Mixer", title: "Sound Mixer", sub: "Tap a sound to turn it on. Mix several together and set each one’s volume.",
@@ -176,11 +222,15 @@
       off: "Off", min: function (m) { return m + " min"; }, left: function (s) { return s + " left"; },
       play: "Play", pause: "Pause", timerDone: "Sleep timer finished. Good night 🌙", interrupted: "Playback stopped. Tap ▶ to continue.",
       err: "Couldn’t start the sound. Please tap again.",
-      install: "📲 Add to home screen",
+      install: "📲 Install to home screen",
       ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
       other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.",
       note: "<b>💡 Background play:</b> sounds keep playing when you switch apps or lock the screen, with controls on the lock screen. This works best on Android. On iPhone it works most of the time, but iOS may stop playback after a long time in the background or during a phone call. If that happens, tap ▶ on the lock screen or in the app. All sounds are generated on your device, with no downloads and no internet needed.",
-      back: "← Back to the site", games: "Relax games", artist: "Sound Mixer"
+      back: "← Back to the site", games: "Relax games", artist: "Sound Mixer",
+      active: function (n) { return n + " on"; }, binaural: "🎧 Binaural", iso: "🔊 Isochronic", carrier: "Carrier", hz: "Hz",
+      brainNote: "<b>🎧 Binaural</b> beats need headphones: each ear hears a slightly different tone and the difference is the beat. <b>Isochronic</b> pulses work without headphones.",
+      specialNote: "Soft sine tones at popular frequencies. Labels are common names only, with no medical claims.",
+      freq: "Frequency", actual: function (v) { return "Actual " + v + " Hz (loop precision)"; }
     }
   };
   var $ = function (id) { return document.getElementById(id); };
@@ -188,13 +238,30 @@
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
   function L() { return T[lang]; }
   function nameOf(s) { return s[lang]; }
+  function fmtHz(v) { return (Math.round(v * 1000) / 1000).toString(); }
+  function ltr(t) { return "\u2066" + t + "\u2069"; }   // keep "10 Hz" / "8–13 Hz" in order inside Hebrew text
+  function labelOf(s) {
+    if (s.kind === "bw") return s[lang] + " " + ltr(fmtHz(freq(s.id)) + " Hz");
+    if (s.kind === "freq") return ltr(s.hz + " Hz");
+    if (s.kind === "custom") return ltr(fmtHz(freq(s.id)) + " Hz");
+    return s[lang];
+  }
   function byId(id) { for (var i = 0; i < SOUNDS.length; i++) if (SOUNDS[i].id === id) return SOUNDS[i]; }
 
   /* ---------- state ---------- */
-  var st = { on: [], vols: {}, master: 0.8 };
-  try { var sv = JSON.parse(localStorage.getItem(KEY)); if (sv && Array.isArray(sv.on)) st = { on: sv.on.filter(byId), vols: sv.vols || {}, master: typeof sv.master === "number" ? sv.master : 0.8 }; } catch (e) {}
+  var st = { on: [], vols: {}, master: 0.8, freqs: {}, mode: "binaural", carrier: 200, cats: { nature: true, brain: false, special: false } };
+  try {
+    var sv = JSON.parse(localStorage.getItem(KEY));
+    if (sv && Array.isArray(sv.on)) {
+      st.on = sv.on.filter(byId); st.vols = sv.vols || {}; st.master = typeof sv.master === "number" ? sv.master : 0.8;
+      st.freqs = sv.freqs || {}; st.mode = sv.mode === "iso" ? "iso" : "binaural";
+      st.carrier = clamp(+sv.carrier || 200, 100, 500); if (sv.cats) for (var ck in st.cats) if (typeof sv.cats[ck] === "boolean") st.cats[ck] = sv.cats[ck];
+    }
+  } catch (e) {}
+  function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
+  function freq(id) { var s = byId(id), v = st.freqs[id]; return typeof v === "number" && isFinite(v) ? clamp(v, s.min, s.max) : s.def; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
-  function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : 0.7; }
+  function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : (byId(id).kind === "nature" ? 0.7 : 0.5); }
   function isOn(id) { return st.on.indexOf(id) >= 0; }
   var playing = false;          // what the user wants
   var buffers = {};             // id -> {L, R, flashes}
@@ -219,6 +286,7 @@
   }
   function mainThread(id) { return loadFallback().then(function (S) { return new Promise(function (res) { setTimeout(function () { res(S.render(id)); }, 30); }); }); }
   function getSound(id) {
+    if (byId(id).kind !== "nature") return Promise.resolve(null);   // tones are generated while mixing
     if (buffers[id]) return Promise.resolve(buffers[id]);
     if (loading[id]) return loading[id];
     var p = worker ? new Promise(function (res, rej) { waiters[id] = { resolve: res, reject: rej }; worker.postMessage({ id: id }); }) : mainThread(id);
@@ -268,21 +336,55 @@
   }
   function mixGain(id) { var v = vol(id); return v * v; }
   function masterGain() { return st.master * st.master; }
+  // Tones loop seamlessly only with a whole number of cycles per loop, so frequencies snap to 1/72 Hz (0.014 Hz).
+  function q(f) { return Math.round(f * LOOP) / LOOP; }
+  var TS = 4096, SIN = new Float32Array(TS + 1);
+  for (var si = 0; si <= TS; si++) SIN[si] = Math.sin(2 * Math.PI * si / TS);
+  function sinc(ph) { ph -= Math.floor(ph); var x = ph * TS, k = x | 0; return SIN[k] + (SIN[k + 1] - SIN[k]) * (x - k); }
+  function toneSpec(id) {
+    var s = byId(id);
+    if (s.kind === "bw") {
+      var c = q(st.carrier), b = q(freq(id));
+      return st.mode === "iso" ? { fl: c, fr: c, pulse: b, amp: 0.22 } : { fl: c, fr: c + b, pulse: 0, amp: 0.18 };
+    }
+    var f = q(s.kind === "freq" ? s.hz : freq(id));
+    return { fl: f, fr: f, pulse: 0, amp: 0.18 };
+  }
+  function addTone(L, R, spec, g) {
+    var n = L.length, il = spec.fl / SR, ir = spec.fr / SR, ip = spec.pulse / SR, a = spec.amp * g, i;
+    for (i = 0; i < n; i++) {
+      var e = 1;
+      if (ip > 0) { var m = 0.5 - 0.5 * sinc(i * ip + 0.25); e = m * Math.sqrt(m); }   // smooth isochronic pulse, no clicks
+      L[i] += sinc(i * il) * a * e; R[i] += sinc(i * ir) * a * e;
+    }
+  }
   function buildMix(ids) {
-    var n = SR * LOOP, buf = new ArrayBuffer(44 + n * 4), out = new Int16Array(buf, 44), bs = [], gs = [], k, i;
+    var n = SR * LOOP, buf = new ArrayBuffer(44 + n * 4), out = new Int16Array(buf, 44), L = new Float32Array(n), R = new Float32Array(n), i;
     wavHeader(new DataView(buf), n);
     var mg = volAdjustable ? 1 : masterGain();
-    ids.forEach(function (id) { if (buffers[id]) { bs.push(buffers[id]); gs.push(mixGain(id) * mg / 32768); } });
-    var m = bs.length;
-    for (i = 0; i < n; i++) {
-      var l = 0, r = 0;
-      for (k = 0; k < m; k++) { l += bs[k].L[i] * gs[k]; r += bs[k].R[i] * gs[k]; }
-      out[2 * i] = lim(l); out[2 * i + 1] = lim(r);
-    }
+    ids.forEach(function (id) {
+      var g = mixGain(id) * mg;
+      if (byId(id).kind !== "nature") { addTone(L, R, toneSpec(id), g); return; }
+      var b = buffers[id]; if (!b) return; g /= 32768;
+      for (i = 0; i < n; i++) { L[i] += b.L[i] * g; R[i] += b.R[i] * g; }
+    });
+    for (i = 0; i < n; i++) { out[2 * i] = lim(L[i]); out[2 * i + 1] = lim(R[i]); }
     return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
   }
   function lim(x) { var a = x < 0 ? -x : x; if (a > 0.75) a = 0.75 + 0.25 * Math.tanh((a - 0.75) / 0.25); return (x < 0 ? -a : a) * 32767; }
-  function applyElementVolume() { if (volAdjustable) players.forEach(function (a) { a.volume = Math.min(1, masterGain() * fadeMul); }); }
+  function targetVol() { return Math.min(1, masterGain() * fadeMul); }
+  function applyElementVolume() { if (volAdjustable) players.forEach(function (a) { if (!a._ramp) a.volume = targetVol(); }); }
+  // Short volume ramps (where the browser allows element volume) so starts, stops and swaps never click.
+  function ramp(a, to, ms, done) {
+    if (a._ramp) clearInterval(a._ramp);
+    if (!volAdjustable) { a._ramp = null; if (done) done(); return; }
+    var from = a.volume, t0 = Date.now();
+    a._ramp = setInterval(function () {
+      var k = Math.min(1, (Date.now() - t0) / ms);
+      a.volume = clamp(from + (to - from) * k, 0, 1);
+      if (k >= 1) { clearInterval(a._ramp); a._ramp = null; if (done) done(); }
+    }, 16);
+  }
   var fadeMul = 1;
 
   // Re-mix and hand over to the other <audio> element at the same loop position (no audible gap).
@@ -294,7 +396,9 @@
       if (token !== swapToken || !playing) return;
       var url = buildMix(ids), a = players[cur], b = players[1 - cur];
       var pos = (curUrl && !a.paused) ? a.currentTime : (refresh.pos || 0);
-      b._inUse = true; b._starting = true; b.loop = true; b.src = url; applyElementVolume();
+      b._inUse = true; b._starting = true; b.loop = true; b.src = url;
+      if (b._ramp) { clearInterval(b._ramp); b._ramp = null; }
+      if (volAdjustable) b.volume = 0;
       var started = false;
       function go() {
         if (started) return; started = true;
@@ -303,7 +407,8 @@
         (p && p.then ? p : Promise.resolve()).then(function () {
           b._starting = false;
           if (token !== swapToken) { b._expect = true; b.pause(); URL.revokeObjectURL(url); return; }
-          if (a !== b && !a.paused) { a._expect = true; a.pause(); }
+          ramp(b, targetVol(), 250);
+          if (a !== b && !a.paused) ramp(a, 0, 250, function () { if (a !== players[cur]) { a._expect = true; a.pause(); } });
           a._inUse = false;
           var old = curUrl; cur = 1 - cur; curUrl = url;
           if (old) setTimeout(function () { URL.revokeObjectURL(old); }, 1000);
@@ -315,7 +420,11 @@
   }
   function scheduleRefresh() { clearTimeout(mixTimer); mixTimer = setTimeout(refresh, 180); }
   function stopOutput() {
-    players.forEach(function (a) { if (!a.paused) { if (a === players[cur]) refresh.pos = a.currentTime; a._expect = true; a.pause(); } });
+    players.forEach(function (a) {
+      if (a.paused) return;
+      if (a === players[cur]) refresh.pos = a.currentTime;
+      ramp(a, 0, 200, function () { if (!playing || a !== players[cur]) { a._expect = true; a.pause(); } });
+    });
     updateMediaSession();
   }
 
@@ -326,13 +435,17 @@
     playing = true; interrupted = false;
     var a = players[cur];
     if (curUrl && a.src === curUrl && sameMix()) {
+      if (volAdjustable) { if (a.paused) a.volume = 0; ramp(a, targetVol(), 250); }
       var p = a.play(); if (p && p.catch) p.catch(function () { playing = false; renderAll(); toast(L().err); });
       updateMediaSession(); renderAll(); return;
     }
     renderAll(); refresh();
   }
   var mixedIds = "";
-  function mixKey() { return st.on.map(function (id) { return id + ":" + vol(id).toFixed(2); }).join(",") + (volAdjustable ? "" : "|" + st.master.toFixed(2)); }
+  function mixKey() {
+    return st.on.map(function (id) { var s = byId(id); return id + ":" + vol(id).toFixed(2) + (s.kind === "bw" || s.kind === "custom" ? "@" + q(freq(id)).toFixed(4) : ""); }).join(",") +
+      (st.on.some(function (id) { return byId(id).kind === "bw"; }) ? "|" + st.mode + q(st.carrier).toFixed(3) : "") + (volAdjustable ? "" : "|" + st.master.toFixed(2));
+  }
   function sameMix() { return mixedIds === mixKey(); }
   var _refresh = refresh;
   refresh = function () { mixedIds = mixKey(); return _refresh(); };
@@ -340,7 +453,7 @@
   function toggleSound(id) {
     unlock();
     var i = st.on.indexOf(id);
-    if (i >= 0) st.on.splice(i, 1); else { st.on.push(id); if (typeof st.vols[id] !== "number") st.vols[id] = 0.7; }
+    if (i >= 0) st.on.splice(i, 1); else { st.on.push(id); if (typeof st.vols[id] !== "number") st.vols[id] = vol(id); }
     save();
     if (!st.on.length) { pause(); return; }
     playing = true; interrupted = false;
@@ -353,7 +466,7 @@
     if (!("mediaSession" in navigator)) return;
     var ms = navigator.mediaSession;
     try {
-      var names = st.on.map(function (id) { return nameOf(byId(id)); }).join(" · ") || L().title;
+      var names = st.on.map(function (id) { return labelOf(byId(id)).replace(/[\u2066\u2069]/g, ""); }).join(" · ") || L().title;
       ms.metadata = new MediaMetadata({ title: names, artist: L().artist, album: L().title, artwork: [
         { src: new URL("icon-192.png", location.href).href, sizes: "192x192", type: "image/png" },
         { src: new URL("icon-512.png", location.href).href, sizes: "512x512", type: "image/png" }] });
@@ -402,20 +515,80 @@
   requestAnimationFrame(frame);
 
   /* ---------- UI ---------- */
-  function buildTiles() {
-    var ul = $("grid"); ul.innerHTML = "";
-    SOUNDS.forEach(function (s) {
-      var li = document.createElement("li");
-      li.className = "tile"; li.dataset.id = s.id; li.style.setProperty("--c", s.c);
-      li.innerHTML = '<button type="button" class="tbtn" aria-pressed="false"><span class="emo" aria-hidden="true">' + s.e + '</span><span class="nm"></span><span class="st"></span></button>' +
-        '<div class="volrow"><span class="ico" aria-hidden="true">🔈</span><input type="range" min="0" max="100" class="vol"><span class="ico" aria-hidden="true">🔊</span></div>';
-      li.querySelector(".tbtn").addEventListener("click", function () { toggleSound(s.id); });
-      var r = li.querySelector(".vol");
-      r.value = Math.round(vol(s.id) * 100);
-      r.style.setProperty("--p", r.value + "%");
-      r.addEventListener("input", function () { r.style.setProperty("--p", r.value + "%"); st.vols[s.id] = r.value / 100; save(); if (playing && isOn(s.id)) scheduleRefresh(); });
-      ul.appendChild(li);
+  function tileHtml(s) {
+    var icon = s.kind === "nature" ? '<span class="emo" aria-hidden="true">' + s.e + "</span>" :
+      s.kind === "bw" ? '<span class="glyph" aria-hidden="true">' + s.g + "</span>" :
+      s.kind === "freq" ? '<span class="hzbig" aria-hidden="true">' + s.hz + "<small>Hz</small></span>" : '<span class="hzbig" aria-hidden="true">∿</span>';
+    var fr = (s.kind === "bw" || s.kind === "custom") ?
+      '<div class="frow"><input type="range" class="fr" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '">' +
+      '<input type="number" class="fin" inputmode="decimal" step="any" min="' + s.min + '" max="' + s.max + '"><span class="unit">Hz</span></div><span class="actual"></span>' : "";
+    return '<button type="button" class="tbtn" aria-pressed="false">' + icon + '<span class="nm"></span><span class="st"></span></button>' + fr +
+      '<div class="volrow"><span class="ico" aria-hidden="true">🔈</span><input type="range" min="0" max="100" class="vol"><span class="ico" aria-hidden="true">🔊</span></div>';
+  }
+  var freqTimers = {};
+  function setFreq(id, v, li, fromNumber) {
+    var s = byId(id); if (!isFinite(v)) return;
+    v = clamp(v, s.min, s.max); st.freqs[id] = v; save();
+    var r = li.querySelector(".fr"), n = li.querySelector(".fin");
+    r.value = v; r.style.setProperty("--p", ((v - s.min) / (s.max - s.min) * 100) + "%");
+    if (!fromNumber || document.activeElement !== n) n.value = fmtHz(v);
+    renderTiles(); renderStatus();
+    if (playing && isOn(id)) scheduleRefresh(); else updateMediaSession();
+  }
+  function buildCats() {
+    var root = $("cats"); root.innerHTML = "";
+    CATS.forEach(function (c) {
+      var sec = document.createElement("section"); sec.className = "cat"; sec.dataset.cat = c.id;
+      var tools = c.id === "brain" ? '<p class="cat-note" data-t="brainNote"></p><div class="cat-tools"><div role="group" style="display:flex;gap:6px">' +
+        '<button type="button" class="chip" id="mode-bin"></button><button type="button" class="chip" id="mode-iso"></button></div>' +
+        '<label><span data-t="carrier"></span><input type="number" class="num" id="carrier" inputmode="decimal" step="any" min="100" max="500"><span class="unit">Hz</span></label></div>' :
+        c.id === "special" ? '<p class="cat-note" data-t="specialNote"></p>' : "";
+      sec.innerHTML = '<button type="button" class="cat-h" aria-expanded="true" aria-controls="cat-' + c.id + '"><span class="ct"></span><span class="cnt" hidden></span><span class="chev" aria-hidden="true">▾</span></button>' +
+        '<div class="cat-body" id="cat-' + c.id + '">' + tools + '<ul class="grid"></ul></div>';
+      sec.querySelector(".cat-h").addEventListener("click", function () { st.cats[c.id] = !st.cats[c.id]; save(); renderCats(); });
+      var ul = sec.querySelector(".grid");
+      SOUNDS.filter(function (s) { return s.cat === c.id; }).forEach(function (s) {
+        var li = document.createElement("li");
+        li.className = "tile"; li.dataset.id = s.id; li.style.setProperty("--c", s.c);
+        li.innerHTML = tileHtml(s);
+        li.querySelector(".tbtn").addEventListener("click", function () { toggleSound(s.id); });
+        var r = li.querySelector(".vol");
+        r.value = Math.round(vol(s.id) * 100); r.style.setProperty("--p", r.value + "%");
+        r.addEventListener("input", function () { r.style.setProperty("--p", r.value + "%"); st.vols[s.id] = r.value / 100; save(); if (playing && isOn(s.id)) scheduleRefresh(); });
+        var fr = li.querySelector(".fr"), fin = li.querySelector(".fin");
+        if (fr) {
+          var v0 = freq(s.id); fr.value = v0; fin.value = fmtHz(v0); fr.style.setProperty("--p", ((v0 - s.min) / (s.max - s.min) * 100) + "%");
+          fr.addEventListener("input", function () { setFreq(s.id, +fr.value, li, false); });
+          fin.addEventListener("input", function () { clearTimeout(freqTimers[s.id]); var v = parseFloat(fin.value); if (isFinite(v) && v >= s.min && v <= s.max) freqTimers[s.id] = setTimeout(function () { setFreq(s.id, v, li, true); }, 350); });
+          fin.addEventListener("change", function () { clearTimeout(freqTimers[s.id]); var v = parseFloat(fin.value); if (!isFinite(v)) v = freq(s.id); setFreq(s.id, v, li, false); fin.value = fmtHz(freq(s.id)); });
+        }
+        ul.appendChild(li);
+      });
+      root.appendChild(sec);
     });
+    function setMode(m) { st.mode = m; save(); renderCats(); renderStatus(); if (playing && st.on.some(function (id) { return byId(id).kind === "bw"; })) scheduleRefresh(); }
+    $("mode-bin").onclick = function () { setMode("binaural"); };
+    $("mode-iso").onclick = function () { setMode("iso"); };
+    $("carrier").value = fmtHz(st.carrier);
+    $("carrier").addEventListener("change", function () {
+      var v = parseFloat(this.value); st.carrier = clamp(isFinite(v) ? v : 200, 100, 500); this.value = fmtHz(st.carrier); save();
+      if (playing && st.on.some(function (id) { return byId(id).kind === "bw"; })) scheduleRefresh();
+    });
+  }
+  function renderCats() {
+    var t = L();
+    CATS.forEach(function (c) {
+      var sec = document.querySelector('.cat[data-cat="' + c.id + '"]'), open = !!st.cats[c.id];
+      var n = st.on.filter(function (id) { return byId(id).cat === c.id; }).length;
+      sec.querySelector(".ct").textContent = c[lang];
+      var cnt = sec.querySelector(".cnt"); cnt.hidden = !n; cnt.textContent = t.active(n);
+      sec.querySelector(".cat-h").setAttribute("aria-expanded", String(open));
+      sec.querySelector(".cat-body").hidden = !open;
+      var tx = sec.querySelectorAll("[data-t]"); for (var i = 0; i < tx.length; i++) tx[i].innerHTML = t[tx[i].getAttribute("data-t")];
+    });
+    $("mode-bin").textContent = t.binaural; $("mode-iso").textContent = t.iso;
+    $("mode-bin").setAttribute("aria-pressed", String(st.mode === "binaural")); $("mode-iso").setAttribute("aria-pressed", String(st.mode === "iso"));
+    $("carrier").setAttribute("aria-label", t.carrier + " (Hz)");
   }
   function renderTiles() {
     var tiles = document.querySelectorAll(".tile");
@@ -424,12 +597,20 @@
       li.classList.toggle("on", on);
       var b = li.querySelector(".tbtn"); b.setAttribute("aria-pressed", String(on));
       li.querySelector(".nm").textContent = nameOf(s);
-      li.querySelector(".st").textContent = on && loading[id] ? L().preparing : on ? L().on : "";
+      var sub = s.kind === "bw" ? ltr(on ? fmtHz(freq(id)) + " Hz" : s.min + "–" + s.max + " Hz") : s.kind === "custom" ? ltr(on ? fmtHz(freq(id)) + " Hz" : "20–2000 Hz") : (on ? L().on : "");
+      li.querySelector(".st").textContent = on && loading[id] ? L().preparing : sub;
       var r = li.querySelector(".vol"); r.setAttribute("aria-label", L().vol + ": " + nameOf(s)); r.tabIndex = on ? 0 : -1;
+      var act = li.querySelector(".actual");
+      if (act) {
+        var f = freq(id), qf = q(f);
+        act.textContent = Math.abs(qf - f) > 0.0005 ? L().actual(ltr(fmtHz(qf))) : "";
+        li.querySelector(".fr").setAttribute("aria-label", L().freq + ": " + nameOf(s)); li.querySelector(".fin").setAttribute("aria-label", L().freq + " (Hz): " + nameOf(s));
+      }
     }
+    if (document.querySelector(".cat")) renderCats();
   }
   function renderStatus() {
-    var names = st.on.map(function (id) { return nameOf(byId(id)); }).join(" · ");
+    var names = st.on.map(function (id) { return labelOf(byId(id)); }).join(" · ");
     $("status").textContent = !st.on.length ? L().idle : playing ? L().playing + names : (interrupted ? L().interrupted : (curUrl ? L().paused + names : L().resume));
     var p = $("play");
     p.textContent = playing ? "❚❚" : "▶";
@@ -470,9 +651,12 @@
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   var standalone = function () { return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; };
   var deferred = null, hintKey = null;
-  function updateInstall() { var show = !standalone() && (deferred || isIOS); $("install-wrap").hidden = !show; if (!show) $("install-hint").hidden = true; }
+  // Always visible unless already running as an installed app. Uses the native prompt when the browser offers one,
+  // otherwise opens short instructions (iPhone: Share → Add to Home Screen; Android/desktop: browser menu → Install app).
+  function updateInstall() { var show = !standalone(); $("install-wrap").hidden = !show; if (!show) $("install-hint").hidden = true; }
+  if (window.matchMedia) { var dm = window.matchMedia("(display-mode: standalone)"); if (dm.addEventListener) dm.addEventListener("change", updateInstall); }
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
-  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; });
+  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; $("install-hint").hidden = true; });
   $("install-btn").onclick = function () {
     if (deferred) { var d = deferred; deferred = null; d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall); return; }
     hintKey = isIOS ? "ios" : "other"; $("install-hint").innerHTML = L()[hintKey]; $("install-hint").hidden = !$("install-hint").hidden;
@@ -495,12 +679,12 @@
   window.addEventListener("storage", function (e) { if (e.key === LANG_KEY && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
   window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem(LANG_KEY) === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
 
-  buildTiles(); render(); updateInstall();
+  buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
   if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 
-  window.__mixer = { get state() { return st; }, get playing() { return playing; }, get cur() { return players[cur]; }, players: players, buffers: buffers, volAdjustable: volAdjustable, get mixedKey() { return mixedIds; } };
+  window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get cur() { return players[cur]; }, players: players, buffers: buffers, volAdjustable: volAdjustable, get mixedKey() { return mixedIds; } };
 })();
 </script>
 </body>

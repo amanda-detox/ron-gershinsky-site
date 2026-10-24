@@ -1,5 +1,5 @@
 /* Offline cache for the Sound Mixer (scope: sounds/ only). */
-var CACHE = "rg-sounds-v1";
+var CACHE = "rg-sounds-v2";
 var FILES = ["./", "index.html", "synth.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
