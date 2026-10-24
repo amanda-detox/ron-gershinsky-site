@@ -54,6 +54,9 @@
   .install-hint { margin: 12px auto 0; max-width: 420px; font-size: 14px; line-height: 1.55; font-weight: 300; color: rgba(225,215,250,0.7); }
   [hidden] { display: none !important; }
   html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
+
+  .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; text-align: start; }
+  .install-hint li { margin: 0.15rem 0; }
 </style>
 </head>
 <body>
@@ -81,9 +84,9 @@
       <span class="dot" style="--bg: radial-gradient(circle at 35% 40%, rgba(226,118,142,0.8), transparent 45%), radial-gradient(circle at 65% 60%, rgba(88,148,192,0.8), transparent 50%), radial-gradient(circle at 60% 30%, rgba(226,188,86,0.8), transparent 40%), #f4eee3; --glow: rgba(240,200,210,0.35)"></span>
       <span><p class="name" data-i18n="watercolor-name">Watercolor</p><p class="desc" data-i18n="watercolor-desc">Let soft colors bloom and blend across the paper with your finger.</p></span></a></li>
   </ul>
-  <div class="install-wrap" id="install-wrap" hidden>
-    <button type="button" class="install" id="install-btn" data-i18n="install">📲 Add to home screen</button>
-    <p class="install-hint" id="install-hint" hidden></p>
+  <div class="install-wrap" id="install-wrap">
+    <button type="button" class="install" id="install-btn" data-i18n="install">📲 Install to home screen</button>
+    <div class="install-hint" id="install-hint" hidden></div>
   </div>
   <footer data-i18n="footer">Sound is off until you tap the speaker.<br>Take your time.</footer>
 </main>
@@ -100,7 +103,7 @@
       "glow-garden-name": "Glow Garden", "glow-garden-desc": "Plant glowing flowers in a dusk meadow and draw your own constellations.",
       "watercolor-name": "Watercolor", "watercolor-desc": "Let soft colors bloom and blend across the paper with your finger.",
       footer: "Sound is off until you tap the speaker.<br>Take your time.",
-      install: "📲 Add to home screen",
+      install: "📲 Install to home screen",
       ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
       other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>."
     },
@@ -123,12 +126,6 @@
   var lang = "he";
   try { if (localStorage.getItem("rg-lang") === "en") lang = "en"; } catch (e) {}
 
-  var ua = navigator.userAgent || "";
-  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  var standalone = function () {
-    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
-  };
-  var deferred = null, hintKey = null;
 
   function render() {
     var L = T[lang];
@@ -139,29 +136,58 @@
     for (var i = 0; i < els.length; i++) els[i].innerHTML = L[els[i].getAttribute("data-i18n")];
     $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
     $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
-    if (hintKey) $("install-hint").innerHTML = L[hintKey];
+    if (!$("install-hint").hidden) $("install-hint").innerHTML = instHint(lang);
   }
   function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem("rg-lang", lang); } catch (e) {} render(); }
   $("lang-he").onclick = function () { setLang("he"); };
   $("lang-en").onclick = function () { setLang("en"); };
 
-  function updateInstall() {
-    var show = !standalone() && (deferred || isIOS);
-    $("install-wrap").hidden = !show;
-    if (!show) $("install-hint").hidden = true;
+/* ---------- Install to home screen ----------
+   Always visible unless already running as an installed app. Tap: native prompt when
+   the browser offers one, otherwise short instructions for this device. */
+var INST_TXT = {
+  he: {
+    iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>.</li></ol>",
+    iosOther: "<ol><li>קודם פותחים את הדף ב־<b>Safari</b>: בתפריט (⋯ או ⋮) בוחרים <b>„פתח ב־Safari”</b> או <b>„פתח בדפדפן”</b>.</li><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>",
+    android: "<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b> (ב־Samsung: <b>„הוסף דף אל” ← „מסך הבית”</b>).</li></ol>פתחת מתוך וואטסאפ, אינסטגרם או פייסבוק? קודם בוחרים בתפריט <b>„פתח בדפדפן”</b>.",
+    desktop: "<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>"
+  },
+  en: {
+    iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>.</li></ol>",
+    iosOther: "<ol><li>First open this page in <b>Safari</b>: from the menu (⋯ or ⋮) choose <b>“Open in Safari”</b> or <b>“Open in browser”</b>.</li><li>In Safari, tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>",
+    android: "<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b> (Samsung: <b>“Add page to” → “Home screen”</b>).</li></ol>Opened from WhatsApp, Instagram or Facebook? First choose <b>“Open in browser”</b> from its menu.",
+    desktop: "<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>"
   }
-  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
-  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; });
-  $("install-btn").onclick = function () {
-    if (deferred) {
-      var d = deferred; deferred = null; d.prompt();
-      (d.userChoice || Promise.resolve()).then(function () { updateInstall(); });
-      return;
-    }
-    hintKey = isIOS ? "ios" : "other";
-    $("install-hint").innerHTML = T[lang][hintKey];
-    $("install-hint").hidden = !$("install-hint").hidden;
-  };
+};
+var instDeferred = null, instDone = false;
+function instStandalone() {
+  return (window.matchMedia && (window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: minimal-ui)").matches)) || navigator.standalone === true;
+}
+function instKey() {
+  var ua = navigator.userAgent || "";
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (ios) return (/Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|YaBrowser|DuckDuckGo|FBAN|FBAV|Instagram|WhatsApp|Line\//.test(ua)) ? "iosSafari" : "iosOther";
+  if (/Android/i.test(ua)) return "android";
+  return "desktop";
+}
+function instHint(l) { return INST_TXT[l === "en" ? "en" : "he"][instKey()]; }
+function updateInstall() {
+  var show = !instStandalone() && !instDone;
+  document.getElementById("install-wrap").hidden = !show;
+  if (!show) document.getElementById("install-hint").hidden = true;
+}
+window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
+window.addEventListener("appinstalled", function () { instDeferred = null; instDone = true; updateInstall(); });
+if (window.matchMedia) { var instMq = window.matchMedia("(display-mode: standalone)"); if (instMq.addEventListener) instMq.addEventListener("change", updateInstall); else if (instMq.addListener) instMq.addListener(updateInstall); }
+document.getElementById("install-btn").addEventListener("click", function () {
+  var hint = document.getElementById("install-hint");
+  if (instDeferred) {
+    var d = instDeferred; instDeferred = null;
+    try { d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall, updateInstall); return; } catch (e) {}
+  }
+  hint.innerHTML = instHint(lang);
+  hint.hidden = !hint.hidden;
+});
 
   window.addEventListener("storage", function (e) { if (e.key === "rg-lang" && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
   window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem("rg-lang") === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
