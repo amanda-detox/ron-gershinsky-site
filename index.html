@@ -211,23 +211,8 @@ var CHECKOUT_URL = "";
 // Waitlist server (server/worker.js). Paste the Worker URL here once deployed; empty falls back to FormSubmit email only.
 var WAITLIST_URL = "https://ron-waitlist.detoxify-ai.workers.dev";
 
-var topics = [
-  { id: "challenges", he: "המלצות למי שמתמודד עם אתגרים נפשיים ואו פיזיים (כמעט תמיד זה בא ביחד, צרוף היטב)", en: "Recommendations for those dealing with mental and/or physical challenges (they almost always come together, well combined)" },
-  { id: "youth", he: "המלצות לצעירים (בני 16 עד 28 בערך)", en: "Recommendations for young people (ages 16 to 28 approximately)" },
-  { id: "apps", he: "המלצות לאפליקציות", en: "App recommendations" },
-  { id: "bored", he: "המלצות למי שמרגיש משועמם", en: "Recommendations for those who feel bored" },
-  { id: "psychedelics", he: "המלצות למי שרוצה או כבר משתמש בפסיכדליה", en: "Recommendations for those who want to or already use psychedelics" },
-  { id: "order", he: "המלצות למי שאוהב ניקיון וסדר (או חרד לגבי זה כמו ב אוסידי של ניקיון)", en: "Recommendations for those who love cleanliness and order (or are anxious about it like in OCD of cleanliness)" },
-  { id: "distress", crisis: true, he: "המלצות למי שמרגיש אובדני, על כל הספקטרום של זה", en: "Recommendations for those who feel suicidal, across the entire spectrum of it" },
-  { id: "money", he: "המלצות למי שרוב הכסף שלו נמצא בבנק אחד או במדינה אחת", en: "Recommendations for those whose most money is in one bank or one country" },
-  { id: "health", he: "המלצות למי שרוצה לשדרג את הבריאות שלו משמעותית (כולל מי שכבר בריא ובכושר על)", en: "Recommendations for those who want to significantly upgrade their health (including those already healthy and in top shape)" },
-  { id: "business", paid: true, he: "המלצות למי שרוצה להקים עסק ולהרוויח אונליין ואין לו רעיון טוב", en: "Recommendations for those who want to start a business and earn online and don't have a good idea" },
-  { id: "employed", he: "המלצות למי שעובד כשכיר (כולל בכירים)", en: "Recommendations for those who work as employees (including seniors)" },
-  { id: "compassion", he: "המלצות למי שרוצה לפתח את החמלה שלו, האקטיביזם ולמצוא את עצמו בעולם טוב יותר", en: "Recommendations for those who want to develop their compassion, activism and find themselves in a better world" },
-  { id: "psychiatry", he: "המלצות לכיצד להתנהל עם פסיכיאטרים", en: "Recommendations on how to deal with psychiatrists" },
-  { id: "therapy", he: "המלצות לכיצד להתנהל עם מטפלים רגשיים (והאם כדאי בכלל)", en: "Recommendations on how to deal with emotional therapists (and whether it's worth it at all)" },
-  { id: "tests", he: "בחן את עצמך - בדיקות עצמיות קלות וזריזות אונליין, כולל להתמכרות (במיוחד אם לדעתך אינך מכור!)", en: "Test yourself - easy and quick online self-tests, including for addiction (especially if you think you're not addicted!)" }
-];
+// Topic buttons removed at Ron's request (2026-10-24); previous list is in git history.
+var topics = [];
 
 var copy = {
   he: {
