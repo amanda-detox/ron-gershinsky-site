@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,6 +7,12 @@
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Five quiet little browser games. No scores, no timers, no ads.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23c9b8ff%22/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Relax">
 <title>Relax · five quiet games</title>
 <style>
   html, body { margin: 0; min-height: 100%; background: #161a3a; }
@@ -35,30 +41,136 @@
   .name { font-size: 19px; letter-spacing: 0.04em; margin: 0 0 4px; color: rgba(248,244,255,0.92); }
   .desc { font-size: 14.5px; line-height: 1.4; font-weight: 300; color: rgba(225,215,250,0.62); margin: 0; }
   footer { margin-top: 30px; text-align: center; font-size: 13px; font-weight: 300; color: rgba(225,215,250,0.4); line-height: 1.6; }
+  .lang { display: flex; justify-content: center; gap: 6px; margin: 0 0 22px; }
+  .lang button, .install {
+    font: inherit; font-size: 14px; letter-spacing: 0.04em; color: rgba(236,230,255,0.75); cursor: pointer;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 7px 14px;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .lang button[aria-pressed="true"] { background: rgba(201,184,255,0.2); color: #f5f0ff; border-color: rgba(201,184,255,0.35); }
+  .install-wrap { text-align: center; margin: 26px 0 0; }
+  .install { font-size: 15.5px; padding: 11px 20px; color: #f5f0ff; background: rgba(201,184,255,0.14); border-color: rgba(201,184,255,0.3); box-shadow: 0 0 22px rgba(190,170,255,0.18); }
+  .install:hover, .install:focus-visible, .lang button:hover { background: rgba(201,184,255,0.24); outline: none; }
+  .install-hint { margin: 12px auto 0; max-width: 420px; font-size: 14px; line-height: 1.55; font-weight: 300; color: rgba(225,215,250,0.7); }
+  [hidden] { display: none !important; }
+  html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
 </style>
 </head>
 <body>
 <main>
-  <h1>Relax</h1>
-  <p class="sub">Five quiet little games.<br>No scores, no timers, nothing to lose.</p>
+  <div class="lang" role="group" aria-label="Language / שפה">
+    <button type="button" id="lang-he" lang="he" aria-pressed="false">עברית</button>
+    <button type="button" id="lang-en" lang="en" aria-pressed="false">English</button>
+  </div>
+  <h1 data-i18n="title">Relax</h1>
+  <p class="sub" data-i18n="sub">Five quiet little games.<br>No scores, no timers, nothing to lose.</p>
   <ul>
     <li><a class="card" href="quiet-night.html">
       <span class="dot" style="--bg: radial-gradient(circle at 40% 35%, #ffe7c8, #a893f0 60%, #3b3a86); --glow: rgba(190,170,255,0.45)"></span>
-      <span><p class="name">Quiet Night</p><p class="desc">Breathe with a glowing circle, or tap to release bubbles and fireflies.</p></span></a></li>
+      <span><p class="name" data-i18n="quiet-night-name">Quiet Night</p><p class="desc" data-i18n="quiet-night-desc">Breathe with a glowing circle, or tap to release bubbles and fireflies.</p></span></a></li>
     <li><a class="card" href="sand-garden.html">
       <span class="dot" style="--bg: repeating-radial-gradient(circle at 50% 50%, #7d8184 0 9px, #e6d8bd 10px 13px, #cdb993 14px 15px); --glow: rgba(240,220,180,0.35)"></span>
-      <span><p class="name">Sand Garden</p><p class="desc">Rake slow patterns into warm sand and set smooth stones.</p></span></a></li>
+      <span><p class="name" data-i18n="sand-garden-name">Sand Garden</p><p class="desc" data-i18n="sand-garden-desc">Rake slow patterns into warm sand and set smooth stones.</p></span></a></li>
     <li><a class="card" href="still-pond.html">
       <span class="dot" style="--bg: radial-gradient(circle at 50% 50%, #15505a 0 30%, #9fe0d4 31% 34%, #15505a 35% 55%, #7cc8bb 56% 59%, #0e3d47 60%); --glow: rgba(120,220,205,0.4)"></span>
-      <span><p class="name">Still Pond</p><p class="desc">Touch the water for ripples and soft chimes while koi drift by.</p></span></a></li>
+      <span><p class="name" data-i18n="still-pond-name">Still Pond</p><p class="desc" data-i18n="still-pond-desc">Touch the water for ripples and soft chimes while koi drift by.</p></span></a></li>
     <li><a class="card" href="glow-garden.html">
       <span class="dot" style="--bg: radial-gradient(circle at 50% 45%, #fff6e0 0 12%, #ffaacd 13% 38%, #3a3064 62%); --glow: rgba(255,170,205,0.45)"></span>
-      <span><p class="name">Glow Garden</p><p class="desc">Plant glowing flowers in a dusk meadow and draw your own constellations.</p></span></a></li>
+      <span><p class="name" data-i18n="glow-garden-name">Glow Garden</p><p class="desc" data-i18n="glow-garden-desc">Plant glowing flowers in a dusk meadow and draw your own constellations.</p></span></a></li>
     <li><a class="card" href="watercolor.html">
       <span class="dot" style="--bg: radial-gradient(circle at 35% 40%, rgba(226,118,142,0.8), transparent 45%), radial-gradient(circle at 65% 60%, rgba(88,148,192,0.8), transparent 50%), radial-gradient(circle at 60% 30%, rgba(226,188,86,0.8), transparent 40%), #f4eee3; --glow: rgba(240,200,210,0.35)"></span>
-      <span><p class="name">Watercolor</p><p class="desc">Let soft colors bloom and blend across the paper with your finger.</p></span></a></li>
+      <span><p class="name" data-i18n="watercolor-name">Watercolor</p><p class="desc" data-i18n="watercolor-desc">Let soft colors bloom and blend across the paper with your finger.</p></span></a></li>
   </ul>
-  <footer>Sound is off until you tap the speaker.<br>Take your time.</footer>
+  <div class="install-wrap" id="install-wrap" hidden>
+    <button type="button" class="install" id="install-btn" data-i18n="install">📲 Add to home screen</button>
+    <p class="install-hint" id="install-hint" hidden></p>
+  </div>
+  <footer data-i18n="footer">Sound is off until you tap the speaker.<br>Take your time.</footer>
 </main>
+<script>
+(function () {
+  var T = {
+    en: {
+      doc: "Relax · five quiet games",
+      title: "Relax",
+      sub: "Five quiet little games.<br>No scores, no timers, nothing to lose.",
+      "quiet-night-name": "Quiet Night", "quiet-night-desc": "Breathe with a glowing circle, or tap to release bubbles and fireflies.",
+      "sand-garden-name": "Sand Garden", "sand-garden-desc": "Rake slow patterns into warm sand and set smooth stones.",
+      "still-pond-name": "Still Pond", "still-pond-desc": "Touch the water for ripples and soft chimes while koi drift by.",
+      "glow-garden-name": "Glow Garden", "glow-garden-desc": "Plant glowing flowers in a dusk meadow and draw your own constellations.",
+      "watercolor-name": "Watercolor", "watercolor-desc": "Let soft colors bloom and blend across the paper with your finger.",
+      footer: "Sound is off until you tap the speaker.<br>Take your time.",
+      install: "📲 Add to home screen",
+      ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
+      other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>."
+    },
+    he: {
+      doc: "רגיעה · חמישה משחקים שקטים",
+      title: "רגיעה",
+      sub: "חמישה משחקים קטנים ושקטים.<br>בלי ניקוד, בלי טיימר, אין מה להפסיד.",
+      "quiet-night-name": "לילה שקט", "quiet-night-desc": "נושמים עם עיגול זוהר, או נוגעים כדי לשחרר בועות וגחליליות.",
+      "sand-garden-name": "גן חול", "sand-garden-desc": "מגרפים דוגמאות איטיות בחול חמים ומניחים אבנים חלקות.",
+      "still-pond-name": "בריכה שקטה", "still-pond-desc": "נוגעים במים ליצירת אדוות וצלצולים רכים, בזמן שדגי קוי שטים.",
+      "glow-garden-name": "גן זוהר", "glow-garden-desc": "שותלים פרחים זוהרים באחו של דמדומים ומציירים קבוצות כוכבים משלכם.",
+      "watercolor-name": "צבעי מים", "watercolor-desc": "צבעים רכים פורחים ומתערבבים על הנייר במגע האצבע.",
+      footer: "הצליל כבוי עד שנוגעים ברמקול.<br>קחו את הזמן.",
+      install: "📲 התקנה למסך הבית",
+      ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
+      other: "פותחים את תפריט הדפדפן (⋮) ובוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>."
+    }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var lang = "he";
+  try { if (localStorage.getItem("rg-lang") === "en") lang = "en"; } catch (e) {}
+
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var standalone = function () {
+    return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+  };
+  var deferred = null, hintKey = null;
+
+  function render() {
+    var L = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    document.title = L.doc;
+    var els = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < els.length; i++) els[i].innerHTML = L[els[i].getAttribute("data-i18n")];
+    $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
+    $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
+    if (hintKey) $("install-hint").innerHTML = L[hintKey];
+  }
+  function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem("rg-lang", lang); } catch (e) {} render(); }
+  $("lang-he").onclick = function () { setLang("he"); };
+  $("lang-en").onclick = function () { setLang("en"); };
+
+  function updateInstall() {
+    var show = !standalone() && (deferred || isIOS);
+    $("install-wrap").hidden = !show;
+    if (!show) $("install-hint").hidden = true;
+  }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
+  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; });
+  $("install-btn").onclick = function () {
+    if (deferred) {
+      var d = deferred; deferred = null; d.prompt();
+      (d.userChoice || Promise.resolve()).then(function () { updateInstall(); });
+      return;
+    }
+    hintKey = isIOS ? "ios" : "other";
+    $("install-hint").innerHTML = T[lang][hintKey];
+    $("install-hint").hidden = !$("install-hint").hidden;
+  };
+
+  window.addEventListener("storage", function (e) { if (e.key === "rg-lang" && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
+  window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem("rg-lang") === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
+  render();
+  updateInstall();
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+  }
+})();
+</script>
 </body>
 </html>

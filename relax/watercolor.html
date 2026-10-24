@@ -7,6 +7,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="description" content="Let soft colors bloom and blend across the paper with your finger.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23c9b8ff%22/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Relax">
+<script src="lang.js"></script>
 <title>Watercolor</title>
 <style>
   :root {
@@ -208,7 +213,7 @@
       var want = !Sound.isOn();
       if (!Sound.setOn(want)) return;
       sb.setAttribute('aria-pressed', want ? 'true' : 'false');
-      sb.setAttribute('aria-label', want ? 'Turn sound off' : 'Turn sound on');
+      sb.setAttribute('aria-label', RGT(want ? 'Turn sound off' : 'Turn sound on'));
     });
     document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
     var fb = document.getElementById('fs'), de = document.documentElement;
@@ -308,10 +313,10 @@
     var b = document.createElement('button'); b.className = 'sw';
     if (i < 0) {
       b.style.background = 'conic-gradient(rgb(226,118,142), rgb(238,158,106), rgb(226,188,86), rgb(118,170,128), rgb(88,148,192), rgb(146,118,190), rgb(226,118,142))';
-      b.setAttribute('aria-label', 'Drifting colors');
+      b.setAttribute('aria-label', RGT('Drifting colors'));
     } else {
       var c = PALETTE[i]; b.style.background = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')';
-      b.setAttribute('aria-label', 'Color ' + (i + 1));
+      b.setAttribute('aria-label', RGT('Color') + ' ' + (i + 1));
     }
     b.setAttribute('aria-pressed', i === chosen ? 'true' : 'false');
     b.addEventListener('click', function () {
