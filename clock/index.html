@@ -111,6 +111,9 @@
     background: var(--surface-2); padding: 0.7rem 1.1rem; border-radius: 999px; font-size: 0.9rem; z-index: 30; box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
   .back { color: var(--faint); font-size: 0.85rem; text-align: center; margin-top: 2rem; }
   .back a { color: var(--muted); }
+  .install-hint { color: var(--muted, inherit); font-size: 0.85rem; line-height: 1.5; margin-top: 0.6rem; }
+  .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; }
+  .install-hint li { margin: 0.15rem 0; }
 </style>
 </head>
 <body>
@@ -134,8 +137,9 @@
     <div class="row">
       <button type="button" class="pill" id="notif-btn"></button>
       <button type="button" class="pill" id="wake-btn" aria-pressed="false"></button>
-      <button type="button" class="pill" id="install-btn" hidden></button>
+      <button type="button" class="pill" id="install-btn"></button>
     </div>
+    <div class="hint install-hint" id="install-hint" hidden></div>
     <div class="hint" id="notif-state"></div>
   </section>
 
@@ -224,7 +228,7 @@
       note: "<b>Important:</b> for alarms to ring, keep this page open (a background tab is fine) or install it to your home screen. Browsers limit alarms when the page is closed, so on a phone it helps to turn on “Keep screen on” and plug in the charger. Tap the page once to allow sound.",
       notif: "🔔 Enable notifications", notifOn: "Notifications on ✓", notifDenied: "Notifications are blocked in this browser. You can change it in site settings.", notifNA: "This browser doesn't support notifications.",
       wake: "☀️ Keep screen on", wakeOn: "☀️ Screen stays on", wakeNA: "This browser can't keep the screen on",
-      install: "📲 Add to home screen",
+      install: "📲 Install to home screen",
       next: function (s) { return "Next alarm: " + s; }, noNext: "No alarms on",
       inMin: function (h, m) { return "in " + (h ? h + " h " : "") + m + " min"; },
       daily: "Daily", once: "One time", newA: "New alarm", editA: "Edit alarm",
@@ -347,10 +351,52 @@
     wantWake = true; requestWake();
   };
 
-  /* ---------- install prompt ---------- */
-  var deferredInstall = null;
-  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferredInstall = e; $("install-btn").hidden = false; });
-  $("install-btn").onclick = function () { if (!deferredInstall) return; deferredInstall.prompt(); deferredInstall = null; $("install-btn").hidden = true; };
+/* ---------- Install to home screen ----------
+   Always visible unless already running as an installed app. Tap: native prompt when
+   the browser offers one, otherwise short instructions for this device. */
+var INST_TXT = {
+  he: {
+    iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>.</li></ol>",
+    iosOther: "<ol><li>קודם פותחים את הדף ב־<b>Safari</b>: בתפריט (⋯ או ⋮) בוחרים <b>„פתח ב־Safari”</b> או <b>„פתח בדפדפן”</b>.</li><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>",
+    android: "<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b> (ב־Samsung: <b>„הוסף דף אל” ← „מסך הבית”</b>).</li></ol>פתחת מתוך וואטסאפ, אינסטגרם או פייסבוק? קודם בוחרים בתפריט <b>„פתח בדפדפן”</b>.",
+    desktop: "<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>"
+  },
+  en: {
+    iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>.</li></ol>",
+    iosOther: "<ol><li>First open this page in <b>Safari</b>: from the menu (⋯ or ⋮) choose <b>“Open in Safari”</b> or <b>“Open in browser”</b>.</li><li>In Safari, tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>",
+    android: "<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b> (Samsung: <b>“Add page to” → “Home screen”</b>).</li></ol>Opened from WhatsApp, Instagram or Facebook? First choose <b>“Open in browser”</b> from its menu.",
+    desktop: "<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>"
+  }
+};
+var instDeferred = null, instDone = false;
+function instStandalone() {
+  return (window.matchMedia && (window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: minimal-ui)").matches)) || navigator.standalone === true;
+}
+function instKey() {
+  var ua = navigator.userAgent || "";
+  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (ios) return (/Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|YaBrowser|DuckDuckGo|FBAN|FBAV|Instagram|WhatsApp|Line\//.test(ua)) ? "iosSafari" : "iosOther";
+  if (/Android/i.test(ua)) return "android";
+  return "desktop";
+}
+function instHint(l) { return INST_TXT[l === "en" ? "en" : "he"][instKey()]; }
+function updateInstall() {
+  var show = !instStandalone() && !instDone;
+  document.getElementById("install-btn").hidden = !show;
+  if (!show) document.getElementById("install-hint").hidden = true;
+}
+window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
+window.addEventListener("appinstalled", function () { instDeferred = null; instDone = true; updateInstall(); });
+if (window.matchMedia) { var instMq = window.matchMedia("(display-mode: standalone)"); if (instMq.addEventListener) instMq.addEventListener("change", updateInstall); else if (instMq.addListener) instMq.addListener(updateInstall); }
+document.getElementById("install-btn").addEventListener("click", function () {
+  var hint = document.getElementById("install-hint");
+  if (instDeferred) {
+    var d = instDeferred; instDeferred = null;
+    try { d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall, updateInstall); return; } catch (e) {}
+  }
+  hint.innerHTML = instHint(lang);
+  hint.hidden = !hint.hidden;
+});
 
   /* ---------- rendering ---------- */
   function render() {
@@ -360,7 +406,7 @@
     document.title = L.title;
     $("he").setAttribute("aria-pressed", lang === "he"); $("en").setAttribute("aria-pressed", lang === "en");
     $("test-sound").textContent = L.test; $("note-text").innerHTML = L.note;
-    $("install-btn").textContent = L.install; $("list-title").textContent = L.list; $("add").textContent = L.add;
+    $("install-btn").textContent = L.install; if (!$("install-hint").hidden) $("install-hint").innerHTML = instHint(lang); $("list-title").textContent = L.list; $("add").textContent = L.add;
     $("empty").textContent = L.empty; $("back").textContent = L.back; $("reset").textContent = L.reset;
     $("l-time").textContent = L.lTime; $("l-type").textContent = L.lType; $("l-date").textContent = L.lDate;
     $("l-tasks").textContent = L.lTasks; $("h-tasks").textContent = L.hTasks; $("t-daily").textContent = L.daily;
@@ -546,7 +592,7 @@
     if (e.key === LANG) { lang = e.newValue === "en" ? "en" : "he"; render(); }
   });
 
-  render(); loop();
+  render(); updateInstall(); loop();
   setInterval(loop, 1000);
   window.__alarmApp = { check: check, get alarms() { return alarms; }, get ringing() { return ringing; } };
 })();
