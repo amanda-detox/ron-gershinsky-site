@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#161a3a">
+<meta name="color-scheme" content="dark">
+<meta name="description" content="מיקסר צלילי טבע להרגעה ולשינה. Ambient sound mixer for relaxing and sleep.">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="צלילים">
+<title>מיקסר צלילים</title>
+<script>(function(){try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}})();</script>
+<style>
+  :root { --text: #ece6ff; --soft: rgba(225,215,250,0.62); --faint: rgba(225,215,250,0.42); --card: rgba(255,255,255,0.05); --line: rgba(255,255,255,0.09); --lav: #c9b8ff; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: #161a3a; }
+  body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: var(--text);
+    -webkit-tap-highlight-color: transparent; min-height: 100vh;
+    background: radial-gradient(120% 70% at 50% 0%, #2c2a62 0%, #1a1d44 45%, #11142e 100%) fixed; }
+  html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
+  [hidden] { display: none !important; }
+  main { max-width: 820px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(190px + env(safe-area-inset-bottom, 0px)); }
+  .lang { display: flex; justify-content: center; gap: 6px; margin: 0 0 18px; direction: ltr; }
+  .chip { font-size: 14px; letter-spacing: 0.04em; color: rgba(236,230,255,0.75); background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 7px 14px; min-height: 36px; transition: background 0.4s, color 0.4s; }
+  .chip[aria-pressed="true"] { background: rgba(201,184,255,0.2); color: #f5f0ff; border-color: rgba(201,184,255,0.35); }
+  h1 { font-weight: 300; font-size: 32px; letter-spacing: 0.06em; margin: 0 0 6px; text-align: center; color: rgba(245,240,255,0.92); }
+  .sub { text-align: center; font-weight: 300; font-size: 15.5px; line-height: 1.5; color: var(--soft); margin: 0 0 8px; }
+  .status { text-align: center; font-size: 14px; color: var(--lav); min-height: 1.5em; margin: 0 0 16px; }
+  .grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (min-width: 560px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (min-width: 780px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tile { position: relative; border-radius: 22px; background: var(--card); border: 1px solid var(--line);
+    transition: background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; overflow: hidden; }
+  .tile.on { background: color-mix(in srgb, var(--c) 16%, rgba(255,255,255,0.04)); border-color: color-mix(in srgb, var(--c) 55%, transparent);
+    box-shadow: 0 0 26px color-mix(in srgb, var(--c) 28%, transparent); }
+  .tbtn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; width: 100%; min-height: 118px;
+    padding: 16px 8px 8px; background: none; border: 0; text-align: center; }
+  .tbtn:active { transform: scale(0.98); }
+  .emo { font-size: 40px; line-height: 1; filter: saturate(0.85); transition: transform 0.6s ease, filter 0.5s; }
+  .tile.on .emo { filter: none; animation: breathe 4s ease-in-out infinite; }
+  @keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .tile.on .emo { animation: none; } }
+  .nm { font-size: 16px; letter-spacing: 0.03em; color: rgba(248,244,255,0.92); line-height: 1.25; }
+  .st { font-size: 12px; color: var(--faint); min-height: 15px; }
+  .tile.on .st { color: color-mix(in srgb, var(--c) 70%, white); }
+  .volrow { padding: 0 12px 14px; display: flex; align-items: center; gap: 8px; }
+  .tile:not(.on) .volrow { visibility: hidden; }
+  .volrow .ico { font-size: 13px; opacity: 0.7; }
+  input[type=range] { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 32px; background: transparent; margin: 0; --p: 50%; --c2: var(--c, var(--lav)); }
+  input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 999px;
+    background: linear-gradient(to right, var(--c2) var(--p), rgba(255,255,255,0.14) var(--p)); }
+  html[dir="rtl"] input[type=range]::-webkit-slider-runnable-track { background: linear-gradient(to left, var(--c2) var(--p), rgba(255,255,255,0.14) var(--p)); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; margin-top: -8px; border-radius: 50%; background: #f5f0ff;
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--c2) 45%, transparent); border: 0; }
+  input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.14); }
+  input[type=range]::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--c2); }
+  input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #f5f0ff; border: 0; box-shadow: 0 0 0 4px color-mix(in srgb, var(--c2) 45%, transparent); }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: rgba(17,20,46,0.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
+  .bar-in { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; align-items: center; gap: 10px; }
+  .play { flex: none; width: 56px; height: 56px; border-radius: 50%; border: 0; font-size: 22px; color: #1a1d44;
+    background: linear-gradient(135deg, #e9e1ff, #b9a6ff); box-shadow: 0 0 24px rgba(190,170,255,0.35); display: grid; place-items: center; }
+  .play:disabled { opacity: 0.35; box-shadow: none; cursor: default; }
+  .master { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; }
+  .master label { font-size: 13px; color: var(--soft); white-space: nowrap; }
+  .stopall { flex: none; min-height: 44px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.05); padding: 0 14px; font-size: 14px; }
+  .timer { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 13px; color: var(--soft); }
+  .short { display: none; }
+  @media (max-width: 420px) {
+    .master label .long, .timer .long { display: none; } .short { display: inline; }
+    .stopall { padding: 0 11px; font-size: 13px; }
+    .timer .chip { padding: 4px 9px; }
+  }
+  .timer .chip { min-height: 32px; padding: 4px 11px; font-size: 13px; }
+  .left { margin-inline-start: auto; color: var(--lav); font-variant-numeric: tabular-nums; }
+  .note { margin: 22px 0 0; padding: 14px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line);
+    font-size: 14px; line-height: 1.6; font-weight: 300; color: var(--soft); }
+  .note b { font-weight: 500; color: rgba(245,240,255,0.85); }
+  .install-wrap { text-align: center; margin: 20px 0 0; }
+  .install { font-size: 15.5px; padding: 11px 20px; color: #f5f0ff; background: rgba(201,184,255,0.14); border: 1px solid rgba(201,184,255,0.3);
+    border-radius: 999px; box-shadow: 0 0 22px rgba(190,170,255,0.18); }
+  .install-hint { margin: 12px auto 0; max-width: 420px; font-size: 14px; line-height: 1.55; font-weight: 300; color: rgba(225,215,250,0.7); }
+  footer { margin-top: 22px; text-align: center; font-size: 13px; color: var(--faint); }
+  footer a { color: var(--soft); }
+  .flash { position: fixed; inset: 0; pointer-events: none; z-index: 20; opacity: 0; background: radial-gradient(120% 90% at 50% 10%, rgba(220,225,255,0.55), rgba(180,190,255,0.15) 60%, transparent); }
+  .flash.go { animation: flash 0.9s ease-out; }
+  @keyframes flash { 0% { opacity: 0; } 6% { opacity: var(--fo, 0.6); } 14% { opacity: 0.05; } 22% { opacity: calc(var(--fo, 0.6) * 0.7); } 100% { opacity: 0; } }
+  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(150px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+    background: rgba(44,42,98,0.95); border: 1px solid rgba(201,184,255,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <div class="lang" role="group" aria-label="Language / שפה">
+    <button type="button" class="chip" id="lang-he" lang="he" aria-pressed="true">עברית</button>
+    <button type="button" class="chip" id="lang-en" lang="en" aria-pressed="false">English</button>
+  </div>
+  <h1 id="title"></h1>
+  <p class="sub" id="sub"></p>
+  <p class="status" id="status" aria-live="polite"></p>
+  <ul class="grid" id="grid"></ul>
+  <div class="install-wrap" id="install-wrap" hidden>
+    <button type="button" class="install" id="install-btn"></button>
+    <p class="install-hint" id="install-hint" hidden></p>
+  </div>
+  <p class="note" id="note"></p>
+  <footer><a href="../" id="back"></a> · <a href="../relax/" id="games"></a></footer>
+</main>
+
+<div class="bar">
+  <div class="bar-in">
+    <div class="row">
+      <button type="button" class="play" id="play" aria-label="Play">▶</button>
+      <div class="master">
+        <label for="master"><span class="long" id="master-l"></span><span class="short" aria-hidden="true">🔊</span></label>
+        <input type="range" id="master" min="0" max="100" value="80" style="--c: #c9b8ff">
+      </div>
+      <button type="button" class="stopall" id="stopall"></button>
+    </div>
+    <div class="timer" role="group" id="timer">
+      <span class="long" id="timer-l"></span><span class="short" aria-hidden="true">⏲</span>
+      <button type="button" class="chip" data-min="0" aria-pressed="true"></button>
+      <button type="button" class="chip" data-min="15" aria-pressed="false"></button>
+      <button type="button" class="chip" data-min="30" aria-pressed="false"></button>
+      <button type="button" class="chip" data-min="60" aria-pressed="false"></button>
+      <span class="left" id="left"></span>
+    </div>
+  </div>
+</div>
+<div class="flash" id="flash"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  "use strict";
+  var LANG_KEY = "rg-lang", KEY = "rg-sounds-v1";
+  var SOUNDS = [
+    { id: "ocean", e: "🌊", he: "אוקיינוס", en: "Ocean", c: "#38bdf8" },
+    { id: "river", e: "🏞️", he: "נהר", en: "River", c: "#2dd4bf" },
+    { id: "waterfall", e: "💦", he: "מפל", en: "Waterfall", c: "#60a5fa" },
+    { id: "rain", e: "🌧️", he: "גשם", en: "Rain", c: "#93c5fd" },
+    { id: "thunder", e: "⛈️", he: "רעם וברקים", en: "Thunder & lightning", c: "#a78bfa" },
+    { id: "crickets", e: "🦗", he: "צרצרים", en: "Crickets", c: "#86efac" },
+    { id: "fireplace", e: "🔥", he: "אח בוערת", en: "Fireplace", c: "#fb923c" },
+    { id: "birds", e: "🐦", he: "ציפורי בר", en: "Wild birds", c: "#fde047" },
+    { id: "dinosaurs", e: "🦕", he: "דינוזאורים", en: "Dinosaurs", c: "#4ade80" },
+    { id: "aliens", e: "👽", he: "חייזרים מגניבים", en: "Cool aliens", c: "#e879f9" }
+  ];
+  var T = {
+    he: {
+      doc: "מיקסר צלילים", title: "מיקסר צלילים", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
+      idle: "בחרו צליל כדי להתחיל", resume: "המיקס האחרון שלכם שמור. לוחצים ▶ כדי לנגן.", playing: "מתנגן: ", paused: "בהשהיה: ",
+      preparing: "מכין…", on: "פועל", vol: "עוצמה", master: "עוצמה כללית", stopAll: "⏹ עצור הכול", timer: "⏲ טיימר שינה:",
+      off: "כבוי", min: function (m) { return m + " דק׳"; }, left: function (s) { return "נשארו " + s; },
+      play: "ניגון", pause: "השהיה", timerDone: "טיימר השינה הסתיים, לילה טוב 🌙", interrupted: "הניגון נעצר. לוחצים ▶ כדי להמשיך.",
+      err: "לא הצלחתי להפעיל את הצליל. נסו ללחוץ שוב.",
+      install: "📲 התקנה למסך הבית",
+      ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
+      other: "פותחים את תפריט הדפדפן (⋮) ובוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.",
+      note: "<b>💡 ניגון ברקע:</b> הצלילים ממשיכים לנגן כשעוברים לאפליקציה אחרת או נועלים את המסך, ואפשר לשלוט בהם ממסך הנעילה. באנדרואיד זה עובד הכי טוב. באייפון זה עובד ברוב המקרים, אבל iOS עלול לעצור את הניגון אחרי זמן רב ברקע או בשיחת טלפון. אם זה קורה, לוחצים ▶ במסך הנעילה או באפליקציה. כל הצלילים נוצרים במכשיר עצמו, בלי הורדות ובלי אינטרנט.",
+      back: "← חזרה לאתר", games: "משחקי רגיעה", artist: "מיקסר צלילים"
+    },
+    en: {
+      doc: "Sound Mixer", title: "Sound Mixer", sub: "Tap a sound to turn it on. Mix several together and set each one’s volume.",
+      idle: "Pick a sound to start", resume: "Your last mix is saved. Tap ▶ to play.", playing: "Playing: ", paused: "Paused: ",
+      preparing: "Preparing…", on: "On", vol: "Volume", master: "Master volume", stopAll: "⏹ Stop all", timer: "⏲ Sleep timer:",
+      off: "Off", min: function (m) { return m + " min"; }, left: function (s) { return s + " left"; },
+      play: "Play", pause: "Pause", timerDone: "Sleep timer finished. Good night 🌙", interrupted: "Playback stopped. Tap ▶ to continue.",
+      err: "Couldn’t start the sound. Please tap again.",
+      install: "📲 Add to home screen",
+      ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
+      other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.",
+      note: "<b>💡 Background play:</b> sounds keep playing when you switch apps or lock the screen, with controls on the lock screen. This works best on Android. On iPhone it works most of the time, but iOS may stop playback after a long time in the background or during a phone call. If that happens, tap ▶ on the lock screen or in the app. All sounds are generated on your device, with no downloads and no internet needed.",
+      back: "← Back to the site", games: "Relax games", artist: "Sound Mixer"
+    }
+  };
+  var $ = function (id) { return document.getElementById(id); };
+  var lang = "he";
+  try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
+  function L() { return T[lang]; }
+  function nameOf(s) { return s[lang]; }
+  function byId(id) { for (var i = 0; i < SOUNDS.length; i++) if (SOUNDS[i].id === id) return SOUNDS[i]; }
+
+  /* ---------- state ---------- */
+  var st = { on: [], vols: {}, master: 0.8 };
+  try { var sv = JSON.parse(localStorage.getItem(KEY)); if (sv && Array.isArray(sv.on)) st = { on: sv.on.filter(byId), vols: sv.vols || {}, master: typeof sv.master === "number" ? sv.master : 0.8 }; } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : 0.7; }
+  function isOn(id) { return st.on.indexOf(id) >= 0; }
+  var playing = false;          // what the user wants
+  var buffers = {};             // id -> {L, R, flashes}
+  var loading = {};             // id -> Promise
+
+  /* ---------- synthesis (worker, with main-thread fallback) ---------- */
+  var worker = null, waiters = {}, fallback = null;
+  try { worker = new Worker("synth.js"); worker.onmessage = onSynth; worker.onerror = function () { worker = null; failAll(); }; } catch (e) { worker = null; }
+  function onSynth(e) {
+    var d = e.data, w = waiters[d.id]; delete waiters[d.id];
+    if (!w) return;
+    if (d.error) w.reject(new Error(d.error)); else w.resolve({ L: d.L, R: d.R, flashes: d.flashes || [] });
+  }
+  function failAll() { var ids = Object.keys(waiters); ids.forEach(function (id) { var w = waiters[id]; delete waiters[id]; mainThread(id).then(w.resolve, w.reject); }); }
+  function loadFallback() {
+    if (fallback) return fallback;
+    fallback = new Promise(function (res, rej) {
+      if (window.RGSynth) return res(window.RGSynth);
+      var s = document.createElement("script"); s.src = "synth.js"; s.onload = function () { res(window.RGSynth); }; s.onerror = rej; document.head.appendChild(s);
+    });
+    return fallback;
+  }
+  function mainThread(id) { return loadFallback().then(function (S) { return new Promise(function (res) { setTimeout(function () { res(S.render(id)); }, 30); }); }); }
+  function getSound(id) {
+    if (buffers[id]) return Promise.resolve(buffers[id]);
+    if (loading[id]) return loading[id];
+    var p = worker ? new Promise(function (res, rej) { waiters[id] = { resolve: res, reject: rej }; worker.postMessage({ id: id }); }) : mainThread(id);
+    loading[id] = p.then(function (b) { buffers[id] = b; delete loading[id]; renderTiles(); return b; }, function (err) { delete loading[id]; throw err; });
+    renderTiles();
+    return loading[id];
+  }
+
+  /* ---------- audio output: looping <audio> elements (keeps playing in the background) ---------- */
+  var SR = 32000, LOOP = 72;
+  var players = [mkPlayer(), mkPlayer()], cur = 0, curUrl = null, swapToken = 0, mixTimer = null;
+  var volAdjustable = (function () { try { var a = new Audio(); a.volume = 0.5; return Math.abs(a.volume - 0.5) < 0.01; } catch (e) { return false; } })();
+  function mkPlayer() {
+    var a = document.createElement("audio");
+    a.loop = true; a.preload = "auto"; a.setAttribute("playsinline", ""); a.setAttribute("webkit-playsinline", "");
+    a._expect = false;
+    a.addEventListener("pause", function () {
+      if (a._expect || a !== players[cur]) { a._expect = false; return; }
+      if (playing) { playing = false; interrupted = true; renderAll(); toast(L().interrupted); }
+    });
+    a.addEventListener("play", function () { if (a === players[cur] && !playing && curUrl && !a._starting) { playing = true; interrupted = false; renderAll(); } });
+    document.body.appendChild(a);
+    return a;
+  }
+  var interrupted = false;
+  function wavHeader(view, n) {
+    function s(o, str) { for (var i = 0; i < str.length; i++) view.setUint8(o + i, str.charCodeAt(i)); }
+    s(0, "RIFF"); view.setUint32(4, 36 + n * 4, true); s(8, "WAVE"); s(12, "fmt "); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+    view.setUint16(22, 2, true); view.setUint32(24, SR, true); view.setUint32(28, SR * 4, true); view.setUint16(32, 4, true); view.setUint16(34, 16, true);
+    s(36, "data"); view.setUint32(40, n * 4, true);
+  }
+  var silentUrl = (function () {
+    var n = SR / 4, buf = new ArrayBuffer(44 + n * 4); wavHeader(new DataView(buf), n);
+    return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
+  })();
+  // Called synchronously inside a tap: lets iOS play these elements later without another tap.
+  var unlocked = false;
+  function unlock() {
+    if (unlocked) return; unlocked = true;
+    players.forEach(function (a) {
+      if (a.src) return;
+      a.src = silentUrl; a._starting = true;
+      var p = a.play();
+      if (p && p.then) p.then(function () { a._starting = false; if (!a._inUse) { a._expect = true; a.pause(); } }, function () { a._starting = false; unlocked = false; });
+    });
+    try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+  }
+  function mixGain(id) { var v = vol(id); return v * v; }
+  function masterGain() { return st.master * st.master; }
+  function buildMix(ids) {
+    var n = SR * LOOP, buf = new ArrayBuffer(44 + n * 4), out = new Int16Array(buf, 44), bs = [], gs = [], k, i;
+    wavHeader(new DataView(buf), n);
+    var mg = volAdjustable ? 1 : masterGain();
+    ids.forEach(function (id) { if (buffers[id]) { bs.push(buffers[id]); gs.push(mixGain(id) * mg / 32768); } });
+    var m = bs.length;
+    for (i = 0; i < n; i++) {
+      var l = 0, r = 0;
+      for (k = 0; k < m; k++) { l += bs[k].L[i] * gs[k]; r += bs[k].R[i] * gs[k]; }
+      out[2 * i] = lim(l); out[2 * i + 1] = lim(r);
+    }
+    return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
+  }
+  function lim(x) { var a = x < 0 ? -x : x; if (a > 0.75) a = 0.75 + 0.25 * Math.tanh((a - 0.75) / 0.25); return (x < 0 ? -a : a) * 32767; }
+  function applyElementVolume() { if (volAdjustable) players.forEach(function (a) { a.volume = Math.min(1, masterGain() * fadeMul); }); }
+  var fadeMul = 1;
+
+  // Re-mix and hand over to the other <audio> element at the same loop position (no audible gap).
+  function refresh() {
+    var token = ++swapToken;
+    var ids = st.on.slice();
+    if (!playing || !ids.length) { stopOutput(); renderAll(); return Promise.resolve(); }
+    return Promise.all(ids.map(getSound)).then(function () {
+      if (token !== swapToken || !playing) return;
+      var url = buildMix(ids), a = players[cur], b = players[1 - cur];
+      var pos = (curUrl && !a.paused) ? a.currentTime : (refresh.pos || 0);
+      b._inUse = true; b._starting = true; b.loop = true; b.src = url; applyElementVolume();
+      var started = false;
+      function go() {
+        if (started) return; started = true;
+        try { b.currentTime = (pos + 0.05) % LOOP; } catch (e) {}
+        var p = b.play();
+        (p && p.then ? p : Promise.resolve()).then(function () {
+          b._starting = false;
+          if (token !== swapToken) { b._expect = true; b.pause(); URL.revokeObjectURL(url); return; }
+          if (a !== b && !a.paused) { a._expect = true; a.pause(); }
+          a._inUse = false;
+          var old = curUrl; cur = 1 - cur; curUrl = url;
+          if (old) setTimeout(function () { URL.revokeObjectURL(old); }, 1000);
+          interrupted = false; updateMediaSession(); renderAll();
+        }, function () { b._starting = false; if (token === swapToken) { playing = false; renderAll(); toast(L().err); } });
+      }
+      if (b.readyState >= 1) go(); else { b.addEventListener("loadedmetadata", go, { once: true }); b.load(); }
+    }).catch(function () { if (token === swapToken) { toast(L().err); } });
+  }
+  function scheduleRefresh() { clearTimeout(mixTimer); mixTimer = setTimeout(refresh, 180); }
+  function stopOutput() {
+    players.forEach(function (a) { if (!a.paused) { if (a === players[cur]) refresh.pos = a.currentTime; a._expect = true; a.pause(); } });
+    updateMediaSession();
+  }
+
+  /* ---------- actions ---------- */
+  function play() {
+    unlock();
+    if (!st.on.length) return;
+    playing = true; interrupted = false;
+    var a = players[cur];
+    if (curUrl && a.src === curUrl && sameMix()) {
+      var p = a.play(); if (p && p.catch) p.catch(function () { playing = false; renderAll(); toast(L().err); });
+      updateMediaSession(); renderAll(); return;
+    }
+    renderAll(); refresh();
+  }
+  var mixedIds = "";
+  function mixKey() { return st.on.map(function (id) { return id + ":" + vol(id).toFixed(2); }).join(",") + (volAdjustable ? "" : "|" + st.master.toFixed(2)); }
+  function sameMix() { return mixedIds === mixKey(); }
+  var _refresh = refresh;
+  refresh = function () { mixedIds = mixKey(); return _refresh(); };
+  function pause() { playing = false; stopOutput(); renderAll(); }
+  function toggleSound(id) {
+    unlock();
+    var i = st.on.indexOf(id);
+    if (i >= 0) st.on.splice(i, 1); else { st.on.push(id); if (typeof st.vols[id] !== "number") st.vols[id] = 0.7; }
+    save();
+    if (!st.on.length) { pause(); return; }
+    playing = true; interrupted = false;
+    renderAll(); refresh();
+  }
+  function stopAll() { st.on = []; save(); pause(); clearTimer(); }
+
+  /* ---------- media session (lock screen / notification controls) ---------- */
+  function updateMediaSession() {
+    if (!("mediaSession" in navigator)) return;
+    var ms = navigator.mediaSession;
+    try {
+      var names = st.on.map(function (id) { return nameOf(byId(id)); }).join(" · ") || L().title;
+      ms.metadata = new MediaMetadata({ title: names, artist: L().artist, album: L().title, artwork: [
+        { src: new URL("icon-192.png", location.href).href, sizes: "192x192", type: "image/png" },
+        { src: new URL("icon-512.png", location.href).href, sizes: "512x512", type: "image/png" }] });
+      ms.playbackState = playing ? "playing" : (st.on.length ? "paused" : "none");
+    } catch (e) {}
+  }
+  if ("mediaSession" in navigator) {
+    var set = function (a, fn) { try { navigator.mediaSession.setActionHandler(a, fn); } catch (e) {} };
+    set("play", function () { play(); });
+    set("pause", function () { pause(); });
+    set("stop", function () { pause(); });
+  }
+
+  /* ---------- sleep timer ---------- */
+  var timerEnd = 0, timerMin = 0, fading = false;
+  function setTimer(min) {
+    timerMin = min; timerEnd = min ? Date.now() + min * 60000 : 0; fading = false; fadeMul = 1; applyElementVolume(); renderTimer();
+  }
+  function clearTimer() { setTimer(0); }
+  function checkTimer() {
+    if (!timerEnd) return;
+    var left = timerEnd - Date.now();
+    if (playing && left <= 10000 && left > 0 && volAdjustable) { fading = true; fadeMul = Math.max(0, left / 10000); applyElementVolume(); }
+    if (left <= 0) { var wasPlaying = playing; clearTimer(); if (wasPlaying) { pause(); toast(L().timerDone); } }
+    renderTimer();
+  }
+  setInterval(checkTimer, 1000);
+  players.forEach(function (a) { a.addEventListener("timeupdate", checkTimer); });
+
+  /* ---------- lightning flash, synced to thunder in the loop ---------- */
+  var lastT = -1, reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function frame() {
+    requestAnimationFrame(frame);
+    var a = players[cur];
+    if (!playing || reduced || document.hidden || !isOn("thunder") || !buffers.thunder || a.paused || !curUrl) { lastT = -1; return; }
+    var t = a.currentTime;
+    if (lastT >= 0) {
+      buffers.thunder.flashes.forEach(function (f) {
+        var hit = t >= lastT ? (f.t > lastT && f.t <= t) : (f.t > lastT || f.t <= t);
+        if (hit) flash(f.s * vol("thunder"));
+      });
+    }
+    lastT = t;
+  }
+  function flash(s) { var el = $("flash"); el.style.setProperty("--fo", (0.25 + 0.45 * s).toFixed(2)); el.classList.remove("go"); void el.offsetWidth; el.classList.add("go"); }
+  requestAnimationFrame(frame);
+
+  /* ---------- UI ---------- */
+  function buildTiles() {
+    var ul = $("grid"); ul.innerHTML = "";
+    SOUNDS.forEach(function (s) {
+      var li = document.createElement("li");
+      li.className = "tile"; li.dataset.id = s.id; li.style.setProperty("--c", s.c);
+      li.innerHTML = '<button type="button" class="tbtn" aria-pressed="false"><span class="emo" aria-hidden="true">' + s.e + '</span><span class="nm"></span><span class="st"></span></button>' +
+        '<div class="volrow"><span class="ico" aria-hidden="true">🔈</span><input type="range" min="0" max="100" class="vol"><span class="ico" aria-hidden="true">🔊</span></div>';
+      li.querySelector(".tbtn").addEventListener("click", function () { toggleSound(s.id); });
+      var r = li.querySelector(".vol");
+      r.value = Math.round(vol(s.id) * 100);
+      r.style.setProperty("--p", r.value + "%");
+      r.addEventListener("input", function () { r.style.setProperty("--p", r.value + "%"); st.vols[s.id] = r.value / 100; save(); if (playing && isOn(s.id)) scheduleRefresh(); });
+      ul.appendChild(li);
+    });
+  }
+  function renderTiles() {
+    var tiles = document.querySelectorAll(".tile");
+    for (var i = 0; i < tiles.length; i++) {
+      var li = tiles[i], id = li.dataset.id, s = byId(id), on = isOn(id);
+      li.classList.toggle("on", on);
+      var b = li.querySelector(".tbtn"); b.setAttribute("aria-pressed", String(on));
+      li.querySelector(".nm").textContent = nameOf(s);
+      li.querySelector(".st").textContent = on && loading[id] ? L().preparing : on ? L().on : "";
+      var r = li.querySelector(".vol"); r.setAttribute("aria-label", L().vol + ": " + nameOf(s)); r.tabIndex = on ? 0 : -1;
+    }
+  }
+  function renderStatus() {
+    var names = st.on.map(function (id) { return nameOf(byId(id)); }).join(" · ");
+    $("status").textContent = !st.on.length ? L().idle : playing ? L().playing + names : (interrupted ? L().interrupted : (curUrl ? L().paused + names : L().resume));
+    var p = $("play");
+    p.textContent = playing ? "❚❚" : "▶";
+    p.setAttribute("aria-label", playing ? L().pause : L().play);
+    p.disabled = !st.on.length;
+  }
+  function renderTimer() {
+    var cs = document.querySelectorAll("#timer .chip");
+    for (var i = 0; i < cs.length; i++) { var m = +cs[i].dataset.min; cs[i].textContent = m ? L().min(m) : L().off; cs[i].setAttribute("aria-pressed", String(m === timerMin)); }
+    if (timerEnd) { var s = Math.max(0, Math.round((timerEnd - Date.now()) / 1000)); $("left").textContent = L().left(Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0")); }
+    else $("left").textContent = "";
+  }
+  function renderAll() { renderTiles(); renderStatus(); renderTimer(); updateMediaSession(); }
+  function render() {
+    var t = L();
+    document.documentElement.lang = lang; document.documentElement.dir = lang === "he" ? "rtl" : "ltr"; document.title = t.doc;
+    $("lang-he").setAttribute("aria-pressed", String(lang === "he")); $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
+    $("title").textContent = t.title; $("sub").textContent = t.sub; $("note").innerHTML = t.note;
+    $("master-l").textContent = t.master; $("master").setAttribute("aria-label", t.master); $("stopall").textContent = t.stopAll; $("timer-l").textContent = t.timer;
+    $("install-btn").textContent = t.install; $("back").textContent = t.back; $("games").textContent = t.games;
+    if (hintKey) $("install-hint").innerHTML = t[hintKey];
+    renderAll();
+  }
+  function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
+  $("lang-he").onclick = function () { setLang("he"); };
+  $("lang-en").onclick = function () { setLang("en"); };
+  $("play").onclick = function () { if (playing) pause(); else play(); };
+  $("stopall").onclick = stopAll;
+  $("master").value = Math.round(st.master * 100);
+  $("master").style.setProperty("--p", $("master").value + "%");
+  $("master").addEventListener("input", function () { this.style.setProperty("--p", this.value + "%"); st.master = this.value / 100; save(); if (volAdjustable) applyElementVolume(); else if (playing) scheduleRefresh(); });
+  var tb = document.querySelectorAll("#timer .chip");
+  for (var i = 0; i < tb.length; i++) tb[i].onclick = function () { setTimer(+this.dataset.min); };
+  function toast(msg) { var el = $("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { el.hidden = true; }, 2600); }
+
+  /* ---------- install button ---------- */
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var standalone = function () { return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; };
+  var deferred = null, hintKey = null;
+  function updateInstall() { var show = !standalone() && (deferred || isIOS); $("install-wrap").hidden = !show; if (!show) $("install-hint").hidden = true; }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
+  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; });
+  $("install-btn").onclick = function () {
+    if (deferred) { var d = deferred; deferred = null; d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall); return; }
+    hintKey = isIOS ? "ios" : "other"; $("install-hint").innerHTML = L()[hintKey]; $("install-hint").hidden = !$("install-hint").hidden;
+  };
+
+  /* ---------- lifecycle ---------- */
+  function onBack(force) {
+    if (force !== true && document.visibilityState !== "visible") return;
+    var a = players[cur];
+    // Came back after an interruption (call, other app took audio): try to resume quietly.
+    if (interrupted && curUrl && st.on.length) {
+      var p = a.play();
+      if (p && p.then) p.then(function () { playing = true; interrupted = false; renderAll(); }, function () {});
+    }
+    checkTimer(); renderAll();
+  }
+  document.addEventListener("visibilitychange", onBack);
+  document.addEventListener("resume", function () { onBack(true); setTimeout(function () { onBack(true); }, 1200); });   // page was frozen by the OS and is back
+  window.addEventListener("focus", onBack);
+  window.addEventListener("storage", function (e) { if (e.key === LANG_KEY && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
+  window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem(LANG_KEY) === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
+
+  buildTiles(); render(); updateInstall();
+  // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
+  st.on.forEach(function (id) { getSound(id).catch(function () {}); });
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+
+  window.__mixer = { get state() { return st; }, get playing() { return playing; }, get cur() { return players[cur]; }, players: players, buffers: buffers, volAdjustable: volAdjustable, get mixedKey() { return mixedIds; } };
+})();
+</script>
+</body>
+</html>
