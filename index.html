@@ -7,6 +7,13 @@
 <meta name="color-scheme" content="dark">
 <meta name="description" content="רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי.">
 <title>רון גרשינסקי</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="app-icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="app-icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="רון גרשינסקי">
 <style>
   :root {
     --bg: #0f172a;
@@ -144,6 +151,19 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; }
   }
+  .install-wrap { margin-top: 1rem; }
+  .install {
+    min-height: 2.75rem;
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 0 1.25rem;
+    background: transparent;
+    color: var(--fg);
+    font-size: 0.9375rem;
+    font-weight: 500;
+  }
+  .install:hover { background: var(--surface-2); }
+  .install-hint { margin-top: 0.75rem; }
   .game-frame { display:block; width:100%; height:26rem; margin-top:0.75rem; border:1px solid var(--line); border-radius:0.75rem; background:var(--bg); }
 </style>
 </head>
@@ -156,6 +176,10 @@
   <div class="mark" id="mark">רג</div>
   <h1 id="name">רון גרשינסקי</h1>
   <p class="bio" id="bio"></p>
+  <div class="install-wrap" id="install-wrap" hidden>
+    <button type="button" class="install" id="install-btn"></button>
+    <p class="panel install-hint" id="install-hint" hidden></p>
+  </div>
   <ul id="list"></ul>
   <section class="box" aria-labelledby="wait-title">
     <h2 id="wait-title"></h2>
@@ -230,7 +254,10 @@ var copy = {
     payMissing: "התשלום עדיין לא מחובר. צריך לינק לדף תשלום.",
     gameTitle: "משחק מומלץ",
     gameDesc: "בריכה שקטה: געו במים, ראו אדוות וצלילים רכים, ודגי קוי ששטים לאט.",
-    gameOpen: "לפתוח במסך מלא"
+    gameOpen: "לפתוח במסך מלא",
+    install: "📲 התקנה למסך הבית",
+    installIos: "באייפון או באייפד: לוחצים על כפתור השיתוף (□↑) בתחתית Safari, ואז בוחרים „הוסף למסך הבית”.",
+    installOther: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”."
   },
   en: {
     title: "Ron Gershinsky",
@@ -256,12 +283,16 @@ var copy = {
     payMissing: "Payment is not connected yet. A checkout link is required.",
     gameTitle: "Recommended game",
     gameDesc: "Still Pond: touch the water for ripples and soft chimes while koi drift by.",
-    gameOpen: "Open full screen"
+    gameOpen: "Open full screen",
+    install: "📲 Add to home screen",
+    installIos: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
+    installOther: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”."
   }
 };
 
 var lang = localStorage.getItem("rg-lang") === "en" ? "en" : "he";
 var openId = null;
+var installHint = null;
 
 function isEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -292,6 +323,8 @@ function render() {
   text("game-title", t.gameTitle);
   text("game-desc", t.gameDesc);
   text("game-open", t.gameOpen);
+  text("install-btn", t.install);
+  if (installHint) text("install-hint", t[installHint]);
   var email = document.getElementById("email");
   email.placeholder = t.emailPlaceholder;
   email.dir = he ? "rtl" : "ltr";
@@ -420,7 +453,38 @@ document.getElementById("form").addEventListener("submit", function (event) {
   });
 });
 
+// Add to home screen (same approach as alarm/ and relax/).
+var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent || "") || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+var installPrompt = null;
+function isStandalone() {
+  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
+}
+function updateInstall() {
+  var show = !isStandalone() && (installPrompt || isIOS);
+  document.getElementById("install-wrap").hidden = !show;
+  if (!show) document.getElementById("install-hint").hidden = true;
+}
+window.addEventListener("beforeinstallprompt", function (event) { event.preventDefault(); installPrompt = event; updateInstall(); });
+window.addEventListener("appinstalled", function () { installPrompt = null; document.getElementById("install-wrap").hidden = true; });
+document.getElementById("install-btn").addEventListener("click", function () {
+  if (installPrompt) {
+    var p = installPrompt;
+    installPrompt = null;
+    p.prompt();
+    (p.userChoice || Promise.resolve()).then(updateInstall);
+    return;
+  }
+  installHint = isIOS ? "installIos" : "installOther";
+  var hint = document.getElementById("install-hint");
+  hint.textContent = copy[lang][installHint];
+  hint.hidden = !hint.hidden;
+});
+
 render();
+updateInstall();
+if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+}
 </script>
 </body>
 </html>

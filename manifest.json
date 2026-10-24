@@ -1,0 +1,21 @@
+{
+  "name": "רון גרשינסקי · Ron Gershinsky",
+  "short_name": "רון גרשינסקי",
+  "description": "רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי · Ron Gershinsky, technologist and student of integral wellness",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "app-icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
