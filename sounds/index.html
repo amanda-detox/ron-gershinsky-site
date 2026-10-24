@@ -295,47 +295,70 @@
     return loading[id];
   }
 
-  /* ---------- audio output: looping <audio> elements (keeps playing in the background) ---------- */
+  /* ---------- audio output: Web Audio, one looping AudioBufferSourceNode per sound ----------
+     Every sound is a seamless 72 s buffer played with loop=true and started once, so the audio engine wraps the loop
+     sample-accurately with no gap. Nothing restarts on a timer. Volume, master and the sleep-timer fade are GainNodes,
+     so moving a slider never re-mixes or restarts anything. A silent looping <audio> element runs alongside only to keep
+     the page alive in the background and to show lock-screen controls (its own loop point is silent, so it is inaudible). */
   var SR = 32000, LOOP = 72;
-  var players = [mkPlayer(), mkPlayer()], cur = 0, curUrl = null, swapToken = 0, mixTimer = null;
-  var volAdjustable = (function () { try { var a = new Audio(); a.volume = 0.5; return Math.abs(a.volume - 0.5) < 0.01; } catch (e) { return false; } })();
-  function mkPlayer() {
-    var a = document.createElement("audio");
-    a.loop = true; a.preload = "auto"; a.setAttribute("playsinline", ""); a.setAttribute("webkit-playsinline", "");
-    a._expect = false;
-    a.addEventListener("pause", function () {
-      if (a._expect || a !== players[cur]) { a._expect = false; return; }
-      if (playing) { playing = false; interrupted = true; renderAll(); toast(L().interrupted); }
-    });
-    a.addEventListener("play", function () { if (a === players[cur] && !playing && curUrl && !a._starting) { playing = true; interrupted = false; renderAll(); } });
-    document.body.appendChild(a);
-    return a;
-  }
-  var interrupted = false;
-  function wavHeader(view, n) {
+  var ctx = null, bus = null, master = null, fadeG = null, voices = {}, pend = {}, seq = 0, mixTimer = null;
+  var hasOutput = false, interrupted = false, suspendTimer = null, selfSuspend = false, fadeMul = 1;
+  function wavHeader(view, n, ch, sr) {
     function s(o, str) { for (var i = 0; i < str.length; i++) view.setUint8(o + i, str.charCodeAt(i)); }
-    s(0, "RIFF"); view.setUint32(4, 36 + n * 4, true); s(8, "WAVE"); s(12, "fmt "); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
-    view.setUint16(22, 2, true); view.setUint32(24, SR, true); view.setUint32(28, SR * 4, true); view.setUint16(32, 4, true); view.setUint16(34, 16, true);
-    s(36, "data"); view.setUint32(40, n * 4, true);
+    s(0, "RIFF"); view.setUint32(4, 36 + n * 2 * ch, true); s(8, "WAVE"); s(12, "fmt "); view.setUint32(16, 16, true); view.setUint16(20, 1, true);
+    view.setUint16(22, ch, true); view.setUint32(24, sr, true); view.setUint32(28, sr * 2 * ch, true); view.setUint16(32, 2 * ch, true); view.setUint16(34, 16, true);
+    s(36, "data"); view.setUint32(40, n * 2 * ch, true);
   }
-  var silentUrl = (function () {
-    var n = SR / 4, buf = new ArrayBuffer(44 + n * 4); wavHeader(new DataView(buf), n);
+  // 30 s of near-silence (±1 LSB, about -90 dB) for the keep-alive element.
+  var keepUrl = (function () {
+    var sr = 8000, n = sr * 30, buf = new ArrayBuffer(44 + n * 2), d = new Int16Array(buf, 44), x = 12345;
+    wavHeader(new DataView(buf), n, 1, sr);
+    for (var i = 0; i < n; i++) { x = (x * 1103515245 + 12345) & 0x7fffffff; d[i] = (x >> 16) & 1 ? 1 : -1; }
     return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
   })();
-  // Called synchronously inside a tap: lets iOS play these elements later without another tap.
-  var unlocked = false;
-  function unlock() {
-    if (unlocked) return; unlocked = true;
-    players.forEach(function (a) {
-      if (a.src) return;
-      a.src = silentUrl; a._starting = true;
-      var p = a.play();
-      if (p && p.then) p.then(function () { a._starting = false; if (!a._inUse) { a._expect = true; a.pause(); } }, function () { a._starting = false; unlocked = false; });
-    });
-    try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+  var keep = document.createElement("audio");
+  keep.loop = true; keep.preload = "auto"; keep.src = keepUrl; keep.setAttribute("playsinline", ""); keep.setAttribute("webkit-playsinline", "");
+  keep._expect = false;
+  keep.addEventListener("pause", function () {
+    if (keep._expect) { keep._expect = false; return; }
+    if (playing) { interrupted = true; pause(true); toast(L().interrupted); }   // the system took audio away (call, other app)
+  });
+  document.body.appendChild(keep);
+  function keepPlay() { if (!keep.paused) return; var p = keep.play(); if (p && p.catch) p.catch(function () {}); }
+  function keepPause() { if (keep.paused) return; keep._expect = true; keep.pause(); }
+
+  function lim(x) { var a = x < 0 ? -x : x; if (a > 0.75) a = 0.75 + 0.25 * Math.tanh((a - 0.75) / 0.25); return x < 0 ? -a : a; }
+  function onCtxState() {
+    if (!ctx) return;
+    if (ctx.state === "running") { selfSuspend = false; return; }
+    if (selfSuspend || !playing) return;
+    interrupted = true; playing = false; keepPause(); renderAll(); toast(L().interrupted);
   }
+  // Must run inside a tap the first time (browsers only allow audio to start from a user gesture).
+  function ensureCtx() {
+    if (!ctx) {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      try { ctx = new AC({ latencyHint: "playback" }); } catch (e) { ctx = new AC(); }
+      // mix bus (x0.5) -> soft limiter covering inputs up to ±2 -> master volume -> sleep-timer fade -> speakers
+      bus = ctx.createGain(); bus.gain.value = 0.5;
+      var shaper = ctx.createWaveShaper(), K = 4097, curve = new Float32Array(K);
+      for (var i = 0; i < K; i++) curve[i] = lim((i / (K - 1)) * 4 - 2);
+      shaper.curve = curve;
+      master = ctx.createGain(); master.gain.value = masterGain();
+      fadeG = ctx.createGain(); fadeG.gain.value = 0;
+      bus.connect(shaper); shaper.connect(master); master.connect(fadeG); fadeG.connect(ctx.destination);
+      ctx.onstatechange = onCtxState;
+    }
+    clearTimeout(suspendTimer);
+    if (ctx.state !== "running") { selfSuspend = false; var p = ctx.resume(); if (p && p.catch) p.catch(function () {}); }
+    try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+    return ctx;
+  }
+  function unlock() { ensureCtx(); }
+  function glide(param, v, tc) { if (!ctx) return; var now = ctx.currentTime; param.cancelScheduledValues(now); param.setValueAtTime(param.value, now); param.setTargetAtTime(v, now, tc || 0.04); }
   function mixGain(id) { var v = vol(id); return v * v; }
   function masterGain() { return st.master * st.master; }
+  function applyElementVolume() { if (master) glide(master.gain, masterGain()); if (fadeG && playing) glide(fadeG.gain, fadeMul, 0.1); }
   // Tones loop seamlessly only with a whole number of cycles per loop, so frequencies snap to 1/72 Hz (0.014 Hz).
   function q(f) { return Math.round(f * LOOP) / LOOP; }
   var TS = 4096, SIN = new Float32Array(TS + 1);
@@ -358,106 +381,93 @@
       L[i] += sinc(i * il) * a * e; R[i] += sinc(i * ir) * a * e;
     }
   }
-  function buildMix(ids) {
-    var n = SR * LOOP, buf = new ArrayBuffer(44 + n * 4), out = new Int16Array(buf, 44), L = new Float32Array(n), R = new Float32Array(n), i;
-    wavHeader(new DataView(buf), n);
-    var mg = volAdjustable ? 1 : masterGain();
-    ids.forEach(function (id) {
-      var g = mixGain(id) * mg;
-      if (byId(id).kind !== "nature") { addTone(L, R, toneSpec(id), g); return; }
-      var b = buffers[id]; if (!b) return; g /= 32768;
-      for (i = 0; i < n; i++) { L[i] += b.L[i] * g; R[i] += b.R[i] * g; }
+  function voiceKey(id) { var s = byId(id); if (s.kind === "nature") return id; var p = toneSpec(id); return [p.fl, p.fr, p.pulse, p.amp].join("/"); }
+  // Seamless loop buffer for one sound (nature: converted once and kept; tones: built for the current frequency).
+  function bufferFor(id) {
+    var s = byId(id), n = SR * LOOP;
+    if (s.kind !== "nature") {
+      var ab = ctx.createBuffer(2, n, SR);
+      addTone(ab.getChannelData(0), ab.getChannelData(1), toneSpec(id), 1);
+      return Promise.resolve(ab);
+    }
+    return getSound(id).then(function (b) {
+      if (b.ab) return b.ab;
+      var ab = ctx.createBuffer(2, n, SR), L = ab.getChannelData(0), R = ab.getChannelData(1), k = 1 / 32768;
+      for (var i = 0; i < n; i++) { L[i] = b.L[i] * k; R[i] = b.R[i] * k; }
+      b.ab = ab; b.L = b.R = null;   // keep only the Web Audio copy
+      return ab;
     });
-    for (i = 0; i < n; i++) { out[2 * i] = lim(L[i]); out[2 * i + 1] = lim(R[i]); }
-    return URL.createObjectURL(new Blob([buf], { type: "audio/wav" }));
   }
-  function lim(x) { var a = x < 0 ? -x : x; if (a > 0.75) a = 0.75 + 0.25 * Math.tanh((a - 0.75) / 0.25); return (x < 0 ? -a : a) * 32767; }
-  function targetVol() { return Math.min(1, masterGain() * fadeMul); }
-  function applyElementVolume() { if (volAdjustable) players.forEach(function (a) { if (!a._ramp) a.volume = targetVol(); }); }
-  // Short volume ramps (where the browser allows element volume) so starts, stops and swaps never click.
-  function ramp(a, to, ms, done) {
-    if (a._ramp) clearInterval(a._ramp);
-    if (!volAdjustable) { a._ramp = null; if (done) done(); return; }
-    var from = a.volume, t0 = Date.now();
-    a._ramp = setInterval(function () {
-      var k = Math.min(1, (Date.now() - t0) / ms);
-      a.volume = clamp(from + (to - from) * k, 0, 1);
-      if (k >= 1) { clearInterval(a._ramp); a._ramp = null; if (done) done(); }
-    }, 16);
+  function fadeStop(v, sec) {
+    var now = ctx.currentTime;
+    v.g.gain.cancelScheduledValues(now); v.g.gain.setValueAtTime(v.g.gain.value, now); v.g.gain.linearRampToValueAtTime(0, now + sec);
+    try { v.src.stop(now + sec + 0.05); } catch (e) {}
+    v.src.onended = function () { try { v.src.disconnect(); v.g.disconnect(); } catch (e) {} };
   }
-  var fadeMul = 1;
-
-  // Re-mix and hand over to the other <audio> element at the same loop position (no audible gap).
-  function refresh() {
-    var token = ++swapToken;
-    var ids = st.on.slice();
-    if (!playing || !ids.length) { stopOutput(); renderAll(); return Promise.resolve(); }
-    return Promise.all(ids.map(getSound)).then(function () {
-      if (token !== swapToken || !playing) return;
-      var url = buildMix(ids), a = players[cur], b = players[1 - cur];
-      var pos = (curUrl && !a.paused) ? a.currentTime : (refresh.pos || 0);
-      b._inUse = true; b._starting = true; b.loop = true; b.src = url;
-      if (b._ramp) { clearInterval(b._ramp); b._ramp = null; }
-      if (volAdjustable) b.volume = 0;
-      var started = false;
-      function go() {
-        if (started) return; started = true;
-        try { b.currentTime = (pos + 0.05) % LOOP; } catch (e) {}
-        var p = b.play();
-        (p && p.then ? p : Promise.resolve()).then(function () {
-          b._starting = false;
-          if (token !== swapToken) { b._expect = true; b.pause(); URL.revokeObjectURL(url); return; }
-          ramp(b, targetVol(), 250);
-          if (a !== b && !a.paused) ramp(a, 0, 250, function () { if (a !== players[cur]) { a._expect = true; a.pause(); } });
-          a._inUse = false;
-          var old = curUrl; cur = 1 - cur; curUrl = url;
-          if (old) setTimeout(function () { URL.revokeObjectURL(old); }, 1000);
-          interrupted = false; updateMediaSession(); renderAll();
-        }, function () { b._starting = false; if (token === swapToken) { playing = false; renderAll(); toast(L().err); } });
-      }
-      if (b.readyState >= 1) go(); else { b.addEventListener("loadedmetadata", go, { once: true }); b.load(); }
-    }).catch(function () { if (token === swapToken) { toast(L().err); } });
-  }
-  function scheduleRefresh() { clearTimeout(mixTimer); mixTimer = setTimeout(refresh, 180); }
-  function stopOutput() {
-    players.forEach(function (a) {
-      if (a.paused) return;
-      if (a === players[cur]) refresh.pos = a.currentTime;
-      ramp(a, 0, 200, function () { if (!playing || a !== players[cur]) { a._expect = true; a.pause(); } });
+  // Make the running voices match the selection. Unchanged sounds keep playing untouched (only their gain moves).
+  function syncVoices() {
+    if (!ctx) return;
+    var want = st.on;
+    Object.keys(voices).forEach(function (id) { if (want.indexOf(id) < 0) { fadeStop(voices[id], 0.2); delete voices[id]; delete pend[id]; } });
+    if (!playing) return;   // paused: the engine is suspended and the loops keep their place
+    want.forEach(function (id) {
+      var v = voices[id], key = voiceKey(id);
+      if (v && v.key === key) { delete pend[id]; glide(v.g.gain, mixGain(id)); return; }
+      if (pend[id] && pend[id].key === key) return;
+      var token = ++seq; pend[id] = { key: key, token: token };
+      bufferFor(id).then(function (ab) {
+        if (!pend[id] || pend[id].token !== token) return;
+        delete pend[id];
+        if (!playing || !isOn(id) || voiceKey(id) !== key) return;
+        var old = voices[id], now = ctx.currentTime;
+        var off = old ? ((now - old.t0) % LOOP + LOOP) % LOOP : 0;   // a frequency change continues at the same loop position
+        var src = ctx.createBufferSource(), g = ctx.createGain();
+        src.buffer = ab; src.loop = true; src.loopStart = 0; src.loopEnd = ab.duration;
+        g.gain.setValueAtTime(0, now); g.gain.linearRampToValueAtTime(mixGain(id), now + 0.25);
+        src.connect(g); g.connect(bus); src.start(now, off);
+        if (old) fadeStop(old, 0.25);
+        voices[id] = { key: key, src: src, g: g, t0: now - off };
+        hasOutput = true; interrupted = false; renderAll();
+      }).catch(function () { delete pend[id]; toast(L().err); });
     });
-    updateMediaSession();
   }
+  var refresh = syncVoices;
+  function scheduleRefresh() { clearTimeout(mixTimer); mixTimer = setTimeout(syncVoices, 180); }
 
   /* ---------- actions ---------- */
+  function startOutput() {
+    ensureCtx(); keepPlay();
+    glide(fadeG.gain, fadeMul, 0.08);
+    syncVoices(); updateMediaSession();
+  }
   function play() {
-    unlock();
     if (!st.on.length) return;
     playing = true; interrupted = false;
-    var a = players[cur];
-    if (curUrl && a.src === curUrl && sameMix()) {
-      if (volAdjustable) { if (a.paused) a.volume = 0; ramp(a, targetVol(), 250); }
-      var p = a.play(); if (p && p.catch) p.catch(function () { playing = false; renderAll(); toast(L().err); });
-      updateMediaSession(); renderAll(); return;
+    startOutput(); renderAll();
+  }
+  // Fade out, then suspend the engine: the loops keep their position and ▶ continues exactly where it stopped.
+  function pause(fromSystem) {
+    playing = false;
+    if (ctx) {
+      glide(fadeG.gain, 0, 0.05);
+      clearTimeout(suspendTimer);
+      suspendTimer = setTimeout(function () {
+        if (playing || !ctx) return;
+        syncVoices();   // drops only the sounds that were switched off; the rest keep their loop position
+        selfSuspend = true; var p = ctx.suspend(); if (p && p.catch) p.catch(function () {});
+      }, 300);
     }
-    renderAll(); refresh();
+    if (fromSystem !== true) keepPause();
+    renderAll();
   }
-  var mixedIds = "";
-  function mixKey() {
-    return st.on.map(function (id) { var s = byId(id); return id + ":" + vol(id).toFixed(2) + (s.kind === "bw" || s.kind === "custom" ? "@" + q(freq(id)).toFixed(4) : ""); }).join(",") +
-      (st.on.some(function (id) { return byId(id).kind === "bw"; }) ? "|" + st.mode + q(st.carrier).toFixed(3) : "") + (volAdjustable ? "" : "|" + st.master.toFixed(2));
-  }
-  function sameMix() { return mixedIds === mixKey(); }
-  var _refresh = refresh;
-  refresh = function () { mixedIds = mixKey(); return _refresh(); };
-  function pause() { playing = false; stopOutput(); renderAll(); }
   function toggleSound(id) {
-    unlock();
+    ensureCtx();
     var i = st.on.indexOf(id);
     if (i >= 0) st.on.splice(i, 1); else { st.on.push(id); if (typeof st.vols[id] !== "number") st.vols[id] = vol(id); }
     save();
     if (!st.on.length) { pause(); return; }
     playing = true; interrupted = false;
-    renderAll(); refresh();
+    startOutput(); renderAll();
   }
   function stopAll() { st.on = []; save(); pause(); clearTimer(); }
 
@@ -489,20 +499,20 @@
   function checkTimer() {
     if (!timerEnd) return;
     var left = timerEnd - Date.now();
-    if (playing && left <= 10000 && left > 0 && volAdjustable) { fading = true; fadeMul = Math.max(0, left / 10000); applyElementVolume(); }
+    if (playing && left <= 10000 && left > 0) { fading = true; fadeMul = Math.max(0, left / 10000); applyElementVolume(); }
     if (left <= 0) { var wasPlaying = playing; clearTimer(); if (wasPlaying) { pause(); toast(L().timerDone); } }
     renderTimer();
   }
   setInterval(checkTimer, 1000);
-  players.forEach(function (a) { a.addEventListener("timeupdate", checkTimer); });
+  keep.addEventListener("timeupdate", checkTimer);
 
   /* ---------- lightning flash, synced to thunder in the loop ---------- */
   var lastT = -1, reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function frame() {
     requestAnimationFrame(frame);
-    var a = players[cur];
-    if (!playing || reduced || document.hidden || !isOn("thunder") || !buffers.thunder || a.paused || !curUrl) { lastT = -1; return; }
-    var t = a.currentTime;
+    var v = voices.thunder;
+    if (!playing || reduced || document.hidden || !v || !buffers.thunder || !ctx || ctx.state !== "running") { lastT = -1; return; }
+    var t = ((ctx.currentTime - v.t0) % LOOP + LOOP) % LOOP;
     if (lastT >= 0) {
       buffers.thunder.flashes.forEach(function (f) {
         var hit = t >= lastT ? (f.t > lastT && f.t <= t) : (f.t > lastT || f.t <= t);
@@ -611,7 +621,7 @@
   }
   function renderStatus() {
     var names = st.on.map(function (id) { return labelOf(byId(id)); }).join(" · ");
-    $("status").textContent = !st.on.length ? L().idle : playing ? L().playing + names : (interrupted ? L().interrupted : (curUrl ? L().paused + names : L().resume));
+    $("status").textContent = !st.on.length ? L().idle : playing ? L().playing + names : (interrupted ? L().interrupted : (hasOutput ? L().paused + names : L().resume));
     var p = $("play");
     p.textContent = playing ? "❚❚" : "▶";
     p.setAttribute("aria-label", playing ? L().pause : L().play);
@@ -641,7 +651,7 @@
   $("stopall").onclick = stopAll;
   $("master").value = Math.round(st.master * 100);
   $("master").style.setProperty("--p", $("master").value + "%");
-  $("master").addEventListener("input", function () { this.style.setProperty("--p", this.value + "%"); st.master = this.value / 100; save(); if (volAdjustable) applyElementVolume(); else if (playing) scheduleRefresh(); });
+  $("master").addEventListener("input", function () { this.style.setProperty("--p", this.value + "%"); st.master = this.value / 100; save(); applyElementVolume(); });
   var tb = document.querySelectorAll("#timer .chip");
   for (var i = 0; i < tb.length; i++) tb[i].onclick = function () { setTimer(+this.dataset.min); };
   function toast(msg) { var el = $("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { el.hidden = true; }, 2600); }
@@ -665,11 +675,10 @@
   /* ---------- lifecycle ---------- */
   function onBack(force) {
     if (force !== true && document.visibilityState !== "visible") return;
-    var a = players[cur];
     // Came back after an interruption (call, other app took audio): try to resume quietly.
-    if (interrupted && curUrl && st.on.length) {
-      var p = a.play();
-      if (p && p.then) p.then(function () { playing = true; interrupted = false; renderAll(); }, function () {});
+    if (interrupted && hasOutput && st.on.length && ctx) {
+      var p = ctx.resume();
+      if (p && p.then) p.then(function () { if (ctx.state === "running" && interrupted) { playing = true; interrupted = false; startOutput(); renderAll(); } }, function () {});
     }
     checkTimer(); renderAll();
   }
@@ -684,7 +693,7 @@
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
   if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 
-  window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get cur() { return players[cur]; }, players: players, buffers: buffers, volAdjustable: volAdjustable, get mixedKey() { return mixedIds; } };
+  window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
 </script>
 </body>
