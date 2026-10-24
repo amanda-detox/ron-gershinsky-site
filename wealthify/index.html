@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07060a">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="שפעלי">
+<meta name="description" content="שפעלי · אפליקציה לשגשוג וחופש כלכלי. Wealthify, an app for prosperity and financial freedom.">
+<title>שפעלי · Wealthify</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Assistant:wght@300;400;600&display=swap">
+<style>
+:root{
+  --bg:#07060a; --bg2:#0e0c12; --ink:#f4ead2; --mute:#b8a986; --dim:#7d7259;
+  --g1:#fff3c4; --g2:#f5d27a; --g3:#d4a645; --g4:#a8772a; --g5:#6e4a14;
+  --gold:linear-gradient(135deg,var(--g1) 0%,var(--g2) 22%,var(--g3) 48%,var(--g4) 72%,var(--g2) 100%);
+  --line:rgba(212,166,69,.28); --line2:rgba(245,210,122,.6);
+  --serif:"Frank Ruhl Libre","Cormorant Garamond","David Libre",Georgia,"Times New Roman",serif;
+  --sans:"Assistant","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+html[lang=en]{--serif:"Cormorant Garamond","Playfair Display",Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg)}
+body{
+  color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  min-height:100vh;min-height:100dvh;overflow-x:hidden;
+  background:
+    radial-gradient(120% 60% at 50% -10%,rgba(212,166,69,.20),transparent 60%),
+    radial-gradient(80% 50% at 100% 110%,rgba(168,119,42,.14),transparent 60%),
+    radial-gradient(60% 40% at 0% 80%,rgba(245,210,122,.06),transparent 60%),
+    var(--bg);
+}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 60% at 50% -10%,rgba(212,166,69,.20),transparent 60%),radial-gradient(80% 50% at 100% 110%,rgba(168,119,42,.14),transparent 60%),radial-gradient(60% 40% at 0% 80%,rgba(245,210,122,.06),transparent 60%),var(--bg)}
+/* floating gold dust */
+.dust{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.dust i{position:absolute;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--g2);box-shadow:0 0 8px 2px rgba(245,210,122,.55);opacity:0;animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:.8}85%{opacity:.5}100%{transform:translateY(-105vh) scale(1);opacity:0}}
+.wrap{position:relative;z-index:1;max-width:620px;margin:0 auto;padding:calc(14px + env(safe-area-inset-top)) 18px calc(28px + env(safe-area-inset-bottom));min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}
+a.back{color:var(--mute);text-decoration:none;padding:8px 2px;border-bottom:1px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+a.back:hover,a.back:focus-visible{color:var(--g2);border-color:var(--line2)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(255,255,255,.02)}
+.lang button{font:600 13px var(--sans);letter-spacing:.04em;color:var(--mute);background:none;border:0;border-radius:999px;padding:7px 13px;cursor:pointer;transition:all .25s}
+.lang button[aria-pressed=true]{color:#1a1206;background:var(--gold);box-shadow:0 0 14px rgba(245,210,122,.35)}
+main{flex:1;display:flex;flex-direction:column}
+.screen{flex:1;display:flex;flex-direction:column;animation:fadeUp .55s cubic-bezier(.2,.7,.2,1) both}
+.screen[hidden]{display:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* gold text with shimmer */
+.goldtext{
+  background:linear-gradient(100deg,var(--g4) 0%,var(--g2) 20%,var(--g1) 32%,var(--g2) 44%,var(--g3) 62%,var(--g2) 80%,var(--g4) 100%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 7s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(245,210,122,.28));
+}
+@keyframes shimmer{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.15;text-wrap:balance}
+.tagline,.sub,.disc{text-wrap:balance}
+
+/* welcome */
+.welcome{justify-content:center;align-items:center;text-align:center;padding:24px 0 8px}
+.crest{width:116px;height:116px;margin:0 auto 22px;position:relative}
+.crest::before{content:"";position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(245,210,122,.32),transparent 65%);animation:breathe 5s ease-in-out infinite}
+.crest svg{position:relative;width:100%;height:100%}
+@keyframes breathe{0%,100%{opacity:.6;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+.eyebrow{font:600 13px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--g3);margin-bottom:10px}
+.lat{letter-spacing:.3em;text-transform:uppercase;font-size:12px}
+.welcome h1{font-size:clamp(52px,16vw,84px);font-weight:500;letter-spacing:.01em;padding:0 .08em .06em}
+html[lang=en] .welcome h1{font-weight:600;letter-spacing:.02em}
+.rule{display:flex;align-items:center;gap:12px;justify-content:center;margin:16px auto 18px;width:min(260px,70%)}
+.rule::before,.rule::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--g3),transparent)}
+.rule span{width:7px;height:7px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 10px rgba(245,210,122,.7)}
+.tagline{font-family:var(--serif);font-size:clamp(20px,5.6vw,26px);color:var(--ink);margin:0 auto 10px;max-width:24ch;line-height:1.35}
+html[lang=en] .tagline{font-style:italic}
+.sub{color:var(--mute);font-size:15.5px;max-width:34ch;margin:0 auto 30px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 36px;border-radius:999px;border:0;cursor:pointer;
+  font:600 17px var(--sans);letter-spacing:.06em;color:#1a1206;text-decoration:none;
+  background:linear-gradient(135deg,#fff1bf,#f2cc6e 30%,#d4a645 60%,#f5d27a);background-size:200% 200%;
+  box-shadow:0 0 0 1px rgba(255,243,196,.5) inset,0 10px 30px -8px rgba(212,166,69,.65),0 0 40px -10px rgba(245,210,122,.6);
+  transition:transform .2s,box-shadow .3s,background-position .6s;position:relative;overflow:hidden;
+}
+.btn::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sweep 4.5s ease-in-out infinite}
+@keyframes sweep{0%,60%{left:-60%}100%{left:130%}}
+.btn:hover{background-position:100% 0;box-shadow:0 0 0 1px rgba(255,243,196,.7) inset,0 14px 36px -8px rgba(212,166,69,.8),0 0 60px -8px rgba(245,210,122,.7)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--g2);box-shadow:0 0 0 1px var(--line2) inset}
+.btn.ghost::after{display:none}
+.btn.ghost:hover{box-shadow:0 0 0 1px var(--g2) inset,0 0 26px -6px rgba(245,210,122,.5);color:var(--g1)}
+.btn:focus-visible,.opt:focus-visible,.icon-btn:focus-visible,.lang button:focus-visible{outline:2px solid var(--g1);outline-offset:3px}
+.meta{margin-top:18px;color:var(--dim);font-size:13.5px}
+
+/* questionnaire */
+.qhead{display:flex;align-items:center;gap:12px;margin:14px 0 6px}
+.icon-btn{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--g2);font-size:20px;cursor:pointer;display:grid;place-items:center;transition:all .2s}
+.icon-btn:hover{border-color:var(--line2);box-shadow:0 0 18px -4px rgba(245,210,122,.5)}
+.icon-btn svg{width:20px;height:20px}
+html[dir=ltr] .icon-btn svg{transform:scaleX(-1)}
+.progress{flex:1}
+.progress .lbl{display:flex;justify-content:space-between;font-size:13px;letter-spacing:.04em;color:var(--mute);margin-bottom:7px;text-transform:uppercase}
+.bar{height:3px;border-radius:3px;background:rgba(212,166,69,.15);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--g4),var(--g1),var(--g3));box-shadow:0 0 12px rgba(245,210,122,.8);transition:width .5s cubic-bezier(.2,.7,.2,1);border-radius:3px}
+html[dir=rtl] .bar i{margin-right:0;margin-left:auto}
+.qtitle{font-size:clamp(28px,8vw,40px);margin:22px 0 22px;padding-bottom:.08em}
+.opts{display:grid;gap:11px;list-style:none;margin:0;padding:0}
+.opt{
+  width:100%;display:flex;align-items:center;gap:14px;min-height:62px;padding:14px 18px;text-align:start;cursor:pointer;
+  font:500 18px var(--sans);color:var(--ink);border-radius:16px;
+  background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));
+  border:1px solid var(--line);transition:border-color .25s,background .25s,box-shadow .3s,transform .15s;
+  animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both;
+}
+.opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--g4);position:relative;transition:all .25s}
+.opt .num{font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.opt .txt{flex:1}
+.opt:hover{border-color:var(--line2);background:linear-gradient(180deg,rgba(245,210,122,.07),rgba(245,210,122,.02))}
+.opt:active{transform:scale(.985)}
+.opt[aria-checked=true]{
+  border-color:var(--g2);color:var(--g1);
+  background:linear-gradient(135deg,rgba(245,210,122,.18),rgba(168,119,42,.10));
+  box-shadow:0 0 0 1px rgba(245,210,122,.35) inset,0 0 28px -6px rgba(245,210,122,.55);
+}
+.opt[aria-checked=true] .dot{border-color:var(--g1);background:var(--gold);box-shadow:0 0 12px rgba(245,210,122,.9)}
+.opt[aria-checked=true] .dot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:#1a1206}
+.hint{color:var(--dim);font-size:13.5px;margin-top:16px;text-align:center}
+
+/* results */
+.res-head{text-align:center;margin:22px 0 6px}
+.res-head h2{font-size:clamp(34px,9.5vw,48px);padding-bottom:.08em}
+.tier{
+  position:relative;margin:22px 0 18px;padding:26px 20px 24px;border-radius:22px;text-align:center;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,rgba(245,210,122,.16),rgba(14,12,18,.6) 60%),var(--bg2);
+  border:1px solid var(--line2);box-shadow:0 0 50px -16px rgba(245,210,122,.55),0 0 0 1px rgba(255,243,196,.05) inset;
+}
+.tier::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,243,196,.10) 50%,transparent 65%);background-size:300% 100%;animation:shimmer 6s ease-in-out infinite;pointer-events:none}
+.tier .k{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--g3)}
+.tier .name{font-family:var(--serif);font-size:clamp(34px,10vw,50px);margin:6px 0 2px;padding-bottom:.06em}
+.tier .alt{color:var(--mute);font-family:var(--serif);font-size:17px}
+html[lang=he] .tier .alt{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:19px}
+.gems{display:flex;justify-content:center;gap:9px;margin-top:14px;direction:ltr}
+.gems span{width:10px;height:10px;transform:rotate(45deg);border:1px solid var(--g4)}
+.gems span.on{background:var(--gold);border-color:var(--g1);box-shadow:0 0 10px rgba(245,210,122,.85)}
+.cards{display:grid;gap:11px;margin:0 0 18px}
+.card{display:flex;align-items:center;gap:14px;padding:15px 16px;border-radius:16px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));animation:fadeUp .5s both}
+.card .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:radial-gradient(circle at 30% 25%,rgba(255,243,196,.25),rgba(168,119,42,.15));border:1px solid var(--line2);color:var(--g2)}
+.card .ic svg{width:22px;height:22px}
+.card .q{font-size:13.5px;color:var(--mute);line-height:1.35}
+.card .a{font-variant-numeric:lining-nums;font-family:var(--serif);font-size:22px;color:var(--g1);line-height:1.25;margin-top:2px}
+.card .a .num{direction:ltr;unicode-bidi:isolate}
+.card .edit{margin-inline-start:auto;flex:none;background:none;border:0;color:var(--dim);font:600 13px var(--sans);cursor:pointer;padding:8px;border-radius:8px}
+.card .edit:hover{color:var(--g2)}
+.plan{padding:20px 20px;border-radius:18px;border:1px dashed var(--line2);background:rgba(245,210,122,.035);margin-bottom:18px}
+.plan h3{font-size:24px;color:var(--g2);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.plan h3 .spark{width:9px;height:9px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 10px rgba(245,210,122,.9);animation:breathe 3s ease-in-out infinite}
+.plan p{margin:0;color:var(--ink);opacity:.88}
+.plan .body{white-space:pre-line}
+.actions{display:grid;gap:12px;margin:6px 0 18px}
+.actions .btn{width:100%}
+.disc{font-size:12.5px;color:var(--dim);text-align:center;line-height:1.5;margin:4px auto 0;max-width:46ch}
+.saved{font-size:13px;color:var(--mute);text-align:center;margin-bottom:6px}
+
+/* install */
+.install{margin-top:22px;text-align:center}
+.install[hidden]{display:none}
+.pill{font:600 14px var(--sans);color:var(--g2);background:rgba(245,210,122,.05);border:1px solid var(--line);border-radius:999px;padding:10px 18px;cursor:pointer;transition:all .2s}
+.pill:hover{border-color:var(--line2);box-shadow:0 0 20px -6px rgba(245,210,122,.5)}
+.install-hint{margin:12px auto 0;max-width:36ch;font-size:14px;color:var(--mute);background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.install-hint b{color:var(--g2)}
+footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-spacing:.08em}
+
+@media (min-width:760px){
+  body{font-size:18px}
+  .wrap{padding-top:28px;max-width:680px}
+  main{padding-top:3vh}
+  .crest{width:136px;height:136px}
+  .tagline{font-size:30px}
+  .sub{font-size:18px}
+  .welcome h1{font-size:96px}
+  .opts.many{grid-template-columns:1fr 1fr}
+  .cards{grid-template-columns:1fr}
+  .actions{grid-template-columns:1fr 1fr}
+}
+@media (max-width:340px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .opt{font-size:16.5px;min-height:56px;padding:12px 14px}
+  .btn{padding:0 26px}
+  .lang button{padding:7px 10px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .dust{display:none}
+}
+</style>
+</head>
+<body>
+<div class="dust" id="dust" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../" id="back"></a>
+    <div class="lang" role="group" aria-label="Language / שפה">
+      <button type="button" id="lang-he" aria-pressed="true">עברית</button>
+      <button type="button" id="lang-en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Welcome -->
+    <section class="screen welcome" id="s-welcome">
+      <div class="crest" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs>
+          <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#e9bd5c"/><stop offset="1" stop-color="#9c6a22"/></linearGradient></defs>
+          <circle cx="60" cy="60" r="56" fill="none" stroke="url(#cg)" stroke-width="1.5" opacity=".7"/>
+          <circle cx="60" cy="60" r="49" fill="none" stroke="url(#cg)" stroke-width=".8" opacity=".45"/>
+          <path d="M60 22 L88 50 L60 98 L32 50 Z" fill="none" stroke="url(#cg)" stroke-width="2.4" stroke-linejoin="round"/>
+          <path d="M32 50 H88 M47 50 L60 22 L73 50 L60 98 Z" fill="none" stroke="url(#cg)" stroke-width="1.4" stroke-linejoin="round" opacity=".85"/>
+          <circle cx="60" cy="60" r="2" fill="#fff3c4"/>
+        </svg>
+      </div>
+      <div class="eyebrow" data-i18n="eyebrow"></div>
+      <h1 class="goldtext" data-i18n="appName"></h1>
+      <div class="rule"><span></span></div>
+      <p class="tagline" data-i18n="tagline"></p>
+      <p class="sub" data-i18n="sub"></p>
+      <button type="button" class="btn" id="start" data-i18n="start"></button>
+      <div class="meta" data-i18n="meta"></div>
+      <div class="install" id="install-wrap" hidden>
+        <button type="button" class="pill" id="install-btn" data-i18n="install"></button>
+        <div class="install-hint" id="install-hint" hidden></div>
+      </div>
+    </section>
+
+    <!-- 2. Questionnaire -->
+    <section class="screen" id="s-quiz" hidden>
+      <div class="qhead">
+        <button type="button" class="icon-btn" id="q-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+        <div class="progress">
+          <div class="lbl"><span id="q-step"></span></div>
+          <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="q-bar"><i></i></div>
+        </div>
+      </div>
+      <h2 class="qtitle goldtext" id="q-title" tabindex="-1"></h2>
+      <div class="opts" id="q-opts" role="radiogroup"></div>
+      <p class="hint" data-i18n="hint"></p>
+    </section>
+
+    <!-- 3. Results -->
+    <section class="screen" id="s-results" hidden>
+      <div class="res-head">
+        <div class="eyebrow" data-i18n="resEyebrow"></div>
+        <h2 class="goldtext" data-i18n="resTitle" id="res-title" tabindex="-1"></h2>
+      </div>
+      <div class="tier">
+        <div class="k" data-i18n="tierLabel"></div>
+        <div class="name goldtext" id="tier-name"></div>
+        <div class="alt" id="tier-alt"></div>
+        <div class="gems" id="tier-gems" aria-hidden="true"></div>
+      </div>
+      <div class="cards" id="res-cards"></div>
+      <div class="plan">
+        <h3><span class="spark" aria-hidden="true"></span><span data-i18n="planTitle"></span></h3>
+        <p class="body" id="plan-body"></p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="../#wait-title" id="join" data-i18n="join"></a>
+        <button type="button" class="btn ghost" id="retake" data-i18n="retake"></button>
+      </div>
+      <p class="saved" data-i18n="saved"></p>
+      <p class="disc" data-i18n="disc"></p>
+    </section>
+  </main>
+  <footer>ŠEFALI · WEALTHIFY</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== Questionnaire data: add questions here; everything else adapts. ===== */
+  var QUESTIONS = [
+    { id: "equity", icon: "coin", he: "כמה הון עצמי יש לך?", en: "How much equity do you have?", options: [
+      { id: "lt2k",    he: "פחות מ־<span class=num>$2,000</span>",                en: "Under <span class=num>$2,000</span>" },
+      { id: "2k-15k",  he: "<span class=num>$2,000–$15,000</span>",              en: "<span class=num>$2,000–$15,000</span>" },
+      { id: "15k-50k", he: "<span class=num>$15,000–$50,000</span>",             en: "<span class=num>$15,000–$50,000</span>" },
+      { id: "50k",     he: "מעל <span class=num>$50K</span>",                    en: "Over <span class=num>$50K</span>" },
+      { id: "100k",    he: "מעל <span class=num>$100K</span>",                   en: "Over <span class=num>$100K</span>" },
+      { id: "500k",    he: "מעל <span class=num>$500K</span>",                   en: "Over <span class=num>$500K</span>" },
+      { id: "1m",      he: "מעל מיליון <span class=num>($1M)</span>",            en: "Over <span class=num>$1M</span>" },
+      { id: "10m",     he: "מעל 10 מיליון <span class=num>($10M)</span>",        en: "Over <span class=num>$10M</span>" },
+      { id: "100m",    he: "מעל 100 מיליון <span class=num>($100M)</span>",      en: "Over <span class=num>$100M</span>" },
+      { id: "1b",      he: "מעל מיליארד <span class=num>($1B)</span>",           en: "Over <span class=num>$1B</span>" }
+    ]},
+    { id: "banks", icon: "bank", he: "כמה חשבונות בנק יש לך?", en: "How many bank accounts do you have?", options: [
+      { id: "1-3",  he: "<span class=num>1–3</span>",  en: "<span class=num>1–3</span>" },
+      { id: "4-5",  he: "<span class=num>4–5</span>",  en: "<span class=num>4–5</span>" },
+      { id: "6-10", he: "<span class=num>6–10</span>", en: "<span class=num>6–10</span>" },
+      { id: "10+",  he: "מעל 10",                      en: "Over 10" }
+    ]},
+    { id: "passports", icon: "passport", he: "כמה דרכונים ו/או אזרחויות יש לך?", en: "How many passports and/or citizenships do you have?", options: [
+      { id: "1-2",  he: "<span class=num>1–2</span>",  en: "<span class=num>1–2</span>" },
+      { id: "3-5",  he: "<span class=num>3–5</span>",  en: "<span class=num>3–5</span>" },
+      { id: "6-10", he: "<span class=num>6–10</span>", en: "<span class=num>6–10</span>" },
+      { id: "10+",  he: "<span class=num>10+</span>",  en: "<span class=num>10+</span>" }
+    ]}
+  ];
+
+  /* Starting-point tiers, derived from the equity answer. */
+  var TIERS = [
+    { id: "foundation",  he: "התחלה",       en: "Foundation" },
+    { id: "growth",      he: "צמיחה",       en: "Growth" },
+    { id: "established", he: "ביסוס",       en: "Established" },
+    { id: "wealth",      he: "עושר",        en: "Wealth" },
+    { id: "hnw",         he: "עושר גדול",   en: "High net worth" },
+    { id: "uhnw",        he: "עושר ענק",    en: "Ultra high net worth" }
+  ];
+  var EQUITY_TIER = {
+    "lt2k": "foundation", "2k-15k": "foundation",
+    "15k-50k": "growth", "50k": "growth",
+    "100k": "established", "500k": "established",
+    "1m": "wealth",
+    "10m": "hnw",
+    "100m": "uhnw", "1b": "uhnw"
+  };
+
+  /* Tailored solutions per tier, written by Ron.
+     While a string is empty, users see the "your plan is being prepared" message instead.
+     TODO(Ron): fill in he/en text for each tier (and later, per answer combinations). */
+  var SOLUTIONS = {
+    foundation:  { he: "", en: "" }, // TODO
+    growth:      { he: "", en: "" }, // TODO
+    established: { he: "", en: "" }, // TODO
+    wealth:      { he: "", en: "" }, // TODO
+    hnw:         { he: "", en: "" }, // TODO
+    uhnw:        { he: "", en: "" }  // TODO
+  };
+
+  var T = {
+    he: {
+      doc: "שפעלי · Wealthify",
+      back: "← חזרה לאתר",
+      eyebrow: "<span class=lat>Wealthify</span>",
+      appName: "שפעלי",
+      tagline: "הדרך שלך לשגשוג ולחופש כלכלי",
+      sub: "שלוש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
+      start: "בוא נתחיל",
+      meta: "פחות מדקה · התשובות נשמרות רק במכשיר שלך",
+      install: "📲 התקנה למסך הבית",
+      ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
+      other: "בתפריט הדפדפן (⋮) בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.",
+      step: function (i, n) { return "שאלה " + i + " מתוך " + n; },
+      backQ: "חזרה",
+      hint: "נגיעה באפשרות בוחרת וממשיכה",
+      resEyebrow: "הפרופיל שלך",
+      resTitle: "נקודת המוצא שלך",
+      tierLabel: "שלב",
+      planTitle: "התוכנית האישית שלך",
+      planSoon: "אנחנו מכינים עכשיו תוכנית מותאמת לפרופיל שלך. היא תופיע כאן בקרוב, ותחכה לך בכל פעם שתחזור.",
+      join: "הצטרפות לרשימת ההמתנה",
+      retake: "מילוי השאלון מחדש",
+      change: "שינוי",
+      saved: "התשובות נשמרו במכשיר הזה בלבד ולא נשלחות לשום מקום.",
+      disc: "התוכן באפליקציה הוא מידע כללי בלבד, ואינו מהווה ייעוץ פיננסי, משפטי או מיסויי אישי."
+    },
+    en: {
+      doc: "Wealthify · שפעלי",
+      back: "← Back to site",
+      eyebrow: "שפעלי",
+      appName: "Wealthify",
+      tagline: "Your path to prosperity and financial freedom",
+      sub: "Three short questions to understand where you're starting from, so we can map the road ahead together.",
+      start: "Begin",
+      meta: "Under a minute · answers stay on your device",
+      install: "📲 Add to home screen",
+      ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
+      other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.",
+      step: function (i, n) { return "Question " + i + " of " + n; },
+      backQ: "Back",
+      hint: "Tap an option to select and continue",
+      resEyebrow: "<span class=lat>Your profile</span>",
+      resTitle: "Your starting point",
+      tierLabel: "<span class=lat>Stage</span>",
+      planTitle: "Your personal plan",
+      planSoon: "We're preparing a plan tailored to your profile. It will appear here soon, and will be waiting for you whenever you return.",
+      join: "Join the waitlist",
+      retake: "Retake questionnaire",
+      change: "Change",
+      saved: "Your answers are saved on this device only and are never sent anywhere.",
+      disc: "Content in this app is general information only and is not personal financial, legal or tax advice."
+    }
+  };
+
+  var ICONS = {
+    coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg>',
+    bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/></svg>',
+    passport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.8 10.5h6.4M12 7.3c-1.2 1.6-1.2 4.8 0 6.4M12 7.3c1.2 1.6 1.2 4.8 0 6.4M9 17h6"/></svg>'
+  };
+
+  var ANS_KEY = "rg-wealth-answers-v1", LANG_KEY = "rg-lang";
+  var $ = function (id) { return document.getElementById(id); };
+  var lang = "he";
+  try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
+
+  var answers = {}, step = 0, view = "welcome", completed = false;
+  function load() {
+    try {
+      var s = JSON.parse(localStorage.getItem(ANS_KEY) || "null");
+      if (s && s.answers && typeof s.answers === "object") { answers = s.answers; completed = !!s.completed; }
+    } catch (e) {}
+  }
+  function save() {
+    try { localStorage.setItem(ANS_KEY, JSON.stringify({ v: 1, answers: answers, completed: completed, updated: new Date().toISOString() })); } catch (e) {}
+  }
+  function isComplete() { return QUESTIONS.every(function (q) { return findOpt(q, answers[q.id]); }); }
+  function findOpt(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
+  function tierFor() { var id = EQUITY_TIER[answers.equity] || "foundation"; for (var i = 0; i < TIERS.length; i++) if (TIERS[i].id === id) return { t: TIERS[i], idx: i }; return { t: TIERS[0], idx: 0 }; }
+
+  function show(v) {
+    view = v;
+    ["welcome", "quiz", "results"].forEach(function (k) { $("s-" + k).hidden = k !== v; });
+    window.scrollTo(0, 0);
+  }
+
+  function renderQuiz(focus) {
+    var q = QUESTIONS[step], L = T[lang], n = QUESTIONS.length;
+    $("q-step").textContent = L.step(step + 1, n);
+    var pct = Math.round((step) / n * 100);
+    $("q-bar").setAttribute("aria-valuenow", pct);
+    $("q-bar").firstElementChild.style.width = Math.max(4, ((step + 1) / n) * 100) + "%";
+    $("q-back").setAttribute("aria-label", L.backQ);
+    $("q-title").textContent = q[lang];
+    var box = $("q-opts"); box.innerHTML = "";
+    box.className = "opts" + (q.options.length > 5 ? " many" : "");
+    box.setAttribute("aria-labelledby", "q-title");
+    q.options.forEach(function (o, i) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.setAttribute("role", "radio");
+      b.setAttribute("aria-checked", String(answers[q.id] === o.id));
+      b.dataset.id = o.id;
+      b.style.animationDelay = (i * 35) + "ms";
+      b.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="txt">' + o[lang] + "</span>";
+      b.onclick = function () { choose(q, o, b); };
+      box.appendChild(b);
+    });
+    if (focus) { try { $("q-title").focus({ preventScroll: true }); } catch (e) {} }
+  }
+
+  var advancing = false;
+  function choose(q, o, btn) {
+    if (advancing) return;
+    answers[q.id] = o.id; save();
+    var all = $("q-opts").children;
+    for (var i = 0; i < all.length; i++) all[i].setAttribute("aria-checked", String(all[i] === btn));
+    advancing = true;
+    setTimeout(function () {
+      advancing = false;
+      if (step < QUESTIONS.length - 1) { step++; renderQuiz(true); window.scrollTo(0, 0); }
+      else { completed = true; save(); renderResults(); show("results"); try { $("res-title").focus({ preventScroll: true }); } catch (e) {} }
+    }, reduced() ? 80 : 320);
+  }
+  function reduced() { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }
+
+  function renderResults() {
+    var L = T[lang], tr = tierFor();
+    $("tier-name").textContent = tr.t[lang];
+    $("tier-alt").textContent = tr.t[lang === "he" ? "en" : "he"];
+    var g = ""; for (var i = 0; i < TIERS.length; i++) g += '<span class="' + (i <= tr.idx ? "on" : "") + '"></span>';
+    $("tier-gems").innerHTML = g;
+    var cards = $("res-cards"); cards.innerHTML = "";
+    QUESTIONS.forEach(function (q, qi) {
+      var o = findOpt(q, answers[q.id]); if (!o) return;
+      var d = document.createElement("div"); d.className = "card"; d.style.animationDelay = (qi * 90) + "ms";
+      d.innerHTML = '<div class="ic" aria-hidden="true">' + (ICONS[q.icon] || ICONS.coin) + '</div><div><div class="q"></div><div class="a">' + o[lang] + '</div></div><button type="button" class="edit"></button>';
+      d.querySelector(".q").textContent = q[lang];
+      var e = d.querySelector(".edit"); e.textContent = L.change; e.setAttribute("aria-label", L.change + ": " + q[lang]);
+      e.onclick = function () { step = qi; renderQuiz(); show("quiz"); };
+      cards.appendChild(d);
+    });
+    var sol = SOLUTIONS[tr.t.id] && SOLUTIONS[tr.t.id][lang];
+    $("plan-body").textContent = sol || L.planSoon;
+  }
+
+  function render() {
+    var L = T[lang];
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    document.title = L.doc;
+    var els = document.querySelectorAll("[data-i18n]");
+    for (var i = 0; i < els.length; i++) els[i].innerHTML = L[els[i].getAttribute("data-i18n")];
+    $("back").textContent = L.back;
+    $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
+    $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
+    if (hintKey) $("install-hint").innerHTML = L[hintKey];
+    if (view === "quiz") renderQuiz();
+    if (view === "results") renderResults();
+  }
+  function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
+  $("lang-he").onclick = function () { setLang("he"); };
+  $("lang-en").onclick = function () { setLang("en"); };
+
+  $("start").onclick = function () { step = 0; renderQuiz(true); show("quiz"); };
+  $("q-back").onclick = function () {
+    if (step > 0) { step--; renderQuiz(true); }
+    else if (completed && isComplete()) { renderResults(); show("results"); }
+    else show("welcome");
+  };
+  $("retake").onclick = function () { answers = {}; completed = false; save(); step = 0; renderQuiz(true); show("quiz"); };
+
+  /* ----- install ----- */
+  var ua = navigator.userAgent || "";
+  var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  var standalone = function () { return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; };
+  var deferred = null, hintKey = null;
+  function updateInstall() {
+    var s = !standalone() && (deferred || isIOS);
+    $("install-wrap").hidden = !s;
+    if (!s) $("install-hint").hidden = true;
+  }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
+  window.addEventListener("appinstalled", function () { deferred = null; $("install-wrap").hidden = true; });
+  $("install-btn").onclick = function () {
+    if (deferred) { var d = deferred; deferred = null; d.prompt(); (d.userChoice || Promise.resolve()).then(updateInstall); return; }
+    hintKey = isIOS ? "ios" : "other";
+    $("install-hint").innerHTML = T[lang][hintKey];
+    $("install-hint").hidden = !$("install-hint").hidden;
+  };
+
+  window.addEventListener("storage", function (e) { if (e.key === LANG_KEY && e.newValue) { lang = e.newValue === "en" ? "en" : "he"; render(); } });
+  window.addEventListener("pageshow", function (e) { if (!e.persisted) return; var v = "he"; try { if (localStorage.getItem(LANG_KEY) === "en") v = "en"; } catch (er) {} if (v !== lang) { lang = v; render(); } });
+
+  /* ----- gold dust ----- */
+  if (!reduced()) {
+    var dust = $("dust"), html = "";
+    for (var k = 0; k < 18; k++) {
+      var sz = (1.5 + Math.random() * 2.5).toFixed(1);
+      html += '<i style="left:' + (Math.random() * 100).toFixed(1) + '%;width:' + sz + 'px;height:' + sz + 'px;animation-duration:' + (14 + Math.random() * 16).toFixed(1) + 's;animation-delay:-' + (Math.random() * 25).toFixed(1) + 's"></i>';
+    }
+    dust.innerHTML = html;
+  }
+
+  load();
+  if (completed && isComplete()) { view = "results"; }
+  render();
+  show(view);
+  updateInstall();
+  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+  }
+})();
+</script>
+</body>
+</html>
