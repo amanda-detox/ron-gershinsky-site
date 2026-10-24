@@ -1,5 +1,5 @@
 /* Offline cache for Healify (היליפיי). */
-var CACHE = "rg-healify-v1";
+var CACHE = "rg-healify-v2";
 var FILES = ["./", "index.html", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
