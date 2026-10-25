@@ -1,5 +1,5 @@
-/* Offline cache + notification clicks for the public alarm clock. */
-var CACHE = "rg-clock-v2";
+/* Offline cache + notification clicks for Clockify (קלוקיפיי). */
+var CACHE = "rg-clock-v3";
 var FILES = ["./", "index.html", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {

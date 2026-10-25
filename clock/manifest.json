@@ -1,19 +1,33 @@
 {
   "id": "./",
-  "name": "שעון מעורר / Alarm Clock",
-  "short_name": "שעון מעורר",
-  "description": "שעון מעורר חינמי עם רשימות משימות · Free alarm clock with task lists",
+  "name": "קלוקיפיי · Clockify",
+  "short_name": "קלוקיפיי",
+  "description": "קלוקיפיי: שעון מעורר עם רשימות משימות · Clockify: alarm clock with task lists",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
+  "background_color": "#050b1f",
+  "theme_color": "#050b1f",
   "lang": "he",
   "dir": "rtl",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "icon-192.png?v=3",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png?v=3",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg?v=3",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ]
 }
