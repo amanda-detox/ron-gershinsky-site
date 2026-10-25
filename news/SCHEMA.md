@@ -1,4 +1,4 @@
-# news.json schema (Updates / עדכונים)
+# news.json schema (Updatify / עדכוניפיי)
 
 The app (`index.html` + `app.js`) reads `news.json` from this folder on every open
 (`news.json?t=<timestamp>`, `cache: no-store`; the service worker is network-first and keeps

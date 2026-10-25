@@ -5,7 +5,7 @@
   var TZ = "Asia/Jerusalem";
   var L = {
     he: {
-      title: "עדכונים", doc: "עדכונים · Updates",
+      title: "עדכוניפיי", doc: "עדכוניפיי · Updatify",
       tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן פעם ביום",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
       refresh: "רענון", all: "הכול", people: "אנשים", companies: "חברות ונושאים",
@@ -23,7 +23,7 @@
       locale: "he-IL"
     },
     en: {
-      title: "Updates", doc: "Updates · עדכונים",
+      title: "Updatify", doc: "Updatify · עדכוניפיי",
       tagline: "News on the people and companies you follow, refreshed daily",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
       refresh: "Refresh", all: "All", people: "People", companies: "Companies & topics",
