@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1f4a">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="באלאנסיפיי">
+<meta name="description" content="באלאנסיפיי · הרגעה, איזון וזרימה. Balancify, calm, balance and flow.">
+<script>/* before first paint: theme (dark default), background, language */(function(){var d=document.documentElement,t="dark",b="sunset";try{t=localStorage.getItem("rg-balancify-theme")==="light"?"light":"dark";b=localStorage.getItem("rg-balancify-bg")||"sunset";if(!/^[a-z]+$/.test(b))b="sunset";}catch(e){}d.setAttribute("data-theme",t);d.style.setProperty("--bgimg",'url("bg/'+b+'.webp")');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f4efe9":"#1b1f4a");try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>באלאנסיפיי · Balancify</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scene" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <a class="back" id="back" href="../"></a>
+    <div class="tools">
+      <button type="button" class="pill" id="bg-btn"></button>
+      <button type="button" class="pill" id="theme-btn"><span class="ti"></span><span class="tl"></span></button>
+      <div class="lang" role="group" aria-label="Language / שפה">
+        <button type="button" id="lang-he" aria-pressed="true">עב</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <div class="hero">
+      <img src="icon.svg" alt="" width="60" height="60">
+      <div>
+        <h1 id="title"></h1>
+        <p class="tagline" id="tagline"></p>
+      </div>
+    </div>
+    <div class="install" id="install-wrap" hidden>
+      <button type="button" class="btn primary" id="install-btn"></button>
+      <div class="hint" id="install-hint" hidden></div>
+    </div>
+    <nav class="choices" id="choices"></nav>
+  </main>
+
+  <main id="list" hidden>
+    <button type="button" class="homebtn" id="home-btn"></button>
+    <section class="card">
+      <h2 id="list-title"></h2>
+      <span class="tag" id="list-tag" hidden></span>
+      <p class="instr" id="instr"></p>
+      <p class="lnote" id="list-note" hidden></p>
+      <ul class="items" id="items"></ul>
+      <p class="more" id="list-more" hidden></p>
+      <p class="soon" id="soon" hidden></p>
+      <div class="listfoot" id="listfoot">
+        <span class="count" id="count"></span>
+        <button type="button" class="btn" id="clear-btn"></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p class="crisis" id="crisis"></p>
+  </footer>
+</div>
+
+<div class="sheet" id="bg-sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="bg-title">
+    <div class="sheet-head"><h3 id="bg-title"></h3><button type="button" class="x" id="bg-close" aria-label="Close">✕</button></div>
+    <div class="bg-grid" id="bg-grid"></div>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
