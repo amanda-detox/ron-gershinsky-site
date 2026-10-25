@@ -1,5 +1,6 @@
 /* Offline cache for Updates (עדכונים). Scope: news/ only. */
-var CACHE = "rg-news-v3";
+var CACHE = "rg-news-v4";
+var FONT_CACHE = "rg-newsfonts-1"; // separate name so version bumps keep the fonts
 var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
 self.addEventListener("install", function (e) {
@@ -15,6 +16,17 @@ self.addEventListener("activate", function (e) {
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;
   var url = new URL(e.request.url);
+  // Google Fonts: font files cache-first (they never change), the CSS stale-while-revalidate.
+  if (url.hostname === "fonts.gstatic.com" || url.hostname === "fonts.googleapis.com") {
+    e.respondWith(caches.open(FONT_CACHE).then(function (c) {
+      return c.match(e.request).then(function (hit) {
+        var net = fetch(e.request).then(function (r) { if (r.ok || r.type === "opaque") c.put(e.request, r.clone()); return r; });
+        if (hit) { if (url.hostname === "fonts.googleapis.com") net.catch(function () {}); return hit; }
+        return net;
+      });
+    }));
+    return;
+  }
   if (url.origin !== self.location.origin) return;
   var isNews = /\/news\.json$/.test(url.pathname);
   var key = isNews ? new Request(url.origin + url.pathname) : e.request;

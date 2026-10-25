@@ -12,6 +12,9 @@
 <meta name="description" content="עדכונים · חדשות יומיות על האנשים והחברות שאתה עוקב אחריהם. Updates, daily news on the people and companies you follow.">
 <script>/* theme + background before first paint: dark (default) / light; night bg 1-10 (default 2) */(function(){var d=document.documentElement,t="dark",b="2";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([1-9]|10)$/.test(v||""))b=v;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);var C={"1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <title>עדכונים · Updates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -51,7 +54,7 @@ html[data-theme=light] :focus-visible{outline-color:rgba(26,71,160,.4)}
 
 .hero{display:flex;align-items:center;gap:14px;padding:20px 2px 6px}
 .hero img{width:60px;height:60px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.22);flex:none}
-h1{font-weight:800;font-size:34px;line-height:1.1;margin:0;letter-spacing:.005em}
+h1{font-family:"Fredoka",var(--sans);font-weight:600;font-size:36px;line-height:1.1;margin:0;letter-spacing:.005em}
 .tagline{color:var(--mute);margin:2px 0 0;font-size:15.5px}
 .status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 4px;font-size:14px;color:var(--mute)}
 .status .upd b{color:var(--ink2);font-weight:700}
