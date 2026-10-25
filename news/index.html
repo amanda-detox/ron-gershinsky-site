@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0a1a3f">
+<meta name="theme-color" content="#e9506a">
 <meta name="color-scheme" content="dark light">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="עדכונים">
 <meta name="description" content="עדכונים · חדשות יומיות על האנשים והחברות שאתה עוקב אחריהם. Updates, daily news on the people and companies you follow.">
-<script>/* theme before first paint: dark (default) / light */(function(){var t="dark";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";}catch(e){}document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":"#0a1a3f");try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}})();</script>
+<script>/* theme + background before first paint: dark (default) / light; night bg 1-10 (default 2) */(function(){var d=document.documentElement,t="dark",b="2";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([1-9]|10)$/.test(v||""))b=v;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);var C={"1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <title>עדכונים · Updates</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -91,6 +91,45 @@ html[dir=rtl] .card .meta a svg{transform:scaleX(-1)}
 .empty,.err{text-align:center;color:var(--mute);padding:30px 10px;font-size:15px}
 .note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
 footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
+
+/* ---- night-mode backgrounds (picker; default 2 Sunset) ---- */
+:root{--bgi-1:radial-gradient(60% 45% at 15% 10%,rgba(0,214,170,.55),transparent 70%),radial-gradient(55% 40% at 85% 25%,rgba(126,87,255,.55),transparent 70%),radial-gradient(70% 50% at 50% 95%,rgba(0,170,120,.45),transparent 70%);--bgc-1:#07090f;--bgi-2:linear-gradient(165deg,#ff5f6d 0%,#c2185b 30%,#6a1b9a 62%,#2a0a2e 100%);--bgc-2:#2a0a2e;--bgi-3:radial-gradient(45% 35% at 10% 15%,#ff2e93 0,transparent 70%),radial-gradient(45% 35% at 90% 40%,#00e5ff 0,transparent 70%),radial-gradient(50% 40% at 30% 85%,#8a2be2 0,transparent 70%);--bgc-3:#120a1f;--bgi-4:radial-gradient(55% 40% at 80% 10%,rgba(170,255,120,.45),transparent 70%),radial-gradient(60% 50% at 10% 60%,rgba(0,200,190,.55),transparent 70%),linear-gradient(180deg,#0b4d43 0%,#063a33 50%,#03201c 100%);--bgc-4:#03201c;--bgi-5:radial-gradient(40% 30% at 70% 12%,rgba(255,120,200,.6),transparent 70%),radial-gradient(55% 40% at 20% 45%,rgba(140,60,255,.55),transparent 70%),radial-gradient(35% 25% at 80% 80%,rgba(255,190,90,.45),transparent 70%);--bgc-5:#050308;--bgi-6:radial-gradient(60% 40% at 50% 0%,rgba(255,140,40,.65),transparent 70%),radial-gradient(45% 35% at 0% 60%,rgba(220,40,40,.5),transparent 70%),radial-gradient(45% 35% at 100% 85%,rgba(255,200,60,.4),transparent 70%);--bgc-6:#140b08;--bgi-7:radial-gradient(60% 45% at 90% 5%,rgba(255,180,70,.5),transparent 70%),linear-gradient(170deg,#355e3b 0%,#1f3d2a 45%,#0c1a10 100%);--bgc-7:#0c1a10;--bgi-8:radial-gradient(circle at 50% 40%,transparent 0,rgba(27,8,32,.55) 75%),conic-gradient(from 210deg at 60% 35%,#7b1fa2,#d81b60,#ff7043,#8e24aa,#4a148c,#7b1fa2);--bgc-8:#1b0820;--bgi-9:radial-gradient(30% 22% at 12% 8%,rgba(255,80,80,.5),transparent 70%),radial-gradient(30% 22% at 88% 22%,rgba(255,200,0,.45),transparent 70%),radial-gradient(32% 24% at 15% 50%,rgba(0,220,130,.4),transparent 70%),radial-gradient(32% 24% at 85% 68%,rgba(0,170,255,.42),transparent 70%),radial-gradient(32% 24% at 30% 92%,rgba(190,80,255,.45),transparent 70%);--bgc-9:#121214;--bgi-10:radial-gradient(50% 35% at 85% 8%,rgba(212,175,55,.55),transparent 70%),radial-gradient(45% 35% at 5% 55%,rgba(184,92,56,.45),transparent 70%),radial-gradient(45% 35% at 80% 95%,rgba(0,150,140,.4),transparent 70%);--bgc-10:#0a0a0a;}
+html[data-theme=dark][data-bg="1"]{--pagebg:var(--bgi-1);--bg2:var(--bgc-1)}
+html[data-theme=dark][data-bg="2"]{--pagebg:var(--bgi-2);--bg2:var(--bgc-2)}
+html[data-theme=dark][data-bg="3"]{--pagebg:var(--bgi-3);--bg2:var(--bgc-3)}
+html[data-theme=dark][data-bg="4"]{--pagebg:var(--bgi-4);--bg2:var(--bgc-4)}
+html[data-theme=dark][data-bg="5"]{--pagebg:var(--bgi-5);--bg2:var(--bgc-5)}
+html[data-theme=dark][data-bg="6"]{--pagebg:var(--bgi-6);--bg2:var(--bgc-6)}
+html[data-theme=dark][data-bg="7"]{--pagebg:var(--bgi-7);--bg2:var(--bgc-7)}
+html[data-theme=dark][data-bg="8"]{--pagebg:var(--bgi-8);--bg2:var(--bgc-8)}
+html[data-theme=dark][data-bg="9"]{--pagebg:var(--bgi-9);--bg2:var(--bgc-9)}
+html[data-theme=dark][data-bg="10"]{--pagebg:var(--bgi-10);--bg2:var(--bgc-10)}
+html[data-theme=dark]{--card:rgba(12,10,24,.52);--card2:rgba(12,10,24,.62);--line:rgba(255,255,255,.14);--line2:rgba(255,255,255,.32);--chip:rgba(255,255,255,.08);--em:#ffd6a0;--mute:#d9d3e6;--dim:#b9b0cc;--ink2:#f1edf8}
+html[data-theme=dark] .card,html[data-theme=dark] .lang,html[data-theme=dark] .themebtn,html[data-theme=dark] .btn:not(.primary){-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%)}
+html[data-theme=dark] .chips{background:rgba(10,8,20,.38)!important}
+html[data-theme=dark] .card .meta a{color:#ffd6a0}
+html[data-theme=dark] :focus-visible{outline-color:rgba(255,214,160,.6)}
+/* picker */
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.iconbtn svg{width:18px;height:18px}
+html[data-theme=light] #bg-btn{display:none}
+.sheet-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet-back[hidden]{display:none}
+.sheet{width:100%;max-width:520px;background:rgba(20,14,30,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);color:#fff;border:1px solid rgba(255,255,255,.14);border-bottom:0;border-radius:20px 20px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.4);animation:up .25s ease-out}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.sheet .grab{width:42px;height:5px;border-radius:9px;background:rgba(255,255,255,.3);margin:0 auto 10px}
+.sheet .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sheet h2{margin:0;font-size:18px;font-weight:800}
+.sheet .x{background:none;border:0;color:#ddd;font-size:26px;line-height:1;cursor:pointer;padding:2px 8px}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.sw{border:0;background:none;padding:0;cursor:pointer;color:#e9e4f3;font:600 12px var(--sans);text-align:center}
+.sw .pv{position:relative;display:block;aspect-ratio:3/4;border-radius:12px;border:2px solid rgba(255,255,255,.18);overflow:hidden}
+.sw .num{position:absolute;top:5px;inset-inline-start:5px;min-width:22px;height:22px;border-radius:11px;background:rgba(0,0,0,.55);color:#fff;font:800 12.5px/22px var(--sans);padding:0 5px}
+.sw[aria-pressed=true] .pv{border-color:#fff;outline:3px solid rgba(255,214,160,.75);outline-offset:1px}
+.sw[aria-pressed=true] .pv::after{content:"✓";position:absolute;bottom:5px;inset-inline-end:6px;width:22px;height:22px;border-radius:50%;background:#fff;color:#2a0a2e;font:800 13px/22px var(--sans)}
+.sw:focus-visible{outline:none}.sw:focus-visible .pv{outline:3px solid rgba(255,214,160,.8);outline-offset:2px}
+.sw .nm{display:block;margin-top:5px;line-height:1.25}
+@media (max-width:380px){.swatches{gap:7px}.sw{font-size:11px}}
 @media (max-width:380px){body{font-size:16px}h1{font-size:29px}.wrap{padding-left:12px;padding-right:12px}.chips{margin:6px -12px 0;padding-inline:12px}.themebtn .tl{display:none}.lang button{padding:6px 10px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -100,6 +139,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   <header class="top">
     <a class="back" href="../" id="back"></a>
     <div class="tools">
+      <button type="button" class="iconbtn" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button>
       <button type="button" class="themebtn" id="theme-btn"><span class="ti" aria-hidden="true"></span><span class="tl"></span></button>
       <div class="lang" role="group" aria-label="Language / שפה">
         <button type="button" id="lang-he" aria-pressed="true">עברית</button>
@@ -130,6 +170,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   <p class="note" id="note"></p>
   <footer>© Ron Gershinsky</footer>
 </div>
+<div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <script src="app.js"></script>
 </body>
 </html>

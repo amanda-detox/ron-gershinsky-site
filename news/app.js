@@ -1,7 +1,7 @@
 /* Updates (עדכונים): daily news feed from news.json. */
 (function () {
   "use strict";
-  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic";
+  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg";
   var TZ = "Asia/Jerusalem";
   var L = {
     he: {
@@ -17,6 +17,9 @@
       install: "📲 התקנה למסך הבית",
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף (□↑) בתחתית Safari, ואז בוחרים „הוסף למסך הבית”.",
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
+      bgTitle: "בחירת רקע", bgBtn: "בחירת רקע",
+      bgs: ["זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
+      close: "סגירה",
       locale: "he-IL"
     },
     en: {
@@ -32,6 +35,9 @@
       install: "📲 Add to home screen",
       ios: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
+      bgTitle: "Choose background", bgBtn: "Choose background",
+      bgs: ["Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
+      close: "Close",
       locale: "en-GB"
     }
   };
@@ -45,6 +51,8 @@
   var lang = get(LANG_KEY) === "en" ? "en" : "he";
   var theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
   var topic = get(TOPIC_KEY) || "all";
+  var bg = document.documentElement.getAttribute("data-bg") || "2";
+  var TC = window.RG_BG_TC || {};
   var data = null, offline = false, loading = false, lastFetch = 0;
   function t() { return L[lang]; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -73,7 +81,8 @@
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", theme === "light" ? "#f3efe6" : "#0a1a3f");
+    if (m) m.setAttribute("content", theme === "light" ? "#f3efe6" : (TC[bg] || "#e9506a"));
+    if (theme === "light") closeSheet();
     var b = $("theme-btn");
     b.querySelector(".ti").innerHTML = theme === "light" ? MOON : SUN;
     b.querySelector(".tl").textContent = theme === "light" ? t().dark : t().light;
@@ -94,6 +103,9 @@
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
+    $("bg-btn").setAttribute("aria-label", t().bgBtn); $("bg-btn").title = t().bgBtn;
+    $("bg-title").textContent = t().bgTitle; $("bg-close").setAttribute("aria-label", t().close);
+    renderSwatches();
     applyTheme();
   }
 
@@ -173,6 +185,31 @@
       loading = false; $("refresh").classList.remove("spin"); renderStatus(); renderChips(); renderFeed();
     });
   }
+
+  /* ----- background picker (night mode only) ----- */
+  function renderSwatches() {
+    var box = $("swatches"), html = "";
+    for (var i = 1; i <= 10; i++) {
+      html += '<button type="button" class="sw" data-bg="' + i + '" aria-pressed="' + (String(i) === bg ? "true" : "false") + '">' +
+        '<span class="pv" style="background:var(--bgi-' + i + '),var(--bgc-' + i + ')"><span class="num">' + i + '</span></span>' +
+        '<span class="nm">' + esc(t().bgs[i - 1]) + "</span></button>";
+    }
+    box.innerHTML = html;
+  }
+  function setBg(v) {
+    bg = String(v); set(BG_KEY, bg);
+    document.documentElement.setAttribute("data-bg", bg);
+    applyTheme(); renderSwatches();
+  }
+  function openSheet() { renderSwatches(); $("bg-sheet").hidden = false; }
+  function closeSheet() { $("bg-sheet").hidden = true; }
+  $("bg-btn").onclick = openSheet;
+  $("bg-close").onclick = closeSheet;
+  $("bg-sheet").addEventListener("click", function (e) {
+    if (e.target === $("bg-sheet")) { closeSheet(); return; }
+    var b = e.target.closest && e.target.closest(".sw"); if (b) setBg(b.getAttribute("data-bg"));
+  });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
 
   /* ----- events ----- */
   $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, lang); renderAll(); };

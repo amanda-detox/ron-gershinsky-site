@@ -1,5 +1,5 @@
 /* Offline cache for Updates (עדכונים). Scope: news/ only. */
-var CACHE = "rg-news-v1";
+var CACHE = "rg-news-v2";
 var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
 self.addEventListener("install", function (e) {
