@@ -1,5 +1,5 @@
 /* Offline cache + notification clicks for the alarm clock. */
-var CACHE = "rg-alarm-v2";
+var CACHE = "rg-alarm-v3";
 var FILES = ["./", "index.html", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {

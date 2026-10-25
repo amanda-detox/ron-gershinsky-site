@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0f172a">
+<meta name="theme-color" content="#050b1f">
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="שעון מעורר">
-<meta name="description" content="שעון מעורר עם רשימת משימות. Alarm clock with task lists.">
-<title>שעון מעורר</title>
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-title" content="קלוקיפיי">
+<meta name="description" content="קלוקיפיי: שעון מעורר עם רשימת משימות. Clockify: alarm clock with task lists.">
+<title>קלוקיפיי</title>
+<link rel="manifest" href="manifest.json?v=3">
+<link rel="icon" href="icon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png?v=3">
 <style>
   :root {
     --bg: #0f172a; --bg-end: #1e293b; --surface: #1e293b; --surface-2: #334155;
@@ -29,6 +29,8 @@
   button { font: inherit; color: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   [hidden] { display: none !important; }
+  .app-title { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 1.25rem 0 0; font-size: 1.6rem; font-weight: 700; letter-spacing: 0.01em; }
+  .app-title img { border-radius: 0.55rem; }
   .wrap { width: 100%; max-width: 32rem; margin: 0 auto;
     padding: max(1rem, env(safe-area-inset-top)) 1rem calc(6rem + env(safe-area-inset-bottom)); }
   .top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
@@ -126,6 +128,8 @@
     <button type="button" class="pill" id="test-sound"></button>
   </div>
 
+  <h1 class="app-title" id="app-title"><img src="icon.svg?v=3" alt="" width="36" height="36"><span id="app-name"></span></h1>
+
   <section class="clock" aria-live="off">
     <div class="now" id="now">--:--</div>
     <div class="today" id="today"></div>
@@ -199,7 +203,7 @@
 
   var T = {
     he: {
-      title: "שעון מעורר", test: "🔊 בדיקת צליל", list: "השעונים שלי", add: "+ שעון חדש",
+      title: "קלוקיפיי", test: "🔊 בדיקת צליל", list: "השעונים שלי", add: "+ שעון חדש",
       count: function (n, on) { return on + " פעילים מתוך " + n; },
       empty: "אין עדיין שעונים. לחץ על ״שעון חדש״.",
       note: "<b>חשוב:</b> כדי שהשעון יצלצל, הדף צריך להישאר פתוח (אפשר ברקע בלשונית) או מותקן כאפליקציה במסך הבית. דפדפנים מגבילים צלצולים כשהדף סגור, ובטלפון כדאי להשאיר את המסך דלוק עם ״מסך דלוק״ ולחבר למטען. גע פעם אחת בדף כדי לאפשר צליל.",
@@ -222,7 +226,7 @@
       notifBody: "השעון מצלצל"
     },
     en: {
-      title: "Alarm Clock", test: "🔊 Test sound", list: "My alarms", add: "+ New alarm",
+      title: "Clockify", test: "🔊 Test sound", list: "My alarms", add: "+ New alarm",
       count: function (n, on) { return on + " of " + n + " on"; },
       empty: "No alarms yet. Tap “New alarm”.",
       note: "<b>Important:</b> for alarms to ring, keep this page open (a background tab is fine) or install it to your home screen. Browsers limit alarms when the page is closed, so on a phone it helps to turn on “Keep screen on” and plug in the charger. Tap the page once to allow sound.",
@@ -403,7 +407,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     var L = T[lang];
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = L.title;
+    document.title = L.title; $("app-name").textContent = L.title;
     $("he").setAttribute("aria-pressed", lang === "he"); $("en").setAttribute("aria-pressed", lang === "en");
     $("test-sound").textContent = L.test; $("note-text").innerHTML = L.note;
     $("install-btn").textContent = L.install; if (!$("install-hint").hidden) $("install-hint").innerHTML = instHint(lang); $("list-title").textContent = L.list; $("add").textContent = L.add;
