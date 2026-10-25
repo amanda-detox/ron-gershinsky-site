@@ -1,0 +1,755 @@
+{
+ "version": 1,
+ "updated": "2026-10-25T06:56:35+02:00",
+ "topics": [
+  {
+   "id": "musk",
+   "group": "person",
+   "he": "אילון מאסק",
+   "en": "Elon Musk"
+  },
+  {
+   "id": "cook",
+   "group": "person",
+   "he": "טים קוק (Apple)",
+   "en": "Tim Cook (Apple)"
+  },
+  {
+   "id": "huang",
+   "group": "person",
+   "he": "ג'נסן הואנג",
+   "en": "Jensen Huang"
+  },
+  {
+   "id": "durov",
+   "group": "person",
+   "he": "פאבל דורוב",
+   "en": "Pavel Durov"
+  },
+  {
+   "id": "johnson",
+   "group": "person",
+   "he": "בריאן ג'ונסון",
+   "en": "Bryan Johnson"
+  },
+  {
+   "id": "brecka",
+   "group": "person",
+   "he": "גארי ברקה",
+   "en": "Gary Brecka"
+  },
+  {
+   "id": "dispenza",
+   "group": "person",
+   "he": "ד\"ר ג'ו דיספנזה",
+   "en": "Dr. Joe Dispenza"
+  },
+  {
+   "id": "asprey",
+   "group": "person",
+   "he": "דייב אספרי",
+   "en": "Dave Asprey"
+  },
+  {
+   "id": "mikhaila",
+   "group": "person",
+   "he": "מיכאלה פיטרסון",
+   "en": "Mikhaila Peterson"
+  },
+  {
+   "id": "lipton",
+   "group": "person",
+   "he": "ד\"ר ברוס ליפטון",
+   "en": "Dr. Bruce Lipton"
+  },
+  {
+   "id": "ardis",
+   "group": "person",
+   "he": "ד\"ר בריאן ארדיס",
+   "en": "Dr. Bryan Ardis"
+  },
+  {
+   "id": "mccullough",
+   "group": "person",
+   "he": "ד\"ר פיטר מקאלו",
+   "en": "Dr. Peter McCullough"
+  },
+  {
+   "id": "mercola",
+   "group": "person",
+   "he": "ד\"ר מרקולה",
+   "en": "Dr. Mercola"
+  },
+  {
+   "id": "medicalmedium",
+   "group": "person",
+   "he": "מדיקל מדיום",
+   "en": "Medical Medium"
+  },
+  {
+   "id": "refaeli",
+   "group": "person",
+   "he": "בר רפאלי",
+   "en": "Bar Refaeli"
+  },
+  {
+   "id": "tesla",
+   "group": "company",
+   "he": "טסלה",
+   "en": "Tesla"
+  },
+  {
+   "id": "spacex",
+   "group": "company",
+   "he": "SpaceX",
+   "en": "SpaceX"
+  },
+  {
+   "id": "grok",
+   "group": "company",
+   "he": "Grok",
+   "en": "Grok"
+  },
+  {
+   "id": "grokbot",
+   "group": "company",
+   "he": "Grok Bot",
+   "en": "Grok Bot"
+  },
+  {
+   "id": "apple",
+   "group": "company",
+   "he": "Apple",
+   "en": "Apple"
+  },
+  {
+   "id": "kraken",
+   "group": "company",
+   "he": "Kraken",
+   "en": "Kraken"
+  },
+  {
+   "id": "starterstory",
+   "group": "company",
+   "he": "Starter Story",
+   "en": "Starter Story"
+  }
+ ],
+ "items": [
+  {
+   "id": "musk-gov-monopoly",
+   "topic": "musk",
+   "date": "2026-10-24T20:50:59Z",
+   "url": "https://x.com/i/trending/2113952306148556838",
+   "source": "X",
+   "he": {
+    "title": "מאסק: הממשלה היא התאגיד המונופוליסטי הגדול מכולם",
+    "summary": "מאסק כתב שמי שלא סומך על תאגידים אבל סומך על הממשלה מפספס שהמדינה מחזיקה במונופול הגדול ביותר, כולל על הפעלת כוח. הפוסט עורר ויכוח ער על חופש הביטוי ועל כוחו של השלטון."
+   },
+   "en": {
+    "title": "Musk: government is the ultimate monopolistic corporation",
+    "summary": "Musk posted that people who distrust corporations but trust government miss that the state holds the biggest monopoly of all, including on force. The post sparked a heated debate on free speech and state power."
+   }
+  },
+  {
+   "id": "musk-sikorski",
+   "topic": "musk",
+   "date": "2026-10-25T02:14:31Z",
+   "url": "https://x.com/i/trending/2113739184745652544",
+   "source": "X",
+   "he": {
+    "title": "עימות בין מאסק לשר החוץ הפולני סביב הסיוע לאוקראינה",
+    "summary": "מאסק טען שהאליטות באוקראינה מתעשרות מהסיוע בזמן שמשפחות שולחות בנים לגיוס. שר החוץ של פולין, רדוסלב שיקורסקי, השיב שהמימון האמריקאי הופסק בשנה שעברה ושאירופה היא שמשלמת כעת על הנשק האמריקאי."
+   },
+   "en": {
+    "title": "Musk and Poland's foreign minister clash over Ukraine aid",
+    "summary": "Musk said Ukraine's elites profit from aid while ordinary families lose sons to conscription. Polish FM Radosław Sikorski replied that U.S. funding stopped last year and Europeans now pay for American weapons."
+   }
+  },
+  {
+   "id": "tesla-5m-2030",
+   "topic": "tesla",
+   "date": "2026-10-23T21:41:02Z",
+   "url": "https://x.com/i/trending/2113096251080319449",
+   "source": "X",
+   "he": {
+    "title": "טסלה מכוונת ל־5 מיליון רכבים בשנה עד 2030",
+    "summary": "בשיחת הדוחות הציג מאסק יעד של כ־5 מיליון רכבים בשנה עד 2030. ברבעון השלישי נמסרו 486,532 רכבים, ההכנסות עברו 28 מיליארד דולר, ומערכות האגירה Megapack מכורות עד 2027."
+   },
+   "en": {
+    "title": "Tesla targets 5 million vehicles a year by 2030",
+    "summary": "On the earnings call Musk set a goal of about 5 million vehicles a year by 2030. Q3 deliveries were 486,532, revenue topped $28 billion, and Megapacks are sold out through 2027."
+   }
+  },
+  {
+   "id": "tesla-robotaxi-927",
+   "topic": "tesla",
+   "date": "2026-10-24T21:09:26Z",
+   "url": "https://x.com/i/trending/2113431239780962741",
+   "source": "X",
+   "he": {
+    "title": "צי הרובוטקסי של טסלה בטקסס שולש ל־927 רכבים",
+    "summary": "מאז 1 בספטמבר גדל הצי מ־314 ל־927 רכבים, כמעט 12 רכבים ביום. טסלה מתכננת לצרף רכבים של לקוחות לרשת בסביבות הרבעון השני של 2027, ו־FSD v15 יחליף מפות חיצוניות במערכת מבוססת AI."
+   },
+   "en": {
+    "title": "Tesla's Texas robotaxi fleet triples to 927 vehicles",
+    "summary": "Since September 1 the fleet grew from 314 to 927 vehicles, nearly 12 a day. Tesla plans to add customer cars to the network around Q2 2027, and FSD v15 will replace third-party maps with an AI-based system."
+   }
+  },
+  {
+   "id": "tesla-stock-374",
+   "topic": "tesla",
+   "date": "2026-10-23T20:15:02Z",
+   "url": "https://x.com/i/trending/2113724056436699202",
+   "source": "X",
+   "he": {
+    "title": "מניית טסלה סביב 374 דולר למרות ירידה ברווח",
+    "summary": "המניה עלתה כ־17% בשלושה חודשים, אף שהרווח התפעולי ברבעון ירד ב־55.8% ל־718 מיליון דולר. סוחרים עוקבים אחרי אזור ההתנגדות של 380–389 דולר."
+   },
+   "en": {
+    "title": "Tesla stock near $374 despite profit pressure",
+    "summary": "Shares are up about 17% in three months even though Q3 operating income fell 55.8% to $718 million. Traders are watching resistance around $380–389."
+   }
+  },
+  {
+   "id": "spacex-q3-revenue",
+   "topic": "spacex",
+   "date": "2026-10-22T15:41:09Z",
+   "url": "https://x.com/i/trending/2112588458703433864",
+   "source": "X",
+   "he": {
+    "title": "SpaceX: הכנסות של 14.6 מיליארד דולר ברבעון ומשימת Starship מסחרית ראשונה",
+    "summary": "ההכנסות זינקו ב־161% לעומת אשתקד, בעיקר בזכות תחום ה־AI. משימת Starship בתשלום שיגרה 26 לווייני Starlink V3, ומספר המנויים הגיע ל־13.6 מיליון. מאסק ציין גם שיחות מוקדמות על מיזוג עם טסלה דרך ועדות מיוחדות."
+   },
+   "en": {
+    "title": "SpaceX posts $14.6B quarter and first paid Starship mission",
+    "summary": "Revenue jumped 161% year over year, led by the AI segment. A paid Starship flight carried 26 Starlink V3 satellites and subscribers reached 13.6 million. Musk also noted early merger talks with Tesla via special committees."
+   }
+  },
+  {
+   "id": "spacex-b22-static-fire",
+   "topic": "spacex",
+   "date": "2026-10-24T15:14:34Z",
+   "url": "https://x.com/i/trending/2114011405301227917",
+   "source": "X",
+   "he": {
+    "title": "בוסטר 22 הוצב על כן השיגור לקראת ניסוי הצתה סטטי",
+    "summary": "הבוסטר עם 33 מנועי Raptor הוצב בסטארבייס לקראת טיסה 15 של Starship, שבה SpaceX מנסה לתפוס גם את הבוסטר וגם את החללית. הניסוי מתוכנן להיום, 25 באוקטובר, והשיגור לנובמבר."
+   },
+   "en": {
+    "title": "Booster 22 rolls out for Starship static fire",
+    "summary": "The 33-engine Super Heavy booster was set on the Starbase pad ahead of Starship Flight 15, which aims to catch both booster and ship. The test is planned for today, October 25, with launch in November."
+   }
+  },
+  {
+   "id": "spacex-starlink-15-15",
+   "topic": "spacex",
+   "date": "2026-10-24T02:09:58Z",
+   "url": "https://x.com/i/trending/2113770345987514639",
+   "source": "X",
+   "he": {
+    "title": "פלקון 9 שיגר 27 לווייני Starlink מקליפורניה",
+    "summary": "השיגור מוונדנברג ב־23 באוקטובר היה השיגור ה־71 מהבסיס השנה. הבוסטר B1063 נחת בהצלחה בטיסתו ה־36."
+   },
+   "en": {
+    "title": "Falcon 9 launches 27 Starlinks from California",
+    "summary": "The October 23 launch from Vandenberg was the base's 71st this year. Booster B1063 landed on its 36th flight."
+   }
+  },
+  {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   }
+  },
+  {
+   "id": "grokbot-teams",
+   "topic": "grokbot",
+   "date": "2026-10-25T02:06:41Z",
+   "url": "https://x.com/i/trending/2113695268592083371",
+   "source": "X",
+   "he": {
+    "title": "משתמשים בונים צוותים של בוטים קבועים ב־Grok Bot",
+    "summary": "משתמשים מספרים על צוותי בוטים שעובדים מסביב לשעון: מחקר, יומן ועוד. SpaceXAI פרסמה בקוד פתוח 146 תבניות, והקהילה כבר בונה עליהן כלים כמו ניקוי Gmail ולוחות פעילות."
+   },
+   "en": {
+    "title": "Users build teams of persistent agents on Grok Bot",
+    "summary": "Users describe round-the-clock bot teams for research, calendars and more. SpaceXAI open-sourced 146 templates, and the community is already building on them, from Gmail cleaners to activity dashboards."
+   }
+  },
+  {
+   "id": "grokbot-0752",
+   "topic": "grokbot",
+   "date": "2026-10-23T02:51:05Z",
+   "url": "https://x.com/i/trending/2112778289601560915",
+   "source": "X",
+   "he": {
+    "title": "עדכון 0.75.2: דפים קבועים ויצירת וידאו",
+    "summary": "הגרסה מוסיפה דפים שהבוט מתחזק בעצמו, כרטיסים מעוצבים מחדש לפעולות מהירות בצ'אט בדסקטופ, ויצירת וידאו מטקסט או מתמונה."
+   },
+   "en": {
+    "title": "Release 0.75.2: persistent Pages and video",
+    "summary": "The release adds Pages that bots keep up to date, redesigned quick-action cards in desktop chats, and video generation from text or photos."
+   }
+  },
+  {
+   "id": "grokbot-pumpkin",
+   "topic": "grokbot",
+   "date": "2026-10-22T22:10:51Z",
+   "url": "https://x.com/i/trending/2113390845395407269",
+   "source": "X",
+   "he": {
+    "title": "בוט דלעת לכבוד ליל כל הקדושים",
+    "summary": "ראש העיצוב בני טיילור הכריז על אייקון דלעת זמני ל־Grok Bot. כדי לראות אותו צריך להפעיל מחדש את האפליקציה."
+   },
+   "en": {
+    "title": "Pumpkin Bot for Halloween",
+    "summary": "Head of design Benji Taylor announced a limited-time pumpkin avatar for Grok Bot. Restart the app to see it."
+   }
+  },
+  {
+   "id": "cook-iphone-duo",
+   "topic": "cook",
+   "date": "2026-10-24T01:05:40Z",
+   "url": "https://x.com/tim_cook/status/2113799050877452321",
+   "source": "X · @tim_cook",
+   "he": {
+    "title": "טים קוק חוגג את השקת iPhone Duo",
+    "summary": "קוק בירך על הגעת iPhone Duo, הטלפון המתקפל של אפל, לחנויות וכתב שמרגש לראות לקוחות בכל העולם פוגשים אותו לראשונה."
+   },
+   "en": {
+    "title": "Tim Cook celebrates the iPhone Duo launch",
+    "summary": "Cook welcomed iPhone Duo, Apple's foldable phone, to stores and said it is a delight to see customers worldwide try it for the first time."
+   }
+  },
+  {
+   "id": "cook-us-manufacturing",
+   "topic": "cook",
+   "date": "2026-10-20T13:32:14Z",
+   "url": "https://x.com/tim_cook/status/2112537379152216111",
+   "source": "X · @tim_cook",
+   "he": {
+    "title": "אפל מרחיבה שותפויות ייצור בארה\"ב",
+    "summary": "קוק הודיע על שותפויות חדשות ומורחבות עם Perryman Company ועם Qnity Electronics במסגרת הדחיפה של אפל לייצור אמריקאי."
+   },
+   "en": {
+    "title": "Apple expands U.S. manufacturing partnerships",
+    "summary": "Cook announced new and expanded partnerships with Perryman Company and Qnity Electronics as part of Apple's U.S. manufacturing push."
+   }
+  },
+  {
+   "id": "apple-record-close",
+   "topic": "apple",
+   "date": "2026-10-22T22:53:57Z",
+   "url": "https://x.com/i/trending/2113401784047632739",
+   "source": "X",
+   "he": {
+    "title": "מניית אפל נסגרה בשיא של 348.22 דולר",
+    "summary": "המניה עלתה 1.23% ב־22 באוקטובר וכ־27% מתחילת 2026, יותר משאר ענקיות הטכנולוגיה. משקיעים מציינים תזרים מזומנים חזק ותנודתיות נמוכה."
+   },
+   "en": {
+    "title": "Apple stock closes at a record $348.22",
+    "summary": "Shares rose 1.23% on October 22 and about 27% in 2026, ahead of the other Magnificent Seven. Investors point to strong free cash flow and low volatility."
+   }
+  },
+  {
+   "id": "apple-music-logo",
+   "topic": "apple",
+   "date": "2026-10-23T02:50:51Z",
+   "url": "https://x.com/i/trending/2112930902661902524",
+   "source": "X",
+   "he": {
+    "title": "הלוגו החדש של Apple Music נוצר מגלי קול",
+    "summary": "המפיק Fred again.. יצר רצועה שהרעידה שמן מינרלי סביב צורות התו והשם, והתוצאה צולמה והפכה לזהות החדשה. העדכון יגיע ב־iOS 27.2."
+   },
+   "en": {
+    "title": "Apple Music's new logo was shaped by sound",
+    "summary": "Producer Fred again.. made a track that vibrated mineral oil around the note and wordmark; the footage became the new identity, arriving in iOS 27.2."
+   }
+  },
+  {
+   "id": "apple-ipod-25",
+   "topic": "apple",
+   "date": "2026-10-23T21:27:31Z",
+   "url": "https://x.com/i/trending/2113742175489995224",
+   "source": "X",
+   "he": {
+    "title": "25 שנה לאייפוד המקורי",
+    "summary": "ב־23 באוקטובר 2001 הציג סטיב ג'ובס '1,000 שירים בכיס' עם 5GB ו־10 שעות סוללה ב־399 דולר. אפל ציינה את היום עם שחזור אינטראקטיבי באתר Apple Music."
+   },
+   "en": {
+    "title": "25 years since the original iPod",
+    "summary": "On October 23, 2001 Steve Jobs unveiled '1,000 songs in your pocket' with 5GB and 10-hour battery for $399. Apple marked the day with an interactive recreation on Apple Music."
+   }
+  },
+  {
+   "id": "huang-neocloud",
+   "topic": "huang",
+   "date": "2026-10-23T01:43:51Z",
+   "url": "https://x.com/i/trending/2113227867316167161",
+   "source": "X",
+   "he": {
+    "title": "ג'נסן הואנג: הביקוש לענני AI יפתור את בעיית המימון",
+    "summary": "מנכ\"ל אנבידיה אמר למשקיעים שהביקוש לספקיות 'ניאו־קלאוד' כמו Nebius גבוה במיוחד, ודחה חששות מעודף שבבי זיכרון עד 2029."
+   },
+   "en": {
+    "title": "Jensen Huang: AI cloud demand will solve funding gaps",
+    "summary": "Nvidia's CEO told investors demand for neocloud providers like Nebius is off the charts, and dismissed fears of a memory-chip glut by 2029."
+   }
+  },
+  {
+   "id": "huang-ca-tax",
+   "topic": "huang",
+   "date": "2026-10-22T22:32:27Z",
+   "url": "https://x.com/i/trending/2113313220190777715",
+   "source": "X",
+   "he": {
+    "title": "הואנג מוכן לשלם עד 8 מיליארד דולר במס המיליארדרים של קליפורניה",
+    "summary": "הואנג אמר שישלם בשמחה את המס החד־פעמי המוצע ושתשלום מסים הוא זכות. המשקיע בראד גרסטנר הבהיר שהוא לא תומך בהצעה עצמה, אלא יישאר וישלם אם תעבור."
+   },
+   "en": {
+    "title": "Huang would pay up to $8B under California billionaire tax",
+    "summary": "Huang said he would gladly pay the proposed one-time tax and called paying taxes a privilege. Investor Brad Gerstner clarified he doesn't endorse the measure but would stay and pay if it passes."
+   }
+  },
+  {
+   "id": "huang-higgsfield",
+   "topic": "huang",
+   "date": "2026-10-25T03:58:15Z",
+   "url": "https://x.com/i/trending/2114005055825150359",
+   "source": "X",
+   "he": {
+    "title": "אנבידיה משקיעה בסטארט־אפ הווידאו Higgsfield",
+    "summary": "בביקור במרכז החברה בקזחסטן כינה הואנג את המייסדים 'חזונאים'. ל־Higgsfield יש יותר מ־40 מיליון משתמשים והכנסות שנתיות של מיליארד דולר."
+   },
+   "en": {
+    "title": "Nvidia invests in AI video startup Higgsfield",
+    "summary": "Visiting its Kazakhstan hub, Huang called the founders visionaries. Higgsfield has over 40 million users and $1 billion in annualized revenue."
+   }
+  },
+  {
+   "id": "johnson-bone-pressure",
+   "topic": "johnson",
+   "date": "2026-10-24T01:28:58Z",
+   "url": "https://x.com/bryan_johnson/status/2113804913188983076",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: לחץ מכני על העצמות האריך חיי עכברים",
+    "summary": "ג'ונסון שיתף מחקר שבו לחץ על עצמות השוק האריך את חיי העכברים ב־9.4%. לדבריו, אם זה יתורגם לבני אדם, אימוני ההטבעה שלו בכדורסל עשויים לתרום לאריכות ימים."
+   },
+   "en": {
+    "title": "Bryan Johnson: bone pressure extended mouse lifespan",
+    "summary": "Johnson shared a study where pressure on shin bones extended mouse lifespan by 9.4%. If it translates to humans, he says, his dunk training may help."
+   }
+  },
+  {
+   "id": "johnson-earplugs",
+   "topic": "johnson",
+   "date": "2026-10-22T21:41:38Z",
+   "url": "https://x.com/bryan_johnson/status/2113385315801199010",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג'ונסון ממליץ לקחת אטמי אוזניים לכל מקום",
+    "summary": "לדבריו מסעדות, אירועי ספורט, חדרי כושר ותחבורה ציבורית עוברים לעיתים קרובות 85 דציבל, ואובדן שמיעה מאיץ ירידה קוגניטיבית."
+   },
+   "en": {
+    "title": "Johnson: take earplugs everywhere",
+    "summary": "He says restaurants, sports events, gyms and transit often exceed 85 dBA, and hearing loss speeds cognitive decline."
+   }
+  },
+  {
+   "id": "brecka-tour",
+   "topic": "brecka",
+   "date": "2026-10-24T16:09:26Z",
+   "url": "https://x.com/thegarybrecka/status/2114026488370454896",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי ברקה יוצא לסדרת מפגשים חיים בנובמבר",
+    "summary": "ברקה הודיע על שלושה מפגשים על אריכות ימים ואופטימיזציה אנושית: פילדלפיה ב־14 בנובמבר, ואחריה ניו יורק ובוסטון."
+   },
+   "en": {
+    "title": "Gary Brecka announces live November events",
+    "summary": "Brecka announced three live talks on longevity and human optimization: Philadelphia on November 14, then New York City and Boston."
+   }
+  },
+  {
+   "id": "brecka-fasting",
+   "topic": "brecka",
+   "date": "2026-10-24T16:15:24Z",
+   "url": "https://x.com/thegarybrecka/status/2114027991139307808",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה על צום: הרעב מגיע בגלים",
+    "summary": "ברקה שיתף את התובנה שצום לא חייב להיות מאבק מתמיד ברעב: הרעב מגיע בגלים, ולמידה איך לעבור כל גל משנה את כל החוויה."
+   },
+   "en": {
+    "title": "Brecka on fasting: hunger comes in waves",
+    "summary": "Brecka shared that fasting doesn't have to be a constant fight with hunger: it comes in waves, and learning to ride each one changes the experience."
+   }
+  },
+  {
+   "id": "dispenza-pete-holmes",
+   "topic": "dispenza",
+   "date": "2026-10-23T17:53:23Z",
+   "url": "https://x.com/DrJoeDispenza/status/2113690262576722292",
+   "source": "X · @DrJoeDispenza",
+   "he": {
+    "title": "ג'ו דיספנזה בשיחה עם פיט הולמס",
+    "summary": "\"כשאתה באמת רוצה חיים חדשים, תשחרר כל מחשבה שאומרת 'אני לא יכול' או 'אני לא מוכן'\". השיחה המלאה בפודקאסט You Made It Weird."
+   },
+   "en": {
+    "title": "Joe Dispenza talks with Pete Holmes",
+    "summary": "\"When you really want a new life, you'll let go of every thought telling you 'I can't' or 'I'm not ready.'\" Full conversation on You Made It Weird."
+   }
+  },
+  {
+   "id": "asprey-alzheimers",
+   "topic": "asprey",
+   "date": "2026-10-23T20:05:05Z",
+   "url": "https://x.com/daveasprey/status/2113723404775825465",
+   "source": "X · @daveasprey",
+   "he": {
+    "title": "דייב אספרי: האם אלצהיימר הוא אופציונלי?",
+    "summary": "אספרי פרסם סרטון חדש על מניעה וביוהאקינג סביב אלצהיימר."
+   },
+   "en": {
+    "title": "Dave Asprey: Is Alzheimer's optional?",
+    "summary": "Asprey posted a new video on biohacking and Alzheimer's prevention."
+   }
+  },
+  {
+   "id": "mikhaila-toronto",
+   "topic": "mikhaila",
+   "date": "2026-10-24T18:32:08Z",
+   "url": "https://x.com/MikhailaFuller/status/2114062399741579767",
+   "source": "X · @MikhailaFuller",
+   "he": {
+    "title": "מיכאלה פיטרסון צוחקת על מגבלת המהירות החדשה בטורונטו",
+    "summary": "פיטרסון הגיבה בצחוק ('אוי קנדה, בבקשה תפסיקי') להודעת עיריית טורונטו על אזורים שבהם המהירות המותרת תהיה 30 קמ\"ש."
+   },
+   "en": {
+    "title": "Mikhaila Peterson mocks Toronto's new speed limit",
+    "summary": "Peterson laughed ('oh Canada please stop') at Toronto's announcement of 30 km/h neighbourhood speed-limit zones."
+   }
+  },
+  {
+   "id": "lipton-nls-737",
+   "topic": "lipton",
+   "date": "2026-10-24T11:30:02Z",
+   "url": "https://nextlevelsoul.com/bruce-lipton-beyond-darwin/",
+   "source": "Next Level Soul",
+   "he": {
+    "title": "ברוס ליפטון על הספר החדש Beyond Darwin ועל המאבק שלו בסרטן",
+    "summary": "בפרק 737 של Next Level Soul דיבר ליפטון על התכנות התת־מודע מהילדות, על סרטן הלשון שאובחן אצלו ועל כך שכתיבת הספר הפכה לחלק מהריפוי שלו. בנובמבר הוא יוצא לסיבוב הרצאות באירופה, כולל אמסטרדם, מנצ'סטר ולונדון."
+   },
+   "en": {
+    "title": "Bruce Lipton on Beyond Darwin and his cancer",
+    "summary": "On Next Level Soul episode 737, Lipton discussed childhood subconscious programming, his tongue-cancer diagnosis, and how writing the book became part of his healing. In November he tours Europe, including Amsterdam, Manchester and London."
+   }
+  },
+  {
+   "id": "mccullough-autism-report",
+   "topic": "mccullough",
+   "date": "2026-10-24T17:07:33Z",
+   "url": "https://x.com/P_McCulloughMD/status/2114041114734760201",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "קרן מקאלו פרסמה דוח על גורמי אוטיזם",
+    "summary": "מקאלו טוען שלפי הדוח, חיסוני שגרה בילדות הם גורם סיכון לאוטיזם אצל תינוקות רגישים. זו טענה שנויה במחלוקת, ורשויות הבריאות המרכזיות אינן מקבלות אותה."
+   },
+   "en": {
+    "title": "McCullough Foundation publishes autism report",
+    "summary": "McCullough says the report finds routine childhood vaccines are a risk factor for autism in susceptible infants. The claim is disputed, and major health authorities do not accept it."
+   }
+  },
+  {
+   "id": "mccullough-pope",
+   "topic": "mccullough",
+   "date": "2026-10-23T19:56:16Z",
+   "url": "https://x.com/P_McCulloughMD/status/2113721185662062961",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקאלו על ניתוח סרטן הריאה של האפיפיור לאו",
+    "summary": "לדבריו נראה שהאפיפיור נקי מסרטן אחרי הניתוח, אך יידרשו בדיקות מעקב תקופתיות."
+   },
+   "en": {
+    "title": "McCullough on Pope Leo's lung cancer surgery",
+    "summary": "He said the Pope appears cancer-free after surgery, with periodic follow-up scans still needed."
+   }
+  },
+  {
+   "id": "mercola-vitd",
+   "topic": "mercola",
+   "date": "2026-10-22T19:02:12Z",
+   "url": "https://x.com/mercola/status/2113345193986642351",
+   "source": "X · @mercola",
+   "he": {
+    "title": "מרקולה: לשמור על ויטמין D כשהימים מתקצרים",
+    "summary": "מאמר חדש עם דרכים מעשיות לשמור על רמות ויטמין D בסתיו ובחורף."
+   },
+   "en": {
+    "title": "Mercola: keeping vitamin D up as days get shorter",
+    "summary": "A new article with practical ways to maintain vitamin D through fall and winter."
+   }
+  },
+  {
+   "id": "mercola-led-sleep",
+   "topic": "mercola",
+   "date": "2026-10-23T13:01:56Z",
+   "url": "https://x.com/mercola/status/2113616916258713857",
+   "source": "X · @mercola",
+   "he": {
+    "title": "מרקולה על תאורת LED, אור כחול ושינה",
+    "summary": "סקירה של מה שהמחקר אומר על השפעת נורות LED ואור כחול על השעון הביולוגי ועל השינה."
+   },
+   "en": {
+    "title": "Mercola on LEDs, blue light and sleep",
+    "summary": "A look at what research says about LEDs, blue light and the circadian rhythm."
+   }
+  },
+  {
+   "id": "mm-health-miracle",
+   "topic": "medicalmedium",
+   "date": "2026-10-22T20:15:50Z",
+   "url": "https://x.com/MedicalMedium/status/2113363722634989641",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: 'כל עשר שניות יש נס בריאותי חדש'",
+    "summary": "פוסט שמבקר את זרם הטרנדים הבריאותיים שמבטיחים כל יום פתרון אחר: שמן דגים, פחם, ביצים, קפה ושוקולד."
+   },
+   "en": {
+    "title": "Medical Medium: 'a new health miracle every 10 seconds'",
+    "summary": "A post criticizing the endless stream of health trends that each promise the answer, from fish oil and charcoal to eggs, coffee and chocolate."
+   }
+  },
+  {
+   "id": "mm-hibiscus-tea",
+   "topic": "medicalmedium",
+   "date": "2026-10-22T13:00:02Z",
+   "url": "https://x.com/MedicalMedium/status/2113254048463781968",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מתכון: תה היביסקוס ותפוחים",
+    "summary": "מתכון לתה חם שמזכיר סיידר תפוחים, עם היביסקוס. אפשר להוסיף שקית תה עלי פטל או ג'ינג'ר."
+   },
+   "en": {
+    "title": "Recipe: hibiscus apple tea",
+    "summary": "A warming tea reminiscent of hot apple cider, with hibiscus. Try adding raspberry-leaf or ginger tea."
+   }
+  },
+  {
+   "id": "refaeli-masked-singer",
+   "topic": "refaeli",
+   "date": "2026-10-18T07:39:00+03:00",
+   "url": "https://www.ice.co.il/culture/news/article/1133967",
+   "source": "ice",
+   "he": {
+    "title": "בר רפאלי חוזרת למסך כשופטת ב'הזמר במסכה'",
+    "summary": "רפאלי הצטרפה לפאנל העונה החמישית בקשת 12 לצד אופירה אסייג, שחר חסון, צדי צרפתי ומשה פרץ. בראיון סיפרה שההתחלה עם אסייג לא הייתה ורודה, אבל היום הן חברות."
+   },
+   "en": {
+    "title": "Bar Refaeli returns to TV as a Masked Singer judge",
+    "summary": "Refaeli joined the season-five panel on Keshet 12 alongside Ofira Asayag, Shahar Hason, Tsedi Sarfati and Moshe Peretz. She said things started awkwardly with Asayag, but they are now friends."
+   }
+  },
+  {
+   "id": "kraken-monero",
+   "topic": "kraken",
+   "date": "2026-10-24T22:35:26Z",
+   "url": "https://x.com/i/trending/2113671674948198595",
+   "source": "X",
+   "he": {
+    "title": "Kraken מתנצלת על שאלות חודרניות למושכי מונרו",
+    "summary": "לקוחות שמשכו XMR קיבלו מיילים עם שאלות על תעסוקה ומקור הכספים. המנכ\"ל המשותף ארג'ון סת'י אמר שזו הייתה טעות, והשאלות הוסרו."
+   },
+   "en": {
+    "title": "Kraken apologizes for Monero withdrawal emails",
+    "summary": "Customers withdrawing XMR got emails probing jobs and fund sources. Co-CEO Arjun Sethi called it a mistake and the questions were removed."
+   }
+  },
+  {
+   "id": "kraken-chatgpt",
+   "topic": "kraken",
+   "date": "2026-10-22T19:02:18Z",
+   "url": "https://x.com/krakenfx/status/2113345215331229759",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "Kraken זמינה עכשיו בתוך ChatGPT",
+    "summary": "אפשר לשאול את ChatGPT על החשבון ב־Kraken, למשל 'כמה הרווחתי היום?'. הגישה לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף."
+   },
+   "en": {
+    "title": "Kraken is live in ChatGPT",
+    "summary": "You can ask ChatGPT about your Kraken account, like 'What did I make today?'. Access is read-only, so it can't trade or move money."
+   }
+  },
+  {
+   "id": "kraken-xstocks",
+   "topic": "kraken",
+   "date": "2026-10-22T14:52:21Z",
+   "url": "https://x.com/krakenfx/status/2113282316311122419",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "יותר מ־1,000 מניות טוקניות (xStocks) ב־Kraken",
+    "summary": "אפשר להשקיע במניות של חברות מוכרות לצד קריפטו באותו חשבון. לא זמין בארה\"ב, ויש מגבלות לפי מדינה."
+   },
+   "en": {
+    "title": "1,000+ xStocks now on Kraken",
+    "summary": "Invest in well-known companies alongside crypto in one account. Not available in the U.S.; geographic restrictions apply."
+   }
+  },
+  {
+   "id": "kraken-payward-saldo",
+   "topic": "kraken",
+   "date": "2026-10-23T19:36:20Z",
+   "url": "https://x.com/Payward/status/2113716170217914756",
+   "source": "X · @Payward",
+   "he": {
+    "title": "חברת האם של Kraken רוכשת בנק אירופי",
+    "summary": "Payward הודיעה על הסכם לרכישת Saldo Bank בעל הרישיון האירופי, על אישור לפעול בדובאי ועל אישור עקרוני מהרגולטור בקזחסטן."
+   },
+   "en": {
+    "title": "Kraken's parent to acquire an EU bank",
+    "summary": "Payward announced an agreement to acquire EU-licensed Saldo Bank, clearance to serve clients in Dubai, and in-principle approval in Kazakhstan."
+   }
+  },
+  {
+   "id": "ss-25k-app",
+   "topic": "starterstory",
+   "date": "2026-10-23T18:35:02Z",
+   "url": "https://x.com/starter_story/status/2113700743815532935",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "מייסד שבנה אפליקציה של 25 אלף דולר בחודש",
+    "summary": "הוא זיהה פער בשוק, בנה גרסה משלו עם AI והשיק MVP תוך 48 שעות. את הרעיון הוא אימת בעזרת ידע עמוק בתחום, בלי תואר בטכנולוגיה."
+   },
+   "en": {
+    "title": "Founder built a $25k/month app from scratch",
+    "summary": "He spotted a gap, built his own version with AI and launched an MVP in 48 hours, validating it with deep domain knowledge instead of a tech degree."
+   }
+  },
+  {
+   "id": "ss-linktree-alt",
+   "topic": "starterstory",
+   "date": "2026-10-23T00:08:26Z",
+   "url": "https://x.com/starter_story/status/2113422259427975435",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "מיקרו־SaaS של 30 אלף דולר בחודש לצד משרה מלאה",
+    "summary": "צ'רלי נתן לעצמו שבועיים לבנות חלופה ל־Linktree כי לדעתו הדפים שם לא נראים טוב, והיום זה עסק של 30 אלף דולר בחודש."
+   },
+   "en": {
+    "title": "A $30K/month micro-SaaS built alongside a full-time job",
+    "summary": "Charlie gave himself two weeks to build a Linktree alternative because he thought its pages looked bad; it now makes $30K a month."
+   }
+  }
+ ]
+}
