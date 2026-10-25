@@ -1,5 +1,5 @@
 /* Offline cache for Wealthify (שפעלי). */
-var CACHE = "rg-wealth-v2";
+var CACHE = "rg-wealth-v3";
 var FILES = ["./", "index.html", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
