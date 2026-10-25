@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#161a3a">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="מיקסר צלילי טבע להרגעה ולשינה. Ambient sound mixer for relaxing and sleep.">
+<meta name="description" content="סאונדיפיי: צלילי טבע להרגעה ולשינה. Soundify, ambient sounds for relaxing and sleep.">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -13,7 +13,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="צלילים">
-<title>מיקסר צלילים</title>
+<title>סאונדיפיי</title>
 <script>(function(){try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}})();</script>
 <style>
   :root { --text: #ece6ff; --soft: rgba(225,215,250,0.62); --faint: rgba(225,215,250,0.42); --card: rgba(255,255,255,0.05); --line: rgba(255,255,255,0.09); --lav: #c9b8ff; }
@@ -229,7 +229,7 @@
   var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "instruments", he: "כלי נגינה", en: "Instruments" }, { id: "mantras", he: "מנטרות", en: "Mantras" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
   var T = {
     he: {
-      doc: "מיקסר צלילים", title: "מיקסר צלילים", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
+      doc: "סאונדיפיי", title: "סאונדיפיי", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
       idle: "בחרו צליל כדי להתחיל", resume: "המיקס האחרון שלכם שמור. לוחצים ▶ כדי לנגן.", playing: "מתנגן: ", paused: "בהשהיה: ",
       preparing: "מכין…", on: "פועל", vol: "עוצמה", master: "עוצמה כללית", stopAll: "⏹ עצור הכול", timer: "⏲ טיימר שינה:",
       off: "כבוי", min: function (m) { return m + " דק׳"; }, left: function (s) { return "נשארו " + s; },
@@ -239,7 +239,7 @@
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.",
       note: "<b>💡 ניגון ברקע:</b> הצלילים ממשיכים לנגן כשעוברים לאפליקציה אחרת או נועלים את המסך, ואפשר לשלוט בהם ממסך הנעילה. באנדרואיד זה עובד הכי טוב. באייפון זה עובד ברוב המקרים, אבל iOS עלול לעצור את הניגון אחרי זמן רב ברקע או בשיחת טלפון. אם זה קורה, לוחצים ▶ במסך הנעילה או באפליקציה. כל הצלילים נוצרים במכשיר עצמו, בלי הורדות ובלי אינטרנט.",
-      back: "← חזרה לאתר", games: "משחקי רגיעה", artist: "מיקסר צלילים",
+      back: "← חזרה לאתר", games: "משחקי רגיעה", artist: "סאונדיפיי",
       active: function (n) { return n + " פעילים"; }, binaural: "🎧 בינאורלי", iso: "🔊 איזוכרוני", carrier: "תדר נושא", hz: "הרץ",
       brainNote: "<b>🎧 בינאורלי</b> דורש אוזניות: כל אוזן שומעת תדר מעט שונה, וההפרש הוא הפעימה. <b>איזוכרוני</b> הוא פולסים של צליל ועובד גם בלי אוזניות.",
       specialNote: "צלילי סינוס רכים בתדרים פופולריים. התיאורים הם שמות מקובלים בלבד, בלי טענות רפואיות.",
@@ -247,7 +247,7 @@
       male: "🧔 זכר", female: "👩 נקבה", voice: "קול:", mantraSoon: "עוד מנטרות – יצורף בקרוב"
     },
     en: {
-      doc: "Sound Mixer", title: "Sound Mixer", sub: "Tap a sound to turn it on. Mix several together and set each one’s volume.",
+      doc: "Soundify", title: "Soundify", sub: "Tap a sound to turn it on. Mix several together and set each one’s volume.",
       idle: "Pick a sound to start", resume: "Your last mix is saved. Tap ▶ to play.", playing: "Playing: ", paused: "Paused: ",
       preparing: "Preparing…", on: "On", vol: "Volume", master: "Master volume", stopAll: "⏹ Stop all", timer: "⏲ Sleep timer:",
       off: "Off", min: function (m) { return m + " min"; }, left: function (s) { return s + " left"; },
@@ -257,7 +257,7 @@
       ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
       other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.",
       note: "<b>💡 Background play:</b> sounds keep playing when you switch apps or lock the screen, with controls on the lock screen. This works best on Android. On iPhone it works most of the time, but iOS may stop playback after a long time in the background or during a phone call. If that happens, tap ▶ on the lock screen or in the app. All sounds are generated on your device, with no downloads and no internet needed.",
-      back: "← Back to the site", games: "Relax games", artist: "Sound Mixer",
+      back: "← Back to the site", games: "Relax games", artist: "Soundify",
       active: function (n) { return n + " on"; }, binaural: "🎧 Binaural", iso: "🔊 Isochronic", carrier: "Carrier", hz: "Hz",
       brainNote: "<b>🎧 Binaural</b> beats need headphones: each ear hears a slightly different tone and the difference is the beat. <b>Isochronic</b> pulses work without headphones.",
       specialNote: "Soft sine tones at popular frequencies. Labels are common names only, with no medical claims.",

@@ -1,7 +1,7 @@
 {
-  "name": "מיקסר צלילים · Sound Mixer",
-  "short_name": "צלילים",
-  "description": "מיקסר צלילי טבע להרגעה ולשינה · Ambient sound mixer for relaxing and sleep",
+  "name": "סאונדיפיי · Soundify",
+  "short_name": "סאונדיפיי",
+  "description": "סאונדיפיי: צלילי טבע להרגעה ולשינה · Soundify, ambient sounds for relaxing and sleep",
   "id": "./",
   "start_url": "./",
   "scope": "./",
