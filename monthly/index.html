@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3a1450">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="מונת'לי">
+<meta name="description" content="מונת'לי · חודשי מודעות ונושא חדש בכל חודש. Monthly, awareness months and a new topic every month.">
+<script>/* theme before first paint: dark (default) / light */(function(){var d=document.documentElement,t="dark";try{t=localStorage.getItem("rg-monthly-theme")==="light"?"light":"dark";}catch(e){}d.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#fbf1e6":"#3a1450");try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>מונת'לי · Monthly</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg2:#140820; --card:rgba(255,255,255,.07); --card2:rgba(255,255,255,.12); --solid:#24102f;
+  --ink:#fff; --ink2:#f1e6f7; --mute:#cdb8d9; --dim:#a690b4;
+  --line:rgba(255,255,255,.13); --line2:rgba(255,255,255,.28);
+  --accent:#fff; --accentink:#2a0d3e; --now:#ffb36b;
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 10px 30px rgba(0,0,0,.25);
+  --pagebg:radial-gradient(55% 40% at 100% 0%,rgba(255,122,89,.65),transparent 70%),radial-gradient(60% 45% at 0% 30%,rgba(214,51,108,.55),transparent 70%),radial-gradient(60% 45% at 100% 70%,rgba(91,43,214,.55),transparent 70%),radial-gradient(50% 35% at 10% 100%,rgba(34,211,197,.35),transparent 70%),linear-gradient(180deg,#3a1450 0%,#1d0b2e 55%,#140820 100%);
+  --sans:"Assistant","Heebo","Rubik","Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans Hebrew",Arial,sans-serif;
+  color-scheme:dark;
+}
+html[data-theme=light]{
+  --bg2:#fbf1e6; --card:rgba(255,255,255,.72); --card2:rgba(255,255,255,.9); --solid:#fffaf4;
+  --ink:#2a0d3e; --ink2:#43204f; --mute:#6b4f78; --dim:#8a7095;
+  --line:rgba(42,13,62,.1); --line2:rgba(42,13,62,.25);
+  --accent:#2a0d3e; --accentink:#fff; --now:#d9480f;
+  --shadow:0 1px 2px rgba(42,13,62,.05),0 8px 22px rgba(42,13,62,.08);
+  --pagebg:radial-gradient(55% 40% at 100% 0%,rgba(255,150,110,.45),transparent 70%),radial-gradient(60% 45% at 0% 35%,rgba(240,110,160,.3),transparent 70%),radial-gradient(60% 45% at 100% 75%,rgba(150,120,255,.28),transparent 70%),radial-gradient(50% 35% at 0% 100%,rgba(60,210,195,.25),transparent 70%),linear-gradient(180deg,#fff4ea,#fbf1e6);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg2)}
+body{color:var(--ink);background:var(--pagebg) fixed,var(--bg2);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh;min-height:100dvh;overflow-x:hidden}
+.wrap{max-width:720px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}
+.tools{display:inline-flex;align-items:center;gap:8px}
+a.back{color:var(--mute);text-decoration:none;padding:8px 2px;white-space:nowrap}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card);backdrop-filter:blur(8px)}
+.lang button{font:600 13px var(--sans);color:var(--mute);background:none;border:0;border-radius:999px;padding:7px 13px;cursor:pointer}
+.lang button[aria-pressed=true]{color:var(--accentink);background:var(--accent)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:600 13px var(--sans);color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px)}
+.themebtn svg{width:16px;height:16px;flex:none}
+:focus-visible{outline:3px solid rgba(255,179,107,.7);outline-offset:2px}
+
+.hero{display:flex;align-items:center;gap:14px;padding:20px 2px 4px}
+.hero img{width:62px;height:62px;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.28);flex:none}
+h1{font-weight:800;font-size:36px;line-height:1.05;margin:0}
+.tagline{color:var(--mute);margin:3px 0 0;font-size:15.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);border-radius:999px;padding:8px 15px;font:700 14px var(--sans);cursor:pointer;color:var(--ink2);background:var(--card)}
+.btn.primary{color:var(--accentink);background:var(--accent);border-color:transparent}
+.install{margin:12px 0 0}
+.install[hidden],.hint[hidden]{display:none}
+.hint{font-size:14px;color:var(--ink2);background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin:18px 0 8px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.panel summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;font-weight:800;font-size:17px}
+.panel summary::-webkit-details-marker{display:none}
+.panel summary .cnt{font-weight:700;font-size:13px;color:var(--mute);background:var(--card2);border-radius:999px;padding:3px 10px;margin-inline-start:8px}
+.panel summary .chev{transition:transform .2s;color:var(--mute)}
+.panel[open] summary .chev{transform:rotate(180deg)}
+.panel .sub{margin:-6px 16px 10px;font-size:13.5px;color:var(--mute)}
+.opts{display:grid;grid-template-columns:1fr;gap:8px;padding:0 12px 14px}
+@media (min-width:560px){.opts{grid-template-columns:1fr 1fr}}
+.opt{display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:13px;border:1px solid var(--line);background:var(--card2);cursor:pointer;user-select:none;font-size:15px;font-weight:600;line-height:1.3;transition:border-color .15s,background .15s}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--c);display:grid;place-items:center;color:#fff;transition:background .15s}
+.opt .box svg{width:15px;height:15px;opacity:0;transform:scale(.6);transition:.15s}
+.opt input:checked + .box{background:var(--c)}
+.opt input:checked + .box svg{opacity:1;transform:none}
+.opt input:focus-visible + .box{outline:3px solid rgba(255,179,107,.7);outline-offset:2px}
+.opt .em{font-size:18px;flex:none}
+.opt.on{border-color:var(--c)}
+.quick{display:flex;gap:8px;padding:0 16px 14px;flex-wrap:wrap}
+
+.months{display:grid;gap:12px;margin-top:14px}
+.month{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px 12px;box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);scroll-margin-top:14px}
+.month.now{border:2px solid var(--now);background:var(--card2);box-shadow:0 0 0 4px rgba(255,179,107,.18),var(--shadow)}
+.month h2{display:flex;align-items:center;gap:10px;margin:0 0 8px;font-size:21px;font-weight:800}
+.month h2 .num{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:14px;font-weight:800;color:#fff;background:linear-gradient(135deg,#ff7a59,#d6336c 50%,#5b2bd6);flex:none}
+.month h2 .badge{font-size:12px;font-weight:800;color:#2a0d3e;background:var(--now);border-radius:999px;padding:3px 10px}
+html[data-theme=light] .month h2 .badge{color:#fff}
+.month ul{list-style:none;margin:0;padding:0}
+.month li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-top:1px solid var(--line)}
+.month li:first-child{border-top:0}
+.month li .dot{flex:none;width:10px;height:10px;border-radius:50%;background:var(--c);margin-top:8px;box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 25%,transparent)}
+.month li .txt{flex:1;min-width:0}
+.month li .name{font-weight:700;font-size:16px;color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tag{font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;color:var(--c);background:color-mix(in srgb,var(--c) 16%,transparent);border:1px solid color-mix(in srgb,var(--c) 40%,transparent);white-space:nowrap}
+html[data-theme=dark] .tag{color:color-mix(in srgb,var(--c) 55%,#fff)}
+.tag.src{text-decoration:none;--c:#94a3b8}
+.month .none{color:var(--dim);font-size:14.5px;padding:4px 0}
+.note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
+footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" id="back" href="../"></a>
+    <div class="tools">
+      <button type="button" class="themebtn" id="theme-btn"><span class="ti"></span><span class="tl"></span></button>
+      <div class="lang" role="group" aria-label="Language / שפה">
+        <button type="button" id="lang-he" aria-pressed="true">עברית</button>
+        <button type="button" id="lang-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <img src="icon.svg" alt="" width="62" height="62">
+    <div>
+      <h1 id="title"></h1>
+      <p class="tagline" id="tagline"></p>
+    </div>
+  </div>
+  <div class="install" id="install-wrap" hidden>
+    <button type="button" class="btn primary" id="install-btn"></button>
+    <div class="hint" id="install-hint" hidden></div>
+  </div>
+
+  <details class="panel" id="panel">
+    <summary><span><span id="panel-title"></span><span class="cnt" id="panel-cnt"></span></span><svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></summary>
+    <p class="sub" id="panel-sub"></p>
+    <div class="opts" id="opts"></div>
+    <div class="quick"><button type="button" class="btn" id="all-btn"></button><button type="button" class="btn" id="none-btn"></button></div>
+  </details>
+
+  <main class="months" id="months"></main>
+  <p class="note" id="note"></p>
+  <footer>© Ron Gershinsky</footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "מונת'לי · Monthly",
+  "short_name": "מונת'לי",
+  "description": "חודשי מודעות ונושא חדש בכל חודש · Awareness months and a new topic every month",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1d0b2e",
+  "theme_color": "#b8336a",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
