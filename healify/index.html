@@ -162,6 +162,22 @@ html[dir=rtl] .dots{direction:rtl}
 .card.sel::before{content:"";position:absolute;top:0;bottom:0;inset-inline-start:0;width:3px;background:var(--em)}
 .note{font-size:14px;color:var(--mute);background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:10px 0}
 .othertext{font-style:italic;color:var(--ink2);font-size:15px;margin:2px 0 6px}
+/* Ron's personal recommendations */
+.recsopen{margin-top:12px}
+.card.recs{border-color:var(--disc-line)}
+.card.recs::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--em),var(--warm))}
+.card.recs h3 .ic{background:var(--warm2);color:var(--warmink);border-color:var(--disc-line)}
+.recs .rq{font-weight:700;font-size:16.5px;color:var(--ink2);margin:6px 0 2px}
+.recpanels{margin-top:14px}
+.recpanels .note{margin:0}
+.rec{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;animation:fadeUp .35s cubic-bezier(.2,.7,.2,1) both}
+.rec .rt{font-weight:800;font-size:17px;color:var(--em);margin-bottom:4px}
+.rec .rd{white-space:pre-line;color:var(--ink);font-size:15.5px;line-height:1.65}
+.rec .rl{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.rec .rl a{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14.5px;color:var(--em);text-decoration:none;border:1px solid var(--line2);border-radius:999px;padding:6px 12px;background:var(--mint)}
+.rec .rl a:hover{border-color:var(--em)}
+.rec .soon{margin-top:2px}
+.recdisc{font-size:13.5px;color:var(--disc-ink);background:var(--disc-bg);border:1px solid var(--disc-line);border-radius:10px;padding:10px 12px;margin:14px 0 0}
 details.more{margin-top:8px}
 details.more summary{cursor:pointer;color:var(--em);font-weight:600;padding:8px 0}
 
@@ -235,6 +251,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
       <p class="sub" id="w-sub"></p>
       <button type="button" class="btn" id="start"></button>
       <div class="meta" id="w-meta"></div>
+      <div class="recsopen"><button type="button" class="btn ghost small" id="recs-open" hidden></button></div>
       <div class="install" id="install-wrap" hidden>
         <button type="button" class="btn ghost small" id="install-btn"></button>
         <div class="hint" id="install-hint" hidden></div>

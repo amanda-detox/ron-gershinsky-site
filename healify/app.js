@@ -11,6 +11,8 @@
   var FIELDS = ["diagnoses", "prognoses", "symptoms", "physical", "emotional", "mental", "consciousness"];
   var SCORES = ["emotional", "physical", "mental"];
   var VIEWS = ["a", "b", "c", "d", "sum"];
+  var RECS = (Array.isArray(C.ronRecs) ? C.ronRecs : []).filter(function (r) { return r && r.id; });
+  var RECIDS = RECS.map(function (r) { return r.id; });
 
   var T = {
     he: {
@@ -69,6 +71,11 @@
       confirm: "למחוק את כל מה שמילאת בהיליפיי מהמכשיר הזה? אי אפשר לבטל את זה.",
       cleared: "הנתונים נמחקו", downloaded: "הקובץ ירד",
       privacy: "הנתונים נשמרים רק בדפדפן במכשיר הזה ולא נשלחים לשום מקום. מומלץ להוריד עותק מדי פעם.",
+      recsTitle: "המלצות אישיות של רון", recsQ: "עם מה אתה מתמודד?",
+      recsHelp: "אפשר לבחור יותר מאחד. לכל בחירה תיפתח ההמלצה שלי.",
+      recsNone: "בחר נושא אחד או יותר כדי לראות את ההמלצות.",
+      recsOpen: "המלצות אישיות של רון ←",
+      recsDisc: "אין לראות במידע המוצג כאן ייעוץ רפואי. מומלץ להיוועץ ברופא פונקציונלי לפני תחילת תהליך משנה חיים. כל הטיפולים המומלצים כאן ניתנים במכונים וקליניקות עם השגחה רפואית.",
       foot: "היליפיי · Healify · גרסה 1",
       fileTitle: "היליפיי · הסיכום שלי", fileDate: "תאריך"
     },
@@ -128,6 +135,11 @@
       confirm: "Delete everything you filled in Healify from this device? This can't be undone.",
       cleared: "Your data was cleared", downloaded: "File downloaded",
       privacy: "Your data is stored only in this browser on this device and is never sent anywhere. It's a good idea to download a copy now and then.",
+      recsTitle: "Ron's personal recommendations", recsQ: "What are you dealing with?",
+      recsHelp: "You can pick more than one. Each choice opens my recommendation.",
+      recsNone: "Pick one or more topics to see the recommendations.",
+      recsOpen: "Ron's personal recommendations →",
+      recsDisc: "The information shown here is not medical advice. It's recommended to consult a functional medicine doctor before starting a life-changing process. All the treatments recommended here are provided at institutes and clinics with medical supervision.",
       foot: "Healify · היליפיי · version 1",
       fileTitle: "Healify · My summary", fileDate: "Date"
     }
@@ -137,7 +149,7 @@
   var ICON_SOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
   /* ----- state ----- */
-  function blank() { return { v: 1, view: "welcome", cases: [], otherText: "", text: {}, scores: {}, updated: null }; }
+  function blank() { return { v: 1, view: "welcome", cases: [], recs: null, otherText: "", text: {}, scores: {}, updated: null }; }
   var S = blank();
   function load() {
     try {
@@ -145,6 +157,7 @@
       if (s && typeof s === "object") {
         S.view = (VIEWS.indexOf(s.view) >= 0 || s.view === "welcome") ? s.view : "welcome";
         S.cases = Array.isArray(s.cases) ? s.cases.filter(function (c) { return CASES.indexOf(c) >= 0; }) : [];
+        S.recs = Array.isArray(s.recs) ? s.recs.filter(function (c) { return RECIDS.indexOf(c) >= 0; }) : null;
         S.otherText = typeof s.otherText === "string" ? s.otherText : "";
         S.text = {}; FIELDS.forEach(function (f) { if (s.text && typeof s.text[f] === "string") S.text[f] = s.text[f]; });
         S.scores = {}; SCORES.forEach(function (k) { var n = s.scores && +s.scores[k]; if (n >= 1 && n <= 10) S.scores[k] = Math.round(n); });
@@ -163,7 +176,7 @@
   }
   function flush() { if (saveTimer) save(true); }
   function flashSaved() { $("saved").textContent = t().saved; $("saved").className = "saved on"; }
-  function hasData() { return S.cases.length || S.otherText || Object.keys(S.text).some(function (k) { return S.text[k]; }) || Object.keys(S.scores).length; }
+  function hasData() { return S.cases.length || (S.recs && S.recs.length) || S.otherText || Object.keys(S.text).some(function (k) { return S.text[k]; }) || Object.keys(S.scores).length; }
 
   /* ----- helpers ----- */
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -192,6 +205,7 @@
       var b = e.target.closest("[data-case]"); if (!b) return;
       var c = b.getAttribute("data-case"), i = S.cases.indexOf(c);
       if (i >= 0) S.cases.splice(i, 1); else S.cases.push(c);
+      if (RECIDS.indexOf(c) >= 0) { var r = myRecs().filter(function (x) { return x !== c; }); if (i < 0) r.push(c); S.recs = r; }
       S.cases.sort(function (x, y) { return CASES.indexOf(x) - CASES.indexOf(y); });
       syncCases(); save(true);
     };
@@ -279,8 +293,40 @@
     });
     var out = '<p class="note">' + esc(chosen.length ? L.dYours : L.dNone) + "</p>" + mine.join("");
     if (rest.length) out += '<details class="more" open><summary>' + esc(L.dRest) + "</summary>" + rest.join("") + "</details>";
-    $("d-groups").innerHTML = out;
+    $("d-groups").innerHTML = recsHTML() + out;
   }
+
+  /* ----- Ron's personal recommendations (inside step D) ----- */
+  function myRecs() { return Array.isArray(S.recs) ? S.recs.slice() : S.cases.filter(function (c) { return RECIDS.indexOf(c) >= 0; }); }
+  function recsHTML() {
+    if (!RECS.length) return "";
+    var L = t(), mine = myRecs();
+    var chips = RECS.map(function (r) {
+      var on = mine.indexOf(r.id) >= 0;
+      return '<button type="button" class="chip" data-rec="' + esc(r.id) + '" aria-pressed="' + on + '"><span class="tick">✓</span><span class="cl">' + esc(pick(r).title) + "</span></button>";
+    }).join("");
+    var panels = RECS.filter(function (r) { return mine.indexOf(r.id) >= 0; }).map(function (r) {
+      var p = pick(r), links = (Array.isArray(r.links) ? r.links : []).filter(function (k) { return k && /^https?:\/\//.test(k.url); }).map(function (k) {
+        return '<a href="' + esc(k.url) + '" target="_blank" rel="noopener">' + esc(k[lang] || k.he || k.en || k.url) + ' <span aria-hidden="true">' + (lang === "he" ? "↖" : "↗") + "</span></a>";
+      }).join("");
+      var body = p.text ? '<div class="rd">' + esc(p.text) + "</div>" + (links ? '<div class="rl">' + links + "</div>" : "") : '<div class="soon">' + ICON_SOON + "<span>" + esc(L.soon) + "</span></div>";
+      return '<div class="rec" id="rec-' + esc(r.id) + '"><div class="rt">' + esc(p.title) + "</div>" + body + "</div>";
+    }).join("");
+    return '<div class="card recs" id="recs"><h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span><span>' + esc(L.recsTitle) + "</span></h3>" +
+      '<p class="rq">' + esc(L.recsQ) + '</p><p class="help">' + esc(L.recsHelp) + "</p>" +
+      '<div class="chips" id="rec-chips" role="group" aria-label="' + esc(L.recsQ) + '">' + chips + "</div>" +
+      '<div class="recpanels" aria-live="polite">' + (panels || '<p class="note">' + esc(L.recsNone) + "</p>") + "</div>" +
+      '<p class="recdisc">' + esc(L.recsDisc) + "</p></div>";
+  }
+  $("d-groups").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-rec]"); if (!b) return;
+    var id = b.getAttribute("data-rec"), r = myRecs(), i = r.indexOf(id);
+    if (i >= 0) r.splice(i, 1); else r.push(id);
+    S.recs = r.sort(function (x, y) { return RECIDS.indexOf(x) - RECIDS.indexOf(y); });
+    save(true); fillD();
+    var nb = document.querySelector('#rec-chips [data-rec="' + id + '"]'); if (nb) nb.focus();
+    if (i < 0) { var pn = $("rec-" + id); if (pn && pn.scrollIntoView) pn.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
+  });
 
   /* ----- summary ----- */
   function fillSum() {
@@ -340,6 +386,7 @@
   }
   $("start").onclick = function () { go(hasData() ? lastView : "a"); };
   var lastView = "a";
+  if ($("recs-open")) $("recs-open").onclick = function () { go("d"); setTimeout(function () { var r = $("recs"); if (r) r.scrollIntoView({ block: "start" }); }, 30); };
   $("prev").onclick = function () { var i = VIEWS.indexOf(S.view); go(i > 0 ? VIEWS[i - 1] : "welcome"); };
   $("next").onclick = function () { var i = VIEWS.indexOf(S.view); if (i < VIEWS.length - 1) go(VIEWS[i + 1]); else go("a"); };
   $("steps").onclick = function (e) { var b = e.target.closest("[data-v]"); if (b) go(b.getAttribute("data-v")); };
@@ -363,6 +410,7 @@
     $("w-eyebrow").textContent = L.eyebrow; $("w-title").textContent = L.title; $("w-tagline").textContent = L.tagline; $("w-sub").textContent = L.sub;
     $("start").textContent = hasData() ? L.resume : L.start; $("w-meta").textContent = L.meta;
     $("install-btn").textContent = L.install;
+    if ($("recs-open")) { $("recs-open").textContent = L.recsOpen; $("recs-open").hidden = !RECS.length; }
     if (!$("install-hint").hidden) $("install-hint").innerHTML = L[isIOS ? "ios" : "other"];
     $("disc-w").innerHTML = L.disc; $("disc-f").innerHTML = L.disc;
     $("foot").textContent = L.foot;
