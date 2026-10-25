@@ -1,5 +1,5 @@
-/* Offline cache for Monthly (מונת'לי). Scope: monthly/ only. */
-var CACHE = "rg-monthly-v1";
+/* Offline cache for Monthly (חודשיפיי). Scope: monthly/ only. */
+var CACHE = "rg-monthly-v2";
 var FILES = ["./", "index.html", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {

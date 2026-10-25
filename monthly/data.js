@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Monthly (מונת'לי): ALL CONTENT LIVES HERE. Edit this file to change topics.
+   Monthly (חודשיפיי): ALL CONTENT LIVES HERE. Edit this file to change topics.
    --------------------------------------------------------------------------
    MONTHLY_DATA.awareness: the built-in awareness months (shown by default).
      Each month number (1 = January … 12 = December) has a list of items:
