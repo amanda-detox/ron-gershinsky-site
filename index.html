@@ -169,6 +169,21 @@
 
   .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; text-align: start; }
   .install-hint li { margin: 0.15rem 0; }
+  .apps { margin-top: 1.5rem; text-align: start; }
+  .apps h2 { text-align: center; font-size: 1.125rem; font-weight: 600; }
+  .app-grid { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.625rem; }
+  .app {
+    display: flex; flex-direction: column; align-items: center; gap: 0.375rem;
+    height: 100%; padding: 0.875rem 0.5rem; text-align: center;
+    border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface);
+    color: var(--fg); text-decoration: none;
+    transition: background 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+  .app:hover { background: var(--surface-2); border-color: var(--accent); transform: translateY(-2px); }
+  .app img { width: 3.25rem; height: 3.25rem; border-radius: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
+  .app-name { font-size: 0.9375rem; font-weight: 600; line-height: 1.3; }
+  .app-grid li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .app-line { color: var(--muted); font-size: 0.78125rem; line-height: 1.4; text-wrap: pretty; }
 </style>
 </head>
 <body>
@@ -184,6 +199,10 @@
     <button type="button" class="install" id="install-btn"></button>
     <div class="panel install-hint" id="install-hint" hidden></div>
   </div>
+  <section class="apps" aria-labelledby="apps-title">
+    <h2 id="apps-title"></h2>
+    <ul class="app-grid" id="app-grid"></ul>
+  </section>
   <ul id="list"></ul>
   <section class="box" aria-labelledby="wait-title">
     <h2 id="wait-title"></h2>
@@ -218,6 +237,39 @@ var WAITLIST_URL = "https://ron-waitlist.detoxify-ai.workers.dev";
 // Topic buttons removed at Ron's request (2026-10-24); previous list is in git history.
 var topics = [];
 
+// "My apps" grid on the landing page. Each app lives in its own folder with its own icon.
+var apps = [
+  { href: "clock/index.html",     icon: "clock/icon-192.png",     he: "השעון שלי",     en: "My Clock",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
+  { href: "news/index.html",      icon: "news/icon-192.png",      he: "עדכונים",       en: "Updates",   heLine: "חדשות יומיות על אנשים וחברות שאני עוקב אחריהם", enLine: "Daily news on the people and companies I follow" },
+  { href: "relax/index.html",     icon: "relax/icon-192.png",     he: "משחקי רגיעה",   en: "Relax Games", heLine: "חמישה משחקים שקטים, בלי ניקוד ובלי טיימר", enLine: "Five quiet games, no scores, no timers" },
+  { href: "healify/index.html",   icon: "healify/icon-192.png",   he: "היליפיי",       en: "Healify",   heLine: "מרחב אישי לדרך הריפוי השלם",          enLine: "A personal space for the healing journey" },
+  { href: "wealthify/index.html", icon: "wealthify/icon-192.png", he: "שפעלי",         en: "Wealthify", heLine: "שגשוג וחופש כלכלי",                    enLine: "Prosperity and financial freedom" },
+  { href: "sounds/index.html",    icon: "sounds/icon-192.png",    he: "סאונדיפיי",     en: "Soundify",  heLine: "צלילי טבע, כלים ומנטרות להרגעה ולשינה", enLine: "Nature sounds, instruments and mantras for calm and sleep" },
+  { href: "monthly/index.html",   icon: "monthly/icon-192.png",   he: "חודשיפיי",       en: "Monthly",   heLine: "חודשי מודעות ונושא חדש בכל חודש",     enLine: "Awareness months and a new topic every month" }
+];
+
+function renderApps(he) {
+  var grid = document.getElementById("app-grid");
+  grid.innerHTML = "";
+  apps.forEach(function (app) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.className = "app";
+    a.href = app.href;
+    var img = document.createElement("img");
+    img.src = app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy";
+    var name = document.createElement("span");
+    name.className = "app-name";
+    name.textContent = he ? app.he : app.en;
+    var line = document.createElement("span");
+    line.className = "app-line";
+    line.textContent = he ? app.heLine : app.enLine;
+    a.appendChild(img); a.appendChild(name); a.appendChild(line);
+    li.appendChild(a);
+    grid.appendChild(li);
+  });
+}
+
 var copy = {
   he: {
     title: "רון גרשינסקי",
@@ -238,6 +290,7 @@ var copy = {
     contactTitle: "יצירת קשר",
     contactBtn: "שלח אליי מייל",
     footer: "© רון גרשינסקי",
+    appsTitle: "האפליקציות שלי",
     games: "משחקים להרגעה ושלווה עמוקה",
     buy: "הורדה ב־5 דולר",
     payMissing: "התשלום עדיין לא מחובר. צריך לינק לדף תשלום.",
@@ -267,6 +320,7 @@ var copy = {
     contactTitle: "Contact",
     contactBtn: "Send email",
     footer: "© Ron Gershinsky",
+    appsTitle: "My apps",
     games: "Games for calm and deep quiet",
     buy: "Download for $5",
     payMissing: "Payment is not connected yet. A checkout link is required.",
@@ -308,6 +362,8 @@ function render() {
   text("contact-title", t.contactTitle);
   text("contact", t.contactBtn);
   text("foot", t.footer);
+  text("apps-title", t.appsTitle);
+  renderApps(he);
   text("game-title", t.gameTitle);
   text("game-desc", t.gameDesc);
   text("game-open", t.gameOpen);
