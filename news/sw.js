@@ -1,5 +1,5 @@
 /* Offline cache for Updatify (עדכוניפיי). Scope: news/ only. */
-var CACHE = "rg-news-v6";
+var CACHE = "rg-news-v7";
 var FONT_CACHE = "rg-newsfonts-1"; // separate name so version bumps keep the fonts
 var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
@@ -11,7 +11,7 @@ self.addEventListener("activate", function (e) {
     return Promise.all(keys.filter(function (k) { return k.indexOf("rg-news-") === 0 && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
-// Network first for everything (news.json included, so the daily update shows right away).
+// Network first for everything (news.json included, so each update (3 times a day) shows right away).
 // news.json is stored under one key regardless of the ?t= cache-buster, for offline use.
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;

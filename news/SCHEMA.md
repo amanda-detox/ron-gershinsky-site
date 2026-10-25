@@ -2,7 +2,7 @@
 
 The app (`index.html` + `app.js`) reads `news.json` from this folder on every open
 (`news.json?t=<timestamp>`, `cache: no-store`; the service worker is network-first and keeps
-one offline copy). A daily job only has to overwrite `news.json` and upload it. No other file changes.
+one offline copy). A job that runs 3 times a day (morning, midday, evening) only has to overwrite `news.json` and upload it. No other file changes.
 
 ```json
 {
@@ -35,7 +35,7 @@ one offline copy). A daily job only has to overwrite `news.json` and upload it. 
 | `topics[].id` | yes | Stable slug (the user's selected chip is remembered by id). |
 | `topics[].group` | yes | `"person"` or `"company"`. |
 | `topics[].he` / `.en` | yes | Chip and section label. |
-| `items[].id` | yes | Unique, stable slug. |
+| `items[].id` | yes | Unique, stable slug. **Must stay stable across runs:** when a run includes a story that was already in the previous `news.json`, reuse its existing `id` exactly (don't regenerate it). The app's read tracking is keyed by `id` (localStorage `rg-news-read`), so a new id makes an already-read story show up again as unread. Only genuinely new stories get new ids. |
 | `items[].topic` | yes | Must match a `topics[].id`. |
 | `items[].date` | yes | ISO-8601 publish time of the source (post `created_at`, story `updated_at`, or article date). Shown as relative time ("3 hours ago"). Items are sorted newest first within each topic. |
 | `items[].url` | yes | Real `https://` source link. Never invent one. |
@@ -47,7 +47,8 @@ People: `musk`, `cook`, `huang`, `durov`, `johnson`, `brecka`, `dispenza`, `aspr
 `ardis`, `mccullough`, `mercola`, `medicalmedium`, `refaeli`.
 Companies/topics: `tesla`, `spacex`, `grok`, `grokbot`, `apple`, `kraken`, `starterstory`.
 
-## Daily regeneration recipe
+## Regeneration recipe (runs 3 times a day)
+0. Read the current `news.json` first; keep the `id` of any story you carry over (see `items[].id`).
 1. Window: the last ~48–72 h (it's fine to go up to 7 days for quiet topics; omit a topic if nothing real was found).
 2. Sources (X first):
    - X `search_news` (`max_age_hours: 72`) for companies and big names (Tesla, SpaceX Starship, Grok xAI, Grok Bot, Apple, Kraken, Jensen Huang, Elon Musk). The story URL is `https://x.com/i/trending/<id>`.

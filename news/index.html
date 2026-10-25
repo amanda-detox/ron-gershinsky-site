@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="עדכוניפיי">
-<meta name="description" content="עדכוניפיי · חדשות יומיות על האנשים והחברות שאתה עוקב אחריהם. Updatify, daily news on the people and companies you follow.">
+<meta name="description" content="עדכוניפיי · חדשות 3 פעמים ביום על האנשים והחברות שאתה עוקב אחריהם. Updatify, news 3 times a day on the people and companies you follow.">
 <script>/* theme + background before first paint: dark (default) / light; night bg 1-10 (default 2) */(function(){var d=document.documentElement,t="dark",b="2";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([1-9]|10)$/.test(v||""))b=v;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);var C={"1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <title>עדכוניפיי · Updatify</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,14 +58,12 @@ h1{font-family:"Fredoka",var(--sans);font-weight:600;font-size:36px;line-height:
 .tagline{color:var(--mute);margin:2px 0 0;font-size:15.5px}
 .status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:12px 0 4px;font-size:14px;color:var(--mute)}
 .status .upd b{color:var(--ink2);font-weight:700}
-.status .dot{width:8px;height:8px;border-radius:50%;background:#3ccf8e;display:inline-block;margin-inline-end:6px;vertical-align:middle}
+.status .dot{width:8px;height:8px;border-radius:50%;background:#f5c542;display:inline-block;margin-inline-end:6px;vertical-align:middle}
 .status .dot.stale{background:#f0b44c}
 .status .dot.off{background:#e46b6b}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);border-radius:999px;padding:7px 14px;font:600 14px var(--sans);cursor:pointer;color:var(--ink2);background:var(--card)}
 .btn svg{width:15px;height:15px}
 .btn.primary{color:var(--accentink);background:var(--accent);border-color:transparent}
-.btn.spin svg{animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
 .install{margin:10px 0 0}
 .install[hidden],.hint[hidden]{display:none}
 .hint{font-size:14px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
@@ -109,6 +107,19 @@ html[dir=rtl]{--fade-s:right;--fade-e:left}
 .card .meta a:hover{text-decoration:underline}
 .card .meta a svg{width:14px;height:14px}
 html[dir=rtl] .card .meta a svg{transform:scaleX(-1)}
+.card{transition:opacity .35s ease,transform .35s ease,height .35s ease,margin .35s ease,padding .35s ease}
+.card.gone{opacity:0;transform:scale(.97);height:0!important;margin:0;padding-top:0;padding-bottom:0;border-width:0;overflow:hidden}
+.card.isread{opacity:.55}
+.card .acts{display:inline-flex;align-items:center;gap:12px}
+.card .rd{font:700 13px var(--sans);color:var(--ink2);background:var(--chip);border:1px solid var(--line2);border-radius:999px;padding:4px 11px;cursor:pointer;white-space:nowrap}
+.card .rd:hover{border-color:var(--em)}
+.feedbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 2px -6px;font-size:13.5px}
+.lnk{background:none;border:0;padding:4px 0;font:700 13.5px var(--sans);color:var(--em);cursor:pointer}
+.lnk.dim{color:var(--dim);font-weight:600}
+.lnk:hover{text-decoration:underline}
+.caught{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:44px 16px;margin:18px 0;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);color:var(--mute);font-size:15px}
+.caught .big{font-size:40px;line-height:1.2}
+.caught b{font-size:20px;color:var(--ink)}
 .empty,.err{text-align:center;color:var(--mute);padding:30px 10px;font-size:15px}
 .note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
 footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
@@ -178,7 +189,6 @@ html[data-theme=light] #bg-btn{display:none}
 
   <div class="status">
     <span class="upd" id="updated"></span>
-    <button type="button" class="btn" id="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg><span id="refresh-l"></span></button>
   </div>
   <div class="install" id="install-wrap" hidden>
     <button type="button" class="btn primary" id="install-btn"></button>

@@ -1,15 +1,18 @@
-/* Updates (עדכונים): daily news feed from news.json. */
+/* Updates (עדכונים): news feed from news.json (regenerated 3 times a day), with read tracking. */
 (function () {
   "use strict";
-  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg";
+  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg", READ_KEY = "rg-news-read";
+  var READ_CAP = 1000, RELOAD_MS = 5 * 60 * 1000;
   var TZ = "Asia/Jerusalem";
   var L = {
     he: {
       title: "עדכוניפיי", doc: "עדכוניפיי · Updatify",
-      tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן פעם ביום",
+      tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן 3 פעמים ביום",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
-      refresh: "רענון", all: "הכול", people: "אנשים", companies: "חברות ונושאים",
+      all: "הכול", people: "אנשים", companies: "חברות ונושאים",
       read: "למקור", empty: "אין עדכונים בנושא הזה כרגע.",
+      markRead: "✓ קראתי", markUnread: "↺ החזר לא נקרא", markAll: "✓ סמן הכל כנקרא", showRead: "הצג גם שנקראו", hideRead: "הסתר שנקראו",
+      caught: "קראת הכל!", caughtSub: "עדכונים חדשים מגיעים 3 פעמים ביום",
       error: "לא הצלחנו לטעון את העדכונים. בדוק את החיבור ונסה שוב.",
       offline: "מוצגים עדכונים שמורים (אין חיבור)",
       note: "התקצירים נכתבו על סמך המקורות המקושרים. כדאי לפתוח את המקור לפרטים המלאים. אין לראות בתוכן ייעוץ רפואי או פיננסי.",
@@ -24,10 +27,12 @@
     },
     en: {
       title: "Updatify", doc: "Updatify · עדכוניפיי",
-      tagline: "News on the people and companies you follow, refreshed daily",
+      tagline: "News on the people and companies you follow, updated 3 times a day",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
-      refresh: "Refresh", all: "All", people: "People", companies: "Companies & topics",
+      all: "All", people: "People", companies: "Companies & topics",
       read: "Source", empty: "No updates on this topic right now.",
+      markRead: "✓ Read", markUnread: "↺ Mark unread", markAll: "✓ Mark all as read", showRead: "Show read", hideRead: "Hide read",
+      caught: "All caught up!", caughtSub: "New updates arrive 3 times a day",
       error: "Couldn't load updates. Check your connection and try again.",
       offline: "Showing saved updates (offline)",
       note: "Summaries are based on the linked sources. Open the source for full details. Nothing here is medical or financial advice.",
@@ -53,7 +58,25 @@
   var topic = get(TOPIC_KEY) || "all";
   var bg = document.documentElement.getAttribute("data-bg") || "2";
   var TC = window.RG_BG_TC || {};
-  var data = null, offline = false, loading = false, lastFetch = 0;
+  var data = null, offline = false, loading = false, lastFetch = 0, showRead = false;
+
+  /* ----- read tracking: array of item ids in localStorage, oldest first, capped ----- */
+  var readList = (function () { try { var a = JSON.parse(get(READ_KEY) || "[]"); return Array.isArray(a) ? a.filter(function (x) { return typeof x === "string"; }) : []; } catch (e) { return []; } })();
+  var readSet = {}; readList.forEach(function (id) { readSet[id] = 1; });
+  function isRead(id) { return readSet[id] === 1; }
+  function saveRead() {
+    if (readList.length > READ_CAP) { readList.splice(0, readList.length - READ_CAP).forEach(function (id) { delete readSet[id]; }); }
+    set(READ_KEY, JSON.stringify(readList));
+  }
+  function markRead(ids) {
+    var ch = false;
+    ids.forEach(function (id) { if (id && !isRead(id)) { readSet[id] = 1; readList.push(id); ch = true; } });
+    if (ch) saveRead(); return ch;
+  }
+  function markUnread(id) {
+    if (!isRead(id)) return; delete readSet[id];
+    readList = readList.filter(function (x) { return x !== id; }); saveRead();
+  }
   function t() { return L[lang]; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function pick(o) { return (o && (o[lang] || o.he || o.en)) || {}; }
@@ -99,7 +122,6 @@
     $("back").textContent = t().back;
     $("title").textContent = t().title;
     $("tagline").textContent = t().tagline;
-    $("refresh-l").textContent = t().refresh;
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
@@ -119,17 +141,23 @@
       (offline ? " · " + esc(t().offline) : "");
   }
 
+  // count = unread items per topic; total = all items per topic. Topics without unread are hidden unless showRead.
   function topicsWithItems() {
-    var count = {};
-    data.items.forEach(function (it) { count[it.topic] = (count[it.topic] || 0) + 1; });
-    return { list: data.topics.filter(function (tp) { return count[tp.id]; }), count: count };
+    var count = {}, total = {}, unread = 0, read = 0;
+    data.items.forEach(function (it) {
+      total[it.topic] = (total[it.topic] || 0) + 1;
+      if (isRead(it.id)) read++; else { unread++; count[it.topic] = (count[it.topic] || 0) + 1; }
+    });
+    var list = data.topics.filter(function (tp) { return showRead ? total[tp.id] : count[tp.id]; });
+    return { list: list, count: count, total: total, unread: unread, read: read };
   }
+  function visible(tw) { return function (tp) { return topic === "all" || topic === tp.id; }; }
 
   function renderChips() {
     var nav = $("chips"); nav.innerHTML = "";
     if (!data) return;
     var tw = topicsWithItems();
-    if (topic !== "all" && !tw.count[topic]) topic = "all";
+    if (topic !== "all" && !(showRead ? tw.total[topic] : tw.count[topic])) topic = "all";
     function chip(id, label, n) {
       var b = document.createElement("button");
       b.type = "button"; b.className = "chip";
@@ -139,7 +167,7 @@
       nav.appendChild(b);
       if (topic === id && b.scrollIntoView) setTimeout(function () { b.scrollIntoView({ block: "nearest", inline: "center" }); }, 0);
     }
-    chip("all", t().all, data.items.length);
+    chip("all", t().all, tw.unread);
     var lastGroup = null;
     tw.list.forEach(function (tp) {
       if (lastGroup && tp.group !== lastGroup) { var s = document.createElement("span"); s.className = "sep"; nav.appendChild(s); }
@@ -150,30 +178,66 @@
   }
 
   function card(it) {
-    var c = pick(it);
-    return '<article class="card"><h3>' + esc(c.title) + "</h3><p>" + esc(c.summary) + '</p><div class="meta"><span>' +
-      esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") + '</span><a href="' + esc(safeUrl(it.url)) +
-      '" target="_blank" rel="noopener noreferrer">' + esc(t().read) + EXT + "</a></div></article>";
+    var c = pick(it), r = isRead(it.id);
+    return '<article class="card' + (r ? " isread" : "") + '" data-id="' + esc(it.id) + '"><h3>' + esc(c.title) + "</h3><p>" + esc(c.summary) +
+      '</p><div class="meta"><span class="when">' + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
+      '</span><span class="acts"><button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) +
+      '</button><a class="src" href="' + esc(safeUrl(it.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(t().read) + EXT + "</a></span></div></article>";
   }
 
   function renderFeed() {
     var feed = $("feed");
     if (!data) { feed.innerHTML = loading ? '<div class="empty">' + esc(t().loading) + "</div>" : '<div class="err">' + esc(t().error) + "</div>"; return; }
-    var tw = topicsWithItems(), html = "";
-    tw.list.forEach(function (tp) {
-      if (topic !== "all" && topic !== tp.id) return;
-      var its = data.items.filter(function (it) { return it.topic === tp.id; })
+    var tw = topicsWithItems(), html = "", unreadShown = 0, readShown = 0;
+    tw.list.filter(visible(tw)).forEach(function (tp) {
+      var its = data.items.filter(function (it) { return it.topic === tp.id && (showRead || !isRead(it.id)); })
         .sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
-      html += '<section class="group"><h2>' + esc(tp[lang] || tp.he) + "</h2>" + its.map(card).join("") + "</section>";
+      its.forEach(function (it) { if (isRead(it.id)) readShown++; else unreadShown++; });
+      if (its.length) html += '<section class="group"><h2>' + esc(tp[lang] || tp.he) + "</h2>" + its.map(card).join("") + "</section>";
     });
-    feed.innerHTML = html || '<div class="empty">' + esc(t().empty) + "</div>";
+    // read items in the current topic (for the "show read (N)" toggle)
+    var readHere = data.items.filter(function (it) { return isRead(it.id) && (topic === "all" || it.topic === topic); }).length;
+    var bar = "";
+    if (unreadShown || readHere) {
+      bar = '<div class="feedbar">' +
+        (unreadShown ? '<button type="button" class="lnk" data-act="all">' + esc(t().markAll) + "</button>" : "<span></span>") +
+        (readHere ? '<button type="button" class="lnk dim" data-act="toggle" aria-pressed="' + (showRead ? "true" : "false") + '">' +
+          esc(showRead ? t().hideRead : t().showRead) + " (" + readHere + ")</button>" : "") + "</div>";
+    }
+    if (!html) {
+      html = (data.items.length && !tw.unread)
+        ? '<div class="caught"><div class="big">🎉</div><b>' + esc(t().caught) + "</b><span>" + esc(t().caughtSub) + "</span></div>"
+        : '<div class="empty">' + esc(t().empty) + "</div>";
+    }
+    feed.innerHTML = bar + html;
   }
+
+  // fade out the given cards, then re-render (chips + feed)
+  function afterMark(cards) {
+    if (showRead || !cards.length) { renderChips(); renderFeed(); return; }
+    cards.forEach(function (c) { c.style.height = c.offsetHeight + "px"; c.offsetHeight; c.classList.add("gone"); });
+    setTimeout(function () { renderChips(); renderFeed(); }, 380);
+  }
+  $("feed").addEventListener("click", function (e) {
+    var el = e.target.closest && e.target.closest("[data-act], a.src"); if (!el) return;
+    var c = el.closest(".card"), act = el.getAttribute("data-act");
+    if (el.classList.contains("src")) { // opening the source counts as read; let the link open normally
+      if (c && markRead([c.getAttribute("data-id")])) setTimeout(function () { afterMark([c]); }, 150);
+      return;
+    }
+    if (act === "read" && c) { markRead([c.getAttribute("data-id")]); afterMark([c]); }
+    else if (act === "unread" && c) { markUnread(c.getAttribute("data-id")); renderChips(); renderFeed(); }
+    else if (act === "all") {
+      var cs = Array.prototype.slice.call($("feed").querySelectorAll(".card:not(.isread)"));
+      markRead(cs.map(function (x) { return x.getAttribute("data-id"); })); afterMark(cs);
+    } else if (act === "toggle") { showRead = !showRead; renderChips(); renderFeed(); }
+  });
 
   function renderAll() { renderChrome(); renderStatus(); renderChips(); renderFeed(); }
 
-  function load(manual) {
+  function load() {
     if (loading) return;
-    loading = true; $("refresh").classList.add("spin"); if (!data) { renderStatus(); renderFeed(); }
+    loading = true; lastFetch = Date.now(); if (!data) { renderStatus(); renderFeed(); }
     fetch("news.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) {
       if (!r.ok) throw new Error(r.status); return r.json();
     }).then(function (j) {
@@ -184,7 +248,7 @@
       if (!data) { try { data = JSON.parse(get("rg-news-cache") || "null"); } catch (e) { data = null; } }
       offline = true;
     }).then(function () {
-      loading = false; $("refresh").classList.remove("spin"); renderStatus(); renderChips(); renderFeed();
+      loading = false; renderStatus(); renderChips(); renderFeed();
     });
   }
 
@@ -247,10 +311,11 @@
   $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, lang); renderAll(); };
   $("lang-en").onclick = function () { lang = "en"; set(LANG_KEY, lang); renderAll(); };
   $("theme-btn").onclick = function () { theme = theme === "light" ? "dark" : "light"; set(THEME_KEY, theme); applyTheme(); };
-  $("refresh").onclick = function () { load(true); };
+  // auto-reload: on open (boot), and whenever the app comes back to the foreground (at most every ~5 min)
   document.addEventListener("visibilitychange", function () {
-    if (document.visibilityState === "visible" && Date.now() - lastFetch > 30 * 60 * 1000) load();
+    if (document.visibilityState === "visible" && Date.now() - lastFetch > RELOAD_MS) load();
   });
+  window.addEventListener("pageshow", function (e) { if (e.persisted && Date.now() - lastFetch > RELOAD_MS) load(); });
   window.addEventListener("online", function () { load(); });
 
   /* ----- install: visible unless already installed ----- */
