@@ -1,6 +1,6 @@
 /* Offline cache + notification clicks for the alarm clock. */
-var CACHE = "rg-alarm-v3";
-var FILES = ["./", "index.html", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+var CACHE = "rg-alarm-v4";
+var FILES = ["./", "index.html", "alarm-core.js", "ics.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

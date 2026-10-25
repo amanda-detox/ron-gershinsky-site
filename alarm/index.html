@@ -116,6 +116,13 @@
   .install-hint { color: var(--muted, inherit); font-size: 0.85rem; line-height: 1.5; margin-top: 0.6rem; }
   .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; }
   .install-hint li { margin: 0.15rem 0; }
+  .cal { margin-top: 1.25rem; border: 1px solid rgba(212,175,55,0.55); border-radius: 0.9rem; padding: 1rem;
+    background: linear-gradient(to bottom right, rgba(59,130,246,0.18), rgba(30,41,59,0.85)); text-align: center; }
+  .cal-btn { width: 100%; min-height: 3.5rem; border: 1px solid #d4af37; border-radius: 0.85rem; padding: 0.6rem 1rem;
+    font-size: 1.05rem; font-weight: 700; color: #fff; background: linear-gradient(to bottom right, #2563eb, #1e3a8a);
+    box-shadow: 0 6px 20px rgba(37,99,235,0.35); }
+  .cal-btn:active { transform: translateY(1px); }
+  .cal-help { color: var(--muted); font-size: 0.85rem; line-height: 1.5; margin: 0.6rem 0 0; }
 </style>
 </head>
 <body>
@@ -147,6 +154,10 @@
     <div class="hint" id="notif-state"></div>
   </section>
 
+  <section class="cal" id="cal">
+    <button type="button" class="cal-btn" id="cal-btn"></button>
+    <p class="cal-help" id="cal-help"></p>
+  </section>
   <h2><span id="list-title"></span><span class="count" id="count"></span></h2>
   <ul id="list"></ul>
   <p class="empty" id="empty" hidden></p>
@@ -194,6 +205,7 @@
 <div class="toast" id="toast" hidden role="status"></div>
 
 <script src="alarm-core.js"></script>
+<script src="ics.js"></script>
 <script>
 (function () {
   "use strict";
@@ -223,7 +235,10 @@
       more: function (n) { return "ועוד " + n + " שעונים מצלצלים"; },
       ringLabelSnooze: "נודניק",
       back: "← חזרה לאתר", reset: "שחזור שעוני ברירת המחדל", confirmReset: "להחזיר את רשימת השעונים המקורית? השעונים הנוכחיים יימחקו.",
-      notifBody: "השעון מצלצל"
+      notifBody: "השעון מצלצל",
+      cal: "📅 הוסף את השעונים ליומן בטלפון",
+      calHelp: "הקובץ יוסיף את כל השעונים הפעילים ליומן כאירועים חוזרים עם התראה. אחרי ההורדה פותחים את הקובץ ובוחרים באפליקציית היומן.",
+      calNone: "אין שעונים פעילים להוספה ליומן.", calDone: "קובץ היומן מוכן ✓"
     },
     en: {
       title: "Clockify", test: "🔊 Test sound", list: "My alarms", add: "+ New alarm",
@@ -246,7 +261,10 @@
       more: function (n) { return n + " more alarms ringing"; },
       ringLabelSnooze: "Snooze",
       back: "← Back to the site", reset: "Restore default alarms", confirmReset: "Restore the original alarm list? Your current alarms will be removed.",
-      notifBody: "Alarm ringing"
+      notifBody: "Alarm ringing",
+      cal: "📅 Add alarms to phone calendar",
+      calHelp: "The file adds all active alarms to your calendar as repeating events with a reminder. After downloading, open the file and choose your calendar app.",
+      calNone: "No active alarms to add to the calendar.", calDone: "Calendar file ready ✓"
     }
   };
 
@@ -412,6 +430,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     $("test-sound").textContent = L.test; $("note-text").innerHTML = L.note;
     $("install-btn").textContent = L.install; if (!$("install-hint").hidden) $("install-hint").innerHTML = instHint(lang); $("list-title").textContent = L.list; $("add").textContent = L.add;
     $("empty").textContent = L.empty; $("back").textContent = L.back; $("reset").textContent = L.reset;
+    $("cal-btn").textContent = L.cal; $("cal-help").textContent = L.calHelp;
     $("l-time").textContent = L.lTime; $("l-type").textContent = L.lType; $("l-date").textContent = L.lDate;
     $("l-tasks").textContent = L.lTasks; $("h-tasks").textContent = L.hTasks; $("t-daily").textContent = L.daily;
     $("t-once").textContent = L.once; $("save").textContent = L.save; $("cancel").textContent = L.cancel; $("del").textContent = L.del;
@@ -522,6 +541,38 @@ document.getElementById("install-btn").addEventListener("click", function () {
   $("reset").onclick = function () {
     if (!confirm(t("confirmReset"))) return;
     alarms = C.defaults(Date.now()); snoozes = []; save(); saveSnoozes(); renderList();
+  };
+
+
+  /* ---------- export to phone calendar (.ics) ---------- */
+  function downloadIcs(blob, name) {
+    var url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = name; a.rel = "noopener"; document.body.appendChild(a); a.click();
+    setTimeout(function () { document.body.removeChild(a); URL.revokeObjectURL(url); }, 4000);
+  }
+  $("cal-btn").onclick = function () {
+    var current = load(KEY, null);
+    if (!Array.isArray(current)) current = C.defaults(Date.now());
+    var res = window.AlarmIcs.build(current, { now: new Date(), titleOf: titleOf });
+    if (!res.count) { toast(t("calNone")); return; }
+    var name = "clockify-alarms.ics", type = "text/calendar;charset=utf-8";
+    var blob = new Blob([res.text], { type: type });
+    var ua = navigator.userAgent || "";
+    var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var mobile = ios || /Android/i.test(ua);
+    // iOS Safari opens a downloaded .ics straight in "Add to Calendar", so download there; other phones try the share sheet.
+    if (mobile && !ios && typeof File === "function" && navigator.canShare) {
+      try {
+        var file = new File([res.text], name, { type: "text/calendar" });
+        if (navigator.canShare({ files: [file] })) {
+          navigator.share({ files: [file], title: t("title") }).then(function () { toast(t("calDone")); }, function (e) {
+            if (!e || e.name !== "AbortError") { downloadIcs(blob, name); toast(t("calDone")); }
+          });
+          return;
+        }
+      } catch (e) {}
+    }
+    downloadIcs(blob, name); toast(t("calDone"));
   };
 
   /* ---------- ringing ---------- */
