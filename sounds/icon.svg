@@ -12,5 +12,4 @@
     <rect x="304" y="196" width="30" height="120" rx="15"/>
     <rect x="356" y="236" width="30" height="40" rx="15"/>
   </g>
-  <path d="M110 330 Q 183 300 256 330 T 402 330" fill="none" stroke="#e9e1ff" stroke-width="10" stroke-linecap="round" opacity="0.55"/>
 </svg>
