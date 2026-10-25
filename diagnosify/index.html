@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2366">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="דיאגנוסיפיי">
+<meta name="description" content="דיאגנוסיפיי · בדיקות סינון עצמיות חינמיות. Diagnosify, free self-screening checks.">
+<script>/* theme before first paint: dark (default) / light */(function(){var d=document.documentElement,t="dark";try{t=localStorage.getItem("rg-diagnosify-theme")==="light"?"light":"dark";}catch(e){}d.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f4f7ff":"#0f2366");try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>דיאגנוסיפיי · Diagnosify</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{
+  --bg2:#071234; --card:rgba(255,255,255,.07); --card2:rgba(255,255,255,.12);
+  --ink:#fff; --ink2:#e6ecff; --mute:#b7c3e6; --dim:#8f9cc4;
+  --line:rgba(255,255,255,.13); --line2:rgba(255,255,255,.28);
+  --accent:#ffcf5a; --accentink:#0b1a4a; --gold:#ffd25a;
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 10px 30px rgba(0,0,0,.28);
+  --pagebg:radial-gradient(55% 38% at 100% 0%,rgba(255,207,90,.22),transparent 70%),radial-gradient(60% 40% at 0% 28%,rgba(90,150,255,.25),transparent 70%),radial-gradient(70% 50% at 100% 75%,rgba(64,120,255,.38),transparent 70%),linear-gradient(180deg,#14307e 0%,#0b1c55 50%,#071234 100%);
+  --sans:"Assistant","Heebo","Rubik","Segoe UI",system-ui,-apple-system,Roboto,"Noto Sans Hebrew",Arial,sans-serif;
+  color-scheme:dark;
+}
+html[data-theme=light]{
+  --bg2:#f4f7ff; --card:rgba(255,255,255,.75); --card2:rgba(255,255,255,.92);
+  --ink:#0d1e4f; --ink2:#1f326b; --mute:#4f5f8d; --dim:#7280a8;
+  --line:rgba(13,30,79,.1); --line2:rgba(13,30,79,.24);
+  --accent:#0f2366; --accentink:#fff; --gold:#c97a00;
+  --shadow:0 1px 2px rgba(13,30,79,.05),0 8px 22px rgba(13,30,79,.08);
+  --pagebg:radial-gradient(55% 38% at 100% 0%,rgba(255,215,110,.25),transparent 70%),radial-gradient(60% 40% at 0% 30%,rgba(255,215,110,.28),transparent 70%),radial-gradient(70% 50% at 100% 75%,rgba(110,150,255,.25),transparent 70%),linear-gradient(180deg,#eef3ff,#f4f7ff);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg2)}
+body{color:var(--ink);background:var(--pagebg) fixed,var(--bg2);font-family:var(--sans);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh;min-height:100dvh;overflow-x:hidden}
+.wrap{max-width:720px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:14px}
+.tools{display:inline-flex;align-items:center;gap:8px}
+a.back{color:var(--mute);text-decoration:none;padding:8px 2px;white-space:nowrap}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card);backdrop-filter:blur(8px)}
+.lang button{font:600 13px var(--sans);color:var(--mute);background:none;border:0;border-radius:999px;padding:7px 13px;cursor:pointer}
+.lang button[aria-pressed=true]{color:var(--accentink);background:var(--accent)}
+.themebtn{display:inline-flex;align-items:center;gap:6px;font:600 13px var(--sans);color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 12px;cursor:pointer;white-space:nowrap;backdrop-filter:blur(8px)}
+.themebtn svg{width:16px;height:16px;flex:none}
+:focus-visible{outline:3px solid rgba(255,207,90,.75);outline-offset:2px}
+
+.hero{display:flex;align-items:center;gap:14px;padding:22px 2px 4px}
+.hero img{width:66px;height:66px;border-radius:17px;box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 0 1px rgba(255,210,90,.25);flex:none}
+h1{font-weight:800;font-size:36px;line-height:1.15;margin:0;letter-spacing:.005em}
+.tagline{color:var(--gold);margin:2px 0 0;font-size:16.5px;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);border-radius:999px;padding:9px 16px;font:700 14px var(--sans);cursor:pointer;color:var(--ink2);background:var(--card)}
+.btn.primary{color:var(--accentink);background:var(--accent);border-color:transparent;box-shadow:0 6px 18px rgba(255,200,70,.25)}
+html[data-theme=light] .btn.primary{box-shadow:0 6px 18px rgba(15,35,102,.2)}
+.install{margin:14px 0 0}
+.install[hidden],.hint[hidden]{display:none}
+.hint{font-size:14px;color:var(--ink2);background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
+
+.secs{display:grid;gap:14px;margin-top:20px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px 16px 16px;box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.sec h2{display:flex;align-items:center;gap:11px;margin:0;font-size:21px;font-weight:800}
+.sec h2 .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:19px;flex:none;background:color-mix(in srgb,var(--c) 22%,transparent);border:1px solid color-mix(in srgb,var(--c) 45%,transparent)}
+.sec h2 .cnt{margin-inline-start:auto;font-size:13px;font-weight:700;color:var(--mute);background:var(--card2);border-radius:999px;padding:3px 10px}
+.soon{margin:12px 0 0;padding:14px;border:1.5px dashed var(--line2);border-radius:14px;color:var(--mute);text-align:center;font-weight:600;font-size:15px}
+.items{display:grid;gap:12px;margin-top:12px}
+.item{background:var(--card2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.item .body{padding:10px 13px 12px}
+.item .ttl{font-weight:700;font-size:16px}
+.item .nt{font-size:14px;color:var(--mute);margin-top:2px}
+.vid{position:relative;aspect-ratio:16/9;background:#000}
+.vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+a.lnk{display:flex;align-items:center;gap:12px;padding:12px 13px;color:var(--ink);text-decoration:none}
+a.lnk .pl{flex:none;width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:var(--accentink);font-size:16px}
+a.lnk .ar{margin-inline-start:auto;color:var(--mute)}
+blockquote.q{margin:0;padding:16px 16px 14px;border-inline-start:4px solid var(--gold)}
+blockquote.q p{margin:0;font-size:18px;font-weight:600;line-height:1.55}
+blockquote.q footer{margin-top:8px;font-size:14px;color:var(--mute)}
+.item img{display:block;width:100%;height:auto}
+.item audio{width:100%;display:block;margin-top:8px}
+.intro{color:var(--ink2);margin:14px 2px 0;font-size:16px}
+.checks{display:grid;gap:10px;margin-top:16px}
+.chk{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden}
+.chk>button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;cursor:pointer;font:700 17px var(--sans);color:var(--ink)}
+.chk>button:focus-visible{outline:3px solid rgba(255,207,90,.75);outline-offset:-3px}
+.chk .num{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--gold);background:rgba(255,207,90,.12);border:1px solid rgba(255,207,90,.4)}
+.chk .ttl{flex:1}
+.chk .chev{flex:none;color:var(--mute);transition:transform .2s;font-size:14px}
+.chk.open .chev{transform:rotate(180deg)}
+.chk .panel{padding:0 14px 14px}
+.chk .panel[hidden]{display:none}
+.chk .soon{margin:0}
+.disc{font-size:13.5px;color:var(--ink2);background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:22px;text-align:center}
+.note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
+footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
+@media (max-width:380px){h1{font-size:30px}.themebtn .tl{display:none}.lang button{padding:6px 10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" id="back" href="../"></a>
+    <div class="tools">
+      <button type="button" class="themebtn" id="theme-btn"><span class="ti"></span><span class="tl"></span></button>
+      <div class="lang" role="group" aria-label="Language / שפה">
+        <button type="button" id="lang-he" aria-pressed="true">עברית</button>
+        <button type="button" id="lang-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <img src="icon.svg" alt="" width="66" height="66">
+    <div>
+      <h1 id="title"></h1>
+      <p class="tagline" id="tagline"></p>
+    </div>
+  </div>
+  <div class="install" id="install-wrap" hidden>
+    <button type="button" class="btn primary" id="install-btn"></button>
+    <div class="hint" id="install-hint" hidden></div>
+  </div>
+
+  <p class="intro" id="intro"></p>
+  <main class="checks" id="checks"></main>
+  <p class="disc" id="disc"></p>
+  <footer class="f">© Ron Gershinsky</footer>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
