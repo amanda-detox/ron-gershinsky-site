@@ -377,15 +377,6 @@ function render() {
 
   var list = document.getElementById("list");
   list.innerHTML = "";
-  var games = document.createElement("li");
-  var link = document.createElement("a");
-  link.className = "card";
-  link.href = "relax/index.html";
-  link.target = "_blank";
-  link.rel = "noopener noreferrer";
-  link.textContent = t.games;
-  games.appendChild(link);
-  list.appendChild(games);
 
   topics.forEach(function (topic) {
     var li = document.createElement("li");
