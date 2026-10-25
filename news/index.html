@@ -67,9 +67,27 @@ h1{font-weight:800;font-size:34px;line-height:1.1;margin:0;letter-spacing:.005em
 .install[hidden],.hint[hidden]{display:none}
 .hint{font-size:14px;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-top:10px}
 
-.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 2px 10px;margin:6px -16px 0;padding-inline:16px;scrollbar-width:none;position:sticky;top:0;z-index:3;background:linear-gradient(var(--bg2),var(--bg2)) ;}
-html[data-theme=dark] .chips{background:rgba(6,17,43,.92);backdrop-filter:blur(8px)}
-html[data-theme=light] .chips{background:rgba(243,239,230,.94);backdrop-filter:blur(8px)}
+.chipbar{position:sticky;top:0;z-index:3;margin:6px -16px 0;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+html[data-theme=dark] .chipbar{background:rgba(10,8,20,.38)}
+html[data-theme=light] .chipbar{background:rgba(243,239,230,.94)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 10px;scrollbar-width:none;scroll-behavior:smooth;-webkit-user-select:none;user-select:none}
+.chips.dragging{scroll-behavior:auto;cursor:grabbing}
+.chips.dragging .chip{pointer-events:none}
+.arrow{position:absolute;top:0;bottom:0;width:58px;display:flex;align-items:center;border:0;padding:0 8px;cursor:pointer;z-index:2;background:none}
+.arrow[hidden]{display:none}
+.arrow span{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accentink);box-shadow:0 3px 12px rgba(0,0,0,.3);transition:transform .15s}
+.arrow:hover span{transform:scale(1.08)}
+.arrow svg{width:18px;height:18px}
+.arrow.prev{inset-inline-start:0;justify-content:flex-start}
+.arrow.next{inset-inline-end:0;justify-content:flex-end}
+html[dir=rtl] .arrow svg{transform:scaleX(-1)}
+html[data-theme=dark] .arrow.prev{background:linear-gradient(to var(--fade-s),rgba(14,10,24,0),rgba(14,10,24,.75))}
+html[data-theme=dark] .arrow.next{background:linear-gradient(to var(--fade-e),rgba(14,10,24,0),rgba(14,10,24,.75))}
+html[data-theme=light] .arrow.prev{background:linear-gradient(to var(--fade-s),rgba(243,239,230,0),rgba(243,239,230,.95))}
+html[data-theme=light] .arrow.next{background:linear-gradient(to var(--fade-e),rgba(243,239,230,0),rgba(243,239,230,.95))}
+html[dir=ltr]{--fade-s:left;--fade-e:right}
+html[dir=rtl]{--fade-s:right;--fade-e:left}
+@media (pointer:coarse){.arrow{display:none!important}}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;border:1px solid var(--line2);background:var(--chip);color:var(--ink2);border-radius:999px;padding:7px 13px;font:600 14px var(--sans);cursor:pointer;white-space:nowrap}
 .chip .n{font-weight:700;color:var(--dim);margin-inline-start:6px;font-size:12.5px}
@@ -106,7 +124,6 @@ html[data-theme=dark][data-bg="9"]{--pagebg:var(--bgi-9);--bg2:var(--bgc-9)}
 html[data-theme=dark][data-bg="10"]{--pagebg:var(--bgi-10);--bg2:var(--bgc-10)}
 html[data-theme=dark]{--card:rgba(12,10,24,.52);--card2:rgba(12,10,24,.62);--line:rgba(255,255,255,.14);--line2:rgba(255,255,255,.32);--chip:rgba(255,255,255,.08);--em:#ffd6a0;--mute:#d9d3e6;--dim:#b9b0cc;--ink2:#f1edf8}
 html[data-theme=dark] .card,html[data-theme=dark] .lang,html[data-theme=dark] .themebtn,html[data-theme=dark] .btn:not(.primary){-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%)}
-html[data-theme=dark] .chips{background:rgba(10,8,20,.38)!important}
 html[data-theme=dark] .card .meta a{color:#ffd6a0}
 html[data-theme=dark] :focus-visible{outline-color:rgba(255,214,160,.6)}
 /* picker */
@@ -130,7 +147,7 @@ html[data-theme=light] #bg-btn{display:none}
 .sw:focus-visible{outline:none}.sw:focus-visible .pv{outline:3px solid rgba(255,214,160,.8);outline-offset:2px}
 .sw .nm{display:block;margin-top:5px;line-height:1.25}
 @media (max-width:380px){.swatches{gap:7px}.sw{font-size:11px}}
-@media (max-width:380px){body{font-size:16px}h1{font-size:29px}.wrap{padding-left:12px;padding-right:12px}.chips{margin:6px -12px 0;padding-inline:12px}.themebtn .tl{display:none}.lang button{padding:6px 10px}}
+@media (max-width:380px){body{font-size:16px}h1{font-size:29px}.wrap{padding-left:12px;padding-right:12px}.chipbar{margin:6px -12px 0}.chips{padding-inline:12px}.themebtn .tl{display:none}.lang button{padding:6px 10px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -165,7 +182,7 @@ html[data-theme=light] #bg-btn{display:none}
     <div class="hint" id="install-hint" hidden></div>
   </div>
 
-  <nav class="chips" id="chips" aria-label="Topics"></nav>
+  <div class="chipbar"><button type="button" class="arrow prev" id="chip-prev" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></button><nav class="chips" id="chips" aria-label="Topics"></nav><button type="button" class="arrow next" id="chip-next" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></div>
   <main id="feed" aria-live="polite"></main>
   <p class="note" id="note"></p>
   <footer>© Ron Gershinsky</footer>

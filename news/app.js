@@ -19,7 +19,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
       bgTitle: "בחירת רקע", bgBtn: "בחירת רקע",
       bgs: ["זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
-      close: "סגירה",
+      close: "סגירה", prev: "נושאים קודמים", next: "נושאים נוספים",
       locale: "he-IL"
     },
     en: {
@@ -37,7 +37,7 @@
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
       bgTitle: "Choose background", bgBtn: "Choose background",
       bgs: ["Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
-      close: "Close",
+      close: "Close", prev: "Previous topics", next: "More topics",
       locale: "en-GB"
     }
   };
@@ -105,6 +105,7 @@
     $("note").textContent = t().note;
     $("bg-btn").setAttribute("aria-label", t().bgBtn); $("bg-btn").title = t().bgBtn;
     $("bg-title").textContent = t().bgTitle; $("bg-close").setAttribute("aria-label", t().close);
+    $("chip-prev").setAttribute("aria-label", t().prev); $("chip-next").setAttribute("aria-label", t().next);
     renderSwatches();
     applyTheme();
   }
@@ -145,6 +146,7 @@
       lastGroup = tp.group;
       chip(tp.id, tp[lang] || tp.he, tw.count[tp.id]);
     });
+    setTimeout(updateArrows, 0);
   }
 
   function card(it) {
@@ -210,6 +212,36 @@
     var b = e.target.closest && e.target.closest(".sw"); if (b) setBg(b.getAttribute("data-bg"));
   });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+
+  /* ----- chips row: arrows, wheel, drag (desktop) ----- */
+  function rtl() { return document.documentElement.dir === "rtl"; }
+  function chipPos() { var c = $("chips"); return { pos: Math.abs(c.scrollLeft), max: c.scrollWidth - c.clientWidth }; }
+  function updateArrows() {
+    var p = chipPos(), over = p.max > 4;
+    $("chip-prev").hidden = !over || p.pos <= 4;
+    $("chip-next").hidden = !over || p.pos >= p.max - 4;
+  }
+  function scrollChips(dir) { // dir: +1 toward the end, -1 toward the start
+    var c = $("chips"); c.scrollBy({ left: dir * (rtl() ? -1 : 1) * Math.max(160, c.clientWidth * 0.7), behavior: "smooth" });
+  }
+  $("chip-prev").onclick = function () { scrollChips(-1); };
+  $("chip-next").onclick = function () { scrollChips(1); };
+  $("chips").addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  $("chips").addEventListener("wheel", function (e) {
+    var c = $("chips"); if (c.scrollWidth <= c.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+    e.preventDefault(); c.style.scrollBehavior = "auto"; c.scrollLeft += (rtl() ? -1 : 1) * e.deltaY; c.style.scrollBehavior = "";
+  }, { passive: false });
+  (function () {
+    var c = $("chips"), down = false, moved = false, x0 = 0, s0 = 0;
+    c.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse" || e.button !== 0) return; down = true; moved = false; x0 = e.clientX; s0 = c.scrollLeft; });
+    window.addEventListener("pointermove", function (e) {
+      if (!down) return; var dx = e.clientX - x0;
+      if (!moved && Math.abs(dx) > 5) { moved = true; c.classList.add("dragging"); }
+      if (moved) c.scrollLeft = s0 - dx;
+    });
+    window.addEventListener("pointerup", function () { if (!down) return; down = false; setTimeout(function () { c.classList.remove("dragging"); }, 0); });
+  })();
 
   /* ----- events ----- */
   $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, lang); renderAll(); };
