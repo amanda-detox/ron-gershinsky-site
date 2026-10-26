@@ -23,6 +23,7 @@
   <header class="top">
     <a class="back" id="back" href="../"></a>
     <div class="tools">
+      <span data-rg-account style="display:inline-flex;min-width:0"></span>
       <button type="button" class="pill" id="bg-btn"></button>
       <button type="button" class="pill" id="theme-btn"><span class="ti"></span><span class="tl"></span></button>
       <div class="lang" role="group" aria-label="Language / שפה">
@@ -78,5 +79,7 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-balancify-theme", "rg-balancify-bg"]);</script>
 </body>
 </html>
