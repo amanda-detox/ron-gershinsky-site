@@ -70,13 +70,65 @@
   }
   function markRead(ids) {
     var ch = false;
-    ids.forEach(function (id) { if (id && !isRead(id)) { readSet[id] = 1; readList.push(id); ch = true; } });
-    if (ch) saveRead(); return ch;
+    ids.forEach(function (id) { if (id && !isRead(id)) { readSet[id] = 1; readList.push(id); noteChange(id, 1); ch = true; } });
+    if (ch) { saveRead(); cloudSoon(); } return ch;
   }
   function markUnread(id) {
     if (!isRead(id)) return; delete readSet[id];
-    readList = readList.filter(function (x) { return x !== id; }); saveRead();
+    readList = readList.filter(function (x) { return x !== id; }); noteChange(id, -1); saveRead(); cloudSoon();
   }
+
+  /* ----- cloud sync of the read state (only when signed in via ../shared/rg-account.js; otherwise nothing changes) -----
+     Cloud row (app "news", key "read"): { read: [ids], ch: { id: +time (marked read) / -time (marked unread) } }.
+     Merge = union of both read lists, then the newest explicit change per item wins (so "mark unread" survives a merge). */
+  var CH_KEY = "rg-news-readch", CH_CAP = 400;
+  var ACC = window.RGAccount || null, syncing = false, syncAgain = false, syncTimer = 0, lastPull = 0;
+  function loadCh() { var o = null; try { o = JSON.parse(get(CH_KEY) || "{}"); } catch (e) {} return o && typeof o === "object" && !Array.isArray(o) ? o : {}; }
+  function capCh(ch) {
+    var ids = Object.keys(ch); if (ids.length <= CH_CAP) return ch;
+    ids.sort(function (a, b) { return Math.abs(ch[b]) - Math.abs(ch[a]); });
+    var o = {}; ids.slice(0, CH_CAP).forEach(function (id) { o[id] = ch[id]; }); return o;
+  }
+  function noteChange(id, sign) { var ch = loadCh(); ch[id] = sign * Date.now(); set(CH_KEY, JSON.stringify(capCh(ch))); }
+  // pure merge (exported for tests): local + cloud -> { read: [...], ch: {...} }
+  function mergeRead(localRead, localCh, cloud) {
+    cloud = cloud && typeof cloud === "object" ? cloud : {};
+    var cRead = Array.isArray(cloud.read) ? cloud.read.filter(function (x) { return typeof x === "string"; }) : [];
+    var cCh = cloud.ch && typeof cloud.ch === "object" ? cloud.ch : {};
+    var ch = {}, k;
+    for (k in localCh) if (typeof localCh[k] === "number") ch[k] = localCh[k];
+    for (k in cCh) if (typeof cCh[k] === "number" && (!(k in ch) || Math.abs(cCh[k]) > Math.abs(ch[k]))) ch[k] = cCh[k];
+    ch = capCh(ch);
+    var seen = {}, out = [];
+    function add(id) { if (!seen[id] && !(ch[id] < 0)) { seen[id] = 1; out.push(id); } }
+    cRead.forEach(add); localRead.forEach(add);
+    for (k in ch) if (ch[k] > 0) add(k);
+    if (out.length > READ_CAP) out = out.slice(out.length - READ_CAP);
+    return { read: out, ch: ch };
+  }
+  function sameList(a, b) { if (a.length !== b.length) return false; var s = {}; a.forEach(function (x) { s[x] = 1; }); return b.every(function (x) { return s[x]; }); }
+  function sameCh(a, b) { var ka = Object.keys(a), kb = Object.keys(b); return ka.length === kb.length && ka.every(function (k) { return a[k] === b[k]; }); }
+  function cloudSync() {
+    if (!ACC || !ACC.user()) return;
+    if (syncing) { syncAgain = true; return; }
+    syncing = true; lastPull = Date.now();
+    ACC.get("news", "read").then(function (cloud) {
+      var localCh = loadCh(), m = mergeRead(readList, localCh, cloud);
+      var localChanged = !sameList(m.read, readList);
+      if (localChanged) {
+        readList = m.read; readSet = {}; readList.forEach(function (id) { readSet[id] = 1; });
+        set(READ_KEY, JSON.stringify(readList));
+        if (data) { renderChips(); renderFeed(); }
+      }
+      if (!sameCh(m.ch, localCh)) set(CH_KEY, JSON.stringify(m.ch));
+      var cRead = cloud && Array.isArray(cloud.read) ? cloud.read : null, cCh = cloud && cloud.ch && typeof cloud.ch === "object" ? cloud.ch : {};
+      if (!cRead || !sameList(m.read, cRead) || !sameCh(m.ch, cCh)) return ACC.set("news", "read", { read: m.read, ch: m.ch, at: Date.now() });
+    }).catch(function () {}).then(function () {
+      syncing = false; if (syncAgain) { syncAgain = false; cloudSync(); }
+    });
+  }
+  function cloudSoon() { if (!ACC || !ACC.user()) return; clearTimeout(syncTimer); syncTimer = setTimeout(cloudSync, 600); }
+  window.RGNewsSync = { merge: mergeRead }; // for tests
   function t() { return L[lang]; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function pick(o) { return (o && (o[lang] || o.he || o.en)) || {}; }
@@ -314,6 +366,8 @@
   // auto-reload: on open (boot), and whenever the app comes back to the foreground (at most every ~5 min)
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible" && Date.now() - lastFetch > RELOAD_MS) load();
+    if (document.visibilityState === "visible" && Date.now() - lastPull > 5000) cloudSync();
+    if (document.visibilityState === "hidden" && syncTimer) { clearTimeout(syncTimer); syncTimer = 0; cloudSync(); }
   });
   window.addEventListener("pageshow", function (e) { if (e.persisted && Date.now() - lastFetch > RELOAD_MS) load(); });
   window.addEventListener("online", function () { load(); });
@@ -335,6 +389,18 @@
   renderAll();
   updateInstall();
   load();
+  if (ACC) {
+    ACC.ready.then(cloudSync);
+    ACC.onChange(function (u) { if (u) cloudSync(); });
+    // language, theme, background and topic follow the account across devices
+    ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, TOPIC_KEY], function (c) {
+      if (LANG_KEY in c) lang = c[LANG_KEY] === "en" ? "en" : "he";
+      if (THEME_KEY in c) theme = c[THEME_KEY] === "light" ? "light" : "dark";
+      if (BG_KEY in c && /^([1-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
+      if (TOPIC_KEY in c && c[TOPIC_KEY]) topic = c[TOPIC_KEY];
+      renderAll(); return true;
+    });
+  }
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
   }

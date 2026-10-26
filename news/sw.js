@@ -1,7 +1,7 @@
 /* Offline cache for Updatify (עדכוניפיי). Scope: news/ only. */
-var CACHE = "rg-news-v7";
+var CACHE = "rg-news-v8";
 var FONT_CACHE = "rg-newsfonts-1"; // separate name so version bumps keep the fonts
-var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
+var FILES = ["./", "index.html", "app.js", "../shared/rg-account.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
@@ -27,7 +27,7 @@ self.addEventListener("fetch", function (e) {
     }));
     return;
   }
-  if (url.origin !== self.location.origin) return;
+  if (url.origin !== self.location.origin) return; // Appwrite API and every other cross-origin call: network only, never cached
   var isNews = /\/news\.json$/.test(url.pathname);
   var key = isNews ? new Request(url.origin + url.pathname) : e.request;
   e.respondWith(fetch(e.request, isNews ? { cache: "no-store" } : undefined).then(function (r) {
