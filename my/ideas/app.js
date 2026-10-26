@@ -1,7 +1,8 @@
-/* Ideas & Tasks (my/ideas/) — private, per-user, synced through RGAccount (Appwrite row app="myideas", key="items",
+/* Checklist (my/ideas/) — private, per-user, synced through RGAccount (Appwrite row app="myideas", key="items",
    readable/writable by the signed-in user only). Nothing personal is stored in the site's files.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, status?, order?, due?, done?, created, at, deleted?, seed? } } }
-     sec = which section the item belongs to ("ideas" | "tasks"; more sections can be added to SECTIONS later).
+     sec = which section the item belongs to ("ideas" | "tasks" | "goals"; more sections can be added to SECTIONS later).
+     goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
    Merge: per item id, the newer "at" wins; deletions are tombstones (deleted: true), pruned after 30 days.
    Offline-first: kept in localStorage per user (rg-myideas-v1:<user id>) and merged into the account copy on every sync.
    The first checklist item is added once, on the first successful sync of an account whose list was never seeded. */
@@ -10,13 +11,14 @@
   var APP = "myideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea" },
-    { id: "tasks", tab: "tabTasks", kind: "task" }
+    { id: "tasks", tab: "tabTasks", kind: "task" },
+    { id: "goals", tab: "tabGoals", kind: "goal" }
   ];
   var STATUSES = ["new", "dev", "done"], ST_LABEL = { "new": "stNew", dev: "stDev", done: "stDone" };
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
   var editing = null, rendering = false;
-  var tab = lsGet("rg-myideas-tab") || "ideas", sort = lsGet("rg-myideas-sort") || "manual", doneOpen = false;
+  var tab = lsGet("rg-myideas-tab") || "ideas", sort = lsGet("rg-myideas-sort") || "manual", doneOpen = {};
   if (!SECTIONS.some(function (s) { return s.id === tab; })) tab = SECTIONS[0].id;
 
   function $(id) { return document.getElementById(id); }
@@ -111,7 +113,7 @@
     text = clean(text, 200); if (!text) return;
     var id = newId(), at = now(), x = { id: id, sec: sec, text: text, created: at, at: at };
     if (sec === "ideas") { x.status = "new"; x.order = live("ideas").reduce(function (m, y) { return Math.max(m, y.order || 0); }, 0) + 1; }
-    else x.done = false;
+    else if (sec === "tasks") x.done = false;
     for (var k in extra || {}) if (extra[k]) x[k] = extra[k];
     put(x);
   }
@@ -148,6 +150,17 @@
       return (a.created || 0) - (b.created || 0);
     });
   }
+  function byDue(a, b) {
+    if (!!a.due !== !!b.due) return a.due ? -1 : 1;
+    if (a.due && b.due && a.due !== b.due) return a.due < b.due ? -1 : 1;
+    return (a.created || 0) - (b.created || 0);
+  }
+  function prog(x) { var v = Math.round(+x.progress || 0); return v < 0 ? 0 : v > 100 ? 100 : v; }
+  function goalStep(v) { return v >= 100 ? "gDone" : v > 0 ? "gDoing" : "gNot"; }
+  function sortedGoals(achieved) {
+    var l = live("goals").filter(function (x) { return (prog(x) >= 100) === achieved; });
+    return achieved ? l.sort(function (a, b) { return (b.at || 0) - (a.at || 0); }) : l.sort(byDue);
+  }
   function dueText(due) {
     var td = today(), tm = new Date(); tm.setDate(tm.getDate() + 1);
     var tms = tm.getFullYear() + "-" + String(tm.getMonth() + 1).padStart(2, "0") + "-" + String(tm.getDate()).padStart(2, "0");
@@ -165,6 +178,12 @@
       h += '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + '</textarea>' +
         '<div class="row"><label>' + esc(t("stLabel")) + ' <select class="e-status">' + STATUSES.map(function (s) {
           return '<option value="' + s + '"' + ((x.status || "new") === s ? " selected" : "") + ">" + esc(t(ST_LABEL[s])) + "</option>"; }).join("") + "</select></label></div>";
+    } else if (x.sec === "goals") {
+      var v = prog(x);
+      h += '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + '</textarea>' +
+        '<div class="row"><label>' + esc(t("targetShort")) + ' <input type="date" class="e-due" value="' + esc(x.due || "") + '"></label></div>' +
+        '<div class="prow"><label for="pr-' + esc(x.id) + '">' + esc(t("progress")) + '</label><input type="range" class="e-prog" id="pr-' + esc(x.id) + '" min="0" max="100" step="5" value="' + v + '"><output class="e-out">' + v + '%</output></div>' +
+        '<div class="row steps">' + [[0, "gNot"], [50, "gDoing"], [100, "gDone"]].map(function (o) { return '<button type="button" class="btn sm" data-a="step" data-v="' + o[0] + '">' + esc(t(o[1])) + "</button>"; }).join("") + "</div>";
     } else {
       h += '<div class="row"><label>' + esc(t("dueShort")) + ' <input type="date" class="e-due" value="' + esc(x.due || "") + '"></label></div>';
     }
@@ -185,6 +204,24 @@
     return '<li data-id="' + esc(x.id) + '"' + (x.done ? ' class="done"' : "") + '><button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + label(x)) + '"><i aria-hidden="true">✓</i></button>' +
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(label(x)) + "</span>" + (x.due ? '<span class="due' + (late ? " late" : "") + '">📅 ' + esc(dueText(x.due)) + "</span>" : "") + "</div></li>";
   }
+  function goalRow(x) {
+    if (editing === x.id) return '<li data-id="' + esc(x.id) + '" class="goal">' + editor(x) + "</li>";
+    var v = prog(x), got = v >= 100, late = x.due && !got && x.due < today();
+    return '<li data-id="' + esc(x.id) + '" class="goal' + (got ? " done" : "") + '"><button type="button" class="chk" data-a="achieve" aria-pressed="' + got + '" aria-label="' + esc((got ? t("unachieve") : t("achieve")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(x.text) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") +
+      (x.due ? '<span class="due' + (late ? " late" : "") + '">🎯 ' + esc(dueText(x.due)) + "</span>" : "") +
+      '<span class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + v + '" aria-label="' + esc(t("progress")) + '"><i style="width:' + v + '%"></i></span><span class="plabel">' + v + "% · " + esc(t(goalStep(v))) + "</span></div></li>";
+  }
+  function panelGoals() {
+    var act = sortedGoals(false), got = sortedGoals(true);
+    return '<form class="addform" data-add="goals" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="next" placeholder="' + esc(t("phGoal")) + '" aria-label="' + esc(t("phGoal")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
+      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div>' +
+      '<div class="addextra"><label for="add-target">' + esc(t("target")) + '</label><input type="date" id="add-target" name="due"></div></form>' +
+      (act.length ? '<div class="card listcard"><ul class="list" id="goals-active">' + act.map(goalRow).join("") + "</ul></div>"
+        : '<div class="card empty"><p>' + esc(t(got.length ? "allGoals" : "emptyGoals")) + "</p></div>") +
+      (got.length ? '<details class="donebox" data-sec="goals"' + (doneOpen.goals ? " open" : "") + '><summary>' + esc(t("goalsDone")) + " (" + got.length + ")</summary>" +
+        '<div class="card listcard"><ul class="list" id="goals-done">' + got.map(goalRow).join("") + "</ul></div></details>" : "");
+  }
   function panelIdeas() {
     var l = sortedIdeas();
     return '<form class="addform" data-add="ideas" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="next" placeholder="' + esc(t("phIdea")) + '" aria-label="' + esc(t("phIdea")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
@@ -200,7 +237,7 @@
       '<div class="addextra"><label for="add-due">' + esc(t("due")) + '</label><input type="date" id="add-due" name="due"></div></form>' +
       (act.length ? '<div class="card listcard"><ul class="list" id="tasks-active">' + act.map(taskRow).join("") + "</ul></div>"
         : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyTasks")) + "</p></div>") +
-      (done.length ? '<details class="donebox"' + (doneOpen ? " open" : "") + '><summary>' + esc(t("doneHead")) + " (" + done.length + ')<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
+      (done.length ? '<details class="donebox" data-sec="tasks"' + (doneOpen.tasks ? " open" : "") + '><summary>' + esc(t("doneHead")) + " (" + done.length + ')<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
         '<div class="card listcard"><ul class="list" id="tasks-done">' + done.map(taskRow).join("") + "</ul></div></details>" : "");
   }
   function render() {
@@ -214,10 +251,10 @@
     if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea,select"), function (e) { return e.value; });
     rendering = true;
     tabs.innerHTML = SECTIONS.map(function (s) {
-      var n = s.id === "tasks" ? sortedTasks(false).length : live(s.id).length;
+      var n = s.id === "tasks" ? sortedTasks(false).length : s.id === "goals" ? sortedGoals(false).length : live(s.id).length;
       return '<button type="button" class="tab" role="tab" data-tab="' + s.id + '" aria-selected="' + (tab === s.id) + '">' + esc(t(s.tab)) + (n ? '<span class="n">' + n + "</span>" : "") + "</button>";
     }).join("");
-    panels.innerHTML = '<section role="tabpanel" data-panel="' + tab + '">' + (tab === "ideas" ? panelIdeas() : panelTasks()) + "</section>";
+    panels.innerHTML = '<section role="tabpanel" data-panel="' + tab + '">' + (tab === "ideas" ? panelIdeas() : tab === "goals" ? panelGoals() : panelTasks()) + "</section>";
     document.querySelectorAll(".addform input").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
     if (editing) {
@@ -236,7 +273,13 @@
     var p = {};
     if (text !== label(x)) { p.text = text; p.seed = null; } // once edited, the first item keeps its own text
     if (x.sec === "ideas") { var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt; var st = ed.querySelector(".e-status").value; if (st !== (x.status || "new")) p.status = st; }
-    else { var du = ed.querySelector(".e-due").value || ""; if (du !== (x.due || "")) p.due = du; }
+    else {
+      var du = ed.querySelector(".e-due").value || ""; if (du !== (x.due || "")) p.due = du;
+      if (x.sec === "goals") {
+        var gn = clean(ed.querySelector(".e-note").value, 500); if (gn !== (x.note || "")) p.note = gn;
+        var pv = Math.max(0, Math.min(100, parseInt(ed.querySelector(".e-prog").value, 10) || 0)); if (pv !== prog(x)) { p.progress = pv || null; p.prev = null; }
+      }
+    }
     if (Object.keys(p).length) { upd(id, p); changed(); return; }
     render();
   }
@@ -254,13 +297,14 @@
     main.addEventListener("submit", function (e) {
       var f = e.target.closest("[data-add]"); if (!f) return; e.preventDefault();
       var sec = f.getAttribute("data-add"), ti = f.querySelector('[name="text"]'); if (!clean(ti.value, 200)) { ti.focus(); return; }
-      var ex = {}; if (sec === "ideas") ex.note = clean(f.querySelector('[name="note"]').value, 500); else ex.due = f.querySelector('[name="due"]').value || "";
+      var ex = {}, nf = f.querySelector('[name="note"]'), df = f.querySelector('[name="due"]');
+      if (nf) ex.note = clean(nf.value, 500); if (df) ex.due = df.value || "";
       add(sec, ti.value, ex); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
       changed(); var n = document.querySelector('.addform[data-add="' + sec + '"] [name="text"]'); if (n) n.focus();
     });
     main.addEventListener("keydown", function (e) {
       var f = e.target.closest && e.target.closest(".addform");
-      if (f && e.key === "Enter" && e.target.name === "text" && f.getAttribute("data-add") === "ideas" && !e.isComposing) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
+      if (f && e.key === "Enter" && e.target.name === "text" && f.getAttribute("data-add") !== "tasks" && !e.isComposing) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
       if (e.target.classList && e.target.classList.contains("body") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.target.click(); }
       var ed = e.target.closest && e.target.closest("[data-ed]");
       if (ed) {
@@ -271,7 +315,10 @@
     main.addEventListener("change", function (e) {
       if (e.target.hasAttribute && e.target.hasAttribute("data-sort")) { sort = e.target.value; lsSet("rg-myideas-sort", sort); render(); }
     });
-    main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox") && !rendering) doneOpen = e.target.open; }, true);
+    main.addEventListener("input", function (e) {
+      if (e.target.classList && e.target.classList.contains("e-prog")) { var o = e.target.parentNode.querySelector(".e-out"); if (o) o.textContent = e.target.value + "%"; }
+    });
+    main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
     main.addEventListener("click", function (e) {
       var b = e.target.closest("[data-a]"); if (!b) return;
       var a = b.getAttribute("data-a");
@@ -281,6 +328,8 @@
         return;
       }
       var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
+      if (a === "step") { var ed = b.closest("[data-ed]"), r = ed && ed.querySelector(".e-prog"); if (r) { r.value = b.getAttribute("data-v"); r.dispatchEvent(new Event("input", { bubbles: true })); } return; }
+      if (a === "achieve") { var v = prog(x); if (v >= 100) upd(id, { progress: (x.prev && x.prev < 100) ? x.prev : null, prev: null }); else upd(id, { progress: 100, prev: v || null }); changed(); return; }
       if (a === "toggle") { upd(id, { done: !x.done }); changed(); }
       else if (a === "cycle") { upd(id, { status: STATUSES[(STATUSES.indexOf(x.status || "new") + 1) % STATUSES.length] }); changed(); }
       else if (a === "up" || a === "down") { move(id, a === "up" ? -1 : 1); changed(); }

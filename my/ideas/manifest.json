@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "רעיונות ומשימות · Ideas & Tasks",
-  "short_name": "רעיונות ומשימות",
-  "description": "רעיונות לפיתוח וצ'קליסט פרטיים, שמורים בחשבון שלך · Private ideas to develop and a checklist, saved in your account",
+  "name": "צ'קליסט · Checklist",
+  "short_name": "צ'קליסט",
+  "description": "רעיונות לפיתוח, משימות ויעדים פרטיים, שמורים בחשבון שלך · Private ideas to develop, tasks and goals, saved in your account",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

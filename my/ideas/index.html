@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a1a3f">
 <meta name="robots" content="noindex">
-<title>רעיונות ומשימות</title>
+<title>צ'קליסט</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="רעיונות ומשימות">
+<meta name="apple-mobile-web-app-title" content="צ'קליסט">
 <script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
 <link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../shared/fonts/heebo.css">
@@ -80,6 +80,17 @@
   html[dir="rtl"] details.donebox > summary::before { content: "◂"; }
   details.donebox[open] > summary::before { transform: rotate(90deg); }
   html[dir="rtl"] details.donebox[open] > summary::before { transform: rotate(-90deg); }
+  .pbar { display: flex; height: 8px; margin-top: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .pbar i { flex: none; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--accent)); }
+  html[dir="rtl"] .pbar i { margin-inline-start: 0; background: linear-gradient(270deg, var(--blue), var(--accent)); }
+  .plabel { display: block; margin-top: 4px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .goal.done .pbar i { background: var(--accent); }
+  .prow { display: flex; align-items: center; gap: 10px; }
+  .prow label { color: var(--muted); font-size: 13.5px; }
+  .prow input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); height: 30px; }
+  .prow output { min-width: 3.2em; text-align: end; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .btn.sm { height: 34px; padding: 0 12px; font-size: 13.5px; }
+  @media (max-width: 420px) { .tab { padding: 0 10px; font-size: 14.5px; } .tabs { gap: 2px; } }
   .clear { margin-inline-start: auto; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13px; font-weight: 600; }
 </style>
 <script src="../../shared/rg-bg.js" data-app="myideas" data-slot=".topbar .tools" data-before="#theme-btn"></script>
@@ -118,25 +129,31 @@
 <script>
 window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "רעיונות ומשימות", title: "רעיונות ומשימות", sub: "הרעיונות והצ'קליסט שלך, שמורים בחשבון – רק אתה רואה אותם",
-        tabIdeas: "רעיונות לפיתוח", tabTasks: "צ'קליסט",
+  he: { doc: "צ'קליסט", title: "צ'קליסט", sub: "הרעיונות, המשימות והיעדים שלך, שמורים בחשבון – רק אתה רואה אותם",
+        tabIdeas: "רעיונות לפיתוח", tabTasks: "לבל אפ", tabGoals: "יעדים",
+        phGoal: "איזה יעד תרצה להשיג?", target: "תאריך יעד (לא חובה)", targetShort: "תאריך יעד", progress: "התקדמות",
+        gNot: "לא התחיל", gDoing: "בתהליך", gDone: "הושג", achieve: "סמן כהושג", unachieve: "החזר ליעדים פתוחים",
+        emptyGoals: "עוד אין יעדים. כתוב למעלה את היעד הראשון שלך.", allGoals: "כל הכבוד, השגת את כל היעדים! 🎯", goalsDone: "הושגו",
         phIdea: "איזו אפליקציה תרצה לפתח?", phNote: "הערה קצרה (לא חובה)", phTask: "מה צריך לעשות?", add: "הוסף", due: "תאריך יעד (לא חובה)", dueShort: "תאריך יעד", note: "הערה",
         stNew: "רעיון", stDev: "בפיתוח", stDone: "הושלם", stLabel: "סטטוס", stCycle: "שינוי סטטוס",
         sortLabel: "מיון", sortManual: "הסדר שלי", sortNew: "החדשים קודם", sortAbc: "לפי שם", sortStatus: "לפי סטטוס",
         up: "הזז למעלה", down: "הזז למטה", ideas: "רעיונות", tasks: "פריטים",
-        emptyIdeas: "עוד אין רעיונות. כתוב למעלה את הרעיון הראשון שלך.", emptyTasks: "הצ'קליסט ריק. הוסף למעלה את הדבר הבא שתרצה לעשות.", allDone: "כל הכבוד, סיימת הכול! ✓",
+        emptyIdeas: "עוד אין רעיונות. כתוב למעלה את הרעיון הראשון שלך.", emptyTasks: "אין משימות. הוסף למעלה את הדבר הבא שתרצה לעשות.", allDone: "כל הכבוד, סיימת הכול! ✓",
         doneHead: "בוצעו", clearDone: "נקה שבוצעו", confirmClear: "למחוק את כל הפריטים שבוצעו?",
         check: "סמן כבוצע", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
         confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
         seedTask: "לבקר במרקטפלייס בוטים" },
-  en: { doc: "Ideas & Tasks", title: "Ideas & Tasks", sub: "Your ideas and checklist, saved in your account – only you can see them",
-        tabIdeas: "Ideas to develop", tabTasks: "Checklist",
+  en: { doc: "Checklist", title: "Checklist", sub: "Your ideas, tasks and goals, saved in your account – only you can see them",
+        tabIdeas: "Ideas to develop", tabTasks: "Level Up", tabGoals: "Goals",
+        phGoal: "What goal do you want to reach?", target: "Target date (optional)", targetShort: "Target date", progress: "Progress",
+        gNot: "Not started", gDoing: "In progress", gDone: "Achieved", achieve: "Mark as achieved", unachieve: "Back to open goals",
+        emptyGoals: "No goals yet. Write your first one above.", allGoals: "Well done, you've reached all your goals! 🎯", goalsDone: "Achieved",
         phIdea: "Which app would you like to build?", phNote: "Short note (optional)", phTask: "What needs doing?", add: "Add", due: "Due date (optional)", dueShort: "Due date", note: "Note",
         stNew: "Idea", stDev: "In development", stDone: "Done", stLabel: "Status", stCycle: "Change status",
         sortLabel: "Sort", sortManual: "My order", sortNew: "Newest first", sortAbc: "By name", sortStatus: "By status",
         up: "Move up", down: "Move down", ideas: "ideas", tasks: "items",
-        emptyIdeas: "No ideas yet. Write your first one above.", emptyTasks: "The checklist is empty. Add the next thing you want to do above.", allDone: "Well done, everything is checked off! ✓",
+        emptyIdeas: "No ideas yet. Write your first one above.", emptyTasks: "No tasks. Add the next thing you want to do above.", allDone: "Well done, everything is checked off! ✓",
         doneHead: "Done", clearDone: "Clear done", confirmClear: "Delete all the done items?",
         check: "Mark as done", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
         confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
