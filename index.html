@@ -75,6 +75,7 @@
     color: var(--ink);
     font-size: 1.875rem;
     font-weight: 600;
+    object-fit: cover;
   }
   h1 { margin: 1rem 0 0; font-size: 1.875rem; font-weight: 700; text-wrap: balance; }
   .bio { margin: 0.25rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
@@ -191,7 +192,7 @@
     <button type="button" id="he" aria-pressed="true">עברית</button>
     <button type="button" id="en" aria-pressed="false">English</button>
   </div>
-  <div class="mark" id="mark">רג</div>
+  <img class="mark" id="mark" src="assets/avatar.jpg" alt="רון גרשינסקי" width="120" height="120">
   <h1 id="name">רון גרשינסקי</h1>
   <p class="bio" id="bio"></p>
   <div class="install-wrap" id="install-wrap">
@@ -354,7 +355,7 @@ function render() {
   document.title = t.title;
   document.getElementById("he").setAttribute("aria-pressed", he ? "true" : "false");
   document.getElementById("en").setAttribute("aria-pressed", he ? "false" : "true");
-  text("mark", t.mark);
+  document.getElementById("mark").alt = t.name;
   text("name", t.name);
   text("bio", t.bio);
   text("wait-title", t.waitlistTitle);
