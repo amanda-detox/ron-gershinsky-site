@@ -12,6 +12,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="רשימת קניות">
 <script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../../shared/rg-site.css">
 <link rel="stylesheet" href="../common.css">
 <style>
   .addform { display: flex; gap: 8px; margin-top: 16px; }
@@ -45,6 +48,7 @@
   html[data-theme="light"] .suggest { color: var(--blue); }
   .count { color: var(--faint); font-size: 13px; margin-inline-start: auto; }
 </style>
+<script src="../../shared/rg-bg.js" data-app="my" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
 <body>
 <div class="wrap">
@@ -60,7 +64,6 @@
     <img src="icon-192.png" alt="" width="56" height="56">
     <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
   </div>
-  <div class="install-wrap" id="install-wrap"><button type="button" class="install" id="install-btn" data-i18n="install"></button><div class="hint" id="install-hint" hidden></div></div>
 
   <section class="card gate" data-when="out" hidden>
     <div class="lock" aria-hidden="true">🔒</div>
@@ -83,6 +86,7 @@
     </div>
   </main>
   <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
 </div>
 <script>
