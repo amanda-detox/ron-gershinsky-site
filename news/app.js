@@ -275,10 +275,7 @@
   $("feed").addEventListener("click", function (e) {
     var el = e.target.closest && e.target.closest("[data-act], a.src"); if (!el) return;
     var c = el.closest(".card"), act = el.getAttribute("data-act");
-    if (el.classList.contains("src")) { // opening the source counts as read; let the link open normally
-      if (c && markRead([c.getAttribute("data-id")])) setTimeout(function () { afterMark([c]); }, 150);
-      return;
-    }
+    if (el.classList.contains("src")) return; // opening the source doesn't mark it read; only the read button does
     if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
     if (act === "read" && c) { markRead([c.getAttribute("data-id")]); afterMark([c]); }
     else if (act === "unread" && c) { markUnread(c.getAttribute("data-id")); renderChips(); renderFeed(); }
@@ -355,8 +352,8 @@
     $("rd-sheet").hidden = true; document.documentElement.classList.remove("noscroll");
     var id = readerId; readerId = null;
     var c = id && $("feed").querySelector('.card[data-id="' + id.replace(/"/g, "") + '"]');
-    if (c && markRead([id])) afterMark([c]); // reading it in full counts as read, like opening the source did
-    else if (readerFrom && readerFrom.focus) readerFrom.focus();
+    // items are marked read only manually, via the "read" button
+    if (readerFrom && readerFrom.focus) readerFrom.focus();
   }
   $("rd-close").onclick = closeReader;
   $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
