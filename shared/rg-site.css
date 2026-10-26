@@ -1,0 +1,55 @@
+/* rg-site.css: rules shared by every page of the site (font + the single install button). Linked right after shared/fonts/heebo.css. */
+/* Site-wide font: Heebo everywhere (body, headings, form controls), overriding each app's own font variables */
+:root, html[lang] { --sans: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important; --serif: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important; }
+html body, html[dir] body { font-family: "Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important; }
+h1, h2, h3, h4, h5, h6, button, input, select, textarea, optgroup { font-family: inherit !important; }
+
+/* Install to home screen: ONE button per app, at the bottom (just above the footer), same look everywhere. Blue + gold. */
+.rg-install-wrap { position: relative; z-index: 1; text-align: center; margin: 26px auto 10px; max-width: 520px; }
+.rg-install-wrap[hidden], .rg-install[hidden] { display: none !important; }
+.rg-install { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 22px; border-radius: 999px; cursor: pointer;
+  font: 600 15px/1.2 "Heebo", system-ui, sans-serif; letter-spacing: 0; text-transform: none; white-space: nowrap;
+  color: #fff6dc; background: linear-gradient(180deg, #1d4fb8, #143a8c); border: 1px solid rgba(227, 189, 91, 0.75); box-shadow: 0 4px 14px rgba(8, 22, 60, 0.28); }
+.rg-install:hover { filter: brightness(1.08); }
+.rg-install:focus-visible { outline: 3px solid rgba(227, 189, 91, 0.7); outline-offset: 3px; }
+html[data-theme="light"] .rg-install { color: #0b2a6b; background: #fff8e6; border-color: rgba(184, 137, 43, 0.75); box-shadow: 0 2px 10px rgba(11, 31, 77, 0.1); }
+.rg-install-hint { margin: 12px auto 0; max-width: 420px; text-align: start; font-size: 14px; line-height: 1.55; padding: 10px 14px; border-radius: 12px;
+  color: #eef2ff; background: rgba(11, 26, 63, 0.82); border: 1px solid rgba(227, 189, 91, 0.35); }
+html[data-theme="light"] .rg-install-hint { color: #0b1f4d; background: rgba(255, 253, 248, 0.95); border-color: rgba(184, 137, 43, 0.4); }
+.rg-install-hint ol, .rg-install-hint ul { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; }
+.rg-install-hint li { margin: 0.15rem 0; }
+.rg-install-hint b { color: inherit; }
+
+/* Top bar: every control (back to site, account, background, light/night, language) in ONE row on phones (375px and up).
+   App headers use header.top (+ .tools/.lang); Clockify uses .top > .langs; Relaxify/Soundify use .toprow. */
+@media (max-width: 480px) {
+  header.top { flex-wrap: nowrap !important; gap: 6px !important; row-gap: 0 !important; }
+  header.top a.back { flex: none; display: inline-flex !important; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0 !important; font-size: 0 !important; border-radius: 50%; border: 1px solid color-mix(in srgb, currentColor 35%, transparent) !important; text-shadow: none; }
+  header.top a.back::before { content: ""; width: 18px; height: 18px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-7 9 7'/%3E%3Cpath d='M5 10v10h5v-6h4v6h5V10'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 11l9-7 9 7'/%3E%3Cpath d='M5 10v10h5v-6h4v6h5V10'/%3E%3C/svg%3E") center / contain no-repeat; }
+  header.top .tools { flex: 0 1 auto !important; min-width: 0; gap: 5px !important; margin-inline-start: auto; flex-wrap: nowrap !important; }
+  header.top .tools > * { flex: none; }
+  header.top .tools > [data-rg-account], header.top .tools > .acct { flex: 0 1 auto !important; min-width: 0; }
+  header.top .rgacc-btn, .top .rgacc-btn, .toprow .rgacc-btn { max-width: 100px; padding: 7px 9px; }
+  header.top .themebtn, header.top #theme-btn { width: 36px; height: 36px; min-height: 0; padding: 0 !important; justify-content: center; }
+  header.top #theme-btn .tl { display: none !important; }
+  header.top .iconbtn, header.top .rgbg-btn, .top .rgbg-btn, .toprow .rgbg-btn { width: 36px; height: 36px; }
+  /* language: short labels (עב / EN) so the row fits */
+  #lang-he, #lang-en, .top .langs #he, .top .langs #en { font-size: 0 !important; }
+  #lang-he::after, .top .langs #he::after { content: "עב"; font-size: 13px; }
+  #lang-en::after, .top .langs #en::after { content: "EN"; font-size: 13px; }
+  header.top .lang button { padding: 6px 10px !important; }
+  /* Clockify (clock/, clockify/) */
+  .top { flex-wrap: nowrap !important; gap: 6px !important; }
+  .top > .langs { flex: none; gap: 4px !important; }
+  .top > .langs .pill { min-height: 36px; padding: 0 10px; }
+  .top > span { flex: 0 1 auto !important; min-width: 0; flex-wrap: nowrap !important; gap: 5px !important; }
+  .top > span > * { flex: none; }
+  .top > span > [data-rg-account] { flex: 0 1 auto !important; min-width: 0; }
+  .top #test-sound { font-size: 0 !important; width: 36px; min-height: 36px; padding: 0; justify-content: center; }
+  .top #test-sound::before { content: "\1F50A"; font-size: 16px; }
+}
+/* Relaxify / Soundify: language + account + background + light/night in one centered row */
+.toprow { display: flex; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 6px; margin: 0 0 20px; }
+.toprow .lang { margin: 0 !important; flex: none; }
+.toprow > [data-rg-account] { flex: 0 1 auto; min-width: 0; display: inline-flex; }
+.toprow > * { flex: none; }
