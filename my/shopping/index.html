@@ -17,6 +17,12 @@
 <link rel="stylesheet" href="../../shared/rg-site.css">
 <link rel="stylesheet" href="../common.css">
 <style>
+  .tabs { display: flex; gap: 6px; margin-top: 16px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; }
+  .tab:hover { color: var(--fg); }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .tab .n { font-weight: 600; opacity: .8; font-size: 13px; margin-inline-start: 4px; }
   .addform { display: flex; gap: 8px; margin-top: 16px; }
   .addform input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
   .addform input:focus { border-color: var(--accent); }
@@ -73,12 +79,13 @@
   </section>
 
   <main data-when="in" hidden>
+    <nav class="tabs" id="tabs" role="tablist"></nav>
     <form class="addform" id="add-form" autocomplete="off">
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
       <button type="submit" data-i18n="add"></button>
     </form>
     <div class="status" id="status" role="status" aria-live="polite"></div>
-    <div class="card empty" id="empty" hidden><p data-i18n="empty"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
+    <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
     <div class="card listcard" id="active-card"><ul class="list" id="active"></ul></div>
     <div id="done-wrap" hidden>
       <div class="donehead"><h2 id="done-h"></h2><button type="button" class="clear" id="clear" data-i18n="clear"></button></div>
@@ -93,9 +100,11 @@
 window.RGMY_SW = "../sw.js";
 window.RGMY_STRINGS = {
   he: { doc: "רשימת קניות", title: "רשימת קניות", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
+        tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נקנו", check: "סמן כנקנה", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים" },
   en: { doc: "Shopping list", title: "Shopping list", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
+        tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Bought", check: "Mark as bought", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items" }
 };

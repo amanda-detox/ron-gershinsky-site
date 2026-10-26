@@ -1,12 +1,15 @@
 /* Shopping list (my/shopping/) — private, per-user, live-synced through RGAccount (Appwrite row app="shopping", key="items",
    readable/writable by the signed-in user only).
-   Model: { v: 1, items: { <id>: { id, text, done, created, at, deleted? } } }
+   Model: { v: 1, items: { <id>: { id, text, done, created, at, list?, deleted? } } }
+   Tabs: "list" names the tab an item belongs to ("tea" = Tea tab). Items without "list" (all items saved before tabs existed)
+   belong to the main shopping tab, so existing data needs no migration and nothing is lost.
    Merge: per item id, the newer "at" wins (last write wins per item); deletions are tombstones (deleted: true), pruned after 30 days.
    Offline-first: everything is kept in localStorage per user and merged into the cloud copy on every sync. */
 (function () {
   "use strict";
   var APP = "shopping", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
   var SUGGESTED = ["אבקת שוקו", "ממרח שוקולד נוטלה", "חלב עמיד", "רביולי גבינות", "גבינה עם שום שמיר למריחה"];
+  var LISTS = [{ id: "main", tab: "tabMain", ph: "ph", empty: "empty" }, { id: "tea", tab: "tabTea", ph: "phTea", empty: "emptyTea" }];
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, pending = false, busy = false, again = false, offline = false, lastT = 0, editing = null, soonT = 0, rendering = false;
 
@@ -16,6 +19,10 @@
   function jparse(s, d) { try { var v = JSON.parse(s); return v == null ? d : v; } catch (e) { return d; } }
   function cacheKey(id) { return "rg-my-shopping:" + id; }
   function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
+  var tab = lsGet("rg-my-shopping-tab") || "main";
+  if (!LISTS.some(function (l) { return l.id === tab; })) tab = "main";
+  function listOf(x) { return x.list === "tea" ? "tea" : "main"; } // unknown/missing list -> main tab
+  function curList() { for (var i = 0; i < LISTS.length; i++) if (LISTS[i].id === tab) return LISTS[i]; return LISTS[0]; }
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 8); }
 
   /* ---------- local cache ---------- */
@@ -93,6 +100,7 @@
   function add(text) {
     text = String(text || "").replace(/\s+/g, " ").trim().slice(0, 200); if (!text) return;
     var id = newId(), at = now(); items[id] = { id: id, text: text, done: false, created: at, at: at };
+    if (tab !== "main") items[id].list = tab;
   }
   function upd(id, patch) { var x = items[id]; if (!x || x.deleted) return; var y = {}; for (var k in x) y[k] = x[k]; for (k in patch) y[k] = patch[k]; y.at = now(); items[id] = y; }
   function del(id) { var x = items[id]; if (!x) return; items[id] = { id: id, deleted: true, at: now() }; }
@@ -108,8 +116,16 @@
   }
   function render() {
     if (!$("active")) return;
-    var act = [], done = [];
-    for (var k in items) { var x = items[k]; if (!x.deleted) (x.done ? done : act).push(x); }
+    var act = [], done = [], counts = {};
+    for (var k in items) { var x = items[k]; if (x.deleted) continue; var l = listOf(x); if (!x.done) counts[l] = (counts[l] || 0) + 1; if (l === tab) (x.done ? done : act).push(x); }
+    var cur = curList();
+    $("tabs").innerHTML = uid ? LISTS.map(function (l) {
+      var n = counts[l.id] || 0;
+      return '<button type="button" class="tab" role="tab" data-tab="' + l.id + '" aria-selected="' + (tab === l.id) + '">' + esc(t(l.tab)) + (n ? '<span class="n">' + n + "</span>" : "") + "</button>";
+    }).join("") : "";
+    var ai = $("add-input"); ai.setAttribute("data-i18n-ph", cur.ph); ai.setAttribute("data-i18n-label", cur.ph); ai.placeholder = t(cur.ph); ai.setAttribute("aria-label", t(cur.ph));
+    $("empty-p").textContent = t(cur.empty);
+    $("suggest").hidden = tab !== "main";
     act.sort(function (a, b) { return (a.created || 0) - (b.created || 0); });
     done.sort(function (a, b) { return (a.at || 0) - (b.at || 0); }); // last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
@@ -146,7 +162,12 @@
       add(i.value); i.value = ""; changed(); i.focus();
     });
     $("suggest").addEventListener("click", function () { SUGGESTED.forEach(add); changed(); });
-    $("clear").addEventListener("click", function () { for (var k in items) if (items[k].done && !items[k].deleted) del(k); changed(); });
+    $("clear").addEventListener("click", function () { for (var k in items) if (items[k].done && !items[k].deleted && listOf(items[k]) === tab) del(k); changed(); });
+    $("tabs").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-tab]"); if (!b) return;
+      tab = b.getAttribute("data-tab"); editing = null; lsSet("rg-my-shopping-tab", tab); render();
+      b = document.querySelector('[data-tab="' + tab + '"]'); if (b && b.scrollIntoView) try { b.scrollIntoView({ block: "nearest", inline: "nearest" }); } catch (e2) {}
+    });
     document.querySelector("main").addEventListener("click", function (e) {
       var b = e.target.closest("[data-a]"); if (!b) return;
       var li = b.closest("li"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
