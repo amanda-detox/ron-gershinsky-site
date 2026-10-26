@@ -1,6 +1,6 @@
 /* Offline cache + notification clicks for Clockify (קלוקיפיי). */
-var CACHE = "rg-clock-v3";
-var FILES = ["./", "index.html", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+var CACHE = "rg-clock-v4";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
@@ -13,6 +13,7 @@ self.addEventListener("activate", function (e) {
 // Network first so updates show up; fall back to cache when offline.
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;
+  if (new URL(e.request.url).origin !== self.location.origin) return; // Appwrite API etc.: network only, never cached
   e.respondWith(fetch(e.request).then(function (r) {
     var copy = r.clone();
     if (r.ok && new URL(e.request.url).origin === self.location.origin) caches.open(CACHE).then(function (c) { c.put(e.request, copy); });

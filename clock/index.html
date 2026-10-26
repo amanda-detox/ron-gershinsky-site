@@ -125,7 +125,7 @@
       <button type="button" class="pill" id="he" aria-pressed="true">עברית</button>
       <button type="button" class="pill" id="en" aria-pressed="false">English</button>
     </div>
-    <button type="button" class="pill" id="test-sound"></button>
+    <span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap;justify-content:flex-end"><span data-rg-account></span><button type="button" class="pill" id="test-sound"></button></span>
   </div>
 
   <h1 class="app-title" id="app-title"><img src="icon.svg?v=3" alt="" width="36" height="36"><span id="app-name"></span></h1>
@@ -601,5 +601,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
   window.__alarmApp = { check: check, get alarms() { return alarms; }, get ringing() { return ringing; } };
 })();
 </script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
 </body>
 </html>
