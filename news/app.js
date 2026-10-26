@@ -10,12 +10,12 @@
       tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן 3 פעמים ביום",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
       all: "הכול", people: "אנשים", companies: "חברות ונושאים",
-      read: "למקור", empty: "אין עדכונים בנושא הזה כרגע.",
+      read: "למקור", more: "קרא עוד", fullNA: "אין כרגע טקסט מלא לידיעה הזו. זה התקציר.", empty: "אין עדכונים בנושא הזה כרגע.",
       markRead: "✓ קראתי", markUnread: "↺ החזר לא נקרא", markAll: "✓ סמן הכל כנקרא", showRead: "הצג גם שנקראו", hideRead: "הסתר שנקראו",
       caught: "קראת הכל!", caughtSub: "עדכונים חדשים מגיעים 3 פעמים ביום",
       error: "לא הצלחנו לטעון את העדכונים. בדוק את החיבור ונסה שוב.",
       offline: "מוצגים עדכונים שמורים (אין חיבור)",
-      note: "התקצירים נכתבו על סמך המקורות המקושרים. כדאי לפתוח את המקור לפרטים המלאים. אין לראות בתוכן ייעוץ רפואי או פיננסי.",
+      note: "התקצירים והטקסט המלא נכתבו על סמך המקורות המקושרים. לחיצה על „קרא עוד” פותחת את הכול כאן באפליקציה. אין לראות בתוכן ייעוץ רפואי או פיננסי.",
       dark: "לילה", light: "בהיר", toLight: "מעבר למצב בהיר", toDark: "מעבר למצב לילה",
       install: "📲 התקנה למסך הבית",
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף (□↑) בתחתית Safari, ואז בוחרים „הוסף למסך הבית”.",
@@ -30,12 +30,12 @@
       tagline: "News on the people and companies you follow, updated 3 times a day",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
       all: "All", people: "People", companies: "Companies & topics",
-      read: "Source", empty: "No updates on this topic right now.",
+      read: "Source", more: "Read more", fullNA: "There's no full text for this item yet. This is the summary.", empty: "No updates on this topic right now.",
       markRead: "✓ Read", markUnread: "↺ Mark unread", markAll: "✓ Mark all as read", showRead: "Show read", hideRead: "Hide read",
       caught: "All caught up!", caughtSub: "New updates arrive 3 times a day",
       error: "Couldn't load updates. Check your connection and try again.",
       offline: "Showing saved updates (offline)",
-      note: "Summaries are based on the linked sources. Open the source for full details. Nothing here is medical or financial advice.",
+      note: "Summaries and full texts are based on the linked sources. Tap “Read more” to read everything here in the app. Nothing here is medical or financial advice.",
       dark: "Night", light: "Light", toLight: "Switch to light mode", toDark: "Switch to night mode",
       install: "📲 Add to home screen",
       ios: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
@@ -48,6 +48,7 @@
   };
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg>';
+  var MORE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
   var EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
   function $(id) { return document.getElementById(id); }
@@ -177,6 +178,7 @@
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
+    if (readerId) renderReader();
     $("bg-btn").setAttribute("aria-label", t().bgBtn); $("bg-btn").title = t().bgBtn;
     $("bg-title").textContent = t().bgTitle; $("bg-close").setAttribute("aria-label", t().close);
     $("chip-prev").setAttribute("aria-label", t().prev); $("chip-next").setAttribute("aria-label", t().next);
@@ -234,7 +236,7 @@
     return '<article class="card' + (r ? " isread" : "") + '" data-id="' + esc(it.id) + '"><h3>' + esc(c.title) + "</h3><p>" + esc(c.summary) +
       '</p><div class="meta"><span class="when">' + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
       '</span><span class="acts"><button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) +
-      '</button><a class="src" href="' + esc(safeUrl(it.url)) + '" target="_blank" rel="noopener noreferrer">' + esc(t().read) + EXT + "</a></span></div></article>";
+      '</button><button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
   }
 
   function renderFeed() {
@@ -277,6 +279,7 @@
       if (c && markRead([c.getAttribute("data-id")])) setTimeout(function () { afterMark([c]); }, 150);
       return;
     }
+    if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
     if (act === "read" && c) { markRead([c.getAttribute("data-id")]); afterMark([c]); }
     else if (act === "unread" && c) { markUnread(c.getAttribute("data-id")); renderChips(); renderFeed(); }
     else if (act === "all") {
@@ -303,6 +306,61 @@
       loading = false; renderStatus(); renderChips(); renderFeed();
     });
   }
+
+
+  /* ----- in-app reader: full text (full_he / full_en) so nothing needs X or another site ----- */
+  var readerId = null, readerFrom = null;
+  function findItem(id) { if (!data) return null; for (var i = 0; i < data.items.length; i++) if (data.items[i].id === id) return data.items[i]; return null; }
+  function fullFor(it) { // full text in the UI language, else the other language, else null
+    var other = lang === "he" ? "en" : "he", a = it["full_" + lang], b = it["full_" + other];
+    if (typeof a === "string" && a.trim()) return { text: a, lang: lang };
+    if (typeof b === "string" && b.trim()) return { text: b, lang: other };
+    return null;
+  }
+  function richText(txt) { // plain text: blank line = paragraph, "• " lines = list, "1. " lines = numbered steps
+    return String(txt).replace(/\r/g, "").split(/\n{2,}/).map(function (blk) {
+      var out = "", ul = [];
+      function flush() { if (ul.length) { out += "<ul>" + ul.join("") + "</ul>"; ul = []; } }
+      var para = [];
+      function flushP() { if (para.length) { out += "<p>" + para.join("<br>") + "</p>"; para = []; } }
+      blk.split("\n").forEach(function (ln) {
+        if (!ln.trim()) return;
+        var m = /^\s*[•·\-]\s+(.*)$/.exec(ln), n = /^\s*(\d{1,2})[.)]\s+(.*)$/.exec(ln);
+        if (m) { flushP(); ul.push("<li>" + esc(m[1]) + "</li>"); }
+        else if (n) { flushP(); flush(); out += '<p class="step"><span class="sn">' + esc(n[1]) + "</span><span>" + esc(n[2]) + "</span></p>"; }
+        else { flush(); para.push(esc(ln)); }
+      });
+      flushP(); flush(); return out;
+    }).join("");
+  }
+  function renderReader() {
+    var it = findItem(readerId); if (!it) return;
+    var c = pick(it), f = fullFor(it), box = $("rd-body");
+    var dir = f ? (f.lang === "he" ? "rtl" : "ltr") : document.documentElement.dir;
+    $("rd-sheet").querySelector(".rdr").setAttribute("dir", dir);
+    $("rd-sheet").querySelector(".rdr").setAttribute("lang", f ? f.lang : lang);
+    $("rd-title").textContent = c.title || "";
+    $("rd-meta").textContent = rel(it.date) + (it.source ? " · " + it.source : "");
+    box.innerHTML = f ? richText(f.text) : '<p>' + esc(c.summary) + '</p><p class="na">' + esc(t().fullNA) + "</p>";
+    var a = $("rd-src"); a.href = safeUrl(it.url); a.innerHTML = esc(t().read) + EXT;
+    $("rd-close").setAttribute("aria-label", t().close); $("rd-close").title = t().close;
+  }
+  function openReader(id) {
+    readerId = id; readerFrom = document.activeElement; renderReader();
+    var s = $("rd-sheet"); s.hidden = false; document.documentElement.classList.add("noscroll");
+    s.querySelector(".rdr-scroll").scrollTop = 0; setTimeout(function () { $("rd-close").focus(); }, 30);
+  }
+  function closeReader() {
+    if ($("rd-sheet").hidden) return;
+    $("rd-sheet").hidden = true; document.documentElement.classList.remove("noscroll");
+    var id = readerId; readerId = null;
+    var c = id && $("feed").querySelector('.card[data-id="' + id.replace(/"/g, "") + '"]');
+    if (c && markRead([id])) afterMark([c]); // reading it in full counts as read, like opening the source did
+    else if (readerFrom && readerFrom.focus) readerFrom.focus();
+  }
+  $("rd-close").onclick = closeReader;
+  $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReader(); });
 
   /* ----- background picker (night mode only) ----- */
   function renderSwatches() {
