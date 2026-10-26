@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-26T05:47:56+02:00",
+ "updated": "2026-10-26T11:41:58+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,74 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-india-starlink-zakaria",
+   "topic": "musk",
+   "date": "2026-10-26T09:37:36Z",
+   "url": "https://x.com/i/trending/2114574979488481700",
+   "source": "X",
+   "he": {
+    "title": "פריד זכריה: העימות של מאסק עם הודו סביב Starlink פוגע באמון באמריקה",
+    "summary": "בתוכנית שלו ב-CNN תיאר פריד זכריה את הביקורת של מאסק על ממשלת הודו, שלטענתו מגינה על רשת Jio של מוקש אמבאני, כטעות שהובילה לקריאות לחסום את Starlink. זכריה קושר את זה לשחיקה רחבה יותר באמון העולמי בטכנולוגיה ובמדיניות של ארה\"ב."
+   },
+   "en": {
+    "title": "Fareed Zakaria: Musk's Starlink clash with India erodes trust in America",
+    "summary": "On his CNN show, Fareed Zakaria described Musk's criticism of India's government, which Musk says is protecting Mukesh Ambani's Jio network, as a misstep that fuelled calls to block Starlink. Zakaria tied it to a broader erosion of global trust in U.S. technology and policy."
+   },
+   "full_he": "התסכול של אילון מאסק מהעיכובים בהשקת Starlink בהודו הפך לעימות פומבי עם הממשלה שם, והאיר דאגות עמוקות יותר משחיקת האמינות של ארה\"ב בעולם.\n\n• בתוכנית שלו ב-CNN הצביע פריד זכריה על הביקורת של מאסק על ממשלת הודו, שלטענת מאסק מגינה על רשת Jio של מוקש אמבאני, כעל צעד שגוי שהצית תגובת נגד וקריאות לחסום את Starlink מטעמי ביטחון.\n• זכריה קשר זאת לשינויים רחבים יותר במדיניות האמריקאית תחת טראמפ, כמו התחממות היחסים עם פקיסטן וההגבלות על Starlink באוקראינה, ושאל אם מדינות כמו הודו יסמכו על טכנולוגיה אמריקאית בשעת משבר.\n• פרשנים הודים הדהדו את החשש מהסתמכות על לוויינים זרים, וחיזקו את טענתו של זכריה ששחיקת האמון באמריקה מאיימת על ההשפעה העולמית שלה ועל האינטרסים העסקיים שלה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk's frustration over Starlink delays in India turned into a public spat with the government, spotlighting deeper worries about fading U.S. reliability abroad.\n\n• On his CNN show, Fareed Zakaria highlighted Musk's criticism of India's government for allegedly protecting Mukesh Ambani's Jio network as a misstep that fuelled backlash and calls to block Starlink on security grounds.\n• He linked it to broader U.S. policy shifts under Trump, like warming ties with Pakistan and limits on Starlink in Ukraine, questioning whether nations like India would trust American tech in a crisis.\n• Indian commentators echoed concerns about relying on foreign satellites, underscoring Zakaria's point that eroding trust in America threatens its global influence and business interests.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "apple-macbook-touch",
+   "topic": "apple",
+   "date": "2026-10-26T07:21:20Z",
+   "url": "https://x.com/i/trending/2114372943488917789",
+   "source": "X",
+   "he": {
+    "title": "אפל צפויה להשיק ב-28 באוקטובר את ה-MacBook Pro הראשון עם מסך מגע",
+    "summary": "לפי דיווח של מארק גורמן מבלומברג, אפל תחשוף ב-28 באוקטובר דגמי MacBook Pro בגדלים 14 ו-16 אינץ' עם מסך OLED רגיש למגע, Dynamic Island ושבבי M5 Pro או M5 Max. המגע יהיה אפשרות נוספת, והמקלדת ומשטח המגע יישארו במרכז."
+   },
+   "en": {
+    "title": "Apple set to unveil its first touch-screen MacBook Pro on October 28",
+    "summary": "According to Bloomberg's Mark Gurman, Apple will unveil 14- and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island and M5 Pro or M5 Max chips on October 28. Touch will be an optional input, with the keyboard and trackpad still central."
+   },
+   "full_he": "אחרי יותר מ-20 שנה שבהן התעקשה שלא, אפל מוסיפה סוף-סוף מסכי מגע למחשבים הניידים המקצועיים שלה, בהיענות למשתמשים שגדלו על הקשה באייפון ובאייפד.\n\n• ב-28 באוקטובר אפל תחשוף דגמי MacBook Pro בגדלים 14 ו-16 אינץ' עם מסכי OLED רגישים למגע, Dynamic Island, גוף קל יותר ושבבי M5 Pro או M5 Max החזקים. הם ימוקמו כאפשרות פרימיום מעל הדגמים הנוכחיים.\n• המהלך, שלפי הדיווח קיבל גיבוי מבכירים כמו טים קוק, מוסיף אפשרות לשימוש במגע דרך ממשק macOS מסתגל, שמתאים את התפריטים לאצבע או למשטח המגע.\n• באותו יום צפויים גם MacBook Pro בסיסי עם שבב M6, iMac חדש ו-iPad mini עם מסך OLED. זו תגובת אפל לשינוי בהרגלי המשתמשים, כשהמקלדת ומשטח המגע נשארים במרכז.\n\nהמקור לפרטים הוא דיווח של מארק גורמן מבלומברג. זה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
+  },
+  {
+   "id": "grok-israel-translation",
+   "topic": "grok",
+   "date": "2026-10-26T05:39:47Z",
+   "url": "https://x.com/i/trending/2114591663465046209",
+   "source": "X",
+   "he": {
+    "title": "משתמשים טוענים ש-Grok משנה תרגומים של פוסטים על ישראל",
+    "summary": "משתמשים שיתפו צילומי מסך שבהם Grok הפך שאלה ניטרלית בספרדית, \"מה דעתך על ישראל?\", לטקסט באנגלית שמשבח \"אומה עמידה\" בעלת \"היסטוריה עשירה\". Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק, ו-X עדיין לא הגיבה רשמית."
+   },
+   "en": {
+    "title": "Users accuse Grok of altering translations of posts about Israel",
+    "summary": "Users shared screenshots of Grok turning a neutral Spanish question, \"What's your opinion of Israel?\", into English praise for a \"resilient nation\" with a \"rich history\". Grok says short questions can trigger generated answers instead of strict translations, and X hasn't responded officially."
+   },
+   "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "tesla-semi-nevada-55",
+   "topic": "tesla",
+   "date": "2026-10-26T04:01:14Z",
+   "url": "https://x.com/i/trending/2114567123456405585",
+   "source": "X",
+   "he": {
+    "title": "כ-55 משאיות Tesla Semi חדשות נצפו בשורה במדבר נבדה",
+    "summary": "תמונות וצילומי רחפן מראים כ-55 משאיות Semi של טסלה חונות יחד במדבר בנבדה. מעריצי החברה רואים בזה סימן שהייצור בהיקף גדול במפעל ה-Semi החדש בספארקס כבר יצא לדרך."
+   },
+   "en": {
+    "title": "Fans spot about 55 new Tesla Semis lined up in Nevada",
+    "summary": "Photos and drone footage show around 55 Tesla Semi trucks parked together in the Nevada desert. Fans see it as a sign that volume production has started at the new Semi factory in Sparks."
+   },
+   "full_he": "עשרות משאיות Tesla Semi לבנות ומבריקות עומדות בשורה במדבר נבדה, ומעריצי טסלה נרגשים לראות סוף-סוף ייצור בהיקף גדול בפועל.\n\n• טסלה החלה בייצור בהיקף גדול של משאית ה-Semi החשמלית (משאית כבדה מסוג Class 8) במפעל חדש בספארקס שבנבדה, בצמוד לג'יגה-פקטורי נבדה. כושר הייצור הוא 25,000 משאיות בשנה, עם אפשרות להכפיל אותו.\n• מעריצים שיתפו תמונות וצילומי רחפן של כ-55 משאיות שחונות יחד, וראו בכך סימן מובהק לתנופה, אחרי שנים מאז חשיפת המשאית ב-2017 ומשלוחי הפיילוט לציים כמו של PepsiCo.\n• ההיערכות כוללת גם גיוס של יותר מ-100 עובדים לתפקידים הקשורים ל-Semi לאחרונה, ותוכניות להדגמות באירופה ב-2027, עם הבטחה לעלויות ולפליטות נמוכות יותר בהובלה למרחקים ארוכים.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Dozens of gleaming white Tesla Semi trucks stand lined up in the Nevada desert, a sight that has Tesla enthusiasts buzzing with excitement over finally seeing volume production in action.\n\n• Tesla has kicked off high-volume production of its electric Class 8 Semi trucks at a new factory in Sparks, Nevada, next to Gigafactory Nevada, with capacity for 25,000 vehicles a year and the potential to double that.\n• Fans shared photos and drone footage of about 55 trucks parked together, calling it a strong sign of momentum after years since the 2017 unveiling and pilot deliveries to fleets like PepsiCo.\n• The buildup includes recent hiring for more than 100 Semi roles and plans for European demos in 2027, promising lower costs and emissions for long-haul trucking.\n\nThis is the X news story (its hook and summary)."
+  },
   {
    "id": "huang-vera-rubin-bw",
    "topic": "huang",
@@ -2566,23 +2634,6 @@
    },
    "full_he": "מתוך Trari (על סמך קטע קצר מ\"הזמר במסכה\" בערוץ קשת 12):\n• בקטע של פחות מדקה, בר רפאלי מלמדת את המנחה עידו רוזנבלום ללכת על מסלול: \"בטן פנימה, כתפיים אחורה, ראש למעלה\" ו\"רגל אחרי רגל\".\n• רוזנבלום עוצר אותה מיד: \"מה זאת אומרת? ככה הולכים, לא?\" רפאלי מסבירה שזה צעד מוצלב, \"אבל לא כמו משוגע\", ומדגימה. אחד השופטים מסכם: \"היא יודעת את העבודה.\"\n• אחר כך מגיע תורו: הוא צועד עם הידיים על המותניים והפאנל צוחק. רפאלי מזכירה לו להמשיך להסתכל קדימה. אחד השופטים מייעץ לו \"אל תנסה\", והם מסיימים בפוזה משותפת.\n• הקטע הגיע לכ־109,000 צפיות בפחות מיממה, בערך פי שבעה מהיום הראשון הרגיל של קטע קצר בערוץ.\n• ב־2019 הנחתה רפאלי את האירוויזיון בתל אביב. היא חדשה בפאנל של \"הזמר במסכה\". באותו יום פרסם הערוץ קטע ששואל אם אמה, ציפי רפאלי, מסתתרת מאחורי \"הפה הגדול\".",
    "full_en": "From Trari (based on a short clip from \"The Masked Singer\" on the Keshet 12 channel):\n• In a clip under a minute long, Bar Refaeli teaches host Ido Rosenblum to walk a runway: \"Stomach in, shoulders back, head up\" and \"one foot after the other\".\n• Rosenblum stops right there: \"What do you mean? That's how you walk, isn't it?\" Refaeli explains it's a crossover step, \"but not like a madman\", and demonstrates. One of the judges sums it up: \"She knows the job.\"\n• Then it's his turn: he struts with his hands on his hips and the panel laughs. Refaeli reminds him to keep looking straight ahead. One judge advises him \"don't try\", and they end with a joint pose.\n• The short reached about 109,000 views in under a day, roughly seven times the channel's usual first day for a short.\n• In 2019 Refaeli co-hosted the Eurovision Song Contest in Tel Aviv. She's new on the Masked Singer panel. The same day, the channel posted a clip asking whether her mother, Tzipi Refaeli, is behind \"The Big Mouth\"."
-  },
-  {
-   "id": "refaeli-mom-zipi",
-   "topic": "refaeli",
-   "date": "2026-10-19T10:00:00+03:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-999a89793fe41a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "בר רפאלי חושדת שאמא שלה מסתתרת מתחת למסכה",
-    "summary": "אחרי שמשה פרץ חשד שציפי רפאלי היא 'הפה הגדול' ב'הזמר במסכה', בר צילמה את אמה בסט של מותג הטיפוח שלה ושאלה אם זו היא. ציפי ענתה רק: 'לא מגלה'."
-   },
-   "en": {
-    "title": "Bar Refaeli suspects her mom is under a mask",
-    "summary": "After Moshe Peretz guessed Tzipi Refaeli is 'Big Mouth' on The Masked Singer, Bar filmed her mother on her skincare brand's set and asked if it was her. Tzipi only said: 'Not telling'."
-   },
-   "full_he": "מתוך mako (קשת 12):\n• העונה החדשה של \"הזמר במסכה\" רק התחילה, והפאנל חושד שציפי רפאלי, אמה של בר, מסתתרת מאחורי אחת המסכות.\n• אחרי שהשם שלה עלה בשולחן הניחושים, בר שיתפה סרטון של אמה בסט צילומים של מותג טיפוח העור שלה, כשהיא מנסה להוציא ממנה את האמת: \"זאת את? אני רוצה לדעת אם את הפה הגדול. אם את עובדת עליי ושמרת סוד כזה.\" ציפי ענתה: \"לא מגלה.\"\n• חבר הפאנל משה פרץ היה הראשון שהעלה את השם שלה. הוא עקב אחרי הרמזים, כולל מצלמה ששלחה אותו ישר לצילומים של \"הרפאלים\". הוא הצביע גם על ההופעה של צדי צרפתי וצביקה פיק, שלדבריו רומזת לפעם שבה ציפי לקחה את בר לאודישן למחזמר \"מרי לו\". גם הבחירה בשיר \"Ain't Your Mama\" אולי רומזת.",
-   "full_en": "From mako (Keshet 12):\n• The new season of \"The Masked Singer\" has just started, and the panel suspects Tzipi Refaeli, Bar's mother, is behind one of the masks.\n• After her name came up at the guessing table, Bar shared a video of her mother on the set of a shoot for her skincare brand, trying to get the truth out of her: \"Is it you? I want to know if you're The Big Mouth. If you're fooling me and kept such a secret.\" Tzipi answered: \"Not telling.\"\n• Panelist Moshe Peretz was the first to raise her name. He followed the clues, including a camera that sent him straight to the \"Refaelis\" shoots. He also pointed to the appearance of Tzadi Tzarfati and Tzvika Pick, which he says hints at the time Tzipi took Bar to an audition for the musical \"Mary Lou\". The choice of the song \"Ain't Your Mama\" may be a hint too."
   }
  ]
 }
