@@ -134,6 +134,7 @@
     <button type="button" class="chip" id="lang-he" lang="he" aria-pressed="true">עברית</button>
     <button type="button" class="chip" id="lang-en" lang="en" aria-pressed="false">English</button>
   </div>
+  <div style="display:flex;justify-content:center;margin:-8px 0 16px"><span data-rg-account></span></div>
   <h1 id="title"></h1>
   <p class="sub" id="sub"></p>
   <div class="install-wrap top" id="install-wrap" hidden>
@@ -767,5 +768,7 @@
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
 </script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
 </body>
 </html>

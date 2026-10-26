@@ -1,6 +1,6 @@
 /* Offline cache for the Sound Mixer (scope: sounds/ only). */
-var CACHE = "rg-sounds-v7";
-var FILES = ["./", "index.html", "synth.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png",
+var CACHE = "rg-sounds-v8";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "synth.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png",
   "mantras/he-m-1.mp3", "mantras/he-m-2.mp3", "mantras/he-m-3.mp3", "mantras/he-m-4.mp3", "mantras/he-f-1.mp3", "mantras/he-f-2.mp3", "mantras/he-f-3.mp3", "mantras/he-f-4.mp3", "mantras/en-m-1.mp3", "mantras/en-m-2.mp3", "mantras/en-m-3.mp3", "mantras/en-m-4.mp3", "mantras/en-f-1.mp3", "mantras/en-f-2.mp3", "mantras/en-f-3.mp3", "mantras/en-f-4.mp3"];
 
 self.addEventListener("install", function (e) {
