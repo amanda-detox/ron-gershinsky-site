@@ -1,0 +1,67 @@
+/* Shared look for Ron's private apps (my/): blue/gold, night (default) + light, same settings as the landing page. */
+:root {
+  --bg: #0a1a3f; --bg2: #06112b; --card: #0f2350; --card2: #132b5f; --fg: #ffffff; --ink2: #dbe5fb; --muted: #b8c7e6; --faint: #8fa3cc;
+  --line: rgba(127, 182, 255, 0.18); --line2: rgba(127, 182, 255, 0.38); --accent: #f5c542; --accentink: #0b2a6b; --blue: #7fb6ff;
+  --pagebg: radial-gradient(120% 60% at 50% -10%, #173a85 0%, #0f2760 38%, #0a1a3f 65%, #06112b 100%);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.2);
+  --sans: "Assistant", "Heebo", "Rubik", "Segoe UI", system-ui, -apple-system, Roboto, "Noto Sans Hebrew", Arial, sans-serif;
+  color-scheme: dark;
+}
+html[data-theme="light"] {
+  --bg: #f6f2ea; --bg2: #ebe5d8; --card: #fffdf8; --card2: #f7f2e7; --fg: #0b1f4d; --ink2: #22396b; --muted: #3f5079; --faint: #55658a;
+  --line: rgba(11, 42, 107, 0.13); --line2: rgba(11, 42, 107, 0.3); --accent: #0b2a6b; --accentink: #ffffff; --blue: #1a47a0;
+  --pagebg: linear-gradient(180deg, #f6f2ea 0%, #f3efe6 50%, #ebe5d8 100%);
+  --shadow: 0 1px 2px rgba(11, 31, 77, 0.05), 0 8px 22px rgba(11, 42, 107, 0.08);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg2); }
+body { min-height: 100vh; min-height: 100dvh; color: var(--fg); background: var(--pagebg) fixed, var(--bg2); font-family: var(--sans); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid rgba(245, 197, 66, 0.6); outline-offset: 2px; }
+.wrap { width: 100%; max-width: 40rem; margin: 0 auto; padding: calc(12px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom)); }
+[hidden] { display: none !important; }
+
+/* top bar: one row */
+.topbar { display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; min-height: 40px; }
+.topbar .tools { display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; margin-inline-start: auto; min-width: 0; }
+.topbar .tools > * { flex: none; }
+.topbar .tools > [data-rg-account] { flex: 0 1 auto; min-width: 0; display: inline-flex; }
+.topbar .rgacc-btn { height: 40px; padding-block: 0; max-width: 100%; }
+.langsel { position: relative; display: inline-flex; align-items: center; flex: none; }
+.langsel select { -webkit-appearance: none; appearance: none; height: 40px; border: 1px solid rgba(245, 197, 66, 0.6); border-radius: 999px; padding: 0 1.7rem 0 1.95rem; background: #0b2a6b; color: #f5c542; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 8px rgba(6, 17, 43, 0.25); }
+html[dir="rtl"] .langsel select { padding: 0 1.95rem 0 1.7rem; }
+.langsel select option { background: #0b2a6b; color: #fff; }
+.langsel .globe, .langsel .chev { position: absolute; pointer-events: none; color: #f5c542; display: inline-flex; }
+.langsel .globe { inset-inline-start: 0.7rem; } .langsel .chev { inset-inline-end: 0.6rem; }
+.langsel svg { width: 15px; height: 15px; }
+.themebtn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 40px; min-width: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--fg); font-size: 13px; font-weight: 600; white-space: nowrap; }
+.themebtn svg { width: 17px; height: 17px; flex: none; }
+@media (max-width: 559px) { .themebtn { padding: 0; width: 40px; } .themebtn .tl { display: none; } }
+@media (max-width: 420px) { .topbar .rgacc-btn { max-width: 7.25rem; padding-inline: 0.7rem; } }
+html[lang="en"] .topbar .rgacc-btn .rgacc-full { display: none; }
+html[lang="en"] .topbar .rgacc-btn .rgacc-short { display: inline; }
+
+.backrow { margin-top: 10px; }
+.back { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); text-decoration: none; font-size: 14.5px; font-weight: 600; padding: 4px 1px; }
+.back:hover { color: var(--fg); text-decoration: underline; }
+.hero { display: flex; align-items: center; gap: 14px; margin: 16px 0 6px; }
+.hero img { width: 56px; height: 56px; border-radius: 14px; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); flex: none; }
+h1 { margin: 0; font-size: 28px; line-height: 1.2; font-weight: 800; }
+.sub { margin: 2px 0 0; color: var(--muted); font-size: 14.5px; }
+.install-wrap { margin: 10px 0 0; }
+.install { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 14px; font-weight: 600; }
+.hint { margin-top: 8px; padding: 10px 12px; border-radius: 12px; background: var(--card); border: 1px solid var(--line); color: var(--ink2); font-size: 14px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+.gate { margin-top: 22px; padding: 26px 20px; text-align: center; }
+.gate .lock { font-size: 38px; line-height: 1; }
+.gate h2 { margin: 10px 0 6px; font-size: 20px; }
+.gate p { margin: 0 auto 16px; max-width: 26rem; color: var(--muted); font-size: 15px; }
+.gate [data-rg-account] { display: inline-flex; }
+.gate .rgacc-btn { height: 44px; font-size: 15px; padding: 0 18px; max-width: none; }
+.gate .rgacc-btn .rgacc-full { display: inline !important; } .gate .rgacc-btn .rgacc-short { display: none !important; }
+.privnote { margin: 18px 0 0; color: var(--faint); font-size: 12.5px; text-align: center; }
+footer { margin-top: 26px; text-align: center; color: var(--faint); font-size: 12.5px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
