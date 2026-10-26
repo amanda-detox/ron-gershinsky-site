@@ -19,6 +19,51 @@ window.BAL_DATA = {
   },
   lists: [
     {
+      id: "stress", icon: "🌊",
+      title: { he: "רמת סטרס גבוהה?", en: "High stress level?" },
+      items: [
+        { he: "תנועה", en: "Movement",
+          detail: { he: "30 קפיצות במקום, סיבובי זרועות רפויות סביב הגוף (תרגיל טאי צ'י)", en: "30 jumps in place, loose arm swings around the body (Tai Chi arm-swing exercise)" } },
+        { he: "קול", en: "Voice",
+          detail: { he: "לזמזם, לעשות קולות אנחה או צעקה בסביבה בטוחה, לצעוק אל תוך כרית וכו'", en: "Humming, sighing or shouting sounds in a safe place, shouting into a pillow, etc." } },
+        { he: "מגע", en: "Touch",
+          detail: { he: "לגעת בגוף בצורה נעימה או בכל אובייקט אחר, מגע סטטי או דינמי, על הלב, הבטן או הראש. תנועות של קאפינג מצוינות", en: "Pleasant touch on the body or any object, static or moving, on the heart, belly or head. Cupping movements are excellent." } },
+        { he: "מקלחת", en: "Shower" },
+        { he: "סיבוב למטה", en: "A short walk downstairs" },
+        { he: "חיבוק כרית", en: "Hug a pillow" },
+        { he: "כיבוי מסכים ל-30, 60, 90 דקות", en: "Screens off for 30, 60, 90 minutes" },
+        { he: "ניקוי אף + משאף אף", en: "Nose cleaning + nasal inhaler" },
+        { he: "קור (מאוורר + מזגן) + חושך", en: "Cold (fan + air conditioner) + darkness" },
+        { he: "5 אוג'אי + 5555 בשכיבה", en: "5 Ujjayi breaths + 5555 lying down" },
+        { he: "5 אוג'אי + 5555 בישיבה", en: "5 Ujjayi breaths + 5555 sitting" },
+        { he: "הפסקת שתיה", en: "A drink break" },
+        { he: "לבדוק: אנלומה וילומה", en: "To check: Anulom Vilom" },
+        { he: "זיהוי צרכים", en: "Identifying needs" }
+      ]
+    },
+    {
+      id: "dissoc", icon: "🌙",
+      title: { he: "ניתוק או דיסוציאציה?", en: "Disconnection or dissociation?" },
+      items: [
+        { he: "גלי דלתא ואפסילון", en: "Delta and Epsilon waves" },
+        { he: "לאפשר לזה להיות", en: "Allow it to be" },
+        { he: "זיהוי צרכים", en: "Identifying needs" },
+        { he: "צעדים קטנים ובניית אמון הדרגתית", en: "Small steps and gradually building trust" }
+      ]
+    },
+    {
+      id: "chaos", icon: "🍵",
+      title: { he: "בלאגן פנימי ואי נינוחות?", en: "Inner chaos and unease?" },
+      items: [
+        { he: "תה", en: "Tea" },
+        { he: "שוקו", en: "Hot chocolate" },
+        { he: "ניקוי אף + משאף אף", en: "Nose cleaning + nasal inhaler" },
+        { he: "סיבוב מתחת לבניין או מסביב לבית", en: "A walk under the building or around the house" },
+        { he: "זיהוי צרכים", en: "Identifying needs" },
+        { he: "גלי אלפא", en: "Alpha waves" }
+      ]
+    },
+    {
       id: "wellness", icon: "🌿", style: "info",
       title: { he: "מעוניין באפשרויות להורדת סטרס והעלאת רמת וולנס אינטגרלית", en: "Interested in options to lower stress and raise integral wellness" },
       note: { he: "המידע כאן אינו ייעוץ רפואי", en: "This is not medical advice" },
@@ -77,51 +122,6 @@ window.BAL_DATA = {
           { he: "מסכת חמצן עם אופניים ביתיים", en: "Oxygen mask with a home exercise bike", draft: true,
             info: { he: "אימון על אופני כושר ביתיים תוך נשימה ממסכה שמחוברת למחולל חמצן או למאגר חמצן. השיטה מכונה לפעמים EWOT.", en: "Riding a home exercise bike while breathing from a mask connected to an oxygen concentrator or reservoir. Sometimes called EWOT." } }
         ] }
-      ]
-    },
-    {
-      id: "stress", icon: "🌊",
-      title: { he: "רמת סטרס גבוהה?", en: "High stress level?" },
-      items: [
-        { he: "תנועה", en: "Movement",
-          detail: { he: "30 קפיצות במקום, סיבובי זרועות רפויות סביב הגוף (תרגיל טאי צ'י)", en: "30 jumps in place, loose arm swings around the body (Tai Chi arm-swing exercise)" } },
-        { he: "קול", en: "Voice",
-          detail: { he: "לזמזם, לעשות קולות אנחה או צעקה בסביבה בטוחה, לצעוק אל תוך כרית וכו'", en: "Humming, sighing or shouting sounds in a safe place, shouting into a pillow, etc." } },
-        { he: "מגע", en: "Touch",
-          detail: { he: "לגעת בגוף בצורה נעימה או בכל אובייקט אחר, מגע סטטי או דינמי, על הלב, הבטן או הראש. תנועות של קאפינג מצוינות", en: "Pleasant touch on the body or any object, static or moving, on the heart, belly or head. Cupping movements are excellent." } },
-        { he: "מקלחת", en: "Shower" },
-        { he: "סיבוב למטה", en: "A short walk downstairs" },
-        { he: "חיבוק כרית 3/3", en: "Hug a pillow 3/3" },
-        { he: "כיבוי מסכים ל-30, 60, 90 דקות", en: "Screens off for 30, 60, 90 minutes" },
-        { he: "ניקוי אף + משאף אף", en: "Nose cleaning + nasal inhaler" },
-        { he: "קור (מאוורר + מזגן) + חושך", en: "Cold (fan + air conditioner) + darkness" },
-        { he: "5 אוג'אי + 5555 בשכיבה 2/2", en: "5 Ujjayi breaths + 5555 lying down 2/2" },
-        { he: "5 אוג'אי + 5555 בישיבה 2/2", en: "5 Ujjayi breaths + 5555 sitting 2/2" },
-        { he: "הפסקת שתיה", en: "A drink break" },
-        { he: "לבדוק: אנלומה וילומה", en: "To check: Anulom Vilom" },
-        { he: "זיהוי צרכים", en: "Identifying needs" }
-      ]
-    },
-    {
-      id: "dissoc", icon: "🌙",
-      title: { he: "ניתוק או דיסוציאציה?", en: "Disconnection or dissociation?" },
-      items: [
-        { he: "גלי דלתא ואפסילון", en: "Delta and Epsilon waves" },
-        { he: "לאפשר לזה להיות", en: "Allow it to be" },
-        { he: "זיהוי צרכים", en: "Identifying needs" },
-        { he: "צעדים קטנים ובניית אמון הדרגתית", en: "Small steps and gradually building trust" }
-      ]
-    },
-    {
-      id: "chaos", icon: "🍵",
-      title: { he: "בלאגן פנימי ואי נינוחות?", en: "Inner chaos and unease?" },
-      items: [
-        { he: "תה", en: "Tea" },
-        { he: "שוקו", en: "Hot chocolate" },
-        { he: "ניקוי אף + משאף אף", en: "Nose cleaning + nasal inhaler" },
-        { he: "סיבוב מתחת לבניין או מסביב לבית", en: "A walk under the building or around the house" },
-        { he: "זיהוי צרכים", en: "Identifying needs" },
-        { he: "גלי אלפא", en: "Alpha waves" }
       ]
     }
   ],

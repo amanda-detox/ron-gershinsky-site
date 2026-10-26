@@ -1,6 +1,6 @@
 /* Offline cache for Balancify (באלאנסיפיי). Scope: balancify/ only.
    Only the default background is precached; other backgrounds are cached when first used. */
-var CACHE = "rg-balancify-v1";
+var CACHE = "rg-balancify-v2";
 var FILES = ["./", "index.html", "app.js", "data.js", "style.css", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "bg/sunset.webp"];
 
 self.addEventListener("install", function (e) {
