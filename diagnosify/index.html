@@ -15,6 +15,9 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <style>
 :root{
   --bg2:#071234; --card:rgba(255,255,255,.07); --card2:rgba(255,255,255,.12);
@@ -97,7 +100,9 @@ blockquote.q footer{margin-top:8px;font-size:14px;color:var(--mute)}
 .note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
 footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
 @media (max-width:380px){h1{font-size:30px}.themebtn .tl{display:none}.lang button{padding:6px 10px}}
+
 </style>
+<script src="../shared/rg-bg.js" data-app="diagnosify" data-slot=".top .tools" data-before="#theme-btn"></script>
 </head>
 <body>
 <div class="wrap">
@@ -120,19 +125,16 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
       <p class="tagline" id="tagline"></p>
     </div>
   </div>
-  <div class="install" id="install-wrap" hidden>
-    <button type="button" class="btn primary" id="install-btn"></button>
-    <div class="hint" id="install-hint" hidden></div>
-  </div>
 
   <p class="intro" id="intro"></p>
   <main class="checks" id="checks"></main>
   <p class="disc" id="disc"></p>
+  <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer class="f">© Ron Gershinsky</footer>
 </div>
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script src="../shared/rg-account.js"></script>
-<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-diagnosify-theme"]);</script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-diagnosify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 </body>
 </html>
