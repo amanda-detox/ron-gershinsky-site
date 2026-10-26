@@ -84,22 +84,65 @@
     });
   }
 
+  // Generic demo alarms shown only to a brand-new user (nothing saved on the device yet).
   function defaults(createdMs) {
-    var once = "2026-10-25";
     var list = [
-      ["08:00", "daily", "צחצוח שיניים, טיפות עיניים, דאודורנט, טאלק, ספריי לחדר, מזגן", "Brush teeth, eye drops, deodorant, talc, room spray, air conditioner"],
-      ["09:00", "daily", "מקלחת + פול באדי שייב", "Shower + full body shave"],
-      ["12:00", "daily", "טיפות עיניים + פול באדי שייב", "Eye drops + full body shave"],
-      ["17:00", "daily", "מקלחת, פול באדי שייב + טיפות עיניים", "Shower, full body shave + eye drops"],
-      ["19:00", "daily", "לוג יומי ויומן יומי", "Daily log and daily journal"],
-      ["21:00", "daily", "כדורים", "Pills"],
-      ["08:00", "once", "יציאה למשרד הפנים", "Leave for the Ministry of Interior"],
-      ["10:00", "once", "בדיקת כמות כדורים ותוספים", "Check the amount of pills and supplements"]
+      ["07:00", "daily", "השכמה, כוס מים, מתיחות קלות", "Wake up, glass of water, light stretch", "c-morning"],
+      ["13:00", "daily", "הפסקה קצרה, לקום מהכיסא, לנשום", "Short break, stand up, breathe", "c-work"],
+      ["22:30", "daily", "התארגנות לשינה, להניח את הטלפון", "Wind down, put the phone away", "c-evening"]
     ];
     return list.map(function (r, i) {
-      return { id: "d" + (i + 1), time: r[0], type: r[1], date: r[1] === "once" ? once : "",
-        title: { he: r[2], en: r[3] }, enabled: true, lastFired: "", created: createdMs || 0 };
+      return { id: "demo" + (i + 1), time: r[0], type: r[1], date: "",
+        title: { he: r[2], en: r[3] }, cat: r[4], enabled: true, lastFired: "", created: createdMs || 0 };
     });
+  }
+
+  /* ---------- categories: [{ id, name: string | {he, en}, sound }]; alarm.cat = category id or "" ---------- */
+  function defaultCategories() {
+    return [
+      { id: "c-morning", name: { he: "בוקר", en: "Morning" }, sound: "birds" },
+      { id: "c-work", name: { he: "עבודה", en: "Work" }, sound: "digital" },
+      { id: "c-evening", name: { he: "ערב", en: "Evening" }, sound: "piano" }
+    ];
+  }
+  function catName(cat, lang) {
+    if (!cat) return "";
+    if (typeof cat.name === "string") return cat.name;
+    return (cat.name && (cat.name[lang] || cat.name.he || cat.name.en)) || "";
+  }
+  function catOf(alarm, cats) {
+    if (!alarm || !alarm.cat) return null;
+    for (var i = 0; i < (cats || []).length; i++) if (cats[i].id === alarm.cat) return cats[i];
+    return null; // unknown id = uncategorized
+  }
+  // filter: "all" or a category id
+  function filterAlarms(alarms, cats, filter) {
+    if (!filter || filter === "all") return alarms.slice();
+    return alarms.filter(function (a) { var c = catOf(a, cats); return !!c && c.id === filter; });
+  }
+  function countIn(alarms, cats, id) { return filterAlarms(alarms, cats, id).length; }
+  // Deletes the category only; its alarms stay and become uncategorized (shown under "All").
+  function removeCategory(alarms, cats, id) {
+    var moved = 0;
+    alarms.forEach(function (a) { if (a.cat === id) { a.cat = ""; moved++; } });
+    return { alarms: alarms, cats: cats.filter(function (c) { return c.id !== id; }), moved: moved };
+  }
+  function addCategory(cats, name, sound) {
+    name = String(name || "").trim().slice(0, 30);
+    if (!name) return null;
+    var c = { id: "c" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), name: name, sound: sound || "chime" };
+    cats.push(c);
+    return c;
+  }
+  function renameCategory(cats, id, name) {
+    name = String(name || "").trim().slice(0, 30);
+    if (!name) return false;
+    for (var i = 0; i < cats.length; i++) if (cats[i].id === id) { cats[i].name = name; return true; }
+    return false;
+  }
+  function soundFor(alarm, cats, defSound) {
+    var c = catOf(alarm, cats);
+    return (c && c.sound) || defSound || "chime";
   }
 
   function splitTasks(text) {
@@ -108,5 +151,7 @@
 
   return { CATCH_UP_MS: CATCH_UP_MS, pad: pad, dateKey: dateKey, parseTime: parseTime, lastOccurrence: lastOccurrence,
     nextOccurrence: nextOccurrence, occKey: occKey, dueAlarms: dueAlarms, markFired: markFired,
-    dueSnoozes: dueSnoozes, sortAlarms: sortAlarms, defaults: defaults, splitTasks: splitTasks };
+    dueSnoozes: dueSnoozes, sortAlarms: sortAlarms, defaults: defaults, splitTasks: splitTasks,
+    defaultCategories: defaultCategories, catName: catName, catOf: catOf, filterAlarms: filterAlarms, countIn: countIn,
+    removeCategory: removeCategory, addCategory: addCategory, renameCategory: renameCategory, soundFor: soundFor };
 });
