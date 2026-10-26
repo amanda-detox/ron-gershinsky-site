@@ -1,4 +1,4 @@
-/* Updates (עדכונים): news feed from news.json (regenerated 3 times a day), with read tracking. */
+/* Updates (עדכונים): news feed from news.json (regenerated 3 times a day), with read tracking and saved (bookmarked) updates. */
 (function () {
   "use strict";
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg", LBG_KEY = "rg-news-bg-light", READ_KEY = "rg-news-read";
@@ -24,6 +24,9 @@
       lbgs: ["רקע מקורי", "שמי בוקר", "שמנת וזהב", "לבנדר", "אפרסק", "פנינה", "זריחה", "בריזה", "קוורץ ורוד", "שעת זהב", "עננים"],
       bgs: ["זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
       close: "סגירה", prev: "נושאים קודמים", next: "נושאים נוספים",
+      saved: "שמורים", save: "שמור", unsave: "הסר משמורים", savedAt: "נשמר",
+      savedEmpty: "עוד לא שמרת עדכונים", savedEmptySub: "לחץ על סימן השמירה שליד עדכון, והוא יחכה לך כאן גם אחרי שייעלם מהפיד.",
+      savedCount: "עדכונים שמורים", savedOne: "עדכון שמור אחד",
       locale: "he-IL"
     },
     en: {
@@ -45,12 +48,17 @@
       lbgs: ["Original", "Morning sky", "Cream & gold", "Lavender", "Peach", "Pearl", "Sunrise", "Sea breeze", "Rose quartz", "Golden hour", "Clouds"],
       bgs: ["Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
       close: "Close", prev: "Previous topics", next: "More topics",
+      saved: "Saved", save: "Save", unsave: "Remove from saved", savedAt: "Saved",
+      savedEmpty: "No saved updates yet", savedEmptySub: "Tap the bookmark next to any update and it will wait for you here, even after it leaves the feed.",
+      savedCount: "saved updates", savedOne: "1 saved update",
       locale: "en-GB"
     }
   };
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg>';
   var MORE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+  var BMK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
+  var BMKF = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
   var EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
   function $(id) { return document.getElementById(id); }
@@ -133,6 +141,108 @@
   }
   function cloudSoon() { if (!ACC || !ACC.user()) return; clearTimeout(syncTimer); syncTimer = setTimeout(cloudSync, 600); }
   window.RGNewsSync = { merge: mergeRead }; // for tests
+
+  /* ----- saved (bookmarked) updates -----
+     localStorage "rg-news-saved-v1": { items: { id: { at: savedTime, it: full snapshot of the item } }, del: { id: removedTime } }.
+     A full copy of each item is kept, so saved updates stay after they drop out of news.json.
+     Cloud row (app "news", key "saved") holds the same shape; merge = union, newest add/remove per id wins. */
+  var SAVED_KEY = "rg-news-saved-v1", SAVED_CAP = 300, DEL_CAP = 400, CLOUD_BUDGET = 60000, SAVED_VIEW = "__saved";
+  var savedSyncing = false, savedAgain = false, savedTimer = 0;
+  function hashId(s) { var h = 0x811c9dc5; s = String(s); for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return "h" + (h >>> 0).toString(16); }
+  function itemId(it) { return (it && typeof it.id === "string" && it.id) ? it.id : hashId((it && (it.url || "")) + "|" + JSON.stringify((it && (it.he || it.en || {}).title) || "")); }
+  function cleanSaved(o) {
+    o = o && typeof o === "object" ? o : {};
+    var out = { items: {}, del: {} }, k, v;
+    var its = o.items && typeof o.items === "object" ? o.items : {}, del = o.del && typeof o.del === "object" ? o.del : {};
+    for (k in its) { v = its[k]; if (v && typeof v === "object" && typeof v.at === "number" && v.it && typeof v.it === "object") out.items[k] = v; }
+    for (k in del) if (typeof del[k] === "number") out.del[k] = del[k];
+    return out;
+  }
+  function capSaved(o) {
+    var ids = Object.keys(o.items);
+    if (ids.length > SAVED_CAP) { ids.sort(function (a, b) { return o.items[b].at - o.items[a].at; }); ids.slice(SAVED_CAP).forEach(function (id) { delete o.items[id]; }); }
+    var ds = Object.keys(o.del);
+    if (ds.length > DEL_CAP) { ds.sort(function (a, b) { return o.del[b] - o.del[a]; }); ds.slice(DEL_CAP).forEach(function (id) { delete o.del[id]; }); }
+    return o;
+  }
+  var saved = (function () { var o = null; try { o = JSON.parse(get(SAVED_KEY) || "null"); } catch (e) {} return cleanSaved(o); })();
+  function isSaved(id) { return !!saved.items[id]; }
+  function storeSaved() { set(SAVED_KEY, JSON.stringify(capSaved(saved))); }
+  function topicName(id) {
+    if (data) for (var i = 0; i < data.topics.length; i++) if (data.topics[i].id === id) return { he: data.topics[i].he, en: data.topics[i].en };
+    return null;
+  }
+  function snapshot(it) {
+    var c = null; try { c = JSON.parse(JSON.stringify(it)); } catch (e) { c = {}; }
+    c.id = itemId(it);
+    var tn = topicName(it.topic); if (tn) c._topic = tn;
+    return c;
+  }
+  function saveItem(it) {
+    if (!it) return; var id = itemId(it);
+    saved.items[id] = { at: Date.now(), it: snapshot(it) }; delete saved.del[id];
+    storeSaved(); savedSoon();
+  }
+  function unsaveItem(id) {
+    if (!saved.items[id]) return;
+    delete saved.items[id]; saved.del[id] = Date.now();
+    storeSaved(); savedSoon();
+  }
+  function savedList() { // newest saved first
+    return Object.keys(saved.items).map(function (id) { return saved.items[id]; }).sort(function (a, b) { return b.at - a.at; });
+  }
+  // pure merge (exported for tests): two {items, del} copies -> one
+  function mergeSaved(a, b) {
+    a = cleanSaved(a); b = cleanSaved(b);
+    var out = { items: {}, del: {} }, ids = {}, k;
+    [a, b].forEach(function (o) { for (k in o.items) ids[k] = 1; for (k in o.del) ids[k] = 1; });
+    for (k in ids) {
+      var ia = a.items[k], ib = b.items[k], add = null;
+      if (ia && ib) add = ia.at > ib.at ? ia : ib.at > ia.at ? ib : (JSON.stringify(ia.it).length >= JSON.stringify(ib.it).length ? ia : ib);
+      else add = ia || ib;
+      // keep the fuller snapshot (the cloud copy may have been trimmed of full texts)
+      if (ia && ib && add.it && JSON.stringify(ia.it).length !== JSON.stringify(ib.it).length) {
+        var fuller = JSON.stringify(ia.it).length > JSON.stringify(ib.it).length ? ia.it : ib.it;
+        add = { at: add.at, it: fuller };
+      }
+      var d = Math.max(a.del[k] || 0, b.del[k] || 0);
+      if (add && add.at >= d) out.items[k] = add; else if (d) out.del[k] = d;
+    }
+    return capSaved(out);
+  }
+  function cloudSavedCopy(o) { // trims full texts of the oldest saved items if the row would get too big
+    var c = { items: {}, del: o.del, at: Date.now() }, k;
+    for (k in o.items) c.items[k] = o.items[k];
+    var list = Object.keys(c.items).sort(function (x, y) { return c.items[x].at - c.items[y].at; }), i = 0;
+    while (JSON.stringify(c).length > CLOUD_BUDGET && i < list.length) {
+      var e = c.items[list[i++]], it = {}, f;
+      for (f in e.it) if (f.indexOf("full_") !== 0) it[f] = e.it[f];
+      c.items[list[i - 1]] = { at: e.at, it: it };
+    }
+    return c;
+  }
+  function sameSaved(a, b) {
+    var ka = Object.keys(a.items), kb = Object.keys(b.items), da = Object.keys(a.del), db = Object.keys(b.del);
+    return ka.length === kb.length && da.length === db.length && ka.every(function (k) { return b.items[k] && b.items[k].at === a.items[k].at; }) && da.every(function (k) { return b.del[k] === a.del[k]; });
+  }
+  function savedSync() {
+    if (!ACC || !ACC.user()) return;
+    if (savedSyncing) { savedAgain = true; return; }
+    savedSyncing = true;
+    ACC.get("news", "saved").then(function (cloud) {
+      var c = cleanSaved(cloud), m = mergeSaved(saved, c);
+      if (!sameSaved(m, saved) || JSON.stringify(m) !== JSON.stringify(saved)) {
+        var changedView = !sameSaved(m, saved);
+        saved = m; storeSaved();
+        if (changedView) { renderChips(); renderFeed(); }
+      }
+      if (!cloud || !sameSaved(m, c)) return ACC.set("news", "saved", cloudSavedCopy(m));
+    }).catch(function () {}).then(function () {
+      savedSyncing = false; if (savedAgain) { savedAgain = false; savedSync(); }
+    });
+  }
+  function savedSoon() { if (!ACC || !ACC.user()) return; clearTimeout(savedTimer); savedTimer = setTimeout(savedSync, 600); }
+  window.RGNewsSaved = { merge: mergeSaved, id: itemId, trim: cloudSavedCopy }; // for tests
   function t() { return L[lang]; }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function pick(o) { return (o && (o[lang] || o.he || o.en)) || {}; }
@@ -214,17 +324,19 @@
     var nav = $("chips"); nav.innerHTML = "";
     if (!data) return;
     var tw = topicsWithItems();
-    if (topic !== "all" && !(showRead ? tw.total[topic] : tw.count[topic])) topic = "all";
-    function chip(id, label, n) {
+    if (topic !== "all" && topic !== SAVED_VIEW && !(showRead ? tw.total[topic] : tw.count[topic])) topic = "all";
+    function chip(id, label, n, cls, icon) {
       var b = document.createElement("button");
-      b.type = "button"; b.className = "chip";
+      b.type = "button"; b.className = "chip" + (cls ? " " + cls : "");
       b.setAttribute("aria-pressed", topic === id ? "true" : "false");
-      b.innerHTML = esc(label) + (n ? '<span class="n">' + n + "</span>" : "");
-      b.onclick = function () { topic = id; set(TOPIC_KEY, id); renderChips(); renderFeed(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+      b.innerHTML = (icon || "") + esc(label) + (n ? '<span class="n">' + n + "</span>" : "");
+      b.onclick = function () { topic = id; if (id !== SAVED_VIEW) set(TOPIC_KEY, id); renderChips(); renderFeed(); window.scrollTo({ top: 0, behavior: "smooth" }); };
       nav.appendChild(b);
       if (topic === id && b.scrollIntoView) setTimeout(function () { b.scrollIntoView({ block: "nearest", inline: "center" }); }, 0);
     }
     chip("all", t().all, tw.unread);
+    chip(SAVED_VIEW, t().saved, Object.keys(saved.items).length, "savedchip", '<span class="bi" aria-hidden="true">' + BMKF + "</span>");
+    var s0 = document.createElement("span"); s0.className = "sep"; nav.appendChild(s0);
     var lastGroup = null;
     tw.list.forEach(function (tp) {
       if (lastGroup && tp.group !== lastGroup) { var s = document.createElement("span"); s.className = "sep"; nav.appendChild(s); }
@@ -234,16 +346,30 @@
     setTimeout(updateArrows, 0);
   }
 
-  function card(it) {
-    var c = pick(it), r = isRead(it.id);
-    return '<article class="card' + (r ? " isread" : "") + '" data-id="' + esc(it.id) + '"><h3>' + esc(c.title) + "</h3><p>" + esc(c.summary) +
-      '</p><div class="meta"><span class="when">' + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
-      '</span><span class="acts"><button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) +
-      '</button><button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
+  function card(it, inSaved) {
+    var id = itemId(it), c = pick(it), r = isRead(id), sv = isSaved(id);
+    var tn = inSaved ? (topicName(it.topic) || it._topic) : null, tl = tn ? (tn[lang] || tn.he || tn.en) : "";
+    return '<article class="card' + (r && !inSaved ? " isread" : "") + '" data-id="' + esc(id) + '">' +
+      '<button type="button" class="bm" data-act="' + (sv ? "unsave" : "save") + '" aria-pressed="' + (sv ? "true" : "false") + '" aria-label="' + esc(sv ? t().unsave : t().save) + '" title="' + esc(sv ? t().unsave : t().save) + '">' + (sv ? BMKF : BMK) + "</button>" +
+      "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
+      '</p><div class="meta"><span class="when">' + (tl ? '<b class="tp">' + esc(tl) + "</b> · " : "") + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
+      '</span><span class="acts">' + (inSaved ? "" : '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>") +
+      '<button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
+  }
+  function renderSaved() {
+    var list = savedList(), feed = $("feed");
+    if (!list.length) {
+      feed.innerHTML = '<div class="caught savedempty"><div class="big bmbig" aria-hidden="true">' + BMK + "</div><b>" + esc(t().savedEmpty) + "</b><span>" + esc(t().savedEmptySub) + "</span></div>";
+      return;
+    }
+    var n = list.length;
+    feed.innerHTML = '<section class="group"><h2>' + esc(t().saved) + '</h2><div class="savedn">' + esc(n === 1 ? t().savedOne : n + " " + t().savedCount) + "</div>" +
+      list.map(function (e) { return card(e.it, true); }).join("") + "</section>";
   }
 
   function renderFeed() {
     var feed = $("feed");
+    if (topic === SAVED_VIEW) { renderSaved(); return; }
     if (!data) { feed.innerHTML = loading ? '<div class="empty">' + esc(t().loading) + "</div>" : '<div class="err">' + esc(t().error) + "</div>"; return; }
     var tw = topicsWithItems(), html = "", unreadShown = 0, readShown = 0;
     tw.list.filter(visible(tw)).forEach(function (tp) {
@@ -280,6 +406,13 @@
     var c = el.closest(".card"), act = el.getAttribute("data-act");
     if (el.classList.contains("src")) return; // opening the source doesn't mark it read; only the read button does
     if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
+    if (act === "save" && c) { saveItem(findItem(c.getAttribute("data-id"))); renderChips(); renderFeed(); return; }
+    if (act === "unsave" && c) {
+      unsaveItem(c.getAttribute("data-id"));
+      if (topic === SAVED_VIEW) { c.style.height = c.offsetHeight + "px"; c.offsetHeight; c.classList.add("gone"); setTimeout(function () { renderChips(); renderFeed(); }, 380); }
+      else { renderChips(); renderFeed(); }
+      return;
+    }
     if (act === "read" && c) { markRead([c.getAttribute("data-id")]); afterMark([c]); }
     else if (act === "unread" && c) { markUnread(c.getAttribute("data-id")); renderChips(); renderFeed(); }
     else if (act === "all") {
@@ -310,7 +443,10 @@
 
   /* ----- in-app reader: full text (full_he / full_en) so nothing needs X or another site ----- */
   var readerId = null, readerFrom = null;
-  function findItem(id) { if (!data) return null; for (var i = 0; i < data.items.length; i++) if (data.items[i].id === id) return data.items[i]; return null; }
+  function findItem(id) {
+    if (data) for (var i = 0; i < data.items.length; i++) if (itemId(data.items[i]) === id) return data.items[i];
+    return saved.items[id] ? saved.items[id].it : null; // saved snapshot (also after it left news.json)
+  }
   function fullFor(it) { // full text in the UI language, else the other language, else null
     var other = lang === "he" ? "en" : "he", a = it["full_" + lang], b = it["full_" + other];
     if (typeof a === "string" && a.trim()) return { text: a, lang: lang };
@@ -431,8 +567,9 @@
   // auto-reload: on open (boot), and whenever the app comes back to the foreground (at most every ~5 min)
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible" && Date.now() - lastFetch > RELOAD_MS) load();
-    if (document.visibilityState === "visible" && Date.now() - lastPull > 5000) cloudSync();
+    if (document.visibilityState === "visible" && Date.now() - lastPull > 5000) { cloudSync(); savedSync(); }
     if (document.visibilityState === "hidden" && syncTimer) { clearTimeout(syncTimer); syncTimer = 0; cloudSync(); }
+    if (document.visibilityState === "hidden" && savedTimer) { clearTimeout(savedTimer); savedTimer = 0; savedSync(); }
   });
   window.addEventListener("pageshow", function (e) { if (e.persisted && Date.now() - lastFetch > RELOAD_MS) load(); });
   window.addEventListener("online", function () { load(); });
@@ -455,8 +592,8 @@
   updateInstall();
   load();
   if (ACC) {
-    ACC.ready.then(cloudSync);
-    ACC.onChange(function (u) { if (u) cloudSync(); });
+    ACC.ready.then(function () { cloudSync(); savedSync(); });
+    ACC.onChange(function (u) { if (u) { cloudSync(); savedSync(); } });
     // language, theme, background and topic follow the account across devices
     ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, LBG_KEY, TOPIC_KEY], function (c) {
       if (LANG_KEY in c) lang = c[LANG_KEY] === "en" ? "en" : "he";

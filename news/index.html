@@ -222,6 +222,25 @@ html[data-theme=dark] .rdr .rmeta{color:var(--rd-gold)}
 .rdr .rft a svg{width:13px;height:13px}
 .rdr[dir=rtl] .rft a svg{transform:scaleX(-1)}
 @media (max-width:380px){.rdr h2{font-size:18px}.rdr-scroll{padding-left:14px;padding-right:14px}.rdr .body{font-size:16px}.card .acts{gap:8px}}
+/* ---- saved (bookmarked) updates: gold bookmark ---- */
+.card{position:relative}
+.card h3{padding-inline-end:38px}
+.card .bm{position:absolute;top:9px;inset-inline-end:9px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;padding:0;border:1px solid transparent;border-radius:50%;background:none;color:var(--dim);cursor:pointer;transition:color .15s,background .15s,transform .15s}
+.card .bm svg{width:19px;height:19px}
+.card .bm:hover{color:var(--rd-gold);background:var(--chip)}
+.card .bm[aria-pressed=true]{color:var(--rd-gold)}
+html[data-theme=dark] .card .bm[aria-pressed=true]{color:#f5c542}
+.card .bm:active{transform:scale(.9)}
+.chip.savedchip{display:inline-flex;align-items:center;gap:5px}
+.chip .bi{display:inline-flex;color:var(--rd-gold)}
+html[data-theme=dark] .chip .bi{color:#f5c542}
+.chip .bi svg{width:14px;height:14px}
+.chip[aria-pressed=true] .bi{color:inherit}
+.card .meta .tp{color:var(--em);font-weight:700}
+.savedn{font-size:13.5px;color:var(--dim);margin:-2px 2px 4px}
+.bmbig{color:var(--rd-gold)}
+.bmbig svg{width:44px;height:44px}
+html[data-theme=dark] .bmbig{color:#f5c542}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
