@@ -28,6 +28,8 @@
   var DB = "ron", TABLE = "userdata";
   var FB_KEY = "cookieFallback", USER_KEY = "rg-account-user", PEND_KEY = "rg-account-pending", META_KEY = "rg-prefs-meta";
   var PEND_TTL = 15 * 60 * 1000;
+  // the private hub (my/) sits next to shared/, so find it from this script's own URL (works on any host / sub-path)
+  var MY_URL = (function () { try { var c = document.currentScript; return c && c.src ? new URL("../my/", c.src).href : ""; } catch (e) { return ""; } })();
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
@@ -210,7 +212,7 @@
       fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם.",
       resend: "שלח קוד חדש", resent: "נשלח קוד חדש. בדוק את המייל (גם בספאם).", other: "החלף מייל",
       nameHead: "איך לקרוא לך?", nameSub: "השם יוצג בכל האפליקציות במקום המייל. אפשר לדלג.", name: "השם שלך", save: "שמור", skip: "דלג",
-      signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", out: "התנתק", close: "סגירה", account: "החשבון שלך",
+      signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", my: "האפליקציות הפרטיות שלי", out: "התנתק", close: "סגירה", account: "החשבון שלך",
       synced: "אתה מחובר בכל האפליקציות, והנתונים וההעדפות שלך מסונכרנים בין המכשירים.",
       eEmail: "כתובת המייל לא נראית תקינה. בדוק אותה ונסה שוב.", eCode: "הקוד שגוי או שפג תוקפו. נסה שוב או בקש קוד חדש.",
       eRate: "יותר מדי ניסיונות. חכה כמה דקות ונסה שוב.", eNet: "אין חיבור לאינטרנט. בדוק את החיבור ונסה שוב.",
@@ -225,7 +227,7 @@
       fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam.",
       resend: "Send a new code", resent: "A new code was sent. Check your email (and spam).", other: "Use another email",
       nameHead: "What should we call you?", nameSub: "Your name shows in every app instead of your email. You can skip this.", name: "Your name", save: "Save", skip: "Skip",
-      signedAs: "Signed in as ", hello: "Hi", rename: "Change name", out: "Sign out", close: "Close", account: "Your account",
+      signedAs: "Signed in as ", hello: "Hi", rename: "Change name", my: "My private apps", out: "Sign out", close: "Close", account: "Your account",
       synced: "You're signed in across all the apps, and your data and preferences sync between your devices.",
       eEmail: "That email doesn't look right. Check it and try again.", eCode: "Wrong or expired code. Try again or ask for a new one.",
       eRate: "Too many attempts. Wait a few minutes and try again.", eNet: "No internet connection. Check it and try again.",
@@ -266,6 +268,7 @@
     ".rgacc-dlg input{width:100%;font-family:inherit;font-size:17px;font-weight:600;color:#0b1f4d;background:#fff;border:2px solid transparent;border-radius:12px;padding:11px 13px;outline:none;margin:0}",
     ".rgacc-dlg input:focus{border-color:#f5c542}.rgacc-dlg input.code{letter-spacing:.4em;text-align:center;direction:ltr;font-size:22px}.rgacc-dlg input[type=email]{direction:ltr;text-align:left}",
     ".rgacc-go{display:block;width:100%;margin:12px 0 0;font-family:inherit;font-size:16px;font-weight:800;color:#0b2a6b;background:#f5c542;border:0;border-radius:999px;padding:12px 16px;cursor:pointer}.rgacc-go:hover{background:#ffd45c}.rgacc-go[disabled]{opacity:.65;cursor:default}",
+    ".rgacc-dlg .rgacc-my{text-align:center;text-decoration:none;color:#ffd98a;border-color:rgba(245,197,66,.7);margin:4px 0 0}",
     ".rgacc-sec{display:block;width:100%;margin:10px 0 0;font-family:inherit;font-size:15px;font-weight:700;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px;cursor:pointer}.rgacc-sec:hover{border-color:#f5c542}",
     ".rgacc-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:12px}.rgacc-lnk{background:none;border:0;padding:4px 0;font-family:inherit;font-size:14px;font-weight:700;color:#ffd98a;cursor:pointer}.rgacc-lnk:hover{text-decoration:underline}",
     ".rgacc-from{margin:0 0 14px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px;line-height:1.5}.rgacc-from bdi{color:#fff;font-weight:700}",
@@ -337,6 +340,7 @@
     } else {
       h = '<h2 id="rgacc-h">' + esc(L.account) + '</h2><div class="rgacc-who"><span class="rgacc-av" aria-hidden="true">' + esc(initial(u)) + "</span><div><b>" + esc(L.hello + ", " + label(u)) + "</b><span>" + esc((u && u.email) || "") + "</span></div></div>" +
         "<p>" + esc(L.synced) + "</p>" + note +
+        (MY_URL ? '<a class="rgacc-sec rgacc-my" href="' + esc(MY_URL) + '"><span aria-hidden="true">🔒 </span>' + esc(L.my) + "</a>" : "") +
         '<button type="button" class="rgacc-sec" data-a="rename">' + esc(L.rename) + '</button><button type="button" class="rgacc-go" data-a="out"' + (busy ? " disabled" : "") + ">" + esc(L.out) + "</button>";
     }
     back.innerHTML = '<div class="rgacc-dlg" role="dialog" aria-modal="true" aria-labelledby="rgacc-h" dir="' + (lang() === "he" ? "rtl" : "ltr") + '" lang="' + lang() + '"><button type="button" class="rgacc-x" data-a="close" aria-label="' + esc(L.close) + '">×</button>' + h + "</div>";
