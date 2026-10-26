@@ -1,5 +1,5 @@
 /* Offline cache for Diagnosify (דיאגנוסיפיי). Scope: diagnosify/ only. */
-var CACHE = "rg-diagnosify-v2";
+var CACHE = "rg-diagnosify-v3";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
