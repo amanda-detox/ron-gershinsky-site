@@ -1,6 +1,6 @@
 /* Offline cache for Healify (היליפיי). */
-var CACHE = "rg-healify-v7";
-var FILES = ["./", "index.html", "../shared/rg-account.js", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+var CACHE = "rg-healify-v8";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

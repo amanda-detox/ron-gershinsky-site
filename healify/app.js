@@ -16,8 +16,8 @@
 
   var T = {
     he: {
-      doc: "היליפיי · Healify", back: "← חזרה לאתר",
-      eyebrow: "Healify", title: "היליפיי", tagline: "מרחב אישי לדרך הריפוי השלם שלך",
+      doc: "היליפיי", back: "← חזרה לאתר",
+      eyebrow: "", title: "היליפיי", tagline: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג.",
       sub: "מתחילים בתיאור מה שעובר עליך, ממשיכים לבדיקות ולטכנולוגיות לריפוי עצמי, ומסיימים בהבחנה לפי המקרה שלך.",
       start: "בוא נתחיל", resume: "המשך מאיפה שעצרת",
       meta: "הכול נשמר אוטומטית ורק במכשיר שלך",
@@ -27,7 +27,7 @@
       disc: "<b>חשוב:</b> היליפיי היא כלי אישי לארגון מידע ואינה מהווה ייעוץ רפואי. היא אינה מחליפה רופא, אבחון או טיפול רפואי. לפני כל שינוי בטיפול יש להתייעץ עם רופא.<span class=em><b>במצב חירום או סכנה:</b> מד״א <a href=\"tel:101\">101</a> · ער״ן, עזרה ראשונה נפשית <a href=\"tel:1201\">1201</a></span>",
       steps: ["א · הבעיה", "ב · בדיקות", "ג · טכנולוגיות", "ד · לפי מקרה", "סיכום"],
       stepnum: function (i, n) { return i <= 4 ? "שלב " + i + " מתוך 4" : "סיכום"; },
-      prev: "→ הקודם", next: "הבא ←", toSum: "לסיכום ←", edit: "→ חזרה לעריכה", home: "→ למסך הפתיחה",
+      prev: "→ הקודם", next: "הבא ←", toSum: "לסיכום ←", edit: "→ חזרה לעריכה", home: "→ למסך הפתיחה", homeBack: "→ חזרה", homeBackLabel: "חזרה למסך הראשי של היליפיי",
       saved: "✓ נשמר במכשיר", saving: "שומר…",
       aTitle: "א · מה הבעיה שלך?",
       aLead: "כתוב בפירוט, במילים שלך. כל השדות אופציונליים, ואפשר לחזור ולהשלים בכל זמן.",
@@ -80,8 +80,8 @@
       fileTitle: "היליפיי · הסיכום שלי", fileDate: "תאריך"
     },
     en: {
-      doc: "Healify · היליפיי", back: "← Back to site",
-      eyebrow: "היליפיי", title: "Healify", tagline: "A personal space for your complete healing journey",
+      doc: "Healify", back: "← Back to site",
+      eyebrow: "", title: "Healify", tagline: "An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing.",
       sub: "Start by describing what you're going through, continue to tests and self-healing technologies, and finish with guidance by case.",
       start: "Let's begin", resume: "Continue where you left off",
       meta: "Everything saves automatically, only on your device",
@@ -91,7 +91,7 @@
       disc: "<b>Important:</b> Healify is a personal tool for organizing information and is not medical advice. It does not replace a doctor, diagnosis or medical treatment. Always consult a doctor before changing any treatment.<span class=em><b>In an emergency or danger:</b> Israel: MDA <a href=\"tel:101\">101</a> · ERAN emotional first aid <a href=\"tel:1201\">1201</a> · elsewhere, your local emergency number</span>",
       steps: ["A · Problem", "B · Tests", "C · Tech", "D · By case", "Summary"],
       stepnum: function (i, n) { return i <= 4 ? "Step " + i + " of 4" : "Summary"; },
-      prev: "← Back", next: "Next →", toSum: "To summary →", edit: "← Back to editing", home: "← Home",
+      prev: "← Back", next: "Next →", toSum: "To summary →", edit: "← Back to editing", home: "← Home", homeBack: "← Back", homeBackLabel: "Back to the Healify main screen",
       saved: "✓ Saved on this device", saving: "Saving…",
       aTitle: "A · What is your problem?",
       aLead: "Write in detail, in your own words. Every field is optional, and you can come back to it any time.",
@@ -374,8 +374,29 @@
   };
 
   /* ----- navigation ----- */
-  function go(v, noSave) {
+  /* in-app history: the welcome screen is the base entry, the whole flow (stages A-D + summary) is ONE entry above it,
+     so the browser / phone back button and the Android back gesture return to Healify's main screen instead of leaving */
+  var HIST = !!(window.history && history.pushState);
+  function syncHistory(v) {
+    if (!HIST) return;
+    var st = history.state || {};
+    try {
+      if (v === "welcome") { if (st.hv) history.replaceState({ hv: null, base: 1 }, ""); }
+      else if (st.hv) history.replaceState({ hv: v }, "");
+      else { if (!st.base) history.replaceState({ hv: null, base: 1 }, ""); history.pushState({ hv: v }, ""); }
+    } catch (e) {}
+  }
+  function goHome() { // leave the flow: step back over our own history entry when there is one
+    var st = (HIST && history.state) || {};
+    if (st.hv) history.back(); else go("welcome");
+  }
+  window.addEventListener("popstate", function (e) {
+    var st = e.state || {}, v = st.hv && (VIEWS.indexOf(st.hv) >= 0) ? st.hv : "welcome";
+    if (v !== S.view) go(v, false, true);
+  });
+  function go(v, noSave, fromPop) {
     flush();
+    if (!fromPop) syncHistory(v);
     S.view = v;
     $("s-welcome").hidden = v !== "welcome";
     $("flow").hidden = v === "welcome";
@@ -387,7 +408,8 @@
   $("start").onclick = function () { go(hasData() ? lastView : "a"); };
   var lastView = "a";
   if ($("recs-open")) $("recs-open").onclick = function () { go("d"); setTimeout(function () { var r = $("recs"); if (r) r.scrollIntoView({ block: "start" }); }, 30); };
-  $("prev").onclick = function () { var i = VIEWS.indexOf(S.view); go(i > 0 ? VIEWS[i - 1] : "welcome"); };
+  $("prev").onclick = function () { var i = VIEWS.indexOf(S.view); if (i > 0) go(VIEWS[i - 1]); else goHome(); };
+  $("flow-home").onclick = goHome;
   $("next").onclick = function () { var i = VIEWS.indexOf(S.view); if (i < VIEWS.length - 1) go(VIEWS[i + 1]); else go("a"); };
   $("steps").onclick = function (e) { var b = e.target.closest("[data-v]"); if (b) go(b.getAttribute("data-v")); };
 
@@ -407,6 +429,7 @@
     document.title = L.doc;
     $("lang-he").setAttribute("aria-pressed", lang === "he"); $("lang-en").setAttribute("aria-pressed", lang === "en");
     $("back").textContent = L.back;
+    $("flow-home").textContent = L.homeBack; $("flow-home").setAttribute("aria-label", L.homeBackLabel); $("flow-home").title = L.homeBackLabel;
     $("w-eyebrow").textContent = L.eyebrow; $("w-title").textContent = L.title; $("w-tagline").textContent = L.tagline; $("w-sub").textContent = L.sub;
     $("start").textContent = hasData() ? L.resume : L.start; $("w-meta").textContent = L.meta;
     $("install-btn").textContent = L.install;

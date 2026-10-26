@@ -9,12 +9,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="היליפיי">
-<meta name="description" content="היליפיי · מרחב אישי לדרך הריפוי שלך. Healify, a personal space for your healing journey.">
+<meta name="description" content="היליפיי · אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג. Healify: An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing.">
 <script>/* theme before first paint: dark (default) / light */(function(){var t="dark";try{t=localStorage.getItem("rg-healify-theme")==="light"?"light":"dark";}catch(e){}document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#e5ae34":"#0b2a6b");})();</script>
-<title>היליפיי · Healify</title>
+<title>היליפיי</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <style>
 :root{
   --bg:#0b2a6b; --bg2:#071c4a; --card:#0f2557; --card2:#132d66; --field:#0a1f4d; --ink:#ffffff; --ink2:#dbe8ff; --mute:#a9c1e6; --dim:#7f9ac4;
@@ -65,6 +68,7 @@ html[data-theme=light] :focus-visible{outline-color:rgba(26,71,160,.4)}
 .crest svg{width:100%;height:100%}
 .breath .pt{animation:breath 6s ease-in-out infinite;transform-origin:256px 272px}
 @keyframes breath{0%,100%{transform:scale(.92);opacity:.9}50%{transform:scale(1.05);opacity:1}}
+.eyebrow:empty{display:none}
 .eyebrow{font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--em);font-weight:700}
 h1{font-family:var(--serif);font-weight:800;font-size:44px;line-height:1.15;margin:4px 0 6px;letter-spacing:.005em;color:var(--ink)}
 .tagline{font-size:19px;font-weight:600;color:var(--ink2);margin:0 0 10px}
@@ -89,6 +93,9 @@ h1{font-family:var(--serif);font-weight:800;font-size:44px;line-height:1.15;marg
 .disc .em{display:block;margin-top:6px}
 
 /* stepper */
+.flowtop{display:flex;margin:10px 0 0}
+.homeback{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line2,rgba(156,200,255,.35));background:var(--card,rgba(255,255,255,.06));color:var(--ink);font:700 15px var(--sans);cursor:pointer;white-space:nowrap}
+.homeback:hover,.homeback:focus-visible{border-color:#e3bd5b}
 .steps{display:flex;gap:6px;margin:14px 0 4px;padding:0;list-style:none}
 .steps li{flex:1}
 .steps button{width:100%;border:0;background:none;padding:6px 0 2px;cursor:pointer;color:var(--dim);font:600 12.5px var(--sans);display:flex;flex-direction:column;align-items:center;gap:5px}
@@ -219,7 +226,9 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
   .btn{padding:12px 18px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
 </style>
+<script src="../shared/rg-bg.js" data-app="healify" data-slot=".top .tools" data-before="#theme-btn"></script>
 </head>
 <body>
 <div class="wrap">
@@ -253,16 +262,13 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
       <button type="button" class="btn" id="start"></button>
       <div class="meta" id="w-meta"></div>
       <div class="recsopen"><button type="button" class="btn ghost small" id="recs-open" hidden></button></div>
-      <div class="install" id="install-wrap" hidden>
-        <button type="button" class="btn ghost small" id="install-btn"></button>
-        <div class="hint" id="install-hint" hidden></div>
-      </div>
     </div>
     <div class="disc" id="disc-w"></div>
   </section>
 
   <!-- Flow -->
   <div id="flow" hidden>
+    <div class="flowtop"><button type="button" class="homeback" id="flow-home"></button></div>
     <ol class="steps" id="steps"></ol>
     <div class="stepnum" id="stepnum"></div>
 
@@ -349,6 +355,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
     <div class="disc" id="disc-f"></div>
   </div>
 
+  <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer id="foot"></footer>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -378,6 +385,6 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
   label();
 })();</script>
 <script src="../shared/rg-account.js"></script>
-<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-healify-theme"]);</script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-healify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 </body>
 </html>
