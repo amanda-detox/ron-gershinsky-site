@@ -15,6 +15,9 @@
 <meta name="apple-mobile-web-app-title" content="צלילים">
 <title>סאונדיפיי</title>
 <script>(function(){try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}})();</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <style>
   :root { --text: #ece6ff; --soft: rgba(225,215,250,0.62); --faint: rgba(225,215,250,0.42); --card: rgba(255,255,255,0.05); --line: rgba(255,255,255,0.09); --lav: #c9b8ff; }
   * { box-sizing: border-box; }
@@ -126,24 +129,47 @@
   .tile:not(.on) .actual { display: none; }
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(150px + env(safe-area-inset-bottom, 0px)); z-index: 30;
     background: rgba(44,42,98,0.95); border: 1px solid rgba(201,184,255,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
+  /* ---- light mode (toggle + backgrounds from shared/rg-bg.js): cream + navy, blue/gold accents ---- */
+  html[data-theme="light"] { --text: #0b1f4d; --soft: #44557b; --faint: #5d6e93; --card: rgba(255,255,255,0.75); --line: rgba(11,42,107,0.13); --lav: #1a47a0; color-scheme: light; }
+  html[data-theme="light"], html[data-theme="light"] body { background-color: #f3efe6; }
+  html[data-theme="light"] body { background: linear-gradient(180deg, #f6f2ea 0%, #f3efe6 50%, #ebe5d8 100%) fixed; }
+  html[data-theme="light"] h1, html[data-theme="light"] .nm, html[data-theme="light"] .cat-h .ct, html[data-theme="light"] .note b, html[data-theme="light"] .mtext, html[data-theme="light"] .tile.on .mtext { color: #0b1f4d; }
+  html[data-theme="light"] .chip { color: #22396b; background: rgba(255,255,255,0.75); border-color: rgba(11,42,107,0.16); }
+  html[data-theme="light"] .chip[aria-pressed="true"] { background: #0b2a6b; color: #fff6dc; border-color: #0b2a6b; }
+  html[data-theme="light"] .tile { box-shadow: 0 1px 2px rgba(11,31,77,0.05), 0 6px 18px rgba(11,42,107,0.06); }
+  html[data-theme="light"] .tile.on { background: color-mix(in srgb, var(--c) 14%, #ffffff); box-shadow: 0 0 22px color-mix(in srgb, var(--c) 22%, transparent); }
+  html[data-theme="light"] .tile.on .st { color: color-mix(in srgb, var(--c) 60%, #0b1f4d); }
+  html[data-theme="light"] .glyph, html[data-theme="light"] .hzbig { color: color-mix(in srgb, var(--c) 65%, #0b1f4d); }
+  html[data-theme="light"] input[type=range]::-webkit-slider-runnable-track { background: linear-gradient(to right, var(--c2) var(--p), rgba(11,42,107,0.15) var(--p)); }
+  html[data-theme="light"][dir="rtl"] input[type=range]::-webkit-slider-runnable-track { background: linear-gradient(to left, var(--c2) var(--p), rgba(11,42,107,0.15) var(--p)); }
+  html[data-theme="light"] input[type=range]::-webkit-slider-thumb { background: #ffffff; }
+  html[data-theme="light"] input[type=range]::-moz-range-track { background: rgba(11,42,107,0.15); }
+  html[data-theme="light"] input[type=range]::-moz-range-thumb { background: #ffffff; }
+  html[data-theme="light"] .bar { background: rgba(255,253,248,0.92); box-shadow: 0 -6px 24px rgba(11,31,77,0.08); }
+  html[data-theme="light"] .play { color: #fff6dc; background: linear-gradient(135deg, #1a47a0, #0b2a6b); box-shadow: 0 0 20px rgba(26,71,160,0.3); }
+  html[data-theme="light"] .stopall { border-color: rgba(11,42,107,0.16); background: rgba(255,255,255,0.75); }
+  html[data-theme="light"] .cat-h { background: rgba(255,255,255,0.7); }
+  html[data-theme="light"] .cat-h .cnt { color: #fff; background: #1a47a0; }
+  html[data-theme="light"] .fin, html[data-theme="light"] .num { background: #fff; border-color: rgba(11,42,107,0.2); color-scheme: light; }
+  html[data-theme="light"] .install { color: #0b2a6b; background: #fff8e6; border-color: rgba(201,162,39,0.6); box-shadow: none; }
+  html[data-theme="light"] .install-hint { color: #3f5079; }
+  html[data-theme="light"] .toast { background: #0b2a6b; color: #fff6dc; border-color: rgba(201,162,39,0.5); }
+  html:not([data-theme="light"]):not([data-rgbg="0"]) .tile:not(.on), html:not([data-theme="light"]):not([data-rgbg="0"]) .cat-h, html:not([data-theme="light"]):not([data-rgbg="0"]) .note { background: rgba(12,10,24,0.45); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 </style>
+<script src="../shared/rg-bg.js" data-app="sounds" data-theme-key="rg-sounds-theme" data-light-color="#f3efe6" data-slot="#acct-row" data-before=""></script>
 </head>
 <body>
 <main>
-  <div class="lang" role="group" aria-label="Language / שפה">
+  <div class="toprow" id="acct-row"><div class="lang" role="group" aria-label="Language / שפה">
     <button type="button" class="chip" id="lang-he" lang="he" aria-pressed="true">עברית</button>
     <button type="button" class="chip" id="lang-en" lang="en" aria-pressed="false">English</button>
-  </div>
-  <div style="display:flex;justify-content:center;margin:-8px 0 16px"><span data-rg-account></span></div>
+  </div><span data-rg-account></span></div>
   <h1 id="title"></h1>
   <p class="sub" id="sub"></p>
-  <div class="install-wrap top" id="install-wrap" hidden>
-    <button type="button" class="install" id="install-btn"></button>
-    <p class="install-hint" id="install-hint" hidden></p>
-  </div>
   <p class="status" id="status" aria-live="polite"></p>
   <div id="cats"></div>
   <p class="note" id="note"></p>
+  <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer><a href="../" id="back"></a> · <a href="../relax/" id="games"></a></footer>
 </main>
 
@@ -769,6 +795,6 @@
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
-<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 </body>
 </html>
