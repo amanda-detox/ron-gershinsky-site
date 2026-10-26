@@ -10,14 +10,14 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="עדכוניפיי">
 <meta name="description" content="עדכוניפיי · חדשות 3 פעמים ביום על האנשים והחברות שאתה עוקב אחריהם. Updatify, news 3 times a day on the people and companies you follow.">
-<script>/* theme + background before first paint: dark (default) / light; night bg 1-10 (default 2) */(function(){var d=document.documentElement,t="dark",b="2";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([1-9]|10)$/.test(v||""))b=v;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);var C={"1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<title>עדכוניפיי · Updatify</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap">
+<script>/* theme + background before first paint: dark (default) / light; night bg 1-10 (default 2); light bg 0 = original (default), 1-10 = the landing page light backgrounds */(function(){var d=document.documentElement,t="dark",b="2",lb="0";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([1-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-news-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>עדכוניפיי</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <style>
 :root{
   --bg:#0a1a3f; --bg2:#06112b; --card:#0f2350; --card2:#132b5f; --ink:#ffffff; --ink2:#d6e2fb; --mute:#a3b6dc; --dim:#7a8fb9;
@@ -144,7 +144,32 @@ html[data-theme=dark] :focus-visible{outline-color:rgba(255,214,160,.6)}
 /* picker */
 .iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;color:var(--ink2);background:var(--card);border:1px solid var(--line);border-radius:999px;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .iconbtn svg{width:18px;height:18px}
-html[data-theme=light] #bg-btn{display:none}
+html[data-theme=light] #bg-btn{background:#fffdf8}
+/* ---- light-mode backgrounds (picker; 0 = original cream, same 10 as the landing page) ---- */
+:root{--lbgi-1: linear-gradient(180deg,#eef5ff 0%,#d6e6ff 55%,#c2d8fb 100%); --lbgc-1: #c2d8fb; --lbgi-2: radial-gradient(70% 50% at 85% 0%,rgba(245,197,66,.42),transparent 70%),linear-gradient(180deg,#fffaee 0%,#f6ecd6 100%); --lbgc-2: #f6ecd6; --lbgi-3: linear-gradient(165deg,#f4f0ff 0%,#e6defd 55%,#d9cff7 100%); --lbgc-3: #d9cff7; --lbgi-4: linear-gradient(170deg,#fff4ec 0%,#ffe1cf 60%,#fdd2bc 100%); --lbgc-4: #fdd2bc; --lbgi-5: radial-gradient(60% 45% at 15% 10%,rgba(255,214,231,.85),transparent 70%),radial-gradient(55% 40% at 85% 35%,rgba(204,226,255,.9),transparent 70%),radial-gradient(50% 40% at 40% 90%,rgba(232,220,255,.85),transparent 70%),linear-gradient(180deg,#fbfaff 0%,#f1f0f8 100%); --lbgc-5: #f1f0f8; --lbgi-6: linear-gradient(180deg,#fff5d9 0%,#ffe3c6 45%,#f9d6e2 100%); --lbgc-6: #f9d6e2; --lbgi-7: linear-gradient(160deg,#eef8ff 0%,#d3ecfc 50%,#c1dbf7 100%); --lbgc-7: #c1dbf7; --lbgi-8: linear-gradient(170deg,#fff2f6 0%,#fbdfe9 55%,#f0d3e8 100%); --lbgc-8: #f0d3e8; --lbgi-9: radial-gradient(60% 45% at 80% 5%,rgba(255,200,90,.5),transparent 70%),radial-gradient(55% 40% at 10% 70%,rgba(176,198,255,.45),transparent 70%),linear-gradient(180deg,#fff9ec 0%,#f3ead8 100%); --lbgc-9: #f3ead8; --lbgi-10: radial-gradient(50% 32% at 20% 14%,#ffffff 0%,transparent 70%),radial-gradient(55% 34% at 82% 46%,rgba(255,255,255,.95) 0%,transparent 70%),radial-gradient(45% 30% at 30% 82%,rgba(255,255,255,.85) 0%,transparent 70%),linear-gradient(180deg,#e7eef8 0%,#d5dfee 100%); --lbgc-10: #d5dfee;}
+html[data-theme=light][data-lbg="1"]{--pagebg:var(--lbgi-1);--bg2:var(--lbgc-1)}
+html[data-theme=light][data-lbg="2"]{--pagebg:var(--lbgi-2);--bg2:var(--lbgc-2)}
+html[data-theme=light][data-lbg="3"]{--pagebg:var(--lbgi-3);--bg2:var(--lbgc-3)}
+html[data-theme=light][data-lbg="4"]{--pagebg:var(--lbgi-4);--bg2:var(--lbgc-4)}
+html[data-theme=light][data-lbg="5"]{--pagebg:var(--lbgi-5);--bg2:var(--lbgc-5)}
+html[data-theme=light][data-lbg="6"]{--pagebg:var(--lbgi-6);--bg2:var(--lbgc-6)}
+html[data-theme=light][data-lbg="7"]{--pagebg:var(--lbgi-7);--bg2:var(--lbgc-7)}
+html[data-theme=light][data-lbg="8"]{--pagebg:var(--lbgi-8);--bg2:var(--lbgc-8)}
+html[data-theme=light][data-lbg="9"]{--pagebg:var(--lbgi-9);--bg2:var(--lbgc-9)}
+html[data-theme=light][data-lbg="10"]{--pagebg:var(--lbgi-10);--bg2:var(--lbgc-10)}
+html[data-theme=light]:not([data-lbg="0"]){--card:rgba(255,255,255,.8);--card2:rgba(255,255,255,.9);--line:rgba(11,42,107,.16)}
+html[data-theme=light]:not([data-lbg="0"]) .card,html[data-theme=light]:not([data-lbg="0"]) .lang,html[data-theme=light]:not([data-lbg="0"]) .themebtn,html[data-theme=light]:not([data-lbg="0"]) .btn:not(.primary),html[data-theme=light]:not([data-lbg="0"]) .caught{-webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%)}
+html[data-theme=light]:not([data-lbg="0"]) #bg-btn{background:rgba(255,255,255,.82)}
+html[data-theme=light]:not([data-lbg="0"]) .chipbar{background:rgba(255,255,255,.55)}
+/* the picker sheet itself goes light in light mode */
+html[data-theme=light] .sheet{background:rgba(255,253,248,.94);color:#0b1f4d;border-color:rgba(11,42,107,.14);box-shadow:0 -10px 40px rgba(11,31,77,.18)}
+html[data-theme=light] .sheet .grab{background:rgba(11,42,107,.25)}
+html[data-theme=light] .sheet .x{color:#22396b}
+html[data-theme=light] .sw{color:#22396b}
+html[data-theme=light] .sw .pv{border-color:rgba(11,42,107,.18)}
+html[data-theme=light] .sw[aria-pressed=true] .pv{border-color:#0b2a6b;outline-color:rgba(201,162,39,.85)}
+html[data-theme=light] .sw[aria-pressed=true] .pv::after{background:#0b2a6b;color:#fff}
+html[data-theme=light] .sw .num{background:rgba(11,42,107,.7)}
 .sheet-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
 .sheet-back[hidden]{display:none}
 .sheet{width:100%;max-width:520px;background:rgba(20,14,30,.88);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);color:#fff;border:1px solid rgba(255,255,255,.14);border-bottom:0;border-radius:20px 20px 0 0;padding:14px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.4);animation:up .25s ease-out}
@@ -153,7 +178,8 @@ html[data-theme=light] #bg-btn{display:none}
 .sheet .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sheet h2{margin:0;font-size:18px;font-weight:800}
 .sheet .x{background:none;border:0;color:#ddd;font-size:26px;line-height:1;cursor:pointer;padding:2px 8px}
-.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (min-width:440px){.swatches{grid-template-columns:repeat(6,1fr)}}
 .sw{border:0;background:none;padding:0;cursor:pointer;color:#e9e4f3;font:600 12px var(--sans);text-align:center}
 .sw .pv{position:relative;display:block;aspect-ratio:3/4;border-radius:12px;border:2px solid rgba(255,255,255,.18);overflow:hidden}
 .sw .num{position:absolute;top:5px;inset-inline-start:5px;min-width:22px;height:22px;border-radius:11px;background:rgba(0,0,0,.55);color:#fff;font:800 12.5px/22px var(--sans);padding:0 5px}
@@ -225,14 +251,11 @@ html[data-theme=dark] .rdr .rmeta{color:var(--rd-gold)}
   <div class="status">
     <span class="upd" id="updated"></span>
   </div>
-  <div class="install" id="install-wrap" hidden>
-    <button type="button" class="btn primary" id="install-btn"></button>
-    <div class="hint" id="install-hint" hidden></div>
-  </div>
 
   <div class="chipbar"><button type="button" class="arrow prev" id="chip-prev" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></button><nav class="chips" id="chips" aria-label="Topics"></nav><button type="button" class="arrow next" id="chip-next" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></div>
   <main id="feed" aria-live="polite"></main>
   <p class="note" id="note"></p>
+  <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer>© Ron Gershinsky</footer>
 </div>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>

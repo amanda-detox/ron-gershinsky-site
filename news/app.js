@@ -1,12 +1,12 @@
 /* Updates (עדכונים): news feed from news.json (regenerated 3 times a day), with read tracking. */
 (function () {
   "use strict";
-  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg", READ_KEY = "rg-news-read";
+  var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg", LBG_KEY = "rg-news-bg-light", READ_KEY = "rg-news-read";
   var READ_CAP = 1000, RELOAD_MS = 5 * 60 * 1000;
   var TZ = "Asia/Jerusalem";
   var L = {
     he: {
-      title: "עדכוניפיי", doc: "עדכוניפיי · Updatify",
+      title: "עדכוניפיי", doc: "עדכוניפיי",
       tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן 3 פעמים ביום",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
       all: "הכול", people: "אנשים", companies: "חברות ונושאים",
@@ -21,12 +21,13 @@
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף (□↑) בתחתית Safari, ואז בוחרים „הוסף למסך הבית”.",
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
       bgTitle: "בחירת רקע", bgBtn: "בחירת רקע",
+      lbgs: ["רקע מקורי", "שמי בוקר", "שמנת וזהב", "לבנדר", "אפרסק", "פנינה", "זריחה", "בריזה", "קוורץ ורוד", "שעת זהב", "עננים"],
       bgs: ["זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
       close: "סגירה", prev: "נושאים קודמים", next: "נושאים נוספים",
       locale: "he-IL"
     },
     en: {
-      title: "Updatify", doc: "Updatify · עדכוניפיי",
+      title: "Updatify", doc: "Updatify",
       tagline: "News on the people and companies you follow, updated 3 times a day",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
       all: "All", people: "People", companies: "Companies & topics",
@@ -41,6 +42,7 @@
       ios: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
       bgTitle: "Choose background", bgBtn: "Choose background",
+      lbgs: ["Original", "Morning sky", "Cream & gold", "Lavender", "Peach", "Pearl", "Sunrise", "Sea breeze", "Rose quartz", "Golden hour", "Clouds"],
       bgs: ["Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
       close: "Close", prev: "Previous topics", next: "More topics",
       locale: "en-GB"
@@ -58,7 +60,8 @@
   var theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
   var topic = get(TOPIC_KEY) || "all";
   var bg = document.documentElement.getAttribute("data-bg") || "2";
-  var TC = window.RG_BG_TC || {};
+  var TC = window.RG_BG_TC || {}, LTC = window.RG_LBG_TC || {};
+  var lbg = document.documentElement.getAttribute("data-lbg") || "0";
   var data = null, offline = false, loading = false, lastFetch = 0, showRead = false;
 
   /* ----- read tracking: array of item ids in localStorage, oldest first, capped ----- */
@@ -157,8 +160,8 @@
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", theme === "light" ? "#f3efe6" : (TC[bg] || "#e9506a"));
-    if (theme === "light") closeSheet();
+    if (m) m.setAttribute("content", theme === "light" ? (LTC[lbg] || "#f3efe6") : (TC[bg] || "#e9506a"));
+    if (!$("bg-sheet").hidden) renderSwatches(); // each mode shows its own backgrounds
     var b = $("theme-btn");
     b.querySelector(".ti").innerHTML = theme === "light" ? MOON : SUN;
     b.querySelector(".tl").textContent = theme === "light" ? t().dark : t().light;
@@ -359,19 +362,26 @@
   $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReader(); });
 
-  /* ----- background picker (night mode only) ----- */
+  /* ----- background picker: night 1-10 (rg-news-bg), light 0-10 (rg-news-bg-light, 0 = original) ----- */
   function renderSwatches() {
-    var box = $("swatches"), html = "";
-    for (var i = 1; i <= 10; i++) {
-      html += '<button type="button" class="sw" data-bg="' + i + '" aria-pressed="' + (String(i) === bg ? "true" : "false") + '">' +
-        '<span class="pv" style="background:var(--bgi-' + i + '),var(--bgc-' + i + ')"><span class="num">' + i + '</span></span>' +
-        '<span class="nm">' + esc(t().bgs[i - 1]) + "</span></button>";
+    var box = $("swatches"), html = "", L = theme === "light";
+    for (var i = L ? 0 : 1; i <= 10; i++) {
+      var pv = L ? (i === 0 ? "linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%)" : "var(--lbgi-" + i + "),var(--lbgc-" + i + ")") : "var(--bgi-" + i + "),var(--bgc-" + i + ")";
+      html += '<button type="button" class="sw" data-bg="' + i + '" aria-pressed="' + (String(i) === (L ? lbg : bg) ? "true" : "false") + '">' +
+        '<span class="pv" style="background:' + pv + '"><span class="num">' + (i === 0 ? "★" : i) + '</span></span>' +
+        '<span class="nm">' + esc(L ? t().lbgs[i] : t().bgs[i - 1]) + "</span></button>";
     }
     box.innerHTML = html;
   }
-  function setBg(v) {
-    bg = String(v); set(BG_KEY, bg);
-    document.documentElement.setAttribute("data-bg", bg);
+  function setBg(v, mode) {
+    if ((mode || theme) === "light") {
+      lbg = /^([0-9]|10)$/.test(String(v)) ? String(v) : "0"; set(LBG_KEY, lbg);
+      document.documentElement.setAttribute("data-lbg", lbg);
+    } else {
+      if (!/^([1-9]|10)$/.test(String(v))) return;
+      bg = String(v); set(BG_KEY, bg);
+      document.documentElement.setAttribute("data-bg", bg);
+    }
     applyTheme(); renderSwatches();
   }
   function openSheet() { renderSwatches(); $("bg-sheet").hidden = false; }
@@ -448,10 +458,11 @@
     ACC.ready.then(cloudSync);
     ACC.onChange(function (u) { if (u) cloudSync(); });
     // language, theme, background and topic follow the account across devices
-    ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, TOPIC_KEY], function (c) {
+    ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, LBG_KEY, TOPIC_KEY], function (c) {
       if (LANG_KEY in c) lang = c[LANG_KEY] === "en" ? "en" : "he";
       if (THEME_KEY in c) theme = c[THEME_KEY] === "light" ? "light" : "dark";
       if (BG_KEY in c && /^([1-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
+      if (LBG_KEY in c && /^([0-9]|10)$/.test(c[LBG_KEY] || "")) { lbg = c[LBG_KEY]; document.documentElement.setAttribute("data-lbg", lbg); }
       if (TOPIC_KEY in c && c[TOPIC_KEY]) topic = c[TOPIC_KEY];
       renderAll(); return true;
     });
