@@ -207,6 +207,7 @@
       ben: ["מה שקראת, סימנת ושמרת – מסונכרן בין הנייד, הלפטופ וכל מכשיר", "חשבון אחד לכל משפחת האפליקציות", "ההיסטוריה והתוצאות שלך נשמרות ולא הולכות לאיבוד", "בלי סיסמה – קוד חד־פעמי למייל"],
       email: "כתובת המייל שלך", send: "שלח לי קוד", sending: "שולח…",
       codeHead: "הזן את הקוד שקיבלת במייל", codeSub: "שלחנו קוד בן 6 ספרות אל", code: "קוד בן 6 ספרות", verify: "אמת והתחבר", verifying: "מאמת…",
+      fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם.",
       resend: "שלח קוד חדש", resent: "נשלח קוד חדש. בדוק את המייל (גם בספאם).", other: "החלף מייל",
       nameHead: "איך לקרוא לך?", nameSub: "השם יוצג בכל האפליקציות במקום המייל. אפשר לדלג.", name: "השם שלך", save: "שמור", skip: "דלג",
       signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", out: "התנתק", close: "סגירה", account: "החשבון שלך",
@@ -221,6 +222,7 @@
       ben: ["What you read, marked and saved – synced across your phone, laptop and every device", "One account for the whole family of apps", "Your history and results are saved and never get lost", "No password – a one-time code by email"],
       email: "Your email address", send: "Send me a code", sending: "Sending…",
       codeHead: "Enter the code you got by email", codeSub: "We sent a 6-digit code to", code: "6-digit code", verify: "Verify and sign in", verifying: "Verifying…",
+      fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam.",
       resend: "Send a new code", resent: "A new code was sent. Check your email (and spam).", other: "Use another email",
       nameHead: "What should we call you?", nameSub: "Your name shows in every app instead of your email. You can skip this.", name: "Your name", save: "Save", skip: "Skip",
       signedAs: "Signed in as ", hello: "Hi", rename: "Change name", out: "Sign out", close: "Close", account: "Your account",
@@ -266,6 +268,7 @@
     ".rgacc-go{display:block;width:100%;margin:12px 0 0;font-family:inherit;font-size:16px;font-weight:800;color:#0b2a6b;background:#f5c542;border:0;border-radius:999px;padding:12px 16px;cursor:pointer}.rgacc-go:hover{background:#ffd45c}.rgacc-go[disabled]{opacity:.65;cursor:default}",
     ".rgacc-sec{display:block;width:100%;margin:10px 0 0;font-family:inherit;font-size:15px;font-weight:700;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px;cursor:pointer}.rgacc-sec:hover{border-color:#f5c542}",
     ".rgacc-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:12px}.rgacc-lnk{background:none;border:0;padding:4px 0;font-family:inherit;font-size:14px;font-weight:700;color:#ffd98a;cursor:pointer}.rgacc-lnk:hover{text-decoration:underline}",
+    ".rgacc-from{margin:0 0 14px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px;line-height:1.5}.rgacc-from bdi{color:#fff;font-weight:700}",
     ".rgacc-err{min-height:1.2em;margin:8px 0 0;font-size:14px;color:#ffb4b4}.rgacc-err.ok{color:#ffd98a}",
     ".rgacc-who{display:flex;align-items:center;gap:12px;margin:0 0 12px}.rgacc-av{flex:none;width:46px;height:46px;border-radius:50%;background:#f5c542;color:#0b2a6b;font-size:20px;font-weight:800;line-height:46px;text-align:center}.rgacc-who b{display:block;font-size:17px}.rgacc-who span{color:#cfd9f2;font-size:14px;direction:ltr;unicode-bidi:isolate}",
     "@media (prefers-reduced-motion:no-preference){.rgacc-dlg{animation:rgacc-in .2s ease-out}}@keyframes rgacc-in{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}"
@@ -323,6 +326,7 @@
         note + go(busy ? L.sending : L.send) + "</form>";
     } else if (step === "code") {
       h = '<h2 id="rgacc-h">' + esc(L.codeHead) + "</h2><p>" + esc(L.codeSub) + " <b>" + esc(p ? p.email : emailDraft) + "</b></p>" +
+        '<p class="rgacc-from">' + esc(L.fromNote).replace(/“([^”]+)”/, "<bdi dir=\"ltr\">“$1”</bdi>") + "</p>" +
         '<form data-f="code" novalidate><label for="rgacc-code">' + esc(L.code) + '</label><input id="rgacc-code" class="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">' +
         note + go(busy ? L.verifying : L.verify) + "</form>" +
         '<div class="rgacc-links"><button type="button" class="rgacc-lnk" data-a="resend">' + esc(L.resend) + '</button><button type="button" class="rgacc-lnk" data-a="other">' + esc(L.other) + "</button></div>";
