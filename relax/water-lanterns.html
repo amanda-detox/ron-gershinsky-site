@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#08142e">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Tap the lake to set glowing paper lanterns afloat and watch them drift away.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23e8c36a%22/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Relaxify">
+<script>
+  /* night/light before first paint: rg-relax-theme ("light" | "dark"), night by default */
+  (function () { try { if (localStorage.getItem('rg-relax-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {} })();
+</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<script src="lang.js"></script>
+<title>פנסים על המים</title>
+<style>
+  :root {
+    --ui-fg: rgba(220,232,255,0.82); --ui-bg: rgba(8,18,44,0.4); --ui-bd: rgba(200,215,255,0.16);
+    --ui-on: rgba(255,226,150,0.96); --ui-on-bd: rgba(240,205,120,0.45);
+    --hint: rgba(232,240,255,0.86); --hint-glow: rgba(110,150,255,0.5);
+    --page: #08142e;
+  }
+  html[data-theme="light"] {
+    --ui-fg: #163a7a; --ui-bg: rgba(255,255,255,0.62); --ui-bd: rgba(20,50,110,0.18);
+    --ui-on: #8a5e08; --ui-on-bd: rgba(180,130,30,0.55);
+    --hint: #183a78; --hint-glow: rgba(255,255,255,0.9);
+    --page: #dbe6f6;
+  }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); overscroll-behavior: none; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--hint); -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .ui {
+    position: fixed; z-index: 10;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0; box-sizing: border-box;
+    font: inherit; color: var(--ui-fg);
+    background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; touch-action: manipulation; outline: none;
+    -webkit-tap-highlight-color: transparent; text-decoration: none;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .ui svg { width: 22px; height: 22px; }
+  .ui:focus-visible { border-color: var(--ui-on); }
+  #home { left: calc(14px + env(safe-area-inset-left, 0px)); }
+  #fs { left: calc(74px + env(safe-area-inset-left, 0px)); }
+  #theme { left: calc(134px + env(safe-area-inset-left, 0px)); }
+  #theme .sun { display: none; }
+  html[data-theme="light"] #theme .sun { display: inline; }
+  html[data-theme="light"] #theme .moon { display: none; }
+  #sound { right: calc(14px + env(safe-area-inset-right, 0px)); }
+  #sound[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  #sound .on { display: none; }
+  #sound[aria-pressed="true"] .on { display: inline; }
+  #sound[aria-pressed="true"] .off { display: none; }
+  .pill {
+    position: fixed; left: 50%; transform: translateX(-50%); z-index: 10;
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    min-width: 132px; min-height: 50px; padding: 0 22px; border-radius: 999px;
+    font: inherit; font-size: 16px; letter-spacing: 0.04em; white-space: nowrap;
+    color: var(--ui-fg); background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  .pill[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  .pill:focus-visible { border-color: var(--ui-on); }
+  #hint {
+    position: fixed; left: 24px; right: 24px; top: 30%; text-align: center; pointer-events: none; z-index: 5;
+    font-size: 20px; font-weight: 300; letter-spacing: 0.05em; color: var(--hint);
+    text-shadow: 0 0 16px var(--hint-glow); transition: opacity 1.4s ease; opacity: 0;
+  }
+
+</style>
+</head>
+<body>
+<canvas id="c" data-ta="aria"></canvas>
+<div id="hint" data-t="hint"></div>
+<button id="drift" class="pill" aria-pressed="false" data-t="drift"></button>
+<a id="home" class="ui" href="index.html" aria-label="Back to all games">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v8.5h11V10"/></svg>
+</a>
+<button id="fs" class="ui" aria-label="Full screen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9V4.5H9M19.5 9V4.5H15M4.5 15v4.5H9M19.5 15v4.5H15"/></svg>
+</button>
+<button id="theme" class="ui" aria-pressed="false" aria-label="">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g class="moon"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></g>
+    <g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M5.5 18.5l1.6-1.6M16.9 7.1l1.6-1.6"/></g>
+  </svg>
+</button>
+<button id="sound" class="ui" aria-pressed="false" aria-label="Turn sound on">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+    <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+    <g class="on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g>
+  </svg>
+</button>
+<script>
+(function () {
+  'use strict';
+  // ---------- Shared: gentle Web Audio core (off until the player taps the sound button) ----------
+  function AudioCore(build, level) {
+    var core = { ctx: null, master: null, reverb: null, on: false };
+    level = level || 0.8;
+    function impulse(sec) {
+      var a = core.ctx, rate = a.sampleRate, len = Math.floor(rate * sec);
+      var buf = a.createBuffer(2, len, rate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      }
+      return buf;
+    }
+    core.noise = function (sec) {
+      var a = core.ctx, len = Math.floor(a.sampleRate * sec), buf = a.createBuffer(1, len, a.sampleRate);
+      var d = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; last = (last + 0.04 * w) / 1.04; d[i] = last * 3.2 + w * 0.12; }
+      return buf;
+    };
+    core.loop = function (buf) {
+      var s = core.ctx.createBufferSource(); s.buffer = buf; s.loop = true; s.start(); return s;
+    };
+    function init() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      var a = core.ctx = new AC();
+      var comp = a.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      core.master = a.createGain(); core.master.gain.value = 0;
+      core.master.connect(comp); comp.connect(a.destination);
+      core.reverb = a.createConvolver(); core.reverb.buffer = impulse(3.2);
+      var rev = a.createGain(); rev.gain.value = 0.55;
+      core.reverb.connect(rev); rev.connect(core.master);
+      if (build) build(core);
+      return true;
+    }
+    core.setOn = function (v) {
+      if (v) {
+        if (!core.ctx && !init()) return false;
+        core.on = true;
+        if (core.ctx.state !== 'running') core.ctx.resume();
+        var t = core.ctx.currentTime, g = core.master.gain;
+        g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(level, t + 1.5);
+      } else {
+        core.on = false;
+        if (!core.ctx) return true;
+        var t2 = core.ctx.currentTime, g2 = core.master.gain;
+        g2.cancelScheduledValues(t2); g2.setValueAtTime(g2.value, t2); g2.linearRampToValueAtTime(0, t2 + 0.6);
+        setTimeout(function () { if (!core.on && core.ctx) core.ctx.suspend(); }, 800);
+      }
+      return true;
+    };
+    core.isOn = function () { return core.on; };
+    core.ready = function () { return core.on && core.ctx && core.ctx.state === 'running'; };
+    core.visibility = function (hidden) {
+      if (!core.ctx) return;
+      if (hidden) core.ctx.suspend(); else if (core.on) core.ctx.resume();
+    };
+    // soft bell / kalimba-like tone
+    core.bell = function (freq, vel, opt) {
+      if (!core.ready()) return;
+      opt = opt || {};
+      var a = core.ctx, t = a.currentTime + (opt.delay || 0), dec = opt.decay || 3;
+      var g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16 * vel, t + (opt.attack || 0.02));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+      var dry = a.createGain(); dry.gain.value = opt.dry == null ? 0.55 : opt.dry;
+      g.connect(dry); dry.connect(core.master);
+      var wet = a.createGain(); wet.gain.value = opt.wet == null ? 1 : opt.wet;
+      g.connect(wet); wet.connect(core.reverb);
+      var partials = opt.partials || [[1, 1], [2.0, 0.22], [3.01, 0.07]];
+      for (var i = 0; i < partials.length; i++) {
+        var o = a.createOscillator(); o.type = 'sine';
+        o.frequency.value = freq * partials[i][0];
+        var pg = a.createGain(); pg.gain.value = partials[i][1];
+        o.connect(pg); pg.connect(g);
+        o.start(t); o.stop(t + dec + 0.1);
+      }
+    };
+    // a quiet, slowly breathing chord pad
+    core.pad = function (notes, vol, cutoff) {
+      var a = core.ctx;
+      var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = cutoff || 600; f.Q.value = 0.5;
+      var pg = a.createGain(); pg.gain.value = 0;
+      f.connect(pg); pg.connect(core.master);
+      var send = a.createGain(); send.gain.value = 0.5; pg.connect(send); send.connect(core.reverb);
+      for (var i = 0; i < notes.length; i++) {
+        var vg = a.createGain(); vg.gain.value = vol;
+        var o1 = a.createOscillator(); o1.type = 'sine'; o1.frequency.value = notes[i];
+        var o2 = a.createOscillator(); o2.type = 'triangle'; o2.frequency.value = notes[i]; o2.detune.value = (i % 2 ? 6 : -6);
+        var g2 = a.createGain(); g2.gain.value = 0.3;
+        o1.connect(vg); o2.connect(g2); g2.connect(vg);
+        var lfo = a.createOscillator(); lfo.frequency.value = 0.035 + i * 0.015;
+        var depth = a.createGain(); depth.gain.value = vol * 0.7;
+        lfo.connect(depth); depth.connect(vg.gain);
+        vg.connect(f);
+        o1.start(); o2.start(); lfo.start();
+      }
+      pg.gain.setTargetAtTime(1, a.currentTime, 2.5);
+      return { filter: f, gain: pg };
+    };
+    return core;
+  }
+
+  // ---------- Shared: sound + full-screen buttons ----------
+  function setupUI(Sound) {
+    var sb = document.getElementById('sound');
+    sb.addEventListener('click', function () {
+      var want = !Sound.isOn();
+      if (!Sound.setOn(want)) return;
+      sb.setAttribute('aria-pressed', want ? 'true' : 'false');
+      sb.setAttribute('aria-label', RGT(want ? 'Turn sound off' : 'Turn sound on'));
+    });
+    document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
+    var fb = document.getElementById('fs'), de = document.documentElement;
+    var req = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!req) { fb.style.display = 'none'; return; }
+    fb.addEventListener('click', function () {
+      var fe = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fe) { var ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) ex.call(document); }
+      else { var r = req.call(de); if (r && r.catch) r.catch(function () {}); }
+    });
+  }
+
+  // ---------- Shared: language (rg-lang via lang.js) + night/light (rg-relax-theme) ----------
+  function GameShell(T, themeColors) {
+    var html = document.documentElement, langCbs = [], themeCbs = [];
+    function lang() {
+      if (window.RGLang) return RGLang.get();
+      try { return localStorage.getItem('rg-lang') === 'en' ? 'en' : 'he'; } catch (e) { return 'he'; }
+    }
+    function t(k) { var L = T[lang()] || T.en; return L[k] != null ? L[k] : T.en[k]; }
+    var light = html.getAttribute('data-theme') === 'light';
+    var tb = document.getElementById('theme');
+    function paintTheme() {
+      html.setAttribute('data-theme', light ? 'light' : 'dark');
+      var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', themeColors[light ? 1 : 0]);
+      tb.setAttribute('aria-pressed', light ? 'true' : 'false');
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+    }
+    function applyText() {
+      var l = lang();
+      html.lang = l; html.dir = l === 'he' ? 'rtl' : 'ltr';
+      document.title = t('title');
+      var els = document.querySelectorAll('[data-t]');
+      for (var i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute('data-t'));
+      var al = document.querySelectorAll('[data-ta]');
+      for (var j = 0; j < al.length; j++) al[j].setAttribute('aria-label', t(al[j].getAttribute('data-ta')));
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+      for (var k = 0; k < langCbs.length; k++) langCbs[k](l);
+    }
+    function setLight(v, save) {
+      v = !!v; if (v === light) return;
+      light = v;
+      if (save) { try { localStorage.setItem('rg-relax-theme', light ? 'light' : 'dark'); } catch (e) {} }
+      paintTheme();
+      for (var i = 0; i < themeCbs.length; i++) themeCbs[i](light);
+    }
+    tb.addEventListener('click', function () { setLight(!light, true); });
+    window.addEventListener('rg-langchange', applyText);
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'rg-lang') setTimeout(applyText, 0);
+      if (e.key === 'rg-relax-theme') setLight(e.newValue === 'light', false);
+    });
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      setTimeout(applyText, 0);
+      try { setLight(localStorage.getItem('rg-relax-theme') === 'light', false); } catch (er) {}
+    });
+    // another script (account sync) may flip html[data-theme]
+    new MutationObserver(function () { var v = html.getAttribute('data-theme') === 'light'; if (v !== light) { light = !v; setLight(v, false); } })
+      .observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+    paintTheme(); applyText();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyText);
+    return { t: t, lang: lang, isLight: function () { return light; },
+      onLang: function (cb) { langCbs.push(cb); }, onTheme: function (cb) { themeCbs.push(cb); } };
+  }
+
+  var Shell = GameShell({
+    he: { title: 'פנסים על המים', aria: 'אגם בלילה. נוגעים במים כדי לשחרר פנסי נייר זוהרים.',
+      hint: 'נוגעים במים כדי לשחרר פנס', drift: 'פנסים נודדים', toLight: 'מצב בהיר', toNight: 'מצב לילה' },
+    en: { title: 'Water Lanterns', aria: 'A lake at night. Touch the water to release glowing paper lanterns.',
+      hint: 'Touch the water to release a lantern', drift: 'Drifting lanterns', toLight: 'Light mode', toNight: 'Night mode' }
+  }, ['#08142e', '#dbe6f6']);
+
+  var canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  var hint = document.getElementById('hint'), driftBtn = document.getElementById('drift');
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 0, DPR = 1, HZ = 0, TAU = Math.PI * 2;
+  var light = Shell.isLight();
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function makeGlow(size, stops) {
+    var c = document.createElement('canvas'); c.width = c.height = size;
+    var g = c.getContext('2d'), gr = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    for (var i = 0; i < stops.length; i++) gr.addColorStop(stops[i][0], stops[i][1]);
+    g.fillStyle = gr; g.fillRect(0, 0, size, size); return c;
+  }
+  var warmGlow = makeGlow(128, [[0, 'rgba(255,214,130,0.55)'], [0.35, 'rgba(255,190,90,0.18)'], [1, 'rgba(255,180,80,0)']]);
+
+  // lantern sprites: square paper boxes (toro nagashi), gold or pale blue paper with warm light inside
+  var PAPERS = [['#fff2cf', '#f2c46a', '#d4952f'], ['#fff6e2', '#f5d48d', '#dba84a'], ['#eef4ff', '#b9cdf2', '#7f9fd8']];
+  function makeLantern(p) {
+    var w = 64, h = 72, c = document.createElement('canvas'); c.width = w; c.height = h;
+    var g = c.getContext('2d');
+    // wooden base
+    g.fillStyle = '#3b2a14'; g.fillRect(4, h - 12, w - 8, 9);
+    g.fillStyle = 'rgba(255,220,150,0.25)'; g.fillRect(4, h - 12, w - 8, 2);
+    // paper body with light inside
+    var gr = g.createRadialGradient(w / 2, h * 0.62, 2, w / 2, h * 0.55, w * 0.62);
+    gr.addColorStop(0, p[0]); gr.addColorStop(0.55, p[1]); gr.addColorStop(1, p[2]);
+    g.fillStyle = gr; g.fillRect(8, 10, w - 16, h - 22);
+    // side shading (3D box)
+    g.fillStyle = 'rgba(80,50,10,0.16)'; g.fillRect(8, 10, 10, h - 22);
+    g.fillStyle = 'rgba(80,50,10,0.10)'; g.fillRect(w - 18, 10, 10, h - 22);
+    // frame
+    g.strokeStyle = 'rgba(70,45,15,0.75)'; g.lineWidth = 2;
+    g.strokeRect(8, 10, w - 16, h - 22);
+    g.beginPath(); g.moveTo(18, 10); g.lineTo(18, h - 12); g.moveTo(w - 18, 10); g.lineTo(w - 18, h - 12); g.stroke();
+    // top rim
+    g.fillStyle = '#4a3418'; g.fillRect(5, 6, w - 10, 5);
+    return c;
+  }
+  var sprites = PAPERS.map(makeLantern);
+
+  // ---------- Scene ----------
+  var bg = document.createElement('canvas'), bctx = bg.getContext('2d');
+  var moon = {};
+  function buildBg() {
+    bg.width = Math.round(W * DPR); bg.height = Math.round(H * DPR);
+    var g = bctx; g.setTransform(DPR, 0, 0, DPR, 0, 0);
+    HZ = Math.round(H * (W > H ? 0.42 : 0.38));
+    var sky = g.createLinearGradient(0, 0, 0, HZ);
+    if (light) { sky.addColorStop(0, '#b9cdee'); sky.addColorStop(0.7, '#dbe5f5'); sky.addColorStop(1, '#f6e4bd'); }
+    else { sky.addColorStop(0, '#060e26'); sky.addColorStop(0.7, '#0c1d45'); sky.addColorStop(1, '#16295a'); }
+    g.fillStyle = sky; g.fillRect(0, 0, W, HZ + 1);
+    var n = Math.round(clamp(W * HZ / 3000, 40, 220));
+    for (var i = 0; i < n; i++) {
+      var y = Math.random() * HZ * 0.9, a = Math.random();
+      g.fillStyle = light ? 'rgba(255,255,255,' + (0.3 + a * 0.4) + ')' : 'rgba(225,232,255,' + (0.12 + a * a * 0.7) + ')';
+      g.beginPath(); g.arc(Math.random() * W, y, rand(0.4, 1.3), 0, TAU); g.fill();
+    }
+    moon.x = W * 0.7; moon.y = HZ * 0.42; moon.r = clamp(Math.min(W, H) * 0.04, 14, 30);
+    var mg = g.createRadialGradient(moon.x, moon.y, 0, moon.x, moon.y, moon.r * 7);
+    mg.addColorStop(0, light ? 'rgba(255,240,205,0.7)' : 'rgba(255,232,170,0.25)'); mg.addColorStop(1, 'rgba(255,232,170,0)');
+    g.fillStyle = mg; g.fillRect(moon.x - moon.r * 7, moon.y - moon.r * 7, moon.r * 14, moon.r * 14);
+    g.fillStyle = light ? 'rgba(255,251,238,0.95)' : 'rgba(255,240,200,0.92)';
+    g.beginPath(); g.arc(moon.x, moon.y, moon.r, 0, TAU); g.fill();
+    // far hills, deep blue
+    for (var k = 0; k < 2; k++) {
+      g.fillStyle = light ? (k ? '#9fb6dc' : '#b4c6e6') : (k ? '#081534' : '#0c1c42');
+      g.beginPath(); g.moveTo(0, HZ + 1);
+      for (var x = 0; x <= W + 16; x += 16) g.lineTo(x, HZ - (k ? 8 : 20) - Math.max(0, Math.sin(x / W * 4.2 + k * 1.7)) * (k ? 18 : 34) - Math.sin(x / 47 + k) * 3);
+      g.lineTo(W, HZ + 1); g.closePath(); g.fill();
+    }
+    // lake
+    var lake = g.createLinearGradient(0, HZ, 0, H);
+    if (light) { lake.addColorStop(0, '#c8d7ef'); lake.addColorStop(0.4, '#9fb8e0'); lake.addColorStop(1, '#6f8fc6'); }
+    else { lake.addColorStop(0, '#13275a'); lake.addColorStop(0.35, '#0b1a40'); lake.addColorStop(1, '#050c22'); }
+    g.fillStyle = lake; g.fillRect(0, HZ, W, H - HZ);
+    // hills mirrored faintly
+    g.save(); g.globalAlpha = light ? 0.25 : 0.4;
+    g.fillStyle = light ? '#9fb6dc' : '#081534';
+    g.beginPath(); g.moveTo(0, HZ);
+    for (var x2 = 0; x2 <= W + 16; x2 += 16) g.lineTo(x2, HZ + 6 + Math.max(0, Math.sin(x2 / W * 4.2 + 1.7)) * 12);
+    g.lineTo(W, HZ); g.closePath(); g.fill(); g.restore();
+    g.fillStyle = light ? 'rgba(255,255,255,0.5)' : 'rgba(180,200,255,0.12)'; g.fillRect(0, HZ, W, 1);
+  }
+  // perspective: z = 1 near the bottom, 0 at the horizon
+  function zToY(z) { return HZ + (H - HZ) * Math.pow(z, 1.5); }
+  function yToZ(y) { return Math.pow(clamp((y - HZ) / (H - HZ), 0, 1), 1 / 1.5); }
+  function persp(z) { return 0.08 + 0.92 * z; }
+
+  // moon path on water: shimmering strokes
+  var glints = [];
+  function buildGlints() {
+    glints = [];
+    var n = reduceMotion ? 26 : 46;
+    for (var i = 0; i < n; i++) { var z = Math.pow(Math.random(), 0.8); glints.push({ z: z, o: rand(-1, 1), ph: rand(0, TAU), sp: rand(0.5, 1.4) }); }
+  }
+
+  // ---------- Lanterns & ripples ----------
+  var lanterns = [], ripples = [];
+  function addLantern(x, y) {
+    var z = clamp(yToZ(y), 0.22, 1), p = persp(z);
+    lanterns.push({ wx: (x - W / 2) / p, z: z, vz: rand(0.010, 0.016), vx: rand(-4, 4), sp: sprites[Math.random() < 0.28 ? 2 : (Math.random() < 0.5 ? 0 : 1)],
+      ph: rand(0, TAU), fl: rand(0, TAU), born: now, scale: rand(0.85, 1.12) * clamp(Math.min(W, H) / 700, 0.7, 1.25) });
+    if (lanterns.length > 36) lanterns.shift();
+    ripples.push({ x: x, z: z, age: 0 });
+    if (ripples.length > 24) ripples.shift();
+  }
+
+  // ---------- Sound ----------
+  var SCALE = [196.0, 220.0, 246.94, 293.66, 329.63, 392.0, 440.0, 493.88, 587.33];
+  var Sound = AudioCore(function (core) {
+    var a = core.ctx, buf = core.noise(4);
+    // gentle lapping water: low noise with slow swells
+    var src = core.loop(buf);
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 650; lp.Q.value = 0.3;
+    var g = a.createGain(); g.gain.value = 0.05;
+    var lfo = a.createOscillator(); lfo.frequency.value = 0.11;
+    var dep = a.createGain(); dep.gain.value = 0.025; lfo.connect(dep); dep.connect(g.gain); lfo.start();
+    src.connect(lp); lp.connect(g); g.connect(core.master);
+    var src2 = core.loop(buf);
+    var bp = a.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1400; bp.Q.value = 0.7;
+    var g2 = a.createGain(); g2.gain.value = 0.008;
+    var lfo2 = a.createOscillator(); lfo2.frequency.value = 0.07;
+    var dep2 = a.createGain(); dep2.gain.value = 0.006; lfo2.connect(dep2); dep2.connect(g2.gain); lfo2.start();
+    src2.connect(bp); bp.connect(g2); g2.connect(core.master);
+    core.pad([98.0, 146.83, 196.0, 293.66], 0.012, 420);
+  }, 0.8);
+  function splash(x, z) {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime;
+    // soft water touch: a short, low filtered noise swell
+    var src = a.createBufferSource(); src.buffer = Sound.splashBuf || (Sound.splashBuf = Sound.noise(1.2));
+    var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(900, t); f.frequency.exponentialRampToValueAtTime(260, t + 0.9);
+    var g = a.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.22 * (0.5 + z * 0.5), t + 0.08); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.1);
+    src.connect(f); f.connect(g); g.connect(Sound.master); g.connect(Sound.reverb); src.start(t); src.stop(t + 1.2);
+    var idx = clamp(Math.round(clamp(x / W, 0, 1) * (SCALE.length - 2)) + ((Math.random() * 2) | 0), 0, SCALE.length - 1);
+    Sound.bell(SCALE[idx], 0.45, { delay: 0.12, attack: 0.1, decay: 5, partials: [[1, 1], [2.0, 0.1], [3.0, 0.03]], dry: 0.35, wet: 1.3 });
+  }
+  setupUI(Sound);
+
+  // ---------- Input ----------
+  var hintShown = true, lastTap = 0;
+  function release(x, y) {
+    if (hintShown) { hintShown = false; hint.style.opacity = '0'; }
+    if (now - lastTap < 0.25) return; lastTap = now;
+    if (y < HZ + (H - HZ) * 0.12) y = HZ + (H - HZ) * rand(0.2, 0.35);
+    addLantern(x, y); splash(x, yToZ(y));
+  }
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; release(t.clientX, t.clientY); }
+  }, { passive: false });
+  canvas.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') return; release(e.clientX, e.clientY); });
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  var driftOn = false, nextDrift = 0;
+  driftBtn.addEventListener('click', function () {
+    driftOn = !driftOn; driftBtn.setAttribute('aria-pressed', driftOn ? 'true' : 'false'); nextDrift = 0.6;
+    if (hintShown) { hintShown = false; hint.style.opacity = '0'; }
+  });
+  Shell.onTheme(function (v) { light = v; buildBg(); });
+
+  // ---------- Resize / loop ----------
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildBg(); buildGlints();
+  }
+  window.addEventListener('resize', resize);
+
+  var now = performance.now() / 1000, last = now;
+  function frame(ms) {
+    now = ms / 1000;
+    var dt = clamp(now - last, 0, 0.05); last = now;
+    var mo = reduceMotion ? 0.45 : 1;
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    ctx.drawImage(bg, 0, 0, W, H);
+
+    // moon path
+    ctx.fillStyle = light ? 'rgba(255,250,235,1)' : 'rgba(255,232,170,1)';
+    for (var i = 0; i < glints.length; i++) {
+      var gl = glints[i], y = zToY(gl.z * 0.9 + 0.02), p = persp(gl.z);
+      var sh = reduceMotion ? 0.6 : 0.5 + 0.5 * Math.sin(now * gl.sp + gl.ph);
+      var w = (8 + gl.z * 50) * (0.4 + sh * 0.6), x = moon.x + gl.o * (6 + gl.z * 34) + (reduceMotion ? 0 : Math.sin(now * 0.6 + gl.ph) * 3 * p);
+      ctx.globalAlpha = (light ? 0.35 : 0.22) * sh * (1 - gl.z * 0.5);
+      ctx.fillRect(x - w / 2, y, w, 1 + gl.z * 2.2);
+    }
+    ctx.globalAlpha = 1;
+
+    // ripples (flattened ellipses)
+    ctx.lineWidth = 1.2;
+    for (var r = ripples.length - 1; r >= 0; r--) {
+      var rp = ripples[r]; rp.age += dt * mo;
+      if (rp.age > 5) { ripples.splice(r, 1); continue; }
+      var pr = persp(rp.z), ry = zToY(rp.z);
+      for (var j = 0; j < 3; j++) {
+        var rad = (rp.age * 26 - j * 12) * pr * 1.4; if (rad <= 0) continue;
+        ctx.strokeStyle = light ? 'rgba(255,255,255,' + (0.5 * (1 - rp.age / 5)) + ')' : 'rgba(200,215,255,' + (0.28 * (1 - rp.age / 5)) + ')';
+        ctx.beginPath(); ctx.ellipse(rp.x, ry + 4 * pr, rad, rad * 0.22, 0, 0, TAU); ctx.stroke();
+      }
+    }
+
+    // lanterns: move away slowly, far ones first
+    for (var a = lanterns.length - 1; a >= 0; a--) {
+      var L = lanterns[a];
+      L.z -= L.vz * dt * mo * (0.35 + L.z * 0.65);
+      L.wx += (L.vx + Math.sin(now * 0.07 + L.ph) * 6) * dt * mo;
+      L.ph += dt; L.fl += dt * (reduceMotion ? 0.8 : 2.2);
+      if (L.z < 0.015) lanterns.splice(a, 1);
+    }
+    lanterns.sort(function (p1, p2) { return p1.z - p2.z; });
+    for (var b = 0; b < lanterns.length; b++) {
+      var Ln = lanterns[b], pz = persp(Ln.z), lx = W / 2 + Ln.wx * pz, ly = zToY(Ln.z);
+      var s = pz * Ln.scale, sw = 64 * s * 0.85, shh = 72 * s * 0.85;
+      var bob = reduceMotion ? 0 : Math.sin(now * 0.9 + Ln.ph * 3) * 1.5 * s;
+      var fade = clamp(Ln.z / 0.12, 0, 1) * clamp((now - Ln.born) / 1.2, 0, 1);
+      var flick = 0.85 + 0.15 * Math.sin(Ln.fl) * Math.sin(Ln.fl * 1.7 + 1);
+      // warm light on the water
+      ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+      ctx.globalAlpha = fade * flick * (light ? 0.5 : 0.85);
+      ctx.save(); ctx.translate(lx, ly + 2 * s); ctx.scale(1, 0.35);
+      var gr = sw * 3.2; ctx.drawImage(warmGlow, -gr, -gr, gr * 2, gr * 2); ctx.restore();
+      // reflection: stretched, wavy slices
+      ctx.globalCompositeOperation = 'source-over';
+      var slices = 5, sliceH = shh / slices;
+      for (var k = 0; k < slices; k++) {
+        var wob = reduceMotion ? 0 : Math.sin(now * 1.6 + k * 1.3 + Ln.ph) * (1 + k) * 0.9 * s;
+        ctx.globalAlpha = fade * (light ? 0.35 : 0.42) * (1 - k / slices);
+        ctx.drawImage(Ln.sp, 0, 72 - (k + 1) * (72 / slices), 64, 72 / slices,
+          lx - sw / 2 + wob, ly + k * sliceH * 1.15, sw, sliceH * 1.15);
+      }
+      // the lantern itself
+      ctx.globalAlpha = fade;
+      ctx.drawImage(Ln.sp, lx - sw / 2, ly - shh + bob, sw, shh);
+      // halo above
+      ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+      ctx.globalAlpha = fade * flick * (light ? 0.35 : 0.6);
+      var hr = sw * 1.6; ctx.drawImage(warmGlow, lx - hr, ly - shh * 0.55 + bob - hr, hr * 2, hr * 2);
+      ctx.globalCompositeOperation = 'source-over';
+    }
+    ctx.globalAlpha = 1;
+
+    if (driftOn) {
+      nextDrift -= dt;
+      if (nextDrift <= 0) { nextDrift = rand(3.5, 7) * (reduceMotion ? 1.5 : 1); var yy = HZ + (H - HZ) * rand(0.55, 0.95); addLantern(rand(0.12, 0.88) * W, yy); splash(W / 2, yToZ(yy) * 0.6); }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  resize();
+  // a few lanterns already on the water
+  for (var s0 = 0; s0 < 3; s0++) { addLantern(rand(0.25, 0.75) * W, HZ + (H - HZ) * rand(0.15, 0.4)); lanterns[lanterns.length - 1].born = -10; }
+  ripples = [];
+  setTimeout(function () { if (hintShown) hint.style.opacity = '1'; }, 900);
+  setTimeout(function () { hint.style.opacity = '0'; hintShown = false; }, 8000);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

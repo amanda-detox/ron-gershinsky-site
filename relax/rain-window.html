@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a1430">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="A fogged window on a rainy night. Wipe the glass with your finger and set the rain, lightning and wind.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23e8c36a%22/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Relaxify">
+<script>
+  /* night/light before first paint: rg-relax-theme ("light" | "dark"), night by default */
+  (function () { try { if (localStorage.getItem('rg-relax-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {} })();
+</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<script src="lang.js"></script>
+<title>גשם על חלון</title>
+<style>
+  :root {
+    --ui-fg: rgba(220,232,255,0.82); --ui-bg: rgba(8,18,44,0.4); --ui-bd: rgba(200,215,255,0.16);
+    --ui-on: rgba(255,226,150,0.96); --ui-on-bd: rgba(240,205,120,0.45);
+    --hint: rgba(232,240,255,0.86); --hint-glow: rgba(110,150,255,0.5);
+    --page: #0a1430;
+  }
+  html[data-theme="light"] {
+    --ui-fg: #163a7a; --ui-bg: rgba(255,255,255,0.62); --ui-bd: rgba(20,50,110,0.18);
+    --ui-on: #8a5e08; --ui-on-bd: rgba(180,130,30,0.55);
+    --hint: #183a78; --hint-glow: rgba(255,255,255,0.9);
+    --page: #cfdbec;
+  }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); overscroll-behavior: none; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--hint); -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .ui {
+    position: fixed; z-index: 10;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0; box-sizing: border-box;
+    font: inherit; color: var(--ui-fg);
+    background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; touch-action: manipulation; outline: none;
+    -webkit-tap-highlight-color: transparent; text-decoration: none;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .ui svg { width: 22px; height: 22px; }
+  .ui:focus-visible { border-color: var(--ui-on); }
+  #home { left: calc(14px + env(safe-area-inset-left, 0px)); }
+  #fs { left: calc(74px + env(safe-area-inset-left, 0px)); }
+  #theme { left: calc(134px + env(safe-area-inset-left, 0px)); }
+  #theme .sun { display: none; }
+  html[data-theme="light"] #theme .sun { display: inline; }
+  html[data-theme="light"] #theme .moon { display: none; }
+  #sound { right: calc(14px + env(safe-area-inset-right, 0px)); }
+  #sound[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  #sound .on { display: none; }
+  #sound[aria-pressed="true"] .on { display: inline; }
+  #sound[aria-pressed="true"] .off { display: none; }
+  .pill {
+    position: fixed; left: 50%; transform: translateX(-50%); z-index: 10;
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    min-width: 132px; min-height: 50px; padding: 0 22px; border-radius: 999px;
+    font: inherit; font-size: 16px; letter-spacing: 0.04em; white-space: nowrap;
+    color: var(--ui-fg); background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  .pill[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  .pill:focus-visible { border-color: var(--ui-on); }
+  #hint {
+    position: fixed; left: 24px; right: 24px; top: 30%; text-align: center; pointer-events: none; z-index: 5;
+    font-size: 20px; font-weight: 300; letter-spacing: 0.05em; color: var(--hint);
+    text-shadow: 0 0 16px var(--hint-glow); transition: opacity 1.4s ease; opacity: 0;
+  }
+  #panel {
+    position: fixed; left: 50%; transform: translate(-50%, 12px); z-index: 11;
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+    width: min(380px, calc(100vw - 32px)); box-sizing: border-box; padding: 14px 18px 8px; border-radius: 22px;
+    color: var(--ui-fg); background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    opacity: 0; pointer-events: none; transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  #panel.open { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+  html:not([data-theme="light"]) #panel { background: rgba(8,18,44,0.72); }
+  html[data-theme="light"] #panel { background: rgba(255,255,255,0.85); }
+  .row { margin: 0 0 12px; }
+  .row label { display: block; font-size: 15px; letter-spacing: 0.03em; margin: 0 0 2px; }
+  .ends { display: flex; justify-content: space-between; font-size: 12.5px; opacity: 0.7; margin-top: -2px; }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 34px; background: transparent; margin: 0; touch-action: pan-x; }
+  input[type=range]:focus { outline: none; }
+  input[type=range]::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: linear-gradient(90deg, rgba(130,160,230,0.35), rgba(232,195,106,0.75)); }
+  html[dir="rtl"] input[type=range]::-webkit-slider-runnable-track { background: linear-gradient(270deg, rgba(130,160,230,0.35), rgba(232,195,106,0.75)); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -10px; border-radius: 50%; background: #e8c36a; border: 2px solid rgba(255,248,225,0.9); box-shadow: 0 0 12px rgba(232,195,106,0.5); }
+  input[type=range]::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(150,170,230,0.45); }
+  input[type=range]::-moz-range-progress { height: 4px; border-radius: 4px; background: rgba(232,195,106,0.8); }
+  input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #e8c36a; border: 2px solid rgba(255,248,225,0.9); }
+  input[type=range]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(232,195,106,0.35); }
+  #flash { position: fixed; inset: 0; pointer-events: none; z-index: 4; background: rgb(215,228,255); opacity: 0; }
+
+</style>
+</head>
+<body>
+<canvas id="c" data-ta="aria"></canvas>
+<div id="flash"></div>
+<div id="hint" data-t="hint"></div>
+<div id="panel" role="group" data-ta="weather">
+  <div class="row"><label for="s-rain" data-t="rain"></label><input id="s-rain" type="range" min="0" max="100" step="1">
+    <div class="ends"><span data-t="rain0"></span><span data-t="rain1"></span></div></div>
+  <div class="row"><label for="s-light" data-t="lightning"></label><input id="s-light" type="range" min="0" max="100" step="1">
+    <div class="ends"><span data-t="off"></span><span data-t="light1"></span></div></div>
+  <div class="row"><label for="s-wind" data-t="wind"></label><input id="s-wind" type="range" min="0" max="100" step="1">
+    <div class="ends"><span data-t="off"></span><span data-t="wind1"></span></div></div>
+</div>
+<button id="weather" class="pill" aria-pressed="false" aria-controls="panel" data-t="weatherBtn"></button>
+<a id="home" class="ui" href="index.html" aria-label="Back to all games">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v8.5h11V10"/></svg>
+</a>
+<button id="fs" class="ui" aria-label="Full screen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9V4.5H9M19.5 9V4.5H15M4.5 15v4.5H9M19.5 15v4.5H15"/></svg>
+</button>
+<button id="theme" class="ui" aria-pressed="false" aria-label="">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g class="moon"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></g>
+    <g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M5.5 18.5l1.6-1.6M16.9 7.1l1.6-1.6"/></g>
+  </svg>
+</button>
+<button id="sound" class="ui" aria-pressed="false" aria-label="Turn sound on">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+    <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+    <g class="on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g>
+  </svg>
+</button>
+<script>
+(function () {
+  'use strict';
+  // ---------- Shared: gentle Web Audio core (off until the player taps the sound button) ----------
+  function AudioCore(build, level) {
+    var core = { ctx: null, master: null, reverb: null, on: false };
+    level = level || 0.8;
+    function impulse(sec) {
+      var a = core.ctx, rate = a.sampleRate, len = Math.floor(rate * sec);
+      var buf = a.createBuffer(2, len, rate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      }
+      return buf;
+    }
+    core.noise = function (sec) {
+      var a = core.ctx, len = Math.floor(a.sampleRate * sec), buf = a.createBuffer(1, len, a.sampleRate);
+      var d = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; last = (last + 0.04 * w) / 1.04; d[i] = last * 3.2 + w * 0.12; }
+      return buf;
+    };
+    core.loop = function (buf) {
+      var s = core.ctx.createBufferSource(); s.buffer = buf; s.loop = true; s.start(); return s;
+    };
+    function init() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      var a = core.ctx = new AC();
+      var comp = a.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      core.master = a.createGain(); core.master.gain.value = 0;
+      core.master.connect(comp); comp.connect(a.destination);
+      core.reverb = a.createConvolver(); core.reverb.buffer = impulse(3.2);
+      var rev = a.createGain(); rev.gain.value = 0.55;
+      core.reverb.connect(rev); rev.connect(core.master);
+      if (build) build(core);
+      return true;
+    }
+    core.setOn = function (v) {
+      if (v) {
+        if (!core.ctx && !init()) return false;
+        core.on = true;
+        if (core.ctx.state !== 'running') core.ctx.resume();
+        var t = core.ctx.currentTime, g = core.master.gain;
+        g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(level, t + 1.5);
+      } else {
+        core.on = false;
+        if (!core.ctx) return true;
+        var t2 = core.ctx.currentTime, g2 = core.master.gain;
+        g2.cancelScheduledValues(t2); g2.setValueAtTime(g2.value, t2); g2.linearRampToValueAtTime(0, t2 + 0.6);
+        setTimeout(function () { if (!core.on && core.ctx) core.ctx.suspend(); }, 800);
+      }
+      return true;
+    };
+    core.isOn = function () { return core.on; };
+    core.ready = function () { return core.on && core.ctx && core.ctx.state === 'running'; };
+    core.visibility = function (hidden) {
+      if (!core.ctx) return;
+      if (hidden) core.ctx.suspend(); else if (core.on) core.ctx.resume();
+    };
+    // soft bell / kalimba-like tone
+    core.bell = function (freq, vel, opt) {
+      if (!core.ready()) return;
+      opt = opt || {};
+      var a = core.ctx, t = a.currentTime + (opt.delay || 0), dec = opt.decay || 3;
+      var g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16 * vel, t + (opt.attack || 0.02));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+      var dry = a.createGain(); dry.gain.value = opt.dry == null ? 0.55 : opt.dry;
+      g.connect(dry); dry.connect(core.master);
+      var wet = a.createGain(); wet.gain.value = opt.wet == null ? 1 : opt.wet;
+      g.connect(wet); wet.connect(core.reverb);
+      var partials = opt.partials || [[1, 1], [2.0, 0.22], [3.01, 0.07]];
+      for (var i = 0; i < partials.length; i++) {
+        var o = a.createOscillator(); o.type = 'sine';
+        o.frequency.value = freq * partials[i][0];
+        var pg = a.createGain(); pg.gain.value = partials[i][1];
+        o.connect(pg); pg.connect(g);
+        o.start(t); o.stop(t + dec + 0.1);
+      }
+    };
+    // a quiet, slowly breathing chord pad
+    core.pad = function (notes, vol, cutoff) {
+      var a = core.ctx;
+      var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = cutoff || 600; f.Q.value = 0.5;
+      var pg = a.createGain(); pg.gain.value = 0;
+      f.connect(pg); pg.connect(core.master);
+      var send = a.createGain(); send.gain.value = 0.5; pg.connect(send); send.connect(core.reverb);
+      for (var i = 0; i < notes.length; i++) {
+        var vg = a.createGain(); vg.gain.value = vol;
+        var o1 = a.createOscillator(); o1.type = 'sine'; o1.frequency.value = notes[i];
+        var o2 = a.createOscillator(); o2.type = 'triangle'; o2.frequency.value = notes[i]; o2.detune.value = (i % 2 ? 6 : -6);
+        var g2 = a.createGain(); g2.gain.value = 0.3;
+        o1.connect(vg); o2.connect(g2); g2.connect(vg);
+        var lfo = a.createOscillator(); lfo.frequency.value = 0.035 + i * 0.015;
+        var depth = a.createGain(); depth.gain.value = vol * 0.7;
+        lfo.connect(depth); depth.connect(vg.gain);
+        vg.connect(f);
+        o1.start(); o2.start(); lfo.start();
+      }
+      pg.gain.setTargetAtTime(1, a.currentTime, 2.5);
+      return { filter: f, gain: pg };
+    };
+    return core;
+  }
+
+  // ---------- Shared: sound + full-screen buttons ----------
+  function setupUI(Sound) {
+    var sb = document.getElementById('sound');
+    sb.addEventListener('click', function () {
+      var want = !Sound.isOn();
+      if (!Sound.setOn(want)) return;
+      sb.setAttribute('aria-pressed', want ? 'true' : 'false');
+      sb.setAttribute('aria-label', RGT(want ? 'Turn sound off' : 'Turn sound on'));
+    });
+    document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
+    var fb = document.getElementById('fs'), de = document.documentElement;
+    var req = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!req) { fb.style.display = 'none'; return; }
+    fb.addEventListener('click', function () {
+      var fe = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fe) { var ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) ex.call(document); }
+      else { var r = req.call(de); if (r && r.catch) r.catch(function () {}); }
+    });
+  }
+
+  // ---------- Shared: language (rg-lang via lang.js) + night/light (rg-relax-theme) ----------
+  function GameShell(T, themeColors) {
+    var html = document.documentElement, langCbs = [], themeCbs = [];
+    function lang() {
+      if (window.RGLang) return RGLang.get();
+      try { return localStorage.getItem('rg-lang') === 'en' ? 'en' : 'he'; } catch (e) { return 'he'; }
+    }
+    function t(k) { var L = T[lang()] || T.en; return L[k] != null ? L[k] : T.en[k]; }
+    var light = html.getAttribute('data-theme') === 'light';
+    var tb = document.getElementById('theme');
+    function paintTheme() {
+      html.setAttribute('data-theme', light ? 'light' : 'dark');
+      var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', themeColors[light ? 1 : 0]);
+      tb.setAttribute('aria-pressed', light ? 'true' : 'false');
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+    }
+    function applyText() {
+      var l = lang();
+      html.lang = l; html.dir = l === 'he' ? 'rtl' : 'ltr';
+      document.title = t('title');
+      var els = document.querySelectorAll('[data-t]');
+      for (var i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute('data-t'));
+      var al = document.querySelectorAll('[data-ta]');
+      for (var j = 0; j < al.length; j++) al[j].setAttribute('aria-label', t(al[j].getAttribute('data-ta')));
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+      for (var k = 0; k < langCbs.length; k++) langCbs[k](l);
+    }
+    function setLight(v, save) {
+      v = !!v; if (v === light) return;
+      light = v;
+      if (save) { try { localStorage.setItem('rg-relax-theme', light ? 'light' : 'dark'); } catch (e) {} }
+      paintTheme();
+      for (var i = 0; i < themeCbs.length; i++) themeCbs[i](light);
+    }
+    tb.addEventListener('click', function () { setLight(!light, true); });
+    window.addEventListener('rg-langchange', applyText);
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'rg-lang') setTimeout(applyText, 0);
+      if (e.key === 'rg-relax-theme') setLight(e.newValue === 'light', false);
+    });
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      setTimeout(applyText, 0);
+      try { setLight(localStorage.getItem('rg-relax-theme') === 'light', false); } catch (er) {}
+    });
+    // another script (account sync) may flip html[data-theme]
+    new MutationObserver(function () { var v = html.getAttribute('data-theme') === 'light'; if (v !== light) { light = !v; setLight(v, false); } })
+      .observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+    paintTheme(); applyText();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyText);
+    return { t: t, lang: lang, isLight: function () { return light; },
+      onLang: function (cb) { langCbs.push(cb); }, onTheme: function (cb) { themeCbs.push(cb); } };
+  }
+
+  var Shell = GameShell({
+    he: { title: 'גשם על חלון', aria: 'חלון מכוסה אדים בלילה גשום. מעבירים אצבע כדי לנגב את האדים.',
+      hint: 'מעבירים אצבע כדי לנגב את האדים', weatherBtn: 'מזג האוויר', weather: 'מזג האוויר',
+      rain: 'עוצמת הגשם', rain0: 'טפטוף', rain1: 'גשם כבד', lightning: 'ברקים ורעמים', off: 'כבוי', light1: 'תכופים',
+      wind: 'סערה ורוח', wind1: 'חזקה', toLight: 'מצב בהיר', toNight: 'מצב לילה' },
+    en: { title: 'Rain on the Window', aria: 'A fogged window on a rainy night. Drag your finger to wipe the fog.',
+      hint: 'Drag your finger to wipe the fog', weatherBtn: 'Weather', weather: 'Weather',
+      rain: 'Rain', rain0: 'Drizzle', rain1: 'Heavy', lightning: 'Lightning & thunder', off: 'Off', light1: 'Frequent',
+      wind: 'Storm & wind', wind1: 'Strong', toLight: 'Light mode', toNight: 'Night mode' }
+  }, ['#0a1430', '#cfdbec']);
+
+  var canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  var hint = document.getElementById('hint'), flashEl = document.getElementById('flash');
+  var panel = document.getElementById('panel'), wBtn = document.getElementById('weather');
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 0, DPR = 1, TAU = Math.PI * 2;
+  var light = Shell.isLight();
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+
+  // ---------- Settings (each remembered on its own) ----------
+  var KEYS = { rain: 'rg-relax-rain-intensity', light: 'rg-relax-rain-lightning', wind: 'rg-relax-rain-wind' };
+  var DEF = { rain: 45, light: 0, wind: 15 };
+  var S = {};
+  function loadSetting(k) {
+    var v = null; try { v = localStorage.getItem(KEYS[k]); } catch (e) {}
+    v = v == null ? NaN : parseInt(v, 10);
+    S[k] = isNaN(v) ? DEF[k] : clamp(v, 0, 100);
+  }
+  ['rain', 'light', 'wind'].forEach(function (k) {
+    loadSetting(k);
+    var el = document.getElementById('s-' + k);
+    el.value = S[k];
+    el.addEventListener('input', function () {
+      S[k] = clamp(parseInt(el.value, 10) || 0, 0, 100);
+      try { localStorage.setItem(KEYS[k], String(S[k])); } catch (e) {}
+      applyMix();
+      if (k === 'light') nextBolt = Math.min(nextBolt, now + boltGap() * 0.5);
+    });
+  });
+  window.addEventListener('storage', function (e) {
+    for (var k in KEYS) if (e.key === KEYS[k]) { loadSetting(k); document.getElementById('s-' + k).value = S[k]; applyMix(); }
+  });
+  wBtn.addEventListener('click', function () {
+    var open = !panel.classList.contains('open');
+    panel.classList.toggle('open', open); wBtn.setAttribute('aria-pressed', open ? 'true' : 'false');
+    if (hintShown) { hintShown = false; hint.style.opacity = '0'; }
+  });
+  function rainI() { return 0.08 + 0.92 * S.rain / 100; }   // never fully dry
+  function windI() { return S.wind / 100; }
+  function boltGap() { var l = S.light / 100; return l <= 0 ? Infinity : 70 - 62 * Math.pow(l, 0.7); } // ~70 s down to ~8 s
+
+  // ---------- Scene behind the glass: a city at night, out of focus ----------
+  var scene = document.createElement('canvas'), sctx = scene.getContext('2d');
+  var fogImg = document.createElement('canvas'), fictx = fogImg.getContext('2d');
+  var mask = document.createElement('canvas'), mctx = mask.getContext('2d');
+  var comp = document.createElement('canvas'), cctx = comp.getContext('2d');
+  var FS = 0.5; // fog layers at half resolution (they are soft anyway)
+  function blurInto(dst, src, factor) {
+    var t = document.createElement('canvas'); t.width = Math.max(1, Math.round(src.width / factor)); t.height = Math.max(1, Math.round(src.height / factor));
+    var tg = t.getContext('2d'); tg.imageSmoothingEnabled = true; tg.drawImage(src, 0, 0, t.width, t.height);
+    var dg = dst.getContext('2d'); dg.imageSmoothingEnabled = true; dg.drawImage(t, 0, 0, dst.width, dst.height);
+  }
+  function buildScene() {
+    scene.width = Math.round(W * DPR); scene.height = Math.round(H * DPR);
+    var raw = document.createElement('canvas'); raw.width = Math.round(W / 2); raw.height = Math.round(H / 2);
+    var g = raw.getContext('2d'), w = raw.width, h = raw.height;
+    var sky = g.createLinearGradient(0, 0, 0, h);
+    if (light) { sky.addColorStop(0, '#9fb4d6'); sky.addColorStop(0.6, '#b9c9e2'); sky.addColorStop(1, '#8ea3c6'); }
+    else { sky.addColorStop(0, '#0a1430'); sky.addColorStop(0.55, '#14244c'); sky.addColorStop(1, '#0a1228'); }
+    g.fillStyle = sky; g.fillRect(0, 0, w, h);
+    // buildings
+    var x = -10;
+    while (x < w) {
+      var bw = rand(30, 80), bh = rand(h * 0.2, h * 0.62), top = h * 0.82 - bh;
+      g.fillStyle = light ? 'rgba(96,118,160,' + rand(0.55, 0.85) + ')' : 'rgba(6,12,32,' + rand(0.7, 0.95) + ')';
+      g.fillRect(x, top, bw, h - top);
+      for (var wy = top + 6; wy < h * 0.8; wy += 9) for (var wx = x + 4; wx < x + bw - 6; wx += 8) {
+        if (Math.random() < (light ? 0.18 : 0.32)) {
+          var warm = Math.random() < 0.7;
+          g.fillStyle = warm ? (light ? 'rgba(255,214,140,0.8)' : 'rgba(255,205,120,' + rand(0.5, 0.95) + ')') : 'rgba(170,200,255,' + rand(0.4, 0.8) + ')';
+          g.fillRect(wx, wy, 4, 5);
+        }
+      }
+      x += bw + rand(2, 10);
+    }
+    // street and car lights
+    g.fillStyle = light ? '#6e83aa' : '#060b1c'; g.fillRect(0, h * 0.82, w, h);
+    for (var i = 0; i < 26; i++) {
+      var bx = rand(0, w), by = rand(h * 0.7, h * 0.95), br = rand(4, 14);
+      var gr = g.createRadialGradient(bx, by, 0, bx, by, br);
+      var c = Math.random() < 0.6 ? '255,200,110' : '150,185,255';
+      gr.addColorStop(0, 'rgba(' + c + ',0.9)'); gr.addColorStop(1, 'rgba(' + c + ',0)');
+      g.fillStyle = gr; g.beginPath(); g.arc(bx, by, br, 0, TAU); g.fill();
+    }
+    // out of focus behind the glass
+    sctx.setTransform(1, 0, 0, 1, 0, 0); sctx.clearRect(0, 0, scene.width, scene.height);
+    blurInto(scene, raw, 3);
+    // fog image: much blurrier and paler
+    fogImg.width = mask.width = comp.width = Math.max(1, Math.round(W * FS)); fogImg.height = mask.height = comp.height = Math.max(1, Math.round(H * FS));
+    fictx.clearRect(0, 0, fogImg.width, fogImg.height);
+    blurInto(fogImg, raw, 14);
+    fictx.fillStyle = light ? 'rgba(236,242,250,0.62)' : 'rgba(150,170,210,0.3)';
+    fictx.fillRect(0, 0, fogImg.width, fogImg.height);
+    // fresh fog everywhere
+    mctx.setTransform(1, 0, 0, 1, 0, 0); mctx.globalCompositeOperation = 'source-over';
+    mctx.fillStyle = '#000'; mctx.fillRect(0, 0, mask.width, mask.height);
+  }
+  var brush = (function () {
+    var c = document.createElement('canvas'); c.width = c.height = 64;
+    var g = c.getContext('2d'), gr = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+    gr.addColorStop(0, 'rgba(0,0,0,1)'); gr.addColorStop(0.55, 'rgba(0,0,0,0.85)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return c;
+  })();
+  function wipe(x0, y0, x1, y1, r) {
+    mctx.globalCompositeOperation = 'destination-out';
+    var dx = x1 - x0, dy = y1 - y0, d = Math.sqrt(dx * dx + dy * dy), steps = Math.max(1, Math.ceil(d / (r * 0.35)));
+    var R = r * FS;
+    for (var i = 0; i <= steps; i++) {
+      var x = (x0 + dx * i / steps) * FS, y = (y0 + dy * i / steps) * FS;
+      mctx.drawImage(brush, x - R, y - R, R * 2, R * 2);
+    }
+    mctx.globalCompositeOperation = 'source-over';
+  }
+  var refogT = 0;
+  function refog(dt) {
+    refogT += dt; if (refogT < 0.2) return;
+    // the glass slowly mists over again (about a minute)
+    mctx.globalCompositeOperation = 'source-over';
+    mctx.fillStyle = 'rgba(0,0,0,' + (0.012 * refogT / 0.2) + ')';
+    mctx.fillRect(0, 0, mask.width, mask.height);
+    refogT = 0;
+  }
+
+  // ---------- Drops on the glass ----------
+  var dropSprite = (function () {
+    var c = document.createElement('canvas'), s = 48; c.width = c.height = s;
+    var g = c.getContext('2d');
+    var gr = g.createRadialGradient(s * 0.5, s * 0.58, s * 0.05, s * 0.5, s * 0.5, s * 0.48);
+    gr.addColorStop(0, 'rgba(230,238,255,0.08)'); gr.addColorStop(0.7, 'rgba(200,215,245,0.18)'); gr.addColorStop(0.92, 'rgba(10,20,50,0.45)'); gr.addColorStop(1, 'rgba(10,20,50,0)');
+    g.fillStyle = gr; g.beginPath(); g.arc(s / 2, s / 2, s * 0.48, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(255,255,255,0.75)'; g.beginPath(); g.ellipse(s * 0.38, s * 0.33, s * 0.08, s * 0.05, -0.6, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(255,225,160,0.3)'; g.beginPath(); g.ellipse(s * 0.56, s * 0.74, s * 0.16, s * 0.06, 0, 0, TAU); g.fill();
+    return c;
+  })();
+  var beads = [], runners = [];
+  function addBead(x, y, r) { beads.push({ x: x, y: y, r: r, a: 0 }); if (beads.length > 520) beads.shift(); }
+  function addRunner() {
+    var wi = windI();
+    runners.push({ x: rand(0, W), y: rand(-20, H * 0.5), r: rand(3.2, 6.5), vy: 0, stop: rand(0.5, 2.5), drift: rand(-0.3, 0.3) + wi * rand(0.6, 1.4), seed: rand(0, TAU), px: 0, py: 0 });
+    var R = runners[runners.length - 1]; R.px = R.x; R.py = R.y;
+    if (runners.length > 30) runners.shift();
+  }
+
+  // ---------- Rain outside (streaks) ----------
+  var streaks = [];
+  function buildStreaks() { streaks = []; for (var i = 0; i < 220; i++) streaks.push({ x: Math.random(), y: Math.random(), l: rand(0.6, 1.4), s: rand(0.7, 1.3) }); }
+
+  // ---------- Sound ----------
+  var Sound = AudioCore(function (core) {
+    var a = core.ctx;
+    // white-ish noise for rain hiss
+    var len = a.sampleRate * 3, wb = a.createBuffer(1, len, a.sampleRate), d = wb.getChannelData(0);
+    for (var i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    core.white = wb;
+    var brown = core.noise(4); core.brown = brown;
+    var r1 = core.loop(wb), hp = a.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 900;
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 5200;
+    core.rainG = a.createGain(); core.rainG.gain.value = 0;
+    r1.connect(hp); hp.connect(lp); lp.connect(core.rainG); core.rainG.connect(core.master);
+    var r2 = core.loop(brown), lp2 = a.createBiquadFilter(); lp2.type = 'lowpass'; lp2.frequency.value = 700;
+    core.bodyG = a.createGain(); core.bodyG.gain.value = 0;
+    r2.connect(lp2); lp2.connect(core.bodyG); core.bodyG.connect(core.master);
+    // wind: band-passed noise whose pitch and level follow the gusts
+    var w1 = core.loop(brown), bp = a.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 380; bp.Q.value = 1.2;
+    core.windF = bp; core.windG = a.createGain(); core.windG.gain.value = 0;
+    w1.connect(bp); bp.connect(core.windG); core.windG.connect(core.master);
+    core.pad([73.42, 110, 146.83], 0.008, 300);
+  }, 0.85);
+  function applyMix() {
+    if (!Sound.ctx) return;
+    var t = Sound.ctx.currentTime, r = rainI();
+    Sound.rainG.gain.setTargetAtTime(0.025 + 0.11 * r, t, 0.8);
+    Sound.bodyG.gain.setTargetAtTime(0.02 + 0.12 * r, t, 0.8);
+  }
+  function tick() {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime, o = a.createOscillator(), g = a.createGain(), f = rand(2200, 3800);
+    o.type = 'sine'; o.frequency.setValueAtTime(f, t); o.frequency.exponentialRampToValueAtTime(f * 0.6, t + 0.05);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.012, t + 0.004); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.08);
+    o.connect(g); g.connect(Sound.master); o.start(t); o.stop(t + 0.1);
+  }
+  function thunder(dist) {
+    if (!Sound.ready()) return;
+    var a = Sound.ctx, t = a.currentTime + 0.05, dur = rand(4.5, 7);
+    var src = a.createBufferSource(); src.buffer = Sound.brown; src.loop = true;
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.setValueAtTime(260 - dist * 120, t); lp.frequency.exponentialRampToValueAtTime(70, t + dur);
+    var g = a.createGain(), peak = 0.55 * (1 - dist * 0.55);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + 0.5 + dist * 0.6);
+    g.gain.setTargetAtTime(peak * 0.5, t + 1.2, 0.5);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    // a slow rolling swell in the middle
+    var lfo = a.createOscillator(); lfo.frequency.value = rand(0.6, 1.4);
+    var dep = a.createGain(); dep.gain.value = peak * 0.25; lfo.connect(dep); dep.connect(g.gain);
+    src.connect(lp); lp.connect(g); g.connect(Sound.master); g.connect(Sound.reverb);
+    src.start(t, rand(0, 3)); src.stop(t + dur + 0.1); lfo.start(t); lfo.stop(t + dur);
+  }
+  var sb = document.getElementById('sound');
+  sb.addEventListener('click', function () { setTimeout(applyMix, 0); });
+  setupUI(Sound);
+
+  // ---------- Input: wipe the fog ----------
+  var strokes = {}, hintShown = true;
+  function wr() { return clamp(Math.min(W, H) * 0.075, 24, 46); }
+  function down(id, x, y) {
+    if (hintShown) { hintShown = false; hint.style.opacity = '0'; }
+    if (panel.classList.contains('open')) { panel.classList.remove('open'); wBtn.setAttribute('aria-pressed', 'false'); }
+    strokes[id] = { x: x, y: y }; wipe(x, y, x, y, wr());
+  }
+  function move(id, x, y) {
+    var s = strokes[id]; if (!s) return;
+    wipe(s.x, s.y, x, y, wr());
+    // the wiped edge collects a few small beads
+    if (Math.random() < 0.25) addBead(x + rand(-1, 1) * wr(), y + rand(-1, 1) * wr(), rand(1, 2.2));
+    s.x = x; s.y = y;
+  }
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; down('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; move('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  function tend(e) { for (var i = 0; i < e.changedTouches.length; i++) delete strokes['t' + e.changedTouches[i].identifier]; }
+  canvas.addEventListener('touchend', tend); canvas.addEventListener('touchcancel', tend);
+  canvas.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') return; down('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointermove', function (e) { if (e.pointerType === 'touch') return; move('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointerup', function (e) { delete strokes['p' + e.pointerId]; });
+  window.addEventListener('pointercancel', function (e) { delete strokes['p' + e.pointerId]; });
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+  Shell.onTheme(function (v) { light = v; buildScene(); });
+
+  // ---------- Resize / loop ----------
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    buildScene();
+    beads = beads.filter(function (b) { return b.x < W && b.y < H; });
+  }
+  window.addEventListener('resize', resize);
+
+  var now = performance.now() / 1000, last = now, nextBolt = Infinity, flashT = -10, flashPeak = 0, beadAcc = 0, runAcc = 0, tickAcc = 0, gust = 0, gustT = 0;
+  function frame(ms) {
+    now = ms / 1000;
+    var dt = clamp(now - last, 0, 0.05); last = now;
+    var mo = reduceMotion ? 0.5 : 1, ri = rainI(), wi = windI();
+    // gusts: a slow wandering strength on top of the wind setting
+    gustT += dt * (0.12 + wi * 0.25);
+    gust = wi * (0.65 + 0.35 * Math.sin(gustT) * Math.sin(gustT * 0.37 + 1.3) + 0.25 * Math.max(0, Math.sin(gustT * 0.53 + 2)));
+    if (Sound.ready()) {
+      var at = Sound.ctx.currentTime;
+      Sound.windG.gain.setTargetAtTime(gust * 0.32, at, 0.6);
+      Sound.windF.frequency.setTargetAtTime(260 + gust * 520, at, 0.8);
+    }
+
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    ctx.drawImage(scene, 0, 0, W, H);
+
+    // rain outside, slanted by the wind
+    var slant = gust * 0.9, n = Math.round(30 + 190 * ri), len = (18 + 26 * ri) * (reduceMotion ? 0.7 : 1), sp = (reduceMotion ? 0.35 : 0.9) + ri * 0.6;
+    ctx.strokeStyle = light ? 'rgba(255,255,255,0.45)' : 'rgba(190,210,255,0.22)'; ctx.lineWidth = 1;
+    ctx.beginPath();
+    for (var i = 0; i < n; i++) {
+      var st = streaks[i]; st.y += dt * sp * st.s; if (st.y > 1.1) { st.y -= 1.2; st.x = Math.random(); }
+      st.x += dt * slant * 0.6 * sp * st.s; if (st.x > 1.1) st.x -= 1.2; if (st.x < -0.1) st.x += 1.2;
+      var x = st.x * W, y = st.y * H, l = len * st.l;
+      ctx.moveTo(x, y); ctx.lineTo(x - slant * l * 0.6, y - l);
+    }
+    ctx.stroke();
+
+    // fog = blurred view, kept only where the mask still has mist
+    refog(dt);
+    cctx.globalCompositeOperation = 'source-over'; cctx.clearRect(0, 0, comp.width, comp.height);
+    cctx.drawImage(fogImg, 0, 0);
+    cctx.globalCompositeOperation = 'destination-in'; cctx.drawImage(mask, 0, 0);
+    ctx.drawImage(comp, 0, 0, W, H);
+
+    // beads appear on the glass
+    beadAcc += dt * (4 + 26 * ri) * (reduceMotion ? 0.6 : 1);
+    while (beadAcc > 1) { beadAcc--; addBead(rand(0, W), rand(0, H), rand(1.2, 3.4) * (0.8 + ri * 0.4)); }
+    runAcc += dt * (0.12 + 0.6 * ri) * (reduceMotion ? 0.6 : 1);
+    while (runAcc > 1) { runAcc--; addRunner(); }
+    tickAcc += dt * (1 + 6 * ri);
+    while (tickAcc > 1) { tickAcc--; if (Math.random() < 0.6) tick(); }
+
+    for (var b = 0; b < beads.length; b++) {
+      var bd = beads[b]; bd.a = Math.min(1, bd.a + dt * 2);
+      var s = bd.r * 2.4; ctx.globalAlpha = bd.a * (light ? 0.9 : 1);
+      ctx.drawImage(dropSprite, bd.x - s / 2, bd.y - s / 2, s, s);
+    }
+    // running drops: slow, stop-and-go, leave a clear trail
+    for (var r = runners.length - 1; r >= 0; r--) {
+      var R = runners[r];
+      R.stop -= dt;
+      var target = R.stop > 0 ? 0 : (14 + R.r * 9) * mo;
+      if (R.stop < -rand(0.8, 3)) R.stop = rand(0.2, 1.6);
+      R.vy += (target - R.vy) * Math.min(1, dt * 2.5);
+      R.x += (R.drift * 0.35 + gust * 0.5) * R.vy * dt; R.y += R.vy * dt;
+      R.x += Math.cos(R.y * 0.06 + R.seed) * R.vy * dt * 0.3;
+      if (Math.abs(R.x - R.px) + Math.abs(R.y - R.py) > 3) {
+        mctx.globalCompositeOperation = 'destination-out';
+        mctx.lineCap = 'round'; mctx.strokeStyle = 'rgba(0,0,0,0.75)'; mctx.lineWidth = R.r * 1.3 * FS;
+        mctx.beginPath(); mctx.moveTo(R.px * FS, R.py * FS); mctx.lineTo(R.x * FS, R.y * FS); mctx.stroke();
+        mctx.globalCompositeOperation = 'source-over';
+        if (Math.random() < 0.12) addBead(R.px + rand(-1, 1), R.py, rand(0.8, 1.5));
+        R.px = R.x; R.py = R.y;
+      }
+      // swallow beads in its path and grow a little
+      for (var q = beads.length - 1; q >= 0; q--) {
+        var bb = beads[q], ddx = bb.x - R.x, ddy = bb.y - R.y;
+        if (ddx * ddx + ddy * ddy < (R.r + bb.r) * (R.r + bb.r)) { beads.splice(q, 1); R.r = Math.min(8, R.r + bb.r * 0.08); }
+      }
+      if (R.y > H + 20) { runners.splice(r, 1); continue; }
+      var sw = R.r * 2.3, shh = R.r * 2.9;
+      ctx.globalAlpha = 1; ctx.drawImage(dropSprite, R.x - sw / 2, R.y - shh / 2, sw, shh);
+    }
+    ctx.globalAlpha = 1;
+
+    // lightning: soft glow, never a hard strobe
+    if (S.light > 0 && nextBolt === Infinity) nextBolt = now + rand(0.4, 1) * boltGap();
+    if (S.light === 0) nextBolt = Infinity;
+    if (now > nextBolt) {
+      var dist = Math.random();
+      flashT = now; flashPeak = (reduceMotion ? 0.16 : 0.32) * (1 - dist * 0.5);
+      nextBolt = now + boltGap() * rand(0.6, 1.4);
+      (function (d) { setTimeout(function () { thunder(d); }, (0.8 + d * 3.2) * 1000); })(dist);
+    }
+    var ft = now - flashT, fo = 0;
+    if (ft >= 0 && ft < 2.5) {
+      var rise = reduceMotion ? 0.45 : 0.1;
+      fo = ft < rise ? ft / rise : Math.exp(-(ft - rise) * (reduceMotion ? 2.2 : 3));
+      if (!reduceMotion && ft > 0.28 && ft < 0.6) fo += 0.35 * Math.sin((ft - 0.28) / 0.32 * Math.PI); // one soft echo
+      fo *= flashPeak;
+    }
+    flashEl.style.opacity = fo > 0.003 ? fo.toFixed(3) : '0';
+    requestAnimationFrame(frame);
+  }
+
+  buildStreaks(); resize();
+  for (var i0 = 0; i0 < 140; i0++) addBead(rand(0, W), rand(0, H), rand(1.2, 3.4));
+  for (var j0 = 0; j0 < 4; j0++) addRunner();
+  setTimeout(function () { if (hintShown) hint.style.opacity = '1'; }, 900);
+  setTimeout(function () { hint.style.opacity = '0'; hintShown = false; }, 8000);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

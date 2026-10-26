@@ -3,7 +3,7 @@
 (function () {
   var KEY = "rg-lang";
   var HE = {
-    "Quiet Night": "לילה שקט", "Sand Garden": "גן חול", "Still Pond": "בריכה שקטה", "Glow Garden": "גן זוהר", "Watercolor": "צבעי מים",
+    "Quiet Night": "לילה שקט", "Still Pond": "בריכה שקטה", "Glow Garden": "גן זוהר", "Watercolor": "צבעי מים",
     "Back to all games": "חזרה לכל המשחקים", "Full screen": "מסך מלא",
     "Turn sound on": "הפעלת צליל", "Turn sound off": "כיבוי צליל",
     /* Quiet Night */
@@ -19,12 +19,6 @@
     "Be gentle with yourself.": "בעדינות עם עצמך.",
     "Let\u2019s breathe together": "נושמים יחד",
     "Tap anywhere. No rush.": "נוגעים איפה שרוצים. בלי למהר.",
-    /* Sand Garden */
-    "A zen sand garden. Draw with your finger to rake the sand.": "גן חול יפני. מציירים באצבע כדי לגרף את החול.",
-    "Tool": "כלי", "Rake": "מגרפה", "Stone": "אבן", "Smooth": "החלקה", "Fresh": "מחדש", "Fresh sand": "חול חדש",
-    "Draw slowly with your finger": "מציירים לאט עם האצבע",
-    "Tap to set a stone \u00b7 tap a stone to lift it": "נוגעים כדי להניח אבן \u00b7 נוגעים באבן כדי להרים אותה",
-    "Brush the sand smooth": "מחליקים את החול",
     /* Still Pond */
     "A still pond. Touch the water to make ripples.": "בריכה שקטה. נוגעים במים כדי ליצור אדוות.",
     "Touch the water": "נוגעים במים", "Soft rain": "גשם עדין",

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#071229">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="description" content="Touch the glass and the fireflies glow and slowly gather to you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%227%22 fill=%22%23e8c36a%22/%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Relaxify">
+<script>
+  /* night/light before first paint: rg-relax-theme ("light" | "dark"), night by default */
+  (function () { try { if (localStorage.getItem('rg-relax-theme') === 'light') document.documentElement.setAttribute('data-theme', 'light'); } catch (e) {} })();
+</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<script src="lang.js"></script>
+<title>צנצנת גחליליות</title>
+<style>
+  :root {
+    --ui-fg: rgba(220,232,255,0.82); --ui-bg: rgba(8,18,44,0.4); --ui-bd: rgba(200,215,255,0.16);
+    --ui-on: rgba(255,226,150,0.96); --ui-on-bd: rgba(240,205,120,0.45);
+    --hint: rgba(232,240,255,0.86); --hint-glow: rgba(110,150,255,0.5);
+    --page: #071229;
+  }
+  html[data-theme="light"] {
+    --ui-fg: #163a7a; --ui-bg: rgba(255,255,255,0.62); --ui-bd: rgba(20,50,110,0.18);
+    --ui-on: #8a5e08; --ui-on-bd: rgba(180,130,30,0.55);
+    --hint: #183a78; --hint-glow: rgba(255,255,255,0.9);
+    --page: #dfe9f8;
+  }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: var(--page); overscroll-behavior: none; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--hint); -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+  }
+  html[dir="rtl"] body { font-family: system-ui, -apple-system, "Segoe UI", "Arial Hebrew", Arial, sans-serif; }
+  #c { position: fixed; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
+  .ui {
+    position: fixed; z-index: 10;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    width: 52px; height: 52px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0; margin: 0; box-sizing: border-box;
+    font: inherit; color: var(--ui-fg);
+    background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; touch-action: manipulation; outline: none;
+    -webkit-tap-highlight-color: transparent; text-decoration: none;
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  }
+  .ui svg { width: 22px; height: 22px; }
+  .ui:focus-visible { border-color: var(--ui-on); }
+  #home { left: calc(14px + env(safe-area-inset-left, 0px)); }
+  #fs { left: calc(74px + env(safe-area-inset-left, 0px)); }
+  #theme { left: calc(134px + env(safe-area-inset-left, 0px)); }
+  #theme .sun { display: none; }
+  html[data-theme="light"] #theme .sun { display: inline; }
+  html[data-theme="light"] #theme .moon { display: none; }
+  #sound { right: calc(14px + env(safe-area-inset-right, 0px)); }
+  #sound[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  #sound .on { display: none; }
+  #sound[aria-pressed="true"] .on { display: inline; }
+  #sound[aria-pressed="true"] .off { display: none; }
+  .pill {
+    position: fixed; left: 50%; transform: translateX(-50%); z-index: 10;
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+    min-width: 132px; min-height: 50px; padding: 0 22px; border-radius: 999px;
+    font: inherit; font-size: 16px; letter-spacing: 0.04em; white-space: nowrap;
+    color: var(--ui-fg); background: var(--ui-bg); border: 1px solid var(--ui-bd);
+    cursor: pointer; outline: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  }
+  .pill[aria-pressed="true"] { color: var(--ui-on); border-color: var(--ui-on-bd); }
+  .pill:focus-visible { border-color: var(--ui-on); }
+  #hint {
+    position: fixed; left: 24px; right: 24px; top: 16%; text-align: center; pointer-events: none; z-index: 5;
+    font-size: 20px; font-weight: 300; letter-spacing: 0.05em; color: var(--hint);
+    text-shadow: 0 0 16px var(--hint-glow); transition: opacity 1.4s ease; opacity: 0;
+  }
+
+</style>
+</head>
+<body>
+<canvas id="c" data-ta="aria"></canvas>
+<div id="hint" data-t="hint"></div>
+<button id="lid" class="pill" aria-pressed="false" data-t="open"></button>
+<a id="home" class="ui" href="index.html" aria-label="Back to all games">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"/><path d="M6.5 10v8.5h11V10"/></svg>
+</a>
+<button id="fs" class="ui" aria-label="Full screen">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9V4.5H9M19.5 9V4.5H15M4.5 15v4.5H9M19.5 15v4.5H15"/></svg>
+</button>
+<button id="theme" class="ui" aria-pressed="false" aria-label="">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g class="moon"><path d="M19 14.5A7.5 7.5 0 0 1 9.5 5a7.5 7.5 0 1 0 9.5 9.5z"/></g>
+    <g class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.8v2.2M12 19v2.2M2.8 12h2.2M19 12h2.2M5.5 5.5l1.6 1.6M16.9 16.9l1.6 1.6M5.5 18.5l1.6-1.6M16.9 7.1l1.6-1.6"/></g>
+  </svg>
+</button>
+<button id="sound" class="ui" aria-pressed="false" aria-label="Turn sound on">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9.5h3.2L12 5.5v13l-4.8-4H4z"/>
+    <g class="off"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g>
+    <g class="on"><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></g>
+  </svg>
+</button>
+<script>
+(function () {
+  'use strict';
+  // ---------- Shared: gentle Web Audio core (off until the player taps the sound button) ----------
+  function AudioCore(build, level) {
+    var core = { ctx: null, master: null, reverb: null, on: false };
+    level = level || 0.8;
+    function impulse(sec) {
+      var a = core.ctx, rate = a.sampleRate, len = Math.floor(rate * sec);
+      var buf = a.createBuffer(2, len, rate);
+      for (var ch = 0; ch < 2; ch++) {
+        var d = buf.getChannelData(ch);
+        for (var i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3);
+      }
+      return buf;
+    }
+    core.noise = function (sec) {
+      var a = core.ctx, len = Math.floor(a.sampleRate * sec), buf = a.createBuffer(1, len, a.sampleRate);
+      var d = buf.getChannelData(0), last = 0;
+      for (var i = 0; i < len; i++) { var w = Math.random() * 2 - 1; last = (last + 0.04 * w) / 1.04; d[i] = last * 3.2 + w * 0.12; }
+      return buf;
+    };
+    core.loop = function (buf) {
+      var s = core.ctx.createBufferSource(); s.buffer = buf; s.loop = true; s.start(); return s;
+    };
+    function init() {
+      var AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      var a = core.ctx = new AC();
+      var comp = a.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      core.master = a.createGain(); core.master.gain.value = 0;
+      core.master.connect(comp); comp.connect(a.destination);
+      core.reverb = a.createConvolver(); core.reverb.buffer = impulse(3.2);
+      var rev = a.createGain(); rev.gain.value = 0.55;
+      core.reverb.connect(rev); rev.connect(core.master);
+      if (build) build(core);
+      return true;
+    }
+    core.setOn = function (v) {
+      if (v) {
+        if (!core.ctx && !init()) return false;
+        core.on = true;
+        if (core.ctx.state !== 'running') core.ctx.resume();
+        var t = core.ctx.currentTime, g = core.master.gain;
+        g.cancelScheduledValues(t); g.setValueAtTime(g.value, t); g.linearRampToValueAtTime(level, t + 1.5);
+      } else {
+        core.on = false;
+        if (!core.ctx) return true;
+        var t2 = core.ctx.currentTime, g2 = core.master.gain;
+        g2.cancelScheduledValues(t2); g2.setValueAtTime(g2.value, t2); g2.linearRampToValueAtTime(0, t2 + 0.6);
+        setTimeout(function () { if (!core.on && core.ctx) core.ctx.suspend(); }, 800);
+      }
+      return true;
+    };
+    core.isOn = function () { return core.on; };
+    core.ready = function () { return core.on && core.ctx && core.ctx.state === 'running'; };
+    core.visibility = function (hidden) {
+      if (!core.ctx) return;
+      if (hidden) core.ctx.suspend(); else if (core.on) core.ctx.resume();
+    };
+    // soft bell / kalimba-like tone
+    core.bell = function (freq, vel, opt) {
+      if (!core.ready()) return;
+      opt = opt || {};
+      var a = core.ctx, t = a.currentTime + (opt.delay || 0), dec = opt.decay || 3;
+      var g = a.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.16 * vel, t + (opt.attack || 0.02));
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
+      var dry = a.createGain(); dry.gain.value = opt.dry == null ? 0.55 : opt.dry;
+      g.connect(dry); dry.connect(core.master);
+      var wet = a.createGain(); wet.gain.value = opt.wet == null ? 1 : opt.wet;
+      g.connect(wet); wet.connect(core.reverb);
+      var partials = opt.partials || [[1, 1], [2.0, 0.22], [3.01, 0.07]];
+      for (var i = 0; i < partials.length; i++) {
+        var o = a.createOscillator(); o.type = 'sine';
+        o.frequency.value = freq * partials[i][0];
+        var pg = a.createGain(); pg.gain.value = partials[i][1];
+        o.connect(pg); pg.connect(g);
+        o.start(t); o.stop(t + dec + 0.1);
+      }
+    };
+    // a quiet, slowly breathing chord pad
+    core.pad = function (notes, vol, cutoff) {
+      var a = core.ctx;
+      var f = a.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = cutoff || 600; f.Q.value = 0.5;
+      var pg = a.createGain(); pg.gain.value = 0;
+      f.connect(pg); pg.connect(core.master);
+      var send = a.createGain(); send.gain.value = 0.5; pg.connect(send); send.connect(core.reverb);
+      for (var i = 0; i < notes.length; i++) {
+        var vg = a.createGain(); vg.gain.value = vol;
+        var o1 = a.createOscillator(); o1.type = 'sine'; o1.frequency.value = notes[i];
+        var o2 = a.createOscillator(); o2.type = 'triangle'; o2.frequency.value = notes[i]; o2.detune.value = (i % 2 ? 6 : -6);
+        var g2 = a.createGain(); g2.gain.value = 0.3;
+        o1.connect(vg); o2.connect(g2); g2.connect(vg);
+        var lfo = a.createOscillator(); lfo.frequency.value = 0.035 + i * 0.015;
+        var depth = a.createGain(); depth.gain.value = vol * 0.7;
+        lfo.connect(depth); depth.connect(vg.gain);
+        vg.connect(f);
+        o1.start(); o2.start(); lfo.start();
+      }
+      pg.gain.setTargetAtTime(1, a.currentTime, 2.5);
+      return { filter: f, gain: pg };
+    };
+    return core;
+  }
+
+  // ---------- Shared: sound + full-screen buttons ----------
+  function setupUI(Sound) {
+    var sb = document.getElementById('sound');
+    sb.addEventListener('click', function () {
+      var want = !Sound.isOn();
+      if (!Sound.setOn(want)) return;
+      sb.setAttribute('aria-pressed', want ? 'true' : 'false');
+      sb.setAttribute('aria-label', RGT(want ? 'Turn sound off' : 'Turn sound on'));
+    });
+    document.addEventListener('visibilitychange', function () { Sound.visibility(document.hidden); });
+    var fb = document.getElementById('fs'), de = document.documentElement;
+    var req = de.requestFullscreen || de.webkitRequestFullscreen;
+    if (!req) { fb.style.display = 'none'; return; }
+    fb.addEventListener('click', function () {
+      var fe = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fe) { var ex = document.exitFullscreen || document.webkitExitFullscreen; if (ex) ex.call(document); }
+      else { var r = req.call(de); if (r && r.catch) r.catch(function () {}); }
+    });
+  }
+
+  // ---------- Shared: language (rg-lang via lang.js) + night/light (rg-relax-theme) ----------
+  function GameShell(T, themeColors) {
+    var html = document.documentElement, langCbs = [], themeCbs = [];
+    function lang() {
+      if (window.RGLang) return RGLang.get();
+      try { return localStorage.getItem('rg-lang') === 'en' ? 'en' : 'he'; } catch (e) { return 'he'; }
+    }
+    function t(k) { var L = T[lang()] || T.en; return L[k] != null ? L[k] : T.en[k]; }
+    var light = html.getAttribute('data-theme') === 'light';
+    var tb = document.getElementById('theme');
+    function paintTheme() {
+      html.setAttribute('data-theme', light ? 'light' : 'dark');
+      var m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute('content', themeColors[light ? 1 : 0]);
+      tb.setAttribute('aria-pressed', light ? 'true' : 'false');
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+    }
+    function applyText() {
+      var l = lang();
+      html.lang = l; html.dir = l === 'he' ? 'rtl' : 'ltr';
+      document.title = t('title');
+      var els = document.querySelectorAll('[data-t]');
+      for (var i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute('data-t'));
+      var al = document.querySelectorAll('[data-ta]');
+      for (var j = 0; j < al.length; j++) al[j].setAttribute('aria-label', t(al[j].getAttribute('data-ta')));
+      tb.setAttribute('aria-label', t(light ? 'toNight' : 'toLight'));
+      for (var k = 0; k < langCbs.length; k++) langCbs[k](l);
+    }
+    function setLight(v, save) {
+      v = !!v; if (v === light) return;
+      light = v;
+      if (save) { try { localStorage.setItem('rg-relax-theme', light ? 'light' : 'dark'); } catch (e) {} }
+      paintTheme();
+      for (var i = 0; i < themeCbs.length; i++) themeCbs[i](light);
+    }
+    tb.addEventListener('click', function () { setLight(!light, true); });
+    window.addEventListener('rg-langchange', applyText);
+    window.addEventListener('storage', function (e) {
+      if (e.key === 'rg-lang') setTimeout(applyText, 0);
+      if (e.key === 'rg-relax-theme') setLight(e.newValue === 'light', false);
+    });
+    window.addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      setTimeout(applyText, 0);
+      try { setLight(localStorage.getItem('rg-relax-theme') === 'light', false); } catch (er) {}
+    });
+    // another script (account sync) may flip html[data-theme]
+    new MutationObserver(function () { var v = html.getAttribute('data-theme') === 'light'; if (v !== light) { light = !v; setLight(v, false); } })
+      .observe(html, { attributes: true, attributeFilter: ['data-theme'] });
+    paintTheme(); applyText();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', applyText);
+    return { t: t, lang: lang, isLight: function () { return light; },
+      onLang: function (cb) { langCbs.push(cb); }, onTheme: function (cb) { themeCbs.push(cb); } };
+  }
+
+  var Shell = GameShell({
+    he: { title: 'צנצנת גחליליות', aria: 'צנצנת זכוכית מלאה גחליליות בלילה. נוגעים במסך כדי שיתקרבו ויזהרו.',
+      hint: 'נוגעים במסך, והגחליליות יתקרבו לאט', open: 'פתיחת המכסה', close: 'סגירת המכסה',
+      toLight: 'מצב בהיר', toNight: 'מצב לילה' },
+    en: { title: 'Firefly Jar', aria: 'A glass jar full of fireflies at night. Touch the screen and they glow and drift closer.',
+      hint: 'Touch, and the fireflies drift to you', open: 'Open the lid', close: 'Close the lid',
+      toLight: 'Light mode', toNight: 'Night mode' }
+  }, ['#071229', '#dfe9f8']);
+
+  var canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+  var hint = document.getElementById('hint'), lidBtn = document.getElementById('lid');
+  var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W = 0, H = 0, DPR = 1, TAU = Math.PI * 2;
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+  function makeGlow(size, stops) {
+    var c = document.createElement('canvas'); c.width = c.height = size;
+    var g = c.getContext('2d'), gr = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    for (var i = 0; i < stops.length; i++) gr.addColorStop(stops[i][0], stops[i][1]);
+    g.fillStyle = gr; g.fillRect(0, 0, size, size); return c;
+  }
+  var glowNight = makeGlow(128, [[0, 'rgba(255,246,210,1)'], [0.08, 'rgba(255,226,140,0.9)'], [0.25, 'rgba(255,200,90,0.32)'], [0.6, 'rgba(255,190,80,0.08)'], [1, 'rgba(255,190,80,0)']]);
+  var glowDay = makeGlow(128, [[0, 'rgba(255,250,225,1)'], [0.1, 'rgba(255,190,50,1)'], [0.28, 'rgba(230,150,20,0.5)'], [0.6, 'rgba(225,150,40,0.1)'], [1, 'rgba(225,150,40,0)']]);
+  var castGlow = makeGlow(128, [[0, 'rgba(255,205,110,0.5)'], [0.5, 'rgba(255,195,100,0.14)'], [1, 'rgba(255,190,100,0)']]);
+
+  // ---------- Jar geometry ----------
+  var J = {};
+  function layout() {
+    var jw = clamp(Math.min(W * 0.6, H * 0.36), 170, 360);
+    J.w = jw; J.hw = jw / 2; J.h = jw * 1.25; J.cx = W / 2;
+    J.bot = clamp(H * 0.56 + J.h * 0.5, J.h + 150, H - 96);
+    J.top = J.bot - J.h; J.r = jw * 0.2; J.nw = jw * 0.3; J.neckTop = J.top - jw * 0.13;
+    J.m = 12;
+  }
+  function jarPath(g, inset) {
+    var cx = J.cx, hw = J.hw - inset, nw = J.nw - inset, r = J.r, top = J.top, bot = J.bot - inset, nt = J.neckTop;
+    g.beginPath();
+    g.moveTo(cx - nw, nt);
+    g.lineTo(cx - nw, top);
+    g.quadraticCurveTo(cx - hw, top, cx - hw, top + r);
+    g.lineTo(cx - hw, bot - r);
+    g.quadraticCurveTo(cx - hw, bot, cx - hw + r, bot);
+    g.lineTo(cx + hw - r, bot);
+    g.quadraticCurveTo(cx + hw, bot, cx + hw, bot - r);
+    g.lineTo(cx + hw, top + r);
+    g.quadraticCurveTo(cx + hw, top, cx + nw, top);
+    g.lineTo(cx + nw, nt);
+  }
+  // nearest point inside the jar's body (a rounded rectangle inset by a margin)
+  function clampIn(x, y) {
+    var m = J.m, r = J.r * 0.8;
+    var x0 = J.cx - J.hw + m + r, x1 = J.cx + J.hw - m - r, y0 = J.top + J.r * 0.55 + m, y1 = J.bot - m - r;
+    var px = clamp(x, x0, x1), py = clamp(y, y0, y1);
+    var dx = x - px, dy = y - py, d = Math.sqrt(dx * dx + dy * dy);
+    if (d > r) { px += dx / d * r; py += dy / d * r; return [px, py]; }
+    return [x, Math.max(y, y0 - r * 0.3)];
+  }
+
+  // ---------- Pre-rendered layers ----------
+  var bg = document.createElement('canvas'), bctx = bg.getContext('2d');
+  var front = document.createElement('canvas'), fctx = front.getContext('2d');
+  var light = Shell.isLight();
+  function buildLayers() {
+    bg.width = front.width = Math.round(W * DPR); bg.height = front.height = Math.round(H * DPR);
+    var g = bctx; g.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var sky = g.createLinearGradient(0, 0, 0, H);
+    if (light) { sky.addColorStop(0, '#c9daf3'); sky.addColorStop(0.55, '#e4ecf8'); sky.addColorStop(1, '#f5e7c6'); }
+    else { sky.addColorStop(0, '#0b1a3e'); sky.addColorStop(0.6, '#081430'); sky.addColorStop(1, '#050b1d'); }
+    g.fillStyle = sky; g.fillRect(0, 0, W, H);
+    // stars
+    var n = Math.round(clamp(W * H / 6000, 50, 220));
+    for (var i = 0; i < n; i++) {
+      var x = Math.random() * W, y = Math.random() * J.bot * 0.95, a = Math.random();
+      g.fillStyle = light ? 'rgba(255,255,255,' + (0.25 + a * 0.4) + ')' : 'rgba(220,230,255,' + (0.15 + a * a * 0.6) + ')';
+      g.beginPath(); g.arc(x, y, rand(0.4, 1.3), 0, TAU); g.fill();
+    }
+    // moon
+    var mx = W * 0.8, my = Math.max(90, J.top * 0.55), mr = clamp(Math.min(W, H) * 0.035, 12, 26);
+    var mg = g.createRadialGradient(mx, my, 0, mx, my, mr * 6);
+    mg.addColorStop(0, light ? 'rgba(255,240,200,0.6)' : 'rgba(255,236,180,0.22)'); mg.addColorStop(1, 'rgba(255,236,180,0)');
+    g.fillStyle = mg; g.fillRect(mx - mr * 6, my - mr * 6, mr * 12, mr * 12);
+    g.fillStyle = light ? 'rgba(255,250,235,0.95)' : 'rgba(255,240,200,0.9)';
+    g.beginPath(); g.arc(mx, my, mr, 0, TAU); g.fill();
+    // distant hills (deep blue)
+    var hy = J.bot - J.h * 0.15;
+    for (var k = 0; k < 2; k++) {
+      g.fillStyle = light ? (k ? '#a9bfe2' : '#bccde9') : (k ? '#0a1838' : '#0d1f45');
+      g.beginPath(); g.moveTo(0, H);
+      for (var xx = 0; xx <= W + 20; xx += 20) g.lineTo(xx, hy + k * 30 - Math.sin(xx / W * 3 + k * 2) * 26 - Math.sin(xx / 70 + k) * 6);
+      g.lineTo(W, H); g.closePath(); g.fill();
+    }
+    // ledge the jar stands on
+    g.fillStyle = light ? '#d6c49b' : '#0f1a33';
+    g.fillRect(0, J.bot - 2, W, H - J.bot + 2);
+    g.fillStyle = light ? 'rgba(255,250,235,0.7)' : 'rgba(200,215,255,0.1)';
+    g.fillRect(0, J.bot - 2, W, 2);
+    // jar shadow
+    var sh = g.createRadialGradient(J.cx, J.bot + 4, 0, J.cx, J.bot + 4, J.hw * 1.3);
+    sh.addColorStop(0, 'rgba(0,0,0,' + (light ? 0.18 : 0.4) + ')'); sh.addColorStop(1, 'rgba(0,0,0,0)');
+    g.save(); g.translate(J.cx, J.bot + 4); g.scale(1, 0.18); g.translate(-J.cx, -(J.bot + 4));
+    g.fillStyle = sh; g.fillRect(J.cx - J.hw * 1.4, J.bot - J.hw * 1.4, J.hw * 2.8, J.hw * 2.8); g.restore();
+    // glass back (tint inside)
+    jarPath(g, 0); g.closePath();
+    var tint = g.createLinearGradient(J.cx - J.hw, 0, J.cx + J.hw, 0);
+    if (light) { tint.addColorStop(0, 'rgba(120,160,220,0.22)'); tint.addColorStop(0.5, 'rgba(200,220,250,0.12)'); tint.addColorStop(1, 'rgba(110,150,215,0.25)'); }
+    else { tint.addColorStop(0, 'rgba(60,100,180,0.16)'); tint.addColorStop(0.5, 'rgba(30,60,130,0.08)'); tint.addColorStop(1, 'rgba(60,100,180,0.18)'); }
+    g.fillStyle = tint; g.fill();
+
+    // ---- front: glass outline and highlights over the fireflies ----
+    g = fctx; g.setTransform(DPR, 0, 0, DPR, 0, 0); g.clearRect(0, 0, W, H);
+    g.lineJoin = 'round';
+    jarPath(g, 0);
+    g.strokeStyle = light ? 'rgba(40,80,150,0.45)' : 'rgba(190,210,255,0.32)'; g.lineWidth = 2.2; g.stroke();
+    jarPath(g, 5);
+    g.strokeStyle = light ? 'rgba(255,255,255,0.55)' : 'rgba(190,210,255,0.08)'; g.lineWidth = 1.2; g.stroke();
+    // long highlight on the left
+    var hl = g.createLinearGradient(J.cx - J.hw + 10, 0, J.cx - J.hw + 34, 0);
+    hl.addColorStop(0, 'rgba(255,255,255,0)'); hl.addColorStop(0.4, light ? 'rgba(255,255,255,0.55)' : 'rgba(220,232,255,0.16)'); hl.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = hl;
+    g.beginPath(); g.moveTo(J.cx - J.hw + 12, J.top + J.r * 1.1);
+    g.quadraticCurveTo(J.cx - J.hw + 22, J.top + J.r * 0.7, J.cx - J.hw + 32, J.top + J.r * 1.1);
+    g.lineTo(J.cx - J.hw + 32, J.bot - J.r * 1.2); g.quadraticCurveTo(J.cx - J.hw + 22, J.bot - J.r * 0.9, J.cx - J.hw + 12, J.bot - J.r * 1.2); g.closePath(); g.fill();
+    g.fillStyle = light ? 'rgba(255,255,255,0.4)' : 'rgba(220,232,255,0.1)';
+    g.beginPath(); g.ellipse(J.cx + J.hw - 22, J.top + J.r * 1.4, 4, J.h * 0.12, 0, 0, TAU); g.fill();
+    // rim of the neck
+    g.strokeStyle = light ? 'rgba(40,80,150,0.4)' : 'rgba(190,210,255,0.25)'; g.lineWidth = 3;
+    g.beginPath(); g.moveTo(J.cx - J.nw - 3, J.neckTop + 6); g.lineTo(J.cx + J.nw + 3, J.neckTop + 6); g.stroke();
+  }
+  function drawLid(lift) {
+    var w = J.nw * 2 + 14, h = J.w * 0.11, x = J.cx - w / 2, y = J.neckTop - h + 4;
+    ctx.save();
+    ctx.translate(J.cx + lift * J.w * 0.28, y + h / 2 - lift * J.w * 0.3);
+    ctx.rotate(lift * 0.32);
+    var g = ctx.createLinearGradient(-w / 2, 0, w / 2, 0);
+    g.addColorStop(0, '#7a5a1a'); g.addColorStop(0.3, '#e8c36a'); g.addColorStop(0.55, '#f6dc94'); g.addColorStop(1, '#8a6a22');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    var r = 5;
+    ctx.moveTo(-w / 2 + r, -h / 2); ctx.lineTo(w / 2 - r, -h / 2); ctx.quadraticCurveTo(w / 2, -h / 2, w / 2, -h / 2 + r);
+    ctx.lineTo(w / 2, h / 2 - r); ctx.quadraticCurveTo(w / 2, h / 2, w / 2 - r, h / 2); ctx.lineTo(-w / 2 + r, h / 2);
+    ctx.quadraticCurveTo(-w / 2, h / 2, -w / 2, h / 2 - r); ctx.lineTo(-w / 2, -h / 2 + r); ctx.quadraticCurveTo(-w / 2, -h / 2, -w / 2 + r, -h / 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(90,60,10,0.45)'; ctx.lineWidth = 1;
+    for (var i = 1; i < 4; i++) { var yy = -h / 2 + h * i / 4; ctx.beginPath(); ctx.moveTo(-w / 2 + 2, yy); ctx.lineTo(w / 2 - 2, yy); ctx.stroke(); }
+    ctx.restore();
+  }
+
+  // ---------- Fireflies ----------
+  var flies = [];
+  function makeFly(inside) {
+    var p = inside ? clampIn(J.cx + rand(-J.hw, J.hw), rand(J.top, J.bot)) : [rand(0, W), rand(H * 0.12, J.bot - 20)];
+    return { x: p[0], y: p[1], vx: 0, vy: 0, a: rand(0, TAU), ph: rand(0, TAU), bs: rand(0.6, 1.3) * (reduceMotion ? 0.5 : 1),
+      glow: 0, inside: inside, wild: !inside, size: rand(0.8, 1.2), warm: Math.random(), leaveAt: 0 };
+  }
+  function buildFlies() {
+    flies = [];
+    var nIn = reduceMotion ? 16 : 26, nOut = reduceMotion ? 3 : 6;
+    for (var i = 0; i < nIn; i++) flies.push(makeFly(true));
+    for (var j = 0; j < nOut; j++) flies.push(makeFly(false));
+  }
+
+  // ---------- Sound ----------
+  var SCALE = [293.66, 329.63, 369.99, 440.0, 493.88, 587.33, 659.25, 739.99, 880.0, 987.77];
+  var Sound = AudioCore(function (core) {
+    var a = core.ctx, src = core.loop(core.noise(3));
+    var lp = a.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 380;
+    var g = a.createGain(); g.gain.value = 0.03;
+    src.connect(lp); lp.connect(g); g.connect(core.master);
+    core.pad([73.42, 110, 146.83, 220], 0.014, 380);
+  }, 0.8);
+  var lastNote = 0;
+  function note(y, vel) {
+    if (!Sound.ready()) return;
+    var t = Sound.ctx.currentTime; if (t - lastNote < 0.35) return; lastNote = t;
+    var u = 1 - clamp(y / H, 0, 1), idx = clamp(Math.round(u * (SCALE.length - 3)) + ((Math.random() * 3) | 0), 0, SCALE.length - 1);
+    Sound.bell(SCALE[idx], vel, { attack: 0.08, decay: 4.5, partials: [[1, 1], [2.0, 0.12], [3.0, 0.03]], dry: 0.4, wet: 1.2 });
+  }
+  setupUI(Sound);
+
+  // ---------- Input ----------
+  var touches = {}, hintShown = true, holdNoteAt = 0;
+  function hideHint() { if (hintShown) { hintShown = false; hint.style.opacity = '0'; } }
+  function down(id, x, y) { hideHint(); touches[id] = { x: x, y: y }; note(y, 0.7); holdNoteAt = now + rand(1.6, 2.6); }
+  function move(id, x, y) { var t = touches[id]; if (t) { t.x = x; t.y = y; } }
+  function up(id) { delete touches[id]; }
+  canvas.addEventListener('touchstart', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; down('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    for (var i = 0; i < e.changedTouches.length; i++) { var t = e.changedTouches[i]; move('t' + t.identifier, t.clientX, t.clientY); }
+  }, { passive: false });
+  function tend(e) { for (var i = 0; i < e.changedTouches.length; i++) up('t' + e.changedTouches[i].identifier); }
+  canvas.addEventListener('touchend', tend); canvas.addEventListener('touchcancel', tend);
+  canvas.addEventListener('pointerdown', function (e) { if (e.pointerType === 'touch') return; down('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointermove', function (e) { if (e.pointerType === 'touch') return; move('p' + e.pointerId, e.clientX, e.clientY); });
+  window.addEventListener('pointerup', function (e) { if (e.pointerType !== 'touch') up('p' + e.pointerId); });
+  window.addEventListener('pointercancel', function (e) { if (e.pointerType !== 'touch') up('p' + e.pointerId); });
+  window.addEventListener('blur', function () { touches = {}; });
+  canvas.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+
+  // lid: open lets the fireflies wander the night; close calls them home
+  var lidOpen = false, lift = 0;
+  function labelLid() { lidBtn.textContent = Shell.t(lidOpen ? 'close' : 'open'); lidBtn.setAttribute('aria-pressed', lidOpen ? 'true' : 'false'); }
+  lidBtn.addEventListener('click', function () {
+    lidOpen = !lidOpen; labelLid(); hideHint();
+    for (var i = 0; i < flies.length; i++) if (!flies[i].wild) flies[i].leaveAt = now + (lidOpen ? rand(1.5, 14) : 0);
+    note(H * 0.3, 0.5);
+  });
+  Shell.onLang(labelLid);
+  Shell.onTheme(function (v) { light = v; buildLayers(); });
+
+  // ---------- Resize / loop ----------
+  function resize() {
+    DPR = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = Math.round(W * DPR); canvas.height = Math.round(H * DPR);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    var old = J.cx != null ? { cx: J.cx, top: J.top, w: J.w } : null;
+    layout(); buildLayers();
+    if (!flies.length) buildFlies();
+    else for (var i = 0; i < flies.length; i++) {
+      var f = flies[i];
+      if (f.inside && old) { var p = clampIn(J.cx + (f.x - old.cx) * J.w / old.w, J.top + (f.y - old.top) * J.w / old.w); f.x = p[0]; f.y = p[1]; }
+      else { f.x = clamp(f.x, 0, W); f.y = clamp(f.y, 0, H); }
+    }
+  }
+  window.addEventListener('resize', resize);
+
+  var now = performance.now() / 1000, last = now;
+  function attractor() {
+    var sx = 0, sy = 0, n = 0;
+    for (var k in touches) { sx += touches[k].x; sy += touches[k].y; n++; }
+    return n ? [sx / n, sy / n] : null;
+  }
+  function frame(ms) {
+    now = ms / 1000;
+    var dt = clamp(now - last, 0, 0.05); last = now;
+    var spd = reduceMotion ? 0.5 : 1;
+    var att = attractor();
+    if (att && now > holdNoteAt) { holdNoteAt = now + rand(1.8, 3.2); note(att[1] + rand(-60, 60), 0.4); }
+    var mouthX = J.cx, mouthY = J.neckTop - 6, allHome = true;
+
+    ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = 1;
+    ctx.drawImage(bg, 0, 0, W, H);
+
+    var cast = 0;
+    for (var i = 0; i < flies.length; i++) {
+      var f = flies[i], tx = null, ty = null, pull = 0;
+      f.a += rand(-1.5, 1.5) * dt; f.ph += dt * f.bs * 1.6;
+      var wander = (reduceMotion ? 9 : 16);
+      f.vx += Math.cos(f.a) * wander * dt; f.vy += Math.sin(f.a) * wander * dt;
+      // leaving / coming home
+      if (!f.wild) {
+        if (lidOpen && f.inside && now > f.leaveAt) { f.inside = false; f.exiting = 1; }
+        if (!lidOpen && !f.inside) {
+          tx = mouthX; ty = mouthY; pull = 1.1;
+          if (Math.abs(f.x - mouthX) < J.nw * 0.8 && Math.abs(f.y - mouthY) < 26) f.inside = true;
+        }
+        if (f.exiting) {
+          if (f.y > J.top + 6) { tx = J.cx; ty = J.top - 4; } else { tx = J.cx + (f.x - J.cx) * 0.5; ty = J.neckTop - 60; }
+          pull = 0.9; if (f.y < J.neckTop - 30) f.exiting = 0;
+        }
+        if (!f.inside) allHome = false;
+      }
+      if (att && !(f.exiting) && !(!lidOpen && !f.inside && !f.wild)) {
+        var ax = att[0], ay = att[1];
+        if (f.inside) { var c = clampIn(ax, ay); ax = c[0]; ay = c[1]; }
+        tx = ax + Math.cos(f.ph * 0.7 + i) * 26; ty = ay + Math.sin(f.ph * 0.9 + i * 1.7) * 22; pull = 1;
+      }
+      if (tx != null) {
+        var dx = tx - f.x, dy = ty - f.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+        var acc = Math.min(d, 160) * 0.22 * pull;
+        f.vx += dx / d * acc * dt; f.vy += dy / d * acc * dt;
+      }
+      var damp = Math.pow(0.35, dt); f.vx *= damp; f.vy *= damp;
+      var vmax = 34 * spd, v = Math.sqrt(f.vx * f.vx + f.vy * f.vy);
+      if (v > vmax) { f.vx *= vmax / v; f.vy *= vmax / v; }
+      f.x += f.vx * dt * spd; f.y += f.vy * dt * spd;
+      if (f.inside) {
+        var p = clampIn(f.x, f.y), ex = p[0] - f.x, ey = p[1] - f.y;
+        if (ex || ey) { var s = Math.min(1, dt * 3); f.x += ex * s; f.y += ey * s; if (ex * f.vx < 0) f.vx *= -0.3; if (ey * f.vy < 0) f.vy *= -0.3; }
+      } else {
+        // soft walls of the night
+        if (f.x < 20) f.vx += 20 * dt; if (f.x > W - 20) f.vx -= 20 * dt;
+        if (f.y < 70) f.vy += 20 * dt; if (f.y > J.bot - 10) f.vy -= 30 * dt;
+        f.x = clamp(f.x, -20, W + 20); f.y = clamp(f.y, -20, H);
+      }
+      f.glow += ((tx != null && pull === 1 && att ? 1 : 0) - f.glow) * Math.min(1, dt * 0.9);
+      var blink = reduceMotion ? 0.6 + 0.15 * Math.sin(f.ph * 0.5) : 0.25 + 0.75 * Math.pow(Math.max(0, Math.sin(f.ph)), 2);
+      f.b = blink + (1 - blink) * f.glow * 0.85;
+      if (f.inside) cast += f.b;
+    }
+    // warm light the jar casts on the ledge
+    ctx.globalCompositeOperation = light ? 'source-over' : 'lighter';
+    ctx.globalAlpha = clamp(cast / 26, 0, 1) * (light ? 0.5 : 0.8);
+    ctx.save(); ctx.translate(J.cx, J.bot + 6); ctx.scale(1, 0.22);
+    ctx.drawImage(castGlow, -J.w * 1.1, -J.w * 1.1, J.w * 2.2, J.w * 2.2); ctx.restore();
+    // jar glow from inside
+    ctx.globalAlpha = clamp(cast / 26, 0, 1) * 0.4;
+    if (!light) ctx.drawImage(castGlow, J.cx - J.w * 0.9, (J.top + J.bot) / 2 - J.w * 0.9, J.w * 1.8, J.w * 1.8);
+    // fireflies
+    var spr = light ? glowDay : glowNight;
+    for (var q = 0; q < flies.length; q++) {
+      var ff = flies[q], sz = (light ? 36 : 34) * ff.size * (0.55 + ff.b * 0.7 + ff.glow * 0.25);
+      ctx.globalAlpha = clamp(ff.b * (light ? 0.95 : 1), 0, 1);
+      ctx.drawImage(spr, ff.x - sz / 2, ff.y - sz / 2, sz, sz);
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    ctx.drawImage(front, 0, 0, W, H);
+    lift += ((lidOpen || !allHome ? 1 : 0) - lift) * Math.min(1, dt * 1.2);
+    drawLid(lift);
+    requestAnimationFrame(frame);
+  }
+
+  resize(); labelLid();
+  setTimeout(function () { if (hintShown) hint.style.opacity = '1'; }, 900);
+  setTimeout(function () { hint.style.opacity = '0'; hintShown = false; }, 8000);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
