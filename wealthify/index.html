@@ -226,6 +226,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   <header class="top">
     <a class="back" href="../" id="back"></a>
     <div class="tools">
+    <span data-rg-account style="display:inline-flex;min-width:0"></span>
     <button type="button" class="icon-btn hdr-install inst" id="install-hdr" hidden>📲</button>
     <div class="lang" role="group" aria-label="Language / שפה">
       <button type="button" id="lang-he" aria-pressed="true">עברית</button>
@@ -612,5 +613,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   }
 })();
 </script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
 </body>
 </html>
