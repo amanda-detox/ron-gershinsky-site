@@ -1,5 +1,5 @@
 /* Offline cache for Monthly (חודשיפיי). Scope: monthly/ only. */
-var CACHE = "rg-monthly-v3";
+var CACHE = "rg-monthly-v4";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
