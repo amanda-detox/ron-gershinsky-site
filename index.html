@@ -75,7 +75,6 @@
     color: var(--ink);
     font-size: 1.875rem;
     font-weight: 600;
-    object-fit: cover;
   }
   h1 { margin: 1rem 0 0; font-size: 1.875rem; font-weight: 700; text-wrap: balance; }
   .bio { margin: 0.25rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
@@ -192,7 +191,7 @@
     <button type="button" id="he" aria-pressed="true">עברית</button>
     <button type="button" id="en" aria-pressed="false">English</button>
   </div>
-  <img class="mark" id="mark" src="assets/avatar.jpg" alt="רון גרשינסקי" width="120" height="120">
+  <div class="mark" id="mark">רג</div>
   <h1 id="name">רון גרשינסקי</h1>
   <p class="bio" id="bio"></p>
   <div class="install-wrap" id="install-wrap">
@@ -242,7 +241,7 @@ var apps = [
   { href: "alarm/index.html",     icon: "alarm/icon-192.png",     he: "קלוקיפיי",      en: "Clockify",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
   { href: "news/index.html",      icon: "news/icon-192.png",      he: "עדכוניפיי",     en: "Updatify",   heLine: "חדשות יומיות על אנשים וחברות שאני עוקב אחריהם", enLine: "Daily news on the people and companies I follow" },
   { href: "relax/index.html",     icon: "relax/icon-192.png",     he: "משחקי רגיעה",   en: "Relax Games", heLine: "חמישה משחקים שקטים, בלי ניקוד ובלי טיימר", enLine: "Five quiet games, no scores, no timers" },
-  { href: "healify/index.html",   icon: "healify/icon-192.png",   he: "היליפיי",       en: "Healify",   heLine: "מרחב אישי לדרך הריפוי השלם",          enLine: "A personal space for the healing journey" },
+  { href: "healify/index.html",   icon: "healify/icon-192.png",   he: "היליפיי",       en: "Healify",   heLine: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג.", enLine: "An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing." },
   { href: "wealthify/index.html", icon: "wealthify/icon-192.png", he: "שפעלי",         en: "Wealthify", heLine: "שגשוג וחופש כלכלי",                    enLine: "Prosperity and financial freedom" },
   { href: "sounds/index.html",    icon: "sounds/icon-192.png",    he: "סאונדיפיי",     en: "Soundify",  heLine: "צלילי טבע, כלים ומנטרות להרגעה ולשינה", enLine: "Nature sounds, instruments and mantras for calm and sleep" },
   { href: "monthly/index.html",   icon: "monthly/icon-192.png",   he: "חודשיפיי",       en: "Monthly",   heLine: "חודשי מודעות ונושא חדש בכל חודש",     enLine: "Awareness months and a new topic every month" },
@@ -355,7 +354,7 @@ function render() {
   document.title = t.title;
   document.getElementById("he").setAttribute("aria-pressed", he ? "true" : "false");
   document.getElementById("en").setAttribute("aria-pressed", he ? "false" : "true");
-  document.getElementById("mark").alt = t.name;
+  text("mark", t.mark);
   text("name", t.name);
   text("bio", t.bio);
   text("wait-title", t.waitlistTitle);
