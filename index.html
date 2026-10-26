@@ -244,6 +244,34 @@
   .sw:focus-visible { outline: none; } .sw:focus-visible .pv { outline: 3px solid rgba(255,214,160,.8); outline-offset: 2px; }
   .sw .nm { display: block; margin-top: 5px; line-height: 1.25; }
   @media (prefers-reduced-motion: reduce) { .sheet { animation: none; } }
+  /* ---- top bar: ONE row in every theme/language/width (no wrap, no overflow); labels shrink to icons on narrow screens ---- */
+  .topbar { display: flex; flex-wrap: nowrap; align-items: center; justify-content: flex-start; gap: 0.375rem; min-height: 2.5rem; }
+  .topbar .tools { display: flex; flex-wrap: nowrap; align-items: center; gap: 0.375rem; margin-inline-start: auto; min-width: 0; }
+  .topbar .tools > * { flex: none; }
+  .topbar .tools > [data-rg-account] { flex: 0 1 auto; min-width: 0; display: inline-flex; }
+  .topbar .langsel { flex: none; }
+  .topbar .langsel select { height: 2.5rem; min-height: 0; padding-block: 0; padding-inline: 1.95rem 1.7rem; font-size: 0.8125rem; line-height: 1; }
+  .topbar .langsel .globe { inset-inline-start: 0.7rem; }
+  .topbar .langsel .chev { inset-inline-end: 0.6rem; }
+  .topbar .themebtn, .topbar .iconbtn { height: 2.5rem; min-height: 0; border: 1px solid transparent; }
+  .topbar .iconbtn { width: 2.5rem; }
+  .topbar .themebtn { padding: 0 0.8rem; font-size: 0.8125rem; }
+  html[data-theme="light"] .topbar .themebtn, html[data-theme="light"] .topbar .iconbtn { border-color: rgba(11, 42, 107, 0.16); }
+  .topbar .rgacc-btn { height: 2.5rem; padding-block: 0; max-width: 100%; }
+  /* the landing column is only 28rem wide: in English use the short "Sign in" label so it never gets cut */
+  html[lang="en"] .topbar .rgacc-btn .rgacc-full { display: none; }
+  html[lang="en"] .topbar .rgacc-btn .rgacc-short { display: inline; }
+  @media (max-width: 559px) {
+    .topbar .themebtn { width: 2.5rem; padding: 0; justify-content: center; }
+    .topbar .themebtn .tl { display: none; }
+  }
+  @media (max-width: 420px) {
+    .topbar .rgacc-btn { max-width: 7.25rem; padding-inline: 0.7rem; }
+  }
+  @media (max-width: 350px) {
+    .topbar .langsel .globe { display: none; }
+    .topbar .langsel select { padding-inline: 0.8rem 1.6rem; }
+  }
 </style>
 </head>
 <body>
@@ -358,7 +386,7 @@ var copy = {
     sendFail: "השליחה לא הצליחה. נסה שוב, או כתוב אליי ישירות.",
     contactTitle: "יצירת קשר",
     contactBtn: "שלח אליי מייל",
-    footer: "© רון גרשינסקי",
+    footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת רון אפליקציות בע\"מ 2026",
     appsTitle: "האפליקציות שלי",
     games: "משחקים להרגעה ושלווה עמוקה",
     buy: "הורדה ב־5 דולר",
@@ -391,7 +419,7 @@ var copy = {
     sendFail: "Sending failed. Try again, or email me directly.",
     contactTitle: "Contact",
     contactBtn: "Send email",
-    footer: "© Ron Gershinsky",
+    footer: "© 2026 All rights reserved to Ron Gershinsky and Ron Apps Ltd.",
     appsTitle: "My apps",
     games: "Games for calm and deep quiet",
     buy: "Download for $5",
