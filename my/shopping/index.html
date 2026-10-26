@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>רשימת קניות</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="רשימת קניות">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="stylesheet" href="../common.css">
+<style>
+  .addform { display: flex; gap: 8px; margin-top: 16px; }
+  .addform input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
+  .addform input:focus { border-color: var(--accent); }
+  .addform input::placeholder { color: var(--faint); }
+  .addform button { flex: none; height: 50px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
+  .status.off { color: var(--accent); font-weight: 600; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+  .list { list-style: none; margin: 12px 0 0; padding: 0; }
+  .list li { display: flex; align-items: center; gap: 4px; min-height: 54px; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+  .list li:last-child { border-bottom: 0; }
+  .listcard { padding: 4px 8px; }
+  .chk { flex: none; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+  .chk i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; transition: background .15s, border-color .15s; }
+  .chk:hover i { border-color: var(--accent); }
+  .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .txt { flex: 1; min-width: 0; padding: 10px 4px; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; cursor: text; border-radius: 8px; }
+  .done .txt { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--faint); }
+  .edit { flex: 1; min-width: 0; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
+  .del { flex: none; width: 40px; height: 40px; border: 0; background: none; color: var(--faint); font-size: 22px; line-height: 1; border-radius: 50%; }
+  .del:hover { color: var(--fg); background: var(--card2); }
+  .donehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 22px 2px 0; }
+  .donehead h2 { margin: 0; font-size: 15px; color: var(--muted); font-weight: 700; }
+  .clear { height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13.5px; font-weight: 600; }
+  .clear:hover { border-color: var(--accent); }
+  .empty { margin-top: 18px; padding: 22px 18px; text-align: center; color: var(--muted); }
+  .empty p { margin: 0 0 8px; }
+  .suggest { background: none; border: 0; padding: 4px; color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+  html[data-theme="light"] .suggest { color: var(--blue); }
+  .count { color: var(--faint); font-size: 13px; margin-inline-start: auto; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="56" height="56">
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+  </div>
+  <div class="install-wrap" id="install-wrap"><button type="button" class="install" id="install-btn" data-i18n="install"></button><div class="hint" id="install-hint" hidden></div></div>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <form class="addform" id="add-form" autocomplete="off">
+      <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
+      <button type="submit" data-i18n="add"></button>
+    </form>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div class="card empty" id="empty" hidden><p data-i18n="empty"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
+    <div class="card listcard" id="active-card"><ul class="list" id="active"></ul></div>
+    <div id="done-wrap" hidden>
+      <div class="donehead"><h2 id="done-h"></h2><button type="button" class="clear" id="clear" data-i18n="clear"></button></div>
+      <div class="card listcard"><ul class="list" id="done"></ul></div>
+    </div>
+  </main>
+  <p class="privnote" data-i18n="privNote"></p>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "../sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "רשימת קניות", title: "רשימת קניות", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
+        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נקנו", check: "סמן כנקנה", uncheck: "החזר לרשימה",
+        edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים" },
+  en: { doc: "Shopping list", title: "Shopping list", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
+        empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Bought", check: "Mark as bought", uncheck: "Back to the list",
+        edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items" }
+};
+</script>
+<script src="../../shared/rg-account.js"></script>
+<script src="../common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
