@@ -124,3 +124,5 @@ html[data-theme=light] .ichk input:checked + .box{color:#fff}
 .ilinks{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px}
 .ilink{font-size:13px;font-weight:700;color:var(--ink);text-decoration:none;border:1px solid var(--line2);border-radius:999px;padding:4px 11px;background:var(--card2)}
 .more{text-align:center;font-size:14.5px;font-weight:700;color:var(--mute);margin:14px 0 0}
+/* phones: background button icon-only so the whole top bar stays in one row */
+@media (max-width: 480px) { header.top #bg-btn { font-size: 0 !important; width: 36px; height: 36px; min-height: 0; padding: 0 !important; display: inline-flex; align-items: center; justify-content: center; } header.top #bg-btn::before { content: "\1F5BC\FE0F"; font-size: 16px; } }

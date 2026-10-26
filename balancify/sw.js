@@ -1,7 +1,7 @@
 /* Offline cache for Balancify (באלאנסיפיי). Scope: balancify/ only.
    Only the default background is precached; other backgrounds are cached when first used. */
-var CACHE = "rg-balancify-v4";
-var FILES = ["./", "index.html", "../shared/rg-account.js", "app.js", "data.js", "style.css", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "bg/sunset.webp"];
+var CACHE = "rg-balancify-v5";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "app.js", "data.js", "style.css", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "bg/sunset.webp"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

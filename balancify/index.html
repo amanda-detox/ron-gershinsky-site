@@ -15,6 +15,9 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -41,10 +44,6 @@
         <p class="tagline" id="tagline"></p>
       </div>
     </div>
-    <div class="install" id="install-wrap" hidden>
-      <button type="button" class="btn primary" id="install-btn"></button>
-      <div class="hint" id="install-hint" hidden></div>
-    </div>
     <nav class="choices" id="choices"></nav>
   </main>
 
@@ -65,6 +64,7 @@
     </section>
   </main>
 
+  <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer>
     <p class="crisis" id="crisis"></p>
   </footer>
