@@ -1,5 +1,5 @@
 /* Offline cache for Pumpify (פאמפיפיי). Scope: pumpify/ only. */
-var CACHE = "rg-pumpify-v4";
+var CACHE = "rg-pumpify-v5";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
