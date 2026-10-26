@@ -65,6 +65,7 @@
     <button type="button" id="lang-he" lang="he" aria-pressed="false">עברית</button>
     <button type="button" id="lang-en" lang="en" aria-pressed="false">English</button>
   </div>
+  <div style="display:flex;justify-content:center;margin:-8px 0 16px"><span data-rg-account></span></div>
   <h1 data-i18n="title">Relax</h1>
   <p class="sub" data-i18n="sub">Five quiet little games.<br>No scores, no timers, nothing to lose.</p>
   <ul>
@@ -198,5 +199,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
   }
 })();
 </script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
 </body>
 </html>

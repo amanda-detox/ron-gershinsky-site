@@ -1,6 +1,6 @@
 /* Offline cache for the Relax games (scope: relax/ only). */
-var CACHE = "rg-relax-v2";
-var FILES = ["./", "index.html", "quiet-night.html", "sand-garden.html", "still-pond.html", "glow-garden.html", "watercolor.html",
+var CACHE = "rg-relax-v3";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "quiet-night.html", "sand-garden.html", "still-pond.html", "glow-garden.html", "watercolor.html",
   "lang.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
