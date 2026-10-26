@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>רעיונות ומשימות</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="רעיונות ומשימות">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../../shared/rg-site.css">
+<link rel="stylesheet" href="../common.css">
+<style>
+  .tabs { display: flex; gap: 6px; margin-top: 18px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .tab .n { font-weight: 600; opacity: .8; font-size: 13px; margin-inline-start: 4px; }
+  .addform { margin-top: 14px; }
+  .addrow { display: flex; gap: 8px; }
+  .addform input, .addform textarea, .ed input, .ed textarea, .ed select, .tools2 select { min-width: 0; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 16.5px; outline: none; }
+  .addform input[type=text] { flex: 1; height: 50px; padding: 0 16px; }
+  .addform input:focus, .addform textarea:focus, .ed input:focus, .ed textarea:focus, .ed select:focus { border-color: var(--accent); }
+  .addform ::placeholder, .ed ::placeholder { color: var(--faint); }
+  .addform button[type=submit] { flex: none; height: 50px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  .addextra { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .addextra input, .addextra textarea { flex: 1; height: 42px; padding: 0 14px; font-size: 15px; border-width: 1px; }
+  .addextra label { color: var(--muted); font-size: 13.5px; white-space: nowrap; }
+  .addextra input[type=date] { flex: 0 1 11rem; }
+  .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
+  .status.off { color: var(--accent); font-weight: 600; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+  .tools2 { display: flex; align-items: center; gap: 8px; margin: 6px 2px 0; color: var(--muted); font-size: 13.5px; }
+  .tools2 select { height: 36px; padding: 0 10px; font-size: 14px; border-width: 1px; border-radius: 10px; }
+  .tools2 .count { margin-inline-start: auto; color: var(--faint); }
+  .listcard { padding: 2px 8px; margin-top: 10px; }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list > li { display: flex; align-items: flex-start; gap: 4px; min-height: 54px; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  .list > li:last-child { border-bottom: 0; }
+  .chk { flex: none; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+  .chk i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; }
+  .chk:hover i { border-color: var(--accent); }
+  .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .body { flex: 1; min-width: 0; padding: 9px 4px; cursor: pointer; border-radius: 8px; }
+  .txt { display: block; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; }
+  .note { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  .due { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .due.late { color: var(--accent); } html[data-theme="light"] .due.late { color: #8a5a00; }
+  .done .txt { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--faint); }
+  .chip { flex: none; margin-top: 9px; min-height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--muted); font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .chip.s-dev { border-color: var(--blue); color: var(--blue); background: color-mix(in srgb, var(--blue) 12%, transparent); }
+  .chip.s-done { border-color: var(--accent); background: var(--accent); color: var(--accentink); }
+  .idea.s-done .txt { color: var(--muted); }
+  .mv { flex: none; display: flex; flex-direction: column; margin-top: 2px; }
+  .mv button { width: 34px; height: 24px; border: 0; background: none; color: var(--faint); font-size: 14px; border-radius: 8px; padding: 0; }
+  .mv button:hover:not(:disabled) { color: var(--fg); background: var(--card2); }
+  .mv button:disabled { opacity: .25; cursor: default; }
+  .ed { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 6px 2px 8px; }
+  .ed input[type=text], .ed select, .ed input[type=date] { height: 44px; padding: 0 12px; }
+  .ed textarea { min-height: 70px; padding: 10px 12px; resize: vertical; font-size: 15px; }
+  .ed .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .ed .row label { color: var(--muted); font-size: 13.5px; }
+  .btn { height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 14.5px; font-weight: 700; }
+  .btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .btn.dng { margin-inline-start: auto; color: var(--muted); }
+  .btn.dng:hover { color: #ff9a9a; border-color: #ff9a9a; }
+  html[data-theme="light"] .btn.dng:hover { color: #a3122a; border-color: #a3122a; }
+  .empty { margin-top: 14px; padding: 22px 18px; text-align: center; color: var(--muted); }
+  .empty p { margin: 0; }
+  details.donebox { margin-top: 18px; }
+  details.donebox > summary { display: flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; padding: 6px 2px; color: var(--muted); font-size: 15px; font-weight: 700; }
+  details.donebox > summary::-webkit-details-marker { display: none; }
+  details.donebox > summary::before { content: "▸"; display: inline-block; transition: transform .15s; }
+  html[dir="rtl"] details.donebox > summary::before { content: "◂"; }
+  details.donebox[open] > summary::before { transform: rotate(90deg); }
+  html[dir="rtl"] details.donebox[open] > summary::before { transform: rotate(-90deg); }
+  .clear { margin-inline-start: auto; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13px; font-weight: 600; }
+</style>
+<script src="../../shared/rg-bg.js" data-app="myideas" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="56" height="56">
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+  </div>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div id="panels"></div>
+  </main>
+  <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "./sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "רעיונות ומשימות", title: "רעיונות ומשימות", sub: "הרעיונות והצ'קליסט שלך, שמורים בחשבון – רק אתה רואה אותם",
+        tabIdeas: "רעיונות לפיתוח", tabTasks: "צ'קליסט",
+        phIdea: "איזו אפליקציה תרצה לפתח?", phNote: "הערה קצרה (לא חובה)", phTask: "מה צריך לעשות?", add: "הוסף", due: "תאריך יעד (לא חובה)", dueShort: "תאריך יעד", note: "הערה",
+        stNew: "רעיון", stDev: "בפיתוח", stDone: "הושלם", stLabel: "סטטוס", stCycle: "שינוי סטטוס",
+        sortLabel: "מיון", sortManual: "הסדר שלי", sortNew: "החדשים קודם", sortAbc: "לפי שם", sortStatus: "לפי סטטוס",
+        up: "הזז למעלה", down: "הזז למטה", ideas: "רעיונות", tasks: "פריטים",
+        emptyIdeas: "עוד אין רעיונות. כתוב למעלה את הרעיון הראשון שלך.", emptyTasks: "הצ'קליסט ריק. הוסף למעלה את הדבר הבא שתרצה לעשות.", allDone: "כל הכבוד, סיימת הכול! ✓",
+        doneHead: "בוצעו", clearDone: "נקה שבוצעו", confirmClear: "למחוק את כל הפריטים שבוצעו?",
+        check: "סמן כבוצע", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
+        confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
+        synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
+        seedTask: "לבקר במרקטפלייס בוטים" },
+  en: { doc: "Ideas & Tasks", title: "Ideas & Tasks", sub: "Your ideas and checklist, saved in your account – only you can see them",
+        tabIdeas: "Ideas to develop", tabTasks: "Checklist",
+        phIdea: "Which app would you like to build?", phNote: "Short note (optional)", phTask: "What needs doing?", add: "Add", due: "Due date (optional)", dueShort: "Due date", note: "Note",
+        stNew: "Idea", stDev: "In development", stDone: "Done", stLabel: "Status", stCycle: "Change status",
+        sortLabel: "Sort", sortManual: "My order", sortNew: "Newest first", sortAbc: "By name", sortStatus: "By status",
+        up: "Move up", down: "Move down", ideas: "ideas", tasks: "items",
+        emptyIdeas: "No ideas yet. Write your first one above.", emptyTasks: "The checklist is empty. Add the next thing you want to do above.", allDone: "Well done, everything is checked off! ✓",
+        doneHead: "Done", clearDone: "Clear done", confirmClear: "Delete all the done items?",
+        check: "Mark as done", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
+        confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
+        synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online",
+        seedTask: "Visit the bots marketplace" }
+};
+</script>
+<script src="../../shared/rg-account.js"></script>
+<script src="../common.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
