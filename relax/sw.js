@@ -1,5 +1,5 @@
 /* Offline cache for the Relax games (scope: relax/ only). */
-var CACHE = "rg-relax-v4";
+var CACHE = "rg-relax-v5";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "quiet-night.html", "sand-garden.html", "still-pond.html", "glow-garden.html", "watercolor.html",
   "lang.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
