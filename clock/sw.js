@@ -1,5 +1,5 @@
 /* Offline cache + notification clicks for Clockify (קלוקיפיי). */
-var CACHE = "rg-clock-v4";
+var CACHE = "rg-clock-v5";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "alarm-core.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
