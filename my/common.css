@@ -65,3 +65,6 @@ h1 { margin: 0; font-size: 28px; line-height: 1.2; font-weight: 800; }
 .privnote { margin: 18px 0 0; color: var(--faint); font-size: 12.5px; text-align: center; }
 footer { margin-top: 26px; text-align: center; color: var(--faint); font-size: 12.5px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+/* background picker button (shared/rg-bg.js) sized like the other top-bar buttons */
+.topbar .rgbg-btn { width: 40px; height: 40px; }

@@ -89,7 +89,8 @@
       A.onChange(gate);
       A.ready.then(function () { gate(A.user()); });
       // language + night/light are the site-wide settings, synced with the account like on the landing page
-      A.syncPrefs(["rg-lang", "rg-home-theme"], function (c) {
+      A.syncPrefs(["rg-lang", "rg-home-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) {
+        if (window.RGBg && RGBg.apply(c)) return true; // background (rg-my-bg / rg-my-bg-light) handled there
         if ("rg-lang" in c) lang = c["rg-lang"] === "en" ? "en" : "he";
         if ("rg-home-theme" in c) theme = c["rg-home-theme"] === "light" ? "light" : "dark";
         render(); return true;
