@@ -10,6 +10,9 @@
      open()             opens the sign-in / account dialog
      sendCode(email)    Email OTP: 6-digit code to the inbox
      verifyCode(code)   -> Promise<user>
+     loginPassword(email, password) -> Promise<user>   (email + password session)
+     setPassword(newPassword, oldPassword?) -> Promise<user>  (oldPassword only when the account already has one)
+     hasPassword()      true / false / null (unknown yet)
      setName(name)      -> Promise<user>
      logout()           -> Promise
      get(app, key)      -> Promise<value|null>   JSON in table ron/userdata, one row per (user, app, key). Rejects (err.code "signed_out") when signed out.
@@ -27,6 +30,7 @@
   var ENDPOINT = "https://fra.cloud.appwrite.io/v1", PROJECT = "6adef4a40004c12a1e9c";
   var DB = "ron", TABLE = "userdata";
   var FB_KEY = "cookieFallback", USER_KEY = "rg-account-user", PEND_KEY = "rg-account-pending", META_KEY = "rg-prefs-meta";
+  var METHOD_KEY = "rg-account-method", HASPW_KEY = "rg-account-haspw", LAST_KEY = "rg-account-last-email"; // last sign-in method ("password" | "code"), whether the account has a password (never the password itself)
   var PEND_TTL = 15 * 60 * 1000;
   // the private hub (my/) sits next to shared/, so find it from this script's own URL (works on any host / sub-path)
   var MY_URL = (function () { try { var c = document.currentScript; return c && c.src ? new URL("../my/", c.src).href : ""; } catch (e) { return ""; } })();
@@ -56,10 +60,17 @@
   function norm(u) { return u && (u.$id || u.id) ? { id: u.$id || u.id, email: u.email || "", name: u.name || "" } : null; }
   function same(a, b) { return (!a && !b) || !!(a && b && a.id === b.id && a.email === b.email && a.name === b.name); }
   var cur = norm(jparse(lsGet(USER_KEY), null)), subs = [];
+  var hasPw = (function () { var v = lsGet(HASPW_KEY); return v === "1" ? true : v === "0" ? false : null; })();
+  function notePw(raw) {
+    if (!raw) { hasPw = null; lsSet(HASPW_KEY, null); return; }
+    if (typeof raw === "object" && "passwordUpdate" in raw) { hasPw = !!raw.passwordUpdate; lsSet(HASPW_KEY, hasPw ? "1" : "0"); }
+  }
   function setUser(u, fromStorage) {
+    if (!fromStorage) notePw(u);
     u = norm(u); if (same(u, cur)) return;
     var was = cur && cur.id; cur = u;
     if (!fromStorage) lsSet(USER_KEY, u ? JSON.stringify(u) : null);
+    if (u && u.email) lsSet(LAST_KEY, u.email); // prefills the sign-in form next time
     if (!u || u.id !== was) rowKnown = {};
     subs.slice().forEach(function (cb) { try { cb(cur); } catch (e) { setTimeout(function () { throw e; }); } });
     renderAll();
@@ -83,23 +94,74 @@
     lastCheck = Date.now(); check().then(function () { if (cur) prefsPull(); });
   });
 
+  // pending code: localStorage (survives reloads / other tabs) plus an in-memory copy for browsers that block storage
+  var memPend = null;
   function sendCode(email) {
     email = String(email || "").trim();
     return req("POST", "/account/tokens/email", { userId: "unique()", email: email }).then(function (tok) {
-      lsSet(PEND_KEY, JSON.stringify({ userId: tok.userId, email: email, at: Date.now() }));
+      memPend = { userId: tok.userId, email: email, at: Date.now() };
+      lsSet(PEND_KEY, JSON.stringify(memPend));
       return tok.userId;
     });
   }
-  function pending() { var p = jparse(lsGet(PEND_KEY), null); return p && p.userId && Date.now() - p.at < PEND_TTL ? p : null; }
+  function pending() {
+    var p = jparse(lsGet(PEND_KEY), null) || memPend;
+    return p && p.userId && Date.now() - p.at < PEND_TTL ? p : null;
+  }
+  function clearPending() { memPend = null; lsSet(PEND_KEY, null); }
+  // the 6-digit code out of whatever was typed or pasted: Arabic/Persian/full-width digits, spaces, RTL marks, "Code: 123456 …"
+  function cleanCode(v) {
+    var s = String(v || "")
+      .replace(/[\u0660-\u0669]/g, function (c) { return String(c.charCodeAt(0) - 0x660); })
+      .replace(/[\u06F0-\u06F9]/g, function (c) { return String(c.charCodeAt(0) - 0x6F0); })
+      .replace(/[\uFF10-\uFF19]/g, function (c) { return String(c.charCodeAt(0) - 0xFF10); });
+    var m = s.match(/(?:^|\D)(\d{6})(?!\d)/);
+    return m ? m[1] : s.replace(/\D/g, "");
+  }
+  function codeErr(type) { var e = new Error(type); e.type = type; return e; }
+  // Appwrite refuses to create a session while this browser still carries a live one (401 user_session_already_exists),
+  // e.g. a leftover cookie from an earlier sign-in that this page no longer knew about. That used to show up as "wrong code".
+  function createSession(path, body, email) {
+    return req("POST", path, body).catch(function (e) {
+      if (e.type !== "user_session_already_exists") throw e;
+      return req("GET", "/account").then(function (u) {
+        if (u && email && String(u.email || "").toLowerCase() === String(email).toLowerCase()) return "same"; // already signed in as this person
+        return req("DELETE", "/account/sessions/current").catch(function () {}).then(function () { lsSet(FB_KEY, null); return req("POST", path, body); });
+      }, function () { lsSet(FB_KEY, null); return req("POST", path, body); });
+    });
+  }
+  // the session was created; read the account with it. A 401 here means the browser didn't keep the session.
+  function afterSession() {
+    function get() { return req("GET", "/account"); }
+    return get().catch(function (e) { if (e.status === 401) return new Promise(function (r) { setTimeout(r, 400); }).then(get); throw e; })
+      .catch(function (e) { if (e.status === 401) throw codeErr("session_not_kept"); throw e; })
+      .then(function (u) { setUser(u); return cur; });
+  }
   function verifyCode(code) {
-    var p = pending(); if (!p) { var e = new Error("expired"); e.type = "pending_expired"; return Promise.reject(e); }
-    return req("POST", "/account/sessions/token", { userId: p.userId, secret: String(code || "").replace(/\D/g, "") })
-      .then(function () { return req("GET", "/account"); })
-      .then(function (u) { lsSet(PEND_KEY, null); setUser(u); return cur; });
+    var p = pending(); if (!p) return Promise.reject(codeErr("pending_expired"));
+    var secret = cleanCode(code);
+    if (secret.length !== 6) return Promise.reject(codeErr("code_len"));
+    return createSession("/account/sessions/token", { userId: p.userId, secret: secret }, p.email)
+      .then(afterSession)
+      .then(function (u) { clearPending(); if (lsGet(METHOD_KEY) !== "password") lsSet(METHOD_KEY, "code"); return u; });
+  }
+  function loginPassword(email, password) {
+    email = String(email || "").trim();
+    return createSession("/account/sessions/email", { email: email, password: String(password || "") }, email)
+      .then(afterSession)
+      .then(function (u) { clearPending(); lsSet(METHOD_KEY, "password"); return u; });
+  }
+  function setPassword(password, oldPassword) {
+    var body = { password: String(password || "") };
+    if (oldPassword) body.oldPassword = String(oldPassword);
+    return req("PATCH", "/account/password", body).then(function (u) {
+      if (u && typeof u === "object" && !("passwordUpdate" in u)) u.passwordUpdate = "set";
+      setUser(u); notePw(u); lsSet(METHOD_KEY, "password"); return cur;
+    });
   }
   function setName(name) { return req("PATCH", "/account/name", { name: String(name || "").trim().slice(0, 128) }).then(function (u) { setUser(u); return cur; }); }
   function logout() {
-    return req("DELETE", "/account/sessions/current").catch(function () {}).then(function () { lsSet(FB_KEY, null); setUser(null); });
+    return req("DELETE", "/account/sessions/current").catch(function () {}).then(function () { lsSet(FB_KEY, null); setUser(null); notePw(null); });
   }
 
   /* ---------------- data: one row per (user, app, key), deterministic row id ---------------- */
@@ -206,32 +268,58 @@
     he: {
       btn: "התחבר לחשבון שלך", btnShort: "התחבר",
       head: "התחבר לחשבון שלך וקבל גישה למידע המעודכן עבורך בכל האפליקציות",
-      ben: ["מה שקראת, סימנת ושמרת – מסונכרן בין הנייד, הלפטופ וכל מכשיר", "חשבון אחד לכל משפחת האפליקציות", "ההיסטוריה והתוצאות שלך נשמרות ולא הולכות לאיבוד", "בלי סיסמה – קוד חד־פעמי למייל"],
+      ben: ["מה שקראת, סימנת ושמרת – מסונכרן בין הנייד, הלפטופ וכל מכשיר", "חשבון אחד לכל משפחת האפליקציות", "ההיסטוריה והתוצאות שלך נשמרות ולא הולכות לאיבוד", "כניסה עם קוד חד־פעמי למייל, או עם סיסמה שתגדיר"],
       email: "כתובת המייל שלך", send: "שלח לי קוד", sending: "שולח…",
       codeHead: "הזן את הקוד שקיבלת במייל", codeSub: "שלחנו קוד בן 6 ספרות אל", code: "קוד בן 6 ספרות", verify: "אמת והתחבר", verifying: "מאמת…",
-      fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם.",
+      fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם. אם קיבלת כמה מיילים כאלה, הקוד הנכון הוא במייל האחרון.",
       resend: "שלח קוד חדש", resent: "נשלח קוד חדש. בדוק את המייל (גם בספאם).", other: "החלף מייל",
       nameHead: "איך לקרוא לך?", nameSub: "השם יוצג בכל האפליקציות במקום המייל. אפשר לדלג.", name: "השם שלך", save: "שמור", skip: "דלג",
       signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", my: "האפליקציות הפרטיות שלי", out: "התנתק", close: "סגירה", account: "החשבון שלך",
       synced: "אתה מחובר בכל האפליקציות, והנתונים וההעדפות שלך מסונכרנים בין המכשירים.",
-      eEmail: "כתובת המייל לא נראית תקינה. בדוק אותה ונסה שוב.", eCode: "הקוד שגוי או שפג תוקפו. נסה שוב או בקש קוד חדש.",
+      eEmail: "כתובת המייל לא נראית תקינה. בדוק אותה ונסה שוב.", eCode: "הקוד לא תואם או שפג תוקפו (קוד תקף 15 דקות ולשימוש אחד). אם קיבלת כמה מיילים, הזן את הקוד מהמייל האחרון, או בקש קוד חדש.",
       eRate: "יותר מדי ניסיונות. חכה כמה דקות ונסה שוב.", eNet: "אין חיבור לאינטרנט. בדוק את החיבור ונסה שוב.",
-      eExp: "פג תוקף הקוד. בקש קוד חדש.", eGen: "משהו השתבש. נסה שוב."
+      eExp: "פג תוקף הקוד. בקש קוד חדש.", eGen: "משהו השתבש. נסה שוב.",
+      usePw: "כניסה עם סיסמה", useCode: "כניסה עם קוד למייל", or: "או",
+      pwHead: "כניסה עם סיסמה", pw: "סיסמה", pwGo: "התחבר", pwGoing: "מתחבר…",
+      forgot: "שכחת סיסמה? שלח לי קוד למייל",
+      pwNote: "עדיין לא הגדרת סיסמה? היכנס פעם אחת עם קוד למייל, ואז בחר „הגדרת סיסמה” בחשבון שלך.",
+      setPw: "הגדרת סיסמה", chPw: "שינוי סיסמה", setPwSub: "עם סיסמה תוכל להיכנס בכל מכשיר עם המייל והסיסמה, בלי לחכות לקוד במייל. הקוד למייל ימשיך לעבוד גם הוא.",
+      oldPw: "הסיסמה הנוכחית", newPw: "סיסמה חדשה (לפחות 8 תווים)", newPw2: "הקלד שוב את הסיסמה החדשה", savePw: "שמור סיסמה", savingPw: "שומר…",
+      pwSaved: "הסיסמה נשמרה. בפעם הבאה תוכל להיכנס איתה.", pwHint: "רוצה להיכנס בלי לחכות למייל? הגדר סיסמה.", back: "חזרה", show: "הצג סיסמה",
+      eCodeLen: "הקוד צריך להכיל 6 ספרות. הזן רק את המספר מהמייל.",
+      eSession: "הקוד אושר, אבל הדפדפן לא שמר את ההתחברות (כנראה חסימת עוגיות או אחסון, או גלישה בסתר). רענן את הדף, בקש קוד חדש ונסה שוב, או נסה דפדפן אחר.",
+      eCred: "המייל או הסיסמה לא נכונים. אם עדיין לא הגדרת סיסמה, היכנס עם קוד למייל.",
+      ePwShort: "הסיסמה צריכה להכיל לפחות 8 תווים.", ePwMatch: "שתי הסיסמאות החדשות לא זהות.", eOldPw: "הסיסמה הנוכחית לא נכונה.",
+      ePwWeak: "אי אפשר להשתמש בסיסמה הזו (היא מופיעה בדליפות מידע, דומה לפרטים שלך או לסיסמה קודמת). בחר סיסמה אחרת.",
+      eBlocked: "החשבון הזה חסום."
     },
     en: {
       btn: "Sign in to your account", btnShort: "Sign in",
       head: "Sign in to your account and get your up-to-date info in every app",
-      ben: ["What you read, marked and saved – synced across your phone, laptop and every device", "One account for the whole family of apps", "Your history and results are saved and never get lost", "No password – a one-time code by email"],
+      ben: ["What you read, marked and saved – synced across your phone, laptop and every device", "One account for the whole family of apps", "Your history and results are saved and never get lost", "Sign in with a one-time code by email, or with a password you set"],
       email: "Your email address", send: "Send me a code", sending: "Sending…",
       codeHead: "Enter the code you got by email", codeSub: "We sent a 6-digit code to", code: "6-digit code", verify: "Verify and sign in", verifying: "Verifying…",
-      fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam.",
+      fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam. If you got several of these emails, the right code is in the latest one.",
       resend: "Send a new code", resent: "A new code was sent. Check your email (and spam).", other: "Use another email",
       nameHead: "What should we call you?", nameSub: "Your name shows in every app instead of your email. You can skip this.", name: "Your name", save: "Save", skip: "Skip",
       signedAs: "Signed in as ", hello: "Hi", rename: "Change name", my: "My private apps", out: "Sign out", close: "Close", account: "Your account",
       synced: "You're signed in across all the apps, and your data and preferences sync between your devices.",
-      eEmail: "That email doesn't look right. Check it and try again.", eCode: "Wrong or expired code. Try again or ask for a new one.",
+      eEmail: "That email doesn't look right. Check it and try again.", eCode: "That code doesn't match or has expired (a code works for 15 minutes, once). If you got several emails, use the code from the latest one, or ask for a new code.",
       eRate: "Too many attempts. Wait a few minutes and try again.", eNet: "No internet connection. Check it and try again.",
-      eExp: "The code expired. Ask for a new one.", eGen: "Something went wrong. Try again."
+      eExp: "The code expired. Ask for a new one.", eGen: "Something went wrong. Try again.",
+      usePw: "Sign in with a password", useCode: "Sign in with an email code", or: "or",
+      pwHead: "Sign in with a password", pw: "Password", pwGo: "Sign in", pwGoing: "Signing in…",
+      forgot: "Forgot your password? Email me a code",
+      pwNote: "Haven't set a password yet? Sign in once with an email code, then choose “Set a password” in your account.",
+      setPw: "Set a password", chPw: "Change password", setPwSub: "With a password you can sign in on any device with your email and password, without waiting for an email code. The email code keeps working too.",
+      oldPw: "Current password", newPw: "New password (at least 8 characters)", newPw2: "Type the new password again", savePw: "Save password", savingPw: "Saving…",
+      pwSaved: "Password saved. Next time you can sign in with it.", pwHint: "Want to sign in without waiting for an email? Set a password.", back: "Back", show: "Show password",
+      eCodeLen: "The code has 6 digits. Enter just the number from the email.",
+      eSession: "The code was accepted, but your browser didn't keep the sign-in (probably blocked cookies or storage, or a private window). Reload the page, ask for a new code and try again, or try another browser.",
+      eCred: "Wrong email or password. If you haven't set a password yet, sign in with an email code.",
+      ePwShort: "The password needs at least 8 characters.", ePwMatch: "The two new passwords don't match.", eOldPw: "The current password is wrong.",
+      ePwWeak: "That password can't be used (it appears in known data leaks, is too close to your details, or to a previous password). Choose another one.",
+      eBlocked: "This account is blocked."
     }
   };
   function lang() { var l = (document.documentElement.lang || lsGet("rg-lang") || "he").slice(0, 2); return l === "en" ? "en" : "he"; }
@@ -240,13 +328,22 @@
   function label(u) { return u ? (u.name || u.email || "") : ""; }
   function initial(u) { var s = label(u).trim(); return s ? s.charAt(0).toUpperCase() : "👤"; }
   function errMsg(e) {
-    if (!e) return t().eGen;
-    if (e.type === "network") return t().eNet;
-    if (e.type === "pending_expired") return t().eExp;
-    if (e.status === 429) return t().eRate;
-    if (e.status === 401 || /token|credentials/i.test(e.type)) return t().eCode;
-    if (e.status === 400) return t().eEmail;
-    return t().eGen;
+    var L = t();
+    if (!e) return L.eGen;
+    var ty = e.type || "";
+    if (ty === "network") return L.eNet;
+    if (ty === "pending_expired") return L.eExp;
+    if (ty === "code_len") return L.eCodeLen;
+    if (ty === "session_not_kept" || ty === "user_unauthorized") return L.eSession;
+    if (e.status === 429) return L.eRate;
+    if (ty === "user_blocked") return L.eBlocked;
+    if (ty === "user_invalid_token") return L.eCode;
+    if (ty === "user_invalid_credentials") return step === "setpw" ? L.eOldPw : L.eCred;
+    if (/^(user_)?password_/.test(ty) && ty !== "user_password_mismatch") return L.ePwWeak;
+    if (step === "setpw" || step === "pw") { if (e.status === 400) return step === "pw" ? L.eCred : L.ePwShort; }
+    if (step === "code" && e.status === 401) return L.eCode;
+    if (e.status === 400) return L.eEmail;
+    return L.eGen;
   }
 
   var CSS = [
@@ -272,6 +369,10 @@
     ".rgacc-sec{display:block;width:100%;margin:10px 0 0;font-family:inherit;font-size:15px;font-weight:700;color:#fff;background:transparent;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:10px 16px;cursor:pointer}.rgacc-sec:hover{border-color:#f5c542}",
     ".rgacc-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:12px}.rgacc-lnk{background:none;border:0;padding:4px 0;font-family:inherit;font-size:14px;font-weight:700;color:#ffd98a;cursor:pointer}.rgacc-lnk:hover{text-decoration:underline}",
     ".rgacc-from{margin:0 0 14px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px;line-height:1.5}.rgacc-from bdi{color:#fff;font-weight:700}",
+    ".rgacc-dlg input[type=password]{direction:ltr;text-align:left}.rgacc-dlg .rgacc-f2{margin-top:10px}",
+    ".rgacc-dlg .rgacc-show{display:flex;align-items:center;gap:8px;margin:8px 0 0;font-size:13.5px;font-weight:600;color:#cfd9f2;cursor:pointer}.rgacc-dlg .rgacc-show input{width:auto;margin:0;padding:0;accent-color:#f5c542}",
+    ".rgacc-or{display:flex;align-items:center;gap:10px;margin:14px 0 0;color:#cfd9f2;font-size:13px}.rgacc-or::before,.rgacc-or::after{content:\"\";flex:1;height:1px;background:rgba(255,255,255,.25)}",
+    ".rgacc-dlg .rgacc-hint{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px}",
     ".rgacc-err{min-height:1.2em;margin:8px 0 0;font-size:14px;color:#ffb4b4}.rgacc-err.ok{color:#ffd98a}",
     ".rgacc-who{display:flex;align-items:center;gap:12px;margin:0 0 12px}.rgacc-av{flex:none;width:46px;height:46px;border-radius:50%;background:#f5c542;color:#0b2a6b;font-size:20px;font-weight:800;line-height:46px;text-align:center}.rgacc-who b{display:block;font-size:17px}.rgacc-who span{color:#cfd9f2;font-size:14px;direction:ltr;unicode-bidi:isolate}",
     "@media (prefers-reduced-motion:no-preference){.rgacc-dlg{animation:rgacc-in .2s ease-out}}@keyframes rgacc-in{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}"
@@ -303,19 +404,30 @@
     if (document.body && !document.body.hasAttribute("data-rg-account-none")) { var f = document.createElement("div"); f.className = "rgacc-float"; document.body.appendChild(f); mount(f); }
   }
 
+  function firstStep() { return cur ? "account" : (pending() ? "code" : (lsGet(METHOD_KEY) === "password" ? "pw" : "email")); }
   function open() {
     injectCss();
     if (!back) {
       back = document.createElement("div"); back.className = "rgacc-back"; back.hidden = true;
       back.addEventListener("click", function (e) { if (e.target === back) close(); else onClick(e); });
       back.addEventListener("submit", function (e) { e.preventDefault(); onSubmit(e.target); });
+      back.addEventListener("input", function (e) { // keep only the 6 digits of a typed / pasted code
+        var el = e.target; if (!el || el.id !== "rgacc-code") return;
+        var c = cleanCode(el.value).slice(0, 6); if (c !== el.value) el.value = c;
+      });
+      back.addEventListener("change", function (e) { // "show password"
+        var el = e.target; if (!el || el.getAttribute("data-a") !== "showpw") return;
+        var ins = back.querySelectorAll("input[data-pw]"); for (var i = 0; i < ins.length; i++) ins[i].type = el.checked ? "text" : "password";
+      });
       document.addEventListener("keydown", function (e) { if (e.key === "Escape" && back && !back.hidden) close(); });
       document.body.appendChild(back);
     }
     lastFocus = document.activeElement;
-    msg = ""; msgOk = false; busy = false; step = cur ? "account" : (pending() ? "code" : "email");
+    msg = ""; msgOk = false; busy = false; step = firstStep();
     back.hidden = false; renderDlg(true);
+    if (cur && hasPw === null) refreshPw();
   }
+  function refreshPw() { req("GET", "/account").then(function (u) { setUser(u); if (back && !back.hidden) renderDlg(false); }, function () {}); }
   function close() { if (back) back.hidden = true; busy = false; msg = ""; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {} }
   function renderDlg(focus) {
     if (!back || back.hidden) return;
@@ -323,73 +435,127 @@
     var keep = back.querySelector("input"), kept = keep && keep.id === "rgacc-code" ? keep.value : null;
     var note = '<div class="rgacc-err' + (msgOk ? " ok" : "") + '" role="status" aria-live="polite">' + esc(msg) + "</div>";
     var go = function (txt) { return '<button class="rgacc-go" type="submit"' + (busy ? " disabled" : "") + ">" + esc(txt) + "</button>"; };
+    var emailIn = function (ac) { return '<label for="rgacc-email">' + esc(L.email) + '</label><input id="rgacc-email" type="email" inputmode="email" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" placeholder="name@example.com" value="' + esc(emailDraft || (p && p.email) || (u && u.email) || lsGet(LAST_KEY) || "") + '">'; };
+    var pwIn = function (id, lab, ac, cls) { return '<div class="' + (cls || "") + '"><label for="' + id + '">' + esc(lab) + '</label><input id="' + id + '" data-pw type="password" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" dir="ltr"></div>'; };
+    var showPw = '<label class="rgacc-show"><input type="checkbox" data-a="showpw">' + esc(L.show) + "</label>";
     if (step === "email") {
       h = '<h2 id="rgacc-h">' + esc(L.head) + "</h2><ul>" + L.ben.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
-        '<form data-f="email" novalidate><label for="rgacc-email">' + esc(L.email) + '</label><input id="rgacc-email" type="email" inputmode="email" autocomplete="email" autocapitalize="off" spellcheck="false" placeholder="name@example.com" value="' + esc(emailDraft || (p && p.email) || "") + '">' +
-        note + go(busy ? L.sending : L.send) + "</form>";
+        '<form data-f="email" novalidate>' + emailIn("email") +
+        note + go(busy ? L.sending : L.send) + "</form>" +
+        '<div class="rgacc-or">' + esc(L.or) + '</div><button type="button" class="rgacc-sec" data-a="pw">🔑 ' + esc(L.usePw) + "</button>";
+    } else if (step === "pw") {
+      h = '<h2 id="rgacc-h">' + esc(L.pwHead) + "</h2>" +
+        '<form data-f="pw" novalidate>' + emailIn("username") + pwIn("rgacc-pw", L.pw, "current-password", "rgacc-f2") + showPw +
+        note + go(busy ? L.pwGoing : L.pwGo) + "</form>" +
+        '<div class="rgacc-links"><button type="button" class="rgacc-lnk" data-a="forgot">' + esc(L.forgot) + "</button></div>" +
+        '<p class="rgacc-hint" style="margin-top:12px">' + esc(L.pwNote) + "</p>" +
+        '<button type="button" class="rgacc-sec" data-a="code">✉️ ' + esc(L.useCode) + "</button>";
     } else if (step === "code") {
       h = '<h2 id="rgacc-h">' + esc(L.codeHead) + "</h2><p>" + esc(L.codeSub) + " <b>" + esc(p ? p.email : emailDraft) + "</b></p>" +
         '<p class="rgacc-from">' + esc(L.fromNote).replace(/“([^”]+)”/, "<bdi dir=\"ltr\">“$1”</bdi>") + "</p>" +
-        '<form data-f="code" novalidate><label for="rgacc-code">' + esc(L.code) + '</label><input id="rgacc-code" class="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">' +
+        '<form data-f="code" novalidate><label for="rgacc-code">' + esc(L.code) + '</label><input id="rgacc-code" class="code" type="text" inputmode="numeric" autocomplete="one-time-code" dir="ltr" placeholder="••••••">' +
         note + go(busy ? L.verifying : L.verify) + "</form>" +
-        '<div class="rgacc-links"><button type="button" class="rgacc-lnk" data-a="resend">' + esc(L.resend) + '</button><button type="button" class="rgacc-lnk" data-a="other">' + esc(L.other) + "</button></div>";
+        '<div class="rgacc-links"><button type="button" class="rgacc-lnk" data-a="resend">' + esc(L.resend) + '</button><button type="button" class="rgacc-lnk" data-a="other">' + esc(L.other) + "</button></div>" +
+        '<button type="button" class="rgacc-sec" data-a="pw">🔑 ' + esc(L.usePw) + "</button>";
     } else if (step === "name") {
       h = '<h2 id="rgacc-h">' + esc(L.nameHead) + "</h2><p>" + esc(L.nameSub) + "</p>" +
         '<form data-f="name" novalidate><label for="rgacc-name">' + esc(L.name) + '</label><input id="rgacc-name" type="text" autocomplete="name" maxlength="60" value="' + esc((u && u.name) || "") + '">' +
         note + go(L.save) + '</form><button type="button" class="rgacc-sec" data-a="skip">' + esc(L.skip) + "</button>";
+    } else if (step === "setpw") {
+      h = '<h2 id="rgacc-h">' + esc(hasPw ? L.chPw : L.setPw) + "</h2><p>" + esc(L.setPwSub) + "</p>" +
+        '<form data-f="setpw" novalidate><input type="email" autocomplete="username" value="' + esc((u && u.email) || "") + '" readonly hidden tabindex="-1" aria-hidden="true">' +
+        (hasPw ? pwIn("rgacc-oldpw", L.oldPw, "current-password", "") : "") +
+        pwIn("rgacc-newpw", L.newPw, "new-password", hasPw ? "rgacc-f2" : "") + pwIn("rgacc-newpw2", L.newPw2, "new-password", "rgacc-f2") + showPw +
+        note + go(busy ? L.savingPw : L.savePw) + '</form><button type="button" class="rgacc-sec" data-a="back">' + esc(L.back) + "</button>";
     } else {
       h = '<h2 id="rgacc-h">' + esc(L.account) + '</h2><div class="rgacc-who"><span class="rgacc-av" aria-hidden="true">' + esc(initial(u)) + "</span><div><b>" + esc(L.hello + ", " + label(u)) + "</b><span>" + esc((u && u.email) || "") + "</span></div></div>" +
-        "<p>" + esc(L.synced) + "</p>" + note +
+        "<p>" + esc(L.synced) + "</p>" + (hasPw === false && !msgOk ? '<p class="rgacc-hint">' + esc(L.pwHint) + "</p>" : "") + note +
         (MY_URL ? '<a class="rgacc-sec rgacc-my" href="' + esc(MY_URL) + '"><span aria-hidden="true">🔒 </span>' + esc(L.my) + "</a>" : "") +
-        '<button type="button" class="rgacc-sec" data-a="rename">' + esc(L.rename) + '</button><button type="button" class="rgacc-go" data-a="out"' + (busy ? " disabled" : "") + ">" + esc(L.out) + "</button>";
+        '<button type="button" class="rgacc-sec" data-a="rename">' + esc(L.rename) + "</button>" +
+        '<button type="button" class="rgacc-sec" data-a="setpw">🔑 ' + esc(hasPw ? L.chPw : L.setPw) + "</button>" +
+        '<button type="button" class="rgacc-go" data-a="out"' + (busy ? " disabled" : "") + ">" + esc(L.out) + "</button>";
     }
     back.innerHTML = '<div class="rgacc-dlg" role="dialog" aria-modal="true" aria-labelledby="rgacc-h" dir="' + (lang() === "he" ? "rtl" : "ltr") + '" lang="' + lang() + '"><button type="button" class="rgacc-x" data-a="close" aria-label="' + esc(L.close) + '">×</button>' + h + "</div>";
     var ci = back.querySelector("#rgacc-code"); if (ci && kept) ci.value = kept;
-    if (focus) { var i = back.querySelector("input") || back.querySelector(".rgacc-go"); if (i) setTimeout(function () { try { i.focus(); } catch (e) {} }, 30); }
+    if (focus) {
+      var i = (step === "pw" && back.querySelector("#rgacc-email") && back.querySelector("#rgacc-email").value ? back.querySelector("#rgacc-pw") : null) ||
+        back.querySelector("input:not([hidden]):not([type=checkbox])") || back.querySelector(".rgacc-go");
+      if (i) setTimeout(function () { try { i.focus(); } catch (e) {} }, 30);
+    }
   }
   function fail(e) { busy = false; msg = errMsg(e); msgOk = false; renderDlg(true); }
+  function signedIn(u) {
+    busy = false; emailDraft = ""; step = u && !u.name ? "name" : "account"; renderDlg(true);
+    if (step === "account" && hasPw !== false) setTimeout(close, 1200);
+  }
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function val(f, sel) { var el = f.querySelector(sel); return el ? el.value : ""; }
   function onSubmit(f) {
     if (busy) return;
     var kind = f.getAttribute("data-f"), inp = f.querySelector("input"), v = ((inp && inp.value) || "").trim();
     msg = ""; msgOk = false;
     if (kind === "email") {
       emailDraft = v;
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { msg = t().eEmail; renderDlg(true); return; }
+      if (!emailOk(v)) { msg = t().eEmail; renderDlg(true); return; }
       busy = true; renderDlg(false);
       sendCode(v).then(function () { busy = false; step = "code"; renderDlg(true); }, fail);
+    } else if (kind === "pw") {
+      emailDraft = v;
+      var pw = val(f, "#rgacc-pw");
+      if (!emailOk(v)) { msg = t().eEmail; renderDlg(true); return; }
+      if (pw.length < 8) { msg = t().eCred; renderDlg(true); return; }
+      busy = true; renderDlg(false);   // the form is re-rendered, so the password is gone from the page; it only goes to Appwrite
+      loginPassword(v, pw).then(signedIn, fail); pw = "";
     } else if (kind === "code") {
-      v = v.replace(/\D/g, "");
-      if (v.length !== 6) { msg = t().eCode; renderDlg(true); return; }
+      v = cleanCode(v);
+      if (v.length !== 6) { msg = t().eCodeLen; renderDlg(true); return; }
       busy = true; renderDlg(false);
-      verifyCode(v).then(function (u) {
-        busy = false; emailDraft = ""; step = u && !u.name ? "name" : "account"; renderDlg(true);
-        if (step === "account") setTimeout(close, 1200);
-      }, fail);
+      verifyCode(v).then(signedIn, fail);
     } else if (kind === "name") {
       if (!v) { step = "account"; renderDlg(true); return; }
       busy = true; renderDlg(false);
-      setName(v).then(function () { busy = false; step = "account"; renderDlg(true); setTimeout(close, 1200); }, fail);
+      setName(v).then(function () { busy = false; step = "account"; renderDlg(true); if (hasPw !== false) setTimeout(close, 1200); }, fail);
+    } else if (kind === "setpw") {
+      var oldPw = hasPw ? val(f, "#rgacc-oldpw") : "", n1 = val(f, "#rgacc-newpw"), n2 = val(f, "#rgacc-newpw2");
+      if (hasPw && !oldPw) { msg = t().eOldPw; renderDlg(true); return; }
+      if (n1.length < 8) { msg = t().ePwShort; renderDlg(true); return; }
+      if (n1 !== n2) { msg = t().ePwMatch; renderDlg(true); return; }
+      busy = true; renderDlg(false);
+      setPassword(n1, oldPw).then(function () { busy = false; step = "account"; msg = t().pwSaved; msgOk = true; renderDlg(true); }, fail);
+      oldPw = n1 = n2 = "";
     }
   }
   function onClick(e) {
     var b = e.target.closest && e.target.closest("[data-a]"); if (!b || busy) return;
-    var a = b.getAttribute("data-a"); msg = ""; msgOk = false;
+    var a = b.getAttribute("data-a"); if (a === "showpw") return;
+    msg = ""; msgOk = false;
+    var typed = back && back.querySelector("#rgacc-email"); if (typed && typed.value.trim()) emailDraft = typed.value.trim();
     if (a === "close") close();
-    else if (a === "other") { lsSet(PEND_KEY, null); step = "email"; renderDlg(true); }
+    else if (a === "other") { clearPending(); step = "email"; renderDlg(true); }
+    else if (a === "pw") { step = "pw"; renderDlg(true); }
+    else if (a === "code") { step = pending() ? "code" : "email"; renderDlg(true); }
+    else if (a === "forgot") { // forgot the password: fall back to a code by email
+      var em = emailDraft;
+      if (!emailOk(em)) { step = "email"; msg = em ? t().eEmail : ""; renderDlg(true); return; }
+      busy = true; renderDlg(false);
+      sendCode(em).then(function () { busy = false; step = "code"; renderDlg(true); }, function (err) { step = "email"; fail(err); });
+    }
     else if (a === "resend") {
       var p = pending(); if (!p) { step = "email"; renderDlg(true); return; }
       busy = true; renderDlg(false);
       sendCode(p.email).then(function () { busy = false; msg = t().resent; msgOk = true; renderDlg(true); }, fail);
     }
-    else if (a === "skip") { step = "account"; renderDlg(true); setTimeout(close, 700); }
+    else if (a === "skip") { step = "account"; renderDlg(true); if (hasPw !== false) setTimeout(close, 700); }
     else if (a === "rename") { step = "name"; renderDlg(true); }
+    else if (a === "setpw") { step = "setpw"; renderDlg(true); }
+    else if (a === "back") { step = "account"; renderDlg(true); }
     else if (a === "out") { busy = true; renderDlg(false); logout().then(function () { busy = false; close(); }); }
   }
   function renderAll() {
     buttons.forEach(renderBtn);
     if (back && !back.hidden) {
-      if (cur && (step === "email" || step === "code")) step = "account";   // signed in from another tab/app
-      if (!cur && (step === "account" || step === "name")) step = "email";  // signed out from another tab/app
+      if (cur && (step === "email" || step === "code" || step === "pw")) step = "account";   // signed in from another tab/app
+      if (!cur && (step === "account" || step === "name" || step === "setpw")) step = firstStep();  // signed out from another tab/app
       renderDlg(false);
     }
   }
@@ -404,7 +570,8 @@
     user: function () { return cur; },
     onChange: function (cb) { subs.push(cb); return function () { subs = subs.filter(function (x) { return x !== cb; }); }; },
     open: open, mount: mount, check: check,
-    sendCode: sendCode, verifyCode: verifyCode, setName: setName, logout: logout,
+    sendCode: sendCode, verifyCode: verifyCode, loginPassword: loginPassword, setPassword: setPassword,
+    hasPassword: function () { return hasPw; }, setName: setName, logout: logout,
     get: get, set: set, syncPrefs: syncPrefs
   };
   try { window.dispatchEvent(new Event("rg-account-ready")); } catch (e) {}
