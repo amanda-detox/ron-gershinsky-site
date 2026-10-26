@@ -1,5 +1,5 @@
 /* Offline cache for the Relax games (scope: relax/ only). */
-var CACHE = "rg-relax-v7";
+var CACHE = "rg-relax-v8";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "quiet-night.html", "still-pond.html", "glow-garden.html", "watercolor.html", "firefly-jar.html", "water-lanterns.html", "rain-window.html",
   "lang.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
