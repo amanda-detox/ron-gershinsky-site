@@ -10,13 +10,13 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="שפעלי">
 <meta name="description" content="שפעלי · אפליקציה לשגשוג וחופש כלכלי. Wealthify, an app for prosperity and financial freedom.">
-<title>שפעלי · Wealthify</title>
+<title>שפעלי</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Assistant:wght@300;400;600&display=swap">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
 <style>
 :root{
   --bg:#07060a; --bg2:#0e0c12; --ink:#f4ead2; --mute:#b8a986; --dim:#7d7259;
@@ -73,6 +73,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;line-height:1.15;text
 .crest::before{content:"";position:absolute;inset:-28px;border-radius:50%;background:radial-gradient(circle,rgba(245,210,122,.32),transparent 65%);animation:breathe 5s ease-in-out infinite}
 .crest svg{position:relative;width:100%;height:100%}
 @keyframes breathe{0%,100%{opacity:.6;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+.eyebrow:empty{display:none}
 .eyebrow{font:600 13px var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--g3);margin-bottom:10px}
 .lat{letter-spacing:.3em;text-transform:uppercase;font-size:12px}
 .welcome h1{font-size:clamp(52px,16vw,84px);font-weight:500;letter-spacing:.01em;padding:0 .08em .06em}
@@ -145,8 +146,6 @@ html[dir=rtl] .bar i{margin-right:0;margin-left:auto}
 .tier::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,243,196,.10) 50%,transparent 65%);background-size:300% 100%;animation:shimmer 6s ease-in-out infinite;pointer-events:none}
 .tier .k{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--g3)}
 .tier .name{font-family:var(--serif);font-size:clamp(34px,10vw,50px);margin:6px 0 2px;padding-bottom:.06em}
-.tier .alt{color:var(--mute);font-family:var(--serif);font-size:17px}
-html[lang=he] .tier .alt{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:19px}
 .gems{display:flex;justify-content:center;gap:9px;margin-top:14px;direction:ltr}
 .gems span{width:10px;height:10px;transform:rotate(45deg);border:1px solid var(--g4)}
 .gems span.on{background:var(--gold);border-color:var(--g1);box-shadow:0 0 10px rgba(245,210,122,.85)}
@@ -175,10 +174,6 @@ html[lang=he] .tier .alt{font-family:"Cormorant Garamond",Georgia,serif;font-sty
 .pill{font:600 14px var(--sans);color:var(--g2);background:rgba(245,210,122,.05);border:1px solid var(--line);border-radius:999px;padding:10px 18px;cursor:pointer;transition:all .2s}
 .pill:hover{border-color:var(--line2);box-shadow:0 0 20px -6px rgba(245,210,122,.5)}
 .tools{display:flex;align-items:center;gap:8px}
-.hdr-install{width:40px;height:40px;font-size:18px;line-height:1}
-.hdr-install[hidden]{display:none}
-.res-install{text-align:center;margin:0 0 14px}
-.res-install[hidden]{display:none}
 /* install instructions sheet */
 .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .25s both}
 .sheet-bg[hidden]{display:none}
@@ -206,7 +201,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   .welcome h1{font-size:96px}
   .opts.many{grid-template-columns:1fr 1fr}
   .cards{grid-template-columns:1fr}
-  .actions{grid-template-columns:1fr 1fr}
+  .actions{grid-template-columns:1fr}
 }
 @media (max-width:340px){
   .wrap{padding-left:14px;padding-right:14px}
@@ -218,7 +213,26 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   *,*::before,*::after{animation:none!important;transition:none!important}
   .dust{display:none}
 }
+
+/* ---- light mode (toggle + backgrounds from shared/rg-bg.js): ivory + deep gold + navy ---- */
+html[data-theme=light]{--bg:#f6efe0;--bg2:#fffaf0;--ink:#0b1f4d;--mute:#44557b;--dim:#5d6e93;--g1:#7a5410;--g2:#946916;--g3:#a8772a;--g4:#b8892b;--g5:#6e4a14;--line:rgba(148,105,22,.3);--line2:rgba(148,105,22,.55);color-scheme:light}
+html[data-theme=light] .lang{background:rgba(255,255,255,.7)}
+html[data-theme=light] .lang button[aria-pressed=true]{color:#fff6dc;background:#0b2a6b;box-shadow:none}
+html[data-theme=light] .opt:not([aria-checked=true]),html[data-theme=light] .card{background:rgba(255,255,255,.78)}
+html[data-theme=light] .opt:hover{background:rgba(255,248,230,.95)}
+html[data-theme=light] .opt[aria-checked=true]{background:linear-gradient(135deg,rgba(245,210,122,.35),rgba(255,250,240,.9))}
+html[data-theme=light] .tier{background:radial-gradient(120% 90% at 50% 0%,rgba(245,210,122,.3),rgba(255,250,240,.92) 60%),var(--bg2);box-shadow:0 10px 40px -16px rgba(148,105,22,.45)}
+html[data-theme=light] .plan{background:rgba(255,255,255,.7)}
+html[data-theme=light] .icon-btn,html[data-theme=light] .pill{background:rgba(255,255,255,.75)}
+html[data-theme=light] .sheet{background:linear-gradient(180deg,#fffdf8,#f6efe0)}
+html[data-theme=light] .sheet .note{background:rgba(255,255,255,.7)}
+html[data-theme=light] .goldtext{filter:drop-shadow(0 1px 0 rgba(255,255,255,.6))}
+html[data-theme=light] .dust i{background:var(--g4);box-shadow:0 0 6px 1px rgba(184,137,43,.45)}
+/* a picked background replaces the black/ivory base layer (body::before) */
+html:not([data-theme=light]):not([data-rgbg="0"]) body::before,html[data-theme=light]:not([data-rglbg="0"]) body::before{display:none}
+html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),html:not([data-theme=light]):not([data-rgbg="0"]) .card{background:rgba(10,8,14,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 </style>
+<script src="../shared/rg-bg.js" data-app="wealthify" data-theme-key="rg-wealthify-theme" data-light-color="#f6efe0" data-slot=".top .tools" data-before=".lang"></script>
 </head>
 <body>
 <div class="dust" id="dust" aria-hidden="true"></div>
@@ -227,7 +241,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
     <a class="back" href="../" id="back"></a>
     <div class="tools">
     <span data-rg-account style="display:inline-flex;min-width:0"></span>
-    <button type="button" class="icon-btn hdr-install inst" id="install-hdr" hidden>📲</button>
     <div class="lang" role="group" aria-label="Language / שפה">
       <button type="button" id="lang-he" aria-pressed="true">עברית</button>
       <button type="button" id="lang-en" aria-pressed="false">English</button>
@@ -255,9 +268,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       <p class="sub" data-i18n="sub"></p>
       <button type="button" class="btn" id="start" data-i18n="start"></button>
       <div class="meta" data-i18n="meta"></div>
-      <div class="install inst" id="install-wrap">
-        <button type="button" class="pill" id="install-btn" data-i18n="install"></button>
-      </div>
     </section>
 
     <!-- 2. Questionnaire -->
@@ -283,7 +293,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       <div class="tier">
         <div class="k" data-i18n="tierLabel"></div>
         <div class="name goldtext" id="tier-name"></div>
-        <div class="alt" id="tier-alt"></div>
         <div class="gems" id="tier-gems" aria-hidden="true"></div>
       </div>
       <div class="cards" id="res-cards"></div>
@@ -292,10 +301,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
         <p class="body" id="plan-body"></p>
       </div>
       <div class="actions">
-        <a class="btn" href="../#wait-title" id="join" data-i18n="join"></a>
         <button type="button" class="btn ghost" id="retake" data-i18n="retake"></button>
       </div>
-      <div class="res-install inst"><button type="button" class="pill" id="install-res" data-i18n="install"></button></div>
       <p class="saved" data-i18n="saved"></p>
       <p class="disc" data-i18n="disc"></p>
     </section>
@@ -308,7 +315,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       <button type="button" class="btn ghost" id="sheet-close" data-i18n="close"></button>
     </div>
   </div>
-  <footer>ŠEFALI · WEALTHIFY</footer>
+  <div class="rg-install-wrap inst" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="foot"></footer>
 </div>
 
 <script>
@@ -318,72 +326,59 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   /* ===== Questionnaire data: add questions here; everything else adapts. ===== */
   var QUESTIONS = [
     { id: "equity", icon: "coin", he: "כמה הון עצמי יש לך?", en: "How much equity do you have?", options: [
-      { id: "lt2k",    he: "פחות מ־<span class=num>$2,000</span>",                en: "Under <span class=num>$2,000</span>" },
-      { id: "2k-15k",  he: "<span class=num>$2,000–$15,000</span>",              en: "<span class=num>$2,000–$15,000</span>" },
-      { id: "15k-50k", he: "<span class=num>$15,000–$50,000</span>",             en: "<span class=num>$15,000–$50,000</span>" },
-      { id: "50k",     he: "מעל <span class=num>$50K</span>",                    en: "Over <span class=num>$50K</span>" },
-      { id: "100k",    he: "מעל <span class=num>$100K</span>",                   en: "Over <span class=num>$100K</span>" },
-      { id: "500k",    he: "מעל <span class=num>$500K</span>",                   en: "Over <span class=num>$500K</span>" },
-      { id: "1m",      he: "מעל מיליון <span class=num>($1M)</span>",            en: "Over <span class=num>$1M</span>" },
-      { id: "10m",     he: "מעל 10 מיליון <span class=num>($10M)</span>",        en: "Over <span class=num>$10M</span>" },
-      { id: "100m",    he: "מעל 100 מיליון <span class=num>($100M)</span>",      en: "Over <span class=num>$100M</span>" },
-      { id: "1b",      he: "מעל מיליארד <span class=num>($1B)</span>",           en: "Over <span class=num>$1B</span>" }
+      { id: "debt",      he: "בחובות",                                   en: "In debt" },
+      { id: "0-50k",     he: "בין 0 ל־<span class=num>50</span> אלף דולר",               en: "<span class=num>$0–$50K</span>" },
+      { id: "50k-500k",  he: "בין <span class=num>50</span> אלף ל־<span class=num>500</span> אלף דולר",  en: "<span class=num>$50K–$500K</span>" },
+      { id: "500k-5m",   he: "בין <span class=num>500</span> אלף ל־<span class=num>5</span> מיליון דולר", en: "<span class=num>$500K–$5M</span>" },
+      { id: "5m+",       he: "מעל <span class=num>5</span> מיליון דולר",                  en: "Over <span class=num>$5M</span>" }
     ]},
-    { id: "banks", icon: "bank", he: "כמה חשבונות בנק יש לך?", en: "How many bank accounts do you have?", options: [
-      { id: "1-3",  he: "<span class=num>1–3</span>",  en: "<span class=num>1–3</span>" },
-      { id: "4-5",  he: "<span class=num>4–5</span>",  en: "<span class=num>4–5</span>" },
-      { id: "6-10", he: "<span class=num>6–10</span>", en: "<span class=num>6–10</span>" },
-      { id: "10+",  he: "מעל 10",                      en: "Over 10" }
+    { id: "tax", icon: "percent", he: "כמה מיסים אתה משלם?", en: "How much tax do you pay?", options: [
+      { id: "0",    he: "<span class=num>0%</span>",                     en: "<span class=num>0%</span>" },
+      { id: "0-7",  he: "בין 0 ל־<span class=num>7</span> אחוז",          en: "Between <span class=num>0%</span> and <span class=num>7%</span>" },
+      { id: "7+",   he: "מעל <span class=num>7</span> אחוז",              en: "Over <span class=num>7%</span>" }
     ]},
-    { id: "passports", icon: "passport", he: "כמה דרכונים ו/או אזרחויות יש לך?", en: "How many passports and/or citizenships do you have?", options: [
-      { id: "1-2",  he: "<span class=num>1–2</span>",  en: "<span class=num>1–2</span>" },
-      { id: "3-5",  he: "<span class=num>3–5</span>",  en: "<span class=num>3–5</span>" },
-      { id: "6-10", he: "<span class=num>6–10</span>", en: "<span class=num>6–10</span>" },
-      { id: "10+",  he: "<span class=num>10+</span>",  en: "<span class=num>10+</span>" }
+    { id: "passports", icon: "passport", he: "כמה אזרחויות ודרכונים שונים יש לך?", en: "How many different citizenships and passports do you have?", options: [
+      { id: "1",   he: "<span class=num>1</span>",        en: "<span class=num>1</span>" },
+      { id: "2-5", he: "בין <span class=num>2</span> ל־<span class=num>5</span>", en: "<span class=num>2–5</span>" },
+      { id: "5+",  he: "יותר מ־<span class=num>5</span>", en: "More than <span class=num>5</span>" }
     ]}
   ];
 
-  /* Starting-point tiers, derived from the equity answer. */
+  /* Starting-point stage, one per equity answer (just a label of where you start, not advice). */
   var TIERS = [
-    { id: "foundation",  he: "התחלה",       en: "Foundation" },
-    { id: "growth",      he: "צמיחה",       en: "Growth" },
-    { id: "established", he: "ביסוס",       en: "Established" },
-    { id: "wealth",      he: "עושר",        en: "Wealth" },
-    { id: "hnw",         he: "עושר גדול",   en: "High net worth" },
-    { id: "uhnw",        he: "עושר ענק",    en: "Ultra high net worth" }
+    { id: "foundation",  he: "התחלה",     en: "Foundation" },
+    { id: "growth",      he: "צמיחה",     en: "Growth" },
+    { id: "established", he: "ביסוס",     en: "Established" },
+    { id: "wealth",      he: "עושר",      en: "Wealth" },
+    { id: "hnw",         he: "עושר גדול", en: "High net worth" }
   ];
-  var EQUITY_TIER = {
-    "lt2k": "foundation", "2k-15k": "foundation",
-    "15k-50k": "growth", "50k": "growth",
-    "100k": "established", "500k": "established",
-    "1m": "wealth",
-    "10m": "hnw",
-    "100m": "uhnw", "1b": "uhnw"
-  };
+  var EQUITY_TIER = { "debt": "foundation", "0-50k": "growth", "50k-500k": "established", "500k-5m": "wealth", "5m+": "hnw" };
 
-  /* Tailored solutions per tier, written by Ron.
-     While a string is empty, users see the "your plan is being prepared" message instead.
-     TODO(Ron): fill in he/en text for each tier (and later, per answer combinations). */
-  var SOLUTIONS = {
-    foundation:  { he: "", en: "" }, // TODO
-    growth:      { he: "", en: "" }, // TODO
-    established: { he: "", en: "" }, // TODO
-    wealth:      { he: "", en: "" }, // TODO
-    hnw:         { he: "", en: "" }, // TODO
-    uhnw:        { he: "", en: "" }  // TODO
+  /* Recommendations, Healify-style: every chosen answer can add its own recommendation to the summary.
+     Written by Ron. While a text is empty it is skipped; when all are empty users see "יצורף בקרוב" (planSoon).
+     TODO(Ron): fill in he/en for the answers that should add a recommendation. */
+  var RECS = {
+    equity:    { "debt": { he: "", en: "" }, "0-50k": { he: "", en: "" }, "50k-500k": { he: "", en: "" }, "500k-5m": { he: "", en: "" }, "5m+": { he: "", en: "" } },
+    tax:       { "0": { he: "", en: "" }, "0-7": { he: "", en: "" }, "7+": { he: "", en: "" } },
+    passports: { "1": { he: "", en: "" }, "2-5": { he: "", en: "" }, "5+": { he: "", en: "" } }
   };
+  function recsFor(l) {
+    var out = [];
+    QUESTIONS.forEach(function (q) { var r = RECS[q.id] && RECS[q.id][answers[q.id]]; if (r && r[l]) out.push(r[l]); });
+    return out;
+  }
 
   var T = {
     he: {
-      doc: "שפעלי · Wealthify",
+      doc: "שפעלי",
       back: "← חזרה לאתר",
-      eyebrow: "<span class=lat>Wealthify</span>",
+      eyebrow: "",
       appName: "שפעלי",
       tagline: "הדרך שלך לשגשוג ולחופש כלכלי",
       sub: "שלוש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
       start: "בוא נתחיל",
       meta: "פחות מדקה · התשובות נשמרות רק במכשיר שלך",
-      install: "📲 התקנה למסך הבית",
+      install: "📲 התקנה למסך הבית", foot: "© שפעלי · רון אפליקציות בע\"מ 2026",
       sheetTitle: "התקנה למסך הבית",
       close: "הבנתי",
       iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>. האייקון של שפעלי יופיע במסך הבית.</li></ol>",
@@ -398,22 +393,21 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       tierLabel: "שלב",
       planTitle: "התוכנית האישית שלך",
       planSoon: "אנחנו מכינים עכשיו תוכנית מותאמת לפרופיל שלך. היא תופיע כאן בקרוב, ותחכה לך בכל פעם שתחזור.",
-      join: "הצטרפות לרשימת ההמתנה",
       retake: "מילוי השאלון מחדש",
       change: "שינוי",
       saved: "התשובות נשמרו במכשיר הזה בלבד ולא נשלחות לשום מקום.",
       disc: "התוכן באפליקציה הוא מידע כללי בלבד, ואינו מהווה ייעוץ פיננסי, משפטי או מיסויי אישי."
     },
     en: {
-      doc: "Wealthify · שפעלי",
+      doc: "Wealthify",
       back: "← Back to site",
-      eyebrow: "שפעלי",
+      eyebrow: "",
       appName: "Wealthify",
       tagline: "Your path to prosperity and financial freedom",
       sub: "Three short questions to understand where you're starting from, so we can map the road ahead together.",
       start: "Begin",
       meta: "Under a minute · answers stay on your device",
-      install: "📲 Install to home screen",
+      install: "📲 Install to home screen", foot: "© Wealthify · Ron Apps Ltd. 2026",
       sheetTitle: "Install to home screen",
       close: "Got it",
       iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>. The Wealthify icon will appear on your home screen.</li></ol>",
@@ -428,7 +422,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       tierLabel: "<span class=lat>Stage</span>",
       planTitle: "Your personal plan",
       planSoon: "We're preparing a plan tailored to your profile. It will appear here soon, and will be waiting for you whenever you return.",
-      join: "Join the waitlist",
       retake: "Retake questionnaire",
       change: "Change",
       saved: "Your answers are saved on this device only and are never sent anywhere.",
@@ -439,10 +432,11 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   var ICONS = {
     coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg>',
     bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/></svg>',
-    passport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.8 10.5h6.4M12 7.3c-1.2 1.6-1.2 4.8 0 6.4M12 7.3c1.2 1.6 1.2 4.8 0 6.4M9 17h6"/></svg>'
+    passport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.8 10.5h6.4M12 7.3c-1.2 1.6-1.2 4.8 0 6.4M12 7.3c1.2 1.6 1.2 4.8 0 6.4M9 17h6"/></svg>',
+    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>'
   };
 
-  var ANS_KEY = "rg-wealth-answers-v1", LANG_KEY = "rg-lang";
+  var ANS_KEY = "rg-wealth-answers-v2", LANG_KEY = "rg-lang";
   var $ = function (id) { return document.getElementById(id); };
   var lang = "he";
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
@@ -509,7 +503,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
   function renderResults() {
     var L = T[lang], tr = tierFor();
     $("tier-name").textContent = tr.t[lang];
-    $("tier-alt").textContent = tr.t[lang === "he" ? "en" : "he"];
     var g = ""; for (var i = 0; i < TIERS.length; i++) g += '<span class="' + (i <= tr.idx ? "on" : "") + '"></span>';
     $("tier-gems").innerHTML = g;
     var cards = $("res-cards"); cards.innerHTML = "";
@@ -522,8 +515,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
       e.onclick = function () { step = qi; renderQuiz(); show("quiz"); };
       cards.appendChild(d);
     });
-    var sol = SOLUTIONS[tr.t.id] && SOLUTIONS[tr.t.id][lang];
-    $("plan-body").textContent = sol || L.planSoon;
+    var recs = recsFor(lang);
+    $("plan-body").textContent = recs.length ? recs.join("\n\n") : L.planSoon;
   }
 
   function render() {
@@ -536,7 +529,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
     $("back").textContent = L.back;
     $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
     $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
-    $("install-hdr").setAttribute("aria-label", L.sheetTitle); $("install-hdr").title = L.sheetTitle;
     $("sheet-body").innerHTML = L[installKey()];
     if (view === "quiz") renderQuiz();
     if (view === "results") renderResults();
@@ -582,7 +574,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
     }
     openSheet();
   }
-  $("install-btn").onclick = $("install-hdr").onclick = $("install-res").onclick = onInstallTap;
+  $("install-btn").onclick = onInstallTap;
   $("sheet-close").onclick = closeSheet;
   $("sheet").addEventListener("click", function (e) { if (e.target === $("sheet")) closeSheet(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
@@ -614,6 +606,6 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:22px;letter-
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
-<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"]);</script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 </body>
 </html>
