@@ -272,6 +272,11 @@
     .topbar .langsel .globe { display: none; }
     .topbar .langsel select { padding-inline: 0.8rem 1.6rem; }
   }
+  /* About link under the bio: small and tidy */
+  .about-row { margin: 0.6rem 0 0; }
+  .about-link { display: inline-flex; align-items: center; min-height: 2rem; padding: 0.2rem 0.95rem; border-radius: 999px; font-size: 0.875rem; font-weight: 700; text-decoration: none; color: #f5c542; background: rgba(11, 42, 107, 0.85); border: 1px solid rgba(245, 197, 66, 0.5); }
+  .about-link:hover { border-color: #f5c542; }
+  html[data-theme="light"] .about-link { color: #0b2a6b; background: #fff8e6; border-color: rgba(201, 162, 39, 0.6); }
 </style>
 </head>
 <body>
@@ -287,6 +292,7 @@
   <img class="mark" id="mark" src="assets/avatar.jpg" alt="רון גרשינסקי" width="120" height="120">
   <h1 id="name">רון גרשינסקי</h1>
   <p class="bio" id="bio"></p>
+  <p class="about-row"><a class="about-link" id="about-link" href="about/index.html"></a></p>
   <div class="install-wrap" id="install-wrap">
     <button type="button" class="install" id="install-btn"></button>
     <div class="panel install-hint" id="install-hint" hidden></div>
@@ -386,6 +392,7 @@ var copy = {
     sendFail: "השליחה לא הצליחה. נסה שוב, או כתוב אליי ישירות.",
     contactTitle: "יצירת קשר",
     contactBtn: "שלח אליי מייל",
+    about: "אודות ←",
     footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת רון אפליקציות בע\"מ 2026",
     appsTitle: "האפליקציות שלי",
     games: "משחקים להרגעה ושלווה עמוקה",
@@ -419,6 +426,7 @@ var copy = {
     sendFail: "Sending failed. Try again, or email me directly.",
     contactTitle: "Contact",
     contactBtn: "Send email",
+    about: "About →",
     footer: "© 2026 All rights reserved to Ron Gershinsky and Ron Apps Ltd.",
     appsTitle: "My apps",
     games: "Games for calm and deep quiet",
@@ -459,6 +467,7 @@ function render() {
   document.getElementById("mark").alt = t.name;
   text("name", t.name);
   text("bio", t.bio);
+  text("about-link", t.about);
   text("wait-title", t.waitlistTitle);
   text("wait-desc", t.waitlistDesc);
   text("email-label", t.emailLabel);

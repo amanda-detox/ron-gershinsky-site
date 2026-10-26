@@ -2,8 +2,8 @@
    Sub-apps (alarm/, relax/, sounds/, ...) have their own service workers with
    narrower scopes; this worker never touches their files, so it just lets those
    requests go straight to the network. */
-var CACHE = "rg-home-v15";
-var FILES = ["./", "index.html", "shared/rg-account.js", "assets/avatar.jpg", "manifest.json", "app-icon.svg", "app-icon-192.png", "app-icon-512.png"];
+var CACHE = "rg-home-v16";
+var FILES = ["./", "index.html", "about/", "about/index.html", "shared/rg-account.js", "assets/avatar.jpg", "manifest.json", "app-icon.svg", "app-icon-192.png", "app-icon-512.png"];
 var BASE = new URL("./", self.location).pathname;          // e.g. /ron-gershinsky-site/
 var OWN = FILES.map(function (f) { return new URL(f, self.location).pathname; });
 
