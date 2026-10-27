@@ -116,12 +116,11 @@
   }
   function render() {
     if (!$("active")) return;
-    var act = [], done = [], counts = {};
-    for (var k in items) { var x = items[k]; if (x.deleted) continue; var l = listOf(x); if (!x.done) counts[l] = (counts[l] || 0) + 1; if (l === tab) (x.done ? done : act).push(x); }
+    var act = [], done = [];
+    for (var k in items) { var x = items[k]; if (x.deleted) continue; if (listOf(x) === tab) (x.done ? done : act).push(x); }
     var cur = curList();
     $("tabs").innerHTML = uid ? LISTS.map(function (l) {
-      var n = counts[l.id] || 0;
-      return '<button type="button" class="tab" role="tab" data-tab="' + l.id + '" aria-selected="' + (tab === l.id) + '">' + esc(t(l.tab)) + (n ? '<span class="n">' + n + "</span>" : "") + "</button>";
+      return '<button type="button" class="tab" role="tab" data-tab="' + l.id + '" aria-selected="' + (tab === l.id) + '">' + esc(t(l.tab)) + "</button>";
     }).join("") : "";
     var ai = $("add-input"); ai.setAttribute("data-i18n-ph", cur.ph); ai.setAttribute("data-i18n-label", cur.ph); ai.placeholder = t(cur.ph); ai.setAttribute("aria-label", t(cur.ph));
     $("empty-p").textContent = t(cur.empty);
