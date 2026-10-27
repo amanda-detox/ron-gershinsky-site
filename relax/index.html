@@ -75,6 +75,9 @@
   html[data-theme="light"] .install { color: #0b2a6b; background: #fff8e6; border-color: rgba(201,162,39,0.6); box-shadow: none; }
   html[data-theme="light"] .install-hint { color: #3f5079; }
   html:not([data-theme="light"]):not([data-rgbg="0"]) a.card { background: rgba(12,10,24,0.45); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
+  .rg-copy { margin-top: 10px; font-size: 12px; font-family: "Heebo", system-ui, sans-serif; }
 </style>
 <script src="../shared/rg-bg.js" data-app="relax" data-theme-key="rg-relax-theme" data-light-color="#f3efe6" data-slot="#acct-row" data-before=""></script>
 </head>
@@ -105,6 +108,7 @@
   </ul>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install">📲 Install to home screen</button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer">Sound is off until you tap the speaker.<br>Take your time.</footer>
+  <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </main>
 <script>
 (function () {
