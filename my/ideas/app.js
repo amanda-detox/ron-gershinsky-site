@@ -251,8 +251,7 @@
     if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea,select"), function (e) { return e.value; });
     rendering = true;
     tabs.innerHTML = SECTIONS.map(function (s) {
-      var n = s.id === "tasks" ? sortedTasks(false).length : s.id === "goals" ? sortedGoals(false).length : live(s.id).length;
-      return '<button type="button" class="tab" role="tab" data-tab="' + s.id + '" aria-selected="' + (tab === s.id) + '">' + esc(t(s.tab)) + (n ? '<span class="n">' + n + "</span>" : "") + "</button>";
+      return '<button type="button" class="tab" role="tab" data-tab="' + s.id + '" aria-selected="' + (tab === s.id) + '">' + esc(t(s.tab)) + "</button>";
     }).join("");
     panels.innerHTML = '<section role="tabpanel" data-panel="' + tab + '">' + (tab === "ideas" ? panelIdeas() : tab === "goals" ? panelGoals() : panelTasks()) + "</section>";
     document.querySelectorAll(".addform input").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
