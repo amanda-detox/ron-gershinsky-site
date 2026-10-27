@@ -22,7 +22,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
       bgTitle: "בחירת רקע", bgBtn: "בחירת רקע",
       lbgs: ["רקע מקורי", "שמי בוקר", "שמנת וזהב", "לבנדר", "אפרסק", "פנינה", "זריחה", "בריזה", "קוורץ ורוד", "שעת זהב", "עננים"],
-      bgs: ["זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
+      bgs: ["רקע מקורי", "זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
       close: "סגירה", prev: "נושאים קודמים", next: "נושאים נוספים",
       saved: "שמורים", save: "שמור", unsave: "הסר משמורים", savedAt: "נשמר",
       savedEmpty: "עוד לא שמרת עדכונים", savedEmptySub: "לחץ על סימן השמירה שליד עדכון, והוא יחכה לך כאן גם אחרי שייעלם מהפיד.",
@@ -50,7 +50,7 @@
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
       bgTitle: "Choose background", bgBtn: "Choose background",
       lbgs: ["Original", "Morning sky", "Cream & gold", "Lavender", "Peach", "Pearl", "Sunrise", "Sea breeze", "Rose quartz", "Golden hour", "Clouds"],
-      bgs: ["Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
+      bgs: ["Original", "Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
       close: "Close", prev: "Previous topics", next: "More topics",
       saved: "Saved", save: "Save", unsave: "Remove from saved", savedAt: "Saved",
       savedEmpty: "No saved updates yet", savedEmptySub: "Tap the bookmark next to any update and it will wait for you here, even after it leaves the feed.",
@@ -633,14 +633,14 @@
   $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReader(); });
 
-  /* ----- background picker: night 1-10 (rg-news-bg), light 0-10 (rg-news-bg-light, 0 = original) ----- */
+  /* ----- background picker: night 0-10 (rg-news-bg, 0 = original, as on the landing page), light 0-10 (rg-news-bg-light, 0 = original) ----- */
   function renderSwatches() {
     var box = $("swatches"), html = "", L = theme === "light";
-    for (var i = L ? 0 : 1; i <= 10; i++) {
-      var pv = L ? (i === 0 ? "linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%)" : "var(--lbgi-" + i + "),var(--lbgc-" + i + ")") : "var(--bgi-" + i + "),var(--bgc-" + i + ")";
+    for (var i = 0; i <= 10; i++) {
+      var pv = L ? (i === 0 ? "linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%)" : "var(--lbgi-" + i + "),var(--lbgc-" + i + ")") : (i === 0 ? "linear-gradient(180deg,#0f172a 0%,#1e293b 100%)" : "var(--bgi-" + i + "),var(--bgc-" + i + ")");
       html += '<button type="button" class="sw" data-bg="' + i + '" aria-pressed="' + (String(i) === (L ? lbg : bg) ? "true" : "false") + '">' +
         '<span class="pv" style="background:' + pv + '"><span class="num">' + (i === 0 ? "★" : i) + '</span></span>' +
-        '<span class="nm">' + esc(L ? t().lbgs[i] : t().bgs[i - 1]) + "</span></button>";
+        '<span class="nm">' + esc(L ? t().lbgs[i] : t().bgs[i]) + "</span></button>";
     }
     box.innerHTML = html;
   }
@@ -649,7 +649,7 @@
       lbg = /^([0-9]|10)$/.test(String(v)) ? String(v) : "0"; set(LBG_KEY, lbg);
       document.documentElement.setAttribute("data-lbg", lbg);
     } else {
-      if (!/^([1-9]|10)$/.test(String(v))) return;
+      if (!/^([0-9]|10)$/.test(String(v))) return;
       bg = String(v); set(BG_KEY, bg);
       document.documentElement.setAttribute("data-bg", bg);
     }
@@ -733,7 +733,7 @@
     ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, LBG_KEY, TOPIC_KEY], function (c) {
       if (LANG_KEY in c) lang = c[LANG_KEY] === "en" ? "en" : "he";
       if (THEME_KEY in c) theme = c[THEME_KEY] === "light" ? "light" : "dark";
-      if (BG_KEY in c && /^([1-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
+      if (BG_KEY in c && /^([0-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
       if (LBG_KEY in c && /^([0-9]|10)$/.test(c[LBG_KEY] || "")) { lbg = c[LBG_KEY]; document.documentElement.setAttribute("data-lbg", lbg); }
       if (TOPIC_KEY in c && c[TOPIC_KEY] && !pinned && deepId === null) topic = c[TOPIC_KEY];
       renderAll(); return true;
