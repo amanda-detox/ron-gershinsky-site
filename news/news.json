@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-27T08:19:26+02:00",
+ "updated": "2026-10-27T11:42:53+02:00",
  "topics": [
   {
    "id": "musk",
@@ -137,6 +137,125 @@
  ],
  "items": [
   {
+   "id": "musk-soros-spending",
+   "topic": "musk",
+   "date": "2026-10-27T09:17:00Z",
+   "url": "https://x.com/i/trending/2114455107794526213",
+   "source": "X",
+   "he": {
+    "title": "ההוצאות של מאסק על בחירות עקפו את סך התרומות של סורוס בכל ימי חייו",
+    "summary": "לפי גרפים מנתוני FEC ו-IRS, מאסק הוציא כ-759 מיליון דולר על בחירות בארה\"ב בשנתיים האחרונות, יותר מ-624 מיליון הדולר שתרם ג'ורג' סורוס בכל חייו. למראה הגרף מאסק השיב בקצרה: \"אני משתדל\"."
+   },
+   "en": {
+    "title": "Musk's election spending passes Soros's lifetime total",
+    "summary": "Charts from FEC and IRS data show Musk spent about $759 million on U.S. elections over the last two years, more than George Soros's $624 million lifetime total. Seeing the chart, Musk replied simply: \"I'm trying.\""
+   },
+   "full_he": "אילון מאסק ראה גרפים שמראים שהתרומות הפוליטיות שלו עקפו את סך התרומות של ג'ורג' סורוס בכל חייו, וענה בפשטות: \"אני משתדל\". המשפט הזה סיכם את כל הרעש סביב התרומות העצומות שלו.\n\n• גרפים מנתוני FEC ו-IRS מראים שמאסק הוציא כ-759 מיליון דולר על הבחירות בארה\"ב בשנתיים האחרונות, ועקף עד 2026 את 624 מיליון הדולר שסורוס תרם בכל חייו.\n• במחזור בחירות האמצע של 2026 לבדו מאסק תרם כ-446 מיליון דולר, בעיקר דרך America PAC וקבוצות שתומכות ברפובליקנים, עם מיליונים בכל יום בישורת האחרונה.\n• התומכים אומרים שזו הגנה על אמריקה, והמבקרים, כמו הסנטורית אליזבת וורן, אומרים שהכסף נועד לגבות מרוצים שבהם הדמוקרטים לא יחתמו בעיניים עצומות על האג'נדה.\n• הוויכוח מבליט את ההשפעה של מיליארדרים על הפוליטיקה, כשהבוחרים מתקרבים לקלפי בתחילת נובמבר.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk saw charts showing his political donations topping George Soros's lifetime total and replied simply, 'I'm trying.' That line captured the buzz around his massive contributions.\n\n• Charts from FEC and IRS data reveal Musk spent about $759 million on American elections over the last two years, crossing Soros's $624 million lifetime total by 2026.\n• In the 2026 midterm cycle alone, Musk donated roughly $446 million, mostly through America PAC and groups supporting Republicans, with daily millions in the final stretch.\n• Supporters call it a defense of America, while critics like Sen. Elizabeth Warren say it's to back races where Democrats won't rubber-stamp agendas.\n• The debate highlights billionaire sway in politics as voters near early November polls.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "grokbot-bot-teams",
+   "topic": "grokbot",
+   "date": "2026-10-27T08:27:38Z",
+   "url": "https://x.com/i/trending/2114996492071244056",
+   "source": "X",
+   "he": {
+    "title": "משתמשים בונים צוותים של גרוק בוטים למשימות יומיומיות",
+    "summary": "גרוק בוט מאפשר ליצור עמיתי AI קבועים, שלכל אחד מהם מחשב ענן משלו. כשהצוותים גדלו, רון מילר בנה את GrokDeck, אפליקציה בקוד פתוח לניהול כל הבוטים במקום אחד."
+   },
+   "en": {
+    "title": "Users build teams of Grok Bots for daily tasks and projects",
+    "summary": "Grok Bot lets people create persistent AI teammates, each with its own cloud computer. As rosters grew, Ron Millar built GrokDeck, an open-source app to manage them all in one workspace."
+   },
+   "full_he": "משתמש מוקדם אחד כתב שהיכולות של גרוק בוט הן \"פסגה\", אחרי שהרכיב צוות של סוכני AI שמטפלים בעצמם במחקר, בתכנון ובפניות.\n\n• גרוק בוט מאפשר ליצור עמיתי AI קבועים, שכל אחד מהם רץ על מחשב ענן משלו, כדי להתחבר לאפליקציות, לנהל קבצים ולעבוד באופן עצמאי.\n• ככל שהצוותים גדלו, משתמשים כמו רון מילר פיתחו את GrokDeck, אפליקציה בקוד פתוח לארגון מועדפים, קבוצות וסטטוסים בסביבת עבודה אחת, ואחרים בנו לוחות בקרה לפיקוח.\n• מדריכים של הקהילה עוזרים למצטרפים חדשים בהגדרה ובבטיחות, ו-SpaceXAI משפרת מהר לפי המשוב, עם זיכרון טוב יותר וחיבורים לאפליקציות.\n• הניסויים היצירתיים נעים ממשימות מוזיקה ועד נחילי בוטים שסורקים הזדמנויות, וכך הבוטים הופכים לעוזרים אמינים.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "One early user called Grok Bot's features 'peak' after putting together a team of AI agents that handle research, planning, and outreach on their own.\n\n• Grok Bot lets people create persistent AI teammates, each running on its own cloud computer to sign into apps, manage files, and work autonomously.\n• As rosters grow, users like Ron Millar developed GrokDeck, an open-source app to organize favorites, groups, and statuses in one workspace, while others built dashboards for oversight.\n• Community guides help newcomers with setup and safety, and SpaceXAI iterates quickly based on feedback for better memory and app connections.\n• Creative tests range from music tasks to opportunity-scanning swarms, turning bots into reliable helpers.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "spacex-russia-intercept-claim",
+   "topic": "spacex",
+   "date": "2026-10-27T08:11:31Z",
+   "url": "https://x.com/i/trending/2114992431078703497",
+   "source": "X",
+   "he": {
+    "title": "טענות ברשת: התרעה של ספייס אקס אפשרה ללוויין רוסי להתקרב ללוויין שתומך באוקראינה",
+    "summary": "פוסטים ב-X טוענים שספייס אקס הוציאה התרעת התנגשות מוגזמת שמנעה תמרון של לוויין צילום, ושלוויין רוסי ניצל את זה כדי להתקרב אליו למרחק של מאות מטרים. אין דיווחים בתקשורת המרכזית שמאשרים תיאום כלשהו בין ספייס אקס לרוסיה."
+   },
+   "en": {
+    "title": "Claims circulate that a SpaceX alert let a Russian satellite close in",
+    "summary": "Posts on X allege SpaceX issued an exaggerated collision warning that blocked an imaging satellite from maneuvering, letting a Russian satellite get within hundreds of meters of it. No mainstream reports confirm any SpaceX coordination with Russia."
+   },
+   "full_he": "תקרית קרובה במסלול עוררה האשמות חמורות: האם ספייס אקס הוציאה התרעה מטעה שהשאירה לוויין רשום בארה\"ב חשוף להתקרבות רוסית?\n\n• לפי הפוסטים, ב-15 באוקטובר ספייס אקס הפעילה התרעת התנגשות שגויה בין הלוויין Starlink-35856 לבין הלוויין ICEYE-X36, הגזימה בפער של 2 קילומטרים והציגה אותו כ-400 מטרים, ובכך חסמה תמרונים לפי התקנות.\n• לטענת הפוסטים, זה איפשר ללוויין הרוסי COSMOS 2612 להתקרב ב-18 באוקטובר למרחק של מאות מטרים, במה שאנליסטים מכנים מפגש לא מורשה מול לוויין צילום שתומך באוקראינה.\n• הטענות נקשרות להגבלות מהירות קודמות של סטארלינק בזמן מתקפות רוסיות על אוקראינה, שאילון מאסק הסביר כהפרה של תנאי השימוש.\n• אין דיווחים בתקשורת המרכזית שמאשרים תיאום כלשהו בין ספייס אקס לרוסיה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "A close call in orbit has sparked serious accusations: Did SpaceX issue a misleading alert that left a U.S.-registered satellite vulnerable to Russia's approach?\n\n• Posts allege SpaceX triggered a false collision warning on October 15 between its Starlink-35856 and ICEYE-X36, exaggerating a 2-kilometer gap to 400 meters and blocking maneuvers under regulations.\n• This supposedly allowed Russia's COSMOS 2612 to close within hundreds of meters on October 18, in what analysts call an unsanctioned rendezvous against a Ukraine-supporting imaging satellite.\n• The claims tie into prior Starlink speed limits during Russian attacks on Ukraine, which Elon Musk attributed to terms-of-service violations.\n• No mainstream reports confirm SpaceX coordination with Russia.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "apple-duo-crack-replace",
+   "topic": "apple",
+   "date": "2026-10-27T08:11:22Z",
+   "url": "https://x.com/i/trending/2114892509780557870",
+   "source": "X",
+   "he": {
+    "title": "אפל מאשרת סדקים במסך הפנימי של חלק ממכשירי ה-iPhone Duo ומחליפה אותם",
+    "summary": "אפל אישרה שהבעיה פוגעת במספר קטן של מכשירים ומחליפה אותם דרך AppleCare בלי צורך בכיסוי נוסף. במבחן עמידות מכשיר אחד נכשל אחרי 75,000 קיפולים, בערך שנתיים של שימוש יומיומי רגיל."
+   },
+   "en": {
+    "title": "Apple confirms inner-screen cracks on some iPhone Duo units and replaces them",
+    "summary": "Apple confirmed the issue affects a small number of units and is replacing them through AppleCare with no extra coverage needed. In a durability test, one device failed after 75,000 folds, about two years of typical daily use."
+   },
+   "full_he": "ימים ספורים אחרי ההשקה, חלק מבעלי ה-iPhone Duo הבחינו בקווים בהירים או בסדקים שנוצרים בדיוק לאורך הקפל במרכז המסך, לפעמים אחרי שימוש מועט בלבד.\n\n• אפל אישרה שהבעיה פוגעת במספר קטן של מכשירי iPhone Duo, ומחליפה אותם דרך AppleCare בלי צורך בכיסוי נוסף.\n• במבחן עמידות מכשיר אחד נכשל אחרי 75,000 קיפולים, שהם בערך שנתיים של שימוש יומיומי רגיל, ובמקביל יש בעלים שמשבחים אותו כמתקפל הבנוי הכי טוב עד היום.\n• המכשיר, שעולה 1,999 דולר, אזל מהר באתר למרות הדיווחים, בדומה לקשיים המוקדמים של מתקפלים אחרים.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Just days after launch, some iPhone Duo owners noticed bright lines or cracks forming right along the center fold, even after just a few uses.\n\n• Apple confirmed the issue affects a small number of iPhone Duo units and is replacing them through AppleCare without needing extra coverage.\n• A durability test showed one device failing after 75,000 folds, about two years of typical daily use, while some owners praise it as the best-built foldable yet.\n• The $1,999 device sold out quickly online despite the reports, echoing early challenges with other foldables.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "tesla-merger-q3-cash",
+   "topic": "tesla",
+   "date": "2026-10-27T08:01:09Z",
+   "url": "https://x.com/i/trending/2114989637228012004",
+   "source": "X",
+   "he": {
+    "title": "שיחות המיזוג טסלה-ספייס אקס צוברות תאוצה על רקע קופת מזומנים של 45.4 מיליארד דולר",
+    "summary": "טסלה סיימה את הרבעון השלישי עם 45.4 מיליארד דולר במזומן, הכנסות של 28 מיליארד ותזרים חופשי חיובי של 1.53 מיליארד. התומכים רואים בזה דלק למיזוג עם ספייס אקס, ואילו מבקרים כמו סקוט גאלווי טוענים שבעלי מניות טסלה לא צריכים לוותר על ערך מוכח בלי יחס המרה טוב."
+   },
+   "en": {
+    "title": "Tesla-SpaceX merger talk gains momentum on Tesla's $45.4B cash pile",
+    "summary": "Tesla ended Q3 with $45.4 billion in cash, $28 billion in revenue and $1.53 billion in free cash flow. Supporters see it fueling a SpaceX merger, while critics like Scott Galloway say Tesla holders shouldn't trade proven value for unproven upside without a favorable exchange ratio."
+   },
+   "full_he": "אילון מאסק רואה פוטנציאל אמיתי במיזוג בין טסלה לספייס אקס, ודירקטוריונים עצמאיים בודקים עכשיו את הרעיון. קופת המזומנים העבה של טסלה גורמת למשתמשים לדבר על איך היא יכולה לממן עסקה כזו.\n\n• טסלה סיימה את הרבעון השלישי עם 45.4 מיליארד דולר במזומן ושווי מזומן, הכנסות של 28 מיליארד דולר ותזרים מזומנים חופשי חיובי של 1.53 מיליארד דולר, מה שמציב אותה בעמדה חזקה לכל שיחת מיזוג.\n• מאסק אמר שיש היגיון באיחוד החברות כדי לנצל סינרגיות בבינה מלאכותית, ברובוטיקה ובמחשוב במסלול, אבל הוא הוציא את עצמו מהשיחות, שמנוהלות בידי ועדות מיוחדות.\n• התומכים מצביעים על כך שספייס אקס צריכה מזומנים, ואילו הרובוטקסי של טסלה מייצר מזומנים.\n• מבקרים כמו סקוט גאלווי טוענים שבעלי מניות טסלה לא צריכים להחליף ערך מוכח בפוטנציאל לא מוכח בלי יחס המרה שמשתלם להם.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk sees real potential in merging Tesla and SpaceX, with independent boards now exploring the idea. Tesla's hefty cash pile has users buzzing about how it could fuel the deal.\n\n• Tesla wrapped Q3 with $45.4 billion in cash and equivalents, $28 billion in revenue, and positive free cash flow of $1.53 billion, positioning it strongly for any merger discussions.\n• Musk noted the merit in combining the companies to unlock synergies in AI, robotics, and orbital compute, though he's recused himself from talks led by special committees.\n• Supporters highlight SpaceX's cash needs against Tesla's robotaxi cash generation.\n• Critics like Scott Galloway argue Tesla shareholders shouldn't trade proven value for unproven upside without a favorable exchange ratio.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "spacex-falcon9-27-oct27",
+   "topic": "spacex",
+   "date": "2026-10-27T07:38:16Z",
+   "url": "https://x.com/i/trending/2114984022455857284",
+   "source": "X",
+   "he": {
+    "title": "פלקון 9 שיגרה עוד 27 לווייני סטארלינק מקליפורניה בשיגור לילי שגרתי",
+    "summary": "פלקון 9 המריאה הלילה מבסיס ונדנברג עם 27 לווייני סטארלינק, והמאיץ, בטיסתו ה-26, נחת על ספינת הרחפנים במזרח האוקיינוס השקט. קליפורניה מתקרבת לשיא שנתי חדש של 72 שיגורים ב-2026."
+   },
+   "en": {
+    "title": "Falcon 9 launches 27 more Starlinks from California on a routine night flight",
+    "summary": "A Falcon 9 lifted off overnight from Vandenberg with 27 Starlink satellites, and the booster, on its 26th flight, landed on a drone ship in the Pacific. California is heading for a new annual record of 72 launches in 2026."
+   },
+   "full_he": "פלקון 9 חצתה את שמי הלילה מוונדנברג, והפלומה הבוהקת שלה האירה את החושך כש-27 לווייני סטארלינק נוספים עשו את דרכם למסלול.\n\n• ספייס אקס שיגרה את הטיל מוקדם ביום שלישי מבסיס חיל החלל ונדנברג בקליפורניה, בדיוק בזמן, ב-00:25 לפי שעון החוף המערבי (09:25 שעון ישראל), ממתחם השיגור SLC-4E.\n• המשימה נשאה 27 לווייני סטארלינק למסלול נמוך סביב כדור הארץ.\n• המאיץ של השלב הראשון, בטיסתו ה-26, נחת על ספינת הרחפנים Of Course I Still Love You באוקיינוס השקט.\n• השיגורים הליליים האלה הפכו לשגרה כזו שצופים קוראים להם \"סתם עוד יום שלישי\", רחוק מאוד מחלומות המדע הבדיוני של לפני 15 שנה.\n• קליפורניה בדרך לשיא שנתי חדש, עם 72 שיגורים ב-2026.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "A Falcon 9 streaked into the night sky from Vandenberg, its bright plume lighting up the dark as 27 more Starlink satellites headed to orbit.\n\n• SpaceX sent up a Falcon 9 rocket early Tuesday from Vandenberg Space Force Base in California, right on schedule at 12:25 a.m. PDT from Space Launch Complex 4E.\n• The mission carried 27 Starlink satellites to low Earth orbit.\n• The first-stage booster, on its 26th flight, landed on the drone ship Of Course I Still Love You in the Pacific.\n• These frequent overnight launches have become so routine that observers call them a casual Tuesday, a far cry from sci-fi dreams 15 years ago.\n• California is heading toward a new annual launch record, at 72 missions in 2026.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "musk-newsom-dsa",
+   "topic": "musk",
+   "date": "2026-10-27T06:26:51Z",
+   "url": "https://x.com/elonmusk/status/2114967042952687676",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק על הקלטה של ניוסום שמשבח את הסוציאליסטים הדמוקרטים: \"הוא צודק\"",
+    "summary": "מאסק ציטט פוסט של Townhall עם הקלטה סמויה שבה מושל קליפורניה גאווין ניוסום אומר שתנועת DSA \"תהיה דומיננטית\" ומרכזית במפלגה הדמוקרטית, והוסיף רק: \"הוא צודק\"."
+   },
+   "en": {
+    "title": "Musk on an undercover Newsom clip praising the DSA: \"He's right\"",
+    "summary": "Musk quoted a Townhall post with an undercover recording in which California Gov. Gavin Newsom says the DSA \"is going to be dominant\" and mainstream in the Democratic Party, adding only: \"He's right.\""
+   },
+   "full_he": "מאסק כתב: \"הוא צודק\".\n\nהפוסט שהוא ציטט (Townhall.com):\n\n\"חשיפה סמויה: גאווין ניוסום אומר ש-DSA (הסוציאליסטים הדמוקרטים של אמריקה) 'תהיה דומיננטית' ו'מיינסטרים' במפלגה הדמוקרטית!\n\n'ה-DSA, האנרגיה והרצון והדרישה לשינוי נועז, לא שינוי הדרגתי, הולכים להיות דומיננטיים מאוד. כלומר, זו תהיה תנועה דמוקרטית מרכזית. בהחלט. אין ספק בכך.'\n\nזה מושל קליפורניה גאווין ניוסום, מועמד סביר לנשיאות ב-2028, בשיחה עם עיתונאי סמוי במהלך קמפיין בניו המפשייר.\n\nכש'בוחר צעיר' אמר לו 'אנחנו לא רוצים את קמלה האריס, אנחנו רוצים יותר מדיניות סוציאליסטית-דמוקרטית', הוא השיב:\n\n'אף אחד לא מציע לנהל את המצב הקיים ולהיכשל ביעילות רבה יותר.'\n\n'אי אפשר לשחק בשוליים יותר. המערכת שבורה. היא לגמרי לא מאוזנת, ואנחנו לא יכולים לנהל את הדעיכה. אנחנו חייבים לדמיין הכול מחדש.'\"\n\nלפוסט המצוטט מצורף סרטון של כ-50 שניות, ולכן אין עוד טקסט להציג.",
+   "full_en": "Musk wrote: \"He's right.\"\n\nThe quoted post (Townhall.com):\n\n\"UNDERCOVER: GAVIN NEWSOM SAYS THE DSA IS 'GOING TO BE DOMINANT' AND 'MAINSTREAM' IN THE DEMOCRATIC PARTY!\n\n'The DSA, the energy and the desire and demand for bold change, not incremental change, is very much going to be dominant. I mean, that's going to be a mainstream Democratic movement. Absolutely. No question about that.'\n\nThat's California Gov. Gavin Newsom, a likely 2028 presidential candidate, speaking to an undercover journalist while campaigning in New Hampshire.\n\nAsked by a 'younger voter' who said 'we don't want Kamala Harris, we want more democratic socialist policies':\n\n'No one is arguing to manage the status quo and fail more efficiently.'\n\n'You can't play in the margins anymore. The system's broken. It's completely unbalanced, and we can't manage the decline. We have to completely reimagine.'\"\n\nThe quoted post also has a roughly 50-second video, so there's no more text to show."
+  },
+  {
    "id": "musk-padilla-investigate",
    "topic": "musk",
    "date": "2026-10-27T05:42:19Z",
@@ -169,6 +288,40 @@
    },
    "full_he": "מפת הרובוטקסי של יוסטון משתרעת עכשיו על 254 מייל רבוע בצורה שמזכירה טיל, ואילון מאסק הגיב בקריצה: \"נשבע לכם שזה רק צירוף מקרים\".\n\n• טסלה השיקה ב-26 באוקטובר את ההרחבה של שירות הרובוטקסי ללא השגחה. אזור השירות גדל מ-25 מייל רבוע, קפיצה של 916%, ומכסה עכשיו כ-1.2 מיליון תושבים במרכז העיר ובשכונות מרכזיות.\n• האזור החדש גדול בהרבה מ-49 המייל הרבוע של Waymo ביוסטון, והוא חלק מהצמיחה המהירה של טסלה בטקסס: באוסטין האזור הוא 272 מייל רבוע ובדאלאס 81, כולם עם מכוניות Model Y מוסבות.\n• במקביל, ייצור ה-Cybercab מואץ בפס ייצור מהיר שמתוכנן לעמידות של 500,000 מייל. המסירות ללקוחות צפויות עד סוף 2026, ונתוני הבטיחות מראים פחות תאונות מאשר בנהיגה אנושית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "Houston's robotaxi map now stretches across 254 square miles in a rocket-like shape, drawing a playful nod from Elon Musk: 'I swear it's just a coincidence.'\n\n• Tesla rolled out the unsupervised robotaxi expansion on October 26, boosting the service area from 25 square miles (a 916% jump) to cover 1.2 million residents through downtown and key neighborhoods.\n• The new zone dwarfs Waymo's 49-square-mile footprint in Houston and fits Tesla's rapid Texas growth, with Austin at 272 square miles and Dallas at 81, all using retrofitted Model Ys.\n• Meanwhile, Cybercab production races ahead on a fast line designed for 500,000-mile durability, with customer deliveries eyed by late 2026 and safety data showing fewer collisions than human driving.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "tesla-modely-efficiency",
+   "topic": "tesla",
+   "date": "2026-10-27T03:55:39Z",
+   "url": "https://x.com/i/trending/2114927513260663287",
+   "source": "X",
+   "he": {
+    "title": "טסלה מודל Y בראש טבלת היעילות: הכי הרבה מיילים לכל 100 דולר אנרגיה",
+    "summary": "ניתוח של המכוניות הנמכרות ביותר בארה\"ב, לפי נתוני EPA ומחירי האנרגיה הנוכחיים, מראה שמכוניות חשמליות כמו מודל Y נוסעות הרבה יותר על כל 100 דולר מאשר מכוניות בנזין ורוב ההיברידיות. בעל טסלה אחד סיפר שנסע יותר מ-20,000 מייל בשנה ב-83 דולר טעינה בלבד."
+   },
+   "en": {
+    "title": "Tesla Model Y tops an efficiency chart of miles per $100 of energy",
+    "summary": "An analysis of America's best-selling cars, based on EPA data and current U.S. energy prices, shows EVs like the Model Y going far further per $100 than gas cars or most hybrids. One owner said he drove over 20,000 miles in a year for just $83 in charging."
+   },
+   "full_he": "תדמיין שאתה נוסע יותר מ-20,000 מייל בשנה ומשלם על טעינה רק 83 דולר. זה החיסכון האמיתי שבעל טסלה אחד שיתף על סמך הנתונים.\n\n• ניתוח של המכוניות הנמכרות ביותר באמריקה, שמבוסס על נתוני EPA ועל מחירי האנרגיה הנוכחיים בארה\"ב, מראה שמכוניות חשמליות כמו טסלה מודל Y נותנות הרבה יותר מיילים לכל 100 דולר ממכוניות בנזין או מרוב ההיברידיות.\n• ההיברידיות נמצאות מאחורי החשמליות, אבל עדיין עוקפות את מכוניות הבנזין הרגילות, בזכות היעילות הגבוהה של ההנעה החשמלית בהמרת אנרגיה ובזכות פחות חלקים נעים.\n• טעינה בבית שומרת על עלות נמוכה בשימוש יומיומי, אבל טעינה מהירה ציבורית וביטוח יקר יותר יכולים להוסיף לעלות.\n• למרות זאת, מכוניות מחושמלות ממשיכות לצבור מכירות בזכות היכולת שלהן למתוח כל דולר.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Imagine driving over 20,000 miles in a year for just $83 on charging. That's the real-world win one Tesla owner shared from the data.\n\n• An analysis of America's top-selling cars, based on EPA data and current U.S. energy prices, shows electric vehicles like the Tesla Model Y delivering far more miles per $100 than gas cars or most hybrids.\n• Hybrids trail EVs but still beat traditional gas models, thanks to the electric drivetrain's superior energy conversion with fewer moving parts.\n• Home charging keeps costs low for daily use, but public fast charging and higher insurance can add up.\n• Even so, electrified vehicles continue gaining sales for their dollar-stretching power.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
+   "id": "musk-zilis-follow",
+   "topic": "musk",
+   "date": "2026-10-27T03:55:38Z",
+   "url": "https://x.com/i/trending/2114890256344326646",
+   "source": "X",
+   "he": {
+    "title": "מאסק חזר לעקוב אחרי שיבון זיליס ב-X, שבועות אחרי הפרידה",
+    "summary": "ב-26 באוקטובר מאסק התחיל שוב לעקוב אחרי זיליס, בכירה בנוירלינק ואם לארבעה מילדיו, אחרי שהפסיק לעקוב אחריה כשהודיעה על הפרידה בתחילת אוקטובר. התגובות ברשת נעו בין התלהבות לבין ספקות לגבי מה המעקב באמת אומר."
+   },
+   "en": {
+    "title": "Musk follows Shivon Zilis on X again, weeks after their breakup",
+    "summary": "On October 26 Musk started following Zilis again, the Neuralink executive and mother of four of his children, after unfollowing her when she announced their breakup in early October. Reactions ranged from cheers to doubts about what the follow really signals."
+   },
+   "full_he": "שבועות ספורים אחרי הפרידה הפתאומית, אילון מאסק לחץ שוב על כפתור המעקב בחשבון ה-X של שיבון זיליס, ולחיצה פשוטה אחת עוררה גם תקוות וגם שאלות.\n\n• ב-26 באוקטובר מאסק התחיל שוב לעקוב אחרי זיליס, בכירה בנוירלינק ואם לארבעת ילדיו שנולדו בהפריה חוץ-גופית. זה קרה אחרי שבתחילת אוקטובר היא הודיעה על הפרידה הלא צפויה שלהם, והוא הפסיק לעקוב אחריה.\n• זיליס כתבה שהסיום היה קשה, אבל הודתה על הילדים: תאומים ב-2021, בת ב-2024 ובן ב-2025, וכתבה שהיא מקווה להורות משותפת ידידותית.\n• התגובות ברשת התחלקו בין קריאות כמו \"WE ARE SO BACK\" ותקוות ליציבות, לבין ספקות לגבי העקביות של מאסק ומה המעקב באמת אומר על המשפחה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Just weeks after their sudden split, Elon Musk hit the follow button on Shivon Zilis's X account, catching eyes with a simple click that stirred hopes and questions.\n\n• On October 26, Musk began following Zilis again, the Neuralink executive and mother of his four IVF children, following her early October announcement of their unexpected breakup after he had unfollowed her.\n• Zilis called the end difficult but voiced thanks for their kids (twins in 2021, a daughter in 2024, and a son in 2025) and hopes for friendly co-parenting.\n• Online reactions split between cheers like 'WE ARE SO BACK' and hopes for stability, alongside doubts about Musk's consistency and what the follow truly signals for their family.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
    "id": "grokbot-x-connector-free",
@@ -254,6 +407,23 @@
    },
    "full_he": "אילון מאסק השווה את Grok Bot להעסקת ראש מטה מוכשר במיוחד, ומשתמשים מסכימים אחרי שהעבידו אותו על המיילים ועל היומן שלהם.\n\n• אנשים מחברים את Grok Bot לתיבות הדואר, ליומנים ולחשבונות ה-X שלהם, כדי שיבצע בדיקות שגרתיות, יסמן פריטים חשובים וינסח תשובות כל שעה.\n• פיטר סנט אונג' סיפר שאחרי יומיים בלבד של שימוש אינטנסיבי, זה הרגיש כמו מזכיר אישי שהוא כבר לא יכול בלעדיו.\n• עדכונים אחרונים כמו גרסה 0.75.8 הוסיפו כלים חכמים יותר לאישורים ולתוספים, והגרסה החדשה 0.77.0 משפרת עוד את השגרות, והופכת את הבוט לשותף פרודוקטיביות שתמיד זמין, למשימות מיצירת הכנסה ועד יצירת תוכן.\n\nהפוסט של מאסק: \"Grok Bot הוא כמו להעסיק ראש מטה מוכשר להפליא.\"\n\nהפוסט שהוא ציטט (פיטר סנט אונג'): \"עברתי ל-Grokbot לגמרי. הוא בודק מייל, הודעות פרטיות, אזכורים ולינקדאין כל שעה. הוא מסמן כל דבר מעניין, מנסח תשובות וזורק את ה-99% האחרים. זה ממש מרגיש כמו מזכיר אישי. ויומיים אחרי, אני כבר שואל איך חייתי בלי זה.\"\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "Elon Musk likened Grok Bot to hiring a super-competent chief of staff, and users are agreeing after putting it to work on their emails and schedules.\n\n• People are connecting Grok Bot to their inboxes, calendars, and X accounts to handle routine checks, flag key items, and draft replies every hour.\n• Peter St Onge shared how after just two days of heavy use, it felt like a personal secretary he couldn't live without.\n• Recent updates like version 0.75.8 added smarter tools for approvals and plugins, while the new 0.77.0 refines routines further, turning the bot into an always-on productivity teammate for tasks from income generation to content creation.\n\nMusk's post: \"Grok @Bot is like hiring an incredibly competent chief of staff\"\n\nThe quoted post (Peter St Onge): \"I've gone full Grokbot. It checks email, DMs, mentions, and LinkedIn every hour. It flags anything interesting, drafts replies, and tosses the other 99%. It literally feels like having a personal secretary. And 2 days in I'm like how did I live without this.\"\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "musk-robots-memory",
+   "topic": "musk",
+   "date": "2026-10-27T02:38:50Z",
+   "url": "https://x.com/i/trending/2114908153146188079",
+   "source": "X",
+   "he": {
+    "title": "מאסק: רובוטים יצרכו יותר זיכרון מכל שאר העולם ביחד",
+    "summary": "מאסק הסביר שרובוטים פיזיים צריכים כמויות עצומות של חומרה מקומית, בזמן שמחשוב העל-בינה יעבור ברובו לחלל העמוק. אנליסטים צופים זינוק של פי 20 בביקוש ל-DRAM עד 2030."
+   },
+   "en": {
+    "title": "Musk: robots will need more memory than everything else on Earth combined",
+    "summary": "Musk explained that physical robots need massive local hardware, while superintelligence compute will mostly move to deep space. Analysts project more than 20-fold DRAM demand growth by 2030."
+   },
+   "full_he": "אילון מאסק שיתף חזון מפתיע: רובוטים שמעצבים אטומים בעולם האמיתי ידרשו בקרוב יותר זיכרון מכל השאר על פני כדור הארץ ביחד.\n\n• ב-26 באוקטובר 2026 מאסק הסביר שרובוטים פיזיים צריכים חומרה מקומית עצומה כדי לבצע משימות, ואילו המחשוב של העל-בינה יעבור ברובו לחלל העמוק.\n• תגובה מפורטת לפוסט תיארה כלכלה של 2 טריליון דולר עד 2040, שתישען על שני מיליון רובוטים דמויי אדם שעובדים בלי הפסקה, תחנת כוח גרעינית של 3 ג'יגה-וואט ומרכז נתונים של ג'יגה-וואט אחד, באתר חופי קומפקטי של 24 קמ\"ר.\n• אנליסטים תומכים במגמה, עם תחזיות לגידול של יותר מפי 20 בביקוש ל-DRAM עד 2030, ולפיהן רובוטים מתקדמים יצטרכו 200GB זיכרון ועוד טרה-בייטים של אחסון.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk shared a striking vision: robots shaping atoms in the real world will soon demand more memory than everything else on Earth combined.\n\n• On October 26, 2026, Musk explained that physical robots need massive local hardware for tasks, while superintelligence compute will mostly shift to deep space.\n• A detailed reply outlined a $2 trillion economy by 2040 from two million nonstop humanoid robots, powered by a 3GW nuclear plant and 1GW datacenter in a compact 24 square kilometer coastal site.\n• Analysts back the trend, with projections of over 20-fold DRAM demand growth by 2030 and advanced robots needing 200GB memory plus terabytes of storage.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
    "id": "musk-elon-2028-pac",
@@ -392,6 +562,23 @@
    "full_en": "Before You Feed Your Pet Black Beans, Do This\n\nNever give your dog or cat raw or undercooked black beans. They need to be cooked thoroughly until they're tender enough to mash easily with a fork.\n\nYou also need to keep them plain. No salsa, onion, garlic, or seasonings mixed in. How you prepare a healing food matters just as much as choosing the food itself.\n\nHealing Your Pet goes deeper into preparation, serving amounts, and how to safely bring foods like black beans into your animal's diet.\n\n(At the end of the post: a link to order the book and a link to the livestream.)\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
+   "id": "musk-deport-petition",
+   "topic": "musk",
+   "date": "2026-10-27T00:41:25Z",
+   "url": "https://x.com/i/trending/2114878610079146205",
+   "source": "X",
+   "he": {
+    "title": "עצומה ישנה לגירוש מאסק לדרום אפריקה חוזרת לכותרות",
+    "summary": "עצומה ב-Change.org מ-2025 שדורשת לשלול את אזרחותו האמריקאית של מאסק בגלל עושרו והשפעתו הפוליטית זוכה לתשומת לב מחודשת. חבר הקונגרס רנדי פיין תמך ב-26 באוקטובר בשלילת אזרחות מכל מי ששיקר בטפסים, בלי להחריג אף אחד."
+   },
+   "en": {
+    "title": "An old petition to deport Musk to South Africa draws fresh attention",
+    "summary": "A 2025 Change.org petition demanding Musk lose his U.S. citizenship over his wealth and political sway is getting new eyes. On Oct. 26, Rep. Randy Fine backed denaturalizing anyone who lied on their paperwork, with no exemptions."
+   },
+   "full_he": "עצומה ב-Change.org מ-2025 קוראת לשלול את אזרחותו האמריקאית של אילון מאסק בגלל עושרו והשפעתו הפוליטית. היא מושכת עכשיו עיניים חדשות על רקע הוויכוח על השפעה בפוליטיקה.\n\n• העצומה, שהתחילה ב-2025, דורשת להחזיר את מאסק לדרום אפריקה כדי שכסף לא ישפיע על ההחלטות בארה\"ב.\n• חבר הקונגרס הרפובליקני רנדי פיין מפלורידה תמך בריאיון ב-26 באוקטובר בשלילת אזרחות מכל מי ששיקר בטפסים, ולא החריג דמויות כמו מאסק או מלניה טראמפ.\n• מאסק נולד בפרטוריה ב-1971 וקיבל אזרחות אמריקאית ב-2002, אחרי שהגיע לארה\"ב דרך קנדה.\n• התגובות התחלקו בין קריאות לחתום, דרישות לאישומים פליליים, והגנה על החידושים שלו במכוניות חשמליות ובחלל.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -511,6 +698,23 @@
    "full_en": "Your Gastritis May Be This\n\nPeople think it's just gas. But toxic gas is different.\n\nWhen bacteria like strep, E. coli, C. diff, and staph are feeding on foods like dairy, gluten, and eggs, they can create noxious gas that irritates the nerves all through the intestinal tract.\n\nThat's why it can hurt so badly. You end up in the hospital, and nobody knows why you're in that much pain.\n\nThe gas isn't the whole story. It's what's creating the gas that matters.\n\n(At the end of the post: a link to a free healing guide, a link to protocols from Cleanse To Heal, and a link to the livestream.)\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: these are his claims. Mainstream medicine mostly attributes gastritis to H. pylori infection, NSAID painkillers and alcohol."
   },
   {
+   "id": "musk-doc-flop",
+   "topic": "musk",
+   "date": "2026-10-26T19:53:56Z",
+   "url": "https://x.com/i/trending/2114395835651998013",
+   "source": "X",
+   "he": {
+    "title": "הסרט התיעודי \"Musk\" ו-\"The Social Reckoning\" של סורקין נכשלו בקופות",
+    "summary": "הדוקו של אלכס גיבני על מאסק, באורך ארבע שעות, הכניס רק 571,902 דולר בהפצה מוגבלת בארה\"ב, למרות ציון של 97% ב-Rotten Tomatoes, ורוב בתי הקולנוע הורידו אותו. גם סרטו של אהרון סורקין על פייסבוק ירד מהמסכים אחרי פתיחה חלשה."
+   },
+   "en": {
+    "title": "Doc 'Musk' and Sorkin's 'The Social Reckoning' flop at the box office",
+    "summary": "Alex Gibney's four-hour Musk documentary grossed only $571,902 in a limited U.S. run despite a 97% Rotten Tomatoes score, and most venues dropped it. Aaron Sorkin's Facebook follow-up also left theaters after a weak opening."
+   },
+   "full_he": "שני סרטים שאפתניים, שמפרקים את הסיפור של אילון מאסק ואת ההשלכות של פייסבוק, ירדו מבתי הקולנוע אחרי שבועות ספורים, אף שאחד מהם זכה לשבחי ביקורת.\n\n• הסרט התיעודי \"Musk\" של אלכס גיבני, באורך ארבע שעות, הכניס רק 571,902 דולר בהפצה מוגבלת בארה\"ב שהתחילה ב-9 באוקטובר. רוב בתי הקולנוע הורידו אותו, למרות ציון של 97% ב-Rotten Tomatoes ומועמדויות לפרסי Critics' Choice.\n• \"The Social Reckoning\" של אהרון סורקין, ההמשך ל\"הרשת החברתית\", נפתח ב-5.5 מיליון דולר בארה\"ב ו-15 מיליון בעולם, מול תקציב של 30 עד 42 מיליון דולר. הוא קיבל ביקורות מעורבות וציון B- ב-CinemaScore, וירד מכמעט 2,000 בתי קולנוע.\n• משקיפים הצביעו על גורמים כמו אורכו של הסרט על מאסק, קשיים בפרסום, נושא פייסבוק שנשמע מיושן ופה לאוזן חלש. היו שטענו שהיו ניסיונות לדכא את הסרט על מאסק, שמשודר עכשיו ב-Apple TV.\n• הכישלונות עוררו דיון על העניין של הקהל בסיפורי חשבון נפש על הטכנולוגיה, כשסרטים חלשים יורדים מהמסכים מהר.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Two ambitious films unpacking the stories of Elon Musk and Facebook's fallout pulled from theaters after just weeks, despite one earning strong critic praise.\n\n• Alex Gibney's four-hour documentary 'Musk' grossed only $571,902 in a limited U.S. run starting Oct. 9, leading most venues to drop it despite a 97% Rotten Tomatoes score and Critics' Choice nods.\n• Aaron Sorkin's 'The Social Reckoning,' a follow-up to 'The Social Network,' opened to $5.5 million domestically and $15 million worldwide against a $30-42 million budget, earning mixed reviews and a B- CinemaScore before exiting nearly 2,000 theaters.\n• Observers cited factors like the Musk film's length, ad challenges, dated Facebook topics, and weak word-of-mouth, while some claimed suppression efforts on the Musk project, now streaming on Apple TV.\n• The flops have prompted talk about audience interest in tech reckoning tales amid quick theatrical exits for underperformers.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
+  {
    "id": "mercola-exercise-adhd",
    "topic": "mercola",
    "date": "2026-10-26T19:01:05Z",
@@ -526,6 +730,23 @@
    },
    "full_he": "הפוסט: \"האם פעילות גופנית קבועה יכולה לעזור לך להרגיש ממוקד ורגוע יותר? מחקרים מצביעים על כך שאימונים מובנים עשויים להקל על קשיי קשב ולתמוך בשינה טובה יותר. הנה מה שכדאי לדעת.\"\n\nהכתבה המקושרת (\"Regular Exercise Linked to Better Sleep and Fewer ADHD Symptoms\", 26 באוקטובר 2026), לפי מה שכתוב בה:\n\nבקצרה:\n• תנועה יומית עשויה לעזור למוח לווסת קשב, מצב רוח ושינה, וכך להקל על ניהול תסמיני ADHD.\n• בניסוי אקראי קטן, תוכנית אימונים מובנית של 12 שבועות, בנוסף לטיפול הרגיל, הייתה טובה יותר מטיפול רגיל בלבד אצל מבוגרים עם ADHD, עם שיפור בתסמינים, בשינה ובאיכות החיים.\n• במחקר על תלמידי כיתה ז' בשוודיה, פעילות בינונית-נמרצת הייתה קשורה חזק יותר לפחות תסמיני לחץ אצל בני נוער עם מאפייני ADHD.\n• יותר ישיבה ויותר מסכים היו קשורים ליותר תסמינים כמו כאבי ראש, מתח, מצב רוח ירוד וקשיי ריכוז.\n• צעדים פשוטים כמו תנועה מובנית, פחות ישיבה רצופה, מספיק מגנזיום ופחות חשיפה לכימיקלים עשויים לתמוך במערכת עצבים רגועה יותר.\n\nהניסוי במבוגרים (Frontiers in Psychiatry):\n• 63 מבוגרים עם ADHD במרפאה פסיכיאטרית בשוודיה; תוכנית של 12 שבועות בהדרכת פיזיותרפיסט.\n• בקבוצת האימון חלה ירידה ממוצעת של כ-7 נקודות בסולם תסמינים של 72 נקודות, לעומת כמעט שום שינוי בקבוצת הטיפול הרגיל. 11 משתתפים קיבלו גם אימון מיומנויות קוגניטיביות, כך שחלק מהשיפור אולי משולב.\n• ציוני הנדודי שינה השתפרו בקבוצת האימון והחמירו מעט בקבוצת הביקורת; איכות החיים עלתה ביותר מ-10 נקודות.\n• 65.5% מקבוצת האימון הגיעו ל'שיפור משמעותי קלינית', לעומת אף אחד בקבוצת הביקורת; 44.4% דירגו את עצמם כמשתפרים מאוד.\n• האימונים שילבו אינטרוולים אירוביים, כוח וגמישות, ב-60%-90% מהדופק המרבי.\n• מגבלות שהכתבה מציינת: ניסוי קטן במרפאה אחת, רק 41 משתתפים בניתוח העיקרי אחרי 35% נשירה, והמעריכים ידעו מי התאמן.\n\nהמחקר בבני נוער (Mental Health and Physical Activity):\n• 1,139 תלמידי כיתה ז' באזור שטוקהולם ענדו מד תאוצה שבוע שלם ומילאו שאלונים.\n• לתלמידים עם מאפייני ADHD היו יותר תסמיני לחץ, אבל אצלם הקשר בין יותר תנועה לפחות תסמינים היה חזק יותר.\n• יותר ישיבה ויותר מסכים היו קשורים ליותר תסמינים במדגם כולו.\n• אצל תלמידים עם ציוני היפראקטיביות חריגים, יותר פעילות בשעות הלימודים דווקא הייתה קשורה ליותר תסמינים; החוקרים משערים שהם זזים כתגובה ללחץ או לישיבה ממושכת.\n• מגבלות: זו תמונת מצב חד-פעמית שמראה קשר ולא סיבתיות, ורק כ-65 מהתלמידים דיווחו על אבחנה או תסמינים של ADHD.\n\nהצעדים המעשיים שהוא ממליץ עליהם:\n1. שגרת תנועה צפויה, למשל 5 דקות הליכה מהירה ודקה איטית לסירוגין.\n2. לשבור ישיבה ארוכה: תזכורת כל 30 דקות לקום, להימתח או ללכת 5 דקות.\n3. להתאים את התנועה למצב של מערכת העצבים באותו יום.\n4. לשקול את צריכת המגנזיום (הוא מציין שאף אחד מהמחקרים לא בדק מגנזיום). הוא מציע להתחיל ממגנזיום ציטרט ולהעלות עד שהיציאות נעשות רכות, ואז לרדת מעט, ולעבור לגליצינט או מלאט. מי שיש לו בעיות כליות או שנוטל תרופות מרשם צריך להתייעץ קודם עם רופא.\n5. להפחית חשיפה לכימיקלים: אוכל אורגני כשאפשר, חומרי ניקוי טבעיים, בלי צבעי מאכל מלאכותיים ובשמים סינתטיים, זכוכית או נירוסטה במקום פלסטיק, ולא לחמם בפלסטיק במיקרוגל.\n\nהכתבה מסתיימת בשאלות ותשובות שחוזרות על הנקודות האלה.",
    "full_en": "The post: \"Could regular exercise help you feel more focused and rested? Research suggests structured workouts may ease attention challenges and support better sleep — here's what to know.\"\n\nThe linked article (\"Regular Exercise Linked to Better Sleep and Fewer ADHD Symptoms,\" October 26, 2026), as it reads:\n\nAt a glance:\n• Daily movement may help your brain regulate focus, mood and sleep, making ADHD symptoms easier to manage.\n• In a small randomized trial, a 12-week structured exercise program added to usual care outperformed usual care alone in adults with ADHD, improving symptoms, sleep and quality of life.\n• In a study of Swedish seventh graders, moderate-to-vigorous activity was more strongly linked to fewer stress symptoms in teens with ADHD traits.\n• More sitting and screen time were linked to more symptoms such as headaches, tension, low mood and concentration problems.\n• Simple steps like structured movement, shorter sitting periods, enough magnesium and fewer chemical exposures may support a calmer nervous system.\n\nThe adult trial (Frontiers in Psychiatry):\n• 63 adults with ADHD at a Swedish psychiatric clinic; a 12-week, physiotherapist-led program.\n• The exercise group's symptoms dropped about 7 points on a 72-point scale, versus almost no change with usual care. 11 participants also had cognitive skills training, so part of the gain may be combined.\n• Insomnia scores improved with exercise and worsened slightly in controls; quality of life rose by more than 10 points.\n• 65.5% of the exercise group reached a \"clinically meaningful improvement,\" versus none of the controls; 44.4% rated themselves much or very much improved.\n• Sessions mixed aerobic intervals, strength and flexibility at 60% to 90% of max heart rate.\n• Caveats the article gives: small single-clinic trial, only 41 participants in the main analysis after 35% dropout, and raters knew who exercised.\n\nThe adolescent study (Mental Health and Physical Activity):\n• 1,139 seventh graders around Stockholm wore accelerometers for a week and filled in questionnaires.\n• Students with ADHD traits had more stress symptoms, but for them the link between more activity and fewer symptoms was stronger.\n• More sitting and more screen time were tied to more symptoms across the whole sample.\n• Among students with abnormal hyperactivity scores, more activity during school hours was tied to more symptoms; researchers suggest they move as a reaction to stress or long sitting.\n• Caveats: a one-time snapshot showing association, not cause, and only about 65 students reported ADHD diagnoses or symptoms.\n\nHis practical steps:\n1. A predictable movement routine, e.g. five minutes of brisk walking then one minute slower.\n2. Break long sitting: a reminder every 30 minutes to stand, stretch or walk for five minutes.\n3. Match movement to your nervous system's state that day.\n4. Consider magnesium (he notes neither study looked at it). He suggests starting with magnesium citrate and raising the dose until stools loosen, then backing off, then switching to glycinate or malate. People with kidney problems or on prescription drugs should talk to a provider first.\n5. Cut chemical exposures: organic food when possible, natural cleaners, no artificial dyes or synthetic fragrances, glass or steel instead of plastic, and no microwaving in plastic.\n\nThe article ends with a Q&A repeating these points."
+  },
+  {
+   "id": "brecka-bill-rawls",
+   "topic": "brecka",
+   "date": "2026-10-26T19:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2114794191049851077",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה על ד\"ר ביל רולס: שנים של מחלה בלי תשובות",
+    "summary": "גארי ברקה מספר על ד\"ר ביל רולס, שבגיל 50 סבל מכאבי מפרקים, ערפל מוחי ותסמינים נוירולוגיים, ואחרי בדיקה שלילית לליים פנה לצמחי מרפא. לדברי ברקה, זו תזכורת להמשיך לשאול שאלות ולהיאבק על הבריאות שלך."
+   },
+   "en": {
+    "title": "Brecka on Dr. Bill Rawls: years of illness without answers",
+    "summary": "Gary Brecka shares the story of Dr. Bill Rawls, who at 50 struggled with joint pain, brain fog and neurological symptoms and, after testing negative for Lyme, turned to herbal medicine. Brecka says it's a reminder to keep asking questions and advocate for your health."
+   },
+   "full_he": "\"תדמיין שאתה מרגיש חולה במשך שנים ועדיין אין לך תשובות.\n\nד\"ר ביל רולס מכיר את התחושה הזו מקרוב. עד גיל 50 הוא נאבק בכאבי מפרקים, בערפל מוחי ובתסמינים נוירולוגיים שהשתלטו על חייו.\n\nאחרי שבבדיקה הראשונה יצא שלילי לליים, הוא המשיך לחפש תשובות ובסוף התחיל לחקור את רפואת הצמחים. הסיפור שלו מזכיר כמה חשוב להמשיך לשאול שאלות ולהיאבק על הבריאות שלך כשמשהו מרגיש לא בסדר.\"\n\nזה סיפורו האישי של רולס כפי שברקה מציג אותו, לא המלצה רפואית. רפואת צמחים אינה טיפול מקובל לליים ברפואה המרכזית, שם הטיפול הסטנדרטי הוא אנטיביוטיקה.\n\nברקה לא הוסיף תגובות משלו בשרשור. שאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"Imagine feeling sick for years and still not having answers.\n\nDr. Bill Rawls knows that feeling firsthand. By age 50, he was struggling with joint pain, brain fog, and neurological symptoms that were taking over his life.\n\nAfter initially testing negative for Lyme disease, he continued searching for answers and eventually began exploring herbal medicine. His story is a reminder of how important it is to keep asking questions and advocating for your health when something doesn't feel right.\"\n\nThis is Rawls's personal story as Brecka presents it, not medical advice. Herbal medicine isn't an established treatment for Lyme disease in mainstream medicine, where the standard treatment is antibiotics.\n\nBrecka added no replies of his own in the thread. The rest of the post is a video, so there's no more text to show."
   },
   {
    "id": "ss-savewise-reddit",
