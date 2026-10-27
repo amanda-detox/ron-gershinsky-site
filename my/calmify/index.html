@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>רוגעלי</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Calmify">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../../shared/rg-site.css">
+<link rel="stylesheet" href="../common.css">
+<link rel="stylesheet" href="../care.css">
+<style>
+  .gstep { text-align: center; padding: 6px 0 2px; }
+  .gstep .gn { display: inline-flex; align-items: center; justify-content: center; width: 72px; height: 72px; border-radius: 50%; background: var(--accent); color: var(--accentink); font-size: 36px; font-weight: 800; }
+  .gstep h3 { margin: 10px 0 4px; font-size: 19px; color: var(--fg); }
+  .gdots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+  .gdots i { width: 9px; height: 9px; border-radius: 50%; background: var(--line2); }
+  .gdots i.on { background: var(--accent); }
+  .moodbars span { background: linear-gradient(180deg, var(--accent), var(--blue)); }
+  .plansec + .plansec { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+</style>
+<script src="../../shared/rg-bg.js" data-app="mycalm" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="56" height="56">
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+  </div>
+  <div class="helpwrap" id="help-now"></div>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div id="panels"></div>
+    <p class="disclaim" data-i18n="disclaim"></p>
+  </main>
+  <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "./sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "רוגעלי", title: "רוגעלי", sub: "מקום שקט להתמודד עם מה שעובר עליך, שמור בחשבון – רק אתה רואה אותו",
+        tabCheck: "צ'ק-אין", tabTools: "כלים", tabPlan: "התוכנית שלי", tabHist: "היסטוריה",
+        chkTitle: "איך אתה מרגיש עכשיו?", chkLead: "צ'ק-אין קצר עוזר לשים לב למה שקורה איתך לאורך זמן.", todayDone: "כבר עשית היום {n} צ'ק-אין. אפשר להוסיף עוד אחד.",
+        mood: "מצב רוח", m1: "קשה", m2: "לא טוב", m3: "בסדר", m4: "טוב", m5: "מצוין",
+        anx: "חרדה או מתח (0–10)", energy: "אנרגיה (0–10)", low: "נמוך", high: "גבוה", sleep: "כמה שעות ישנת בלילה?", hrs: "שעות",
+        note: "הערה (לא חובה)", phNote: "מה קרה היום? מה עזר לך?", saveChk: "שמור צ'ק-אין", chkSaved: "✓ נשמר. טוב שעצרת להקשיב לעצמך.",
+        toolsLead: "תרגילים קצרים שאפשר לעשות בכל מקום. בחר אחד:",
+        tBreath: "נשימה מודרכת", tBreathD: "נשימת קופסה 4-4-4-4 או נשימת 4-7-8, עם עיגול שמראה את הקצב",
+        tGround: "קרקוע 5-4-3-2-1", tGroundD: "חוזרים לרגע הזה דרך החושים",
+        tThought: "רישום מחשבות", tThoughtD: "מתבוננים במחשבה קשה ומחפשים דרך אחרת להסתכל עליה",
+        back: "→ חזרה לכלים", pattern: "סוג הנשימה", pBox: "קופסה 4-4-4-4", p478: "4-7-8",
+        pBoxD: "שאיפה 4, החזקה 4, נשיפה 4, החזקה 4.", p478D: "שאיפה דרך האף 4, החזקה 7, נשיפה איטית דרך הפה 8.",
+        phIn: "שאיפה", phHold: "החזק", phOut: "נשיפה", start: "התחל", stop: "סיום", rounds: "סבבים: {n}", breathTip: "נושמים בנוחות. אם מרגישים סחרחורת או אי־נוחות, עוצרים וחוזרים לנשימה רגילה.",
+        g5: "5 דברים שאתה רואה", g5d: "הסתכל סביבך ומצא חמישה דברים. שים לב לצבעים ולצורות.",
+        g4: "4 דברים שאתה מרגיש במגע", g4d: "הבגדים על העור, הרגליים על הרצפה, משהו ביד.",
+        g3: "3 דברים שאתה שומע", g3d: "צלילים קרובים ורחוקים – גם שקט הוא צליל.",
+        g2: "2 דברים שאתה מריח", g2d: "אם אין ריח מיוחד, נסה להיזכר בריח שאתה אוהב.",
+        g1: "דבר אחד שאתה טועם", g1d: "לגימה של מים, או פשוט שים לב לטעם שבפה.",
+        gNext: "הבא", gPrev: "הקודם", gDone: "סיימתי", gFinished: "✓ כל הכבוד. קח עוד נשימה אחת לפני שאתה ממשיך.", phG: "אפשר לכתוב כאן (לא חובה, לא נשמר)",
+        trLead: "כותבים את מה שקרה, מה חשבת ומה הרגשת – ואז מחפשים מחשבה מאוזנת יותר.",
+        trSit: "מה קרה?", phSit: "איפה היית, עם מי, מה קרה", trThought: "איזו מחשבה עלתה?", phThought: "מה עבר לך בראש באותו רגע",
+        trFeel: "מה הרגשת?", phFeel: "למשל: פחד, עצב, כעס, בושה", trBefore: "כמה חזק היה הרגש? (0–100)",
+        trAlt: "דרך אחרת להסתכל על זה", phAlt: "מה היית אומר לחבר טוב שחושב ככה? מה העובדות בעד ונגד?", trAfter: "וכמה חזק הרגש עכשיו? (0–100)",
+        trSave: "שמור רישום", trSaved: "✓ הרישום נשמר בהיסטוריה.",
+        planLead: "תוכנית אישית לרגעים קשים. כדאי למלא אותה ביום רגוע, כדי שתהיה מוכנה כשתצטרך.",
+        sSigns: "סימנים שאני מתחיל להרגיש לא טוב", phSigns: "למשל: אני מפסיק לישון טוב", sHelps: "דברים שעוזרים לי", phHelps: "למשל: מקלחת חמה, מוזיקה, הליכה",
+        sPlaces: "מקומות או פעילויות שמרגיעים אותי", phPlaces: "למשל: הים, הפארק ליד הבית", sPeople: "אנשים שאפשר לפנות אליהם", phName: "שם", phPhone: "טלפון", call: "התקשר",
+        add: "הוסף", del: "מחק",
+        histTitle: "מצב הרוח ב־14 הימים האחרונים", histLead: "העמודה מראה את הממוצע של כל יום (1–5).", noHist: "עוד אין היסטוריה. צ'ק-אין, תרגילים ורישומי מחשבות יופיעו כאן.",
+        hMood: "צ'ק-אין", hAnx: "חרדה {n}/10", hEn: "אנרגיה {n}/10", hSleep: "שינה {n} שעות", hThought: "רישום מחשבות", hTool: "תרגיל", hBox: "נשימת קופסה · {n} סבבים", h478: "נשימת 4-7-8 · {n} סבבים", hGround: "קרקוע 5-4-3-2-1",
+        hFeel: "רגש: {f} · {a}→{b}", today: "היום", yesterday: "אתמול", confirmDelH: "למחוק את הרשומה הזו מההיסטוריה?",
+        disclaim: "רוגעלי היא כלי אישי לתמיכה ולמעקב, ואינה תחליף לייעוץ או לטיפול מקצועי. אם קשה לך לאורך זמן, כדאי לפנות לאיש מקצוע.",
+        synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת" },
+  en: { doc: "Calmify", title: "Calmify", sub: "A quiet place to cope with whatever you're going through, saved in your account – only you can see it",
+        tabCheck: "Check-in", tabTools: "Tools", tabPlan: "My plan", tabHist: "History",
+        chkTitle: "How are you feeling right now?", chkLead: "A short check-in helps you notice what's going on with you over time.", todayDone: "You've done {n} check-in(s) today. You can add another.",
+        mood: "Mood", m1: "Hard", m2: "Not good", m3: "Okay", m4: "Good", m5: "Great",
+        anx: "Anxiety or tension (0–10)", energy: "Energy (0–10)", low: "Low", high: "High", sleep: "How many hours did you sleep last night?", hrs: "hours",
+        note: "Note (optional)", phNote: "What happened today? What helped?", saveChk: "Save check-in", chkSaved: "✓ Saved. Good on you for listening to yourself.",
+        toolsLead: "Short exercises you can do anywhere. Pick one:",
+        tBreath: "Guided breathing", tBreathD: "Box breathing 4-4-4-4 or 4-7-8 breathing, with a circle that shows the pace",
+        tGround: "5-4-3-2-1 grounding", tGroundD: "Come back to this moment through your senses",
+        tThought: "Thought record", tThoughtD: "Look at a difficult thought and find another way to see it",
+        back: "← Back to tools", pattern: "Breathing pattern", pBox: "Box 4-4-4-4", p478: "4-7-8",
+        pBoxD: "In 4, hold 4, out 4, hold 4.", p478D: "In through the nose 4, hold 7, slowly out through the mouth 8.",
+        phIn: "Breathe in", phHold: "Hold", phOut: "Breathe out", start: "Start", stop: "Finish", rounds: "Rounds: {n}", breathTip: "Breathe comfortably. If you feel dizzy or uncomfortable, stop and go back to normal breathing.",
+        g5: "5 things you can see", g5d: "Look around and find five things. Notice colours and shapes.",
+        g4: "4 things you can feel", g4d: "Your clothes on your skin, your feet on the floor, something in your hand.",
+        g3: "3 things you can hear", g3d: "Near and far sounds – silence counts too.",
+        g2: "2 things you can smell", g2d: "If there's no particular smell, try to recall one you like.",
+        g1: "1 thing you can taste", g1d: "A sip of water, or just notice the taste in your mouth.",
+        gNext: "Next", gPrev: "Back", gDone: "Done", gFinished: "✓ Well done. Take one more breath before you carry on.", phG: "You can write here (optional, not saved)",
+        trLead: "Write down what happened, what you thought and felt – then look for a more balanced thought.",
+        trSit: "What happened?", phSit: "Where you were, with whom, what happened", trThought: "What thought came up?", phThought: "What went through your mind at that moment",
+        trFeel: "What did you feel?", phFeel: "e.g. fear, sadness, anger, shame", trBefore: "How strong was the feeling? (0–100)",
+        trAlt: "Another way to look at it", phAlt: "What would you tell a good friend who thought this? What facts support it or not?", trAfter: "And how strong is the feeling now? (0–100)",
+        trSave: "Save record", trSaved: "✓ The record is saved in your history.",
+        planLead: "A personal plan for hard moments. It's worth filling in on a calm day, so it's ready when you need it.",
+        sSigns: "Signs I'm starting to feel unwell", phSigns: "e.g. I stop sleeping well", sHelps: "Things that help me", phHelps: "e.g. a hot shower, music, a walk",
+        sPlaces: "Places or activities that calm me", phPlaces: "e.g. the beach, the park near home", sPeople: "People I can reach out to", phName: "Name", phPhone: "Phone", call: "Call",
+        add: "Add", del: "Delete",
+        histTitle: "Mood in the last 14 days", histLead: "Each bar shows that day's average (1–5).", noHist: "No history yet. Check-ins, exercises and thought records will show up here.",
+        hMood: "Check-in", hAnx: "anxiety {n}/10", hEn: "energy {n}/10", hSleep: "sleep {n} h", hThought: "Thought record", hTool: "Exercise", hBox: "Box breathing · {n} rounds", h478: "4-7-8 breathing · {n} rounds", hGround: "5-4-3-2-1 grounding",
+        hFeel: "Feeling: {f} · {a}→{b}", today: "Today", yesterday: "Yesterday", confirmDelH: "Delete this entry from your history?",
+        disclaim: "Calmify is a personal support and tracking tool, not a substitute for professional advice or treatment. If things feel hard for a long time, consider reaching out to a professional.",
+        synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online" }
+};
+</script>
+<script src="../../shared/rg-account.js"></script>
+<script src="../common.js"></script>
+<script src="../help-now.js"></script>
+<script src="../store.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

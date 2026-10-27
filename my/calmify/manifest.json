@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "Calmify",
+  "short_name": "Calmify",
+  "description": "צ'ק-אין רגשי, תרגילי נשימה וקרקוע ותוכנית התמודדות אישית · Mood check-ins, breathing and grounding exercises and a personal coping plan",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
