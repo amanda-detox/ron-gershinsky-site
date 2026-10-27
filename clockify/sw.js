@@ -1,5 +1,5 @@
 /* Offline cache + notification clicks for Clockify (moved from alarm/). */
-var CACHE = "rg-clockify-v2";
+var CACHE = "rg-clockify-v3";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "alarm-core.js", "ics.js", "sounds.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
