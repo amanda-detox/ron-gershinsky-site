@@ -1,5 +1,5 @@
 /* Offline cache for Updatify (עדכוניפיי). Scope: news/ only. */
-var CACHE = "rg-news-v15";
+var CACHE = "rg-news-v16";
 var FONT_CACHE = "rg-newsfonts-1"; // separate name so version bumps keep the fonts
 var FILES = ["./", "index.html", "app.js", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
@@ -11,8 +11,10 @@ self.addEventListener("activate", function (e) {
     return Promise.all(keys.filter(function (k) { return k.indexOf("rg-news-") === 0 && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
-// Network first for everything (news.json included, so each update (3 times a day) shows right away).
-// news.json is stored under one key regardless of the ?t= cache-buster, for offline use.
+// Network first for everything (news.json included, so each hourly update shows right away).
+// news.json is stored under one key regardless of the ?t= / ?r= cache-buster, for offline use.
+// news.json?r=... comes from the Refresh button: network only, never answered from the cache (so offline shows "no connection").
+// Page loads (navigations) are stored under the bare page URL, so share links like news/?item=<id> get the app (also offline).
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;
   var url = new URL(e.request.url);
@@ -29,12 +31,15 @@ self.addEventListener("fetch", function (e) {
   }
   if (url.origin !== self.location.origin) return; // Appwrite API and every other cross-origin call: network only, never cached
   var isNews = /\/news\.json$/.test(url.pathname);
-  var key = isNews ? new Request(url.origin + url.pathname) : e.request;
+  var isNav = e.request.mode === "navigate";
+  var forced = isNews && url.searchParams.has("r");
+  var key = (isNews || isNav) ? new Request(url.origin + url.pathname) : e.request;
   e.respondWith(fetch(e.request, isNews ? { cache: "no-store" } : undefined).then(function (r) {
     var copy = r.clone();
     if (r.ok) caches.open(CACHE).then(function (c) { c.put(key, copy); });
     return r;
-  }).catch(function () {
+  }).catch(function (err) {
+    if (forced) throw err;
     return caches.match(key, { ignoreSearch: true }).then(function (m) {
       return m || (e.request.mode === "navigate" ? caches.match("./") : undefined);
     });

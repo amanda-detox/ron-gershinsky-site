@@ -2,7 +2,7 @@
   "id": "./",
   "name": "עדכוניפיי · Updatify",
   "short_name": "עדכוניפיי",
-  "description": "עדכונים יומיים על האנשים והחברות שאתה עוקב אחריהם · Daily updates on the people and companies you follow",
+  "description": "עדכונים כל שעה על האנשים והחברות שאתה עוקב אחריהם · Hourly updates on the people and companies you follow",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

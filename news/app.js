@@ -1,4 +1,4 @@
-/* Updates (עדכונים): news feed from news.json (regenerated 3 times a day), with read tracking and saved (bookmarked) updates. */
+/* Updates (עדכונים): news feed from news.json (regenerated every hour), with read tracking and saved (bookmarked) updates. */
 (function () {
   "use strict";
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-news-theme", TOPIC_KEY = "rg-news-topic", BG_KEY = "rg-news-bg", LBG_KEY = "rg-news-bg-light", READ_KEY = "rg-news-read";
@@ -7,12 +7,12 @@
   var L = {
     he: {
       title: "עדכוניפיי", doc: "עדכוניפיי",
-      tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן 3 פעמים ביום",
+      tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן כל שעה",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
       all: "הכול", people: "אנשים", companies: "חברות ונושאים",
       read: "למקור", more: "קרא עוד", fullNA: "אין כרגע טקסט מלא לידיעה הזו. זה התקציר.", empty: "אין עדכונים בנושא הזה כרגע.",
       markRead: "✓ קראתי", markUnread: "↺ החזר לא נקרא", markAll: "✓ סמן הכל כנקרא", showRead: "הצג גם שנקראו", hideRead: "הסתר שנקראו",
-      caught: "קראת הכל!", caughtSub: "עדכונים חדשים מגיעים 3 פעמים ביום",
+      caught: "קראת הכל!", caughtSub: "עדכונים חדשים מגיעים כל שעה",
       error: "לא הצלחנו לטעון את העדכונים. בדוק את החיבור ונסה שוב.",
       offline: "מוצגים עדכונים שמורים (אין חיבור)",
       note: "התקצירים והטקסט המלא נכתבו על סמך המקורות המקושרים. לחיצה על „קרא עוד” פותחת את הכול כאן באפליקציה. אין לראות בתוכן ייעוץ רפואי או פיננסי.",
@@ -27,16 +27,20 @@
       saved: "שמורים", save: "שמור", unsave: "הסר משמורים", savedAt: "נשמר",
       savedEmpty: "עוד לא שמרת עדכונים", savedEmptySub: "לחץ על סימן השמירה שליד עדכון, והוא יחכה לך כאן גם אחרי שייעלם מהפיד.",
       savedCount: "עדכונים שמורים", savedOne: "עדכון שמור אחד",
+      copy: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
+      share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
+      gone: "העדכון שביקשת כבר לא זמין. הנה כל העדכונים.",
+      refresh: "רענון", refreshing: "מרענן…", newItems: "נוספו עדכונים חדשים", noNew: "אין עדכונים חדשים כרגע", noNet: "אין חיבור לאינטרנט", refreshFail: "הרענון לא הצליח, נסה שוב",
       locale: "he-IL"
     },
     en: {
       title: "Updatify", doc: "Updatify",
-      tagline: "News on the people and companies you follow, updated 3 times a day",
+      tagline: "News on the people and companies you follow, updated every hour",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
       all: "All", people: "People", companies: "Companies & topics",
       read: "Source", more: "Read more", fullNA: "There's no full text for this item yet. This is the summary.", empty: "No updates on this topic right now.",
       markRead: "✓ Read", markUnread: "↺ Mark unread", markAll: "✓ Mark all as read", showRead: "Show read", hideRead: "Hide read",
-      caught: "All caught up!", caughtSub: "New updates arrive 3 times a day",
+      caught: "All caught up!", caughtSub: "New updates arrive every hour",
       error: "Couldn't load updates. Check your connection and try again.",
       offline: "Showing saved updates (offline)",
       note: "Summaries and full texts are based on the linked sources. Tap “Read more” to read everything here in the app. Nothing here is medical or financial advice.",
@@ -51,6 +55,10 @@
       saved: "Saved", save: "Save", unsave: "Remove from saved", savedAt: "Saved",
       savedEmpty: "No saved updates yet", savedEmptySub: "Tap the bookmark next to any update and it will wait for you here, even after it leaves the feed.",
       savedCount: "saved updates", savedOne: "1 saved update",
+      copy: "© 2026 Healify Ltd. All rights reserved.",
+      share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
+      gone: "That update is no longer available. Here are all the updates.",
+      refresh: "Refresh", refreshing: "Refreshing…", newItems: "New updates added", noNew: "No new updates right now", noNet: "No internet connection", refreshFail: "Refresh failed, please try again",
       locale: "en-GB"
     }
   };
@@ -59,6 +67,8 @@
   var MORE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
   var BMK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
   var BMKF = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
+  var SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8l7.4-4M8.3 13.2l7.4 4"/></svg>';
+  var REFRESH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 1 0 17.7 17"/><path d="M20.5 4.5v7h-7"/></svg>';
   var EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
 
   function $(id) { return document.getElementById(id); }
@@ -291,6 +301,8 @@
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
+    renderRefreshBtn();
+    $("copyright").textContent = t().copy;
     if (readerId) renderReader();
     $("bg-btn").setAttribute("aria-label", t().bgBtn); $("bg-btn").title = t().bgBtn;
     $("bg-title").textContent = t().bgTitle; $("bg-close").setAttribute("aria-label", t().close);
@@ -330,7 +342,7 @@
       b.type = "button"; b.className = "chip" + (cls ? " " + cls : "");
       b.setAttribute("aria-pressed", topic === id ? "true" : "false");
       b.innerHTML = (icon || "") + esc(label) + (n ? '<span class="n">' + n + "</span>" : "");
-      b.onclick = function () { topic = id; if (id !== SAVED_VIEW) set(TOPIC_KEY, id); renderChips(); renderFeed(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+      b.onclick = function () { pinned = false; topic = id; if (id !== SAVED_VIEW) set(TOPIC_KEY, id); renderChips(); renderFeed(); window.scrollTo({ top: 0, behavior: "smooth" }); };
       nav.appendChild(b);
       if (topic === id && b.scrollIntoView) setTimeout(function () { b.scrollIntoView({ block: "nearest", inline: "center" }); }, 0);
     }
@@ -354,6 +366,7 @@
       "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
       '</p><div class="meta"><span class="when">' + (tl ? '<b class="tp">' + esc(tl) + "</b> · " : "") + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
       '</span><span class="acts">' + (inSaved ? "" : '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>") +
+      '<button type="button" class="sh" data-act="share" aria-label="' + esc(t().shareAria) + '" title="' + esc(t().shareAria) + '">' + SHARE + '<span>' + esc(t().share) + "</span></button>" +
       '<button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
   }
   function renderSaved() {
@@ -406,6 +419,7 @@
     var c = el.closest(".card"), act = el.getAttribute("data-act");
     if (el.classList.contains("src")) return; // opening the source doesn't mark it read; only the read button does
     if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
+    if (act === "share" && c) { shareItem(c.getAttribute("data-id")); return; }
     if (act === "save" && c) { saveItem(findItem(c.getAttribute("data-id"))); renderChips(); renderFeed(); return; }
     if (act === "unsave" && c) {
       unsaveItem(c.getAttribute("data-id"));
@@ -437,7 +451,126 @@
       offline = true;
     }).then(function () {
       loading = false; renderStatus(); renderChips(); renderFeed();
+      if (deepId !== null) handleDeepLink();
     });
+  }
+
+  /* ----- refresh button: re-fetch news.json past every cache, merge new items in, keep read/saved/tab/scroll ----- */
+  var refreshing = false;
+  function renderRefreshBtn() {
+    var b = $("refresh-btn"); if (!b) return;
+    b.innerHTML = '<span class="ri" aria-hidden="true">' + REFRESH + "</span><span>" + esc(refreshing ? t().refreshing : t().refresh) + "</span>";
+    b.classList.toggle("spin", refreshing); b.disabled = refreshing;
+    b.setAttribute("aria-busy", refreshing ? "true" : "false");
+  }
+  function mergeData(old, j) { // new items/topics win by id; items/topics only in the old copy stay in view
+    if (!old) return j;
+    var out = {}, k; for (k in j) out[k] = j[k];
+    var ids = {}, items = j.items.slice();
+    items.forEach(function (it) { ids[itemId(it)] = 1; });
+    old.items.forEach(function (it) { if (!ids[itemId(it)]) items.push(it); });
+    var tids = {}, topics = j.topics.slice();
+    topics.forEach(function (tp) { tids[tp.id] = 1; });
+    old.topics.forEach(function (tp) { if (!tids[tp.id]) topics.push(tp); });
+    out.items = items; out.topics = topics;
+    return out;
+  }
+  window.RGNewsRefresh = { merge: mergeData }; // for tests
+  function refreshNow() {
+    if (refreshing) return;
+    if (navigator.onLine === false) { toast(t().noNet); return; }
+    refreshing = true; renderRefreshBtn();
+    var before = {}; if (data) data.items.forEach(function (it) { before[itemId(it)] = 1; });
+    var y = window.scrollY, failMsg = null, added = false;
+    fetch("news.json?r=" + Date.now(), { cache: "no-store" }).then(function (r) {
+      if (!r.ok) { failMsg = t().refreshFail; throw new Error(r.status); } return r.json();
+    }).then(function (j) {
+      if (!j || !Array.isArray(j.items) || !Array.isArray(j.topics)) { failMsg = t().refreshFail; throw new Error("bad"); }
+      j.items.forEach(function (it) { if (!before[itemId(it)]) added = true; });
+      data = mergeData(data, j); offline = false; lastFetch = Date.now();
+      try { localStorage.setItem("rg-news-cache", JSON.stringify(data)); } catch (e) {}
+      renderStatus(); renderChips(); renderFeed();
+      window.scrollTo(0, y);
+      setTimeout(function () { window.scrollTo(0, y); }, 0); // after the active chip's scrollIntoView (renderChips) runs
+      if (readerId) renderReader();
+      toast(added ? t().newItems : t().noNew);
+    }).catch(function () {
+      toast(failMsg || t().noNet);
+    }).then(function () { refreshing = false; renderRefreshBtn(); });
+  }
+  $("refresh-btn").onclick = refreshNow;
+
+  /* ----- toast ----- */
+  var toastTimer = 0;
+  function toast(msg) {
+    var el = $("toast"); el.textContent = msg; el.hidden = false;
+    el.classList.remove("show"); el.offsetWidth; el.classList.add("show");
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.classList.remove("show"); setTimeout(function () { el.hidden = true; }, 250); }, 2400);
+  }
+
+  /* ----- share: deep link to one item (news/?item=<id>) ----- */
+  function itemLink(id) {
+    var base = new URL("./", location.href); // the news/ folder, without index.html, query or hash
+    return base.origin + base.pathname + "?item=" + encodeURIComponent(id);
+  }
+  function copyText(s) {
+    if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+      return navigator.clipboard.writeText(s).catch(function () { return legacyCopy(s); });
+    }
+    return legacyCopy(s);
+  }
+  function legacyCopy(s) {
+    return new Promise(function (ok, no) {
+      var ta = document.createElement("textarea"); ta.value = s; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.top = "-1000px"; ta.style.opacity = "0"; document.body.appendChild(ta);
+      ta.select(); var r = false; try { r = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); r ? ok() : no(new Error("copy"));
+    });
+  }
+  function shareItem(id) {
+    var it = findItem(id); if (!id) return;
+    var title = (it && pick(it).title) || t().title, url = itemLink(id);
+    function fallback() { copyText(url).then(function () { toast(t().copied); }, function () { toast(t().copyFail); }); }
+    if (navigator.share) {
+      navigator.share({ title: title, text: title, url: url }).catch(function (e) { if (!e || e.name !== "AbortError") fallback(); });
+    } else fallback();
+  }
+  window.RGNewsShare = { link: itemLink }; // for tests
+
+  /* ----- deep link: ?item=<id> (or #item=<id>) opens that item, in the right tab, expanded ----- */
+  var deepId = (function () {
+    var v = null;
+    try { v = new URLSearchParams(location.search).get("item"); } catch (e) {}
+    if (!v) { var m = /(?:^#|&)item=([^&]+)/.exec(location.hash || ""); if (m) { try { v = decodeURIComponent(m[1]); } catch (e) { v = m[1]; } } }
+    return v ? String(v).slice(0, 200) : null;
+  })();
+  var pinned = false; // while true, a synced topic preference doesn't switch away from the deep-linked item
+  function cleanUrl() {
+    try {
+      var u = new URL(location.href); u.searchParams.delete("item");
+      if (/(?:^#|&)item=/.test(u.hash)) u.hash = "";
+      history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+    } catch (e) {}
+  }
+  function handleDeepLink() {
+    var id = deepId; deepId = null; cleanUrl();
+    if (!data) return; // nothing loaded at all: the normal error message stays
+    var live = null;
+    for (var i = 0; i < data.items.length; i++) if (itemId(data.items[i]) === id) { live = data.items[i]; break; }
+    if (!live && !saved.items[id]) { if (topic === SAVED_VIEW) topic = "all"; renderChips(); renderFeed(); toast(t().gone); return; }
+    if (live) {
+      if (isRead(id)) showRead = true;
+      if (topic !== "all" && topic !== live.topic) topic = topic === SAVED_VIEW && isSaved(id) ? SAVED_VIEW : live.topic;
+    } else topic = SAVED_VIEW; // only kept as a saved copy
+    pinned = true;
+    renderChips(); renderFeed();
+    var c = $("feed").querySelector('.card[data-id="' + (window.CSS && CSS.escape ? CSS.escape(id) : id.replace(/"/g, "")) + '"]');
+    if (c) {
+      c.classList.add("deep");
+      c.scrollIntoView({ block: "center" });
+      setTimeout(function () { c.classList.remove("deep"); }, 4000);
+    }
+    openReader(id);
   }
 
 
@@ -480,6 +613,7 @@
     box.innerHTML = f ? richText(f.text) : '<p>' + esc(c.summary) + '</p><p class="na">' + esc(t().fullNA) + "</p>";
     var a = $("rd-src"); a.href = safeUrl(it.url); a.innerHTML = esc(t().read) + EXT;
     $("rd-close").setAttribute("aria-label", t().close); $("rd-close").title = t().close;
+    var sb = $("rd-share"); sb.innerHTML = SHARE + "<span>" + esc(t().share) + "</span>"; sb.setAttribute("aria-label", t().shareAria); sb.title = t().shareAria;
   }
   function openReader(id) {
     readerId = id; readerFrom = document.activeElement; renderReader();
@@ -495,6 +629,7 @@
     if (readerFrom && readerFrom.focus) readerFrom.focus();
   }
   $("rd-close").onclick = closeReader;
+  $("rd-share").onclick = function () { if (readerId) shareItem(readerId); };
   $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReader(); });
 
@@ -600,7 +735,7 @@
       if (THEME_KEY in c) theme = c[THEME_KEY] === "light" ? "light" : "dark";
       if (BG_KEY in c && /^([1-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
       if (LBG_KEY in c && /^([0-9]|10)$/.test(c[LBG_KEY] || "")) { lbg = c[LBG_KEY]; document.documentElement.setAttribute("data-lbg", lbg); }
-      if (TOPIC_KEY in c && c[TOPIC_KEY]) topic = c[TOPIC_KEY];
+      if (TOPIC_KEY in c && c[TOPIC_KEY] && !pinned && deepId === null) topic = c[TOPIC_KEY];
       renderAll(); return true;
     });
   }
