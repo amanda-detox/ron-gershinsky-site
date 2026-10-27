@@ -1,4 +1,4 @@
-/* משחק האור · Game of Light: 3D (Three.js r170, vendored, MIT). No build step. */
+/* לייטיפיי · Lightify: 3D (Three.js r170, vendored, MIT). No build step. */
 import * as THREE from './three.module.min.js';
 
 /* ================= i18n ================= */
@@ -6,7 +6,7 @@ const COPY_HE = '© כל הזכויות שמורות לחברת היליפיי �
 const COPY_EN = '© 2026 Healify Ltd. All rights reserved.';
 const T = {
   he: {
-    title: 'משחק האור', tag: 'שלח אור, יונים וברכות, ועזור לצללים להתמלא באור ולעלות לרקיע',
+    title: 'לייטיפיי', tag: 'שלח אור, יונים וברכות, ועזור לצללים להתמלא באור ולעלות לרקיע',
     start: 'התחל', angle: 'זווית מצלמה', soundOn: '🔊 צליל: פועל', soundOff: '🔈 צליל: כבוי', langBtn: 'English',
     install: '📲 התקנה למסך הבית', souls: 'נשמות שעלו', wave: 'גל', paused: 'הפסקה', resume: 'המשך', toMenu: 'לתפריט',
     overT: 'האור התעמעם לרגע', overS: 'אבל האור תמיד חוזר. רוצה לנסות שוב?', best: 'שיא', again: 'נסה שוב',
@@ -14,13 +14,13 @@ const T = {
     waveB: 'גל {n}', ready: 'מוכן',
     help: 'בטלפון: אגודל שמאל מזיז, אגודל ימין מכוון (האור יוצא לבד). הכפתורים למטה מפעילים את הכוחות המיוחדים, והעיגולים למעלה מחליפים גיבור. החברים ממשיכים לעזור לבד.<br>במחשב: WASD או חצים לתנועה, עכבר לכיוון, ‏1/2/3 להחלפת גיבור, ‏Q לכוח הראשון, ‏E או רווח לכוח הגדול, ‏P להפסקה.',
     heroes: [
-      { n: 'שליח האור', p: ['קרן אור', 'יוני שלום', 'סופת ברכות מחשמלות'], s: ['קרן אור', 'יוני שלום', 'סופת ברכות'] },
-      { n: 'שומרת הקשת', p: ['חיבוק חמימות', 'גשר קשת', 'הספירות'], s: ['חיבוק חמימות', 'גשר קשת', 'הספירות'] },
-      { n: 'זורע הכוכבים', p: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'], s: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'] }
+      { p: ['קרן אור', 'יוני שלום', 'סופת ברכות מחשמלות'], s: ['קרן אור', 'יוני שלום', 'סופת ברכות'] },
+      { p: ['חיבוק חמימות', 'גשר קשת', 'הספירות'], s: ['חיבוק חמימות', 'גשר קשת', 'הספירות'] },
+      { p: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'], s: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'] }
     ]
   },
   en: {
-    title: 'Game of Light', tag: 'Send light, doves and blessings, and help the shadows fill with light and rise to the heavens',
+    title: 'Lightify', tag: 'Send light, doves and blessings, and help the shadows fill with light and rise to the heavens',
     start: 'Start', angle: 'Camera angle', soundOn: '🔊 Sound: on', soundOff: '🔈 Sound: off', langBtn: 'עברית',
     install: '📲 Install to home screen', souls: 'Souls lifted', wave: 'Wave', paused: 'Paused', resume: 'Resume', toMenu: 'Menu',
     overT: 'The light dimmed for a moment', overS: 'But the light always returns. Try again?', best: 'Best', again: 'Try again',
@@ -28,9 +28,9 @@ const T = {
     waveB: 'Wave {n}', ready: 'Ready',
     help: 'Phone: left thumb moves, right thumb aims (the light flows on its own). The buttons at the bottom fire special powers; the circles at the top switch hero. Your friends keep helping on their own.<br>Desktop: WASD or arrows to move, mouse to aim, 1/2/3 to switch hero, Q for the first power, E or Space for the big power, P to pause.',
     heroes: [
-      { n: 'Light Bearer', p: ['Beam of light', 'Peace doves', 'Blizzard of electrifying blessings'], s: ['Light beam', 'Peace doves', 'Blessing storm'] },
-      { n: 'Rainbow Keeper', p: ['Embrace of warmth', 'Rainbow bridge', 'The Sefirot'], s: ['Warm embrace', 'Rainbow bridge', 'The Sefirot'] },
-      { n: 'Star Sower', p: ['Heart lantern', 'Rain of stars', 'Seeds of light'], s: ['Heart lantern', 'Star rain', 'Seeds of light'] }
+      { p: ['Beam of light', 'Peace doves', 'Blizzard of electrifying blessings'], s: ['Light beam', 'Peace doves', 'Blessing storm'] },
+      { p: ['Embrace of warmth', 'Rainbow bridge', 'The Sefirot'], s: ['Warm embrace', 'Rainbow bridge', 'The Sefirot'] },
+      { p: ['Heart lantern', 'Rain of stars', 'Seeds of light'], s: ['Heart lantern', 'Star rain', 'Seeds of light'] }
     ]
   }
 };
@@ -828,17 +828,17 @@ function chime() { // soft bell when a soul rises (powers themselves are silent)
 function applyLang() {
   const L = T[lang];
   document.documentElement.lang = lang; document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-  document.title = L.title + (lang === 'he' ? ' · Game of Light' : ' · משחק האור');
+  document.title = L.title + (lang === 'he' ? ' · Lightify' : ' · לייטיפיי');
   document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = L[el.dataset.t]; });
   $('help').innerHTML = L.help; $('langBtn').textContent = L.langBtn;
   [$('soundBtn'), $('sound2Btn')].forEach((b) => (b.textContent = soundOn ? L.soundOn : L.soundOff));
-  $('heroCards').innerHTML = L.heroes.map((h, i) => `<div class="hcard"><b>${svg('h' + i, 20)} ${h.n}</b>${h.p.map((p, j) => `<span class="p">${svg(HERO_ICONS[i][j], 14)} ${p}${j === 0 ? ` <i>(${L.auto})</i>` : ''}</span>`).join('')}</div>`).join('');
+  $('heroCards').innerHTML = L.heroes.map((h, i) => `<div class="hcard"><b>${svg('h' + i, 20)}</b>${h.p.map((p, j) => `<span class="p">${svg(HERO_ICONS[i][j], 14)} ${p}${j === 0 ? ` <i>(${L.auto})</i>` : ''}</span>`).join('')}</div>`).join('');
   if (!$('installHint').classList.contains('hidden')) $('installHint').innerHTML = instHint();
   buildHeroBtns(); updatePowerBtns();
 }
 function buildHeroBtns() {
   const box = $('hbtns');
-  box.innerHTML = [0, 1, 2].map((i) => `<button class="hbtn${i === lead ? ' on' : ''}" data-h="${i}" aria-label="${T[lang].heroes[i].n}">${svg('h' + i, 26)}<small>${i + 1}</small></button>`).join('');
+  box.innerHTML = [0, 1, 2].map((i) => `<button class="hbtn${i === lead ? ' on' : ''}" data-h="${i}" aria-label="${i + 1}">${svg('h' + i, 26)}<small>${i + 1}</small></button>`).join('');
   box.querySelectorAll('.hbtn').forEach((b) => b.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); setLead(+b.dataset.h); }));
 }
 function setLead(i) { if (!heroes[i]) return; lead = i; buildHeroBtns(); updatePowerBtns(); }
