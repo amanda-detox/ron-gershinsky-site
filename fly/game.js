@@ -1,4 +1,4 @@
-/* עפיפיי · Flyify — relaxed 3D flying. three.js r170 (vendored, MIT). */
+/* פלייפיי · Playify — relaxed 3D flying. three.js r170 (vendored, MIT). */
 import * as THREE from './three.module.min.js';
 
 const $ = (id) => document.getElementById(id);
@@ -14,7 +14,7 @@ const damp = (k, dt) => 1 - Math.exp(-k * dt);
 /* ================= texts ================= */
 const T = {
   he: {
-    title: 'עפיפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בוחרים דמות', world: 'עולם', view: 'זווית צפייה',
+    title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בוחרים דמות', world: 'עולם', view: 'זווית צפייה',
     start: 'להמריא ✨', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
     helpTouch: 'אגודל שמאל על הג׳ויסטיק: פונים ועולים או יורדים. בצד ימין: ▲ למעלה, ▼ למטה, ⚡ מהירות. אוספים ניצוצות אור ועוברים דרך הטבעות הזהובות.',
@@ -29,7 +29,7 @@ const T = {
     cams: ['מאחורי הדמות', 'מבעד לעיניים', 'מהצד', 'מלמעלה']
   },
   en: {
-    title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
+    title: 'Playify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
     start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
     helpTouch: 'Left thumb on the joystick: turn and climb or dive. On the right: ▲ up, ▼ down, ⚡ speed. Collect sparks of light and fly through the golden rings.',
@@ -805,7 +805,7 @@ function applyLang() {
   d.lang = lang; d.dir = lang === 'he' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-t]').forEach((el) => { const v = L[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
   if (resumable) $('startBtn').textContent = L.resume;
-  document.title = lang === 'he' ? 'עפיפיי · Flyify' : 'Flyify · עפיפיי';
+  document.title = lang === 'he' ? 'פלייפיי · Playify' : 'Playify · פלייפיי';
   $('langBtn').textContent = L.lang;
   $('help').textContent = isTouch ? L.helpTouch : L.helpDesk;
   const chars = $('chars');
