@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-27T21:00:24+02:00",
+  "updated": "2026-10-27T22:04:09+02:00",
   "topics": [
     {
       "id": "musk",
@@ -137,6 +137,57 @@
   ],
   "items": [
     {
+      "id": "musk-reich-nationalize-spacex",
+      "topic": "musk",
+      "date": "2026-10-27T19:58:02Z",
+      "url": "https://x.com/i/trending/2115092533248233674",
+      "source": "X",
+      "he": {
+        "title": "רוברט רייך קורא לקחת מידי מאסק את SpaceX ו-Starlink, ומאסק: זה פשע",
+        "summary": "שר העבודה לשעבר רוברט רייך אמר בפודקאסט שהדמוקרטים צריכים \"לייבש\" את מאסק ולהתכונן להלאים את SpaceX ו-Starlink. מאסק השיב ב-X שגניבת חברות היא פשע חמור שמגיע עליו כלא."
+      },
+      "en": {
+        "title": "Robert Reich calls for nationalizing SpaceX and Starlink; Musk calls it a crime",
+        "summary": "Former Labor Secretary Robert Reich said on a podcast that Democrats should defund Musk and prepare to take over SpaceX and Starlink. Musk replied on X that stealing companies is a serious crime worthy of prison."
+      },
+      "full_he": "רוברט רייך לא בחר במילים עדינות בפודקאסט: לדבריו, הדמוקרטים צריכים \"לייבש\" את אילון מאסק ולהתכונן להשתלט על SpaceX ועל Starlink. מאסק הגיב בחדות וכתב שזה פשע חמור שמגיע עליו כלא.\n\n• בפודקאסט The Coffee Klatch קרא שר העבודה לשעבר רוברט רייך לדמוקרטים להפוך את החברות של מאסק לגופים ציבוריים, בגלל החשש מכך שאדם אחד שולט בנכסים של ביטחון לאומי, כמו Starlink באוקראינה.\n• מבקרים ברשת כינו את הרעיון קומוניזם, והזכירו את החוזים של SpaceX עם הממשלה ואת החידושים שלה, כמו שיגורים זולים יותר. היו גם שהזכירו שמאסק נתן לאוקראינה בהתחלה סיוע בחינם.\n• מאסק השיב ב-X שגניבת חברות היא פשע, והדבר הצית ויכוח על יוזמה פרטית מול אחריות ציבורית לקראת בחירות האמצע.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+      "full_en": "Robert Reich didn't mince words on a podcast: Democrats should defund Elon Musk and prepare to take over SpaceX and Starlink. Musk fired back bluntly, calling it a serious crime worthy of prison.\n\n• On 'The Coffee Klatch' podcast, former Labor Secretary Robert Reich urged Democrats to turn Musk's companies into public entities, citing concerns over one man's control of national security assets like Starlink in Ukraine.\n• Critics online branded the idea communism, pointing to SpaceX's government contracts and innovations like cheaper launches, while some noted Musk's initial free aid to Ukraine.\n• Musk replied on X that stealing companies is a crime, fueling debates on private enterprise versus public accountability ahead of the midterms.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+    },
+    {
+      "id": "grokbot-30-value",
+      "topic": "grokbot",
+      "date": "2026-10-27T19:31:38Z",
+      "url": "https://x.com/i/trending/2115162232443080716",
+      "source": "X",
+      "he": {
+        "title": "משתמשים שואלים: האם Grok Bot שווה 30 דולר בחודש?",
+        "summary": "Grok Bot מציע סוכני AI עם שם שנכנסים לאפליקציות, לומדים תהליך מהדגמה אחת ומטפלים במשימות במחשב ענן קבוע. משתמשים מוקדמים משבחים את החיסכון בשעות עבודה, וספקנים מתלוננים שהמכסה בתוכנית הבסיסית נגמרת מהר."
+      },
+      "en": {
+        "title": "Users weigh whether Grok Bot is worth $30 a month",
+        "summary": "Grok Bot offers named AI agents that log into apps, learn a workflow from one demo and handle tasks on a persistent cloud computer. Early users praise the hours saved, while skeptics say the base plan's quota runs out quickly."
+      },
+      "full_he": "משתמש אחד הסתכל על דף האפליקציה ותהה: האם ההבטחה של Grok Bot לחברי צוות מבוססי AI שמטפלים במשימות אמיתיות מצדיקה את התשלום של 30 דולר?\n\n• Grok Bot מציע סוכני AI עם שם, שנכנסים לאפליקציות, לומדים תהליכי עבודה מהדגמה אחת ומנהלים משימות כמו מיון מיילים, מחקר או תיאום פגישות, על מחשב ענן קבוע.\n• הוא כלול במנוי X Premium ב-30 דולר לחודש.\n• משתמשים מוקדמים משבחים אותו על החיסכון בשעות של עבודה חוזרת, ואחד מהם קרא לו התוכנה הטובה ביותר בעשור לבעלי עסקים.\n• הספקנים מצביעים על כך שהמכסה בתוכנית הבסיסית נגמרת מהר, ושואלים אם הוא מתאים לשימוש מזדמן ולא רק לאוטומציה ייעודית.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+      "full_en": "One user stared at the app listing and wondered: does Grok Bot's promise of AI teammates who handle real tasks make the $30 fee worthwhile?\n\n• Grok Bot offers named AI agents that log into apps, learn workflows from one demo, and manage tasks like email triage, research or scheduling on a persistent cloud computer.\n• It's bundled with X Premium at $30 a month.\n• Early users praise it for saving hours on repetitive work, with one calling it the best software in a decade for business owners.\n• Skeptics point to quick quota burnout on the base plan and question whether it suits casual needs rather than specialized automation.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+    },
+    {
+      "id": "mm-ebv-thyroid-stage3",
+      "topic": "medicalmedium",
+      "date": "2026-10-27T19:02:19Z",
+      "url": "https://x.com/MedicalMedium/status/2115157160485441621",
+      "source": "X · @MedicalMedium",
+      "he": {
+        "title": "מדיקל מדיום: תת-פעילות של בלוטת התריס, PCOS והשימוטו – וירוס אחד מחבר ביניהם",
+        "summary": "לטענתו, תת-פעילות של בלוטת התריס, השימוטו, גרייבס, קשריות וגם בעיות פוריות הן \"שלב שלוש\" של וירוס אפשטיין-בר. זו טענה שלו ולא הקונצנזוס הרפואי, שלא רואה ב-EBV את הגורם למחלות האלה."
+      },
+      "en": {
+        "title": "Medical Medium: hypothyroidism, PCOS and Hashimoto's – one virus connects them",
+        "summary": "He claims hypothyroidism, Hashimoto's, Graves', thyroid nodules and reproductive problems are \"stage three\" Epstein-Barr virus. This is his claim, not medical consensus, which doesn't treat EBV as the cause of these conditions."
+      },
+      "full_he": "תת-פעילות של בלוטת התריס. PCOS. השימוטו. וירוס אחד מחבר ביניהם\n\nמאבחנים אצלך תת-פעילות של בלוטת התריס. אחר כך אולי זה השימוטו, גרייבס, קשריות או ציסטות בבלוטת התריס. אולי יש לך גם בעיות מסתוריות במערכת הרבייה.\n\nמה שאתה לא יודע, לדבריו, זה שמדובר בשלב שלוש של וירוס אפשטיין-בר (EBV).\n\nלטענתו, בשלב הזה הווירוס כבר מתרבה ומגדיל את מספרו לאורך זמן. הוא יכול לעבור לבלוטת התריס, ליצור שם בעיות, ולעמוד גם מאחורי בעיות פוריות.\n\nאם אתה יודע מול מה אתה עומד, הוא כותב, אתה יכול סוף סוף להתחיל לטפל בבעיה האמיתית.\n\n(בסוף הפוסט: קישור לשידור חי ביוטיוב, קישור להורדת מדריך ריפוי חינמי וקישור לספר הפרוטוקולים שלו.)\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: זו טענה של מדיקל מדיום ולא עצה רפואית. לפי הקונצנזוס הרפואי, השימוטו וגרייבס הן מחלות אוטואימוניות ו-PCOS היא הפרעה הורמונלית, ואין הוכחה שוירוס אפשטיין-בר גורם להן.",
+      "full_en": "Hypothyroidism. PCOS. Hashimoto's. One Virus Connects Them\n\nYou get diagnosed with hypothyroidism. Then maybe it's Hashimoto's, Graves', nodules or cysts on the thyroid. Maybe you're dealing with mysterious reproductive problems too.\n\nWhat you don't know is that this is stage three Epstein-Barr.\n\nAt this stage, the virus has been proliferating and building its numbers over time. It can move into the thyroid, create problems there, and be behind reproductive issues too.\n\nIf you know what you're up against, you can finally start going after the real problem.\n\n(At the end of the post: a livestream link on YouTube, a free healing guide download and a link to his protocols book.)\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is Medical Medium's claim, not medical advice. Mainstream medicine considers Hashimoto's and Graves' autoimmune diseases and PCOS a hormonal disorder, and there's no evidence that Epstein-Barr virus causes them."
+    },
+    {
       "id": "tesla-spacex-shares-merger-confirm",
       "topic": "tesla",
       "date": "2026-10-27T18:53:26Z",
@@ -152,6 +203,23 @@
       },
       "full_he": "מניות טסלה ו-SpaceX זינקו ביום שני, כשמשקיעים התרגשו מהאישור לכך שמתנהלות שיחות על מיזוג אפשרי בין שתי החברות של אילון מאסק.\n\n• ועדות עצמאיות בטסלה וב-SpaceX בוחנות איחוד בין החברות.\n• מאסק אמר שזה רעיון טוב בגלל החפיפה בתחומי הבינה המלאכותית, הרובוטיקה, השבבים והמחשוב, אבל הוא הוציא את עצמו מהדיונים.\n• מניית טסלה הגיעה ל-404.69 דולר, עלייה של 3.34%, ו-SpaceX הגיעה ל-149.69 דולר, עלייה של 1.90%. השווי המשותף שלהן עבר את 3.63 טריליון דולר.\n• אנליסטים כמו דן אייבס מעריכים את הסיכוי לעסקה ב-80–90% עד סוף 2027, ולדבריהם היא עשויה להעמיד את מניית טסלה על 500 דולר.\n• הספקנים שואלים מה יוצא מזה לבעלי המניות של SpaceX, ומזכירים שנדרש אישור של לפחות 50% מהמניות של טסלה.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
       "full_en": "Tesla and SpaceX stocks jumped Monday as investors buzzed over confirmed talks of a potential merger between Elon Musk's companies.\n\n• Independent committees at both Tesla and SpaceX are exploring a combination.\n• Musk called it a good idea due to overlaps in AI, robotics, chips and computing, though he has recused himself from the discussions.\n• Tesla shares hit $404.69, up 3.34%, while SpaceX reached $149.69, up 1.90%, pushing their combined value over $3.63 trillion.\n• Analysts like Dan Ives put the odds of a deal at 80–90% by the end of 2027, potentially valuing Tesla at $500.\n• Skeptics question the benefits for SpaceX shareholders and stress the need for approval from at least 50% of Tesla's outstanding shares.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+    },
+    {
+      "id": "johnson-ai-agent-joke-fb",
+      "topic": "johnson",
+      "date": "2026-10-27T18:33:22Z",
+      "url": "https://x.com/bryan_johnson/status/2115149874463465946",
+      "source": "X · @bryan_johnson",
+      "he": {
+        "title": "בריאן ג'ונסון: הבדיחה על סוכן ה-AI הנוקם נלקחה ברצינות בפייסבוק",
+        "summary": "הצוות שלו העלה לפייסבוק את הפוסט על סוכן AI ששולח מיילים לחברים של מי שהשמיץ אותו, בלי התגובות שבהן הבהיר שזו בדיחה. לדבריו, אנשי פייסבוק \"מתכוננים ליום הדין\"."
+      },
+      "en": {
+        "title": "Bryan Johnson: his AI-revenge-agent joke was taken seriously on Facebook",
+        "summary": "His team reposted his post about an AI agent emailing critics' networks to Facebook without his replies saying it was a joke. He says the people of Facebook are \"preparing for judgment day.\""
+      },
+      "full_he": "הצוות שלי העלה את זה מחדש לפייסבוק בלי התגובות שלי שחשפו שאני צוחק.\n\nאנשי פייסבוק מתכוננים ליום הדין, חחח.\n\nבתמונה המצורפת: צילום מסך של פוסט ב-X של גרג פירסון (@GDNPearson): \"אם מישהו מהעוקבים ה'רבים' שלי יקבל מייל שאומר שקראתי ל-@bryan_johnson דוש מצמרר, בדיקת עובדות: נכון.\" מתחתיו צילום של הפוסט בפייסבוק של ג'ונסון (2.9 אלף תגובות רגש, 565 תגובות, 52 שיתופים).\n\nהפוסט שהוא ציטט (מ-21 באוקטובר):\n\nיש לי סוכן AI שמתעד כל תגובה שלילית שמישהו כותב עליי ברשת.\n\nהוא בונה פרופיל של האדם, ממפה את כל הקשרים החברתיים שלו ומוצא את כל כתובות המייל שלהם.\n\nמחר בבוקר סוכן ה-AI שלי ישלח מייל לכל הרשת החברתית המורחבת של כל אחד, עם פירוט של הדברים הנוראיים שהוא אמר עליי.\n\nהתגובות שלו עצמו בשרשור המקורי:\n\nסתם, זה לא רק לרשת החברתית שלהם, אלא גם לרשת המורחבת של כל מי שהם מכירים.\n\nאני באמת רק צוחק על כל זה. תדאגו להיות במיטה בזמן הלילה.",
+      "full_en": "My team reposted to FB without including my replies that revealed I was joking\n\nThe people of FB are preparing for judgment day lol\n\nThe attached image: a screenshot of an X post by Greg Pearson (@GDNPearson): \"If any of my 'numerous' followers get an email saying I called @bryan_johnson a creepy douche, fact check: True\", quoting a screenshot of Johnson's Facebook post (2.9K reactions, 565 comments, 52 shares).\n\nThe quoted post (from October 21):\n\nI have an AI agent that logs every negative comment someone makes about me online.\n\nIt then creates a profile of the person, maps all of their social connections, and finds all their emails.\n\nTomorrow morning, my AI agent will sent out an email blast to everyone's extended social network, detailing the horrible things they've said about me.\n\nHis own replies in the original thread:\n\nJust kidding, it's not just to their social network, but to the extended network of everyone they know as well.\n\nI'm for real just kidding on all of this.\n\nMake sure you're in bed on time tonight."
     },
     {
       "id": "musk-cornel-west-dark-money",
@@ -188,21 +256,21 @@
       "full_en": "Madness\n\nThe quoted post (Colin Wright, @SwipeWright):\n\nALERT: The editors of the journal Men and Masculinities will no longer allow authors to refer to individuals as being \"male.\"\n\nIf an author uses the term, they should \"specify which dimension(s) of sex are at issue, since sex itself refers to several only loosely correlated dimensions rather than a single underlying fact.\"\n\nFor example, trans-identifying male swimmer Lia Thomas must be referred to as a woman, and his maleness, if mentioned at all, must be attached to specific traits, like genitals, hormones, and chromosomes.\n\nYou cannot call Lia Thomas a \"male\" in this journal, but a woman with \"male genitals\" and \"male sex chromosomes.\"\n\nThe first author of this editorial—the Managing Editor of Men and Masculinities, Tristen Kade—is a woman who identifies as a man.\n\nThe model of biological sex this editorial is pushing is what I refer to in my scholarly article \"Why There Are Exactly Two Sexes\" as the \"multi-level\" sex model. This model is not merely wrong—it is self-refuting.\n\nFrom my article: \"Traits are labeled 'male-typical' or 'female-typical' only because they correlate with organisms already identified as male or female—an identification that, in anisogamous species, is made ultimately by reference to gametes.\"\n\nRead my article at the link (link.springer.com).\n\nThe quoted post includes two images (screenshots of the editorial) that aren't transcribed here. Musk added no replies of his own in the thread."
     },
     {
-      "id": "johnson-ai-agent-joke-fb",
-      "topic": "johnson",
-      "date": "2026-10-27T18:33:22Z",
-      "url": "https://x.com/bryan_johnson/status/2115149874463465946",
-      "source": "X · @bryan_johnson",
+      "id": "ss-nico-17-apps-265k",
+      "topic": "starterstory",
+      "date": "2026-10-27T17:39:19Z",
+      "url": "https://x.com/starter_story/status/2115136271261798723",
+      "source": "X · @starter_story",
       "he": {
-        "title": "בריאן ג'ונסון: הבדיחה על סוכן ה-AI הנוקם נלקחה ברצינות בפייסבוק",
-        "summary": "הצוות שלו העלה לפייסבוק את הפוסט על סוכן AI ששולח מיילים לחברים של מי שהשמיץ אותו, בלי התגובות שבהן הבהיר שזו בדיחה. לדבריו, אנשי פייסבוק \"מתכוננים ליום הדין\"."
+        "title": "נעל את עצמו בחדר מלון, למד לתכנת ומכר שתי אפליקציות ב-265 אלף דולר",
+        "summary": "ניקו למד לתכנת חודשיים בחדר מלון ובנה 17 אפליקציות בשנה. רובן נכשלו, אבל את makelogo.ai ואת Stalknot הוא מכר יחד ב-265 אלף דולר."
       },
       "en": {
-        "title": "Bryan Johnson: his AI-revenge-agent joke was taken seriously on Facebook",
-        "summary": "His team reposted his post about an AI agent emailing critics' networks to Facebook without his replies saying it was a joke. He says the people of Facebook are \"preparing for judgment day.\""
+        "title": "He locked himself in a hotel room, learned to code and sold two apps for $265K",
+        "summary": "Nico taught himself to code in two months in a hotel room and shipped 17 apps in a year. Most flopped, but he sold makelogo.ai and Stalknot for a combined $265,000."
       },
-      "full_he": "הצוות שלי העלה את זה מחדש לפייסבוק בלי התגובות שלי שחשפו שאני צוחק.\n\nאנשי פייסבוק מתכוננים ליום הדין, חחח.\n\nבתמונה המצורפת: צילום מסך של פוסט ב-X של גרג פירסון (@GDNPearson): \"אם מישהו מהעוקבים ה'רבים' שלי יקבל מייל שאומר שקראתי ל-@bryan_johnson דוש מצמרר, בדיקת עובדות: נכון.\" מתחתיו צילום של הפוסט בפייסבוק של ג'ונסון (2.9 אלף תגובות רגש, 565 תגובות, 52 שיתופים).\n\nהפוסט שהוא ציטט (מ-21 באוקטובר):\n\nיש לי סוכן AI שמתעד כל תגובה שלילית שמישהו כותב עליי ברשת.\n\nהוא בונה פרופיל של האדם, ממפה את כל הקשרים החברתיים שלו ומוצא את כל כתובות המייל שלהם.\n\nמחר בבוקר סוכן ה-AI שלי ישלח מייל לכל הרשת החברתית המורחבת של כל אחד, עם פירוט של הדברים הנוראיים שהוא אמר עליי.\n\nהתגובות שלו עצמו בשרשור המקורי:\n\nסתם, זה לא רק לרשת החברתית שלהם, אלא גם לרשת המורחבת של כל מי שהם מכירים.\n\nאני באמת רק צוחק על כל זה. תדאגו להיות במיטה בזמן הלילה.",
-      "full_en": "My team reposted to FB without including my replies that revealed I was joking\n\nThe people of FB are preparing for judgment day lol\n\nThe attached image: a screenshot of an X post by Greg Pearson (@GDNPearson): \"If any of my 'numerous' followers get an email saying I called @bryan_johnson a creepy douche, fact check: True\", quoting a screenshot of Johnson's Facebook post (2.9K reactions, 565 comments, 52 shares).\n\nThe quoted post (from October 21):\n\nI have an AI agent that logs every negative comment someone makes about me online.\n\nIt then creates a profile of the person, maps all of their social connections, and finds all their emails.\n\nTomorrow morning, my AI agent will sent out an email blast to everyone's extended social network, detailing the horrible things they've said about me.\n\nHis own replies in the original thread:\n\nJust kidding, it's not just to their social network, but to the extended network of everyone they know as well.\n\nI'm for real just kidding on all of this.\n\nMake sure you're in bed on time tonight."
+      "full_he": "פגשתי בחור בשם ניקו שממש נעל את עצמו בחדר מלון לחודשיים, לימד את עצמו לתכנת ויצא משם בונה אפליקציות.\n\nבשנה אחת הוא השיק 17 אפליקציות.\n\nרובן נכשלו. אבל שתיים מהן, makelogo.ai ו-Stalknot, הוא מכר יחד ב-265,000 דולר.\n\n• makelogo.ai: מחולל לוגואים בבינה מלאכותית. תשלום חד-פעמי, חבילות של 5, 10 או 15 לוגואים. הכניס 26 אלף דולר במכירות, ונמכר ב-65 אלף דולר במזומן אחרי שקונה אמר לו: \"אני לא רוצה לבזבז זמן על התמחרות, נסגור תוך שבועיים\".\n• Stalknot: הופכת הקלטות קוליות לטקסט מעוצב. כ-10,000 משתמשים; התחילה עם כרטיס חד-פעמי ועברה למנוי של 12 דולר לחודש. הכניסה 77 אלף דולר במכירות לפני שנמכרה ב-200 אלף דולר ביולי האחרון.\n\nהחלק המטורף: הוא הגדיל את Stalknot מאפס ל-7,000 דולר הכנסה חודשית חוזרת עם מודעות פייסבוק, בתקציב של 20–100 דולר ביום בלבד. המודעה הכי טובה שלו? בחור ששילם לו כדי שיצלם את עצמו קורא תסריט במשרד. הוא אפילו לא הזכיר את שם האפליקציה עד הסוף.\n\nהעצה שלו לניקו של אז, בחדר המלון: \"אל תנסה להרוויח 100 אלף דולר בפרויקט הראשון שלך\".\n\nתרוויח את הדולר הראשון.\nתצבור ניצחונות קטנים.\n\nבתמונה שבפוסט: ניקו מול גרף 'Gross volume' של 77,046.74 דולר (יוני 2023 עד אוגוסט 2024), עם הכיתוב: \"נעלתי את עצמי בחדר כדי ללמוד לתכנת. 12 חודשים אחר כך מכרתי את האפליקציות שלי ב-265,000 דולר\".",
+      "full_en": "I met this guy Nico who literally locked himself in a hotel room for 2 months, taught himself to code, and walked out building apps.\n\nIn one year he shipped 17 of them.\n\nMost flopped. But two of them, makelogo.ai and Stalknot, he sold for a combined $265,000.\n\n• makelogo.ai was an AI logo generator. One-time payment, packs of 5/10/15 logos. Did $26K in sales, then sold for $65K cash after a buyer told him \"I don't want to waste time bidding, finalize in 2 weeks.\"\n• Stalknot turned voice notes into formatted text. ~10,000 users, started at a one-time pass, switched to $12/month. Did $77K in sales before he sold it for $200K last July.\n\nThe wild part: he grew Stalknot from $0 to $7K MRR on Facebook ads spending just $20–$100/day. His best ad? A guy he paid to record himself reading a script in his office. Didn't even mention the app name until the end.\n\nHis advice to past-Nico in that hotel room: \"don't try to make $100K on your first project\"\n\nMake your first dollar.\nCompound small wins.\n\nThe image in the post: Nico in front of a 'Gross volume' chart of US$77,046.74 (June 2023 to August 2024), captioned \"I locked myself in a room to learn coding. 12 months later, I sold my apps for $265,000\"."
     },
     {
       "id": "johnson-semen-microplastics-zero",
@@ -220,23 +288,6 @@
       },
       "full_he": "עד 100% מהגברים יש מיקרופלסטיק בזרע.\n\nאני הורדתי את שלי לאפס. המקרה המתועד הראשון.\n\nמחקר מ-2024 מצא מיקרופלסטיק ב-100% מרקמות האשכים של בני אדם ושל כלבים.\n\nבמחקר אחר נמצא מיקרופלסטיק בזרע ובשתן של כל 113 הגברים שנבדקו בסין.\n\nהחוקרים פילחו לפי סוג הפלסטיק ובדקו איך כל סוג השפיע על איכות הזרע.\n\nהסוגים הנפוצים ביותר הגיעו מאריזות (פוליסטירן, פוליפרופילן ופוליאתילן).\n\nה-PTFE, הפולימר הסינתטי שמשמש במחבתות טפלון, התגלה כמזיק ביותר: ריכוז זרע נמוך ב-11% ו-9% פחות זרעונים בסך הכול.\n\nעשרה מחקרים מדדו מיקרופלסטיק בזרע אנושי. חמישה מהם מצאו אותו אצל 100% מהנבדקים.\n\nבשאר השיעורים נעו בין 84% ל-37%, אבל הבדיקות הישנות השתמשו במיקרוסקופים אינפרא-אדומים רגילים, שלא רואים חלקיקים קטנים מ-10–20 מיקרון. המחקרים החדשים השתמשו בספקטרוסקופיית ראמאן, שמזהה חלקיקים עד מיקרון אחד.\n\nבקיצור, שכיחות של 100% סבירה, אם לא כמעט ודאית.\n\nקראו את הפוסט שלי למטה על התוצאות והגישה שלי.\n\n(בפוסט המקורי חלק מהפסקאות מופיעות פעמיים; כאן הן מובאות פעם אחת.)\n\nתשובה של ג'ונסון בהמשך השרשור:\nהבדיקה הזאת לא זמינה באופן רחב, למרבה הצער. מעבדה ייעודית פיתחה אותה בשבילי וביצעה את הניתוח. היה נהדר אם מישהו היה מנגיש בדיקה כזאת לכולם.\n\nהפוסט שהוא ציטט (מאי 2026):\n🚨 אין לי מיקרופלסטיק בביצים 🚨\n\nזה לא אמור להיות אפשרי. מחקרים מראים ש-100% מהגברים יש מיקרופלסטיק בזרע. אני האדם הראשון שמראה ירידה מלאה לאפס. ייתכן שזו פריצת דרך עולמית במחקר הפוריות.\n\nלפני 18 חודשים היו לי 165 חלקיקי מיקרופלסטיק בזרע. עכשיו יש לי אפס.\n\nחמישה מחקרים שפורסמו מדדו מיקרופלסטיק בזרע אנושי. שניים מצאו אותו אצל 100% מהגברים. שלושת האחרים מצאו אותו אצל 44% עד 76%, אבל השתמשו בשיטות שמפספסות את החלקיקים הקטנים והשקופים. אחרי תיקון לזה, השיעור האמיתי כנראה 100%. כמעט לכל גבר חי יש עכשיו פלסטיק בזרע. אותו דבר ברקמת האשכים, שנמצאה חיובית ב-100% מהמקרים.\n\nמיקרופלסטיק פוגע בזרע. מחקרים בבני אדם מראים את ההשפעה של סוגי פלסטיק, כימיקלים נלווים ורעלנים אחרים על פוריות הגבר:\n• 60% פחות זרעונים בצורה תקינה (PFAS)\n• סיכוי גבוה פי 5 לספירת זרע נמוכה (PTFE)\n• ריכוז זרע נמוך ב-10% (PTFE)\n• תנועתיות נמוכה ב-15% (PTFE)\n• תנועתיות נמוכה ב-41% (PET)\n• תנועתיות נמוכה ב-12% (BPA)\n• סיכוי גבוה פי 3 לספירת זרע נמוכה (פתלאטים)\n• סיכוי גבוה פי 2 לתנועתיות ירודה (פתלאטים)\n\nההשפעות מצטברות: כל סוג פלסטיק נוסף מוריד את תנועתיות הזרע בכ-21%.\n\nזה חשוב גם אם אתה לא מנסה להביא ילדים. ספירת זרע היא אחד הסמנים הנקיים ביותר לבריאות הכללית, והמיקרופלסטיק לא נעצר באשכים. מחקרים מראים שיעור גבוה פי 4.5 של התקף לב, שבץ ומוות אצל אנשים עם מיקרופלסטיק ברובד העורקים לעומת אנשים בלעדיו. מיקרופלסטיק נמצא גם ב-100% מהשליות שנבדקו. 100% מהמוחות שנבדקו לאחר המוות היו חיוביים; הריכוז במוח עלה בכ-50% בין 2016 ל-2024 והוא כיום בערך פי 11 מהרמה בכבד או בכליות.\n\nמאיפה זה מגיע?\n• PTFE: בעיקר מחבתות נון-סטיק\n• PET: בקבוקי מים\n• פתלאטים: מה שהופך פלסטיק לרך וגמיש\n• BPA: ציפוי פנימי של פחיות\n• PFAS: בדים דוחי כתמים ואריזות מזון\n\nבתוך הגוף, לדבריו, הפלסטיק גורם למעין 'חלודה תאית': דלקת באשכים, מוות של התאים שמייצרים זרע וירידה בטסטוסטרון. לטענתו זה אושר ב-39 מחקרים בבעלי חיים ובתאים, ואחר כך בנתונים מבני אדם.\n\nהפרוטוקול שלי (הערה: זה n=1, לא ניסוי מבוקר, ואני לא יכול להוכיח סיבתיות):\n1. סאונה יבשה. לדבריו, פאנל הרעלנים בדם שלו מאשר שהסאונה מנקה כימיקלים הקשורים לפלסטיק: BPA, פתלאטים, PFAS, מעכבי בעירה וחומרי הדברה. חלקיקי הפלסטיק עצמם גדולים מכדי לצאת בזיעה; החום אולי מפעיל מסלולי פינוי אחרים: זרימת מרה דרך הכבד, מערכת הניקוי הפנימית של התא ומחסום המעי. לבני אדם כמעט אין אנזימים שמפרקים פלסטיק, ולכן הגוף צריך להוציא אותו פיזית.\n2. מסנן מים באוסמוזה הפוכה. מי שתייה הם כנראה מקור מרכזי למיקרופלסטיק בגוף. המסנן דוחף את המים דרך ממברנה צפופה מאוד ומסנן את החלקיקים. הוא מסנן כל מה שהוא שותה.\n3. ניסיון להיפטר מפריטי הפלסטיק הגדולים בסביבה: קרשי חיתוך, כוסות, צלחות, קופסאות אחסון, מחבתות נון-סטיק, ניילון נצמד, שקיקי תה, בקבוקי מים, כלי מטבח, קומקומים ובגדים סינתטיים. לדבריו, הוא כל הזמן מגלה עוד פריטי פלסטיק, וזה יכול להפוך לעיסוק שגוזל הכול, אז כדאי להתחיל מהגדולים.\n\nהוא עשה את שלושת הצעדים במקביל ולא יודע איזה מהם עשה את רוב העבודה. מה שהוא כן יכול לומר: מעבר מ-165 לאפס ב-18 חודשים אפשרי.\n\nתוצאות:\n• נובמבר 2024: 165 חלקיקים למ\"ל\n• יולי 2025: 20 חלקיקים למ\"ל\n• אפריל 2026: 0 חלקיקים למ\"ל\n\nחלון של 18 חודשים כולל בערך 7 מחזורים מלאים של ייצור זרע.\n\nהערה: אלה טענות אישיות של ג'ונסון על ניסוי בעצמו (n=1), לא ייעוץ רפואי. המחקר על השפעות המיקרופלסטיק על הבריאות עדיין מתפתח, והבדיקה שהוא עשה לא זמינה באופן רחב.",
       "full_en": "Up to 100% of men have microplastics in their semen\n\nI got mine to zero. The first documented case.\n\nA 2024 study detected microplastics in 100% of human and dog testicular tissue.\n\nIn another study, microplastics were detected in the semen and urine of all of 113 tested men from China.\n\nResearchers broke down plastic type and how they affected sperm quality.\n\nThe most common came from packaging (polystyrene, polypropylene, and polyethylene).\n\nPTFE, the synthetic polymer used in non-stick Teflon pans, proved the most lethal, creating 11% lower sperm concentration and 9% fewer total sperm.\n\nTen studies have measured microplastics in human semen. Five found 100% detection.\n\nThe rest from 84% down to 37%, but older tests used standard infrared microscopes that are blind to particles smaller than 10–20 microns. Newer studies used Raman spectroscopy, which can spot particles down to 1 micron.\n\nSo in short, 100% prevalence is plausible if not likely.\n\nRead my post below about my results and approach.\n\n(Some paragraphs appear twice in the original post; they are shown once here.)\n\nJohnson's reply further down the thread:\nThis test is not widely available, sadly. I had a specialty lab create the test for me and conduct the analysis. It would be great if someone made a test widely available.\n\nThe quoted post (May 2026):\n🚨 I HAVE NO MICROPLASTICS IN MY BALLS 🚨\n\nThis should not be possible. Studies show that 100% of men have microplastics in their semen. I am the first human ever to show a complete reduction to zero. This may be a world-first breakthrough in fertility research.\n\nI had 165 microplastic particles in my semen just 18 months ago. Now, I have zero.\n\nFive published studies have measured microplastics in human semen. Two found them in 100% of men. The other three found them in 44 to 76% of men tested, but those used methods that miss the smallest particles and the clear ones. Corrected for that, the real rate is likely 100%. Almost every man alive has plastic in his semen right now. The same applies to testicular tissue, testing 100% positive for microplastics.\n\nMicroplastics hurt sperm. Human studies show the impact of various types of plastic, associated chemicals, and other toxins on male fertility:\n• 60% fewer normal shaped sperm (from PFAS)\n• 5x higher odds of low sperm count (from PTFE)\n• 10% lower sperm concentration (from PTFE)\n• 15% lower swimming ability (from PTFE)\n• 41% lower swimming ability (from PET)\n• 12% lower sperm swimming ability (from BPA)\n• 3x higher odds of low sperm count (from phthalates)\n• 2x higher odds of poor swimming (from phthalates)\n\nThe effects compound: each extra type of plastic drops sperm swimming ability by about 21%.\n\nThis matters even if you're NOT trying to get pregnant. Sperm count is one of the cleanest biomarkers of overall health we have. And microplastics don't stop at the testes. Studies show 4.5x higher rate of heart attack, stroke, and death in people with microplastics in their arterial plaque vs. those without. Microplastics were also found in 100% of human placentas tested. 100% of post-mortem human brains tested positive for microplastics. Brain concentrations rose ~50% between 2016 and 2024, and now sit at roughly 11x the levels found in the liver or kidney.\n\nWhere do these come from?\n• PTFE, commonly in non-stick pans\n• PET, water bottles\n• Phthalates, makes plastic soft and bendy\n• BPA, can linings\n• PFAS, stain-resistant fabrics & food packaging\n\nInside the body, plastic causes a kind of cellular rust. It triggers inflammation in the testicles, kills the cells that make sperm and drops testosterone. It's been confirmed across 39 animal and cell studies, then in human data.\n\nMY PROTOCOL (note: what I did is n=1, not a controlled trial, I cannot prove cause):\n1. Sauna (dry). My toxin blood panel confirms sauna clears plastic-related chemicals: BPA, phthalates, PFAS, flame retardants, pesticides. The plastic particles themselves are too big to sweat out directly. Heat may activate other clearance routes: bile flow through the liver, the cell's internal cleanup system, and the gut barrier. Humans have almost no enzymes that can break plastic apart, so the body has to physically push it out.\n2. Reverse osmosis water filter. Drinking water is likely a major source of microplastic getting into your body. A reverse osmosis filter pushes water through a very tight membrane and strains the particles out. I filter everything I drink.\n3. Trying to rid my environment of the big plastic items: cutting boards, cups, plates, food storage containers, non-stick pans, cling wrap, tea bags, water bottles, kitchen utensils, kettles, and synthetic clothing. As hard as I try, I'm always finding new plastic things in my life. This can be an all-consuming thing, so try to just knock out the big ones.\n\nI did all three interventions at the same time. I cannot say which one did the most work. What I can say is this: going from 165 to zero in 18 months is possible.\n\nResults:\n• Nov 2024: 165 particles/mL\n• Jul 2025: 20 particles/mL\n• Apr 2026: 0 particles/mL\n\nThe 18-month window also captures roughly 7 full spermatogenesis cycles.\n\nNote: these are Johnson's personal claims from a self-experiment (n=1), not medical advice. Research on the health effects of microplastics is still developing, and the test he used is not widely available."
-    },
-    {
-      "id": "ss-nico-17-apps-265k",
-      "topic": "starterstory",
-      "date": "2026-10-27T17:39:19Z",
-      "url": "https://x.com/starter_story/status/2115136271261798723",
-      "source": "X · @starter_story",
-      "he": {
-        "title": "נעל את עצמו בחדר מלון, למד לתכנת ומכר שתי אפליקציות ב-265 אלף דולר",
-        "summary": "ניקו למד לתכנת חודשיים בחדר מלון ובנה 17 אפליקציות בשנה. רובן נכשלו, אבל את makelogo.ai ואת Stalknot הוא מכר יחד ב-265 אלף דולר."
-      },
-      "en": {
-        "title": "He locked himself in a hotel room, learned to code and sold two apps for $265K",
-        "summary": "Nico taught himself to code in two months in a hotel room and shipped 17 apps in a year. Most flopped, but he sold makelogo.ai and Stalknot for a combined $265,000."
-      },
-      "full_he": "פגשתי בחור בשם ניקו שממש נעל את עצמו בחדר מלון לחודשיים, לימד את עצמו לתכנת ויצא משם בונה אפליקציות.\n\nבשנה אחת הוא השיק 17 אפליקציות.\n\nרובן נכשלו. אבל שתיים מהן, makelogo.ai ו-Stalknot, הוא מכר יחד ב-265,000 דולר.\n\n• makelogo.ai: מחולל לוגואים בבינה מלאכותית. תשלום חד-פעמי, חבילות של 5, 10 או 15 לוגואים. הכניס 26 אלף דולר במכירות, ונמכר ב-65 אלף דולר במזומן אחרי שקונה אמר לו: \"אני לא רוצה לבזבז זמן על התמחרות, נסגור תוך שבועיים\".\n• Stalknot: הופכת הקלטות קוליות לטקסט מעוצב. כ-10,000 משתמשים; התחילה עם כרטיס חד-פעמי ועברה למנוי של 12 דולר לחודש. הכניסה 77 אלף דולר במכירות לפני שנמכרה ב-200 אלף דולר ביולי האחרון.\n\nהחלק המטורף: הוא הגדיל את Stalknot מאפס ל-7,000 דולר הכנסה חודשית חוזרת עם מודעות פייסבוק, בתקציב של 20–100 דולר ביום בלבד. המודעה הכי טובה שלו? בחור ששילם לו כדי שיצלם את עצמו קורא תסריט במשרד. הוא אפילו לא הזכיר את שם האפליקציה עד הסוף.\n\nהעצה שלו לניקו של אז, בחדר המלון: \"אל תנסה להרוויח 100 אלף דולר בפרויקט הראשון שלך\".\n\nתרוויח את הדולר הראשון.\nתצבור ניצחונות קטנים.\n\nבתמונה שבפוסט: ניקו מול גרף 'Gross volume' של 77,046.74 דולר (יוני 2023 עד אוגוסט 2024), עם הכיתוב: \"נעלתי את עצמי בחדר כדי ללמוד לתכנת. 12 חודשים אחר כך מכרתי את האפליקציות שלי ב-265,000 דולר\".",
-      "full_en": "I met this guy Nico who literally locked himself in a hotel room for 2 months, taught himself to code, and walked out building apps.\n\nIn one year he shipped 17 of them.\n\nMost flopped. But two of them, makelogo.ai and Stalknot, he sold for a combined $265,000.\n\n• makelogo.ai was an AI logo generator. One-time payment, packs of 5/10/15 logos. Did $26K in sales, then sold for $65K cash after a buyer told him \"I don't want to waste time bidding, finalize in 2 weeks.\"\n• Stalknot turned voice notes into formatted text. ~10,000 users, started at a one-time pass, switched to $12/month. Did $77K in sales before he sold it for $200K last July.\n\nThe wild part: he grew Stalknot from $0 to $7K MRR on Facebook ads spending just $20–$100/day. His best ad? A guy he paid to record himself reading a script in his office. Didn't even mention the app name until the end.\n\nHis advice to past-Nico in that hotel room: \"don't try to make $100K on your first project\"\n\nMake your first dollar.\nCompound small wins.\n\nThe image in the post: Nico in front of a 'Gross volume' chart of US$77,046.74 (June 2023 to August 2024), captioned \"I locked myself in a room to learn coding. 12 months later, I sold my apps for $265,000\"."
     },
     {
       "id": "musk-ceasefire-good",
@@ -307,6 +358,23 @@
       "full_en": "Imagine a robot assembling a Swiss watch with one hand while snagging a 100 mph baseball with the other, no looking. Elon Musk just raised the bar for what Tesla's Optimus needs to do next.\n\n• Musk proposed these feats after John Carmack pointed out no robot can yet swap batteries in a jack-o'-lantern, highlighting gaps in fine dexterity for everyday tasks.\n• The tests demand precision, reflexes, balance and awareness to prove Optimus ready for factories and homes.\n• Tesla started high-volume production in Fremont, with new footage of unscripted actions coming soon and deliveries to companies by late 2027.\n• Online reactions blend hype for the challenges with hopes for practical skills like folding laundry.\n\nThis is a summary of the X news story (its opening hook and summary)."
     },
     {
+      "id": "ss-charlie-30k-microsaas",
+      "topic": "starterstory",
+      "date": "2026-10-27T16:28:14Z",
+      "url": "https://x.com/starter_story/status/2115118383985524751",
+      "source": "X · @starter_story",
+      "he": {
+        "title": "צ'רלי בנה מיקרו-SaaS של 30 אלף דולר בחודש לצד עבודה מלאה",
+        "summary": "צ'רלי לא שרף את הגשרים כדי לעזוב את העבודה. הוא עזב כשרצה יותר גמישות לטפל בבן שלו כשהוא חולה, ואחרי שנתיים הוא שמח שעשה את זה."
+      },
+      "en": {
+        "title": "Charlie built a $30K/month micro-SaaS alongside his full-time job",
+        "summary": "Charlie didn't burn the boats to quit. He left when he wanted more flexibility to look after his sick kid, and two years on he's glad he did."
+      },
+      "full_he": "צ'רלי בנה מיקרו-SaaS שמכניס 30 אלף דולר בחודש לצד העבודה המלאה שלו, והוא אומר שהוא לא שרף את הגשרים כדי לעזוב...\n\n\"מאוד רציתי יותר גמישות כדי לטפל בילד שלי, אתה יודע, כשהוא היה חולה ודברים כאלה.\"\n\n\"זה פשוט הרגיש כמו הזמן הנכון. ועכשיו עברו שנתיים, ואני ממש שמח שעשיתי את זה.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+      "full_en": "Charlie built a $30K/month micro-SaaS alongside his full-time job and he says: he didn't burn the boats to quit...\n\n\"I was really wanting more flexibility to look after my kid, you know, when he would get sick and stuff like that.\"\n\n\"It just felt like the right time. And now it's been two years, and I'm really glad I did it.\"\n\nThe rest of the post is a video, so there's no more text to show."
+    },
+    {
       "id": "musk-penchants",
       "topic": "musk",
       "date": "2026-10-27T16:27:00Z",
@@ -324,23 +392,6 @@
       "full_en": "Elon Musk shared a straightforward nudge: \"Everyone should have at least a few penchants.\" His post opened doors to heartfelt shares about hobbies, success, and what keeps life balanced.\n\n• Musk used 'penchant' to mean a strong liking for something, sparking thousands of replies on hobbies versus total work focus.\n• High achievers like those coached by Dr. Julie Gurner often treat business as their sole hobby, while others like home builder Tanner Alexander embrace outside interests despite forgoing ultra-success.\n• Studies back diverse pursuits, noting Nobel scientists were three times more likely to have them, and Musk himself unwinds with video games.\n• The conversation captures the pull between deep specialization and varied passions that enrich life.\n\nThis is a summary of the X news story (its opening hook and summary)."
     },
     {
-      "id": "spacex-starlink-eu-cornyn",
-      "topic": "spacex",
-      "date": "2026-10-27T14:07:13Z",
-      "url": "https://x.com/i/trending/2115080732691595323",
-      "source": "X",
-      "he": {
-        "title": "מתח סביב סטארלינק באוקראינה: קורנין מול האיחוד האירופי",
-        "summary": "הסנאטור ג'ון קורנין קרא להרחיב את Starshield האמריקאית עמוק יותר לרוסיה, בזמן שהאיחוד האירופי מתכנן לחסום את סטארלינק ולממן מתחרים אירופיים. מאסק הבהיר שסטארלינק המסחרית לא נועדה לשימוש התקפי."
-      },
-      "en": {
-        "title": "Starlink tensions rise over Ukraine as Cornyn and the EU push back",
-        "summary": "Senator John Cornyn urged extending US-controlled Starshield deeper into Russia, while the EU plans to block Starlink access and fund European rivals. Musk clarified that commercial Starlink avoids offensive use."
-      },
-      "full_he": "אוקראינה נשענת על סטארלינק לקשר הגנתי חיוני, אבל הגבלות מהירות שיבשו את פעולות הרחפנים במשך 10 ימים באמצע אוקטובר, ועוררו עימותים עם רגולטורים ופוליטיקאים.\n\n• הסנאטור ג'ון קורנין קרא להרחיב את Starshield, שנשלטת בידי ארה\"ב, עמוק יותר לתוך רוסיה כדי ללחוץ על פוטין ולצמצם את התקיפות על אוקראינה.\n• האיחוד האירופי מגיב בתוכניות לחסום את הגישה לסטארלינק, לממן מתחרים כמו חברת לוויינים ממוזגת בשם הקוד Bromo, ולשריין תדרים לשחקנים אירופיים.\n• מאסק הבהיר שסטארלינק המסחרית נמנעת משימוש התקפי, בשונה מ-Starshield שמופעלת בידי הממשלה, ואוקראינה מכחישה טענות לשימוש לא תקין ומברכת על חזרת המהירויות.\n• הדעות ברשת חלוקות: יש מי שמדגישים את התלות הטכנולוגית של אירופה, ויש מי שמזכירים שמאסק נתן לאוקראינה מסופים בחינם בתחילת המלחמה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
-      "full_en": "Ukraine relies on Starlink for vital defense links, but speed cuts disrupted drone ops for 10 days mid-October, sparking clashes with regulators and politicians.\n\n• Senator John Cornyn urged extending US-controlled Starshield deeper into Russia to pressure Putin and curb strikes on Ukraine.\n• The EU counters with plans to block Starlink access, fund rivals like a merged satellite firm codenamed Bromo, and reserve spectrum bands for European players.\n• Musk clarified commercial Starlink avoids offensive use, distinguishing it from government-run Starshield, while Ukraine disputes misuse claims and welcomes restored speeds.\n• Online views split between highlighting Europe's tech dependence and Musk's early free terminals to Ukraine.\n\nThis is a summary of the X news story (its opening hook and summary)."
-    },
-    {
       "id": "brecka-shelf-life",
       "topic": "brecka",
       "date": "2026-10-27T16:00:01Z",
@@ -356,23 +407,6 @@
       },
       "full_he": "ככל שחיי המדף ארוכים יותר, החיים שלך קצרים יותר. הפכנו את האכילה למסובכת כל כך, כשהפתרון אולי פשוט יותר ממה שאנחנו חושבים.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של ברקה ולא המלצה רפואית.",
       "full_en": "The longer the shelf life, the shorter your life. We've made eating so complicated when the solution might be simpler than we think.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Brecka's own claim, not medical advice."
-    },
-    {
-      "id": "ss-charlie-30k-microsaas",
-      "topic": "starterstory",
-      "date": "2026-10-27T16:28:14Z",
-      "url": "https://x.com/starter_story/status/2115118383985524751",
-      "source": "X · @starter_story",
-      "he": {
-        "title": "צ'רלי בנה מיקרו-SaaS של 30 אלף דולר בחודש לצד עבודה מלאה",
-        "summary": "צ'רלי לא שרף את הגשרים כדי לעזוב את העבודה. הוא עזב כשרצה יותר גמישות לטפל בבן שלו כשהוא חולה, ואחרי שנתיים הוא שמח שעשה את זה."
-      },
-      "en": {
-        "title": "Charlie built a $30K/month micro-SaaS alongside his full-time job",
-        "summary": "Charlie didn't burn the boats to quit. He left when he wanted more flexibility to look after his sick kid, and two years on he's glad he did."
-      },
-      "full_he": "צ'רלי בנה מיקרו-SaaS שמכניס 30 אלף דולר בחודש לצד העבודה המלאה שלו, והוא אומר שהוא לא שרף את הגשרים כדי לעזוב...\n\n\"מאוד רציתי יותר גמישות כדי לטפל בילד שלי, אתה יודע, כשהוא היה חולה ודברים כאלה.\"\n\n\"זה פשוט הרגיש כמו הזמן הנכון. ועכשיו עברו שנתיים, ואני ממש שמח שעשיתי את זה.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
-      "full_en": "Charlie built a $30K/month micro-SaaS alongside his full-time job and he says: he didn't burn the boats to quit...\n\n\"I was really wanting more flexibility to look after my kid, you know, when he would get sick and stuff like that.\"\n\n\"It just felt like the right time. And now it's been two years, and I'm really glad I did it.\"\n\nThe rest of the post is a video, so there's no more text to show."
     },
     {
       "id": "tesla-stock-above-400",
@@ -577,6 +611,23 @@
       },
       "full_he": "במייל שדלף שמונה ימים לפני יום הבחירות, המועמד לסנאט ממישיגן מייק רוג'רס ביקש מתורמים לתרום במיוחד כדי להגן על אילון מאסק מפני חקירות בנושא קיצוצי ההוצאות הפדרליות.\n\n• הפנייה, שרוג'רס חתום עליה, קושרת את התרומות להגנה על מאסק ועל יוזמת DOGE (המחלקה ליעילות ממשלתית), ולבלימת מה שהיא מכנה \"מזימת נקמה סוציאליסטית\".\n• המייל פורסם על ידי הדמוקרטים במישיגן ב-26 באוקטובר וספג ביקורת חריפה. קריסטל בול, למשל, כינתה אותו התחייבות להגן על האיש העשיר בעולם, ואחרים ראו בו טקטיקת בחירות גרועה.\n• רוג'רס, חבר קונגרס לשעבר שנהנה מתמיכת טראמפ, מפגר אחרי הדמוקרט עבדול אל-סייד 45% מול 51% בסקרים האחרונים, לקראת ההצבעה ב-3 בנובמבר במרוץ יקר ובעל חשיבות גבוהה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
       "full_en": "In a leaked email eight days before Election Day, Michigan Senate candidate Mike Rogers asked donors to contribute specifically to protect Elon Musk from investigations over federal spending cuts.\n\n• The appeal, signed by Rogers, ties contributions to defending Musk, the Department of Government Efficiency initiative, and blocking what it calls a 'socialist retaliation plot.'\n• Posted by Michigan Democrats on Oct. 26, it has drawn sharp criticism, with observers like Krystal Ball calling it a pledge to shield the world's richest man and others labeling it a poor election tactic.\n• Rogers, a former congressman backed by Trump, trails Democrat Abdul El-Sayed 45% to 51% in recent polls ahead of the Nov. 3 vote in this high-stakes, expensive Senate race.\n\nThis is X's news story summary (its opening hook and summary)."
+    },
+    {
+      "id": "spacex-starlink-eu-cornyn",
+      "topic": "spacex",
+      "date": "2026-10-27T14:07:13Z",
+      "url": "https://x.com/i/trending/2115080732691595323",
+      "source": "X",
+      "he": {
+        "title": "מתח סביב סטארלינק באוקראינה: קורנין מול האיחוד האירופי",
+        "summary": "הסנאטור ג'ון קורנין קרא להרחיב את Starshield האמריקאית עמוק יותר לרוסיה, בזמן שהאיחוד האירופי מתכנן לחסום את סטארלינק ולממן מתחרים אירופיים. מאסק הבהיר שסטארלינק המסחרית לא נועדה לשימוש התקפי."
+      },
+      "en": {
+        "title": "Starlink tensions rise over Ukraine as Cornyn and the EU push back",
+        "summary": "Senator John Cornyn urged extending US-controlled Starshield deeper into Russia, while the EU plans to block Starlink access and fund European rivals. Musk clarified that commercial Starlink avoids offensive use."
+      },
+      "full_he": "אוקראינה נשענת על סטארלינק לקשר הגנתי חיוני, אבל הגבלות מהירות שיבשו את פעולות הרחפנים במשך 10 ימים באמצע אוקטובר, ועוררו עימותים עם רגולטורים ופוליטיקאים.\n\n• הסנאטור ג'ון קורנין קרא להרחיב את Starshield, שנשלטת בידי ארה\"ב, עמוק יותר לתוך רוסיה כדי ללחוץ על פוטין ולצמצם את התקיפות על אוקראינה.\n• האיחוד האירופי מגיב בתוכניות לחסום את הגישה לסטארלינק, לממן מתחרים כמו חברת לוויינים ממוזגת בשם הקוד Bromo, ולשריין תדרים לשחקנים אירופיים.\n• מאסק הבהיר שסטארלינק המסחרית נמנעת משימוש התקפי, בשונה מ-Starshield שמופעלת בידי הממשלה, ואוקראינה מכחישה טענות לשימוש לא תקין ומברכת על חזרת המהירויות.\n• הדעות ברשת חלוקות: יש מי שמדגישים את התלות הטכנולוגית של אירופה, ויש מי שמזכירים שמאסק נתן לאוקראינה מסופים בחינם בתחילת המלחמה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+      "full_en": "Ukraine relies on Starlink for vital defense links, but speed cuts disrupted drone ops for 10 days mid-October, sparking clashes with regulators and politicians.\n\n• Senator John Cornyn urged extending US-controlled Starshield deeper into Russia to pressure Putin and curb strikes on Ukraine.\n• The EU counters with plans to block Starlink access, fund rivals like a merged satellite firm codenamed Bromo, and reserve spectrum bands for European players.\n• Musk clarified commercial Starlink avoids offensive use, distinguishing it from government-run Starshield, while Ukraine disputes misuse claims and welcomes restored speeds.\n• Online views split between highlighting Europe's tech dependence and Musk's early free terminals to Ukraine.\n\nThis is a summary of the X news story (its opening hook and summary)."
     },
     {
       "id": "spacex-starlink-discovertech-ads",
@@ -4334,40 +4385,6 @@
       },
       "full_he": "מתוך דף הפרק (The Dr. Ardis Show, 21 באוקטובר 2026), \"איך פטריות ועובש הורסים חיים\":\n• ד\"ר בריאן ארדיס מסביר את ההבדל בין עובש לפטריות, איך עובש מתפשט בבתים ובמזון, ולמה מיקוטוקסינים חשובים. הוא מצטט את ההנחיות של משרד החקלאות האמריקאי לגבי מזון עם עובש, ואת ההערכה של ארגון המזון והחקלאות של האו\"ם ש־25% מגידולי המזון בעולם מושפעים ממיקוטוקסינים.\n• הוא מתמקד באפלטוקסין, מיקוטוקסין מסרטן שנמצא בתירס מספוא ובבוטנים, ובספר \"מחקר סין\" של ד\"ר ט' קולין קמפבל.\n• הוא סוקר החזרות אחרונות של עוגות חטיף, מזון תינוקות, רסק תפוחים ומזון לכלבים בגלל עובש ורעלני עובש.\n• הצעד הראשון שלו לגדילת יתר של פטריות הוא דיאטה נגד קנדידה: דלת סוכר, נוגדת דלקת, מבוססת על ירקות לא עמילניים, פירות דלי סוכר, חלבון איכותי ומזון מותסס.\n• מחקרים שהוא מצטט: תימוקינון משמן קצח (Nigella sativa) עיכב שמרים שמקלקלים מוצרי חלב טוב יותר מחומרים משמרים נפוצים (במעבדה); שמן קצח ותמצית תמרים הפחיתו את הנזק של אפלטוקסין לכבד ולכליות (בחולדות); תרכובות נחושת נגד 21 זנים מבודדים של קנדידה והביופילם שלהם; תמצית שורש ליקריץ עיכבה את כל 19 זני הקנדידה שנבדקו; פקטין תפוחים כסיב שקושר פסולת.\n• הפרק מקדם מוצרים של החברה שלו (Nature Wins), כמו BioDefense ו־Bio-Active Copper. רוב הראיות מגיעות ממחקרי מעבדה ובעלי חיים.",
       "full_en": "From the episode page (The Dr. Ardis Show, Oct 21, 2026), \"How Fungi and Mold Destroy Lives\":\n• Dr. Bryan Ardis explains the difference between mold and fungi, how mold spreads through homes and food, and why mycotoxins matter. He cites USDA guidance on moldy food and the UN FAO estimate that 25% of the world's food crops are affected by mycotoxins.\n• His focus is aflatoxin, a carcinogenic mycotoxin found in field corn and peanuts, and the book \"The China Study\" by Dr. T. Colin Campbell.\n• He reviews recent recalls of snack cakes, baby food, applesauce and dog food over mold and mold toxins.\n• His first step for fungal overgrowth is the anti-Candida diet: low in sugar, anti-inflammatory, built on non-starchy vegetables, low-sugar fruit, quality protein and fermented foods.\n• Studies he cites: thymoquinone from black seed oil (Nigella sativa) inhibited dairy spoilage yeasts better than common preservatives (lab); Nigella sativa oil and date extract reduced aflatoxin liver and kidney damage (rats); copper complexes against 21 Candida isolates and their biofilms; licorice root extract inhibited all 19 Candida strains tested; apple pectin as a fiber that binds waste.\n• The episode promotes products from his company (Nature Wins), such as BioDefense and Bio-Active Copper. Most of the evidence comes from lab and animal studies."
-    },
-    {
-      "id": "cook-us-manufacturing",
-      "topic": "cook",
-      "date": "2026-10-20T13:32:14Z",
-      "url": "https://x.com/tim_cook/status/2112537379152216111",
-      "source": "X · @tim_cook",
-      "he": {
-        "title": "אפל מרחיבה שותפויות ייצור בארה\"ב",
-        "summary": "קוק הודיע על שותפויות חדשות ומורחבות עם Perryman Company ועם Qnity Electronics במסגרת הדחיפה של אפל לייצור אמריקאי."
-      },
-      "en": {
-        "title": "Apple expands U.S. manufacturing partnerships",
-        "summary": "Cook announced new and expanded partnerships with Perryman Company and Qnity Electronics as part of Apple's U.S. manufacturing push."
-      },
-      "full_he": "טים קוק: \"אנחנו פורצים את גבולות האפשר בייצור האמריקאי, עם שותפויות חדשות ומורחבות עם Perryman Company ו־Qnity Electronics!\"",
-      "full_en": "We’re pushing the boundaries of what’s possible for American manufacturing through new and expanded partnerships with Perryman Company and Qnity Electronics!"
-    },
-    {
-      "id": "refaeli-runway-ido",
-      "topic": "refaeli",
-      "date": "2026-10-20T12:00:00+03:00",
-      "url": "https://trari.com/il/story/keshet12-13764/",
-      "source": "Trari",
-      "he": {
-        "title": "בר רפאלי מלמדת את עידו רוזנבלום ללכת על מסלול",
-        "summary": "בקטע קצר מ'הזמר במסכה' רפאלי מדגימה: בטן בפנים, כתפיים אחורה, ראש למעלה, ורגל אחרי רגל. רוזנבלום ניסה עם ידיים על המותניים והפאנל צחק. הקטע עבר 100 אלף צפיות בפחות מיממה."
-      },
-      "en": {
-        "title": "Bar Refaeli teaches Ido Rosenblum to walk a runway",
-        "summary": "In a short Masked Singer clip, Refaeli demonstrates: stomach in, shoulders back, head up, one foot after the other. Rosenblum tried with hands on hips and the panel laughed. It passed 100K views in under a day."
-      },
-      "full_he": "מתוך Trari (על סמך קטע קצר מ\"הזמר במסכה\" בערוץ קשת 12):\n• בקטע של פחות מדקה, בר רפאלי מלמדת את המנחה עידו רוזנבלום ללכת על מסלול: \"בטן פנימה, כתפיים אחורה, ראש למעלה\" ו\"רגל אחרי רגל\".\n• רוזנבלום עוצר אותה מיד: \"מה זאת אומרת? ככה הולכים, לא?\" רפאלי מסבירה שזה צעד מוצלב, \"אבל לא כמו משוגע\", ומדגימה. אחד השופטים מסכם: \"היא יודעת את העבודה.\"\n• אחר כך מגיע תורו: הוא צועד עם הידיים על המותניים והפאנל צוחק. רפאלי מזכירה לו להמשיך להסתכל קדימה. אחד השופטים מייעץ לו \"אל תנסה\", והם מסיימים בפוזה משותפת.\n• הקטע הגיע לכ־109,000 צפיות בפחות מיממה, בערך פי שבעה מהיום הראשון הרגיל של קטע קצר בערוץ.\n• ב־2019 הנחתה רפאלי את האירוויזיון בתל אביב. היא חדשה בפאנל של \"הזמר במסכה\". באותו יום פרסם הערוץ קטע ששואל אם אמה, ציפי רפאלי, מסתתרת מאחורי \"הפה הגדול\".",
-      "full_en": "From Trari (based on a short clip from \"The Masked Singer\" on the Keshet 12 channel):\n• In a clip under a minute long, Bar Refaeli teaches host Ido Rosenblum to walk a runway: \"Stomach in, shoulders back, head up\" and \"one foot after the other\".\n• Rosenblum stops right there: \"What do you mean? That's how you walk, isn't it?\" Refaeli explains it's a crossover step, \"but not like a madman\", and demonstrates. One of the judges sums it up: \"She knows the job.\"\n• Then it's his turn: he struts with his hands on his hips and the panel laughs. Refaeli reminds him to keep looking straight ahead. One judge advises him \"don't try\", and they end with a joint pose.\n• The short reached about 109,000 views in under a day, roughly seven times the channel's usual first day for a short.\n• In 2019 Refaeli co-hosted the Eurovision Song Contest in Tel Aviv. She's new on the Masked Singer panel. The same day, the channel posted a clip asking whether her mother, Tzipi Refaeli, is behind \"The Big Mouth\"."
     }
   ]
 }
