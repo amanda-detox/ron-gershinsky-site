@@ -2,7 +2,7 @@
    Sub-apps (alarm/, relax/, sounds/, ...) have their own service workers with
    narrower scopes; this worker never touches their files, so it just lets those
    requests go straight to the network. */
-var CACHE = "rg-home-v28";
+var CACHE = "rg-home-v29";
 var FILES = ["./", "index.html", "about/", "about/index.html", "shared/rg-account.js", "shared/fonts/heebo.css", "shared/rg-site.css", "shared/fonts/heebo-hebrew.woff2", "shared/fonts/heebo-latin.woff2", "shared/fonts/heebo-latin-ext.woff2", "assets/avatar.jpg", "manifest.json", "app-icon.svg", "app-icon-192.png", "app-icon-512.png", "app-icon-maskable-192.png", "app-icon-maskable-512.png", "apple-touch-icon.png", "favicon-32.png", "favicon.ico"];
 var BASE = new URL("./", self.location).pathname;          // e.g. /ron-gershinsky-site/
 var OWN = FILES.map(function (f) { return new URL(f, self.location).pathname; });
