@@ -268,6 +268,9 @@
   html[data-theme="light"]:not([data-lbg="0"]) { --surface: rgba(255, 255, 255, 0.8); --surface-2: rgba(255, 255, 255, 0.92); --line: rgba(11, 42, 107, 0.16); --muted: #34446b; --faint: #55658a; }
   html[data-theme="light"]:not([data-lbg="0"]) .alarm, html[data-theme="light"]:not([data-lbg="0"]) .note, html[data-theme="light"]:not([data-lbg="0"]) .cal { -webkit-backdrop-filter: blur(14px) saturate(130%); backdrop-filter: blur(14px) saturate(130%); }
   html[data-theme="light"]:not([data-lbg="0"]) .note { background: rgba(255, 255, 255, 0.8); }
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
+  .rg-copy { margin: 0.75rem 0 0; text-align: center; font-family: "Heebo", system-ui, sans-serif; font-size: 0.75rem; line-height: 1.6; color: var(--faint); }
 </style>
 </head>
 <body>
@@ -313,6 +316,7 @@
   <p class="empty" id="empty" hidden></p>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <p class="back"><a href="../" id="back"></a> · <button type="button" id="reset" style="background:none;border:0;color:var(--faint);text-decoration:underline;font-size:inherit;padding:0.5rem"></button></p>
+  <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </main>
 
 <button type="button" class="fab" id="add"></button>
