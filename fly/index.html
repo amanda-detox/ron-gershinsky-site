@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a1238">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>עפיפיי · Flyify</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="fonts.css">
+<script>(function(){var d=document.documentElement;try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}if(localStorage.getItem("rg-fly-theme")==="light"){d.setAttribute("data-theme","light");}}catch(e){}})();</script>
+<style>
+  :root { --gold:#f3cf6b; --gold2:#ffe7a3; --blue:#2c5cff; --navy:#0a1238; --ink:#eaf0ff;
+    --panel:rgba(10,20,72,.62); --panel2:rgba(20,40,130,.72); --line:rgba(243,207,107,.45); --muted:#b9c8f5; }
+  html[data-theme="light"] { --ink:#0b1f4d; --panel:rgba(255,253,246,.86); --panel2:rgba(255,248,230,.95); --line:rgba(201,162,39,.7); --muted:#33467a; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; height:100%; overflow:hidden; background:var(--navy); color:var(--ink);
+    font-family:'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; user-select:none; -webkit-user-select:none; touch-action:none; overscroll-behavior:none; }
+  #c { position:fixed; inset:0; width:100vw; height:100vh; display:block; touch-action:none; }
+  .hidden { display:none !important; }
+  button, select { font-family:inherit; color:inherit; }
+  button { cursor:pointer; }
+  select { background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:7px 10px; font-size:14px; color:var(--ink); max-width:100%; }
+  select option { background:#0f1d5c; color:#eaf0ff; }
+  html[data-theme="light"] select option { background:#fffdf6; color:#0b1f4d; }
+
+  /* ---------- menu ---------- */
+  .overlay { position:fixed; inset:0; z-index:20; display:flex; flex-direction:column; justify-content:flex-end; align-items:center;
+    padding:max(10px, env(safe-area-inset-top)) 10px max(10px, env(safe-area-inset-bottom)); pointer-events:none; }
+  .panel { pointer-events:auto; width:min(640px, 100%); max-height:62vh; overflow-y:auto; background:var(--panel); border:1px solid var(--line);
+    border-radius:20px; padding:10px 12px 8px; text-align:center; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 8px 30px rgba(0,0,0,.25); }
+  .titlebar { pointer-events:auto; position:fixed; top:max(10px, env(safe-area-inset-top)); left:10px; right:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  h1 { margin:0; font-size:clamp(30px, 8vw, 46px); font-weight:800; line-height:1.05;
+    background:linear-gradient(180deg,#fff, var(--gold2) 55%, var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 2px 6px rgba(10,18,56,.55)); }
+  .tag { margin:2px 0 0; font-size:14px; font-weight:400; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,.6); }
+  .tools { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+  .tbtn { min-height:38px; border-radius:999px; border:1px solid var(--line); background:var(--panel); padding:0 12px; font-size:13.5px; font-weight:500; }
+  .lbl { font-size:13px; color:var(--muted); margin:6px 0 4px; font-weight:500; }
+  .chars { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; }
+  .ch { border:1px solid rgba(243,207,107,.28); background:var(--panel2); border-radius:12px; padding:5px 3px; font-size:12.5px; line-height:1.25; min-height:52px; }
+  .ch .e { display:block; font-size:20px; line-height:1.2; }
+  .ch.on { border:2px solid var(--gold); box-shadow:0 0 12px rgba(243,207,107,.55); }
+  .sets { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px; text-align:start; }
+  .sets label { font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:3px; }
+  .btn.main { margin:10px 0 2px; font-size:19px; font-weight:700; padding:11px 42px; color:#1a1d3a; border:none; border-radius:999px;
+    background:linear-gradient(180deg, #fff7d6, var(--gold)); box-shadow:0 0 24px rgba(243,207,107,.45); }
+  .btn.main:active, .tbtn:active { transform:scale(.97); }
+  .help { font-size:12px; color:var(--muted); line-height:1.5; margin:6px auto 0; max-width:540px; }
+  .foot { margin-top:6px; font-size:11.5px; color:var(--muted); font-weight:300; }
+  .install-hint { margin:6px auto 0; max-width:440px; font-size:12.5px; line-height:1.5; text-align:start; }
+  .install-hint ol { margin:.2rem 0; padding-inline-start:1.3em; }
+
+  /* ---------- HUD ---------- */
+  #hud { position:fixed; inset:0; pointer-events:none; z-index:10; }
+  #hud .top { position:absolute; top:max(8px, env(safe-area-inset-top)); left:8px; right:8px; display:flex; flex-direction:column; gap:6px; }
+  #hud .r1 { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+  #hud .r2 { display:flex; gap:6px; pointer-events:auto; max-width:560px; }
+  #hud .r2 select { flex:1; font-size:13px; padding:6px 8px; min-width:0; }
+  .score { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:4px 12px; font-size:14px; }
+  .score b { color:var(--gold); font-size:19px; font-weight:700; }
+  html[data-theme="light"] .score b { color:#a07c10; }
+  .score b.pop { animation:pop .45s; display:inline-block; }
+  @keyframes pop { 40% { transform:scale(1.45); } }
+  #hud .r1 .tbtn { pointer-events:auto; width:42px; height:42px; padding:0; font-size:17px; }
+  #msg { position:absolute; top:26%; left:0; right:0; text-align:center; font-size:clamp(24px, 6.5vw, 40px); font-weight:800; color:#fff;
+    text-shadow:0 0 20px rgba(255,231,163,.95), 0 2px 6px rgba(0,0,0,.4); opacity:0; transition:opacity .5s; }
+  #touch { position:absolute; inset:0; }
+  #joy { position:absolute; width:124px; height:124px; margin:-62px 0 0 -62px; border-radius:50%; border:2px solid rgba(243,207,107,.55);
+    background:radial-gradient(circle, rgba(60,100,255,.18), rgba(10,20,80,.28)); left:90px; bottom:auto; }
+  #joy i { position:absolute; left:50%; top:50%; width:52px; height:52px; margin:-26px 0 0 -26px; border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, #fff7d6, rgba(243,207,107,.75)); box-shadow:0 0 14px rgba(243,207,107,.6); }
+  #pads { position:absolute; right:12px; bottom:max(16px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:10px; pointer-events:auto; align-items:center; }
+  .pad { width:64px; height:64px; border-radius:50%; border:2px solid rgba(243,207,107,.7); background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.85), rgba(20,36,110,.88));
+    color:#fff; font-size:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0; line-height:1; touch-action:none; }
+  .pad small { font-size:10px; font-weight:500; margin-top:2px; }
+  .pad.on { box-shadow:0 0 18px rgba(255,231,163,.9); background:radial-gradient(circle at 50% 35%, rgba(130,165,255,.95), rgba(40,66,170,.95)); }
+  .keys { position:absolute; bottom:max(10px, env(safe-area-inset-bottom)); left:0; right:0; text-align:center; font-size:12px; color:#fff; text-shadow:0 1px 3px #000; opacity:.85; }
+  #nogl { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; z-index:30; }
+  @media (max-height:520px) { .panel { max-height:70vh; } .help { display:none; } .chars { grid-template-columns:repeat(9, 1fr); } .ch { font-size:10.5px; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<div id="hud" class="hidden">
+  <div id="touch"></div>
+  <div class="top">
+    <div class="r1">
+      <div class="score">✨ <span data-t="score"></span>: <b id="score">0</b></div>
+      <button class="tbtn" id="pauseBtn" aria-label="menu">☰</button>
+    </div>
+    <div class="r2">
+      <select id="camSel2" aria-label="view"></select>
+      <select id="envSel2" aria-label="world"></select>
+    </div>
+  </div>
+  <div id="msg"></div>
+  <div id="joy" class="hidden"><i></i></div>
+  <div id="pads" class="hidden">
+    <button class="pad" id="upBtn">▲<small data-t="up"></small></button>
+    <button class="pad" id="spdBtn">⚡<small id="spdLbl"></small></button>
+    <button class="pad" id="downBtn">▼<small data-t="down"></small></button>
+  </div>
+  <div class="keys hidden" id="keysHint" data-t="keys"></div>
+</div>
+
+<div id="menu" class="overlay">
+  <div class="titlebar">
+    <div><h1 data-t="title"></h1><p class="tag" data-t="tag"></p></div>
+    <div class="tools">
+      <button class="tbtn" id="themeBtn"></button>
+      <button class="tbtn" id="langBtn"></button>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="lbl" data-t="choose"></div>
+    <div class="chars" id="chars"></div>
+    <div class="sets">
+      <label><span data-t="world"></span><select id="envSel"></select></label>
+      <label><span data-t="view"></span><select id="camSel"></select></label>
+    </div>
+    <button class="btn main" id="startBtn" data-t="start"></button>
+    <div><button class="tbtn" id="installBtn" data-t="install"></button></div>
+    <div class="install-hint hidden" id="installHint"></div>
+    <p class="help" id="help"></p>
+    <div class="foot" data-t="copy"></div>
+  </div>
+</div>
+
+<div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
+
+<script type="module" src="game.js"></script>
+</body>
+</html>

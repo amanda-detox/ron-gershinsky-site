@@ -1,0 +1,22 @@
+{
+  "name": "עפיפיי · Flyify",
+  "short_name": "עפיפיי",
+  "description": "משחק תעופה רגוע בתלת־ממד · A relaxed 3D flying game",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "any",
+  "lang": "he",
+  "dir": "rtl",
+  "background_color": "#0a1238",
+  "theme_color": "#0a1238",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
