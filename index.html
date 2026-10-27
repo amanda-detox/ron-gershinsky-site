@@ -9,10 +9,10 @@
 <title>היליפיי בע"מ</title>
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=21">
-<link rel="icon" href="favicon-32.png?v=19" type="image/png" sizes="32x32">
-<link rel="icon" href="favicon.ico?v=19" sizes="any">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=19">
+<link rel="manifest" href="manifest.json?v=22">
+<link rel="icon" href="favicon-32.png?v=22" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.ico?v=22" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=22">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -100,6 +100,9 @@
     object-fit: cover;
   }
   h1 { margin: 1rem 0 0; font-size: 1.875rem; font-weight: 700; text-wrap: balance; }
+  h1.brand { display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
+  .brandmark { flex: none; width: 2.5rem; height: 2.5rem; border-radius: 0.6rem; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); }
+  html[data-theme="light"] .brandmark { box-shadow: 0 2px 8px rgba(11, 31, 77, 0.2); }
   .bio { margin: 0.25rem 0 0; color: var(--muted); font-size: 1rem; line-height: 1.5; text-wrap: pretty; }
   ul { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
   .card, .topic {
@@ -319,7 +322,7 @@
     </div>
   </div>
   <img class="mark" id="mark" src="assets/avatar.jpg" alt="רון גרשינסקי" width="120" height="120">
-  <h1 id="name">היליפיי בע"מ</h1>
+  <h1 class="brand"><svg class="brandmark" viewBox="0 0 512 512" aria-hidden="true" focusable="false"><defs><linearGradient id="hlbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6fe0"/><stop offset="1" stop-color="#0d2a6e"/></linearGradient><linearGradient id="hlg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#e0a92a"/></linearGradient></defs><rect width="512" height="512" rx="112" fill="url(#hlbg)"/><path d="M256 92 L392 140 V250 C392 336 330 394 256 424 C182 394 120 336 120 250 V140 Z" fill="url(#hlg)"/><path d="M256 124 L362 162 V250 C362 318 314 366 256 392 C198 366 150 318 150 250 V162 Z" fill="#1a47a0"/><path d="M256 160 Q272.56 235.44 348 252 Q272.56 268.56 256 344 Q239.44 268.56 164 252 Q239.44 235.44 256 160Z" fill="#eaf2ff"/><path d="M256 222 Q261.4 246.6 286 252 Q261.4 257.4 256 282 Q250.6 257.4 226 252 Q250.6 246.6 256 222Z" fill="#ffe08a"/></svg><span id="name">היליפיי בע"מ</span></h1>
   <p class="bio" id="bio"></p>
   <div class="install-wrap" id="install-wrap">
     <button type="button" class="install" id="install-btn"></button>
