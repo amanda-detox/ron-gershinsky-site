@@ -1,6 +1,6 @@
 /* Offline cache for the private area (my/ and my/shopping/; my/clock/ and my/ideas/ have their own workers). Scope: my/ only.
    Only the app shell is cached; personal data never goes through this cache (the Appwrite API is cross-origin and skipped). */
-var CACHE = "rg-my-v6";
+var CACHE = "rg-my-v7";
 var FILES = ["./", "index.html", "common.css", "common.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png",
   "shopping/", "shopping/index.html", "shopping/app.js", "shopping/manifest.json", "shopping/icon.svg", "shopping/icon-192.png", "shopping/icon-512.png",
   "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];

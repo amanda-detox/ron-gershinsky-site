@@ -14,7 +14,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
       gateTitle: "האזור הפרטי שלך", gateText: "התחבר לחשבון שלך כדי לראות את האפליקציות הפרטיות שלך. הנתונים שלך שמורים בחשבון ונגישים רק לך.",
       privNote: "🔒 הנתונים באזור הזה נשמרים בחשבון שלך, ורק אתה יכול לראות אותם.",
-      footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת רון אפליקציות בע\"מ 2026"
+      footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת היליפיי בע\"מ 2026"
     },
     en: {
       back: "← Back to the main page", backHub: "← My private apps", langLabel: "Language",
@@ -24,7 +24,7 @@
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
       gateTitle: "Your private area", gateText: "Sign in to your account to see your private apps. Your data is stored in your account and only you can see it.",
       privNote: "🔒 Data in this area is stored in your account, and only you can see it.",
-      footer: "© 2026 All rights reserved to Ron Gershinsky and Ron Apps Ltd."
+      footer: "© 2026 All rights reserved to Ron Gershinsky and Healify Ltd."
     }
   };
   var PAGE = window.RGMY_STRINGS || { he: {}, en: {} };
