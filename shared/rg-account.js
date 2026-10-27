@@ -1,4 +1,4 @@
-/* rg-account.js — one shared account for all of Ron's apps (Appwrite Cloud, no build step, no SDK).
+/* rg-account.js — one shared account for all of the Healify apps (Appwrite Cloud, no build step, no SDK).
    Drop in with one tag:  <script src="../shared/rg-account.js" defer></script>
    The account button mounts into every [data-rg-account] element (or floats at the top corner if there is none).
    Language follows <html lang> (he / en), live.
@@ -365,7 +365,7 @@
       ben: ["מה שקראת, סימנת ושמרת – מסונכרן בין הנייד, הלפטופ וכל מכשיר", "חשבון אחד לכל משפחת האפליקציות", "ההיסטוריה והתוצאות שלך נשמרות ולא הולכות לאיבוד", "כניסה עם קוד חד־פעמי למייל, או עם סיסמה שתגדיר"],
       email: "כתובת המייל שלך", send: "שלח לי קוד", sending: "שולח…",
       codeHead: "הזן את הקוד שקיבלת במייל", codeSub: "שלחנו קוד בן 6 ספרות אל", code: "קוד בן 6 ספרות", verify: "אמת והתחבר", verifying: "מאמת…",
-      fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם. אם קיבלת כמה מיילים כאלה, הקוד הנכון הוא במייל האחרון.",
+      fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Healify Apps Login”. לא רואה? בדוק בספאם. אם קיבלת כמה מיילים כאלה, הקוד הנכון הוא במייל האחרון.",
       resend: "שלח קוד חדש", resent: "נשלח קוד חדש. בדוק את המייל (גם בספאם).", other: "החלף מייל",
       nameHead: "איך לקרוא לך?", nameSub: "השם יוצג בכל האפליקציות במקום המייל. אפשר לדלג.", name: "השם שלך", save: "שמור", skip: "דלג",
       signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", my: "האפליקציות הפרטיות שלי", exp: "ייצוא כל המידע שלי", expBusy: "מכין את הקובץ…", expDone: "הקובץ {f} ירד למכשיר שלך. הוא כולל את כל המידע שלך מהענן ומהמכשיר הזה.", expOffline: "אין חיבור לאינטרנט, לכן הקובץ {f} כולל רק את המידע שנשמר במכשיר הזה. כדי לקבל גם את המידע מהענן, נסה שוב כשתחזור לרשת.", expPartial: "חלק מהמידע בענן לא נטען, לכן הקובץ {f} כולל רק חלק ממנו, וגם את המידע שבמכשיר הזה. כדאי לנסות שוב בעוד רגע.", out: "התנתק", close: "סגירה", account: "החשבון שלך",
@@ -393,7 +393,7 @@
       ben: ["What you read, marked and saved – synced across your phone, laptop and every device", "One account for the whole family of apps", "Your history and results are saved and never get lost", "Sign in with a one-time code by email, or with a password you set"],
       email: "Your email address", send: "Send me a code", sending: "Sending…",
       codeHead: "Enter the code you got by email", codeSub: "We sent a 6-digit code to", code: "6-digit code", verify: "Verify and sign in", verifying: "Verifying…",
-      fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam. If you got several of these emails, the right code is in the latest one.",
+      fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Healify Apps Login”. Don't see it? Check spam. If you got several of these emails, the right code is in the latest one.",
       resend: "Send a new code", resent: "A new code was sent. Check your email (and spam).", other: "Use another email",
       nameHead: "What should we call you?", nameSub: "Your name shows in every app instead of your email. You can skip this.", name: "Your name", save: "Save", skip: "Skip",
       signedAs: "Signed in as ", hello: "Hi", rename: "Change name", my: "My private apps", exp: "Export all my data", expBusy: "Preparing the file…", expDone: "{f} was downloaded to your device. It has all your data from the cloud and from this device.", expOffline: "You're offline, so {f} only has the data saved on this device. To include your cloud data too, try again when you're back online.", expPartial: "Some of your cloud data couldn't be loaded, so {f} has only part of it, plus this device's data. Try again in a moment.", out: "Sign out", close: "Close", account: "Your account",
