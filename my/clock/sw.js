@@ -1,6 +1,6 @@
 /* Offline cache + notification clicks for the private alarm clock (my/clock/). Scope: my/clock/ only.
    Alarms themselves are stored in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-myclock-v2";
+var CACHE = "rg-myclock-v3";
 var FILES = ["./", "index.html", "../../shared/rg-account.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js", "alarm-core.js", "sync.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
