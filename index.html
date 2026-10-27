@@ -6,17 +6,17 @@
 <meta name="theme-color" content="#0f172a">
 <meta name="color-scheme" content="dark light">
 <meta name="description" content="רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי.">
-<title>רון אפליקציות בע"מ</title>
+<title>היליפיי בע"מ</title>
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=19">
+<link rel="manifest" href="manifest.json?v=20">
 <link rel="icon" href="favicon-32.png?v=19" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.ico?v=19" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=19">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="רון גרשינסקי">
+<meta name="apple-mobile-web-app-title" content="היליפיי בע&quot;מ">
 <link rel="preload" href="shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="shared/fonts/heebo.css">
 <link rel="stylesheet" href="shared/rg-site.css">
@@ -319,7 +319,7 @@
     </div>
   </div>
   <img class="mark" id="mark" src="assets/avatar.jpg" alt="רון גרשינסקי" width="120" height="120">
-  <h1 id="name">רון אפליקציות בע"מ</h1>
+  <h1 id="name">היליפיי בע"מ</h1>
   <p class="bio" id="bio"></p>
   <div class="install-wrap" id="install-wrap">
     <button type="button" class="install" id="install-btn"></button>
@@ -408,8 +408,8 @@ function renderApps(he) {
 
 var copy = {
   he: {
-    title: "רון אפליקציות בע\"מ",
-    name: "רון אפליקציות בע\"מ",
+    title: "היליפיי בע\"מ",
+    name: "היליפיי בע\"מ",
     personName: "רון גרשינסקי",
     mark: "רג",
     bio: "אנו מפתחים אפליקציות במטרה לסייע בלשפר את הוולנס האינטגרלי של המשתמש, בין אם הוא מתמודד עם מצב קיצון, מחלות כרוניות פיזיות ונפשיות, התמכרויות ועוד.",
@@ -427,7 +427,7 @@ var copy = {
     contactTitle: "יצירת קשר",
     contactBtn: "שלח אליי מייל",
     about: "אודות ←",
-    footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת רון אפליקציות בע\"מ 2026",
+    footer: "© כל הזכויות שמורות לרון גרשינסקי וחברת היליפיי בע\"מ 2026",
     appsTitle: "האפליקציות שלנו",
     games: "משחקים להרגעה ושלווה עמוקה",
     buy: "הורדה ב־5 דולר",
@@ -444,8 +444,8 @@ var copy = {
     lbgs: ["רקע מקורי", "שמי בוקר", "שמנת וזהב", "לבנדר", "אפרסק", "פנינה", "זריחה", "בריזה", "קוורץ ורוד", "שעת זהב", "עננים"]
   },
   en: {
-    title: "Ron Apps Ltd.",
-    name: "Ron Apps Ltd.",
+    title: "Healify Ltd.",
+    name: "Healify Ltd.",
     personName: "Ron Gershinsky",
     mark: "RG",
     bio: "We develop apps that aim to help improve the user's integral wellness, whether they are facing an extreme situation, chronic physical and mental illness, addiction and more.",
@@ -463,7 +463,7 @@ var copy = {
     contactTitle: "Contact",
     contactBtn: "Send email",
     about: "About →",
-    footer: "© 2026 All rights reserved to Ron Gershinsky and Ron Apps Ltd.",
+    footer: "© 2026 All rights reserved to Ron Gershinsky and Healify Ltd.",
     appsTitle: "Our apps",
     games: "Games for calm and deep quiet",
     buy: "Download for $5",
