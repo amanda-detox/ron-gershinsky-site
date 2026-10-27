@@ -8,29 +8,29 @@ const T = {
   he: {
     title: 'לייטיפיי', tag: 'שלח אור, יונים וברכות, ועזור לצללים להתמלא באור ולעלות לרקיע',
     start: 'התחל', angle: 'זווית מצלמה', soundOn: '🔊 צליל: פועל', soundOff: '🔈 צליל: כבוי', langBtn: 'English',
-    install: '📲 התקנה למסך הבית', souls: 'נשמות שעלו', wave: 'גל', paused: 'הפסקה', resume: 'המשך', toMenu: 'לתפריט',
+    install: '📲 התקנה', souls: 'נשמות שעלו', wave: 'גל', paused: 'הפסקה', resume: 'המשך', toMenu: 'לתפריט',
     overT: 'האור התעמעם לרגע', overS: 'אבל האור תמיד חוזר. רוצה לנסות שוב?', best: 'שיא', again: 'נסה שוב',
     copy: COPY_HE, nogl: 'הדפדפן הזה לא מציג תלת־ממד (WebGL). נסה לפתוח ב־Chrome.', auto: 'אוטומטי',
-    waveB: 'גל {n}', ready: 'מוכן',
-    help: 'בטלפון: אגודל שמאל מזיז, אגודל ימין מכוון (האור יוצא לבד). הכפתורים למטה מפעילים את הכוחות המיוחדים, והעיגולים למעלה מחליפים גיבור. החברים ממשיכים לעזור לבד.<br>במחשב: WASD או חצים לתנועה, עכבר לכיוון, ‏1/2/3 להחלפת גיבור, ‏Q לכוח הראשון, ‏E או רווח לכוח הגדול, ‏P להפסקה.',
+    waveB: 'גל {n}', ready: 'מוכן', boost: 'חיזוק', shieldB: 'מגן אור!', giftB: 'מתנת אור!',
+    help: 'בטלפון: העיגול למטה מימין מזיז את הגיבור שבחרת, והחברים הולכים איתו. העיגול למטה משמאל מפעיל חמישה כוחות. גרירה בכל מקום אחר על המסך מכוונת (האור יוצא לבד). העיגולים למעלה מחליפים גיבור, וכפתור ∠ משנה את זווית המצלמה.<br>במחשב: WASD או חצים לתנועה, עכבר לכיוון, ‏1/2/3 להחלפת גיבור, ‏Z/Q/E/R/F לחמשת הכוחות (גם רווח לכוח הגדול), ‏P להפסקה.',
     heroes: [
-      { p: ['קרן אור', 'יוני שלום', 'סופת ברכות מחשמלות'], s: ['קרן אור', 'יוני שלום', 'סופת ברכות'] },
-      { p: ['חיבוק חמימות', 'גשר קשת', 'הספירות'], s: ['חיבוק חמימות', 'גשר קשת', 'הספירות'] },
-      { p: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'], s: ['פנס הלב', 'גשם כוכבים', 'זרעי אור'] }
+      { p: ['קרן אור', 'יוני שלום', 'סופת ברכות מחשמלות', 'מגן אור', 'פרץ כוכבים'], s: ['קרן אור', 'יוני שלום', 'סופת ברכות', 'מגן אור', 'פרץ כוכבים'] },
+      { p: ['חיבוק חמימות', 'גשר קשת', 'הספירות', 'גל רוגע', 'מתנת אור'], s: ['חיבוק חמימות', 'גשר קשת', 'הספירות', 'גל רוגע', 'מתנת אור'] },
+      { p: ['פנס הלב', 'גשם כוכבים', 'זרעי אור', 'זריחה', 'מעגל חסד'], s: ['פנס הלב', 'גשם כוכבים', 'זרעי אור', 'זריחה', 'מעגל חסד'] }
     ]
   },
   en: {
     title: 'Lightify', tag: 'Send light, doves and blessings, and help the shadows fill with light and rise to the heavens',
     start: 'Start', angle: 'Camera angle', soundOn: '🔊 Sound: on', soundOff: '🔈 Sound: off', langBtn: 'עברית',
-    install: '📲 Install to home screen', souls: 'Souls lifted', wave: 'Wave', paused: 'Paused', resume: 'Resume', toMenu: 'Menu',
+    install: '📲 Install', souls: 'Souls lifted', wave: 'Wave', paused: 'Paused', resume: 'Resume', toMenu: 'Menu',
     overT: 'The light dimmed for a moment', overS: 'But the light always returns. Try again?', best: 'Best', again: 'Try again',
     copy: COPY_EN, nogl: 'This browser can\'t show 3D (WebGL). Try opening it in Chrome.', auto: 'Auto',
-    waveB: 'Wave {n}', ready: 'Ready',
-    help: 'Phone: left thumb moves, right thumb aims (the light flows on its own). The buttons at the bottom fire special powers; the circles at the top switch hero. Your friends keep helping on their own.<br>Desktop: WASD or arrows to move, mouse to aim, 1/2/3 to switch hero, Q for the first power, E or Space for the big power, P to pause.',
+    waveB: 'Wave {n}', ready: 'Ready', boost: 'boost', shieldB: 'Light shield!', giftB: 'Gift of light!',
+    help: 'Phone: the circle at the bottom right moves the hero you picked, and the others walk with it. The circle at the bottom left fires five powers. Drag anywhere else on the screen to aim (the light flows on its own). The circles at the top switch hero, and the ∠ button changes the camera angle.<br>Desktop: WASD or arrows to move, mouse to aim, 1/2/3 to switch hero, Z/Q/E/R/F for the five powers (Space also fires the big one), P to pause.',
     heroes: [
-      { p: ['Beam of light', 'Peace doves', 'Blizzard of electrifying blessings'], s: ['Light beam', 'Peace doves', 'Blessing storm'] },
-      { p: ['Embrace of warmth', 'Rainbow bridge', 'The Sefirot'], s: ['Warm embrace', 'Rainbow bridge', 'The Sefirot'] },
-      { p: ['Heart lantern', 'Rain of stars', 'Seeds of light'], s: ['Heart lantern', 'Star rain', 'Seeds of light'] }
+      { p: ['Beam of light', 'Peace doves', 'Blizzard of electrifying blessings', 'Light shield', 'Star burst'], s: ['Light beam', 'Peace doves', 'Blessing storm', 'Light shield', 'Star burst'] },
+      { p: ['Embrace of warmth', 'Rainbow bridge', 'The Sefirot', 'Calm wave', 'Gift of light'], s: ['Warm embrace', 'Rainbow bridge', 'The Sefirot', 'Calm wave', 'Gift of light'] },
+      { p: ['Heart lantern', 'Rain of stars', 'Seeds of light', 'Sunrise', 'Circle of kindness'], s: ['Heart lantern', 'Star rain', 'Seeds of light', 'Sunrise', 'Circle of kindness'] }
     ]
   }
 };
@@ -39,7 +39,7 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 };
 let lang = store.get('rg-lang', 'he') === 'en' ? 'en' : 'he';
-let angleDeg = Math.max(45, Math.min(70, parseInt(store.get('rg-game-angle', '55'), 10) || 55));
+let angleDeg = Math.max(3, Math.min(70, parseInt(store.get('rg-game-angle', '55'), 10) || 55));
 let soundOn = store.get('rg-game-sound', '0') === '1';
 const $ = (id) => document.getElementById(id);
 
@@ -58,8 +58,14 @@ const IC = {
   h1: '<path d="M4 14 A8 8 0 0 1 20 14" stroke="#9ec0ff" stroke-width="2.4"/><circle cx="12" cy="15" r="4.5" fill="#fff" stroke="none"/>',
   h2: '<path d="M12 1l1.3 2.7 3 .4-2.2 2 .6 3L12 7.7 9.3 9.1l.6-3-2.2-2 3-.4z" fill="#ffe7a3" stroke="none"/><circle cx="12" cy="16" r="4.5" fill="#fff" stroke="none"/>'
 };
+IC.shield = '<path d="M12 2 L20 5 V11 C20 16 16.5 19.5 12 22 C7.5 19.5 4 16 4 11 V5 Z" fill="#ffe7a3" fill-opacity=".25" stroke-width="2"/><path d="M12 7v9M7.5 11.5h9" stroke="#fff" stroke-width="2"/>';
+IC.burst = '<circle cx="12" cy="12" r="3.2" fill="#fff" stroke="none"/><path d="M12 1v5M12 18v5M1 12h5M18 12h5M4.2 4.2l3.5 3.5M16.3 16.3l3.5 3.5M4.2 19.8l3.5-3.5M16.3 7.7l3.5-3.5" stroke-width="2.2"/>';
+IC.calm = '<path d="M2 8 C5 5 8 11 12 8 S19 5 22 8" stroke="#9ec0ff" stroke-width="2.2"/><path d="M2 13 C5 10 8 16 12 13 S19 10 22 13" stroke="#fff" stroke-width="2.2"/><path d="M2 18 C5 15 8 21 12 18 S19 15 22 18" stroke-width="2.2"/>';
+IC.gift = '<rect x="3.5" y="10" width="17" height="11" rx="1.5" fill="#ffe7a3" fill-opacity=".25" stroke-width="1.9"/><path d="M2.5 7h19v3h-19zM12 7v14" stroke-width="1.9"/><path d="M12 7 C9 2 5 4 8 7 M12 7 C15 2 19 4 16 7" stroke="#fff" stroke-width="1.8"/>';
+IC.sunrise = '<path d="M5 17 A7 7 0 0 1 19 17" fill="#ffe7a3" stroke="none"/><path d="M2 20h20M12 3v4M4.5 8.5l2.6 2.6M19.5 8.5l-2.6 2.6M1.5 14h3M19.5 14h3" stroke="#fff" stroke-width="2"/>';
+IC.kind = '<circle cx="12" cy="12" r="9" stroke-width="2.2" stroke-dasharray="3.2 2.4"/><path d="M12 17 C7 13.5 6.5 11 8 9.3 C9.4 7.8 11.2 8.6 12 10 C12.8 8.6 14.6 7.8 16 9.3 C17.5 11 17 13.5 12 17Z" fill="#fff" stroke="none"/>';
 const svg = (k, s = 28) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="#ffe7a3" stroke-linecap="round" stroke-linejoin="round">${IC[k]}</svg>`;
-const HERO_ICONS = [['beam', 'dove', 'storm'], ['warm', 'bridge', 'sef'], ['heart', 'stars', 'seeds']];
+const HERO_ICONS = [['beam', 'dove', 'storm', 'shield', 'burst'], ['warm', 'bridge', 'sef', 'calm', 'gift'], ['heart', 'stars', 'seeds', 'sunrise', 'kind']];
 
 /* ================= renderer ================= */
 const canvas = $('c');
@@ -75,17 +81,17 @@ const DPR = Math.min(window.devicePixelRatio || 1, 2);
 let quality = 0; // 0 high, 1 medium, 2 low
 let qualityLocked = false;
 const Q = [
-  { pr: DPR, parts: 1400, enemies: 36 },
-  { pr: Math.min(DPR, 1.5), parts: 800, enemies: 28 },
-  { pr: 1, parts: 450, enemies: 22 }
+  { pr: DPR, parts: 1400, enemies: 48 },
+  { pr: Math.min(DPR, 1.5), parts: 800, enemies: 40 },
+  { pr: 1, parts: 450, enemies: 32 }
 ];
 renderer.setPixelRatio(Q[0].pr);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x070d2e);
-scene.fog = new THREE.Fog(0x070d2e, 28, 75);
-const camera = new THREE.PerspectiveCamera(50, 1, 0.5, 220);
+scene.fog = new THREE.Fog(0x070d2e, 36, 95);
+const camera = new THREE.PerspectiveCamera(55, 1, 0.5, 260);
 scene.add(camera);
 const hemi = new THREE.HemisphereLight(0xa9bcff, 0x101a50, 1.5);
 scene.add(hemi);
@@ -282,13 +288,18 @@ const ETYPES = {
   dino: { hp: 26, speed: 1.55, r: 0.85, h: 2.0 },
   demon: { hp: 15, speed: 2.6, r: 0.55, h: 1.5 }
 };
-const SHADOW_COLS = [0x3a4a8a, 0x34417e, 0x2f3f86, 0x405096, 0x36468e];
+const SHADOW_COLS = [0x5a6ad0, 0x6a5cc8, 0x4f66d8, 0x7468d6, 0x5872e0]; // brighter violet-blue so they stand out against the night ground
+const ENEMY_SCALE = 1.35, enemyHaloMat = glowMat(0x8fa6ff, 0.55), enemyRingMat = new THREE.MeshBasicMaterial({ color: 0xc9d4ff, opacity: 0.75, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+const enemyRingGeo = new THREE.RingGeometry(0.82, 1, 28).rotateX(-Math.PI / 2);
 function makeEnemy(type) {
   const base = new THREE.Color(SHADOW_COLS[(Math.random() * SHADOW_COLS.length) | 0]);
-  const m = new THREE.MeshLambertMaterial({ color: base.clone(), flatShading: true });
-  const acc = new THREE.MeshLambertMaterial({ color: base.clone().multiplyScalar(0.7), flatShading: true });
+  const m = new THREE.MeshLambertMaterial({ color: base.clone(), flatShading: true, emissive: 0x1c2470 });
+  const acc = new THREE.MeshLambertMaterial({ color: base.clone().multiplyScalar(0.7), flatShading: true, emissive: 0x141a55 });
   const root = new THREE.Group(), body = new THREE.Group(); root.add(body);
   const u = { body, m, acc, base, accBase: acc.color.clone(), legs: [] };
+  const R = ETYPES[type].r * 2.6;
+  u.halo = new THREE.Mesh(flatGlowGeo, enemyHaloMat); u.halo.scale.set(R * 1.6, 1, R * 1.6); u.halo.position.y = 0.04; u.halo.renderOrder = 1; root.add(u.halo);
+  u.ring = new THREE.Mesh(enemyRingGeo, enemyRingMat); u.ring.scale.setScalar(R * 0.5); u.ring.position.y = 0.06; root.add(u.ring);
   if (type === 'human') {
     part(G.cap, m, 0, 0.85, 0, 0.42, 0.55, 0.36, body);
     u.head = part(G.sph2, m, 0, 1.5, 0, 0.32, 0.32, 0.32, body);
@@ -331,7 +342,7 @@ function makeEnemy(type) {
     part(G.cyl, acc, 0, 0.7, -0.5, 0.04, 0.5, 0.04, body).rotation.x = -1.0;
     part(G.cone, acc, 0, 0.5, -0.75, 0.1, 0.16, 0.05, body).rotation.x = -2.2;
   }
-  root.userData = u;
+  root.userData = u; root.scale.setScalar(ENEMY_SCALE);
   return root;
 }
 
@@ -342,11 +353,14 @@ let toSpawn = 0, spawnTimer = 0, waveGap = 0, contactTimer = 0, gameTime = 0, fa
 let best = parseInt(store.get('rg-game-best', '0'), 10) || 0;
 const COOLDOWN = [[0, 5, 12], [0, 7, 15], [0, 6, 9]]; // [basic auto, special A, big special B] in seconds
 const AI_CD = 1.5; // companions recharge a bit slower than the hero you control
-const waveCount = (w) => 6 + w * 4;
+const waveCount = (w) => 10 + w * 6;
+const COOLDOWN2 = [[9, 14, 12], [9, 11, 18], [9, 10, 14]]; // [basic boost, power 4, power 5]
 
 function newHero(kind) {
   const g = makeHero(kind); scene.add(g);
-  const h = { kind, g, x: 0, z: 0, vx: 0, vz: 0, dirx: 0, dirz: -1, cdA: 0, cdB: 0, walk: 0, basicT: 0, fx: {} };
+  const h = { kind, g, x: 0, z: 0, vx: 0, vz: 0, dirx: 0, dirz: -1, cdA: 0, cdB: 0, cdS: 0, cdC: 0, cdD: 0, surge: 0, kz: 0, walk: 0, basicT: 0, fx: {} };
+  h.fx.shield = new THREE.Mesh(new THREE.SphereGeometry(1.25, 20, 14), fresnelMat(0xffe7a3, 0.55)); h.fx.shield.visible = false; scene.add(h.fx.shield);
+  h.fx.kind = new THREE.Mesh(new THREE.TorusGeometry(1, 0.07, 6, 48).rotateX(Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xffe3a0, opacity: 0.8, ...ADD })); h.fx.kind.visible = false; scene.add(h.fx.kind);
   if (kind === 0) {
     const beamGeo = new THREE.CylinderGeometry(0.16, 0.42, 1, 12, 1, true).rotateX(Math.PI / 2).translate(0, 0, 0.5);
     const outer = new THREE.Mesh(beamGeo, new THREE.MeshBasicMaterial({ color: 0xffe9b0, opacity: 0.45, ...ADD, side: THREE.DoubleSide }));
@@ -373,12 +387,12 @@ function spawnEnemy(type, x, z) {
   }
   if (x === undefined) {
     const L = heroes[lead]; let tries = 0;
-    do { const a = Math.random() * Math.PI * 2, r = 17 + Math.random() * 4; x = THREE.MathUtils.clamp(L.x + Math.cos(a) * r, -ARENA + 1, ARENA - 1); z = THREE.MathUtils.clamp(L.z + Math.sin(a) * r, -ARENA + 1, ARENA - 1); }
+    do { const a = Math.random() * Math.PI * 2, r = 15 + Math.random() * 5; x = THREE.MathUtils.clamp(L.x + Math.cos(a) * r, -ARENA + 1, ARENA - 1); z = THREE.MathUtils.clamp(L.z + Math.sin(a) * r, -ARENA + 1, ARENA - 1); }
     while (Math.hypot(x - L.x, z - L.z) < 11 && ++tries < 12);
   }
   const t = ETYPES[type], g = makeEnemy(type);
   const hpMul = 1 + (wave - 1) * 0.08, spMul = Math.min(1.45, 1 + (wave - 1) * 0.035);
-  const e = { type, g, u: g.userData, x, z, y: 0, hp: t.hp * hpMul, light: 0, speed: t.speed * spMul * (0.9 + Math.random() * 0.2), r: t.r, h: t.h, ph: Math.random() * 6, slow: 1, state: 'walk', t: 0, pillar: null };
+  const e = { type, g, u: g.userData, x, z, y: 0, calm: 0, hp: t.hp * hpMul, light: 0, speed: t.speed * spMul * (0.9 + Math.random() * 0.2), r: t.r * ENEMY_SCALE, h: t.h * ENEMY_SCALE, ph: Math.random() * 6, slow: 1, state: 'walk', t: 0, pillar: null };
   g.position.set(x, 0, z); scene.add(g); enemies.push(e);
   for (let i = 0; i < 8; i++) emit(x, 0.3, z, (Math.random() - 0.5) * 2, Math.random() * 1.5, (Math.random() - 0.5) * 2, 0.8, 0.35, C_BLUE);
   return e;
@@ -397,7 +411,7 @@ function fill(e, amt) {
 function tintEnemy(e) { // shadows brighten towards white as they fill with light
   const f = Math.min(1, e.light / e.hp);
   e.u.m.color.copy(e.u.base).lerp(WHITE, f * 0.82); e.u.acc.color.copy(e.u.accBase).lerp(WHITE, f * 0.8);
-  e.u.m.emissive.setRGB(f * 0.3, f * 0.28, f * 0.22); e.u.acc.emissive.copy(e.u.m.emissive);
+  e.u.m.emissive.setRGB(0.11 + f * 0.25, 0.14 + f * 0.2, 0.44 - f * 0.2); e.u.acc.emissive.copy(e.u.m.emissive);
 }
 /* soul pillars + rising rings (pool) */
 const pillars = [];
@@ -411,7 +425,7 @@ const pillars = [];
   }
 }
 function ascend(e) {
-  e.state = 'ascend'; e.t = 0; score++;
+  e.state = 'ascend'; e.t = 0; score++; e.u.halo.visible = e.u.ring.visible = false;
   e.u.m.color.set(0xffffff); e.u.acc.color.set(0xfff6e0);
   e.u.m.emissive.setRGB(0.85, 0.85, 0.8); e.u.acc.emissive.setRGB(0.8, 0.76, 0.6);
   const halo = new THREE.Mesh(G.tor, MAT.haloMat); halo.rotation.x = Math.PI / 2; halo.scale.setScalar(0.32 * Math.max(1, e.r * 1.4)); halo.position.y = e.h + 0.35; e.g.add(halo);
@@ -733,6 +747,53 @@ function clusterCenter(x, z, R) {
   let sx = 0, sz = 0, n = 0; for (const e of enemies) if (e.state === 'walk' && Math.hypot(e.x - x, e.z - z) < R) { sx += e.x; sz += e.z; n++; }
   return n ? [sx / n, sz / n] : null;
 }
+/* ================= extra powers (4th and 5th button of each hero) ================= */
+const waves = []; // expanding flat rings, pooled
+{
+  const geo = new THREE.RingGeometry(0.9, 1, 64).rotateX(-Math.PI / 2);
+  for (let i = 0; i < 6; i++) { const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0, ...ADD, side: THREE.DoubleSide })); m.visible = false; scene.add(m); waves.push({ m, t: 1, dur: 1, R: 1, x: 0, z: 0, hit: new Set(), fx: null }); }
+}
+function castWave(x, z, R, dur, color, fx) {
+  const w = waves.find((q) => q.t >= q.dur) || waves[0];
+  Object.assign(w, { t: 0, dur, R, x, z, fx }); w.hit.clear(); w.m.material.color.setHex(color); w.m.visible = true;
+}
+function updateWaves(dt) {
+  for (const w of waves) {
+    if (w.t >= w.dur) { w.m.visible = false; continue; }
+    w.t += dt; const k = Math.min(1, w.t / w.dur), r = 0.5 + k * w.R;
+    w.m.position.set(w.x, 0.12, w.z); w.m.scale.set(r, 1, r); w.m.material.opacity = 0.85 * (1 - k);
+    if (w.fx) for (const e of enemies) if (e.state === 'walk' && !w.hit.has(e) && Math.hypot(e.x - w.x, e.z - w.z) < r + e.r) { w.hit.add(e); w.fx(e); }
+  }
+}
+let shieldT = 0;
+function castShield() { shieldT = 5; banner(T[lang].shieldB); for (const h of heroes) for (let i = 0; i < 14; i++) { const a = i / 14 * 6.283; emit(h.x + Math.cos(a) * 1.2, 1, h.z + Math.sin(a) * 1.2, Math.cos(a), 1.5, Math.sin(a), 0.9, 0.35, C_GOLD); } }
+function castBurst(h) {
+  castWave(h.x, h.z, 9, 0.9, 0xffe7a3, (e) => { fill(e, 9); e.calm = Math.max(e.calm, 0.6); });
+  for (let i = 0; i < 36; i++) { const a = i / 36 * 6.283; emit(h.x, 1, h.z, Math.cos(a) * 9, 1 + Math.random() * 2, Math.sin(a) * 9, 0.9, 0.4, i % 2 ? C_WHITE : C_GOLD); }
+}
+function castCalm(h) { castWave(h.x, h.z, 12, 1.3, 0x9ec0ff, (e) => { e.calm = 3.5; fill(e, 3); }); }
+function castGift(h) {
+  teamLight = Math.min(100, teamLight + 35); banner(T[lang].giftB); updateHud();
+  for (const q of heroes) for (let i = 0; i < 16; i++) { const a = Math.random() * 6.283; emit(q.x + Math.cos(a) * 0.6, 0.3, q.z + Math.sin(a) * 0.6, 0, 2 + Math.random() * 2, 0, 1.2, 0.35, i % 2 ? C_GOLD : C_PALE); }
+  for (const e of enemies) if (e.state === 'walk' && Math.hypot(e.x - h.x, e.z - h.z) < 5 + e.r) fill(e, 5);
+}
+function castSunrise(h) {
+  castWave(h.x, h.z, 15, 1.6, 0xffd98a, (e) => fill(e, 6)); auroraBoost = Math.min(1.6, auroraBoost + 0.8);
+  for (let i = 0; i < 30; i++) { const a = Math.random() * 6.283, r = Math.random() * 12; emit(h.x + Math.cos(a) * r, 0.2, h.z + Math.sin(a) * r, 0, 2.5, 0, 1.3, 0.35, C_GOLD); }
+}
+function castKind(h) { h.kz = 6; }
+const EXTRA = [[castShield, castBurst], [castCalm, castGift], [castSunrise, castKind]];
+function powerCd(h, i) { return [h.cdS, h.cdA, h.cdB, h.cdC, h.cdD][i]; }
+function powerMax(k, i) { return i === 0 ? COOLDOWN2[k][0] : i < 3 ? COOLDOWN[k][i] : COOLDOWN2[k][i - 2]; }
+function usePower(h, i, ai = false) { // i: 0 boost basic, 1 A, 2 B, 3 & 4 extra
+  if (i === 1) return useSpecial(h, 'A', ai); if (i === 2) return useSpecial(h, 'B', ai);
+  if (state !== 'play' || powerCd(h, i) > 0) return false;
+  const k = h.kind, m = ai ? AI_CD : 1;
+  if (i === 0) { h.surge = 3.5; h.cdS = COOLDOWN2[k][0] * m; }
+  else if (i === 3) { EXTRA[k][0](h); h.cdC = COOLDOWN2[k][1] * m; }
+  else { EXTRA[k][1](h); h.cdD = COOLDOWN2[k][2] * m; }
+  updatePowerBtns(); return true;
+}
 function useSpecial(h, which, ai = false) {
   if (state !== 'play') return false;
   if ((which === 'A' ? h.cdA : h.cdB) > 0) return false;
@@ -757,15 +818,18 @@ function useSpecial(h, which, ai = false) {
 
 /* ================= input ================= */
 const keys = {};
-const joy = { active: false, id: -1, sx: 0, sy: 0, x: 0, z: 0 };
+const joy = { active: false, id: -1, x: 0, z: 0 };
 const aim = { touch: false, active: false, id: -1, sx: 0, sy: 0, x: 0, z: -1, mouse: false, mx: 0, mz: 0 };
 addEventListener('keydown', (e) => {
   const k = e.key.toLowerCase(); keys[k] = true;
   if (state === 'play') {
     if (k === '1' || k === '2' || k === '3') setLead(+k - 1);
     if (k === 'tab') { e.preventDefault(); setLead((lead + 1) % 3); }
+    if (k === 'z') usePower(heroes[lead], 0);
     if (k === 'q') useSpecial(heroes[lead], 'A');
     if (k === 'e' || k === ' ') { e.preventDefault(); useSpecial(heroes[lead], 'B'); }
+    if (k === 'r') usePower(heroes[lead], 3);
+    if (k === 'f') usePower(heroes[lead], 4);
     if (k === 'p' || k === 'escape') pause(true);
   } else if (state === 'pause' && (k === 'p' || k === 'escape')) pause(false);
 });
@@ -776,10 +840,7 @@ canvas.addEventListener('pointerdown', (e) => {
   if (state !== 'play') return;
   if (e.pointerType === 'mouse') { aim.mouse = true; return; }
   try { canvas.setPointerCapture(e.pointerId); } catch (er) {}
-  if (e.clientX < innerWidth * 0.45 && !joy.active) {
-    Object.assign(joy, { active: true, id: e.pointerId, sx: e.clientX, sy: e.clientY, x: 0, z: 0 });
-    const j = $('joy'); j.classList.remove('hidden'); j.style.left = e.clientX + 'px'; j.style.top = e.clientY + 'px'; j.firstElementChild.style.transform = '';
-  } else if (!aim.touch) Object.assign(aim, { touch: true, id: e.pointerId, sx: e.clientX, sy: e.clientY });
+  if (!aim.touch) Object.assign(aim, { touch: true, id: e.pointerId, sx: e.clientX, sy: e.clientY });
 });
 canvas.addEventListener('pointermove', (e) => {
   if (e.pointerType === 'mouse') {
@@ -788,21 +849,36 @@ canvas.addEventListener('pointermove', (e) => {
     if (ray.ray.intersectPlane(plane, v3)) { aim.mx = v3.x; aim.mz = v3.z; }
     return;
   }
-  if (joy.active && e.pointerId === joy.id) {
-    let dx = e.clientX - joy.sx, dy = e.clientY - joy.sy; const L = Math.hypot(dx, dy), M = 50;
-    if (L > M) { dx *= M / L; dy *= M / L; }
-    joy.x = dx / M; joy.z = dy / M; $('joy').firstElementChild.style.transform = `translate(${dx}px,${dy}px)`;
-  } else if (aim.touch && e.pointerId === aim.id) {
+  if (aim.touch && e.pointerId === aim.id) {
     const dx = e.clientX - aim.sx, dy = e.clientY - aim.sy, L = Math.hypot(dx, dy);
     if (L > 14) { aim.active = true; aim.x = dx / L; aim.z = dy / L; }
   }
 });
 const endPtr = (e) => {
-  if (joy.active && e.pointerId === joy.id) { joy.active = false; joy.x = joy.z = 0; $('joy').classList.add('hidden'); }
   if (aim.touch && e.pointerId === aim.id) { aim.touch = false; aim.active = false; }
 };
 canvas.addEventListener('pointerup', endPtr); canvas.addEventListener('pointercancel', endPtr);
 canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+/* fixed movement joystick (bottom-right): analog, any direction; touch (multi-touch safe) and mouse */
+{
+  const el = $('joy'), knob = el.querySelector('i');
+  const upd = (e) => {
+    const r = el.getBoundingClientRect(), M = r.width * 0.36;
+    let dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2); const L = Math.hypot(dx, dy);
+    if (L > M) { dx *= M / L; dy *= M / L; }
+    const n = Math.hypot(dx, dy) / M; // small dead zone so a resting thumb doesn't drift
+    joy.x = n < 0.12 ? 0 : dx / M; joy.z = n < 0.12 ? 0 : dy / M;
+    knob.style.transform = `translate(${dx}px,${dy}px)`;
+  };
+  el.addEventListener('pointerdown', (e) => {
+    e.preventDefault(); e.stopPropagation(); if (joy.active || state !== 'play') return;
+    joy.active = true; joy.id = e.pointerId; el.classList.add('act'); try { el.setPointerCapture(e.pointerId); } catch (er) {} upd(e);
+  });
+  el.addEventListener('pointermove', (e) => { if (joy.active && e.pointerId === joy.id) { e.preventDefault(); upd(e); } });
+  const end = (e) => { if (joy.active && e.pointerId === joy.id) { joy.active = false; joy.id = -1; joy.x = joy.z = 0; knob.style.transform = ''; el.classList.remove('act'); } };
+  el.addEventListener('pointerup', end); el.addEventListener('pointercancel', end); el.addEventListener('lostpointercapture', end);
+  el.addEventListener('contextmenu', (e) => e.preventDefault());
+}
 
 /* ================= sound (optional, off by default, WebAudio only) ================= */
 let ac = null, pad = null, lastChime = 0;
@@ -833,6 +909,7 @@ function applyLang() {
   $('help').innerHTML = L.help; $('langBtn').textContent = L.langBtn;
   [$('soundBtn'), $('sound2Btn')].forEach((b) => (b.textContent = soundOn ? L.soundOn : L.soundOff));
   $('heroCards').innerHTML = L.heroes.map((h, i) => `<div class="hcard"><b>${svg('h' + i, 20)}</b>${h.p.map((p, j) => `<span class="p">${svg(HERO_ICONS[i][j], 14)} ${p}${j === 0 ? ` <i>(${L.auto})</i>` : ''}</span>`).join('')}</div>`).join('');
+  $('angleBtn').setAttribute('aria-label', L.angle);
   if (!$('installHint').classList.contains('hidden')) $('installHint').innerHTML = instHint();
   buildHeroBtns(); updatePowerBtns();
 }
@@ -842,24 +919,40 @@ function buildHeroBtns() {
   box.querySelectorAll('.hbtn').forEach((b) => b.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); setLead(+b.dataset.h); }));
 }
 function setLead(i) { if (!heroes[i]) return; lead = i; buildHeroBtns(); updatePowerBtns(); }
+/* power pad: 5 icon buttons on a circle (pentagon), cooldown shown as a dark sweep */
+const PAD_POS = [-90, -18, 54, 126, 198].map((a) => [50 + 33 * Math.cos(a * Math.PI / 180), 50 + 33 * Math.sin(a * Math.PI / 180)]);
+{
+  const pad = $('pad');
+  for (let i = 0; i < 5; i++) {
+    const b = document.createElement('button'); b.className = 'pw'; b.id = 'pw' + i; b.dataset.i = i;
+    b.style.left = PAD_POS[i][0] + '%'; b.style.top = PAD_POS[i][1] + '%';
+    b.innerHTML = '<span class="ic"></span><div class="cd"></div>';
+    b.addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); usePower(heroes[lead], i); });
+    b.addEventListener('contextmenu', (e) => e.preventDefault());
+    pad.appendChild(b);
+  }
+  pad.addEventListener('pointerdown', (e) => e.stopPropagation());
+}
 function updatePowerBtns() {
   const h = heroes[lead]; if (!h) return; const L = T[lang].heroes[h.kind], k = h.kind;
-  for (const [id, which, j] of [['p1', 'A', 1], ['p2', 'B', 2]]) {
-    const b = $(id);
-    if (b.dataset.k !== String(k) || b.dataset.l !== lang) { b.querySelector('.ic').innerHTML = svg(HERO_ICONS[k][j], j === 2 ? 34 : 28); b.querySelector('.lbl').textContent = L.s[j]; b.dataset.k = k; b.dataset.l = lang; b.setAttribute('aria-label', L.p[j]); }
-    const cd = which === 'A' ? h.cdA : h.cdB;
-    b.querySelector('.cd').style.setProperty('--p', (cd > 0 ? Math.min(100, cd / COOLDOWN[k][j] * 100) : 0) + '%');
-    b.classList.toggle('ready', cd <= 0);
+  for (let i = 0; i < 5; i++) {
+    const b = $('pw' + i);
+    if (b.dataset.k !== String(k) || b.dataset.l !== lang) {
+      b.querySelector('.ic').innerHTML = svg(HERO_ICONS[k][i], i === 2 ? 32 : 28);
+      const name = L.p[i] + (i === 0 ? ' (' + T[lang].boost + ')' : '');
+      b.setAttribute('aria-label', name); b.title = name; b.dataset.k = k; b.dataset.l = lang;
+      $('padHub').innerHTML = svg('h' + k, 26);
+    }
+    const cd = powerCd(h, i);
+    b.querySelector('.cd').style.setProperty('--p', (cd > 0 ? Math.min(100, cd / powerMax(k, i) * 100) : 0) + '%');
+    b.classList.toggle('ready', cd <= 0); b.classList.toggle('on', (i === 0 && h.surge > 0) || (i === 4 && k === 2 && h.kz > 0) || (i === 3 && k === 0 && shieldT > 0));
   }
-  $('basicLbl').textContent = T[lang].auto + ': ' + L.s[0];
 }
-$('p1').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); useSpecial(heroes[lead], 'A'); });
-$('p2').addEventListener('pointerdown', (e) => { e.stopPropagation(); e.preventDefault(); useSpecial(heroes[lead], 'B'); });
 function updateHud() { $('score').textContent = score; $('wave').textContent = wave; $('light').style.width = Math.max(0, teamLight) + '%'; }
 let bannerTimer = 0;
 function banner(txt) { const b = $('banner'); b.textContent = txt; b.style.opacity = 1; clearTimeout(bannerTimer); bannerTimer = setTimeout(() => (b.style.opacity = 0), 1800); }
 function setAngle(v) {
-  angleDeg = Math.max(45, Math.min(70, Math.round(v))); store.set('rg-game-angle', angleDeg);
+  angleDeg = Math.max(3, Math.min(70, Math.round(v))); store.set('rg-game-angle', angleDeg);
   for (const [s, l] of [['angle', 'anglev'], ['angle2', 'angle2v'], ['angle3', 'angle3v']]) { $(s).value = angleDeg; $(l).textContent = angleDeg + '°'; }
   $('angleVal').textContent = angleDeg + '°';
 }
@@ -878,7 +971,8 @@ function resetGame() {
   bridges.forEach((b) => (b.t = b.dur)); sef.t = sef.dur; blizzards.length = 0; starZones.length = 0;
   seeds.forEach((s) => { s.active = false; s.g.visible = false; }); columns.forEach((c) => (c.t = c.dur)); stars.forEach((s) => (s.active = false)); hearts.forEach((w) => (w.t = w.dur));
   P.life.fill(0);
-  heroes.forEach((h, i) => { h.x = (i - 1) * 2.2; h.z = i === 1 ? -0.5 : 1.2; h.cdA = 2; h.cdB = 6; h.vx = h.vz = 0; });
+  heroes.forEach((h, i) => { h.x = (i - 1) * 2.2; h.z = i === 1 ? -0.5 : 1.2; h.cdA = 2; h.cdB = 6; h.cdS = 0; h.cdC = 3; h.cdD = 6; h.surge = 0; h.kz = 0; h.vx = h.vz = 0; h.fx.shield.visible = h.fx.kind.visible = false; });
+  shieldT = 0; waves.forEach((w) => { w.t = w.dur; w.m.visible = false; }); joy.x = joy.z = 0;
   score = 0; wave = 1; teamLight = 100; toSpawn = waveCount(1); spawnTimer = 1.2; waveGap = 0; gameTime = 0; fadeT = 0; auroraBoost = 0;
   $('fade').style.opacity = 0;
   updateHud(); banner(T[lang].waveB.replace('{n}', 1));
@@ -917,7 +1011,7 @@ if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.ser
 function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false);
-  camera.aspect = w / h; camera.fov = camera.aspect < 1 ? 60 : 50; camera.updateProjectionMatrix();
+  camera.aspect = w / h; camera.fov = camera.aspect < 1 ? 70 : 55; camera.updateProjectionMatrix();
   pMat.uniforms.uScale.value = (h * renderer.getPixelRatio()) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
 }
 addEventListener('resize', resize);
@@ -925,9 +1019,10 @@ const camT = new THREE.Vector3();
 function updateCamera(dt, snap) {
   const L = heroes[lead], k = snap ? 1 : 1 - Math.exp(-dt * 4);
   camT.x += (L.x - camT.x) * k; camT.z += (L.z - camT.z) * k;
-  const a = THREE.MathUtils.degToRad(angleDeg), d = camera.aspect < 1 ? 19 : 15.5; // elevation angle above the ground plane
-  camera.position.set(camT.x, Math.sin(a) * d, camT.z + Math.cos(a) * d);
-  camera.lookAt(camT.x, 0.6, camT.z);
+  // elevation angle above the ground plane (3°..70°); pulled back for a wider view. At very low angles lift the eye a little so the heroes don't block everything.
+  const a = THREE.MathUtils.degToRad(angleDeg), d = camera.aspect < 1 ? 24 : 19.5, low = Math.max(0, 1 - angleDeg / 20);
+  camera.position.set(camT.x, Math.max(1.2, Math.sin(a) * d) + low * 1.4, camT.z + Math.cos(a) * d);
+  camera.lookAt(camT.x, 0.6 + low * 0.6, camT.z - low * 2);
   sun.position.set(camT.x + 6, 18, camT.z + 9); sun.target.position.set(camT.x, 0, camT.z);
 }
 function animHero(h, dt, moving, t) {
@@ -988,7 +1083,8 @@ function step(dt) {
       const slot = (i - lead + 3) % 3 === 1 ? -1 : 1;
       const fx = L.x - L.dirz * slot * 2.4 - L.dirx * 1.6, fz = L.z + L.dirx * slot * 2.4 - L.dirz * 1.6;
       const tx = fx - h.x, tz = fz - h.z, d = Math.hypot(tx, tz);
-      let vx = d > 0.4 ? tx / d * Math.min(6, d * 2.5) : 0, vz = d > 0.4 ? tz / d * Math.min(6, d * 2.5) : 0;
+      let vx = d > 0.4 ? tx / d * Math.min(7.5, d * 2.5) : 0, vz = d > 0.4 ? tz / d * Math.min(7.5, d * 2.5) : 0;
+      for (const o of heroes) { if (o === h) continue; const ox = h.x - o.x, oz = h.z - o.z, od = Math.hypot(ox, oz); if (od < 1.5 && od > 1e-3) { vx += ox / od * (1.5 - od) * 6; vz += oz / od * (1.5 - od) * 6; } }
       const ne = nearestEnemy(h.x, h.z, 2.6);
       if (ne) { const ex = h.x - ne.x, ez = h.z - ne.z, el = Math.hypot(ex, ez) || 1; vx += ex / el * 4; vz += ez / el * 4; }
       h.vx = playing ? vx : 0; h.vz = playing ? vz : 0;
@@ -996,9 +1092,19 @@ function step(dt) {
         const near6 = countNear(h.x, h.z, 6.5), near11 = countNear(h.x, h.z, 11);
         if (h.cdA <= 0 && (h.kind === 1 ? near6 >= 2 : near11 >= 2) && Math.random() < dt * 1.5) useSpecial(h, 'A', true);
         if (h.cdB <= 0 && near6 >= (h.kind === 2 ? 2 : 4) && Math.random() < dt) useSpecial(h, 'B', true);
+        if (h.cdC <= 0 && near6 >= 4 && Math.random() < dt * 0.5) usePower(h, 3, true);
+        if (h.cdD <= 0 && near6 >= 5 && Math.random() < dt * 0.4) usePower(h, 4, true);
       }
     }
     h.x = THREE.MathUtils.clamp(h.x + h.vx * dt, -ARENA + 0.6, ARENA - 0.6); h.z = THREE.MathUtils.clamp(h.z + h.vz * dt, -ARENA + 0.6, ARENA - 0.6);
+    if (i !== lead) { const lx = h.x - L.x, lz = h.z - L.z, ld = Math.hypot(lx, lz), MAXR = 4.2; if (ld > MAXR) { h.x = L.x + lx / ld * MAXR; h.z = L.z + lz / ld * MAXR; } } // never drift far from the hero you move
+    h.cdS = Math.max(0, h.cdS - dt); h.cdC = Math.max(0, h.cdC - dt); h.cdD = Math.max(0, h.cdD - dt); h.surge = Math.max(0, h.surge - dt);
+    h.fx.shield.visible = shieldT > 0 && !(testSolo && i !== lead); if (h.fx.shield.visible) { h.fx.shield.position.set(h.x, 0.9, h.z); h.fx.shield.scale.setScalar(1 + 0.05 * Math.sin(gameTime * 8)); }
+    if (h.kz > 0) {
+      h.kz -= dt; const R = 4.6; h.fx.kind.visible = true; h.fx.kind.position.set(h.x, 0.15, h.z); h.fx.kind.scale.setScalar(R * (1 + 0.04 * Math.sin(gameTime * 6))); h.fx.kind.rotation.y += dt;
+      for (const e of enemies) if (e.state === 'walk' && Math.hypot(e.x - h.x, e.z - h.z) < R + e.r) { fill(e, 6 * dt); e.slow = Math.min(e.slow, 0.5); }
+      if (Math.random() < 0.6) { const a = Math.random() * 6.283; emit(h.x + Math.cos(a) * R, 0.3, h.z + Math.sin(a) * R, 0, 1, 0, 0.8, 0.3, C_GOLD); }
+    } else h.fx.kind.visible = false;
     let ax = 0, az = 0;
     if (i === lead && aim.active) { ax = aim.x; az = aim.z; }
     else if (i === lead && aim.mouse) { ax = aim.mx - h.x; az = aim.mz - h.z; }
@@ -1015,7 +1121,14 @@ function step(dt) {
   // waves & spawning
   if (playing && !spawnFrozen) {
     let alive = 0; for (const e of enemies) if (e.state === 'walk') alive++;
-    if (toSpawn > 0) { spawnTimer -= dt; if (spawnTimer <= 0 && alive < Q[quality].enemies) { spawnEnemy(); toSpawn--; spawnTimer = Math.max(0.32, 1.35 - wave * 0.08) * (0.6 + Math.random() * 0.8); } }
+    if (toSpawn > 0) {
+      spawnTimer -= dt;
+      if (spawnTimer <= 0 && alive < Q[quality].enemies) {
+        const grp = Math.min(toSpawn, Q[quality].enemies - alive, Math.random() < 0.35 + wave * 0.04 ? 2 + (Math.random() < 0.3 ? 1 : 0) : 1); // small groups arrive together
+        for (let g = 0; g < grp; g++) { spawnEnemy(); toSpawn--; }
+        spawnTimer = Math.max(0.22, 0.9 - wave * 0.06) * (0.6 + Math.random() * 0.8);
+      }
+    }
     else if (alive === 0) {
       waveGap += dt;
       if (waveGap > 2.2) { wave++; toSpawn = waveCount(wave); waveGap = 0; spawnTimer = 0.5; teamLight = Math.min(100, teamLight + 25); banner(T[lang].waveB.replace('{n}', wave)); updateHud(); }
@@ -1033,7 +1146,8 @@ function step(dt) {
       const sp = playing && !testHold ? e.speed * e.slow : 0;
       if (dist > e.r + 0.55) { e.x += (dx / dist * sp + sx * 3) * dt; e.z += (dz / dist * sp + sz * 3) * dt; }
       else { touching++; e.x -= dx / dist * 0.6 * dt; e.z -= dz / dist * 0.6 * dt; }
-      e.slow = Math.min(1, e.slow + dt * 1.5);
+      e.slow = Math.min(1, e.slow + dt * 1.5); if (e.calm > 0) { e.calm -= dt; e.slow = Math.min(e.slow, 0.3); }
+      if (shieldT > 0 && dist < e.r + 1.4) { e.x -= dx / dist * 4 * dt; e.z -= dz / dist * 4 * dt; fill(e, 3 * dt); }
       let dr = Math.atan2(dx, dz) - e.g.rotation.y; dr = Math.atan2(Math.sin(dr), Math.cos(dr)); e.g.rotation.y += dr * Math.min(1, dt * 6);
       tintEnemy(e); e.g.position.set(e.x, 0, e.z); shadowAt(e.x, e.z, e.r);
     } else { // turned white, rising to the heavens
@@ -1054,7 +1168,8 @@ function step(dt) {
   }
   // team light: dims while shadows press in, slowly returns when they don't
   if (playing) {
-    if (touching > 0 && !god) { teamLight -= touching * 6.5 * dt; contactTimer = 0; }
+    if (shieldT > 0) shieldT = Math.max(0, shieldT - dt);
+    if (touching > 0 && !god && shieldT <= 0) { teamLight -= touching * 6.5 * dt; contactTimer = 0; }
     else { contactTimer += dt; if (contactTimer > 2) teamLight = Math.min(100, teamLight + 3 * dt); }
     if (teamLight <= 0) { teamLight = 0; state = 'fading'; fadeT = 0; $('fade').style.opacity = 0.72; }
     if ((gameTime * 10 | 0) !== hudTick) { hudTick = gameTime * 10 | 0; updateHud(); updatePowerBtns(); }
@@ -1065,7 +1180,7 @@ function step(dt) {
       $('finalScore').textContent = score; $('best').textContent = best; show('over', true); show('hud', false);
     }
   }
-  updateDoves(dt); updateBlizzards(dt); updateBridges(dt); updateSefirot(dt); updateHearts(dt); updateStars(dt); updateSeeds(dt);
+  updateWaves(dt); enemyRingMat.opacity = 0.55 + 0.25 * Math.sin(gameTime * 4); updateDoves(dt); updateBlizzards(dt); updateBridges(dt); updateSefirot(dt); updateHearts(dt); updateStars(dt); updateSeeds(dt);
   for (const d of doves) if (d.active) shadowAt(d.x, d.z, 0.3, d.y);
   updateCamera(dt);
 }
@@ -1074,25 +1189,25 @@ function basicPower(h, dt, isLead) {
   if (h.kind === 0) { // beam of light, flows automatically when a shadow is in range
     const on = !!nearestEnemy(h.x, h.z, 10.5) || (isLead && aim.active);
     h.fx.beam.visible = on; if (!on) return;
-    const len = 10, pulse = 1 + 0.18 * Math.sin(gameTime * 18);
+    const sg = h.surge > 0 ? 1 : 0, len = 10 + sg * 4, pulse = (1 + 0.18 * Math.sin(gameTime * 18)) * (1 + sg * 0.6);
     h.fx.beam.position.set(h.x + h.dirx * 0.45, 1.05, h.z + h.dirz * 0.45); h.fx.beam.rotation.y = Math.atan2(h.dirx, h.dirz);
     h.fx.beam.scale.set(pulse, pulse, len); h.fx.beamOuter.material.opacity = 0.35 + 0.15 * Math.sin(gameTime * 9);
     for (const e of enemies) {
       if (e.state !== 'walk') continue;
       const rx = e.x - h.x, rz = e.z - h.z, along = rx * h.dirx + rz * h.dirz;
-      if (along > 0 && along < len + e.r && Math.abs(-rx * h.dirz + rz * h.dirx) < 0.75 + e.r) fill(e, 12 * dt);
+      if (along > 0 && along < len + e.r && Math.abs(-rx * h.dirz + rz * h.dirx) < 0.75 + sg * 0.6 + e.r) fill(e, 12 * (1 + sg * 1.2) * dt);
     }
     if (Math.random() < 0.8) { const u = Math.random() * len; emit(h.x + h.dirx * u, 1.05, h.z + h.dirz * u, h.dirx * 3, 0.3, h.dirz * 3, 0.4, 0.3, Math.random() < 0.5 ? C_WHITE : C_PALE); }
   } else if (h.kind === 1) { // embrace of warmth, an always-on golden aura
-    const R = 3.3, br = 1 + 0.08 * Math.sin(gameTime * 3);
+    const R = h.surge > 0 ? 5 : 3.3, br = 1 + 0.08 * Math.sin(gameTime * 3);
     h.fx.disc.position.set(h.x, 0.05, h.z); h.fx.disc.scale.set(R * 2.4 * br, 1, R * 2.4 * br);
     h.fx.shell.position.set(h.x, 0.9, h.z); h.fx.shell.scale.set(R * br, R * 0.75 * br, R * br);
-    for (const e of enemies) if (e.state === 'walk' && Math.hypot(e.x - h.x, e.z - h.z) < R + e.r) { fill(e, 7.5 * dt); e.slow = Math.min(e.slow, 0.7); }
+    for (const e of enemies) if (e.state === 'walk' && Math.hypot(e.x - h.x, e.z - h.z) < R + e.r) { fill(e, (h.surge > 0 ? 15 : 7.5) * dt); e.slow = Math.min(e.slow, 0.7); }
     if (Math.random() < 0.5) { const a = Math.random() * 6.283, r = Math.random() * R; emit(h.x + Math.cos(a) * r, 0.2, h.z + Math.sin(a) * r, 0, 0.8, 0, 0.9, 0.25, C_GOLD); }
   } else { // heart lantern waves, stronger when surrounded
     h.basicT -= dt;
     const crowd = countNear(h.x, h.z, 6);
-    if (h.basicT <= 0) { h.basicT = crowd ? 1.15 : 2.6; castHeart(h, crowd); }
+    if (h.basicT <= 0) { h.basicT = h.surge > 0 ? 0.45 : crowd ? 1.15 : 2.6; castHeart(h, crowd + (h.surge > 0 ? 3 : 0)); }
   }
 }
 function menuIdle(dt) {
@@ -1130,7 +1245,8 @@ window.__game = {
   power(which, i = lead) { const h = heroes[i]; if (which === 'A') h.cdA = 0; else h.cdB = 0; return useSpecial(h, which); },
   aimAt(dx, dz) { const l = Math.hypot(dx, dz); aim.active = true; aim.x = dx / l; aim.z = dz / l; },
   noAim() { aim.active = false; aim.mouse = false; },
-  move(v) { testMove = v; },
+  move(v) { testMove = v; }, usePower(i) { const h = heroes[lead]; h.cdS = h.cdA = h.cdB = h.cdC = h.cdD = 0; return usePower(h, i); },
+  heroes() { return heroes.map((h) => ({ x: +h.x.toFixed(2), z: +h.z.toFixed(2) })); }, joy() { return { ...joy }; },
   place(i, x, z) { heroes[i].x = x; heroes[i].z = z; },
   fillAll(f) { for (const e of enemies) if (e.state === 'walk') { e.light = e.hp * f; tintEnemy(e); } },
   ascendNearest() { const e = nearestEnemy(heroes[lead].x, heroes[lead].z, 99); if (e) ascend(e); return !!e; },

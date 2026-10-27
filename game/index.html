@@ -43,37 +43,53 @@
   input[type=range] { width:180px; accent-color:var(--gold); }
   .help { font-size:12.5px; color:#b9c8f5; font-weight:300; line-height:1.55; margin:8px auto 0; max-width:560px; }
   .foot { margin-top:12px; font-size:12px; color:#9fb0e6; font-weight:300; }
+  .btn.install { border:2px solid var(--gold); font-weight:700; font-size:16px; padding:10px 26px; }
   .install-hint { margin:8px auto 0; max-width:440px; font-size:13px; line-height:1.55; color:#c9d6ff; text-align:start; }
   .install-hint ol { margin:.2rem 0; padding-inline-start:1.3em; }
 
   /* ---------- HUD ---------- */
   #hud { position:fixed; inset:0; pointer-events:none; z-index:10; }
-  #hud .top { position:absolute; top:max(8px, env(safe-area-inset-top)); left:8px; right:8px; display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  #hud .top { position:absolute; top:max(8px, env(safe-area-inset-top)); left:max(8px, env(safe-area-inset-left)); right:max(8px, env(safe-area-inset-right)); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:6px 8px; }
+  #hud .top .stat { flex:0 1 auto; min-width:0; }
+  #hud .top .tools { flex:0 0 auto; }
+  @media (max-width:599px) { #hud .top .hbtns { order:3; width:100%; justify-content:center; } }
   .stat { background:rgba(8,16,60,.55); border:1px solid rgba(243,207,107,.3); border-radius:12px; padding:5px 10px; font-size:13.5px; line-height:1.35; }
   .stat b { color:var(--gold2); font-size:17px; }
-  .lightbar { width:min(150px, 30vw); height:8px; border-radius:6px; background:rgba(255,255,255,.12); overflow:hidden; margin-top:4px; }
+  .lightbar { width:min(150px, 34vw); height:8px; border-radius:6px; background:rgba(255,255,255,.12); overflow:hidden; margin-top:4px; }
   .lightbar > div { height:100%; width:100%; background:linear-gradient(90deg, #8fb0ff, #fff, var(--gold2)); transition:width .2s; }
   .hbtns { display:flex; gap:6px; pointer-events:auto; }
   .hbtn { width:46px; height:46px; border-radius:50%; border:2px solid rgba(255,255,255,.25); background:rgba(20,36,110,.7); font-size:20px; display:flex; align-items:center; justify-content:center; position:relative; padding:0; }
   .hbtn.on { border-color:var(--gold); box-shadow:0 0 14px rgba(243,207,107,.7); background:rgba(50,80,200,.85); }
   .hbtn small { position:absolute; bottom:-3px; font-size:10px; background:#0a1238; border-radius:6px; padding:0 4px; }
   .tools { display:flex; gap:6px; pointer-events:auto; }
-  .tbtn { min-width:40px; height:40px; border-radius:12px; border:1px solid rgba(255,255,255,.25); background:rgba(8,16,60,.6); font-size:15px; padding:0 8px; }
-  #anglePop { position:absolute; top:calc(max(8px, env(safe-area-inset-top)) + 100px); left:50%; transform:translateX(-50%); pointer-events:auto; background:rgba(8,16,60,.85); border:1px solid rgba(243,207,107,.4); border-radius:12px; padding:8px 12px; }
-  #powers { position:absolute; bottom:max(14px, env(safe-area-inset-bottom)); right:14px; display:flex; flex-direction:column; align-items:flex-end; gap:10px; pointer-events:auto; }
-  #powers .prow { display:flex; gap:10px; align-items:flex-end; }
-  .pbtn { width:68px; height:68px; border-radius:50%; border:2px solid rgba(243,207,107,.75); position:relative; padding:0; font-size:26px;
-    background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.9), rgba(20,36,110,.9)); box-shadow:0 0 18px rgba(120,160,255,.35); overflow:hidden; }
-  .pbtn.big { width:80px; height:80px; font-size:30px; }
-  .pbtn .cd { position:absolute; inset:0; border-radius:50%; background:conic-gradient(rgba(5,10,40,.75) var(--p, 0%), transparent 0); }
-  .pbtn .lbl { position:absolute; bottom:6px; left:0; right:0; font-size:9.5px; line-height:1; font-weight:500; text-shadow:0 1px 2px #000; }
-  .pbtn.ready { box-shadow:0 0 22px rgba(255,231,163,.85); }
-  .basic { font-size:11.5px; background:rgba(8,16,60,.6); border-radius:10px; padding:3px 8px; color:#dfe7ff; }
+  .tbtn { min-width:44px; height:44px; border-radius:12px; border:1px solid rgba(255,255,255,.25); background:rgba(8,16,60,.6); font-size:15px; padding:0 8px; }
+  #angleBtn { border:2px solid var(--gold); background:rgba(30,52,150,.85); color:#fff; font-weight:700; font-size:16px; box-shadow:0 0 12px rgba(243,207,107,.45); white-space:nowrap; }
+  #angleBtn .ai { color:var(--gold2); font-size:18px; }
+  #anglePop { position:absolute; top:calc(max(8px, env(safe-area-inset-top)) + 112px); left:max(8px, env(safe-area-inset-left)); right:max(8px, env(safe-area-inset-right)); margin:0 auto; max-width:440px; pointer-events:auto; background:rgba(8,16,60,.92); border:2px solid rgba(243,207,107,.6); border-radius:14px; padding:10px 14px; }
+  #anglePop .set { flex-wrap:nowrap; }
+  #anglePop input[type=range] { flex:1 1 auto; width:auto; min-width:0; height:28px; }
+  @media (min-width:600px) { #anglePop { top:calc(max(8px, env(safe-area-inset-top)) + 64px); } }
+  /* power pad: 5 icon buttons around a circle, bottom-left */
+  #pad { position:absolute; left:max(10px, env(safe-area-inset-left)); bottom:max(10px, env(safe-area-inset-bottom)); width:172px; height:172px; border-radius:50%; pointer-events:auto;
+    background:radial-gradient(circle, rgba(30,52,150,.35), rgba(8,16,60,.25) 70%); border:2px solid rgba(243,207,107,.35); direction:ltr; }
+  #pad .hub { position:absolute; left:50%; top:50%; width:44px; height:44px; margin:-22px 0 0 -22px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(8,16,60,.7); border:1px solid rgba(243,207,107,.4); pointer-events:none; }
+  .pw { position:absolute; width:56px; height:56px; margin:-28px 0 0 -28px; border-radius:50%; border:2px solid rgba(243,207,107,.8); padding:0; overflow:hidden; touch-action:none;
+    background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.95), rgba(20,36,110,.95)); box-shadow:0 0 14px rgba(120,160,255,.4); display:flex; align-items:center; justify-content:center; }
+  .pw svg { position:relative; z-index:1; pointer-events:none; }
+  .pw .cd { position:absolute; inset:0; border-radius:50%; background:conic-gradient(rgba(5,10,40,.78) var(--p, 0%), transparent 0); z-index:2; pointer-events:none; }
+  .pw.ready { box-shadow:0 0 20px rgba(255,231,163,.9); }
+  .pw.on { border-color:#fff; box-shadow:0 0 24px rgba(255,255,255,.95); }
+  .pw:active { transform:scale(.94); }
+  /* movement joystick, bottom-right */
+  #joy { position:absolute; right:max(14px, env(safe-area-inset-right)); bottom:max(14px, env(safe-area-inset-bottom)); width:136px; height:136px; border-radius:50%; pointer-events:auto; touch-action:none;
+    border:2px solid rgba(243,207,107,.65); background:radial-gradient(circle, rgba(60,90,220,.28), rgba(10,18,70,.45)); box-shadow:0 0 18px rgba(120,160,255,.3); }
+  #joy i { position:absolute; left:50%; top:50%; width:58px; height:58px; margin:-29px 0 0 -29px; border-radius:50%; pointer-events:none;
+    background:radial-gradient(circle at 40% 35%, #fff7d6, var(--gold) 70%); box-shadow:0 0 16px rgba(243,207,107,.7); }
+  #joy.act { border-color:#fff; }
+  @media (max-width:359px) { #pad { transform:scale(.88); transform-origin:left bottom; } #joy { width:120px; height:120px; } }
   #banner { position:absolute; top:30%; left:0; right:0; text-align:center; font-size:clamp(26px, 6vw, 44px); font-weight:800; color:#fff; text-shadow:0 0 24px rgba(255,231,163,.9); opacity:0; transition:opacity .5s; }
-  #joy { position:absolute; width:120px; height:120px; border-radius:50%; border:2px solid rgba(255,255,255,.25); background:rgba(255,255,255,.06); transform:translate(-50%,-50%); }
-  #joy div { position:absolute; left:50%; top:50%; width:50px; height:50px; margin:-25px 0 0 -25px; border-radius:50%; background:rgba(255,240,200,.35); border:2px solid rgba(243,207,107,.7); }
   #fade { position:fixed; inset:0; background:#02040f; opacity:0; pointer-events:none; z-index:15; transition:opacity 1.6s; }
-  @media (max-height:460px) { .heroes { margin:6px 0; } .help { display:none; } h1 { font-size:30px; } .sub { margin-bottom:4px; } .pbtn { width:58px; height:58px; font-size:22px; } .pbtn.big { width:68px; height:68px; } .hcard { padding:5px; font-size:11.5px; } }
+  @media (max-height:460px) { .heroes { margin:6px 0; } .help { display:none; } h1 { font-size:30px; } .sub { margin-bottom:4px; } #pad { transform:scale(.82); transform-origin:left bottom; } #joy { width:118px; height:118px; } .hcard { padding:5px; font-size:11.5px; } }
   @media (max-width:430px) { .heroes { grid-template-columns:1fr; } .hcard { display:flex; flex-wrap:wrap; gap:4px 10px; justify-content:center; align-items:baseline; } .hcard b { width:100%; margin:0; } }
 </style>
 </head>
@@ -87,20 +103,14 @@
       <div class="lightbar"><div id="light"></div></div></div>
     <div class="hbtns" id="hbtns"></div>
     <div class="tools">
-      <button class="tbtn" id="angleBtn" aria-label="angle">∠ <span id="angleVal">55°</span></button>
+      <button class="tbtn" id="angleBtn" aria-label="angle"><span class="ai">∠</span> <span id="angleVal">55°</span></button>
       <button class="tbtn" id="pauseBtn" aria-label="pause">❚❚</button>
     </div>
   </div>
-  <div id="anglePop" class="hidden"><div class="set"><span data-t="angle"></span> <input type="range" min="45" max="70" step="1" id="angle2"> <span id="angle2v"></span></div></div>
-  <div id="powers">
-    <div class="prow">
-      <button class="pbtn" id="p1"><span class="ic"></span><div class="cd"></div><span class="lbl"></span></button>
-      <button class="pbtn big" id="p2"><span class="ic"></span><div class="cd"></div><span class="lbl"></span></button>
-    </div>
-    <div class="basic" id="basicLbl"></div>
-  </div>
+  <div id="anglePop" class="hidden"><div class="set"><span data-t="angle"></span> <input type="range" min="3" max="70" step="1" id="angle2"> <span id="angle2v"></span></div></div>
+  <div id="pad"><div class="hub" id="padHub"></div></div>
   <div id="banner"></div>
-  <div id="joy" class="hidden"><div></div></div>
+  <div id="joy"><i></i></div>
 </div>
 
 <div id="menu" class="overlay">
@@ -109,14 +119,14 @@
     <p class="sub" data-t="tag"></p>
     <div class="heroes" id="heroCards"></div>
     <div class="row"><button class="btn main" id="startBtn" data-t="start"></button></div>
-    <div class="set"><span data-t="angle"></span> <input type="range" min="45" max="70" step="1" id="angle"> <span id="anglev"></span></div>
+    <div class="set"><span data-t="angle"></span> <input type="range" min="3" max="70" step="1" id="angle"> <span id="anglev"></span></div>
     <div class="row">
       <button class="btn" id="soundBtn"></button>
       <button class="btn" id="langBtn"></button>
-      <button class="btn" id="installBtn" data-t="install"></button>
     </div>
-    <div class="install-hint hidden" id="installHint"></div>
     <p class="help" id="help"></p>
+    <div class="row"><button class="btn install" id="installBtn" data-t="install"></button></div>
+    <div class="install-hint hidden" id="installHint"></div>
     <div class="foot" data-t="copy"></div>
   </div>
 </div>
@@ -124,7 +134,7 @@
 <div id="pause" class="overlay hidden">
   <div class="panel">
     <h1 data-t="paused"></h1>
-    <div class="set"><span data-t="angle"></span> <input type="range" min="45" max="70" step="1" id="angle3"> <span id="angle3v"></span></div>
+    <div class="set"><span data-t="angle"></span> <input type="range" min="3" max="70" step="1" id="angle3"> <span id="angle3v"></span></div>
     <div class="row"><button class="btn main" id="resumeBtn" data-t="resume"></button></div>
     <div class="row"><button class="btn" id="sound2Btn"></button><button class="btn" id="menuBtn" data-t="toMenu"></button></div>
     <div class="foot" data-t="copy"></div>
