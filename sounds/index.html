@@ -155,6 +155,9 @@
   html[data-theme="light"] .install-hint { color: #3f5079; }
   html[data-theme="light"] .toast { background: #0b2a6b; color: #fff6dc; border-color: rgba(201,162,39,0.5); }
   html:not([data-theme="light"]):not([data-rgbg="0"]) .tile:not(.on), html:not([data-theme="light"]):not([data-rgbg="0"]) .cat-h, html:not([data-theme="light"]):not([data-rgbg="0"]) .note { background: rgba(12,10,24,0.45); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
+  .rg-copy { margin-top: 8px; font-size: 12px; }
 </style>
 <script src="../shared/rg-bg.js" data-app="sounds" data-theme-key="rg-sounds-theme" data-light-color="#f3efe6" data-slot="#acct-row" data-before=""></script>
 </head>
@@ -171,6 +174,7 @@
   <p class="note" id="note"></p>
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer><a href="../" id="back"></a> · <a href="../relax/" id="games"></a></footer>
+  <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </main>
 
 <div class="bar">
