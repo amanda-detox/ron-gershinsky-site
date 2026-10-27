@@ -1,5 +1,5 @@
 /* Offline cache for Pumpify (פאמפיפיי). Scope: pumpify/ only. */
-var CACHE = "rg-pumpify-v7";
+var CACHE = "rg-pumpify-v8";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
