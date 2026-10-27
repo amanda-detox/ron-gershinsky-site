@@ -17,6 +17,8 @@
      logout()           -> Promise
      get(app, key)      -> Promise<value|null>   JSON in table ron/userdata, one row per (user, app, key). Rejects (err.code "signed_out") when signed out.
      set(app, key, v)   -> Promise<v>            upsert; the row is readable/writable by this user only
+     exportAll()        -> Promise<{status: "ok"|"partial"|"offline", file}>  downloads ONE JSON file with all of this user's data:
+                        every row of theirs in ron/userdata (all apps + cloud prefs) merged with this device's app keys in localStorage
      syncPrefs(keys, apply)  sync these localStorage keys (language, theme, background…) through the account;
                         newest change wins (per-key timestamps). apply(changes) may return true when it applied them itself;
                         otherwise a built-in handler clicks the app's own language/theme/background controls, else reloads once.
@@ -263,6 +265,98 @@
     }
   }
 
+  /* ---------------- export all my data ---------------- */
+  // Cloud: every row of this user in ron/userdata (listed page by page; only rows whose id matches this user's own row id are kept),
+  // plus a direct read of every known (app, key) the list didn't return. Device: this site's app keys in localStorage.
+  // Never exported: the session (cookieFallback), the pending sign-in (rg-account-pending), the cached news feed (rg-news-cache).
+  var KNOWN_ROWS = [["prefs", "all"], ["news", "read"], ["news", "saved"], ["shopping", "items"], ["myideas", "items"], ["myclock", "alarms"], ["myrehab", "items"], ["mycalm", "items"]];
+  var APP_NAMES = { site: "Site settings", account: "Account", home: "Landing page", news: "Updatify", shopping: "Shopping list", myideas: "Checklist", myclock: "My alarm clock",
+    myrehab: "Rehabify", mycalm: "Calmify", my: "My private apps", clockify: "Clockify", healify: "Healify", wealthify: "Wealthify", monthly: "Monthly", pumpify: "Pumpify",
+    diagnosify: "Diagnosify", balancify: "Balancify", sounds: "Sounds", relax: "Relax", other: "Other" };
+  var NO_EXPORT = { "cookieFallback": 1, "rg-account-pending": 1, "rg-news-cache": 1 };
+  function appOfKey(k) { // localStorage key / prefs key -> app section
+    if (k === "rg-lang" || k === "rg-prefs-meta") return "site";
+    if (k === "quietNightMode") return "relax";
+    var m = /^rg-([a-z0-9]+)(?:-([a-z0-9]+))?/.exec(k); if (!m) return "other";
+    var a = m[1], b = m[2];
+    if (a === "my") return b === "shopping" ? "shopping" : "my";
+    if (a === "clock") return "myclock";
+    if (a === "alarm" || a === "alarms") return "clockify";
+    if (a === "wealth") return "wealthify";
+    return APP_NAMES[a] ? a : "other";
+  }
+  function listRows() {
+    var out = [], uid = cur.id;
+    function page(after) {
+      var q = ["queries[]=" + encodeURIComponent(JSON.stringify({ method: "limit", values: [100] }))];
+      if (after) q.push("queries[]=" + encodeURIComponent(JSON.stringify({ method: "cursorAfter", values: [after] })));
+      return req("GET", rowsPath() + "?" + q.join("&")).then(function (r) {
+        var rows = (r && r.rows) || [];
+        rows.forEach(function (row) { if (row && row.app != null && row.$id === rowId(uid, row.app, row.key)) out.push(row); });
+        return rows.length === 100 && out.length < 5000 ? page(rows[rows.length - 1].$id) : out;
+      });
+    }
+    return page(null);
+  }
+  function collectCloud() {
+    var res = { rows: [], ok: true, offline: false };
+    if (!cur) { res.ok = false; return Promise.resolve(res); }
+    return listRows().catch(function (e) { res.listFailed = true; if (e && e.status === 0) res.offline = true; return []; }).then(function (rows) {
+      res.rows = rows;
+      if (res.offline) { res.ok = false; return res; }
+      var have = {}; rows.forEach(function (r) { have[r.app + "\u0001" + r.key] = 1; });
+      return Promise.all(KNOWN_ROWS.filter(function (x) { return !have[x[0] + "\u0001" + x[1]]; }).map(function (x) {
+        var id = rowId(cur.id, x[0], x[1]);
+        return req("GET", rowsPath(id)).then(function (row) { if (row) res.rows.push(row); }, function (e) {
+          if (e.status === 404) return;
+          res.ok = false; if (e.status === 0) res.offline = true;
+        });
+      })).then(function () { return res; });
+    });
+  }
+  function parseVal(v) { if (typeof v !== "string") return v; var j = jparse(v, undefined); return j === undefined ? v : j; }
+  function exportAll() {
+    var u = cur; if (!u) return Promise.reject(signedOut());
+    var now = new Date();
+    return collectCloud().then(function (c) {
+      var apps = {}, devCount = 0;
+      function sec(a) { return apps[a] || (apps[a] = { name: APP_NAMES[a] || a, cloud: {}, device: {} }); }
+      c.rows.forEach(function (row) {
+        var v = parseVal(row.value), entry = { value: v, updatedAt: row.$updatedAt || null, createdAt: row.$createdAt || null };
+        if (row.app === P_APP && v && typeof v === "object") { // cloud prefs: split per key into its app's section
+          Object.keys(v).forEach(function (k) { var x = v[k] || {}; sec(appOfKey(k)).cloud["prefs:" + k] = { value: x.v, changedAt: x.t ? new Date(x.t).toISOString() : null }; });
+        } else if (APP_NAMES[row.app]) sec(row.app).cloud[row.key] = entry;
+        else sec("other").cloud[row.app + "/" + row.key] = entry;
+      });
+      try {
+        for (var i = 0; i < localStorage.length; i++) {
+          var k = localStorage.key(i); if (!k || NO_EXPORT[k]) continue;
+          if (k.indexOf("rg-") !== 0 && k !== "quietNightMode") continue;
+          sec(appOfKey(k)).device[k] = parseVal(localStorage.getItem(k)); devCount++;
+        }
+      } catch (e) {}
+      var status = c.offline ? "offline" : c.ok ? "ok" : "partial";
+      var pad = function (n) { return String(n).padStart(2, "0"); };
+      var day = now.getFullYear() + "-" + pad(now.getMonth() + 1) + "-" + pad(now.getDate());
+      var data = {
+        format: "healify-data-export", version: 1,
+        exportedAt: now.toISOString(), exportedAtLocal: now.toLocaleString("en-GB", { hour12: false }) + " (UTC" + (now.getTimezoneOffset() <= 0 ? "+" : "-") + Math.abs(now.getTimezoneOffset() / 60) + ")",
+        site: location.origin + "/ron-gershinsky-site/", exportedFrom: location.pathname,
+        account: { id: u.id, email: u.email, name: u.name || "" },
+        cloud: { status: status, rows: c.rows.length, method: c.listFailed ? "known rows read one by one (listing was not allowed)" : "all rows listed", note: status === "ok" ? (c.listFailed ? "Every known app row of this account in ron/userdata." : "All rows of this account in ron/userdata.") : status === "offline" ? "No connection: cloud data is NOT included, only this device's data." : "Some cloud rows could not be read; the cloud part may be incomplete." },
+        device: { keys: devCount, note: "This browser's localStorage keys of the site's apps (session tokens and the cached news feed are left out)." },
+        apps: apps
+      };
+      var file = "healify-data-" + day + ".json";
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+      var url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href = url; a.download = file; a.rel = "noopener"; a.style.display = "none";
+      document.body.appendChild(a); a.click();
+      setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 4000);
+      return { status: status, file: file, data: data };
+    });
+  }
+
   /* ---------------- UI ---------------- */
   var T = {
     he: {
@@ -274,7 +368,7 @@
       fromNote: "הקוד נשלח משירות ההתחברות שלנו Appwrite, במייל עם הכותרת “OTP for Ron Gershinsky Apps Login”. לא רואה? בדוק בספאם. אם קיבלת כמה מיילים כאלה, הקוד הנכון הוא במייל האחרון.",
       resend: "שלח קוד חדש", resent: "נשלח קוד חדש. בדוק את המייל (גם בספאם).", other: "החלף מייל",
       nameHead: "איך לקרוא לך?", nameSub: "השם יוצג בכל האפליקציות במקום המייל. אפשר לדלג.", name: "השם שלך", save: "שמור", skip: "דלג",
-      signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", my: "האפליקציות הפרטיות שלי", out: "התנתק", close: "סגירה", account: "החשבון שלך",
+      signedAs: "מחובר כ־", hello: "שלום", rename: "שינוי שם", my: "האפליקציות הפרטיות שלי", exp: "ייצוא כל המידע שלי", expBusy: "מכין את הקובץ…", expDone: "הקובץ {f} ירד למכשיר שלך. הוא כולל את כל המידע שלך מהענן ומהמכשיר הזה.", expOffline: "אין חיבור לאינטרנט, לכן הקובץ {f} כולל רק את המידע שנשמר במכשיר הזה. כדי לקבל גם את המידע מהענן, נסה שוב כשתחזור לרשת.", expPartial: "חלק מהמידע בענן לא נטען, לכן הקובץ {f} כולל רק חלק ממנו, וגם את המידע שבמכשיר הזה. כדאי לנסות שוב בעוד רגע.", out: "התנתק", close: "סגירה", account: "החשבון שלך",
       synced: "אתה מחובר בכל האפליקציות, והנתונים וההעדפות שלך מסונכרנים בין המכשירים.",
       eEmail: "כתובת המייל לא נראית תקינה. בדוק אותה ונסה שוב.", eCode: "הקוד לא תואם או שפג תוקפו (קוד תקף 15 דקות ולשימוש אחד). אם קיבלת כמה מיילים, הזן את הקוד מהמייל האחרון, או בקש קוד חדש.",
       eRate: "יותר מדי ניסיונות. חכה כמה דקות ונסה שוב.", eNet: "אין חיבור לאינטרנט. בדוק את החיבור ונסה שוב.",
@@ -302,7 +396,7 @@
       fromNote: "The code is sent by our sign-in service, Appwrite, in an email titled “OTP for Ron Gershinsky Apps Login”. Don't see it? Check spam. If you got several of these emails, the right code is in the latest one.",
       resend: "Send a new code", resent: "A new code was sent. Check your email (and spam).", other: "Use another email",
       nameHead: "What should we call you?", nameSub: "Your name shows in every app instead of your email. You can skip this.", name: "Your name", save: "Save", skip: "Skip",
-      signedAs: "Signed in as ", hello: "Hi", rename: "Change name", my: "My private apps", out: "Sign out", close: "Close", account: "Your account",
+      signedAs: "Signed in as ", hello: "Hi", rename: "Change name", my: "My private apps", exp: "Export all my data", expBusy: "Preparing the file…", expDone: "{f} was downloaded to your device. It has all your data from the cloud and from this device.", expOffline: "You're offline, so {f} only has the data saved on this device. To include your cloud data too, try again when you're back online.", expPartial: "Some of your cloud data couldn't be loaded, so {f} has only part of it, plus this device's data. Try again in a moment.", out: "Sign out", close: "Close", account: "Your account",
       synced: "You're signed in across all the apps, and your data and preferences sync between your devices.",
       eEmail: "That email doesn't look right. Check it and try again.", eCode: "That code doesn't match or has expired (a code works for 15 minutes, once). If you got several emails, use the code from the latest one, or ask for a new code.",
       eRate: "Too many attempts. Wait a few minutes and try again.", eNet: "No internet connection. Check it and try again.",
@@ -473,6 +567,7 @@
         (MY_URL ? '<a class="rgacc-sec rgacc-my" href="' + esc(MY_URL) + '"><span aria-hidden="true">🔒 </span>' + esc(L.my) + "</a>" : "") +
         '<button type="button" class="rgacc-sec" data-a="rename">' + esc(L.rename) + "</button>" +
         '<button type="button" class="rgacc-sec" data-a="setpw">🔑 ' + esc(hasPw ? L.chPw : L.setPw) + "</button>" +
+        '<button type="button" class="rgacc-sec" data-a="export"' + (busy ? " disabled" : "") + '>📦 ' + esc(busy === "export" ? L.expBusy : L.exp) + "</button>" +
         '<button type="button" class="rgacc-go" data-a="out"' + (busy ? " disabled" : "") + ">" + esc(L.out) + "</button>";
     }
     back.innerHTML = '<div class="rgacc-dlg" role="dialog" aria-modal="true" aria-labelledby="rgacc-h" dir="' + (lang() === "he" ? "rtl" : "ltr") + '" lang="' + lang() + '"><button type="button" class="rgacc-x" data-a="close" aria-label="' + esc(L.close) + '">×</button>' + h + "</div>";
@@ -549,6 +644,12 @@
     else if (a === "rename") { step = "name"; renderDlg(true); }
     else if (a === "setpw") { step = "setpw"; renderDlg(true); }
     else if (a === "back") { step = "account"; renderDlg(true); }
+    else if (a === "export") {
+      busy = "export"; renderDlg(false);
+      exportAll().then(function (r) {
+        busy = false; msg = t()[r.status === "ok" ? "expDone" : r.status === "offline" ? "expOffline" : "expPartial"].replace("{f}", r.file); msgOk = true; renderDlg(false);
+      }, function (e) { if (e && e.code === "signed_out") { busy = false; step = firstStep(); renderDlg(true); } else fail(e); });
+    }
     else if (a === "out") { busy = true; renderDlg(false); logout().then(function () { busy = false; close(); }); }
   }
   function renderAll() {
@@ -572,7 +673,7 @@
     open: open, mount: mount, check: check,
     sendCode: sendCode, verifyCode: verifyCode, loginPassword: loginPassword, setPassword: setPassword,
     hasPassword: function () { return hasPw; }, setName: setName, logout: logout,
-    get: get, set: set, syncPrefs: syncPrefs
+    get: get, set: set, syncPrefs: syncPrefs, exportAll: exportAll
   };
   try { window.dispatchEvent(new Event("rg-account-ready")); } catch (e) {}
 })();
