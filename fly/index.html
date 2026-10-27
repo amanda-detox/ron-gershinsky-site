@@ -41,17 +41,20 @@
   .tools { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
   .tbtn { min-height:38px; border-radius:999px; border:1px solid var(--line); background:var(--panel); padding:0 12px; font-size:13.5px; font-weight:500; }
   .lbl { font-size:13px; color:var(--muted); margin:6px 0 4px; font-weight:500; }
-  .chars { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; }
-  .ch { border:1px solid rgba(243,207,107,.28); background:var(--panel2); border-radius:12px; padding:5px 3px; font-size:12.5px; line-height:1.25; min-height:52px; }
+  .chars { display:grid; grid-template-columns:repeat(4, 1fr); gap:5px; }
+  .ch { border:1px solid rgba(243,207,107,.28); background:var(--panel2); border-radius:12px; padding:4px 2px; font-size:11.5px; line-height:1.2; min-height:50px; }
   .ch .e { display:block; font-size:20px; line-height:1.2; }
   .ch.on { border:2px solid var(--gold); box-shadow:0 0 12px rgba(243,207,107,.55); }
-  .sets { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:4px; text-align:start; }
-  .sets label { font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:3px; }
+  .sets { display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; margin-top:4px; text-align:start; }
+  .sets label { font-size:12.5px; color:var(--muted); display:flex; flex-direction:column; gap:3px; min-width:0; }
+  .sets select { width:100%; min-width:0; text-overflow:ellipsis; }
   .btn.main { margin:10px 0 2px; font-size:19px; font-weight:700; padding:11px 42px; color:#1a1d3a; border:none; border-radius:999px;
     background:linear-gradient(180deg, #fff7d6, var(--gold)); box-shadow:0 0 24px rgba(243,207,107,.45); }
   .btn.main:active, .tbtn:active { transform:scale(.97); }
   .help { font-size:12px; color:var(--muted); line-height:1.5; margin:6px auto 0; max-width:540px; }
   .foot { margin-top:6px; font-size:11.5px; color:var(--muted); font-weight:300; }
+  .mrow { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+  .tbtn.inst { margin-top:4px; min-height:42px; padding:0 18px; font-size:15px; font-weight:600; border:1.5px solid var(--gold); background:var(--panel2); }
   .install-hint { margin:6px auto 0; max-width:440px; font-size:12.5px; line-height:1.5; text-align:start; }
   .install-hint ol { margin:.2rem 0; padding-inline-start:1.3em; }
 
@@ -69,19 +72,83 @@
   #hud .r1 .tbtn { pointer-events:auto; width:42px; height:42px; padding:0; font-size:17px; }
   #msg { position:absolute; top:26%; left:0; right:0; text-align:center; font-size:clamp(24px, 6.5vw, 40px); font-weight:800; color:#fff;
     text-shadow:0 0 20px rgba(255,231,163,.95), 0 2px 6px rgba(0,0,0,.4); opacity:0; transition:opacity .5s; }
-  #touch { position:absolute; inset:0; }
-  #joy { position:absolute; width:124px; height:124px; margin:-62px 0 0 -62px; border-radius:50%; border:2px solid rgba(243,207,107,.55);
-    background:radial-gradient(circle, rgba(60,100,255,.18), rgba(10,20,80,.28)); left:90px; bottom:auto; }
-  #joy i { position:absolute; left:50%; top:50%; width:52px; height:52px; margin:-26px 0 0 -26px; border-radius:50%;
-    background:radial-gradient(circle at 40% 35%, #fff7d6, rgba(243,207,107,.75)); box-shadow:0 0 14px rgba(243,207,107,.6); }
-  #pads { position:absolute; right:12px; bottom:max(16px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:10px; pointer-events:auto; align-items:center; }
-  .pad { width:64px; height:64px; border-radius:50%; border:2px solid rgba(243,207,107,.7); background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.85), rgba(20,36,110,.88));
-    color:#fff; font-size:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0; line-height:1; touch-action:none; }
-  .pad small { font-size:10px; font-weight:500; margin-top:2px; }
-  .pad.on { box-shadow:0 0 18px rgba(255,231,163,.9); background:radial-gradient(circle at 50% 35%, rgba(130,165,255,.95), rgba(40,66,170,.95)); }
-  .keys { position:absolute; bottom:max(10px, env(safe-area-inset-bottom)); left:0; right:0; text-align:center; font-size:12px; color:#fff; text-shadow:0 1px 3px #000; opacity:.85; }
+  #touch { position:absolute; inset:0; pointer-events:auto; }
+  /* joystick: a fixed circle at the bottom RIGHT; drag the knob any way (all directions) */
+  #hud { --joy:clamp(118px, 35vw, 150px); --pad:clamp(150px, 44vw, 178px); --pb:calc(var(--pad) * 0.31); }
+  #joy { position:absolute; right:max(14px, env(safe-area-inset-right)); bottom:max(18px, env(safe-area-inset-bottom)); width:var(--joy); height:var(--joy); border-radius:50%;
+    border:3px solid rgba(143,176,255,.9); background:radial-gradient(circle, rgba(60,100,255,.28) 0%, rgba(14,28,100,.5) 70%);
+    box-shadow:0 0 0 6px rgba(44,92,255,.12), inset 0 0 18px rgba(0,0,0,.25); pointer-events:auto; touch-action:none; }
+  #joy .ar { position:absolute; color:rgba(220,232,255,.9); font-size:13px; line-height:1; pointer-events:none; }
+  #joy .ar.u { top:7px; left:50%; transform:translateX(-50%); } #joy .ar.d { bottom:7px; left:50%; transform:translateX(-50%); }
+  #joy .ar.l { left:8px; top:50%; transform:translateY(-50%); } #joy .ar.r { right:8px; top:50%; transform:translateY(-50%); }
+  #joy i { position:absolute; left:50%; top:50%; width:40%; height:40%; transform:translate(-50%, -50%); border-radius:50%; pointer-events:none;
+    border:3px solid #ffffff; background:radial-gradient(circle at 40% 35%, #ffffff, #8fb0ff 40%, #2c5cff 100%); box-shadow:0 2px 10px rgba(0,0,0,.35); }
+  #joy.on { border-color:#ffffff; box-shadow:0 0 0 6px rgba(44,92,255,.25), 0 0 18px rgba(143,176,255,.7); }
+  /* tools pad: a circle at the bottom LEFT with three swipeable rings of four icon buttons (each with its own cooldown) */
+  #powers { position:absolute; left:max(14px, env(safe-area-inset-left)); bottom:max(18px, env(safe-area-inset-bottom)); width:var(--pad); height:var(--pad); border-radius:50%;
+    border:2px solid rgba(243,207,107,.5); background:radial-gradient(circle, rgba(20,40,130,.2), rgba(10,20,72,.45) 72%); pointer-events:auto; touch-action:none; }
+  #powers .ring { position:absolute; inset:0; opacity:0; transform:rotate(100deg) scale(.6); transition:transform .38s cubic-bezier(.2,.8,.2,1), opacity .3s; pointer-events:none; }
+  #powers .ring.prev { transform:rotate(-100deg) scale(.6); }
+  #powers .ring.cur { opacity:1; transform:none; pointer-events:auto; }
+  .pw { position:absolute; left:50%; top:50%; width:var(--pb); height:var(--pb); margin:calc(var(--pb) / -2) 0 0 calc(var(--pb) / -2); padding:0; border-radius:50%;
+    transform:rotate(var(--ang)) translateY(calc(var(--pad) / -2 + var(--pb) / 2 + 5px)) rotate(calc(-1 * var(--ang)));
+    border:2px solid rgba(243,207,107,.75); background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.92), rgba(20,36,110,.92)); color:#fff;
+    font-size:calc(var(--pb) * 0.44); line-height:1; overflow:hidden; touch-action:none; -webkit-touch-callout:none; }
+  .pw .ic { position:relative; z-index:1; pointer-events:none; }
+  .pw .cd { position:absolute; inset:0; border-radius:50%; background:conic-gradient(rgba(5,10,40,.78) var(--p, 0%), transparent 0); z-index:2; pointer-events:none; }
+  .pw .tm { position:absolute; inset:-1px; border-radius:50%; pointer-events:none; }
+  .pw.act { border-color:#fff7d6; box-shadow:0 0 16px rgba(255,231,163,.95); }
+  .pw.act .tm { background:conic-gradient(rgba(255,231,163,.55) var(--a, 0%), transparent 0); z-index:0; }
+  .pw.ready { box-shadow:0 0 12px rgba(143,176,255,.75); }
+  .pw.act.ready { box-shadow:0 0 16px rgba(255,231,163,.95); }
+  .pw.trail { border-color:transparent; background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.92), rgba(20,36,110,.92)) padding-box, var(--tc, #6f9cff) border-box; border-width:3px; }
+  .dots { position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); display:flex; gap:2px; }
+  .dot { width:20px; height:20px; padding:0; border:0; background:none; display:flex; align-items:center; justify-content:center; }
+  .dot::before { content:""; width:8px; height:8px; border-radius:50%; background:rgba(220,232,255,.45); transition:all .25s; }
+  .dot.on::before { width:10px; height:10px; background:#f3cf6b; box-shadow:0 0 8px rgba(243,207,107,.9); }
+  #ringLbl { position:absolute; left:max(14px, env(safe-area-inset-left)); width:var(--pad); bottom:calc(max(18px, env(safe-area-inset-bottom)) + var(--pad) + 8px); text-align:center;
+    opacity:0; transform:translateY(6px); transition:opacity .3s, transform .3s; pointer-events:none; }
+  #ringLbl.show { opacity:1; transform:none; }
+  #ringLbl, #tip { font-size:13px; font-weight:600; color:#fff; }
+  #ringLbl { text-shadow:0 1px 4px rgba(0,0,0,.7); }
+  #tip { position:fixed; z-index:30; transform:translate(-50%, -100%); background:rgba(10,20,72,.92); border:1px solid rgba(243,207,107,.6); border-radius:10px; padding:4px 10px; white-space:nowrap;
+    opacity:0; transition:opacity .2s; pointer-events:none; }
+  #tip.show { opacity:1; }
+  /* photo mode */
+  #photoUi { position:fixed; inset:0; z-index:25; pointer-events:none; }
+  #photoUi .row { position:absolute; left:0; right:0; bottom:max(18px, env(safe-area-inset-bottom)); display:flex; justify-content:center; gap:14px; pointer-events:auto; }
+  #photoUi .row button { width:58px; height:58px; border-radius:50%; border:2px solid rgba(243,207,107,.75); background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.92), rgba(20,36,110,.92)); color:#fff; font-size:24px; padding:0; }
+  #photoUi #phSave { width:68px; height:68px; font-size:28px; border-color:#ffe7a3; }
+  #phHint { position:absolute; top:max(14px, env(safe-area-inset-top)); left:0; right:0; text-align:center; color:#fff; font-size:14px; text-shadow:0 1px 4px #000; }
+  /* tutorial */
+  #tut { position:fixed; inset:0; z-index:40; pointer-events:none; }
+  #tutSpot { position:absolute; border:2px solid #ffe7a3; box-shadow:0 0 0 200vmax rgba(3,6,25,.62), 0 0 22px rgba(255,231,163,.7); transition:all .35s ease; pointer-events:none; }
+  #tutBox { position:absolute; left:50%; transform:translateX(-50%); width:min(330px, 92vw); pointer-events:auto; background:var(--panel2); border:1px solid var(--line); border-radius:16px; padding:10px 12px; text-align:center; color:var(--ink); }
+  #tutTxt { font-size:17px; font-weight:700; line-height:1.35; }
+  #tutTxt .rn { display:flex; justify-content:center; gap:10px; margin-top:4px; font-size:13px; font-weight:500; color:var(--gold); }
+  html[data-theme="light"] #tutTxt .rn { color:#a07c10; }
+  #tutBox .tr { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:8px; }
+  #tutBox .tr span { font-size:12px; color:var(--muted); }
+  #tutBox .tr button { min-height:38px; border-radius:999px; padding:0 16px; font-size:14px; font-weight:600; }
+  #tutSkip { border:1px solid var(--line); background:transparent; }
+  #tutNext { border:none; color:#1a1d3a; background:linear-gradient(180deg, #fff7d6, var(--gold)); }
+  #hud.slowfx::before { content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 120px 30px rgba(120,150,255,.45); }
+  .keys { position:absolute; bottom:max(10px, env(safe-area-inset-bottom)); left:200px; right:170px; text-align:center; font-size:12px; color:#fff; text-shadow:0 1px 3px #000; opacity:.85; }
   #nogl { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; text-align:center; padding:20px; z-index:30; }
-  @media (max-height:520px) { .panel { max-height:70vh; } .help { display:none; } .chars { grid-template-columns:repeat(9, 1fr); } .ch { font-size:10.5px; } }
+  @media (max-height:520px) { .panel { max-height:70vh; } .help { display:none; } .chars { grid-template-columns:repeat(6, 1fr); } .ch { font-size:10.5px; } }
+  /* phones held sideways: characters on one side, settings and buttons on the other, so nothing needs scrolling */
+  @media (max-height:520px) and (orientation:landscape) {
+    h1 { font-size:30px; } .tag { font-size:12.5px; }
+    .panel { display:grid; grid-template-columns:1.2fr 1fr; column-gap:12px; align-items:start; width:min(880px, 100%); max-height:calc(100vh - 78px); padding:8px 10px 6px; }
+    .panel > .lbl { grid-column:1; grid-row:1; margin-top:0; }
+    .chars { grid-column:1; grid-row:2 / span 3; grid-template-columns:repeat(4, 1fr); gap:4px; }
+    .ch { min-height:44px; padding:2px; } .ch .e { font-size:17px; }
+    .sets { grid-column:2; grid-row:1 / span 2; grid-template-columns:1fr 1fr 1fr; margin-top:0; }
+    .btn.main { grid-column:2; grid-row:3; margin:6px auto 2px; font-size:17px; padding:9px 30px; }
+    .mrow { grid-column:2; grid-row:4; }
+    .install-hint, .foot { grid-column:1 / -1; }
+    .tbtn.inst { min-height:36px; font-size:13.5px; padding:0 12px; }
+  }
 </style>
 </head>
 <body>
@@ -100,13 +167,47 @@
     </div>
   </div>
   <div id="msg"></div>
-  <div id="joy" class="hidden"><i></i></div>
-  <div id="pads" class="hidden">
-    <button class="pad" id="upBtn">▲<small data-t="up"></small></button>
-    <button class="pad" id="spdBtn">⚡<small id="spdLbl"></small></button>
-    <button class="pad" id="downBtn">▼<small data-t="down"></small></button>
+  <div id="joy" class="hidden" role="application" aria-label="joystick"><span class="ar u">▲</span><span class="ar d">▼</span><span class="ar l">◀</span><span class="ar r">▶</span><i></i></div>
+  <div id="powers" class="hidden">
+    <div class="ring" data-ring="0" role="group">
+      <button class="pw" id="pw0" data-i="0" style="--ang:45deg"><span class="tm"></span><span class="ic">⚡</span><span class="cd"></span></button>
+      <button class="pw" id="pw1" data-i="1" style="--ang:135deg"><span class="tm"></span><span class="ic">🛡️</span><span class="cd"></span></button>
+      <button class="pw" id="pw2" data-i="2" style="--ang:225deg"><span class="tm"></span><span class="ic">🧲</span><span class="cd"></span></button>
+      <button class="pw" id="pw3" data-i="3" style="--ang:315deg"><span class="tm"></span><span class="ic">⏳</span><span class="cd"></span></button>
+    </div>
+    <div class="ring" data-ring="1" role="group">
+      <button class="pw" id="pw4" data-i="4" style="--ang:45deg"><span class="tm"></span><span class="ic">🌀</span><span class="cd"></span></button>
+      <button class="pw" id="pw5" data-i="5" style="--ang:135deg"><span class="tm"></span><span class="ic">🛬</span><span class="cd"></span></button>
+      <button class="pw" id="pw6" data-i="6" style="--ang:225deg"><span class="tm"></span><span class="ic">✨</span><span class="cd"></span></button>
+      <button class="pw" id="pw7" data-i="7" style="--ang:315deg"><span class="tm"></span><span class="ic">🤝</span><span class="cd"></span></button>
+    </div>
+    <div class="ring" data-ring="2" role="group">
+      <button class="pw" id="pw8" data-i="8" style="--ang:45deg"><span class="tm"></span><span class="ic">📸</span><span class="cd"></span></button>
+      <button class="pw" id="pw9" data-i="9" style="--ang:135deg"><span class="tm"></span><span class="ic">🎵</span><span class="cd"></span></button>
+      <button class="pw trail" id="pw10" data-i="10" style="--ang:225deg"><span class="tm"></span><span class="ic">🌈</span><span class="cd"></span></button>
+      <button class="pw" id="pw11" data-i="11" style="--ang:315deg"><span class="tm"></span><span class="ic">🌗</span><span class="cd"></span></button>
+    </div>
+    <div class="dots"><button class="dot on" data-r="0"></button><button class="dot" data-r="1"></button><button class="dot" data-r="2"></button></div>
   </div>
+  <div id="ringLbl"></div>
   <div class="keys hidden" id="keysHint" data-t="keys"></div>
+</div>
+
+<div id="tip"></div>
+
+<div id="photoUi" class="hidden">
+  <div id="phHint"></div>
+  <div class="row">
+    <button id="phZoomOut" aria-label="−">➖</button>
+    <button id="phSave" aria-label="save">💾</button>
+    <button id="phZoomIn" aria-label="+">➕</button>
+    <button id="phExit" aria-label="exit">✕</button>
+  </div>
+</div>
+
+<div id="tut" class="hidden">
+  <div id="tutSpot"></div>
+  <div id="tutBox"><div id="tutTxt"></div><div class="tr"><button id="tutSkip"></button><span id="tutStepN"></span><button id="tutNext"></button></div></div>
 </div>
 
 <div id="menu" class="overlay">
@@ -123,9 +224,10 @@
     <div class="sets">
       <label><span data-t="world"></span><select id="envSel"></select></label>
       <label><span data-t="view"></span><select id="camSel"></select></label>
+      <label><span data-t="buddy"></span><select id="buddySel"></select></label>
     </div>
     <button class="btn main" id="startBtn" data-t="start"></button>
-    <div><button class="tbtn" id="installBtn" data-t="install"></button></div>
+    <div class="mrow"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="tutBtn"></button></div>
     <div class="install-hint hidden" id="installHint"></div>
     <p class="help" id="help"></p>
     <div class="foot" data-t="copy"></div>
