@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-27T18:04:49+02:00",
+ "updated": "2026-10-27T19:07:35+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,108 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-pages-vault-apple",
+   "topic": "grokbot",
+   "date": "2026-10-27T16:50:54Z",
+   "url": "https://x.com/i/trending/2115122012222099467",
+   "source": "X",
+   "he": {
+    "title": "Grok Bot מוסיף Pages, כספת ואינטגרציות של אפל",
+    "summary": "אילון מאסק שיתף סרטון שמציג את החידושים האחרונים ב-Grok Bot: מסמכי Pages שמתעדכנים לבד, כספת מוצפנת לסיסמאות וכתובות, וחיבור ל-HomeKit, לתזכורות וליומן של אפל. הבוט גם מייצר עכשיו סרטונים ותומך ב-X Spaces."
+   },
+   "en": {
+    "title": "Grok Bot adds Pages, Vault and Apple integrations",
+    "summary": "Elon Musk shared a walkthrough of Grok Bot's latest features: self-updating shareable Pages, an encrypted Vault for passwords and addresses, and Apple HomeKit, Reminders and Calendar integrations. The bot can now also make videos and supports X Spaces."
+   },
+   "full_he": "אילון מאסק שיתף סרטון שמציג את העדכונים האחרונים של Grok Bot, שהופכים את הבינה המלאכותית לשותף אמין למשימות יומיומיות כמו מילוי אוטומטי מאובטח ושליטה בבית החכם.\n\n• Pages: יצירת מסמכים שאפשר לשתף ושמתעדכנים מעצמם.\n• Vault: כספת מוצפנת לשמירת סיסמאות וכתובות.\n• אינטגרציות של אפל: HomeKit, תזכורות, יומן ועוד.\n• הבוט מייצר עכשיו סרטונים, תומך ב-X Spaces ומציע דמויות חדשות, כמו דלעת של ליל כל הקדושים, והוא מבצע משימות ברמת הטלפון ב-iOS ובאנדרואיד.\n• משתמשים משבחים את הקצב (לדבריהם יותר מ-100 פיצ'רים בשבוע), ומאסק משווה את זה להעסקה של ראש מטה מוכשר.\n\nהפוסט של מאסק: \"פיצ'רים חדשים ב-Grok Bot\". הוא ציטט את הפוסט של מאט פאלמר, \"מה חדש ב-Grok Bot\", עם סרטון ופרקים:\n\n• 00:00 🎃\n• 00:13 Pages ב-Grok Bot\n• 01:09 כספת (Vault)\n• 02:05 1Password\n• 02:21 אינטגרציות של אפל\n• 03:21 הבוט מייצר סרטונים\n• 03:47 דמויות בוט חדשות\n• 04:13 X Spaces\n• 04:31 כיף עם גופנים\n• 04:54 ליטוש עיצובי\n• 05:11 סבב מהיר\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk shared a walkthrough of Grok Bot's latest updates, turning the AI into a reliable teammate for everyday tasks like secure autofill and smart home control.\n\n• Pages: create shareable, auto-updating documents.\n• Vault: encrypted storage for passwords and addresses.\n• Apple integrations: HomeKit, Reminders, Calendar and more.\n• The bot now generates videos, supports X Spaces, offers fun characters like a Halloween pumpkin, and handles phone-level tasks on iOS and Android.\n• Users praise the pace (over 100 features a week, they say), and Musk likens it to hiring a competent chief of staff.\n\nMusk's post: \"New features in Grok Bot\". The quoted post, by Matt Palmer, \"What's New in Grok Bot\", with a video and chapters:\n\n• 00:00 🎃\n• 00:13 Pages in Grok Bot\n• 01:09 Vault\n• 02:05 1Password\n• 02:21 Apple integrations\n• 03:21 Bot makes videos\n• 03:47 New bot characters\n• 04:13 X Spaces\n• 04:31 Font fun\n• 04:54 Design polish\n• 05:11 Rapid fire\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "tesla-optimus-dexterity-tests",
+   "topic": "tesla",
+   "date": "2026-10-27T16:50:08Z",
+   "url": "https://x.com/i/trending/2115048227137585201",
+   "source": "X",
+   "he": {
+    "title": "מאסק מציב לאופטימוס מבחני מיומנות קיצוניים",
+    "summary": "מאסק הציע שהרובוט של טסלה ירכיב שעון שוויצרי ביד אחת ויתפוס ביד השנייה כדור בייסבול במהירות 160 קמ\"ש בלי להסתכל. זה בא אחרי שג'ון קרמק ציין שאף רובוט עדיין לא מסוגל להחליף סוללות בדלעת מוארת."
+   },
+   "en": {
+    "title": "Musk sets wild dexterity tests for Tesla's Optimus",
+    "summary": "Musk proposed that Tesla's robot assemble a Swiss watch with one hand while catching a 100 mph baseball with the other, without looking. It came after John Carmack noted no robot can yet swap batteries in a jack-o'-lantern."
+   },
+   "full_he": "דמיין רובוט שמרכיב שעון שוויצרי ביד אחת ותופס ביד השנייה כדור בייסבול שנזרק ב-160 קמ\"ש, בלי להסתכל. אילון מאסק העלה את הרף למה שאופטימוס של טסלה צריך לעשות בהמשך.\n\n• מאסק הציע את המבחנים האלה אחרי שג'ון קרמק ציין שאף רובוט עדיין לא מסוגל להחליף סוללות בדלעת מוארת של ליל כל הקדושים, מה שמדגיש את הפער במיומנות עדינה למשימות יומיומיות.\n• המבחנים דורשים דיוק, רפלקסים, שיווי משקל ומודעות לסביבה, כדי להוכיח שאופטימוס מוכן למפעלים ולבתים.\n• טסלה התחילה ייצור בהיקף גדול בפרמונט, צילומים חדשים של פעולות לא מתוסרטות יגיעו בקרוב, והמסירות לחברות מתוכננות לסוף 2027.\n• התגובות ברשת משלבות התלהבות מהאתגרים עם תקווה למיומנויות מעשיות כמו קיפול כביסה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Imagine a robot assembling a Swiss watch with one hand while snagging a 100 mph baseball with the other, no looking. Elon Musk just raised the bar for what Tesla's Optimus needs to do next.\n\n• Musk proposed these feats after John Carmack pointed out no robot can yet swap batteries in a jack-o'-lantern, highlighting gaps in fine dexterity for everyday tasks.\n• The tests demand precision, reflexes, balance and awareness to prove Optimus ready for factories and homes.\n• Tesla started high-volume production in Fremont, with new footage of unscripted actions coming soon and deliveries to companies by late 2027.\n• Online reactions blend hype for the challenges with hopes for practical skills like folding laundry.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "musk-penchants",
+   "topic": "musk",
+   "date": "2026-10-27T16:27:00Z",
+   "url": "https://x.com/i/trending/2115116230378229967",
+   "source": "X",
+   "he": {
+    "title": "מאסק: לכל אחד כדאי שיהיו כמה תשוקות",
+    "summary": "מאסק כתב ש\"לכל אחד צריכות להיות לפחות כמה תשוקות\", והפוסט פתח אלפי תגובות על תחביבים מול התמקדות מוחלטת בעבודה."
+   },
+   "en": {
+    "title": "Musk: everyone should have at least a few penchants",
+    "summary": "Musk posted that \"everyone should have at least a few penchants,\" sparking thousands of replies about hobbies versus total focus on work."
+   },
+   "full_he": "אילון מאסק פרסם דחיפה פשוטה: \"לכל אחד צריכות להיות לפחות כמה תשוקות.\" הפוסט פתח שיחה כנה על תחביבים, הצלחה ומה שמאזן את החיים.\n\n• מאסק השתמש במילה penchant במובן של חיבה חזקה למשהו, והפוסט עורר אלפי תגובות על תחביבים מול התמקדות מוחלטת בעבודה.\n• אנשים מאוד מצליחים, כמו אלה שמאמנת ד\"ר ג'ולי גרנר, מתייחסים לעסק כתחביב היחיד שלהם, ואחרים, כמו הקבלן טאנר אלכסנדר, מעדיפים תחביבים מחוץ לעבודה גם במחיר של הצלחה פחות קיצונית.\n• מחקרים תומכים בעיסוקים מגוונים: זוכי פרס נובל במדעים נטו פי שלושה לעסוק בתחביבים כאלה, ומאסק עצמו נרגע עם משחקי וידאו.\n• השיחה משקפת את המתח בין התמחות עמוקה לבין תחומי עניין מגוונים שמעשירים את החיים.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk shared a straightforward nudge: \"Everyone should have at least a few penchants.\" His post opened doors to heartfelt shares about hobbies, success, and what keeps life balanced.\n\n• Musk used 'penchant' to mean a strong liking for something, sparking thousands of replies on hobbies versus total work focus.\n• High achievers like those coached by Dr. Julie Gurner often treat business as their sole hobby, while others like home builder Tanner Alexander embrace outside interests despite forgoing ultra-success.\n• Studies back diverse pursuits, noting Nobel scientists were three times more likely to have them, and Musk himself unwinds with video games.\n• The conversation captures the pull between deep specialization and varied passions that enrich life.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "spacex-starlink-eu-cornyn",
+   "topic": "spacex",
+   "date": "2026-10-27T14:07:13Z",
+   "url": "https://x.com/i/trending/2115080732691595323",
+   "source": "X",
+   "he": {
+    "title": "מתח סביב סטארלינק באוקראינה: קורנין מול האיחוד האירופי",
+    "summary": "הסנאטור ג'ון קורנין קרא להרחיב את Starshield האמריקאית עמוק יותר לרוסיה, בזמן שהאיחוד האירופי מתכנן לחסום את סטארלינק ולממן מתחרים אירופיים. מאסק הבהיר שסטארלינק המסחרית לא נועדה לשימוש התקפי."
+   },
+   "en": {
+    "title": "Starlink tensions rise over Ukraine as Cornyn and the EU push back",
+    "summary": "Senator John Cornyn urged extending US-controlled Starshield deeper into Russia, while the EU plans to block Starlink access and fund European rivals. Musk clarified that commercial Starlink avoids offensive use."
+   },
+   "full_he": "אוקראינה נשענת על סטארלינק לקשר הגנתי חיוני, אבל הגבלות מהירות שיבשו את פעולות הרחפנים במשך 10 ימים באמצע אוקטובר, ועוררו עימותים עם רגולטורים ופוליטיקאים.\n\n• הסנאטור ג'ון קורנין קרא להרחיב את Starshield, שנשלטת בידי ארה\"ב, עמוק יותר לתוך רוסיה כדי ללחוץ על פוטין ולצמצם את התקיפות על אוקראינה.\n• האיחוד האירופי מגיב בתוכניות לחסום את הגישה לסטארלינק, לממן מתחרים כמו חברת לוויינים ממוזגת בשם הקוד Bromo, ולשריין תדרים לשחקנים אירופיים.\n• מאסק הבהיר שסטארלינק המסחרית נמנעת משימוש התקפי, בשונה מ-Starshield שמופעלת בידי הממשלה, ואוקראינה מכחישה טענות לשימוש לא תקין ומברכת על חזרת המהירויות.\n• הדעות ברשת חלוקות: יש מי שמדגישים את התלות הטכנולוגית של אירופה, ויש מי שמזכירים שמאסק נתן לאוקראינה מסופים בחינם בתחילת המלחמה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Ukraine relies on Starlink for vital defense links, but speed cuts disrupted drone ops for 10 days mid-October, sparking clashes with regulators and politicians.\n\n• Senator John Cornyn urged extending US-controlled Starshield deeper into Russia to pressure Putin and curb strikes on Ukraine.\n• The EU counters with plans to block Starlink access, fund rivals like a merged satellite firm codenamed Bromo, and reserve spectrum bands for European players.\n• Musk clarified commercial Starlink avoids offensive use, distinguishing it from government-run Starshield, while Ukraine disputes misuse claims and welcomes restored speeds.\n• Online views split between highlighting Europe's tech dependence and Musk's early free terminals to Ukraine.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "brecka-shelf-life",
+   "topic": "brecka",
+   "date": "2026-10-27T16:00:01Z",
+   "url": "https://x.com/thegarybrecka/status/2115111282718150991",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה: ככל שחיי המדף ארוכים יותר, החיים שלך קצרים יותר",
+    "summary": "גארי ברקה טוען שהפכנו את האכילה למסובכת מדי, ושהפתרון אולי פשוט יותר ממה שנדמה. הפוסט מלווה בסרטון."
+   },
+   "en": {
+    "title": "Brecka: the longer the shelf life, the shorter your life",
+    "summary": "Gary Brecka says we've made eating too complicated and that the solution might be simpler than we think. The post comes with a video."
+   },
+   "full_he": "ככל שחיי המדף ארוכים יותר, החיים שלך קצרים יותר. הפכנו את האכילה למסובכת כל כך, כשהפתרון אולי פשוט יותר ממה שאנחנו חושבים.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של ברקה ולא המלצה רפואית.",
+   "full_en": "The longer the shelf life, the shorter your life. We've made eating so complicated when the solution might be simpler than we think.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Brecka's own claim, not medical advice."
+  },
+  {
+   "id": "ss-charlie-30k-microsaas",
+   "topic": "starterstory",
+   "date": "2026-10-27T16:28:14Z",
+   "url": "https://x.com/starter_story/status/2115118383985524751",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "צ'רלי בנה מיקרו-SaaS של 30 אלף דולר בחודש לצד עבודה מלאה",
+    "summary": "צ'רלי לא שרף את הגשרים כדי לעזוב את העבודה. הוא עזב כשרצה יותר גמישות לטפל בבן שלו כשהוא חולה, ואחרי שנתיים הוא שמח שעשה את זה."
+   },
+   "en": {
+    "title": "Charlie built a $30K/month micro-SaaS alongside his full-time job",
+    "summary": "Charlie didn't burn the boats to quit. He left when he wanted more flexibility to look after his sick kid, and two years on he's glad he did."
+   },
+   "full_he": "צ'רלי בנה מיקרו-SaaS שמכניס 30 אלף דולר בחודש לצד העבודה המלאה שלו, והוא אומר שהוא לא שרף את הגשרים כדי לעזוב...\n\n\"מאוד רציתי יותר גמישות כדי לטפל בילד שלי, אתה יודע, כשהוא היה חולה ודברים כאלה.\"\n\n\"זה פשוט הרגיש כמו הזמן הנכון. ועכשיו עברו שנתיים, ואני ממש שמח שעשיתי את זה.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Charlie built a $30K/month micro-SaaS alongside his full-time job and he says: he didn't burn the boats to quit...\n\n\"I was really wanting more flexibility to look after my kid, you know, when he would get sick and stuff like that.\"\n\n\"It just felt like the right time. And now it's been two years, and I'm really glad I did it.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
   {
    "id": "tesla-stock-above-400",
    "topic": "tesla",
