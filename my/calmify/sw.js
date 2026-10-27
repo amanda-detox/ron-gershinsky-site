@@ -1,6 +1,6 @@
 /* Offline cache for the private "Calmify" app (my/calmify/). Scope: my/calmify/ only.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-mycalm-v2";
+var CACHE = "rg-mycalm-v3";
 var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../common.css", "../common.js", "../care.css", "../help-now.js", "../store.js",
   "../../shared/rg-account.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 
