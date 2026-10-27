@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "Rehabify",
+  "short_name": "Rehabify",
+  "description": "ספירת ימים נקיים, צ'ק-אין יומי וכלים לרגעי חשק · Clean-day counter, daily check-ins and tools for cravings",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

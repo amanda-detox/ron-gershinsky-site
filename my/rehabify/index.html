@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>ריהאביפיי</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rehabify">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../../shared/rg-site.css">
+<link rel="stylesheet" href="../common.css">
+<link rel="stylesheet" href="../care.css">
+<style>
+  @media (max-width: 420px) { .tab { padding: 0 9px; } }
+  .counter { padding: 16px; margin-top: 12px; }
+  .counter .top { display: flex; align-items: center; gap: 8px; }
+  .counter .top b { flex: 1; min-width: 0; font-size: 18px; overflow-wrap: anywhere; }
+  .counter .big { display: flex; align-items: baseline; gap: 8px; margin-top: 6px; }
+  .counter .big strong { font-size: 52px; line-height: 1; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .counter .big span { font-size: 17px; font-weight: 700; color: var(--ink2); }
+  .counter .sub2 { color: var(--muted); font-size: 14px; margin-top: 2px; }
+  .counter .next { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; color: var(--muted); font-size: 13px; font-weight: 600; }
+  .badges { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .badges span { min-height: 28px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); font-size: 12.5px; font-weight: 800; }
+  .counter .btns { margin-top: 12px; }
+  .timer { display: flex; flex-direction: column; align-items: center; margin: 10px 0 4px; }
+  .timer svg { width: 190px; height: 190px; transform: rotate(-90deg); }
+  .timer circle { fill: none; stroke-width: 12; }
+  .timer .bg { stroke: var(--line); }
+  .timer .fg { stroke: var(--accent); stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+  .timer .tt { margin-top: -122px; height: 122px; font-size: 40px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .pulse { display: inline-block; width: 14px; height: 14px; margin-inline-end: 6px; vertical-align: -1px; border-radius: 50%; background: var(--accent); animation: pulse 10s ease-in-out infinite; }
+  @keyframes pulse { 0% { transform: scale(.6); } 40% { transform: scale(1.5); } 100% { transform: scale(.6); } }
+  .reasonsbox { margin-top: 6px; padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--line2); }
+  .reasonsbox p { margin: 2px 0; font-size: 14.5px; }
+  .call { display: inline-flex; margin: 6px 6px 0 0; }
+</style>
+<script src="../../shared/rg-bg.js" data-app="myrehab" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="56" height="56">
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+  </div>
+  <div class="helpwrap" id="help-now" data-extra="addiction"></div>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <div id="panels"></div>
+    <p class="disclaim" data-i18n="disclaim"></p>
+  </main>
+  <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "./sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "ריהאביפיי", title: "ריהאביפיי", sub: "הדרך שלך לחיים נקיים, שמורה בחשבון – רק אתה רואה אותה",
+        tabClean: "ספירה", tabCheck: "צ'ק-אין", tabCrave: "חשק עכשיו", tabWhy: "הסיבות", tabHist: "היסטוריה",
+        addTitle: "ממה אתה נגמל?", addLead: "אפשר להוסיף כמה דברים, ולכל אחד יש ספירה משלו.", phAdd: "למשל: עישון, אלכוהול, הימורים", since: "נקי מאז", add: "הוסף",
+        sugg: "אלכוהול|עישון|קנאביס|הימורים|סוכר|רשתות חברתיות|פורנוגרפיה|קפאין|קניות|משחקי מחשב",
+        noAdd: "עוד לא הוספת ממה אתה נגמל. הוסף למעלה כדי להתחיל לספור.",
+        days1: "יום נקי", daysN: "ימים נקיים", hoursN: "שעות", minsN: "דקות", andH: "ועוד {h} שעות ו־{m} דקות", sinceTxt: "מאז {d}",
+        nextMs: "היעד הבא: {n}", left: "עוד {n}", allMs: "עברת את כל אבני הדרך, כל הכבוד!", best: "השיא שלך: {n} ימים",
+        ms1: "יום", msN: "{n} ימים", msY1: "שנה", msYN: "{n} שנים",
+        slip: "מעדתי – ספירה מחדש", editDate: "שינוי תאריך", del: "מחק", save: "שמור", cancel: "ביטול",
+        confirmSlip: "מעידה לא מוחקת את מה שעשית. הספירה תתחיל מעכשיו, והימים הקודמים יישמרו בהיסטוריה ובשיא שלך. להמשיך?",
+        confirmDel: "למחוק את „{x}” ואת הספירה שלו?",
+        chkTitle: "איך היה היום?", chkLead: "צ'ק-אין קצר, פעם ביום או מתי שתרצה.", chkFor: "על מה הצ'ק-אין", general: "כללי",
+        crave: "כמה חזק החשק היום? (0–10)", none: "אין", strong: "חזק מאוד", mood: "מצב רוח", trig: "מה עורר את החשק? (לא חובה)",
+        m1: "קשה", m2: "לא טוב", m3: "בסדר", m4: "טוב", m5: "מצוין",
+        trigs: "לחץ|שעמום|בדידות|עייפות|כעס|עצב|אנשים מסוימים|מקום מסוים|חגיגה|כאב|אחר",
+        note: "הערה (לא חובה)", phNote: "מה עזר לך היום? מה היה קשה?", saveChk: "שמור צ'ק-אין", chkSaved: "✓ הצ'ק-אין נשמר. כל הכבוד שעצרת לבדוק עם עצמך.", todayDone: "כבר עשית היום {n} צ'ק-אין. אפשר להוסיף עוד אחד.",
+        crTitle: "יש לך חשק עכשיו?", crLead: "חשק הוא תחושה שמגיעה ועוברת. לפני שאתה עושה משהו, תן לו קצת זמן – הפעל טיימר ועבור על הצעדים.",
+        crFor: "החשק ל…", wait: "כמה זמן לחכות", minsW: "{n} דק׳", start: "התחל טיימר",
+        crRun: "אתה מחכה. הישאר עם זה, צעד אחרי צעד.", crEnd: "הזמן עבר. איך החשק עכשיו?",
+        st1: "נשימה איטית", st1t: "שאיפה דרך האף בספירה עד 4, נשיפה ארוכה עד 6. חזור על זה כמה פעמים, בקצב של הנקודה.",
+        st2: "גלישה על הגל", st2t: "שים לב איפה בגוף אתה מרגיש את החשק. תאר אותו לעצמך במילים, בלי לשפוט ובלי לפעול – ופשוט תראה איך הוא משתנה.",
+        st3: "תתקשר למישהו", st3t: "שיחה קצרה עם מישהו שאתה סומך עליו יכולה לעזור לעבור את הרגע.", noPpl: "עוד לא הוספת אנשים (בלשונית „הסיבות”).", helpLines: "קווי עזרה",
+        st4: "תקרא את הסיבות שלך", noWhy: "עוד לא כתבת סיבות. אפשר להוסיף בלשונית „הסיבות”.",
+        st5: "תזיז את עצמך", st5t: "שתה כוס מים, צא להליכה קצרה, החלף חדר או עשה משהו עם הידיים.",
+        passed: "✓ החשק נחלש או עבר", still: "עדיין חזק", stop: "הפסק", again: "עוד סבב",
+        crPassed: "כל הכבוד! עברת את הגל הזה. זה נשמר בהיסטוריה.", crStill: "זה בסדר שזה עדיין חזק. נסה סבב נוסף, דבר עם מישהו, או פנה לאחד מקווי העזרה.",
+        whyTitle: "הסיבות שלי להישאר נקי", whyLead: "כתוב במילים שלך למה זה חשוב לך. תוכל לקרוא את זה ברגעים קשים.", phWhy: "למשל: אני רוצה להיות נוכח בשביל המשפחה שלי",
+        pplTitle: "אנשים שאפשר להתקשר אליהם", pplLead: "חברים, משפחה, חונך או מטפל – מי שתרצה לדבר איתו ברגע של חשק.", phName: "שם", phPhone: "טלפון", call: "התקשר",
+        histTitle: "החשק ב־14 הימים האחרונים", histLead: "העמודה מראה את החשק החזק ביותר שדיווחת עליו בכל יום.", noHist: "עוד אין היסטוריה. צ'ק-אין, טיימר חשק ומעידות יופיעו כאן.",
+        hChk: "צ'ק-אין", hCrv: "טיימר חשק", hSlip: "מעידה – ספירה מחדש", hCrave: "חשק {n}/10", hPassed: "החשק נחלש", hStill: "עדיין היה חזק", hSlipD: "{n} ימים נקיים לפני כן", hMins: "{n} דקות", today: "היום", yesterday: "אתמול",
+        confirmDelH: "למחוק את הרשומה הזו מההיסטוריה?",
+        disclaim: "ריהאביפיי היא כלי אישי למעקב ולתמיכה, ואינה תחליף לייעוץ או לטיפול מקצועי. אם הגמילה מלווה בתסמינים גופניים, מומלץ להתייעץ עם רופא.",
+        synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת" },
+  en: { doc: "Rehabify", title: "Rehabify", sub: "Your path to a clean life, saved in your account – only you can see it",
+        tabClean: "Clean time", tabCheck: "Check-in", tabCrave: "Craving", tabWhy: "Reasons", tabHist: "History",
+        addTitle: "What are you quitting?", addLead: "You can add several things – each one gets its own count.", phAdd: "e.g. smoking, alcohol, gambling", since: "Clean since", add: "Add",
+        sugg: "Alcohol|Smoking|Cannabis|Gambling|Sugar|Social media|Pornography|Caffeine|Shopping|Video games",
+        noAdd: "You haven't added anything yet. Add one above to start counting.",
+        days1: "day clean", daysN: "days clean", hoursN: "hours", minsN: "minutes", andH: "plus {h} hours and {m} minutes", sinceTxt: "since {d}",
+        nextMs: "Next milestone: {n}", left: "{n} to go", allMs: "You've passed every milestone – well done!", best: "Your best: {n} days",
+        ms1: "1 day", msN: "{n} days", msY1: "1 year", msYN: "{n} years",
+        slip: "I slipped – restart count", editDate: "Change date", del: "Delete", save: "Save", cancel: "Cancel",
+        confirmSlip: "A slip doesn't erase what you've done. The count restarts now, and your previous days stay in your history and your best. Continue?",
+        confirmDel: "Delete “{x}” and its count?",
+        chkTitle: "How was today?", chkLead: "A short check-in, once a day or whenever you like.", chkFor: "Check-in for", general: "General",
+        crave: "How strong was the craving today? (0–10)", none: "None", strong: "Very strong", mood: "Mood", trig: "What triggered it? (optional)",
+        m1: "Hard", m2: "Not good", m3: "Okay", m4: "Good", m5: "Great",
+        trigs: "Stress|Boredom|Loneliness|Tiredness|Anger|Sadness|Certain people|A certain place|Celebration|Pain|Other",
+        note: "Note (optional)", phNote: "What helped today? What was hard?", saveChk: "Save check-in", chkSaved: "✓ Check-in saved. Well done for checking in with yourself.", todayDone: "You've done {n} check-in(s) today. You can add another.",
+        crTitle: "Having a craving right now?", crLead: "A craving is a feeling that comes and goes. Before you act on it, give it some time – start a timer and go through the steps.",
+        crFor: "Craving for…", wait: "How long to wait", minsW: "{n} min", start: "Start timer",
+        crRun: "You're waiting it out. Stay with it, one step at a time.", crEnd: "Time's up. How is the craving now?",
+        st1: "Slow breathing", st1t: "Breathe in through your nose for a count of 4, out slowly for 6. Repeat a few times, with the dot.",
+        st2: "Urge surfing", st2t: "Notice where in your body you feel the craving. Describe it to yourself in words, without judging or acting – and just watch how it changes.",
+        st3: "Call someone", st3t: "A short call with someone you trust can help you get through the moment.", noPpl: "You haven't added anyone yet (in “Reasons”).", helpLines: "Help lines",
+        st4: "Read your reasons", noWhy: "You haven't written any reasons yet. Add them in “Reasons”.",
+        st5: "Move", st5t: "Drink a glass of water, take a short walk, change rooms or do something with your hands.",
+        passed: "✓ It eased or passed", still: "Still strong", stop: "Stop", again: "One more round",
+        crPassed: "Well done! You rode out this wave. It's saved in your history.", crStill: "It's okay that it's still strong. Try another round, talk to someone, or reach out to one of the help lines.",
+        whyTitle: "My reasons to stay clean", whyLead: "Write in your own words why this matters to you. You can read it in hard moments.", phWhy: "e.g. I want to be present for my family",
+        pplTitle: "People I can call", pplLead: "Friends, family, a sponsor or therapist – whoever you'd want to talk to during a craving.", phName: "Name", phPhone: "Phone", call: "Call",
+        histTitle: "Cravings in the last 14 days", histLead: "Each bar shows the strongest craving you reported that day.", noHist: "No history yet. Check-ins, craving timers and slips will show up here.",
+        hChk: "Check-in", hCrv: "Craving timer", hSlip: "Slip – count restarted", hCrave: "craving {n}/10", hPassed: "It eased", hStill: "It was still strong", hSlipD: "{n} clean days before", hMins: "{n} minutes", today: "Today", yesterday: "Yesterday",
+        confirmDelH: "Delete this entry from your history?",
+        disclaim: "Rehabify is a personal tracking and support tool, not a substitute for professional advice or treatment. If quitting comes with physical symptoms, it's a good idea to consult a doctor.",
+        synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online" }
+};
+</script>
+<script src="../../shared/rg-account.js"></script>
+<script src="../common.js"></script>
+<script src="../help-now.js"></script>
+<script src="../store.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
