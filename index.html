@@ -362,8 +362,10 @@
 var CONTACT = "detoxify.ai@proton.me";
 // Paste a checkout link here (Lemon Squeezy or similar). Empty keeps the button honest.
 var CHECKOUT_URL = "";
-// Waitlist server (server/worker.js). Paste the Worker URL here once deployed; empty falls back to FormSubmit email only.
-var WAITLIST_URL = "https://ron-waitlist.detoxify-ai.workers.dev";
+// Waitlist signups go to a private Appwrite table (database "ron", table "waitlist").
+// Its only permission is Create for Any: visitors can add a row, nobody can read rows except the owner in the Appwrite console.
+// After saving, a copy is emailed to CONTACT through FormSubmit (best effort). If Appwrite fails, FormSubmit alone is used.
+var WAITLIST = { endpoint: "https://fra.cloud.appwrite.io/v1", project: "6adef4a40004c12a1e9c", db: "ron", table: "waitlist", app: "landing" };
 
 // Topic buttons removed at Ron's request (2026-10-24); previous list is in git history.
 var topics = [];
@@ -593,6 +595,32 @@ function showPay(message) {
 
 document.getElementById("lang-sel").addEventListener("change", function (e) { lang = e.target.value === "en" ? "en" : "he"; render(); });
 
+function notifySignup(email, l) {
+  return fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT), {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({ email: email, lang: l, _subject: "Waitlist — Ron Gershinsky", _template: "table" })
+  }).then(function (r) { if (!r.ok) throw new Error("notify"); return r; });
+}
+// Resolves when the signup is stored (Appwrite) or at least emailed (FormSubmit); rejects only if both fail.
+function saveSignup(email, l) {
+  var w = WAITLIST;
+  var row = fetch(w.endpoint + "/tablesdb/" + w.db + "/tables/" + w.table + "/rows", {
+    method: "POST",
+    credentials: "omit",
+    headers: { "Content-Type": "application/json", "X-Appwrite-Project": w.project },
+    body: JSON.stringify({ rowId: "unique()", data: { email: email.toLowerCase(), app: w.app, lang: l, createdAt: new Date().toISOString() } })
+  }).then(function (r) {
+    if (r.ok || r.status === 409) return r.status; // 409: this email is already on the list
+    throw new Error("store " + r.status);
+  });
+  return row.then(function (status) {
+    if (status !== 409) notifySignup(email, l).catch(function () {});
+  }, function () {
+    return notifySignup(email, l);
+  });
+}
+
 document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
   var input = document.getElementById("email");
@@ -609,23 +637,8 @@ document.getElementById("form").addEventListener("submit", function (event) {
   invalid.hidden = true;
   var join = document.getElementById("join");
   join.disabled = true;
-  var request = WAITLIST_URL
-    ? fetch(WAITLIST_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: value, lang: lang })
-      })
-    : fetch("https://formsubmit.co/ajax/" + encodeURIComponent(CONTACT), {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          email: value,
-          _subject: "Waitlist — Ron Gershinsky",
-          _template: "table"
-        })
-      });
-  request.then(function (response) {
-    if (!response.ok) throw new Error("fail");
+  var request = saveSignup(value, lang);
+  request.then(function () {
     input.value = "";
     thanks.hidden = false;
     thanks.textContent = t.thanks;
