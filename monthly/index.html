@@ -103,6 +103,8 @@ html[data-theme=dark] .tag{color:color-mix(in srgb,var(--c) 55%,#fff)}
 .note{font-size:13px;color:var(--dim);margin-top:22px;text-align:center}
 footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
 
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
 </style>
 <script src="../shared/rg-bg.js" data-app="monthly" data-slot=".top .tools" data-before="#theme-btn"></script>
 </head>
@@ -138,7 +140,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   <main class="months" id="months"></main>
   <p class="note" id="note"></p>
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
-  <footer>© Ron Gershinsky</footer>
+  <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </div>
 <script src="data.js"></script>
 <script src="app.js"></script>
