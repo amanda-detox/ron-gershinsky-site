@@ -143,6 +143,9 @@
   .gate h2 { margin: 0.4rem 0; font-size: 1.25rem; }
   .gate p { color: var(--muted); line-height: 1.6; margin: 0 0 1rem; }
   [data-when][hidden] { display: none !important; }
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
+  .rg-copy { margin: 0.75rem 0 0; text-align: center; font-family: "Heebo", system-ui, sans-serif; font-size: 0.75rem; line-height: 1.6; color: var(--faint); }
 </style>
 <script src="../../shared/rg-bg.js" data-app="clock" data-theme-key="rg-clock-theme" data-light-color="#f3efe6" data-slot=".top > span" data-before="#test-sound"></script>
 </head>
@@ -187,6 +190,7 @@
   </div>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <p class="back"><a href="../" id="back"></a><span data-when="in" hidden> · <button type="button" id="reset" style="background:none;border:0;color:var(--faint);text-decoration:underline;font-size:inherit;padding:0.5rem"></button></span></p>
+  <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </main>
 
 <button type="button" class="fab" id="add" data-when="in" hidden></button>
