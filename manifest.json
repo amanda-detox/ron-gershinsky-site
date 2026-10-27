@@ -4,7 +4,7 @@
   "description": "רון גרשינסקי. טכנולוג, תלמיד של וולנס אינטגרלי · Ron Gershinsky, technologist and student of integral wellness",
   "id": "./",
   "start_url": "./index.html",
-  "scope": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f172a",
