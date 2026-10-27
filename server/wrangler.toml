@@ -1,9 +1,0 @@
-name = "ron-waitlist"
-main = "worker.js"
-compatibility_date = "2026-10-01"
-
-[vars]
-REPO = "amanda-detox/ron-gershinsky-site"
-BRANCH = "main"
-ALLOWED_ORIGIN = "https://amanda-detox.github.io"
-NOTIFY_EMAIL = "detoxify.ai@proton.me"
