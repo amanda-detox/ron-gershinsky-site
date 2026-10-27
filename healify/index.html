@@ -9,7 +9,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="היליפיי">
-<meta name="description" content="היליפיי · אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג. Healify: An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing.">
+<meta name="description" content="היליפיי · אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר בריאות מלאה, כושר ושגשוג. Healify: An app for a complete understanding of your condition and matching solutions, toward full health, fitness and flourishing.">
 <script>/* theme before first paint: dark (default) / light */(function(){var t="dark";try{t=localStorage.getItem("rg-healify-theme")==="light"?"light":"dark";}catch(e){}document.documentElement.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#e5ae34":"#0b2a6b");})();</script>
 <title>היליפיי</title>
 <link rel="manifest" href="manifest.json">
@@ -112,6 +112,8 @@ section.screen[hidden]{display:none}
 h2{font-family:var(--serif);font-weight:800;font-size:28px;line-height:1.2;margin:4px 0 8px;color:var(--ink)}
 h2::after{content:"";display:block;width:44px;height:3px;border-radius:9px;margin-top:10px;background:var(--em)}
 .lead{color:var(--mute);margin:0 0 14px}
+.subh{font-family:var(--serif);font-weight:800;font-size:22px;line-height:1.25;margin:26px 0 6px;color:var(--ink)}
+.sumrecs{margin:0;padding-inline-start:20px}.sumrecs li{margin:3px 0;color:var(--ink)}
 .card{position:relative;overflow:hidden;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 16px 16px;box-shadow:var(--shadow);margin:12px 0}
 .card h3{margin:0 0 4px;font-size:18px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:10px}
 .card h3 .ic{width:32px;height:32px;border-radius:9px;background:var(--mint);border:1px solid var(--line);color:var(--em);display:inline-flex;align-items:center;justify-content:center;flex:none}
@@ -169,7 +171,7 @@ html[dir=rtl] .dots{direction:rtl}
 .card.sel::before{content:"";position:absolute;top:0;bottom:0;inset-inline-start:0;width:3px;background:var(--em)}
 .note{font-size:14px;color:var(--mute);background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin:10px 0}
 .othertext{font-style:italic;color:var(--ink2);font-size:15px;margin:2px 0 6px}
-/* Ron's personal recommendations */
+/* Recommendations for you (end of the questionnaire) */
 .recsopen{margin-top:12px}
 .card.recs{border-color:var(--disc-line)}
 .card.recs::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--em),var(--warm))}
@@ -227,6 +229,8 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
+  /* © footer line: follows the language toggle */
+  html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
 </style>
 <script src="../shared/rg-bg.js" data-app="healify" data-slot=".top .tools" data-before="#theme-btn"></script>
 </head>
@@ -261,7 +265,6 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
       <p class="sub" id="w-sub"></p>
       <button type="button" class="btn" id="start"></button>
       <div class="meta" id="w-meta"></div>
-      <div class="recsopen"><button type="button" class="btn ghost small" id="recs-open" hidden></button></div>
     </div>
     <div class="disc" id="disc-w"></div>
   </section>
@@ -306,18 +309,13 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
       <div id="b-groups"></div>
     </section>
 
-    <!-- C -->
+    <!-- C · Recommendations (top) + technologies (below) -->
     <section class="screen" id="s-c" hidden>
       <h2 id="c-title"></h2>
+      <div id="c-recs"></div>
+      <h3 class="subh" id="c-tech-title"></h3>
       <p class="lead" id="c-lead"></p>
       <div id="c-groups"></div>
-    </section>
-
-    <!-- D -->
-    <section class="screen" id="s-d" hidden>
-      <h2 id="d-title"></h2>
-      <p class="lead" id="d-lead"></p>
-      <div id="d-groups"></div>
     </section>
 
     <!-- Summary -->
@@ -336,6 +334,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
         <h3 id="sum-desc-title"></h3>
         <div id="sum-desc"></div>
       </div>
+      <div id="sum-recs"></div>
       <div class="card">
         <h3 id="sum-data-title"></h3>
         <div class="actions">
@@ -357,6 +356,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
 
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer id="foot"></footer>
+  <footer class="rg-copy" style="margin-top:4px"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
 <script src="content.js"></script>

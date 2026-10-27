@@ -7,32 +7,33 @@
   var lang = "he";
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
 
-  var CASES = ["autoimmune", "cancer", "mental", "other"];
+  var CASES = ["autoimmune", "cancer", "mental", "bipolar", "depression", "addiction", "psychmeds", "other"];
+  var BASECASES = ["autoimmune", "cancer", "mental", "other"]; // ids used by content.js cases/combos
   var FIELDS = ["diagnoses", "prognoses", "symptoms", "physical", "emotional", "mental", "consciousness"];
   var SCORES = ["emotional", "physical", "mental"];
-  var VIEWS = ["a", "b", "c", "d", "sum"];
-  var RECS = (Array.isArray(C.ronRecs) ? C.ronRecs : []).filter(function (r) { return r && r.id; });
+  var VIEWS = ["a", "b", "c", "sum"];
+  var RECS = (Array.isArray(C.recs) ? C.recs : []).filter(function (r) { return r && r.id; });
   var RECIDS = RECS.map(function (r) { return r.id; });
 
   var T = {
     he: {
       doc: "היליפיי", back: "← חזרה לאתר",
-      eyebrow: "", title: "היליפיי", tagline: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג.",
-      sub: "מתחילים בתיאור מה שעובר עליך, ממשיכים לבדיקות ולטכנולוגיות לריפוי עצמי, ומסיימים בהבחנה לפי המקרה שלך.",
+      eyebrow: "", title: "היליפיי", tagline: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר בריאות מלאה, כושר ושגשוג.",
+      sub: "מתחילים בתיאור המצב הנוכחי, ממשיכים לאבחנה מלאה ולהמלצות, ומסיימים בסיכום.",
       start: "בוא נתחיל", resume: "המשך מאיפה שעצרת",
       meta: "הכול נשמר אוטומטית ורק במכשיר שלך",
       install: "📲 התקנה למסך הבית",
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף <b>(□↑)</b> בתחתית Safari, ואז בוחרים <b>„הוסף למסך הבית”</b>.",
       other: "בתפריט הדפדפן (⋮) בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.",
-      disc: "<b>חשוב:</b> היליפיי היא כלי אישי לארגון מידע ואינה מהווה ייעוץ רפואי. היא אינה מחליפה רופא, אבחון או טיפול רפואי. לפני כל שינוי בטיפול יש להתייעץ עם רופא.<span class=em><b>במצב חירום או סכנה:</b> מד״א <a href=\"tel:101\">101</a> · ער״ן, עזרה ראשונה נפשית <a href=\"tel:1201\">1201</a></span>",
-      steps: ["א · הבעיה", "ב · בדיקות", "ג · טכנולוגיות", "ד · לפי מקרה", "סיכום"],
-      stepnum: function (i, n) { return i <= 4 ? "שלב " + i + " מתוך 4" : "סיכום"; },
+      disc: "<b>חשוב:</b> היליפיי אינה ייעוץ רפואי. היא אינה מחליפה רופא, אבחון או טיפול רפואי. לפני כל שינוי בטיפול יש להתייעץ עם רופא.<span class=em><b>במצב חירום או סכנה:</b> מד״א <a href=\"tel:101\">101</a> · ער״ן, עזרה ראשונה נפשית <a href=\"tel:1201\">1201</a></span>",
+      steps: ["א · המצב הנוכחי", "ב · אבחנה מלאה", "ג · המלצות", "ד · סיכום"],
+      stepnum: function (i) { return "שלב " + i + " מתוך 4"; },
       prev: "→ הקודם", next: "הבא ←", toSum: "לסיכום ←", edit: "→ חזרה לעריכה", home: "→ למסך הפתיחה", homeBack: "→ חזרה", homeBackLabel: "חזרה למסך הראשי של היליפיי",
       saved: "✓ נשמר במכשיר", saving: "שומר…",
-      aTitle: "א · מה הבעיה שלך?",
+      aTitle: "א · המצב הנוכחי",
       aLead: "כתוב בפירוט, במילים שלך. כל השדות אופציונליים, ואפשר לחזור ולהשלים בכל זמן.",
-      casesTitle: "סוג המקרה", casesHelp: "אפשר לבחור יותר מאחד. הבחירה קובעת מה יוצג בשלב ד.",
-      cases: { autoimmune: "אוטואימון", cancer: "סרטן", mental: "מחלה נפשית", other: "אחר / צירוף" },
+      casesTitle: "סוג המקרה", casesHelp: "אפשר לבחור יותר מאחד. הבחירה קובעת אילו המלצות יוצגו בשלב ג.",
+      cases: { autoimmune: "אוטואימון", cancer: "סרטן", mental: "מחלה נפשית", bipolar: "ביפולר (דו קוטבי)", depression: "דיכאון", addiction: "התמכרות", psychmeds: "שימוש בכדורים פסיכיאטריים", other: "אחר / צירוף" },
       otherPh: "תאר במילים שלך את המקרה או את הצירוף",
       descTitle: "תיאור מפורט", descHelp: "מה ידוע, מה מרגישים, ואיך זה משפיע עליך.",
       opt: "(אופציונלי)",
@@ -48,55 +49,49 @@
       scalesTitle: "מדדי סבל", scalesHelp: "דרג כל סוג סבל בנפרד: 1 = מעט מאוד, 10 = הכי קשה.",
       scores: { emotional: "סבל רגשי", physical: "סבל פיזי", mental: "סבל מנטלי" },
       low: "1 · מעט מאוד", high: "10 · קשה מאוד", none: "לא דורג", clearScore: "ניקוי",
-      bTitle: "ב · בדיקות מומלצות",
+      bTitle: "ב · אבחנה מלאה",
       bLead: "בדיקות שכדאי לעשות כדי לקבל תמונה ברורה וממוקדת יותר.",
       bGroups: { free: ["בדיקות חינמיות ואונליין", "חינמיות, אפשר לעשות אונליין"], home: ["ערכות בדיקה עד הבית", "מזמינים אונליין עד הבית ומבצעים לבד לפי ההנחיות"] },
-      cTitle: "ג · טכנולוגיות מרפאות",
-      cLead: "השקעה בטכנולוגיות לריפוי עצמי, בשלוש רמות.",
+      cTitle: "ג · המלצות", cTechTitle: "טכנולוגיות",
+      cLead: "השקעה בטכנולוגיות, בשלוש רמות.",
       cGroups: { free: ["חינמי", "טכנולוגיות חינמיות"], low: ["עלות נמוכה", "טכנולוגיות בעלות נמוכה"], premium: ["יוקרתי", "טכנולוגיות יקרות ויוקרתיות"] },
       tiers: { free: "0 ₪", low: "₪", premium: "₪₪₪" },
-      dTitle: "ד · הבחנה לפי מקרים",
-      dLead: "התאמה לפי סוג המקרה.",
       dCases: { autoimmune: ["אוטואימון", "אם יש מחלה אוטואימונית"], cancer: ["סרטן", "אם יש סרטן"], mental: ["מחלה נפשית", "אם יש מחלה נפשית"], combo: ["צירוף", "אם יש צירוף של כמה מצבים"] },
-      dYours: "המקרים שבחרת בשלב א מסומנים ומוצגים ראשונים.",
-      dNone: "עוד לא בחרת סוג מקרה בשלב א, ולכן מוצגים כל המקרים.",
-      dOtherYou: "מה שכתבת:",
-      dRest: "שאר המקרים",
       soon: "יצורף בקרוב",
       link: "לפרטים ←",
-      sumTitle: "הסיכום שלך", sumLead: "כל מה שמילאת, במקום אחד.",
+      sumTitle: "ד · סיכום", sumLead: "כל מה שמילאת, במקום אחד.",
       sumScores: "מדדי סבל", sumCases: "סוג המקרה", sumDesc: "התיאור שלך", sumData: "הנתונים שלך",
       noCases: "לא נבחר", empty: "לא מולא",
       expTxt: "⬇ הורדה כקובץ טקסט", expJson: "⬇ הורדה כ-JSON", clear: "🗑 מחיקת הנתונים שלי",
       confirm: "למחוק את כל מה שמילאת בהיליפיי מהמכשיר הזה? אי אפשר לבטל את זה.",
       cleared: "הנתונים נמחקו", downloaded: "הקובץ ירד",
       privacy: "הנתונים נשמרים רק בדפדפן במכשיר הזה ולא נשלחים לשום מקום. מומלץ להוריד עותק מדי פעם.",
-      recsTitle: "המלצות אישיות של רון", recsQ: "עם מה אתה מתמודד?",
-      recsHelp: "אפשר לבחור יותר מאחד. לכל בחירה תיפתח ההמלצה שלי.",
-      recsNone: "בחר נושא אחד או יותר כדי לראות את ההמלצות.",
-      recsOpen: "המלצות אישיות של רון ←",
+      recsTitle: "המלצות", recsLead: "לפי המצב שבחרת בשלב א.",
+      recsAll: "עוד לא בחרת מצב בשלב א, ולכן מוצגות כל ההמלצות.",
+      recsNoMatch: "עוד אין המלצות למצב שבחרת. אפשר לבחור מצב נוסף בשלב א.",
+      sumRecs: "ההמלצות שהוצגו לך (שלב ג)", sumRecsNone: "לא הוצגו המלצות",
       recsDisc: "אין לראות במידע המוצג כאן ייעוץ רפואי. מומלץ להיוועץ ברופא פונקציונלי לפני תחילת תהליך משנה חיים. כל הטיפולים המומלצים כאן ניתנים במכונים וקליניקות עם השגחה רפואית.",
       foot: "היליפיי · Healify · גרסה 1",
       fileTitle: "היליפיי · הסיכום שלי", fileDate: "תאריך"
     },
     en: {
       doc: "Healify", back: "← Back to site",
-      eyebrow: "", title: "Healify", tagline: "An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing.",
-      sub: "Start by describing what you're going through, continue to tests and self-healing technologies, and finish with guidance by case.",
+      eyebrow: "", title: "Healify", tagline: "An app for a complete understanding of your condition and matching solutions, toward full health, fitness and flourishing.",
+      sub: "Start with your current situation, continue to a full diagnosis and recommendations, and finish with a summary.",
       start: "Let's begin", resume: "Continue where you left off",
       meta: "Everything saves automatically, only on your device",
       install: "📲 Add to home screen",
       ios: "On iPhone or iPad: tap the Share button <b>(□↑)</b> at the bottom of Safari, then choose <b>“Add to Home Screen”</b>.",
       other: "Open your browser menu (⋮) and choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.",
-      disc: "<b>Important:</b> Healify is a personal tool for organizing information and is not medical advice. It does not replace a doctor, diagnosis or medical treatment. Always consult a doctor before changing any treatment.<span class=em><b>In an emergency or danger:</b> Israel: MDA <a href=\"tel:101\">101</a> · ERAN emotional first aid <a href=\"tel:1201\">1201</a> · elsewhere, your local emergency number</span>",
-      steps: ["A · Problem", "B · Tests", "C · Tech", "D · By case", "Summary"],
-      stepnum: function (i, n) { return i <= 4 ? "Step " + i + " of 4" : "Summary"; },
+      disc: "<b>Important:</b> Healify is not medical advice. It does not replace a doctor, diagnosis, or medical treatment. Consult a doctor before any change in treatment.<span class=em><b>In an emergency or danger:</b> Israel: MDA <a href=\"tel:101\">101</a> · ERAN emotional first aid <a href=\"tel:1201\">1201</a> · elsewhere, your local emergency number</span>",
+      steps: ["A · Current situation", "B · Full diagnosis", "C · Recommendations", "D · Summary"],
+      stepnum: function (i) { return "Step " + i + " of 4"; },
       prev: "← Back", next: "Next →", toSum: "To summary →", edit: "← Back to editing", home: "← Home", homeBack: "← Back", homeBackLabel: "Back to the Healify main screen",
       saved: "✓ Saved on this device", saving: "Saving…",
-      aTitle: "A · What is your problem?",
+      aTitle: "A · Current situation",
       aLead: "Write in detail, in your own words. Every field is optional, and you can come back to it any time.",
-      casesTitle: "Type of case", casesHelp: "You can pick more than one. Your choice shapes what you see in step D.",
-      cases: { autoimmune: "Autoimmune", cancer: "Cancer", mental: "Mental illness", other: "Other / combination" },
+      casesTitle: "Type of case", casesHelp: "You can pick more than one. Your choice decides which recommendations you see in step C.",
+      cases: { autoimmune: "Autoimmune", cancer: "Cancer", mental: "Mental illness", bipolar: "Bipolar disorder", depression: "Depression", addiction: "Addiction", psychmeds: "Use of psychiatric medication", other: "Other / combination" },
       otherPh: "Describe the case or combination in your own words",
       descTitle: "Detailed description", descHelp: "What is known, what you feel, and how it affects you.",
       opt: "(optional)",
@@ -112,33 +107,27 @@
       scalesTitle: "Suffering scales", scalesHelp: "Rate each kind of suffering separately: 1 = very little, 10 = the hardest.",
       scores: { emotional: "Emotional suffering", physical: "Physical suffering", mental: "Mental suffering" },
       low: "1 · very little", high: "10 · very hard", none: "Not rated", clearScore: "Clear",
-      bTitle: "B · Recommended tests",
+      bTitle: "B · Full diagnosis",
       bLead: "Tests worth doing to get a clearer, more focused picture.",
       bGroups: { free: ["Free & online tests", "Free, can be done online"], home: ["Home test kits", "Order online to your home and do it yourself per the instructions"] },
-      cTitle: "C · Healing technologies",
-      cLead: "Investing in self-healing technologies, in three levels.",
+      cTitle: "C · Recommendations", cTechTitle: "Technologies",
+      cLead: "Investing in technologies, in three levels.",
       cGroups: { free: ["Free", "Free technologies"], low: ["Low-cost", "Low-cost technologies"], premium: ["Luxury", "Expensive & luxurious technologies"] },
       tiers: { free: "$0", low: "$", premium: "$$$" },
-      dTitle: "D · Distinction by case",
-      dLead: "Guidance matched to the type of case.",
       dCases: { autoimmune: ["Autoimmune", "If there is an autoimmune condition"], cancer: ["Cancer", "If there is cancer"], mental: ["Mental illness", "If there is a mental illness"], combo: ["Combination", "If there is a combination of conditions"] },
-      dYours: "The cases you chose in step A are highlighted and shown first.",
-      dNone: "You haven't chosen a case type in step A yet, so all cases are shown.",
-      dOtherYou: "What you wrote:",
-      dRest: "Other cases",
       soon: "Coming soon",
       link: "Details →",
-      sumTitle: "Your summary", sumLead: "Everything you filled in, in one place.",
+      sumTitle: "D · Summary", sumLead: "Everything you filled in, in one place.",
       sumScores: "Suffering scales", sumCases: "Type of case", sumDesc: "Your description", sumData: "Your data",
       noCases: "None chosen", empty: "Not filled in",
       expTxt: "⬇ Download as text", expJson: "⬇ Download as JSON", clear: "🗑 Clear my data",
       confirm: "Delete everything you filled in Healify from this device? This can't be undone.",
       cleared: "Your data was cleared", downloaded: "File downloaded",
       privacy: "Your data is stored only in this browser on this device and is never sent anywhere. It's a good idea to download a copy now and then.",
-      recsTitle: "Ron's personal recommendations", recsQ: "What are you dealing with?",
-      recsHelp: "You can pick more than one. Each choice opens my recommendation.",
-      recsNone: "Pick one or more topics to see the recommendations.",
-      recsOpen: "Ron's personal recommendations →",
+      recsTitle: "Recommendations", recsLead: "Based on the situation you chose in step A.",
+      recsAll: "You haven't chosen a situation in step A yet, so all recommendations are shown.",
+      recsNoMatch: "There are no recommendations for the situation you chose yet. You can choose another situation in step A.",
+      sumRecs: "Recommendations shown to you (step C)", sumRecsNone: "No recommendations were shown",
       recsDisc: "The information shown here is not medical advice. It's recommended to consult a functional medicine doctor before starting a life-changing process. All the treatments recommended here are provided at institutes and clinics with medical supervision.",
       foot: "Healify · היליפיי · version 1",
       fileTitle: "Healify · My summary", fileDate: "Date"
@@ -149,15 +138,17 @@
   var ICON_SOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
   /* ----- state ----- */
-  function blank() { return { v: 1, view: "welcome", cases: [], recs: null, otherText: "", text: {}, scores: {}, updated: null }; }
+  function blank() { return { v: 2, view: "welcome", cases: [], otherText: "", text: {}, scores: {}, updated: null }; }
   var S = blank();
   function load() {
     try {
       var s = JSON.parse(localStorage.getItem(KEY) || "null");
       if (s && typeof s === "object") {
-        S.view = (VIEWS.indexOf(s.view) >= 0 || s.view === "welcome") ? s.view : "welcome";
+        var v = s.view === "d" ? "c" : s.view; // old 5-step layout: D (by case) is now part of C
+        S.view = (VIEWS.indexOf(v) >= 0 || v === "welcome") ? v : "welcome";
         S.cases = Array.isArray(s.cases) ? s.cases.filter(function (c) { return CASES.indexOf(c) >= 0; }) : [];
-        S.recs = Array.isArray(s.recs) ? s.recs.filter(function (c) { return RECIDS.indexOf(c) >= 0; }) : null;
+        if (Array.isArray(s.recs)) s.recs.forEach(function (c) { if (CASES.indexOf(c) >= 0 && S.cases.indexOf(c) < 0) S.cases.push(c); }); // old "what are you dealing with?" picks become step A choices
+        S.cases.sort(function (x, y) { return CASES.indexOf(x) - CASES.indexOf(y); });
         S.otherText = typeof s.otherText === "string" ? s.otherText : "";
         S.text = {}; FIELDS.forEach(function (f) { if (s.text && typeof s.text[f] === "string") S.text[f] = s.text[f]; });
         S.scores = {}; SCORES.forEach(function (k) { var n = s.scores && +s.scores[k]; if (n >= 1 && n <= 10) S.scores[k] = Math.round(n); });
@@ -176,7 +167,7 @@
   }
   function flush() { if (saveTimer) save(true); }
   function flashSaved() { $("saved").textContent = t().saved; $("saved").className = "saved on"; }
-  function hasData() { return S.cases.length || (S.recs && S.recs.length) || S.otherText || Object.keys(S.text).some(function (k) { return S.text[k]; }) || Object.keys(S.scores).length; }
+  function hasData() { return S.cases.length || S.otherText || Object.keys(S.text).some(function (k) { return S.text[k]; }) || Object.keys(S.scores).length; }
 
   /* ----- helpers ----- */
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -205,7 +196,6 @@
       var b = e.target.closest("[data-case]"); if (!b) return;
       var c = b.getAttribute("data-case"), i = S.cases.indexOf(c);
       if (i >= 0) S.cases.splice(i, 1); else S.cases.push(c);
-      if (RECIDS.indexOf(c) >= 0) { var r = myRecs().filter(function (x) { return x !== c; }); if (i < 0) r.push(c); S.recs = r; }
       S.cases.sort(function (x, y) { return CASES.indexOf(x) - CASES.indexOf(y); });
       syncCases(); save(true);
     };
@@ -270,42 +260,32 @@
   }
   function fillC() {
     var L = t(), tech = C.tech || {};
-    $("c-title").textContent = L.cTitle; $("c-lead").textContent = L.cLead;
+    $("c-title").textContent = L.cTitle; $("c-tech-title").textContent = L.cTechTitle; $("c-lead").textContent = L.cLead;
+    $("c-recs").innerHTML = recsHTML();
     $("c-groups").innerHTML = ["free", "low", "premium"].map(function (g) {
       return group(L.cGroups[g][0], L.cGroups[g][1], list(tech[g]), g === "premium" ? "premium" : "", '<span class="tier ' + g + '">' + esc(L.tiers[g]) + "</span>");
     }).join("");
   }
-  function fillD() {
-    var L = t(), cs = C.cases || {}, combos = C.combos || {};
-    $("d-title").textContent = L.dTitle; $("d-lead").textContent = L.dLead;
-    var chosen = S.cases.slice(), wantCombo = chosen.length >= 2 || chosen.indexOf("other") >= 0;
-    var mine = [], rest = [];
+  /* content.js "cases" / "combos" lists (by case): shown inside the recommendations of step C, only when they have items */
+  function caseContent() {
+    var L = t(), cs = C.cases || {}, combos = C.combos || {}, out = "";
+    var chosen = S.cases.filter(function (c) { return BASECASES.indexOf(c) >= 0; }), wantCombo = S.cases.length >= 2 || chosen.indexOf("other") >= 0;
     ["autoimmune", "cancer", "mental", "combo"].forEach(function (id) {
-      var sel = id === "combo" ? wantCombo : chosen.indexOf(id) >= 0;
-      var body = "";
-      if (id === "combo") {
-        if (chosen.indexOf("other") >= 0 && S.otherText.trim()) body += '<p class="othertext">' + esc(L.dOtherYou) + " " + esc(S.otherText.trim()) + "</p>";
-        var key = chosen.join("+"), specific = chosen.length >= 2 && Array.isArray(combos[key]) && combos[key].length ? combos[key] : null;
-        body += list(specific ? specific.concat(cs.combo || []) : cs.combo);
-      } else body = list(cs[id]);
-      var html = group(L.dCases[id][0], L.dCases[id][1], body, sel ? "sel" : "");
-      (sel || !chosen.length ? mine : rest).push(html);
+      var arr = id === "combo" ? (wantCombo ? (Array.isArray(combos[chosen.join("+")]) ? combos[chosen.join("+")] : []).concat(cs.combo || []) : []) : (chosen.indexOf(id) >= 0 || !S.cases.length ? cs[id] || [] : []);
+      arr = arr.filter(function (x) { var p = pick(x); return p.title || p.text; });
+      if (arr.length) out += group(L.dCases[id][0], L.dCases[id][1], list(arr), "sel");
     });
-    var out = '<p class="note">' + esc(chosen.length ? L.dYours : L.dNone) + "</p>" + mine.join("");
-    if (rest.length) out += '<details class="more" open><summary>' + esc(L.dRest) + "</summary>" + rest.join("") + "</details>";
-    $("d-groups").innerHTML = recsHTML() + out;
+    return out;
   }
 
-  /* ----- Ron's personal recommendations (inside step D) ----- */
-  function myRecs() { return Array.isArray(S.recs) ? S.recs.slice() : S.cases.filter(function (c) { return RECIDS.indexOf(c) >= 0; }); }
+  /* ----- Recommendations (top of step C), matched to the situation(s) chosen in step A ----- */
+  function recsFor() {
+    if (!S.cases.length) return RECS.slice(); // nothing chosen yet: show everything
+    return RECS.filter(function (r) { var cs = Array.isArray(r.cases) ? r.cases : []; return !cs.length || cs.some(function (c) { return S.cases.indexOf(c) >= 0; }); });
+  }
   function recsHTML() {
-    if (!RECS.length) return "";
-    var L = t(), mine = myRecs();
-    var chips = RECS.map(function (r) {
-      var on = mine.indexOf(r.id) >= 0;
-      return '<button type="button" class="chip" data-rec="' + esc(r.id) + '" aria-pressed="' + on + '"><span class="tick">✓</span><span class="cl">' + esc(pick(r).title) + "</span></button>";
-    }).join("");
-    var panels = RECS.filter(function (r) { return mine.indexOf(r.id) >= 0; }).map(function (r) {
+    var L = t(), mine = recsFor(), extra = caseContent();
+    var panels = mine.map(function (r) {
       var p = pick(r), links = (Array.isArray(r.links) ? r.links : []).filter(function (k) { return k && /^https?:\/\//.test(k.url); }).map(function (k) {
         return '<a href="' + esc(k.url) + '" target="_blank" rel="noopener">' + esc(k[lang] || k.he || k.en || k.url) + ' <span aria-hidden="true">' + (lang === "he" ? "↖" : "↗") + "</span></a>";
       }).join("");
@@ -313,20 +293,10 @@
       return '<div class="rec" id="rec-' + esc(r.id) + '"><div class="rt">' + esc(p.title) + "</div>" + body + "</div>";
     }).join("");
     return '<div class="card recs" id="recs"><h3><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span><span>' + esc(L.recsTitle) + "</span></h3>" +
-      '<p class="rq">' + esc(L.recsQ) + '</p><p class="help">' + esc(L.recsHelp) + "</p>" +
-      '<div class="chips" id="rec-chips" role="group" aria-label="' + esc(L.recsQ) + '">' + chips + "</div>" +
-      '<div class="recpanels" aria-live="polite">' + (panels || '<p class="note">' + esc(L.recsNone) + "</p>") + "</div>" +
+      '<p class="help">' + esc(S.cases.length ? L.recsLead : L.recsAll) + "</p>" +
+      '<div class="recpanels">' + (panels || extra ? panels + extra : '<p class="note">' + esc(L.recsNoMatch) + "</p>") + "</div>" +
       '<p class="recdisc">' + esc(L.recsDisc) + "</p></div>";
   }
-  $("d-groups").addEventListener("click", function (e) {
-    var b = e.target.closest("[data-rec]"); if (!b) return;
-    var id = b.getAttribute("data-rec"), r = myRecs(), i = r.indexOf(id);
-    if (i >= 0) r.splice(i, 1); else r.push(id);
-    S.recs = r.sort(function (x, y) { return RECIDS.indexOf(x) - RECIDS.indexOf(y); });
-    save(true); fillD();
-    var nb = document.querySelector('#rec-chips [data-rec="' + id + '"]'); if (nb) nb.focus();
-    if (i < 0) { var pn = $("rec-" + id); if (pn && pn.scrollIntoView) pn.scrollIntoView({ block: "nearest", behavior: "smooth" }); }
-  });
 
   /* ----- summary ----- */
   function fillSum() {
@@ -345,16 +315,46 @@
       var v = (S.text[f] || "").trim();
       return '<div class="sumrow"><div class="k">' + esc(L.fields[f][0]) + '</div><div class="v' + (v ? "" : " empty") + '">' + esc(v || L.empty) + "</div></div>";
     }).join("");
+    var shown = recsFor().map(function (r) { return pick(r).title; }).filter(Boolean);
+    $("sum-recs").innerHTML = '<div class="card"><h3>' + esc(L.sumRecs) + "</h3>" + (shown.length ? '<ul class="sumrecs">' + shown.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<div class="sumrow"><div class="v empty">' + esc(L.sumRecsNone) + "</div></div>") + "</div>";
     $("exp-txt").textContent = L.expTxt; $("exp-json").textContent = L.expJson; $("clear").textContent = L.clear; $("privacy").textContent = L.privacy;
   }
   function asText() {
     var L = t(), out = [L.fileTitle, L.fileDate + ": " + new Date().toLocaleString(lang === "he" ? "he-IL" : "en-GB"), ""];
-    out.push("== " + L.sumScores + " ==");
-    SCORES.forEach(function (k) { out.push(L.scores[k] + ": " + (S.scores[k] ? S.scores[k] + "/10" : L.none)); });
-    out.push("", "== " + L.sumCases + " ==", S.cases.map(function (c) { return L.cases[c]; }).join(", ") || L.noCases);
+    var items = function (arr) {
+      arr = Array.isArray(arr) ? arr.filter(function (x) { var p = pick(x); return p.title || p.text; }) : [];
+      if (!arr.length) { out.push(L.soon); return; }
+      arr.forEach(function (x) { var p = pick(x); out.push("- " + [p.title, p.text].filter(Boolean).join(": ") + (x.link ? " (" + x.link + ")" : "")); });
+    };
+    /* A · current situation */
+    out.push("== " + L.steps[0] + " ==", "", L.sumCases + ": " + (S.cases.map(function (c) { return L.cases[c]; }).join(", ") || L.noCases));
     if (S.cases.indexOf("other") >= 0 && S.otherText.trim()) out.push(L.cases.other + ": " + S.otherText.trim());
-    out.push("", "== " + L.sumDesc + " ==");
+    out.push("", L.sumScores + ":");
+    SCORES.forEach(function (k) { out.push(L.scores[k] + ": " + (S.scores[k] ? S.scores[k] + "/10" : L.none)); });
+    out.push("", L.sumDesc + ":");
     FIELDS.forEach(function (f) { out.push("", "- " + L.fields[f][0] + ":", (S.text[f] || "").trim() || L.empty); });
+    /* B · full diagnosis (recommended tests) */
+    var tests = C.tests || {};
+    out.push("", "== " + L.steps[1] + " ==");
+    ["free", "home"].forEach(function (g) { out.push("", L.bGroups[g][0] + ":"); items(tests[g]); });
+    /* C · recommendations, then technologies */
+    out.push("", "== " + L.steps[2] + " ==", "", L.recsTitle + " (" + (S.cases.length ? L.recsLead : L.recsAll).replace(/\.$/, "") + ")");
+    var rs = recsFor();
+    if (!rs.length) out.push(L.recsNoMatch);
+    rs.forEach(function (r) {
+      var p = pick(r);
+      out.push("", "* " + p.title, p.text || L.soon);
+      (Array.isArray(r.links) ? r.links : []).forEach(function (k) { if (k && /^https?:\/\//.test(k.url)) out.push((k[lang] || k.he || k.en) + ": " + k.url); });
+    });
+    var cs = C.cases || {};
+    ["autoimmune", "cancer", "mental"].forEach(function (id) {
+      var arr = (S.cases.indexOf(id) >= 0 || !S.cases.length) && Array.isArray(cs[id]) ? cs[id].filter(function (x) { var p = pick(x); return p.title || p.text; }) : [];
+      if (arr.length) { out.push("", "* " + L.dCases[id][0]); items(arr); }
+    });
+    out.push("", L.recsDisc);
+    var tech = C.tech || {};
+    out.push("", "-- " + L.cTechTitle + " --");
+    ["free", "low", "premium"].forEach(function (g) { out.push("", L.cGroups[g][0] + ":"); items(tech[g]); });
     out.push("", "—", L.disc.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim());
     return out.join("\n");
   }
@@ -365,7 +365,7 @@
   }
   function stamp() { var d = new Date(), p = function (n) { return String(n).padStart(2, "0"); }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
   $("exp-txt").onclick = function () { flush(); download("healify-" + stamp() + ".txt", "\ufeff" + asText(), "text/plain;charset=utf-8"); };
-  $("exp-json").onclick = function () { flush(); download("healify-" + stamp() + ".json", JSON.stringify({ app: "healify", version: 1, exported: new Date().toISOString(), data: S }, null, 2), "application/json"); };
+  $("exp-json").onclick = function () { flush(); download("healify-" + stamp() + ".json", JSON.stringify({ app: "healify", version: 2, exported: new Date().toISOString(), data: S }, null, 2), "application/json"); };
   $("clear").onclick = function () {
     if (!window.confirm(t().confirm)) return;
     clearTimeout(saveTimer); saveTimer = null;
@@ -407,7 +407,6 @@
   }
   $("start").onclick = function () { go(hasData() ? lastView : "a"); };
   var lastView = "a";
-  if ($("recs-open")) $("recs-open").onclick = function () { go("d"); setTimeout(function () { var r = $("recs"); if (r) r.scrollIntoView({ block: "start" }); }, 30); };
   $("prev").onclick = function () { var i = VIEWS.indexOf(S.view); if (i > 0) go(VIEWS[i - 1]); else goHome(); };
   $("flow-home").onclick = goHome;
   $("next").onclick = function () { var i = VIEWS.indexOf(S.view); if (i < VIEWS.length - 1) go(VIEWS[i + 1]); else go("a"); };
@@ -433,12 +432,11 @@
     $("w-eyebrow").textContent = L.eyebrow; $("w-title").textContent = L.title; $("w-tagline").textContent = L.tagline; $("w-sub").textContent = L.sub;
     $("start").textContent = hasData() ? L.resume : L.start; $("w-meta").textContent = L.meta;
     $("install-btn").textContent = L.install;
-    if ($("recs-open")) { $("recs-open").textContent = L.recsOpen; $("recs-open").hidden = !RECS.length; }
     if (!$("install-hint").hidden) $("install-hint").innerHTML = L[isIOS ? "ios" : "other"];
     $("disc-w").innerHTML = L.disc; $("disc-f").innerHTML = L.disc;
     $("foot").textContent = L.foot;
     if (S.view !== "welcome") lastView = S.view;
-    fillA(); fillB(); fillC(); fillD(); fillSum(); renderSteps();
+    fillA(); fillB(); fillC(); fillSum(); renderSteps();
     if (S.updated && $("saved").textContent) flashSaved();
   }
   function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
