@@ -17,11 +17,37 @@
 <link rel="stylesheet" href="../../shared/rg-site.css">
 <link rel="stylesheet" href="../common.css">
 <style>
-  .tabs { display: flex; gap: 6px; margin-top: 16px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .catbar { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+  .tabs { flex: 1; min-width: 0; display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x; -webkit-user-select: none; user-select: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; }
+  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-x; transition: transform .12s, box-shadow .12s; }
   .tab:hover { color: var(--fg); }
   .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .tab.lifted { transform: scale(1.08); box-shadow: 0 0 0 2px var(--accent), 0 6px 16px rgba(0,0,0,.35); position: relative; z-index: 2; }
+  .tab.drop { box-shadow: 0 0 0 2px var(--accent) inset; color: var(--fg); }
+  .tabs.dragging { overflow-x: hidden; }
+  .tabs.dragging .tab:not(.lifted) { opacity: .75; }
+  .tabadd { flex: none; width: 46px; height: 46px; border: 1px dashed var(--accent); box-shadow: var(--shadow); border-radius: 999px; background: transparent; color: var(--accent); font-size: 20px; font-weight: 800; line-height: 1; }
+  .cathint, .drophint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
+  .drophint { color: var(--accent); font-weight: 700; }
+  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
+  .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
+  .sheet .sform { display: flex; flex-direction: column; gap: 10px; }
+  .sheet .s-name { height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card2); color: var(--fg); font-size: 16.5px; outline: none; }
+  .sheet .s-name:focus { border-color: var(--accent); }
+  .sheet .row { display: flex; gap: 8px; }
+  .btn { flex: 1; min-height: 46px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; }
+  .btn.pri { border: 0; background: var(--accent); color: var(--accentink); font-weight: 800; }
+  .mi { min-height: 48px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .mi.big { border-color: var(--accent); }
+  .mi.dng { color: var(--muted); }
+  .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
+  .list li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .list li.ilifted { opacity: .45; }
+  .ighost { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -130%); max-width: 70vw; padding: 8px 14px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
+  body.idragging { -webkit-user-select: none; user-select: none; }
+  @media (max-width: 420px) { .tab { padding: 0 12px; font-size: 14.5px; } .tabs { gap: 2px; } }
   .addform { display: flex; gap: 8px; margin-top: 16px; }
   .addform input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
   .addform input:focus { border-color: var(--accent); }
@@ -78,7 +104,9 @@
   </section>
 
   <main data-when="in" hidden>
-    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="catbar"><nav class="tabs" id="tabs" role="tablist"></nav><button type="button" class="tabadd" id="cat-add">＋</button></div>
+    <p class="cathint" id="cathint" hidden></p>
+    <p class="drophint" id="drophint" hidden></p>
     <form class="addform" id="add-form" autocomplete="off">
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
       <button type="submit" data-i18n="add"></button>
@@ -101,11 +129,27 @@ window.RGMY_STRINGS = {
   he: { doc: "רשימת קניות", title: "רשימת קניות", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נקנו", check: "סמן כנקנה", uncheck: "החזר לרשימה",
-        edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים" },
+        edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים",
+        emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
+        catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
+        rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
+        confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
+        dragNote: "כדי להזיז: לחיצה ארוכה על הקטגוריה וגרירה לכל מקום.",
+        tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
+        catHint: "טיפ: ＋ מוסיף קטגוריה. לחיצה נוספת על קטגוריה פתוחה (או לחיצה ארוכה) פותחת ✏️ שינוי שם ומחיקה. לחיצה ארוכה וגרירה מזיזה אותה לכל מקום. אפשר גם לגרור פריט לקטגוריה אחרת.",
+        dropHint: "שחרר על קטגוריה כדי להעביר אליה את הפריט" },
   en: { doc: "Shopping list", title: "Shopping list", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Bought", check: "Mark as bought", uncheck: "Back to the list",
-        edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items" }
+        edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items",
+        emptyCat: "This category is empty. Write above what you need to buy.",
+        catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
+        rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
+        confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
+        dragNote: "To move it: long-press the category and drag it anywhere.",
+        tabTip: "Tap again: rename and delete · Long-press and drag: move",
+        catHint: "Tip: ＋ adds a category. Tap an open category again (or long-press it) for ✏️ Rename and Delete. Long-press and drag to move it anywhere. You can also drag an item onto another category.",
+        dropHint: "Drop on a category to move the item there" }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
