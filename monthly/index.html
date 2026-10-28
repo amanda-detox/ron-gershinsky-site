@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#3a1450">
 <meta name="color-scheme" content="dark light">
@@ -146,6 +147,6 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
 <script src="app.js"></script>
 <script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-monthly-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
-<script src="../shared/rg-topbar.js" data-slot="header.top"></script>
+<script src="../shared/rg-topbar.js?v=2" data-slot="header.top"></script>
 </body>
 </html>
