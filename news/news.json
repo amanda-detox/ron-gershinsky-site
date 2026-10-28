@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T13:12:00+02:00",
+ "updated": "2026-10-28T14:11:38+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,23 @@
   }
  ],
  "items": [
+  {
+   "id": "tesla-roadster-2008-clip",
+   "topic": "tesla",
+   "date": "2026-10-28T11:50:13Z",
+   "url": "https://x.com/i/trending/2115368381230526926",
+   "source": "X",
+   "he": {
+    "title": "סרטון מ-2008: מאסק מציג את ה-Roadster ימים ספורים לפני שטסלה כמעט פשטה רגל",
+    "summary": "קטע ישן מסוף 2008, שחזר להסתובב ב-X, מראה את אילון מאסק מציג את ה-Roadster החשמלי ב-109,000 דולר לקהל קטן בסלון בהוליווד, 12 יום לפני שלטסלה היה נגמר הכסף. הצופים משווים בין הרגע הצנוע ההוא לבין טסלה של היום."
+   },
+   "en": {
+    "title": "2008 clip shows Elon Musk pitching the Tesla Roadster days from bankruptcy",
+    "summary": "A resurfaced late-2008 clip shows Elon Musk pitching the $109,000 electric Roadster to a small crowd in a Hollywood living room, 12 days before Tesla would have run out of money. Viewers are contrasting that humble moment with today's Tesla."
+   },
+   "full_he": "בסלון צנוע בהוליווד, אילון מאסק הציג את ה-Roadster החשמלי שלו, במחיר 109,000 דולר, לקהל קטן – 12 יום בלבד לפני שלטסלה היה נגמר הכסף.\n\n• הקטע, מסוף 2008, מראה את מאסק מסביר איך מכירות ה-Roadster היוקרתי יממנו בהמשך רכבים חשמליים זולים יותר, בזמן משבר שבו החברה עמדה בפני פשיטת רגל בערב חג המולד.\n• מאסק השקיע את כל מה שנשאר לו מכספי PayPal, לווה מחברים כדי לשלם שכר דירה, והשיג מימון ברגע האחרון כדי לכסות את המשכורות.\n• עכשיו, כשהסרטון חוזר להסתובב, הוא מעורר השראה אצל הצופים כתזכורת לנחישות – מאסק בחולצת פולו פשוטה ועם תג שם מנייר – לעומת טסלה של היום, עם מיליוני רכבים שנמסרו ו-Roadster מהדור הבא שמתוכנן ל-2028.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "In a modest Hollywood living room, Elon Musk pitched his $109,000 electric Roadster to a small crowd—just 12 days before Tesla would have run out of money.\n\n• The clip from late 2008 captures Musk explaining how high-end Roadster sales would fund affordable EVs, amid a crisis where the company faced bankruptcy on Christmas Eve.\n• Musk poured in his remaining PayPal money, borrowed from friends for rent, and secured funding at the last hour to cover payroll.\n• Now resurfacing, the video inspires viewers with its reminder of grit in a simple polo shirt and paper name tag, contrasting that moment with Tesla's millions of vehicles delivered and the sleek next-gen Roadster slated for 2028.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
   {
    "id": "mccullough-darpa-adept-2012",
    "topic": "mccullough",
