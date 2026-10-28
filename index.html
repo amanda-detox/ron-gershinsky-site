@@ -201,6 +201,11 @@
   .app img { width: 3rem; height: 3rem; border-radius: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
   .app-name { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
   .app-line { color: var(--muted); font-size: 0.71875rem; line-height: 1.4; text-wrap: pretty; }
+  .priv-apps[hidden] { display: none; }
+  .priv-apps h2 .lock { font-size: 0.95em; margin-inline-end: 0.3rem; }
+  .priv-apps .app { border-color: rgba(245, 197, 66, 0.38); }
+  .priv-apps .app:hover { border-color: #f5c542; }
+  html[data-theme="light"] .priv-apps .app { border-color: rgba(201, 162, 39, 0.5); }
   /* ---- background picker (same 10 backgrounds as Updatify; 0 = original look) ---- */
   :root{--bgi-1:radial-gradient(60% 45% at 15% 10%,rgba(0,214,170,.55),transparent 70%),radial-gradient(55% 40% at 85% 25%,rgba(126,87,255,.55),transparent 70%),radial-gradient(70% 50% at 50% 95%,rgba(0,170,120,.45),transparent 70%);--bgc-1:#07090f;--bgi-2:linear-gradient(165deg,#ff5f6d 0%,#c2185b 30%,#6a1b9a 62%,#2a0a2e 100%);--bgc-2:#2a0a2e;--bgi-3:radial-gradient(45% 35% at 10% 15%,#ff2e93 0,transparent 70%),radial-gradient(45% 35% at 90% 40%,#00e5ff 0,transparent 70%),radial-gradient(50% 40% at 30% 85%,#8a2be2 0,transparent 70%);--bgc-3:#120a1f;--bgi-4:radial-gradient(55% 40% at 80% 10%,rgba(170,255,120,.45),transparent 70%),radial-gradient(60% 50% at 10% 60%,rgba(0,200,190,.55),transparent 70%),linear-gradient(180deg,#0b4d43 0%,#063a33 50%,#03201c 100%);--bgc-4:#03201c;--bgi-5:radial-gradient(40% 30% at 70% 12%,rgba(255,120,200,.6),transparent 70%),radial-gradient(55% 40% at 20% 45%,rgba(140,60,255,.55),transparent 70%),radial-gradient(35% 25% at 80% 80%,rgba(255,190,90,.45),transparent 70%);--bgc-5:#050308;--bgi-6:radial-gradient(60% 40% at 50% 0%,rgba(255,140,40,.65),transparent 70%),radial-gradient(45% 35% at 0% 60%,rgba(220,40,40,.5),transparent 70%),radial-gradient(45% 35% at 100% 85%,rgba(255,200,60,.4),transparent 70%);--bgc-6:#140b08;--bgi-7:radial-gradient(60% 45% at 90% 5%,rgba(255,180,70,.5),transparent 70%),linear-gradient(170deg,#355e3b 0%,#1f3d2a 45%,#0c1a10 100%);--bgc-7:#0c1a10;--bgi-8:radial-gradient(circle at 50% 40%,transparent 0,rgba(27,8,32,.55) 75%),conic-gradient(from 210deg at 60% 35%,#7b1fa2,#d81b60,#ff7043,#8e24aa,#4a148c,#7b1fa2);--bgc-8:#1b0820;--bgi-9:radial-gradient(30% 22% at 12% 8%,rgba(255,80,80,.5),transparent 70%),radial-gradient(30% 22% at 88% 22%,rgba(255,200,0,.45),transparent 70%),radial-gradient(32% 24% at 15% 50%,rgba(0,220,130,.4),transparent 70%),radial-gradient(32% 24% at 85% 68%,rgba(0,170,255,.42),transparent 70%),radial-gradient(32% 24% at 30% 92%,rgba(190,80,255,.45),transparent 70%);--bgc-9:#121214;--bgi-10:radial-gradient(50% 35% at 85% 8%,rgba(212,175,55,.55),transparent 70%),radial-gradient(45% 35% at 5% 55%,rgba(184,92,56,.45),transparent 70%),radial-gradient(45% 35% at 80% 95%,rgba(0,150,140,.4),transparent 70%);--bgc-10:#0a0a0a;}
   html[data-theme="dark"][data-bg="1"] body { background: var(--bgi-1), var(--bgc-1); background-attachment: fixed; }
@@ -324,6 +329,10 @@
     <h2 id="apps-title"></h2>
     <ul class="app-grid" id="app-grid"></ul>
   </section>
+  <section class="apps priv-apps" id="priv-apps" aria-labelledby="priv-title" hidden>
+    <h2 id="priv-title"></h2>
+    <ul class="app-grid" id="priv-grid"></ul>
+  </section>
   <ul id="list"></ul>
   <section class="box" aria-labelledby="wait-title">
     <h2 id="wait-title"></h2>
@@ -355,6 +364,10 @@
 <script src="shared/rg-account.js"></script>
 <script>
 var CONTACT = "detoxify.ai@proton.me";
+// Site owner (Ron) by Appwrite user ID: only this account sees "My private apps" on this page.
+var OWNER_IDS = ["6adefcf6c9d7f919e779"];
+var PRIV_CACHE = "rg-my-home-apps"; // owner's device only: last list, so the section also shows offline
+var privData = null, privLoading = false;
 // Paste a checkout link here (Lemon Squeezy or similar). Empty keeps the button honest.
 var CHECKOUT_URL = "";
 // Waitlist signups go to a private Appwrite table (database "ron", table "waitlist").
@@ -512,6 +525,7 @@ function render() {
   text("foot", t.footer);
   text("apps-title", t.appsTitle);
   renderApps(he);
+  renderPriv();
   text("game-title", t.gameTitle);
   text("game-desc", t.gameDesc);
   text("game-open", t.gameOpen);
@@ -747,6 +761,58 @@ document.addEventListener("keydown", function (e) { if (e.key === "Escape") clos
 
 render();
 updateInstall();
+/* ---------- "My private apps": shown right under the public grid, only to the site owner ----------
+   The owner is matched by Appwrite user ID (the account's $id, never the email). The list itself is not in this page:
+   it is loaded from my/apps.js only after the signed-in user is the owner, and a signed-out visitor or anyone else
+   never requests it. The session is re-checked with Appwrite on load (RGAccount.ready); a 401 hides the section. */
+function isOwner(u) { return !!(u && u.id && OWNER_IDS.indexOf(u.id) !== -1); }
+function privHide() {
+  document.getElementById("priv-apps").hidden = true;
+  document.getElementById("priv-grid").innerHTML = "";
+}
+function renderPriv() {
+  var u = window.RGAccount ? RGAccount.user() : null;
+  if (!isOwner(u) || !privData || !privData.apps) { privHide(); return; }
+  var he = lang === "he", grid = document.getElementById("priv-grid"), h = document.getElementById("priv-title");
+  h.innerHTML = ""; var lk = document.createElement("span"); lk.className = "lock"; lk.setAttribute("aria-hidden", "true"); lk.textContent = "🔒";
+  h.appendChild(lk); h.appendChild(document.createTextNode(privData.title ? (he ? privData.title.he : privData.title.en) : (he ? "האפליקציות הפרטיות שלי" : "My private apps")));
+  grid.innerHTML = "";
+  privData.apps.forEach(function (app) {
+    if (!app || typeof app.href !== "string" || /^[a-z]+:|^\/|\.\./i.test(app.href)) return; // only paths inside my/
+    var li = document.createElement("li"), a = document.createElement("a");
+    a.className = "app"; a.href = "my/" + app.href;
+    var img = document.createElement("img");
+    img.src = "my/" + app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy";
+    var name = document.createElement("span"); name.className = "app-name"; name.textContent = he ? app.he : app.en;
+    var line = document.createElement("span"); line.className = "app-line"; line.textContent = he ? app.heLine : app.enLine;
+    a.appendChild(img); a.appendChild(name); a.appendChild(line); li.appendChild(a); grid.appendChild(li);
+  });
+  document.getElementById("priv-apps").hidden = false;
+}
+function loadPriv() {
+  var u = window.RGAccount ? RGAccount.user() : null;
+  if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} privHide(); return; }
+  if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
+  renderPriv();
+  if (privLoading) return;
+  privLoading = true;
+  var s = document.createElement("script");
+  s.src = "my/apps.js?v=" + Date.now();
+  s.onload = function () {
+    privLoading = false; s.remove();
+    if (!isOwner(RGAccount.user()) || !window.RGMY_APPS) return;
+    privData = window.RGMY_APPS;
+    try { localStorage.setItem(PRIV_CACHE, JSON.stringify(privData)); } catch (e) {}
+    renderPriv();
+  };
+  s.onerror = function () { privLoading = false; s.remove(); };
+  document.head.appendChild(s);
+}
+if (window.RGAccount) {
+  loadPriv();
+  RGAccount.onChange(loadPriv);
+  RGAccount.ready.then(loadPriv);
+}
 /* ---------- Account: language + background follow the signed-in user across devices ---------- */
 if (window.RGAccount) {
   RGAccount.syncPrefs(["rg-lang", THEME_KEY, BG_KEY, LBG_KEY], function (c) {
