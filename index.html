@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f172a">
 <meta name="color-scheme" content="dark light">
@@ -9,7 +10,7 @@
 <title>היליפיי בע"מ</title>
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<script>/* site owner (Ron) signed in on this device: hide waitlist / contact / about / recommended game before first paint; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
+<script>/* site owner (Ron) signed in on this device: hide the brand block (icon, name, bio, install) and waitlist / contact / about / recommended game before first paint; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
 <link rel="manifest" href="manifest.json?v=23">
 <link rel="icon" href="favicon-32.png?v=23" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.ico?v=23" sizes="any">
@@ -134,6 +135,7 @@
   }
   .box + .box { margin-top: 1rem; }
   html.rg-owner .owner-hide { display: none !important; }
+  html.rg-owner .apps { margin-top: 0.25rem; } /* owner: brand block hidden, the apps start right under the top bar */
   h2 { margin: 0; font-size: 1rem; font-weight: 500; }
   .desc { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
   label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -322,10 +324,10 @@
       <button type="button" class="iconbtn" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button>
     </div>
   </div>
-  <img class="mark" id="mark" src="app-icon.svg?v=23" alt="היליפיי בע&quot;מ" width="120" height="120">
-  <h1><span id="name">היליפיי בע"מ</span></h1>
-  <p class="bio" id="bio"></p>
-  <div class="install-wrap" id="install-wrap">
+  <img class="mark owner-hide" id="mark" src="app-icon.svg?v=23" alt="היליפיי בע&quot;מ" width="120" height="120">
+  <h1 class="owner-hide"><span id="name">היליפיי בע"מ</span></h1>
+  <p class="bio owner-hide" id="bio"></p>
+  <div class="install-wrap owner-hide" id="install-wrap">
     <button type="button" class="install" id="install-btn"></button>
     <div class="panel install-hint" id="install-hint" hidden></div>
   </div>
@@ -803,7 +805,7 @@ function renderPriv() { // the owner's private apps are merged into the main gri
 }
 function loadPriv() {
   var u = window.RGAccount ? RGAccount.user() : null;
-  document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide waitlist / contact / about / recommended game
+  document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide brand block + waitlist / contact / about / recommended game
   if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} renderPriv(); return; }
   if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
   renderPriv();
@@ -840,6 +842,6 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
   navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 }
 </script>
-<script src="shared/rg-topbar.js" data-slot=".topbar" data-home="1"></script>
+<script src="shared/rg-topbar.js?v=2" data-slot=".topbar" data-home="1"></script>
 </body>
 </html>
