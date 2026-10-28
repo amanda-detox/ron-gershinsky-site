@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T09:03:00+02:00",
+ "updated": "2026-10-28T10:05:00+02:00",
  "topics": [
   {
    "id": "musk",
@@ -137,6 +137,57 @@
  ],
  "items": [
   {
+   "id": "grokbot-gavin-baker-17-bots",
+   "topic": "grokbot",
+   "date": "2026-10-28T07:42:16Z",
+   "url": "https://x.com/elonmusk/status/2115348410396287061",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"Grok Bot שולט\" – גאווין בייקר מספר שיש לו כבר 17 בוטים",
+    "summary": "אילון מאסק כתב \"Grok @Bot שולט\" וציטט קטע שבו המשקיע גאווין בייקר אומר ש-Grok Bot הוא מוצר ה-AI המשפיע ביותר עליו ועל הקרן שלו עד היום, ושהוא מפעיל כבר כ-17 בוטים. בפוסט נוסף מאסק כתב \"נסו את Grok @Bot\" על קטע אחר של בייקר."
+   },
+   "en": {
+    "title": "Musk: \"Grok Bot rocks\" – Gavin Baker says he's up to 17 bots",
+    "summary": "Elon Musk wrote \"Grok @Bot rocks\", quoting a clip in which investor Gavin Baker calls Grok Bot the most impactful AI product for him and his firm so far and says he runs about 17 of them. In another post Musk wrote \"Try Grok @Bot\" over a different Baker clip."
+   },
+   "full_he": "Grok @Bot שולט.\n\nהפוסט שהוא ציטט (Fireside Alpha, @firesidealpha):\n\nגאווין בייקר אומר ש-Grok Bot הוא מוצר ה-AI המשפיע ביותר שהיה לו ולקרן שלו עד היום, ומגלה שהוא כבר מפעיל 17 Grok Bots.\n\n\"כמשתמש, Grok Bot הוא מוצר ה-AI הכי משפיע עליי ועל הקרן שהיה לנו עד היום. הדבקתי יחד כל מיני דברים עם Claude Code, ואני בטוח שזו הייתה טעות משתמש מצדי, אני בן 50, אני משתדל.\"\n\n\"אבל Grok Bot פשוט הופך את זה לקל כל כך. אני חושב שאני כבר בערך ב-17 Grok Bots, ובכל יום עולה לי רעיון לעוד אחד.\"\n\nהפוסט המצוטט כולל גם סרטון קצר (30 שניות), והוא עצמו מצטט פוסט קודם של Fireside Alpha, שבו בייקר אומר שדוח ה-S-1 של Anthropic היה הפתעה חיובית ברורה: לדבריו, שרפו רק 10 מיליארד דולר, והרווחיות, יצירת המזומנים וכלכלת היחידה מעודדות מאוד, והוא לא מאמין שכמחצית מחברות Fortune 500 אימצו את Anthropic וזה רק 0.1% מההוצאות שלהן.\n\nפוסט נוסף של מאסק באותו בוקר: \"נסו את Grok @Bot\", מעל פוסט של stark0xbt (@stark0xbt) על הופעה של בייקר ב-a16z. לפי הפוסט, בייקר הודה שבני 23 שולטים ב-AI יותר ממנו, וסיפר: \"השגנו את Claude Code. בניתי כמה דברים, עשיתי דברים מגניבים. ואז ב-3 דקות של יצירת Grok Bots היו לי גרסאות הרבה יותר טובות של כל מה שיצרתי.\" לפי הפוסט, מסכם פודקאסטים לקח 10 שניות ב-Grok Bot, ומסכמי Substack ו-X ומעקב סנטימנט ב-X לקחו שעות ב-Claude Code לעומת 7 עד 12 שניות ב-Grok Bot. בייקר אמר: \"בעיניי Grok Bot מרגיש כמו עוד רגע של ChatGPT.\"\n\nשאר התוכן בפוסטים המצוטטים הוא סרטונים, ולכן אין עוד טקסט להציג.",
+   "full_en": "Grok @Bot rocks.\n\nThe quoted post (Fireside Alpha, @firesidealpha):\n\nGavin Baker says Grok Bot is the most impactful AI product he and his firm have had yet, and reveals he's up to 17 Grok Bots.\n\n\"I mean, as a user, Grok Bot is the most impactful AI product to me and to the firm that we've had yet. I glued together all this stuff with Claude Code, and I'm sure it was user error on my part, you know, 50 years old. I'm doing my best.\"\n\n\"But Grok Bot, it just makes it so easy. I think I'm up to like 17 Grok Bots. And every day I think of a new one to add.\"\n\nThe quoted post also has a short video (30 seconds), and it itself quotes an earlier Fireside Alpha post in which Baker says the Anthropic S-1 was \"pretty clearly an upside surprise\": only $10 billion burned, with encouraging profitability, cash generation and unit economics, and he \"cannot believe\" that about half the Fortune 500 has adopted Anthropic at 0.1% of their expenses.\n\nAnother Musk post the same morning: \"Try Grok @Bot\", over a post by stark0xbt (@stark0xbt) about Baker on a16z. According to that post, Baker admitted 23-year-olds are more fluent in AI than he is, and said: \"We got Claude Code. I built some stuff, did some cool stuff. Then in 3 minutes of creating Grok Bots, I had much better versions of everything I created.\" Per the post, a podcast summarizer took 10 seconds in Grok Bot, and Substack and X summarizers and an X sentiment tracker took hours in Claude Code versus 7 to 12 seconds in Grok Bot. Baker's words: \"To me, Grok Bot does feel like another ChatGPT moment.\"\n\nThe rest of the quoted posts is video, so there's no more text to show."
+  },
+  {
+   "id": "grokbot-hire-planchet",
+   "topic": "grokbot",
+   "date": "2026-10-28T07:35:40Z",
+   "url": "https://x.com/elonmusk/status/2115346748730380385",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"תגייסו את Grok Bot, לא תצטערו\"",
+    "summary": "אילון מאסק כתב \"תגייסו את Grok @Bot, לא תצטערו\", וציטט את פייר פראגו, שסיפר שה-Grok Bot שלו, \"פלנשה\", קודם לחבר צוות מן המניין עם גישה למחקר, למיילים, למודלים ול-Slack של הצוות."
+   },
+   "en": {
+    "title": "Musk: \"Hire Grok Bot, you won't regret it\"",
+    "summary": "Elon Musk wrote \"Hire Grok @Bot, you won't regret it\", quoting Pierre Ferragu, who said his Grok Bot \"Planchet\" has been promoted to a full team member with access to the team's research, emails, models and Slack."
+   },
+   "full_he": "תגייסו את Grok @Bot, לא תצטערו.\n\nהפוסט שהוא ציטט (פייר פראגו, @p_ferragu):\n\nפלנשה, ה-Grok Bot שלי, קודם לחבר צוות מן המניין. יש לו גישה לכל החשיבה שלנו (מחקר, מיילים, מודלים, Slack, נתוני תעשייה), הוא בעל תושייה מדהימה – גישה מהפנטת של \"לעשות ולסיים\", מהיר במיוחד ופתוח למשוב. זה מטורף.",
+   "full_en": "Hire Grok @Bot, you won't regret it.\n\nThe quoted post (Pierre Ferragu, @p_ferragu):\n\nPlanchet, my Grok Bot is promoted to fully-fledged team member. He has access to all our thinking (research, emails, models, slack, industry data), he is incredibly resourceful - a mesmerizing get-it-done attitude, ultra-fast, receptive with feedback. It is mind-blowing."
+  },
+  {
+   "id": "musk-universal-high-income-whitehouse",
+   "topic": "musk",
+   "date": "2026-10-28T07:07:48Z",
+   "url": "https://x.com/i/trending/2115338254518018101",
+   "source": "X",
+   "he": {
+    "title": "מאסק בבית הלבן: AI ורובוטים יביאו \"הכנסה גבוהה אוניברסלית\"",
+    "summary": "דברים שאמר אילון מאסק לכתבים ב-29 בספטמבר, אחרי דיון על AI בבית הלבן, שוב מסתובבים ב-X: לדבריו, בינה-על ורובוטים יביאו \"עידן של שפע\" עם הכנסה גבוהה אוניברסלית. ספקנים מטילים ספק בלוחות הזמנים ובהשפעה על מקומות עבודה."
+   },
+   "en": {
+    "title": "Musk at the White House: AI and robots will bring \"universal high income\"",
+    "summary": "Remarks Elon Musk made to reporters on September 29 after a White House AI session are circulating again on X: he says superintelligence and robots will bring an \"age of abundance\" with universal high income. Skeptics question the timelines and the effect on jobs."
+   },
+   "full_he": "זה מה שמסופר בסיפור ב-X:\n\nכשעמד ליד הנשיא טראמפ אחרי מפגש טכנולוגיה בבית הלבן, אילון מאסק תיאר עתיד שבו AI ורובוטים מביאים שגשוג לכולם.\n\n• ב-29 בספטמבר 2026 מאסק דיבר עם כתבים אחרי דיונים על פיתוח AI, וחזה \"עידן של שפע\" עם הכנסה גבוהה אוניברסלית, במקום תמיכה בסיסית בלבד.\n• לדבריו, בינה-על ורובוטים יוכלו לספק טיפול רפואי ברמה הגבוהה ביותר וסחורות ללא הגבלה, ולהעלות את רמת החיים כך שאנשים יתמקדו ביצירתיות ולא בעבודה לצורך הישרדות.\n• יש שמדגישים את הירידה בעלויות הייצור ואת ההיגיון הכלכלי, וספקנים מטילים ספק בלוחות הזמנים, באובדן מקומות עבודה ובהיתכנות, על סמך תחזיות קודמות של מאסק.",
+   "full_en": "Here's what the X story says:\n\nStanding near President Trump after a White House tech session, Elon Musk painted a future where AI and robots deliver prosperity for all.\n\n• On September 29, 2026, Musk spoke to reporters following AI development discussions, predicting an \"age of abundance\" with universal high income instead of basic support.\n• He explained that superintelligence and robots could provide top medical care and unlimited goods, raising living standards so people focus on creativity over survival work.\n• Some highlight falling production costs and economic logic, while skeptics question timelines, job displacement and real-world feasibility based on Musk's past predictions."
+  },
+  {
    "id": "musk-starlink-colombia-mother",
    "topic": "spacex",
    "date": "2026-10-28T06:58:55Z",
@@ -152,6 +203,23 @@
    },
    "full_he": "Starlink\n\nהפוסט שהוא ציטט (DogeDesigner, @cb_doge):\n\nכש-Starlink הפך לקו הצלה לאם ולתינוק שלה בכפר נידח בקולומביה.\n\nקרינה, בת 24, התמודדה עם היריון בסיכון גבוה, אחרי שכבר איבדה תינוק בעבר. הדרך מהקהילה המרוחקת שלה לעיר יכולה לקחת יומיים על גב סוס.\n\nרופא שהגיע לביקור הביא איתו מסוף Starlink נייד ומכשיר אולטרסאונד. דרך Starlink, רופא מומחה במרחק מאות קילומטרים צפה בבדיקה בשידור חי, הנחה את הבדיקה וזיהה שצריך להעביר אותה מיד לבית חולים.\n\nקרינה הגיעה לבית החולים בזמן. התינוק שלה נולד בשלום, והיא עברה את הלידה בלי סיבוכים.\n\nStarlink הביא הנחיה רפואית של מומחה לבית רחוק מהעיר ועזר לאם לקבל טיפול דחוף.\n\nבגלל זה Starlink חשוב. הוא מחבר אנשים לעזרה כשחיים מונחים על הכף.\n\nהטכנולוגיה מצילת החיים הזאת צריכה להיות זמינה בכל מקום בעולם.\n\nשאר הפוסט המצוטט הוא סרטון קצר (10 שניות), ולכן אין עוד טקסט להציג.",
    "full_en": "Starlink\n\nThe quoted post (DogeDesigner, @cb_doge):\n\nWhen Starlink became a lifeline for a mother and her baby in rural Colombia.\n\nKarina, 24, was facing a high-risk pregnancy after previously losing a baby. Reaching town from her remote community could take two days on horseback.\n\nA visiting doctor brought a portable Starlink terminal and an ultrasound machine. Through Starlink, a specialist hundreds of kilometres away watched the scan live, guided the examination and identified the need for an immediate hospital transfer.\n\nKarina reached the hospital in time. Her baby was born safely, and she had no complications.\n\nStarlink brought specialist medical guidance into a home far from the city and helped a mother get urgent care.\n\nThis is why Starlink matters. It connects people to help when lives are at stake.\n\nThis lifesaving technology should be available in every part of the world.\n\nThe rest of the quoted post is a short (10-second) video, so there's no more text to show."
+  },
+  {
+   "id": "tesla-owners-fsd-usage",
+   "topic": "tesla",
+   "date": "2026-10-28T06:08:55Z",
+   "url": "https://x.com/i/trending/2115323740234158119",
+   "source": "X",
+   "he": {
+    "title": "בעלי טסלה משתפים: רוב הנסיעה שלהם כבר ב-FSD",
+    "summary": "בעלי טסלה מדווחים על שימוש גבוה מאוד ב-FSD, למשל רכב שנסע 98.2% מתוך 5,433 מייל באופן אוטונומי, של אם בת 76. באק סקסטון, וולטר קירן וקליי טראוויס שיבחו את הרכב."
+   },
+   "en": {
+    "title": "Tesla owners share how much they drive on FSD",
+    "summary": "Tesla owners report very high FSD usage, such as a 76-year-old mom's car that drove 98.2% of its 5,433 miles autonomously. Buck Sexton, Walter Kirn and Clay Travis praised the car."
+   },
+   "full_he": "זה מה שמסופר בסיפור ב-X:\n\nאם בת 76 נסעה 98% מהמיילים ב-Model Y החדש שלה במצב נהיגה עצמית מאז פברואר. בעלים כמוה צוברים אלפי מיילים אוטונומיים עם ביקורות נלהבות.\n\n• משתמשי FSD (נהיגה עצמית מלאה) של טסלה מדווחים על נתונים בולטים, למשל רכב אחד שעשה 98.2% מתוך 5,433 המייל שלו באופן אוטונומי, כולל רצף של 125 מייל.\n• באק סקסטון קורא ל-Model Y החדש שלו הקפיצה הטכנולוגית הגדולה ביותר מאז האייפון.\n• וולטר קירן אומר שזה מרגיע אותו כשכישורי הנהיגה שלו מזדקנים, וקליי טראוויס קורא לטסלה המכונית הכי טובה אי פעם.\n• נתוני הבטיחות תומכים בהתלהבות: לפי טסלה, ברכבים עם FSD הייתה תאונה קשה אחת בכל 6 מיליון מייל, בערך פי תשעה בטוח יותר מהממוצע בארה\"ב.\n• הבעלים צופים שזה עשוי להגדיר מחדש את הנהיגה, במיוחד לדורות הבאים.\n\nנתוני הבטיחות מדווחים על ידי טסלה עצמה.",
+   "full_en": "Here's what the X story says:\n\nA 76-year-old mom has driven 98% of her new Model Y miles on self-driving mode since February. Owners like her are logging thousands of autonomous miles with glowing reviews.\n\n• Tesla Full Self-Driving (FSD) users report striking stats, like one vehicle handling 98.2% of its 5,433 miles autonomously, including a 125-mile streak.\n• Buck Sexton calls his new Model Y the biggest tech leap since the iPhone.\n• Walter Kirn finds it reassuring amid his aging driving skills, and Clay Travis calls Tesla the best car ever.\n• Safety data backs the enthusiasm: per Tesla, FSD-equipped vehicles had one major collision every 6 million miles, about nine times safer than the U.S. average.\n• Owners predict it could redefine driving, especially for future generations.\n\nThe safety data is self-reported by Tesla."
   },
   {
    "id": "grokbot-awesome-employee-armstrong",
@@ -220,6 +288,23 @@
    },
    "full_he": "זה מה שמסופר בסיפור ב-X:\n\nנתוני הבטיחות האחרונים של טסלה מראים שרכבים שנוסעים עם נהיגה עצמית מלאה (FSD) עוברים כמעט 6 מיליון מייל בין תאונות קשות, בערך פי תשעה טוב יותר מהממוצע בארה\"ב.\n\n• בדוח מתגלגל של 12 חודשים בצפון אמריקה, רכבי טסלה עם FSD (בפיקוח) עברו בממוצע 6,006,200 מייל בין תאונות קשות שבהן נפתחו כריות אוויר, לעומת 660,164 מייל בממוצע בארה\"ב.\n• רכבי FSD צברו 9.48 מיליארד מייל עם 1,579 אירועים כאלה.\n• זה טוב יותר מרכבי טסלה בנהיגה ידנית (כ-2 מיליון מייל לתאונה) ומרכבי טסלה בלי מערכות הבטיחות (פחות מ-900 אלף מייל).\n• הצי הגיע ל-16.7 מיליארד מייל מצטברים ב-FSD, ומוסיף כ-50 מיליון מייל ביום.\n• בניסויי הרובוטקסי בכמה ערים מדווחים על אפס פציעות לאורך 3.7 מיליון מייל אוטונומיים.\n\nלדברי המגיבים, השיפורים מרמזים על נהיגה בטוחה עד פי 10 בחלק מהמדדים. עם זאת, בדיונים מזכירים שהנתונים מדווחים על ידי טסלה עצמה ושתנאי הנהיגה (למשל סוגי כבישים) שונים בין הקבוצות.",
    "full_en": "Here's what the X story says:\n\nTesla's latest safety stats show vehicles on Full Self-Driving going nearly 6 million miles between serious crashes, about nine times better than the U.S. average.\n\n• In a rolling 12-month report across North America, Tesla vehicles using FSD (Supervised) averaged 6,006,200 miles between major collisions involving airbags, compared with 660,164 miles for the U.S. average.\n• FSD cars logged 9.48 billion miles with 1,579 such incidents.\n• That beats manually driven Teslas (about 2 million miles per crash) and Teslas without the safety features (under 900,000 miles).\n• The fleet has reached 16.7 billion cumulative FSD miles and adds about 50 million a day.\n• Robotaxi testing in select cities reports zero injuries over 3.7 million autonomous miles.\n\nObservers say the gains suggest driving up to 10 times safer on some metrics, though the discussion also points out that the data is self-reported and that driving conditions differ between the groups."
+  },
+  {
+   "id": "tesla-houston-police-robotaxi",
+   "topic": "tesla",
+   "date": "2026-10-28T05:10:40Z",
+   "url": "https://x.com/i/trending/2115308945786949870",
+   "source": "X",
+   "he": {
+    "title": "איגוד השוטרים ביוסטון: אחרי בילוי, תיסע ברובוטקסי של טסלה",
+    "summary": "איגוד השוטרים של יוסטון כתב שעם הרחבת שירות הרובוטקסי של טסלה ב-26 באוקטובר אין יותר תירוץ לנהוג שיכור. אזור השירות החדש גדול פי עשרה בערך ומשתרע מג'רזי וילג' דרך מרכז העיר עד מידטאון."
+   },
+   "en": {
+    "title": "Houston police union: after a night out, take a Tesla Robotaxi",
+    "summary": "The Houston Police Officers' Union posted that with Tesla's Robotaxi expansion on October 26 there's no excuse left for drunk driving. The new service area is about ten times larger and runs from Jersey Village through downtown to Midtown."
+   },
+   "full_he": "זה מה שמסופר בסיפור ב-X:\n\nאחרי ערב בחוץ, המשטרה ביוסטון אומרת: תוותר על המפתחות ותיכנס לרובוטקסי של טסלה. זו דרך פשוטה ובטוחה להגיע הביתה, עכשיו שהכיסוי התרחב מאוד ברחבי העיר.\n\n• איגוד השוטרים של יוסטון (Houston Police Officers' Union) פרסם שעם הרחבת שירות הרובוטקסי של טסלה ב-26 באוקטובר, אין יותר תירוץ לשתות ולנהוג.\n• אזור השירות (גאופנס) החדש משתרע מג'רזי וילג' דרך מרכז העיר, בלייר, מונטרוז ומידטאון. הוא גדול פי עשרה בערך מהקודם, ובצורת טיל.\n• נוסעים כבר יכולים להזמין דרך האפליקציה רכבי Model Y שנוסעים בלי נהג בטיחות.\n• המגיבים בירכו על המהלך עם תגובות כמו \"השוטרים הכי טובים של יוסטון מאשרים\", ושיתפו נתוני בטיחות וממים.",
+   "full_en": "Here's what the X story says:\n\nAfter a night out, Houston police are saying skip the keys and hop in a Tesla Robotaxi instead. It's a simple, safe way home now that coverage has expanded across the city.\n\n• The Houston Police Officers' Union posted that with Tesla expanding its Robotaxi service on October 26, there's no excuse for drinking and driving anymore.\n• The new geofence stretches from Jersey Village through downtown, Bellaire, Montrose and Midtown. It's about ten times larger than before and shaped like a rocket.\n• Riders can already use Model Y vehicles running fully unsupervised via the app.\n• People cheered the move with comments like \"Houston's finest approve\" and shared safety stats and memes."
   },
   {
    "id": "grokbot-custom-teams",
