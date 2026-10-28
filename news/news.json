@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T15:10:00+02:00",
+ "updated": "2026-10-28T16:15:00+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,40 @@
   }
  ],
  "items": [
+  {
+   "id": "johnson-aging-econ-value-4m",
+   "topic": "johnson",
+   "date": "2026-10-28T14:01:00Z",
+   "url": "https://x.com/bryan_johnson/status/2115443720145223923",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: האטת הזדקנות אחרי גיל 50 שווה 4 מיליון דולר",
+    "summary": "ג'ונסון משתף מאמר שטוען שהאטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים ושווה כ-4 מיליון דולר בערך כלכלי. זו טענה ממאמר תיאורטי, לא עצה רפואית."
+   },
+   "en": {
+    "title": "Bryan Johnson: slowing aging after 50 is worth $4 million",
+    "summary": "Johnson shares a paper claiming that slowing aging after age 50 can add 3.6 years of life and is worth about $4 million in economic value. It's a claim from a theory paper, not medical advice."
+   },
+   "full_he": "\"האטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים, ושווה 4 מיליון דולר בערך כלכלי.\"\n\nבתמונה שצירף: צילום של מאמר בשם \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" (ההשפעה הכלכלית של התערבויות נגד הזדקנות המבוססות על סמנים ביולוגיים, על עלויות הבריאות ועל הערך לאדם), מאת פדריקו פליצי (enGene, באזל, שווייץ). המאמר פורסם ב-Frontiers in Genetics ב-11 באוקטובר 2026, במדור אפיגנטיקה וארכיטקטורת הגנום, כמאמר מסוג \"השערה ותיאוריה\" (doi.org/10.3389/fgene.2026.1814599).\n\nהמספרים הם טענה של ג'ונסון ושל מאמר תיאורטי, ולא הוכחה קלינית.\n\nזה כל הטקסט בפוסט; אין לו המשך בשרשור.",
+   "full_en": "\"Slowing aging after the age 50 can add 3.6 yrs of life and is worth $4 million in economic value.\"\n\nThe attached image: a screenshot of a paper titled \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" by Federico Felizzi (enGene, Basel, Switzerland). It was published in Frontiers in Genetics on 11 October 2026, in the Epigenetics and Genome Architecture section, as a \"Hypothesis and Theory\" article (doi.org/10.3389/fgene.2026.1814599).\n\nThe figures are Johnson's and a theory paper's claim, not clinical proof.\n\nThat's the whole post; there's no thread after it."
+  },
+  {
+   "id": "kraken-xstocks-1b-aum",
+   "topic": "kraken",
+   "date": "2026-10-28T14:06:41Z",
+   "url": "https://x.com/krakenfx/status/2115445149513695424",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קרקן: xStocks עברה מיליארד דולר בנכסים מנוהלים",
+    "summary": "קרקן מברכת את xStocks, מניות מטוקנות שהיא מציעה בבורסה שלה, על חציית רף של מיליארד דולר בנכסים מנוהלים."
+   },
+   "en": {
+    "title": "Kraken: xStocks passes $1B in assets under management",
+    "summary": "Kraken congratulates xStocks, the tokenized stocks it offers on its exchange, on crossing $1 billion in assets under management."
+   },
+   "full_he": "\"ענק. מיליארד דולר בנכסים מנוהלים.\n\nמזל טוב ל-@xStocksFi. אנחנו גאים להציע את xStocks בקרקן.\"\n\nהפוסט שהוא ציטט (@xStocksFi):\n\"גישה עולמית לשווקים של העולם.\n\nהמיליארד הראשון הושג. נשארו טריליונים.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"Huge. $1B AUM.\n\nCongrats @xStocksFi. Proud to offer xStocks on Kraken.\"\n\nThe quoted post (@xStocksFi):\n\"Global access to the world's markets.\n\nThe first billion achieved. Trillions to go.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
+  },
   {
    "id": "mccullough-defuse-ratg13-omission",
    "topic": "mccullough",
