@@ -65,7 +65,7 @@
   .chk:hover i { border-color: var(--accent); }
   .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
   .txt { flex: 1; min-width: 0; padding: 10px 4px; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; cursor: text; border-radius: 8px; }
-  .done .txt { text-decoration: line-through; text-decoration-thickness: 2px; color: var(--faint); }
+  .done .txt { color: var(--faint); }
   .edit { flex: 1; min-width: 0; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
   .del { flex: none; width: 40px; height: 40px; border: 0; background: none; color: var(--faint); font-size: 22px; line-height: 1; border-radius: 50%; }
   .del:hover { color: var(--fg); background: var(--card2); }
@@ -128,7 +128,7 @@ window.RGMY_SW = "../sw.js";
 window.RGMY_STRINGS = {
   he: { doc: "רשימת קניות", title: "רשימת קניות", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
-        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נקנו", check: "סמן כנקנה", uncheck: "החזר לרשימה",
+        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים",
         emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
@@ -140,7 +140,7 @@ window.RGMY_STRINGS = {
         dropHint: "שחרר על קטגוריה כדי להעביר אליה את הפריט" },
   en: { doc: "Shopping list", title: "Shopping list", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
-        empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Bought", check: "Mark as bought", uncheck: "Back to the list",
+        empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items",
         emptyCat: "This category is empty. Write above what you need to buy.",
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
