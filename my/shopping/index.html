@@ -64,8 +64,9 @@
   .addform input:focus { border-color: var(--accent); }
   .addform input::placeholder { color: var(--faint); }
   /* ☰ drag handle on each item: touch it and drag (no long-press) */
-  .list .hdl { flex: none; width: 40px; height: 48px; display: inline-flex; align-items: center; justify-content: center; margin-inline-end: -6px; color: var(--faint); font-size: 20px; font-weight: 900; cursor: grab; touch-action: none; -webkit-user-select: none; user-select: none; }
-  .list .hdl:hover { color: var(--accent); }
+  .list .hdl { flex: none; align-self: stretch; width: 44px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; margin-inline-start: -4px; margin-inline-end: -4px; color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; cursor: grab; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  .list .hdl:active { transform: scale(1.12); }
+  .done .hdl { color: var(--accent); opacity: .75; }
   .list li.lifted { z-index: 3; background: var(--card2); border-radius: 12px; box-shadow: 0 0 0 2px var(--accent), 0 10px 26px rgba(0,0,0,.45); transform: translateY(var(--dy, 0)) scale(1.02); cursor: grabbing; }
   .list li.lifted .hdl { color: var(--accent); }
   .list.dragging li:not(.lifted) { transition: transform .16s ease; }
@@ -203,7 +204,7 @@ window.RGMY_STRINGS = {
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
 <script src="../../shared/rg-topbar.js" data-slot=".topbar"></script>
 </body>
 </html>

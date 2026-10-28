@@ -179,7 +179,10 @@
   /* order inside a category: "ord" (set when an item is dragged with ☰); items never dragged keep their creation time,
      which is always larger, so a new item lands at the end of the list */
   function ordOf(x) { return typeof x.ord === "number" && isFinite(x.ord) ? x.ord : (x.created || 0); }
-  function setItemOrder(ids) { ids.forEach(function (id, n) { var x = items[id]; if (x && !x.deleted && x.ord !== (n + 1) * 1000) upd(id, { ord: (n + 1) * 1000 }); }); }
+  function setItemOrder(ids, f) { f = f || "ord"; ids.forEach(function (id, n) { var x = items[id], p = {}; p[f] = (n + 1) * 1000; if (x && !x.deleted && x[f] !== p[f]) upd(id, p); }); }
+  /* order inside "נבחר": "dord" (set when a selected item is dragged with ☰); an item without it (just selected) goes to the bottom */
+  function dordOf(x) { return typeof x.dord === "number" && isFinite(x.dord) ? x.dord : Infinity; }
+  function toggleDone(id) { var x = items[id]; if (!x || x.deleted) return; upd(id, { done: !x.done, dord: null }); }
   function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
   function add(text, cid, price) {
     text = clean(text, 200); if (!text) return;
@@ -200,7 +203,7 @@
       : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
-    return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (x.done || editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
+    return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
       '<button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
       txt + pin + "</li>";
   }
@@ -235,7 +238,7 @@
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the end
-    done.sort(function (a, b) { return (a.at || 0) - (b.at || 0); }); // last checked goes to the very bottom
+    done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
     if (editing && ae && ae.getAttribute && ae.getAttribute("data-edit") === editing) keep = { v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
@@ -519,7 +522,7 @@
       reset();
       if (Math.abs(dx) >= w * SWIPE) {
         var x = items[id];
-        if (dx > 0 && x && !x.deleted) { upd(id, { done: !x.done }); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
+        if (dx > 0 && x && !x.deleted) { toggleDone(id); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
         else if (dx < 0) moveMenu(id);
       }
     }
@@ -539,6 +542,9 @@
     sortable({ list: $("active"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id",
       canStart: function () { return !editing; },
       onDrop: function (ids) { setItemOrder(ids); changed(); } });
+    sortable({ list: $("done"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id", // "נבחר" items: same ☰ drag
+      canStart: function () { return !editing; },
+      onDrop: function (ids) { setItemOrder(ids, "dord"); changed(); } });
     on("add-form", "submit", function (e) {
       e.preventDefault(); var i = $("add-input"), pi = $("add-price"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
@@ -552,7 +558,7 @@
       var b = e.target.closest("[data-a]"); if (!b) return;
       var li = b.closest("li"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       var a = b.getAttribute("data-a");
-      if (a === "toggle") { upd(id, { done: !x.done }); changed(); }
+      if (a === "toggle") { toggleDone(id); changed(); }
       else if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
     });
     main.addEventListener("keydown", function (e) {
