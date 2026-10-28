@@ -55,7 +55,7 @@
     <div class="apps">
       <a class="card app" href="shopping/"><img src="shopping/icon-192.png" alt="" width="64" height="64"><b data-i18n="shopName"></b><span data-i18n="shopDesc"></span></a>
       <a class="card app" href="ideas/"><img src="ideas/icon-192.png" alt="" width="64" height="64"><b data-i18n="ideasName"></b><span data-i18n="ideasDesc"></span></a>
-      <a class="card app" href="clock/"><img src="clock/icon-192.png" alt="" width="64" height="64"><b data-i18n="clockName"></b><span data-i18n="clockDesc"></span></a>
+      <a class="card app" href="clock/" hidden style="display:none"><!-- hidden 2026-10-28 at Ron's request; remove hidden + style to show again --><img src="clock/icon-192.png" alt="" width="64" height="64"><b data-i18n="clockName"></b><span data-i18n="clockDesc"></span></a>
       <a class="card app" href="rehabify/"><img src="rehabify/icon-192.png" alt="" width="64" height="64"><b data-i18n="rehabName"></b><span data-i18n="rehabDesc"></span></a>
       <a class="card app" href="calmify/"><img src="calmify/icon-192.png" alt="" width="64" height="64"><b data-i18n="calmName"></b><span data-i18n="calmDesc"></span></a>
       <div class="card app soon" aria-hidden="true"><span class="plus">＋</span><span data-i18n="soon"></span></div>
@@ -68,11 +68,12 @@
 <script>
 window.RGMY_SW = "sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "האפליקציות הפרטיות שלי", title: "האפליקציות הפרטיות שלי", sub: "האזור האישי שלך בחשבון – רק אתה רואה אותו.", shopName: "קניותיפיי", shopDesc: "מתעדכנת בזמן אמת בנייד ובלפטופ", clockName: "השעון המעורר שלי", clockDesc: "שעונים מעוררים עם רשימות משימות, שמורים בחשבון", ideasName: "ליסטיפיי", ideasDesc: "רשימות לפי קטגוריות, שמורות בחשבון", rehabName: "ריהאביפיי", rehabDesc: "ספירת ימים נקיים, צ'ק-אין יומי וכלים לרגעי חשק", calmName: "רוגעלי", calmDesc: "צ'ק-אין רגשי, תרגילי נשימה וקרקוע ותוכנית התמודדות", soon: "עוד אפליקציות בדרך" },
-  en: { doc: "My private apps", title: "My private apps", sub: "Your personal area in your account – only you can see it.", shopName: "Purchasify", shopDesc: "Updates live on your phone and laptop", clockName: "My alarm clock", clockDesc: "Alarms with task lists, saved in your account", ideasName: "Listify", ideasDesc: "Lists by category, saved in your account", rehabName: "Rehabify", rehabDesc: "Clean-day counter, daily check-ins and tools for cravings", calmName: "Calmify", calmDesc: "Mood check-ins, breathing and grounding exercises and a coping plan", soon: "More apps coming" }
+  he: { doc: "האפליקציות הפרטיות שלי", title: "האפליקציות הפרטיות שלי", sub: "האזור האישי שלך בחשבון – רק אתה רואה אותו.", shopName: "קניותיפיי", shopDesc: "מתעדכנת בזמן אמת בנייד ובלפטופ", clockName: "קלוקיפיי", clockDesc: "שעונים מעוררים עם רשימות משימות, שמורים בחשבון", ideasName: "ליסטיפיי", ideasDesc: "רשימות לפי קטגוריות, שמורות בחשבון", rehabName: "ריהאביפיי", rehabDesc: "ספירת ימים נקיים, צ'ק-אין יומי וכלים לרגעי חשק", calmName: "רוגעלי", calmDesc: "צ'ק-אין רגשי, תרגילי נשימה וקרקוע ותוכנית התמודדות", soon: "עוד אפליקציות בדרך" },
+  en: { doc: "My private apps", title: "My private apps", sub: "Your personal area in your account – only you can see it.", shopName: "Purchasify", shopDesc: "Updates live on your phone and laptop", clockName: "Clockify", clockDesc: "Alarms with task lists, saved in your account", ideasName: "Listify", ideasDesc: "Lists by category, saved in your account", rehabName: "Rehabify", rehabDesc: "Clean-day counter, daily check-ins and tools for cravings", calmName: "Calmify", calmDesc: "Mood check-ins, breathing and grounding exercises and a coping plan", soon: "More apps coming" }
 };
 </script>
 <script src="../shared/rg-account.js"></script>
 <script src="common.js"></script>
+<script src="../shared/rg-topbar.js" data-slot=".topbar"></script>
 </body>
 </html>
