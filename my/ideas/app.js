@@ -206,8 +206,7 @@
     return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
       (handle === true ? '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">' + GRIP + "</span>" : "") + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
-      '<button type="button" class="mvto" data-a="move" title="' + esc(t("moveTo")) + '" aria-label="' + esc(t("moveTo") + ": " + n) + '">' + MVICON + "</button>" +
-      '<button type="button" class="trash" data-a="trash" title="' + esc(t("del")) + '" aria-label="' + esc(t("del") + ": " + n) + '">' + TRASHICON + "</button></li>";
+      "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
   }
   function panel(sec) {
     var act = openIn(sec), done = selIn(sec);
@@ -215,7 +214,7 @@
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div></form>' +
       (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(function (x) { return row(x, act.length > 1); }).join("") + "</ul></div>"
         : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") +
-      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + " (" + done.length + ')<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
+      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + '<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
         '<div class="card listcard"><ul class="list" id="list-done">' + done.map(function (x) { return row(x, false); }).join("") + "</ul></div></details>" : "");
   }
   function render() {
