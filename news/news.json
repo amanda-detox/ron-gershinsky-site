@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T16:15:00+02:00",
+ "updated": "2026-10-28T17:15:00+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,40 @@
   }
  ],
  "items": [
+  {
+   "id": "tesla-fsd-chipmunk-98yo",
+   "topic": "tesla",
+   "date": "2026-10-28T14:17:50Z",
+   "url": "https://x.com/elonmusk/status/2115447957843821013",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"בטסלה אכפת לנו אפילו מהסנאים\"",
+    "summary": "מאסק ציטט סיפור על גבר בן 98 שקנה את הטסלה הראשונה שלו עם נהיגה עצמית, ומספר שהמכונית עצרה כדי לא לדרוס סנאי שחצה את הכביש."
+   },
+   "en": {
+    "title": "Musk: \"At Tesla, we even care about the chipmunks\"",
+    "summary": "Musk quoted a story about a 98-year-old man who bought his first self-driving Tesla and says the car stopped so it wouldn't run over a chipmunk crossing the road."
+   },
+   "full_he": "בטסלה אכפת לנו אפילו מהסנאים.\n\nהפוסט שהוא ציטט:\nגבר בן 98 קונה את טסלה Model Y הראשונה שלו עם נהיגה עצמית, ונדהם.\n\n\"אני נוהג בה כנראה חודשיים-שלושה, והיא לא עשתה אף טעות בנהיגה. בעצם, לפני כמה ימים היא עצרה – סנאי חצה את הכביש, לא הייתה שום תנועה אחרת, והיא לא דרסה את הסנאי... בשביל מישהו בן 98, זה ממש תענוג.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "At Tesla, we even care about the chipmunks.\n\nThe quoted post:\n98-Year-Old Man Buys His First Self-Driving Tesla Model Y And Is Blown Away\n\n\"I've been driving it probably 2-3 months, and it's not made an error in its driving. In fact, the other day it stopped - a chipmunk was crossing the road, and there was no other traffic, and it did not run over the chipmunk … For somebody that's 98-years-old, this is a real treat.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
+  },
+  {
+   "id": "musk-fsd-1-5-trillion-true",
+   "topic": "musk",
+   "date": "2026-10-28T14:30:06Z",
+   "url": "https://x.com/elonmusk/status/2115451044423668045",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מסכים: FSD יכול לחסוך מעל 1.5 טריליון דולר בשנה",
+    "summary": "מאסק כתב \"נכון\" על פוסט שטוען שאימוץ מלא של הנהיגה העצמית של טסלה יכול לחסוך לארה\"ב מעל 1.5 טריליון דולר בשנה בעלויות של תאונות קשות."
+   },
+   "en": {
+    "title": "Musk agrees: FSD could save over $1.5 trillion a year",
+    "summary": "Musk replied \"True\" to a post arguing that full adoption of Tesla's self-driving could save the US over $1.5 trillion a year in the cost of serious crashes."
+   },
+   "full_he": "נכון.\n\nהפוסט שהוא ציטט:\nFSD יכול ממש לפנות יותר מ-1.5 טריליון דולר בשנה... למה אף אחד לא מדבר על זה?\n\nאם המחוקקים היו רציניים לגבי שירות הציבור, הם היו מתחילים להתמקד באיך להאיץ את אימוץ ה-FSD.\n\nהנתונים:\nתאונות קטלניות וקשות עולות לארה\"ב כמעט 2 טריליון דולר בשנה בנזק חברתי כולל, כולל כ-400 מיליארד דולר בעלויות כלכליות ישירות, בצורת:\n• חשבונות רפואיים\n• נזק לרכוש\n• אובדן שכר\n• מחיר עצום באיכות חיים של שנים שאבדו\n• נכות קבועה\n\nלפי הנתונים האחרונים של טסלה, מכוניות עם FSD מופעל בטוחות פי 9 בערך מהנהג הממוצע.\n\nכלומר, באימוץ מלא FSD יכול לייצר חיסכון בגודל של כל אחד מאלה:\n• כ-6% מהתמ\"ג\n• כל תוכנית הביטוח הלאומי (Social Security)\n• Medicare ו-Medicaid יחד\n• בערך פי 2 מתקציב הביטחון\n\nבקנה מידה כזה, FSD (וטכנולוגיות דומות) יכול להיות אחד הצעדים האמיתיים הראשונים לעבר עידן ה\"שפע\" של הבינה המלאכותית שמדברים עליו.\n\nבעוד 50 שנה, הילדים והנכדים שלנו יסתכלו אחורה באימה על כך שאי פעם נהגנו בעצמנו.\n\nהפוסט המצוטט כולל גם תמונה שלא תומללה כאן.",
+   "full_en": "True\n\nThe quoted post:\nFSD could literally free up OVER $1.5 trillion/yr... WHY isn't anyone talking about this??\n\nIf Lawmakers were serious about serving the people, they would start focusing on how to speed up FSD adoption.\n\nThe Data:\nFatal & serious crashes cost the U.S. almost $2 trillion per year in total societal harm; including ~$400 billion in direct economic costs in the form of:\n• medical bills\n• property damage\n• lost wages\n• enormous quality-of-life cost of lost years\n• permanent disability\n\nTesla's latest FSD data shows vehicles with FSD engaged are ~9× SAFER than the average driver.\n\nThat means, if fully adopted, FSD could produce savings the size of any one of these:\n• ~6% of GDP\n• The entire Social Security program\n• Medicare AND Medicaid\n• Roughly 2× the defense budget\n\nAt this scale, FSD (and technologies like it) could be one of the first real steps toward an age of AI \"abundance\" people talk about.\n\n50 years from now, our children and grandchildren will look back in horror at the fact that we ever drove at all.\n\nThe quoted post also includes an image that isn't transcribed here."
+  },
   {
    "id": "johnson-aging-econ-value-4m",
    "topic": "johnson",
