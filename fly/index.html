@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>פלייפיי · Playify</title>
+<title>פלייפיי · Flyify</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -34,6 +34,7 @@
   .panel { pointer-events:auto; width:min(640px, 100%); max-height:62vh; overflow-y:auto; background:var(--panel); border:1px solid var(--line);
     border-radius:20px; padding:10px 12px 8px; text-align:center; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); box-shadow:0 8px 30px rgba(0,0,0,.25); }
   .titlebar { pointer-events:auto; position:fixed; top:max(10px, env(safe-area-inset-top)); left:10px; right:10px; display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }
+  .rgtb-pin ~ .titlebar { top:calc(max(10px, env(safe-area-inset-top)) + 52px); } /* shared top bar sits above the title */
   h1 { margin:0; font-size:clamp(30px, 8vw, 46px); font-weight:800; line-height:1.05;
     background:linear-gradient(180deg,#fff, var(--gold2) 55%, var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent;
     filter:drop-shadow(0 2px 6px rgba(10,18,56,.55)); }
@@ -237,5 +238,6 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script type="module" src="game.js"></script>
+<script src="../shared/rg-topbar.js" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 </body>
 </html>

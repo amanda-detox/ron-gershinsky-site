@@ -1,5 +1,5 @@
-/* Offline cache for Playify · פלייפיי (scope: this folder only). */
-var CACHE = "rg-fly-v3";
+/* Offline cache for Flyify · פלייפיי (scope: this folder only). */
+var CACHE = "rg-fly-v4";
 var FILES = ["./", "index.html", "game.js", "three.module.min.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
   "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", function (e) {

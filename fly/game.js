@@ -1,4 +1,4 @@
-/* פלייפיי · Playify — relaxed 3D flying. three.js r170 (vendored, MIT). */
+/* פלייפיי · Flyify — relaxed 3D flying. three.js r170 (vendored, MIT). */
 import * as THREE from './three.module.min.js';
 
 const $ = (id) => document.getElementById(id);
@@ -35,7 +35,7 @@ const T = {
     cams: ['מאחורי הדמות', 'מבעד לעיניים', 'מהצד']
   },
   en: {
-    title: 'Playify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
+    title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
     start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
     helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, swipe to switch ring (Powers, Flight, Atmosphere), long-press to see the name. Collect sparks and fly through the golden rings.',
@@ -1303,7 +1303,7 @@ function applyLang() {
   d.lang = lang; d.dir = lang === 'he' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-t]').forEach((el) => { const v = L[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
   if (resumable) $('startBtn').textContent = L.resume;
-  document.title = lang === 'he' ? 'פלייפיי · Playify' : 'Playify · פלייפיי';
+  document.title = lang === 'he' ? 'פלייפיי · Flyify' : 'Flyify · פלייפיי';
   $('langBtn').textContent = L.lang;
   $('help').textContent = isTouch ? L.helpTouch : L.helpDesk;
   const chars = $('chars');
