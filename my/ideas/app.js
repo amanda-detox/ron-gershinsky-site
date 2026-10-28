@@ -101,6 +101,28 @@
   }
   function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
 
+  /* ---------- safety net (same as Purchasify) ----------
+     Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
+     rg-myideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
+     (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
+  var BAK_N = 5, bulkOk = 0;
+  function bakKey(id) { return "rg-myideas-bak:" + id; }
+  function backup(cl) {
+    if (!uid || !Object.keys(cl).length) return;
+    var l = jparse(lsGet(bakKey(uid)), []); if (!Array.isArray(l)) l = [];
+    var last = l[l.length - 1];
+    if (last && same(last.items || {}, cl)) return; // same as the newest backup
+    l.push({ t: Date.now(), items: cl });
+    while (l.length > BAK_N) l.shift();
+    try { localStorage.setItem(bakKey(uid), JSON.stringify(l)); } catch (e) { l.splice(0, l.length - 1); lsSet(bakKey(uid), JSON.stringify(l)); }
+  }
+  function liveCount(m) { var n = 0; for (var k in m) { var x = m[k]; if (x && !x.deleted && !x.gone) n++; } return n; }
+  function tooManyGone(next, cloud) {
+    if (Date.now() < bulkOk) return false;
+    var before = liveCount(cloud), gone = before - liveCount(next);
+    return before >= 4 && gone >= 3 && gone * 2 > before;
+  }
+
   /* ---------- sync ---------- */
   function setStatus() {
     var s = $("status"); if (!s) return;
@@ -111,7 +133,7 @@
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null;
+    var who = uid, sent = null, blocked = false;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
@@ -125,11 +147,14 @@
       seeded = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
+      if (tooManyGone(items, cl)) { blocked = true; try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} return; }
+      backup(cl);
       sent = items;
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
     }).then(function () {
       if (who !== uid) return;
       offline = false;
+      if (blocked) return; // keep "pending": nothing was lost locally, and the cloud copy stays as it was
       if (!sent || sent === items) { pending = false; saveLocal(); } else again = true;
     }, function (e) {
       if (e && e.code === "signed_out") return;
@@ -169,8 +194,10 @@
     return ((a.created || 0) - (b.created || 0)) || (a.id < b.id ? -1 : 1);
   }
   function openIn(sec) { return live(sec).filter(function (x) { return !isSel(x); }).sort(byOrder); }
-  function selIn(sec) { return live(sec).filter(isSel).sort(function (a, b) { return (b.at || 0) - (a.at || 0); }); } // last selected on top
-  function setItemOrder(ids) { ids.forEach(function (id, n) { var x = items[id]; if (x && !x.deleted && x.order !== n + 1) upd(id, { order: n + 1 }); }); }
+  /* order inside "נבחר": "dord" (set when a selected item is dragged with ☰, like Purchasify); an item without it (just selected) goes to the bottom */
+  function dordOf(x) { return typeof x.dord === "number" && isFinite(x.dord) ? x.dord : Infinity; }
+  function selIn(sec) { return live(sec).filter(isSel).sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); } // Ron's order (☰ drag), last selected at the very bottom
+  function setItemOrder(ids, f) { f = f || "order"; ids.forEach(function (id, n) { var x = items[id], p = {}; p[f] = n + 1; if (x && !x.deleted && x[f] !== n + 1) upd(id, p); }); }
   function nextOrder(sec) { // give every item in the list a number first (old items may have none), then one more for the new item
     var l = live(sec).sort(byOrder);
     if (l.some(function (x) { return typeof x.order !== "number"; })) setItemOrder(l.map(function (x) { return x.id; }));
@@ -182,11 +209,11 @@
     note = clean(note, 500); if (note) x.note = note;
     put(x);
   }
-  function toggleSel(id) { var x = items[id]; if (x && !x.deleted) upd(id, { done: !isSel(x) }); }
+  function toggleSel(id) { var x = items[id]; if (x && !x.deleted) upd(id, { done: !isSel(x), dord: null }); } // dord reset: lands at the bottom of "נבחר"
   /* move one item to another category (list); it keeps its selected state and goes to the end of that list */
   function moveItem(id, cid) {
     var x = items[id]; if (!x || x.deleted || x.sec === cid || !catOf(cid)) return false;
-    upd(id, { sec: cid, done: isSel(x), order: nextOrder(cid) }); return true;
+    upd(id, { sec: cid, done: isSel(x), order: nextOrder(cid), dord: null }); return true;
   }
 
   /* ---------- render ---------- */
@@ -200,11 +227,11 @@
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
   }
   var GRIP = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>';
-  function row(x, handle) {
+  function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x);
     return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
-      (handle === true ? '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">' + GRIP + "</span>" : "") + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
+      '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
       "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
   }
@@ -212,10 +239,10 @@
     var act = openIn(sec), done = selIn(sec);
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div></form>' +
-      (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(function (x) { return row(x, act.length > 1); }).join("") + "</ul></div>"
+      (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(row).join("") + "</ul></div>"
         : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") +
-      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + '<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
-        '<div class="card listcard"><ul class="list" id="list-done">' + done.map(function (x) { return row(x, false); }).join("") + "</ul></div></details>" : "");
+      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
+        '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "");
   }
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
@@ -384,7 +411,7 @@
     function rowHtml(cid) {
       var c = catOf(cid); if (!c) return "";
       return '<li class="erow" data-cat="' + esc(cid) + '"><span class="handle" role="button" tabindex="0" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">' +
-        '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="18" r="1.7"/><circle cx="15" cy="18" r="1.7"/></svg></span>' +
+        GRIP + '</span>' +
         '<span class="ename">' + esc(catName(c)) + '</span>' +
         '<button type="button" class="eic" data-s="ren:' + esc(cid) + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
         '<button type="button" class="eic" data-s="del:' + esc(cid) + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
@@ -412,7 +439,7 @@
         } else if (a.indexOf("del:") === 0) {
           if (cats().length <= 1) { window.alert(t("lastCat")); return; }
           if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) {
-            delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); }
+            bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); }
             order = order.filter(function (x) { return x !== cid; }); li.parentNode.removeChild(li); changed();
           }
         }
@@ -471,9 +498,9 @@
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var h = e.target.closest(".ihandle");
       if (h) { // drag handle: lift now
-        var ul = li.parentNode; if (!ul || ul.id !== "list-active") return;
+        var ul = li.parentNode; if (!ul || (ul.id !== "list-active" && ul.id !== "list-done")) return;
         e.preventDefault(); reset(); hideHint();
-        idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: true };
+        idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: true, f: ul.id === "list-done" ? "dord" : "order" };
         idrag.sorter = makeSorter([].slice.call(ul.children), li, e.clientY, null);
         document.body.classList.add("idragging");
         try { h.setPointerCapture(e.pointerId); } catch (e2) {}
@@ -522,7 +549,7 @@
         noClick = true; setTimeout(function () { noClick = false; }, 400);
         var r = d.sorter.end(); d.sorter = null;
         reset();
-        if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); })); changed(); }
+        if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); }), d.f); changed(); }
       } else reset();
     }
     document.addEventListener("pointerup", up);
@@ -532,8 +559,9 @@
 
   function boot() {
     var main = document.querySelector("main");
-    bootLists();
-    bootItemDrag();
+    if (!main) return;
+    try { bootLists(); } catch (e) { setTimeout(function () { throw e; }); } // the lists still load and show even if a control fails
+    try { bootItemDrag(); } catch (e) { setTimeout(function () { throw e; }); }
     main.addEventListener("submit", function (e) {
       var f = e.target.closest("[data-add]"); if (!f) return; e.preventDefault();
       var sec = f.getAttribute("data-add"), ti = f.querySelector('[name="text"]'); if (!clean(ti.value, 200)) { ti.focus(); return; }
@@ -556,11 +584,6 @@
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
       var b = e.target.closest("[data-a]"); if (!b) return;
       var a = b.getAttribute("data-a");
-      if (a === "clear") {
-        e.preventDefault(); e.stopPropagation();
-        if (window.confirm(t("confirmClear"))) { selIn(curTab()).forEach(function (x) { del(x.id); }); changed(); }
-        return;
-      }
       var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       if (a === "move") { moveMenu(id); return; }
       if (a === "trash") { delWithUndo(id); return; }

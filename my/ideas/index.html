@@ -115,7 +115,7 @@
   .btn.sm { height: 34px; padding: 0 12px; font-size: 13.5px; }
   @media (max-width: 420px) { .tab { padding: 0 10px; font-size: 14.5px; } .tabs { gap: 2px; } }
   .clear { margin-inline-start: auto; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13px; font-weight: 600; }
-  .drophint { margin: 6px 4px 0; font-size: 12.5px; color: var(--accent); font-weight: 700; }
+  .drophint { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 30; margin: 0; max-width: 90vw; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--accent); box-shadow: 0 6px 18px rgba(0,0,0,.35); text-align: center; pointer-events: none; font-size: 12.5px; color: var(--accent); font-weight: 700; } /* floats: showing it while dragging never shifts the list under the finger */
   .tab.drop { box-shadow: 0 0 0 2px var(--accent) inset; color: var(--fg); }
   .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
   .list > li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
@@ -160,7 +160,10 @@
   .erow { position: relative; display: flex; align-items: center; gap: 4px; min-height: 56px; padding: 0 4px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card2); }
   .erow.sorting, .list > li.sorting { z-index: 3; background: var(--card); box-shadow: 0 0 0 2px var(--accent), 0 10px 24px rgba(0,0,0,.45); border-radius: 14px; }
   .handle { flex: none; display: inline-flex; align-items: center; justify-content: center; touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
-  .list .ihandle { width: 34px; height: 44px; margin-inline-end: -6px; color: var(--faint); align-self: center; }
+  /* item ☰: exactly like Purchasify's (gold in night mode, dark blue in day mode, 24px, 44px touch area, at the row's start) */
+  .list .ihandle { flex: none; align-self: stretch; width: 44px; min-height: 44px; margin-inline-start: -4px; margin-inline-end: -4px; color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; -webkit-tap-highlight-color: transparent; }
+  .list .ihandle:active { transform: scale(1.12); }
+  .list .done .ihandle, .list > li.done .ihandle { color: var(--accent); opacity: .75; }
   .erow .handle { flex: none; width: 46px; height: 52px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
   .ename { flex: 1; min-width: 0; font-size: 17px; font-weight: 700; overflow-wrap: anywhere; }
   .einput { flex: 1; min-width: 0; height: 44px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 16.5px; outline: none; }
@@ -259,6 +262,6 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=12"></script>
 </body>
 </html>
