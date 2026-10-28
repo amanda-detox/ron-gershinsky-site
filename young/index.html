@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1238">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="יאנגיפיי">
+<title>יאנגיפיי · Youngify</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root { --gold:#f3cf6b; --gold2:#ffe7a3; --blue:#2c5cff; --navy:#0a1238; --ink:#eaf0ff; --card:rgba(20,34,100,.55); --line:rgba(243,207,107,.35); }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html,body { margin:0; min-height:100%; background:var(--navy); color:var(--ink); overflow-x:hidden;
+    font-family:'Heebo', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif; }
+  body { background:radial-gradient(ellipse at 50% -10%, rgba(60,90,220,.55), rgba(10,18,56,1) 60%) fixed, var(--navy); }
+  button { font-family:inherit; color:inherit; cursor:pointer; }
+  .hidden { display:none !important; }
+  .wrap { width:min(640px, 100%); margin:0 auto; padding:max(12px, env(safe-area-inset-top)) 14px max(18px, env(safe-area-inset-bottom)); }
+  header { display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:10px; min-width:0; }
+  .brand img { width:42px; height:42px; border-radius:12px; flex:0 0 auto; }
+  h1 { margin:0; font-size:clamp(24px, 6.5vw, 34px); font-weight:800; line-height:1.1;
+    background:linear-gradient(180deg,#fff, var(--gold2) 55%, var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .beta { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.5px; color:#1a1d3a; background:var(--gold); border-radius:999px; padding:1px 8px; vertical-align:middle; margin-inline-start:6px; }
+  .tools { display:flex; gap:6px; }
+  .btn { border:1px solid rgba(243,207,107,.55); background:rgba(30,52,150,.6); border-radius:999px; padding:8px 14px; font-size:14px; font-weight:500; }
+  .btn:active { transform:scale(.97); }
+  .btn.gold { color:#1a1d3a; border:none; font-weight:700; background:linear-gradient(180deg,#fff7d6,var(--gold)); box-shadow:0 0 18px rgba(243,207,107,.35); }
+  .tag { margin:10px 0 4px; color:#c9d6ff; font-weight:300; font-size:15px; line-height:1.5; }
+  .install-hint { margin:8px 0; font-size:13px; line-height:1.55; color:#c9d6ff; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:6px 12px; }
+  .install-hint ol { margin:.2rem 0; padding-inline-start:1.3em; }
+
+  .hero { display:flex; align-items:center; gap:16px; margin:14px 0; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:14px; }
+  .ring { position:relative; width:120px; height:120px; flex:0 0 auto; }
+  .ring svg { width:100%; height:100%; transform:rotate(-90deg); }
+  .ring .num { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; line-height:1.1; }
+  .ring .num b { font-size:28px; color:var(--gold2); }
+  .ring .num span { font-size:12px; color:#b9c8f5; }
+  .hero-txt { min-width:0; font-size:14.5px; line-height:1.55; color:#dfe7ff; }
+  .hero-txt b { color:var(--gold2); }
+
+  h2 { font-size:18px; margin:18px 0 8px; color:#fff; }
+  .stages { list-style:none; margin:0; padding:0; display:grid; gap:8px; }
+  .stage { width:100%; display:flex; align-items:center; gap:12px; text-align:start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:12px; }
+  .stage .n { width:40px; height:40px; flex:0 0 auto; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:17px; background:rgba(44,92,255,.5); border:2px solid var(--gold); color:#fff; }
+  .stage.done .n { background:linear-gradient(180deg,#fff7d6,var(--gold)); color:#1a1d3a; }
+  .stage.locked { opacity:.5; }
+  .stage.locked .n { border-color:rgba(255,255,255,.3); }
+  .stage .t { flex:1 1 auto; min-width:0; }
+  .stage .t b { display:block; font-size:16px; }
+  .stage .t span { display:block; font-size:13px; color:#b9c8f5; font-weight:300; }
+  .stage .p { flex:0 0 auto; font-size:13px; color:var(--gold2); font-weight:700; white-space:nowrap; }
+
+  .bar { height:8px; border-radius:6px; background:rgba(255,255,255,.12); overflow:hidden; margin:6px 0 2px; }
+  .bar > div { height:100%; background:linear-gradient(90deg,#8fb0ff,#fff,var(--gold2)); transition:width .3s; }
+  .back { margin-top:10px; }
+  .stage-head { margin:10px 0 6px; }
+  .stage-head h2 { margin:6px 0 2px; font-size:22px; }
+  .stage-head .sub { color:#c9d6ff; font-size:14px; font-weight:300; }
+  .pick { font-size:14px; color:var(--gold2); font-weight:700; margin-top:6px; }
+  .tasks { display:grid; gap:10px; margin-top:10px; }
+  .task { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:12px 14px; }
+  .task.done { border-color:var(--gold); box-shadow:0 0 16px rgba(243,207,107,.25); background:rgba(40,64,170,.6); }
+  .task.off { opacity:.5; }
+  .chip { display:inline-block; font-size:12px; border-radius:999px; padding:1px 9px; background:rgba(44,92,255,.35); border:1px solid rgba(143,176,255,.5); color:#dfe7ff; }
+  .task h3 { margin:6px 0 2px; font-size:17px; }
+  .task p { margin:2px 0; font-size:14.5px; line-height:1.55; color:#dfe7ff; font-weight:300; }
+  .task .why { margin-top:6px; font-size:13.5px; line-height:1.6; color:#c9d6ff; background:rgba(8,16,60,.45); border-radius:10px; padding:8px 10px; }
+  .task .row { display:flex; gap:8px; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-top:8px; }
+  .link { background:none; border:none; padding:4px 0; color:var(--gold2); font-size:13.5px; text-decoration:underline; }
+  .task .btn[disabled] { opacity:.6; cursor:default; }
+
+  .foot { margin-top:22px; text-align:center; font-size:12px; color:#9fb0e6; font-weight:300; line-height:1.6; }
+  .disc { font-size:12px; color:#9fb0e6; margin:0 auto 6px; max-width:520px; }
+  .reset { margin-top:8px; font-size:12px; padding:5px 12px; background:transparent; }
+
+  .modal { position:fixed; inset:0; z-index:30; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(5,9,35,.8); }
+  .modal .box { position:relative; z-index:2; width:min(420px,100%); text-align:center; background:linear-gradient(180deg, rgba(44,92,255,.55), rgba(10,18,56,.95)); border:2px solid var(--gold); border-radius:20px; padding:22px 18px; box-shadow:0 0 40px rgba(243,207,107,.35); }
+  .modal .big { font-size:48px; line-height:1; }
+  .modal h2 { margin:10px 0 6px; font-size:24px; color:var(--gold2); }
+  .modal p { margin:0 0 14px; font-size:15px; line-height:1.6; color:#dfe7ff; }
+  #confetti { position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <img src="icon-192.png" alt="" width="42" height="42">
+      <h1><span data-t="title"></span><span class="beta">BETA</span></h1>
+    </div>
+    <div class="tools">
+      <button class="btn" id="installBtn" data-t="install"></button>
+      <button class="btn" id="langBtn"></button>
+    </div>
+  </header>
+  <div class="install-hint hidden" id="installHint"></div>
+
+  <main id="home">
+    <p class="tag" data-t="tag"></p>
+    <section class="hero" aria-live="polite">
+      <div class="ring" role="img" id="ringBox">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8fb0ff"/><stop offset="1" stop-color="#f3cf6b"/></linearGradient></defs>
+          <circle cx="60" cy="60" r="50" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="12"/>
+          <circle id="ringArc" cx="60" cy="60" r="50" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="314.16" stroke-dashoffset="314.16" style="transition:stroke-dashoffset .5s"/>
+        </svg>
+        <div class="num"><b id="pts">0</b><span data-t="of300"></span></div>
+      </div>
+      <div class="hero-txt" id="heroTxt"></div>
+    </section>
+    <h2 data-t="path"></h2>
+    <ul class="stages" id="stages"></ul>
+  </main>
+
+  <main id="stageView" class="hidden">
+    <button class="btn back" id="backBtn"></button>
+    <div class="stage-head">
+      <h2 id="sTitle"></h2>
+      <div class="sub" id="sSub"></div>
+      <div class="pick" id="sPick"></div>
+      <div class="bar"><div id="sBar" style="width:0"></div></div>
+    </div>
+    <div class="tasks" id="tasks"></div>
+  </main>
+
+  <footer class="foot">
+    <p class="disc" data-t="disc"></p>
+    <div data-t="copy"></div>
+    <button class="btn reset" id="resetBtn" data-t="reset"></button>
+  </footer>
+</div>
+
+<div class="modal hidden" id="modal" role="dialog" aria-modal="true">
+  <canvas id="confetti"></canvas>
+  <div class="box">
+    <div class="big" id="mIcon">⭐</div>
+    <h2 id="mTitle"></h2>
+    <p id="mText"></p>
+    <button class="btn gold" id="mBtn"></button>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
