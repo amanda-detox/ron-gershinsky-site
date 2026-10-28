@@ -1,5 +1,5 @@
 /* Offline cache for Lightify · לייטיפיי (scope: this folder only). */
-var CACHE = "rg-game-v3";
+var CACHE = "rg-game-v4";
 var FILES = ["./", "index.html", "game.js", "three.module.min.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
   "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 self.addEventListener("install", function (e) {
