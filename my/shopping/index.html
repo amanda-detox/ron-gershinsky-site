@@ -17,19 +17,34 @@
 <link rel="stylesheet" href="../../shared/rg-site.css">
 <link rel="stylesheet" href="../common.css">
 <style>
-  .catbar { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
-  .tabs { flex: 1; min-width: 0; display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; touch-action: pan-x; -webkit-user-select: none; user-select: none; }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-x; transition: transform .12s, box-shadow .12s; }
-  .tab:hover { color: var(--fg); }
-  .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
-  .tab.lifted { transform: scale(1.08); box-shadow: 0 0 0 2px var(--accent), 0 6px 16px rgba(0,0,0,.35); position: relative; z-index: 2; }
-  .tab.drop { box-shadow: 0 0 0 2px var(--accent) inset; color: var(--fg); }
-  .tabs.dragging { overflow-x: hidden; }
-  .tabs.dragging .tab:not(.lifted) { opacity: .75; }
-  .tabadd { flex: none; width: 46px; height: 46px; border: 1px dashed var(--accent); box-shadow: var(--shadow); border-radius: 999px; background: transparent; color: var(--accent); font-size: 20px; font-weight: 800; line-height: 1; }
-  .cathint, .drophint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
-  .drophint { color: var(--accent); font-weight: 700; }
+  /* category picker: one large button showing the open category; it opens the list of all categories */
+  .catpick { position: relative; margin-top: 16px; }
+  .catbtn { width: 100%; min-height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 18px; border-radius: 18px; border: 1.5px solid var(--accent); background: var(--card); color: var(--fg); box-shadow: var(--shadow); font: 800 19px var(--sans); text-align: start; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .catbtn .cb-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .catbtn .cb-chev { flex: none; width: 22px; height: 22px; color: var(--accent); transition: transform .15s; }
+  .catbtn[aria-expanded="true"] .cb-chev { transform: rotate(180deg); }
+  .catpanel { position: absolute; z-index: 45; top: calc(100% + 6px); inset-inline: 0; padding: 8px; border-radius: 18px; border: 1px solid var(--line2); background: var(--card); box-shadow: 0 14px 40px rgba(0,0,0,.4); display: flex; flex-direction: column; gap: 6px; }
+  .catpanel[hidden] { display: none; }
+  .cp-head { display: flex; align-items: center; gap: 8px; padding: 2px 6px 2px 10px; min-height: 44px; }
+  .cp-title { flex: 1; color: var(--faint); font-size: 14px; font-weight: 700; }
+  .cp-edit { flex: none; min-width: 46px; height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 800 20px var(--sans); line-height: 1; cursor: pointer; }
+  .cp-edit.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); font-size: 16px; }
+  .cp-list { list-style: none; margin: 0; padding: 0; max-height: min(56vh, 430px); overflow-y: auto; overscroll-behavior: contain; position: relative; display: flex; flex-direction: column; gap: 4px; -webkit-user-select: none; user-select: none; }
+  .cp-list li { position: relative; display: flex; align-items: center; gap: 6px; min-height: 54px; border-radius: 14px; background: var(--card2); -webkit-touch-callout: none; }
+  .cp-pick { flex: 1; min-width: 0; min-height: 54px; display: flex; align-items: center; gap: 10px; padding: 0 16px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 700 17px var(--sans); text-align: start; cursor: pointer; }
+  .cp-pick .nm, .cp-list .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cp-pick .ck { flex: none; color: var(--accent); font-weight: 900; }
+  .cp-list li.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .cp-list.editing li { padding-inline-end: 4px; }
+  .cp-list.editing .nm { padding-inline-start: 2px; font: 700 17px var(--sans); color: var(--fg); }
+  .cp-handle { flex: none; width: 48px; height: 54px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; font-weight: 900; cursor: grab; touch-action: none; }
+  .cp-act { flex: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 17px; cursor: pointer; }
+  .cp-list li.lifted { z-index: 3; background: var(--card); box-shadow: 0 0 0 2px var(--accent), 0 10px 26px rgba(0,0,0,.45); transform: translateY(var(--dy, 0)) scale(1.03); transition: box-shadow .12s, scale .12s; cursor: grabbing; }
+  .cp-list.dragging li:not(.lifted) { transition: transform .16s ease; }
+  .cp-list.dragging { cursor: grabbing; }
+  .cp-new { min-height: 52px; border-radius: 14px; border: 1.5px dashed var(--accent); background: transparent; color: var(--accent); font: 800 17px var(--sans); cursor: pointer; }
+  .cp-back { position: fixed; inset: 0; z-index: 44; }
+  .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
   .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
   .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
   .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
@@ -44,14 +59,25 @@
   .mi.dng { color: var(--muted); }
   .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
   .list li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
-  .list li.ilifted { opacity: .45; }
-  .ighost { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -130%); max-width: 70vw; padding: 8px 14px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
-  body.idragging { -webkit-user-select: none; user-select: none; }
-  @media (max-width: 420px) { .tab { padding: 0 12px; font-size: 14.5px; } .tabs { gap: 2px; } }
   .addform { display: flex; gap: 8px; margin-top: 16px; }
   .addform input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
   .addform input:focus { border-color: var(--accent); }
   .addform input::placeholder { color: var(--faint); }
+  /* ☰ drag handle on each item: touch it and drag (no long-press) */
+  .list .hdl { flex: none; width: 40px; height: 48px; display: inline-flex; align-items: center; justify-content: center; margin-inline-end: -6px; color: var(--faint); font-size: 20px; font-weight: 900; cursor: grab; touch-action: none; -webkit-user-select: none; user-select: none; }
+  .list .hdl:hover { color: var(--accent); }
+  .list li.lifted { z-index: 3; background: var(--card2); border-radius: 12px; box-shadow: 0 0 0 2px var(--accent), 0 10px 26px rgba(0,0,0,.45); transform: translateY(var(--dy, 0)) scale(1.02); cursor: grabbing; }
+  .list li.lifted .hdl { color: var(--accent); }
+  .list.dragging li:not(.lifted) { transition: transform .16s ease; }
+  .listcard:has(.list.dragging) { overflow: visible; }
+  body.sorting { -webkit-user-select: none; user-select: none; cursor: grabbing; }
+  .addform input.price-in { flex: none; width: 84px; padding: 0 10px; text-align: center; direction: ltr; }
+  .sum { margin: 14px 4px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 16px; font-weight: 800; color: var(--fg); }
+  .sum b { color: var(--accent); font-weight: 900; }
+  .sum .sel { color: var(--muted); font-weight: 700; }
+  .price { flex: none; padding: 2px 6px; color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; direction: ltr; unicode-bidi: isolate; }
+  .done .price { color: var(--faint); }
+  .edit-price { flex: none; width: 76px; height: 42px; padding: 0 8px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 16px; outline: none; text-align: center; direction: ltr; }
   .addform button { flex: none; height: 50px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
   .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
   .status.off { color: var(--accent); font-weight: 600; }
@@ -108,11 +134,7 @@
       <button type="button" class="themebtn" id="theme-btn"></button>
     </div>
   </header>
-  <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
-  <div class="hero">
-    <img src="icon-192.png" alt="" width="56" height="56">
-    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
-  </div>
+  <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
 
   <section class="card gate" data-when="out" hidden>
     <div class="lock" aria-hidden="true">🔒</div>
@@ -122,15 +144,23 @@
   </section>
 
   <main data-when="in" hidden>
-    <div class="catbar"><nav class="tabs" id="tabs" role="tablist"></nav><button type="button" class="tabadd" id="cat-add">＋</button></div>
+    <div class="catpick" id="catpick">
+      <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="catpanel" id="cat-panel" hidden>
+        <div class="cp-head"><span class="cp-title" id="cp-title"></span><button type="button" class="cp-edit" id="cat-edit">☰</button></div>
+        <ul class="cp-list" id="cat-list"></ul>
+        <button type="button" class="cp-new" id="cat-new"></button>
+      </div>
+    </div>
     <p class="cathint" id="cathint" hidden></p>
-    <p class="drophint" id="drophint" hidden></p>
     <form class="addform" id="add-form" autocomplete="off">
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
+      <input id="add-price" class="price-in" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" data-i18n-ph="pricePh" data-i18n-label="priceLabel">
       <button type="submit" data-i18n="add"></button>
     </form>
     <div class="status" id="status" role="status" aria-live="polite"></div>
     <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
+    <p class="sum" id="sum" role="status" aria-live="polite" hidden></p>
     <div class="card listcard" id="active-card"><ul class="list" id="active"></ul></div>
     <div id="done-wrap" hidden>
       <div class="donehead"><h2 id="done-h"></h2><button type="button" class="clear" id="clear" data-i18n="clear"></button></div>
@@ -152,12 +182,10 @@ window.RGMY_STRINGS = {
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
         confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
-        dragNote: "כדי להזיז: לחיצה ארוכה על הקטגוריה וגרירה לכל מקום.",
-        tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
-        catHint: "טיפ: ＋ מוסיף קטגוריה. לחיצה נוספת על קטגוריה פתוחה (או לחיצה ארוכה) פותחת ✏️ שינוי שם ומחיקה. לחיצה ארוכה וגרירה מזיזה אותה לכל מקום. אפשר גם לגרור פריט לקטגוריה אחרת. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
-        dropHint: "שחרר על קטגוריה כדי להעביר אליה את הפריט",
+        pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה",
+        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. ☰ שם: סידור בגרירה, שינוי שם ומחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
-        moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
+        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
@@ -166,16 +194,15 @@ window.RGMY_STRINGS = {
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
         confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
-        dragNote: "To move it: long-press the category and drag it anywhere.",
-        tabTip: "Tap again: rename and delete · Long-press and drag: move",
-        catHint: "Tip: ＋ adds a category. Tap an open category again (or long-press it) for ✏️ Rename and Delete. Long-press and drag to move it anywhere. You can also drag an item onto another category. Swipe an item right: selected · left: move or delete.",
-        dropHint: "Drop on a category to move the item there",
+        pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category",
+        catHint: "Tip: tap the category name to see all categories. ☰ there: drag to reorder, rename and delete. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move or delete.",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
-        moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
+        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="app.js"></script>
+<script src="../../shared/rg-topbar.js" data-slot=".topbar"></script>
 </body>
 </html>
