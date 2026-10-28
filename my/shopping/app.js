@@ -149,13 +149,15 @@
   function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid }); return true; }
 
   /* ---------- render ---------- */
+  var MVICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function row(x) {
     var txt = editing === x.id
       ? '<input class="edit" data-edit="' + esc(x.id) + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">'
       : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) + "</span>";
     return '<li data-id="' + esc(x.id) + '"' + (x.done ? ' class="done"' : "") + '><button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
-      txt + '<button type="button" class="del" data-a="del" aria-label="' + esc(t("del") + ": " + x.text) + '">×</button></li>';
+      txt + '<button type="button" class="mv" data-a="move" title="' + esc(t("moveTo")) + '" aria-label="' + esc(t("moveTo") + ": " + x.text) + '">' + MVICON + '</button>' +
+      '<button type="button" class="del" data-a="del" aria-label="' + esc(t("del") + ": " + x.text) + '">×</button></li>';
   }
   function render() {
     if (!$("active")) return;
@@ -242,6 +244,41 @@
         }
       });
   }
+  /* move one item to another category through a small menu (same save + sync as dragging it onto a category) */
+  var toastT = 0;
+  function toast(msg, undo) {
+    var el = $("toast"); if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite"); document.body.appendChild(el); }
+    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>" + (undo ? '<button type="button" class="tundo">' + esc(t("undo")) + "</button>" : "");
+    el.classList.toggle("act", !!undo);
+    if (undo) el.querySelector(".tundo").addEventListener("click", function () { el.classList.remove("on", "act"); clearTimeout(toastT); undo(); });
+    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove("on", "act"); }, undo ? 5000 : 2200);
+  }
+  function delWithUndo(id) {
+    var x = items[id]; if (!x || x.deleted) return;
+    var keep = {}, k; for (k in x) keep[k] = x[k];
+    if (editing === id) editing = null;
+    del(id); changed();
+    toast(t("deleted").replace("{x}", keep.text), function () { keep.at = now(); items[id] = keep; changed(); });
+  }
+  function moveTo(id, cid) {
+    var c = catOf(cid); if (!c) return;
+    if (editing === id) editing = null;
+    if (moveItem(id, cid)) { changed(); toast(t("movedTo").replace("{x}", catName(c))); }
+  }
+  function moveMenu(id) {
+    var x = items[id]; if (!x || x.deleted) return;
+    var from = listOf(x), others = cats().filter(function (c) { return c.cat !== from; });
+    var html = '<h3>' + esc(t("moveTitle")) + '</h3><p class="mnote">' + esc(x.text) + "</p>";
+    if (others.length) html += others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '">' + esc(catName(c)) + "</button>"; }).join("");
+    else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>";
+    html += '<button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button>";
+    sheet(html, function (a) {
+      if (a === "x") { closeSheet(); return; }
+      if (a === "del") { closeSheet(); delWithUndo(id); return; }
+      if (a === "new") { nameSheet(t("catAdd"), "", true, function (v) { var nid = addCat(v); if (nid) moveTo(id, nid); }); return; }
+      if (a.indexOf("to:") === 0) { closeSheet(); moveTo(id, a.slice(3)); }
+    });
+  }
   function selectTab(cid) {
     tab = cid; editing = null; lsSet("rg-my-shopping-tab", tab); render();
     var b = document.querySelector('#tabs [data-tab="' + tab + '"]'); if (b && b.scrollIntoView) try { b.scrollIntoView({ block: "nearest", inline: "nearest" }); } catch (e) {}
@@ -314,12 +351,12 @@
 
   /* ---------- items: long-press (mouse: drag) an item and drop it on a category to move it there ---------- */
   function bootItemDrag() {
-    var main = document.querySelector("main"), bar = $("tabs"), LONG = 500, SLOP = 10, timer = 0, auto = 0;
+    var main = document.querySelector("main"), bar = $("tabs"), LONG = 500, SLOP = 10, SWIPE = 0.35, timer = 0, auto = 0;
     function overTab(x, y) { var el = document.elementFromPoint(x, y); return el && el.closest ? el.closest("#tabs .tab") : null; }
     function mark(tb) { bar.querySelectorAll(".tab.drop").forEach(function (b) { if (b !== tb) b.classList.remove("drop"); }); if (tb) tb.classList.add("drop"); }
     function reset() {
       clearTimeout(timer); clearInterval(auto); auto = 0;
-      if (idrag) { if (idrag.ghost && idrag.ghost.parentNode) idrag.ghost.parentNode.removeChild(idrag.ghost); if (idrag.li) idrag.li.classList.remove("ilifted"); }
+      if (idrag) { unswipe(); if (idrag.ghost && idrag.ghost.parentNode) idrag.ghost.parentNode.removeChild(idrag.ghost); if (idrag.li) idrag.li.classList.remove("ilifted"); }
       mark(null); document.body.classList.remove("idragging"); idrag = null;
       if (needRender && !drag) { needRender = false; render(); }
     }
@@ -331,6 +368,7 @@
       if (navigator.vibrate) try { navigator.vibrate(12); } catch (e) {}
       var tip = $("drophint"); if (tip) { tip.textContent = t("dropHint"); tip.hidden = false; }
     }
+    function unswipe() { if (idrag && idrag.li) { idrag.li.classList.remove("swiping", "sw-r", "sw-l", "sw-go"); idrag.li.style.removeProperty("--sx"); } }
     function place() { if (idrag && idrag.ghost) { idrag.ghost.style.left = idrag.cx + "px"; idrag.ghost.style.top = idrag.cy + "px"; } }
     main.addEventListener("pointerdown", function (e) {
       var li = e.target.closest(".list li"); if (!li || e.target.closest("button,input") || editing) return;
@@ -342,9 +380,22 @@
     main.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       idrag.cx = e.clientX; idrag.cy = e.clientY;
+      var dx = e.clientX - idrag.x, dy = e.clientY - idrag.y;
+      if (idrag.swipe) { // a horizontal swipe on a row: right = selected / back to the list, left = move menu
+        e.preventDefault();
+        var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
+        idrag.dx = dx; idrag.li.style.setProperty("--sx", dx + "px");
+        idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
+        return;
+      }
       if (!idrag.lifted) {
-        if (Math.abs(e.clientX - idrag.x) <= SLOP && Math.abs(e.clientY - idrag.y) <= SLOP) return;
-        if (idrag.type === "mouse") lift(); else { reset(); return; }
+        if (Math.abs(dx) <= SLOP && Math.abs(dy) <= SLOP) return;
+        if (idrag.type === "mouse") lift();
+        else if (Math.abs(dx) > Math.abs(dy) * 1.5) { // clearly sideways before the long-press: a swipe
+          clearTimeout(timer); idrag.swipe = true; idrag.dx = dx; idrag.li.classList.add("swiping");
+          try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
+          e.preventDefault(); return;
+        } else { reset(); return; } // vertical: a normal scroll
       }
       e.preventDefault(); place(); mark(overTab(e.clientX, e.clientY));
       if (!auto) auto = setInterval(function () { if (!idrag) return; var z = 60, h = window.innerHeight, sp = 0;
@@ -356,6 +407,17 @@
     function up(e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       var d = idrag, tip = $("drophint"); if (tip) tip.hidden = true;
+      if (d.swipe) {
+        noClick = true; setTimeout(function () { noClick = false; }, 400);
+        var w = d.li.offsetWidth || 1, dx = e.type === "pointerup" ? e.clientX - d.x : 0, id = d.id;
+        reset();
+        if (Math.abs(dx) >= w * SWIPE) {
+          var x = items[id];
+          if (dx > 0 && x && !x.deleted) { upd(id, { done: !x.done }); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
+          else if (dx < 0) moveMenu(id);
+        }
+        return;
+      }
       if (d.lifted) {
         noClick = true; setTimeout(function () { noClick = false; }, 400);
         var tb = e.type === "pointerup" ? overTab(e.clientX, e.clientY) : null, cid = tb && tb.getAttribute("data-tab");
@@ -365,7 +427,7 @@
     }
     main.addEventListener("pointerup", up);
     main.addEventListener("pointercancel", up);
-    main.addEventListener("touchmove", function (e) { if (idrag && idrag.lifted) e.preventDefault(); }, { passive: false });
+    main.addEventListener("touchmove", function (e) { if (idrag && (idrag.lifted || idrag.swipe)) e.preventDefault(); }, { passive: false });
     main.addEventListener("contextmenu", function (e) { if (e.target.closest(".list li")) e.preventDefault(); });
   }
 
@@ -386,6 +448,7 @@
       var a = b.getAttribute("data-a");
       if (a === "toggle") { upd(id, { done: !x.done }); changed(); }
       else if (a === "del") { del(id); changed(); }
+      else if (a === "move") moveMenu(id);
       else if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
     });
     main.addEventListener("keydown", function (e) {

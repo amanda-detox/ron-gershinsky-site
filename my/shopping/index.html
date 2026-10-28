@@ -69,6 +69,24 @@
   .edit { flex: 1; min-width: 0; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
   .del { flex: none; width: 40px; height: 40px; border: 0; background: none; color: var(--faint); font-size: 22px; line-height: 1; border-radius: 50%; }
   .del:hover { color: var(--fg); background: var(--card2); }
+  .mv { flex: none; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; color: var(--faint); border-radius: 50%; }
+  .mv:hover { color: var(--fg); background: var(--card2); }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 70; transform: translate(-50%, 20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+  .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; padding-inline-end: 8px; }
+  .toast .tmsg { overflow: hidden; text-overflow: ellipsis; }
+  .tundo { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--accentink); color: var(--accent); font-weight: 800; font-size: 14px; }
+  /* swipe: the row content slides, a gold ✓ shows on the left (swipe right) and the move icon on the right (swipe left) */
+  .list li { position: relative; overflow: hidden; touch-action: pan-y; }
+  .list li > * { transition: transform .18s ease; }
+  .list li.swiping > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list li::before, .list li::after { content: ""; position: absolute; top: 50%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .12s, transform .12s; transform: scale(.8); }
+  .list li::before { content: "✓"; left: 10px; color: var(--accent); border: 2px solid var(--accent); font-weight: 900; font-size: 17px; }
+  .list li.done::before { content: "↺"; }
+  .list li::after { right: 12px; width: 28px; height: 28px; margin-top: -14px; border-radius: 0; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .list li.sw-r::before, .list li.sw-l::after { opacity: .55; }
+  .list li.sw-r.sw-go::before { opacity: 1; transform: scale(1.1); background: var(--accent); color: var(--accentink); }
+  .list li.sw-l.sw-go::after { opacity: 1; transform: scale(1.15); }
   .donehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 22px 2px 0; }
   .donehead h2 { margin: 0; font-size: 15px; color: var(--muted); font-weight: 700; }
   .clear { height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13.5px; font-weight: 600; }
@@ -136,8 +154,10 @@ window.RGMY_STRINGS = {
         confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
         dragNote: "כדי להזיז: לחיצה ארוכה על הקטגוריה וגרירה לכל מקום.",
         tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
-        catHint: "טיפ: ＋ מוסיף קטגוריה. לחיצה נוספת על קטגוריה פתוחה (או לחיצה ארוכה) פותחת ✏️ שינוי שם ומחיקה. לחיצה ארוכה וגרירה מזיזה אותה לכל מקום. אפשר גם לגרור פריט לקטגוריה אחרת.",
-        dropHint: "שחרר על קטגוריה כדי להעביר אליה את הפריט" },
+        catHint: "טיפ: ＋ מוסיף קטגוריה. לחיצה נוספת על קטגוריה פתוחה (או לחיצה ארוכה) פותחת ✏️ שינוי שם ומחיקה. לחיצה ארוכה וגרירה מזיזה אותה לכל מקום. אפשר גם לגרור פריט לקטגוריה אחרת. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
+        dropHint: "שחרר על קטגוריה כדי להעביר אליה את הפריט",
+        delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
+        moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
@@ -148,8 +168,10 @@ window.RGMY_STRINGS = {
         confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
         dragNote: "To move it: long-press the category and drag it anywhere.",
         tabTip: "Tap again: rename and delete · Long-press and drag: move",
-        catHint: "Tip: ＋ adds a category. Tap an open category again (or long-press it) for ✏️ Rename and Delete. Long-press and drag to move it anywhere. You can also drag an item onto another category.",
-        dropHint: "Drop on a category to move the item there" }
+        catHint: "Tip: ＋ adds a category. Tap an open category again (or long-press it) for ✏️ Rename and Delete. Long-press and drag to move it anywhere. You can also drag an item onto another category. Swipe an item right: selected · left: move or delete.",
+        dropHint: "Drop on a category to move the item there",
+        delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
+        moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
