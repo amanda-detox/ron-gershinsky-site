@@ -20,6 +20,7 @@
   var drag = null, idrag = null, needRender = false, noClick = false; // drag = a category row being reordered, idrag = an item being swiped
 
   function $(id) { return document.getElementById(id); }
+  function on(id, ev, fn) { var el = $(id); if (el) el.addEventListener(ev, fn); } // a missing element (old cached page) never stops the app from loading
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function jparse(s, d) { try { var v = JSON.parse(s); return v == null ? d : v; } catch (e) { return d; } }
@@ -95,6 +96,28 @@
   function delCat(cid) { liveIn(cid).forEach(function (x) { del(x.id); }); upCat(cid, { gone: 1 }); }
   function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
 
+  /* ---------- safety net ---------- */
+  // Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions),
+  // so nothing is ever lost even if a bug writes something wrong: rg-my-shopping-bak:<user id> = [{ t, items, cats }, ...]
+  var BAK_N = 5, bulkOk = 0;
+  function bakKey(id) { return "rg-my-shopping-bak:" + id; }
+  function backup(cl, cc) {
+    if (!uid || (!Object.keys(cl).length && !Object.keys(cc).length)) return;
+    var l = jparse(lsGet(bakKey(uid)), []); if (!Array.isArray(l)) l = [];
+    var last = l[l.length - 1];
+    if (last && same(last.items || {}, cl) && same(last.cats || {}, cc)) return; // same as the newest backup
+    l.push({ t: Date.now(), items: cl, cats: cc });
+    while (l.length > BAK_N) l.shift();
+    try { localStorage.setItem(bakKey(uid), JSON.stringify(l)); } catch (e) { l.splice(0, l.length - 1); lsSet(bakKey(uid), JSON.stringify(l)); }
+  }
+  function liveCount(m, isCat) { var n = 0; for (var k in m) { var x = m[k]; if (x && !x.deleted && !(isCat && x.gone)) n++; } return n; }
+  // true when this write would remove most of what is in the cloud at once (and Ron did not just delete a whole category himself)
+  function tooManyGone(next, cloud, isCat) {
+    if (Date.now() < bulkOk) return false;
+    var before = liveCount(cloud, isCat), after = liveCount(next, isCat), gone = before - after;
+    return before >= 4 && gone >= 3 && gone * 2 > before;
+  }
+
   /* ---------- sync ---------- */
   function setStatus() {
     var s = $("status"); if (!s) return;
@@ -105,20 +128,24 @@
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sentI = null, sentC = null;
+    var who = uid, sentI = null, sentC = null, blocked = false;
     return Promise.all([A.get(APP, KEY), A.get(APP, CKEY)]).then(function (r) {
       if (who !== uid) return;
       var cl = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
       var cc = (r[1] && r[1].cats && typeof r[1].cats === "object") ? r[1].cats : {};
       var mi = merge(items, cl), mc = merge(catsMap, cc);
       if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; saveLocal(); render(); }
-      var jobs = [];
-      if (!same(mi, cl)) { sentI = mi; jobs.push(A.set(APP, KEY, { v: 1, items: mi })); }
-      if (!same(mc, cc)) { sentC = mc; jobs.push(A.set(APP, CKEY, { v: 1, cats: mc })); }
+      var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
+      if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
+      if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
+      if (wI || wC) backup(cl, cc);
+      if (wI) { sentI = mi; jobs.push(A.set(APP, KEY, { v: 1, items: mi })); }
+      if (wC) { sentC = mc; jobs.push(A.set(APP, CKEY, { v: 1, cats: mc })); }
       return Promise.all(jobs);
     }).then(function () {
       if (who !== uid) return;
       offline = false;
+      if (blocked) return; // keep "pending": nothing was lost locally, and the cloud copy stays as it was
       if ((!sentI || same(sentI, items)) && (!sentC || same(sentC, catsMap))) { pending = false; saveLocal(); } // nothing new changed meanwhile
       else again = true;
     }, function (e) {
@@ -271,7 +298,7 @@
   function deleteCat(cid) {
     var c = catOf(cid); if (!c) return;
     if (cats().length <= 1) { window.alert(t("lastCat")); return; }
-    if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { delCat(cid); if (tab === cid) tab = ""; lsSet("rg-my-shopping-tab", curTab()); changed(); }
+    if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) tab = ""; lsSet("rg-my-shopping-tab", curTab()); changed(); }
   }
   /* move one item to another category through a small menu (same save + sync as dragging it onto a category) */
   var toastT = 0;
@@ -435,9 +462,9 @@
   function closeCats() { if (drag) return; var was = catEdit; catOpen = false; catEdit = false; render(); if (was) syncSoon(); }
   function bootCats() {
     var list = $("cat-list");
-    $("cat-btn").addEventListener("click", function () { if (catOpen) closeCats(); else openCats(); });
-    $("cat-edit").addEventListener("click", function () { if (drag) return; catEdit = !catEdit; render(); if (!catEdit) syncSoon(); });
-    $("cat-new").addEventListener("click", function () {
+    on("cat-btn", "click", function () { if (catOpen) closeCats(); else openCats(); });
+    on("cat-edit", "click", function () { if (drag) return; catEdit = !catEdit; render(); if (!catEdit) syncSoon(); });
+    on("cat-new", "click", function () {
       nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v); if (!id) return; if (!catEdit) { tab = id; lsSet("rg-my-shopping-tab", id); catOpen = false; } changed();
         if (catEdit) { var b = $("cat-list").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } });
     });
@@ -503,18 +530,22 @@
   }
 
   function boot() {
+    try { bootUI(); } catch (e) { setTimeout(function () { throw e; }); } // the list still loads and shows even if a control fails
+    startData();
+  }
+  function bootUI() {
     bootCats();
     bootItemDrag();
     sortable({ list: $("active"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id",
       canStart: function () { return !editing; },
       onDrop: function (ids) { setItemOrder(ids); changed(); } });
-    $("add-form").addEventListener("submit", function (e) {
+    on("add-form", "submit", function (e) {
       e.preventDefault(); var i = $("add-input"), pi = $("add-price"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
       if (!i.value.trim()) { i.focus(); return; }
       add(i.value, null, pr); i.value = ""; pi.value = ""; changed(); i.focus();
     });
-    $("suggest").addEventListener("click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
+    on("suggest", "click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
@@ -542,6 +573,8 @@
       if (e.target.getAttribute("data-edit")) commitEdit(e.target);
     });
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
+  }
+  function startData() {
     M.onLang(render);
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;
