@@ -9,6 +9,7 @@
 <title>היליפיי בע"מ</title>
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<script>/* site owner (Ron) signed in on this device: hide waitlist / contact / about / recommended game before first paint; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
 <link rel="manifest" href="manifest.json?v=23">
 <link rel="icon" href="favicon-32.png?v=23" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.ico?v=23" sizes="any">
@@ -132,6 +133,7 @@
     padding: 1.25rem;
   }
   .box + .box { margin-top: 1rem; }
+  html.rg-owner .owner-hide { display: none !important; }
   h2 { margin: 0; font-size: 1rem; font-weight: 500; }
   .desc { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
   label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -202,6 +204,8 @@
   .app-name { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
   .app-line { color: var(--muted); font-size: 0.71875rem; line-height: 1.4; text-wrap: pretty; }
   .priv-apps[hidden] { display: none; }
+  .app-lock { display: inline-flex; vertical-align: 0.05em; margin-inline-start: 0.25rem; color: #f5c542; opacity: 0.85; }
+  html[data-theme="light"] .app-lock { color: #b8901c; }
   .priv-apps h2 .lock { font-size: 0.95em; margin-inline-end: 0.3rem; }
   .priv-apps .app { border-color: rgba(245, 197, 66, 0.38); }
   .priv-apps .app:hover { border-color: #f5c542; }
@@ -334,7 +338,7 @@
     <ul class="app-grid" id="priv-grid"></ul>
   </section>
   <ul id="list"></ul>
-  <section class="box" aria-labelledby="wait-title">
+  <section class="box owner-hide" aria-labelledby="wait-title">
     <h2 id="wait-title"></h2>
     <p class="desc" id="wait-desc"></p>
     <form id="form" novalidate>
@@ -345,14 +349,14 @@
     </form>
     <p class="note" id="thanks" hidden></p>
   </section>
-  <section class="box" aria-labelledby="contact-title">
+  <section class="box owner-hide" aria-labelledby="contact-title">
     <h2 id="contact-title"></h2>
     <a class="mail" id="contact" href="mailto:detoxify.ai@proton.me"></a>
   </section>
-  <section class="box about-box">
+  <section class="box about-box owner-hide">
     <p class="about-row" style="margin:0"><a class="about-link" id="about-link" href="about/index.html"></a></p>
   </section>
-  <section class="box" aria-labelledby="game-title">
+  <section class="box owner-hide" aria-labelledby="game-title">
     <h2 id="game-title"></h2>
     <p class="desc" id="game-desc"></p>
     <iframe class="game-frame" id="game-frame" src="relax/still-pond.html" title="Still Pond" loading="lazy"></iframe>
@@ -379,8 +383,9 @@ var WAITLIST = { endpoint: "https://fra.cloud.appwrite.io/v1", project: "6adef4a
 var topics = [];
 
 // "My apps" grid on the landing page. Each app lives in its own folder with its own icon.
+// hidden: true keeps an app off the grid (files untouched); remove the flag to show it again. Clockify hidden at Ron's request (2026-10-28).
 var apps = [
-  { href: "clockify/index.html",  icon: "clockify/icon-192.png",     he: "קלוקיפיי",      en: "Clockify",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
+  { hidden: true, href: "clockify/index.html",  icon: "clockify/icon-192.png",     he: "קלוקיפיי",      en: "Clockify",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
   { href: "news/index.html",      icon: "news/icon-192.png",      he: "עדכוניפיי",     en: "Updatify",   heLine: "חדשות יומיות על אנשים וחברות שאני עוקב אחריהם", enLine: "Daily news on the people and companies I follow" },
   { href: "summarify/index.html", icon: "summarify/icon-192.png", he: "סיכומיפיי",     en: "Summarify", heLine: "סיכומים מלאים של פרקים, בעברית",       enLine: "Full episode summaries, in Hebrew" },
   { href: "relax/index.html",     icon: "relax/icon-192.png",     he: "רילקסיפיי",   en: "Relaxify", heLine: "משחקי רגיעה: שבעה משחקים שקטים, בלי ניקוד ובלי טיימר", enLine: "Relaxing games: seven quiet games, no scores, no timers" },
@@ -391,15 +396,31 @@ var apps = [
   { href: "balancify/index.html", icon: "balancify/icon-192.png", he: "באלאנסיפיי",     en: "Balancify", heLine: "הרגעה, איזון וזרימה ברגעים קשים",      enLine: "Calm, balance and flow in hard moments" },
   { href: "pumpify/index.html",   icon: "pumpify/icon-192.png",   he: "פַּאמְפִּיפַיי",  en: "Pumpify",   heLine: "מדיה מעוררת השראה",                    enLine: "Inspiring media" },
   { href: "diagnosify/index.html", icon: "diagnosify/icon-192.png", he: "דיאגנוסיפיי",   en: "Diagnosify", heLine: "בדיקות סינון עצמיות חינמיות",          enLine: "Free self-screening checks" },
-  { href: "fly/index.html",       icon: "fly/icon-192.png",       he: "פלייפיי",       en: "Playify",   heLine: "משחק תעופה בתלת מימד בעולמות מופלאים", enLine: "A 3D flying game through wondrous worlds" },
+  { href: "fly/index.html",       icon: "fly/icon-192.png",       he: "פלייפיי",       en: "Flyify",   heLine: "משחק תעופה בתלת מימד בעולמות מופלאים", enLine: "A 3D flying game through wondrous worlds" },
   { href: "game/index.html",      icon: "game/icon-192.png",      he: "לייטיפיי",      en: "Lightify",  heLine: "משחק תלת מימד של אור וחסד",          enLine: "A 3D game of light and kindness" },
   { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" }
 ];
 
+// Site owner signed in: ONE merged grid (public + private apps from my/apps.js), these first, private ones marked with a lock.
+var OWNER_FIRST = ["my/shopping/", "my/ideas/", "fly/index.html", "news/index.html"];
+function ownerApps() {
+  var u = window.RGAccount ? RGAccount.user() : null;
+  if (!isOwner(u) || !privData || !privData.apps) return null;
+  var all = apps.slice();
+  privData.apps.forEach(function (app) {
+    if (!app || app.hidden || typeof app.href !== "string" || /^[a-z]+:|^\/|\.\./i.test(app.href)) return; // only paths inside my/; hidden: true = off the list
+    all.push({ href: "my/" + app.href, icon: "my/" + app.icon, he: app.he, en: app.en, heLine: app.heLine, enLine: app.enLine, priv: true });
+  });
+  var first = [];
+  OWNER_FIRST.forEach(function (h) { all.forEach(function (a) { if (a.href === h) first.push(a); }); });
+  return first.concat(all.filter(function (a) { return first.indexOf(a) === -1; }));
+}
+var LOCK_SVG = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg>';
 function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
-  apps.forEach(function (app) {
+  (ownerApps() || apps).forEach(function (app) {
+    if (app.hidden) return;
     var li = document.createElement("li");
     var a = document.createElement("a");
     a.className = "app";
@@ -409,6 +430,11 @@ function renderApps(he) {
     var name = document.createElement("span");
     name.className = "app-name";
     name.textContent = he ? app.he : app.en;
+    if (app.priv) {
+      var lock = document.createElement("span"); lock.className = "app-lock"; lock.innerHTML = LOCK_SVG;
+      lock.title = he ? "פרטי, רק אתה רואה" : "Private, only you see it";
+      name.appendChild(lock);
+    }
     var line = document.createElement("span");
     line.className = "app-line";
     line.textContent = he ? app.heLine : app.enLine;
@@ -771,28 +797,14 @@ function privHide() {
   document.getElementById("priv-apps").hidden = true;
   document.getElementById("priv-grid").innerHTML = "";
 }
-function renderPriv() {
-  var u = window.RGAccount ? RGAccount.user() : null;
-  if (!isOwner(u) || !privData || !privData.apps) { privHide(); return; }
-  var he = lang === "he", grid = document.getElementById("priv-grid"), h = document.getElementById("priv-title");
-  h.innerHTML = ""; var lk = document.createElement("span"); lk.className = "lock"; lk.setAttribute("aria-hidden", "true"); lk.textContent = "🔒";
-  h.appendChild(lk); h.appendChild(document.createTextNode(privData.title ? (he ? privData.title.he : privData.title.en) : (he ? "האפליקציות הפרטיות שלי" : "My private apps")));
-  grid.innerHTML = "";
-  privData.apps.forEach(function (app) {
-    if (!app || typeof app.href !== "string" || /^[a-z]+:|^\/|\.\./i.test(app.href)) return; // only paths inside my/
-    var li = document.createElement("li"), a = document.createElement("a");
-    a.className = "app"; a.href = "my/" + app.href;
-    var img = document.createElement("img");
-    img.src = "my/" + app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy";
-    var name = document.createElement("span"); name.className = "app-name"; name.textContent = he ? app.he : app.en;
-    var line = document.createElement("span"); line.className = "app-line"; line.textContent = he ? app.heLine : app.enLine;
-    a.appendChild(img); a.appendChild(name); a.appendChild(line); li.appendChild(a); grid.appendChild(li);
-  });
-  document.getElementById("priv-apps").hidden = false;
+function renderPriv() { // the owner's private apps are merged into the main grid (renderApps); the separate section stays hidden
+  privHide();
+  renderApps(lang === "he");
 }
 function loadPriv() {
   var u = window.RGAccount ? RGAccount.user() : null;
-  if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} privHide(); return; }
+  document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide waitlist / contact / about / recommended game
+  if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} renderPriv(); return; }
   if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
   renderPriv();
   if (privLoading) return;
@@ -828,5 +840,6 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
   navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 }
 </script>
+<script src="shared/rg-topbar.js" data-slot=".topbar" data-home="1"></script>
 </body>
 </html>
