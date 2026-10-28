@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="סיכומיפיי">
+<meta name="description" content="סיכומיפיי · סיכומים מלאים של פרקים, בעברית. Summarify, full episode summaries in Hebrew.">
+<script>try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}</script>
+<title>סיכומיפיי</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<style>
+:root{
+  --bg:#0a1a3f; --bg2:#06112b; --card:rgba(15,35,80,.78); --ink:#ffffff; --ink2:#dbe5fb; --mute:#a9bbdf; --dim:#8a9dc4;
+  --em:#7fb6ff; --line:rgba(127,182,255,.18); --line2:rgba(127,182,255,.38);
+  --gold:#e3bd5b; --gold2:#f3d58a; --gline:rgba(227,189,91,.38);
+  --accent:#ffffff; --accentink:#0a1a3f; --chip:rgba(127,182,255,.1);
+  --btn:linear-gradient(180deg,#1d4fb8,#143a8c); --btnink:#fff6dc;
+  --shadow:0 1px 2px rgba(0,0,0,.25),0 8px 24px rgba(0,0,0,.2);
+  --pagebg:radial-gradient(120% 60% at 50% -10%,#173a85 0%,#0f2760 38%,#0a1a3f 65%,#06112b 100%);
+  color-scheme:dark;
+}
+html[data-theme=light]{
+  --bg:#f3efe6; --bg2:#ebe5d8; --card:#fffdf8; --ink:#0b1f4d; --ink2:#22396b; --mute:#44557b; --dim:#66779b;
+  --em:#1a47a0; --line:rgba(11,42,107,.12); --line2:rgba(11,42,107,.3);
+  --gold:#b8892b; --gold2:#8a6414; --gline:rgba(184,137,43,.4);
+  --accent:#0b2a6b; --accentink:#ffffff; --chip:rgba(26,71,160,.07);
+  --btn:linear-gradient(180deg,#1a47a0,#0b2a6b); --btnink:#fff6dc;
+  --shadow:0 1px 2px rgba(11,31,77,.05),0 8px 22px rgba(11,42,107,.07);
+  --pagebg:linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg2)}
+body{color:var(--ink);background:var(--pagebg) fixed,var(--bg2);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh;min-height:100dvh;overflow-x:hidden}
+.wrap{max-width:680px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}
+header.top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 10px;font-size:14px}
+.tools{display:inline-flex;align-items:center;gap:8px}
+.acct{display:inline-flex;min-width:0}
+a.back{color:var(--mute);text-decoration:none;padding:8px 2px;white-space:nowrap}
+a.back:hover{color:var(--em)}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card)}
+.lang button{font:600 13px var(--sans);color:var(--mute);background:none;border:0;border-radius:999px;padding:7px 13px;cursor:pointer}
+.lang button[aria-pressed=true]{color:var(--accentink);background:var(--accent)}
+:focus-visible{outline:3px solid rgba(227,189,91,.6);outline-offset:2px}
+.hero{display:flex;align-items:center;gap:14px;padding:20px 2px 6px}
+.hero img{width:60px;height:60px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,.22);flex:none}
+h1{font-weight:700;font-size:34px;line-height:1.1;margin:0}
+.tagline{color:var(--mute);margin:2px 0 0;font-size:15.5px}
+.card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);margin:14px 0;-webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%);scroll-margin-top:20px}
+.card.deep{outline:2px solid var(--gold);outline-offset:2px}
+.card .src{font-size:13.5px;font-weight:700;color:var(--gold2);margin:0 0 6px}
+html:not([data-theme=light]) .card .src{color:var(--gold)}
+.card h2{margin:0 0 8px;font-size:19px;line-height:1.35;font-weight:800;color:var(--ink)}
+.card p.ex{margin:0;color:var(--ink2);font-size:15.5px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:12px;font-size:13.5px;color:var(--dim)}
+.acts{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
+.more{display:inline-flex;align-items:center;gap:5px;font:800 14px var(--sans);color:var(--btnink);background:var(--btn);border:1px solid var(--gold);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(8,22,60,.18)}
+.more svg{width:14px;height:14px}
+html[dir=rtl] .more svg{transform:scaleX(-1)}
+.more:hover{filter:brightness(1.08)}
+.sh{display:inline-flex;align-items:center;gap:5px;font:700 13.5px var(--sans);color:var(--ink2);background:var(--chip);border:1px solid var(--gline);border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.sh svg{width:14px;height:14px;color:var(--gold);flex:none}
+.sh:hover{border-color:var(--gold)}
+.sh:active,.more:active{transform:scale(.96)}
+.heonly{font-size:13px;color:var(--dim);margin:8px 0 0}
+.heonly[hidden]{display:none}
+/* full summary */
+.full[hidden],.list[hidden]{display:none}
+.fbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 4px}
+.lnk{background:none;border:0;padding:6px 0;font:700 14.5px var(--sans);color:var(--em);cursor:pointer}
+.lnk:hover{text-decoration:underline}
+article.doc{background:var(--card);border:1px solid var(--gline);border-top:3px solid var(--gold);border-radius:18px;padding:18px 18px 20px;box-shadow:var(--shadow);margin:10px 0;-webkit-backdrop-filter:blur(14px) saturate(130%);backdrop-filter:blur(14px) saturate(130%)}
+article.doc .src{font-size:13.5px;font-weight:700;color:var(--gold2);margin:0 0 4px}
+html:not([data-theme=light]) article.doc .src{color:var(--gold)}
+article.doc h1.t{font-size:23px;line-height:1.35;font-weight:800;margin:0 0 12px}
+.md{font-size:16.5px;line-height:1.75;color:var(--ink2);overflow-wrap:anywhere}
+.md h2{font-size:19px;line-height:1.35;color:var(--ink);font-weight:800;margin:24px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--gline)}
+.md h3{font-size:17px;color:var(--ink);font-weight:800;margin:18px 0 8px}
+.md p{margin:0 0 12px}
+.md ul,.md ol{margin:0 0 14px;padding-inline-start:22px}
+.md li{margin:0 0 8px}
+.md li::marker{color:var(--gold)}
+.md strong{color:var(--ink);font-weight:800}
+.md hr{border:0;border-top:1px solid var(--gline);margin:20px 0 14px}
+.md a{color:var(--em)}
+.doc .foot{margin-top:10px;padding-top:12px;border-top:1px solid var(--gline);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;font-size:13.5px;color:var(--dim)}
+.doc .foot a{color:var(--dim);font-weight:700;text-decoration:none}
+.doc .foot a:hover{color:var(--gold2);text-decoration:underline}
+.empty,.err{text-align:center;color:var(--mute);padding:30px 10px;font-size:15px}
+footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,12px);z-index:40;max-width:calc(100% - 32px);background:var(--bg);color:var(--ink);border:1px solid var(--gold);border-radius:999px;padding:9px 18px;font:700 14.5px var(--sans);box-shadow:0 8px 28px rgba(0,0,0,.35);opacity:0;transition:opacity .2s,transform .2s;text-align:center;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast[hidden]{display:none}
+/* install instructions sheet */
+.sheet-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center}
+.sheet-bg[hidden]{display:none}
+.sheet{width:100%;max-width:520px;background:var(--bg);color:var(--ink);border:1px solid var(--gline);border-bottom:0;border-radius:20px 20px 0 0;padding:14px 18px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.4)}
+.sheet .grab{width:42px;height:5px;border-radius:9px;background:var(--gline);margin:0 auto 10px}
+.sheet h3{margin:0 0 8px;font-size:18px}
+.sheet ol{margin:0 0 10px;padding-inline-start:22px;font-size:15px}
+.sheet .note{font-size:14px;color:var(--mute)}
+.sheet .btn{display:block;margin:10px auto 0;font:700 15px var(--sans);color:var(--btnink);background:var(--btn);border:1px solid var(--gold);border-radius:999px;padding:9px 26px;cursor:pointer}
+/* a picked background (shared picker) replaces the page gradient */
+html:not([data-theme=light]):not([data-rgbg="0"]) .card,html:not([data-theme=light]):not([data-rgbg="0"]) article.doc{background:rgba(12,10,24,.55)}
+html[data-theme=light]:not([data-rglbg="0"]) .card,html[data-theme=light]:not([data-rglbg="0"]) article.doc{background:rgba(255,255,255,.82)}
+@media (max-width:380px){body{font-size:16px}h1{font-size:29px}.wrap{padding-left:12px;padding-right:12px}article.doc{padding:16px 14px}.md{font-size:16px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script src="../shared/rg-bg.js" data-app="summarify" data-theme-key="rg-summarify-theme" data-light-color="#f3efe6" data-slot=".top .tools" data-before=".lang"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="back" href="../" id="back"></a>
+    <div class="tools">
+      <span class="acct" data-rg-account></span>
+      <div class="lang" role="group" aria-label="Language / שפה">
+        <button type="button" id="lang-he" aria-pressed="true">עברית</button>
+        <button type="button" id="lang-en" aria-pressed="false">English</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="60" height="60">
+    <div>
+      <h1 id="title"></h1>
+      <p class="tagline" id="tagline"></p>
+    </div>
+  </div>
+
+  <main>
+    <section class="list" id="list" aria-live="polite"></section>
+    <section class="full" id="full" hidden>
+      <div class="fbar"><button type="button" class="lnk" id="to-list"></button><button type="button" class="sh" id="full-share"></button></div>
+      <p class="heonly" id="full-heonly" hidden></p>
+      <article class="doc" id="doc" lang="he" dir="rtl"></article>
+    </section>
+  </main>
+
+  <div class="sheet-bg" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+    <div class="sheet">
+      <div class="grab" aria-hidden="true"></div>
+      <h3 id="sheet-title"></h3>
+      <div id="sheet-body"></div>
+      <button type="button" class="btn" id="sheet-close"></button>
+    </div>
+  </div>
+  <div class="rg-install-wrap inst" id="install-wrap"><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer id="copyright">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
+</body>
+</html>
