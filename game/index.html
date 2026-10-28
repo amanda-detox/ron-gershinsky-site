@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0a1238">
 <meta name="mobile-web-app-capable" content="yes">
@@ -155,6 +156,6 @@
 <div id="nogl" class="overlay hidden"><div class="panel"><h1 data-t="title"></h1><p class="sub" data-t="nogl"></p></div></div>
 
 <script type="module" src="game.js"></script>
-<script src="../shared/rg-topbar.js" data-slot="#menu" data-where="prepend" data-pin="1"></script>
+<script src="../shared/rg-topbar.js?v=2" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 </body>
 </html>
