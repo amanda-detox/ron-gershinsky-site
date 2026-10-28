@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T11:05:00+02:00",
+ "updated": "2026-10-28T12:09:00+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,23 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-faa-10k-florida-pause",
+   "topic": "spacex",
+   "date": "2026-10-28T09:10:53Z",
+   "url": "https://x.com/i/trending/2115159188729110704",
+   "source": "X",
+   "he": {
+    "title": "SpaceX דורשת מה-FAA כללים ל-10,000 שיגורים בשנה, ועוצרת זמנית את שיגורי Falcon 9 בפלורידה",
+    "summary": "בתגובה לרשות התעופה האמריקאית, SpaceX קוראת לשנות את כללי המרחב האווירי כדי לאפשר 10,000 שיגורים בשנה, בעיקר מ-Starbase לואיזיאנה. במקביל, לפי הסיפור ב-X, החברה עצרה לשישה שבועות את שיגורי Falcon 9 מפלורידה כדי להשלים את הכנת כן 39A במרכז החלל קנדי ל-Starship."
+   },
+   "en": {
+    "title": "SpaceX asks the FAA for rules enabling 10,000 launches a year, pauses Florida Falcon 9 launches",
+    "summary": "In comments to the FAA, SpaceX called for overhauling US airspace rules to support 10,000 launches a year, mainly from its planned Starbase Louisiana site. Meanwhile, per the X story, it paused Florida Falcon 9 launches for six weeks to finish Starship setup at Kennedy Space Center's Pad 39A."
+   },
+   "full_he": "SpaceX מדמיינת עתיד שבו רקטות משוגרות מדי יום מאתרים כמו Starbase לואיזיאנה, אבל כללי בקרת התנועה האווירית המיושנים עומדים בדרך.\n\n• בתגובה שהגישה ל-FAA (רשות התעופה האמריקאית), SpaceX קראה לשנות מן היסוד את כללי המרחב האווירי בארה\"ב כדי לתמוך ב-10,000 שיגורים בשנה, בעיקר מהאתר המתוכנן Starbase לואיזיאנה, שמתוכנן ל-30 שיגורים וחזרות ביום.\n• לטענת החברה, התהליכים הנוכחיים נבנו לטיסות נדירות, והיום הם צוואר הבקבוק של רקטות רב-פעמיות. היא הציגה גם את הכלי שלה, Cleared, שחברות תעופה כבר משתמשות בו.\n• במקביל, SpaceX עצרה לשישה שבועות את שיגורי Falcon 9 מפלורידה כדי להשלים את הכנת כן השיגור 39A במרכז החלל קנדי ל-Starship. סגן הנשיא קיקו דונצ'ב הכריז \"הגיע הזמן לשחק\", בזמן שהניסויים בטקסס מתקדמים.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "SpaceX envisions a future of rockets launching daily from sites like Starbase Louisiana, but outdated air traffic rules stand in the way.\n\n• In comments to the FAA, SpaceX called for overhauling U.S. airspace rules to support 10,000 launches a year, mainly from its planned Starbase Louisiana site designed for 30 launches and reentries per day.\n• The company argued that current processes, built for rare flights, now bottleneck reusable rockets, and highlighted its own Cleared tool used by airlines.\n• Meanwhile, SpaceX paused Florida Falcon 9 launches for six weeks to finalize Starship setup at Kennedy Space Center's Pad 39A, with VP Kiko Dontchev declaring \"it's game time\" as testing advances in Texas.\n\nThis is X's news story summary (its opening hook and summary)."
+  },
   {
    "id": "grokbot-try-baker-a16z",
    "topic": "grokbot",
