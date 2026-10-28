@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T06:06:51+02:00",
+ "updated": "2026-10-28T06:07:28+02:00",
  "topics": [
   {
    "id": "musk",
@@ -137,89 +137,21 @@
  ],
  "items": [
   {
-   "id": "huang-vr200-racks-forecast",
-   "topic": "huang",
-   "date": "2026-10-28T03:53:19Z",
-   "url": "https://x.com/i/trending/2115289423701328382",
-   "source": "X",
+   "id": "brecka-dana-white-homocysteine",
+   "topic": "brecka",
+   "date": "2026-10-27T22:00:02Z",
+   "url": "https://x.com/thegarybrecka/status/2115201886563242051",
+   "source": "X · @thegarybrecka",
    "he": {
-    "title": "תחזית: 96,000 מארזי VR200 של אנבידיה עד 2027",
-    "summary": "האנליסט ג'ף פו צופה שהביקוש למארזי ה-AI מסוג VR200 של אנבידיה יגיע ל-96,000 יחידות ב-2027, עם הזמנה ענקית של SpaceX. ברשת שואלים אם יש מספיק שימוש אמיתי כדי למלא אותם."
+    "title": "גרי ברקה: ההומוציסטאין של דנה וייט היה בשמיים",
+    "summary": "ברקה מספר שדנה וייט היה אמור לעבור פרוצדורת לב 11 יום אחרי שנפגשו, ושבבדיקות הדם שלו בלטה רמת הומוציסטאין גבוהה מאוד. לדבריו, TMG הוא רכיב תזונה שעוזר לגוף לפרק אותו."
    },
    "en": {
-    "title": "Forecast: 96,000 Nvidia VR200 racks by 2027",
-    "summary": "Analyst Jeff Pu expects demand for Nvidia's VR200 AI racks to reach 96,000 units in 2027, led by a huge SpaceX order. Skeptics online question whether real AI use can fill them."
+    "title": "Gary Brecka: Dana White's homocysteine was through the roof",
+    "summary": "Brecka says Dana White was scheduled for a heart procedure 11 days after they met, and his bloodwork showed very high homocysteine. He says TMG is one nutrient that helps the body break it down."
    },
-   "full_he": "האנליסט ג'ף פו צופה זינוק במארזי ה-AI מסוג VR200 של אנבידיה ל-96,000 יחידות עד 2027, בהובלת הזמנה ענקית של SpaceX. אבל ברשת שואלים אם הצרכים האמיתיים של AI יכולים למלא אותם.\n\n• לפי התחזית, השוק הכולל יעמוד על 73,000 מארזי NVL72 VR200 ב-2026 ויטפס ל-96,000 ב-2027. SpaceX תקבל 20,000 מתוך 30,000 שביקשה.\n• שש חברות \"ניאוקלאוד\", כמו SpaceX ו-CoreWeave, צפויות לקבל 27% מהמארזים ב-2026 ו-35% ב-2027. זה יחזק ספקים כמו Hon Hai וילחץ על אחרים.\n• הספקנים מצביעים על צורכי הסקה (inference) נמוכים, ומזכירים ש-OpenRouter מטפלת בתעבורה גדולה על מארז אחד. התומכים מזכירים את דרישות האימון ואת ההיקף של SpaceX כמנועי צמיחה.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Analyst Jeff Pu sees Nvidia's VR200 AI racks exploding to 96,000 units by 2027, led by SpaceX's massive order. But online chatter questions whether real-world AI needs can fill them.\n\n• He projects a total addressable market of 73,000 NVL72 VR200 racks in 2026, climbing to 96,000 in 2027, with SpaceX securing 20,000 of the 30,000 it requested.\n• Six neoclouds, such as SpaceX and CoreWeave, are set to claim 27% in 2026 and 35% in 2027, boosting suppliers like Hon Hai while pressuring others.\n• Skeptics highlight low inference needs, citing OpenRouter handling major traffic on one rack, while defenders point to training demands and SpaceX's scale as drivers of broader growth.\n\nThis is a summary of posts on X (a trending story) and may change over time."
-  },
-  {
-   "id": "apple-nudity-scanning-debate",
-   "topic": "apple",
-   "date": "2026-10-28T02:57:51Z",
-   "url": "https://x.com/i/trending/2115275649783079216",
-   "source": "X",
-   "he": {
-    "title": "ויכוח ב-X: האייפון סורק תמונות לאיתור עירום במכשיר עצמו",
-    "summary": "רבים הופתעו לגלות שתכונת \"אזהרת תוכן רגיש\" של אפל סורקת תמונות וסרטונים לאיתור עירום ישירות במכשיר. אפל אומרת שהמידע לא נשלח אליה, אבל משתמשים קוראים לזה מפחיד."
-   },
-   "en": {
-    "title": "Debate on X: iPhones scan for nudity right on the device",
-    "summary": "Many were surprised that Apple's Sensitive Content Warning scans images for nudity on the device. Apple says nothing is sent to it, but users called it creepy."
-   },
-   "full_he": "רבים הופתעו לגלות שהאייפון שלהם סורק בשקט תמונות פרטיות לאיתור עירום, ישירות במכשיר. התכונה נועדה להזהיר מפני תוכן רגיש, אבל עוררה אי-נוחות אמיתית.\n\n• תכונת \"אזהרת תוכן רגיש\" של אפל משתמשת בלמידת מכונה מקומית כדי לזהות עירום ב-Messages, FaceTime, AirDrop ובאלבומים משותפים, ומטשטשת אותו עם אזהרה שהמשתמש בוחר מה לעשות איתה, בלי לשלוח מידע לאפל.\n• הדיון התגבר אחרי עדכוני App Store מ-16 באוקטובר 2026, שהחמירו נגד תמונות אינטימיות ללא הסכמה ונגד אפליקציות עם תכונות נסתרות.\n• משתמשים קראו לסריקה מפחידה וחששו לפרטיות למרות העיבוד המקומי. אחרים התלוננו על טשטוש בשיחות FaceTime פרטיות ושיתפו הוראות לכיבוי התכונה.\n• עוד דיון עסק בכך שקבצים שנמחקים לא נעלמים מיד, כדי לחסוך בסוללה ובאחסון.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Many folks were surprised to learn their iPhones quietly scan private photos for nudity right on the device. It's a feature meant to warn about sensitive content, but it sparked real unease.\n\n• Apple's Sensitive Content Warning uses local machine learning to detect nudity in Messages, FaceTime, AirDrop and shared albums, blurring it behind a warning the user chooses how to handle, all without sending data to Apple.\n• The buzz grew after App Store updates on October 16, 2026 cracked down on nonconsensual intimate imagery and sneaky apps.\n• Users called the scanning creepy and worried about privacy despite on-device processing. Others complained about blurring during private FaceTime calls and shared tips to turn it off.\n• Another thread debated deletions that don't erase files instantly, to protect battery and storage.\n\nThis is a summary of posts on X (a trending story) and may change over time."
-  },
-  {
-   "id": "mccullough-event201-video",
-   "topic": "mccullough",
-   "date": "2026-10-28T01:23:46Z",
-   "url": "https://x.com/P_McCulloughMD/status/2115253154325430457",
-   "source": "X · @P_McCulloughMD",
-   "he": {
-    "title": "מקאלו על Event 201: לטענתו, ידעו מראש שהקורונה מגיעה",
-    "summary": "ד\"ר פיטר מקאלו שיתף סרטון שבו הוא מתאר את Event 201, תרגיל ההיערכות למגפת קורונה מנובמבר 2019. לטענתו, קרן גייטס, ג'ונס הופקינס, קהילת המודיעין האמריקאית, NIAID וה-CDC הסיני ידעו שהמגפה מגיעה."
-   },
-   "en": {
-    "title": "McCullough on Event 201: he claims they knew the coronavirus was coming",
-    "summary": "Dr. Peter McCullough shared a video describing Event 201, the coronavirus pandemic exercise held in November 2019. He claims the Gates Foundation, Johns Hopkins, the US intelligence community, NIAID and China's CDC knew it was coming."
-   },
-   "full_he": "ד\"ר מקאלו מתאר את Event 201, פגישת התכנון לקורונה שהתקיימה בנובמבר 2019. לטענתו, קרן גייטס, בית הספר לבריאות הציבור של ג'ונס הופקינס, קהילת המודיעין האמריקאית, NIAID וה-CDC הסיני ידעו שהיא מגיעה. הסרטון באדיבות Daily Clout.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: Event 201 היה תרגיל סימולציה של מגפה. מארגניו הבהירו שהוא לא היה תחזית, והטענה שהמגפה הייתה ידועה מראש אינה מקובלת במחקר המרכזי.",
-   "full_en": "Dr. McCullough describes Event 201, the coronavirus planning meeting held in November 2019. He claims the Gates Foundation, the Johns Hopkins Bloomberg School of Public Health, the US intelligence community, NIAID and the Chinese CDC knew it was coming. Video courtesy of Daily Clout.\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: Event 201 was a pandemic simulation exercise. Its organizers stated it was not a prediction, and the claim that the pandemic was known in advance is not accepted by mainstream researchers."
-  },
-  {
-   "id": "mm-brain-at-war",
-   "topic": "medicalmedium",
-   "date": "2026-10-28T00:51:26Z",
-   "url": "https://x.com/MedicalMedium/status/2115245020072800409",
-   "source": "X · @MedicalMedium",
-   "he": {
-    "title": "מדיקל מדיום: למה המוח מרגיש כמו שדה קרב",
-    "summary": "אנתוני וויליאם טוען שמתכות כבדות רעילות במוח יכולות לגרום לתחושה של מלחמה פנימית: שנאה עצמית, פחד ועצב שמגיעים משום מקום."
-   },
-   "en": {
-    "title": "Medical Medium: why your brain feels at war",
-    "summary": "Anthony William claims toxic heavy metals in the brain can fuel a feeling of inner war: self-hatred, fear and sadness that come out of nowhere."
-   },
-   "full_he": "למה המוח מרגיש כמו בשדה קרב\n\nאפשר להתכוון לטוב ועדיין להרגיש שמתנהל קרב בתוך הראש. \"אני שונא את עצמי.\" \"אני לא סומך על עצמי.\" \"למה אני לא מצליח להפסיק?\" פחד שלא עוזב, עצב שמגיע משום מקום, תחושה של אבדן דרך, כאילו שום דבר לא מצליח.\n\nלטענתו, מתכות כבדות רעילות \"סוררות\" שנמצאות במוח לצד המתכות הטובות יכולות לזרוע בו הרס, והקרב הפיזי הזה יכול להפוך לחלק מהמאבק שאתה מרגיש כל יום.\n\nבסוף הפוסט הוא מפנה לספר Brain Saver, לפרוטוקולים שלו, להורדות חינמיות ולשידור חי.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: הטענה שמתכות כבדות במוח עומדות מאחורי מצבים רגשיים כאלה אינה נתמכת ברפואה המקובלת. מי שחווה תחושות כאלה כדאי שיפנה לאיש מקצוע.",
-   "full_en": "Why Your Brain Feels at War\n\nYou can have good intentions and still feel like there's a battle going on inside your own mind. \"I hate myself.\" \"I don't trust myself.\" \"Why can't I stop doing this?\" Fear you can't shake. Sadness coming out of nowhere. Feeling lost, like you can't get anything right.\n\nHe claims rogue toxic heavy metals residing alongside the good metals can wreak havoc inside the brain, and that physical battle can become part of the struggle you feel every single day.\n\nThe post ends with links to his book Brain Saver, its protocols, free downloads and a livestream.\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: the claim that heavy metals in the brain drive these emotional states is not supported by mainstream medicine. Anyone feeling this way should talk to a professional."
-  },
-  {
-   "id": "grokbot-spacexsi-sales-bots",
-   "topic": "grokbot",
-   "date": "2026-10-28T00:13:01Z",
-   "url": "https://x.com/i/trending/2115187303882854527",
-   "source": "X",
-   "he": {
-    "title": "צוות המכירות של SpaceXSI בנה בוטים משותפים ב-Grok Bot",
-    "summary": "צוות המכירות של SpaceXSI יצר שלושה בוטים משותפים ב-Grok Bot: למחקר לקוחות, להצעות מחיר ולבדיקת חוזים. לפי הדיווח, זה חסך לצוות מאות שעות החודש."
-   },
-   "en": {
-    "title": "SpaceXSI's sales team builds shared bots in Grok Bot",
-    "summary": "SpaceXSI's sales team created three shared bots in Grok Bot, for prospect research, quotes and contract review. The team reportedly saved hundreds of hours this month."
-   },
-   "full_he": "תחשוב על אנשי מכירות שכבר לא בונים כלי AI לעצמם, אלא חולקים בוטים מתמחים שמתעדכנים אצל כולם אוטומטית. מייקל טרואל קורא לזה \"לגייס בוטים לצוות\".\n\n• צוות המכירות של SpaceXSI יצר שלושה בוטים משותפים ב-Grok Bot: Account Intel Bot למחקר על לקוחות פוטנציאליים ולמעקב, Quote Bot להצעות מחיר, ו-Deal Bot לבדיקת חוזים.\n• לפי הדיווח, זה חסך לצוות של איריס וואנג מאות שעות החודש.\n• מומחי תוכן מעצבים כל בוט לשלב מסוים בעסקה, ומחברים כלים כמו Salesforce, Gong ו-Ironclad, תוך דרישה לאישור אנושי בהחלטות חשובות.\n• השיטה מחליפה סוכנים אישיים, וכל שיפור מגיע לכל הצוות מיד. צופים שיבחו את הדרך לשתף את תהליכי העבודה הטובים ביותר בלי כפילויות.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Imagine sales reps no longer building their own AI tools; instead, they share specialized bots that update everyone automatically. Michael Truell calls it hiring bots onto the team.\n\n• SpaceXSI's sales team created three shared bots inside Grok Bot: Account Intel Bot handles prospect research and follow-ups, Quote Bot manages pricing proposals, and Deal Bot reviews contracts.\n• It reportedly saved Iris Wang's team hundreds of hours this month.\n• Domain experts design each bot for a specific deal stage, connecting tools like Salesforce, Gong and Ironclad while requiring human sign-off for key decisions.\n• The setup replaces individual agents and spreads improvements across the group instantly; observers praised how it shares the best workflows without duplication.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+   "full_he": "דנה וייט היה אמור לעבור פרוצדורת לב רק 11 יום אחרי שנפגשנו.\n\nכשעברתי על בדיקות הדם שלו, דבר אחד בלט: רמות ההומוציסטאין שלו היו בשמיים. הומוציסטאין גבוה עלול לפגוע בכלי הדם ולתרום לסיכון לב וכלי דם. TMG (טרימתילגליצין) הוא אחד מרכיבי התזונה שעוזרים לגוף לפרק אותו.\n\nבגלל זה אני תמיד אומר: תפסיק לנחש ותתחיל לבדוק. הבנה של בדיקות הדם שלך יכולה לשנות הכול.\n\nזו טענה של ברקה ולא המלצה רפואית; לפני תוסף או שינוי טיפול כדאי להתייעץ עם רופא.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Dana White was scheduled for a heart procedure just 11 days after we met.\n\nWhen I reviewed his bloodwork, one thing stood out: his homocysteine levels were through the roof. Elevated homocysteine can damage blood vessels and contribute to cardiovascular risk. TMG (trimethylglycine) is one nutrient that helps the body break it down.\n\nThis is why I always say, stop guessing and start testing. Understanding your bloodwork could change everything.\n\nThis is Brecka's claim, not medical advice; talk to a doctor before starting a supplement or changing treatment.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
    "id": "brecka-5-foods-full",
@@ -228,66 +160,83 @@
    "url": "https://x.com/thegarybrecka/status/2115232079495454754",
    "source": "X · @thegarybrecka",
    "he": {
-    "title": "ברקה: 5 מאכלים שעוזרים להישאר שבע",
-    "summary": "גארי ברקה ממליץ על חלבון, סיבים ושומנים בריאים כדי להרגיש שובע לאורך זמן, ומציג חמישה מאכלים: קוטג', ביצים, שקדים, אבוקדו וסלק."
+    "title": "גרי ברקה: 5 מזונות שעוזרים להישאר שבע",
+    "summary": "ברקה ממליץ על חלבון, סיבים ושומנים בריאים כדי להרגיש שובע לאורך זמן, ומונה חמישה מזונות: קוטג', ביצים, שקדים, אבוקדו וסלק."
    },
    "en": {
-    "title": "Brecka: 5 foods that help keep you full",
-    "summary": "Gary Brecka points to protein, fiber and healthy fats to stay full longer, and lists five foods: cottage cheese, eggs, almonds, avocado and beets."
+    "title": "Gary Brecka: 5 foods that help keep you full",
+    "summary": "Brecka says protein, fiber and healthy fats keep you fuller for longer, and lists five foods: cottage cheese, eggs, almonds, avocado and beets."
    },
-   "full_he": "רעב כל הזמן, גם אחרי שאכלת? אולי הגיע הזמן לחשוב מחדש על מה שיש לך בצלחת.\n\nלדבריו, חלבון, סיבים ושומנים בריאים עוזרים להישאר שבע יותר זמן ולצמצם נשנושים. הוא שואל איזה מחמשת המאכלים כבר נמצא בשגרה היומית שלך.\n\nבתמונה: \"רעב כל הזמן? הנה 5 מאכלים שעוזרים להישאר שבע\":\n• קוטג' – חלבון שעוזר לרסן את הרעב\n• ביצים – חלבון שתומך בתחושת שובע\n• שקדים – חלבון, סיבים ושומנים בריאים\n• אבוקדו – שומנים בריאים וסיבים\n• סלק – סיבים שתומכים בעיכול",
-   "full_en": "Always hungry, even after you just ate? It might be time to rethink what's on your plate.\n\nHe says protein, fiber and healthy fats can help keep you fuller for longer and cut down on constant snacking, and asks which of these 5 foods is already in your daily routine.\n\nThe image: \"Always hungry? Here's 5 foods that help keep you full\":\n• Cottage cheese – protein to help curb hunger\n• Eggs – protein to support satiety\n• Almonds – protein, fiber and healthy fats\n• Avocado – healthy fats and fiber\n• Beets – fiber to support digestion"
+   "full_he": "רעב כל הזמן, גם אחרי שבדיוק אכלת? אולי הגיע הזמן לחשוב מחדש על מה שיש לך בצלחת.\n\nחלבון, סיבים תזונתיים ושומנים בריאים יכולים לעזור לך להישאר שבע יותר זמן ולצמצם את הנשנושים הבלתי פוסקים.\n\nאיזה מחמשת המזונות האלה כבר נמצא בשגרה היומית שלך?\n\nבתמונה: \"רעב תמיד? הנה 5 מזונות שעוזרים להישאר שבע\":\n• קוטג': חלבון שעוזר לרסן את הרעב\n• ביצים: חלבון שתומך בתחושת שובע\n• שקדים: חלבון, סיבים ושומנים בריאים\n• אבוקדו: שומנים בריאים וסיבים\n• סלק: סיבים שתומכים בעיכול",
+   "full_en": "Always hungry, even after you just ate? It might be time to rethink what's on your plate.\n\nProtein, fiber, and healthy fats can help keep you fuller for longer and cut down on constant snacking.\n\nWhich of these 5 foods is already in your daily routine?\n\nThe image: \"Always hungry? Here's 5 foods that help keep you full\":\n• Cottage cheese: protein to help curb hunger\n• Eggs: protein to support satiety\n• Almonds: protein, fiber, and healthy fats\n• Avocado: healthy fats and fiber\n• Beets: fiber to support digestion"
   },
   {
-   "id": "dispenza-joy-internal-state",
+   "id": "dispenza-joy-without-waiting",
    "topic": "dispenza",
    "date": "2026-10-27T23:45:02Z",
    "url": "https://x.com/DrJoeDispenza/status/2115228307075518880",
    "source": "X · @DrJoeDispenza",
    "he": {
-    "title": "ג'ו דיספנזה: אל תחכה שהנסיבות ישתנו כדי לשמוח",
-    "summary": "ד\"ר ג'ו דיספנזה שואל מה יקרה אם תפסיק לחכות שהנסיבות ישתנו לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה והערכה."
+    "title": "ג'ו דיספנזה: אל תחכה שהנסיבות ישתנו כדי להרגיש שמחה",
+    "summary": "דיספנזה שואל מה יקרה אם תפסיק לחכות לשינוי בחוץ לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה והערכה. לדבריו, אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה."
    },
    "en": {
     "title": "Joe Dispenza: stop waiting for circumstances to change before feeling joy",
-    "summary": "Dr. Joe Dispenza asks what would happen if you stopped waiting for your circumstances to change before letting yourself feel joy, gratitude and appreciation."
+    "summary": "Dispenza asks what would happen if you stopped waiting for outside change before letting yourself feel joy, gratitude and appreciation. Then, he says, you wouldn't need the external world to give you a reason."
    },
-   "full_he": "מה אם תפסיק לחכות שהנסיבות ישתנו לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה או הערכה? אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה להרגיש אחרת.\n\nבתמונה מופיע ציטוט שלו: \"האם אתה יכול לקבל את הרעיון שברגע שאתה משנה את המצב הפנימי שלך, אינך צריך שהעולם החיצוני ייתן לך סיבה להרגיש שמחה, הכרת תודה, הערכה או כל רגש נעלה אחר?\"",
+   "full_he": "מה אם תפסיק לחכות שהנסיבות שלך ישתנו לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה או הערכה? אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה להרגיש אחרת.\n\nבתמונה, ציטוט שלו: \"האם אתה יכול לקבל את הרעיון שברגע שאתה משנה את המצב הפנימי שלך, אתה לא צריך שהעולם החיצוני ייתן לך סיבה להרגיש שמחה, הכרת תודה, הערכה או כל רגש מרומם אחר?\"",
    "full_en": "What if you stopped waiting for your circumstances to change before allowing yourself to feel joy, gratitude, or appreciation? Then, you would no longer need the external world to give you a reason to feel differently.\n\nThe image quotes him: \"Can you accept the notion that once you change your internal state, you don't need the external world to provide you with a reason to feel joy, gratitude, appreciation, or any other elevated emotion?\""
   },
   {
-   "id": "spacex-ukraine-obria-satellite",
-   "topic": "spacex",
-   "date": "2026-10-27T23:21:40Z",
-   "url": "https://x.com/i/trending/2115143786787737602",
-   "source": "X",
+   "id": "johnson-mri-elite-athlete",
+   "topic": "johnson",
+   "date": "2026-10-27T21:55:35Z",
+   "url": "https://x.com/bryan_johnson/status/2115200763668631982",
+   "source": "X · @bryan_johnson",
    "he": {
-    "title": "אוקראינה שיגרה על טיל של SpaceX לוויין ניסוי לרשת תקשורת עצמאית",
-    "summary": "ננו-הלוויין Obria Nano, ששוגר באוקטובר על טיל של SpaceX, בודק יכולות לקראת קבוצת לוויינים אוקראינית שתפחית את התלות בספקים זרים כמו סטארלינק."
+    "title": "בריאן ג'ונסון: תוצאות ה-MRI החצי-שנתי שלי כמו של בן 20",
+    "summary": "ג'ונסון פרסם את תוצאות ה-MRI שהוא עושה פעמיים בשנה: שומן ולב ברמה של שנות ה-20, ונפח היפוקמפוס באחוזון ה-99. לדבריו, הרדיולוג כתב שגופו לא נבדל מגוף של ספורטאי עילית."
    },
    "en": {
-    "title": "Ukraine's first test satellite for an independent network flew on a SpaceX rocket",
-    "summary": "The Obria Nano nanosatellite, launched in October on a SpaceX rocket, is testing capabilities for a Ukrainian constellation meant to reduce reliance on foreign providers such as Starlink."
+    "title": "Bryan Johnson: my twice-yearly MRI looks like a 20-something's",
+    "summary": "Johnson shared his twice-yearly MRI: fat and heart at a 20s-equivalent level, and hippocampal occupancy in the 99th percentile. He says the radiologist wrote his body is indistinguishable from an elite athlete's."
    },
-   "full_he": "ב-1 באוקטובר 2026 שוגר הלוויין האוקראיני Obria Nano למסלול על טיל של SpaceX, צעד ראשון של המדינה לעבר מערכת תקשורת מאובטחת משלה.\n\n• את ננו-הלוויין פיתחה החברה האוקראינית HIMERA יחד עם GomSpace הדנית, והוא בודק כעת יכולות לקראת קבוצת לוויינים עתידית בשם OBRIA, שתספק כיסוי ארצי ותפחית את התלות בספקים זרים.\n• מנכ\"ל HIMERA, מישה רודומינסקי, אמר שזהו בסיס לעצמאות טכנולוגית ולביטחון לאומי, ומנכ\"ל GomSpace, קרסטן דרכמן, הדגיש את בניית החוסן התקשורתי.\n• השיגור משקף את המאמץ של אוקראינה בזמן מלחמה לעצמאות, עם תוכניות לייצר מקומית ולאסוף נתונים לייצור מורחב של לוויינים ותחנות קרקע.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "On October 1, 2026, Ukraine's Obria Nano satellite soared into orbit aboard a SpaceX rocket, marking the nation's first step toward its own secure communications system.\n\n• Developed by Ukrainian firm HIMERA with Denmark's GomSpace, the nanosatellite is testing capabilities for a future OBRIA constellation to provide nationwide coverage and reduce reliance on foreign providers.\n• HIMERA CEO Misha Rudominski called it a foundation for technological independence and national security, while GomSpace CEO Carsten Drachmann emphasized building communications resilience.\n• The launch highlights Ukraine's wartime push for sovereignty, with plans to localize manufacturing and gather data for expanded production of satellites and ground terminals.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+   "full_he": "תוצאות ה-MRI שאני עושה פעמיים בשנה:\n\n• שומן תת-עורי ושומן בטני (ויסרלי): כמו בשנות ה-20\n• לב: ציון 100%, כמו בשנות ה-20\n• תפוסת ההיפוקמפוס: אחוזון 99\n\nדוח הרדיולוג:\n• הגוף שלי לא נבדל מגוף של ספורטאי עילית\n\nגופים בריאים...\n• מרוויחים יותר כסף\n• עושים יותר סקס\n• כיפיים יותר\n\nבתמונה: \"דוח ה-MRI של בריאן ג'ונסון\", עם הערכת שומן ושריר (שומן בטני 1,094 מ\"ל, שומן תת-עורי 10,710 מ\"ל, נפח שריר כולל 20,860 מ\"ל), השוואת מיפוי הלב לבני 18 ו-25, ציון LV MyoHealth של 100%, ותפוסת היפוקמפוס 0.92 באחוזון 99.\n\nבתגובה שלו מתחת לפוסט: \"סריקת ה-MRI נעשתה ב-Prenuvo.\"",
+   "full_en": "my twice yearly mri results\n\n• subcutaneous and visceral fat: 20s equivalent\n• heart 100% score: 20s equivalent\n• hippocampal occupancy: 99th percentile\n\nradiologist report:\n• my body is indistinguishable from an elite athlete\n\nhealthy bodies...\n• make more money\n• have more sex\n• are more fun\n\nThe image, \"Bryan Johnson MRI Report\", shows the fat and muscle assessment (visceral fat 1,094 ml, subcutaneous fat 10,710 ml, total muscle volume 20,860 ml), his heart maps compared with an 18- and a 25-year-old, an LV MyoHealth score of 100%, and hippocampal occupancy of 0.92 in the 99th percentile.\n\nHis reply under the post: \"mri scan was done with @prenuvo\""
   },
   {
-   "id": "johnson-kurzweil-rooting",
+   "id": "johnson-rooting-kurzweil",
    "topic": "johnson",
    "date": "2026-10-27T23:16:57Z",
    "url": "https://x.com/bryan_johnson/status/2115221241539998060",
    "source": "X · @bryan_johnson",
    "he": {
-    "title": "בריאן ג'ונסון: \"אני מחזיק אצבעות לריי קורצווייל\"",
-    "summary": "ג'ונסון שיתף כתבה בשם \"האם בינה מלאכותית תעזור לריי קורצווייל לרמות את המוות?\" וכתב שקורצווייל הוא העתידן הטוב בכל הזמנים."
+    "title": "בריאן ג'ונסון: אני מחזיק אצבעות לריי קורצווייל",
+    "summary": "ג'ונסון כתב שהוא מחזיק אצבעות לריי קורצווייל וקרא לו \"העתידן הטוב בכל הזמנים\", לצד כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\"."
    },
    "en": {
-    "title": "Bryan Johnson: \"I'm rooting for Ray Kurzweil\"",
-    "summary": "Johnson shared an article titled \"Can AI Help Ray Kurzweil Cheat Death?\" and called Kurzweil the best futurist of all time."
+    "title": "Bryan Johnson: I'm rooting for Ray Kurzweil",
+    "summary": "Johnson said he's rooting for Ray Kurzweil, calling him the best futurist of all time, alongside an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\""
    },
-   "full_he": "\"אני מחזיק אצבעות לריי קורצווייל. העתידן הטוב בכל הזמנים.\"\n\nבתמונה: צילום מסך של כתבה מאת איימי דוקסר מרקוס בשם \"האם בינה מלאכותית תעזור לריי קורצווייל לרמות את המוות?\", עם איור של קורצווייל מצביע על הולוגרמה של עצמו בגילים שונים. הכתבה עצמה לא מופיעה בפוסט, ולכן אין עוד טקסט להציג.",
-   "full_en": "\"I'm rooting for Ray Kurzweil. Best futurist of all time.\"\n\nThe image is a screenshot of an article by Amy Dockser Marcus titled \"Can AI Help Ray Kurzweil Cheat Death?\", with an illustration of Kurzweil pointing at a hologram of himself at different ages. The article itself isn't in the post, so there's no more text to show."
+   "full_he": "אני מחזיק אצבעות לריי קורצווייל.\n\nהעתידן הטוב בכל הזמנים.\n\nבתמונה: צילום מסך של כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\" מאת איימי דוקסר מרקוס, עם תמונה של קורצווייל מצביע על הולוגרמה של עצמו. הטקסט של הכתבה עצמה לא מופיע בפוסט.",
+   "full_en": "I'm rooting for Ray Kurzweil\n\nBest futurist of all time\n\nThe image is a screenshot of an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\" by Amy Dockser Marcus, showing Kurzweil pointing at a hologram of himself. The article text itself isn't in the post."
+  },
+  {
+   "id": "johnson-cyberattack-movie",
+   "topic": "johnson",
+   "date": "2026-10-27T20:15:34Z",
+   "url": "https://x.com/bryan_johnson/status/2115175592878645421",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון רוצה סרט AI בזמן אמת על כל מתקפות הסייבר בעולם",
+    "summary": "ג'ונסון כתב שהוא היה רוצה ש-AI תיצור סרט בזמן אמת של כל מתקפות הסייבר שקורות עכשיו, עם נחילי הסוכנים כתוקפים בגוף ממשי, ההגנות והדרמה האנושית."
+   },
+   "en": {
+    "title": "Bryan Johnson wants a real-time AI movie of the world's cyberattacks",
+    "summary": "Johnson wished AI could make a real-time movie of all the cyberattacks happening now, showing agent swarms as embodied attackers, the countermeasures and the human drama."
+   },
+   "full_he": "הלוואי ש-AI הייתה יכולה ליצור סרט בזמן אמת של כל מתקפות הסייבר שקורות ממש עכשיו ברחבי העולם.\n\nלהציג את נחילי הסוכנים כתוקפים בעלי גוף; להראות את פתרון החידות כדי לחדור את ההגנות; לתפוס את אמצעי הנגד ואת כל הדרמה האנושית שמעל.",
+   "full_en": "I wish that AI could make a real-time movie of all the cyber attacks happening right now around the world.\n\nRepresenting the agent swarms as embodied attackers; showing the puzzle solving to penetrate defenses; capturing the counter measures and all the human drama overlaid."
   },
   {
    "id": "mccullough-hybrid-harms",
@@ -296,83 +245,49 @@
    "url": "https://x.com/P_McCulloughMD/status/2115217592281600272",
    "source": "X · @P_McCulloughMD",
    "he": {
-    "title": "מקאלו: \"נזקים היברידיים\" מחלבון הספייק",
-    "summary": "מקאלו משתף מאמר שהוא שותף לכתיבתו וטוען שחלבון ספייק מצטבר, גם מההדבקה וגם מחיסוני mRNA, יכול לגרום למחלה ולנכות. זו טענה שנויה במחלוקת."
+    "title": "פיטר מקאלו: \"נזקים היברידיים\" של חלבון הספייק",
+    "summary": "מקאלו טוען שהצטברות של חלבון ספייק מההדבקה בקורונה ומחיסוני mRNA יכולה לגרום למחלה ולנכות, ומפנה למאמר פרספקטיבה שהוא שותף לו. זו טענה שנויה במחלוקת, וגופי הבריאות המרכזיים רואים בחיסונים בטוחים לרוב האנשים."
    },
    "en": {
-    "title": "McCullough: \"hybrid harms\" from the spike protein",
-    "summary": "McCullough shares a paper he co-authored claiming that accumulated spike protein, from both infection and mRNA vaccines, can cause disease and disability. The claim is disputed."
+    "title": "Peter McCullough: \"hybrid harms\" from spike protein",
+    "summary": "McCullough claims accumulating spike protein from COVID infection and mRNA vaccines can cause disease and disability, pointing to a perspective article he co-authored. This is disputed; major health bodies consider the vaccines safe for most people."
    },
-   "full_he": "לטענתו, \"נזקים היברידיים\" פירושם שחלבון ספייק מצטבר, גם מנגיף SARS-CoV-2 וגם מייצור mRNA סינתטי, יכול לגרום למחלה ולנכות.\n\nבתמונה: מאמר פרספקטיבה בכתב העת Medical Research Archives (כרך 13, גיליון 11) בשם \"ההשפעות המצטברות של חיסון mRNA לקורונה ושל הדבקה ב-SARS-CoV-2: התכנסות של 'ספייקופתיות' ונזקים היברידיים אחרים\", שמקאלו בין כותביו. בתרשים \"השערת הנזקים ההיברידיים\" מופיעים חמישה מרכיבים:\n• מטען \"אימונוטוקסי\": לטענת המאמר, החיסון מורכב בעיקר מחלבון ספייק, ננו-חלקיקי שומן וזיהומים מתהליך הייצור\n• פיזור בכל הגוף\n• חשיפה ממושכת לספייק\n• מנות mRNA מרובות שעלולות להצטבר בתופעות הלוואי\n• שינויים חיסוניים דומים לחיסון ולהדבקה: דלקת יתר, דיכוי אינטרפרון, ירידה בלימפוציטים ואוטואימוניות\n\nהפוסט שהוא ציטט:\n\"ההדבקה משאירה משהו מאחור, לא רק זיכרון של עצמה. עבודות שפורסמו מצאו אנטיגן ספייק במחזור הדם של חולי לונג קוביד עד שנה אחרי ההדבקה, ומחקר אחר מצא חלבון נגיפי שנשאר בתאי מערכת החיסון זמן רב עוד יותר. למה זה חשוב: לונג קוביד טופל כאבחנה של שלילה, חוסר כושר או חרדה. מנגנון של אנטיגן מתמשך ניתן לבדיקה, והוא חל גם על מי שמעולם לא התחסן. ההדבקה לבדה עושה את זה.\"\n\nהערה: הטענה שחיסוני mRNA גורמים לנזק נרחב סותרת את הקונצנזוס הרפואי, שלפיו החיסונים בטוחים ויעילים ותופעות הלוואי החמורות נדירות.",
-   "full_en": "He says \"hybrid harms\" means accumulating spike protein from SARS-CoV-2 and from synthetic mRNA production can cause disease and disability.\n\nThe image shows a perspective article in Medical Research Archives (Volume 13, Issue 11) titled \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms\", with McCullough among the authors. Its \"Hybrid Harms Hypothesis\" figure lists five features:\n• Immunotoxic payload: the paper claims the vaccine consists mainly of spike protein, lipid nanoparticles and process-related impurities\n• Whole-body distribution\n• Prolonged spike exposure\n• Multiple mRNA injections that may have cumulative adverse effects\n• Similar immunologic variations from vaccination and infection: hyperinflammation, interferon suppression, lymphopenia and autoimmunity\n\nThe quoted post:\n\"The Infection Leaves Something Behind, Not Just a Memory of Itself. Published work has detected circulating spike antigen in long COVID patients up to a year after infection, and other research found viral protein persisting in immune cells longer still. Why it matters: long COVID has been handled as a diagnosis of exclusion — deconditioning, anxiety. A persistent-antigen mechanism is testable. And it applies to people who were never vaccinated. The infection alone does it.\"\n\nNote: the claim that mRNA vaccines cause widespread harm contradicts the medical consensus that they are safe and effective, with serious side effects being rare."
+   "full_he": "\"נזקים היברידיים\" פירושם שהצטברות של חלבון ספייק מ-SARS-CoV-2 ומייצור mRNA סינתטי יכולה לגרום למחלה ולנכות.\n\nבתמונה: עמוד השער של מאמר פרספקטיבה בכתב העת Medical Research Archives (של European Society of Medicine, כרך 13 גיליון 11), \"ההשפעות המשולבות של חיסון mRNA לקוביד-19 ושל הדבקה ב-SARS-CoV-2: התכנסות של 'ספייקופתיות' שונות ונזקים היברידיים אחרים\", מאת מ. נתנאל מיד ואחרים, ומקאלו בהם. התרשים \"השערת הנזקים ההיברידיים\" מציג חיסון ו-הדבקה שמובילים ל\"עומס חלבון ספייק\", עם חמישה מאפיינים:\n• מטען אימונוטוקסי: חלבון ספייק, ננו-חלקיקי שומן וזיהומים מתהליך הייצור\n• פיזור בכל הגוף של המטען\n• חשיפה ממושכת לספייק ועומס אנטיגני\n• מנות mRNA מרובות עם השפעות מצטברות\n• שינויים חיסוניים דומים להדבקה: דלקת־יתר, דיכוי אינטרפרון, לימפופניה ואוטואימוניות\n\nהפוסט שהוא ציטט (של קרן מקאלו):\n\nההדבקה משאירה משהו מאחור, לא רק זיכרון של עצמה. עבודות שפורסמו מצאו אנטיגן ספייק במחזור הדם אצל חולי לונג קוביד עד שנה אחרי ההדבקה, ומחקר אחר מצא חלבון ויראלי שנשאר בתאי מערכת החיסון זמן רב עוד יותר. למה זה חשוב: לונג קוביד טופל כאבחנה בדרך השלילה, כמו ירידה בכושר או חרדה. מנגנון של אנטיגן מתמשך ניתן לבדיקה, והוא חל גם על מי שמעולם לא התחסן; ההדבקה לבדה עושה את זה. (מצורף סרטון.)\n\nהערה: אלה טענות של מקאלו ושותפיו. הקונצנזוס הרפואי המרכזי רואה בחיסוני mRNA בטוחים ויעילים לרוב האנשים, וזו לא המלצה רפואית.",
+   "full_en": "\"Hybrid harms\" means accumulating spike protein from SARS-CoV-2 and from synthetic mRNA production can cause disease and disability.\n\nThe image: the first page of a perspective article in Medical Research Archives (European Society of Medicine, Volume 13 Issue 11), \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms\" by M. Nathaniel Mead and others, including McCullough. Its figure, \"The Hybrid Harms Hypothesis\", shows vaccination and infection both leading to a \"spike protein burden\", with five features:\n• Immunotoxic payload: spike protein, lipid nanoparticles and process-related impurities\n• Whole-body distribution of the payload\n• Prolonged spike exposure and antigenic load\n• Multiple mRNA injections with cumulative effects\n• Immunologic changes similar to infection: hyperinflammation, interferon suppression, lymphopenia and autoimmunity\n\nThe quoted post (from the McCullough Foundation):\n\nThe Infection Leaves Something Behind, Not Just a Memory of Itself. Published work has detected circulating spike antigen in long COVID patients up to a year after infection, and other research found viral protein persisting in immune cells longer still. Why it matters: long COVID has been handled as a diagnosis of exclusion, like deconditioning or anxiety. A persistent-antigen mechanism is testable, and it applies to people who were never vaccinated; the infection alone does it. (A video is attached.)\n\nNote: these are claims by McCullough and his co-authors. Mainstream medical consensus considers mRNA vaccines safe and effective for most people, and this isn't medical advice."
   },
   {
-   "id": "tesla-brunell-texi",
-   "topic": "tesla",
-   "date": "2026-10-27T23:01:05Z",
-   "url": "https://x.com/i/trending/2115215581330690353",
-   "source": "X",
+   "id": "mccullough-event-201",
+   "topic": "mccullough",
+   "date": "2026-10-28T01:23:46Z",
+   "url": "https://x.com/P_McCulloughMD/status/2115253154325430457",
+   "source": "X · @P_McCulloughMD",
    "he": {
-    "title": "נטלי ברונל הציעה שירות נסיעות \"Texi\" של טסלה, והגולשים הזכירו את הרובוטקסי",
-    "summary": "העיתונאית נטלי ברונל הציעה שירות נסיעות של טסלה בלבד עם שכר טוב יותר לנהגים. בתגובות הזכירו לה ששירות הרובוטקסי של טסלה כבר פועל בשבע ערים בארה\"ב."
+    "title": "פיטר מקאלו על תרגיל Event 201: \"הם ידעו שזה מגיע\"",
+    "summary": "בסרטון מקאלו מתאר את Event 201, תרגיל מגפת קורונה מנובמבר 2019, וטוען שקרן גייטס, ג'ונס הופקינס, הקהילה המודיעינית בארה\"ב, NIAID וה-CDC הסיני ידעו שהמגפה מגיעה. המארגנים אמרו בזמנו שזה היה תרגיל היפותטי ולא תחזית."
    },
    "en": {
-    "title": "Natalie Brunell pitches a Tesla 'Texi' rideshare; replies point to Robotaxi",
-    "summary": "Journalist Natalie Brunell proposed a Tesla-only rideshare with better driver pay. Replies noted Tesla's Robotaxi service already runs in seven US cities."
+    "title": "Peter McCullough on Event 201: \"they knew it was coming\"",
+    "summary": "In a video McCullough describes Event 201, a November 2019 coronavirus pandemic exercise, and claims the Gates Foundation, Johns Hopkins, US intelligence, NIAID and China's CDC knew it was coming. The organizers have said it was a hypothetical exercise, not a prediction."
    },
-   "full_he": "מתוך טסלה של ליפט, העיתונאית נטלי ברונל הציעה שירות נסיעות של טסלה בלבד בשם \"Texi\", עם שכר טוב יותר לנהגים. התגובות הפנו אותה מהר לרשת הרובוטקסי המצליחה של החברה.\n\n• ברונל העלתה את הרעיון ביום שלישי: לתת לנהגי טסלה הכנסה גבוהה יותר מאובר או ליפט, עם נהגים אנושיים.\n• משתמשים ציינו שהרובוטקסי של טסלה כבר פועל בשבע ערים בארה\"ב, עם נסיעות בלי מפקח בשש מהן, כולל אוסטין ומיאמי, ושיותר מ-1,000 רכבים רשומים בטקסס.\n• נוסע מאוסטין, בראד אינגרפילד, כתב שהנסיעה שלו בסייברקאב הייתה מרווחת ובטוחה יותר מאובר.\n• ברונל הכירה אחר כך בשירות הקיים, בזמן שטסלה מגדילה את הייצור לקראת מכירה ללקוחות עד סוף 2026.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "From inside a Lyft Tesla, journalist Natalie Brunell pitched a Tesla-only rideshare called 'Texi' with better driver pay. Replies quickly pointed to the company's thriving Robotaxi network.\n\n• Brunell proposed the idea Tuesday to give Tesla drivers higher earnings than Uber or Lyft while relying on human operators.\n• Users noted Tesla's Robotaxi service already operates in seven US cities, with unsupervised rides in six including Austin and Miami, and over 1,000 vehicles registered in Texas.\n• One Austin rider, Brad Ingarfield, called his Cybercab trip roomier and safer than Uber.\n• Brunell later acknowledged the existing service, as Tesla scales production for customer sales by late 2026.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+   "full_he": "ד\"ר מקאלו מתאר את Event 201, פגישת תכנון הקורונה מנובמבר 2019. קרן גייטס, בית הספר לבריאות הציבור של ג'ונס הופקינס, הקהילה המודיעינית האמריקאית, NIAID וה-CDC הסיני ידעו שזה מגיע. באדיבות Daily Clout.\n\nהערה: זו טענה של מקאלו. Event 201 היה תרגיל סימולציה שמרכז ג'ונס הופקינס לביטחון בריאותי ארגן עם קרן גייטס והפורום הכלכלי העולמי, והמארגנים הבהירו שהוא לא חזה את מגפת הקוביד.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Dr McCullough describes Event 201, the coronavirus planning meeting in November 2019. Gates Foundation, Johns Hopkins Bloomberg School of Public Health, US IC, NIAID, and the Chinese CDC knew it was coming. Courtesy Daily Clout.\n\nNote: this is McCullough's claim. Event 201 was a simulation exercise run by the Johns Hopkins Center for Health Security with the Gates Foundation and the World Economic Forum, and its organizers stated it did not predict the COVID pandemic.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
-   "id": "brecka-dana-white-homocysteine",
-   "topic": "brecka",
-   "date": "2026-10-27T22:00:02Z",
-   "url": "https://x.com/thegarybrecka/status/2115201886563242051",
-   "source": "X · @thegarybrecka",
+   "id": "medicalmedium-brain-at-war",
+   "topic": "medicalmedium",
+   "date": "2026-10-28T00:51:26Z",
+   "url": "https://x.com/MedicalMedium/status/2115245020072800409",
+   "source": "X · @MedicalMedium",
    "he": {
-    "title": "ברקה על דנה וייט: ההומוציסטאין היה גבוה מאוד",
-    "summary": "ברקה מספר שדנה וייט היה אמור לעבור הליך לב 11 יום אחרי שנפגשו, ושבבדיקות הדם שלו בלטה רמת הומוציסטאין גבוהה מאוד. לדבריו, TMG עוזר לגוף לפרק אותו."
+    "title": "מדיקל מדיום: למה המוח שלך מרגיש במלחמה",
+    "summary": "מדיקל מדיום טוען שמתכות כבדות רעילות במוח יכולות לגרום לתחושה של מאבק פנימי, פחד ועצב בלי סיבה. אין לזה בסיס מדעי מקובל, ומי שחווה תחושות כאלה כדאי שיפנה לאיש מקצוע."
    },
    "en": {
-    "title": "Brecka on Dana White: his homocysteine was through the roof",
-    "summary": "Brecka says Dana White was scheduled for a heart procedure 11 days after they met, and his bloodwork showed very high homocysteine. He says TMG helps the body break it down."
+    "title": "Medical Medium: why your brain feels at war",
+    "summary": "Medical Medium claims toxic heavy metals in the brain can cause a sense of inner battle, fear and unexplained sadness. This has no accepted scientific basis, and anyone feeling this way should talk to a professional."
    },
-   "full_he": "דנה וייט היה אמור לעבור הליך לב רק 11 יום אחרי שנפגשנו.\n\nלדבריו, כשעבר על בדיקות הדם שלו, דבר אחד בלט: רמות ההומוציסטאין היו גבוהות מאוד. הומוציסטאין גבוה יכול לפגוע בכלי הדם ולתרום לסיכון לבבי, ולדבריו TMG (טרימתילגליצין) הוא אחד מחומרי ההזנה שעוזרים לגוף לפרק אותו.\n\n\"לכן אני תמיד אומר: תפסיקו לנחש ותתחילו לבדוק. הבנת בדיקות הדם שלך יכולה לשנות הכול.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענתו האישית ולא ייעוץ רפואי. בהחלטה על תוספים כדאי להתייעץ עם רופא.",
-   "full_en": "Dana White was scheduled for a heart procedure just 11 days after we met.\n\nHe says that when he reviewed White's bloodwork, one thing stood out: his homocysteine levels were through the roof. Elevated homocysteine can damage blood vessels and contribute to cardiovascular risk, and he says TMG (trimethylglycine) is one nutrient that helps the body break it down.\n\n\"This is why I always say, stop guessing and start testing. Understanding your bloodwork could change everything.\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is his own claim, not medical advice. Talk to a doctor before deciding on supplements."
-  },
-  {
-   "id": "johnson-mri-twice-yearly",
-   "topic": "johnson",
-   "date": "2026-10-27T21:55:35Z",
-   "url": "https://x.com/bryan_johnson/status/2115200763668631982",
-   "source": "X · @bryan_johnson",
-   "he": {
-    "title": "בריאן ג'ונסון: תוצאות ה-MRI החצי-שנתי שלו",
-    "summary": "ג'ונסון מדווח שלפי ה-MRI, השומן והלב שלו ברמה של גבר בשנות העשרים, ונפח ההיפוקמפוס שלו באחוזון ה-99. לדבריו, הרדיולוג כתב שגופו לא נבדל מזה של ספורטאי עילית."
-   },
-   "en": {
-    "title": "Bryan Johnson: his twice-yearly MRI results",
-    "summary": "Johnson reports that his MRI puts his fat and heart at a 20-something level and his hippocampal occupancy in the 99th percentile. He says the radiologist called his body indistinguishable from an elite athlete's."
-   },
-   "full_he": "תוצאות ה-MRI שאני עושה פעמיים בשנה, לדבריו:\n• שומן תת-עורי ושומן בטני: ברמה של גיל 20 ומשהו\n• לב: ציון 100%, ברמה של גיל 20 ומשהו\n• נפח ההיפוקמפוס: אחוזון 99\n\nלדבריו, בדוח הרדיולוג נכתב שגופו \"לא נבדל מגוף של ספורטאי עילית\".\n\nוהוא מוסיף: גוף בריא מרוויח יותר כסף, נהנה מיותר סקס ומהנה יותר.\n\nבתמונה מופיע \"דוח ה-MRI של בריאן ג'ונסון\": שומן כבד תקין, שומן בטני 1,094 מ\"ל, שומן תת-עורי 10,710 מ\"ל, נפח שריר 20,860 מ\"ל, ניתוח לב שבו כל 37 המקטעים תקינים (100%) והשוואה לדפוס של לב בגילים 18 ו-25, ונפח היפוקמפוס 0.92 באחוזון ה-99.\n\nבתגובה לפוסט שלו הוסיף שהסריקה נעשתה ב-Prenuvo.",
-   "full_en": "My twice-yearly MRI results, he says:\n• Subcutaneous and visceral fat: 20s equivalent\n• Heart: 100% score, 20s equivalent\n• Hippocampal occupancy: 99th percentile\n\nHe says the radiologist's report reads: \"my body is indistinguishable from an elite athlete\".\n\nHe adds: healthy bodies make more money, have more sex and are more fun.\n\nThe image, \"Bryan Johnson MRI Report\", shows a normal liver fat grade, abdominal visceral fat of 1,094 ml, subcutaneous fat of 10,710 ml, muscle volume of 20,860 ml, a heart analysis with all 37 segments normal (100%) compared with 18- and 25-year-old patterns, and hippocampal occupancy of 0.92 at the 99th percentile.\n\nIn a reply to his own post he added that the scan was done with Prenuvo."
-  },
-  {
-   "id": "tesla-roadster-thruster-ramp",
-   "topic": "tesla",
-   "date": "2026-10-27T20:57:48Z",
-   "url": "https://x.com/i/trending/2115143797260890294",
-   "source": "X",
-   "he": {
-    "title": "טסלה מציגה את הרודסטר עם מנועי דחף בקפיצות מרהיבות",
-    "summary": "טסלה פרסמה סרטון שבו רודסטרים לבנים עם מנועי דחף נעים על רמפה ענקית בשמי הלילה, ומאסק הגיב בבדיחה על מהירות מילוט. המניה עלתה בכ-3%."
-   },
-   "en": {
-    "title": "Tesla teases the thruster-powered Roadster with jaw-dropping ramp stunts",
-    "summary": "Tesla posted visuals of white Roadsters with blazing thrusters looping a giant ramp in the night sky, and Musk joked about escape velocity. The stock rose about 3%."
-   },
-   "full_he": "רודסטרים לבנים ומלוטשים עושים לולאות בשמי הלילה על רמפה מעוקלת ענקית, ומנועי הדחף משאירים שובלי אדים. הכיתוב של טסלה, \"מה שעולה חייב לרדת\", הוביל לתגובה מהירה של מאסק על התרסה נגד כוח המשיכה במהירות מילוט.\n\n• הסרטון הגיע ימים אחרי הדגמה חיה באתר הניסויים של SpaceX בטקסס, שבה אב-טיפוס של הרודסטר האיץ מ-0 ל-60 מייל לשעה ב-0.81 שניות, עשה סלטה באוויר וקפץ מעל מכוניות טסלה אחרות בעזרת מנועי דחף בגז קר ומאווררי יניקה.\n• הייצור של הרודסטר מהדור השני מתחיל ב-2028, אבל גרסת ה\"רוקט\" המלאה עם עשרה מנועי דחף תישאר בהזמנה אישית בלבד ולא תיסע בכבישים ציבוריים.\n• הפוסט עורר התפעלות ברשת ובדיחות על המיזוג בין טסלה ל-SpaceX, והמניה עלתה ב-3% ל-405.70 דולר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Sleek white Roadsters loop through the night sky on a massive curved ramp, thrusters blazing trails of vapor. Tesla's caption \"What goes up must come down\" sparked Elon Musk's quick reply about defying gravity at escape velocity.\n\n• It came days after a live demo at SpaceX's Texas test site, where a prototype Roadster hit 0 to 60 mph in 0.81 seconds, flipped mid-air and jumped over other Teslas using cold-gas thrusters and suction fans.\n• Production of the second-gen Roadster starts in 2028, but the full ten-thruster 'Rocket' version stays invite-only and off public roads.\n• The post fueled online awe and merger jokes tying Tesla and SpaceX, and the stock rose 3 percent to $405.70.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+   "full_he": "למה המוח שלך מרגיש במלחמה\n\nאפשר שיהיו לך כוונות טובות ועדיין להרגיש שמתנהל קרב בתוך הראש שלך.\n\n\"אני שונא את עצמי.\" \"אני לא סומך על עצמי.\" \"למה אני לא מצליח להפסיק לעשות את זה?\" פחד שאי אפשר להשתחרר ממנו. עצב שמגיע משום מקום. תחושה של אבדן דרך, כאילו שום דבר לא יוצא לך נכון.\n\nמתכות כבדות רעילות ו\"סוררות\" שיושבות לצד המתכות הטובות יכולות לזרוע הרס במוח. הקרב הפיזי הזה יכול להפוך לחלק מהמאבק שאתה מרגיש כל יום.\n\nבהמשך הפוסט יש קישורים לספר Brain Saver, לספר Brain Saver Protocols, להורדה חינמית על תסמינים נוירולוגיים, להורדה חינמית על ניקוי מתכות כבדות ולשידור חי ביוטיוב.\n\nהערה: אלה טענות של מדיקל מדיום ואין להן בסיס מדעי מקובל. מי שמרגיש כך באופן מתמשך כדאי שיפנה לרופא או לאיש מקצוע בבריאות הנפש.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Why Your Brain Feels at War\n\nYou can have good intentions and still feel like there's a battle going on inside your own mind.\n\n\"I hate myself.\" \"I don't trust myself.\" \"Why can't I stop doing this?\" Fear you can't shake. Sadness coming out of nowhere. Feeling lost, like you can't get anything right.\n\nRogue toxic heavy metals residing alongside the good metals can wreak havoc inside the brain. That physical battle can become part of the struggle you're feeling every single day.\n\nThe rest of the post links to the Brain Saver book, Brain Saver Protocols, a free neurological download, a free heavy metal detox download and a YouTube livestream.\n\nNote: these are Medical Medium's claims and have no accepted scientific basis. If you feel this way persistently, talk to a doctor or mental health professional.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
    "id": "kraken-albon-austin",
@@ -381,49 +296,100 @@
    "url": "https://x.com/krakenfx/status/2115184041007649009",
    "source": "X · @krakenfx",
    "he": {
-    "title": "קראקן: מעריצים פגשו את נהג הפורמולה 1 אלכס אלבון באוסטין",
-    "summary": "קראקן סיכמה את המבצע שלה סביב הגרנד פרי באוסטין: כמה מעריצים בני מזל פגשו פנים אל פנים את אלכס אלבון, נהג קבוצת וויליאמס."
+    "title": "קראקן: מעריצים פגשו את נהג ה-F1 אלכס אלבון באוסטין",
+    "summary": "קראקן סיכמה את המבצע שלה סביב הגראנד פרי באוסטין: כמה מעריצים בני מזל פגשו פנים אל פנים את אלכס אלבון, נהג קבוצת ויליאמס."
    },
    "en": {
     "title": "Kraken: fans met F1 driver Alex Albon in Austin",
-    "summary": "Kraken wrapped up its Austin Grand Prix campaign: a few lucky fans met Williams F1 driver Alex Albon face to face."
+    "summary": "Kraken wrapped up its Austin Grand Prix promotion: a few lucky fans met Williams F1 driver Alex Albon face to face."
    },
-   "full_he": "בין אם נרשמת מהבית ובין אם השתתפת באתגר התגובה, הכול הוביל לכאן.\n\nכמה מעריצים בני מזל זכו לפגוש פנים אל פנים את אלכס אלבון, נהג קבוצת הפורמולה 1 Atlassian Williams Racing.\n\nתודה לכל מי שנרשם, שיחק והגיע לאוסטין. נתראה בפעם הבאה!\n\nלפוסט מצורפות ארבע תמונות מהמפגש, בלי טקסט נוסף.",
-   "full_en": "Whether you entered from home or took on the Reaction Challenge, it all led here.\n\nA few lucky fans got to meet Atlassian Williams Racing F1 Team driver Alex Albon face to face.\n\nThanks to everyone who signed up, played, and showed up in Austin. See you at the next one!\n\nThe post includes four photos from the meet-up, with no additional text."
+   "full_he": "בין אם נרשמת מהבית ובין אם לקחת חלק באתגר התגובה, הכול הוביל לכאן.\n\nכמה מעריצים בני מזל זכו לפגוש פנים אל פנים את אלכס אלבון, נהג קבוצת Atlassian Williams Racing ב-F1.\n\nתודה לכל מי שנרשם, שיחק והגיע לאוסטין.\n\nנתראה בפעם הבאה!\n\nלפוסט מצורפות ארבע תמונות מהמפגש.",
+   "full_en": "Whether you entered from home or took on the Reaction Challenge, it all led here.\n\nA few lucky fans got to meet Atlassian Williams Racing F1 Team driver Alex Albon face to face.\n\nThanks to everyone who signed up, played, and showed up in Austin.\n\nSee you at the next one!\n\nFour photos from the meetup are attached to the post."
   },
   {
-   "id": "apple-app-store-review-times",
-   "topic": "apple",
-   "date": "2026-10-27T20:32:37Z",
-   "url": "https://x.com/i/trending/2115143792068276437",
+   "id": "tesla-damon-hill-cybercab",
+   "topic": "tesla",
+   "date": "2026-10-28T03:53:14Z",
+   "url": "https://x.com/i/trending/2115250830144094240",
    "source": "X",
    "he": {
-    "title": "מפתחים עצמאיים: זמני האישור ב-App Store שונים מאוד",
-    "summary": "אצל חלק מהמפתחים עדכונים מאושרים ב-App Store תוך דקות, ואחרים מחכים שבועות. אפל שואפת לבדוק חצי מההגשות תוך 24 שעות."
+    "title": "אלוף ה-F1 דיימון היל נסע ברובוטקסי סייברקאב באוסטין",
+    "summary": "אלוף העולם ב-F1 משנת 1996 נסע לראשונה בסייברקאב של טסלה, בלי הגה ודוושות, בסוף שבוע הגראנד פרי באוסטין. Grok שברכב סיכם לו את המרוץ והקרין קטעים."
    },
    "en": {
-    "title": "Indie developers report wildly different App Store review times",
-    "summary": "Some developers get App Store updates approved in minutes while others wait weeks. Apple aims to review half of submissions within 24 hours."
+    "title": "F1 champion Damon Hill rides a Tesla Cybercab in Austin",
+    "summary": "The 1996 F1 world champion took his first ride in Tesla's Cybercab, with no steering wheel or pedals, during the Austin Grand Prix weekend. The in-car Grok recapped the race and played highlights."
    },
-   "full_he": "מפתח עצמאי אחד ראה את העדכון שלו עובר מ\"בבדיקה\" ל\"מוכן להפצה\" בפחות מדקה. אחר חיכה שלושה שבועות לפגישת בדיקה שלא התקיימה.\n\n• הבדיקות ב-App Store יוצרות חוויות שונות מאוד: עדכונים של חשבונות מהימנים מאושרים תוך דקות, ואחרים נמשכים ימים או שבועות.\n• מפתחים משתפים צילומי מסך של אישורים מהירים, אבל מתלוננים על דחיות בגלל סרטוני תצוגה מקדימה ועל פגישות שבוטלו, שפוגעות במיוחד בצוותים קטנים.\n• אפל שואפת לטפל ב-50% מההגשות תוך פחות מ-24 שעות, משתמשת באוטומציה כדי לתעדף עדכונים, ולאחרונה עדכנה את ההנחיות לגבי תוכן AI ותכונות נסתרות. עם זאת, הפערים נשארים, לפי היסטוריית האפליקציה והבדיקות הנדרשות.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "One indie dev watched their app update zip from 'In Review' to 'Ready for Distribution' in under a minute. Meanwhile, another waited three weeks for a no-show review appointment.\n\n• App Store reviews are splitting experiences for indie developers: some updates for trusted accounts are approved in minutes, while others drag on for days or weeks.\n• Developers share screenshots of rapid approvals but complain about rejections over preview videos and missed appointments that hit small teams hard.\n• Apple aims for 50% of submissions under 24 hours, uses automation to prioritize updates, and recently updated its guidelines on AI content and hidden features, yet wide variations persist based on app history and the checks needed.\n\nThis is a summary of posts on X (a trending story) and may change over time."
+   "full_he": "דיימון היל, אלוף העולם בפורמולה 1 ב-1996, נכנס לסייברקאב נטול נהג של טסלה בסוף שבוע הגראנד פרי של ארה\"ב באוסטין. בלי הגה, בלי דוושות, רק רכב זהוב לשני נוסעים עם דלתות פרפר שבירך אותו בשמו.\n\n• זו הייתה הנסיעה הראשונה שלו ברובוטקסי. ה-Grok שבתוך הרכב סיכם את המרוץ האחרון במסלול Circuit of the Americas והקרין קטעי שיא לפי בקשה.\n• מעריצים כתבו שההדגמה מדהימה, וציינו שהכוכב נראה גם נרגש וגם רגוע ברכב שנוהג בעצמו.\n• טסלה הרחיבה את שירות הסייברקאב סביב המסלול לכבוד האירוע והסיעה עשרות מעריצים; נסיעות פתוחות לציבור זמינות בחלקים של אוסטין מתחילת ספטמבר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Damon Hill, the 1996 Formula 1 World Champion, slid into a driverless Tesla Cybercab during the US Grand Prix weekend in Austin. No steering wheel, no pedals, just a gold two-seater with butterfly doors welcoming him by name.\n\n• It was his first ride in the robotaxi. The in-car Grok AI recapped the recent Circuit of the Americas Grand Prix and played highlight videos on request.\n• Fans called the demo amazing, noting the F1 star seemed both excited and comfortable in a car driving itself.\n• Tesla expanded Cybercab service around the track for the event, shuttling dozens of fans; public rides have been available in parts of Austin since early September.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "johnson-cyber-attacks-movie",
-   "topic": "johnson",
-   "date": "2026-10-27T20:15:34Z",
-   "url": "https://x.com/bryan_johnson/status/2115175592878645421",
-   "source": "X · @bryan_johnson",
+   "id": "tesla-roadster-ramp-tease",
+   "topic": "tesla",
+   "date": "2026-10-27T20:57:48Z",
+   "url": "https://x.com/i/trending/2115143797260890294",
+   "source": "X",
    "he": {
-    "title": "ג'ונסון רוצה סרט AI בזמן אמת על מתקפות הסייבר בעולם",
-    "summary": "בריאן ג'ונסון כתב שהיה רוצה שבינה מלאכותית תיצור סרט בזמן אמת של כל מתקפות הסייבר שמתרחשות כרגע בעולם, עם נחילי סוכנים שמוצגים כתוקפים."
+    "title": "טסלה מתגרה ברודסטר עם מדחפים וקפיצות מרמפה ענקית",
+    "summary": "טסלה פרסמה סרטון של רודסטרים לבנים מסתובבים על רמפה מעוקלת עם מדחפים בוערים, ומאסק הגיב בבדיחה על מהירות מילוט. הייצור של הרודסטר מהדור השני אמור להתחיל ב-2028."
    },
    "en": {
-    "title": "Johnson wants a real-time AI movie of the world's cyber attacks",
-    "summary": "Bryan Johnson wrote that he wishes AI could make a real-time movie of every cyber attack happening around the world, with agent swarms shown as attackers."
+    "title": "Tesla teases a thruster-powered Roadster with huge ramp stunts",
+    "summary": "Tesla posted visuals of white Roadsters looping a curved ramp with blazing thrusters, and Musk joked about escape velocity. Second-gen Roadster production is due to start in 2028."
    },
-   "full_he": "הלוואי שבינה מלאכותית הייתה יכולה ליצור סרט בזמן אמת של כל מתקפות הסייבר שמתרחשות עכשיו ברחבי העולם.\n\nלדבריו, נחילי הסוכנים היו מוצגים כתוקפים בעלי גוף, הסרט היה מראה את פתרון החידות כדי לחדור את ההגנות, את אמצעי הנגד, ומעל הכול את הדרמה האנושית.",
-   "full_en": "I wish that AI could make a real-time movie of all the cyber attacks happening right now around the world.\n\nRepresenting the agent swarms as embodied attackers; showing the puzzle solving to penetrate defenses; capturing the counter measures and all the human drama overlaid."
+   "full_he": "רודסטרים לבנים ומלוטשים מסתובבים בשמי הלילה על רמפה מעוקלת ענקית, עם מדחפים שמשאירים שובלי אדים. הכיתוב של טסלה, \"מה שעולה חייב לרדת\", גרר תגובה מהירה של אילון מאסק על התגברות על כוח המשיכה במהירות מילוט.\n\n• זה הגיע כמה ימים אחרי הדגמה חיה באתר הניסויים של SpaceX בטקסס, שבה אב-טיפוס של הרודסטר האיץ מ-0 ל-60 מייל לשעה ב-0.81 שניות, הסתובב באוויר וקפץ מעל טסלות אחרות, בעזרת מדחפי גז קר ומאווררי יניקה.\n• ייצור הרודסטר מהדור השני מתחיל ב-2028, אבל גרסת ה\"רוקט\" המלאה עם עשרה מדחפים תישאר בהזמנה אישית בלבד ולא תיסע בכבישים ציבוריים.\n• הפוסט עורר התפעלות ברשת ובדיחות על מיזוג טסלה ו-SpaceX, והמניה עלתה ב-3% ל-405.70 דולר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Sleek white Roadsters loop through the night sky on a massive curved ramp, thrusters blazing trails of vapor. Tesla's caption \"What goes up must come down\" sparked Elon Musk's quick reply about defying gravity at escape velocity.\n\n• It came days after a live demo at SpaceX's Texas test site, where a prototype Roadster hit 0-60 mph in 0.81 seconds, flipped mid-air and jumped over other Teslas using cold-gas thrusters and suction fans.\n• Second-gen Roadster production starts in 2028, but the full ten-thruster \"Rocket\" version stays invite-only and off public roads.\n• The post fueled online awe and Tesla-SpaceX merger jokes, and the stock rose 3 percent to $405.70.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "musk-tops-soros-donations",
+   "topic": "musk",
+   "date": "2026-10-27T23:01:27Z",
+   "url": "https://x.com/i/trending/2115171965606453301",
+   "source": "X",
+   "he": {
+    "title": "התרומות הפוליטיות של מאסק עקפו את הסך של ג'ורג' סורוס",
+    "summary": "לפי גרפים שמסתובבים ברשת, מאסק תרם 759 מיליון דולר לבחירות בארה\"ב, יותר מ-624 מיליון של סורוס לאורך עשרות שנים. התומכים רואים בו פטריוט, והמבקרים קוראים לו \"סורוס החדש\"."
+   },
+   "en": {
+    "title": "Musk's political donations pass George Soros's lifetime total",
+    "summary": "Charts shared online show Musk has given $759 million to US elections, more than Soros's $624 million over decades. Supporters call him a patriot; critics call him the new Soros."
+   },
+   "full_he": "לפי גרפים שפורסמו ברשת, סך התרומות הפוליטיות של אילון מאסק עקף בשקט את הסך המצטבר של ג'ורג' סורוס לאורך עשרות שנים: 759 מיליון דולר מול 624 מיליון.\n\n• את העלייה הובילו 446 מיליון דולר של מאסק לבחירות האמצע השנה, דרך America PAC וגופים כמו Senate Leadership Fund שתומכים ברפובליקנים.\n• סורוס תמך לאורך השנים בדמוקרטים, בתובעים מחוזיים ובמטרות פרוגרסיביות, כולל יותר מ-100 מיליון דולר במחזור הנוכחי דרך גופים כמו Geosor.\n• התומכים משבחים את מאסק כפטריוט שמשתמש בכסף שלו בגלוי, והמבקרים קוראים לו \"סורוס החדש\" שקונה השפעה. זה עורר ויכוח על מוסר כפול ועל כוחם של מיליארדרים לפני בחירות נובמבר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Elon Musk's political giving has quietly overtaken George Soros's decades-long total, hitting $759 million to Soros's $624 million, according to charts shared online.\n\n• The jump was driven by Musk's $446 million for this year's midterms through America PAC and groups like the Senate Leadership Fund supporting Republicans.\n• Soros has backed Democrats, district attorneys and progressive causes over the years, including over $100 million this cycle via entities like Geosor.\n• Supporters hail Musk as a patriot using his own money openly, while critics call him the \"new George Soros\" buying influence, sparking talk of double standards and billionaire sway ahead of the November midterms.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "grokbot-custom-teams",
+   "topic": "grokbot",
+   "date": "2026-10-28T04:00:43Z",
+   "url": "https://x.com/i/trending/2115257635222217174",
+   "source": "X",
+   "he": {
+    "title": "משתמשים בונים צוותים של בוטי Grok מותאמים אישית",
+    "summary": "משתמשים מספרים שבנו צוותים של Grok Bots לעבודה, מחקר, תזמון ויצירת תוכן, ושהבוטים מעבירים עבודה זה לזה בצ'אטים קבוצתיים. אחת מהן כתבה שעזבה את Claude ו-ChatGPT ועברה \"100% ל-Grok\"."
+   },
+   "en": {
+    "title": "Users build teams of custom Grok Bots for everyday tasks",
+    "summary": "Users describe building teams of Grok Bots for research, scheduling and content, with bots handing work to each other in group chats. One said she dropped Claude and ChatGPT and is now \"100% Grok\"."
+   },
+   "full_he": "הידי בריונס עזבה לגמרי את Claude ואת ChatGPT והכריזה שהיא \"100% Grok עכשיו\", אחרי שבנתה לעצמה צוות של עוזרי AI מתמחים.\n\n• Grok Bots, תכונה בבטא של SpaceXAI, מאפשרת ליצור עוזרי AI מותאמים אישית שמתחברים לאפליקציות, עובדים באופן עצמאי ומשתפים פעולה במשימות כמו מחקר, תזמון ויצירת תוכן.\n• משתמשים מוקדמים משתפים צילומי מסך של הצוותים שלהם עם שמות משעשעים כמו \"מאמן בריאות\", \"בעל אוהב\" ו\"צייד חסויות\", ומשבחים עבודה חלקה יותר בלי אזהרות בטיחות בלי סוף.\n• יש מגבלות לפי המנוי, אבל רבים מתנסים בצ'אטים קבוצתיים שבהם הבוטים מעבירים עבודה זה לזה, וההתלהבות גדולה, כולל מדריכים למתחילים.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Heidi Briones ditched Claude and ChatGPT entirely, declaring herself \"100% Grok now\" after building her team of specialized AI assistants.\n\n• Grok Bots, a beta feature from SpaceXAI, let users create custom AI helpers that sign into apps, work autonomously and team up for tasks like research, scheduling and content creation.\n• Early adopters share screenshots of rosters with fun names like Health Coach, Loving Husband and Sponsorship Hunter, praising smoother workflows without constant safety warnings.\n• Subscription limits apply, but many experiment with group chats where bots hand off work, fueling high enthusiasm and shared starter guides.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "huang-vr200-racks-2027",
+   "topic": "huang",
+   "date": "2026-10-28T03:53:19Z",
+   "url": "https://x.com/i/trending/2115289423701328382",
+   "source": "X",
+   "he": {
+    "title": "תחזית: 96 אלף מארזי VR200 של אנבידיה עד 2027, עם SpaceX בראש",
+    "summary": "האנליסט ג'ף פו צופה שהביקוש למארזי ה-AI מדגם VR200 של אנבידיה יגיע ל-96 אלף ב-2027, כש-SpaceX מקבלת 20 אלף מהם. ספקנים ברשת שואלים אם צורכי ה-AI בפועל ימלאו את כולם."
+   },
+   "en": {
+    "title": "Forecast: 96,000 NVIDIA VR200 racks by 2027, led by SpaceX",
+    "summary": "Analyst Jeff Pu projects NVIDIA's VR200 AI rack market reaching 96,000 units in 2027, with SpaceX getting 20,000. Skeptics online question whether real AI demand can fill them."
+   },
+   "full_he": "האנליסט ג'ף פו צופה שמארזי ה-AI מדגם VR200 של אנבידיה יגיעו ל-96 אלף יחידות עד 2027, בהובלת הזמנה ענקית של SpaceX. אבל ברשת שואלים אם צורכי ה-AI בעולם האמיתי יצליחו למלא אותם.\n\n• לפי פו, השוק הכולל של מארזי NVL72 VR200 יעמוד על 73 אלף ב-2026 ויטפס ל-96 אלף ב-2027. SpaceX הבטיחה לעצמה 20 אלף מתוך 30 אלף שביקשה.\n• שש חברות \"נאו-קלאוד\", כמו SpaceX ו-CoreWeave, צפויות לקבל 27% ב-2026 ו-35% ב-2027, מה שיעזור לספקים כמו Hon Hai וילחץ על אחרים.\n• ספקנים מצביעים על צורכי הסקה (inference) נמוכים, ומזכירים ש-OpenRouter מטפלת בתעבורה גדולה על מארז אחד, בעוד המגינים מצביעים על דרישות האימון ועל ההיקף של SpaceX כמנועי צמיחה.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Analyst Jeff Pu sees NVIDIA's VR200 AI racks reaching 96,000 units by 2027, led by SpaceX's massive order. But online chatter questions whether real-world AI needs can fill them.\n\n• Pu projects a total addressable market of 73,000 NVL72 VR200 racks in 2026, climbing to 96,000 in 2027, with SpaceX securing 20,000 of the 30,000 it requested.\n• Six neoclouds like SpaceX and CoreWeave are set to claim 27% in 2026 and 35% in 2027, boosting suppliers like Hon Hai while pressuring others.\n• Skeptics highlight low inference needs, citing OpenRouter handling major traffic on one rack, while defenders point to training demands and SpaceX's scale as drivers of growth.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "musk-reich-nationalize-spacex",
@@ -577,23 +543,6 @@
    },
    "full_he": "עד 100% מהגברים יש מיקרופלסטיק בזרע.\n\nאני הורדתי את שלי לאפס. המקרה המתועד הראשון.\n\nמחקר מ-2024 מצא מיקרופלסטיק ב-100% מרקמות האשכים של בני אדם ושל כלבים.\n\nבמחקר אחר נמצא מיקרופלסטיק בזרע ובשתן של כל 113 הגברים שנבדקו בסין.\n\nהחוקרים פילחו לפי סוג הפלסטיק ובדקו איך כל סוג השפיע על איכות הזרע.\n\nהסוגים הנפוצים ביותר הגיעו מאריזות (פוליסטירן, פוליפרופילן ופוליאתילן).\n\nה-PTFE, הפולימר הסינתטי שמשמש במחבתות טפלון, התגלה כמזיק ביותר: ריכוז זרע נמוך ב-11% ו-9% פחות זרעונים בסך הכול.\n\nעשרה מחקרים מדדו מיקרופלסטיק בזרע אנושי. חמישה מהם מצאו אותו אצל 100% מהנבדקים.\n\nבשאר השיעורים נעו בין 84% ל-37%, אבל הבדיקות הישנות השתמשו במיקרוסקופים אינפרא-אדומים רגילים, שלא רואים חלקיקים קטנים מ-10–20 מיקרון. המחקרים החדשים השתמשו בספקטרוסקופיית ראמאן, שמזהה חלקיקים עד מיקרון אחד.\n\nבקיצור, שכיחות של 100% סבירה, אם לא כמעט ודאית.\n\nקראו את הפוסט שלי למטה על התוצאות והגישה שלי.\n\n(בפוסט המקורי חלק מהפסקאות מופיעות פעמיים; כאן הן מובאות פעם אחת.)\n\nתשובה של ג'ונסון בהמשך השרשור:\nהבדיקה הזאת לא זמינה באופן רחב, למרבה הצער. מעבדה ייעודית פיתחה אותה בשבילי וביצעה את הניתוח. היה נהדר אם מישהו היה מנגיש בדיקה כזאת לכולם.\n\nהפוסט שהוא ציטט (מאי 2026):\n🚨 אין לי מיקרופלסטיק בביצים 🚨\n\nזה לא אמור להיות אפשרי. מחקרים מראים ש-100% מהגברים יש מיקרופלסטיק בזרע. אני האדם הראשון שמראה ירידה מלאה לאפס. ייתכן שזו פריצת דרך עולמית במחקר הפוריות.\n\nלפני 18 חודשים היו לי 165 חלקיקי מיקרופלסטיק בזרע. עכשיו יש לי אפס.\n\nחמישה מחקרים שפורסמו מדדו מיקרופלסטיק בזרע אנושי. שניים מצאו אותו אצל 100% מהגברים. שלושת האחרים מצאו אותו אצל 44% עד 76%, אבל השתמשו בשיטות שמפספסות את החלקיקים הקטנים והשקופים. אחרי תיקון לזה, השיעור האמיתי כנראה 100%. כמעט לכל גבר חי יש עכשיו פלסטיק בזרע. אותו דבר ברקמת האשכים, שנמצאה חיובית ב-100% מהמקרים.\n\nמיקרופלסטיק פוגע בזרע. מחקרים בבני אדם מראים את ההשפעה של סוגי פלסטיק, כימיקלים נלווים ורעלנים אחרים על פוריות הגבר:\n• 60% פחות זרעונים בצורה תקינה (PFAS)\n• סיכוי גבוה פי 5 לספירת זרע נמוכה (PTFE)\n• ריכוז זרע נמוך ב-10% (PTFE)\n• תנועתיות נמוכה ב-15% (PTFE)\n• תנועתיות נמוכה ב-41% (PET)\n• תנועתיות נמוכה ב-12% (BPA)\n• סיכוי גבוה פי 3 לספירת זרע נמוכה (פתלאטים)\n• סיכוי גבוה פי 2 לתנועתיות ירודה (פתלאטים)\n\nההשפעות מצטברות: כל סוג פלסטיק נוסף מוריד את תנועתיות הזרע בכ-21%.\n\nזה חשוב גם אם אתה לא מנסה להביא ילדים. ספירת זרע היא אחד הסמנים הנקיים ביותר לבריאות הכללית, והמיקרופלסטיק לא נעצר באשכים. מחקרים מראים שיעור גבוה פי 4.5 של התקף לב, שבץ ומוות אצל אנשים עם מיקרופלסטיק ברובד העורקים לעומת אנשים בלעדיו. מיקרופלסטיק נמצא גם ב-100% מהשליות שנבדקו. 100% מהמוחות שנבדקו לאחר המוות היו חיוביים; הריכוז במוח עלה בכ-50% בין 2016 ל-2024 והוא כיום בערך פי 11 מהרמה בכבד או בכליות.\n\nמאיפה זה מגיע?\n• PTFE: בעיקר מחבתות נון-סטיק\n• PET: בקבוקי מים\n• פתלאטים: מה שהופך פלסטיק לרך וגמיש\n• BPA: ציפוי פנימי של פחיות\n• PFAS: בדים דוחי כתמים ואריזות מזון\n\nבתוך הגוף, לדבריו, הפלסטיק גורם למעין 'חלודה תאית': דלקת באשכים, מוות של התאים שמייצרים זרע וירידה בטסטוסטרון. לטענתו זה אושר ב-39 מחקרים בבעלי חיים ובתאים, ואחר כך בנתונים מבני אדם.\n\nהפרוטוקול שלי (הערה: זה n=1, לא ניסוי מבוקר, ואני לא יכול להוכיח סיבתיות):\n1. סאונה יבשה. לדבריו, פאנל הרעלנים בדם שלו מאשר שהסאונה מנקה כימיקלים הקשורים לפלסטיק: BPA, פתלאטים, PFAS, מעכבי בעירה וחומרי הדברה. חלקיקי הפלסטיק עצמם גדולים מכדי לצאת בזיעה; החום אולי מפעיל מסלולי פינוי אחרים: זרימת מרה דרך הכבד, מערכת הניקוי הפנימית של התא ומחסום המעי. לבני אדם כמעט אין אנזימים שמפרקים פלסטיק, ולכן הגוף צריך להוציא אותו פיזית.\n2. מסנן מים באוסמוזה הפוכה. מי שתייה הם כנראה מקור מרכזי למיקרופלסטיק בגוף. המסנן דוחף את המים דרך ממברנה צפופה מאוד ומסנן את החלקיקים. הוא מסנן כל מה שהוא שותה.\n3. ניסיון להיפטר מפריטי הפלסטיק הגדולים בסביבה: קרשי חיתוך, כוסות, צלחות, קופסאות אחסון, מחבתות נון-סטיק, ניילון נצמד, שקיקי תה, בקבוקי מים, כלי מטבח, קומקומים ובגדים סינתטיים. לדבריו, הוא כל הזמן מגלה עוד פריטי פלסטיק, וזה יכול להפוך לעיסוק שגוזל הכול, אז כדאי להתחיל מהגדולים.\n\nהוא עשה את שלושת הצעדים במקביל ולא יודע איזה מהם עשה את רוב העבודה. מה שהוא כן יכול לומר: מעבר מ-165 לאפס ב-18 חודשים אפשרי.\n\nתוצאות:\n• נובמבר 2024: 165 חלקיקים למ\"ל\n• יולי 2025: 20 חלקיקים למ\"ל\n• אפריל 2026: 0 חלקיקים למ\"ל\n\nחלון של 18 חודשים כולל בערך 7 מחזורים מלאים של ייצור זרע.\n\nהערה: אלה טענות אישיות של ג'ונסון על ניסוי בעצמו (n=1), לא ייעוץ רפואי. המחקר על השפעות המיקרופלסטיק על הבריאות עדיין מתפתח, והבדיקה שהוא עשה לא זמינה באופן רחב.",
    "full_en": "Up to 100% of men have microplastics in their semen\n\nI got mine to zero. The first documented case.\n\nA 2024 study detected microplastics in 100% of human and dog testicular tissue.\n\nIn another study, microplastics were detected in the semen and urine of all of 113 tested men from China.\n\nResearchers broke down plastic type and how they affected sperm quality.\n\nThe most common came from packaging (polystyrene, polypropylene, and polyethylene).\n\nPTFE, the synthetic polymer used in non-stick Teflon pans, proved the most lethal, creating 11% lower sperm concentration and 9% fewer total sperm.\n\nTen studies have measured microplastics in human semen. Five found 100% detection.\n\nThe rest from 84% down to 37%, but older tests used standard infrared microscopes that are blind to particles smaller than 10–20 microns. Newer studies used Raman spectroscopy, which can spot particles down to 1 micron.\n\nSo in short, 100% prevalence is plausible if not likely.\n\nRead my post below about my results and approach.\n\n(Some paragraphs appear twice in the original post; they are shown once here.)\n\nJohnson's reply further down the thread:\nThis test is not widely available, sadly. I had a specialty lab create the test for me and conduct the analysis. It would be great if someone made a test widely available.\n\nThe quoted post (May 2026):\n🚨 I HAVE NO MICROPLASTICS IN MY BALLS 🚨\n\nThis should not be possible. Studies show that 100% of men have microplastics in their semen. I am the first human ever to show a complete reduction to zero. This may be a world-first breakthrough in fertility research.\n\nI had 165 microplastic particles in my semen just 18 months ago. Now, I have zero.\n\nFive published studies have measured microplastics in human semen. Two found them in 100% of men. The other three found them in 44 to 76% of men tested, but those used methods that miss the smallest particles and the clear ones. Corrected for that, the real rate is likely 100%. Almost every man alive has plastic in his semen right now. The same applies to testicular tissue, testing 100% positive for microplastics.\n\nMicroplastics hurt sperm. Human studies show the impact of various types of plastic, associated chemicals, and other toxins on male fertility:\n• 60% fewer normal shaped sperm (from PFAS)\n• 5x higher odds of low sperm count (from PTFE)\n• 10% lower sperm concentration (from PTFE)\n• 15% lower swimming ability (from PTFE)\n• 41% lower swimming ability (from PET)\n• 12% lower sperm swimming ability (from BPA)\n• 3x higher odds of low sperm count (from phthalates)\n• 2x higher odds of poor swimming (from phthalates)\n\nThe effects compound: each extra type of plastic drops sperm swimming ability by about 21%.\n\nThis matters even if you're NOT trying to get pregnant. Sperm count is one of the cleanest biomarkers of overall health we have. And microplastics don't stop at the testes. Studies show 4.5x higher rate of heart attack, stroke, and death in people with microplastics in their arterial plaque vs. those without. Microplastics were also found in 100% of human placentas tested. 100% of post-mortem human brains tested positive for microplastics. Brain concentrations rose ~50% between 2016 and 2024, and now sit at roughly 11x the levels found in the liver or kidney.\n\nWhere do these come from?\n• PTFE, commonly in non-stick pans\n• PET, water bottles\n• Phthalates, makes plastic soft and bendy\n• BPA, can linings\n• PFAS, stain-resistant fabrics & food packaging\n\nInside the body, plastic causes a kind of cellular rust. It triggers inflammation in the testicles, kills the cells that make sperm and drops testosterone. It's been confirmed across 39 animal and cell studies, then in human data.\n\nMY PROTOCOL (note: what I did is n=1, not a controlled trial, I cannot prove cause):\n1. Sauna (dry). My toxin blood panel confirms sauna clears plastic-related chemicals: BPA, phthalates, PFAS, flame retardants, pesticides. The plastic particles themselves are too big to sweat out directly. Heat may activate other clearance routes: bile flow through the liver, the cell's internal cleanup system, and the gut barrier. Humans have almost no enzymes that can break plastic apart, so the body has to physically push it out.\n2. Reverse osmosis water filter. Drinking water is likely a major source of microplastic getting into your body. A reverse osmosis filter pushes water through a very tight membrane and strains the particles out. I filter everything I drink.\n3. Trying to rid my environment of the big plastic items: cutting boards, cups, plates, food storage containers, non-stick pans, cling wrap, tea bags, water bottles, kitchen utensils, kettles, and synthetic clothing. As hard as I try, I'm always finding new plastic things in my life. This can be an all-consuming thing, so try to just knock out the big ones.\n\nI did all three interventions at the same time. I cannot say which one did the most work. What I can say is this: going from 165 to zero in 18 months is possible.\n\nResults:\n• Nov 2024: 165 particles/mL\n• Jul 2025: 20 particles/mL\n• Apr 2026: 0 particles/mL\n\nThe 18-month window also captures roughly 7 full spermatogenesis cycles.\n\nNote: these are Johnson's personal claims from a self-experiment (n=1), not medical advice. Research on the health effects of microplastics is still developing, and the test he used is not widely available."
-  },
-  {
-   "id": "musk-talarico-rallies-paxton",
-   "topic": "musk",
-   "date": "2026-10-27T17:15:05Z",
-   "url": "https://x.com/i/trending/2115063173904511171",
-   "source": "X",
-   "he": {
-    "title": "טלריקו בעצרות בטקסס: מאסק מנסה לקנות את המושב בסנאט לפקסטון",
-    "summary": "המועמד הדמוקרטי ג'יימס טלריקו אומר לתומכיו ש\"טקסס לא למכירה\", ומשווה את התרומות הקטנות שגייס ל-150 מיליון הדולר שמאסק הזרים לסופר-פא\"ק התומך ביריבו קן פקסטון."
-   },
-   "en": {
-    "title": "Talarico packs Texas rallies, accusing Musk of buying Paxton a Senate seat",
-    "summary": "Democratic candidate James Talarico tells supporters \"Texas is not for sale,\" contrasting his small donors with the $150 million Musk put into a super PAC backing rival Ken Paxton."
-   },
-   "full_he": "באולם מלא באל פאסו, ג'יימס טלריקו הלהיב 1,100 תומכים עם אתגר ישיר לאילון מאסק: טקסס לא למכירה.\n\n• נציג המדינה הדמוקרטי בן ה-37 מאוסטין מושך קהל גדול בסיבוב ההופעות שלו, שמונה ימים לפני הבחירות ב-3 בנובמבר.\n• הוא משווה את 1.3 מיליון התורמים הפרטיים ו-140 מיליון הדולר שגייס לתמיכה של מאסק בהיקף 150 מיליון דולר בסופר-פא\"ק התומך ברפובליקני קן פקסטון.\n• בעצרות הוא אומר שהטריליונר הראשון בעולם רוצה \"את האדמה שלנו, את המים שלנו, את כספי המסים שלנו ואת הסנאטור האמריקאי הפרטי שלו\".\n• הסקרים מראים מרוץ צמוד בין טלריקו לפקסטון, התובע הכללי של טקסס שהסתבך בעבר בעניינים משפטיים. ההצבעה המוקדמת נמשכת עד 30 באוקטובר, והתוצאה עשויה להשפיע על השליטה בסנאט.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "At a packed El Paso auditorium, James Talarico fired up 1,100 supporters with a direct challenge to Elon Musk: Texas is not for sale.\n\n• The 37-year-old Democratic state representative from Austin is drawing big crowds on his 'Clear Eyes, Full Hearts' tour, eight days before the November 3 election.\n• He contrasts his 1.3 million individual donors and $140 million raised with Musk's $150 million super PAC support for Republican Ken Paxton.\n• He tells rallies the world's first trillionaire wants \"our land, our water, our tax dollars, and his very own personal United States senator.\"\n• Polls show a tight race between Talarico and Paxton, the Texas attorney general who has faced past legal issues. Early voting runs through October 30, and the outcome could sway Senate control.\n\nThis is a summary of posts on X (a trending story) and may change over time."
   },
   {
    "id": "musk-ceasefire-good",
