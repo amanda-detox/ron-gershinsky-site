@@ -1,7 +1,7 @@
 {
   "id": "./",
-  "name": "רשימת קניות · Shopping list",
-  "short_name": "רשימת קניות",
+  "name": "קניותיפיי · Purchasify",
+  "short_name": "קניותיפיי",
   "description": "רשימת קניות פרטית שמתעדכנת בזמן אמת בכל המכשירים · A private shopping list that updates live on all your devices",
   "start_url": "./",
   "scope": "./",
