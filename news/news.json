@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T17:15:00+02:00",
+ "updated": "2026-10-28T18:03:41+02:00",
  "topics": [
   {
    "id": "musk",
@@ -137,21 +137,55 @@
  ],
  "items": [
   {
-   "id": "tesla-fsd-chipmunk-98yo",
-   "topic": "tesla",
-   "date": "2026-10-28T14:17:50Z",
-   "url": "https://x.com/elonmusk/status/2115447957843821013",
-   "source": "X · @elonmusk",
+   "id": "huang-nemotron-transcribe",
+   "topic": "huang",
+   "date": "2026-10-28T15:35:03Z",
+   "url": "https://x.com/i/trending/2115465671765340303",
+   "source": "X",
    "he": {
-    "title": "מאסק: \"בטסלה אכפת לנו אפילו מהסנאים\"",
-    "summary": "מאסק ציטט סיפור על גבר בן 98 שקנה את הטסלה הראשונה שלו עם נהיגה עצמית, ומספר שהמכונית עצרה כדי לא לדרוס סנאי שחצה את הכביש."
+    "title": "אנבידיה משחררת את Nemotron 3.5 Transcribe לתמלול דיבור",
+    "summary": "אנבידיה שחררה מודל פתוח שמתמלל דיבור ב-40 שפות, מזהה עד שמונה דוברים ומתרגם – ומוביל בדירוגי הדיוק בין המודלים הפתוחים."
    },
    "en": {
-    "title": "Musk: \"At Tesla, we even care about the chipmunks\"",
-    "summary": "Musk quoted a story about a 98-year-old man who bought his first self-driving Tesla and says the car stopped so it wouldn't run over a chipmunk crossing the road."
+    "title": "Nvidia releases Nemotron 3.5 Transcribe for top speech-to-text accuracy",
+    "summary": "Nvidia released an open-weight model that transcribes speech in 40 languages, attributes up to eight speakers and translates – and leads open-model accuracy rankings."
    },
-   "full_he": "בטסלה אכפת לנו אפילו מהסנאים.\n\nהפוסט שהוא ציטט:\nגבר בן 98 קונה את טסלה Model Y הראשונה שלו עם נהיגה עצמית, ונדהם.\n\n\"אני נוהג בה כנראה חודשיים-שלושה, והיא לא עשתה אף טעות בנהיגה. בעצם, לפני כמה ימים היא עצרה – סנאי חצה את הכביש, לא הייתה שום תנועה אחרת, והיא לא דרסה את הסנאי... בשביל מישהו בן 98, זה ממש תענוג.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.",
-   "full_en": "At Tesla, we even care about the chipmunks.\n\nThe quoted post:\n98-Year-Old Man Buys His First Self-Driving Tesla Model Y And Is Blown Away\n\n\"I've been driving it probably 2-3 months, and it's not made an error in its driving. In fact, the other day it stopped - a chipmunk was crossing the road, and there was no other traffic, and it did not run over the chipmunk … For somebody that's 98-years-old, this is a real treat.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
+   "full_he": "אנבידיה שחררה מודל עם משקלים פתוחים שמתמלל דיבור ב-40 שפות בדיוק גבוה, ואפילו מפריד בין קולות חופפים בהקלטות עמוסות.\n\n• Nemotron 3.5 Transcribe בנוי בשיטת \"תערובת מומחים\" (MoE), עם 4 מיליארד פרמטרים פעילים מתוך 30 מיליארד בסך הכול.\n• בחבילה אחת: תמלול, שיוך דוברים לעד שמונה קולות, תרגום בין 31 שפות לאנגלית ועוד.\n• הוא חולק את המקום הראשון במדד AA-WER עם שיעור שגיאת מילים של 2.8% בין המודלים הפתוחים, ומוביל את דירוגי זיהוי הדיבור באנגלית עם 5.33% – במיוחד בשיחות מרובות דוברים ובשיחות עם סוכנים קוליים.\n• מפתחים משבחים את היעילות שלו לכלים כמו תמלול פגישות או תמלול רפואי.\n• המשקלים זמינים בחינם ב-Hugging Face, יש מרחב הדגמה וגישת API זולה דרך DeepInfra – מתאים להרצה מקומית ולהתאמות דרך מסגרת NeMo של אנבידיה.",
+   "full_en": "NVIDIA just dropped an open-weight model that nails speech-to-text across 40 languages, even sorting out overlapping voices in busy recordings.\n\n• Nemotron 3.5 Transcribe uses a mixture-of-experts design with only 4 billion active parameters out of 30 billion total.\n• It handles transcription, speaker attribution for up to eight voices, translation between 31 languages and English, and more in one package.\n• It ties for first on the AA-WER Index at 2.8% word error rate among open models and leads English ASR leaderboards at 5.33%, shining especially on multi-speaker chats and voice-agent talks.\n• Developers love its efficiency for tools like meeting or medical transcription.\n• Weights are freely available on Hugging Face, with a demo space and low-cost API access via DeepInfra — suited to local runs and custom tweaks via NVIDIA's NeMo framework."
+  },
+  {
+   "id": "grokbot-trading-scam-claims",
+   "topic": "grokbot",
+   "date": "2026-10-28T15:26:26Z",
+   "url": "https://x.com/i/trending/2115463040875332022",
+   "source": "X",
+   "he": {
+    "title": "הצפת טענות על \"בוטי מסחר של Grok\" מעוררת חשד להונאה",
+    "summary": "פוסטים ב-X מבטיחים רווחי ענק בן לילה מ\"בוטים של Grok\" למסחר. ספקנים ורגולטורים מזהירים שרבים מהם הונאות או סימולציות, ומשתמשים משתיקים את הביטויים כדי לנקות את הפיד."
+   },
+   "en": {
+    "title": "\"Grok bot\" trading claims flood X, drawing scam doubts",
+    "summary": "Posts on X promise huge overnight gains from \"Grok bot\" trading tools. Skeptics and regulators warn many are scams or simulations, and users are muting the phrases to clean up their feeds."
+   },
+   "full_he": "צילומי מסך של לוחות בקרה מראים 44 דולר שהופכים ל-11,000 דולר בן לילה בזכות \"בוטים של Grok\" – אבל משתמשים מנוסים משתיקים את ההייפ כדי לנקות את הפיד.\n\nפוסטים ב-X מקדמים כלי מסחר מבוססי AI שמופעלים לכאורה על ידי הצ'טבוט Grok של SpaceXAI, ומתהדרים ברווחים עצומים בן לילה מהשקעות זעירות בזמן שהמשתמשים ישנים.\n\n• ספקנים מצביעים על חוסר ההיגיון: מי שמשתף את זה מוכר גישה במקום לגרוף רווחים בשקט.\n• בדיקות מגלות שרבות מהטענות מבוססות על סימולציות או מסחר על הנייר, ולא על כסף אמיתי.\n• רגולטורים כמו ה-CFTC מזהירים שהצעות כאלה מסתירות לעיתים קרובות הונאות, עם לוחות בקרה מזויפים או חסימת משיכות.\n• יש גם מי שמשתמשים ב-Grok באמת, לעזרה צנועה במחקר ובניתוח.\n\nמשתמשים משתיקים ביטויים כמו \"Grok bot Forever\" כדי להחזיר לעצמם פיד שמיש, במחזור המוכר של הייפ וספקנות.\n\nשים לב: מדובר בבוטים של מסחר שמשתמשים במותג, ולא במוצר Grok Bot הרשמי.",
+   "full_en": "Screenshots of dashboards show $44 ballooning to $11,000 overnight from 'Grok bots' — but savvy users are muting the hype to clean up their feeds.\n\nPosts on X promote AI trading tools powered by SpaceXAI's Grok chatbot, boasting massive overnight gains from tiny investments while users sleep.\n\n• Skeptics point out the illogic of sharers hawking access instead of cashing out quietly.\n• Reviews reveal many claims stem from simulations or paper trades, not real money.\n• Regulators like the CFTC warn these pitches often mask frauds with fake dashboards or withdrawal blocks.\n• Some genuinely use Grok for modest research and analysis help.\n\nUsers are muting phrases like 'Grok bot Forever' to restore usable timelines amid the familiar hype-skepticism cycle.\n\nNote: these are trading bots using the name, not the official Grok Bot product."
+  },
+  {
+   "id": "tesla-vietnam-hiring",
+   "topic": "tesla",
+   "date": "2026-10-28T14:46:50Z",
+   "url": "https://x.com/i/trending/2115453663028077034",
+   "source": "X",
+   "he": {
+    "title": "טסלה מגייסת צוות ראשון בווייטנאם",
+    "summary": "טסלה פרסמה משרות ראשונות בווייטנאם – מנהלי מכירות ושירות ומפתח פרויקטים לטעינה – צעד שמרמז על חנויות, שירות ורשת סופרצ'רג'רים במדינה."
+   },
+   "en": {
+    "title": "Tesla posts its first jobs in Vietnam",
+    "summary": "Tesla has posted its first openings in Vietnam – sales and service managers and a charging project developer – a sign of planned retail, service and a Supercharger network there."
+   },
+   "full_he": "טסלה בונה את הצוות הראשון שלה בווייטנאם, ומפרסמת משרות למנהלי מכירות ולמומחי טעינה כדי לתת תמיכה רשמית לנהגים שמחכים לה.\n\nאחרי שרשמה חברת בת בהו צ'י מין ב-11 בספטמבר עם הון של 3 מיליון דולר, טסלה פרסמה חמש משרות מרכזיות:\n• מנהל מכירות\n• מנהל שירות\n• שותף עסקי למשאבי אנוש\n• מנהל רכש\n• מפתח פרויקטים לטעינה\n\nהמגייס ריקי איפ הכריז על המשרות ב-X והדגיש את המשימה \"ליצור שפע\" יחד עם מקומיים נלהבים. המשרות מרמזות על תוכניות לחנויות, למערך שירות ולרשת סופרצ'רג'רים בשוק הרכב החשמלי הצומח של וייטנאם, שבו וינפאסט מובילה – וטסלה מכוונת לחוויית הלקוח למרות קשיי היבוא. עדיין אין פרטים על מועד השקה, אבל התגובות מראות התלהבות מנסיעות מבחן ומשירות רשמי.",
+   "full_en": "Tesla is building its first team in Vietnam, posting jobs for sales managers and charging experts to bring official support to eager drivers.\n\nAfter registering a subsidiary in Ho Chi Minh City on September 11 with $3 million in capital, Tesla shared five key openings:\n• Sales Manager\n• Service Manager\n• HR Business Partner\n• Purchasing Manager\n• Project Developer for Charging\n\nRecruiter Ricky Ip announced the hires on X, emphasizing the mission to create abundance with passionate locals. The roles signal plans for retail, service operations, and a Supercharger network in Vietnam's fast-growing EV market, where VinFast leads but Tesla eyes customer experience amid import challenges. No launch details yet, but reactions show excitement for test drives and official service."
   },
   {
    "id": "musk-fsd-1-5-trillion-true",
@@ -171,21 +205,72 @@
    "full_en": "True\n\nThe quoted post:\nFSD could literally free up OVER $1.5 trillion/yr... WHY isn't anyone talking about this??\n\nIf Lawmakers were serious about serving the people, they would start focusing on how to speed up FSD adoption.\n\nThe Data:\nFatal & serious crashes cost the U.S. almost $2 trillion per year in total societal harm; including ~$400 billion in direct economic costs in the form of:\n• medical bills\n• property damage\n• lost wages\n• enormous quality-of-life cost of lost years\n• permanent disability\n\nTesla's latest FSD data shows vehicles with FSD engaged are ~9× SAFER than the average driver.\n\nThat means, if fully adopted, FSD could produce savings the size of any one of these:\n• ~6% of GDP\n• The entire Social Security program\n• Medicare AND Medicaid\n• Roughly 2× the defense budget\n\nAt this scale, FSD (and technologies like it) could be one of the first real steps toward an age of AI \"abundance\" people talk about.\n\n50 years from now, our children and grandchildren will look back in horror at the fact that we ever drove at all.\n\nThe quoted post also includes an image that isn't transcribed here."
   },
   {
-   "id": "johnson-aging-econ-value-4m",
-   "topic": "johnson",
-   "date": "2026-10-28T14:01:00Z",
-   "url": "https://x.com/bryan_johnson/status/2115443720145223923",
-   "source": "X · @bryan_johnson",
+   "id": "grok-unfollow-roasts",
+   "topic": "grok",
+   "date": "2026-10-28T14:28:44Z",
+   "url": "https://x.com/i/trending/2115449318698074607",
+   "source": "X",
    "he": {
-    "title": "בריאן ג'ונסון: האטת הזדקנות אחרי גיל 50 שווה 4 מיליון דולר",
-    "summary": "ג'ונסון משתף מאמר שטוען שהאטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים ושווה כ-4 מיליון דולר בערך כלכלי. זו טענה ממאמר תיאורטי, לא עצה רפואית."
+    "title": "טרנד: מבקשים מ-Grok חמש סיבות למה לא לעקוב אחריהם",
+    "summary": "משתמשים שואלים את Grok \"מה 5 סיבות שאנשים יפסיקו לעקוב אחריי?\" ומשתפים את העקיצות המשעשעות שהוא מחזיר, על סמך הפוסטים והביו שלהם."
    },
    "en": {
-    "title": "Bryan Johnson: slowing aging after 50 is worth $4 million",
-    "summary": "Johnson shares a paper claiming that slowing aging after age 50 can add 3.6 years of life and is worth about $4 million in economic value. It's a claim from a theory paper, not medical advice."
+    "title": "Trend: users ask Grok for 5 reasons to unfollow them",
+    "summary": "Users are asking Grok \"What are 5 reasons why people should unfollow me?\" and sharing the witty roasts it returns, based on their posts and bios."
    },
-   "full_he": "\"האטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים, ושווה 4 מיליון דולר בערך כלכלי.\"\n\nבתמונה שצירף: צילום של מאמר בשם \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" (ההשפעה הכלכלית של התערבויות נגד הזדקנות המבוססות על סמנים ביולוגיים, על עלויות הבריאות ועל הערך לאדם), מאת פדריקו פליצי (enGene, באזל, שווייץ). המאמר פורסם ב-Frontiers in Genetics ב-11 באוקטובר 2026, במדור אפיגנטיקה וארכיטקטורת הגנום, כמאמר מסוג \"השערה ותיאוריה\" (doi.org/10.3389/fgene.2026.1814599).\n\nהמספרים הם טענה של ג'ונסון ושל מאמר תיאורטי, ולא הוכחה קלינית.\n\nזה כל הטקסט בפוסט; אין לו המשך בשרשור.",
-   "full_en": "\"Slowing aging after the age 50 can add 3.6 yrs of life and is worth $4 million in economic value.\"\n\nThe attached image: a screenshot of a paper titled \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" by Federico Felizzi (enGene, Basel, Switzerland). It was published in Frontiers in Genetics on 11 October 2026, in the Epigenetics and Genome Architecture section, as a \"Hypothesis and Theory\" article (doi.org/10.3389/fgene.2026.1814599).\n\nThe figures are Johnson's and a theory paper's claim, not clinical proof.\n\nThat's the whole post; there's no thread after it."
+   "full_he": "אנשים שואלים את Grok בשובבות \"מה 5 סיבות שאנשים צריכים להפסיק לעקוב אחריי?\" ומשתפים את העקיצות השנונות שהם מקבלים.\n\nהטרנד התחיל בפוסט של פריאם ראג', שקיבל לייקים וציטוטים מאחרים כמו יובראג' פרצ'ה ואמיטי לי, שהצטרפו עם בקשות משלהם. Grok סורק את הפוסטים הציבוריים, הביו והפעילות של המשתמשים, ומחזיר רשימות קלילות שצוחקות על הרגלי פרסום או תחומי עניין נישתיים. המשתתפים נהנים מהכיף הלא-מחייב; יש שאפילו הפסיקו לעקוב אחרי חשבונות שנשכחו, ויש שהפכו את השאלה לסיבות לעקוב – וזה הפך לבידור משותף ברשתות.",
+   "full_en": "People are playfully prompting Grok with 'What are 5 reasons why people should unfollow me?' and sharing the witty roasts that come back.\n\nThe trend kicked off with Priyam Raj's post, which drew likes and quotes from others like Yuvraj Parcha and Amity Lee jumping in with their own requests. Grok scans users' public posts, bios, and activity to deliver light-hearted lists poking fun at quirks like posting habits or niche interests. Participants enjoy the low-stakes fun, with some even unfollowing forgotten accounts or flipping the prompt to reasons to follow, turning it into shared entertainment on social platforms."
+  },
+  {
+   "id": "spacex-fcc-d2d-spectrum-vote",
+   "topic": "spacex",
+   "date": "2026-10-28T14:28:10Z",
+   "url": "https://x.com/i/trending/2115449317452382228",
+   "source": "X",
+   "he": {
+    "title": "ה-FCC מצביע מחר על הרחבת התדרים לטלפונים דרך לוויין",
+    "summary": "ה-FCC יצביע ב-29 באוקטובר על תוספת של 482 מגה-הרץ לשירותי לוויין ישירות לסמארטפון, כמו Starlink Mobile. AT&T, ורייזון ו-T-Mobile מתנגדות לחלק מהתדרים, ו-SpaceX דוחפת להרחבה."
+   },
+   "en": {
+    "title": "FCC votes tomorrow on expanding satellite-to-phone spectrum to 13 bands",
+    "summary": "On October 29 the FCC votes on adding 482 MHz for direct-to-smartphone satellite services like Starlink Mobile. AT&T, Verizon and T-Mobile oppose some bands, while SpaceX pushes for more."
+   },
+   "full_he": "מחר ה-FCC עשוי לפתוח מאות מגה-הרץ נוספים של תדרים ללוויינים שמתחברים ישירות לסמארטפונים רגילים, וכך לסגור פערי כיסוי באזורים כפריים.\n\nה-FCC מתכנס ב-29 באוקטובר 2026 בוושינגטון כדי להצביע על הוספת 482 מגה-הרץ לשירותי לוויין ישירות למכשיר (כמו Starlink Mobile), כך שמספר הפסים המותרים יעלה מחמישה ל-13, במסגרת עדכון כללי \"כיסוי משלים מהחלל\" (SCS).\n\n• AT&T, ורייזון ו-T-Mobile מתנגדות להכללת שני פסי 5G מרכזיים בהיקף כולל של 290 מגה-הרץ, בטענה שהדבר עלול לשבש שירות ל-300 מיליון משתמשים.\n• SpaceX דוחפת להוספת פסים כמו 902–928 מגה-הרץ ולהגנות מותאמות שישלבו בצורה חלקה בין רשתות לוויין לרשתות קרקעיות.\n• הצבעה בעד תפתח תקופת הערות ציבוריות; המטרה היא לחסל אזורים מתים ולהגביר את התחרות בסלולר, בלי לקבע את הכללים מיד.",
+   "full_en": "Tomorrow, the FCC could unlock hundreds more megahertz of airwaves for satellites to connect directly to everyday smartphones, bridging gaps in rural coverage.\n\nThe FCC meets October 29, 2026, in Washington to vote on adding 482 MHz of spectrum for direct-to-device satellite services like Starlink Mobile, growing eligible bands from five to 13 under modernized Supplemental Coverage from Space rules.\n\n• AT&T, Verizon, and T-Mobile oppose including two key 5G bands totaling 290 MHz, citing potential disruptions to 300 million users.\n• SpaceX pushes for additions like the 902–928 MHz band and tailored protections to blend satellite and terrestrial networks smoothly.\n• A yes vote starts a public comment period, aiming to eliminate dead zones and boost wireless competition without finalizing rules right away."
+  },
+  {
+   "id": "tesla-fsd-chipmunk-98yo",
+   "topic": "tesla",
+   "date": "2026-10-28T14:17:50Z",
+   "url": "https://x.com/elonmusk/status/2115447957843821013",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"בטסלה אכפת לנו אפילו מהסנאים\"",
+    "summary": "מאסק ציטט סיפור על גבר בן 98 שקנה את הטסלה הראשונה שלו עם נהיגה עצמית, ומספר שהמכונית עצרה כדי לא לדרוס סנאי שחצה את הכביש."
+   },
+   "en": {
+    "title": "Musk: \"At Tesla, we even care about the chipmunks\"",
+    "summary": "Musk quoted a story about a 98-year-old man who bought his first self-driving Tesla and says the car stopped so it wouldn't run over a chipmunk crossing the road."
+   },
+   "full_he": "בטסלה אכפת לנו אפילו מהסנאים.\n\nהפוסט שהוא ציטט:\nגבר בן 98 קונה את טסלה Model Y הראשונה שלו עם נהיגה עצמית, ונדהם.\n\n\"אני נוהג בה כנראה חודשיים-שלושה, והיא לא עשתה אף טעות בנהיגה. בעצם, לפני כמה ימים היא עצרה – סנאי חצה את הכביש, לא הייתה שום תנועה אחרת, והיא לא דרסה את הסנאי... בשביל מישהו בן 98, זה ממש תענוג.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "At Tesla, we even care about the chipmunks.\n\nThe quoted post:\n98-Year-Old Man Buys His First Self-Driving Tesla Model Y And Is Blown Away\n\n\"I've been driving it probably 2-3 months, and it's not made an error in its driving. In fact, the other day it stopped - a chipmunk was crossing the road, and there was no other traffic, and it did not run over the chipmunk … For somebody that's 98-years-old, this is a real treat.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
+  },
+  {
+   "id": "apple-app-store-instant-approvals",
+   "topic": "apple",
+   "date": "2026-10-28T14:10:46Z",
+   "url": "https://x.com/i/trending/2115143792068276437",
+   "source": "X",
+   "he": {
+    "title": "מפתחי iOS: עדכונים מאושרים ב-App Store כמעט מיד",
+    "summary": "מפתחים מדווחים שעדכונים עוברים בדיקה ב-App Store תוך שניות. אפל מייחסת זאת להרחבת האוטומציה לחשבונות מהימנים, אבל אחרים עדיין מחכים ימים ואפילו שבועות."
+   },
+   "en": {
+    "title": "iOS developers see near-instant App Store approvals for updates",
+    "summary": "Developers report App Store updates clearing review in seconds. Apple credits expanded automation for trusted accounts, though others still wait days or even weeks."
+   },
+   "full_he": "מפתח אחד לחץ על \"שלח\" וראה את העדכון לאפליקציה שלו מאושר תוך פחות מדקה. זה שינוי מבורך, ומפתחים אחרים משתפים הצלחות מהירות משלהם.\n\nחלק ממפתחי iOS מדווחים שעדכונים ב-App Store עוברים בדיקה תוך שניות – כמו פרדריק ג'יימס וצ'אד, שקיבלו אישור כמעט מיד אחרי עיכובים בעבר.\n\n• אפל מייחסת זאת להרחבת האוטומציה לחשבונות מהימנים.\n• לפי הנתונים הרשמיים, 50% מההגשות נבדקות תוך פחות מ-24 שעות, והממוצע הכולל הוא יום וחצי.\n• רבים חוגגים את ההאצה בעדכונים קטנים, אבל אחרים עדיין מתוסכלים: המתנות של חמישה ימים, בדיקות של 33 ימים, או פגישות שנקבעו ואף אחד לא הגיע אליהן.",
+   "full_en": "One developer hit submit and watched his app update flip to approved in under a minute. It's a welcome change that's got others sharing their own quick wins.\n\nSome iOS developers report App Store updates clearing review in seconds, like Frederick James and Chad who saw approvals almost instantly after past delays.\n\n• Apple credits expanded automation for trusted accounts.\n• Official stats show 50% of submissions reviewed in under 24 hours and an average of 1.5 days overall.\n• While many celebrate the speedups for minor updates, frustrations linger for others facing five-day waits, 33-day reviews, or no-shows at scheduled appointments."
   },
   {
    "id": "kraken-xstocks-1b-aum",
@@ -205,6 +290,40 @@
    "full_en": "\"Huge. $1B AUM.\n\nCongrats @xStocksFi. Proud to offer xStocks on Kraken.\"\n\nThe quoted post (@xStocksFi):\n\"Global access to the world's markets.\n\nThe first billion achieved. Trillions to go.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
   },
   {
+   "id": "johnson-aging-econ-value-4m",
+   "topic": "johnson",
+   "date": "2026-10-28T14:01:00Z",
+   "url": "https://x.com/bryan_johnson/status/2115443720145223923",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: האטת הזדקנות אחרי גיל 50 שווה 4 מיליון דולר",
+    "summary": "ג'ונסון משתף מאמר שטוען שהאטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים ושווה כ-4 מיליון דולר בערך כלכלי. זו טענה ממאמר תיאורטי, לא עצה רפואית."
+   },
+   "en": {
+    "title": "Bryan Johnson: slowing aging after 50 is worth $4 million",
+    "summary": "Johnson shares a paper claiming that slowing aging after age 50 can add 3.6 years of life and is worth about $4 million in economic value. It's a claim from a theory paper, not medical advice."
+   },
+   "full_he": "\"האטת ההזדקנות אחרי גיל 50 יכולה להוסיף 3.6 שנות חיים, ושווה 4 מיליון דולר בערך כלכלי.\"\n\nבתמונה שצירף: צילום של מאמר בשם \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" (ההשפעה הכלכלית של התערבויות נגד הזדקנות המבוססות על סמנים ביולוגיים, על עלויות הבריאות ועל הערך לאדם), מאת פדריקו פליצי (enGene, באזל, שווייץ). המאמר פורסם ב-Frontiers in Genetics ב-11 באוקטובר 2026, במדור אפיגנטיקה וארכיטקטורת הגנום, כמאמר מסוג \"השערה ותיאוריה\" (doi.org/10.3389/fgene.2026.1814599).\n\nהמספרים הם טענה של ג'ונסון ושל מאמר תיאורטי, ולא הוכחה קלינית.\n\nזה כל הטקסט בפוסט; אין לו המשך בשרשור.",
+   "full_en": "\"Slowing aging after the age 50 can add 3.6 yrs of life and is worth $4 million in economic value.\"\n\nThe attached image: a screenshot of a paper titled \"Economic impact of biomarker-based aging interventions on healthcare costs and individual value\" by Federico Felizzi (enGene, Basel, Switzerland). It was published in Frontiers in Genetics on 11 October 2026, in the Epigenetics and Genome Architecture section, as a \"Hypothesis and Theory\" article (doi.org/10.3389/fgene.2026.1814599).\n\nThe figures are Johnson's and a theory paper's claim, not clinical proof.\n\nThat's the whole post; there's no thread after it."
+  },
+  {
+   "id": "musk-putin-true-genius",
+   "topic": "musk",
+   "date": "2026-10-28T13:47:26Z",
+   "url": "https://x.com/i/trending/2115438265872585167",
+   "source": "X",
+   "he": {
+    "title": "פוטין: אילון מאסק הוא גאון אמיתי",
+    "summary": "בפתיחת פסגת רוסיה-אפריקה במוסקבה שיבח פוטין את הישגי הלוויינים של מאסק וכינה אותו גאון, תוך שהוא מדגיש שיתוף פעולה בחלל – בזמן שרוסיה בונה חלופה משלה לסטארלינק."
+   },
+   "en": {
+    "title": "Putin calls Elon Musk a true genius at Russia-Africa Summit",
+    "summary": "Opening the Russia-Africa Summit in Moscow, Putin praised Musk's satellite achievements and called him a genius, stressing space cooperation while Russia builds its own Starlink alternative."
+   },
+   "full_he": "באמצע פסגת רוסיה-אפריקה עצר ולדימיר פוטין כדי לשבח את הישגי הלוויינים של אילון מאסק, וכינה אותו גאון מבריק על רקע שיחות על שיתוף פעולה בחלל.\n\nבפתיחת פסגת רוסיה-אפריקה השלישית במוסקבה ביום רביעי, פוטין הזכיר את יותר מ-5,000 החלליות של מאסק במסלול נמוך סביב כדור הארץ, ואת הקשרים השוטפים בנושא קבוצות לוויינים, למרות המתיחות הפוליטית. הוא הדגיש את הצורך במשמעת בחלל, שבו שותפים רוסים ואמריקאים עדיין משתפים פעולה – בזמן שרוסיה מקדמת רשת משלה, \"ראסווט\", כחלופה לסטארלינק. הדברים, שהופצו ברשת בקטעי וידאו, הדגישו תיאום מעשי במסלול גם כשמוסקבה בונה יכולות עצמאיות.",
+   "full_en": "In the midst of the Russia-Africa Summit, Vladimir Putin paused to praise Elon Musk's satellite feats, calling him a brilliant genius amid talks of space cooperation.\n\nDuring Wednesday's opening of the third Russia-Africa Summit in Moscow, Putin highlighted Musk's over 5,000 spacecraft in low-Earth orbit and ongoing contacts on satellite constellations, despite political tensions. He stressed the need for discipline in space where Russian and American partners still collaborate, while Russia advances its own Rassvet network as a Starlink alternative. The comments, shared widely online via clips, underscored pragmatic orbital coordination even as Moscow builds independent capabilities."
+  },
+  {
    "id": "mccullough-defuse-ratg13-omission",
    "topic": "mccullough",
    "date": "2026-10-28T13:03:14Z",
@@ -220,57 +339,6 @@
    },
    "full_he": "הפוסט של פיטר מקאלו:\n\n„השמטה מסקרנת בעקבות הניירת של SARS-CoV-2. למה ראלף באריק ושי ז'נגלי לא הזכירו את RaTG13 בהצעת DEFUSE שלהם מ-2018? מאת ג'ון ליק, בבלוג FOCAL POINTS.”\n\nהתמונה בפוסט היא שער המאמר, עם צילום של עמוד השער של ההצעה „Proposal: Volume I”: DARPA PREEMPT, הגוף המוביל EcoHealth Alliance, ושותפים כמו Duke-NUS, אוניברסיטת צפון קרוליינה, המכון לווירולוגיה בווהאן, המרכז הלאומי לבריאות חיות בר של USGS ו-PARC.\n\nעיקרי המאמר (ג'ון ליק, The Focal Points):\n\n• חוקר מקור הנגיף ג'ים הסלאם סיפר לליק שכאשר שי ז'נגלי פרסמה את הגנום של RaTG13 ב-3 בפברואר 2020, באריק כתב למתיו פרימן מאוניברסיטת מרילנד שהמאמר שלה לא אושר על ידי ממשלת סין ושהיא עלולה להיעצר בגללו, והוסיף ש„זה לא נראה טוב לאף אחד”.\n• RaTG13 היה אז הקרוב הידוע ביותר ל-SARS-CoV-2, עם התאמה של 96.1% בגנום.\n• ההבדל הביולוגי העיקרי הוא תוספת של ארבע חומצות אמינו (PRRA) בחלבון הספייק, שיוצרת אתר חיתוך לאנזים פורין. לפי ליק, זה מה שעורר חשד למקור מעבדתי: האתר מגביר את הפעלת הספייק, הוא לא נמצא בנגיפים קרובים ידועים, והוא מקודד ברצף CGG-CGG שנדיר בנגיפי קורונה.\n• הצעת DEFUSE הוגשה ל-DARPA ב-24 במרץ 2018 על ידי פיטר דשאק וביקשה כ-14.2 מיליון דולר. DARPA דחתה אותה. ליק מצטט ממנה שהחוקרים תכננו לחפש בנגיפי SARS אתרי חיתוך לפורין ו„להכניס אתרי חיתוך מתאימים לאדם” במקרים של אי-התאמה.\n• ציר הזמן לפי המאמר: 2013 איסוף דגימה 4991 ממכרה מוג'יאנג, שבו חלו שישה עובדים ב-2012 ושלושה מתו; 2016 פרסום קטע של 370 נוקלאוטידים; 2017–2018 ריצוף כמעט כל הגנום בלי פרסום; 2018 הגשת DEFUSE; 3 בפברואר 2020 פרסום הגנום ב-Nature ותגובת באריק.\n• ליק כותב שבדק את ההצעה וש-RaTG13 לא מוזכר בה אפילו פעם אחת, למרות שלדבריו היה דוגמה מתבקשת לנגיף עטלפים שנקשר לקולטן ACE-2 האנושי.\n• לדבריו, מניסיון של עשרים שנה בחקירות פשע, מה שמושמט ממסמכים אומר לעיתים יותר ממה שכתוב בהם.\n• הסלאם מעלה את החשד שפרסום הגנום על ידי שי היה מסר לבאריק, בנוסח „הצוות שלי בווהאן לא הכניס את אתר הפורין, אז אל תחשוב להאשים אותנו”.\n\nהערה: אלה טענות ופרשנות של המחבר. אין הסכמה מדעית על מקור הנגיף, ורבים מהמדענים סבורים שמקורו טבעי.",
    "full_en": "Peter McCullough's post:\n\n\"Intriguing Omission in SARS-CoV-2 Paper Trail. Why didn't Ralph Baric & Shi Zhengli mention RaTG13 in their 2018 DEFUSE proposal? By John Leake, FOCAL POINTS.\"\n\nThe image is the article's cover, with a photo of the proposal's title page, \"Proposal: Volume I\": DARPA PREEMPT, lead organization EcoHealth Alliance, and team members including Duke-NUS, the University of North Carolina, the Wuhan Institute of Virology, the USGS National Wildlife Health Center and PARC.\n\nThe article's main points (John Leake, The Focal Points):\n\n• Origin researcher Jim Haslam told Leake that when Shi Zhengli published the RaTG13 genome on February 3, 2020, Baric wrote to Matthew Frieman of the University of Maryland that her paper was not approved by the Chinese government and she might be arrested for it, adding \"That's not a good look for anyone.\"\n• RaTG13 was then the closest known relative of SARS-CoV-2, a 96.1% genome match.\n• The key biological difference is a four-amino-acid insertion (PRRA) in the spike protein that creates a furin cleavage site. Leake says this raised lab-origin concerns because it boosts spike activation, was absent from known related viruses, and is encoded by a CGG-CGG sequence that is rare in coronaviruses.\n• DEFUSE was submitted to DARPA on March 24, 2018 by Peter Daszak and sought about $14.2 million. DARPA turned it down. Leake quotes it as planning to scan SARS-CoV sequences for furin cleavage sites and \"introduce appropriate human specific cleavage sites\" where mismatches occur.\n• Timeline per the article: 2013, sample 4991 collected at the Mojiang mine, where six workers fell ill in 2012 and three died; 2016, a 370-nucleotide fragment published; 2017–2018, nearly the whole genome sequenced but not published; 2018, DEFUSE submitted; February 3, 2020, genome published in Nature and Baric's reaction.\n• Leake says he reviewed the proposal and RaTG13 is not mentioned once, though in his view it was an obvious example of a bat virus with some affinity for the human ACE-2 receptor.\n• Drawing on twenty years of true-crime investigations, he says what documents omit often speaks louder than what they include.\n• Haslam suspects Shi published the genome as an insider's message to Baric, along the lines of \"My team at the WIV did NOT insert the furin cleavage site, so don't even think about blaming us.\"\n\nNote: these are the author's claims and interpretation. There is no scientific consensus on the virus's origin, and many scientists favor a natural origin."
-  },
-  {
-   "id": "mccullough-spudcells-synthetic",
-   "topic": "mccullough",
-   "date": "2026-10-28T12:55:56Z",
-   "url": "https://x.com/P_McCulloughMD/status/2115427345330782232",
-   "source": "X · @P_McCulloughMD",
-   "he": {
-    "title": "מקאלו: תאים סינתטיים ראשונים שגדלים ומתרבים",
-    "summary": "מקאלו משתף מאמר של ניקולס הולשר על „SpudCells”, תאים מלאכותיים שפיתחו באוניברסיטת מינסוטה מחומרים לא-חיים, שגדלים, מתחלקים ועוברים ברירה טבעית. הולשר מזהיר שזה „לשחק באלוהים”."
-   },
-   "en": {
-    "title": "McCullough: the first synthetic cells that grow and reproduce",
-    "summary": "McCullough shares a Nicolas Hulscher article on \"SpudCells\", artificial cells built at the University of Minnesota from nonliving materials that grow, divide and undergo natural selection. Hulscher warns it's \"playing God.\""
-   },
-   "full_he": "הפוסט של פיטר מקאלו:\n\n„מדענים יצרו את התאים הסינתטיים הראשונים שגדלים, מתרבים ועוברים ברירה טבעית. חוקרים באוניברסיטת מינסוטה הנדסו את אבני הבניין של חיים מלאכותיים מחומרים לא-חיים. ייתכן ש-'Spud cells' הם תחילתה של פרדיגמה ביולוגית חדשה לגמרי.” (בבלוג FOCAL POINTS)\n\nהמאמר (ניקולס הולשר, McCullough Foundation):\n\n• מדעני אוניברסיטת מינסוטה בנו לראשונה תאים מלאכותיים שנקראים SpudCells, שיכולים לגדול, להתרבות ולהעביר תכונות גנטיות מועילות לדורות הבאים.\n• התאים הורכבו מקרומים שומניים, DNA מהונדס, ריבוזומים ואנזימים לייצור חלבונים. יש להם גנום DNA של 90,000 זוגות בסיסים, שעוזר להם לייצר חלבונים, לשכפל את החומר הגנטי ולגדול על ידי ספיגת בועות קטנות מלאות חומרי הזנה.\n• התאים מתחלקים לתאי בת ומעבירים להם את החומר הגנטי. החוקרים הדגימו חמישה דורות של שכפול DNA, הזנה, גדילה וחלוקה בסיוע מכני.\n• התאים מתחרים על משאבים מוגבלים. אלה שנושאים וריאנט גנטי מועיל גדלים מהר יותר ומשאירים יותר צאצאים, ותוך חמישה דורות שיעור הווריאנט עלה מ-10% ל-38%.\n• עדיין נדרשים תנאי מעבדה מיוחדים כדי שיתרבו, אבל לדברי הכותב זה צעד גדול לקראת אורגניזמים סינתטיים עצמאיים.\n• הולשר מסכם: „רק כי מדענים יכולים לדחוף את גבולות החיים לא אומר שהם צריכים. לשחק באלוהים מגיע עם השלכות כבדות, ואנחנו נכנסים לשטח מסוכן.”",
-   "full_en": "Peter McCullough's post:\n\n\"Scientists Create the First Synthetic Cells That Grow, Reproduce, and Undergo Natural Selection. Researchers at the University of Minnesota have engineered the building blocks of artificial life from nonliving materials. 'Spud cells' could be the start of a whole new biological paradigm.\" (on FOCAL POINTS)\n\nThe article (Nicolas Hulscher, McCullough Foundation):\n\n• University of Minnesota scientists built, for the first time, artificial cells called SpudCells that can grow, reproduce and pass advantageous genetic traits to later generations.\n• The cells were assembled from fatty membranes, engineered DNA, ribosomes and protein-producing enzymes. They carry a 90,000-base-pair DNA genome that helps them make proteins, copy their genetic material and grow by absorbing smaller nutrient-filled bubbles.\n• They divide into daughter cells and pass on their genetic material. The researchers showed five generations of DNA replication, feeding, growth and mechanically assisted division.\n• The cells compete for limited resources. Those with an advantageous variant grow faster and leave more offspring; in five generations the variant rose from 10% to 38% of the population.\n• They still need specialized lab conditions to reproduce, but the author calls it a major step toward autonomous synthetic organisms.\n• Hulscher concludes: \"Just because scientists can push the boundaries of life itself does not mean they should. Playing God comes with major consequences, and we are entering dangerous territory.\""
-  },
-  {
-   "id": "brecka-steak-vs-seed-oils",
-   "topic": "brecka",
-   "date": "2026-10-28T13:00:00Z",
-   "url": "https://x.com/thegarybrecka/status/2115428367834988760",
-   "source": "X · @thegarybrecka",
-   "he": {
-    "title": "גארי ברקה: שמני זרעים בסדר אבל סטייק בעיה?",
-    "summary": "ברקה טוען שסטייק מספק חלבון מלא, ברזל, אבץ ו-B12, ושצריך להתחיל לפקפק בהמלצות תזונה שמקבלים בעיניים עצומות. לדבריו הוא לא אומר לאכול סטייק כל יום."
-   },
-   "en": {
-    "title": "Gary Brecka: seed oils are fine but steak is a problem?",
-    "summary": "Brecka says steak provides complete protein, iron, zinc and B12, and that we need to start questioning the diet advice we follow blindly. He says he's not telling people to eat steak every day."
-   },
-   "full_he": "„אז אנחנו אמורים להאמין ששמני זרעים בסדר גמור כל יום, אבל לאכול סטייק זו בעיה?? התרחקנו כל כך מההבנה של מה זה אוכל אמיתי.\n\nסטייק מספק חלבון מלא, ברזל, אבץ, B12 וחומצות אמינו חיוניות שהגוף שלך צריך כדי לתפקד. אני לא אומר שאתה צריך לאכול סטייק כל יום. אני אומר שאנחנו צריכים להתחיל לפקפק בעצות שאנחנו מקבלים בעיניים עצומות.”\n\nשאר הפוסט הוא סרטון קצר, ולכן אין עוד טקסט להציג.\n\nהערה: זו עמדתו של ברקה. גופי בריאות מרכזיים ממליצים בדרך כלל להגביל בשר אדום, ולגבי שמני זרעים אין הסכמה שהם מזיקים.",
-   "full_en": "\"So we're supposed to believe seed oils are perfectly fine every day, but eating a steak is a problem?? We've gotten so far away from understanding real food.\n\nA steak provides complete protein, iron, zinc, B12, and essential amino acids your body needs to function. I'm not saying you need to eat steak every day. I'm saying we need to start questioning the advice we're blindly following.\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is Brecka's view. Major health bodies generally advise limiting red meat, and there's no consensus that seed oils are harmful."
-  },
-  {
-   "id": "johnson-stage-lights-blue-light",
-   "topic": "johnson",
-   "date": "2026-10-28T12:47:14Z",
-   "url": "https://x.com/bryan_johnson/status/2115425155879260599",
-   "source": "X · @bryan_johnson",
-   "he": {
-    "title": "בראיין ג'ונסון ביקש לכבות את אורות הבמה",
-    "summary": "בכנס X Creator Connect בלוס אנג'לס ביקש ג'ונסון להנמיך את האורות. לדבריו האור הכחול מהזרקורים מקשה להירדם ומקטע את השינה, אז הם ישבו בחושך וזה היה הרבה יותר טוב."
-   },
-   "en": {
-    "title": "Bryan Johnson asked to turn the stage lights down",
-    "summary": "At X Creator Connect in LA, Johnson asked for the lights to be dimmed. He says the spotlights' blue light makes it harder to fall asleep and fragments sleep, so they sat in the dark and it was much better."
-   },
-   "full_he": "„האורות שכוונו לבמה הפציצו לי את העיניים באור כחול, שמקשה להירדם ומקטע את השינה.\n\nאז ישבנו בחושך וזה היה הרבה יותר טוב.”\n\nהפוסט שהוא ציטט (טיילור לורנץ):\n„בראיין ג'ונסון עולה לבמה ב-X Creator Connect בלוס אנג'לס (ומבקש מהם להנמיך את אורות הפלואורסצנט 😅)”\n\nבפוסט המצוטט יש סרטון, ולכן אין עוד טקסט להציג.",
-   "full_en": "\"The lights pointing at the stage were blasting my eyeballs with blue light which makes it harder to fall asleep and fragments sleep.\n\nSo we hung out in the dark and it was so much better.\"\n\nThe quoted post (Taylor Lorenz):\n\"@bryan_johnson takes the stage at X Creator Connect in LA (and asks them to turn the fluorescent lights down 😅)\"\n\nThe quoted post is a video, so there's no more text to show."
   },
   {
    "id": "mercola-farm-effect-bacteria",
@@ -305,6 +373,57 @@
    },
    "full_he": "הפוסט: „אשווגנדה: מחזקת האדרנל”, עם קישור לפוסט בבלוג (שפורסם במקור ב-28 בינואר 2022).\n\nתוכן הבלוג:\n\n• לאשווגנדה יש לדבריו תכונות אדפטוגניות חזקות, כלומר היא עוזרת להסתגל במהירות וביעילות לנסיבות הרגע.\n• הוא טוען שהיא מחזקת את בלוטות האדרנל ומונעת מהן להגיב ביתר או בחסר, דפוס שלדבריו נוצר כשהן נחלשות תחת לחץ.\n• לדבריו היא מצמצמת גלי אדרנלין ש„מזינים” פתוגנים כמו EBV ושלבקת חוגרת, ומונעת ייצור עודף של „תערובות הורמונים מבוססות פחד” שלטענתו מזינות מחלות כרוניות.\n• הוא טוען שהיא מגינה על הכבד מחשיפה עודפת לאדרנלין ועוזרת לו לייצר ולאחסן עשרות הורמונים.\n• לטענתו היא עוזרת לשיער של נשים לצמוח מחדש, ובאלופציה חסר לאדרנל אחד ההורמונים הלא-מתועדים מתוך 56 „תערובות האדרנלין” שהוא מתאר בספרו, והאשווגנדה משחזרת שריד ממנו.\n• למינונים הוא מפנה לספרו Cleanse To Heal.\n\nהערה: אלה טענות של אנתוני ויליאם, שאינו רופא. המדע לא מכיר 56 „תערובות אדרנלין”, ויש רק ראיות מוגבלות על השפעות האשווגנדה. כדאי להתייעץ עם רופא לפני נטילת תוספים.",
    "full_en": "The post: \"Ashwagandha: Adrenal Strengthener\", linking to a blog post (originally posted January 28, 2022).\n\nThe blog post:\n\n• He says ashwagandha has strong adaptogenic properties, helping you adapt quickly and effectively to the circumstances of the moment.\n• He claims it strengthens the adrenal glands and keeps them from over- or underreacting, a pattern he says develops as they weaken under stress.\n• He says it minimizes adrenal surges that \"feed\" pathogens such as EBV and shingles, and prevents overproduction of \"fear-based hormone blends\" that he claims fuel chronic illness.\n• He claims it protects the liver from excess adrenaline and helps it produce and store dozens of hormones.\n• He claims it helps women's hair regrow, and that in alopecia the adrenals lack one of the undocumented hormones among the 56 \"blends of adrenaline\" described in his book, a trace of which ashwagandha restores.\n• For dosages he refers to his book Cleanse To Heal.\n\nNote: these are claims by Anthony William, who isn't a doctor. Science doesn't recognize 56 \"adrenaline blends\", and evidence on ashwagandha's effects is limited. Check with a doctor before taking supplements."
+  },
+  {
+   "id": "brecka-steak-vs-seed-oils",
+   "topic": "brecka",
+   "date": "2026-10-28T13:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2115428367834988760",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי ברקה: שמני זרעים בסדר אבל סטייק בעיה?",
+    "summary": "ברקה טוען שסטייק מספק חלבון מלא, ברזל, אבץ ו-B12, ושצריך להתחיל לפקפק בהמלצות תזונה שמקבלים בעיניים עצומות. לדבריו הוא לא אומר לאכול סטייק כל יום."
+   },
+   "en": {
+    "title": "Gary Brecka: seed oils are fine but steak is a problem?",
+    "summary": "Brecka says steak provides complete protein, iron, zinc and B12, and that we need to start questioning the diet advice we follow blindly. He says he's not telling people to eat steak every day."
+   },
+   "full_he": "„אז אנחנו אמורים להאמין ששמני זרעים בסדר גמור כל יום, אבל לאכול סטייק זו בעיה?? התרחקנו כל כך מההבנה של מה זה אוכל אמיתי.\n\nסטייק מספק חלבון מלא, ברזל, אבץ, B12 וחומצות אמינו חיוניות שהגוף שלך צריך כדי לתפקד. אני לא אומר שאתה צריך לאכול סטייק כל יום. אני אומר שאנחנו צריכים להתחיל לפקפק בעצות שאנחנו מקבלים בעיניים עצומות.”\n\nשאר הפוסט הוא סרטון קצר, ולכן אין עוד טקסט להציג.\n\nהערה: זו עמדתו של ברקה. גופי בריאות מרכזיים ממליצים בדרך כלל להגביל בשר אדום, ולגבי שמני זרעים אין הסכמה שהם מזיקים.",
+   "full_en": "\"So we're supposed to believe seed oils are perfectly fine every day, but eating a steak is a problem?? We've gotten so far away from understanding real food.\n\nA steak provides complete protein, iron, zinc, B12, and essential amino acids your body needs to function. I'm not saying you need to eat steak every day. I'm saying we need to start questioning the advice we're blindly following.\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is Brecka's view. Major health bodies generally advise limiting red meat, and there's no consensus that seed oils are harmful."
+  },
+  {
+   "id": "mccullough-spudcells-synthetic",
+   "topic": "mccullough",
+   "date": "2026-10-28T12:55:56Z",
+   "url": "https://x.com/P_McCulloughMD/status/2115427345330782232",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקאלו: תאים סינתטיים ראשונים שגדלים ומתרבים",
+    "summary": "מקאלו משתף מאמר של ניקולס הולשר על „SpudCells”, תאים מלאכותיים שפיתחו באוניברסיטת מינסוטה מחומרים לא-חיים, שגדלים, מתחלקים ועוברים ברירה טבעית. הולשר מזהיר שזה „לשחק באלוהים”."
+   },
+   "en": {
+    "title": "McCullough: the first synthetic cells that grow and reproduce",
+    "summary": "McCullough shares a Nicolas Hulscher article on \"SpudCells\", artificial cells built at the University of Minnesota from nonliving materials that grow, divide and undergo natural selection. Hulscher warns it's \"playing God.\""
+   },
+   "full_he": "הפוסט של פיטר מקאלו:\n\n„מדענים יצרו את התאים הסינתטיים הראשונים שגדלים, מתרבים ועוברים ברירה טבעית. חוקרים באוניברסיטת מינסוטה הנדסו את אבני הבניין של חיים מלאכותיים מחומרים לא-חיים. ייתכן ש-'Spud cells' הם תחילתה של פרדיגמה ביולוגית חדשה לגמרי.” (בבלוג FOCAL POINTS)\n\nהמאמר (ניקולס הולשר, McCullough Foundation):\n\n• מדעני אוניברסיטת מינסוטה בנו לראשונה תאים מלאכותיים שנקראים SpudCells, שיכולים לגדול, להתרבות ולהעביר תכונות גנטיות מועילות לדורות הבאים.\n• התאים הורכבו מקרומים שומניים, DNA מהונדס, ריבוזומים ואנזימים לייצור חלבונים. יש להם גנום DNA של 90,000 זוגות בסיסים, שעוזר להם לייצר חלבונים, לשכפל את החומר הגנטי ולגדול על ידי ספיגת בועות קטנות מלאות חומרי הזנה.\n• התאים מתחלקים לתאי בת ומעבירים להם את החומר הגנטי. החוקרים הדגימו חמישה דורות של שכפול DNA, הזנה, גדילה וחלוקה בסיוע מכני.\n• התאים מתחרים על משאבים מוגבלים. אלה שנושאים וריאנט גנטי מועיל גדלים מהר יותר ומשאירים יותר צאצאים, ותוך חמישה דורות שיעור הווריאנט עלה מ-10% ל-38%.\n• עדיין נדרשים תנאי מעבדה מיוחדים כדי שיתרבו, אבל לדברי הכותב זה צעד גדול לקראת אורגניזמים סינתטיים עצמאיים.\n• הולשר מסכם: „רק כי מדענים יכולים לדחוף את גבולות החיים לא אומר שהם צריכים. לשחק באלוהים מגיע עם השלכות כבדות, ואנחנו נכנסים לשטח מסוכן.”",
+   "full_en": "Peter McCullough's post:\n\n\"Scientists Create the First Synthetic Cells That Grow, Reproduce, and Undergo Natural Selection. Researchers at the University of Minnesota have engineered the building blocks of artificial life from nonliving materials. 'Spud cells' could be the start of a whole new biological paradigm.\" (on FOCAL POINTS)\n\nThe article (Nicolas Hulscher, McCullough Foundation):\n\n• University of Minnesota scientists built, for the first time, artificial cells called SpudCells that can grow, reproduce and pass advantageous genetic traits to later generations.\n• The cells were assembled from fatty membranes, engineered DNA, ribosomes and protein-producing enzymes. They carry a 90,000-base-pair DNA genome that helps them make proteins, copy their genetic material and grow by absorbing smaller nutrient-filled bubbles.\n• They divide into daughter cells and pass on their genetic material. The researchers showed five generations of DNA replication, feeding, growth and mechanically assisted division.\n• The cells compete for limited resources. Those with an advantageous variant grow faster and leave more offspring; in five generations the variant rose from 10% to 38% of the population.\n• They still need specialized lab conditions to reproduce, but the author calls it a major step toward autonomous synthetic organisms.\n• Hulscher concludes: \"Just because scientists can push the boundaries of life itself does not mean they should. Playing God comes with major consequences, and we are entering dangerous territory.\""
+  },
+  {
+   "id": "johnson-stage-lights-blue-light",
+   "topic": "johnson",
+   "date": "2026-10-28T12:47:14Z",
+   "url": "https://x.com/bryan_johnson/status/2115425155879260599",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בראיין ג'ונסון ביקש לכבות את אורות הבמה",
+    "summary": "בכנס X Creator Connect בלוס אנג'לס ביקש ג'ונסון להנמיך את האורות. לדבריו האור הכחול מהזרקורים מקשה להירדם ומקטע את השינה, אז הם ישבו בחושך וזה היה הרבה יותר טוב."
+   },
+   "en": {
+    "title": "Bryan Johnson asked to turn the stage lights down",
+    "summary": "At X Creator Connect in LA, Johnson asked for the lights to be dimmed. He says the spotlights' blue light makes it harder to fall asleep and fragments sleep, so they sat in the dark and it was much better."
+   },
+   "full_he": "„האורות שכוונו לבמה הפציצו לי את העיניים באור כחול, שמקשה להירדם ומקטע את השינה.\n\nאז ישבנו בחושך וזה היה הרבה יותר טוב.”\n\nהפוסט שהוא ציטט (טיילור לורנץ):\n„בראיין ג'ונסון עולה לבמה ב-X Creator Connect בלוס אנג'לס (ומבקש מהם להנמיך את אורות הפלואורסצנט 😅)”\n\nבפוסט המצוטט יש סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"The lights pointing at the stage were blasting my eyeballs with blue light which makes it harder to fall asleep and fragments sleep.\n\nSo we hung out in the dark and it was so much better.\"\n\nThe quoted post (Taylor Lorenz):\n\"@bryan_johnson takes the stage at X Creator Connect in LA (and asks them to turn the fluorescent lights down 😅)\"\n\nThe quoted post is a video, so there's no more text to show."
   },
   {
    "id": "tesla-roadster-2008-clip",
