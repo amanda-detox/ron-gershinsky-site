@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T10:05:00+02:00",
+ "updated": "2026-10-28T11:05:00+02:00",
  "topics": [
   {
    "id": "musk",
@@ -136,6 +136,23 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-try-baker-a16z",
+   "topic": "grokbot",
+   "date": "2026-10-28T08:02:16Z",
+   "url": "https://x.com/elonmusk/status/2115353441954636214",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"נסו את Grok Bot\", עם הסיפור של גאווין בייקר ב-a16z",
+    "summary": "מאסק ציטט פוסט על גאווין בייקר, שסיפר בפודקאסט של a16z שבתוך שלוש דקות של יצירת בוטים ב-Grok Bot קיבל גרסאות טובות יותר של כל מה שבנה קודם בשעות עם Claude Code. לדבריו, Grok Bot מרגיש כמו \"עוד רגע של ChatGPT\"."
+   },
+   "en": {
+    "title": "Musk: \"Try Grok Bot\", quoting Gavin Baker on a16z",
+    "summary": "Musk quoted a post about Gavin Baker, who said on the a16z podcast that within three minutes of creating Grok Bots he had better versions of everything he'd spent hours building with Claude Code. He says Grok Bot feels like \"another ChatGPT moment.\""
+   },
+   "full_he": "הפוסט של מאסק: \"נסו את Grok Bot\".\n\nהפוסט שהוא ציטט (@stark0xbt):\n\nבייקר הודה ב-a16z במשהו שאף אחד בגיל שלו לא אומר בקול: בני 23 שולטים בבינה מלאכותית יותר ממה שהוא אי פעם ישלוט. הוא מתאמץ מאוד, ועדיין הוא מאחור.\n\nואז הוא הסביר איך Grok Bot יישר את המגרש:\n\n\"השגנו את Claude Code. בניתי כמה דברים, עשיתי כמה דברים מגניבים. ואז, בתוך שלוש דקות של יצירת בוטים ב-Grok Bot, היו לי גרסאות הרבה יותר טובות של כל מה שבניתי.\"\n\n• מסכם פודקאסטים: 10 שניות ב-Grok Bot.\n• מסכם Substack, מסכם X ומעקב אחרי הלך הרוח ב-X: שעות ב-Claude Code, ו-7 עד 12 שניות ב-Grok Bot. ויותר טוב.\n\nהמסגור שלו: \"מבחינתי, Grok Bot באמת מרגיש כמו עוד רגע של ChatGPT.\"\n\nבייקר מנהל מיליארדים, והוא קורא ל-Grok Bot איפוס של כל הקטגוריה.\n\nהפוסט הזה עצמו ציטט מאמר ארוך באותו חשבון, \"עידן אילון בקבלות: מה אמרו 15 מנהלי קרנות מובילים על מאסק ב-2026\".\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Musk's post: \"Try Grok Bot\".\n\nThe quoted post (@stark0xbt):\n\nBaker on a16z admitted something nobody his age says out loud. 23-year-olds are more fluent in AI than he will ever be. He has been trying hard. He is still behind.\n\nThen he explained how Grok Bot leveled it.\n\n\"We got Claude Code. I built some stuff, did some cool stuff. Then in 3 minutes of creating Grok Bots, I had much better versions of everything I created.\"\n\n• Podcast summarizer: 10 seconds in Grok Bot.\n• Substack summarizer, X summarizer, X sentiment tracker: hours in Claude Code, 7 to 12 seconds in Grok Bot. Better.\n\nHis frame: \"To me, Grok Bot does feel like another ChatGPT moment.\"\n\nBaker runs billions. He is calling Grok Bot a category reset.\n\nThat post itself quoted a long article from the same account, \"The Age of Elon in Receipts: What 15 Blue-Chip Fund Managers Have Said About Musk in 2026\".\n\nThe rest of the post is a video, so there's no more text to show."
+  },
   {
    "id": "grokbot-gavin-baker-17-bots",
    "topic": "grokbot",
