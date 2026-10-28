@@ -1,5 +1,5 @@
 /* Offline cache for Summarify (סיכומיפיי). */
-var CACHE = "rg-summ-v2";
+var CACHE = "rg-summ-v3";
 var FILES = ["./", "index.html", "app.js", "summaries.json", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "manifest.json", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "favicon-32.png"];
 
 self.addEventListener("install", function (e) {
