@@ -1,7 +1,7 @@
 /* Offline cache for Updatify (עדכוניפיי). Scope: news/ only. */
-var CACHE = "rg-news-v18";
+var CACHE = "rg-news-v19";
 var FONT_CACHE = "rg-newsfonts-1"; // separate name so version bumps keep the fonts
-var FILES = ["./", "index.html", "app.js", "../shared/rg-account.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
+var FILES = ["./", "index.html", "app.js", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "news.json"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
