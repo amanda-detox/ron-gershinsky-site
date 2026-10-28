@@ -5,22 +5,46 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a1a3f">
 <meta name="robots" content="noindex">
-<title>צ'קליסט</title>
+<title>ליסטיפיי</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="צ'קליסט">
+<meta name="apple-mobile-web-app-title" content="ליסטיפיי">
 <script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
 <link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../../shared/rg-site.css">
 <link rel="stylesheet" href="../common.css">
 <style>
-  .tabs { display: flex; gap: 6px; margin-top: 18px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
+  .catbar { display: flex; align-items: center; gap: 8px; margin-top: 18px; }
+  .tabs { flex: 1; min-width: 0; display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
   .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; }
   .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .tabs { touch-action: pan-x; -webkit-user-select: none; user-select: none; }
+  .tab { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-x; transition: transform .12s, box-shadow .12s; }
+  .tab.lifted { transform: scale(1.08); box-shadow: 0 0 0 2px var(--accent), 0 6px 16px rgba(0,0,0,.35); position: relative; z-index: 2; }
+  .tabs.dragging { overflow-x: hidden; }
+  .tabs.dragging .tab:not(.lifted) { opacity: .75; }
+  .tabadd { flex: none; width: 46px; height: 46px; border: 1px dashed var(--accent); box-shadow: var(--shadow); border-radius: 999px; background: transparent; color: var(--accent); font-size: 20px; font-weight: 800; line-height: 1; }
+  html[data-theme="light"] .tabadd { color: var(--accent); }
+  .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
+  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
+  .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
+  .sheet .sform { display: flex; flex-direction: column; gap: 10px; }
+  .sheet .s-name { height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card2); color: var(--fg); font-size: 16.5px; outline: none; }
+  .sheet .s-name:focus { border-color: var(--accent); }
+  .sheet .row { display: flex; gap: 8px; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kind { min-height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--muted); font-size: 14px; font-weight: 700; }
+  .kind[aria-checked="true"] { border-color: var(--accent); background: var(--accent); color: var(--accentink); }
+  .mi { min-height: 48px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .mi.big { border-color: var(--accent); }
+  .mi:disabled { opacity: .35; }
+  .mi.dng { color: var(--muted); }
+  .mrow { display: flex; gap: 8px; } .mrow .mi { flex: 1; text-align: center; }
   .addform { margin-top: 14px; }
   .addrow { display: flex; gap: 8px; }
   .addform input, .addform textarea, .ed input, .ed textarea, .ed select, .tools2 select { min-width: 0; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 16.5px; outline: none; }
@@ -117,7 +141,8 @@
   </section>
 
   <main data-when="in" hidden>
-    <nav class="tabs" id="tabs" role="tablist"></nav>
+    <div class="catbar"><nav class="tabs" id="tabs" role="tablist"></nav><button type="button" class="tabadd" id="cat-add">＋</button></div>
+    <p class="cathint" id="cathint" hidden></p>
     <div class="status" id="status" role="status" aria-live="polite"></div>
     <div id="panels"></div>
   </main>
@@ -128,7 +153,12 @@
 <script>
 window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "צ'קליסט", title: "צ'קליסט", sub: "הרעיונות, המשימות והיעדים שלך, שמורים בחשבון – רק אתה רואה אותם",
+  he: { doc: "ליסטיפיי", title: "ליסטיפיי", sub: "הרשימות שלך לפי קטגוריות, שמורות בחשבון – רק אתה רואה אותן",
+        catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", catKind: "סוג הקטגוריה", create: "יצירה", kTask: "✓ רשימה לסימון", kIdea: "💡 רעיונות", kGoal: "🎯 יעדים",
+        rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", moveR: "▶ הזזה ימינה", moveL: "הזזה שמאלה ◀", delCat: "🗑 מחיקת הקטגוריה",
+        confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.", noCats: "אין קטגוריות. לחץ על ＋ כדי ליצור אחת.",
+        tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
+        catHint: "טיפ: לחיצה נוספת על קטגוריה פתוחה (או לחיצה ארוכה) פותחת ✏️ שינוי שם ומחיקה. לחיצה ארוכה וגרירה מזיזה אותה. ＋ מוסיף קטגוריה.",
         tabIdeas: "רעיונות לפיתוח", tabTasks: "לבל אפ", tabGoals: "יעדים",
         phGoal: "איזה יעד תרצה להשיג?", target: "תאריך יעד (לא חובה)", targetShort: "תאריך יעד", progress: "התקדמות",
         gNot: "לא התחיל", gDoing: "בתהליך", gDone: "הושג", achieve: "סמן כהושג", unachieve: "החזר ליעדים פתוחים",
@@ -143,7 +173,12 @@ window.RGMY_STRINGS = {
         confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
         seedTask: "לבקר במרקטפלייס בוטים" },
-  en: { doc: "Checklist", title: "Checklist", sub: "Your ideas, tasks and goals, saved in your account – only you can see them",
+  en: { doc: "Listify", title: "Listify", sub: "Your lists by category, saved in your account – only you can see them",
+        catAdd: "New category", catPh: "Category name", catKind: "Category type", create: "Create", kTask: "✓ Checklist", kIdea: "💡 Ideas", kGoal: "🎯 Goals",
+        rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
+        confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.", noCats: "No categories. Tap ＋ to create one.",
+        tabTip: "Tap again: rename and delete · Long-press and drag: move",
+        catHint: "Tip: tap an open category again (or long-press it) for ✏️ Rename and Delete. Long-press and drag to move it. ＋ adds a category.",
         tabIdeas: "Ideas to develop", tabTasks: "Level Up", tabGoals: "Goals",
         phGoal: "What goal do you want to reach?", target: "Target date (optional)", targetShort: "Target date", progress: "Progress",
         gNot: "Not started", gDoing: "In progress", gDone: "Achieved", achieve: "Mark as achieved", unachieve: "Back to open goals",

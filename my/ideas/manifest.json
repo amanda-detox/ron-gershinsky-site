@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "צ'קליסט · Checklist",
-  "short_name": "צ'קליסט",
-  "description": "רעיונות לפיתוח, משימות ויעדים פרטיים, שמורים בחשבון שלך · Private ideas to develop, tasks and goals, saved in your account",
+  "name": "ליסטיפיי · Listify",
+  "short_name": "ליסטיפיי",
+  "description": "רשימות פרטיות לפי קטגוריות: רעיונות, משימות ויעדים, שמורות בחשבון שלך · Private lists by category: ideas, tasks and goals, saved in your account",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
