@@ -165,17 +165,35 @@
   function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid }); return true; }
 
   /* ---------- render ---------- */
-  var MVICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function row(x) {
-    var hasP = typeof x.price === "number" && isFinite(x.price);
+    var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
-      ? '<input class="edit" data-edit="' + esc(x.id) + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
-        '<input class="edit-price" data-edit-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel")) + '">'
-      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) + "</span>" + (hasP ? '<span class="price" data-a="edit">' + esc(fmtPrice(x.price)) + " ₪</span>" : "");
-    return '<li data-id="' + esc(x.id) + '"' + (x.done ? ' class="done"' : "") + '>' + (x.done || editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
-      txt + '<button type="button" class="mv" data-a="move" title="' + esc(t("moveTo")) + '" aria-label="' + esc(t("moveTo") + ": " + x.text) + '">' + MVICON + '</button>' +
-      '<button type="button" class="del" data-a="del" aria-label="' + esc(t("del") + ": " + x.text) + '">×</button></li>';
+      ? '<input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">'
+      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) + "</span>";
+    // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
+    var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
+    return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (x.done || editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
+      '<button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
+      txt + pin + "</li>";
+  }
+  function sumNow() { // the total line; a price being typed counts live, before it is saved
+    var cur = curTab(), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
+    if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) live = { id: ae.getAttribute("data-price"), v: v || 0 }; }
+    if (uid) for (var k in items) { var x = items[k]; if (x.deleted || listOf(x) !== cur) continue; any = true;
+      var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (x.done) sel += p; }
+    var sum = $("sum"); if (!sum) return; sum.hidden = !any;
+    sum.innerHTML = '<span>' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + ' ₪</b></span><span class="sel">· ' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>";
+  }
+  function commitPrice(inp) {
+    var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
+    var v = parsePrice(inp.value);
+    if (typeof v === "number" && isNaN(v)) { inp.classList.add("bad"); return false; }
+    inp.classList.remove("bad");
+    var old = typeof x.price === "number" ? x.price : null;
+    if (v !== old) { upd(id, { price: v }); pending = true; saveLocal(); syncSoon(); } // null removes the price
+    inp.value = v == null ? "" : String(v);
+    sumNow(); return true;
   }
   function render() {
     if (!$("active")) return;
@@ -192,7 +210,7 @@
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the end
     done.sort(function (a, b) { return (a.at || 0) - (b.at || 0); }); // last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
-    var pv = null; if (editing) { var pe = document.querySelector('[data-edit-price="' + editing + '"]'); if (pe) pv = { v: pe.value, f: ae === pe }; }
+    var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
     if (editing && ae && ae.getAttribute && ae.getAttribute("data-edit") === editing) keep = { v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
     rendering = true; // replacing the rows blurs an open edit box; that blur must not count as "done editing"
@@ -200,36 +218,28 @@
     $("active-card").hidden = !act.length;
     $("done").innerHTML = done.map(row).join("");
     $("done-wrap").hidden = !done.length;
-    $("done-h").textContent = t("bought") + " (" + done.length + ")";
-    var tot = 0, sel = 0; act.forEach(function (x) { tot += priceOf(x); }); done.forEach(function (x) { var p = priceOf(x); tot += p; sel += p; });
-    var sum = $("sum"); sum.hidden = !(act.length || done.length);
-    sum.innerHTML = '<span>' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + ' ₪</b></span><span class="sel">· ' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>";
+    $("done-h").textContent = t("bought");
+    sumNow();
     $("empty").hidden = !!(act.length || done.length);
     if (editing) {
       var inp = document.querySelector('[data-edit="' + editing + '"]');
-      var pin = document.querySelector('[data-edit-price="' + editing + '"]');
-      if (pin && pv) pin.value = pv.v;
-      if (pin && pv && pv.f) pin.focus();
-      else if (inp) { if (keep) { inp.value = keep.v; } inp.focus(); try { if (keep) inp.setSelectionRange(keep.s, keep.e); } catch (e) {} }
+      if (inp && !pk) { if (keep) { inp.value = keep.v; } inp.focus(); try { if (keep) inp.setSelectionRange(keep.s, keep.e); } catch (e) {} }
     }
+    if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; if (pk.bad) pi.classList.add("bad"); pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
     rendering = false;
     setStatus();
   }
   function commitEdit(inp, cancel) {
-    var id = inp.getAttribute("data-edit") || inp.getAttribute("data-edit-price"); if (editing !== id) return;
-    var ti = document.querySelector('[data-edit="' + id + '"]'), pi = document.querySelector('[data-edit-price="' + id + '"]');
-    var v = clean(ti ? ti.value : "", 200), x = items[id], pr = pi ? parsePrice(pi.value) : undefined;
-    if (!cancel && pr !== undefined && pr !== null && isNaN(pr)) { if (pi) { pi.focus(); pi.select(); } return; } // not a number: stay in edit
+    var id = inp.getAttribute("data-edit"); if (editing !== id) return;
     editing = null;
+    var v = clean(inp.value, 200), x = items[id];
     if (!cancel && x && !x.deleted) {
       if (!v) { del(id); changed(); return; }
-      var patch = {}, ch = false;
-      if (v !== x.text) { patch.text = v; ch = true; }
-      if (pr !== undefined) { var old = typeof x.price === "number" ? x.price : null; if (pr !== old) { patch.price = pr; ch = true; } } // null removes the price
-      if (ch) { upd(id, patch); changed(); return; }
+      if (v !== x.text) { upd(id, { text: v }); changed(); return; }
     }
     render();
   }
+
 
   /* ---------- sheets (add / rename / menu) ---------- */
   function sheet(html, onClick) {
@@ -505,7 +515,6 @@
       add(i.value, null, pr); i.value = ""; pi.value = ""; changed(); i.focus();
     });
     $("suggest").addEventListener("click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
-    $("clear").addEventListener("click", function () { var cur = curTab(); for (var k in items) if (items[k].done && !items[k].deleted && listOf(items[k]) === cur) del(k); changed(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
@@ -513,23 +522,26 @@
       var li = b.closest("li"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       var a = b.getAttribute("data-a");
       if (a === "toggle") { upd(id, { done: !x.done }); changed(); }
-      else if (a === "del") { del(id); changed(); }
-      else if (a === "move") moveMenu(id);
       else if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
     });
     main.addEventListener("keydown", function (e) {
       if (e.target.classList.contains("txt") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.target.click(); }
-      if (e.target.getAttribute("data-edit") || e.target.getAttribute("data-edit-price")) {
+      if (e.target.getAttribute("data-price")) {
+        if (e.key === "Enter") { e.preventDefault(); if (commitPrice(e.target)) e.target.blur(); }
+        else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
+        return;
+      }
+      if (e.target.getAttribute("data-edit")) {
         if (e.key === "Enter") { e.preventDefault(); commitEdit(e.target); }
         else if (e.key === "Escape") { e.preventDefault(); commitEdit(e.target, true); }
       }
     });
     main.addEventListener("focusout", function (e) {
-      if (rendering || !e.target.getAttribute || !(e.target.getAttribute("data-edit") || e.target.getAttribute("data-edit-price"))) return;
-      var li = e.target.closest("li"), to = e.relatedTarget;
-      if (to && li && li.contains(to)) return; // moving between the name and the price of the same item
-      commitEdit(e.target);
+      if (rendering || !e.target.getAttribute) return;
+      if (e.target.getAttribute("data-price")) { commitPrice(e.target); return; }
+      if (e.target.getAttribute("data-edit")) commitEdit(e.target);
     });
+    main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     M.onLang(render);
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;

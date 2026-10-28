@@ -59,8 +59,8 @@
   .mi.dng { color: var(--muted); }
   .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
   .list li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
-  .addform { display: flex; gap: 8px; margin-top: 16px; }
-  .addform input { flex: 1; min-width: 0; height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
+  .addform { display: grid; grid-template-columns: minmax(0, 1fr) 76px auto; gap: 8px; margin-top: 16px; }
+  .addform input { width: 100%; min-width: 0; box-sizing: border-box; height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
   .addform input:focus { border-color: var(--accent); }
   .addform input::placeholder { color: var(--faint); }
   /* ☰ drag handle on each item: touch it and drag (no long-press) */
@@ -71,32 +71,35 @@
   .list.dragging li:not(.lifted) { transition: transform .16s ease; }
   .listcard:has(.list.dragging) { overflow: visible; }
   body.sorting { -webkit-user-select: none; user-select: none; cursor: grabbing; }
-  .addform input.price-in { flex: none; width: 84px; padding: 0 10px; text-align: center; direction: ltr; }
+  .addform input.price-in { padding: 0 6px; text-align: center; direction: ltr; font-size: 16px; }
+  @media (max-width: 480px) { /* phones: the name gets the whole first row, price + add below it */
+    .addform { grid-template-columns: 96px minmax(0, 1fr); }
+    .addform #add-input { grid-column: 1 / -1; }
+  }
   .sum { margin: 14px 4px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 16px; font-weight: 800; color: var(--fg); }
   .sum b { color: var(--accent); font-weight: 900; }
   .sum .sel { color: var(--muted); font-weight: 700; }
-  .price { flex: none; padding: 2px 6px; color: var(--muted); font-size: 13px; font-weight: 700; white-space: nowrap; direction: ltr; unicode-bidi: isolate; }
-  .done .price { color: var(--faint); }
-  .edit-price { flex: none; width: 76px; height: 42px; padding: 0 8px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 16px; outline: none; text-align: center; direction: ltr; }
-  .addform button { flex: none; height: 50px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  /* fixed price column on every row: type the price right in the list */
+  .pin { flex: 0 0 64px; width: 64px; min-width: 64px; max-width: 64px; box-sizing: border-box; height: 38px; margin-inline-start: 4px; padding: 0 4px; border-radius: 10px; border: 1.5px solid var(--line2); background: var(--bg); color: var(--fg); font: 700 16px var(--sans); text-align: center; direction: ltr; outline: none; -webkit-user-select: text; user-select: text; touch-action: manipulation; }
+  .pin::placeholder { color: var(--faint); font-weight: 600; }
+  .pin:focus { border-color: var(--accent); }
+  .pin.bad { border-color: #e3bd5b; box-shadow: 0 0 0 2px rgba(227,189,91,.35); }
+  .done .pin { color: var(--faint); }
+  .addform button { min-width: 0; height: 52px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
   .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
   .status.off { color: var(--accent); font-weight: 600; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
   .list { list-style: none; margin: 12px 0 0; padding: 0; }
-  .list li { display: flex; align-items: center; gap: 4px; min-height: 54px; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+  .list li { display: flex; align-items: center; gap: 2px; min-height: 52px; padding: 3px 4px; border-bottom: 1px solid var(--line); }
   .list li:last-child { border-bottom: 0; }
   .listcard { padding: 4px 8px; }
-  .chk { flex: none; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
-  .chk i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; transition: background .15s, border-color .15s; }
+  .chk { flex: none; width: 34px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+  .chk i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; transition: background .15s, border-color .15s; }
   .chk:hover i { border-color: var(--accent); }
   .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
   .txt { flex: 1; min-width: 0; padding: 10px 4px; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; cursor: text; border-radius: 8px; }
   .done .txt { color: var(--faint); }
-  .edit { flex: 1; min-width: 0; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
-  .del { flex: none; width: 40px; height: 40px; border: 0; background: none; color: var(--faint); font-size: 22px; line-height: 1; border-radius: 50%; }
-  .del:hover { color: var(--fg); background: var(--card2); }
-  .mv { flex: none; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; color: var(--faint); border-radius: 50%; }
-  .mv:hover { color: var(--fg); background: var(--card2); }
+  .edit { flex: 1 1 auto; width: 100%; min-width: 0; box-sizing: border-box; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
   .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 70; transform: translate(-50%, 20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
   .toast.on { opacity: 1; transform: translate(-50%, 0); }
   .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; padding-inline-end: 8px; }
@@ -113,10 +116,8 @@
   .list li.sw-r::before, .list li.sw-l::after { opacity: .55; }
   .list li.sw-r.sw-go::before { opacity: 1; transform: scale(1.1); background: var(--accent); color: var(--accentink); }
   .list li.sw-l.sw-go::after { opacity: 1; transform: scale(1.15); }
-  .donehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 22px 2px 0; }
+  .donehead { display: flex; align-items: center; gap: 10px; margin: 26px 4px 10px; }
   .donehead h2 { margin: 0; font-size: 15px; color: var(--muted); font-weight: 700; }
-  .clear { height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13.5px; font-weight: 600; }
-  .clear:hover { border-color: var(--accent); }
   .empty { margin-top: 18px; padding: 22px 18px; text-align: center; color: var(--muted); }
   .empty p { margin: 0 0 8px; }
   .suggest { background: none; border: 0; padding: 4px; color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
@@ -163,7 +164,7 @@
     <p class="sum" id="sum" role="status" aria-live="polite" hidden></p>
     <div class="card listcard" id="active-card"><ul class="list" id="active"></ul></div>
     <div id="done-wrap" hidden>
-      <div class="donehead"><h2 id="done-h"></h2><button type="button" class="clear" id="clear" data-i18n="clear"></button></div>
+      <div class="donehead"><h2 id="done-h"></h2></div>
       <div class="card listcard"><ul class="list" id="done"></ul></div>
     </div>
   </main>
@@ -176,7 +177,7 @@ window.RGMY_SW = "../sw.js";
 window.RGMY_STRINGS = {
   he: { doc: "קניותיפיי", title: "קניותיפיי", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
-        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים", clear: "נקה מסומנים", bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
+        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים",
         emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
@@ -188,7 +189,7 @@ window.RGMY_STRINGS = {
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
-        empty: "The list is empty.", suggest: "Add suggested items", clear: "Clear checked", bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
+        empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items",
         emptyCat: "This category is empty. Write above what you need to buy.",
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
