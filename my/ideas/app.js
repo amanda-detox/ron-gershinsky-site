@@ -1,6 +1,8 @@
 /* Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount (Appwrite row app="myideas", key="items",
    readable/writable by the signed-in user only). Nothing personal is stored in the site's files.
-   Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, status?, order?, due?, done?, created, at, deleted?, seed? } } }
+   Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed? } } }
+     Since v8 every list is the same kind (title, short note, נבחר, free drag order). Records from older versions may still carry
+     status / progress / prev / due / kind: they are kept untouched and only read to work out "selected" (see isSel).
      sec = which category the item belongs to: one of the built-in ids ("ideas" | "tasks" | "goals") or a custom category id.
    Categories (since Listify): stored in the SAME items map as records { id: "c:<cat>", type: "cat", cat, name?, kind, pos, gone?, created, at }
      kind = "idea" | "task" | "goal" (which item features the category has). The three built-in categories exist without a record
@@ -19,13 +21,12 @@
     { id: "tasks", tab: "tabTasks", kind: "task", pos: 1 },
     { id: "goals", tab: "tabGoals", kind: "goal", pos: 2 }
   ];
-  var KINDS = ["task", "idea", "goal"], KIND_LABEL = { task: "kTask", idea: "kIdea", goal: "kGoal" };
-  var STATUSES = ["new", "dev", "done"], ST_LABEL = { "new": "stNew", dev: "stDev", done: "stDone" };
+  var KINDS = ["task", "idea", "goal"]; // old category kinds: still read and kept in the records, but every list now works the same
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
   var editing = null, rendering = false;
-  var tab = lsGet("rg-myideas-tab") || "ideas", sort = lsGet("rg-myideas-sort") || "manual", doneOpen = {};
-  var drag = null, needRender = false, noClick = false;
+  var tab = lsGet("rg-myideas-tab") || "ideas", doneOpen = {};
+  var drag = null, idrag = null, needRender = false, noClick = false;
 
   function $(id) { return document.getElementById(id); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -80,7 +81,6 @@
   }
   function catName(c) { return c.name || (c.def ? t(c.def) : "…"); }
   function catOf(cid) { var l = cats(); for (var i = 0; i < l.length; i++) if (l[i].cat === cid) return l[i]; return null; }
-  function kindOf(sec) { var c = catOf(sec); if (c) return c.kind; var d = SECTIONS.filter(function (s) { return s.id === sec; })[0]; return d ? d.kind : "task"; }
   function upCat(cid, patch) {
     var r = catRec(cid), y = {}, k, d = SECTIONS.filter(function (s) { return s.id === cid; })[0];
     if (r) for (k in r) y[k] = r[k];
@@ -147,165 +147,100 @@
   window.addEventListener("online", function () { sync(); });
   window.addEventListener("offline", function () { offline = true; setStatus(); });
 
-  /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ---------- */
+  /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ----------
+     Since the "one kind of list" change every category looks and behaves the same: title, short note, נבחר (selected), free order.
+     Old fields stay in the records untouched (harmless): status / progress / prev / due from the old idea / goal / date features.
+     Old data is read like this: an item is selected when "done" says so; an old idea / goal without "done" is selected when it
+     was "done" / achieved (status "done" or progress 100). Order: "order" when it has one, else the creation time. */
   function put(x) { var c = {}; for (var k in items) c[k] = items[k]; c[x.id] = x; items = c; }
-  function add(sec, text, extra) {
-    text = clean(text, 200); if (!text) return;
-    var id = newId(), at = now(), x = { id: id, sec: sec, text: text, created: at, at: at };
-    var kd = kindOf(sec);
-    if (kd === "idea") { x.status = "new"; x.order = live(sec).reduce(function (m, y) { return Math.max(m, y.order || 0); }, 0) + 1; }
-    else if (kd === "task") x.done = false;
-    for (var k in extra || {}) if (extra[k]) x[k] = extra[k];
-    put(x);
-  }
-  function upd(id, patch, keepAt) {
+  function upd(id, patch) {
     var x = items[id]; if (!x || x.deleted) return; var y = {}, k;
     for (k in x) y[k] = x[k]; for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
     y.at = now(); put(y);
   }
   function del(id) { if (items[id]) put({ id: id, deleted: true, at: now() }); }
   function label(x) { return x.seed ? t("seedTask") : x.text; } // the first item follows the language until it is edited
-
-  /* ---------- ordering ---------- */
-  function sortedIdeas(sec) {
-    var l = live(sec);
-    if (sort === "new") l.sort(function (a, b) { return (b.created || 0) - (a.created || 0); });
-    else if (sort === "abc") l.sort(function (a, b) { return a.text.localeCompare(b.text, M.lang() === "he" ? "he" : "en"); });
-    else if (sort === "status") l.sort(function (a, b) { return (STATUSES.indexOf(b.status) - STATUSES.indexOf(a.status)) || ((a.order || 0) - (b.order || 0)); });
-    else l.sort(function (a, b) { return ((a.order || 0) - (b.order || 0)) || ((a.created || 0) - (b.created || 0)); });
-    return l;
-  }
-  function move(id, dir) {
-    var l = live(items[id].sec).sort(function (a, b) { return ((a.order || 0) - (b.order || 0)) || ((a.created || 0) - (b.created || 0)); });
-    var i = l.findIndex(function (x) { return x.id === id; }), j = i + dir; if (i < 0 || j < 0 || j >= l.length) return;
-    l.forEach(function (x, n) { if ((x.order || 0) !== n + 1) upd(x.id, { order: n + 1 }); }); // normalise once
-    upd(l[i].id, { order: j + 1 }); upd(l[j].id, { order: i + 1 });
-  }
-  function today() { var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
-  function sortedTasks(sec, done) {
-    var l = live(sec).filter(function (x) { return !!x.done === done; });
-    if (done) return l.sort(function (a, b) { return (b.at || 0) - (a.at || 0); });
-    return l.sort(function (a, b) {
-      if (!!a.due !== !!b.due) return a.due ? -1 : 1;
-      if (a.due && b.due && a.due !== b.due) return a.due < b.due ? -1 : 1;
-      return (a.created || 0) - (b.created || 0);
-    });
-  }
-  function byDue(a, b) {
-    if (!!a.due !== !!b.due) return a.due ? -1 : 1;
-    if (a.due && b.due && a.due !== b.due) return a.due < b.due ? -1 : 1;
-    return (a.created || 0) - (b.created || 0);
-  }
   function prog(x) { var v = Math.round(+x.progress || 0); return v < 0 ? 0 : v > 100 ? 100 : v; }
-  function goalStep(v) { return v >= 100 ? "gDone" : v > 0 ? "gDoing" : "gNot"; }
-  function sortedGoals(sec, achieved) {
-    var l = live(sec).filter(function (x) { return (prog(x) >= 100) === achieved; });
-    return achieved ? l.sort(function (a, b) { return (b.at || 0) - (a.at || 0); }) : l.sort(byDue);
+  function isSel(x) { return typeof x.done === "boolean" ? x.done : (x.status === "done" || prog(x) >= 100); }
+  function byOrder(a, b) {
+    var ao = typeof a.order === "number", bo = typeof b.order === "number";
+    if (ao && bo && a.order !== b.order) return a.order - b.order;
+    if (ao !== bo) return ao ? -1 : 1;
+    return ((a.created || 0) - (b.created || 0)) || (a.id < b.id ? -1 : 1);
   }
-  function dueText(due) {
-    var td = today(), tm = new Date(); tm.setDate(tm.getDate() + 1);
-    var tms = tm.getFullYear() + "-" + String(tm.getMonth() + 1).padStart(2, "0") + "-" + String(tm.getDate()).padStart(2, "0");
-    if (due === td) return t("today"); if (due === tms) return t("tomorrow");
-    var p = due.split("-"), d = new Date(+p[0], +p[1] - 1, +p[2]);
-    var s = d.toLocaleDateString(M.lang() === "he" ? "he-IL" : "en-GB", { day: "numeric", month: "short", year: p[0] == new Date().getFullYear() ? undefined : "numeric" });
-    return due < td ? s + " · " + t("late") : s;
+  function openIn(sec) { return live(sec).filter(function (x) { return !isSel(x); }).sort(byOrder); }
+  function selIn(sec) { return live(sec).filter(isSel).sort(function (a, b) { return (b.at || 0) - (a.at || 0); }); } // last selected on top
+  function setItemOrder(ids) { ids.forEach(function (id, n) { var x = items[id]; if (x && !x.deleted && x.order !== n + 1) upd(id, { order: n + 1 }); }); }
+  function nextOrder(sec) { // give every item in the list a number first (old items may have none), then one more for the new item
+    var l = live(sec).sort(byOrder);
+    if (l.some(function (x) { return typeof x.order !== "number"; })) setItemOrder(l.map(function (x) { return x.id; }));
+    return live(sec).reduce(function (m, y) { return Math.max(m, typeof y.order === "number" ? y.order : 0); }, 0) + 1;
+  }
+  function add(sec, text, note) {
+    text = clean(text, 200); if (!text) return;
+    var o = nextOrder(sec), id = newId(), at = now(), x = { id: id, sec: sec, text: text, done: false, order: o, created: at, at: at };
+    note = clean(note, 500); if (note) x.note = note;
+    put(x);
+  }
+  function toggleSel(id) { var x = items[id]; if (x && !x.deleted) upd(id, { done: !isSel(x) }); }
+  /* move one item to another category (list); it keeps its selected state and goes to the end of that list */
+  function moveItem(id, cid) {
+    var x = items[id]; if (!x || x.deleted || x.sec === cid || !catOf(cid)) return false;
+    upd(id, { sec: cid, done: isSel(x), order: nextOrder(cid) }); return true;
   }
 
   /* ---------- render ---------- */
+  var MVICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
+  var TRASHICON = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4h6v3"/></svg>';
   function editor(x) {
-    var kd = kindOf(x.sec), isIdea = kd === "idea", h = '<div class="ed" data-ed="' + esc(x.id) + '">' +
-      '<input type="text" class="e-text" maxlength="200" enterkeyhint="done" value="' + esc(label(x)) + '" aria-label="' + esc(t("edit")) + '">';
-    if (isIdea) {
-      h += '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + '</textarea>' +
-        '<div class="row"><label>' + esc(t("stLabel")) + ' <select class="e-status">' + STATUSES.map(function (s) {
-          return '<option value="' + s + '"' + ((x.status || "new") === s ? " selected" : "") + ">" + esc(t(ST_LABEL[s])) + "</option>"; }).join("") + "</select></label></div>";
-    } else if (kd === "goal") {
-      var v = prog(x);
-      h += '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + '</textarea>' +
-        '<div class="row"><label>' + esc(t("targetShort")) + ' <input type="date" class="e-due" value="' + esc(x.due || "") + '"></label></div>' +
-        '<div class="prow"><label for="pr-' + esc(x.id) + '">' + esc(t("progress")) + '</label><input type="range" class="e-prog" id="pr-' + esc(x.id) + '" min="0" max="100" step="5" value="' + v + '"><output class="e-out">' + v + '%</output></div>' +
-        '<div class="row steps">' + [[0, "gNot"], [50, "gDoing"], [100, "gDone"]].map(function (o) { return '<button type="button" class="btn sm" data-a="step" data-v="' + o[0] + '">' + esc(t(o[1])) + "</button>"; }).join("") + "</div>";
-    } else {
-      h += '<div class="row"><label>' + esc(t("dueShort")) + ' <input type="date" class="e-due" value="' + esc(x.due || "") + '"></label></div>';
-    }
-    return h + '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
+    return '<div class="ed" data-ed="' + esc(x.id) + '">' +
+      '<input type="text" class="e-text" maxlength="200" enterkeyhint="done" value="' + esc(label(x)) + '" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' +
+      '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
   }
-  function ideaRow(x, i, n) {
-    if (editing === x.id) return '<li data-id="' + esc(x.id) + '" class="idea">' + editor(x) + "</li>";
-    var st = x.status || "new", manual = sort === "manual";
-    return '<li data-id="' + esc(x.id) + '" class="idea s-' + st + '">' +
-      (manual ? '<span class="mv"><button type="button" data-a="up" aria-label="' + esc(t("up")) + '"' + (i === 0 ? " disabled" : "") + '>▲</button><button type="button" data-a="down" aria-label="' + esc(t("down")) + '"' + (i === n - 1 ? " disabled" : "") + ">▼</button></span>" : "") +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(x.text) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
-      '<button type="button" class="chip s-' + st + '" data-a="cycle" title="' + esc(t("stCycle")) + '">' + esc(t(ST_LABEL[st])) + "</button></li>";
-  }
-  function taskRow(x) {
+  var GRIP = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>';
+  function row(x, handle) {
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
-    var late = x.due && !x.done && x.due < today();
-    return '<li data-id="' + esc(x.id) + '"' + (x.done ? ' class="done"' : "") + '><button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + label(x)) + '"><i aria-hidden="true">✓</i></button>' +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(label(x)) + "</span>" + (x.due ? '<span class="due' + (late ? " late" : "") + '">📅 ' + esc(dueText(x.due)) + "</span>" : "") + "</div></li>";
+    var sel = isSel(x), n = label(x);
+    return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
+      (handle === true ? '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">' + GRIP + "</span>" : "") + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
+      '<button type="button" class="mvto" data-a="move" title="' + esc(t("moveTo")) + '" aria-label="' + esc(t("moveTo") + ": " + n) + '">' + MVICON + "</button>" +
+      '<button type="button" class="trash" data-a="trash" title="' + esc(t("del")) + '" aria-label="' + esc(t("del") + ": " + n) + '">' + TRASHICON + "</button></li>";
   }
-  function goalRow(x) {
-    if (editing === x.id) return '<li data-id="' + esc(x.id) + '" class="goal">' + editor(x) + "</li>";
-    var v = prog(x), got = v >= 100, late = x.due && !got && x.due < today();
-    return '<li data-id="' + esc(x.id) + '" class="goal' + (got ? " done" : "") + '"><button type="button" class="chk" data-a="achieve" aria-pressed="' + got + '" aria-label="' + esc((got ? t("unachieve") : t("achieve")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(x.text) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") +
-      (x.due ? '<span class="due' + (late ? " late" : "") + '">🎯 ' + esc(dueText(x.due)) + "</span>" : "") +
-      '<span class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + v + '" aria-label="' + esc(t("progress")) + '"><i style="width:' + v + '%"></i></span><span class="plabel">' + v + "% · " + esc(t(goalStep(v))) + "</span></div></li>";
-  }
-  function panelGoals(sec) {
-    var act = sortedGoals(sec, false), got = sortedGoals(sec, true);
-    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="next" placeholder="' + esc(t("phGoal")) + '" aria-label="' + esc(t("phGoal")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
-      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div>' +
-      '<div class="addextra"><label for="add-target">' + esc(t("target")) + '</label><input type="date" id="add-target" name="due"></div></form>' +
-      (act.length ? '<div class="card listcard"><ul class="list" id="goals-active">' + act.map(goalRow).join("") + "</ul></div>"
-        : '<div class="card empty"><p>' + esc(t(got.length ? "allGoals" : "emptyGoals")) + "</p></div>") +
-      (got.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] ? " open" : "") + '><summary>' + esc(t("goalsDone")) + " (" + got.length + ")</summary>" +
-        '<div class="card listcard"><ul class="list" id="goals-done">' + got.map(goalRow).join("") + "</ul></div></details>" : "");
-  }
-  function panelIdeas(sec) {
-    var l = sortedIdeas(sec);
-    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="next" placeholder="' + esc(t("phIdea")) + '" aria-label="' + esc(t("phIdea")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
+  function panel(sec) {
+    var act = openIn(sec), done = selIn(sec);
+    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div></form>' +
-      (l.length ? '<div class="tools2"><label>' + esc(t("sortLabel")) + ' <select data-sort>' + [["manual", "sortManual"], ["new", "sortNew"], ["abc", "sortAbc"], ["status", "sortStatus"]].map(function (o) {
-        return '<option value="' + o[0] + '"' + (sort === o[0] ? " selected" : "") + ">" + esc(t(o[1])) + "</option>"; }).join("") + '</select></label><span class="count">' + l.length + " " + esc(t("ideas")) + "</span></div>" +
-        '<div class="card listcard"><ul class="list">' + l.map(function (x, i) { return ideaRow(x, i, l.length); }).join("") + "</ul></div>"
-        : '<div class="card empty"><p>' + esc(t("emptyIdeas")) + "</p></div>");
-  }
-  function panelTasks(sec) {
-    var act = sortedTasks(sec, false), done = sortedTasks(sec, true);
-    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTask")) + '" aria-label="' + esc(t("phTask")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
-      '<div class="addextra"><label for="add-due">' + esc(t("due")) + '</label><input type="date" id="add-due" name="due"></div></form>' +
-      (act.length ? '<div class="card listcard"><ul class="list" id="tasks-active">' + act.map(taskRow).join("") + "</ul></div>"
-        : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyTasks")) + "</p></div>") +
-      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] ? " open" : "") + '><summary>' + esc(t("doneHead")) + " (" + done.length + ')<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
-        '<div class="card listcard"><ul class="list" id="tasks-done">' + done.map(taskRow).join("") + "</ul></div></details>" : "");
+      (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(function (x) { return row(x, act.length > 1); }).join("") + "</ul></div>"
+        : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") +
+      (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + " (" + done.length + ')<button type="button" class="clear" data-a="clear">' + esc(t("clearDone")) + "</button></summary>" +
+        '<div class="card listcard"><ul class="list" id="list-done">' + done.map(function (x) { return row(x, false); }).join("") + "</ul></div></details>" : "");
   }
   function render() {
-    var tabs = $("tabs"), panels = $("panels"); if (!tabs || !panels) return;
-    if (drag) { needRender = true; return; } // never rebuild the bar under a finger that is dragging a category
-    if (!uid) { tabs.innerHTML = ""; panels.innerHTML = ""; setStatus(); return; } // signed out: nothing private on the page
+    var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
+    if (drag || idrag) { needRender = true; return; } // never rebuild under a finger that is dragging (a category or an item)
+    if (!uid) { pn.textContent = ""; closeMenu(); panels.innerHTML = ""; setStatus(); return; } // signed out: nothing private on the page
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
     var ae = document.activeElement, keep = null;
-    if (ae && ae.closest && ae.closest(".addform")) keep = { form: ae.closest(".addform").getAttribute("data-add"), name: ae.name, v: ae.value };
+    if (ae && ae.closest && ae.closest(".addform")) keep = { form: ae.closest(".addform").getAttribute("data-add"), name: ae.name };
     var drafts = {}; document.querySelectorAll(".addform input").forEach(function (i) { drafts[i.closest("form").getAttribute("data-add") + "/" + i.name] = i.value; });
     var edVals = null, ed = editing && document.querySelector('[data-ed="' + editing + '"]');
-    if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea,select"), function (e) { return e.value; });
+    if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea"), function (e) { return e.value; });
     rendering = true;
-    var sl = tabs.scrollLeft, cur = curTab(), kd = cur ? kindOf(cur) : "";
-    tabs.innerHTML = cats().map(function (c) {
-      return '<button type="button" class="tab" role="tab" data-tab="' + esc(c.cat) + '" aria-selected="' + (cur === c.cat) + '" title="' + esc(t("tabTip")) + '">' + esc(catName(c)) + "</button>";
-    }).join("");
-    var ca = $("cat-add"); if (ca) { ca.setAttribute("aria-label", t("catAdd")); ca.title = t("catAdd"); }
-    tabs.scrollLeft = sl;
-    var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint"); }
-    panels.innerHTML = !cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" :
-      '<section role="tabpanel" data-panel="' + esc(cur) + '">' + (kd === "idea" ? panelIdeas(cur) : kd === "goal" ? panelGoals(cur) : panelTasks(cur)) + "</section>";
+    var cur = curTab(), cc = cur && catOf(cur);
+    pn.textContent = cc ? catName(cc) : t("noCats");
+    $("picker").setAttribute("aria-label", t("pickList") + ": " + pn.textContent); $("picker").title = t("pickList");
+    var le = $("list-edit"); le.setAttribute("aria-label", t("editTitle")); le.title = t("editTitle");
+    if (menuOpen()) fillMenu();
+    var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint2"); }
+    panels.innerHTML = !cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>";
     document.querySelectorAll(".addform input").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
     if (editing) {
       var ne = document.querySelector('[data-ed="' + editing + '"]');
-      if (ne) { if (edVals) [].forEach.call(ne.querySelectorAll("input,textarea,select"), function (e, n) { if (n < edVals.length) e.value = edVals[n]; }); if (!ed) { var ti = ne.querySelector(".e-text"); ti.focus(); var L = ti.value.length; try { ti.setSelectionRange(L, L); } catch (e) {} } }
+      if (ne) { if (edVals) [].forEach.call(ne.querySelectorAll("input,textarea"), function (e, n) { if (n < edVals.length) e.value = edVals[n]; }); if (!ed) { var ti = ne.querySelector(".e-text"); ti.focus(); var L = ti.value.length; try { ti.setSelectionRange(L, L); } catch (e) {} } }
     }
     rendering = false;
     setStatus();
@@ -318,24 +253,30 @@
     if (!text) { render(); return; }
     var p = {};
     if (text !== label(x)) { p.text = text; p.seed = null; } // once edited, the first item keeps its own text
-    var kd = kindOf(x.sec);
-    if (kd === "idea") { var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt; var st = ed.querySelector(".e-status").value; if (st !== (x.status || "new")) p.status = st; }
-    else {
-      var du = ed.querySelector(".e-due").value || ""; if (du !== (x.due || "")) p.due = du;
-      if (kd === "goal") {
-        var gn = clean(ed.querySelector(".e-note").value, 500); if (gn !== (x.note || "")) p.note = gn;
-        var pv = Math.max(0, Math.min(100, parseInt(ed.querySelector(".e-prog").value, 10) || 0)); if (pv !== prog(x)) { p.progress = pv || null; p.prev = null; }
-      }
-    }
+    var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt;
     if (Object.keys(p).length) { upd(id, p); changed(); return; }
     render();
   }
-  function askDel(id) {
-    var x = items[id]; if (!x) return;
-    if (window.confirm(t("confirmDel").replace("{x}", label(x)))) { if (editing === id) editing = null; del(id); changed(); }
-  }
 
-  /* ---------- category bar: tap = open, tap again (or double-tap) / long-press = menu, long-press + move (mouse: drag) = reorder ---------- */
+  /* ---------- toast (gold, at the bottom) + delete with a 5-second undo ---------- */
+  var toastT = 0;
+  function toast(msg, undo) {
+    var el = $("toast"); if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite"); document.body.appendChild(el); }
+    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>" + (undo ? '<button type="button" class="tundo">' + esc(t("undo")) + "</button>" : "");
+    el.classList.toggle("act", !!undo);
+    if (undo) el.querySelector(".tundo").addEventListener("click", function () { el.classList.remove("on", "act"); clearTimeout(toastT); undo(); });
+    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove("on", "act"); }, undo ? 5000 : 2200);
+  }
+  function delWithUndo(id) {
+    var x = items[id]; if (!x || x.deleted) return;
+    var keep = {}, k; for (k in x) keep[k] = x[k];
+    if (editing === id) editing = null;
+    del(id); changed();
+    toast(t("deleted").replace("{x}", label(keep)), function () { keep.at = now(); put(keep); changed(); });
+  }
+  function askDel(id) { delWithUndo(id); }
+
+  /* ---------- sheets (bottom panels) ---------- */
   function sheet(html, onClick) {
     closeSheet();
     var w = document.createElement("div"); w.className = "sheetwrap"; w.id = "sheet";
@@ -347,119 +288,263 @@
     var f = w.querySelector("input") || w.querySelector("button"); if (f) setTimeout(function () { f.focus(); if (f.select) f.select(); }, 30);
     return w;
   }
-  function closeSheet() { var w = $("sheet"); if (w) w.parentNode.removeChild(w); }
-  function nameSheet(title, value, withKind, done) {
-    var kind = "task";
+  function closeSheet() { var w = $("sheet"); if (!w) return; var f = w.onClose; w.onClose = null; w.parentNode.removeChild(w); if (f) f(); }
+  function nameSheet(title, value, isNew, done) {
     var w = sheet('<h3>' + esc(title) + '</h3><form class="sform" autocomplete="off"><input type="text" class="s-name" maxlength="40" enterkeyhint="done" value="' + esc(value || "") + '" placeholder="' + esc(t("catPh")) + '" aria-label="' + esc(t("catPh")) + '">' +
-      (withKind ? '<div class="kinds" role="radiogroup" aria-label="' + esc(t("catKind")) + '">' + KINDS.map(function (k) { return '<button type="button" class="kind" role="radio" data-s="k-' + k + '" aria-checked="' + (k === kind) + '">' + esc(t(KIND_LABEL[k])) + "</button>"; }).join("") + "</div>" : "") +
-      '<div class="row"><button type="submit" class="btn pri">' + esc(t(withKind ? "create" : "save")) + '</button><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div></form>",
-      function (a, w) {
-        if (a === "x") closeSheet();
-        else if (a.indexOf("k-") === 0) { kind = a.slice(2); w.querySelectorAll(".kind").forEach(function (b) { b.setAttribute("aria-checked", b.getAttribute("data-s") === a); }); }
-      });
+      '<div class="row"><button type="submit" class="btn pri">' + esc(t(isNew ? "create" : "save")) + '</button><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div></form>",
+      function (a) { if (a === "x") closeSheet(); });
     w.querySelector("form").addEventListener("submit", function (e) {
       e.preventDefault(); var v = clean(w.querySelector(".s-name").value, 40); if (!v) { w.querySelector(".s-name").focus(); return; }
-      closeSheet(); done(v, kind);
+      closeSheet(); done(v);
     });
   }
-  function catMenu(cid) {
+  /* move one item to another list through a small menu (same save + sync as every other change) */
+  function moveTo(id, cid) {
     var c = catOf(cid); if (!c) return;
-    lsSet("rg-myideas-hint", "1"); var h = $("cathint"); if (h) h.hidden = true;
-    var l = cats(), i = l.findIndex(function (x) { return x.cat === cid; }), rtl = document.documentElement.dir === "rtl";
-    var prev = '<button type="button" class="mi" data-s="prev"' + (i === 0 ? " disabled" : "") + ">" + esc(t(rtl ? "moveR" : "moveL")) + "</button>";
-    var next = '<button type="button" class="mi" data-s="next"' + (i === l.length - 1 ? " disabled" : "") + ">" + esc(t(rtl ? "moveL" : "moveR")) + "</button>";
-    sheet('<h3>' + esc(catName(c)) + '</h3><button type="button" class="mi big" data-s="ren">' + esc(t("rename")) + "</button>" +
-      '<div class="mrow">' + (rtl ? prev + next : prev + next) + "</div>" +
-      '<button type="button" class="mi dng" data-s="del">' + esc(t("delCat")) + '</button><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + "</button>",
-      function (a) {
-        if (a === "x") closeSheet();
-        else if (a === "ren") nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } });
-        else if (a === "prev" || a === "next") {
-          var ids = cats().map(function (x) { return x.cat; }), j = i + (a === "prev" ? -1 : 1); if (j < 0 || j >= ids.length) return;
-          ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); closeSheet(); changed();
-        } else if (a === "del") {
+    if (editing === id) editing = null;
+    if (moveItem(id, cid)) { changed(); toast(t("movedTo").replace("{x}", catName(c))); }
+  }
+  function moveMenu(id) {
+    var x = items[id]; if (!x || x.deleted) return;
+    var from = x.sec, others = cats().filter(function (c) { return c.cat !== from; });
+    var html = '<h3>' + esc(t("moveTitle")) + '</h3><p class="mnote">' + esc(label(x)) + "</p>";
+    if (others.length) html += others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '">' + esc(catName(c)) + "</button>"; }).join("");
+    else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>";
+    html += '<button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button>";
+    sheet(html, function (a) {
+      if (a === "x") { closeSheet(); return; }
+      if (a === "del") { closeSheet(); delWithUndo(id); return; }
+      if (a === "new") { nameSheet(t("catAdd"), "", true, function (v) { var nid = addCat(v, "task"); if (nid) moveTo(id, nid); }); return; }
+      if (a.indexOf("to:") === 0) { closeSheet(); moveTo(id, a.slice(3)); }
+    });
+  }
+  function selectTab(cid) { tab = cid; editing = null; lsSet("rg-myideas-tab", tab); closeMenu(); render(); try { window.scrollTo({ top: 0 }); } catch (e) {} }
+  function hideHint() { lsSet("rg-myideas-hint2", "1"); var h = $("cathint"); if (h) h.hidden = true; }
+
+  /* ---------- drag-to-reorder for a vertical list of rows (lists in ☰ edit mode, items in a list).
+     Nothing moves in the page while the finger is down: the lifted row follows the finger (transform) and the other rows slide out of
+     its way (transform), so the pointer capture is never lost. The page (or the scrolling box) scrolls by itself near its edges.
+     end() returns the new order of the rows. ---------- */
+  function makeSorter(rows, el, y0, box) {
+    function sy() { return box ? box.scrollTop : (window.scrollY || window.pageYOffset || 0); }
+    var s0 = sy(), from = rows.indexOf(el), to = from, n = rows.length, lastY = y0, raf = 0, alive = true;
+    var info = rows.map(function (r) { var b = r.getBoundingClientRect(); return { el: r, top: b.top + s0, h: b.height }; });
+    var gap = from < n - 1 ? info[from + 1].top - info[from].top : from > 0 ? info[from].top - info[from - 1].top - info[from - 1].h + info[from].h : info[from].h;
+    rows.forEach(function (r) { if (r !== el) r.style.transition = "transform .16s ease"; });
+    el.style.transition = "none"; el.classList.add("sorting");
+    function place() {
+      var dy = lastY + sy() - (y0 + s0), c = info[from].top + info[from].h / 2 + dy, i;
+      el.style.transform = "translateY(" + dy + "px)";
+      to = from;
+      for (i = 0; i < from; i++) if (c < info[i].top + info[i].h / 2) { to = i; break; }
+      for (i = n - 1; i > from; i--) if (c > info[i].top + info[i].h / 2) { to = i; break; }
+      info.forEach(function (o, k) {
+        if (k === from) return;
+        var sh = (from < to && k > from && k <= to) ? -gap : (to < from && k >= to && k < from) ? gap : 0;
+        o.el.style.transform = sh ? "translateY(" + sh + "px)" : "";
+      });
+    }
+    function tick() { // auto-scroll near the top / bottom edge
+      if (!alive) return;
+      var top, bot, z = 70, sp = 0;
+      if (box) { var r = box.getBoundingClientRect(); top = r.top; bot = r.bottom; z = Math.min(56, r.height / 4); } else { top = 0; bot = window.innerHeight; }
+      if (lastY < top + z) sp = -Math.ceil((top + z - lastY) / 4); else if (lastY > bot - z) sp = Math.ceil((lastY - (bot - z)) / 4);
+      if (sp) { var b = sy(); if (box) box.scrollTop += sp; else window.scrollBy(0, sp); if (sy() !== b) place(); }
+      raf = requestAnimationFrame(tick);
+    }
+    raf = requestAnimationFrame(tick);
+    return {
+      move: function (y) { lastY = y; place(); },
+      end: function () {
+        alive = false; cancelAnimationFrame(raf);
+        rows.forEach(function (r) { r.style.transition = "none"; r.style.transform = ""; r.classList.remove("sorting"); });
+        setTimeout(function () { rows.forEach(function (r) { r.style.transition = ""; }); }, 0);
+        var out = rows.slice(); out.splice(to, 0, out.splice(from, 1)[0]);
+        return { order: out, moved: to !== from };
+      }
+    };
+  }
+
+  /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
+  function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
+  function closeMenu() { var m = $("pmenu"), p = $("picker"); if (m) m.hidden = true; if (p) p.setAttribute("aria-expanded", "false"); }
+  function fillMenu() {
+    var m = $("pmenu"), cur = curTab(); if (!m) return;
+    m.innerHTML = cats().map(function (c) {
+      return '<button type="button" class="popt" role="option" data-pick="' + esc(c.cat) + '" aria-selected="' + (c.cat === cur) + '"><span class="pn">' + esc(catName(c)) + '</span><span class="pk" aria-hidden="true">' + (c.cat === cur ? "✓" : "") + "</span></button>";
+    }).join("") + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
+  }
+  function openMenu() { hideHint(); fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) s.focus(); }
+  function newList(after) {
+    nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v, "task"); if (id) { changed(); if (after) after(id); } });
+  }
+
+  function editSheet() {
+    hideHint(); closeMenu();
+    var order = cats().map(function (c) { return c.cat; }), sorter = null, sd = null;
+    function rowHtml(cid) {
+      var c = catOf(cid); if (!c) return "";
+      return '<li class="erow" data-cat="' + esc(cid) + '"><span class="handle" role="button" tabindex="0" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">' +
+        '<svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.7"/><circle cx="15" cy="6" r="1.7"/><circle cx="9" cy="12" r="1.7"/><circle cx="15" cy="12" r="1.7"/><circle cx="9" cy="18" r="1.7"/><circle cx="15" cy="18" r="1.7"/></svg></span>' +
+        '<span class="ename">' + esc(catName(c)) + '</span>' +
+        '<button type="button" class="eic" data-s="ren:' + esc(cid) + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
+        '<button type="button" class="eic" data-s="del:' + esc(cid) + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
+    }
+    function save() { var ids = order.filter(function (cid) { return !!catOf(cid); }); var cur = cats().map(function (c) { return c.cat; }); cur.forEach(function (cid) { if (ids.indexOf(cid) < 0) ids.push(cid); }); if (ids.join() !== cur.join()) { setOrder(ids); changed(); } }
+    var w = sheet('<div class="ehead"><h3>' + esc(t("editTitle")) + '</h3><button type="button" class="donebtn" data-s="done" title="' + esc(t("finish")) + '" aria-label="' + esc(t("finish")) + '">✓</button></div>' +
+      '<p class="mnote">' + esc(t("editNote")) + '</p><ul class="elist" id="elist">' + order.map(rowHtml).join("") + "</ul>" +
+      '<button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>",
+      function (a, w) {
+        if (a === "done") { closeSheet(); return; }
+        if (a === "new") { save(); w.onClose = null; newList(function (id) { selectTab(id); editSheet(); }); return; }
+        var cid = a.slice(4), li = w.querySelector('.erow[data-cat="' + cid + '"]'), c = catOf(cid); if (!li || !c) return;
+        if (a.indexOf("ren:") === 0) {
+          var sp = li.querySelector(".ename"); if (!sp || li.querySelector(".einput")) return;
+          var inp = document.createElement("input"); inp.type = "text"; inp.className = "einput"; inp.maxLength = 40; inp.value = catName(c); inp.setAttribute("enterkeyhint", "done"); inp.setAttribute("aria-label", t("catPh"));
+          sp.replaceWith(inp); inp.focus(); inp.select();
+          var fini = false, fin = function (ok) {
+            if (fini || !inp.parentNode) return; fini = true;
+            var v = clean(inp.value, 40), s2 = document.createElement("span"); s2.className = "ename";
+            if (ok && v && v !== catName(c)) { upCat(cid, { name: v }); changed(); }
+            s2.textContent = catName(catOf(cid) || c); inp.replaceWith(s2);
+          };
+          inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); fin(true); } else if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); fin(false); } });
+          inp.addEventListener("blur", function () { fin(true); });
+        } else if (a.indexOf("del:") === 0) {
           if (cats().length <= 1) { window.alert(t("lastCat")); return; }
-          if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { closeSheet(); delCat(cid); if (tab === cid) { tab = ""; } changed(); lsSet("rg-myideas-tab", curTab()); render(); }
+          if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) {
+            delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); }
+            order = order.filter(function (x) { return x !== cid; }); li.parentNode.removeChild(li); changed();
+          }
         }
       });
-  }
-  function selectTab(cid) { tab = cid; editing = null; lsSet("rg-myideas-tab", tab); render(); }
-  function bootCats() {
-    var bar = $("tabs"), LONG = 450, SLOP = 10, timer = 0, auto = 0;
-    function reset() { clearTimeout(timer); clearInterval(auto); if (drag && drag.el) drag.el.classList.remove("lifted"); bar.classList.remove("dragging"); drag = null; if (needRender) { needRender = false; render(); } }
-    function lift() { drag.lifted = true; drag.el.classList.add("lifted"); bar.classList.add("dragging"); try { drag.el.setPointerCapture(drag.pid); } catch (e) {} if (navigator.vibrate) try { navigator.vibrate(12); } catch (e) {} }
-    function overTab(x) {
-      var l = bar.querySelectorAll(".tab");
-      for (var i = 0; i < l.length; i++) { var r = l[i].getBoundingClientRect(); if (x >= r.left && x <= r.right) return l[i]; }
-      return null;
-    }
-    function moveTo(x) {
-      var o = overTab(x); if (!o || o === drag.el) return;
-      var l = [].slice.call(bar.querySelectorAll(".tab")), a = l.indexOf(drag.el), b = l.indexOf(o);
-      bar.insertBefore(drag.el, b > a ? o.nextSibling : o); drag.moved = true;
-    }
-    bar.addEventListener("pointerdown", function (e) {
-      noClick = false;
-      var el = e.target.closest(".tab"); if (!el || (e.pointerType === "mouse" && e.button !== 0)) return;
-      reset();
-      drag = { el: el, cat: el.getAttribute("data-tab"), x: e.clientX, y: e.clientY, cx: e.clientX, pid: e.pointerId, type: e.pointerType, lifted: false, moved: false };
-      if (e.pointerType !== "mouse") timer = setTimeout(function () { if (drag && !drag.lifted) lift(); }, LONG);
+    w.classList.add("editmode");
+    w.onClose = save;
+    var list = w.querySelector("#elist");
+    list.addEventListener("pointerdown", function (e) {
+      var h = e.target.closest(".handle"); if (!h || sorter || (e.pointerType === "mouse" && e.button !== 0)) return;
+      e.preventDefault();
+      var li = h.closest(".erow"), rows = [].slice.call(list.children);
+      sd = { pid: e.pointerId, h: h }; sorter = makeSorter(rows, li, e.clientY, list.scrollHeight > list.clientHeight + 2 ? list : null);
+      try { h.setPointerCapture(e.pointerId); } catch (e2) {}
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
     });
-    bar.addEventListener("pointermove", function (e) {
-      if (!drag || e.pointerId !== drag.pid) return;
-      drag.cx = e.clientX;
-      var dx = e.clientX - drag.x, dy = e.clientY - drag.y, far = Math.abs(dx) > SLOP || Math.abs(dy) > SLOP;
-      if (!drag.lifted) {
-        if (!far) return;
-        if (drag.type === "mouse") lift(); else { reset(); return; } // touch moved before the long-press: it is a normal scroll
+    function mv(e) { if (sorter && e.pointerId === sd.pid) { e.preventDefault(); sorter.move(e.clientY); } }
+    function upE(e) {
+      if (!sorter || e.pointerId !== sd.pid) return;
+      var r = sorter.end(); sorter = null; sd = null;
+      if (r.moved) { r.order.forEach(function (li) { list.appendChild(li); }); order = r.order.map(function (li) { return li.getAttribute("data-cat"); }); }
+    }
+    list.addEventListener("pointermove", mv); list.addEventListener("pointerup", upE); list.addEventListener("pointercancel", upE);
+    list.addEventListener("keydown", function (e) { // keyboard: arrow up / down on a handle moves the list
+      var h = e.target.closest && e.target.closest(".handle"); if (!h || (e.key !== "ArrowUp" && e.key !== "ArrowDown")) return; e.preventDefault();
+      var li = h.closest(".erow"), sib = e.key === "ArrowUp" ? li.previousElementSibling : li.nextElementSibling; if (!sib) return;
+      if (e.key === "ArrowUp") list.insertBefore(li, sib); else list.insertBefore(sib, li);
+      order = [].map.call(list.children, function (x) { return x.getAttribute("data-cat"); }); h.focus();
+    });
+  }
+
+  function bootLists() {
+    $("picker").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen()) closeMenu(); else openMenu(); });
+    $("list-edit").addEventListener("click", function (e) { e.stopPropagation(); editSheet(); });
+    $("pmenu").addEventListener("click", function (e) {
+      e.stopPropagation(); var b = e.target.closest("[data-pick]"); if (!b) return;
+      var p = b.getAttribute("data-pick");
+      if (p === "+") { closeMenu(); newList(function (id) { selectTab(id); }); } else selectTab(p);
+    });
+    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest("#listbar")) closeMenu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen()) { closeMenu(); $("picker").focus(); } });
+  }
+
+  /* ---------- items: swipe (on the row body) right = נבחר (and back), left = move/delete menu;
+     the ☰ handle on an open item = drag it to any place in the list, right away (no long-press) ---------- */
+  function bootItemDrag() {
+    var main = document.querySelector("main"), SLOP = 10, SWIPE = 0.35;
+    function reset() {
+      if (idrag) { unswipe(); if (idrag.sorter) idrag.sorter.end(); }
+      var tip = $("drophint"); if (tip) tip.hidden = true;
+      document.body.classList.remove("idragging"); idrag = null;
+      if (needRender && !drag) { needRender = false; render(); }
+    }
+    function unswipe() { if (idrag && idrag.li) { idrag.li.classList.remove("swiping", "sw-r", "sw-l", "sw-go"); idrag.li.style.removeProperty("--sx"); } }
+    main.addEventListener("pointerdown", function (e) {
+      var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      var h = e.target.closest(".ihandle");
+      if (h) { // drag handle: lift now
+        var ul = li.parentNode; if (!ul || ul.id !== "list-active") return;
+        e.preventDefault(); reset(); hideHint();
+        idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: true };
+        idrag.sorter = makeSorter([].slice.call(ul.children), li, e.clientY, null);
+        document.body.classList.add("idragging");
+        try { h.setPointerCapture(e.pointerId); } catch (e2) {}
+        if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+        var tip = $("drophint"); if (tip) { tip.textContent = t("dropHint"); tip.hidden = false; }
+        return;
       }
-      e.preventDefault(); moveTo(e.clientX);
-      if (!auto) auto = setInterval(function () { if (!drag) return; var r = bar.getBoundingClientRect(), z = 36;
-        if (drag.cx < r.left + z) { bar.scrollLeft -= 10; moveTo(drag.cx); } else if (drag.cx > r.right - z) { bar.scrollLeft += 10; moveTo(drag.cx); } }, 30);
+      if (e.target.closest("button,input,select,textarea,summary,a")) return;
+      reset();
+      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false };
+    });
+    document.addEventListener("pointermove", function (e) {
+      if (!idrag || e.pointerId !== idrag.pid) return;
+      var dx = e.clientX - idrag.x, dy = e.clientY - idrag.y;
+      if (idrag.lifted) { e.preventDefault(); idrag.sorter.move(e.clientY); return; }
+      if (idrag.swipe) {
+        e.preventDefault();
+        var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
+        idrag.li.style.setProperty("--sx", dx + "px");
+        idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
+        return;
+      }
+      if (Math.abs(dx) <= SLOP && Math.abs(dy) <= SLOP) return;
+      if (Math.abs(dx) > Math.abs(dy) * 1.5) { // clearly sideways: a swipe
+        idrag.swipe = true; idrag.li.classList.add("swiping");
+        try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
+        e.preventDefault(); return;
+      }
+      reset(); // vertical: a normal scroll
     });
     function up(e) {
-      if (!drag || e.pointerId !== drag.pid) return;
-      var d = drag;
+      if (!idrag || e.pointerId !== idrag.pid) return;
+      var d = idrag;
+      if (d.swipe) {
+        noClick = true; setTimeout(function () { noClick = false; }, 400);
+        var w = d.li.offsetWidth || 1, dx = e.type === "pointerup" ? e.clientX - d.x : 0, id = d.id;
+        reset();
+        if (Math.abs(dx) >= w * SWIPE) {
+          var x = items[id];
+          if (dx > 0 && x && !x.deleted) { toggleSel(id); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
+          else if (dx < 0) moveMenu(id);
+        }
+        return;
+      }
       if (d.lifted) {
         noClick = true; setTimeout(function () { noClick = false; }, 400);
-        if (d.moved) { var ids = [].map.call(bar.querySelectorAll(".tab"), function (b) { return b.getAttribute("data-tab"); }); reset(); setOrder(ids); changed(); }
-        else { reset(); catMenu(d.cat); }
+        var r = d.sorter.end(); d.sorter = null;
+        reset();
+        if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); })); changed(); }
       } else reset();
     }
-    bar.addEventListener("pointerup", up);
-    bar.addEventListener("pointercancel", up);
-    bar.addEventListener("touchmove", function (e) { if (drag && drag.lifted) e.preventDefault(); }, { passive: false }); // keep the bar from scrolling while a category is lifted
-    bar.addEventListener("contextmenu", function (e) {
-      var el = e.target.closest(".tab"); if (!el) return; e.preventDefault();
-      if (!drag || drag.type === "mouse") { reset(); catMenu(el.getAttribute("data-tab")); }
-    });
-    bar.addEventListener("click", function (e) {
-      if (noClick) { noClick = false; e.preventDefault(); return; }
-      var b = e.target.closest("[data-tab]"); if (!b) return;
-      var cid = b.getAttribute("data-tab");
-      if (cid === curTab()) catMenu(cid); else selectTab(cid); // a second tap (double-tap) on the open category opens its menu
-    });
-    $("cat-add").addEventListener("click", function () {
-      {
-        nameSheet(t("catAdd"), "", true, function (v, k) { var id = addCat(v, k); if (id) { tab = id; lsSet("rg-myideas-tab", id); changed(); var b = bar.querySelector('[data-tab="' + id + '"]'); if (b) b.scrollIntoView({ inline: "nearest", block: "nearest" }); } });
-      }
-    });
+    document.addEventListener("pointerup", up);
+    document.addEventListener("pointercancel", up);
+    document.addEventListener("touchmove", function (e) { if (idrag && (idrag.lifted || idrag.swipe)) e.preventDefault(); }, { passive: false });
   }
 
   function boot() {
     var main = document.querySelector("main");
-    bootCats();
+    bootLists();
+    bootItemDrag();
     main.addEventListener("submit", function (e) {
       var f = e.target.closest("[data-add]"); if (!f) return; e.preventDefault();
       var sec = f.getAttribute("data-add"), ti = f.querySelector('[name="text"]'); if (!clean(ti.value, 200)) { ti.focus(); return; }
-      var ex = {}, nf = f.querySelector('[name="note"]'), df = f.querySelector('[name="due"]');
-      if (nf) ex.note = clean(nf.value, 500); if (df) ex.due = df.value || "";
-      add(sec, ti.value, ex); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
+      var nf = f.querySelector('[name="note"]');
+      add(sec, ti.value, nf ? nf.value : ""); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
       changed(); var n = document.querySelector('.addform[data-add="' + sec + '"] [name="text"]'); if (n) n.focus();
     });
     main.addEventListener("keydown", function (e) {
       var f = e.target.closest && e.target.closest(".addform");
-      if (f && e.key === "Enter" && e.target.name === "text" && kindOf(f.getAttribute("data-add")) !== "task" && !e.isComposing) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
+      if (f && e.key === "Enter" && e.target.name === "text" && !e.isComposing) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
       if (e.target.classList && e.target.classList.contains("body") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.target.click(); }
       var ed = e.target.closest && e.target.closest("[data-ed]");
       if (ed) {
@@ -467,27 +552,20 @@
         else if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
       }
     });
-    main.addEventListener("change", function (e) {
-      if (e.target.hasAttribute && e.target.hasAttribute("data-sort")) { sort = e.target.value; lsSet("rg-myideas-sort", sort); render(); }
-    });
-    main.addEventListener("input", function (e) {
-      if (e.target.classList && e.target.classList.contains("e-prog")) { var o = e.target.parentNode.querySelector(".e-out"); if (o) o.textContent = e.target.value + "%"; }
-    });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
     main.addEventListener("click", function (e) {
+      if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
       var b = e.target.closest("[data-a]"); if (!b) return;
       var a = b.getAttribute("data-a");
       if (a === "clear") {
         e.preventDefault(); e.stopPropagation();
-        if (window.confirm(t("confirmClear"))) { live(curTab()).forEach(function (x) { if (x.done) del(x.id); }); changed(); }
+        if (window.confirm(t("confirmClear"))) { selIn(curTab()).forEach(function (x) { del(x.id); }); changed(); }
         return;
       }
       var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
-      if (a === "step") { var ed = b.closest("[data-ed]"), r = ed && ed.querySelector(".e-prog"); if (r) { r.value = b.getAttribute("data-v"); r.dispatchEvent(new Event("input", { bubbles: true })); } return; }
-      if (a === "achieve") { var v = prog(x); if (v >= 100) upd(id, { progress: (x.prev && x.prev < 100) ? x.prev : null, prev: null }); else upd(id, { progress: 100, prev: v || null }); changed(); return; }
-      if (a === "toggle") { upd(id, { done: !x.done }); changed(); }
-      else if (a === "cycle") { upd(id, { status: STATUSES[(STATUSES.indexOf(x.status || "new") + 1) % STATUSES.length] }); changed(); }
-      else if (a === "up" || a === "down") { move(id, a === "up" ? -1 : 1); changed(); }
+      if (a === "move") { moveMenu(id); return; }
+      if (a === "trash") { delWithUndo(id); return; }
+      if (a === "toggle") { toggleSel(id); changed(); }
       else if (a === "edit") { editing = id; render(); }
       else if (a === "save") saveEdit(id);
       else if (a === "cancel") { editing = null; render(); }
