@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-28T06:07:28+02:00",
+ "updated": "2026-10-28T08:07:20+02:00",
  "topics": [
   {
    "id": "musk",
@@ -137,123 +137,89 @@
  ],
  "items": [
   {
-   "id": "brecka-dana-white-homocysteine",
-   "topic": "brecka",
-   "date": "2026-10-27T22:00:02Z",
-   "url": "https://x.com/thegarybrecka/status/2115201886563242051",
-   "source": "X · @thegarybrecka",
+   "id": "musk-grok-imagine-prompting-guide",
+   "topic": "grok",
+   "date": "2026-10-28T06:03:03Z",
+   "url": "https://x.com/elonmusk/status/2115323441738047731",
+   "source": "X · @elonmusk",
    "he": {
-    "title": "גרי ברקה: ההומוציסטאין של דנה וייט היה בשמיים",
-    "summary": "ברקה מספר שדנה וייט היה אמור לעבור פרוצדורת לב 11 יום אחרי שנפגשו, ושבבדיקות הדם שלו בלטה רמת הומוציסטאין גבוהה מאוד. לדבריו, TMG הוא רכיב תזונה שעוזר לגוף לפרק אותו."
+    "title": "מאסק משתף את מדריך הפרומפטים של סדרת 'אודיסאה' ב-Grok Imagine",
+    "summary": "אילון מאסק כתב רק \"Grok Imagine\" וציטט את הפוסט של צוות הסדרה, שהודיע שמדריך הפרומפטים שלו עלה לאוויר. הצוות בונה את פרקי 'אודיסאה' בפומבי ומזמין ללמוד משיטות העבודה שלו."
    },
    "en": {
-    "title": "Gary Brecka: Dana White's homocysteine was through the roof",
-    "summary": "Brecka says Dana White was scheduled for a heart procedure 11 days after they met, and his bloodwork showed very high homocysteine. He says TMG is one nutrient that helps the body break it down."
+    "title": "Musk shares the Odyssey team's Grok Imagine prompting guide",
+    "summary": "Elon Musk wrote just \"Grok Imagine\" and quoted the series team's post announcing that its prompting guide is live. The team is building the Odyssey episodes in public and invites people to learn from its workflows."
    },
-   "full_he": "דנה וייט היה אמור לעבור פרוצדורת לב רק 11 יום אחרי שנפגשנו.\n\nכשעברתי על בדיקות הדם שלו, דבר אחד בלט: רמות ההומוציסטאין שלו היו בשמיים. הומוציסטאין גבוה עלול לפגוע בכלי הדם ולתרום לסיכון לב וכלי דם. TMG (טרימתילגליצין) הוא אחד מרכיבי התזונה שעוזרים לגוף לפרק אותו.\n\nבגלל זה אני תמיד אומר: תפסיק לנחש ותתחיל לבדוק. הבנה של בדיקות הדם שלך יכולה לשנות הכול.\n\nזו טענה של ברקה ולא המלצה רפואית; לפני תוסף או שינוי טיפול כדאי להתייעץ עם רופא.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
-   "full_en": "Dana White was scheduled for a heart procedure just 11 days after we met.\n\nWhen I reviewed his bloodwork, one thing stood out: his homocysteine levels were through the roof. Elevated homocysteine can damage blood vessels and contribute to cardiovascular risk. TMG (trimethylglycine) is one nutrient that helps the body break it down.\n\nThis is why I always say, stop guessing and start testing. Understanding your bloodwork could change everything.\n\nThis is Brecka's claim, not medical advice; talk to a doctor before starting a supplement or changing treatment.\n\nThe rest of the post is a video, so there's no more text to show."
+   "full_he": "Grok Imagine\n\nהפוסט שהוא ציטט:\n\nמדריך הפרומפטים שלנו עלה לאוויר.\n\nאנחנו בונים את פרקי 'אודיסאה' בפומבי, עם צוות קטן של יוצרים.\n\nבואו ללמוד משיטות העבודה שלנו!\n\nהפוסט המצוטט מצרף כתבה ב-X בשם \"Inside Episode 1: The Oath\" (מאחורי הקלעים של פרק 1: השבועה). הטקסט המלא של הכתבה לא היה זמין, ולכן אין עוד תוכן להציג.",
+   "full_en": "Grok Imagine\n\nThe quoted post:\n\nOur Prompting Guide is live.\n\nWe're building the Odyssey episodes in public with a small crew of creatives.\n\nLearn from our workflows!\n\nThe quoted post links to an X article titled \"Inside Episode 1: The Oath\". The article's full text wasn't available, so there's no more content to show."
   },
   {
-   "id": "brecka-5-foods-full",
-   "topic": "brecka",
-   "date": "2026-10-28T00:00:01Z",
-   "url": "https://x.com/thegarybrecka/status/2115232079495454754",
-   "source": "X · @thegarybrecka",
+   "id": "tesla-fsd-6m-miles-crashes",
+   "topic": "tesla",
+   "date": "2026-10-28T05:50:23Z",
+   "url": "https://x.com/i/trending/2114935394298957839",
+   "source": "X",
    "he": {
-    "title": "גרי ברקה: 5 מזונות שעוזרים להישאר שבע",
-    "summary": "ברקה ממליץ על חלבון, סיבים ושומנים בריאים כדי להרגיש שובע לאורך זמן, ומונה חמישה מזונות: קוטג', ביצים, שקדים, אבוקדו וסלק."
+    "title": "נתוני טסלה: 6 מיליון מייל בממוצע בין תאונות קשות עם FSD",
+    "summary": "לפי דוח הבטיחות של טסלה, רכבים שנוסעים עם FSD (בפיקוח) עוברים בממוצע כ-6 מיליון מייל בין תאונות קשות, פי תשעה בערך מהממוצע בארה\"ב. ברשת מציינים שמדובר בנתונים שהחברה מדווחת בעצמה ושתנאי הנהיגה שונים."
    },
    "en": {
-    "title": "Gary Brecka: 5 foods that help keep you full",
-    "summary": "Brecka says protein, fiber and healthy fats keep you fuller for longer, and lists five foods: cottage cheese, eggs, almonds, avocado and beets."
+    "title": "Tesla data: about 6 million miles between major crashes on FSD",
+    "summary": "Tesla's safety report says cars on FSD (Supervised) average about 6 million miles between major collisions, roughly nine times the U.S. average. Commenters point out that the data is self-reported and that driving conditions differ."
    },
-   "full_he": "רעב כל הזמן, גם אחרי שבדיוק אכלת? אולי הגיע הזמן לחשוב מחדש על מה שיש לך בצלחת.\n\nחלבון, סיבים תזונתיים ושומנים בריאים יכולים לעזור לך להישאר שבע יותר זמן ולצמצם את הנשנושים הבלתי פוסקים.\n\nאיזה מחמשת המזונות האלה כבר נמצא בשגרה היומית שלך?\n\nבתמונה: \"רעב תמיד? הנה 5 מזונות שעוזרים להישאר שבע\":\n• קוטג': חלבון שעוזר לרסן את הרעב\n• ביצים: חלבון שתומך בתחושת שובע\n• שקדים: חלבון, סיבים ושומנים בריאים\n• אבוקדו: שומנים בריאים וסיבים\n• סלק: סיבים שתומכים בעיכול",
-   "full_en": "Always hungry, even after you just ate? It might be time to rethink what's on your plate.\n\nProtein, fiber, and healthy fats can help keep you fuller for longer and cut down on constant snacking.\n\nWhich of these 5 foods is already in your daily routine?\n\nThe image: \"Always hungry? Here's 5 foods that help keep you full\":\n• Cottage cheese: protein to help curb hunger\n• Eggs: protein to support satiety\n• Almonds: protein, fiber, and healthy fats\n• Avocado: healthy fats and fiber\n• Beets: fiber to support digestion"
+   "full_he": "זה מה שמסופר בסיפור ב-X:\n\nנתוני הבטיחות האחרונים של טסלה מראים שרכבים שנוסעים עם נהיגה עצמית מלאה (FSD) עוברים כמעט 6 מיליון מייל בין תאונות קשות, בערך פי תשעה טוב יותר מהממוצע בארה\"ב.\n\n• בדוח מתגלגל של 12 חודשים בצפון אמריקה, רכבי טסלה עם FSD (בפיקוח) עברו בממוצע 6,006,200 מייל בין תאונות קשות שבהן נפתחו כריות אוויר, לעומת 660,164 מייל בממוצע בארה\"ב.\n• רכבי FSD צברו 9.48 מיליארד מייל עם 1,579 אירועים כאלה.\n• זה טוב יותר מרכבי טסלה בנהיגה ידנית (כ-2 מיליון מייל לתאונה) ומרכבי טסלה בלי מערכות הבטיחות (פחות מ-900 אלף מייל).\n• הצי הגיע ל-16.7 מיליארד מייל מצטברים ב-FSD, ומוסיף כ-50 מיליון מייל ביום.\n• בניסויי הרובוטקסי בכמה ערים מדווחים על אפס פציעות לאורך 3.7 מיליון מייל אוטונומיים.\n\nלדברי המגיבים, השיפורים מרמזים על נהיגה בטוחה עד פי 10 בחלק מהמדדים. עם זאת, בדיונים מזכירים שהנתונים מדווחים על ידי טסלה עצמה ושתנאי הנהיגה (למשל סוגי כבישים) שונים בין הקבוצות.",
+   "full_en": "Here's what the X story says:\n\nTesla's latest safety stats show vehicles on Full Self-Driving going nearly 6 million miles between serious crashes, about nine times better than the U.S. average.\n\n• In a rolling 12-month report across North America, Tesla vehicles using FSD (Supervised) averaged 6,006,200 miles between major collisions involving airbags, compared with 660,164 miles for the U.S. average.\n• FSD cars logged 9.48 billion miles with 1,579 such incidents.\n• That beats manually driven Teslas (about 2 million miles per crash) and Teslas without the safety features (under 900,000 miles).\n• The fleet has reached 16.7 billion cumulative FSD miles and adds about 50 million a day.\n• Robotaxi testing in select cities reports zero injuries over 3.7 million autonomous miles.\n\nObservers say the gains suggest driving up to 10 times safer on some metrics, though the discussion also points out that the data is self-reported and that driving conditions differ between the groups."
   },
   {
-   "id": "dispenza-joy-without-waiting",
-   "topic": "dispenza",
-   "date": "2026-10-27T23:45:02Z",
-   "url": "https://x.com/DrJoeDispenza/status/2115228307075518880",
-   "source": "X · @DrJoeDispenza",
+   "id": "grokbot-custom-teams",
+   "topic": "grokbot",
+   "date": "2026-10-28T04:00:43Z",
+   "url": "https://x.com/i/trending/2115257635222217174",
+   "source": "X",
    "he": {
-    "title": "ג'ו דיספנזה: אל תחכה שהנסיבות ישתנו כדי להרגיש שמחה",
-    "summary": "דיספנזה שואל מה יקרה אם תפסיק לחכות לשינוי בחוץ לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה והערכה. לדבריו, אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה."
+    "title": "משתמשים בונים צוותים של בוטי Grok מותאמים אישית",
+    "summary": "משתמשים מספרים שבנו צוותים של Grok Bots לעבודה, מחקר, תזמון ויצירת תוכן, ושהבוטים מעבירים עבודה זה לזה בצ'אטים קבוצתיים. אחת מהן כתבה שעזבה את Claude ו-ChatGPT ועברה \"100% ל-Grok\"."
    },
    "en": {
-    "title": "Joe Dispenza: stop waiting for circumstances to change before feeling joy",
-    "summary": "Dispenza asks what would happen if you stopped waiting for outside change before letting yourself feel joy, gratitude and appreciation. Then, he says, you wouldn't need the external world to give you a reason."
+    "title": "Users build teams of custom Grok Bots for everyday tasks",
+    "summary": "Users describe building teams of Grok Bots for research, scheduling and content, with bots handing work to each other in group chats. One said she dropped Claude and ChatGPT and is now \"100% Grok\"."
    },
-   "full_he": "מה אם תפסיק לחכות שהנסיבות שלך ישתנו לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה או הערכה? אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה להרגיש אחרת.\n\nבתמונה, ציטוט שלו: \"האם אתה יכול לקבל את הרעיון שברגע שאתה משנה את המצב הפנימי שלך, אתה לא צריך שהעולם החיצוני ייתן לך סיבה להרגיש שמחה, הכרת תודה, הערכה או כל רגש מרומם אחר?\"",
-   "full_en": "What if you stopped waiting for your circumstances to change before allowing yourself to feel joy, gratitude, or appreciation? Then, you would no longer need the external world to give you a reason to feel differently.\n\nThe image quotes him: \"Can you accept the notion that once you change your internal state, you don't need the external world to provide you with a reason to feel joy, gratitude, appreciation, or any other elevated emotion?\""
+   "full_he": "הידי בריונס עזבה לגמרי את Claude ואת ChatGPT והכריזה שהיא \"100% Grok עכשיו\", אחרי שבנתה לעצמה צוות של עוזרי AI מתמחים.\n\n• Grok Bots, תכונה בבטא של SpaceXAI, מאפשרת ליצור עוזרי AI מותאמים אישית שמתחברים לאפליקציות, עובדים באופן עצמאי ומשתפים פעולה במשימות כמו מחקר, תזמון ויצירת תוכן.\n• משתמשים מוקדמים משתפים צילומי מסך של הצוותים שלהם עם שמות משעשעים כמו \"מאמן בריאות\", \"בעל אוהב\" ו\"צייד חסויות\", ומשבחים עבודה חלקה יותר בלי אזהרות בטיחות בלי סוף.\n• יש מגבלות לפי המנוי, אבל רבים מתנסים בצ'אטים קבוצתיים שבהם הבוטים מעבירים עבודה זה לזה, וההתלהבות גדולה, כולל מדריכים למתחילים.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Heidi Briones ditched Claude and ChatGPT entirely, declaring herself \"100% Grok now\" after building her team of specialized AI assistants.\n\n• Grok Bots, a beta feature from SpaceXAI, let users create custom AI helpers that sign into apps, work autonomously and team up for tasks like research, scheduling and content creation.\n• Early adopters share screenshots of rosters with fun names like Health Coach, Loving Husband and Sponsorship Hunter, praising smoother workflows without constant safety warnings.\n• Subscription limits apply, but many experiment with group chats where bots hand off work, fueling high enthusiasm and shared starter guides.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "johnson-mri-elite-athlete",
-   "topic": "johnson",
-   "date": "2026-10-27T21:55:35Z",
-   "url": "https://x.com/bryan_johnson/status/2115200763668631982",
-   "source": "X · @bryan_johnson",
+   "id": "huang-vr200-racks-2027",
+   "topic": "huang",
+   "date": "2026-10-28T03:53:19Z",
+   "url": "https://x.com/i/trending/2115289423701328382",
+   "source": "X",
    "he": {
-    "title": "בריאן ג'ונסון: תוצאות ה-MRI החצי-שנתי שלי כמו של בן 20",
-    "summary": "ג'ונסון פרסם את תוצאות ה-MRI שהוא עושה פעמיים בשנה: שומן ולב ברמה של שנות ה-20, ונפח היפוקמפוס באחוזון ה-99. לדבריו, הרדיולוג כתב שגופו לא נבדל מגוף של ספורטאי עילית."
+    "title": "תחזית: 96 אלף מארזי VR200 של אנבידיה עד 2027, עם SpaceX בראש",
+    "summary": "האנליסט ג'ף פו צופה שהביקוש למארזי ה-AI מדגם VR200 של אנבידיה יגיע ל-96 אלף ב-2027, כש-SpaceX מקבלת 20 אלף מהם. ספקנים ברשת שואלים אם צורכי ה-AI בפועל ימלאו את כולם."
    },
    "en": {
-    "title": "Bryan Johnson: my twice-yearly MRI looks like a 20-something's",
-    "summary": "Johnson shared his twice-yearly MRI: fat and heart at a 20s-equivalent level, and hippocampal occupancy in the 99th percentile. He says the radiologist wrote his body is indistinguishable from an elite athlete's."
+    "title": "Forecast: 96,000 NVIDIA VR200 racks by 2027, led by SpaceX",
+    "summary": "Analyst Jeff Pu projects NVIDIA's VR200 AI rack market reaching 96,000 units in 2027, with SpaceX getting 20,000. Skeptics online question whether real AI demand can fill them."
    },
-   "full_he": "תוצאות ה-MRI שאני עושה פעמיים בשנה:\n\n• שומן תת-עורי ושומן בטני (ויסרלי): כמו בשנות ה-20\n• לב: ציון 100%, כמו בשנות ה-20\n• תפוסת ההיפוקמפוס: אחוזון 99\n\nדוח הרדיולוג:\n• הגוף שלי לא נבדל מגוף של ספורטאי עילית\n\nגופים בריאים...\n• מרוויחים יותר כסף\n• עושים יותר סקס\n• כיפיים יותר\n\nבתמונה: \"דוח ה-MRI של בריאן ג'ונסון\", עם הערכת שומן ושריר (שומן בטני 1,094 מ\"ל, שומן תת-עורי 10,710 מ\"ל, נפח שריר כולל 20,860 מ\"ל), השוואת מיפוי הלב לבני 18 ו-25, ציון LV MyoHealth של 100%, ותפוסת היפוקמפוס 0.92 באחוזון 99.\n\nבתגובה שלו מתחת לפוסט: \"סריקת ה-MRI נעשתה ב-Prenuvo.\"",
-   "full_en": "my twice yearly mri results\n\n• subcutaneous and visceral fat: 20s equivalent\n• heart 100% score: 20s equivalent\n• hippocampal occupancy: 99th percentile\n\nradiologist report:\n• my body is indistinguishable from an elite athlete\n\nhealthy bodies...\n• make more money\n• have more sex\n• are more fun\n\nThe image, \"Bryan Johnson MRI Report\", shows the fat and muscle assessment (visceral fat 1,094 ml, subcutaneous fat 10,710 ml, total muscle volume 20,860 ml), his heart maps compared with an 18- and a 25-year-old, an LV MyoHealth score of 100%, and hippocampal occupancy of 0.92 in the 99th percentile.\n\nHis reply under the post: \"mri scan was done with @prenuvo\""
+   "full_he": "האנליסט ג'ף פו צופה שמארזי ה-AI מדגם VR200 של אנבידיה יגיעו ל-96 אלף יחידות עד 2027, בהובלת הזמנה ענקית של SpaceX. אבל ברשת שואלים אם צורכי ה-AI בעולם האמיתי יצליחו למלא אותם.\n\n• לפי פו, השוק הכולל של מארזי NVL72 VR200 יעמוד על 73 אלף ב-2026 ויטפס ל-96 אלף ב-2027. SpaceX הבטיחה לעצמה 20 אלף מתוך 30 אלף שביקשה.\n• שש חברות \"נאו-קלאוד\", כמו SpaceX ו-CoreWeave, צפויות לקבל 27% ב-2026 ו-35% ב-2027, מה שיעזור לספקים כמו Hon Hai וילחץ על אחרים.\n• ספקנים מצביעים על צורכי הסקה (inference) נמוכים, ומזכירים ש-OpenRouter מטפלת בתעבורה גדולה על מארז אחד, בעוד המגינים מצביעים על דרישות האימון ועל ההיקף של SpaceX כמנועי צמיחה.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Analyst Jeff Pu sees NVIDIA's VR200 AI racks reaching 96,000 units by 2027, led by SpaceX's massive order. But online chatter questions whether real-world AI needs can fill them.\n\n• Pu projects a total addressable market of 73,000 NVL72 VR200 racks in 2026, climbing to 96,000 in 2027, with SpaceX securing 20,000 of the 30,000 it requested.\n• Six neoclouds like SpaceX and CoreWeave are set to claim 27% in 2026 and 35% in 2027, boosting suppliers like Hon Hai while pressuring others.\n• Skeptics highlight low inference needs, citing OpenRouter handling major traffic on one rack, while defenders point to training demands and SpaceX's scale as drivers of growth.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "johnson-rooting-kurzweil",
-   "topic": "johnson",
-   "date": "2026-10-27T23:16:57Z",
-   "url": "https://x.com/bryan_johnson/status/2115221241539998060",
-   "source": "X · @bryan_johnson",
+   "id": "tesla-damon-hill-cybercab",
+   "topic": "tesla",
+   "date": "2026-10-28T03:53:14Z",
+   "url": "https://x.com/i/trending/2115250830144094240",
+   "source": "X",
    "he": {
-    "title": "בריאן ג'ונסון: אני מחזיק אצבעות לריי קורצווייל",
-    "summary": "ג'ונסון כתב שהוא מחזיק אצבעות לריי קורצווייל וקרא לו \"העתידן הטוב בכל הזמנים\", לצד כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\"."
+    "title": "אלוף ה-F1 דיימון היל נסע ברובוטקסי סייברקאב באוסטין",
+    "summary": "אלוף העולם ב-F1 משנת 1996 נסע לראשונה בסייברקאב של טסלה, בלי הגה ודוושות, בסוף שבוע הגראנד פרי באוסטין. Grok שברכב סיכם לו את המרוץ והקרין קטעים."
    },
    "en": {
-    "title": "Bryan Johnson: I'm rooting for Ray Kurzweil",
-    "summary": "Johnson said he's rooting for Ray Kurzweil, calling him the best futurist of all time, alongside an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\""
+    "title": "F1 champion Damon Hill rides a Tesla Cybercab in Austin",
+    "summary": "The 1996 F1 world champion took his first ride in Tesla's Cybercab, with no steering wheel or pedals, during the Austin Grand Prix weekend. The in-car Grok recapped the race and played highlights."
    },
-   "full_he": "אני מחזיק אצבעות לריי קורצווייל.\n\nהעתידן הטוב בכל הזמנים.\n\nבתמונה: צילום מסך של כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\" מאת איימי דוקסר מרקוס, עם תמונה של קורצווייל מצביע על הולוגרמה של עצמו. הטקסט של הכתבה עצמה לא מופיע בפוסט.",
-   "full_en": "I'm rooting for Ray Kurzweil\n\nBest futurist of all time\n\nThe image is a screenshot of an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\" by Amy Dockser Marcus, showing Kurzweil pointing at a hologram of himself. The article text itself isn't in the post."
-  },
-  {
-   "id": "johnson-cyberattack-movie",
-   "topic": "johnson",
-   "date": "2026-10-27T20:15:34Z",
-   "url": "https://x.com/bryan_johnson/status/2115175592878645421",
-   "source": "X · @bryan_johnson",
-   "he": {
-    "title": "בריאן ג'ונסון רוצה סרט AI בזמן אמת על כל מתקפות הסייבר בעולם",
-    "summary": "ג'ונסון כתב שהוא היה רוצה ש-AI תיצור סרט בזמן אמת של כל מתקפות הסייבר שקורות עכשיו, עם נחילי הסוכנים כתוקפים בגוף ממשי, ההגנות והדרמה האנושית."
-   },
-   "en": {
-    "title": "Bryan Johnson wants a real-time AI movie of the world's cyberattacks",
-    "summary": "Johnson wished AI could make a real-time movie of all the cyberattacks happening now, showing agent swarms as embodied attackers, the countermeasures and the human drama."
-   },
-   "full_he": "הלוואי ש-AI הייתה יכולה ליצור סרט בזמן אמת של כל מתקפות הסייבר שקורות ממש עכשיו ברחבי העולם.\n\nלהציג את נחילי הסוכנים כתוקפים בעלי גוף; להראות את פתרון החידות כדי לחדור את ההגנות; לתפוס את אמצעי הנגד ואת כל הדרמה האנושית שמעל.",
-   "full_en": "I wish that AI could make a real-time movie of all the cyber attacks happening right now around the world.\n\nRepresenting the agent swarms as embodied attackers; showing the puzzle solving to penetrate defenses; capturing the counter measures and all the human drama overlaid."
-  },
-  {
-   "id": "mccullough-hybrid-harms",
-   "topic": "mccullough",
-   "date": "2026-10-27T23:02:27Z",
-   "url": "https://x.com/P_McCulloughMD/status/2115217592281600272",
-   "source": "X · @P_McCulloughMD",
-   "he": {
-    "title": "פיטר מקאלו: \"נזקים היברידיים\" של חלבון הספייק",
-    "summary": "מקאלו טוען שהצטברות של חלבון ספייק מההדבקה בקורונה ומחיסוני mRNA יכולה לגרום למחלה ולנכות, ומפנה למאמר פרספקטיבה שהוא שותף לו. זו טענה שנויה במחלוקת, וגופי הבריאות המרכזיים רואים בחיסונים בטוחים לרוב האנשים."
-   },
-   "en": {
-    "title": "Peter McCullough: \"hybrid harms\" from spike protein",
-    "summary": "McCullough claims accumulating spike protein from COVID infection and mRNA vaccines can cause disease and disability, pointing to a perspective article he co-authored. This is disputed; major health bodies consider the vaccines safe for most people."
-   },
-   "full_he": "\"נזקים היברידיים\" פירושם שהצטברות של חלבון ספייק מ-SARS-CoV-2 ומייצור mRNA סינתטי יכולה לגרום למחלה ולנכות.\n\nבתמונה: עמוד השער של מאמר פרספקטיבה בכתב העת Medical Research Archives (של European Society of Medicine, כרך 13 גיליון 11), \"ההשפעות המשולבות של חיסון mRNA לקוביד-19 ושל הדבקה ב-SARS-CoV-2: התכנסות של 'ספייקופתיות' שונות ונזקים היברידיים אחרים\", מאת מ. נתנאל מיד ואחרים, ומקאלו בהם. התרשים \"השערת הנזקים ההיברידיים\" מציג חיסון ו-הדבקה שמובילים ל\"עומס חלבון ספייק\", עם חמישה מאפיינים:\n• מטען אימונוטוקסי: חלבון ספייק, ננו-חלקיקי שומן וזיהומים מתהליך הייצור\n• פיזור בכל הגוף של המטען\n• חשיפה ממושכת לספייק ועומס אנטיגני\n• מנות mRNA מרובות עם השפעות מצטברות\n• שינויים חיסוניים דומים להדבקה: דלקת־יתר, דיכוי אינטרפרון, לימפופניה ואוטואימוניות\n\nהפוסט שהוא ציטט (של קרן מקאלו):\n\nההדבקה משאירה משהו מאחור, לא רק זיכרון של עצמה. עבודות שפורסמו מצאו אנטיגן ספייק במחזור הדם אצל חולי לונג קוביד עד שנה אחרי ההדבקה, ומחקר אחר מצא חלבון ויראלי שנשאר בתאי מערכת החיסון זמן רב עוד יותר. למה זה חשוב: לונג קוביד טופל כאבחנה בדרך השלילה, כמו ירידה בכושר או חרדה. מנגנון של אנטיגן מתמשך ניתן לבדיקה, והוא חל גם על מי שמעולם לא התחסן; ההדבקה לבדה עושה את זה. (מצורף סרטון.)\n\nהערה: אלה טענות של מקאלו ושותפיו. הקונצנזוס הרפואי המרכזי רואה בחיסוני mRNA בטוחים ויעילים לרוב האנשים, וזו לא המלצה רפואית.",
-   "full_en": "\"Hybrid harms\" means accumulating spike protein from SARS-CoV-2 and from synthetic mRNA production can cause disease and disability.\n\nThe image: the first page of a perspective article in Medical Research Archives (European Society of Medicine, Volume 13 Issue 11), \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms\" by M. Nathaniel Mead and others, including McCullough. Its figure, \"The Hybrid Harms Hypothesis\", shows vaccination and infection both leading to a \"spike protein burden\", with five features:\n• Immunotoxic payload: spike protein, lipid nanoparticles and process-related impurities\n• Whole-body distribution of the payload\n• Prolonged spike exposure and antigenic load\n• Multiple mRNA injections with cumulative effects\n• Immunologic changes similar to infection: hyperinflammation, interferon suppression, lymphopenia and autoimmunity\n\nThe quoted post (from the McCullough Foundation):\n\nThe Infection Leaves Something Behind, Not Just a Memory of Itself. Published work has detected circulating spike antigen in long COVID patients up to a year after infection, and other research found viral protein persisting in immune cells longer still. Why it matters: long COVID has been handled as a diagnosis of exclusion, like deconditioning or anxiety. A persistent-antigen mechanism is testable, and it applies to people who were never vaccinated; the infection alone does it. (A video is attached.)\n\nNote: these are claims by McCullough and his co-authors. Mainstream medical consensus considers mRNA vaccines safe and effective for most people, and this isn't medical advice."
+   "full_he": "דיימון היל, אלוף העולם בפורמולה 1 ב-1996, נכנס לסייברקאב נטול נהג של טסלה בסוף שבוע הגראנד פרי של ארה\"ב באוסטין. בלי הגה, בלי דוושות, רק רכב זהוב לשני נוסעים עם דלתות פרפר שבירך אותו בשמו.\n\n• זו הייתה הנסיעה הראשונה שלו ברובוטקסי. ה-Grok שבתוך הרכב סיכם את המרוץ האחרון במסלול Circuit of the Americas והקרין קטעי שיא לפי בקשה.\n• מעריצים כתבו שההדגמה מדהימה, וציינו שהכוכב נראה גם נרגש וגם רגוע ברכב שנוהג בעצמו.\n• טסלה הרחיבה את שירות הסייברקאב סביב המסלול לכבוד האירוע והסיעה עשרות מעריצים; נסיעות פתוחות לציבור זמינות בחלקים של אוסטין מתחילת ספטמבר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Damon Hill, the 1996 Formula 1 World Champion, slid into a driverless Tesla Cybercab during the US Grand Prix weekend in Austin. No steering wheel, no pedals, just a gold two-seater with butterfly doors welcoming him by name.\n\n• It was his first ride in the robotaxi. The in-car Grok AI recapped the recent Circuit of the Americas Grand Prix and played highlight videos on request.\n• Fans called the demo amazing, noting the F1 star seemed both excited and comfortable in a car driving itself.\n• Tesla expanded Cybercab service around the track for the event, shuttling dozens of fans; public rides have been available in parts of Austin since early September.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "mccullough-event-201",
@@ -290,55 +256,72 @@
    "full_en": "Why Your Brain Feels at War\n\nYou can have good intentions and still feel like there's a battle going on inside your own mind.\n\n\"I hate myself.\" \"I don't trust myself.\" \"Why can't I stop doing this?\" Fear you can't shake. Sadness coming out of nowhere. Feeling lost, like you can't get anything right.\n\nRogue toxic heavy metals residing alongside the good metals can wreak havoc inside the brain. That physical battle can become part of the struggle you're feeling every single day.\n\nThe rest of the post links to the Brain Saver book, Brain Saver Protocols, a free neurological download, a free heavy metal detox download and a YouTube livestream.\n\nNote: these are Medical Medium's claims and have no accepted scientific basis. If you feel this way persistently, talk to a doctor or mental health professional.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
-   "id": "kraken-albon-austin",
-   "topic": "kraken",
-   "date": "2026-10-27T20:49:08Z",
-   "url": "https://x.com/krakenfx/status/2115184041007649009",
-   "source": "X · @krakenfx",
+   "id": "brecka-5-foods-full",
+   "topic": "brecka",
+   "date": "2026-10-28T00:00:01Z",
+   "url": "https://x.com/thegarybrecka/status/2115232079495454754",
+   "source": "X · @thegarybrecka",
    "he": {
-    "title": "קראקן: מעריצים פגשו את נהג ה-F1 אלכס אלבון באוסטין",
-    "summary": "קראקן סיכמה את המבצע שלה סביב הגראנד פרי באוסטין: כמה מעריצים בני מזל פגשו פנים אל פנים את אלכס אלבון, נהג קבוצת ויליאמס."
+    "title": "גרי ברקה: 5 מזונות שעוזרים להישאר שבע",
+    "summary": "ברקה ממליץ על חלבון, סיבים ושומנים בריאים כדי להרגיש שובע לאורך זמן, ומונה חמישה מזונות: קוטג', ביצים, שקדים, אבוקדו וסלק."
    },
    "en": {
-    "title": "Kraken: fans met F1 driver Alex Albon in Austin",
-    "summary": "Kraken wrapped up its Austin Grand Prix promotion: a few lucky fans met Williams F1 driver Alex Albon face to face."
+    "title": "Gary Brecka: 5 foods that help keep you full",
+    "summary": "Brecka says protein, fiber and healthy fats keep you fuller for longer, and lists five foods: cottage cheese, eggs, almonds, avocado and beets."
    },
-   "full_he": "בין אם נרשמת מהבית ובין אם לקחת חלק באתגר התגובה, הכול הוביל לכאן.\n\nכמה מעריצים בני מזל זכו לפגוש פנים אל פנים את אלכס אלבון, נהג קבוצת Atlassian Williams Racing ב-F1.\n\nתודה לכל מי שנרשם, שיחק והגיע לאוסטין.\n\nנתראה בפעם הבאה!\n\nלפוסט מצורפות ארבע תמונות מהמפגש.",
-   "full_en": "Whether you entered from home or took on the Reaction Challenge, it all led here.\n\nA few lucky fans got to meet Atlassian Williams Racing F1 Team driver Alex Albon face to face.\n\nThanks to everyone who signed up, played, and showed up in Austin.\n\nSee you at the next one!\n\nFour photos from the meetup are attached to the post."
+   "full_he": "רעב כל הזמן, גם אחרי שבדיוק אכלת? אולי הגיע הזמן לחשוב מחדש על מה שיש לך בצלחת.\n\nחלבון, סיבים תזונתיים ושומנים בריאים יכולים לעזור לך להישאר שבע יותר זמן ולצמצם את הנשנושים הבלתי פוסקים.\n\nאיזה מחמשת המזונות האלה כבר נמצא בשגרה היומית שלך?\n\nבתמונה: \"רעב תמיד? הנה 5 מזונות שעוזרים להישאר שבע\":\n• קוטג': חלבון שעוזר לרסן את הרעב\n• ביצים: חלבון שתומך בתחושת שובע\n• שקדים: חלבון, סיבים ושומנים בריאים\n• אבוקדו: שומנים בריאים וסיבים\n• סלק: סיבים שתומכים בעיכול",
+   "full_en": "Always hungry, even after you just ate? It might be time to rethink what's on your plate.\n\nProtein, fiber, and healthy fats can help keep you fuller for longer and cut down on constant snacking.\n\nWhich of these 5 foods is already in your daily routine?\n\nThe image: \"Always hungry? Here's 5 foods that help keep you full\":\n• Cottage cheese: protein to help curb hunger\n• Eggs: protein to support satiety\n• Almonds: protein, fiber, and healthy fats\n• Avocado: healthy fats and fiber\n• Beets: fiber to support digestion"
   },
   {
-   "id": "tesla-damon-hill-cybercab",
-   "topic": "tesla",
-   "date": "2026-10-28T03:53:14Z",
-   "url": "https://x.com/i/trending/2115250830144094240",
-   "source": "X",
+   "id": "dispenza-joy-without-waiting",
+   "topic": "dispenza",
+   "date": "2026-10-27T23:45:02Z",
+   "url": "https://x.com/DrJoeDispenza/status/2115228307075518880",
+   "source": "X · @DrJoeDispenza",
    "he": {
-    "title": "אלוף ה-F1 דיימון היל נסע ברובוטקסי סייברקאב באוסטין",
-    "summary": "אלוף העולם ב-F1 משנת 1996 נסע לראשונה בסייברקאב של טסלה, בלי הגה ודוושות, בסוף שבוע הגראנד פרי באוסטין. Grok שברכב סיכם לו את המרוץ והקרין קטעים."
+    "title": "ג'ו דיספנזה: אל תחכה שהנסיבות ישתנו כדי להרגיש שמחה",
+    "summary": "דיספנזה שואל מה יקרה אם תפסיק לחכות לשינוי בחוץ לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה והערכה. לדבריו, אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה."
    },
    "en": {
-    "title": "F1 champion Damon Hill rides a Tesla Cybercab in Austin",
-    "summary": "The 1996 F1 world champion took his first ride in Tesla's Cybercab, with no steering wheel or pedals, during the Austin Grand Prix weekend. The in-car Grok recapped the race and played highlights."
+    "title": "Joe Dispenza: stop waiting for circumstances to change before feeling joy",
+    "summary": "Dispenza asks what would happen if you stopped waiting for outside change before letting yourself feel joy, gratitude and appreciation. Then, he says, you wouldn't need the external world to give you a reason."
    },
-   "full_he": "דיימון היל, אלוף העולם בפורמולה 1 ב-1996, נכנס לסייברקאב נטול נהג של טסלה בסוף שבוע הגראנד פרי של ארה\"ב באוסטין. בלי הגה, בלי דוושות, רק רכב זהוב לשני נוסעים עם דלתות פרפר שבירך אותו בשמו.\n\n• זו הייתה הנסיעה הראשונה שלו ברובוטקסי. ה-Grok שבתוך הרכב סיכם את המרוץ האחרון במסלול Circuit of the Americas והקרין קטעי שיא לפי בקשה.\n• מעריצים כתבו שההדגמה מדהימה, וציינו שהכוכב נראה גם נרגש וגם רגוע ברכב שנוהג בעצמו.\n• טסלה הרחיבה את שירות הסייברקאב סביב המסלול לכבוד האירוע והסיעה עשרות מעריצים; נסיעות פתוחות לציבור זמינות בחלקים של אוסטין מתחילת ספטמבר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Damon Hill, the 1996 Formula 1 World Champion, slid into a driverless Tesla Cybercab during the US Grand Prix weekend in Austin. No steering wheel, no pedals, just a gold two-seater with butterfly doors welcoming him by name.\n\n• It was his first ride in the robotaxi. The in-car Grok AI recapped the recent Circuit of the Americas Grand Prix and played highlight videos on request.\n• Fans called the demo amazing, noting the F1 star seemed both excited and comfortable in a car driving itself.\n• Tesla expanded Cybercab service around the track for the event, shuttling dozens of fans; public rides have been available in parts of Austin since early September.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "מה אם תפסיק לחכות שהנסיבות שלך ישתנו לפני שתרשה לעצמך להרגיש שמחה, הכרת תודה או הערכה? אז כבר לא תצטרך שהעולם החיצוני ייתן לך סיבה להרגיש אחרת.\n\nבתמונה, ציטוט שלו: \"האם אתה יכול לקבל את הרעיון שברגע שאתה משנה את המצב הפנימי שלך, אתה לא צריך שהעולם החיצוני ייתן לך סיבה להרגיש שמחה, הכרת תודה, הערכה או כל רגש מרומם אחר?\"",
+   "full_en": "What if you stopped waiting for your circumstances to change before allowing yourself to feel joy, gratitude, or appreciation? Then, you would no longer need the external world to give you a reason to feel differently.\n\nThe image quotes him: \"Can you accept the notion that once you change your internal state, you don't need the external world to provide you with a reason to feel joy, gratitude, appreciation, or any other elevated emotion?\""
   },
   {
-   "id": "tesla-roadster-ramp-tease",
-   "topic": "tesla",
-   "date": "2026-10-27T20:57:48Z",
-   "url": "https://x.com/i/trending/2115143797260890294",
-   "source": "X",
+   "id": "johnson-rooting-kurzweil",
+   "topic": "johnson",
+   "date": "2026-10-27T23:16:57Z",
+   "url": "https://x.com/bryan_johnson/status/2115221241539998060",
+   "source": "X · @bryan_johnson",
    "he": {
-    "title": "טסלה מתגרה ברודסטר עם מדחפים וקפיצות מרמפה ענקית",
-    "summary": "טסלה פרסמה סרטון של רודסטרים לבנים מסתובבים על רמפה מעוקלת עם מדחפים בוערים, ומאסק הגיב בבדיחה על מהירות מילוט. הייצור של הרודסטר מהדור השני אמור להתחיל ב-2028."
+    "title": "בריאן ג'ונסון: אני מחזיק אצבעות לריי קורצווייל",
+    "summary": "ג'ונסון כתב שהוא מחזיק אצבעות לריי קורצווייל וקרא לו \"העתידן הטוב בכל הזמנים\", לצד כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\"."
    },
    "en": {
-    "title": "Tesla teases a thruster-powered Roadster with huge ramp stunts",
-    "summary": "Tesla posted visuals of white Roadsters looping a curved ramp with blazing thrusters, and Musk joked about escape velocity. Second-gen Roadster production is due to start in 2028."
+    "title": "Bryan Johnson: I'm rooting for Ray Kurzweil",
+    "summary": "Johnson said he's rooting for Ray Kurzweil, calling him the best futurist of all time, alongside an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\""
    },
-   "full_he": "רודסטרים לבנים ומלוטשים מסתובבים בשמי הלילה על רמפה מעוקלת ענקית, עם מדחפים שמשאירים שובלי אדים. הכיתוב של טסלה, \"מה שעולה חייב לרדת\", גרר תגובה מהירה של אילון מאסק על התגברות על כוח המשיכה במהירות מילוט.\n\n• זה הגיע כמה ימים אחרי הדגמה חיה באתר הניסויים של SpaceX בטקסס, שבה אב-טיפוס של הרודסטר האיץ מ-0 ל-60 מייל לשעה ב-0.81 שניות, הסתובב באוויר וקפץ מעל טסלות אחרות, בעזרת מדחפי גז קר ומאווררי יניקה.\n• ייצור הרודסטר מהדור השני מתחיל ב-2028, אבל גרסת ה\"רוקט\" המלאה עם עשרה מדחפים תישאר בהזמנה אישית בלבד ולא תיסע בכבישים ציבוריים.\n• הפוסט עורר התפעלות ברשת ובדיחות על מיזוג טסלה ו-SpaceX, והמניה עלתה ב-3% ל-405.70 דולר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Sleek white Roadsters loop through the night sky on a massive curved ramp, thrusters blazing trails of vapor. Tesla's caption \"What goes up must come down\" sparked Elon Musk's quick reply about defying gravity at escape velocity.\n\n• It came days after a live demo at SpaceX's Texas test site, where a prototype Roadster hit 0-60 mph in 0.81 seconds, flipped mid-air and jumped over other Teslas using cold-gas thrusters and suction fans.\n• Second-gen Roadster production starts in 2028, but the full ten-thruster \"Rocket\" version stays invite-only and off public roads.\n• The post fueled online awe and Tesla-SpaceX merger jokes, and the stock rose 3 percent to $405.70.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "אני מחזיק אצבעות לריי קורצווייל.\n\nהעתידן הטוב בכל הזמנים.\n\nבתמונה: צילום מסך של כתבה בשם \"האם AI יכולה לעזור לריי קורצווייל לרמות את המוות?\" מאת איימי דוקסר מרקוס, עם תמונה של קורצווייל מצביע על הולוגרמה של עצמו. הטקסט של הכתבה עצמה לא מופיע בפוסט.",
+   "full_en": "I'm rooting for Ray Kurzweil\n\nBest futurist of all time\n\nThe image is a screenshot of an article headlined \"Can AI Help Ray Kurzweil Cheat Death?\" by Amy Dockser Marcus, showing Kurzweil pointing at a hologram of himself. The article text itself isn't in the post."
+  },
+  {
+   "id": "mccullough-hybrid-harms",
+   "topic": "mccullough",
+   "date": "2026-10-27T23:02:27Z",
+   "url": "https://x.com/P_McCulloughMD/status/2115217592281600272",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "פיטר מקאלו: \"נזקים היברידיים\" של חלבון הספייק",
+    "summary": "מקאלו טוען שהצטברות של חלבון ספייק מההדבקה בקורונה ומחיסוני mRNA יכולה לגרום למחלה ולנכות, ומפנה למאמר פרספקטיבה שהוא שותף לו. זו טענה שנויה במחלוקת, וגופי הבריאות המרכזיים רואים בחיסונים בטוחים לרוב האנשים."
+   },
+   "en": {
+    "title": "Peter McCullough: \"hybrid harms\" from spike protein",
+    "summary": "McCullough claims accumulating spike protein from COVID infection and mRNA vaccines can cause disease and disability, pointing to a perspective article he co-authored. This is disputed; major health bodies consider the vaccines safe for most people."
+   },
+   "full_he": "\"נזקים היברידיים\" פירושם שהצטברות של חלבון ספייק מ-SARS-CoV-2 ומייצור mRNA סינתטי יכולה לגרום למחלה ולנכות.\n\nבתמונה: עמוד השער של מאמר פרספקטיבה בכתב העת Medical Research Archives (של European Society of Medicine, כרך 13 גיליון 11), \"ההשפעות המשולבות של חיסון mRNA לקוביד-19 ושל הדבקה ב-SARS-CoV-2: התכנסות של 'ספייקופתיות' שונות ונזקים היברידיים אחרים\", מאת מ. נתנאל מיד ואחרים, ומקאלו בהם. התרשים \"השערת הנזקים ההיברידיים\" מציג חיסון ו-הדבקה שמובילים ל\"עומס חלבון ספייק\", עם חמישה מאפיינים:\n• מטען אימונוטוקסי: חלבון ספייק, ננו-חלקיקי שומן וזיהומים מתהליך הייצור\n• פיזור בכל הגוף של המטען\n• חשיפה ממושכת לספייק ועומס אנטיגני\n• מנות mRNA מרובות עם השפעות מצטברות\n• שינויים חיסוניים דומים להדבקה: דלקת־יתר, דיכוי אינטרפרון, לימפופניה ואוטואימוניות\n\nהפוסט שהוא ציטט (של קרן מקאלו):\n\nההדבקה משאירה משהו מאחור, לא רק זיכרון של עצמה. עבודות שפורסמו מצאו אנטיגן ספייק במחזור הדם אצל חולי לונג קוביד עד שנה אחרי ההדבקה, ומחקר אחר מצא חלבון ויראלי שנשאר בתאי מערכת החיסון זמן רב עוד יותר. למה זה חשוב: לונג קוביד טופל כאבחנה בדרך השלילה, כמו ירידה בכושר או חרדה. מנגנון של אנטיגן מתמשך ניתן לבדיקה, והוא חל גם על מי שמעולם לא התחסן; ההדבקה לבדה עושה את זה. (מצורף סרטון.)\n\nהערה: אלה טענות של מקאלו ושותפיו. הקונצנזוס הרפואי המרכזי רואה בחיסוני mRNA בטוחים ויעילים לרוב האנשים, וזו לא המלצה רפואית.",
+   "full_en": "\"Hybrid harms\" means accumulating spike protein from SARS-CoV-2 and from synthetic mRNA production can cause disease and disability.\n\nThe image: the first page of a perspective article in Medical Research Archives (European Society of Medicine, Volume 13 Issue 11), \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms\" by M. Nathaniel Mead and others, including McCullough. Its figure, \"The Hybrid Harms Hypothesis\", shows vaccination and infection both leading to a \"spike protein burden\", with five features:\n• Immunotoxic payload: spike protein, lipid nanoparticles and process-related impurities\n• Whole-body distribution of the payload\n• Prolonged spike exposure and antigenic load\n• Multiple mRNA injections with cumulative effects\n• Immunologic changes similar to infection: hyperinflammation, interferon suppression, lymphopenia and autoimmunity\n\nThe quoted post (from the McCullough Foundation):\n\nThe Infection Leaves Something Behind, Not Just a Memory of Itself. Published work has detected circulating spike antigen in long COVID patients up to a year after infection, and other research found viral protein persisting in immune cells longer still. Why it matters: long COVID has been handled as a diagnosis of exclusion, like deconditioning or anxiety. A persistent-antigen mechanism is testable, and it applies to people who were never vaccinated; the infection alone does it. (A video is attached.)\n\nNote: these are claims by McCullough and his co-authors. Mainstream medical consensus considers mRNA vaccines safe and effective for most people, and this isn't medical advice."
   },
   {
    "id": "musk-tops-soros-donations",
@@ -358,38 +341,89 @@
    "full_en": "Elon Musk's political giving has quietly overtaken George Soros's decades-long total, hitting $759 million to Soros's $624 million, according to charts shared online.\n\n• The jump was driven by Musk's $446 million for this year's midterms through America PAC and groups like the Senate Leadership Fund supporting Republicans.\n• Soros has backed Democrats, district attorneys and progressive causes over the years, including over $100 million this cycle via entities like Geosor.\n• Supporters hail Musk as a patriot using his own money openly, while critics call him the \"new George Soros\" buying influence, sparking talk of double standards and billionaire sway ahead of the November midterms.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "grokbot-custom-teams",
-   "topic": "grokbot",
-   "date": "2026-10-28T04:00:43Z",
-   "url": "https://x.com/i/trending/2115257635222217174",
-   "source": "X",
+   "id": "brecka-dana-white-homocysteine",
+   "topic": "brecka",
+   "date": "2026-10-27T22:00:02Z",
+   "url": "https://x.com/thegarybrecka/status/2115201886563242051",
+   "source": "X · @thegarybrecka",
    "he": {
-    "title": "משתמשים בונים צוותים של בוטי Grok מותאמים אישית",
-    "summary": "משתמשים מספרים שבנו צוותים של Grok Bots לעבודה, מחקר, תזמון ויצירת תוכן, ושהבוטים מעבירים עבודה זה לזה בצ'אטים קבוצתיים. אחת מהן כתבה שעזבה את Claude ו-ChatGPT ועברה \"100% ל-Grok\"."
+    "title": "גרי ברקה: ההומוציסטאין של דנה וייט היה בשמיים",
+    "summary": "ברקה מספר שדנה וייט היה אמור לעבור פרוצדורת לב 11 יום אחרי שנפגשו, ושבבדיקות הדם שלו בלטה רמת הומוציסטאין גבוהה מאוד. לדבריו, TMG הוא רכיב תזונה שעוזר לגוף לפרק אותו."
    },
    "en": {
-    "title": "Users build teams of custom Grok Bots for everyday tasks",
-    "summary": "Users describe building teams of Grok Bots for research, scheduling and content, with bots handing work to each other in group chats. One said she dropped Claude and ChatGPT and is now \"100% Grok\"."
+    "title": "Gary Brecka: Dana White's homocysteine was through the roof",
+    "summary": "Brecka says Dana White was scheduled for a heart procedure 11 days after they met, and his bloodwork showed very high homocysteine. He says TMG is one nutrient that helps the body break it down."
    },
-   "full_he": "הידי בריונס עזבה לגמרי את Claude ואת ChatGPT והכריזה שהיא \"100% Grok עכשיו\", אחרי שבנתה לעצמה צוות של עוזרי AI מתמחים.\n\n• Grok Bots, תכונה בבטא של SpaceXAI, מאפשרת ליצור עוזרי AI מותאמים אישית שמתחברים לאפליקציות, עובדים באופן עצמאי ומשתפים פעולה במשימות כמו מחקר, תזמון ויצירת תוכן.\n• משתמשים מוקדמים משתפים צילומי מסך של הצוותים שלהם עם שמות משעשעים כמו \"מאמן בריאות\", \"בעל אוהב\" ו\"צייד חסויות\", ומשבחים עבודה חלקה יותר בלי אזהרות בטיחות בלי סוף.\n• יש מגבלות לפי המנוי, אבל רבים מתנסים בצ'אטים קבוצתיים שבהם הבוטים מעבירים עבודה זה לזה, וההתלהבות גדולה, כולל מדריכים למתחילים.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Heidi Briones ditched Claude and ChatGPT entirely, declaring herself \"100% Grok now\" after building her team of specialized AI assistants.\n\n• Grok Bots, a beta feature from SpaceXAI, let users create custom AI helpers that sign into apps, work autonomously and team up for tasks like research, scheduling and content creation.\n• Early adopters share screenshots of rosters with fun names like Health Coach, Loving Husband and Sponsorship Hunter, praising smoother workflows without constant safety warnings.\n• Subscription limits apply, but many experiment with group chats where bots hand off work, fueling high enthusiasm and shared starter guides.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "דנה וייט היה אמור לעבור פרוצדורת לב רק 11 יום אחרי שנפגשנו.\n\nכשעברתי על בדיקות הדם שלו, דבר אחד בלט: רמות ההומוציסטאין שלו היו בשמיים. הומוציסטאין גבוה עלול לפגוע בכלי הדם ולתרום לסיכון לב וכלי דם. TMG (טרימתילגליצין) הוא אחד מרכיבי התזונה שעוזרים לגוף לפרק אותו.\n\nבגלל זה אני תמיד אומר: תפסיק לנחש ותתחיל לבדוק. הבנה של בדיקות הדם שלך יכולה לשנות הכול.\n\nזו טענה של ברקה ולא המלצה רפואית; לפני תוסף או שינוי טיפול כדאי להתייעץ עם רופא.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Dana White was scheduled for a heart procedure just 11 days after we met.\n\nWhen I reviewed his bloodwork, one thing stood out: his homocysteine levels were through the roof. Elevated homocysteine can damage blood vessels and contribute to cardiovascular risk. TMG (trimethylglycine) is one nutrient that helps the body break it down.\n\nThis is why I always say, stop guessing and start testing. Understanding your bloodwork could change everything.\n\nThis is Brecka's claim, not medical advice; talk to a doctor before starting a supplement or changing treatment.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
-   "id": "huang-vr200-racks-2027",
-   "topic": "huang",
-   "date": "2026-10-28T03:53:19Z",
-   "url": "https://x.com/i/trending/2115289423701328382",
-   "source": "X",
+   "id": "johnson-mri-elite-athlete",
+   "topic": "johnson",
+   "date": "2026-10-27T21:55:35Z",
+   "url": "https://x.com/bryan_johnson/status/2115200763668631982",
+   "source": "X · @bryan_johnson",
    "he": {
-    "title": "תחזית: 96 אלף מארזי VR200 של אנבידיה עד 2027, עם SpaceX בראש",
-    "summary": "האנליסט ג'ף פו צופה שהביקוש למארזי ה-AI מדגם VR200 של אנבידיה יגיע ל-96 אלף ב-2027, כש-SpaceX מקבלת 20 אלף מהם. ספקנים ברשת שואלים אם צורכי ה-AI בפועל ימלאו את כולם."
+    "title": "בריאן ג'ונסון: תוצאות ה-MRI החצי-שנתי שלי כמו של בן 20",
+    "summary": "ג'ונסון פרסם את תוצאות ה-MRI שהוא עושה פעמיים בשנה: שומן ולב ברמה של שנות ה-20, ונפח היפוקמפוס באחוזון ה-99. לדבריו, הרדיולוג כתב שגופו לא נבדל מגוף של ספורטאי עילית."
    },
    "en": {
-    "title": "Forecast: 96,000 NVIDIA VR200 racks by 2027, led by SpaceX",
-    "summary": "Analyst Jeff Pu projects NVIDIA's VR200 AI rack market reaching 96,000 units in 2027, with SpaceX getting 20,000. Skeptics online question whether real AI demand can fill them."
+    "title": "Bryan Johnson: my twice-yearly MRI looks like a 20-something's",
+    "summary": "Johnson shared his twice-yearly MRI: fat and heart at a 20s-equivalent level, and hippocampal occupancy in the 99th percentile. He says the radiologist wrote his body is indistinguishable from an elite athlete's."
    },
-   "full_he": "האנליסט ג'ף פו צופה שמארזי ה-AI מדגם VR200 של אנבידיה יגיעו ל-96 אלף יחידות עד 2027, בהובלת הזמנה ענקית של SpaceX. אבל ברשת שואלים אם צורכי ה-AI בעולם האמיתי יצליחו למלא אותם.\n\n• לפי פו, השוק הכולל של מארזי NVL72 VR200 יעמוד על 73 אלף ב-2026 ויטפס ל-96 אלף ב-2027. SpaceX הבטיחה לעצמה 20 אלף מתוך 30 אלף שביקשה.\n• שש חברות \"נאו-קלאוד\", כמו SpaceX ו-CoreWeave, צפויות לקבל 27% ב-2026 ו-35% ב-2027, מה שיעזור לספקים כמו Hon Hai וילחץ על אחרים.\n• ספקנים מצביעים על צורכי הסקה (inference) נמוכים, ומזכירים ש-OpenRouter מטפלת בתעבורה גדולה על מארז אחד, בעוד המגינים מצביעים על דרישות האימון ועל ההיקף של SpaceX כמנועי צמיחה.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
-   "full_en": "Analyst Jeff Pu sees NVIDIA's VR200 AI racks reaching 96,000 units by 2027, led by SpaceX's massive order. But online chatter questions whether real-world AI needs can fill them.\n\n• Pu projects a total addressable market of 73,000 NVL72 VR200 racks in 2026, climbing to 96,000 in 2027, with SpaceX securing 20,000 of the 30,000 it requested.\n• Six neoclouds like SpaceX and CoreWeave are set to claim 27% in 2026 and 35% in 2027, boosting suppliers like Hon Hai while pressuring others.\n• Skeptics highlight low inference needs, citing OpenRouter handling major traffic on one rack, while defenders point to training demands and SpaceX's scale as drivers of growth.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "תוצאות ה-MRI שאני עושה פעמיים בשנה:\n\n• שומן תת-עורי ושומן בטני (ויסרלי): כמו בשנות ה-20\n• לב: ציון 100%, כמו בשנות ה-20\n• תפוסת ההיפוקמפוס: אחוזון 99\n\nדוח הרדיולוג:\n• הגוף שלי לא נבדל מגוף של ספורטאי עילית\n\nגופים בריאים...\n• מרוויחים יותר כסף\n• עושים יותר סקס\n• כיפיים יותר\n\nבתמונה: \"דוח ה-MRI של בריאן ג'ונסון\", עם הערכת שומן ושריר (שומן בטני 1,094 מ\"ל, שומן תת-עורי 10,710 מ\"ל, נפח שריר כולל 20,860 מ\"ל), השוואת מיפוי הלב לבני 18 ו-25, ציון LV MyoHealth של 100%, ותפוסת היפוקמפוס 0.92 באחוזון 99.\n\nבתגובה שלו מתחת לפוסט: \"סריקת ה-MRI נעשתה ב-Prenuvo.\"",
+   "full_en": "my twice yearly mri results\n\n• subcutaneous and visceral fat: 20s equivalent\n• heart 100% score: 20s equivalent\n• hippocampal occupancy: 99th percentile\n\nradiologist report:\n• my body is indistinguishable from an elite athlete\n\nhealthy bodies...\n• make more money\n• have more sex\n• are more fun\n\nThe image, \"Bryan Johnson MRI Report\", shows the fat and muscle assessment (visceral fat 1,094 ml, subcutaneous fat 10,710 ml, total muscle volume 20,860 ml), his heart maps compared with an 18- and a 25-year-old, an LV MyoHealth score of 100%, and hippocampal occupancy of 0.92 in the 99th percentile.\n\nHis reply under the post: \"mri scan was done with @prenuvo\""
+  },
+  {
+   "id": "tesla-roadster-ramp-tease",
+   "topic": "tesla",
+   "date": "2026-10-27T20:57:48Z",
+   "url": "https://x.com/i/trending/2115143797260890294",
+   "source": "X",
+   "he": {
+    "title": "טסלה מתגרה ברודסטר עם מדחפים וקפיצות מרמפה ענקית",
+    "summary": "טסלה פרסמה סרטון של רודסטרים לבנים מסתובבים על רמפה מעוקלת עם מדחפים בוערים, ומאסק הגיב בבדיחה על מהירות מילוט. הייצור של הרודסטר מהדור השני אמור להתחיל ב-2028."
+   },
+   "en": {
+    "title": "Tesla teases a thruster-powered Roadster with huge ramp stunts",
+    "summary": "Tesla posted visuals of white Roadsters looping a curved ramp with blazing thrusters, and Musk joked about escape velocity. Second-gen Roadster production is due to start in 2028."
+   },
+   "full_he": "רודסטרים לבנים ומלוטשים מסתובבים בשמי הלילה על רמפה מעוקלת ענקית, עם מדחפים שמשאירים שובלי אדים. הכיתוב של טסלה, \"מה שעולה חייב לרדת\", גרר תגובה מהירה של אילון מאסק על התגברות על כוח המשיכה במהירות מילוט.\n\n• זה הגיע כמה ימים אחרי הדגמה חיה באתר הניסויים של SpaceX בטקסס, שבה אב-טיפוס של הרודסטר האיץ מ-0 ל-60 מייל לשעה ב-0.81 שניות, הסתובב באוויר וקפץ מעל טסלות אחרות, בעזרת מדחפי גז קר ומאווררי יניקה.\n• ייצור הרודסטר מהדור השני מתחיל ב-2028, אבל גרסת ה\"רוקט\" המלאה עם עשרה מדחפים תישאר בהזמנה אישית בלבד ולא תיסע בכבישים ציבוריים.\n• הפוסט עורר התפעלות ברשת ובדיחות על מיזוג טסלה ו-SpaceX, והמניה עלתה ב-3% ל-405.70 דולר.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Sleek white Roadsters loop through the night sky on a massive curved ramp, thrusters blazing trails of vapor. Tesla's caption \"What goes up must come down\" sparked Elon Musk's quick reply about defying gravity at escape velocity.\n\n• It came days after a live demo at SpaceX's Texas test site, where a prototype Roadster hit 0-60 mph in 0.81 seconds, flipped mid-air and jumped over other Teslas using cold-gas thrusters and suction fans.\n• Second-gen Roadster production starts in 2028, but the full ten-thruster \"Rocket\" version stays invite-only and off public roads.\n• The post fueled online awe and Tesla-SpaceX merger jokes, and the stock rose 3 percent to $405.70.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "kraken-albon-austin",
+   "topic": "kraken",
+   "date": "2026-10-27T20:49:08Z",
+   "url": "https://x.com/krakenfx/status/2115184041007649009",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: מעריצים פגשו את נהג ה-F1 אלכס אלבון באוסטין",
+    "summary": "קראקן סיכמה את המבצע שלה סביב הגראנד פרי באוסטין: כמה מעריצים בני מזל פגשו פנים אל פנים את אלכס אלבון, נהג קבוצת ויליאמס."
+   },
+   "en": {
+    "title": "Kraken: fans met F1 driver Alex Albon in Austin",
+    "summary": "Kraken wrapped up its Austin Grand Prix promotion: a few lucky fans met Williams F1 driver Alex Albon face to face."
+   },
+   "full_he": "בין אם נרשמת מהבית ובין אם לקחת חלק באתגר התגובה, הכול הוביל לכאן.\n\nכמה מעריצים בני מזל זכו לפגוש פנים אל פנים את אלכס אלבון, נהג קבוצת Atlassian Williams Racing ב-F1.\n\nתודה לכל מי שנרשם, שיחק והגיע לאוסטין.\n\nנתראה בפעם הבאה!\n\nלפוסט מצורפות ארבע תמונות מהמפגש.",
+   "full_en": "Whether you entered from home or took on the Reaction Challenge, it all led here.\n\nA few lucky fans got to meet Atlassian Williams Racing F1 Team driver Alex Albon face to face.\n\nThanks to everyone who signed up, played, and showed up in Austin.\n\nSee you at the next one!\n\nFour photos from the meetup are attached to the post."
+  },
+  {
+   "id": "johnson-cyberattack-movie",
+   "topic": "johnson",
+   "date": "2026-10-27T20:15:34Z",
+   "url": "https://x.com/bryan_johnson/status/2115175592878645421",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון רוצה סרט AI בזמן אמת על כל מתקפות הסייבר בעולם",
+    "summary": "ג'ונסון כתב שהוא היה רוצה ש-AI תיצור סרט בזמן אמת של כל מתקפות הסייבר שקורות עכשיו, עם נחילי הסוכנים כתוקפים בגוף ממשי, ההגנות והדרמה האנושית."
+   },
+   "en": {
+    "title": "Bryan Johnson wants a real-time AI movie of the world's cyberattacks",
+    "summary": "Johnson wished AI could make a real-time movie of all the cyberattacks happening now, showing agent swarms as embodied attackers, the countermeasures and the human drama."
+   },
+   "full_he": "הלוואי ש-AI הייתה יכולה ליצור סרט בזמן אמת של כל מתקפות הסייבר שקורות ממש עכשיו ברחבי העולם.\n\nלהציג את נחילי הסוכנים כתוקפים בעלי גוף; להראות את פתרון החידות כדי לחדור את ההגנות; לתפוס את אמצעי הנגד ואת כל הדרמה האנושית שמעל.",
+   "full_en": "I wish that AI could make a real-time movie of all the cyber attacks happening right now around the world.\n\nRepresenting the agent swarms as embodied attackers; showing the puzzle solving to penetrate defenses; capturing the counter measures and all the human drama overlaid."
   },
   {
    "id": "musk-reich-nationalize-spacex",
@@ -1480,6 +1514,23 @@
    "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
+   "id": "refaeli-anna-zak-tiger-guess",
+   "topic": "refaeli",
+   "date": "2026-10-27T00:00:00+02:00",
+   "url": "https://trari.com/il/story/keshet12-17694/",
+   "source": "Trari · קשת 12",
+   "he": {
+    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
+    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
+   },
+   "en": {
+    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
+    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
+   },
+   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
+   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
+  },
+  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -1512,23 +1563,6 @@
    },
    "full_he": "במחקר, משתתפים שאכלו מזון אולטרה-מעובד צרכו בממוצע 500 קלוריות נוספות ביום ועלו כמעט 2 פאונד (קרוב לקילו) בתוך שבועיים בלבד.\n\nכשאותם משתתפים אכלו מזון מלא ולא מעובד, הם דווקא ירדו כמעט 2 פאונד.\n\nשתי הדיאטות תוכננו כך שיהיו להן פרופילים תזונתיים דומים. המסקנה? להתחיל מאוכל אמיתי. הגוף שלך יודע להבחין בהבדל.\n\nמהתמונה: שני גרפים של שינוי במשקל הגוף (בק\"ג) לאורך 14 ימי דיאטה.\n• \"המשקל שלך על מזון אולטרה-מעובד\": עלייה הדרגתית לכ-1 ק\"ג עד היום השישי בערך, ומשם יציבות סביב 0.9-1 ק\"ג.\n• \"המשקל שלך על מזון מלא\": ירידה הדרגתית, עד כ-0.9- ק\"ג ביום ה-14.",
    "full_en": "In a research study, participants eating ultra-processed foods consumed an average of 500 extra calories per day and gained nearly 2 pounds in just TWO weeks.\n\nWhen those same participants ate whole, unprocessed foods, they lost nearly 2 pounds instead.\n\nBoth diets were designed to have similar nutritional profiles. The takeaway? Start with real food. Your body knows the difference.\n\nFrom the image: two charts of body weight change (kg) over 14 days on the diet.\n• \"Your bodyweight on ultra-processed foods\": a steady rise to about 1 kg by around day 6, then holding near 0.9-1 kg.\n• \"Your bodyweight on whole foods\": a gradual drop to about -0.9 kg by day 14."
-  },
-  {
-   "id": "refaeli-anna-zak-tiger-guess",
-   "topic": "refaeli",
-   "date": "2026-10-27T00:00:00+02:00",
-   "url": "https://trari.com/il/story/keshet12-17694/",
-   "source": "Trari · קשת 12",
-   "he": {
-    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
-    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
-   },
-   "en": {
-    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
-    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
-   },
-   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
-   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
   },
   {
    "id": "johnson-il11-mice",
@@ -2160,6 +2194,23 @@
    "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
   },
   {
+   "id": "refaeli-peretz-tears",
+   "topic": "refaeli",
+   "date": "2026-10-26T07:10:00+02:00",
+   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
+   "source": "mako",
+   "he": {
+    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
+    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
+   },
+   "en": {
+    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
+    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
+   },
+   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
+   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
+  },
+  {
    "id": "spacex-ford-cancels-starlink",
    "topic": "spacex",
    "date": "2026-10-26T05:56:46Z",
@@ -2192,23 +2243,6 @@
    },
    "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
-  },
-  {
-   "id": "refaeli-peretz-tears",
-   "topic": "refaeli",
-   "date": "2026-10-26T07:10:00+02:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
-    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
-   },
-   "en": {
-    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
-    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
-   },
-   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
-   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
   },
   {
    "id": "tesla-semi-nevada-55",
@@ -3605,6 +3639,23 @@
    "full_en": "McCullough Foundation Report:  Determinants of Autism Spectrum Disorder\n\nAmong susceptible infants, routine childhood scheduled vaccinations are a risk factor for the development of autism.  Peer-reviewed, published, conclusive.  URL  McCulloughfnd.\n\nThe quoted post:\nThe autism numbers are shocking...\n\nThe image shows the Journal of Independent Medicine (2026, Vol. 2 No. 3) paper \"Determinants of Autism Spectrum Disorder\", with charts of autism prevalence and vaccine doses by birth year. This is the McCullough Foundation's claim. Major health bodies and large studies have found no link between vaccines and autism."
   },
   {
+   "id": "durov-hidden-signup",
+   "topic": "durov",
+   "date": "2026-10-24T16:58:15+03:00",
+   "url": "https://www.securitylab.ru/news/579212.php",
+   "source": "securitylab.ru",
+   "he": {
+    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
+    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
+   },
+   "en": {
+    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
+    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
+   },
+   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
+   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
+  },
+  {
    "id": "ss-start-business",
    "topic": "starterstory",
    "date": "2026-10-24T16:51:16Z",
@@ -3741,23 +3792,6 @@
    "full_en": "Elon Musk sees real potential in blending Tesla and SpaceX, but he's stepped back from the talks to avoid conflicts. Independent director committees are now digging into what a combination could look like.\n\nTesla and SpaceX have each set up special committees of independent directors to consider deepening their ties, possibly through a business combination that could value the pair at $3.5 trillion to $3.7 trillion. Musk praised the idea for synergies in AI and superintelligence during a SpaceX earnings call, while noting Tesla shareholders would need to approve by majority vote. The companies already share links like SpaceX buying Tesla Megapacks and Tesla holding a valuable SpaceX stake, though no deal is certain amid regulatory and approval hurdles. Supporters highlight AI and energy benefits, while critics raise governance questions."
   },
   {
-   "id": "durov-hidden-signup",
-   "topic": "durov",
-   "date": "2026-10-24T16:58:15+03:00",
-   "url": "https://www.securitylab.ru/news/579212.php",
-   "source": "securitylab.ru",
-   "he": {
-    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
-    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
-   },
-   "en": {
-    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
-    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
-   },
-   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
-   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
-  },
-  {
    "id": "mercola-gum-health",
    "topic": "mercola",
    "date": "2026-10-24T13:00:46Z",
@@ -3826,23 +3860,6 @@
    "full_en": "From Next Level Soul podcast episode 737 (Oct 24, 2026), with cell biologist Dr. Bruce Lipton, author of \"The Biology of Belief\", about his new book \"Beyond Darwin\":\n• Negative beliefs (the nocebo effect) are as powerful as positive ones. A prognosis delivered as certainty can act \"like a prescription\".\n• Two minds: the creative conscious mind and the subconscious, \"a hard drive of programs\". He says we spend about 95% of the day on autopilot, and about 60% of the programs are self-sabotaging.\n• The first seven years of life are a \"download\" of beliefs from family and community. A program from his own childhood kept him from sustaining a relationship for 40 years. With his partner Margaret (32 years together) he agreed never to argue, and instead to gently point out each other's negative programs.\n• His cancer: about two and a half years ago an ENT doctor found cancer in his tongue. Lipton sees it as a sign of stress and of putting off the book he needed to write. He says that as he wrote, the scans went from malignant to benign to no tumor, and he's still rebuilding the tongue muscle. This is his personal account, not medical advice.\n• \"Beyond Darwin\": nature is a garden, not a battlefield. Cooperation, not competition, drives evolution. The book reached the New York Times bestseller list in its first week.\n• His claims: over 90% of the health crisis comes from stress and lifestyle; we eat too much and too often; rice and beans are a cheap, complete staple; keep two months of dry food at home.\n• Reincarnation: the body is a television set and you are the broadcast. When the TV stops, the broadcast continues. \"Earth is heaven.\"\n• Ways to apply it: notice your autopilot; name programs with someone you trust, with love; tend your own backyard first; put knowledge into practice; choose cooperation."
   },
   {
-   "id": "grok-imagine-music",
-   "topic": "grok",
-   "date": "2026-10-24T09:40:26Z",
-   "url": "https://x.com/i/trending/2113927722418479264",
-   "source": "X",
-   "he": {
-    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
-    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
-   },
-   "en": {
-    "title": "Grok Imagine adds music generation",
-    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
-   },
-   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
-   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
-  },
-  {
    "id": "durov-telegram-agent",
    "topic": "durov",
    "date": "2026-10-24T11:03:00+03:00",
@@ -3858,23 +3875,6 @@
    },
    "full_he": "מתוך click-or-die.ru (איגור ז'יז'ין, 24 באוקטובר 2026), \"טלגרם תוסיף את הפיצ'ר הכי חשוב של 2026\":\n• גרסת הבטא 13.1.0 של טלגרם ל־macOS כוללת תשתית לפיצ'ר בשם \"Agent\". הוא יחבר מודלי AI של צד שלישי למסנג'ר, רק עם מפתח API של המשתמש עצמו.\n• בקוד מופיעים חמישה שירותים: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) ו־OpenRouter. בוחרים שירות ומדביקים מפתח, ולכל ספק יש קישור ישיר לדף המפתחות שלו. לפי TBetaLeak, ייתכן שאפשר יהיה גם לבחור מודל ספציפי.\n• רשימת הספקים נטענת מהשרת, ואפשר לחבר כמה מודלים ולעבור ביניהם. קוראים ל־AI עם @agent. עדיין לא ברור איך זה ייראה בצ'אטים.\n• בזמן החיבור, המפתח עובר דרך השרתים של טלגרם כדי לבדוק שהוא עובד. טלגרם שומרת מתי השירות חובר (וגם את ארבעת התווים האחרונים של המפתח), וההגדרות מסונכרנות בין המכשירים.\n• אותה בטא מחזירה את פיד ההמלצות \"בשבילך\", וגם הודעות HTML עם מיני־משחקים ולוח שנה להודעות: מסמנים ימים, והצ'אט מאותם ימים נמחק, גם אצל הצד השני.\n• הפיצ'ר עדיין לא זמין למשתמשים, ואין תאריך השקה.",
    "full_en": "From click-or-die.ru (Igor Zhizhin, Oct 24, 2026), \"Telegram will add the most important feature of 2026\":\n• Telegram 13.1.0 beta for macOS contains groundwork for a feature called \"Agent\". It will connect third-party AI models to the messenger, using the user's own API key only.\n• The code lists five services: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) and OpenRouter. You pick a service and paste a key, and each provider gets a direct link to its key page. According to TBetaLeak, you may also be able to choose a specific model.\n• The provider list loads from the server, and you can connect several AIs and switch between them. You call the AI with @agent. How it will look in chats isn't clear yet.\n• When you connect, the key passes through Telegram's servers to check that it works. Telegram stores when the service was connected (plus the key's last four characters), and settings sync across devices.\n• The same beta brings back the \"For you\" recommendations feed, plus HTML messages with mini-games and a message calendar: mark days and the chat from those days is deleted, on the other side too.\n• The feature isn't available to users yet, and there's no launch date."
-  },
-  {
-   "id": "tesla-app-foldables",
-   "topic": "tesla",
-   "date": "2026-10-24T07:04:34Z",
-   "url": "https://x.com/i/trending/2113841861756371071",
-   "source": "X",
-   "he": {
-    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
-    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
-   },
-   "en": {
-    "title": "Tesla app gets a big-screen layout for foldables and tablets",
-    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
-   },
-   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
-   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "durov-mvd-drugs",
@@ -3894,6 +3894,23 @@
    "full_en": "From the obshestvo24.info report:\n• The head of the Russian Interior Ministry's anti-drug department says Telegram won't cooperate in fighting drug promotion.\n• According to him, the ministry works with social networks and messengers to remove drug propaganda, but Telegram refuses to take part.\n• The site also reports that Pavel Durov is on Rosfinmonitoring's list of terrorists and extremists and is on an international wanted list. According to the agencies, the terrorism-assistance charges are linked to the use of a chatbot and other channels. These are the Russian authorities' claims."
   },
   {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   },
+   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
+   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
+  },
+  {
    "id": "durov-vk-datacenter",
    "topic": "durov",
    "date": "2026-10-24T09:00:00+03:00",
@@ -3909,6 +3926,23 @@
    },
    "full_he": "מתוך sanktpeterburg78.info:\n• פבל דורוב כתב בערוץ הטלגרם שלו בשפה הרוסית שמרכז הנתונים שבנה לפני 15 שנה נפגע בתקיפה.\n• בלשונו: \"מכרתי את החברה לפני 12 שנה. רואים שמרכז הנתונים נבנה טוב, הקירות עבים. אבל לא הגנו עליו.\"\n• בליל 18 באוקטובר תקפו כוחות אוקראינים את מרכז הנתונים של VK במחוז לנינגרד. VK אישרה את הפגיעה ואמרה שהשירותים שלה פועלים כרגיל, אבל משתמשים דיווחו על תקלות ב־VK וב־VK Music.",
    "full_en": "From sanktpeterburg78.info:\n• In his Russian-language Telegram channel, Pavel Durov wrote that the data center he built 15 years ago had been hit in an attack.\n• His words: \"Sold the company 12 years ago. You can see the data center was built well, the walls are thick. But they didn't protect it.\"\n• On the night of October 18, Ukrainian forces attacked VK's data center in the Leningrad region. VK confirmed the strike and said its services were running normally, but users reported outages in VK and VK Music."
+  },
+  {
+   "id": "tesla-app-foldables",
+   "topic": "tesla",
+   "date": "2026-10-24T07:04:34Z",
+   "url": "https://x.com/i/trending/2113841861756371071",
+   "source": "X",
+   "he": {
+    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
+    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
+   },
+   "en": {
+    "title": "Tesla app gets a big-screen layout for foldables and tablets",
+    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
+   },
+   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
+   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "spacex-ukraine-sovereign",
