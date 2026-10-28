@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#050b1f">
@@ -647,6 +648,6 @@ document.getElementById("install-btn").addEventListener("click", function () {
 <script src="../../shared/rg-account.js"></script>
 <script src="sync.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
-<script src="../../shared/rg-topbar.js" data-slot=".top"></script>
+<script src="../../shared/rg-topbar.js?v=2" data-slot=".top"></script>
 </body>
 </html>
