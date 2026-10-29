@@ -28,7 +28,7 @@ const T = {
     keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C V כלים · Q E טבעת · Esc תפריט',
     copy: '© כל הזכויות שמורות לחברת היליפיי בע"מ 2026',
     nogl: 'הדפדפן הזה לא תומך בתלת־ממד (WebGL). כדאי לנסות ב־Chrome או ב־Safari מעודכנים.',
-    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!',
+    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
     envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
@@ -49,7 +49,7 @@ const T = {
     keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C V tools · Q E ring · Esc menu',
     copy: '© 2026 Healify Ltd. All rights reserved.',
     nogl: 'This browser does not support 3D (WebGL). Please try an up-to-date Chrome or Safari.',
-    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!',
+    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
     envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
@@ -560,9 +560,22 @@ const ENVS = {
     }
     /* put the earth near the start so there is something to see right away */
     planets[2][0].rotation.y = -Math.PI / 2 + 0.25;
+    /* black holes: fly into one for bonus points (+50 and a swirl) */
+    const holes = [];
+    for (let i = 0; i < 4; i++) {
+      const a = i * Math.PI / 2 + 0.6 + rand(-0.3, 0.3), r = rand(190, 380);
+      const h = new THREE.Group(); h.position.set(Math.cos(a) * r, rand(-30, 50), Math.sin(a) * r);
+      h.add(ball(7, new THREE.MeshBasicMaterial({ color: 0x000000 }), 3));
+      const disk = new THREE.Mesh(new THREE.RingGeometry(9, 22, 64), new THREE.MeshBasicMaterial({ color: 0xffc94a, transparent: true, opacity: 0.75, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+      disk.rotation.x = -Math.PI / 2 + 0.35; h.add(disk);
+      const disk2 = new THREE.Mesh(new THREE.RingGeometry(22, 30, 64), new THREE.MeshBasicMaterial({ color: 0x4f7dff, transparent: true, opacity: 0.4, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+      disk2.rotation.x = -Math.PI / 2 + 0.35; h.add(disk2);
+      h.add(glowSprite(0x6f8fff, 70, 0.5));
+      g.add(h); holes.push({ g: h, disk, disk2, r: 11, cd: 0 });
+    }
     return { g, sky: [0x02030c, 0x070a22, 0x02030c], fog: null, hemi: [0x8899cc, 0x111122, 0.35], sun: [0xffffff, 0.0, [0, 1, 0]],
       start: new THREE.Vector3(0, 25, 200), minY: -160, maxY: 160, R: 480, spark: 0xfff0b0,
-      avoid: [[0, 0, 0, 52]], update(t, dt) { for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; } sun.rotation.y += dt * 0.05; } };
+      avoid: [[0, 0, 0, 52]], holes, update(t, dt) { for (const h of holes) { h.disk.rotation.z += dt * 1.6; h.disk2.rotation.z -= dt * 0.9; h.cd = Math.max(0, h.cd - dt); } for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; } sun.rotation.y += dt * 0.05; } };
   },
   galaxy() {
     const g = new THREE.Group();
@@ -762,6 +775,8 @@ function disposeTree(o) {
 /* ================= player ================= */
 const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
+const MULS = [0.1618, 0.2, 0.4, 1, 4, 9, 15];
+let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
 function setChar(i) {
   charIdx = i; store.set('rg-fly-char3', String(i));
   if (player.model) { scene.remove(player.model); disposeTree(player.model); }
@@ -808,8 +823,8 @@ function resetCollectibles() {
   for (let i = 0; i < 6; i++) sparkPos[i].copy(player.pos).addScaledVector(fwd, 14 + i * 5);
 }
 let score = 0;
-function addScore(n) {
-  score += n; const el = $('score'); el.textContent = score; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+function addScore(n, bonus) {
+  score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = score; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
   if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
 }
 let msgTimer = 0;
@@ -1223,7 +1238,7 @@ function updatePlayer(dt) {
     if (player.mode === 'walk') { player.pos.y = gy + (player.hop > 0 ? Math.sin((1 - player.hop) * Math.PI) * 2.2 : 0); player.hop = Math.max(0, player.hop - dt * 1.4); player.vy = 0; }
   } else {
     const hov = player.mode === 'hover';
-    player.speed += ((hov ? 0 : SPEEDS[player.level] * (powerOn('boost') ? 1.9 : 1)) - player.speed) * damp(powerOn('boost') || hov ? 4 : 2, dt);
+    player.speed += ((hov ? 0 : SPEEDS[player.level] * speedMul * (powerOn('boost') ? 1.9 : 1)) - player.speed) * damp(powerOn('boost') || hov ? 4 : 2, dt);
     player.vy += (climb * (hov ? 6 : 11) - player.vy) * damp(4, dt);
     player.pos.addScaledVector(fwd, player.speed * dt);
     player.pos.y += player.vy * dt;
@@ -1313,6 +1328,8 @@ function applyLang() {
   });
   [...chars.children].forEach((b, i) => { b.querySelector('.n').textContent = L.chars[i]; b.classList.toggle('on', i === charIdx); });
   for (const id of ['envSel', 'envSel2']) $(id).innerHTML = L.envs.map((n, i) => `<option value="${i}">${n}</option>`).join('');
+  for (const id of ['mulSel', 'mulSel2']) { $(id).innerHTML = MULS.map((m) => `<option value="${m}">x${m}</option>`).join(''); $(id).value = String(speedMul); $(id).setAttribute('aria-label', L.mul); }
+  $('lbBtn').textContent = L.lb;
   for (const id of ['camSel', 'camSel2']) $(id).innerHTML = L.cams.map((n, i) => `<option value="${i}">${n}</option>`).join('');
   syncSelects(); applyTheme(); setSpeed(player.level);
   TOOLS.forEach((P, i) => { const b = $('pw' + i); b.setAttribute('aria-label', L.tools[i]); });
@@ -1334,6 +1351,8 @@ $('themeBtn').addEventListener('click', () => { theme = theme === 'dark' ? 'ligh
 const onEnv = (e) => { setEnv(parseInt(e.target.value, 10)); e.target.blur(); };
 const onCam = (e) => { camIdx = parseInt(e.target.value, 10); store.set('rg-fly-cam', String(camIdx)); snapCam = true; syncSelects(); e.target.blur(); };
 $('envSel').addEventListener('change', onEnv); $('envSel2').addEventListener('change', onEnv);
+const onMul = (e) => { speedMul = parseFloat(e.target.value); store.set('rg-fly-mul', String(speedMul)); $('mulSel').value = $('mulSel2').value = String(speedMul); e.target.blur(); };
+$('mulSel').addEventListener('change', onMul); $('mulSel2').addEventListener('change', onMul);
 $('camSel').addEventListener('change', onCam); $('camSel2').addEventListener('change', onCam);
 $('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); if (buddyOn) buildBuddy(); e.target.blur(); });
 function showHud() {
@@ -1343,13 +1362,15 @@ function showHud() {
 }
 let resumable = false;
 function start() {
+  stats.newGame();
   state = 'play'; score = 0; $('score').textContent = '0';
-  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level];
+  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); showHud(); resumable = true;
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
   if (store.get('rg-fly-tut', '0') !== '1') setTimeout(() => { if (state === 'play' && tutStep < 0) tutStart(); }, 300);
 }
 function toMenu() {
+  stats.flush();
   if (tutStep >= 0) tutEnd();
   state = 'menu'; $('hud').classList.add('hidden'); $('photoUi').classList.add('hidden'); $('menu').classList.remove('hidden');
   if (resumable) $('startBtn').textContent = T[lang].resume; snapCam = true;
@@ -1392,6 +1413,124 @@ resize();
 applyLang();
 setChar(charIdx);
 setEnv(envIdx);
+
+/* ================= black holes ================= */
+function checkHoles() {
+  for (const h of env.holes) {
+    if (h.cd > 0) continue;
+    h.g.getWorldPosition(tmp);
+    if (tmp.distanceTo(player.pos) < h.r + 2) {
+      h.cd = 6; addScore(50); flash(T[lang].hole);
+      player.yawRate += 7; burst(26, 0xffc94a); burst(18, 0x4f7dff);
+      // spat out on the far side of the hole, heading away
+      player.pos.copy(tmp).addScaledVector(fwd, h.r * 3 + 6); player.vy = 4;
+    }
+  }
+}
+
+/* ================= points: saved per user, accumulated across games, +400 bonus every 369 points ================= */
+const BONUS_EVERY = 369, BONUS = 400;
+const stats = (() => {
+  const A = window.RGAccount;
+  const blank = () => ({ v: 1, total: 0, earned: 0, best: 0, games: 0, bonuses: 0 });
+  const uid = () => (A && A.user && A.user() ? A.user().id : '');
+  const lkey = () => 'rg-fly-stats:' + (uid() || 'guest');
+  const load = () => { try { return Object.assign(blank(), JSON.parse(store.get(lkey(), '') || '{}')); } catch (e) { return blank(); } };
+  let s = load(), dirty = false, timer = 0, lbSent = '';
+  const legacyBest = best; if (legacyBest > s.best) s.best = legacyBest;
+  const save = () => { store.set(lkey(), JSON.stringify(s)); };
+  const merge = (a, b) => { const r = blank(); for (const k of ['total', 'earned', 'best', 'games', 'bonuses']) r[k] = Math.max(a[k] || 0, b[k] || 0); return r; };
+  function push() {
+    timer = 0; if (!dirty || !uid()) return; dirty = false;
+    A.set('fly', 'stats', s).catch(() => { dirty = true; });
+    lbPost();
+  }
+  function later() { dirty = true; save(); if (uid() && !timer) timer = setTimeout(push, 6000); }
+  function lbPost() {
+    const u = A.user(); if (!u) return;
+    const val = JSON.stringify({ n: (u.name || '').trim().slice(0, 30), t: s.total, b: s.best, g: s.games });
+    if (val === lbSent) return; lbSent = val;
+    lb.post(u.id, val).catch(() => { lbSent = ''; });
+  }
+  function pull() {
+    if (!uid()) { s = load(); return; }
+    const guest = (() => { try { return JSON.parse(store.get('rg-fly-stats:guest', '') || 'null'); } catch (e) { return null; } })();
+    A.get('fly', 'stats').then((cloud) => {
+      s = merge(load(), cloud || blank());
+      if (guest && guest.total > 0) { // points collected while signed out move into the account once
+        for (const k of ['total', 'earned', 'games', 'bonuses']) s[k] += guest[k] || 0; s.best = Math.max(s.best, guest.best || 0);
+        store.set('rg-fly-stats:guest', '');
+      }
+      dirty = true; save(); push(); lbPost();
+    }).catch(() => {});
+  }
+  if (A) { (A.ready && A.ready.then ? A.ready : Promise.resolve()).then(pull, pull); if (A.onChange) A.onChange(pull); }
+  addEventListener('pagehide', () => push());
+  return {
+    get: () => s,
+    newGame() { s.games++; later(); },
+    addPoints(n, isBonus) {
+      s.total += n;
+      if (score > s.best) s.best = score;
+      if (!isBonus) {
+        const before = Math.floor(s.earned / BONUS_EVERY); s.earned += n;
+        const hits = Math.floor(s.earned / BONUS_EVERY) - before;
+        if (hits > 0) setTimeout(() => { for (let i = 0; i < hits; i++) { s.bonuses++; addScore(BONUS, true); } celebrate(); }, 0);
+      }
+      later();
+    },
+    toNext: () => BONUS_EVERY - (s.earned % BONUS_EVERY),
+    flush() { if (timer) { clearTimeout(timer); } push(); }
+  };
+})();
+function celebrate() {
+  const c = $('celebrate'); c.querySelector('b').textContent = T[lang].bonus; c.querySelector('span').textContent = T[lang].bonusSub;
+  c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
+  for (let i = 0; i < 4; i++) setTimeout(() => { burst(30, 0xffd76a); burst(20, 0x6f9bff); }, i * 220);
+  if (navigator.vibrate) try { navigator.vibrate([60, 40, 120]); } catch (e) {}
+}
+
+/* ================= leaderboard: one public row per player (app "fly", key "lb"), readable by anyone, writable only by its owner ================= */
+const lb = (() => {
+  const EP = 'https://fra.cloud.appwrite.io/v1', PROJ = '6adef4a40004c12a1e9c', PATH = '/tablesdb/ron/tables/userdata/rows';
+  function req(method, path, body) {
+    const h = { 'X-Appwrite-Project': PROJ, accept: 'application/json' };
+    if (body) h['content-type'] = 'application/json';
+    try { const fb = localStorage.getItem('cookieFallback'); if (fb) h['X-Fallback-Cookies'] = fb; } catch (e) {}
+    return fetch(EP + path, { method, headers: h, credentials: 'include', cache: 'no-store', body: body ? JSON.stringify(body) : undefined })
+      .then((r) => r.text().then((t) => { const j = t ? JSON.parse(t) : null; if (!r.ok) { const e = new Error((j && j.message) || r.status); e.status = r.status; throw e; } return j; }));
+  }
+  const rid = (uid) => ('flylb' + uid).slice(0, 36);
+  return {
+    post(uid, val) {
+      const perms = ['read("any")', `update("user:${uid}")`, `delete("user:${uid}")`];
+      return req('PATCH', PATH + '/' + rid(uid), { data: { value: val } }).catch((e) => {
+        if (e.status !== 404) throw e;
+        return req('POST', PATH, { rowId: rid(uid), data: { app: 'fly', key: 'lb', value: val }, permissions: perms });
+      });
+    },
+    top() {
+      const q = (o) => 'queries[]=' + encodeURIComponent(JSON.stringify(o));
+      const qs = [q({ method: 'equal', attribute: 'app', values: ['fly'] }), q({ method: 'equal', attribute: 'key', values: ['lb'] }), q({ method: 'limit', values: [200] })].join('&');
+      return req('GET', PATH + '?' + qs).then((j) => (j.rows || []).map((r) => { let v = {}; try { v = JSON.parse(r.value); } catch (e) {} return { id: r.$id, n: v.n || '', t: v.t || 0, b: v.b || 0 }; })
+        .sort((a, b) => b.t - a.t).slice(0, 20));
+    }
+  };
+})();
+function esc(x) { return String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+function openLb() {
+  const L = T[lang], s = stats.get(), A = window.RGAccount, me = A && A.user && A.user();
+  const box = $('lbBox'); $('lbPanel').classList.remove('hidden');
+  const mine = `<div class="lbm"><b>${L.lbMine}</b> · ${L.lbTotal}: <b>${s.total}</b> · ${L.lbBest}: <b>${s.best}</b> · ${L.lbGames}: ${s.games} · ${stats.toNext()} ${L.lbNext}</div>` + (me ? '' : `<p class="lbs">${L.lbSignIn}</p>`);
+  box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}<p>${L.lbLoad}</p>`;
+  lb.top().then((rows) => {
+    const body = rows.length ? `<ol>${rows.map((r, i) => `<li class="${me && r.id === 'flylb' + me.id ? 'me' : ''}"><span>${['🥇', '🥈', '🥉'][i] || i + 1}</span><span>${esc(r.n || L.player + ' ' + r.id.slice(-4))}</span><b>${r.t}</b></li>`).join('')}</ol>` : `<p>${L.lbEmpty}</p>`;
+    box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}${body}`;
+  }, () => { box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}<p>${L.lbErr}</p>`; });
+}
+$('lbBtn').addEventListener('click', openLb);
+$('lbClose').addEventListener('click', () => $('lbPanel').classList.add('hidden'));
+
 const clock = new THREE.Clock();
 let time = 0;
 function frame() {
@@ -1399,6 +1538,7 @@ function frame() {
   const playing = state === 'play';
   if (playing) updatePlayer(dt);
   if (playing) tickPowers(dt);
+  if (playing && env.holes) checkHoles();
   const wdt = state === 'photo' ? 0 : playing && powerOn('slow') ? dt * 0.3 : dt; wtime += wdt; // slow time: the world around you moves at 30%
   if (state !== 'photo') env.update(wtime, wdt, player.pos);
   if (nightOn && ENV_IDS[envIdx] === 'dimension') skyMat.uniforms.hor.value.lerp(NIGHT, 0.8);
