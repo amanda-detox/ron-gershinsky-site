@@ -145,12 +145,15 @@
         dirty = true;
       }
       seeded = true;
+      return importShop().then(function (imp) {
+      if (imp) dirty = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
       if (tooManyGone(items, cl)) { blocked = true; try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} return; }
       backup(cl);
       sent = items;
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
+      });
     }).then(function () {
       if (who !== uid) return;
       offline = false;
@@ -203,10 +206,11 @@
     if (l.some(function (x) { return typeof x.order !== "number"; })) setItemOrder(l.map(function (x) { return x.id; }));
     return live(sec).reduce(function (m, y) { return Math.max(m, typeof y.order === "number" ? y.order : 0); }, 0) + 1;
   }
-  function add(sec, text, note) {
+  function add(sec, text, note, price) {
     text = clean(text, 200); if (!text) return;
     var o = nextOrder(sec), id = newId(), at = now(), x = { id: id, sec: sec, text: text, done: false, order: o, created: at, at: at };
     note = clean(note, 500); if (note) x.note = note;
+    if (typeof price === "number" && isFinite(price)) x.price = price;
     put(x);
   }
   function toggleSel(id) { var x = items[id]; if (x && !x.deleted) upd(id, { done: !isSel(x), dord: null }); } // dord reset: lands at the bottom of "נבחר"
@@ -216,6 +220,80 @@
     upd(id, { sec: cid, done: isSel(x), order: nextOrder(cid), dord: null }); return true;
   }
 
+  /* ---------- prices (same as Purchasify): optional, in ₪, stored on the item as a number "price"; a list shows the ₪ column and
+     the total when its category record has price: 1 (set by the import, or with ₪ in the list editor) or any item has a price ---------- */
+  function parsePrice(v) {
+    v = String(v == null ? "" : v).replace(/[₪\s\u00a0]/g, "").replace(/,/g, ".");
+    if (!v) return null;
+    if (!/^\d*\.?\d*$/.test(v) || v === ".") return NaN;
+    var n = Math.round(parseFloat(v) * 100) / 100;
+    return isFinite(n) && n >= 0 && n < 1e7 ? n : NaN;
+  }
+  var NF = null;
+  function fmtPrice(n) { try { NF = NF || new Intl.NumberFormat("he-IL", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); return NF.format(n || 0); } catch (e) { return String(Math.round((n || 0) * 100) / 100); } }
+  function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
+  function hasPrices(sec) { var r = catRec(sec); if (r && r.price) return true; return live(sec).some(function (x) { return typeof x.price === "number"; }); }
+  function sumNow() {
+    var el = $("sum"), sec = curTab(); if (!el) return;
+    if (!uid || !sec || !hasPrices(sec)) { el.hidden = true; return; }
+    var ae = document.activeElement, lv = null, tot = 0, sel = 0;
+    if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) lv = { id: ae.getAttribute("data-price"), v: v || 0 }; }
+    live(sec).forEach(function (x) { var p = lv && lv.id === x.id ? lv.v : priceOf(x); tot += p; if (isSel(x)) sel += p; });
+    el.hidden = false;
+    el.innerHTML = "<span>" + esc(t("sumTotal")) + ": <b>" + esc(fmtPrice(tot)) + ' ₪</b></span><span class="sel">· ' + esc(t("sumSel")) + ": <b>" + esc(fmtPrice(sel)) + " ₪</b></span>";
+  }
+  function commitPrice(inp) {
+    var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
+    var v = parsePrice(inp.value);
+    if (typeof v === "number" && isNaN(v)) { inp.classList.add("bad"); return false; }
+    inp.classList.remove("bad");
+    var old = typeof x.price === "number" ? x.price : null;
+    if (v !== old) { upd(id, { price: v }); pending = true; saveLocal(); syncSoon(); }
+    inp.value = v == null ? "" : String(v); sumNow(); return true;
+  }
+
+  /* ---------- one-time import of the Purchasify lists (merge of the two apps) ----------
+     Runs on the first successful sync after this version, on any device where Ron is signed in. It READS Purchasify's own rows
+     (app "shopping": "items" + "cats") and COPIES them into Listify; Purchasify's data is never changed or deleted.
+     Ids are fixed ("sh-<old id>", category "sh-<old cat>"), so running it on two devices gives the same records (no duplicates).
+     Before writing, the Purchasify copy that was read is saved on this device: rg-myideas-import-bak:<user id>.
+     A marker record { id: "m:shopimport", type: "meta", done: 1 } keeps it from running again. */
+  var SHOP_BUILTIN = { main: { he: "קניות", pos: 0 }, tea: { he: "תה", pos: 1 } };
+  function importShop() {
+    if (!A || items["m:shopimport"]) return Promise.resolve(false);
+    return Promise.all([A.get("shopping", "items"), A.get("shopping", "cats")]).then(function (r) {
+      if (items["m:shopimport"]) return false;
+      var si = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
+      var sc = (r[1] && r[1].cats && typeof r[1].cats === "object") ? r[1].cats : {};
+      try { localStorage.setItem("rg-myideas-import-bak:" + uid, JSON.stringify({ t: Date.now(), items: si, cats: sc })); } catch (e) {}
+      var map = {}, k, list = [];
+      for (k in SHOP_BUILTIN) map[k] = { cat: k, name: SHOP_BUILTIN[k].he, pos: SHOP_BUILTIN[k].pos, created: 0 };
+      for (k in sc) { var c = sc[k]; if (!c || c.deleted || c.type !== "cat" || typeof c.cat !== "string") continue;
+        var b = map[c.cat] || {}; map[c.cat] = { cat: c.cat, name: c.name || b.name || "…", pos: typeof c.pos === "number" ? c.pos : (b.pos || 0), created: c.created || 0, gone: c.gone }; }
+      for (k in map) if (!map[k].gone) list.push(map[k]);
+      list.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.cat < b.cat ? -1 : 1); });
+      var byCat = {}; list.forEach(function (c) { byCat[c.cat] = []; });
+      for (k in si) { var x = si[k]; if (!x || x.deleted || typeof x.text !== "string") continue;
+        var l = x.list || "main"; if (!byCat[l]) l = list.length ? list[0].cat : null; if (l) byCat[l].push(x); }
+      var base = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      list.forEach(function (c, n) {
+        var its = byCat[c.cat]; if (!its.length && c.cat in SHOP_BUILTIN && !sc["c:" + c.cat]) return; // an empty built-in list that Ron never used
+        var cid = "sh-" + c.cat;
+        if (!items["c:" + cid]) put({ id: "c:" + cid, type: "cat", cat: cid, name: c.name, kind: "task", pos: base + n, price: 1, created: at, at: now() });
+        its.sort(function (a, b) { var p = typeof a.ord === "number" ? a.ord : (a.created || 0), q = typeof b.ord === "number" ? b.ord : (b.created || 0); return (p - q) || ((a.created || 0) - (b.created || 0)); });
+        its.forEach(function (x, i) {
+          var id = "sh-" + x.id; if (items[id]) return;
+          var y = { id: id, sec: cid, text: clean(x.text, 200) || "…", done: !!x.done, order: i + 1, created: x.created || at, at: now() };
+          if (typeof x.price === "number" && isFinite(x.price)) y.price = x.price;
+          if (typeof x.dord === "number" && isFinite(x.dord)) y.dord = x.dord;
+          put(y);
+        });
+      });
+      put({ id: "m:shopimport", type: "meta", done: 1, from: Object.keys(si).length, at: now() });
+      return true;
+    }, function () { return false; }); // could not read Purchasify now: try again on the next sync
+  }
+
   /* ---------- render ---------- */
   var MVICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
   var TRASHICON = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4h6v3"/></svg>';
@@ -223,26 +301,31 @@
     return '<div class="ed" data-ed="' + esc(x.id) + '">' +
       '<input type="text" class="e-text" maxlength="200" enterkeyhint="done" value="' + esc(label(x)) + '" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' +
       '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<input type="text" class="e-price" inputmode="decimal" maxlength="10" placeholder="' + esc(t("priceLabel")) + '" aria-label="' + esc(t("priceLabel")) + '" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '">' +
       '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
   }
   var GRIP = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>';
+  var showP = false;
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x);
     return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
+      (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
   }
   function panel(sec) {
+    showP = hasPrices(sec);
     var act = openIn(sec), done = selIn(sec);
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
-      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></div></form>' +
+      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
+      (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(row).join("") + "</ul></div>"
         : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
-        '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "");
+        '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "") + '<div class="sum" id="sum" hidden></div>';
   }
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
@@ -254,6 +337,7 @@
     var drafts = {}; document.querySelectorAll(".addform input").forEach(function (i) { drafts[i.closest("form").getAttribute("data-add") + "/" + i.name] = i.value; });
     var edVals = null, ed = editing && document.querySelector('[data-ed="' + editing + '"]');
     if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea"), function (e) { return e.value; });
+    var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
     rendering = true;
     var cur = curTab(), cc = cur && catOf(cur);
     pn.textContent = cc ? catName(cc) : t("noCats");
@@ -268,6 +352,8 @@
       var ne = document.querySelector('[data-ed="' + editing + '"]');
       if (ne) { if (edVals) [].forEach.call(ne.querySelectorAll("input,textarea"), function (e, n) { if (n < edVals.length) e.value = edVals[n]; }); if (!ed) { var ti = ne.querySelector(".e-text"); ti.focus(); var L = ti.value.length; try { ti.setSelectionRange(L, L); } catch (e) {} } }
     }
+    if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
+    sumNow();
     rendering = false;
     setStatus();
   }
@@ -280,6 +366,9 @@
     var p = {};
     if (text !== label(x)) { p.text = text; p.seed = null; } // once edited, the first item keeps its own text
     var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt;
+    var pe = ed.querySelector(".e-price"), pv = pe ? parsePrice(pe.value) : (typeof x.price === "number" ? x.price : null);
+    if (typeof pv === "number" && isNaN(pv)) { editing = id; pe.classList.add("bad"); pe.focus(); return; }
+    if (pv !== (typeof x.price === "number" ? x.price : null)) p.price = pv;
     if (Object.keys(p).length) { upd(id, p); changed(); return; }
     render();
   }
@@ -414,6 +503,7 @@
         GRIP + '</span>' +
         '<span class="ename">' + esc(catName(c)) + '</span>' +
         '<button type="button" class="eic" data-s="ren:' + esc(cid) + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
+        '<button type="button" class="eic eprice' + (catRec(cid) && catRec(cid).price ? " on" : "") + '" data-s="prc:' + esc(cid) + '" title="' + esc(t("priceToggle")) + '" aria-pressed="' + !!(catRec(cid) && catRec(cid).price) + '" aria-label="' + esc(t("priceToggle") + ": " + catName(c)) + '">₪</button>' +
         '<button type="button" class="eic" data-s="del:' + esc(cid) + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
     }
     function save() { var ids = order.filter(function (cid) { return !!catOf(cid); }); var cur = cats().map(function (c) { return c.cat; }); cur.forEach(function (cid) { if (ids.indexOf(cid) < 0) ids.push(cid); }); if (ids.join() !== cur.join()) { setOrder(ids); changed(); } }
@@ -424,6 +514,11 @@
         if (a === "done") { closeSheet(); return; }
         if (a === "new") { save(); w.onClose = null; newList(function (id) { selectTab(id); editSheet(); }); return; }
         var cid = a.slice(4), li = w.querySelector('.erow[data-cat="' + cid + '"]'), c = catOf(cid); if (!li || !c) return;
+        if (a.indexOf("prc:") === 0) {
+          var onP = !(catRec(cid) && catRec(cid).price); upCat(cid, { price: onP ? 1 : null }); changed();
+          var pb = li.querySelector(".eprice"); if (pb) { pb.classList.toggle("on", onP); pb.setAttribute("aria-pressed", String(onP)); }
+          return;
+        }
         if (a.indexOf("ren:") === 0) {
           var sp = li.querySelector(".ename"); if (!sp || li.querySelector(".einput")) return;
           var inp = document.createElement("input"); inp.type = "text"; inp.className = "einput"; inp.maxLength = 40; inp.value = catName(c); inp.setAttribute("enterkeyhint", "done"); inp.setAttribute("aria-label", t("catPh"));
@@ -565,8 +660,9 @@
     main.addEventListener("submit", function (e) {
       var f = e.target.closest("[data-add]"); if (!f) return; e.preventDefault();
       var sec = f.getAttribute("data-add"), ti = f.querySelector('[name="text"]'); if (!clean(ti.value, 200)) { ti.focus(); return; }
-      var nf = f.querySelector('[name="note"]');
-      add(sec, ti.value, nf ? nf.value : ""); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
+      var nf = f.querySelector('[name="note"]'), pf = f.querySelector('[name="price"]'), pr = pf ? parsePrice(pf.value) : null;
+      if (typeof pr === "number" && isNaN(pr)) { pf.focus(); pf.select(); return; }
+      add(sec, ti.value, nf ? nf.value : "", pr); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
       changed(); var n = document.querySelector('.addform[data-add="' + sec + '"] [name="text"]'); if (n) n.focus();
     });
     main.addEventListener("keydown", function (e) {
@@ -579,6 +675,13 @@
         else if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
       }
     });
+    main.addEventListener("keydown", function (e) {
+      if (!e.target.getAttribute || !e.target.getAttribute("data-price")) return;
+      if (e.key === "Enter") { e.preventDefault(); if (commitPrice(e.target)) e.target.blur(); }
+      else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
+    });
+    main.addEventListener("focusout", function (e) { if (!rendering && e.target.getAttribute && e.target.getAttribute("data-price")) commitPrice(e.target); });
+    main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
