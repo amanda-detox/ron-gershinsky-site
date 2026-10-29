@@ -1,7 +1,13 @@
 {
  "version": 1,
- "updated": "2026-10-28T22:04:59+02:00",
+ "updated": "2026-10-29T04:27:25+02:00",
  "topics": [
+  {
+   "id": "podcasts",
+   "group": "podcast",
+   "he": "🎙️ פודקאסטים",
+   "en": "🎙️ Podcasts"
+  },
   {
    "id": "musk",
    "group": "person",
@@ -136,6 +142,273 @@
   }
  ],
  "items": [
+  {
+   "id": "pod-asprey-8edbbd70bf",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-10-27T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/the-easiest-treatment-that-made-me-15-years-younger/id451295014?i=1000798318530",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "דייב אספרי: הטיפול הכי קל שלדבריו הצעיר אותו ב-15 שנה",
+    "summary": "דייב אספרי משוחח עם ד\"ר טים קוק, רופא לרפואת אריכות ימים (לא מנכ\"ל אפל), על טיפולים ניסיוניים: \"חינוך מחדש\" של תאי גזע, טיפול גנטי בפוליסטטין ובקלותו. לדבריהם התוצאות ראשוניות ועדיין לא מוכחות קלינית."
+   },
+   "en": {
+    "title": "The Easiest Treatment That Made Me 15 Years Younger",
+    "summary": "Dave Asprey talks with Dr. Tim Cook, a longevity physician (not Apple's CEO), about experimental treatments: stem cell re-education and follistatin and klotho gene therapy. They stress the results are preliminary, not clinically established."
+   },
+   "full_he": "דייב אספרי מארח את ד\"ר טים קוק, רופא ומומחה לרפואת אריכות ימים ששימש בעבר רופא אישי של שני מושלים כלליים של קנדה (לא מנכ\"ל אפל), לשיחה על טיפול גנטי ניסיוני, היפוך הגיל הביולוגי, \"חינוך מחדש\" של תאי גזע, התחדשות מערכת החיסון, בניית שריר והמדע המתפתח של הארכת חיי האדם.\n\nהשיחה הוקלטה ביער הגשם באקוודור, ועוסקת בשלושה טיפולי אריכות ימים מתקדמים שדייב וטים עובדים איתם דרך House of Evolution, המיזם שלהם להרחבת הגישה לטיפולים ניסיוניים. הם מסבירים איך הטכנולוגיות עובדות, מה התוצאות המוקדמות שהם רואים, ולמה חלק מהטיפולים זמינים כרגע רק מחוץ לארה\"ב.\n\nדייב מספר שאחרי טיפול של יומיים ב\"חינוך מחדש\" של תאי גזע, בדיקות דם כחודשיים אחר כך הראו שמערכת החיסון שלו צעירה ב-15.2 שנים. טים מסביר שהתהליך משתמש במולקולות איתות מתאי גזע מדם חבל הטבור כדי להשפיע על תאי החיסון של המטופל עצמו לפני שהם מוחזרים לגוף. הם דנים במשמעות האפשרית לדלקת כרונית, למצבים אוטואימוניים ולתפקוד חיסוני שנפגע עם הגיל.\n\nאחר כך הם עוברים לטיפול גנטי בפוליסטטין, טיפול ניסיוני שנועד להגביר חלבון שקשור לבנייה ושימור של שריר. הם משתפים תוצאות ראשוניות, כולל ירידה ממוצעת מדווחת של תשע שנים במדדי הגיל הביולוגי, עלייה במסת שריר רזה וירידה בשומן. הם מסבירים למה שימור שריר והפחתת שומן קרבי עשויים להיות קריטיים לאריכות ימים, במיוחד כשתנגודת אנבולית וסרקופניה (אובדן שריר) נעשות נפוצות עם הגיל.\n\nהם דנים גם בטיפול גנטי בקלותו, שמכוון לחלבון שקשור לאריכות ימים, לתפקוד הכליות, לבריאות קוגניטיבית ולהזדקנות. טים מתאר תצפיות מוקדמות על עלייה משמעותית ברמות הקלותו אחרי הטיפול, ודייב מסביר למה החלבון הזה הפך למוקד מרכזי במחקר שלו. הם בוחנים גם העברת גנים מבוססת פלסמידים, במה היא שונה מעריכה ישירה של ה-DNA, ואת השאלות הפתוחות לגבי בטיחות ויעילות לטווח ארוך.\n\nהם מערערים על החשיבה המקובלת לגבי תוחלת חיים בריאה, אורך חיים ו\"מהירות מילוט מהזדקנות\", ושואלים אם טיפולים חדשים יוכלו בעתיד לעזור לשמור על תפקוד גופני וקוגניטיבי צעיר לעוד עשרות שנים. הם מתארים איך בדיקות סמנים ביולוגיים מתקדמות ומודלים חזויים משמשים למעקב אחרי הגיל הביולוגי ולהערכת שינויים בתוחלת החיים.\n\nלבסוף הם מסתכלים קדימה על בנקאות תאי גזע, תכנות גנטי מחדש ורפואה רגנרטיבית, כולל האפשרות לחדש את התאים של האדם עצמו ולגדל רקמות חלופיות. הם מתייחסים גם לעלויות הגבוהות, לזמינות המוגבלת ולאתגרי הרגולציה, ומדגישים שרבות מהתוצאות שעלו בפרק הן ראשוניות ואינן ראיה קלינית מבוססת להיפוך הזדקנות.\n\nמה תלמד בפרק:\n• איך אחרי טיפול של יומיים ב\"חינוך מחדש\" של תאי גזע דווח על ירידה של 15.2 שנים בגיל החיסוני שנמדד אצל דייב, ואיך התהליך עובד\n• למה חוקרים טיפול גנטי בפוליסטטין לבניית שריר, סרקופניה, הרכב גוף והזדקנות ביולוגית\n• איך טיפולים גנטיים ניסיוניים מבוססי פלסמידים מגבירים ייצור חלבון בלי לערוך בכוונה את הגנום\n• מה מרמזות התוצאות המוקדמות של טיפול גנטי בקלותו על רמות החלבון, ביצועים קוגניטיביים, בריאות הכליות ואריכות ימים\n• למה הזדקנות מערכת החיסון, דלקת כרונית ושומן קרבי עשויים לתרום למחלות ולירידה גופנית עם הגיל\n• איך בנקאות תאי גזע, תכנות תאים מחדש ורפואה רגנרטיבית עשויים לעצב את טיפולי אריכות הימים בעתיד\n\nפרקי זמן:\n• 00:00 — טריילר\n• 00:59 — טיפול גנטי בפוליסטטין\n• 05:25 — איך פלסמידים עובדים\n• 09:30 — מהירות מילוט מהזדקנות\n• 16:30 — תוצאות ונתונים של פוליסטטין\n• 21:30 — קלותו: החלבון הקוגניטיבי\n• 24:30 — House of Evolution\n• 30:30 — חינוך מחדש של תאי גזע\n• 39:00 — בנקאות תאי גזע\n• 41:30 — העתיד של אריכות הימים\n\nהערה: אלה טיפולים ניסיוניים, והתוצאות הן דיווחים של המשתתפים ושל המיזם שלהם (House of Evolution), שיש להם בו אינטרס. כפי שנאמר בפרק עצמו, הן ראשוניות ואינן ראיה קלינית מבוססת.",
+   "full_en": "Host Dave Asprey sits down with Dr. Tim Cook, a physician and longevity medicine expert who previously served as personal physician to two Governors General of Canada (not Apple's CEO), to explore experimental gene therapy, biological age reversal, stem cell re-education, immune rejuvenation, muscle growth, and the emerging science of extending human lifespan.\n\nRecorded in the Amazon rainforest in Ecuador, the conversation explores three advanced longevity treatments Dave and Tim are working with through House of Evolution, their venture focused on expanding access to experimental therapies. They discuss how these technologies work, the early results they're observing, and why some treatments are currently available outside the United States.\n\nDave reveals that after undergoing a two-day stem cell re-education treatment, blood testing approximately two months later indicated his immune system was 15.2 years younger. Tim explains how the procedure uses signaling molecules from umbilical cord blood stem cells to influence a patient's own immune cells before returning them to the body. They explore the potential implications for chronic inflammation, autoimmune conditions, and age-related immune dysfunction.\n\nThe discussion turns to follistatin gene therapy, an experimental treatment designed to increase a protein involved in muscle growth and maintenance. Dave and Tim share preliminary results, including a reported average nine-year reduction in biological-age measurements, increased lean muscle mass, and reductions in body fat. They examine why preserving muscle and reducing visceral fat may be critical for longevity, particularly as anabolic resistance and sarcopenia become more common with age.\n\nThey also explore klotho gene therapy, which targets a longevity-associated protein involved in kidney function, cognitive health, and aging. Tim describes early observations of substantially increased klotho levels following treatment, while Dave explains why this protein has become a major focus of his longevity research. The conversation also examines plasmid-based gene delivery, how it differs from directly editing human DNA, and the unanswered questions surrounding long-term safety and effectiveness.\n\nDave and Tim challenge conventional thinking about healthspan, lifespan, and longevity escape velocity, discussing whether emerging treatments could eventually help people maintain youthful physical and cognitive function for decades longer. They examine how advanced biomarker testing and predictive models are being used to track biological aging and estimate changes in life expectancy.\n\nFinally, they look ahead to stem cell banking, genetic reprogramming, and regenerative medicine, including the possibility of rejuvenating a person's own cells and growing replacement tissues. They also address the high costs, limited availability, and regulatory challenges surrounding these technologies, emphasizing that many of the results discussed remain preliminary rather than clinically established evidence of age reversal.\n\nYou'll learn:\n• How Dave's two-day stem cell re-education treatment was followed by a reported 15.2-year reduction in his measured immune age, and how the procedure works\n• Why follistatin gene therapy is being investigated for muscle growth, sarcopenia, body composition, and biological aging\n• How experimental plasmid-based gene therapies increase protein production without intentionally editing the human genome\n• What early klotho gene therapy results suggest about protein levels, cognitive performance, kidney health, and longevity\n• Why immune system aging, chronic inflammation, and visceral fat may contribute to age-related disease and physical decline\n• How stem cell banking, cellular reprogramming, and regenerative medicine could shape the future of longevity treatments\n\nTimestamps:\n• 00:00 — Trailer\n• 00:59 — Follistatin Gene Therapy\n• 05:25 — How Plasmids Work\n• 09:30 — Longevity Escape Velocity\n• 16:30 — Follistatin Results & Data\n• 21:30 — Klotho: The Cognitive Protein\n• 24:30 — House of Evolution\n• 30:30 — Stem Cell Re-Education\n• 39:00 — Stem Cell Banking\n• 41:30 — The Future of Longevity\n\nNote: these are experimental treatments, and the results are reports from the hosts and their own venture (House of Evolution), in which they have an interest. As the episode itself says, they are preliminary, not clinically established evidence."
+  },
+  {
+   "id": "pod-brecka-0e7f6b3ee2",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-10-27T07:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/dr-alejandro-junger-why-leaky-gut-is-behind-autoimmune/id1709740887?i=1000798313277",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "ד\"ר אלחנדרו ג'ונגר: למה \"מעי דולף\" עומד מאחורי מחלות אוטואימוניות",
+    "summary": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מסביר לגארי ברקה איך לדבריו מעי דולף מבלבל את מערכת החיסון, למה הוא מאמין שחוסר איזון בחיידקי המעי עומד מאחורי רוב המחלות הכרוניות, ומה הכבד עושה בניקוי רעלים. אלה טענותיו."
+   },
+   "en": {
+    "title": "Dr. Alejandro Junger: Why Leaky Gut Is Behind Autoimmune Disease",
+    "summary": "Cardiologist Dr. Alejandro Junger tells Gary Brecka how, in his view, a leaky gut confuses the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver does during detox."
+   },
+   "full_he": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מצטרף לגארי ברקה ומסביר איך לדבריו מעי דולף יכול לבלבל את מערכת החיסון, למה הוא מאמין שדיסביוזיס (חוסר איזון בחיידקי המעי) עומד מאחורי רוב המצבים הכרוניים, ומה הכבד עושה בפועל בזמן ניקוי רעלים. הוא מדבר גם על השימוש שלו ב-L-גלוטמין, על המזונות והמשקאות שהוא מוציא ראשונים מהתפריט, ועל החוויה האישית שלו עם איבוגאין ותאי גזע. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: בריאות המעי וניקוי רעלים\n• 05:21 — שלוש אבחנות, שבעה מרשמים\n• 06:53 — החוויה באשרם ותודעה קוסמית\n• 13:41 — תוכנית הניקוי הראשונה שלו\n• 20:07 — עצירות, קונסטלציות משפחתיות וחוקן קפה\n• 28:00 — מה זה בעצם ניקוי רעלים\n• 29:15 — ניקוי הכבד בשני שלבים\n• 31:21 — אוכל אמיתי ודיאטת אלימינציה\n• 34:22 — איך איבוגאין פועל במוח\n• 37:48 — נקודת השפל ו\"פורטל הלב\"\n• 43:29 — הסיכון הלבבי של איבוגאין ומעקב\n• 45:44 — תאי גזע לכאבי גב\n• 46:53 — שלושת המוחות: ראש, לב, מעי\n• 48:35 — דיסביוזיס ומעי דולף\n• 56:27 — מחלות אוטואימוניות והמעי\n• 01:01:48 — לקנות בהיקף הסופרמרקט\n• 01:03:46 — L-גלוטמין ותוספים למעי\n• 01:11:46 — איך ליישר את שלושת המוחות\n• 01:13:10 — תרגיל מודעות לכפות הרגליים לנוכחות\n• 01:22:07 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה טענות של האורח. הקשר בין \"מעי דולף\" למחלות אוטואימוניות עדיין נחקר ואינו מוכח ברפואה המקובלת, ואיבוגאין הוא חומר לא מאושר עם סיכון לבבי מוכר (כפי שעולה גם מפרקי הזמן של הפרק).",
+   "full_en": "Cardiologist Dr. Alejandro Junger joins Gary Brecka to explain how a leaky gut can confuse the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver actually does during detox. He also covers how he uses L-glutamine, the foods and drinks he removes first, and his own experience with ibogaine and stem cells. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: Gut Health and Detox\n• 05:21 — Three Diagnoses, Seven Prescriptions\n• 06:53 — The Ashram Experience and Cosmic Consciousness\n• 13:41 — His First Detox Program\n• 20:07 — Constipation, Family Constellations and Coffee Enema\n• 28:00 — What Detox Actually Means\n• 29:15 — Liver Detox in Two Steps\n• 31:21 — Real Food and the Elimination Diet\n• 34:22 — How Ibogaine Works in the Brain\n• 37:48 — Lowest Point and the Heart Portal\n• 43:29 — Ibogaine Heart Risk and Monitoring\n• 45:44 — Stem Cells for Back Pain\n• 46:53 — The Three Brains: Head, Heart, Gut\n• 48:35 — Gut Dysbiosis and Leaky Gut\n• 56:27 — Autoimmune Disease and the Gut\n• 01:01:48 — Shopping the Grocery Perimeter\n• 01:03:46 — L-Glutamine and Gut Supplements\n• 01:11:46 — How to Align the Three Brains\n• 01:13:10 — Feet Awareness Exercise for Presence\n• 01:22:07 — What It Means to Be an Ultimate Human\n\nThe episode's disclaimer: the podcast is for informational purposes only and is not medical advice, diagnosis or treatment; consult a licensed healthcare professional before health decisions. Gary Brecka owns Ultimate Human LLC, which promotes third-party products in which he has an economic interest, so statements on the podcast may be considered promotional.\n\nNote: these are the guest's claims. The link between \"leaky gut\" and autoimmune disease is still being researched and is not established in mainstream medicine, and ibogaine is an unapproved substance with known heart risks (as the episode's own timestamps acknowledge)."
+  },
+  {
+   "id": "pod-jbp-79e8060f90",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Jordan B. Peterson Podcast",
+   "date": "2026-10-25T19:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/why-your-marriage-feels-like-a-prison-instead/id1184022695?i=1000798058252",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה הנישואים שלך מרגישים כמו כלא ולא כמו הרפתקה",
+    "summary": "בהרצאה שצולמה בבוסטון ביוני 2024, ג'ורדן פטרסון עוסק בסיפור אברהם ובמה שהוא מלמד על זהות, הקרבה והקריאה להרפתקה, ובמה שנישואים והורות באמת דורשים."
+   },
+   "en": {
+    "title": "Why Your Marriage Feels Like A Prison Instead Of An Adventure",
+    "summary": "In a lecture filmed in Boston in June 2024, Jordan Peterson explores the story of Abraham and what it says about identity, sacrifice and the call to adventure, and what marriage and parenthood really demand."
+   },
+   "full_he": "מה זה באמת לחיות את החיים שלך, ולא רק לשרוד אותם? בהרצאה הזו ד\"ר ג'ורדן ב. פטרסון חוקר את סיפור אברהם ומה שהוא מגלה על זהות, הקרבה והקריאה להרפתקה. למה אנשים שיש להם הכול עדיין מרגישים ריקים? למה נוחות בלי תכלית משחיתה במקום לספק? ומה זה באמת עולה לך להמשיך לשחק על בטוח?\n\nפטרסון עוסק גם במה שנישואים והורות באמת דורשים. מחויבות היא לא כלוב, היא התנאי להפוך למישהו ששווה להיות, ולכן מי שלוקח אותה ברצינות מקבל בסוף יותר, לא פחות.\n\nזו הרצאה על מה שנדרש כדי להפוך למי שאתה אמור להיות, ולמה רוב האנשים לא מגיעים לשם.\n\nההרצאה צולמה בבוסטון, מסצ'וסטס, ב-5 ביוני 2024.",
+   "full_en": "What does it mean to actually live your life, not just survive it? In this lecture, Dr. Jordan B. Peterson explores the story of Abraham and what it reveals about identity, sacrifice, and the call to adventure. Why do people with everything still feel empty? Why does comfort, without purpose, corrupt rather than satisfy? And what does it actually cost you to keep playing it safe?\n\nPeterson also digs into what marriage and parenthood really demand. Commitment isn't a cage. It's the condition for becoming someone worth being, and why the people who take it seriously end up with more, not less.\n\nThis is a lecture about what it takes to become who you're supposed to be, and why most people never do.\n\nThis lecture was filmed in Boston, Massachusetts, on June 5, 2024."
+  },
+  {
+   "id": "pod-asprey-422042f622",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-10-25T02:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/how-to-reverse-your-age-for-%245-day-budget-biohacking/id451295014?i=1000797978351",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "איך להפוך את הגיל ב-5 דולר ליום (ביוהאקינג בתקציב)",
+    "summary": "דייב אספרי, שלדבריו הוציא 2.5 מיליון דולר על הגוף שלו, בונה פרוטוקול אנטי-אייג'ינג ב-5 דולר ליום שכל רכיב בו נבדק בבני אדם: אומגה 3, GlyNAC, מגנזיום, קריאטין, ויטמין D ועוד, ושני הדברים החזקים ביותר לדבריו הם בחינם."
+   },
+   "en": {
+    "title": "How To Reverse Your Age For $5 a Day (Budget Biohacking)",
+    "summary": "Dave Asprey, who says he has spent $2.5 million on his body, builds a $5/day anti-aging protocol where everything is validated in humans: omega-3s, GlyNAC, magnesium, creatine, vitamin D and more, and says the two most powerful things are free."
+   },
+   "full_he": "\"הוצאתי 2.5 מיליון דולר על הגוף הזה, ובריאן ג'ונסון מוציא כ-5,400 דולר ביום על שלו. אבל האם ביוהאקינג חייב להיות כל כך יקר? אז נתתי לעצמי אתגר: לבנות פרוטוקול אנטי-אייג'ינג שלם ב-5 דולר ליום, שבו כל רכיב חייב להיות מאומת בבני אדם, לא בעכברים. לא הצלחתי אפילו להוציא את חמשת הדולרים. בסרטון הזה אראה לכם את כל הרשימה ואת שני הדברים החזקים ביותר שמצאתי, שלא עולים כלום.\"\n\nמה תלמד בפרק:\n• איך לבנות שגרת אריכות ימים מבוססת מדע בפחות מ-5 דולר ליום\n• למה אומגה 3, GlyNAC ומגנזיום עשויים לעזור להאט הזדקנות ולתמוך בתיקון תאי\n• איך קריאטין, ויטמין D ו-L-תיאנין תומכים בבריאות המוח, בתפקוד השריר ובריכוז\n• למה וילונות האפלה, אור אדום ומשקפיים שחוסמים אור כחול יכולים לשפר שינה ובריאות השעון הביולוגי\n• איך הליכה, אור שמש בבוקר, סיבים ושינה טובה יכולים לשפר אריכות ימים בלי תוספים יקרים\n• מה דייב למד מהוצאה של 2.5 מיליון דולר על ביוהאקינג, ולמה מניעת נזק זולה יותר מתיקונו\n\nפרקי זמן:\n• 00:00 — אתגר 5 הדולר ליום\n• 02:50 — אומגה 3: שעון ההזדקנות\n• 04:24 — GlyNAC: נוגד החמצון המרכזי\n• 06:06 — מגנזיום לשינה\n• 07:50 — קריאטין: מוח ושריר\n• 09:39 — ויטמין D ותיאנין\n• 12:09 — אור: וילונות ונורות\n• 15:52 — בחינם: הליכה, שמש, סיבים\n• 19:00 — סיכום העלויות\n• 20:09 — למה הוצאתי מיליונים\n\nהערה: אלה טענות והמלצות של אספרי, לא ייעוץ רפואי. לפני נטילת תוספים כדאי להתייעץ עם רופא.",
+   "full_en": "\"I have spent $2.5 million on this body, and Bryan Johnson spends about $5,400 a day on his. But does it need to be that expensive to biohack? So I gave myself a challenge: build a complete anti-aging protocol for $5/day, where every single thing on it has to be validated in humans, not mice. I could not spend the five dollars. In this video I'll show you the entire list and the two most powerful things I found… which cost nothing at all.\"\n\nYou'll learn:\n• How to build a science-backed longevity routine for less than $5 a day\n• Why omega-3s, GlyNAC, and magnesium may help slow aging and support cellular repair\n• How creatine, vitamin D, and L-theanine support brain health, muscle function, and focus\n• Why blackout curtains, red light, and blue-light-blocking glasses can improve sleep and circadian health\n• How walking, morning sunlight, fiber, and quality sleep can improve longevity without expensive supplements\n• What Dave learned from spending $2.5 million on biohacking and why preventing damage is cheaper than repairing it\n\nTimestamps:\n• 00:00 — The $5/Day Challenge\n• 02:50 — Omega-3s: Aging Clock\n• 04:24 — GlyNAC: Master Antioxidant\n• 06:06 — Magnesium for Sleep\n• 07:50 — Creatine: Brain and Muscle\n• 09:39 — Vitamin D and Theanine\n• 12:09 — Light: Curtains and Bulbs\n• 15:52 — Free: Walking, Sun, Fiber\n• 19:00 — The Full Cost Summary\n• 20:09 — Why I Spent Millions\n\nNote: these are Asprey's claims and suggestions, not medical advice. Check with a doctor before taking supplements."
+  },
+  {
+   "id": "pod-asprey-aa835c7f31",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-10-23T01:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/avoid-these-healthy-superfoods/id451295014?i=1000797705732",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "הימנע מ\"סופרפודים בריאים\" האלה",
+    "summary": "פרק חוזר: דייב אספרי מארח את טרי קוקרן, מטפלת אינטגרטיבית ומייסדת שיטת Cochrane, על עמילואידים תזונתיים, אוקסלטים והיסטמינים, ולמה לדבריהם גם קייל ושקדים אינם תמיד בריאים. אלה טענותיהם."
+   },
+   "en": {
+    "title": "Avoid THESE \"Healthy\" Superfoods",
+    "summary": "A rerun: Dave Asprey hosts integrative practitioner Teri Cochrane on dietary amyloids, oxalates and histamines, and why, they argue, even kale and almonds aren't always healthy."
+   },
+   "full_he": "\"היינו חייבים להחזיר את הפרק הזה בשבילכם.\" דייב אספרי צולל שוב לפרטים על אוכל שלא שמעתם עליהם בתוכנית, בפרק שלדבריו עשוי לגרום לך לחשוב מחדש על התזונה \"הבריאה\" שלך. האורחת החוזרת היא טרי קוקרן, מטפלת אינטגרטיבית וחלוצה ברפואה מותאמת אישית.\n\nטרי היא מייסדת ה-Global Sustainable Health Institute ומפתחת The Cochrane Method, אלגוריתם \"לפענוח הגוף האנושי\". לפי הפרק היא גם אחת המומחיות המובילות בעולם לעמילואידים תזונתיים.\n\nבפרק הם מסבירים מה הם עמילואידים ואיך לטענתם הם מפעילים וירוסים, גורמים לסרטן ומקצרים חיים. הם עוסקים גם בסכנות של אוקסלטים והיסטמינים, עם טריקים להפחית ולשחרר אותם; לטרי ולדייב יש מתכונים משלהם לשחרור אוקסלטים בבית (פשוטים להפתיע, לדבריהם).\n\nהם טוענים שעוף \"מלוכלך\" הורג אותנו ושסופרפודים כמו קייל ושקדים לא טובים יותר, מסבירים את היתרונות של חקלאות רגנרטיבית, ומשתפים דרכים לחסוך אם אין לך תקציב לבשר ממרעה. טרי גם מספרת מה היא עצמה אוכלת.\n\nפרקי זמן:\n• 00:00 — פתיחה\n• 02:01 — ארבעת הליקויים המטבוליים הגדולים\n• 08:21 — הסכנות של אוקסלטים\n• 12:02 — המשבש החמישי: היסטמין\n• 16:22 — להפוך למפרש של הגוף שלך\n• 28:41 — איך יורדים מאוקסלטים?\n• 35:41 — המתכון של דייב לשחרור אוקסלטים\n• 44:40 — טריקים להיסטמינים\n• 50:32 — עמילואידים 101: מה כדאי לדעת\n• 56:56 — האם להיזהר מ-B6?\n• 59:54 — מה סוג החלבון הטוב ביותר?\n\nהערה: אלה טענות של המנחה והאורחת. הטענות שעמילואידים מהתזונה מפעילים וירוסים וגורמים לסרטן אינן מבוססות ברפואה המקובלת.",
+   "full_en": "\"We just had to bring this one back for you.\" Dave Asprey digs once again into specifics about food you haven't heard on the show before, in an episode he says may make you rethink your \"healthy\" diet. He welcomes back Teri Cochrane, an integrative practitioner and pioneer in personalized healthcare.\n\nTeri is the founder of the Global Sustainable Health Institute and developer of The Cochrane Method, \"a future-facing algorithm for decoding the human body.\" According to the episode, she is also one of the world's leading experts on dietary amyloids.\n\nThey get into what amyloids are and how, they claim, they turn on viruses, cause cancer, and shorten our lives. They also explore the dangers of oxalates and histamines, plus hacks to reduce and release them; Teri and Dave each have their own recipes for releasing oxalates at home (surprisingly simple, they say).\n\nThey talk about how dirty poultry is killing us, and how superfoods like kale and almonds aren't any better. They break down the benefits of regenerative farming and share ways to make your dollar stretch if you can't afford grass-fed meat. Teri also shares what she personally eats.\n\nTimestamps:\n• 00:00 — Intro\n• 02:01 — The Big 4 Metabolic Impairments\n• 08:21 — The Dangers of Oxalates\n• 12:02 — The Fifth Disruptor: Histamine\n• 16:22 — Becoming Your Own Body Interpreter\n• 28:41 — How Do We Get Off Oxalates?\n• 35:41 — Dave's Recipe for Releasing Oxalates\n• 44:40 — Hacks for Histamines\n• 50:32 — Amyloid 101: What You Should Know\n• 56:56 — Should You Beware of B6?\n• 59:54 — What's the Best Kind of Protein?\n\nNote: these are the host's and guest's claims. The claims that dietary amyloids turn on viruses and cause cancer are not established in mainstream medicine."
+  },
+  {
+   "id": "pod-brecka-586f1f0dcf",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-10-22T07:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/why-cutting-processed-food-beats-keto-and-carnivore/id1709740887?i=1000797579038",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה ויתור על מזון מעובד עדיף על קיטו וקרניבור – דיימונד והת'ר ג'ון",
+    "summary": "דיימונד ג'ון ואשתו הת'ר משוחחים עם גארי ברקה על ההרגלים היומיים שלהם. לדברי ברקה, מה שמאריך חיים הוא לא קיטו או קרניבור אלא ויתור על מזון מעובד; הם מדברים גם על מדדי סוכר, צום, גן ה-COMT וניקוי טפילים."
+   },
+   "en": {
+    "title": "Why Cutting Processed Food Beats Keto and Carnivore - Daymond & Heather John",
+    "summary": "Daymond and Heather John talk with Gary Brecka about their daily habits. Brecka says it isn't keto or carnivore that extends life but cutting processed food; they also cover blood sugar markers, fasting, the COMT gene and a parasite cleanse."
+   },
+   "full_he": "דיימונד ג'ון והת'ר ג'ון יושבים עם גארי ברקה ומדברים על ההרגלים היומיים שמאחורי איך שהם מרגישים. לדברי ברקה, מה שמאריך חיים הוא לא קיטו או קרניבור אלא ויתור על מזון מעובד. הם מדברים גם על מדדי סוכר בדם כמו גלוקוז, A1C ואינסולין, למה רעב בצום מגיע בגלים של 20 דקות, גן ה-COMT \"של הדאגנים\", מאצ'ה, והסיפור של הת'ר על ניקוי טפילים. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: איך הם הכירו את גארי\n• 01:11 — נפילות אנרגיה ב-3 אחה\"צ וטיפול החמצן הראשון\n• 04:27 — דלקת בדרגה נמוכה, \"חמשת הגדולים\"\n• 05:20 — גירוד בלילה וניקוי הטפילים של הת'ר\n• 08:37 — רפואת שיניים ביולוגית וניתוח קוויטציה\n• 10:29 — תסמינים יומיומיים ויסודות ניקוי רעלים\n• 12:34 — הבדיקה הרפואית למנהלים והדחיפה של הת'ר\n• 15:53 — צום וגלי רעב של 20 דקות\n• 19:22 — גן ה-COMT וגיל המעבר\n• 22:32 — לתמוך בבן או בת הזוג במסע הבריאותי\n• 23:32 — עייפות חיסונית ומזון מעובד\n• 26:38 — בדיקת רעלים ופלסטיק יומיומי\n• 29:29 — סוכר בדם והמלחמה בשומן\n• 33:17 — חלב שיבולת שועל, מאצ'ה ו-COMT\n• 38:46 — מרכזי אריכות ימים וקהילה\n• 44:28 — CEO Access ובריאות בארגונים\n• 46:26 — מה זה להיות Ultimate Human\n\nהבהרות מתוך הפרק:\n• הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך.\n• 09:19: מפות \"שן-איבר\" (מרידיאנים) אינן כלי אבחון מוכח. זו חוויה של אדם אחד. נימול, כאב בחזה או בכתף צריכים בדיקה של רופא.\n• 15:53: צום מים של כמה ימים אינו בטוח לכולם, כולל בהריון או הנקה, בסוכרת, בנטילת תרופות לסוכר או ללחץ דם, או עם היסטוריה של הפרעות אכילה. יש להתייעץ עם רופא לפני צום של יותר מ-24 שעות.\n• 22:47: טיפולי סינון דם כמו INUSpheresis אינם מאושרים על ידי ה-FDA לניקוי רעלים או לאריכות ימים. חוקי \"הזכות לנסות\" משתנים ממדינה למדינה ובדרך כלל חלים על חולים במחלה קשה.\n• 29:56: סוכרת ואיזון סוכר לקוי מעלים את הסיכון לדמנציה ולמצבים אחרים, אבל הם רק אחד מגורמי סיכון רבים.\n• לגארי ברקה, בעלי Ultimate Human LLC, יש אינטרס כלכלי במוצרים של צד שלישי שהוא מקדם, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.",
+   "full_en": "Daymond John and Heather John sit down with Gary Brecka to talk about the daily habits behind how they feel. Gary says it isn't keto or carnivore that extends life, it's cutting out processed food. They also get into blood sugar markers like glucose, A1C and insulin, why fasting hunger comes in 20 minute waves, the COMT worrier gene, matcha, and Heather's parasite cleanse story. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: How they met Gary\n• 01:11 — 3 PM crashes and first oxygen session\n• 04:27 — Low grade inflammation, big five\n• 05:20 — Night itching and Heather's parasite cleanse\n• 08:37 — Biological dentistry and cavitation surgery\n• 10:29 — Everyday symptoms and detox basics\n• 12:34 — The executive physical and Heather's push\n• 15:53 — Fasting and 20 minute hunger waves\n• 19:22 — The COMT worrier gene and menopause\n• 22:32 — Supporting a partner's health journey\n• 23:32 — Immune fatigue and processed food\n• 26:38 — Toxin test and everyday plastics\n• 29:29 — Blood sugar and the war on fat\n• 33:17 — Oat milk, matcha and COMT\n• 38:46 — Longevity centers and community\n• 44:28 — CEO Access and corporate wellness\n• 46:26 — What it means to be an Ultimate Human\n\nThe episode's own disclaimers:\n• This podcast is for informational purposes only and does not provide medical advice. Always consult a licensed healthcare professional.\n• 09:19: Tooth-to-organ meridian charts are not a validated diagnostic tool. This is one person's experience. Numbness, chest or shoulder pain should be evaluated by a physician.\n• 15:53: Multi-day water fasting is not safe for everyone, including people who are pregnant or breastfeeding, have diabetes or take blood-sugar or blood-pressure medication, or have a history of eating disorders. Check with your physician before fasting longer than 24 hours.\n• 22:47: Blood-filtration therapies such as INUSpheresis are not FDA-approved for detoxification or longevity. Right-to-try laws vary by state and generally apply to people with serious illness.\n• 29:56: Diabetes and poor blood-sugar control raise the risk of dementia and other conditions, but they are just one of many risk factors.\n• Gary Brecka owns Ultimate Human LLC, which promotes third-party products in which he has an economic interest, so statements on the podcast may be considered promotional."
+  },
+  {
+   "id": "brecka-insurance-to-longevity-mission",
+   "topic": "brecka",
+   "date": "2026-10-28T22:00:02Z",
+   "url": "https://x.com/thegarybrecka/status/2115564271383749102",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי ברקה: \"פעם חזיתי מתי אנשים ימותו, היום אני עוזר להם לחיות יותר\"",
+    "summary": "ברקה מספר שעבד שנים בענף ביטוח החיים וחזה תמותה לפי רשומות רפואיות ונתונים דמוגרפיים, אבל לא הורשה להזהיר את האנשים. לדבריו, שם הבין שהוא בצד הלא נכון, ומאז המשימה שלו היא לעזור לאנשים לחיות."
+   },
+   "en": {
+    "title": "Gary Brecka: \"I used to predict when people would die. Now I help them live longer\"",
+    "summary": "Brecka says he spent years in life insurance predicting mortality from medical records and demographic data, but wasn't allowed to warn people. That, he says, is when he knew he was on the wrong side, and helping people live has been his mission since."
+   },
+   "full_he": "הפוסט: \"פעם חזיתי מתי אנשים ימותו. היום אני מקדיש את חיי לעזור להם לחיות יותר.\n\nבמשך שנים עבדתי בענף ביטוח החיים, והשתמשתי ברשומות רפואיות ובנתונים דמוגרפיים כדי לחזות תמותה בדיוק מדהים.\n\nיכולתי לראות את הסיכונים הבריאותיים של אדם, אבל לא הורשיתי להזהיר אותו. אז הבנתי שאני בצד הלא נכון של המשוואה. לא רציתי לחזות מתי אנשים ימותו. רציתי לעזור להם לחיות. וזו המשימה שלי מאז.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "The post: \"I used to predict when people would die. Now I dedicate my life to helping them live longer.\n\nFor years, I worked in the life insurance industry, using medical records and demographic data to predict mortality with incredible accuracy.\n\nI could see someone's health risks, yet I wasn't allowed to warn them. That's when I knew I was on the wrong side of the equation. I didn't want to predict when people would die. I wanted to help them live. And that's been my mission ever since.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "brecka-must-watch-dental-episode",
+   "topic": "brecka",
+   "date": "2026-10-28T21:44:01Z",
+   "url": "https://x.com/thegarybrecka/status/2115560240783757463",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה ממליץ על פרק על הקשר בין שיניים לכאבים בגוף",
+    "summary": "ברקה כתב \"פרק שחובה לצפות בו\" וציטט פוסט שמספר שדיימונד ג'ון יצא מטיפול שיניים בלי כאב בשרוול המסובב, ושברקה עצמו דיווח שתסמינים בכתף, בריאה ובבוהן נעלמו תוך 48 שעות אחרי טיפול בשן. אלה טענות של המעורבים, לא ממצא רפואי מוכח."
+   },
+   "en": {
+    "title": "Brecka recommends an episode on teeth and body pain",
+    "summary": "Brecka called it \"a must watch episode\", quoting a post saying Daymond John's rotator cuff pain went away after dental work and that Brecka's own shoulder, lung and toe symptoms cleared within 48 hours after a tooth was treated. These are their claims, not established medical findings."
+   },
+   "full_he": "הפוסט של ברקה: \"פרק שחובה לצפות בו.\"\n\nהפוסט שהוא ציטט:\n\"דיימונד ג'ון הלך לטיפול שיניים ויצא בלי הכאב בשרוול המסובב (כתף).\n\nגארי ברקה סדק שן, שלח תמונה לד\"ר גנדי וקיבל הודעה בחזרה ששאלה אם יש לו כאב בכתף שמאל, כאב באונה התחתונה של הריאה בזמן אירובי, ובוהן שמאלית שנרדמת מדי פעם. הכול היה נכון. אף אחד מזה לא הוזכר קודם. אחרי שהשן נוקתה וקיבלה כתר, הכול חלף תוך 48 שעות.\n\nהם מצביעים שוב ושוב על קווי מרידיאנים ועל טיפולי שורש ישנים כקשר. שני אנשים עם במה ציבורית שמתארים את אותו דפוס מוזר.\n\nהגוף שומר יותר קבלות ממה שרובנו נותנים לו קרדיט. בעיה בשן לא תמיד נשארת בפה.\"\n\nהערה: אלה חוויות אישיות וטענות של המעורבים. מפות \"שן-איבר\" ומרידיאנים אינן כלי אבחון מוכח ברפואה המקובלת (גם בהערות של פרק 315 בפודקאסט של ברקה נכתב כך), וכאב בחזה או בכתף או נימול צריכים בדיקה של רופא.",
+   "full_en": "Brecka's post: \"A MUST WATCH EPISODE\"\n\nThe quoted post:\n\"Daymond John went in for dental work and walked out with his rotator cuff pain gone.\n\nGary Brecka chipped a tooth, sent a photo to Dr. Gandhi, and got a text back asking if he had left shoulder pain, lower lobe lung pain during cardio, and a left toe that randomly went numb. All of it was real. None of it had been mentioned. After the tooth was cleaned and capped, everything cleared in 48 hours.\n\nThey keep pointing to meridian lines and old root canals as the connection. Two people with public platforms describing the same odd pattern.\n\nBodies keep more receipts than most of us give them credit for. A tooth problem doesn't always stay in the mouth.\"\n\nNote: these are personal experiences and the people's own claims. Tooth-to-organ meridian charts are not a validated diagnostic tool in mainstream medicine (Brecka's own episode 315 notes say so too), and chest or shoulder pain or numbness should be checked by a physician."
+  },
+  {
+   "id": "medicalmedium-body-not-attack-itself",
+   "topic": "medicalmedium",
+   "date": "2026-10-28T21:59:20Z",
+   "url": "https://x.com/MedicalMedium/status/2115564094908711030",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: \"הגוף שלך לא תוקף את עצמו\"",
+    "summary": "אנתוני וויליאם (מדיקל מדיום) טוען שתיאוריית המחלות האוטואימוניות שגויה ושמערכת החיסון לא בוגדת בך אלא מנסה להגן עליך. זו טענה שלו, שסותרת את ההבנה הרפואית המקובלת."
+   },
+   "en": {
+    "title": "Medical Medium: \"Your body does not attack itself\"",
+    "summary": "Anthony William (Medical Medium) claims the autoimmune theory is wrong and that your immune system isn't betraying you but trying to protect you. This is his claim and it contradicts mainstream medical understanding."
+   },
+   "full_he": "הפוסט: \"'הגוף שלך לא תוקף את עצמו' — מדיקל מדיום\n\nהגוף שלך לא תוקף את עצמו.\n\nובכל זאת, כשמישהו מפתח מחלת בלוטת התריס, אקזמה, פסוריאזיס, פיברוזיס של הריאות או עוד הרבה מצבים אחרים, אומרים לו שתאי החיסון שלו פנו נגדו והורסים את הרקמות שלו.\n\nאני אומר כבר שנים שתיאוריית האוטואימוניות טועה. מערכת החיסון שלך היא לא האויב שלך. היא לא בוגדת בך. היא עובדת בשבילך ומנסה להגן עליך.\"\n\nבסוף הפוסט יש קישורים להורדה חינמית בנושא אוטואימוניות, לספר Cleanse To Heal ולשידור חי.\n\nהערה: זו טענה שלו. ברפואה המקובלת, מחלות אוטואימוניות מוגדרות כמצבים שבהם מערכת החיסון אכן תוקפת רקמות של הגוף, וטיפול בהן צריך להיעשות עם רופא.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "The post: \"'Your Body Does Not Attack Itself' — Medical Medium\n\nYour body does not attack itself.\n\nYet when somebody develops thyroid disease, eczema, psoriasis, fibrosis of the lungs, or so many other conditions, they're told their own immune cells have turned against them and are destroying their tissue.\n\nI've been saying for years that this autoimmune theory has it wrong. Your immune system is not your enemy. It's not betraying you. It's working for you, trying to protect you.\"\n\nThe post ends with links to a free autoimmune download, the book Cleanse To Heal and a livestream.\n\nNote: this is his claim. In mainstream medicine, autoimmune diseases are defined as conditions in which the immune system does attack the body's own tissues, and they should be treated with a doctor.\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "starterstory-jake-excel-site-30k",
+   "topic": "starterstory",
+   "date": "2026-10-28T23:43:22Z",
+   "url": "https://x.com/starter_story/status/2115590277733966144",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "ג'ייק מרוויח 30 אלף דולר בחודש מאתר אקסל פשוט",
+    "summary": "Starter Story מספרים על ג'ייק, שמרוויח 30 אלף דולר בחודש מאתר פשוט על אקסל. המכירה הראשונה שלו, 50 דולר, הגיעה באתר שהוא עצמו מכנה מכוער, ולדבריו זו הייתה ההוכחה שהרעיון אמיתי."
+   },
+   "en": {
+    "title": "Jake makes $30K/month from a dead-simple Excel website",
+    "summary": "Starter Story features Jake, who makes $30K a month from a simple Excel website. His first $50 sale came in on a site he calls ugly, and he says that was the proof the idea was real."
+   },
+   "full_he": "הפוסט: \"הבחור הזה, ג'ייק, שמרוויח 30 אלף דולר בחודש מאתר אקסל פשוט להפליא, מספר: המכירה הראשונה שלו, 50 דולר, הגיעה באתר שהוא עצמו קורא לו מכוער, וזו הייתה ההוכחה שהוא היה צריך שהרעיון אמיתי...\n\n'קמתי יום אחד וקיבלתי התראה שמישהו שילם לי 50 דולר.'\n'הסתכלתי על האתר ואמרתי לעצמי: זו בטח טעות.'\"\n\nהמשך השרשור מאת Starter Story:\n\"ואה כן, הכנתי גם רשימה של אתרים פשוטים להפליא כמו של ג'ייק שמרוויחים 10 אלף דולר ומעלה בחודש\" (עם קישור לרשימה).\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "The post: \"This dude Jake who makes $30K/month from a dead-simple Excel website says: his first $50 sale came in on a site he calls ugly, and that was the proof he needed that the idea was real...\n\n'I woke up one day and had a notification that someone had paid me $50.'\n'I looked at the site and I was like, this has to be a mistake.'\"\n\nThe thread continues (Starter Story):\n\"Oh and yeah I also made a list of dead-simple websites like Jake's that make $10K+/month\" (with a link to the list).\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "johnson-shaan-michael-jordan-social",
+   "topic": "johnson",
+   "date": "2026-10-28T22:01:30Z",
+   "url": "https://x.com/bryan_johnson/status/2115564640545735051",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: \"מייקל ג'ורדן של הרשתות החברתיות\"",
+    "summary": "ג'ונסון משתף בהומור את דבריו של שאן, שכינה אותו \"השחקן הגדול בכל הזמנים ברשתות החברתיות\", ומודה לו על המילים החמות. לדבריו, אנשים קוראים לזה \"הטייק הגרוע בכל הזמנים\"."
+   },
+   "en": {
+    "title": "Bryan Johnson: \"the Michael Jordan of social media\"",
+    "summary": "Johnson jokingly shares Shaan calling him \"the greatest social media player of all time\" and thanks him for the kind words, noting that people are calling it the worst take of all time."
+   },
+   "full_he": "הפוסט: \"אנשים קוראים לזה הטייק הגרוע בכל הזמנים.\n\n'בריאן ג'ונסון הוא השחקן הגדול בכל הזמנים ברשתות החברתיות. הוא מייקל ג'ורדן של הרשתות החברתיות.'\n\nתודה לשאן על המילים החמות.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "The post: \"People are calling it the worst take of all time.\n\n'Bryan Johnson is the greatest social media player of all time. He is the Michael Jordan of social media.'\n\nThank you Shaan for the kind words.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "musk-true-tesla-crash-headlines",
+   "topic": "musk",
+   "date": "2026-10-29T01:59:58Z",
+   "url": "https://x.com/elonmusk/status/2115624652454154559",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מסכים: כשטסלה מתרסקת, המותג מופיע בכותרת",
+    "summary": "מאסק כתב \"נכון\" על פוסט שטוען שכשטויוטה, פורד או ב.מ.וו מתרסקות הכותרת מדברת על \"נהג\" או \"תאונה\", אבל כשטסלה מתרסקת, שם המותג מופיע בכותרת בכל פעם."
+   },
+   "en": {
+    "title": "Musk agrees: when a Tesla crashes, the brand makes the headline",
+    "summary": "Musk wrote \"True\" on a post arguing that crashes of a Toyota, Ford or BMW are headlined as a driver or an accident, while a Tesla crash always puts the brand in the headline."
+   },
+   "full_he": "הפוסט של מאסק: \"נכון.\"\n\nהפוסט שהוא ציטט:\n\"שימו לב איך הכותרות עובדות.\n\nטויוטה מתרסקת: 'נהג נפצע בתאונה.'\nפורד מתרסקת: 'שתי מכוניות התנגשו בכביש המהיר.'\nב.מ.וו מתרסקת: 'תאונה בכביש 1.'\n\nטסלה מתרסקת: 'טסלה מתרסקת.'\n\nלא הנהג. לא 'מכונית'. המותג, בכותרת, בכל פעם מחדש.\"",
+   "full_en": "Musk's post: \"True\"\n\nThe quoted post:\n\"Notice how the headlines work.\n\nA Toyota crashes: 'Driver injured in crash.'\nA Ford crashes: 'Two cars collide on highway.'\nA BMW crashes: 'Accident on Route 1.'\n\nA Tesla crashes: 'TESLA crashes.'\n\nNot the driver. Not 'a car.' The brand, in the headline, every single time.\""
+  },
+  {
+   "id": "grokbot-referral-program-outage",
+   "topic": "grokbot",
+   "date": "2026-10-29T01:04:00Z",
+   "url": "https://x.com/i/trending/2115609040801935366",
+   "source": "X",
+   "he": {
+    "title": "תוכנית הפניות ל-Grok Bot יצאה ביום של תקלה",
+    "summary": "מנויי Premium, Super ו-Ultra בארה\"ב יכולים עכשיו להזמין חברים לניסיון של שבועיים ולקבל איפוס שימוש לשישה חודשים כשהם משלמים. באותו יום Grok Bot ו-Cloud Agents סבלו מתקלה רחבה של כמה שעות, והשירות חזר בערב."
+   },
+   "en": {
+    "title": "Grok Bot referral program launches amid an outage",
+    "summary": "U.S. Premium, Super and Ultra subscribers can now invite friends to a two-week trial and earn six-month usage resets once they pay. The same day, Grok Bot and Cloud Agents were degraded for hours before service returned in the evening."
+   },
+   "full_he": "מנויים בתשלום התעוררו לדרך חדשה לקבל איפוסי שימוש חינם ב-Grok Bot דרך הפניות, אבל באותו יום הבוטים שלהם השתתקו לכמה שעות.\n\nב-28 באוקטובר השיקה SpaceXAI תוכנית הפניות למנויי Premium, Super ו-Ultra בארה\"ב: הם יכולים לשתף קישורים לניסיון של שבועיים לחברים, ולקבל איפוס שימוש של שישה חודשים כשהחברים האלה משלמים.\n\nההשקה נתקלה בבעיה: Grok Bot ו-Cloud Agents סבלו מירידה רחבה בשירות, ומשתמשים דיווחו על משימות תקועות במחקר, בקוד ובתהליכי עבודה, וחלקם מסתמכים על עשרות בוטים בעבודה היומיומית. השירות חזר באותו ערב, מה שמראה כמה משתמשים כבדים תלויים בסוכני AI קבועים שרצים לבד על מחשבים בענן.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Paid subscribers woke up to a new way to earn free Grok Bot resets through referrals, but their bots went quiet for hours that same day.\n\nOn October 28, SpaceXAI rolled out a referral program for U.S. Premium, Super, and Ultra subscribers, letting them share links for friends' two-week trials and earn six-month usage resets once those friends pay.\n\nThe launch hit a snag as Grok Bot and Cloud Agents faced widespread degradation, with users reporting stalled tasks in research, coding, and workflows, some relying on dozens of bots for daily work. Service returned that evening, underscoring how deeply power users depend on these persistent AI agents that run independently on cloud computers.\n\n(A summary of posts on X that may evolve over time.)"
+  },
+  {
+   "id": "spacex-coons-subpoena-starlink-ukraine",
+   "topic": "spacex",
+   "date": "2026-10-28T23:40:16Z",
+   "url": "https://x.com/i/trending/2115587708844118403",
+   "source": "X",
+   "he": {
+    "title": "סנאטור קונס דורש לזמן את מאסק בעניין הגבלות סטארלינק באוקראינה",
+    "summary": "הסנאטור כריס קונס קרא לזמן את מאסק לסנאט אחרי שהגבלות על סטארלינק ו-Starshield החודש האטו פעולות רחפנים ותקשורת של אוקראינה. מאסק אמר שהשימוש לתקיפות התקפיות הפר את תנאי השירות, וההגבלות הוסרו מאוחר יותר."
+   },
+   "en": {
+    "title": "Sen. Coons calls for subpoenaing Musk over Starlink limits in Ukraine",
+    "summary": "Senator Chris Coons urged a Senate subpoena for Musk after Starlink and Starshield restrictions this month slowed Ukrainian drone operations and communications. Musk said using the service for offensive strikes violated its terms; the restrictions were later lifted."
+   },
+   "full_he": "הסנאטור כריס קונס הצהיר שאף מיליארדר לא צריך להחזיק השפעה כזאת על ההגנה של אוקראינה, וקרא לסנאט לזמן את אילון מאסק אחרי שהגבלות על שירות סטארלינק שיבשו פעולות אוקראיניות.\n\n• ההגבלות על סטארלינק ו-Starshield מוקדם יותר החודש האטו את פעולות הרחפנים והתקשורת של אוקראינה בזמן מתקפות רוסיות. מאסק אמר שהן הפרו את תנאי השירות כי השתמשו בו לתקיפות התקפיות.\n• קונס, דמוקרט מדלאוור, קרא לחקור את הכוח של מאסק על כלי חיוני שאוקראינה נשענת עליו, במיוחד כשפוטין שיבח את מאסק כ\"גאון אמיתי\" על רקע שיחות על תיאום לוויינים.\n• תומכי מאסק מציינים שאוקראינה הפרה את כללי הרשת המסחרית, ומבקרים מדגישים חשש מהשפעה של חברות פרטיות על סכסוכים שממומנים בכספי משלמי מסים.\n• הפרשה עוררה מחדש שאלות על כוח תאגידי בלוחמה מודרנית, אם כי ההגבלות הוסרו מאוחר יותר.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Senator Chris Coons declared no billionaire should hold such sway over Ukraine's defense, urging a Senate subpoena for Elon Musk after Starlink service limits disrupted Ukrainian operations.\n\n• The restrictions on Starlink and Starshield earlier this month slowed Ukrainian drone operations and communications during Russian attacks, which Musk said violated the service's terms by using it for offensive strikes.\n• Coons, a Delaware Democrat, called for an investigation into Musk's power over this critical tool Ukraine relies on, especially as Putin praised Musk as a 'real genius' amid satellite coordination talks.\n• Supporters of Musk note Ukraine breached the commercial network's rules, while critics highlight concerns over private companies influencing taxpayer-backed conflicts.\n• The episode reignited questions about corporate power in modern warfare, though restrictions were later lifted.\n\n(A summary of posts on X that may evolve over time.)"
+  },
+  {
+   "id": "musk-sanders-wealth-political-spending",
+   "topic": "musk",
+   "date": "2026-10-28T21:46:42Z",
+   "url": "https://x.com/i/trending/2115558918768451903",
+   "source": "X",
+   "he": {
+    "title": "ברני סנדרס תוקף את העושר וההוצאות הפוליטיות של מאסק",
+    "summary": "סנדרס הצביע על הדרך של מאסק להיות טריליונר, על חוזי הממשלה של SpaceX, על המסים הנמוכים שלו ביחס להכנסה ועל 445 מיליון דולר שתרם לסופר-PACs רפובליקניים, וסיים ב\"מעניין למה\". המגיבים השוו לתרומות של ג'ורג' סורוס."
+   },
+   "en": {
+    "title": "Bernie Sanders calls out Musk's wealth and political spending",
+    "summary": "Sanders pointed to Musk's path to trillionaire status, SpaceX government contracts, low taxes relative to income and $445 million given to Republican super PACs, ending with \"Gee, I wonder why?\" Replies compared it with George Soros's giving."
+   },
+   "full_he": "ברני סנדרס תקף את הדרך של אילון מאסק להפוך לטריליונר ואת התרומות הפוליטיות הענקיות שלו, וסיים במשפט עוקצני: \"מעניין למה?\" הפוסט עורר תגובות שטענו לאיפה ואיפה.\n\n• סנדרס הדגיש את העושר הצפוי של מאסק כטריליונר, את חוזי הממשלה של SpaceX, את המסים הנמוכים שהוא משלם ביחס להכנסה, ואת 445 מיליון הדולר שתרם בסבב הבחירות הזה לסופר-PACs רפובליקניים.\n• המגיבים השוו לתרומות של ג'ורג' סורוס, 102 מיליון דולר לצד הדמוקרטי ועשרות שנים של נתינה, וחלקם ציינו שההוצאות של מאסק בשנתיים כבר עולות על כל התרומות הפוליטיות של סורוס בארה\"ב לאורך חייו.\n• תומכי מאסק שיבחו את החידושים העסקיים שלו, כמו טסלה, והביעו תסכול ממה שהם רואים כביקורת לא שוויונית על השפעת מיליארדרים על הבחירות.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Bernie Sanders took aim at Elon Musk's path to trillionaire status and his massive political donations, ending with a pointed 'Gee, I wonder why?' The post sparked replies calling out what many saw as a clear double standard.\n\n• Sanders highlighted Musk's projected trillionaire wealth, SpaceX government contracts, low tax payments relative to income, and $445 million donated to Republican super PACs this cycle.\n• Replies pushed back by comparing it to George Soros's $102 million in Democratic support and decades of giving, with some noting Musk's two-year spending already tops Soros's lifetime U.S. political donations.\n• Defenders praised Musk's business innovations like Tesla while expressing frustration over uneven scrutiny of billionaire influence in elections.\n\n(A summary of posts on X that may evolve over time.)"
+  },
   {
    "id": "brecka-sauna-immune-cells",
    "topic": "brecka",
