@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T05:06:18+02:00",
+ "updated": "2026-10-29T05:54:22+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -142,6 +142,40 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-try-video-game",
+   "topic": "grokbot",
+   "date": "2026-10-29T03:09:35Z",
+   "url": "https://x.com/elonmusk/status/2115642175199350785",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"תנסו את Grok Bot\" – \"עבודה מרגישה כמו משחק וידאו\"",
+    "summary": "מאסק ציטט את המשתמש gaut (@0xgaut), שכתב ש-Grok Bot גורם לעבודה להרגיש כמו משחק וידאו, והוסיף רק: \"תנסו את Grok Bot\"."
+   },
+   "en": {
+    "title": "Musk: \"Try Grok Bot\" – \"work feels like a video game\"",
+    "summary": "Musk quoted user gaut (@0xgaut), who wrote that Grok Bot makes work feel like a video game, adding simply: \"Try Grok Bot\"."
+   },
+   "full_he": "\"תנסו את Grok Bot\"\n\nהפוסט שהוא ציטט (gaut, @0xgaut):\n\"Grok Bot גורם לעבודה להרגיש כמו משחק וידאו\"\n\nאין למאסק תגובות נוספות משלו בשרשור.",
+   "full_en": "\"Try Grok Bot\"\n\nThe quoted post (gaut, @0xgaut):\n\"grok bot makes work feel like a video game\"\n\nMusk has no further replies of his own in the thread."
+  },
+  {
+   "id": "tesla-gm-anderson-radar-vision",
+   "topic": "tesla",
+   "date": "2026-10-29T03:50:14Z",
+   "url": "https://x.com/i/trending/2115613988981821464",
+   "source": "X",
+   "he": {
+    "title": "בכיר ב-GM תוקף את גישת המצלמות בלבד של טסלה",
+    "summary": "סטרלינג אנדרסון, לשעבר ראש ה-Autopilot בטסלה וכיום ב-GM, כינה את הוויתור על מכ\"ם \"עמדה דתית מוזרה שמתעלמת מהפיזיקה\". תומכי טסלה השיבו בנתוני הבטיחות של FSD וה-Robotaxi."
+   },
+   "en": {
+    "title": "GM executive criticizes Tesla's camera-only self-driving approach",
+    "summary": "Sterling Anderson, Tesla's former Autopilot lead now at GM, called dropping radar \"a weird religious stance that ignores physics.\" Tesla supporters answered with FSD and Robotaxi safety figures."
+   },
+   "full_he": "סטרלינג אנדרסון, לשעבר מוביל ה-Autopilot בטסלה וכיום ב-GM, כינה את הוויתור על מכ\"ם \"עמדה דתית מוזרה שמתעלמת מהפיזיקה\". ההערה הציתה מחדש את הוויכוח על הדרך לבנות רכבים אוטונומיים בטוחים יותר.\n\n• לטענת אנדרסון, מערכות שמבוססות על מצלמות בלבד מתקשות בתנאים קשים, ומכ\"ם זול מוסיף אמינות.\n• מערכת הנהיגה בלי ידיים ברמה 3 שתגיע ב-Cadillac Escalade IQ של 2028 תשתמש במצלמות, מכ\"ם ולידאר, מעל ל-Super Cruise.\n• תומכי טסלה השיבו בנתונים של כמעט 4 מיליון מיילים אוטונומיים בלי פציעות ויותר מ-3 מיליון מיילים של Robotaxi בערים, עם נתוני בטיחות טובים מאלה של נהגים אנושיים.\n• הוויכוח מדגיש שתי דרכים מתחרות: רשתות נוירונים של טסלה שאומנו על נתוני מצלמות, מול יתירות מרובת חיישנים של GM. ברשת התערבבו הגנות, ספקנות לגבי לוחות זמנים וסיפורי הצלחה יומיומיים עם FSD.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Sterling Anderson, ex-Tesla Autopilot leader now at GM, called ditching radar a \"weird religious stance that ignores physics.\" The remark reignited the battle over how to build safer autonomous cars.\n\n• Anderson argued that vision-only systems falter in tough conditions, while cheap radar adds reliability.\n• GM's upcoming Level 3 hands-free driving in the 2028 Cadillac Escalade IQ will use cameras, radar and lidar on top of Super Cruise.\n• Tesla supporters countered with nearly 4 million autonomous miles driven injury-free and over 3 million Robotaxi miles in cities, outperforming human drivers in safety stats.\n• The exchange underscores rival paths: Tesla's AI-trained neural nets from camera data versus GM's multi-sensor redundancy, with online buzz mixing defenses, skepticism of timelines and everyday FSD success stories.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "spacex-ship42-first-tower-catch",
    "topic": "spacex",
