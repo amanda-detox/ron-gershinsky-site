@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T12:12:36+02:00",
+ "updated": "2026-10-29T13:01:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -142,6 +142,57 @@
   }
  ],
  "items": [
+  {
+   "id": "huang-megaspeed-alice-huang-spy",
+   "topic": "huang",
+   "date": "2026-10-29T10:46:56Z",
+   "url": "https://x.com/i/trending/2115756302332776465",
+   "source": "X",
+   "he": {
+    "title": "דיווח: ארה\"ב קבעה שמנהלת סינית בקשר אישי עם ג'נסון הואנג פעלה כנכס מודיעיני של בייג'ינג",
+    "summary": "לפי הדיווחים, סוכנויות אמריקאיות הגיעו למסקנה שאליס הואנג (הואנג לה) מחברת Megaspeed בסינגפור, שקנתה שבבי AI של אנבידיה במיליארדים, פעלה כנכס של המודיעין הסיני. אנבידיה דחתה את החששות ואמרה שמדובר בפגישות שגרתיות עם לקוחות."
+   },
+   "en": {
+    "title": "Report: U.S. finds Chinese executive with ties to Jensen Huang acted as a Beijing intelligence asset",
+    "summary": "U.S. agencies reportedly concluded that Alice Huang (Huang Le) of Singapore-based Megaspeed, which bought billions in Nvidia AI chips, acted as a Chinese intelligence asset. Nvidia dismissed the concerns, calling them routine customer meetings."
+   },
+   "full_he": "מנהלת של חברת מרכזי נתונים בסינגפור, המקורבת למנכ\"ל אנבידיה, עוררה את תשומת לב המודיעין האמריקאי בגלל קשריה עם בייג'ינג ורכישות ענק של שבבי AI.\n\n• לפי הדיווחים, סוכנויות אמריקאיות הגיעו למסקנה שאליס הואנג (הואנג לה) מחברת Megaspeed פעלה כנכס של המודיעין הסיני, בזמן שקנתה שבבי AI של אנבידיה בשווי מיליארדי דולרים ושמרה על קשר אישי עם המנכ\"ל ג'נסון הואנג.\n• השניים הופיעו יחד באירועים, בין השאר בטייוואן, מה שעורר חשש מגישה אפשרית לטכנולוגיה של אנבידיה ומהשפעה על מדיניות הייצוא האמריקאית של שבבי AI, על רקע התחרות בין ארה\"ב לסין.\n• הנשיא טראמפ תודרך על כך לפני כשנה, אך לא נקט צעד פומבי.\n• אנבידיה דחתה את החששות וציינה שמדובר בפגישות שגרתיות עם לקוחות, ו-Megaspeed משתפת פעולה עם בדיקות בנוגע להעברה אפשרית של שבבים ליעדים אחרים.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן. מדובר בטענות מדווחות, ולא בממצא שפורסם רשמית.",
+   "full_en": "A Singapore data center executive close to Nvidia's CEO caught U.S. intelligence's eye for her Beijing connections and massive AI chip buys.\n\n• U.S. agencies reportedly concluded that Alice Huang, or Huang Le, of Megaspeed acted as a Chinese intelligence asset while buying billions in Nvidia AI chips and maintaining a personal relationship with CEO Jensen Huang.\n• They appeared together at events, including in Taiwan, sparking worries over potential access to Nvidia tech and U.S. AI export policies amid U.S.-China rivalry.\n• President Trump was briefed a year ago but took no public action.\n• Nvidia dismissed the concerns, noting routine customer meetings, while Megaspeed cooperates with probes into possible chip rerouting.\n\nThis story is a summary of posts on X and may evolve over time. These are reported claims, not a published official finding."
+  },
+  {
+   "id": "apple-teleai-privacy-camera-j450",
+   "topic": "apple",
+   "date": "2026-10-29T10:35:09Z",
+   "url": "https://x.com/i/trending/2115753344144715822",
+   "source": "X",
+   "he": {
+    "title": "מצלמת הפרטיות הסינית של TeleAI הקדימה את אפל בשנה",
+    "summary": "TeleAI של צ'יינה טלקום השיקה השנה מצלמה שמזהה נפילות, קטטות ועישון בלי לשתף פנים או צילומים. החיישן J450 של אפל, עם רעיון דומה, עדיין בפיתוח לקראת השקה ב-2027."
+   },
+   "en": {
+    "title": "China's TeleAI privacy camera beats Apple to market by a year",
+    "summary": "China Telecom's TeleAI launched a camera this year that detects falls, fights and smoking without sharing faces or footage. Apple's similar J450 sensor is still in development for a 2027 launch."
+   },
+   "full_he": "כבר בפברואר 2026 חשף צוות סיני מצלמה שמזהה נפילות או קטטות בלי לשתף פנים או צילומים. היא הגיעה הרבה לפני פרויקט דומה של אפל, ועוררה דיון על חדשנות שלא קיבלה תשומת לב.\n\n• TeleAI, מכון ה-AI של צ'יינה טלקום, השיק השנה את ה-Privacy Camera, שמעבדת את הווידאו על המכשיר עצמו והופכת אותו ל\"טוקנים\" מופשטים שמסננים את הזהות לפני ניתוח בענן.\n• המערכת מזהה סיכונים כמו עישון או אלימות במקומות כמו בתי ספר ושירותים, ומפיקה התראות או קווי מתאר בסגנון קומיקס בלי לחשוף פרטים אישיים.\n• היא כבר פועלת בעוזר TeleCare של TeleAI.\n• החיישן J450 של אפל, שעדיין בפיתוח לקראת השקה ב-2027, מכוון לזיהוי פעילות דומה בלי הקלטה, במסגרת התוכניות של אפל לבית החכם.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Back in February 2026, a Chinese team unveiled a camera that spots falls or fights without ever sharing faces or footage. It arrived well before Apple's similar project, prompting talk of overlooked innovation.\n\n• TeleAI, from China Telecom's AI institute, launched its Privacy Camera this year, processing video on-device to create abstract tokens that filter out identities before cloud analysis.\n• The system detects risks like smoking or aggression in places such as schools and restrooms, generating alerts or comic-style outlines without exposing personal details.\n• It's already deployed in TeleAI's TeleCare assistant.\n• Apple's J450 sensor, still in development for a 2027 launch, aims for similar no-recording activity detection amid its smart-home plans.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "mccullough-cramer-buy-then-silence",
+   "topic": "mccullough",
+   "date": "2026-10-29T10:41:14Z",
+   "url": "https://x.com/P_McCulloughMD/status/2115755836530467008",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקאלו נגד ג'ים קרמר: \"קנו, קנו, קנו – ואז שקט\"",
+    "summary": "פיטר מקאלו מפרסם מאמר שתוקף את ג'ים קרמר מ-CNBC על ההתלהבות שלו מחיסוני mRNA ומחובת החיסון ב-2021, ומזכיר את מותו של אחיינו וכותב שלו בגיל 41. זו טענה פרשנית של מקאלו; המאמר עצמו נעול למנויים."
+   },
+   "en": {
+    "title": "McCullough on Jim Cramer: \"Buy, Buy, Buy — Then Silence\"",
+    "summary": "Peter McCullough posts an article attacking CNBC's Jim Cramer over his 2021 mRNA hype and support for vaccine mandates, citing the death of Cramer's writer and nephew at 41. This is McCullough's framing; the article itself is paywalled."
+   },
+   "full_he": "הפוסט של פיטר מקאלו:\n\n\"קנו, קנו, קנו – ואז שקט. ההתלהבות של ג'ים קרמר מ-mRNA ב-2021, הלהט שלו לחובות חיסון, מותו של הכותב והאחיין שלו בגיל 41, והשאלה שהוא לא ייגע בה בשידור ב-2026.\" המאמר פורסם ב-TheFocalPoints, עם תיוג של קרמר, Mad Money, Squawk Box ו-CNBC.\n\nמה כתוב בתמונה שצירף:\n• זו כותרת המאמר ב-TheFocalPoints, מאת פיטר א. מקאלו, 29 באוקטובר 2026, והמאמר מסומן כתוכן בתשלום.\n• בתוכה צילום מסך של כתבה מ-CNBC מ-29 בנובמבר 2021: \"ג'ים קרמר אומר שממשלת ארה\"ב צריכה להפוך את חיסון הקורונה לחובה בכל המדינה\", ולפיה בפרק של Mad Money טען קרמר שחובת חיסון לאומית היא הדרך היחידה של ארה\"ב לנצח את המגפה.\n\nהמאמר המלא נעול למנויים, ולכן אין עוד טקסט להציג. בשרשור אין תגובות נוספות של מקאלו.\n\nהערה: הפוסט רומז לקשר בין חיסוני הקורונה למותו של האחיין; זו טענה של מקאלו, שלא מוכחת בפוסט, והקונצנזוס הרפואי המקובל רואה בחיסוני mRNA בטוחים לרוב האנשים.",
+   "full_en": "Peter McCullough's post:\n\n\"Buy, Buy, Buy — Then Silence. Jim Cramer's 2021 mRNA hype, zeal for mandates, his writer & nephew's death at 41, and the question he won't touch on air in 2026.\" The article is on TheFocalPoints, tagging Cramer, Mad Money, Squawk Box and CNBC.\n\nWhat the attached image says:\n• It's the article header on TheFocalPoints, by Peter A. McCullough, MD, MPH, Oct 29, 2026, marked as paid content.\n• It includes a screenshot of a CNBC piece from Nov 29, 2021: \"Jim Cramer says the U.S. government should make Covid vaccine mandatory nationwide\", saying that on Mad Money Cramer argued a national Covid vaccine mandate was the only way for the U.S. to beat the pandemic.\n\nThe full article is paywalled, so there's no more text to show. McCullough added no further replies in the thread.\n\nNote: the post implies a link between Covid vaccines and the nephew's death; that's McCullough's claim, not shown in the post, and mainstream medical consensus considers mRNA vaccines safe for most people."
+  },
   {
    "id": "spacex-putin-musk-genius-rassvet",
    "topic": "spacex",
