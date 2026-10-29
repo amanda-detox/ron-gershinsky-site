@@ -312,6 +312,16 @@
   html[data-theme="light"] .sw[aria-pressed="true"] .pv { border-color: #0b2a6b; outline-color: rgba(201, 162, 39, 0.85); }
   html[data-theme="light"] .sw[aria-pressed="true"] .pv::after { background: #0b2a6b; color: #fff; }
   html[data-theme="light"] .sw .num { background: rgba(11, 42, 107, 0.7); }
+  .metrics { margin-top: 1.5rem; text-align: center; }
+  .metrics h2 { margin: 0 0 .75rem; font-size: 1.05rem; color: #d4af37; }
+  .mgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 7.5rem), 1fr)); gap: .6rem; }
+  .mcard { background: rgba(30,41,59,.72); border: 1px solid rgba(212,175,55,.45); border-radius: 14px; padding: .75rem .5rem; min-width: 0; }
+  .mcard .mv { display: block; font-size: 1.35rem; font-weight: 700; color: #60a5fa; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+  .mcard .ml { display: block; margin-top: .25rem; font-size: .8rem; color: var(--muted); overflow-wrap: anywhere; }
+  html[data-theme="light"] .mcard { background: rgba(255,255,255,.82); border-color: rgba(176,137,24,.55); }
+  html[data-theme="light"] .mcard .mv { color: #1d4ed8; }
+  html[data-theme="light"] .mcard .ml { color: #1e293b; }
+  html[data-theme="light"] .metrics h2 { color: #8a6a10; }
 </style>
 </head>
 <body>
@@ -364,6 +374,7 @@
     <iframe class="game-frame" id="game-frame" src="relax/still-pond.html" title="Still Pond" loading="lazy"></iframe>
     <a class="mail" id="game-open" href="relax/still-pond.html"></a>
   </section>
+  <section class="metrics" id="metrics" aria-labelledby="metrics-title"><h2 id="metrics-title"></h2><div class="mgrid" id="mgrid"></div></section>
   <footer id="foot"></footer>
 </main>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
@@ -842,6 +853,27 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
   navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 }
 </script>
+<script>/* site metrics: real numbers only; all 0 until a real source is wired */
+window.RG_METRICS = window.RG_METRICS || {installs:0,dau:0,wau:0,mau:0,rating:0,reviews:0,revenueUsd:0};
+(function(){
+  var L={he:{t:"מדדים",installs:"הורדות כולל",dau:"משתמשים יומיים",wau:"משתמשים שבועיים",mau:"משתמשים חודשיים",rating:"דירוג",reviews:"תגובות",revenueUsd:"הכנסות נטו ($)"},
+         en:{t:"Metrics",installs:"Total downloads",dau:"Daily users",wau:"Weekly users",mau:"Monthly users",rating:"Rating",reviews:"Reviews",revenueUsd:"Net revenue (USD)"}};
+  var K=["installs","dau","wau","mau","rating","reviews","revenueUsd"];
+  function render(){
+    var lg=document.documentElement.lang==="en"?"en":"he",t=L[lg],m=window.RG_METRICS||{},g=document.getElementById("mgrid");if(!g)return;
+    document.getElementById("metrics-title").textContent=t.t;
+    var nf=new Intl.NumberFormat(lg==="en"?"en-US":"he-IL");
+    g.innerHTML="";
+    K.forEach(function(k){var n=Number(m[k])||0,v;
+      if(k==="revenueUsd")v="$"+nf.format(n);else if(k==="rating")v=n?n.toFixed(1)+" ★":"0";else v=nf.format(n);
+      var c=document.createElement("div");c.className="mcard";
+      var a=document.createElement("span");a.className="mv";a.textContent=v;a.dir="ltr";
+      var b=document.createElement("span");b.className="ml";b.textContent=t[k];
+      c.appendChild(a);c.appendChild(b);g.appendChild(c);});
+  }
+  window.RG_renderMetrics=render;render();
+  new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
+})();</script>
 <script src="shared/rg-topbar.js?v=2" data-slot=".topbar" data-home="1"></script>
 </body>
 </html>
