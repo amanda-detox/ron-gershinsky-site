@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T18:30:38+02:00",
+ "updated": "2026-10-29T19:19:17+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "brecka-hhs-six-peptides-discretion",
+   "topic": "brecka",
+   "date": "2026-10-29T17:09:51Z",
+   "url": "https://x.com/thegarybrecka/status/2115853633895940165",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: משרד הבריאות האמריקאי הכריז על מדיניות אכיפה מקלה לשישה פפטידים",
+    "summary": "לפי בראקה, ה-HHS הודיע על מדיניות ביניים של שיקול דעת באכיפה לגבי BPC-157, ‏TB-500, ‏KPV, ‏MOTS-c, ‏Semax ו-Epitalon. הוא מדגיש שזה לא אישור של ה-FDA ושהבטיחות והיעילות שלהם לא הוכחו."
+   },
+   "en": {
+    "title": "Gary Brecka: HHS announces an enforcement-discretion policy for six peptides",
+    "summary": "Brecka says HHS announced an interim enforcement-discretion policy covering BPC-157, TB-500, KPV, MOTS-c, Semax and Epitalon. He stresses this is not FDA approval and that their safety and effectiveness haven't been established."
+   },
+   "full_he": "🚨 מבזק: משרד הבריאות האמריקאי (HHS) הכריז על מדיניות ביניים של שיקול דעת באכיפה, שנוגעת לשישה פפטידים:\n\n• BPC-157: מחקר על תיקון רקמות\n• TB-500: מחקר על התחדשות רקמות\n• KPV: מחקר על תגובה דלקתית\n• MOTS-c: מחקר על תפקוד מטבולי\n• Semax: מחקר על תפקוד קוגניטיבי\n• Epitalon: מחקר על הזדקנות ושינה\n\nמה זה אומר?\n\nבתנאים מסוימים, לרופאים מורשים ולבתי מרקחת רוקחיים (compounding) שעומדים בדרישות עשויות להיות אפשרויות נוספות לרשום ולהכין את הפפטידים האלה למטופלים ספציפיים.\n\nזה לא אישור של ה-FDA. הבטיחות והיעילות של החומרים האלה לא הוכחו.\n\nזו התפתחות רגולטורית חשובה, אבל עדיין חיוני להבין את המדע, את הבטיחות ואת דרישות המרשם הספציפיות.\n\n(בראקה פרסם את הפוסט פעמיים בהפרש של כעשר דקות; זו הגרסה המעודכנת, שבה נוספה המילה \"ביניים\". אין בשרשור המשך של בראקה עצמו.)",
+   "full_en": "BREAKING 🚨 HHS has announced an interim enforcement-discretion policy involving six peptides:\n\n• BPC-157: Tissue repair research\n• TB-500: Tissue regeneration research\n• KPV: Inflammatory response research\n• MOTS-c: Metabolic function research\n• Semax: Cognitive function research\n• Epitalon: Aging and sleep research\n\nWhat does this mean?\n\nUnder certain conditions, licensed clinicians and qualifying compounding pharmacies may have additional options to prescribe and prepare these peptides for individual patients.\n\nThis is NOT FDA approval. The safety and effectiveness of these compounds have not been established.\n\nIt's an important regulatory development, but understanding the science, safety, and specific prescribing requirements remains essential.\n\n(Brecka posted this twice about ten minutes apart; this is the updated version, which adds the word \"interim\". There is no thread continuation from Brecka himself.)"
+  },
+  {
+   "id": "johnson-sauna-60-seconds",
+   "topic": "johnson",
+   "date": "2026-10-29T16:48:30Z",
+   "url": "https://x.com/bryan_johnson/status/2115848260552413677",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: כל מה שלמדתי על סאונה ב-60 שניות",
+    "summary": "ג'ונסון העלה סרטון קצר (כ-53 שניות) שבו הוא מסכם את מה שלמד על שימוש בסאונה."
+   },
+   "en": {
+    "title": "Bryan Johnson: everything I've learned about sauna in 60 seconds",
+    "summary": "Johnson posted a short video (about 53 seconds) summing up what he has learned about using the sauna."
+   },
+   "full_he": "\"כל מה שלמדתי על סאונה ב-60 שניות\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"everything I've learned about sauna in 60 seconds\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "kraken-future-trades-24-7-xstocks",
+   "topic": "kraken",
+   "date": "2026-10-29T17:02:09Z",
+   "url": "https://x.com/krakenfx/status/2115851695330594860",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: \"העתיד נסחר 24/7\" – יותר מחצי ממסחר ה-xStocks מחוץ לשעות הבורסה",
+    "summary": "קראקן ציטטה את xStocks: יותר מ-50% מנפח המסחר במניות המטוקנות נעשה מחוץ לשעות המסחר הרגילות, ומאז שבוע שעבר נרשמו יותר מ-1,000 מניות כאלה."
+   },
+   "en": {
+    "title": "Kraken: \"The future trades 24/7\" – over half of xStocks volume is after hours",
+    "summary": "Kraken quoted xStocks: more than 50% of tokenized-stock volume now trades outside traditional hours, with 1,000+ xStocks listed since last week."
+   },
+   "full_he": "\"העתיד נסחר 24/7\"\n\nהפוסט שהם ציטטו (@xStocksFi):\n\n\"הביקוש לשווקים שפתוחים 24/7 גדל בקראקן.\n\nיותר מ-50% מנפח המסחר ב-xStocks נעשה עכשיו מחוץ לשעות המסחר המסורתיות.\n\nעם יותר מ-1,000 מניות xStocks שנרשמו למסחר מאז שבוע שעבר, הגישה לשווקים הגלובליים מגיעה עכשיו רחוק עוד יותר, למיליוני אנשים בעולם.\"\n\nבפוסט המצוטט יש גם סרטון קצר, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"The future trades 24/7\"\n\nThe quoted post (@xStocksFi):\n\n\"Demand for 24/7 markets is growing on Kraken.\n\nOver 50% of xStocks volume now trades outside traditional hours.\n\nWith 1,000+ xStocks listed since last week, global market access now reaches even further to millions worldwide.\"\n\nThe quoted post also has a short video, so there's no more text to show."
+  },
+  {
+   "id": "solana-breakpoint-2026-speakers-london",
+   "topic": "solana",
+   "date": "2026-10-29T16:34:49Z",
+   "url": "https://x.com/solana/status/2115844818454892688",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה חושפת עוד דוברים לכנס Breakpoint 2026 בלונדון",
+    "summary": "הלוואות, קלפי אספנות, רובוטיקה, פוקר ונכסים בנקאיים מטוקנים – כולם יעלו לבמה בכנס הדגל של סולאנה בלונדון, 15–17 בנובמבר. בין הדוברים: נשיאת קרן סולאנה לילי ליו, מי שהיה ה-CISO הראשון של טוויטר, ומנחה שידורי ה-WSOP."
+   },
+   "en": {
+    "title": "Solana confirms more Breakpoint 2026 speakers in London",
+    "summary": "Lending, trading cards, robotics, poker and tokenized bank assets all head to Solana's flagship event in London, Nov 15–17. Speakers include Solana Foundation president Lily Liu, Twitter's first CISO and the voice of the WSOP broadcast."
+   },
+   "full_he": "עוד דוברים אושרו ל-Breakpoint 2026.\n\nהלוואות, קלפי אספנות, רובוטיקה, פוקר ונכסים בנקאיים מטוקנים – כולם רצים על סולאנה וכולם יעלו לבמת Breakpoint בלונדון בנובמבר.\n\nבהמשך השרשור, סולאנה מציגה את הדוברים:\n\n• Breakpoint נפתח עם לילי (@calilyliu), נשיאת קרן סולאנה, שהשנה טוענת ששוק ההון של האינטרנט יהפוך לשוק ההון הגדול בעולם. היא תקבל את כולם בלונדון ב-16 בנובמבר.\n• אבטחת שווקים בעידן הבינה המלאכותית והקוונטים: @_mwc היה ה-CISO (מנהל אבטחת המידע) הראשון של טוויטר וניהל את האבטחה במוזילה. ביולי הוא הפך ל-CISO הראשון של קרן סולאנה.\n• הלוואות בריבית קבועה, עכשיו ב-Kamino: מייקל וייס הפך למנכ\"ל @kamino בספטמבר. היצע המניות המטוקנות ב-Kamino Lend גדל פי 15 בערך בתוך שנה, לכ-50 מיליון דולר.\n• עשור של בניית תשתיות שוק לפיננסים מפוקחים ב-R3, ועכשיו הבאת נכסי בלו-צ'יפ לסולאנה עם Corda: טוד מקדונלד (@mcdtv), ממייסדי R3 ונשיא קרן Corda, יגיע ל-Breakpoint בלונדון, 15–17 בנובמבר.\n• מבורות המסחר של שיקגו לשווקים על הבלוקצ'יין: ג'ורג' רוהאנה הוא שותף ב-PEAK6 Investments. כמנכ\"ל OptionsHouse הוא הגדיל אותה מ-5,000 ליותר מ-90,000 חשבונות פעילים.\n• ביום ראשון אחד ביולי, מניות RoboStrategy נסחרו יותר על סולאנה מאשר בנאסד\"ק למחרת. @JacklouisP היה עשור מייסד ומנהל בתחום הרובוטיקה לפני שהצטרף ל-@RoboStrategy, קרן שמשקיעה בחברות פרטיות כמו Figure AI. הוא ידבר על רובוטיקה.\n• קלפי אספנות מדורגים, מאוחסנים בכספת במונטנה ונסחרים על הבלוקצ'יין: @TuomHolmberg ייסד את @Collector_Crypt, שהפכה לטוקנים יותר מ-130,000 קלפים מדורגים מהכספת המבוטחת שלה ועברה מיליארד דולר בהכנסות ברוטו. בספטמבר נמכר שם קלף צ'אריזרד מהדורה ראשונה ב-825,000 דולר.\n• הקול של סדרת הפוקר העולמית מגיע ל-Breakpoint: @jeffplatt הנחה את שידור ה-WSOP של 2026, ויצטרף לאלוף ה-Main Event‏ @LukeJu22 בלונדון כדי לנתח את הידיים שהכריעו אותו.\n\nלסיום: Breakpoint הוא האירוע השנתי המרכזי של סולאנה, שמכנס את המובילים, הבונים והמוסדות שמניעים את \"מחזור-העל של הטוקנים\". השנה הוא מגיע ללונדון, מקום הולדתם של הפיננסים המודרניים. הכרטיסים כבר במכירה.",
+   "full_en": "More Breakpoint 2026 speakers are confirmed.\n\nLending, trading cards, robotics, poker and tokenized bank assets, all running on Solana and all on the Breakpoint stage in London this November.\n\nIn the rest of the thread, Solana introduces the speakers:\n\n• Breakpoint opens with Lily. @calilyliu, President of Solana Foundation, has spent this year making the case that the internet capital market will become the largest capital market in the world. She welcomes everyone to London on 16 November.\n• Securing markets in the age of AI and quantum. @_mwc was Twitter's first CISO and ran security at Mozilla. In July he became Solana Foundation's first Chief Information Security Officer.\n• Fixed-rate loans, now on Kamino. Michael Weisz became CEO of @kamino in September. Tokenized stock supply on Kamino Lend has grown about 15x in a year, to roughly $50M.\n• A decade building market infrastructure for regulated finance at @inside_r3. Now bringing blue chip assets to Solana with @Cordaxyz. Todd McDonald @mcdtv, R3 Co-Founder and President of the Corda Foundation, joins at Breakpoint in London, 15-17 November.\n• From the Chicago trading pits to onchain markets. George Ruhana is a Partner at PEAK6 Investments. As CEO of OptionsHouse, he grew it from 5,000 to 90,000+ active accounts.\n• One Sunday in July, RoboStrategy shares traded more on Solana than on Nasdaq the next day. @JacklouisP spent a decade as a robotics founder and operator before joining @RoboStrategy, a fund backing private companies like Figure AI. He's at Breakpoint to talk robotics.\n• Graded trading cards, vaulted in Montana, traded onchain. @TuomHolmberg co-founded @Collector_Crypt, which has tokenized 130,000+ graded cards from its insured vault and passed $1B in gross revenue. In September, a 1st Edition Charizard sold there for $825,000.\n• The voice of the World Series of Poker is coming to Breakpoint. @jeffplatt hosted the 2026 @WSOP broadcast, and joins Main Event champion @LukeJu22 in London to break down the hands that won it.\n\nTo close: Breakpoint is Solana's flagship yearly event, gathering the leaders, builders and institutions driving the token supercycle. This year, it comes to London, the birthplace of modern finance. Tickets are on sale."
+  },
+  {
+   "id": "medicalmedium-live-baked-hummus",
+   "topic": "medicalmedium",
+   "date": "2026-10-29T17:09:05Z",
+   "url": "https://x.com/MedicalMedium/status/2115853439691313191",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום בשידור חי: מכין חומוס אפוי ועונה על שאלות",
+    "summary": "אנתוני וויליאם פתח שידור חי ב-X בשם \"Making Baked Hummus And Answering Your Questions\" – הכנת חומוס אפוי ומענה לשאלות הצופים."
+   },
+   "en": {
+    "title": "Medical Medium live: making baked hummus and answering questions",
+    "summary": "Anthony William started a live X broadcast titled \"Making Baked Hummus And Answering Your Questions\"."
+   },
+   "full_he": "הפוסט הוא קישור לשידור חי ב-X בשם \"Making Baked Hummus And Answering Your Questions\" (מכינים חומוס אפוי ועונים על השאלות שלכם).\n\nהתוכן הוא שידור וידאו, ולכן אין עוד טקסט להציג.",
+   "full_en": "The post is a link to a live X broadcast titled \"Making Baked Hummus And Answering Your Questions\".\n\nThe content is a video broadcast, so there's no more text to show."
+  },
   {
    "id": "brecka-menopause-marriage-sage-elmi",
    "topic": "brecka",
@@ -6803,42 +6888,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "pod-brecka-586f1f0dcf",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Ultimate Human",
-   "date": "2026-10-22T07:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/why-cutting-processed-food-beats-keto-and-carnivore/id1709740887?i=1000797579038",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "למה ויתור על מזון מעובד עדיף על קיטו וקרניבור – דיימונד והת'ר ג'ון",
-    "summary": "דיימונד ג'ון ואשתו הת'ר משוחחים עם גארי ברקה על ההרגלים היומיים שלהם. לדברי ברקה, מה שמאריך חיים הוא לא קיטו או קרניבור אלא ויתור על מזון מעובד; הם מדברים גם על מדדי סוכר, צום, גן ה-COMT וניקוי טפילים."
-   },
-   "en": {
-    "title": "Why Cutting Processed Food Beats Keto and Carnivore - Daymond & Heather John",
-    "summary": "Daymond and Heather John talk with Gary Brecka about their daily habits. Brecka says it isn't keto or carnivore that extends life but cutting processed food; they also cover blood sugar markers, fasting, the COMT gene and a parasite cleanse."
-   },
-   "full_he": "דיימונד ג'ון והת'ר ג'ון יושבים עם גארי ברקה ומדברים על ההרגלים היומיים שמאחורי איך שהם מרגישים. לדברי ברקה, מה שמאריך חיים הוא לא קיטו או קרניבור אלא ויתור על מזון מעובד. הם מדברים גם על מדדי סוכר בדם כמו גלוקוז, A1C ואינסולין, למה רעב בצום מגיע בגלים של 20 דקות, גן ה-COMT \"של הדאגנים\", מאצ'ה, והסיפור של הת'ר על ניקוי טפילים. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: איך הם הכירו את גארי\n• 01:11 — נפילות אנרגיה ב-3 אחה\"צ וטיפול החמצן הראשון\n• 04:27 — דלקת בדרגה נמוכה, \"חמשת הגדולים\"\n• 05:20 — גירוד בלילה וניקוי הטפילים של הת'ר\n• 08:37 — רפואת שיניים ביולוגית וניתוח קוויטציה\n• 10:29 — תסמינים יומיומיים ויסודות ניקוי רעלים\n• 12:34 — הבדיקה הרפואית למנהלים והדחיפה של הת'ר\n• 15:53 — צום וגלי רעב של 20 דקות\n• 19:22 — גן ה-COMT וגיל המעבר\n• 22:32 — לתמוך בבן או בת הזוג במסע הבריאותי\n• 23:32 — עייפות חיסונית ומזון מעובד\n• 26:38 — בדיקת רעלים ופלסטיק יומיומי\n• 29:29 — סוכר בדם והמלחמה בשומן\n• 33:17 — חלב שיבולת שועל, מאצ'ה ו-COMT\n• 38:46 — מרכזי אריכות ימים וקהילה\n• 44:28 — CEO Access ובריאות בארגונים\n• 46:26 — מה זה להיות Ultimate Human\n\nהבהרות מתוך הפרק:\n• הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך.\n• 09:19: מפות \"שן-איבר\" (מרידיאנים) אינן כלי אבחון מוכח. זו חוויה של אדם אחד. נימול, כאב בחזה או בכתף צריכים בדיקה של רופא.\n• 15:53: צום מים של כמה ימים אינו בטוח לכולם, כולל בהריון או הנקה, בסוכרת, בנטילת תרופות לסוכר או ללחץ דם, או עם היסטוריה של הפרעות אכילה. יש להתייעץ עם רופא לפני צום של יותר מ-24 שעות.\n• 22:47: טיפולי סינון דם כמו INUSpheresis אינם מאושרים על ידי ה-FDA לניקוי רעלים או לאריכות ימים. חוקי \"הזכות לנסות\" משתנים ממדינה למדינה ובדרך כלל חלים על חולים במחלה קשה.\n• 29:56: סוכרת ואיזון סוכר לקוי מעלים את הסיכון לדמנציה ולמצבים אחרים, אבל הם רק אחד מגורמי סיכון רבים.\n• לגארי ברקה, בעלי Ultimate Human LLC, יש אינטרס כלכלי במוצרים של צד שלישי שהוא מקדם, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.",
-   "full_en": "Daymond John and Heather John sit down with Gary Brecka to talk about the daily habits behind how they feel. Gary says it isn't keto or carnivore that extends life, it's cutting out processed food. They also get into blood sugar markers like glucose, A1C and insulin, why fasting hunger comes in 20 minute waves, the COMT worrier gene, matcha, and Heather's parasite cleanse story. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: How they met Gary\n• 01:11 — 3 PM crashes and first oxygen session\n• 04:27 — Low grade inflammation, big five\n• 05:20 — Night itching and Heather's parasite cleanse\n• 08:37 — Biological dentistry and cavitation surgery\n• 10:29 — Everyday symptoms and detox basics\n• 12:34 — The executive physical and Heather's push\n• 15:53 — Fasting and 20 minute hunger waves\n• 19:22 — The COMT worrier gene and menopause\n• 22:32 — Supporting a partner's health journey\n• 23:32 — Immune fatigue and processed food\n• 26:38 — Toxin test and everyday plastics\n• 29:29 — Blood sugar and the war on fat\n• 33:17 — Oat milk, matcha and COMT\n• 38:46 — Longevity centers and community\n• 44:28 — CEO Access and corporate wellness\n• 46:26 — What it means to be an Ultimate Human\n\nThe episode's own disclaimers:\n• This podcast is for informational purposes only and does not provide medical advice. Always consult a licensed healthcare professional.\n• 09:19: Tooth-to-organ meridian charts are not a validated diagnostic tool. This is one person's experience. Numbness, chest or shoulder pain should be evaluated by a physician.\n• 15:53: Multi-day water fasting is not safe for everyone, including people who are pregnant or breastfeeding, have diabetes or take blood-sugar or blood-pressure medication, or have a history of eating disorders. Check with your physician before fasting longer than 24 hours.\n• 22:47: Blood-filtration therapies such as INUSpheresis are not FDA-approved for detoxification or longevity. Right-to-try laws vary by state and generally apply to people with serious illness.\n• 29:56: Diabetes and poor blood-sugar control raise the risk of dementia and other conditions, but they are just one of many risk factors.\n• Gary Brecka owns Ultimate Human LLC, which promotes third-party products in which he has an economic interest, so statements on the podcast may be considered promotional."
-  },
-  {
-   "id": "ardis-mold-fungi",
-   "topic": "ardis",
-   "date": "2026-10-21T12:00:00Z",
-   "url": "https://thedrardisshow.com/episode-10-21-2026-how-fungi-and-molds-destroy-lives",
-   "source": "The Dr. Ardis Show",
-   "he": {
-    "title": "ד\"ר ארדיס: איך פטריות ועובש הורסים חיים",
-    "summary": "בפרק השבועי ארדיס מסביר את ההבדל בין עובש לפטריות ואת הסכנה של מיקוטוקסינים כמו אפלטוקסין, ומציג את 'דיאטת האנטי־קנדידה' כצעד ראשון. הוא מביא גם מחקרי מעבדה ובעלי חיים על שמן קצח, נחושת, ליקוריץ ופקטין. אלה מחקרים מוקדמים, ובפרק מקודמים גם מוצרים שלו."
-   },
-   "en": {
-    "title": "Dr. Ardis: how fungi and mold destroy lives",
-    "summary": "In his weekly episode, Ardis explains mold vs. fungi and the danger of mycotoxins like aflatoxin, presenting an anti-Candida diet as a first step. He cites lab and animal studies on black seed oil, copper, licorice and pectin. These are early studies, and the episode also promotes his own products."
-   },
-   "full_he": "מתוך דף הפרק (The Dr. Ardis Show, 21 באוקטובר 2026), \"איך פטריות ועובש הורסים חיים\":\n• ד\"ר בריאן ארדיס מסביר את ההבדל בין עובש לפטריות, איך עובש מתפשט בבתים ובמזון, ולמה מיקוטוקסינים חשובים. הוא מצטט את ההנחיות של משרד החקלאות האמריקאי לגבי מזון עם עובש, ואת ההערכה של ארגון המזון והחקלאות של האו\"ם ש־25% מגידולי המזון בעולם מושפעים ממיקוטוקסינים.\n• הוא מתמקד באפלטוקסין, מיקוטוקסין מסרטן שנמצא בתירס מספוא ובבוטנים, ובספר \"מחקר סין\" של ד\"ר ט' קולין קמפבל.\n• הוא סוקר החזרות אחרונות של עוגות חטיף, מזון תינוקות, רסק תפוחים ומזון לכלבים בגלל עובש ורעלני עובש.\n• הצעד הראשון שלו לגדילת יתר של פטריות הוא דיאטה נגד קנדידה: דלת סוכר, נוגדת דלקת, מבוססת על ירקות לא עמילניים, פירות דלי סוכר, חלבון איכותי ומזון מותסס.\n• מחקרים שהוא מצטט: תימוקינון משמן קצח (Nigella sativa) עיכב שמרים שמקלקלים מוצרי חלב טוב יותר מחומרים משמרים נפוצים (במעבדה); שמן קצח ותמצית תמרים הפחיתו את הנזק של אפלטוקסין לכבד ולכליות (בחולדות); תרכובות נחושת נגד 21 זנים מבודדים של קנדידה והביופילם שלהם; תמצית שורש ליקריץ עיכבה את כל 19 זני הקנדידה שנבדקו; פקטין תפוחים כסיב שקושר פסולת.\n• הפרק מקדם מוצרים של החברה שלו (Nature Wins), כמו BioDefense ו־Bio-Active Copper. רוב הראיות מגיעות ממחקרי מעבדה ובעלי חיים.",
-   "full_en": "From the episode page (The Dr. Ardis Show, Oct 21, 2026), \"How Fungi and Mold Destroy Lives\":\n• Dr. Bryan Ardis explains the difference between mold and fungi, how mold spreads through homes and food, and why mycotoxins matter. He cites USDA guidance on moldy food and the UN FAO estimate that 25% of the world's food crops are affected by mycotoxins.\n• His focus is aflatoxin, a carcinogenic mycotoxin found in field corn and peanuts, and the book \"The China Study\" by Dr. T. Colin Campbell.\n• He reviews recent recalls of snack cakes, baby food, applesauce and dog food over mold and mold toxins.\n• His first step for fungal overgrowth is the anti-Candida diet: low in sugar, anti-inflammatory, built on non-starchy vegetables, low-sugar fruit, quality protein and fermented foods.\n• Studies he cites: thymoquinone from black seed oil (Nigella sativa) inhibited dairy spoilage yeasts better than common preservatives (lab); Nigella sativa oil and date extract reduced aflatoxin liver and kidney damage (rats); copper complexes against 21 Candida isolates and their biofilms; licorice root extract inhibited all 19 Candida strains tested; apple pectin as a fiber that binds waste.\n• The episode promotes products from his company (Nature Wins), such as BioDefense and Bio-Active Copper. Most of the evidence comes from lab and animal studies."
   }
  ]
 }
