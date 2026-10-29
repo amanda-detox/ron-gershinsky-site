@@ -145,7 +145,7 @@
         dirty = true;
       }
       seeded = true;
-      return importShop().then(function (imp) {
+      return Promise.resolve(undoImport()).then(function (imp) {
       if (imp) dirty = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
@@ -252,46 +252,22 @@
     inp.value = v == null ? "" : String(v); sumNow(); return true;
   }
 
-  /* ---------- one-time import of the Purchasify lists (merge of the two apps) ----------
-     Runs on the first successful sync after this version, on any device where Ron is signed in. It READS Purchasify's own rows
-     (app "shopping": "items" + "cats") and COPIES them into Listify; Purchasify's data is never changed or deleted.
-     Ids are fixed ("sh-<old id>", category "sh-<old cat>"), so running it on two devices gives the same records (no duplicates).
-     Before writing, the Purchasify copy that was read is saved on this device: rg-myideas-import-bak:<user id>.
-     A marker record { id: "m:shopimport", type: "meta", done: 1 } keeps it from running again. */
-  var SHOP_BUILTIN = { main: { he: "קניות", pos: 0 }, tea: { he: "תה", pos: 1 } };
-  function importShop() {
-    if (!A || items["m:shopimport"]) return Promise.resolve(false);
-    return Promise.all([A.get("shopping", "items"), A.get("shopping", "cats")]).then(function (r) {
-      if (items["m:shopimport"]) return false;
-      var si = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
-      var sc = (r[1] && r[1].cats && typeof r[1].cats === "object") ? r[1].cats : {};
-      try { localStorage.setItem("rg-myideas-import-bak:" + uid, JSON.stringify({ t: Date.now(), items: si, cats: sc })); } catch (e) {}
-      var map = {}, k, list = [];
-      for (k in SHOP_BUILTIN) map[k] = { cat: k, name: SHOP_BUILTIN[k].he, pos: SHOP_BUILTIN[k].pos, created: 0 };
-      for (k in sc) { var c = sc[k]; if (!c || c.deleted || c.type !== "cat" || typeof c.cat !== "string") continue;
-        var b = map[c.cat] || {}; map[c.cat] = { cat: c.cat, name: c.name || b.name || "…", pos: typeof c.pos === "number" ? c.pos : (b.pos || 0), created: c.created || 0, gone: c.gone }; }
-      for (k in map) if (!map[k].gone) list.push(map[k]);
-      list.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.cat < b.cat ? -1 : 1); });
-      var byCat = {}; list.forEach(function (c) { byCat[c.cat] = []; });
-      for (k in si) { var x = si[k]; if (!x || x.deleted || typeof x.text !== "string") continue;
-        var l = x.list || "main"; if (!byCat[l]) l = list.length ? list[0].cat : null; if (l) byCat[l].push(x); }
-      var base = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
-      list.forEach(function (c, n) {
-        var its = byCat[c.cat]; if (!its.length && c.cat in SHOP_BUILTIN && !sc["c:" + c.cat]) return; // an empty built-in list that Ron never used
-        var cid = "sh-" + c.cat;
-        if (!items["c:" + cid]) put({ id: "c:" + cid, type: "cat", cat: cid, name: c.name, kind: "task", pos: base + n, price: 1, created: at, at: now() });
-        its.sort(function (a, b) { var p = typeof a.ord === "number" ? a.ord : (a.created || 0), q = typeof b.ord === "number" ? b.ord : (b.created || 0); return (p - q) || ((a.created || 0) - (b.created || 0)); });
-        its.forEach(function (x, i) {
-          var id = "sh-" + x.id; if (items[id]) return;
-          var y = { id: id, sec: cid, text: clean(x.text, 200) || "…", done: !!x.done, order: i + 1, created: x.created || at, at: now() };
-          if (typeof x.price === "number" && isFinite(x.price)) y.price = x.price;
-          if (typeof x.dord === "number" && isFinite(x.dord)) y.dord = x.dord;
-          put(y);
-        });
-      });
-      put({ id: "m:shopimport", type: "meta", done: 1, from: Object.keys(si).length, at: now() });
-      return true;
-    }, function () { return false; }); // could not read Purchasify now: try again on the next sync
+  /* ---------- one-time undo of the v13 Purchasify import (v14) ----------
+     v13 copied Purchasify into Listify with fixed ids: lists "c:sh-<cat>" (cat "sh-<cat>") and items "sh-<id>", plus the marker
+     "m:shopimport". This removes every list whose cat starts with "sh-" (with everything in it) and any leftover "sh-" item.
+     It only touches Listify's own records (app "myideas"); Purchasify (app "shopping") is never read or written here.
+     Before deleting, the whole Listify copy is saved on this device: rg-myideas-undo-bak:<user id>.
+     A marker { id: "m:shopundo" } keeps it from running again. */
+  function undoImport() {
+    if (!items["m:shopimport"] || items["m:shopundo"]) return false;
+    try { localStorage.setItem("rg-myideas-undo-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) { return false; }
+    bulkOk = Date.now() + 60000;
+    var k, x, cs = [];
+    for (k in items) { x = items[k]; if (x && x.type === "cat" && typeof x.cat === "string" && x.cat.indexOf("sh-") === 0 && !x.gone) cs.push(x.cat); }
+    cs.forEach(function (cid) { delCat(cid); });
+    for (k in items) { x = items[k]; if (k.indexOf("sh-") === 0 && x && !x.deleted) del(k); }
+    put({ id: "m:shopundo", type: "meta", done: 1, lists: cs.length, at: now() });
+    return true;
   }
 
   /* ---------- render ---------- */
