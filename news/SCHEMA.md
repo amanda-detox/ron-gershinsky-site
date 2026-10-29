@@ -70,8 +70,8 @@ one offline copy). A routine that runs every 47 minutes, 24/7, only has to overw
 ## Current topic ids
 Podcasts (first in `topics[]`): `podcasts` → `{ "id": "podcasts", "group": "podcast", "he": "🎙️ פודקאסטים", "en": "🎙️ Podcasts" }`.
 People: `musk`, `cook`, `huang`, `durov`, `johnson`, `brecka`, `dispenza`, `asprey`, `mikhaila`, `lipton`,
-`ardis`, `mccullough`, `mercola`, `medicalmedium`, `refaeli`.
-Companies/topics: `tesla`, `spacex`, `grok`, `grokbot`, `apple`, `kraken`, `starterstory`.
+`ardis`, `mccullough`, `mercola`, `medicalmedium`, `refaeli`, `ternus` (John Ternus, Apple CEO, he "ג'ון טרנוס"; no X account, web/news sources only), `emmawatson` (Emma Watson, X @EmmaWatson, he "אמה ווטסון"), `emilywatson` (Emily Watson, actress, he "אמילי ווטסון"; no X account, web/news sources only).
+Companies/topics: `tesla`, `spacex`, `grok`, `grokbot`, `apple`, `kraken`, `solana` (X @solana, he "סולאנה"), `starterstory`.
 
 ## Podcasts
 Ron wants to see **new episodes** of the podcasts he follows, so he can decide whether to ask for a summary of an episode.

@@ -27,15 +27,18 @@ Ron's Updatify topic list. This file is the source of truth for both Ron and Ama
 | ספייסאקס | SpaceX | spacex | ✅ |
 | גרוק | Grok | grok | ✅ |
 | בוט | Grok Bot | grokbot | ✅ |
+| ג'ון טרנוס (מנכ"ל אפל) | John Ternus (Apple CEO) | ternus | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 | אפל | Apple | apple | ✅ |
 | קראקן | Kraken | kraken | ✅ |
-| סולאנה | Solana | solana | ⏳ עוד לא באפליקציה · not in the app yet |
+| סולאנה | Solana (@solana) | solana | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 | סטארטר סטורי | Starter Story | starterstory | ✅ |
 
 ## ⭐ אנשים · People
 | עברית | English | id | סטטוס · Status |
 |---|---|---|---|
 | בר רפאלי | Bar Refaeli | refaeli | ✅ |
+| אמילי ווטסון | Emily Watson (השחקנית · actress) | emilywatson | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
+| אמה ווטסון | Emma Watson (@EmmaWatson) | emmawatson | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 
 ## 🎙️ פודקאסטים · Podcasts
 | תוכנית · Show | id |
@@ -53,10 +56,3 @@ These are already in the app but were missing from Ron's list.
 | טים קוק (Apple) | Tim Cook | cook |
 | ד"ר מרקולה | Dr. Joseph Mercola | mercola |
 | ג'ורדן פיטרסון (פודקאסט) | Jordan B. Peterson (podcast) | jbp |
-
-## ❓ לבירור · Needs clarification
-| מה כתוב · As written | אפשרויות · Possible matches |
-|---|---|
-| ג'ון טראנוס | לא ברור למי הכוונה, וגם אין באפליקציה מקור כזה · Unclear who is meant, and the app has no such source |
-| אמילי ווטסון | Emily Watson (השחקנית · actress)? Emma Watson? Emily Ratajkowski? |
-| אמה כלשהי | Emma Watson? Emma Stone? Emma Roberts? |
