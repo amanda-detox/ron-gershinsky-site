@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T23:04:39+02:00",
+ "updated": "2026-10-29T23:59:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "johnson-young-stroke-risk-factors",
+   "topic": "johnson",
+   "date": "2026-10-29T21:04:00Z",
+   "url": "https://x.com/bryan_johnson/status/2115912558372626513",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: צעירים שעוברים שבץ מגיעים עם גוף של בן 60",
+    "summary": "ג'ונסון מצטט מחקר שלפיו בקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה גורמי סיכון לבבי־כלי דם או יותר עלה ב־50% בתוך שמונה שנים. לדבריו, האשמים הם לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון."
+   },
+   "en": {
+    "title": "Bryan Johnson: young stroke patients increasingly have the bodies of 60-year-olds",
+    "summary": "Johnson cites a study finding that among stroke patients aged 18–35, the share with 3+ major cardiovascular risk factors rose 50% in eight years. He names high blood pressure, high cholesterol, obesity and smoking as the culprits."
+   },
+   "full_he": "שבץ אצל צעירים נחשב פעם לאירוע נדיר ומקרי. מחקר חדש מצא שצעירים שעוברים שבץ מגיעים יותר ויותר עם גוף של בני 60.\n\nבקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה סימני אזהרה לבביים־כלי דם מרכזיים או יותר קפץ ב־50% בתוך שמונה שנים.\n\nהאשמים, לדבריו: לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון.\n\nבתמונה שצירף מופיע המחקר:\n• Neurology (כתב העת של האקדמיה האמריקאית לנוירולוגיה), 19 בפברואר 2025, כרך 104(6):e213447\n• הכותרת: מגמות לאורך זמן בעומס גורמי הסיכון של כלי הדם בקרב צעירים עם שבץ איסכמי – מרשם השבץ של פלורידה\n• החוקר הראשי: אהרון שוסקס (Aaron Shoskes) ועמיתיו\n\nבשרשור אין המשך מצד ג'ונסון.",
+   "full_en": "Strokes in young people used to be considered freak events. A new study found that young adults having strokes increasingly have the bodies of 60 yr olds.\n\nIn stroke patients aged 18–35, those with 3+ major cardiovascular warning signs jumped by 50% in eight years.\n\nThe culprits: high blood pressure, high cholesterol, obesity, and smoking.\n\nThe attached image shows the study:\n• Neurology (American Academy of Neurology), 2025 Feb 19;104(6):e213447\n• Title: Temporal Trends in Vascular Risk Factor Burden Among Young Adults With Ischemic Stroke – The Florida Stroke Registry\n• Lead author: Aaron Shoskes, with colleagues\n\nJohnson has no further posts in the thread."
+  },
+  {
+   "id": "grokbot-musk-no-free-tier",
+   "topic": "grokbot",
+   "date": "2026-10-29T21:39:56Z",
+   "url": "https://x.com/elonmusk/status/2115921600658735169",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: לגרוק בוט אין מסלול חינמי",
+    "summary": "מאסק הגיב לפוסט על הצמיחה המהירה של גרוק בוט (מעל 600 אלף משתמשים יומיים) והדגיש שכל המשתמשים האלה באים בלי מסלול חינמי."
+   },
+   "en": {
+    "title": "Musk: Grok Bot has no free tier",
+    "summary": "Musk quoted a post about Grok Bot's fast growth (over 600K daily active users) and pointed out that it has no free tier."
+   },
+   "full_he": "\"שווה לציין שלגרוק בוט אין מסלול חינמי.\"\n\nהפוסט שהוא ציטט (@XFreeze):\nגרוק בוט צומח בקצב מטורף.\n\nמספר המשתמשים הפעילים היומיים עלה 16 ימים ברציפות, רצף הצמיחה הארוך ביותר שלו מאז ההשקה.\n\nכמה מהר הוא צומח:\n• פחות מ־100 אלף משתמשים פעילים ביום בתחילת ספטמבר\n• יותר מ־600 אלף משתמשים פעילים ביום עד 26 באוקטובר\n• צמיחה של יותר פי 6 בפחות מחודשיים\n\nוזו רק ההתחלה.\n\nאותו פוסט ציטט בעצמו עדכון שלפיו נכון ל־26 באוקטובר, מספר המשתמשים היומיים של גרוק בוט עלה 16 ימים ברציפות, רצף הצמיחה הארוך ביותר עד כה.",
+   "full_en": "\"Worth noting that Grok Bot has no free tier.\"\n\nThe quoted post (@XFreeze):\nGrok Bot is growing at an absolutely insane pace.\n\nDaily active users have increased for 16 consecutive days, marking its longest growth streak since launch.\n\nHere's how fast it's growing:\n• Under 100K daily active users in early September\n• Over 600K daily active users by October 26\n• More than 6X growth in less than two months\n\nAnd this is only the beginning.\n\nThat post itself quoted an update saying that as of October 26, Grok Bot has grown in DAUs for 16 consecutive days, its longest growth streak to date."
+  },
   {
    "id": "spacex-anthropic-top-customer-q3",
    "topic": "spacex",
