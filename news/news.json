@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T16:54:37+02:00",
+ "updated": "2026-10-29T17:40:14+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-von-neumann-probes-larry-page",
+   "topic": "musk",
+   "date": "2026-10-29T15:19:12Z",
+   "url": "https://x.com/elonmusk/status/2115825787647496203",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: נצח בגדול אם נחקור את הגלקסיה עם בדיקות פון נוימן עד 2100",
+    "summary": "מאסק הגיב לסיפור של מוסטפא סולימאן, לפיו לארי פייג' אמר לו שעד סוף המאה הוא יחקור גלקסיות בראש בדיקת פון נוימן. לדברי מאסק, \"לארי פייג' אולי צודק, הוא חזה נכון הרבה דברים\"."
+   },
+   "en": {
+    "title": "Musk: we'd be winning if we explore the galaxy with Von Neumann probes by 2100",
+    "summary": "Musk quoted Mustafa Suleyman's story that Larry Page told him he'd be exploring galaxies at the head of a von Neumann probe by the end of the century. \"Larry Page might be right. He has correctly predicted many things,\" Musk wrote."
+   },
+   "full_he": "הציוויליזציה שלנו תנצח בצורה נפלאה אם נחקור את הגלקסיה עם בדיקות פון נוימן עד 2100!\n\nלארי פייג' אולי צודק. הוא חזה נכון הרבה דברים.\n\nהפוסט שהוא ציטט (Fireside Alpha):\n\nמוסטפא סולימאן ממיקרוסופט מספר שלארי פייג' אמר לו ב־SpaceX שעד סוף המאה הוא יחקור את הגלקסיות בראש בדיקת פון נוימן.\n\n\"כן, אני זוכר שב־2015 ישבתי בקפיטריה של SpaceX.\"\n\n\"וקיימנו את הישיבה הראשונה של ועדת האתיקה והבטיחות. כשמכרנו את DeepMind לגוגל, התנינו את הרכישה בכך שתהיה ועדת אתיקה ובטיחות עם נציגות עצמאית.\"\n\n\"גוגל הייתה צריכה להסכים – כלומר לארי, סרגיי ודייוויד דראמונד באותה תקופה – ואני, דמיס ושיין היינו צריכים להסכים יחד מי יהיו שלושת החברים העצמאיים. ובחרנו יחד באילון כאחד מהם.\"\n\n\"אין לי מושג אם זה השפיע על הקמת OpenAI או לא. אחר כך היה לנו מושב בוקר, וישבנו לארוחת צהריים, ואני ישבתי ליד לארי. ברור שהוא חשד בי, כי מבחינתו הייתי אחד מה'ספישיסטים' (מי שמעדיפים את המין האנושי).\"\n\n\"והוא אמר: 'מה שאתה לא מבין, מוסטפא, זה שעד סוף המאה אני אחקור את הגלקסיות בראש בדיקת פון נוימן' – בדיקת פון נוימן היא מעין רובוט שמניע את עצמו ואוסף אנרגיה מהחלל בזמן שהוא דוהר לאורך שנות אור.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Our civilization would be winning wondrously if we are exploring the galaxy with Von Neumann probes by 2100!\n\nLarry Page might be right. He has correctly predicted many things.\n\nThe quoted post (Fireside Alpha):\n\nMicrosoft's Mustafa Suleyman reveals Larry Page told him at SpaceX that by the end of the century he'd be exploring the galaxies at the head of a von Neumann probe.\n\n\"Yeah, I remember in 2015 being in the canteen at SpaceX.\"\n\n\"And we had our first meeting of the Ethics and Safety Board. So when we sold DeepMind to Google, we made it a condition of our acquisition that we would have an Ethics and Safety Board with independent representation on the board.\"\n\n\"One of those independent members, because Google had to agree, which was obviously Larry, Sergey, and David Drummond at the time. And then me, Demis, and Shane had to jointly agree who those three independents would be. And so we jointly picked Elon as one of them.\"\n\n\"No idea if that had an influence on the founding of OpenAI or not. But so then we had our morning session and we were sitting down for lunch and I was sitting next to Larry. You know, obviously he was suspicious of me as well because he was like, you know, you're one of those speciesists.\"\n\n\"And he said, you know, I think that what you don't understand, Mustafa, is that by the end of the century, I'm going to be exploring the galaxies at the head of a von Neumann probe, which means a von Neumann probe is a kind of self-propelling kind of robot that is able to gather energy from space as it's careening through the light years.\"\n\nThe rest of the quoted post is a video, so there's no more text to show."
+  },
+  {
+   "id": "musk-interesting-ice-tradexyz-druckenmiller",
+   "topic": "musk",
+   "date": "2026-10-29T15:08:10Z",
+   "url": "https://x.com/elonmusk/status/2115823011399938182",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק על ההשקעה של דרוקנמילר ב־trade[XYZ]: \"מעניין\"",
+    "summary": "מאסק ציטט את המשקיע סטן דרוקנמילר, שכתב שהוא משקיע ב־trade[XYZ], שמשתפת פעולה עם ICE (בעלת הבורסה של ניו יורק) כדי להביא לארה\"ב חוזים עתידיים פרפטואליים 24/7 על Hyperliquid."
+   },
+   "en": {
+    "title": "Musk on Druckenmiller's trade[XYZ] bet: \"Interesting\"",
+    "summary": "Musk quoted investor Stan Druckenmiller, who said he's invested in trade[XYZ] as it partners with ICE (owner of the NYSE) to bring 24/7 perpetual futures on Hyperliquid to the US."
+   },
+   "full_he": "מעניין\n\nהפוסט שהוא ציטט (סטן דרוקנמילר):\n\nאני נרגש להיות משקיע ב־trade(xyz), שמשתפת פעולה עם ICE כדי להביא לארצות הברית מסחר 24/7 בחוזים עתידיים פרפטואליים על Hyperliquid. כמשתתף בשוק, אני מצפה להשתמש במוצר החדשני שלהם כדי לשפר את תהליך ההשקעה שלי.\n\nהרקע (מתוך סיפור החדשות ב־X):\n\n• ICE, הבעלים של הבורסה לניירות ערך של ניו יורק, משקיעה ב־trade[XYZ] כדי להשיק זירה מוסדרת בארה\"ב שמבוססת על הטכנולוגיה של Hyperliquid, לחוזים פרפטואליים על מניות, מדדים, סחורות, מט\"ח וקריפטו.\n• השותפות משלבת את המומחיות של ICE בסליקה עם עיצוב השוק של trade[XYZ], ומיועדת לסוחרים פרטיים דרך ברוקרים, כשהשווקים הגלובליים הקיימים נשארים נפרדים.\n• ההשקה עדיין תלויה באישורים רגולטוריים.\n• החדשות הקפיצו בחדות את מטבע HYPE של Hyperliquid.",
+   "full_en": "Interesting\n\nThe quoted post (Stan Druckenmiller):\n\nI am excited to be an investor in trade(xyz) as they partner with ICE to bring 24/7 perpetual futures on Hyperliquid to the United States. As a market participant, I am looking forward to using their innovative product to enhance my investment process.\n\nBackground (from the X news story):\n\n• Intercontinental Exchange, owner of the New York Stock Exchange, is investing in trade[XYZ] to launch a regulated US venue using Hyperliquid's onchain technology for perpetual futures on equities, indices, commodities, forex and crypto.\n• The partnership combines ICE's clearing expertise with trade[XYZ]'s market design, aiming to serve retail traders through brokers while keeping existing global markets separate.\n• The launch is still pending regulatory approval.\n• The news drove sharp gains in Hyperliquid's HYPE token."
+  },
+  {
+   "id": "asprey-plant-protein-liver-ammonia",
+   "topic": "asprey",
+   "date": "2026-10-29T15:00:24Z",
+   "url": "https://x.com/daveasprey/status/2115821055604379905",
+   "source": "X · @daveasprey",
+   "he": {
+    "title": "דייב אספריי: חלבון מהצומח עלול להעמיס על הכבד",
+    "summary": "אספריי מצטט מחקר על עכברים מ־2026: חלבון צמחי מדגנים הוביל לפי 2.6 יותר אמוניה בדם ול־22% פחות אוריאה לעומת חלבון חלב. לדבריו מקור החלבון חשוב, אבל הוא עצמו מדגיש שזה מחקר בעכברים ושעדיין אין נתונים בבני אדם."
+   },
+   "en": {
+    "title": "Dave Asprey: plant protein may burden your liver",
+    "summary": "Asprey cites a 2026 mouse study in which cereal-based plant protein led to 2.6x more blood ammonia and 22% lower urea than dairy protein. He says protein source may matter, while noting it was a mouse study and human data is still needed."
+   },
+   "full_he": "הכבד שלך צריך לעבד את החנקן מהחלבון שאתה אוכל.\n\nמחקר בעכברים מ־2026 מצא שחלבון צמחי מבוסס דגנים הוביל לפי 2.6 יותר אמוניה בדם ולרמות אוריאה נמוכות ב־22% לעומת חלבון חלב, אחרי צום קצר.\n\nלכבד יש תפקיד מרכזי בפינוי אמוניה. לדבריו, ייתכן שמקור החלבון חשוב יותר ממה שאתה חושב.\n\nזה היה מחקר בעכברים. עדיין צריך נתונים בבני אדם.\n\nהמחקר: Zhou et al., Molecular Metabolism, 2026.\n\nמה כתוב בתמונות:\n\n• תמונה 1: \"טבעונים אוהבים להגיד לך שצמחים מספקים את כל החלבון שלך. הכבד שלך אולי לא מסכים.\" (לצד צלחת ירקות צלויים וצלחת סטייק.)\n• תמונה 2: חוקרים בז'נבה האכילו עכברים בחלבון חלב או בחלבון צמחי מבוסס דגנים במשך 4 ימים. עכברים על חלבון צמחי היו עם פי 2.6 יותר אמוניה בדם אחרי צום קצר (אמוניה היא תוצר פסולת שהכבד צריך לפנות). רמות האוריאה בדמם היו נמוכות ב־22% (אוריאה עוזרת לגוף להיפטר בבטחה מעודף חנקן). עכברים על חלבון חלב ייצרו יותר GDH, אנזים כבד שמעורב בטיפול באמוניה ובחילוף החומרים של חלבון.\n• תמונה 3: \"זה היה מחקר בעכברים. אני אוכל סטייק ממרעה עד שיגיעו הנתונים בבני אדם.\" המחקר: Zhou et al., Molecular Metabolism, 2026, doi.org/10.1016/j.molmet.2026.102435.\n\nהערה: מדובר בממצא ראשוני בעכברים שלא נבדק בבני אדם; זו טענה של אספריי ולא המלצה תזונתית.",
+   "full_en": "Your liver has to process the nitrogen from the protein you eat.\n\nA 2026 mouse study found that cereal based plant protein led to 2.6 times more blood ammonia and 22% lower urea levels than dairy protein after a short fast.\n\nThe liver plays a key role in clearing ammonia. Protein source may matter more than you think.\n\nThis was a mouse study. Human data is still needed.\n\nStudy: Zhou et al., Molecular Metabolism, 2026.\n\nWhat the images say:\n\n• Image 1: \"Vegans love to tell you plants cover all your protein. Your liver may disagree.\" (Next to a plate of grilled vegetables and a plate of steak.)\n• Image 2: Researchers in Geneva fed mice either dairy protein or cereal-based plant protein for 4 days. Mice on plant protein had 2.6x more ammonia in their blood after a short fast (ammonia is a waste product your liver has to clear). Their blood urea levels were 22% lower (urea helps your body safely get rid of excess nitrogen). Mice on dairy protein made more GDH, a liver enzyme involved in ammonia handling and protein metabolism.\n• Image 3: \"This was a mouse study. I eat grass-fed steak until the human data comes in.\" Study: Zhou et al., Molecular Metabolism, 2026, doi.org/10.1016/j.molmet.2026.102435.\n\nNote: this is a preliminary mouse finding not yet tested in humans; it's Asprey's claim, not dietary advice."
+  },
+  {
+   "id": "durov-fsb-telegram-dating-bot-arrests",
+   "topic": "durov",
+   "date": "2026-10-29T11:10:00Z",
+   "url": "https://meduza.io/en/news/2026/10/29/russia-says-it-detained-teenagers-recruited-by-ukrainian-intelligence-through-telegram-dating-bot",
+   "source": "Meduza",
+   "he": {
+    "title": "רוסיה: בני נוער גויסו לחבלה דרך בוט היכרויות בטלגרם",
+    "summary": "ה־FSB וועדת החקירות של רוסיה טוענים שהמודיעין האוקראיני גייס צעירים רוסים להצתות דרך בוט ההיכרויות \"דאיווינצ'יק\" בטלגרם. בסוף יולי האשימה רוסיה את פאבל דורוב בסיוע לטרור, בין היתר משום שטלגרם לא הסירה את הבוטים האלה."
+   },
+   "en": {
+    "title": "Russia says teens were recruited for sabotage via a Telegram dating bot",
+    "summary": "Russia's FSB and Investigative Committee claim Ukrainian intelligence recruited young Russians for arson through the Telegram dating bot Leonardo Daivinchik. In late July Russia accused Pavel Durov of aiding terrorism, partly because Telegram didn't remove such bots."
+   },
+   "full_he": "לפי ועדת החקירות של רוסיה, הרשויות עצרו בין אוגוסט לאוקטובר כמה צעירים וצעירות במוסקבה, בסנט פטרבורג, במחוז לנינגרד ובאזורים אחרים, אחרי שלטענתן שירותי המודיעין האוקראיניים גייסו אותם לפעולות חבלה דרך בוט ההיכרויות של טלגרם \"Leonardo Daivinchik\".\n\n• דוברת ועדת החקירות, סבטלנה פטרנקו, תיארה כמה מקרים: נער שקנה נוזלים דליקים והצית כמה תחנות דלק, הצתת רכבי משטרה והצתת ארון שנאים. כל העצורים מואשמים לפי סעיף הטרור בחוק הפלילי הרוסי.\n• ה־FSB הודיע שעצר שמונה בני נוער בגילי 14–17 ושני בגירים בני 19 ו־24, במוסקבה, בסנט פטרבורג ובמחוזות לנינגרד, ניז'ני נובגורוד, אומסק, ריאזאן וסברדלובסק.\n• לפי הודעת ה־FSB, מאז יולי 2025 נעצרו 56 משתמשים בגילי 12–24. לטענתו, אנשי המודיעין האוקראיני התחזו לצעירים בבוט, קיבלו מהמשתמשים מיקום, תשלומים וקליקים על קישורי פישינג, ואחר כך התחזו לאנשי ה־FSB או רוספינמוניטורינג ואיימו עליהם עד שהסכימו לבצע הצתות או לשמש בלדרים של כסף.\n• בסוף יולי 2026 האשים ה־FSB את פאבל דורוב בסיוע לטרור, וטען שטלגרם לא הסירה בוטים שבהם משתמש המודיעין האוקראיני, ובהם בוט ההיכרויות הזה.\n\nאלה טענות של הרשויות הרוסיות; לא פורסמה תגובה של טלגרם או של דורוב לדיווח הנוכחי.",
+   "full_en": "According to Russia's Investigative Committee, authorities detained several young men and women in Moscow, St. Petersburg, the Leningrad region and other regions between August and October, after, they say, Ukrainian intelligence recruited them through the Telegram dating bot Leonardo Daivinchik to carry out sabotage.\n\n• Investigative Committee spokesperson Svetlana Petrenko described several cases: a teenager who bought flammable liquids and set fire to several gas stations, the arson of police service vehicles, and the arson of a transformer cabinet. All those detained face charges under Russia's criminal statute against terrorism.\n• The FSB said it detained eight teenagers aged 14 to 17 and two adults aged 19 and 24 in Moscow and St. Petersburg and the Leningrad, Nizhny Novgorod, Omsk, Ryazan and Sverdlovsk regions.\n• According to the FSB statement, 56 users aged 12 to 24 have been detained since July 2025. It claims Ukrainian operatives posed as young people on the bot, got users to share their location, pay for things and click phishing links, then posed as FSB or Rosfinmonitoring officers and pressured them into arson or acting as cash couriers.\n• In late July 2026 the FSB accused Pavel Durov of aiding terrorism, saying Telegram had failed to remove bots used by Ukrainian intelligence, including this dating bot.\n\nThese are claims by Russian authorities; no response from Telegram or Durov to this report was published."
+  },
+  {
+   "id": "solana-pumpfun-memecoin-myths",
+   "topic": "solana",
+   "date": "2026-10-29T15:31:04Z",
+   "url": "https://x.com/i/trending/2115826679688126844",
+   "source": "X",
+   "he": {
+    "title": "משתמשי X חושפים את המיתוסים של מסחר במימקוינים ב־Pump.fun",
+    "summary": "סוחרים ניתחו את 15 ההמלצות של המשפיענית Shawty והראו ש־100 דולר היו הופכים ל־89 או ל־54 דולר, למרות טענותיה לרווחים עצומים ב־SOL. נתונים על השרשרת מראים מפיצים שמשיקים מאות טוקנים ביום ב־Pump.fun, עם שיעור הצלחה של פחות מ־1%."
+   },
+   "en": {
+    "title": "X users expose memecoin trading myths on Pump.fun",
+    "summary": "Traders analysed influencer Shawty's 15 token calls and found $100 would have become $89 or $54, despite her claims of big SOL wins. On-chain data shows deployers launching hundreds of tokens a day on Pump.fun with success rates under 1%."
+   },
+   "full_he": "צילומי מסך של רווחים בשש ספרות מהמשפיענית Shawty משכו תשומת לב, אבל הנתונים על השרשרת ציירו תמונה אחרת לגמרי – הפסדים לעוקבים.\n\n• סוחרים ב־X ניתחו את 15 המלצות הטוקנים של Shawty והריצו סימולציות: השקעה של 100 דולר הייתה הופכת ל־89 דולר במסחר על תנודות, או ל־54 דולר בהחזקה – למרות טענתה לרווחים של 224,310 דולר בספטמבר ולזכיות יומיות ב־SOL.\n• כלי מעקב על השרשרת חשפו \"מפיצים סדרתיים\" שמשיקים מאות טוקנים ביום ב־Pump.fun – כתובת אחת הגיעה ל־543 טוקנים ב־24 שעות – עם שיעורי הצלחה של פחות מ־1%, כשהמפעילים הגדולים מוציאים מיליונים.\n• התגמולים של Pump.fun על המלצות שמגדילות את רווחי העוקבים מזינים את נפח המסחר הגבוה, ורבים תוהים אם בכלל יכולים לצוץ מנצחים אמיתיים בתוך ההצפה.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
+   "full_en": "Screenshots of six-figure profits from influencer Shawty caught eyes, but on-chain data painted a starkly different picture of losses for followers.\n\n• Traders on X analysed Shawty's 15 token calls, running simulations that turned a $100 investment into $89 on swings or $54 if held, despite her claims of $224,310 in September gains and daily SOL wins.\n• On-chain trackers revealed serial deployers launching hundreds of tokens daily on Pump.fun, like one address hitting 543 in 24 hours, with success rates under 1% and top operators extracting millions.\n• Pump.fun's rewards for calls that boost follower profits fuel the high volume, leaving many wondering if real winners can emerge amid the flood.\n\n(This story is a summary of posts on X and may evolve.)"
+  },
   {
    "id": "grok-dems-trump-preserve-chatbot-records",
    "topic": "grok",
