@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T10:37:44+02:00",
+ "updated": "2026-10-29T11:20:42+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -143,6 +143,42 @@
  ],
  "items": [
   {
+   "id": "pod-asprey-e36010165f",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-10-29T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id451295014",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "הפתרון הפשוט להפסיק לאכול יותר מדי",
+    "summary": "דייב אספרי משוחח עם שרה קנדי, מנכ\"לית Calocurb, על תמצית כשות (Amarasate) שלדבריהם מפעילה קולטני מרירות במעי ומעודדת הורמוני שובע כמו GLP-1, ועל השפעתה על רעב, צום לסירוגין וירידה במשקל."
+   },
+   "en": {
+    "title": "The No-Brainer Solution To Stop Overeating",
+    "summary": "Dave Asprey talks with Sarah Kennedy, CEO of Calocurb, about a patented hops extract (Amarasate) that they say activates bitter receptors in the gut to trigger satiety hormones like GLP-1, and how it may affect hunger, fasting and weight loss."
+   },
+   "full_en": "How Hops Extract Suppresses Hunger, Reduces Cravings, Supports Weight Loss, and Makes Intermittent Fasting Easier\n\nHost Dave Asprey sits down with Sarah Kennedy, CEO of Calocurb, to explore the science of hunger suppression, natural GLP-1 activation, intermittent fasting, weight loss, visceral fat reduction, and a patented hops extract that may help people eat less without relying on willpower.\n\nThe conversation centers on Amarasate, a natural compound derived from New Zealand hops, the same plant used to make beer. Originally investigated through a multimillion-dollar research program, this bitter plant extract activates specialized receptors in the digestive tract that stimulate the body's natural appetite-regulating hormones. Sarah explains how this discovery led to Calocurb, a supplement designed to reduce hunger, control cravings, and make fasting and calorie restriction easier.\n\nDave and Sarah break down the biology of GLP-1, CCK, PYY, ghrelin, and leptin and how these hormones influence hunger, fullness, cravings and metabolic health. Unlike injectable GLP-1 medications such as Ozempic and Wegovy, Amarasate works through bitter taste receptors in the gut to stimulate the body's own satiety signaling. They examine why the timing and location of these signals matter, how quickly the extract begins working, and how it differs from conventional appetite suppressants.\n\nSarah shares findings from four human clinical trials, including research reporting an average 18% reduction in calorie intake after taking the extract. The discussion also covers a six-month randomized, placebo-controlled study of about 150 participants that reported an average 5.5% reduction in body weight, with estimated fat loss and no detected average muscle loss, and about 3.5 times greater visceral fat reduction than placebo.\n\nThey also discuss how the extract may make intermittent and extended fasting easier by reducing hunger and cravings, and challenge the idea that overeating is simply a failure of willpower, looking at gut-brain signaling and metabolic hormones.\n\nYou'll learn:\n• How a patented compound from hops activates bitter receptors in the gut to stimulate GLP-1, CCK and PYY\n• Why clinical research found the extract reduced calorie intake by about 18%\n• How a six-month trial reported 5.5% body-weight loss, reduced visceral fat and no detected average muscle loss\n• Why hunger, cravings and overeating involve hormonal signaling rather than just a lack of willpower\n• How natural appetite regulation may make intermittent fasting, extended fasting and calorie restriction easier\n• How hops-derived compounds differ from injectable GLP-1 medications\n\nTimestamps:\n• 00:00 Trailer\n• 01:32 Intro\n• 03:06 Discovering Hops Extract\n• 07:58 Finding the Right Hop\n• 10:15 Clinical Trial Results\n• 15:34 No Rebound Weight Gain\n• 19:47 Personal Story & Fasting\n• 23:05 Women's Fasting Study\n• 29:32 Willpower & Hunger\n• 38:42 Combining With GLP-1s\n\nNote: these are the host's and guest's claims, and the guest is the CEO of the company that sells the supplement; the studies mentioned are as described in the episode notes. This isn't medical advice.",
+   "full_he": "איך תמצית כשות מדכאת רעב, מפחיתה חשקים, תומכת בירידה במשקל ומקלה על צום לסירוגין\n\nדייב אספרי מארח את שרה קנדי, מנכ\"לית Calocurb, לשיחה על המדע של דיכוי רעב, הפעלה טבעית של GLP-1, צום לסירוגין, ירידה במשקל, הפחתת שומן ויסרלי (בטני), ותמצית כשות בפטנט שלדבריהם עשויה לעזור לאכול פחות בלי להסתמך על כוח רצון.\n\nהשיחה מתמקדת ב-Amarasate, תרכובת טבעית שמופקת מכשות ניו זילנדית, אותו צמח שממנו מכינים בירה. לדבריהם, התמצית המרירה הזו נחקרה בתוכנית מחקר של מיליוני דולרים, והיא מפעילה קולטנים מיוחדים במערכת העיכול שמעודדים את ההורמונים הטבעיים של הגוף לוויסות התיאבון. שרה מספרת איך התגלית הובילה ל-Calocurb, תוסף שנועד להפחית רעב, לשלוט בחשקים ולהקל על צום והגבלת קלוריות.\n\nדייב ושרה מסבירים את הביולוגיה של GLP-1, CCK, PYY, גרלין ולפטין, ואיך ההורמונים האלה משפיעים על רעב, שובע, חשקים ובריאות מטבולית. בניגוד לתרופות GLP-1 בזריקה כמו אוזמפיק ו-וגובי, לדבריהם Amarasate פועלת דרך קולטני טעם מר במעי כדי לעורר את אותות השובע של הגוף עצמו. הם דנים בחשיבות התזמון והמיקום של האותות, בכמה מהר התמצית מתחילה לפעול ובמה היא שונה ממדכאי תיאבון רגילים.\n\nשרה מציגה ממצאים מארבעה ניסויים קליניים בבני אדם, כולל מחקר שדיווח על ירידה ממוצעת של 18% בצריכת הקלוריות אחרי נטילת התמצית. הם מדברים גם על מחקר אקראי מבוקר פלצבו של חצי שנה עם כ-150 משתתפים, שדיווח על ירידה ממוצעת של 5.5% במשקל הגוף, עם ירידה משוערת בשומן ובלי ירידה ממוצעת שזוהתה במסת השריר, ועל הפחתה של שומן ויסרלי שגדולה פי 3.5 בערך מאשר בפלצבו.\n\nעוד הם מדברים על כך שהתמצית עשויה להקל על צום לסירוגין וצום ממושך בזכות פחות רעב וחשקים, ומערערים על הרעיון שאכילת יתר היא פשוט כישלון של משמעת עצמית, דרך התקשורת בין המעי למוח וההורמונים המטבוליים.\n\nמה תלמד בפרק:\n• איך תרכובת בפטנט מכשות מפעילה קולטני מרירות במעי ומעודדת GLP-1, CCK ו-PYY\n• למה מחקר קליני מצא שהתמצית הפחיתה את צריכת הקלוריות בכ-18%\n• איך ניסוי של חצי שנה דיווח על ירידה של 5.5% במשקל, פחות שומן ויסרלי ובלי ירידה ממוצעת שזוהתה בשריר\n• למה רעב, חשקים ואכילת יתר קשורים לאיתות הורמונלי ולא רק לחוסר כוח רצון\n• איך ויסות תיאבון טבעי עשוי להקל על צום לסירוגין, צום ממושך והגבלת קלוריות\n• במה תרכובות מכשות שונות מתרופות GLP-1 בזריקה\n\nחותמות זמן:\n• 00:00 טריילר\n• 01:32 פתיחה\n• 03:06 הגילוי של תמצית הכשות\n• 07:58 מציאת הכשות הנכונה\n• 10:15 תוצאות הניסויים הקליניים\n• 15:34 בלי עלייה חוזרת במשקל\n• 19:47 סיפור אישי וצום\n• 23:05 מחקר צום אצל נשים\n• 29:32 כוח רצון ורעב\n• 38:42 שילוב עם תרופות GLP-1\n\nהערה: אלה טענות המנחה והאורחת, והאורחת היא מנכ\"לית החברה שמוכרת את התוסף; המחקרים מתוארים כפי שהם מופיעים בתיאור הפרק. זו לא עצה רפואית."
+  },
+  {
+   "id": "musk-2008-gamble-tesla-spacex",
+   "topic": "musk",
+   "date": "2026-10-29T07:43:13Z",
+   "url": "https://x.com/i/trending/2115673737752084791",
+   "source": "X",
+   "he": {
+    "title": "ההימור של מאסק ב-2008 שהציל את טסלה ו-SpaceX",
+    "summary": "סיפור שחוזר לשיח ב-X: ב-2008, בשיא המשבר, מאסק חילק את 30–40 מיליון הדולר האחרונים שלו בין שתי החברות במקום להציל רק אחת, ושתיהן שרדו ברגע האחרון."
+   },
+   "en": {
+    "title": "Elon Musk's 2008 gamble saved Tesla and SpaceX",
+    "summary": "A story trending on X: in 2008, at the height of the crisis, Musk split his last $30–40 million between both companies instead of saving just one, and both survived at the last minute."
+   },
+   "full_en": "In 2008, Elon Musk faced a heartbreaking choice: pour his last $30–40 million into one struggling company and let the other die, or risk it all on both.\n\nAmid the financial crisis, with SpaceX reeling from three failed launches and Tesla burning through cash, Musk split his remaining funds, likening it to refusing to let one 'child' starve. Both companies barely survived: SpaceX landed a $1.6 billion NASA contract on December 23, and Tesla closed funding the next evening, just before payroll would have failed. Musk later called 2008 the worst year of his life, a raw moment still visible in an old interview where he paused emotionally.\n\n(This is X's summary of posts about the story, which may change over time.)",
+   "full_he": "ב-2008 עמד אילון מאסק בפני בחירה קורעת לב: להשקיע את 30–40 מיליון הדולר האחרונים שלו בחברה אחת מתקשה ולתת לשנייה למות, או לסכן הכול על שתיהן.\n\nבאמצע המשבר הפיננסי, כש-SpaceX התאוששה משלושה שיגורים כושלים וטסלה שרפה מזומנים, מאסק חילק את הכסף שנשאר לו בין שתיהן, ודימה את זה לסירוב לתת ל'ילד' אחד לרעוב. שתי החברות שרדו בקושי: SpaceX זכתה בחוזה של 1.6 מיליארד דולר מנאס\"א ב-23 בדצמבר, וטסלה סגרה סבב מימון למחרת בערב, רגע לפני שלא היה במה לשלם משכורות. מאסק כינה מאוחר יותר את 2008 השנה הגרועה בחייו, ובראיון ישן אפשר עדיין לראות אותו עוצר בהתרגשות כשהוא מדבר על זה.\n\n(זה הסיכום של X לפוסטים על הסיפור, והוא עשוי להשתנות.)"
+  },
+  {
    "id": "pod-brecka-97ecc4b8da",
    "topic": "podcasts",
    "kind": "podcast",
@@ -162,6 +198,40 @@
    "full_he": "פרימנופאוזה (התקופה שלפני גיל המעבר) היא הרבה יותר מגלי חום, ולדברי גארי היא יכולה להתחיל כבר בשנות ה-30. גארי ברקה וסייג' וורקינגר יושבים עם שהאב ודוראנה אלמי ומדברים על הזעות לילה, עייפות מכריעה בבוקר, ערפל מוחי, נפיחות ושינויי מצב רוח, על מה שבעלים נוטים לפספס, ועל האופן שבו בדיקת ההורמונים DUTCH עזרה לגארי ולסייג' להבין מה קורה. בנוסף: מה נדרש כדי לבנות עסק יחד עם בן או בת הזוג. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: פרימנופאוזה ובניית עסק משותף\n• 02:37 — הזעות לילה והסימנים הראשונים של פרימנופאוזה\n• 04:49 — להקים עסק בתקופת גיל המעבר\n• 08:49 — בדיקת DUTCH ותסמיני פרימנופאוזה\n• 09:23 — הופעה מוקדמת והספר Rocket Fuel\n• 11:26 — למה בני זוג ששותפים לעסק לא מצליחים להתנתק\n• 14:24 — לעזור לאנשים כ\"למה\" של החברה\n• 23:41 — גלי חום ושינה שבורה\n• 27:41 — חדרי בקרת גובה והיפוקסיה לסירוגין\n• 32:24 — לקחת צעד אחורה במקום לפעול מתוך רגש\n• 34:21 — סוכריות גומי לעומת תוספים ליפוזומליים\n• 36:46 — שקיקים חד-פעמיים ופירוק בחמצן\n• 39:30 — למה ויטמין C צריך קו-פקטורים\n• 41:20 — מולטי-ויטמינים \"הכול באחד\" במינון חסר\n• 43:34 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה דעות המגישים והאורחים. בדיקות הורמונים כמו DUTCH אינן חלק מהאבחון המקובל של פרימנופאוזה, שברפואה המקובלת מתבסס בעיקר על תסמינים וגיל."
   },
   {
+   "id": "spacex-flight15-double-catch-nov8",
+   "topic": "spacex",
+   "date": "2026-10-29T06:59:06Z",
+   "url": "https://x.com/i/trending/2115625186548412884",
+   "source": "X",
+   "he": {
+    "title": "טיסה 15 של סטארשיפ: ניסיון ראשון לתפוס גם את הספינה, לא לפני 8 בנובמבר",
+    "summary": "בטיסה 15, שמתוכננת לא לפני 8 בנובמבר, SpaceX תנסה לתפוס בזרועות המגדל גם את בוסטר ה-Super Heavy וגם את Ship 42 – תפיסה ראשונה של שלב עליון. מאסק אמר שהסיכוי להצליח כבר בניסיון הראשון גבוה מהסיכוי להיכשל."
+   },
+   "en": {
+    "title": "Starship Flight 15 aims for the first ship catch, no earlier than Nov 8",
+    "summary": "Flight 15, no earlier than November 8, aims to catch both the Super Heavy booster and Ship 42 with the tower's arms, the first upper-stage catch. Musk called success on the first try more likely than not."
+   },
+   "full_he": "אילון מאסק שיתף ש-Ship 42 תהיה השלב העליון הראשון שייתפס בזרועות מגדל השיגור – אבן דרך שמחכים לה הרבה זמן בתחום מיחזור הרקטות.\n\n• SpaceX השלימה ב-Massey's ניסויים מרכזיים של Ship 42, כולל צריבה סטטית מלאה של כל ששת מנועי ה-Raptor והדמיה של צריבת יציאה ממסלול במנוע יחיד.\n• טיסה 15, שמתוכננת לא לפני 8 בנובמבר, נועדה לתפוס בעזרת \"מקלות האכילה\" של המגדל גם את בוסטר ה-Super Heavy וגם את Ship 42 – התפיסה הראשונה של שלב עליון.\n• מאסק אמר שהסיכוי להצליח כבר בניסיון הראשון גבוה מהסיכוי להיכשל, צעד לקראת שיגורים למסלול שניתנים למיחזור מלא, גישה זולה יותר לחלל ויעדי מאדים.\n• צופים כינו את זה נקודת מפנה אפשרית בהיסטוריה של חקר החלל.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Elon Musk shared that Ship 42 will be the first upper stage caught by the launch tower's arms, fulfilling a long-awaited milestone in rocket recovery.\n\n• SpaceX completed key tests for Ship 42 at Massey's site, including a full-duration static fire of all six Raptor engines and a single-engine deorbit simulation.\n• Flight 15, no earlier than November 8, aims to catch both the Super Heavy booster and Ship 42 using the tower's chopstick arms, marking the first such upper stage recovery.\n• Musk called success on the first try more likely than not, a step toward fully reusable orbital launches for cheaper space access and Mars goals.\n• Observers hailed it as a potential turning point in space exploration history.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "tesla-robotaxi-free-first-ride-tx",
+   "topic": "tesla",
+   "date": "2026-10-29T06:46:49Z",
+   "url": "https://x.com/i/trending/2115695393032052983",
+   "source": "X",
+   "he": {
+    "title": "הנסיעה הראשונה ברובוטקסי של טסלה ביוסטון ובדאלאס – בחינם",
+    "summary": "אפליקציית הרובוטקסי של טסלה מציגה עכשיו מבצע \"הנסיעה הראשונה עלינו\" למשתמשים חדשים ביוסטון ובדאלאס, עם הזמנות במחיר 0.00 דולר. גולשים התבדחו ש\"המנה הראשונה תמיד בחינם\"."
+   },
+   "en": {
+    "title": "Tesla Robotaxi offers free first rides in Houston and Dallas",
+    "summary": "Tesla's Robotaxi app now shows a \"First ride on us\" promotion for new users in Houston and Dallas, with $0.00 bookings. Users joked that \"the first hit is free\"."
+   },
+   "full_he": "רואה באפליקציה נסיעת רובוטקסי במחיר 0.00 דולר? משתמשים חדשים בערי טקסס מקבלים את הנסיעה הראשונה על חשבון הבית – טריק קלאסי של דוגמה חינמית כדי למשוך נוסעים.\n\n• אפליקציית הרובוטקסי של טסלה מציגה עכשיו מבצע \"הנסיעה הראשונה עלינו\" למצטרפים חדשים ביוסטון, שם השירות התרחב לאחרונה אל תוך טבעת 610, וגם בדאלאס.\n• צילומי מסך מראים הזמנות באפס דולר, למשל אחת מ-1843 Witte Rd עם איסוף בסביבות 21:28.\n• משתמש אחד שילם יום קודם לכן 33.46 דולר על נסיעה של 21.5 מייל.\n• אחרים התבדחו ש\"המנה הראשונה בחינם\" עם ממים של עוגיפלצת – המטרה, לדבריהם, היא להפוך את הנוסעים לקבועים בצי ה-Model Y הנטולות נהג וה-Cybercab.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Spot a Robotaxi ride priced at $0.00 in the app? New users in Texas cities are getting their first trip on the house, pulling in riders with a classic free-sample hook.\n\n• Tesla's Robotaxi app now shows a \"First ride on us\" promotion for newcomers in Houston, where the service recently expanded inside the 610 Loop, and in Dallas too.\n• Screenshots capture zero-dollar bookings, like one from 1843 Witte Rd with pickup times around 9:28 pm.\n• One user paid $33.46 for a 21.5-mile trip the day before.\n• Others joke it's like the \"first hit is free\" with Cookie Monster memes, aiming to hook riders on the driverless Model Y and Cybercab fleet for good.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
    "id": "grokbot-users-real-work-team",
    "topic": "grokbot",
    "date": "2026-10-29T05:40:13Z",
@@ -179,55 +249,21 @@
    "full_en": "One Tesla club organizer now lets Grok Bot cut clips, create graphics, manage invoices, and even track his coffee order—freeing up hours each week for what matters.\n\n• Grok Bot enables people to build teams of AI agents that run on cloud computers, sign into apps, and tackle multi-step tasks autonomously, even when devices are off.\n• Users call it an unfair advantage, with one comparing it to raising an army of workers that plan road trips or distill expert advice from public posts.\n• Early adopters report reclaiming time for family or creative pursuits, turning the tool into an always-on workforce that blurs lines between personal productivity and small business operations.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "spacex-pentagon-ig-declines-starlink-ukraine",
-   "topic": "spacex",
-   "date": "2026-10-29T03:25:26Z",
-   "url": "https://x.com/i/trending/2115644957906088440",
+   "id": "apple-news-mrc-midterms-study",
+   "topic": "apple",
+   "date": "2026-10-29T05:06:00Z",
+   "url": "https://x.com/i/trending/2115473672052023445",
    "source": "X",
    "he": {
-    "title": "מבקר הפנטגון דחה בקשה לחקור את האטת סטארלינק באוקראינה",
-    "summary": "תשעה סנאטורים משתי המפלגות ביקשו מהמפקח הכללי של הפנטגון לחקור את שיבושי סטארלינק וסטארשילד באוקראינה. המפקח סירב והפנה אותם לחיל האוויר ולכוח החלל."
+    "title": "ארגון שמרני: Apple News לא הציגה אף כותרת חיובית על נושאי הרפובליקנים לפני הבחירות",
+    "summary": "לפי ניתוח של ה-Media Research Center, ארגון מעקב שמרני, מתוך 117 כותרות בוקר על נושאים רפובליקניים בסוף ספטמבר, 84 היו שליליות, 33 ניטרליות ואף לא אחת חיובית. הארגון טוען שמדובר בהתערבות אפשרית בבחירות; אפל לא הגיבה."
    },
    "en": {
-    "title": "Pentagon watchdog declines probe into Ukraine Starlink slowdowns",
-    "summary": "Nine senators from both parties asked the Pentagon inspector general to investigate Starlink and Starshield disruptions in Ukraine. The watchdog declined and pointed them to the Air Force and Space Force."
+    "title": "Conservative group: Apple News ran zero positive GOP-issue stories before the midterms",
+    "summary": "A Media Research Center analysis counted 84 negative, 33 neutral and zero positive top morning headlines on GOP-focused topics in late September. The conservative watchdog calls it potential election interference; Apple did not respond."
    },
-   "full_he": "כוחות אוקראינה נתקלו בהאטה במהירויות של סטארלינק במהלך מבצעי רחפנים קריטיים ותקיפות אוויריות רוסיות, וזה עורר שאלות דחופות בגבעת הקפיטול.\n\n• תשעה סנאטורים, מחציתם רפובליקנים ומחציתם דמוקרטים, ובהם הסנאטורית ג'ין שהין, ביקשו מהמפקח הכללי של הפנטגון לחקור את השיבושים האחרונים בשירותי סטארלינק וסטארשילד באוקראינה.\n• המפקח, פלאט מורינג השלישי, סירב, בנימוק שמדובר בעניינים חוזיים של חיל האוויר וכוח החלל, והפנה את המחוקקים אליהם.\n• שהין אמרה שהתשובה מדאיגה, על רקע טענות סותרות: אילון מאסק מ-SpaceX הודה בהגבלת השירות בשל הפרות לכאורה, ואילו הנשיא טראמפ הכחיש שנתן הוראה כזו.\n• הפרשה מדגישה את אתגרי הפיקוח על רשתות לוויין פרטיות בסיוע הצבאי של ארה\"ב.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
-   "full_en": "Ukrainian forces faced slowed Starlink speeds during critical drone operations and Russian air raids, prompting urgent questions from Capitol Hill.\n\n• Nine senators, split evenly between Republicans and Democrats and including Sen. Jeanne Shaheen, asked the Pentagon inspector general to investigate recent Starlink and Starshield service disruptions in Ukraine.\n• The watchdog, Platte Moring III, declined, citing Air Force and Space Force contractual matters, and directed the lawmakers there instead.\n• Shaheen called the response concerning amid conflicting claims: SpaceX's Elon Musk acknowledged throttling over alleged violations, while President Trump denied giving any orders.\n• The issue highlights oversight challenges for private satellite networks in U.S. military aid.\n\nThis story is a summary of posts on X and may evolve over time."
-  },
-  {
-   "id": "spacex-rick-wilson-nationalize-starlink",
-   "topic": "spacex",
-   "date": "2026-10-29T04:22:51Z",
-   "url": "https://x.com/i/trending/2115658949492142358",
-   "source": "X",
-   "he": {
-    "title": "ריק ווילסון קורא להלאים את סטארלינק וסופג ביקורת חריפה",
-    "summary": "הפרשן הפוליטי ריק ווילסון קרא להלאים את סטארלינק, בהמשך לקריאה של רוברט רייך. המגיבים האשימו אותו בהתערבות ממשלתית בסגנון קומוניסטי שתפגע בחדשנות."
-   },
-   "en": {
-    "title": "Rick Wilson calls for nationalizing Starlink, draws sharp backlash",
-    "summary": "Political commentator Rick Wilson urged nationalizing Starlink, echoing Robert Reich's recent call. Replies accused him of communist-style overreach that would hurt innovation."
-   },
-   "full_he": "הפרשן הפוליטי ריק ווילסון פרסם קריאה ישירה להלאים את סטארלינק, והמשתמשים הגיבו בהאשמות על התערבות ממשלתית בסגנון קומוניסטי ועל איום על החדשנות.\n\n• ב-28 באוקטובר קרא ווילסון להלאים את סטארלינק, בהמשך לקריאה האחרונה של רוברט רייך להעביר את סטארלינק ו-SpaceX לשליטה ממשלתית, בגלל כוחן והתלות שלהן בחוזים ממשלתיים.\n• המבקרים טענו שצעד כזה יפגע בנטילת הסיכונים הפרטית וביזמות שבנו את החברה; היו שכינו זאת קומוניזם והזהירו שזה יקרר השקעות בטכנולוגיה.\n• חילופי הדברים חשפו את המתח סביב תפקיד הממשלה בתעשיות אסטרטגיות כמו תקשורת לוויינית, שבה סטארלינק משרתת צרכים מסחריים, ממשלתיים והומניטריים.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
-   "full_en": "Political commentator Rick Wilson posted a direct call to nationalize Starlink, prompting users to fire back with accusations of communist overreach and threats to innovation.\n\n• On October 28, Wilson urged nationalizing Starlink, echoing Robert Reich's recent push for government control over Starlink and SpaceX due to their power and reliance on public contracts.\n• Critics argued this would undermine the private risk-taking and entrepreneurship that built the company, with replies labeling it communist and warning of chilled investment in tech.\n• The exchange highlighted tensions over government roles in strategic industries like satellite communications, where Starlink serves commercial, government and humanitarian needs.\n\nThis story is a summary of posts on X and may evolve over time."
-  },
-  {
-   "id": "spacex-tmobile-satellite-ast-hopes",
-   "topic": "spacex",
-   "date": "2026-10-29T01:58:37Z",
-   "url": "https://x.com/i/trending/2115623066491617627",
-   "source": "X",
-   "he": {
-    "title": "גילויי הלוויין של טי-מובייל מעוררים תקוות אצל משקיעי AST SpaceMobile",
-    "summary": "טי-מובייל חשפה מיזם משותף עם AT&T ו-Verizon לגישה לוויינית, והמנכ\"ל דיבר על T-Satellite של SpaceX בלשון עבר. משקיעים פירשו זאת כרמז למעבר מסטארלינק ל-AST SpaceMobile."
-   },
-   "en": {
-    "title": "T-Mobile's satellite disclosures boost AST SpaceMobile hopes",
-    "summary": "T-Mobile disclosed a satellite joint venture with AT&T and Verizon, and its CEO spoke of the SpaceX-based T-Satellite in the past tense. Investors read it as a hint of a shift from Starlink toward AST SpaceMobile."
-   },
-   "full_he": "הדוח הרבעוני ושיחת הרווחים של טי-מובייל עוררו באזז בקרב משקיעים, ורבים חיפשו בין השורות סימנים לקשרים עמוקים יותר עם AST SpaceMobile.\n\n• בדוח ה-10-Q לרבעון השלישי של 2026 ובשיחת הרווחים פירטה טי-מובייל מיזם משותף חדש עם AT&T ו-Verizon, שהוקם בסביבות 14 בספטמבר, כדי לתקנן גישה לוויינית ולסגור פערי כיסוי בארה\"ב, תוך שמירה על שותפויות נפרדות כמו העסקה שלה עם SpaceX על T-Satellite.\n• המנכ\"ל סריני גופלן תיאר את הלוויין כשירות משלים, שלל הסדרי MVNO עם SpaceX ודיבר על T-Satellite בלשון עבר. משקיעים ראו בזה רמז לאפשרויות רציפות כמו טכנולוגיית החיבור הישיר לטלפון של AST SpaceMobile.\n• בקהילת AST SpaceMobile, שכבר שותפה של AT&T ו-Verizon, פירשו את הצעדים כהתרחקות מסטארלינק לטובת הרחבת רשת מלאה שתומכת בשיחות רגילות ובחיוג לחירום (911).\n• העדכונים מגיעים לצד תוצאות רבעוניות חזקות של טי-מובייל ומיקוד בבניית רשתות 5G ו-6G.\n\nשים לב: מדובר בפרשנות של משקיעים, לא בהודעה רשמית על שינוי בשותפות עם SpaceX.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
-   "full_en": "T-Mobile's recent filing and earnings call sent investors buzzing, with many reading between the lines for signs of deeper ties with AST SpaceMobile.\n\n• In its Q3 2026 10-Q and earnings call, T-Mobile detailed a new joint venture with AT&T and Verizon, formed around September 14, to standardize satellite access and close U.S. coverage gaps, while keeping individual partnerships like its SpaceX deal for T-Satellite.\n• CEO Srini Gopalan described satellite as a complementary service, ruled out MVNOs with SpaceX and spoke of T-Satellite in the past tense, which investors took as a nod toward seamless options like AST SpaceMobile's direct-to-phone tech.\n• AST SpaceMobile, already partnered with AT&T and Verizon, saw enthusiasm from its community, which interpreted the moves as a shift away from Starlink toward fuller network extensions supporting standard calls and 911 access.\n• The updates pair with T-Mobile's strong quarterly results and its focus on 5G and 6G builds.\n\nNote: this is investors' interpretation, not an official announcement of a change to the SpaceX partnership.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "תדמיין שאתה פותח את האייפון כל בוקר ורואה רק כותרות שליליות על סדר היום של הרפובליקנים, בלי שום נקודת אור. לפי ניתוח חדש, זה מה שקרה לקראת בחירות האמצע של 2026.\n\n• ה-Media Research Center בדק את 20 הכתבות המובילות בבוקר ב-Apple News בין 15 ל-30 בספטמבר 2026.\n• לפי הספירה שלו, מתוך 117 כותרות על נושאים שהרפובליקנים מתמקדים בהם – הגירה, כלכלה, חוק וסדר והוצאות הממשלה – 84 היו שליליות, 33 ניטרליות ואף לא אחת חיובית.\n• ארגון המעקב השמרני טוען שהדפוס הזה עלול להיות התערבות בבחירות, משום שהאפליקציה מותקנת מראש ומגיעה למיליוני משתמשים בכל יום. לדבריו, אפל לא הגיבה לפניות.\n• הסיקור ב-Breitbart וב-Fox News הדגיש כתבות שהתמקדו בהפסדים בבתי המשפט בנושא ההגירה ובמחירי דלק גבוהים, וזה הגביר את התסכול של משתמשים מהטיה שהם רואים בחדשות שחברות טכנולוגיה בוחרות.\n\nשים לב: אלה הממצאים והפרשנות של ארגון בעל עמדה פוליטית מוצהרת; אפל לא הגיבה עליהם.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Imagine opening your iPhone each morning to a stream of only negative headlines on Republican priorities, with no bright spots in sight. That's what a new analysis uncovered in the lead-up to the 2026 midterms.\n\n• The Media Research Center reviewed Apple News' top 20 morning stories from September 15 to 30, 2026.\n• It tallied 84 negative headlines out of 117 on GOP-focused topics like immigration, the economy, law and order, and government spending, with zero positive ones and 33 neutral.\n• The conservative watchdog called this pattern potential election interference, since the preinstalled app reaches millions of users daily, and noted Apple did not respond to comment requests.\n• Coverage from Breitbart and Fox News highlighted how stories emphasized court defeats on immigration and high gas prices, fueling user frustration over perceived bias in tech-curated news.\n\nNote: these are the findings and interpretation of an openly partisan group; Apple has not responded to them.\n\nThis is the X news story (its hook and summary)."
   },
   {
    "id": "tesla-waymo-texas-fleet-gap",
@@ -264,6 +300,23 @@
    "full_en": "\"True\"\n\nThe quoted post (X Freeze, @XFreeze):\nIn 2008, Elon Musk faced a decision that would have broken most people\n\nTwo companies he had poured his heart, soul, and everything he had into were on the brink of collapse. He had just $30 to $40 million left, and saving one meant risking the life of the other\n\nHe was forced to confront an almost impossible question: Which of the two dreams he had sacrificed so much to build was he willing to let die?\n\nHis answer was neither\n\nEven if it meant risking everything he had left\n\nTesla and SpaceX were both fighting for survival, and he had to make one of the hardest choices of his life\n\n\"I had two choices. I could put it all into one company, and then the other company would definitely die. Or split it between the two companies. But if I split it between the two companies, then both might die\"\n\nThen Elon said something that tells you everything about how much these companies meant to him:\n\n\"When you put your blood, sweat, and tears into creating something or building something, it's like a child. And so it's like which one am I gonna let starve to death? I couldn't bring myself to do it\"\n\nHe split the money between both companies, knowing he was risking losing everything\n\n\"Fortunately, thank goodness, they both came through\"\n\nNearly two decades later, Tesla has transformed the electric vehicle industry, and SpaceX has revolutionized spaceflight\n\nTwo companies that were on the brink of collapse went on to change the world\n\nAll because Elon Musk couldn't bring himself to let either one starve\n\nThe quoted post also has a ~50-second video, so there's no more text to show."
   },
   {
+   "id": "spacex-rick-wilson-nationalize-starlink",
+   "topic": "spacex",
+   "date": "2026-10-29T04:22:51Z",
+   "url": "https://x.com/i/trending/2115658949492142358",
+   "source": "X",
+   "he": {
+    "title": "ריק ווילסון קורא להלאים את סטארלינק וסופג ביקורת חריפה",
+    "summary": "הפרשן הפוליטי ריק ווילסון קרא להלאים את סטארלינק, בהמשך לקריאה של רוברט רייך. המגיבים האשימו אותו בהתערבות ממשלתית בסגנון קומוניסטי שתפגע בחדשנות."
+   },
+   "en": {
+    "title": "Rick Wilson calls for nationalizing Starlink, draws sharp backlash",
+    "summary": "Political commentator Rick Wilson urged nationalizing Starlink, echoing Robert Reich's recent call. Replies accused him of communist-style overreach that would hurt innovation."
+   },
+   "full_he": "הפרשן הפוליטי ריק ווילסון פרסם קריאה ישירה להלאים את סטארלינק, והמשתמשים הגיבו בהאשמות על התערבות ממשלתית בסגנון קומוניסטי ועל איום על החדשנות.\n\n• ב-28 באוקטובר קרא ווילסון להלאים את סטארלינק, בהמשך לקריאה האחרונה של רוברט רייך להעביר את סטארלינק ו-SpaceX לשליטה ממשלתית, בגלל כוחן והתלות שלהן בחוזים ממשלתיים.\n• המבקרים טענו שצעד כזה יפגע בנטילת הסיכונים הפרטית וביזמות שבנו את החברה; היו שכינו זאת קומוניזם והזהירו שזה יקרר השקעות בטכנולוגיה.\n• חילופי הדברים חשפו את המתח סביב תפקיד הממשלה בתעשיות אסטרטגיות כמו תקשורת לוויינית, שבה סטארלינק משרתת צרכים מסחריים, ממשלתיים והומניטריים.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Political commentator Rick Wilson posted a direct call to nationalize Starlink, prompting users to fire back with accusations of communist overreach and threats to innovation.\n\n• On October 28, Wilson urged nationalizing Starlink, echoing Robert Reich's recent push for government control over Starlink and SpaceX due to their power and reliance on public contracts.\n• Critics argued this would undermine the private risk-taking and entrepreneurship that built the company, with replies labeling it communist and warning of chilled investment in tech.\n• The exchange highlighted tensions over government roles in strategic industries like satellite communications, where Starlink serves commercial, government and humanitarian needs.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
    "id": "huang-doj-hugging-face-probe",
    "topic": "huang",
    "date": "2026-10-29T03:57:49Z",
@@ -296,6 +349,23 @@
    },
    "full_he": "סטרלינג אנדרסון, לשעבר מוביל ה-Autopilot בטסלה וכיום ב-GM, כינה את הוויתור על מכ\"ם \"עמדה דתית מוזרה שמתעלמת מהפיזיקה\". ההערה הציתה מחדש את הוויכוח על הדרך לבנות רכבים אוטונומיים בטוחים יותר.\n\n• לטענת אנדרסון, מערכות שמבוססות על מצלמות בלבד מתקשות בתנאים קשים, ומכ\"ם זול מוסיף אמינות.\n• מערכת הנהיגה בלי ידיים ברמה 3 שתגיע ב-Cadillac Escalade IQ של 2028 תשתמש במצלמות, מכ\"ם ולידאר, מעל ל-Super Cruise.\n• תומכי טסלה השיבו בנתונים של כמעט 4 מיליון מיילים אוטונומיים בלי פציעות ויותר מ-3 מיליון מיילים של Robotaxi בערים, עם נתוני בטיחות טובים מאלה של נהגים אנושיים.\n• הוויכוח מדגיש שתי דרכים מתחרות: רשתות נוירונים של טסלה שאומנו על נתוני מצלמות, מול יתירות מרובת חיישנים של GM. ברשת התערבבו הגנות, ספקנות לגבי לוחות זמנים וסיפורי הצלחה יומיומיים עם FSD.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
    "full_en": "Sterling Anderson, ex-Tesla Autopilot leader now at GM, called ditching radar a \"weird religious stance that ignores physics.\" The remark reignited the battle over how to build safer autonomous cars.\n\n• Anderson argued that vision-only systems falter in tough conditions, while cheap radar adds reliability.\n• GM's upcoming Level 3 hands-free driving in the 2028 Cadillac Escalade IQ will use cameras, radar and lidar on top of Super Cruise.\n• Tesla supporters countered with nearly 4 million autonomous miles driven injury-free and over 3 million Robotaxi miles in cities, outperforming human drivers in safety stats.\n• The exchange underscores rival paths: Tesla's AI-trained neural nets from camera data versus GM's multi-sensor redundancy, with online buzz mixing defenses, skepticism of timelines and everyday FSD success stories.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "spacex-pentagon-ig-declines-starlink-ukraine",
+   "topic": "spacex",
+   "date": "2026-10-29T03:25:26Z",
+   "url": "https://x.com/i/trending/2115644957906088440",
+   "source": "X",
+   "he": {
+    "title": "מבקר הפנטגון דחה בקשה לחקור את האטת סטארלינק באוקראינה",
+    "summary": "תשעה סנאטורים משתי המפלגות ביקשו מהמפקח הכללי של הפנטגון לחקור את שיבושי סטארלינק וסטארשילד באוקראינה. המפקח סירב והפנה אותם לחיל האוויר ולכוח החלל."
+   },
+   "en": {
+    "title": "Pentagon watchdog declines probe into Ukraine Starlink slowdowns",
+    "summary": "Nine senators from both parties asked the Pentagon inspector general to investigate Starlink and Starshield disruptions in Ukraine. The watchdog declined and pointed them to the Air Force and Space Force."
+   },
+   "full_he": "כוחות אוקראינה נתקלו בהאטה במהירויות של סטארלינק במהלך מבצעי רחפנים קריטיים ותקיפות אוויריות רוסיות, וזה עורר שאלות דחופות בגבעת הקפיטול.\n\n• תשעה סנאטורים, מחציתם רפובליקנים ומחציתם דמוקרטים, ובהם הסנאטורית ג'ין שהין, ביקשו מהמפקח הכללי של הפנטגון לחקור את השיבושים האחרונים בשירותי סטארלינק וסטארשילד באוקראינה.\n• המפקח, פלאט מורינג השלישי, סירב, בנימוק שמדובר בעניינים חוזיים של חיל האוויר וכוח החלל, והפנה את המחוקקים אליהם.\n• שהין אמרה שהתשובה מדאיגה, על רקע טענות סותרות: אילון מאסק מ-SpaceX הודה בהגבלת השירות בשל הפרות לכאורה, ואילו הנשיא טראמפ הכחיש שנתן הוראה כזו.\n• הפרשה מדגישה את אתגרי הפיקוח על רשתות לוויין פרטיות בסיוע הצבאי של ארה\"ב.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Ukrainian forces faced slowed Starlink speeds during critical drone operations and Russian air raids, prompting urgent questions from Capitol Hill.\n\n• Nine senators, split evenly between Republicans and Democrats and including Sen. Jeanne Shaheen, asked the Pentagon inspector general to investigate recent Starlink and Starshield service disruptions in Ukraine.\n• The watchdog, Platte Moring III, declined, citing Air Force and Space Force contractual matters, and directed the lawmakers there instead.\n• Shaheen called the response concerning amid conflicting claims: SpaceX's Elon Musk acknowledged throttling over alleged violations, while President Trump denied giving any orders.\n• The issue highlights oversight challenges for private satellite networks in U.S. military aid.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "grokbot-try-video-game",
@@ -415,6 +485,23 @@
    },
    "full_he": "הפוסט של מאסק: \"נכון.\"\n\nהפוסט שהוא ציטט:\n\"שימו לב איך הכותרות עובדות.\n\nטויוטה מתרסקת: 'נהג נפצע בתאונה.'\nפורד מתרסקת: 'שתי מכוניות התנגשו בכביש המהיר.'\nב.מ.וו מתרסקת: 'תאונה בכביש 1.'\n\nטסלה מתרסקת: 'טסלה מתרסקת.'\n\nלא הנהג. לא 'מכונית'. המותג, בכותרת, בכל פעם מחדש.\"",
    "full_en": "Musk's post: \"True\"\n\nThe quoted post:\n\"Notice how the headlines work.\n\nA Toyota crashes: 'Driver injured in crash.'\nA Ford crashes: 'Two cars collide on highway.'\nA BMW crashes: 'Accident on Route 1.'\n\nA Tesla crashes: 'TESLA crashes.'\n\nNot the driver. Not 'a car.' The brand, in the headline, every single time.\""
+  },
+  {
+   "id": "spacex-tmobile-satellite-ast-hopes",
+   "topic": "spacex",
+   "date": "2026-10-29T01:58:37Z",
+   "url": "https://x.com/i/trending/2115623066491617627",
+   "source": "X",
+   "he": {
+    "title": "גילויי הלוויין של טי-מובייל מעוררים תקוות אצל משקיעי AST SpaceMobile",
+    "summary": "טי-מובייל חשפה מיזם משותף עם AT&T ו-Verizon לגישה לוויינית, והמנכ\"ל דיבר על T-Satellite של SpaceX בלשון עבר. משקיעים פירשו זאת כרמז למעבר מסטארלינק ל-AST SpaceMobile."
+   },
+   "en": {
+    "title": "T-Mobile's satellite disclosures boost AST SpaceMobile hopes",
+    "summary": "T-Mobile disclosed a satellite joint venture with AT&T and Verizon, and its CEO spoke of the SpaceX-based T-Satellite in the past tense. Investors read it as a hint of a shift from Starlink toward AST SpaceMobile."
+   },
+   "full_he": "הדוח הרבעוני ושיחת הרווחים של טי-מובייל עוררו באזז בקרב משקיעים, ורבים חיפשו בין השורות סימנים לקשרים עמוקים יותר עם AST SpaceMobile.\n\n• בדוח ה-10-Q לרבעון השלישי של 2026 ובשיחת הרווחים פירטה טי-מובייל מיזם משותף חדש עם AT&T ו-Verizon, שהוקם בסביבות 14 בספטמבר, כדי לתקנן גישה לוויינית ולסגור פערי כיסוי בארה\"ב, תוך שמירה על שותפויות נפרדות כמו העסקה שלה עם SpaceX על T-Satellite.\n• המנכ\"ל סריני גופלן תיאר את הלוויין כשירות משלים, שלל הסדרי MVNO עם SpaceX ודיבר על T-Satellite בלשון עבר. משקיעים ראו בזה רמז לאפשרויות רציפות כמו טכנולוגיית החיבור הישיר לטלפון של AST SpaceMobile.\n• בקהילת AST SpaceMobile, שכבר שותפה של AT&T ו-Verizon, פירשו את הצעדים כהתרחקות מסטארלינק לטובת הרחבת רשת מלאה שתומכת בשיחות רגילות ובחיוג לחירום (911).\n• העדכונים מגיעים לצד תוצאות רבעוניות חזקות של טי-מובייל ומיקוד בבניית רשתות 5G ו-6G.\n\nשים לב: מדובר בפרשנות של משקיעים, לא בהודעה רשמית על שינוי בשותפות עם SpaceX.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "T-Mobile's recent filing and earnings call sent investors buzzing, with many reading between the lines for signs of deeper ties with AST SpaceMobile.\n\n• In its Q3 2026 10-Q and earnings call, T-Mobile detailed a new joint venture with AT&T and Verizon, formed around September 14, to standardize satellite access and close U.S. coverage gaps, while keeping individual partnerships like its SpaceX deal for T-Satellite.\n• CEO Srini Gopalan described satellite as a complementary service, ruled out MVNOs with SpaceX and spoke of T-Satellite in the past tense, which investors took as a nod toward seamless options like AST SpaceMobile's direct-to-phone tech.\n• AST SpaceMobile, already partnered with AT&T and Verizon, saw enthusiasm from its community, which interpreted the moves as a shift away from Starlink toward fuller network extensions supporting standard calls and 911 access.\n• The updates pair with T-Mobile's strong quarterly results and its focus on 5G and 6G builds.\n\nNote: this is investors' interpretation, not an official announcement of a change to the SpaceX partnership.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "grokbot-referral-program-outage",
@@ -2784,6 +2871,23 @@
    "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
+   "id": "refaeli-anna-zak-tiger-guess",
+   "topic": "refaeli",
+   "date": "2026-10-27T00:00:00+02:00",
+   "url": "https://trari.com/il/story/keshet12-17694/",
+   "source": "Trari · קשת 12",
+   "he": {
+    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
+    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
+   },
+   "en": {
+    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
+    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
+   },
+   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
+   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
+  },
+  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -2816,23 +2920,6 @@
    },
    "full_he": "במחקר, משתתפים שאכלו מזון אולטרה-מעובד צרכו בממוצע 500 קלוריות נוספות ביום ועלו כמעט 2 פאונד (קרוב לקילו) בתוך שבועיים בלבד.\n\nכשאותם משתתפים אכלו מזון מלא ולא מעובד, הם דווקא ירדו כמעט 2 פאונד.\n\nשתי הדיאטות תוכננו כך שיהיו להן פרופילים תזונתיים דומים. המסקנה? להתחיל מאוכל אמיתי. הגוף שלך יודע להבחין בהבדל.\n\nמהתמונה: שני גרפים של שינוי במשקל הגוף (בק\"ג) לאורך 14 ימי דיאטה.\n• \"המשקל שלך על מזון אולטרה-מעובד\": עלייה הדרגתית לכ-1 ק\"ג עד היום השישי בערך, ומשם יציבות סביב 0.9-1 ק\"ג.\n• \"המשקל שלך על מזון מלא\": ירידה הדרגתית, עד כ-0.9- ק\"ג ביום ה-14.",
    "full_en": "In a research study, participants eating ultra-processed foods consumed an average of 500 extra calories per day and gained nearly 2 pounds in just TWO weeks.\n\nWhen those same participants ate whole, unprocessed foods, they lost nearly 2 pounds instead.\n\nBoth diets were designed to have similar nutritional profiles. The takeaway? Start with real food. Your body knows the difference.\n\nFrom the image: two charts of body weight change (kg) over 14 days on the diet.\n• \"Your bodyweight on ultra-processed foods\": a steady rise to about 1 kg by around day 6, then holding near 0.9-1 kg.\n• \"Your bodyweight on whole foods\": a gradual drop to about -0.9 kg by day 14."
-  },
-  {
-   "id": "refaeli-anna-zak-tiger-guess",
-   "topic": "refaeli",
-   "date": "2026-10-27T00:00:00+02:00",
-   "url": "https://trari.com/il/story/keshet12-17694/",
-   "source": "Trari · קשת 12",
-   "he": {
-    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
-    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
-   },
-   "en": {
-    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
-    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
-   },
-   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
-   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
   },
   {
    "id": "johnson-il11-mice",
@@ -3464,6 +3551,23 @@
    "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
   },
   {
+   "id": "refaeli-peretz-tears",
+   "topic": "refaeli",
+   "date": "2026-10-26T07:10:00+02:00",
+   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
+   "source": "mako",
+   "he": {
+    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
+    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
+   },
+   "en": {
+    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
+    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
+   },
+   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
+   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
+  },
+  {
    "id": "spacex-ford-cancels-starlink",
    "topic": "spacex",
    "date": "2026-10-26T05:56:46Z",
@@ -3496,23 +3600,6 @@
    },
    "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
-  },
-  {
-   "id": "refaeli-peretz-tears",
-   "topic": "refaeli",
-   "date": "2026-10-26T07:10:00+02:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
-    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
-   },
-   "en": {
-    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
-    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
-   },
-   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
-   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
   },
   {
    "id": "tesla-semi-nevada-55",
@@ -4947,6 +5034,23 @@
    "full_en": "McCullough Foundation Report:  Determinants of Autism Spectrum Disorder\n\nAmong susceptible infants, routine childhood scheduled vaccinations are a risk factor for the development of autism.  Peer-reviewed, published, conclusive.  URL  McCulloughfnd.\n\nThe quoted post:\nThe autism numbers are shocking...\n\nThe image shows the Journal of Independent Medicine (2026, Vol. 2 No. 3) paper \"Determinants of Autism Spectrum Disorder\", with charts of autism prevalence and vaccine doses by birth year. This is the McCullough Foundation's claim. Major health bodies and large studies have found no link between vaccines and autism."
   },
   {
+   "id": "durov-hidden-signup",
+   "topic": "durov",
+   "date": "2026-10-24T16:58:15+03:00",
+   "url": "https://www.securitylab.ru/news/579212.php",
+   "source": "securitylab.ru",
+   "he": {
+    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
+    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
+   },
+   "en": {
+    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
+    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
+   },
+   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
+   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
+  },
+  {
    "id": "ss-start-business",
    "topic": "starterstory",
    "date": "2026-10-24T16:51:16Z",
@@ -5083,23 +5187,6 @@
    "full_en": "Elon Musk sees real potential in blending Tesla and SpaceX, but he's stepped back from the talks to avoid conflicts. Independent director committees are now digging into what a combination could look like.\n\nTesla and SpaceX have each set up special committees of independent directors to consider deepening their ties, possibly through a business combination that could value the pair at $3.5 trillion to $3.7 trillion. Musk praised the idea for synergies in AI and superintelligence during a SpaceX earnings call, while noting Tesla shareholders would need to approve by majority vote. The companies already share links like SpaceX buying Tesla Megapacks and Tesla holding a valuable SpaceX stake, though no deal is certain amid regulatory and approval hurdles. Supporters highlight AI and energy benefits, while critics raise governance questions."
   },
   {
-   "id": "durov-hidden-signup",
-   "topic": "durov",
-   "date": "2026-10-24T16:58:15+03:00",
-   "url": "https://www.securitylab.ru/news/579212.php",
-   "source": "securitylab.ru",
-   "he": {
-    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
-    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
-   },
-   "en": {
-    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
-    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
-   },
-   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
-   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
-  },
-  {
    "id": "mercola-gum-health",
    "topic": "mercola",
    "date": "2026-10-24T13:00:46Z",
@@ -5168,23 +5255,6 @@
    "full_en": "From Next Level Soul podcast episode 737 (Oct 24, 2026), with cell biologist Dr. Bruce Lipton, author of \"The Biology of Belief\", about his new book \"Beyond Darwin\":\n• Negative beliefs (the nocebo effect) are as powerful as positive ones. A prognosis delivered as certainty can act \"like a prescription\".\n• Two minds: the creative conscious mind and the subconscious, \"a hard drive of programs\". He says we spend about 95% of the day on autopilot, and about 60% of the programs are self-sabotaging.\n• The first seven years of life are a \"download\" of beliefs from family and community. A program from his own childhood kept him from sustaining a relationship for 40 years. With his partner Margaret (32 years together) he agreed never to argue, and instead to gently point out each other's negative programs.\n• His cancer: about two and a half years ago an ENT doctor found cancer in his tongue. Lipton sees it as a sign of stress and of putting off the book he needed to write. He says that as he wrote, the scans went from malignant to benign to no tumor, and he's still rebuilding the tongue muscle. This is his personal account, not medical advice.\n• \"Beyond Darwin\": nature is a garden, not a battlefield. Cooperation, not competition, drives evolution. The book reached the New York Times bestseller list in its first week.\n• His claims: over 90% of the health crisis comes from stress and lifestyle; we eat too much and too often; rice and beans are a cheap, complete staple; keep two months of dry food at home.\n• Reincarnation: the body is a television set and you are the broadcast. When the TV stops, the broadcast continues. \"Earth is heaven.\"\n• Ways to apply it: notice your autopilot; name programs with someone you trust, with love; tend your own backyard first; put knowledge into practice; choose cooperation."
   },
   {
-   "id": "grok-imagine-music",
-   "topic": "grok",
-   "date": "2026-10-24T09:40:26Z",
-   "url": "https://x.com/i/trending/2113927722418479264",
-   "source": "X",
-   "he": {
-    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
-    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
-   },
-   "en": {
-    "title": "Grok Imagine adds music generation",
-    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
-   },
-   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
-   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
-  },
-  {
    "id": "durov-telegram-agent",
    "topic": "durov",
    "date": "2026-10-24T11:03:00+03:00",
@@ -5200,23 +5270,6 @@
    },
    "full_he": "מתוך click-or-die.ru (איגור ז'יז'ין, 24 באוקטובר 2026), \"טלגרם תוסיף את הפיצ'ר הכי חשוב של 2026\":\n• גרסת הבטא 13.1.0 של טלגרם ל־macOS כוללת תשתית לפיצ'ר בשם \"Agent\". הוא יחבר מודלי AI של צד שלישי למסנג'ר, רק עם מפתח API של המשתמש עצמו.\n• בקוד מופיעים חמישה שירותים: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) ו־OpenRouter. בוחרים שירות ומדביקים מפתח, ולכל ספק יש קישור ישיר לדף המפתחות שלו. לפי TBetaLeak, ייתכן שאפשר יהיה גם לבחור מודל ספציפי.\n• רשימת הספקים נטענת מהשרת, ואפשר לחבר כמה מודלים ולעבור ביניהם. קוראים ל־AI עם @agent. עדיין לא ברור איך זה ייראה בצ'אטים.\n• בזמן החיבור, המפתח עובר דרך השרתים של טלגרם כדי לבדוק שהוא עובד. טלגרם שומרת מתי השירות חובר (וגם את ארבעת התווים האחרונים של המפתח), וההגדרות מסונכרנות בין המכשירים.\n• אותה בטא מחזירה את פיד ההמלצות \"בשבילך\", וגם הודעות HTML עם מיני־משחקים ולוח שנה להודעות: מסמנים ימים, והצ'אט מאותם ימים נמחק, גם אצל הצד השני.\n• הפיצ'ר עדיין לא זמין למשתמשים, ואין תאריך השקה.",
    "full_en": "From click-or-die.ru (Igor Zhizhin, Oct 24, 2026), \"Telegram will add the most important feature of 2026\":\n• Telegram 13.1.0 beta for macOS contains groundwork for a feature called \"Agent\". It will connect third-party AI models to the messenger, using the user's own API key only.\n• The code lists five services: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) and OpenRouter. You pick a service and paste a key, and each provider gets a direct link to its key page. According to TBetaLeak, you may also be able to choose a specific model.\n• The provider list loads from the server, and you can connect several AIs and switch between them. You call the AI with @agent. How it will look in chats isn't clear yet.\n• When you connect, the key passes through Telegram's servers to check that it works. Telegram stores when the service was connected (plus the key's last four characters), and settings sync across devices.\n• The same beta brings back the \"For you\" recommendations feed, plus HTML messages with mini-games and a message calendar: mark days and the chat from those days is deleted, on the other side too.\n• The feature isn't available to users yet, and there's no launch date."
-  },
-  {
-   "id": "tesla-app-foldables",
-   "topic": "tesla",
-   "date": "2026-10-24T07:04:34Z",
-   "url": "https://x.com/i/trending/2113841861756371071",
-   "source": "X",
-   "he": {
-    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
-    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
-   },
-   "en": {
-    "title": "Tesla app gets a big-screen layout for foldables and tablets",
-    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
-   },
-   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
-   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "durov-mvd-drugs",
@@ -5236,6 +5289,23 @@
    "full_en": "From the obshestvo24.info report:\n• The head of the Russian Interior Ministry's anti-drug department says Telegram won't cooperate in fighting drug promotion.\n• According to him, the ministry works with social networks and messengers to remove drug propaganda, but Telegram refuses to take part.\n• The site also reports that Pavel Durov is on Rosfinmonitoring's list of terrorists and extremists and is on an international wanted list. According to the agencies, the terrorism-assistance charges are linked to the use of a chatbot and other channels. These are the Russian authorities' claims."
   },
   {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   },
+   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
+   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
+  },
+  {
    "id": "durov-vk-datacenter",
    "topic": "durov",
    "date": "2026-10-24T09:00:00+03:00",
@@ -5251,6 +5321,23 @@
    },
    "full_he": "מתוך sanktpeterburg78.info:\n• פבל דורוב כתב בערוץ הטלגרם שלו בשפה הרוסית שמרכז הנתונים שבנה לפני 15 שנה נפגע בתקיפה.\n• בלשונו: \"מכרתי את החברה לפני 12 שנה. רואים שמרכז הנתונים נבנה טוב, הקירות עבים. אבל לא הגנו עליו.\"\n• בליל 18 באוקטובר תקפו כוחות אוקראינים את מרכז הנתונים של VK במחוז לנינגרד. VK אישרה את הפגיעה ואמרה שהשירותים שלה פועלים כרגיל, אבל משתמשים דיווחו על תקלות ב־VK וב־VK Music.",
    "full_en": "From sanktpeterburg78.info:\n• In his Russian-language Telegram channel, Pavel Durov wrote that the data center he built 15 years ago had been hit in an attack.\n• His words: \"Sold the company 12 years ago. You can see the data center was built well, the walls are thick. But they didn't protect it.\"\n• On the night of October 18, Ukrainian forces attacked VK's data center in the Leningrad region. VK confirmed the strike and said its services were running normally, but users reported outages in VK and VK Music."
+  },
+  {
+   "id": "tesla-app-foldables",
+   "topic": "tesla",
+   "date": "2026-10-24T07:04:34Z",
+   "url": "https://x.com/i/trending/2113841861756371071",
+   "source": "X",
+   "he": {
+    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
+    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
+   },
+   "en": {
+    "title": "Tesla app gets a big-screen layout for foldables and tablets",
+    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
+   },
+   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
+   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "spacex-ukraine-sovereign",
@@ -6001,42 +6088,6 @@
    },
    "full_he": "מתוך דף הפרק (The Dr. Ardis Show, 21 באוקטובר 2026), \"איך פטריות ועובש הורסים חיים\":\n• ד\"ר בריאן ארדיס מסביר את ההבדל בין עובש לפטריות, איך עובש מתפשט בבתים ובמזון, ולמה מיקוטוקסינים חשובים. הוא מצטט את ההנחיות של משרד החקלאות האמריקאי לגבי מזון עם עובש, ואת ההערכה של ארגון המזון והחקלאות של האו\"ם ש־25% מגידולי המזון בעולם מושפעים ממיקוטוקסינים.\n• הוא מתמקד באפלטוקסין, מיקוטוקסין מסרטן שנמצא בתירס מספוא ובבוטנים, ובספר \"מחקר סין\" של ד\"ר ט' קולין קמפבל.\n• הוא סוקר החזרות אחרונות של עוגות חטיף, מזון תינוקות, רסק תפוחים ומזון לכלבים בגלל עובש ורעלני עובש.\n• הצעד הראשון שלו לגדילת יתר של פטריות הוא דיאטה נגד קנדידה: דלת סוכר, נוגדת דלקת, מבוססת על ירקות לא עמילניים, פירות דלי סוכר, חלבון איכותי ומזון מותסס.\n• מחקרים שהוא מצטט: תימוקינון משמן קצח (Nigella sativa) עיכב שמרים שמקלקלים מוצרי חלב טוב יותר מחומרים משמרים נפוצים (במעבדה); שמן קצח ותמצית תמרים הפחיתו את הנזק של אפלטוקסין לכבד ולכליות (בחולדות); תרכובות נחושת נגד 21 זנים מבודדים של קנדידה והביופילם שלהם; תמצית שורש ליקריץ עיכבה את כל 19 זני הקנדידה שנבדקו; פקטין תפוחים כסיב שקושר פסולת.\n• הפרק מקדם מוצרים של החברה שלו (Nature Wins), כמו BioDefense ו־Bio-Active Copper. רוב הראיות מגיעות ממחקרי מעבדה ובעלי חיים.",
    "full_en": "From the episode page (The Dr. Ardis Show, Oct 21, 2026), \"How Fungi and Mold Destroy Lives\":\n• Dr. Bryan Ardis explains the difference between mold and fungi, how mold spreads through homes and food, and why mycotoxins matter. He cites USDA guidance on moldy food and the UN FAO estimate that 25% of the world's food crops are affected by mycotoxins.\n• His focus is aflatoxin, a carcinogenic mycotoxin found in field corn and peanuts, and the book \"The China Study\" by Dr. T. Colin Campbell.\n• He reviews recent recalls of snack cakes, baby food, applesauce and dog food over mold and mold toxins.\n• His first step for fungal overgrowth is the anti-Candida diet: low in sugar, anti-inflammatory, built on non-starchy vegetables, low-sugar fruit, quality protein and fermented foods.\n• Studies he cites: thymoquinone from black seed oil (Nigella sativa) inhibited dairy spoilage yeasts better than common preservatives (lab); Nigella sativa oil and date extract reduced aflatoxin liver and kidney damage (rats); copper complexes against 21 Candida isolates and their biofilms; licorice root extract inhibited all 19 Candida strains tested; apple pectin as a fiber that binds waste.\n• The episode promotes products from his company (Nature Wins), such as BioDefense and Bio-Active Copper. Most of the evidence comes from lab and animal studies."
-  },
-  {
-   "id": "pod-asprey-e36010165f",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-10-29T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id451295014",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "הפתרון הפשוט להפסיק לאכול יותר מדי",
-    "summary": "דייב אספרי משוחח עם שרה קנדי, מנכ\"לית Calocurb, על תמצית כשות (Amarasate) שלדבריהם מפעילה קולטני מרירות במעי ומעודדת הורמוני שובע כמו GLP-1, ועל השפעתה על רעב, צום לסירוגין וירידה במשקל."
-   },
-   "en": {
-    "title": "The No-Brainer Solution To Stop Overeating",
-    "summary": "Dave Asprey talks with Sarah Kennedy, CEO of Calocurb, about a patented hops extract (Amarasate) that they say activates bitter receptors in the gut to trigger satiety hormones like GLP-1, and how it may affect hunger, fasting and weight loss."
-   },
-   "full_en": "How Hops Extract Suppresses Hunger, Reduces Cravings, Supports Weight Loss, and Makes Intermittent Fasting Easier\n\nHost Dave Asprey sits down with Sarah Kennedy, CEO of Calocurb, to explore the science of hunger suppression, natural GLP-1 activation, intermittent fasting, weight loss, visceral fat reduction, and a patented hops extract that may help people eat less without relying on willpower.\n\nThe conversation centers on Amarasate, a natural compound derived from New Zealand hops, the same plant used to make beer. Originally investigated through a multimillion-dollar research program, this bitter plant extract activates specialized receptors in the digestive tract that stimulate the body's natural appetite-regulating hormones. Sarah explains how this discovery led to Calocurb, a supplement designed to reduce hunger, control cravings, and make fasting and calorie restriction easier.\n\nDave and Sarah break down the biology of GLP-1, CCK, PYY, ghrelin, and leptin and how these hormones influence hunger, fullness, cravings and metabolic health. Unlike injectable GLP-1 medications such as Ozempic and Wegovy, Amarasate works through bitter taste receptors in the gut to stimulate the body's own satiety signaling. They examine why the timing and location of these signals matter, how quickly the extract begins working, and how it differs from conventional appetite suppressants.\n\nSarah shares findings from four human clinical trials, including research reporting an average 18% reduction in calorie intake after taking the extract. The discussion also covers a six-month randomized, placebo-controlled study of about 150 participants that reported an average 5.5% reduction in body weight, with estimated fat loss and no detected average muscle loss, and about 3.5 times greater visceral fat reduction than placebo.\n\nThey also discuss how the extract may make intermittent and extended fasting easier by reducing hunger and cravings, and challenge the idea that overeating is simply a failure of willpower, looking at gut-brain signaling and metabolic hormones.\n\nYou'll learn:\n• How a patented compound from hops activates bitter receptors in the gut to stimulate GLP-1, CCK and PYY\n• Why clinical research found the extract reduced calorie intake by about 18%\n• How a six-month trial reported 5.5% body-weight loss, reduced visceral fat and no detected average muscle loss\n• Why hunger, cravings and overeating involve hormonal signaling rather than just a lack of willpower\n• How natural appetite regulation may make intermittent fasting, extended fasting and calorie restriction easier\n• How hops-derived compounds differ from injectable GLP-1 medications\n\nTimestamps:\n• 00:00 Trailer\n• 01:32 Intro\n• 03:06 Discovering Hops Extract\n• 07:58 Finding the Right Hop\n• 10:15 Clinical Trial Results\n• 15:34 No Rebound Weight Gain\n• 19:47 Personal Story & Fasting\n• 23:05 Women's Fasting Study\n• 29:32 Willpower & Hunger\n• 38:42 Combining With GLP-1s\n\nNote: these are the host's and guest's claims, and the guest is the CEO of the company that sells the supplement; the studies mentioned are as described in the episode notes. This isn't medical advice.",
-   "full_he": "איך תמצית כשות מדכאת רעב, מפחיתה חשקים, תומכת בירידה במשקל ומקלה על צום לסירוגין\n\nדייב אספרי מארח את שרה קנדי, מנכ\"לית Calocurb, לשיחה על המדע של דיכוי רעב, הפעלה טבעית של GLP-1, צום לסירוגין, ירידה במשקל, הפחתת שומן ויסרלי (בטני), ותמצית כשות בפטנט שלדבריהם עשויה לעזור לאכול פחות בלי להסתמך על כוח רצון.\n\nהשיחה מתמקדת ב-Amarasate, תרכובת טבעית שמופקת מכשות ניו זילנדית, אותו צמח שממנו מכינים בירה. לדבריהם, התמצית המרירה הזו נחקרה בתוכנית מחקר של מיליוני דולרים, והיא מפעילה קולטנים מיוחדים במערכת העיכול שמעודדים את ההורמונים הטבעיים של הגוף לוויסות התיאבון. שרה מספרת איך התגלית הובילה ל-Calocurb, תוסף שנועד להפחית רעב, לשלוט בחשקים ולהקל על צום והגבלת קלוריות.\n\nדייב ושרה מסבירים את הביולוגיה של GLP-1, CCK, PYY, גרלין ולפטין, ואיך ההורמונים האלה משפיעים על רעב, שובע, חשקים ובריאות מטבולית. בניגוד לתרופות GLP-1 בזריקה כמו אוזמפיק ו-וגובי, לדבריהם Amarasate פועלת דרך קולטני טעם מר במעי כדי לעורר את אותות השובע של הגוף עצמו. הם דנים בחשיבות התזמון והמיקום של האותות, בכמה מהר התמצית מתחילה לפעול ובמה היא שונה ממדכאי תיאבון רגילים.\n\nשרה מציגה ממצאים מארבעה ניסויים קליניים בבני אדם, כולל מחקר שדיווח על ירידה ממוצעת של 18% בצריכת הקלוריות אחרי נטילת התמצית. הם מדברים גם על מחקר אקראי מבוקר פלצבו של חצי שנה עם כ-150 משתתפים, שדיווח על ירידה ממוצעת של 5.5% במשקל הגוף, עם ירידה משוערת בשומן ובלי ירידה ממוצעת שזוהתה במסת השריר, ועל הפחתה של שומן ויסרלי שגדולה פי 3.5 בערך מאשר בפלצבו.\n\nעוד הם מדברים על כך שהתמצית עשויה להקל על צום לסירוגין וצום ממושך בזכות פחות רעב וחשקים, ומערערים על הרעיון שאכילת יתר היא פשוט כישלון של משמעת עצמית, דרך התקשורת בין המעי למוח וההורמונים המטבוליים.\n\nמה תלמד בפרק:\n• איך תרכובת בפטנט מכשות מפעילה קולטני מרירות במעי ומעודדת GLP-1, CCK ו-PYY\n• למה מחקר קליני מצא שהתמצית הפחיתה את צריכת הקלוריות בכ-18%\n• איך ניסוי של חצי שנה דיווח על ירידה של 5.5% במשקל, פחות שומן ויסרלי ובלי ירידה ממוצעת שזוהתה בשריר\n• למה רעב, חשקים ואכילת יתר קשורים לאיתות הורמונלי ולא רק לחוסר כוח רצון\n• איך ויסות תיאבון טבעי עשוי להקל על צום לסירוגין, צום ממושך והגבלת קלוריות\n• במה תרכובות מכשות שונות מתרופות GLP-1 בזריקה\n\nחותמות זמן:\n• 00:00 טריילר\n• 01:32 פתיחה\n• 03:06 הגילוי של תמצית הכשות\n• 07:58 מציאת הכשות הנכונה\n• 10:15 תוצאות הניסויים הקליניים\n• 15:34 בלי עלייה חוזרת במשקל\n• 19:47 סיפור אישי וצום\n• 23:05 מחקר צום אצל נשים\n• 29:32 כוח רצון ורעב\n• 38:42 שילוב עם תרופות GLP-1\n\nהערה: אלה טענות המנחה והאורחת, והאורחת היא מנכ\"לית החברה שמוכרת את התוסף; המחקרים מתוארים כפי שהם מופיעים בתיאור הפרק. זו לא עצה רפואית."
-  },
-  {
-   "id": "musk-2008-gamble-tesla-spacex",
-   "topic": "musk",
-   "date": "2026-10-29T07:43:13Z",
-   "url": "https://x.com/i/trending/2115673737752084791",
-   "source": "X",
-   "he": {
-    "title": "ההימור של מאסק ב-2008 שהציל את טסלה ו-SpaceX",
-    "summary": "סיפור שחוזר לשיח ב-X: ב-2008, בשיא המשבר, מאסק חילק את 30–40 מיליון הדולר האחרונים שלו בין שתי החברות במקום להציל רק אחת, ושתיהן שרדו ברגע האחרון."
-   },
-   "en": {
-    "title": "Elon Musk's 2008 gamble saved Tesla and SpaceX",
-    "summary": "A story trending on X: in 2008, at the height of the crisis, Musk split his last $30–40 million between both companies instead of saving just one, and both survived at the last minute."
-   },
-   "full_en": "In 2008, Elon Musk faced a heartbreaking choice: pour his last $30–40 million into one struggling company and let the other die, or risk it all on both.\n\nAmid the financial crisis, with SpaceX reeling from three failed launches and Tesla burning through cash, Musk split his remaining funds, likening it to refusing to let one 'child' starve. Both companies barely survived: SpaceX landed a $1.6 billion NASA contract on December 23, and Tesla closed funding the next evening, just before payroll would have failed. Musk later called 2008 the worst year of his life, a raw moment still visible in an old interview where he paused emotionally.\n\n(This is X's summary of posts about the story, which may change over time.)",
-   "full_he": "ב-2008 עמד אילון מאסק בפני בחירה קורעת לב: להשקיע את 30–40 מיליון הדולר האחרונים שלו בחברה אחת מתקשה ולתת לשנייה למות, או לסכן הכול על שתיהן.\n\nבאמצע המשבר הפיננסי, כש-SpaceX התאוששה משלושה שיגורים כושלים וטסלה שרפה מזומנים, מאסק חילק את הכסף שנשאר לו בין שתיהן, ודימה את זה לסירוב לתת ל'ילד' אחד לרעוב. שתי החברות שרדו בקושי: SpaceX זכתה בחוזה של 1.6 מיליארד דולר מנאס\"א ב-23 בדצמבר, וטסלה סגרה סבב מימון למחרת בערב, רגע לפני שלא היה במה לשלם משכורות. מאסק כינה מאוחר יותר את 2008 השנה הגרועה בחייו, ובראיון ישן אפשר עדיין לראות אותו עוצר בהתרגשות כשהוא מדבר על זה.\n\n(זה הסיכום של X לפוסטים על הסיפור, והוא עשוי להשתנות.)"
   }
  ]
 }
