@@ -9,7 +9,7 @@
       title: "עדכוניפיי", doc: "עדכוניפיי",
       tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן כל שעה",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
-      all: "הכול", people: "אנשים", companies: "חברות ונושאים",
+      newEp: "פרק חדש", all: "הכול", people: "אנשים", companies: "חברות ונושאים",
       read: "למקור", more: "קרא עוד", fullNA: "אין כרגע טקסט מלא לידיעה הזו. זה התקציר.", empty: "אין עדכונים בנושא הזה כרגע.",
       markRead: "✓ קראתי", markUnread: "↺ החזר לא נקרא", markAll: "✓ סמן הכל כנקרא", showRead: "הצג גם שנקראו", hideRead: "הסתר שנקראו",
       caught: "קראת הכל!", caughtSub: "עדכונים חדשים מגיעים כל שעה",
@@ -37,7 +37,7 @@
       title: "Updatify", doc: "Updatify",
       tagline: "News on the people and companies you follow, updated every hour",
       back: "← Back to site", updated: "Last updated:", loading: "Loading updates…",
-      all: "All", people: "People", companies: "Companies & topics",
+      newEp: "New episode", all: "All", people: "People", companies: "Companies & topics",
       read: "Source", more: "Read more", fullNA: "There's no full text for this item yet. This is the summary.", empty: "No updates on this topic right now.",
       markRead: "✓ Read", markUnread: "↺ Mark unread", markAll: "✓ Mark all as read", showRead: "Show read", hideRead: "Hide read",
       caught: "All caught up!", caughtSub: "New updates arrive every hour",
@@ -358,12 +358,17 @@
     setTimeout(updateArrows, 0);
   }
 
+  // podcast episodes (kind "podcast"): a gold "🎙️ New episode · Show" line above the title
+  function podBadge(it) {
+    if (!it || it.kind !== "podcast") return "";
+    return '<div class="pod"><span aria-hidden="true">🎙️</span> <b>' + esc(t().newEp) + "</b>" + (it.show ? " · " + esc(it.show) : "") + "</div>";
+  }
   function card(it, inSaved) {
     var id = itemId(it), c = pick(it), r = isRead(id), sv = isSaved(id);
     var tn = inSaved ? (topicName(it.topic) || it._topic) : null, tl = tn ? (tn[lang] || tn.he || tn.en) : "";
     return '<article class="card' + (r && !inSaved ? " isread" : "") + '" data-id="' + esc(id) + '">' +
       '<button type="button" class="bm" data-act="' + (sv ? "unsave" : "save") + '" aria-pressed="' + (sv ? "true" : "false") + '" aria-label="' + esc(sv ? t().unsave : t().save) + '" title="' + esc(sv ? t().unsave : t().save) + '">' + (sv ? BMKF : BMK) + "</button>" +
-      "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
+      podBadge(it) + "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
       '</p><div class="meta"><span class="when">' + (tl ? '<b class="tp">' + esc(tl) + "</b> · " : "") + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
       '</span><span class="acts">' + (inSaved ? "" : '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>") +
       '<button type="button" class="sh" data-act="share" aria-label="' + esc(t().shareAria) + '" title="' + esc(t().shareAria) + '">' + SHARE + '<span>' + esc(t().share) + "</span></button>" +
@@ -609,7 +614,7 @@
     $("rd-sheet").querySelector(".rdr").setAttribute("dir", dir);
     $("rd-sheet").querySelector(".rdr").setAttribute("lang", f ? f.lang : lang);
     $("rd-title").textContent = c.title || "";
-    $("rd-meta").textContent = rel(it.date) + (it.source ? " · " + it.source : "");
+    $("rd-meta").textContent = (it.kind === "podcast" ? "🎙️ " + t().newEp + (it.show ? " · " + it.show : "") + " · " : "") + rel(it.date) + (it.source && it.source !== it.show ? " · " + it.source : "");
     box.innerHTML = f ? richText(f.text) : '<p>' + esc(c.summary) + '</p><p class="na">' + esc(t().fullNA) + "</p>";
     var a = $("rd-src"); a.href = safeUrl(it.url); a.innerHTML = esc(t().read) + EXT;
     $("rd-close").setAttribute("aria-label", t().close); $("rd-close").title = t().close;
