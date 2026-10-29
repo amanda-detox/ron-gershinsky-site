@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T13:01:31+02:00",
+ "updated": "2026-10-29T13:50:24+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -99,6 +99,54 @@
    "en": "Bar Refaeli"
   },
   {
+   "id": "ternus",
+   "group": "person",
+   "he": "ג'ון טרנוס",
+   "en": "John Ternus"
+  },
+  {
+   "id": "emmawatson",
+   "group": "person",
+   "he": "אמה ווטסון",
+   "en": "Emma Watson"
+  },
+  {
+   "id": "kirby",
+   "group": "person",
+   "he": "ונסה קירבי",
+   "en": "Vanessa Kirby"
+  },
+  {
+   "id": "emilyblunt",
+   "group": "person",
+   "he": "אמילי בלאנט",
+   "en": "Emily Blunt"
+  },
+  {
+   "id": "lawrence",
+   "group": "person",
+   "he": "ג'ניפר לורנס",
+   "en": "Jennifer Lawrence"
+  },
+  {
+   "id": "milliebb",
+   "group": "person",
+   "he": "מילי בובי בראון",
+   "en": "Millie Bobby Brown"
+  },
+  {
+   "id": "morrison",
+   "group": "person",
+   "he": "ג'ניפר מוריסון",
+   "en": "Jennifer Morrison"
+  },
+  {
+   "id": "oliviawilde",
+   "group": "person",
+   "he": "אוליביה ווילד",
+   "en": "Olivia Wilde"
+  },
+  {
    "id": "tesla",
    "group": "company",
    "he": "טסלה",
@@ -133,6 +181,12 @@
    "group": "company",
    "he": "Kraken",
    "en": "Kraken"
+  },
+  {
+   "id": "solana",
+   "group": "company",
+   "he": "סולאנה",
+   "en": "Solana"
   },
   {
    "id": "starterstory",
@@ -6173,6 +6227,159 @@
    },
    "full_he": "מתוך דף הפרק (The Dr. Ardis Show, 21 באוקטובר 2026), \"איך פטריות ועובש הורסים חיים\":\n• ד\"ר בריאן ארדיס מסביר את ההבדל בין עובש לפטריות, איך עובש מתפשט בבתים ובמזון, ולמה מיקוטוקסינים חשובים. הוא מצטט את ההנחיות של משרד החקלאות האמריקאי לגבי מזון עם עובש, ואת ההערכה של ארגון המזון והחקלאות של האו\"ם ש־25% מגידולי המזון בעולם מושפעים ממיקוטוקסינים.\n• הוא מתמקד באפלטוקסין, מיקוטוקסין מסרטן שנמצא בתירס מספוא ובבוטנים, ובספר \"מחקר סין\" של ד\"ר ט' קולין קמפבל.\n• הוא סוקר החזרות אחרונות של עוגות חטיף, מזון תינוקות, רסק תפוחים ומזון לכלבים בגלל עובש ורעלני עובש.\n• הצעד הראשון שלו לגדילת יתר של פטריות הוא דיאטה נגד קנדידה: דלת סוכר, נוגדת דלקת, מבוססת על ירקות לא עמילניים, פירות דלי סוכר, חלבון איכותי ומזון מותסס.\n• מחקרים שהוא מצטט: תימוקינון משמן קצח (Nigella sativa) עיכב שמרים שמקלקלים מוצרי חלב טוב יותר מחומרים משמרים נפוצים (במעבדה); שמן קצח ותמצית תמרים הפחיתו את הנזק של אפלטוקסין לכבד ולכליות (בחולדות); תרכובות נחושת נגד 21 זנים מבודדים של קנדידה והביופילם שלהם; תמצית שורש ליקריץ עיכבה את כל 19 זני הקנדידה שנבדקו; פקטין תפוחים כסיב שקושר פסולת.\n• הפרק מקדם מוצרים של החברה שלו (Nature Wins), כמו BioDefense ו־Bio-Active Copper. רוב הראיות מגיעות ממחקרי מעבדה ובעלי חיים.",
    "full_en": "From the episode page (The Dr. Ardis Show, Oct 21, 2026), \"How Fungi and Mold Destroy Lives\":\n• Dr. Bryan Ardis explains the difference between mold and fungi, how mold spreads through homes and food, and why mycotoxins matter. He cites USDA guidance on moldy food and the UN FAO estimate that 25% of the world's food crops are affected by mycotoxins.\n• His focus is aflatoxin, a carcinogenic mycotoxin found in field corn and peanuts, and the book \"The China Study\" by Dr. T. Colin Campbell.\n• He reviews recent recalls of snack cakes, baby food, applesauce and dog food over mold and mold toxins.\n• His first step for fungal overgrowth is the anti-Candida diet: low in sugar, anti-inflammatory, built on non-starchy vegetables, low-sugar fruit, quality protein and fermented foods.\n• Studies he cites: thymoquinone from black seed oil (Nigella sativa) inhibited dairy spoilage yeasts better than common preservatives (lab); Nigella sativa oil and date extract reduced aflatoxin liver and kidney damage (rats); copper complexes against 21 Candida isolates and their biofilms; licorice root extract inhibited all 19 Candida strains tested; apple pectin as a fiber that binds waste.\n• The episode promotes products from his company (Nature Wins), such as BioDefense and Bio-Active Copper. Most of the evidence comes from lab and animal studies."
+  },
+  {
+   "id": "tesla-italy-backs-eu-fsd-approval",
+   "topic": "tesla",
+   "date": "2026-10-29T09:55:31Z",
+   "url": "https://x.com/i/trending/2115743202351444276",
+   "source": "X",
+   "he": {
+    "title": "איטליה תומכת באישור מהיר של הנהיגה המסייעת של טסלה באיחוד האירופי",
+    "summary": "סגן ראש ממשלת איטליה ושר התחבורה מתאו סלביני כתב אחרי שיחה עם אילון מאסק שאיטליה תומכת באישור מהיר של מערכת הנהיגה המסייעת של טסלה באיחוד. זה עשוי לעזור להשיג רוב בהצבעה אפשרית בדצמבר."
+   },
+   "en": {
+    "title": "Italy backs swift EU approval of Tesla's assisted driving",
+    "summary": "Italy's deputy PM and transport minister Matteo Salvini said after a talk with Elon Musk that Italy supports quick EU approval of Tesla's assisted driving, which could help reach a qualified majority in a possible December vote."
+   },
+   "full_he": "שר התחבורה של איטליה סיפר על שיחה חיובית עם אילון מאסק, והביע תמיכה באישור מהיר יותר באיחוד האירופי לטכנולוגיית הנהיגה המסייעת של טסלה.\n\n• סגן ראש הממשלה מתאו סלביני כתב שאיטליה תומכת באישור מהיר של Tesla Assisted Driving באיחוד, תוך דגש על חדשנות ובטיחות בדרכים, אחרי שיחה בונה עם מאסק.\n• זה מחזק את המומנטום לקראת הצבעה אפשרית בדצמבר בוועדה הטכנית לכלי רכב מנועיים של האיחוד (TCMV). לאיטליה 13.1% מאוכלוסיית האיחוד, וזה יכול לעזור לעבור את סף הרוב המיוחס.\n• עשר מדינות כבר מכירות במערכת ברמה הלאומית, וגרמניה אותתה שהיא תומכת.\n• עם זאת, תהליך האישור של איטליה עצמה עדיין נמשך, וכללים לנהיגה אוטונומית מלאה עלולים להוסיף אתגרים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Italy's transport minister shared a positive chat with Elon Musk, throwing his weight behind faster EU green lights for Tesla's assisted driving tech.\n\n• Deputy Prime Minister Matteo Salvini posted that Italy supports quick EU approval of Tesla Assisted Driving, emphasizing innovation and road safety after a constructive talk with Musk.\n• This boosts momentum for a potential December vote in the EU's Technical Committee on Motor Vehicles, where Italy's 13.1% share of the population could help meet the qualified majority threshold.\n• Ten countries already recognize it nationally, and Germany has signaled support.\n• Italy's own approval process is ongoing, and full autonomous rules may add challenges.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "tesla-trick-or-treat-mode",
+   "topic": "tesla",
+   "date": "2026-10-29T06:52:33Z",
+   "url": "https://x.com/i/trending/2115613992186184008",
+   "source": "X",
+   "he": {
+    "title": "מצב \"ממתק או תעלול\" של טסלה משמח ילדים בהאלווין",
+    "summary": "מצב חדש בטסלה גורם לרכב חונה להשמיע צלילים מפחידים ולהבהב באורות כשמישהו מתקרב. בעלי רכבים משתפים סרטונים לקראת האלווין."
+   },
+   "en": {
+    "title": "Tesla's Trick or Treat mode delights Halloween trick-or-treaters",
+    "summary": "A new Tesla mode makes parked cars play spooky sounds and flash their lights when visitors approach, and owners are sharing videos ahead of Halloween."
+   },
+   "full_he": "ילדים בתחפושות מתקרבים לטסלה חונה בשעת דמדומים, ופתאום נשמעים מהרמקולים צלילים מפחידים והאורות מהבהבים בפראות. זו ההפתעה המפחידה שבעלי הרכבים חיכו לה בהאלווין הזה.\n\n• מצב Trick or Treat החדש גורם לרכב חונה להשמיע אודיו מסתורי ולהבהב באורות כשמבקרים מתקרבים. מפעילים אותו בקלות מתפריט Toybox בעדכוני התוכנה האחרונים.\n• בעלי רכבים משתפים סרטונים של אווטאר רכב עטוף בסדין כמו רוח רפאים, מסכי בית קברות, דלעות האלווין ואפילו את שיר הנושא של מכסחי השדים.\n• זה משתלב עם תצוגות ה-FSD, כמו מסלולים סגולים והולכי רגל בצורת שלדים.\n• המצב הופך את תא המטען הקדמי (פרנק) לעמדת ממתקים ומשבית את מצב Sentry בזמן הכיף, ונהגים מתלהבים מהשמחה שזה מביא לילדי השכונה ב-31 באוקטובר.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Costumed kids approach a parked Tesla at dusk, only for eerie sounds to blast from its speakers and lights to flicker wildly. It's the spooky surprise owners have been waiting for this Halloween.\n\n• Tesla's new Trick or Treat mode lets parked cars play haunting audio and pulse lights when visitors draw near, activated easily through the Toybox menu in recent software updates.\n• Owners share videos of ghost-sheeted car avatars, graveyard screens, jack-o'-lantern scenes, and even the Ghostbusters theme.\n• It pairs with Full Self-Driving visuals like purple paths and skeleton pedestrians.\n• The feature turns the frunk into a candy station, disables Sentry Mode for the fun, and has drivers raving about the joy it brings to neighborhood kids on October 31.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "apple-indie-dev-account-terminations",
+   "topic": "apple",
+   "date": "2026-10-29T11:10:44Z",
+   "url": "https://x.com/i/trending/2115537948452036786",
+   "source": "X",
+   "he": {
+    "title": "מפתחי iOS עצמאיים מקבלים הודעות סגירת חשבון מאפל",
+    "summary": "מפתחת בשם סטייסי, שהאפליקציה שלה הכניסה 114 אלף דולר בשלוש שנים, קיבלה מאפל הודעה על סגירת חשבון מתוכננת בטענה ל\"פעילות לא כנה\". מפתחים אחרים מספרים על מקרים דומים ודורשים כללים ברורים יותר."
+   },
+   "en": {
+    "title": "Indie iOS developers face sudden Apple account terminations",
+    "summary": "A developer named Stacy, whose app earned $114,000 over three years, got an Apple Pending Termination Notice citing dishonest activity. Other developers share similar stories and call for clearer rules."
+   },
+   "full_he": "סטייסי השקיעה שלוש שנים באפליקציית iOS שלה, הרוויחה 114 אלף דולר עם משתמשים מרוצים, ואז הודעה אחת איימה למחוק הכול.\n\n• סטייסי קיבלה מאפל הודעה על סגירת חשבון מתוכננת (Pending Termination Notice), עם טענה לפעילות לא כנה הקשורה לדחיות קודמות בבדיקת האפליקציות, בזמן שניסתה להעלות עדכון שגרתי.\n• למרות שעמדה בדרישות, כמו שינוי שם האפליקציה וחודשים של התכתבויות על המטא-דאטה, האפליקציה שלה, שמצליחה, עלולה כעת להימחק לגמרי, היא עלולה לאבד את המשתמשים ולקבל חסימה לצמיתות כמפתחת, בזמן שהערעור שלה ממתין לוועדת הערעורים של App Review.\n• מפתחים אחרים משתפים סיפורים דומים על פחד מסימונים אוטומטיים בגלל דחיות ישנות, וקוראים לכללים ולאזהרות ברורים יותר.\n• כל זה על רקע המאבק של אפל ב-2025, שבו נסגרו 193 אלף חשבונות מתחזים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Stacy poured three years into her iOS app, earning $114,000 with happy users—then a single notice threatened to wipe it all out.\n\n• Stacy received a Pending Termination Notice from Apple, accusing her account of dishonest activity tied to past App Review rejections during a routine update attempt.\n• Despite complying with demands like renaming her app and facing months of back-and-forth over metadata, her well-performing app now risks full removal, user loss, and a permanent developer ban while her appeal awaits the App Review Board.\n• Other developers share similar stories of fear over automated flags from old rejections, sparking calls for clearer rules and warnings.\n• This comes amid Apple's 2025 crackdown on 193,000 fraudulent accounts.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "solana-rwa-519b-polygon-spat",
+   "topic": "solana",
+   "date": "2026-10-29T11:34:23Z",
+   "url": "https://x.com/i/trending/2115768199681544489",
+   "source": "X",
+   "he": {
+    "title": "נכסים מהעולם האמיתי על סולאנה שוברים שיא: 5.19 מיליארד דולר",
+    "summary": "שווי הנכסים המטוקנים על סולאנה הגיע לשיא של 5.19 מיליארד דולר, בהובלת גופים כמו בלקרוק וג'יי.פי מורגן. במקביל, החשבון הרשמי של סולאנה ניהל \"ריב\" משועשע עם פוליגון ב-X."
+   },
+   "en": {
+    "title": "Solana real-world assets hit a record $5.19 billion",
+    "summary": "Tokenized real-world assets on Solana hit an all-time high of $5.19 billion, driven by names like BlackRock and JPMorgan, while Solana's official account traded playful blocks and mutes with Polygon on X."
+   },
+   "full_he": "הנכסים מהעולם האמיתי (RWA) על סולאנה עברו את רף 5.19 מיליארד הדולר, שיא של כל הזמנים, בדחיפה של שמות גדולים כמו בלקרוק וג'יי.פי מורגן. בדיוק באותו זמן החשבון הרשמי של סולאנה החליף חסימות והשתקות עם פוליגון בריב קליל ב-X.\n\n• הזינוק מגיע אחרי צמיחה מהירה מכמעט אפס בסוף 2023, וממקם את סולאנה כאחת הרשתות המובילות לנכסים מטוקנים כמו קרנות כספיות ומניות, אחרי את'ריום ו-BNB Chain בלבד.\n• נתונים מ-rwa.xyz מאשרים את העלייה, כשהעניין המוסדי מניע מוצרים מטוקנים שמהווים כיום את רוב האחזקות.\n• במקביל, חילופי הדברים המשעשעים (סרטון של פוליגון בנוסח \"שאף אחד לא יעשה מזה עניין מוזר\", אחר כך השתקה, ואז חסימה מצד סולאנה) הצחיקו את הקהילה. צופים התבדחו שהמתמחים רבים ביניהם והזכירו את רוח ה-\"wagmi\".\n• אנליסטים רואים בזה הקנטה רגילה בעולם הקריפטו, כששתי הרשתות ממשיכות לבנות תשתיות ותשלומים בביצועים גבוהים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Solana's real-world assets just smashed past $5.19 billion, a new all-time high fueled by big names like BlackRock and JPMorgan. Right on cue, its official account traded blocks and mutes with Polygon in a lighthearted X spat.\n\n• The surge marks rapid growth from near zero in late 2023, positioning Solana as a top chain for tokenized assets like money market funds and equities, trailing only Ethereum and BNB Chain.\n• Data from rwa.xyz confirms the climb, with institutional interest driving tokenized products that now dominate holdings.\n• Meanwhile, the fun exchange—Polygon's 'nobody make this weird' video followed by muting, then Solana blocking back—drew laughs, with observers joking about interns fighting and reminding everyone of the 'wagmi' spirit.\n• Analysts see it as typical crypto banter, as both networks keep building on high-performance payments and infrastructure.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "solana-whale-sells-104m-near-100",
+   "topic": "solana",
+   "date": "2026-10-29T10:07:37Z",
+   "url": "https://x.com/i/trending/2115745877906391349",
+   "source": "X",
+   "he": {
+    "title": "סולאנה מחזיקה סביב 100 דולר אחרי שלווייתן מכר SOL ב-104 מיליון דולר",
+    "summary": "ארנק לא מזוהה מכר יותר ממיליון SOL בשווי כ-104 מיליון דולר במשך חמישה ימים. המחיר ירד מתחת ל-100 דולר ב-29 באוקטובר והתייצב סביבו."
+   },
+   "en": {
+    "title": "Solana holds near $100 after a whale sells $104 million in SOL",
+    "summary": "An unidentified wallet sold over 1 million SOL worth about $104 million over five days. SOL dipped below $100 on October 29 and then stabilized around that level."
+   },
+   "full_he": "לווייתן מסתורי מכר בשקט יותר ממיליון מטבעות SOL בשווי 104 מיליון דולר במשך חמישה ימים, ובחן את רמת התמיכה החשובה של המטבע.\n\n• עוקבים על-השרשרת זיהו שהארנק מפקיד כ-200 אלף SOL ביום לבורסות כמו Binance ו-Kraken, בלי מכירה גדולה אחת.\n• סולאנה ירדה מתחת ל-100 דולר ב-29 באוקטובר אבל התייצבה סביב הרמה הזו, על רקע יציאות כספים מקרנות ה-ETF ושוק חלש.\n• חלק מהסוחרים רואים תקווה בדפוסי צבירה שמצביעים על 151 דולר, אחרים נזכרים בזינוק של 2022 מ-10 דולר ומתווכחים אם \"הכסף החכם\" יוצא מוקדם.\n\nזה לא ייעוץ השקעות.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "A mysterious whale quietly sold over 1 million SOL tokens worth $104 million across five days, testing the crypto's key support level.\n\n• On-chain trackers spotted the wallet depositing around 200,000 SOL daily to exchanges like Binance and Kraken, without one big dump.\n• Solana dipped below $100 on October 29 but stabilized there amid ETF outflows and market softness.\n• Traders see hope in accumulation patterns pointing to $151, while others recall its 2022 surge from $10 and debate if smart money is exiting early.\n\nNot investment advice.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "ternus-touch-mac-who-knew-wired",
+   "topic": "ternus",
+   "date": "2026-10-28T20:33:00Z",
+   "url": "https://9to5mac.com/2026/10/28/ternus-addresses-apple-breaking-touchscreen-mac-taboo-who-knew/",
+   "source": "9to5Mac",
+   "he": {
+    "title": "טרנוס על שבירת הטאבו של מק עם מסך מגע: \"מי היה מאמין?\"",
+    "summary": "בראיון ל-WIRED הסביר מנכ\"ל אפל ג'ון טרנוס למה אפל הוסיפה סוף סוף מסך מגע ל-MacBook Pro: המגע הוא תוספת, והמוצר לא נעשה כבד או עבה יותר בגללו."
+   },
+   "en": {
+    "title": "Ternus on breaking the touchscreen Mac taboo: \"Who knew?\"",
+    "summary": "In a WIRED interview, Apple CEO John Ternus explained why Apple finally added touch to the MacBook Pro: touch is an add-on that didn't make the product heavier or thicker."
+   },
+   "full_he": "בראיון ל-WIRED דיברו בכירי אפל, ובהם המנכ\"ל ג'ון טרנוס, ראש החומרה ג'וני סרוג'י וראש השיווק גרג \"ג'וז\" ג'וזוויאק, על ההחלטה להביא מגע למק.\n\n• במשך שנים, מגיבים ברשת דחו שמועות על מק עם מסך מגע בציטוטים של סטיב ג'ובס ושל בכירים אחרים, כמו פיל שילר, שטענו שלמסך מגע אין מקום במק.\n• זמן קצר אחרי ההכרזה על ה-MacBook Pro בגודל 14 ו-16 אינץ' עם מסך PROLED XDR, פרסם העיתונאי סטיבן לוי ראיון ב-WIRED. כששאל אם אפל עומדת לשבור טאבו ותיק ולהציג מקינטוש עם מסך מגע, טרנוס קרן ואמר: \"מי היה מאמין?\"\n• לדברי טרנוס, הקלט העקיף דרך משטח המגע והמקלדת נשאר במרכז חוויית המק, אבל \"יש פעמים שנוח ושימושי שיהיה מגע\". הוא מדגיש שאפל רואה במגע תוספת, לא פיצ'ר שמחייב פשרות בעיצוב.\n• \"היינו צריכים להגיע לנקודה שבה הוספת מגע לא הופכת את המוצר לנחות בשום צורה. הוא לא נעשה כבד יותר. הוא לא נעשה עבה יותר. זה התחבר יחד עם מסך ה-OLED, המסך הכי טוב ששמנו אי פעם במק. כל הדברים האלה, ואה, כן, יש לו גם מגע.\"\n• סרוג'י אמר שהתקדמות הטכנולוגיה בעשור האחרון אפשרה סוף סוף לעמוד בסטנדרטים של אפל: \"עשר שנים זה זמן מאוד מאוד ארוך\". לדבריו, השילוב של שבבים, טכנולוגיית מסך וארכיטקטורת תוכנה \"עמד ברף שלנו\", והוסיף: \"אני רוצה שהמהנדסים שלי יוגבלו על ידי הפיזיקה, לא על ידי הדמיון או לוחות זמנים.\"\n• בין השינויים: שבבים ייעודיים, מערכת קירור חדשה כדי שהמסך לא ירגיש חם למגע, וציר מחודש שמצמצם את רעידות המסך בזמן נגיעה.\n• ג'וזוויאק אמר שחלק מההחלטה נבע מדור חדש של משתמשים שרגילים לגעת במסך: \"רוב אנשי המקצוע מחזיקים אייפד, וכמעט כל איש מקצוע מחזיק אייפון... יש דור של יוצרים צעירים ואנשים צעירים שמשתמשים ב-MacBook Pro שלנו ומצפים לגעת.\" לדבריו, גם מהנדסים, מדענים, מפתחי תוכנה ויוצרי מדיה ביקשו מגע במק.\n• הראיון המלא עוסק גם בהתאמת macOS למגע, במחוות החדשות ל-Dynamic Island ובשאלה אם המגע יגיע בעתיד למקים אחרים.",
+   "full_en": "In an interview with WIRED, Apple executives including CEO John Ternus, hardware chief Johny Srouji, and marketing chief Greg \"Joz\" Joswiak discussed the company's decision to bring touch to the Mac.\n\n• For years, online commenters countered rumors of touchscreen Macs with quotes from Steve Jobs and other Apple executives, including Phil Schiller, arguing that touchscreens had no place on the Mac.\n• Shortly after Apple announced the 14-inch and 16-inch MacBook Pro with PROLED XDR Display, journalist Steven Levy published an interview in WIRED. Asked if Apple was about to break a long-imposed taboo and introduce a Macintosh with a touch screen, Ternus beamed: \"Who knew?\"\n• Ternus notes that while indirect input through the trackpad and keyboard remains central to the Mac, \"there's times when it's comfortable and handy to have touch.\" Apple sees touch as an add-on, not a feature that should require compromises to the design.\n• \"We needed to get to a point where adding touch didn't make the product lesser in any way. It didn't make it heavier. It didn't make it thicker. That came together with the OLED screen, the best display we've ever put into a Mac. All of these things, and, oh yeah, it has touch as well.\"\n• Srouji said a decade of advances finally let Apple meet its standards: \"Ten years is a very, very long time.\" The confluence of chips, display tech, and software architecture \"met our bar.\" \"I like my engineers to be gated by physics, not imagination or timelines.\"\n• The work included custom silicon, a redesigned thermal system to keep the display from feeling hot to the touch, and a reworked hinge to minimize screen wobble.\n• Joswiak said a new generation of touch-first users drove part of the decision: \"Most pros own an iPad, and almost every pro owns an iPhone... There's a generation of young creators and young people using our MacBook Pros that expect to touch.\" Engineers, scientists, software developers, and media creators had also asked for it.\n• The full interview also covers how Apple adapted macOS for touch, new Dynamic Island gestures, and whether touch might come to other Macs."
+  },
+  {
+   "id": "lawrence-hunger-games-sunrise-return",
+   "topic": "lawrence",
+   "date": "2026-10-28T15:54:13Z",
+   "url": "https://www.hollywoodreporter.com/movies/movie-news/jennifer-lawrence-hunger-games-return-sunrise-reaping-1236741782/",
+   "source": "The Hollywood Reporter",
+   "he": {
+    "title": "ג'ניפר לורנס מאשרת: חוזרת למשחקי הרעב ב\"זריחה ביום הקציר\"",
+    "summary": "בפודקאסט Call Her Daddy אישרה לורנס שהיא חוזרת לתפקיד קטניס אוורדין בסרט הפריקוול, ושהתאחדה עם ג'וש האצ'רסון ווודי הרלסון. הסרט יוצא ב-20 בנובמבר."
+   },
+   "en": {
+    "title": "Jennifer Lawrence confirms her Hunger Games return in 'Sunrise on the Reaping'",
+    "summary": "On Call Her Daddy, Lawrence confirmed she returns as Katniss Everdeen in the prequel and reunited with Josh Hutcherson and Woody Harrelson. The film opens Nov. 20."
+   },
+   "full_he": "ג'ניפר לורנס מאשרת סוף סוף שהיא חוזרת לסדרת משחקי הרעב.\n\n• לורנס דיברה על החזרה לתפקיד קטניס אוורדין בסרט \"זריחה ביום הקציר\" (Sunrise on the Reaping), שיוצא בחודש הבא, ואישרה שהתאחדה עם שותפיה לשעבר ג'וש האצ'רסון ווודי הרלסון, שעל השתתפותם השמועות רצו זמן רב.\n• כשמנחת Call Her Daddy, אלכס קופר, שאלה אותה על החזרה, ענתה: \"לא ייאמן. זה היה כל כך מטורף כי זה היה אותו צוות. אותם צלמים, אותו עוזר במאי שעבדתי איתו מיליון פעם... וג'וש ווודי, וזה היה כל כך מרגש. ג'וש ואני לא הלכנו אפילו לשירותים בלי ללכת חבוקים. זה היה כל כך יפה.\"\n• היא הוסיפה שהרלסון טיפס לחדר המלון שלה דרך החלון: \"וודי כמובן נכנס דרך החלון של החדר שלי בלי הזמנה, כי זה לא היה אותו דבר אם הוא היה מכבד גבולות ומשתמש בדלת.\"\n• היא גם סיפרה שב-2013 גזרה לעצמה תספורת פיקסי כמחאה, אחרי שההפקה סירבה לתת לה פאה ל\"עורבני חקיין\" והיא נמאסה לה מצביעת השיער לחום: \"זו הייתה המחאה הקטנה הראשונה שלי, התספורת הכי גרועה שמישהו ראה אי פעם.\"\n• \"זריחה ביום הקציר\" הוא פריקוול שמתרחש 24 שנה לפני הסרט המקורי, ועוקב אחרי היימיץ' אברנתי בן ה-16 במשחקי הרעב ה-50 (הרבעון השני), שבהם פי שניים מחווים נאלצים להילחם עד מוות. ג'וזף זאדה מגלם את היימיץ' הצעיר ורייף פיינס את הנשיא סנואו. הדמויות הוותיקות צפויות להופיע בקפיצות קדימה בזמן או בסיפור מסגרת. הסרט יוצא ב-20 בנובמבר.\n\nהערה: התקציר מבוסס על החלק הזמין של הכתבה.",
+   "full_en": "Jennifer Lawrence is finally confirming she's returning to The Hunger Games franchise.\n\n• Lawrence discussed being back as Katniss Everdeen in the upcoming Sunrise on the Reaping, which opens next month, and confirmed she reunited with former co-stars Josh Hutcherson and Woody Harrelson, whose participation had long been speculated.\n• Asked by Call Her Daddy host Alex Cooper about returning, she said: \"Unbelievable. It was so crazy because it was the same crew. It was the same camera guys, the same AD, who I've worked with a million times … and Josh and Woody and it was so emotional. Like Josh and I like didn't walk to the bathroom without our arms around each other. It was so beautiful.\"\n• She added that Harrelson climbed through her hotel window: \"And Woody obviously came through the window of my hotel room uninvited cause it would not be the same. It wouldn't be the same if he listened to boundaries and used a door.\"\n• She also revealed she gave herself a pixie cut in 2013 to protest producers refusing her a wig for Mockingjay after she grew tired of dyeing her hair brown: \"my first tiny little protest of giving myself the worst haircut anyone has ever seen in their life.\"\n• Sunrise on the Reaping is a prequel set 24 years before the original film, following 16-year-old Haymitch Abernathy in the 50th Hunger Games (the Second Quarter Quell), where twice as many tributes fight to the death. Joseph Zada plays young Haymitch and Ralph Fiennes is President Snow. Legacy characters are expected in flashforwards or a framing device. The film opens Nov. 20.\n\nNote: this summary is based on the available part of the article."
+  },
+  {
+   "id": "lawrence-set-nudity-crew-principle",
+   "topic": "lawrence",
+   "date": "2026-10-29T10:34:00Z",
+   "url": "https://www.independent.co.uk/arts-entertainment/films/news/jennifer-lawrence-nude-scene-crew-b3075517.html",
+   "source": "The Independent",
+   "he": {
+    "title": "ג'ניפר לורנס: \"הגבתי בתקיפות\" כשאנשי צוות לא מורשים היו על הסט בסצנת עירום",
+    "summary": "לורנס סיפרה ב-Call Her Daddy שעמדה על שלה כדי לקבוע עיקרון שיגן על שחקניות צעירות ולא מוכרות. היא דיברה גם על מטרות היופי שלה כאמא לשניים."
+   },
+   "en": {
+    "title": "Jennifer Lawrence 'came down hard' over unapproved crew during a nude scene",
+    "summary": "On Call Her Daddy, Lawrence said she took a firm stance to set a principle that protects young, unknown actresses. She also spoke about her beauty goals as a mother of two."
+   },
+   "full_he": "ג'ניפר לורנס תיארה פעם שבה נקטה עמדה תקיפה אחרי שאנשי צוות לא מורשים הופיעו על הסט בזמן סצנת עירום.\n\n• השחקנית בת ה-36 הדגישה שגמישות היא \"חלק מהעבודה\", למשל השינוי הדרמטי בשיער שלה לסרט \"Die My Love\" (2025), אבל יש רגעים שבהם צריך לעמוד על שלך כדי להגן על עצמך ועל אחרים בתעשייה.\n• בפודקאסט Call Her Daddy אמרה: \"היה מקרה על הסט שבו אנשי צוות שלא אושרו היו שם כשעשיתי עירום. הגבתי בתקיפות, רק כי אם אנחנו לא קובעים את העיקרון הזה, מה לכל הרוחות יקרה לבחורה לא מוכרת בת 18 כשהיא תגיע ויהיו על הסט אנשים לא מורשים?\"\n• \"היא תהיה במצב של: 'אני אומרת משהו ומקבלת מוניטין של קשה, או שאני נותנת לאנשים שלא נוח לי שיראו אותי עירומה לראות אותי עירומה?' היה חשוב לי להסביר לאנשים למה זה לא בסדר.\"\n• בעבר אמרה ל-Vulture שרצתה לתת לבמאית לין רמזי \"חופש אמנותי מוחלט\" ב-Die My Love: \"לא אכפת לי מעירום. אני לא רגישה לזה.\"\n• היא סיפרה שההיריון עם ילדה השני בזמן הצילומים הוריד ממנה הרבה מ\"חרדת היוהרה\", ושכששלחו לה תקריב עם צלוליט ושאלו אם לרטש, ענתה: \"לא. זה תחת.\"\n• בראיון שער ל-The Cut אמרה: \"אני רוצה להיות אמא סקסית... בהורדה לגן אני רוצה להיראות כמו אישה שהכול אצלה מסודר, גם כשרק התעוררתי וכלום לא מסודר.\"\n• אמא לשניים דיברה בעבר על טיפולים קוסמטיים ושינויים בגוף אחרי הלידות (\"אחרי הראשון הכול חזר פחות או יותר, אחרי השני כלום לא חזר\"), ומאז אישרה שעברה הרמת חזה ושוקלת מתיחת פנים בעתיד, אחרי שסיפרה בעבר ל-Vogue על כמויות קטנות של בוטוקס.",
+   "full_en": "Jennifer Lawrence described the time she took a firm stance after unauthorised crew members appeared on set during a nude scene.\n\n• The 36-year-old said being \"malleable\" is \"part of the job\", citing her dramatic hair transformation for 2025's Die My Love, but there are moments to put her foot down to protect herself and others in the industry.\n• On the Call Her Daddy podcast she said: \"There was an instance on set where crew members who were not approved when I was doing nudity were on set. I came down hard on it, purely because if we are not setting that principle, then what on earth is going to happen to an 18-year-old unknown when she shows up and there's people on set who are not approved?\"\n• \"She's going to be in a position of: 'Do I say something and get a reputation for being difficult, or do I let these people that I'm not comfortable seeing me naked see me naked?' It was important to me to explain that to the people why that was not okay.\"\n• She previously told Vulture she wanted to give director Lynne Ramsay \"total freedom artistically\" on Die My Love: \"I don't care about nudity. I'm not sensitive about it.\"\n• Being pregnant with her second child while filming took much of her \"vanity anxiety away\"; when sent a close-up of cellulite asking whether to touch it up, she said: \"No. That's an ass.\"\n• In a cover interview with The Cut: \"I want to be a sexy mom... At drop-off, I want to look like a woman that has her s*** together even when I've just woken up and don't have my s*** together.\"\n• The mother of two has discussed cosmetic procedures and post-pregnancy changes (\"Everything bounced back, pretty much, after the first one. Second one, nothing bounced back.\"), has since confirmed a breast lift and is considering a future facelift, having previously described \"baby Botox\" to Vogue."
+  },
+  {
+   "id": "milliebb-fall-photo-dump-second-baby",
+   "topic": "milliebb",
+   "date": "2026-10-28T20:00:00Z",
+   "url": "https://people.com/millie-bobby-brown-shares-fall-photo-dump-with-snaps-baby-number-two-12200065",
+   "source": "People",
+   "he": {
+    "title": "מילי בובי בראון שיתפה תמונות סתיו עם הצצה לתינוק השני שלה",
+    "summary": "כוכבת \"דברים מוזרים\" פרסמה באינסטגרם קרוסלת תמונות סתיו, ובהן הצצה לבן שאימצה עם בעלה ג'ייק בונג'ובי בחודש שעבר."
+   },
+   "en": {
+    "title": "Millie Bobby Brown shares a fall photo dump with a glimpse of her second baby",
+    "summary": "The Stranger Things star posted an Instagram carousel of fall photos, including a glimpse of the son she and husband Jake Bongiovi adopted last month."
+   },
+   "full_he": "מילי בובי בראון התאהבה בסתיו.\n\n• כוכבת \"דברים מוזרים\", בת 22, שיתפה ביום רביעי, 28 באוקטובר, קרוסלת תמונות באינסטגרם עם הצצה לחייה בתקופה האחרונה.\n• האמא לשניים הראתה ל-70.4 מיליון העוקבים שלה הצצה לתינוק השני, שהיא ובעלה ג'ייק בונג'ובי (24) קיבלו בחודש שעבר.\n• באחת התמונות היא מחזיקה את התינוק בחיקה, ורק יד קטנה נראית; בתמונה אחרת רואים את כפות רגליו בגרביים עם דלעות, בדיוק לקראת האלווין.\n• הכיתוב: \"התאהבתי בטירוף בסתיו\". בקרוסלה גם עריכת שולחן עם הכיתוב \"Mommy\", סלפי במראה בפיג'מה, ותמונה שלה ושל בונג'ובי מדברים באירוע של Gift of Adoption, ארגון שעוזר למשפחות להשלים אימוץ של ילדים במצבים פגיעים.\n• ב-17 בספטמבר שיתפו השניים את ההצצה הראשונה לתינוק עם הכיתוב \"היי בחור קטן\", ובתמונה נראתה היד שלו מוחזקת בידיהם, כשמילי עונדת טבעת \"Mom\". הרמז הראשון הגיע ב-7 בספטמבר, בתמונה שבה היא מחזיקה את בתם ובונג'ובי הולך לצידה עם מנשא תינוק.\n• כמעט לפני שנה הודיעה שהם אימצו את בתם הראשונה: \"הקיץ קיבלנו את התינוקת המתוקה שלנו באימוץ... ואז היינו שלושה\" (אוגוסט 2025).\n• ביוני סיפרה שאימוץ \"תמיד היה חלק מחלומות הילדות שלי\", ושכל הבובות שלה בילדות היו \"מאומצות\". היא הבהירה שהיא מקווה גם ללדת בעצמה יום אחד: \"זה לא כי אני לא רוצה את זה. אני מקווה שיום אחד זה בעתיד שלי.\" ו-\"אימוץ זו אהבה, אימוץ זה לתמיד.\"",
+   "full_en": "Millie Bobby Brown has fallen hard for fall!\n\n• The Stranger Things star, 22, shared an Instagram carousel on Wednesday, Oct. 28, offering a glimpse into her life lately.\n• The mom of two gave her 70.4 million followers a glimpse of her second baby, whom she welcomed with husband Jake Bongiovi, 24, last month.\n• One snap showed her cradling the infant in her lap with just a tiny hand on show; another showed the baby's tiny feet in pumpkin socks, just in time for Halloween.\n• Caption: \"Fallen so madly for fall.\" The dump also included a \"Mommy\" table setting, a pajama mirror selfie, and an image of her and Bongiovi speaking at an event for Gift of Adoption, which helps families complete adoptions of children in vulnerable circumstances.\n• On Sept. 17 the couple shared their first glimpse of the infant with the caption \"Hi little guy,\" showing his hand held by theirs, with Brown wearing a \"Mom\" ring. The first hint came Sept. 7, in a post showing her holding their daughter while Bongiovi carried a baby carrier.\n• Almost a year ago she announced their first daughter: \"This summer we welcomed our sweet baby girl through adoption... And then there were 3.\" (August 2025)\n• In June she said adoption \"was always part of my childhood dreams\" and that her baby dolls were all \"adopted\"; she hopes to carry children one day too: \"It's not because I don't want that. Hopefully one day that's in my future.\" \"Adoption is love, adoption is forever.\""
   }
  ]
 }
