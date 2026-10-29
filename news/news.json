@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T16:16:04+02:00",
+ "updated": "2026-10-29T16:54:37+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,40 @@
  ],
  "items": [
   {
+   "id": "grok-dems-trump-preserve-chatbot-records",
+   "topic": "grok",
+   "date": "2026-10-29T14:38:16Z",
+   "url": "https://x.com/i/trending/2115813818244980960",
+   "source": "X",
+   "he": {
+    "title": "דמוקרטים דורשים מטראמפ לשמור את כל השיחות שלו עם גרוק",
+    "summary": "חברי הקונגרס ג'יימי ראסקין ורוברט גרסיה דרשו מטראמפ לשמור כל פרומפט ותשובה מגרוק, ChatGPT ו-Claude ששימשו אותו בתפקידו, אחרי דיווח שהתייעץ עם גרוק לפני המבצע ללכידת מדורו. הבית הלבן אומר שכל הרשומות הנדרשות נשמרות לפי החוק."
+   },
+   "en": {
+    "title": "Democrats demand Trump preserve his Grok chatbot records",
+    "summary": "Reps. Jamie Raskin and Robert Garcia asked Trump to keep every prompt and response from Grok, ChatGPT and Claude used in official duties, citing a report that he consulted Grok before the Maduro capture operation. The White House says all required records are preserved by law."
+   },
+   "full_he": "דמיין את חדר הסגלגל: הנשיא טראמפ מבלה שעות בהתייעצות עם הצ'טבוט גרוק של אילון מאסק על לכידתו של ניקולס מדורו מוונצואלה. עכשיו הדמוקרטים רוצים שכל פרומפט וכל תשובה יישמרו כרשומות רשמיות.\n\n• חברי בית הנבחרים הדמוקרטים ג'יימי ראסקין ורוברט גרסיה (הבכירים בוועדות המשפט והפיקוח) שלחו לטראמפ מכתב ב-28 באוקטובר, ודרשו שישמור את כל הקלטים והפלטים מכלי בינה מלאכותית כמו גרוק, ChatGPT ו-Claude ששימשו אותו בתפקידיו הרשמיים.\n• הם הזכירו פגישה מדצמבר 2025 שבה טראמפ ביקש לפי הדיווח את עצת גרוק לגבי תגובת הוונצואלים ללכידת מדורו, ואחריה בא מבצע צבאי אמריקאי בלי אישור הקונגרס.\n• לדבריהם, ההסתמכות על בינה מלאכותית \"מטרידה מאוד\": היא עוקפת את הקונגרס ומסכנת את הביטחון הלאומי. הם ביקשו תדרוך מהבית הלבן עד 11 בנובמבר.\n• גורם בבית הלבן אמר שהרשומות נשמרות לפי החוק, וחבר הקונגרס לשעבר ג'ייסון צ'אפטס פסל את הדרישה כ\"מופרכת לגמרי\" בגלל חסיון הרשות המבצעת.\n\nלפי פוליטיקו, זהו טעימה ממה שיבוא אם הדמוקרטים ישתלטו על בית הנבחרים בבחירות של השבוע הבא. זהו סיכום של סיפור מגמה ב-X שנוצר מפוסטים של משתמשים ועלול להשתנות.",
+   "full_en": "Picture the Oval Office: President Trump spends hours consulting Elon Musk's Grok chatbot on capturing Venezuela's Nicolás Maduro. Now Democrats want every prompt and response saved as official records.\n\n• House Democrats Jamie Raskin and Robert Garcia (the top Democrats on the Judiciary and Oversight Committees) sent Trump an October 28 letter demanding he retain all inputs and outputs from AI tools like Grok, ChatGPT and Claude used in official duties.\n• They cited a December 2025 meeting where Trump reportedly sought Grok's advice on Venezuelan reactions to Maduro's capture, followed by an unauthorized U.S. military operation.\n• The lawmakers called the reliance on AI 'deeply troubling' for bypassing Congress and risking national security, and requested a White House briefing by November 11.\n• A White House official said records are preserved per the law, while former Rep. Jason Chaffetz dismissed the request as 'totally bogus' under executive privilege.\n\nPolitico frames it as a preview of what's to come if Democrats flip the House next week. This is a summary of an X trending story built from users' posts and may evolve."
+  },
+  {
+   "id": "solana-machine-fun-robotics-launchpad",
+   "topic": "solana",
+   "date": "2026-10-29T14:30:25Z",
+   "url": "https://x.com/solana/status/2115813510873567340",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: machine.fun, לאנצ'פד לגיוס הון לפרויקטים של רובוטיקה",
+    "summary": "החשבון הרשמי של סולאנה מציג את machine.fun של peaq ו-CodecFlow: פלטפורמה שבה כל אחד יכול להעלות מכונה, לגייס עבורה הון בפומבי ולסחור בה מהיום הראשון, על בסיס Raydium LaunchLab."
+   },
+   "en": {
+    "title": "Solana: machine.fun, a launchpad for raising capital for robotics",
+    "summary": "Solana's official account highlights peaq and CodecFlow's machine.fun, where anyone can list a machine, raise capital for it in public and trade it from day one, built on Raydium LaunchLab."
+   },
+   "full_he": "הפוסט: \"machine.fun, שמופעלת על ידי peaq ו-CodecFlow, מביאה פרויקטים של רובוטיקה לסולאנה, יחד עם Sunrise ו-Raydium. גייסו הון לרובוטיקה ולמכונות פיזיות על סולאנה.\"\n\nהפוסט שהוא ציטט (@machinedotfun): \"לרובוטיקה ולחומרה יש עכשיו לאנצ'פד. כל אחד יכול להעלות מכונה, לגייס עבורה הון בפומבי ולסחור בה מהיום הראשון. נבנה עם Raydium LaunchLab, בתמיכת CodecFlow ו-peaq.\" (בפוסט המצוטט יש גם סרטון.)\n\nרקע מהבלוג של peaq (23 באוקטובר):\n• machine.fun היא לאנצ'פד פתוח לכולם על סולאנה לרובוטים, רחפנים, בינה מלאכותית פיזית, DePIN וחומרה.\n• כל פרויקט מתחיל כדף ציבורי; כשהצוות מוכן, ההשקה נעשית בחתימה אחת, ויצירת הטוקן והקנייה הראשונה של המייסד קורות באותה עסקה.\n• מכונות שמחוברות ל-peaqOS מציגות ראיה לכך שהן קיימות ופועלות, ו-SimArena של CodecFlow מאפשר להריץ סימולציה של הרובוט בדפדפן.\n\nבשרשור אין המשך מהחשבון של סולאנה עצמו. כמו כל טוקן חדש, מדובר בהשקעה בסיכון גבוה.",
+   "full_en": "The post: \"machine.fun, powered by peaq and CodecFlow, brings robotics projects onto Solana, with Sunrise and Raydium. Raise capital for robotics and physical machines on Solana.\"\n\nThe quoted post (@machinedotfun): \"Robotics and Hardware have a launchpad now. Anyone can put a machine up, raise capital for it in public, and trade it from day one. Built using Raydium LaunchLab and supported by CodecFlow and peaq.\" (The quoted post also includes a video.)\n\nBackground from peaq's blog (Oct 23):\n• machine.fun is a permissionless launchpad on Solana for robots, drones, physical AI, DePINs and hardware.\n• Every project starts as a public page; when a team is ready, launching takes one signature, with token creation and the founder's own first buy in the same transaction.\n• Machines linked to peaqOS show evidence that they exist and are running, and CodecFlow's SimArena lets anyone run a robot simulation in the browser.\n\nThere is no thread continuation from the Solana account itself. As with any new token, this is a high-risk investment."
+  },
+  {
    "id": "mccullough-vaers-231-deaths-2026",
    "topic": "mccullough",
    "date": "2026-10-29T13:57:49Z",
@@ -365,6 +399,23 @@
    },
    "full_he": "Bulk Trade משיקה שכבת L1 עצמאית למסחר, ומשאירה מאחור את התווית 'DEX על סולאנה'.\n\nהמייסד, kdotbulk, הסביר שמגבלות התפוקה של סולאנה עיכבו את החזון שלהם למסחר מהיר עם מיליוני משתמשים. המעבר ל-L1 ייעודית אמור לאפשר גישה מכמה רשתות ונזילות עמוקה יותר.\n\n• אפשר יהיה להפקיד מרשתות כמו Arc, Tempo, Arbitrum ו-HyperEVM לספר פקודות משותף, לביצוע מהיר יותר וניהול סיכונים בזמן אמת.\n• מייסד סולאנה, אנטולי יקובנקו, שהיה משקיע מוקדם, הגיב שפרויקטים שלא בנויים ישירות על שכבת הבסיס של סולאנה עומדים בפני עצמם.\n• הסוחרים חלוקים: חלק משבחים את תוספת הנזילות, ואחרים היו מעדיפים שהפרויקט יישאר כולו בסולאנה.\n• הפלטפורמה ממשיכה להתפתח אחרי השקת ה-mainnet שלה ב-2026 וסבב גיוס Seed של 8 מיליון דולר.\n\nהסיפור הוא סיכום של פוסטים ב-X, והוא עשוי להשתנות.",
    "full_en": "Bulk Trade launches as an independent trading Layer 1, leaving the Solana DEX label behind.\n\nFounder kdotbulk explained how Solana's throughput limits were holding back their vision for high-speed trading with millions of users. The pivot to a custom Layer 1 promises multichain access and deeper liquidity.\n\n• Deposits from chains like Arc, Tempo, Arbitrum and HyperEVM will go into a shared order book for faster execution and real-time risk management.\n• Solana co-founder Anatoly Yakovenko, an early investor, responded that projects not built directly on Solana's base layer stand alone.\n• Traders showed mixed views: some praised the liquidity boost, others would prefer a full Solana stay.\n• The platform keeps evolving after its 2026 mainnet launch and $8 million seed round.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "tesla-2008-roadster-pitch-video",
+   "topic": "tesla",
+   "date": "2026-10-29T12:36:30Z",
+   "url": "https://x.com/i/trending/2115196108934631709",
+   "source": "X",
+   "he": {
+    "title": "סרטון מ-2008: מאסק מציג את הרודסטר המקורי 12 יום לפני פשיטת רגל אפשרית",
+    "summary": "סרטון ויראלי מראה את מאסק בסלון ביתי ב-2008 מסביר על הרודסטר החשמלי ב-109 אלף דולר, כשטסלה וספייסאקס היו על סף קריסה. מאסק אישר את הסיפור במילה \"True\"."
+   },
+   "en": {
+    "title": "2008 video: Musk pitches the original Roadster 12 days from possible bankruptcy",
+    "summary": "A viral video shows Musk in a living room in 2008 explaining the $109,000 electric Roadster while Tesla and SpaceX were near collapse. Musk confirmed the account with \"True\"."
+   },
+   "full_he": "בסלון ביתי, 12 יום בלבד לפני פשיטת רגל אפשרית, אילון מאסק הציג ברוגע את הרודסטר המקורי של טסלה לקבוצה קטנה, כשעמדה בפניו ההחלטה הקשה אם לחלק את הכסף האחרון שלו בין טסלה לספייסאקס.\n\n• הסרטון מתעד את מאסק מסביר על מכונית הספורט החשמלית ב-109,000 דולר במפגש ביתי ב-2008, כששתי החברות עמדו על סף קריסה, והוא השווה את מימונן לבחירה איזה \"ילד\" להרעיב.\n• מאז טסלה צמחה מחברה פרטית ב-2009 עם 500 עובדים ו-1,000 מכוניות לחברה בשווי 1.6 טריליון דולר עם 135,000 עובדים, 100 מיליארד דולר הכנסות ויותר מ-10 מיליון מכוניות שיוצרו.\n• הצופים מוצאים את הסרטון מעורר השראה, ומאסק אישר את הסיפור במילה \"True\", בזמן שהדור הבא של הרודסטר מתקרב לייצור עם ביצועים קיצוניים ותכונות בהשראת ספייסאקס.\n\nזהו סיכום של סיפור מגמה ב-X שנוצר מפוסטים של משתמשים ועלול להשתנות.",
+   "full_en": "In a cozy living room just 12 days from potential bankruptcy, Elon Musk calmly pitched the original Tesla Roadster to a small group, facing the tough choice of splitting his last funds between Tesla and SpaceX.\n\n• The video captures Musk explaining the $109,000 electric sports car during a home gathering in 2008, when both companies teetered on collapse and he likened funding them to choosing which 'child' to let starve.\n• Tesla has since grown from a 2009 private firm with 500 employees and 1,000 vehicles to a $1.6 trillion company with 135,000 employees, $100 billion revenue, and over 10 million vehicles produced.\n• Viewers find it inspiring, with Musk confirming the account as 'True,' while the next-generation Roadster nears production with extreme performance and SpaceX-inspired features.\n\nThis is a summary of an X trending story built from users' posts and may evolve."
   },
   {
    "id": "brecka-egg-labels",
