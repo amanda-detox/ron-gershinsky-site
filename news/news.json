@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T04:27:25+02:00",
+ "updated": "2026-10-29T05:06:18+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -142,6 +142,57 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-ship42-first-tower-catch",
+   "topic": "spacex",
+   "date": "2026-10-29T02:37:29Z",
+   "url": "https://x.com/elonmusk/status/2115634093949911506",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Ship 42 תהיה הספינה הראשונה שתיתפס במגדל",
+    "summary": "מאסק כתב ש-Ship 42, הסטארשיפ שמתכוננת לטיסה 15, תהיה הספינה הראשונה שתיתפס בזרועות המגדל. הוא ציטט את ההודעה של SpaceX על סיום ניסויי הצריבה הסטטית שלה."
+   },
+   "en": {
+    "title": "Musk: Ship 42 will be the first Starship tower catch",
+    "summary": "Musk wrote that Ship 42, the Starship preparing for Flight 15, will be the first ship caught by the tower. He was quoting SpaceX's post that its static fires are complete."
+   },
+   "full_he": "\"כפי שהנבואה חזתה, Starship 42 תהיה התפיסה הראשונה במגדל.\"\n\nהפוסט שהוא ציטט (SpaceX, 28 באוקטובר):\n\"ניסויי הצריבה הסטטית של Ship 42 הושלמו. הסטארשיפ שמתכוננת לטיסה 15 ביצעה צריבה סטטית מלאה של שישה מנועים, והפעילה מנוע Raptor יחיד כדי לדמות צריבת יציאה ממסלול.\"\n\nשאר הפוסט של SpaceX הוא שני סרטונים, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"As the prophecy foretold, Starship 42 will be the first tower catch\"\n\nThe quoted post (SpaceX, Oct 28):\n\"Ship 42 static fires complete. The Starship preparing for Flight 15 performed a full duration, six-engine static fire, and fired a single Raptor engine to simulate a deorbit burn.\"\n\nThe rest of SpaceX's post is two videos, so there's no more text to show."
+  },
+  {
+   "id": "grokbot-amazon-lockout-buy-elsewhere",
+   "topic": "grokbot",
+   "date": "2026-10-29T02:30:02Z",
+   "url": "https://x.com/elonmusk/status/2115632219712811226",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"תן ל-Grok Bot לקנות במקום אחר, בזול יותר\"",
+    "summary": "ג'יימס דאומה סיפר שאמזון חסמה את ה-Grok Bot שלו, אז הבוט פשוט קנה את אותו מוצר באתר אחר ובמחיר נמוך יותר. מאסק ענה שגם הוא עושה ככה, ומנכ\"ל Shopify טובי לוטקה הזכיר שהתמיכה ב-Shop Pay מגיעה בדיוק בזמן."
+   },
+   "en": {
+    "title": "Musk: \"Just have Grok Bot buy it somewhere else at a lower price\"",
+    "summary": "James Douma said Amazon locked out his Grok Bot, so it bought the same item from another site for less. Musk said he does the same, and Shopify CEO Tobi Lütke noted Shop Pay support is arriving just in time."
+   },
+   "full_he": "\"גם אני עושה ככה. פשוט תן ל-@Bot לקנות את זה במקום אחר במחיר נמוך יותר.\"\n\nהפוסט שהוא ציטט (ג'יימס דאומה, @jamesdouma):\n\"אמזון חסמה את ה-Grok Bot שלי. אז הוא פשוט קנה את אותו הדבר מאתר אחר (במחיר נמוך יותר).\"\n\nבהמשך ענה טובי לוטקה, מנכ\"ל Shopify: \"בדיוק בזמן לתמיכה ב-Shop Pay\", ומאסק ציטט אותו וכתב: \"תקנו מ-@Shopify!\"",
+   "full_en": "\"That's what I do too. Just have @Bot buy it somewhere else at a lower price.\"\n\nThe quoted post (James Douma, @jamesdouma):\n\"Amazon locked out my Grok Bot. So it just bought the same thing from a different site (at a lower price).\"\n\nShopify CEO Tobi Lütke then replied: \"Just in time for shop pay support\", and Musk quoted him: \"Buy from @Shopify!\""
+  },
+  {
+   "id": "musk-exponential-breakthroughs-biotech",
+   "topic": "musk",
+   "date": "2026-10-29T03:03:32Z",
+   "url": "https://x.com/elonmusk/status/2115640651517939785",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: פריצות הדרך בכל תחום מואצות באופן מעריכי",
+    "summary": "מאסק כתב שאם מסתכלים מקרוב, פריצות הדרך בכל תחום מואצות באופן מעריכי, ושעקומה מעריכית תמיד נראית קטנה בהתחלה. הוא ציטט פוסט שמונה עשר התקדמויות ביוטכנולוגיות מחצי השנה האחרונה."
+   },
+   "en": {
+    "title": "Musk: breakthroughs in everything are accelerating exponentially",
+    "summary": "Musk wrote that, looked at closely, breakthroughs in everything are accelerating exponentially, and that an exponential always starts off looking small. He was quoting a post listing ten biotech advances from the last six months."
+   },
+   "full_he": "\"אם מסתכלים מספיק מקרוב, פריצות הדרך בכל תחום מואצות באופן מעריכי.\n\nעקומה מעריכית תמיד נראית קטנה בהתחלה.\"\n\nהפוסט שהוא ציטט (@m_goes_distance, 27 באוקטובר). אלה טענות של כותב הפוסט, לא ייעוץ רפואי:\n\"אולי זה הציוץ הנורמלי האחרון שלי לפני שהביוטק ממריא. אני לא חושף שחיתויות ולא עובד בלילי, בנובו או במעבדות הגדולות, אבל מתחולל עכשיו שינוי עצום בביולוגיה של האדם. זה מופיע בהודעות לעיתונות, וכמעט אף אחד לא קורא אותן. רק בחצי השנה האחרונה:\"\n\n• כדור יומי הכפיל בערך את חציון ההישרדות בסרטן לבלב גרורתי (13.2 חודשים לעומת 6.6)\n• עירוי חד-פעמי של עריכה גנטית הפחית ב-87% את ההתקפים באנגיואדמה תורשתית, ו-62% מהמטופלים נשארו בלי התקפים ובלי טיפול מונע אחר במשך חצי שנה\n• עריכה גנטית חד-פעמית לכולסטרול הורידה LDL בעד 62%, והאפקט נשמר יותר משנה\n• חיסון mRNA מותאם אישית ניצח את Keytruda לבדו בניסוי שלב 3 במלנומה עם 1,137 מטופלים\n• רטטרוטייד הגיע לירידה של כ-28% במשקל בשלב 3\n• תרופה שתוכננה בבינה מלאכותית נכנסה לשלב 3\n• כדור שמצמיח מחדש שיער עבר את ניסוי שלב 3 השני שלו\n• אימונותרפיה שעשויה לאפשר לחלק מחולי סרטן החלחולת לוותר על ניתוח, כימותרפיה והקרנות קיבלה אישור FDA\n• אדם חי 271 יום בלי דיאליזה עם כליה של חזיר\n• תאים אנושיים נתפסו מעבירים לשכנים מקטעי DNA בגודל של כרומוזום, וזה משנה את התנהגות התאים השכנים\n\n\"אנחנו על סף עידן שבו גוף האדם הוא בעיית תוכנה, ומחזור העדכונים מתקצר כל יום. הישארו בסביבה, זה הולך להיות מוזר.\"",
+   "full_en": "\"If you look closely enough, breakthroughs in everything are accelerating exponentially.\n\nAn exponential always starts off looking small.\"\n\nThe quoted post (@m_goes_distance, Oct 27). These are the author's claims, not medical advice:\n\"this might be my last normal tweet before biotech goes vertical. i'm not a whistleblower. I don't work at Lilly, Novo or any of the big labs, but there is a massive shift happening in human biology right now. it's sitting in press releases and almost nobody reads them. the last 6 months alone:\"\n\n• a once-daily pill roughly doubled median survival in metastatic pancreatic cancer (13.2 vs 6.6 months)\n• a one-time gene editing infusion cut hereditary angioedema attacks 87%, and 62% of patients stayed attack-free and off all other prevention for 6 months\n• a one-time gene edit for cholesterol dropped LDL up to 62%, and it held for over a year\n• a personalized mRNA vaccine beat Keytruda alone in a 1,137 patient melanoma phase 3\n• retatrutide hit ~28% weight loss in a phase 3\n• an AI-designed drug entered phase 3\n• a pill that regrows hair passed its second phase 3\n• an immunotherapy that could let some rectal cancer patients skip surgery, chemo and radiation just got FDA approved\n• a man lived 271 days off dialysis on a pig kidney\n• human cells were caught passing chromosome-sized chunks of DNA to their neighbors, and it changes how the neighbors behave\n\n\"we are on the verge of an era where the human body is a software problem and the update cycle gets shorter everyday. stick around, it's going to get weird.\""
+  },
   {
    "id": "pod-asprey-8edbbd70bf",
    "topic": "podcasts",
