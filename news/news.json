@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T21:35:16+02:00",
+ "updated": "2026-10-29T22:21:10+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -467,6 +467,23 @@
    },
    "full_he": "\"העתיד נסחר 24/7\"\n\nהפוסט שהם ציטטו (@xStocksFi):\n\n\"הביקוש לשווקים שפתוחים 24/7 גדל בקראקן.\n\nיותר מ-50% מנפח המסחר ב-xStocks נעשה עכשיו מחוץ לשעות המסחר המסורתיות.\n\nעם יותר מ-1,000 מניות xStocks שנרשמו למסחר מאז שבוע שעבר, הגישה לשווקים הגלובליים מגיעה עכשיו רחוק עוד יותר, למיליוני אנשים בעולם.\"\n\nבפוסט המצוטט יש גם סרטון קצר, ולכן אין עוד טקסט להציג.",
    "full_en": "\"The future trades 24/7\"\n\nThe quoted post (@xStocksFi):\n\n\"Demand for 24/7 markets is growing on Kraken.\n\nOver 50% of xStocks volume now trades outside traditional hours.\n\nWith 1,000+ xStocks listed since last week, global market access now reaches even further to millions worldwide.\"\n\nThe quoted post also has a short video, so there's no more text to show."
+  },
+  {
+   "id": "johnson-dirty-eating-immune-memory",
+   "topic": "johnson",
+   "date": "2026-10-29T19:52:47Z",
+   "url": "https://x.com/bryan_johnson/status/2115894638561415459",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: לא לאכול \"מלוכלך\" בזמן תגובה חיסונית חריפה",
+    "summary": "לדבריו, אכילה לא בריאה בזמן זיהום ויראלי, התלקחות אוטואימונית או פציעה עלולה \"לנעול\" לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד. הוא מצרף מחקר חדש ב-Nature, שנעשה בעכברים."
+   },
+   "en": {
+    "title": "Bryan Johnson: avoid eating dirty during an acute immune reaction",
+    "summary": "He says eating junk during a viral infection, autoimmune flare or tissue injury can permanently lock in how immune cells react in the future. He attaches a new Nature study, which was done in mice."
+   },
+   "full_he": "\"הימנעו מאכילה 'מלוכלכת' בזמן תגובה חיסונית חריפה, כי היא עלולה לנעול לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד.\n\n*זיהום ויראלי, התלקחות אוטואימונית, פציעה ברקמה...\"\n\nבתמונה שצירף: צילום מסך של מאמר ב-Nature – \"Diet at disease onset determines tissue inflammatory memory\" (התזונה בתחילת המחלה קובעת את הזיכרון הדלקתי של הרקמה), מאמר בגישה פתוחה שפורסם ב-28 באוקטובר 2026, מאת Zewen Jiang, John M. Tayeri ועמיתים, עד Sagar P. Bapat.\n\nמה המאמר מצא (לפי התקציר ב-Nature):\n• חשיפה קצרה לתזונה עתירת שומן בדיוק בתחילת דלקת עור חריפה החמירה את המחלה בעכברים רזים עד לרמה שדומה לזו של עכברים שמנים.\n• ההשפעה מוגבלת לחלון של כ-4 ימים סביב תחילת הדלקת; תזונה עתירת שומן מחוץ לחלון הזה לא השפיעה, ומעבר של עכברים שמנים לתזונה דלת שומן באותו חלון ביטל את ההחמרה.\n• המנגנון: התזונה עתירת השומן גייסה במהירות נויטרופילים לעור, דרך ציר נויטרופילים–NLRP3–IL-1β שמפעיל תאי T מסוג TH17. סילוק נויטרופילים או חסימה של NLRP3 מנעו את ההחמרה.\n• אחרי ההחלמה נשארה בעור אוכלוסייה של תאי T זיכרון שוכני רקמה, ולכן כשהדלקת חזרה היא הייתה חמורה יותר, גם אחרי החלמה ותזונה דלת שומן – ורק ברקמה שכבר הודלקה בעבר.\n• תוצאה דומה נמצאה גם בדלקת מסוג TH17 בריאות.\n\nהסתייגויות: זה מחקר טרום-קליני בעכברים בלבד (עכברים זכרים, במעבדה ב-UCSF), ולא הוכחה להשפעה בבני אדם. זו טענה של ג'ונסון שמבוססת על המחקר, לא המלצה רפואית.",
+   "full_en": "\"Avoid eating dirty during an acute immune reaction bc it can permanently lock in how immune cells react in the future.\n\n*viral infection, autoimmune flare, tissue injury...\"\n\nThe attached image: a screenshot of a Nature article, \"Diet at disease onset determines tissue inflammatory memory\", open access, published 28 October 2026, by Zewen Jiang, John M. Tayeri and colleagues through Sagar P. Bapat.\n\nWhat the paper found (per its Nature abstract):\n• Brief high-fat diet exposure right at the onset of acute skin inflammation made the disease worse in lean mice, to levels comparable with obese mice.\n• The effect is limited to a 4-day window around onset; a high-fat diet outside that window had no impact, and switching obese mice to a low-fat diet during the same window fully blunted the amplification.\n• Mechanism: the high-fat diet rapidly recruited neutrophils into the skin via a neutrophil–NLRP3–IL-1β axis that licenses pathogenic TH17 T cells. Depleting neutrophils or blocking NLRP3 blunted the effect.\n• After recovery, a tissue-resident memory T cell population persisted, so recurrences were more severe even after recovery and a low-fat diet, and only in the previously inflamed tissue.\n• A similar effect was seen in TH17 lung inflammation.\n\nCaveats: this is a preclinical study in mice only (male mice, in a UCSF lab), not a demonstration of effects in humans. This is Johnson's claim based on the study, not medical advice."
   },
   {
    "id": "johnson-sauna-60-seconds",
