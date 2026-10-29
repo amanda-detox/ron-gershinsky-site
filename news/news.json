@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T22:21:10+02:00",
+ "updated": "2026-10-29T23:04:39+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-anthropic-top-customer-q3",
+   "topic": "spacex",
+   "date": "2026-10-29T20:55:52Z",
+   "url": "https://x.com/i/trending/2115908519178444881",
+   "source": "X",
+   "he": {
+    "title": "אנתרופיק הפכה ללקוחה הגדולה של ספייסאקס: 34.5% מהכנסות הרבעון",
+    "summary": "לפי דיווח חדש של ספייסאקס, חברת הבינה המלאכותית אנתרופיק אחראית ל-34.5% מההכנסות ברבעון השלישי, לפני נאס\"א והפנטגון, בזכות השכרת כוח מחשוב בממפיס. החוזים מגיעים עד 120.5 מיליארד דולר עד 2029."
+   },
+   "en": {
+    "title": "Anthropic becomes SpaceX's largest customer with 34.5% of Q3 revenue",
+    "summary": "SpaceX's latest filing shows AI firm Anthropic made up 34.5% of its Q3 revenue, ahead of NASA and the Pentagon, by renting compute at Memphis data centers. The contracts commit up to $120.5 billion through 2029."
+   },
+   "full_he": "הדיווח האחרון של ספייסאקס חשף מובילה מפתיעה: חברת הבינה המלאכותית אנתרופיק היא עכשיו הלקוחה הגדולה שלה, לפני נאס\"א והפנטגון.\n\n• אנתרופיק אחראית ל-34.5% מההכנסות של ספייסאקס ברבעון השלישי של 2026, דרך עסקאות להשכרת כוח מחשוב במרכזי נתונים בממפיס, טנסי.\n• החוזים מתחייבים לעד 120.5 מיליארד דולר עד 2029, ומזינים את חטיבת הבינה המלאכותית של ספייסאקס, שהפכה לרווחית ונקראת עכשיו Super Intelligence.\n• השותפות מגבירה את הצמיחה לצד סטארלינק והשיגורים, אבל יש סיכון: אנתרופיק יכולה לצאת מהעסקה בהתראה של 90 יום החל מתחילת 2027.\n\nזהו סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות.",
+   "full_en": "SpaceX's latest filing revealed a surprise leader: AI firm Anthropic, now its top customer ahead of NASA and the Pentagon.\n\n• Anthropic accounted for 34.5% of SpaceX's third-quarter 2026 revenue through deals to rent computing power at data centers in Memphis, Tennessee.\n• The contracts commit up to $120.5 billion through 2029, fueling SpaceX's newly profitable AI division, now called Super Intelligence.\n• The partnership boosts growth alongside Starlink and launches, but risks remain: Anthropic can exit with 90 days' notice starting early 2027.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "johnson-motivation-sleep-problem",
+   "topic": "johnson",
+   "date": "2026-10-29T20:38:03Z",
+   "url": "https://x.com/bryan_johnson/status/2115906026885235161",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: אין לך בעיית מוטיבציה, יש לך בעיית שינה",
+    "summary": "ג'ונסון טוען בפוסט קצר שרוב האנשים לא סובלים מחוסר מוטיבציה, אלא מבעיה בשינה."
+   },
+   "en": {
+    "title": "Bryan Johnson: most people have a sleep problem, not a motivation problem",
+    "summary": "In a short post, Johnson argues that most people don't lack motivation; they have a sleep problem."
+   },
+   "full_he": "\"לרוב האנשים אין בעיית מוטיבציה.\n\nיש להם בעיית שינה.\"\n\nזה כל הפוסט: אין בו תמונות, ובשרשור אין תגובות נוספות של ג'ונסון עצמו. זו הטענה שלו, לא המלצה רפואית.",
+   "full_en": "\"Most people don't have a motivation problem.\n\nThey have a sleep problem.\"\n\nThat's the whole post: there are no images, and Johnson didn't add any replies of his own in the thread. This is his claim, not medical advice."
+  },
+  {
+   "id": "johnson-dirty-eating-immune-memory",
+   "topic": "johnson",
+   "date": "2026-10-29T19:52:47Z",
+   "url": "https://x.com/bryan_johnson/status/2115894638561415459",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: לא לאכול \"מלוכלך\" בזמן תגובה חיסונית חריפה",
+    "summary": "לדבריו, אכילה לא בריאה בזמן זיהום ויראלי, התלקחות אוטואימונית או פציעה עלולה \"לנעול\" לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד. הוא מצרף מחקר חדש ב-Nature, שנעשה בעכברים."
+   },
+   "en": {
+    "title": "Bryan Johnson: avoid eating dirty during an acute immune reaction",
+    "summary": "He says eating junk during a viral infection, autoimmune flare or tissue injury can permanently lock in how immune cells react in the future. He attaches a new Nature study, which was done in mice."
+   },
+   "full_he": "\"הימנעו מאכילה 'מלוכלכת' בזמן תגובה חיסונית חריפה, כי היא עלולה לנעול לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד.\n\n*זיהום ויראלי, התלקחות אוטואימונית, פציעה ברקמה...\"\n\nבתמונה שצירף: צילום מסך של מאמר ב-Nature – \"Diet at disease onset determines tissue inflammatory memory\" (התזונה בתחילת המחלה קובעת את הזיכרון הדלקתי של הרקמה), מאמר בגישה פתוחה שפורסם ב-28 באוקטובר 2026, מאת Zewen Jiang, John M. Tayeri ועמיתים, עד Sagar P. Bapat.\n\nמה המאמר מצא (לפי התקציר ב-Nature):\n• חשיפה קצרה לתזונה עתירת שומן בדיוק בתחילת דלקת עור חריפה החמירה את המחלה בעכברים רזים עד לרמה שדומה לזו של עכברים שמנים.\n• ההשפעה מוגבלת לחלון של כ-4 ימים סביב תחילת הדלקת; תזונה עתירת שומן מחוץ לחלון הזה לא השפיעה, ומעבר של עכברים שמנים לתזונה דלת שומן באותו חלון ביטל את ההחמרה.\n• המנגנון: התזונה עתירת השומן גייסה במהירות נויטרופילים לעור, דרך ציר נויטרופילים–NLRP3–IL-1β שמפעיל תאי T מסוג TH17. סילוק נויטרופילים או חסימה של NLRP3 מנעו את ההחמרה.\n• אחרי ההחלמה נשארה בעור אוכלוסייה של תאי T זיכרון שוכני רקמה, ולכן כשהדלקת חזרה היא הייתה חמורה יותר, גם אחרי החלמה ותזונה דלת שומן – ורק ברקמה שכבר הודלקה בעבר.\n• תוצאה דומה נמצאה גם בדלקת מסוג TH17 בריאות.\n\nהסתייגויות: זה מחקר טרום-קליני בעכברים בלבד (עכברים זכרים, במעבדה ב-UCSF), ולא הוכחה להשפעה בבני אדם. זו טענה של ג'ונסון שמבוססת על המחקר, לא המלצה רפואית.",
+   "full_en": "\"Avoid eating dirty during an acute immune reaction bc it can permanently lock in how immune cells react in the future.\n\n*viral infection, autoimmune flare, tissue injury...\"\n\nThe attached image: a screenshot of a Nature article, \"Diet at disease onset determines tissue inflammatory memory\", open access, published 28 October 2026, by Zewen Jiang, John M. Tayeri and colleagues through Sagar P. Bapat.\n\nWhat the paper found (per its Nature abstract):\n• Brief high-fat diet exposure right at the onset of acute skin inflammation made the disease worse in lean mice, to levels comparable with obese mice.\n• The effect is limited to a 4-day window around onset; a high-fat diet outside that window had no impact, and switching obese mice to a low-fat diet during the same window fully blunted the amplification.\n• Mechanism: the high-fat diet rapidly recruited neutrophils into the skin via a neutrophil–NLRP3–IL-1β axis that licenses pathogenic TH17 T cells. Depleting neutrophils or blocking NLRP3 blunted the effect.\n• After recovery, a tissue-resident memory T cell population persisted, so recurrences were more severe even after recovery and a low-fat diet, and only in the previously inflamed tissue.\n• A similar effect was seen in TH17 lung inflammation.\n\nCaveats: this is a preclinical study in mice only (male mice, in a UCSF lab), not a demonstration of effects in humans. This is Johnson's claim based on the study, not medical advice."
+  },
   {
    "id": "musk-viral-abundance-whitehouse-claim",
    "topic": "musk",
@@ -467,23 +518,6 @@
    },
    "full_he": "\"העתיד נסחר 24/7\"\n\nהפוסט שהם ציטטו (@xStocksFi):\n\n\"הביקוש לשווקים שפתוחים 24/7 גדל בקראקן.\n\nיותר מ-50% מנפח המסחר ב-xStocks נעשה עכשיו מחוץ לשעות המסחר המסורתיות.\n\nעם יותר מ-1,000 מניות xStocks שנרשמו למסחר מאז שבוע שעבר, הגישה לשווקים הגלובליים מגיעה עכשיו רחוק עוד יותר, למיליוני אנשים בעולם.\"\n\nבפוסט המצוטט יש גם סרטון קצר, ולכן אין עוד טקסט להציג.",
    "full_en": "\"The future trades 24/7\"\n\nThe quoted post (@xStocksFi):\n\n\"Demand for 24/7 markets is growing on Kraken.\n\nOver 50% of xStocks volume now trades outside traditional hours.\n\nWith 1,000+ xStocks listed since last week, global market access now reaches even further to millions worldwide.\"\n\nThe quoted post also has a short video, so there's no more text to show."
-  },
-  {
-   "id": "johnson-dirty-eating-immune-memory",
-   "topic": "johnson",
-   "date": "2026-10-29T19:52:47Z",
-   "url": "https://x.com/bryan_johnson/status/2115894638561415459",
-   "source": "X · @bryan_johnson",
-   "he": {
-    "title": "בריאן ג'ונסון: לא לאכול \"מלוכלך\" בזמן תגובה חיסונית חריפה",
-    "summary": "לדבריו, אכילה לא בריאה בזמן זיהום ויראלי, התלקחות אוטואימונית או פציעה עלולה \"לנעול\" לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד. הוא מצרף מחקר חדש ב-Nature, שנעשה בעכברים."
-   },
-   "en": {
-    "title": "Bryan Johnson: avoid eating dirty during an acute immune reaction",
-    "summary": "He says eating junk during a viral infection, autoimmune flare or tissue injury can permanently lock in how immune cells react in the future. He attaches a new Nature study, which was done in mice."
-   },
-   "full_he": "\"הימנעו מאכילה 'מלוכלכת' בזמן תגובה חיסונית חריפה, כי היא עלולה לנעול לצמיתות את הדרך שבה תאי החיסון יגיבו בעתיד.\n\n*זיהום ויראלי, התלקחות אוטואימונית, פציעה ברקמה...\"\n\nבתמונה שצירף: צילום מסך של מאמר ב-Nature – \"Diet at disease onset determines tissue inflammatory memory\" (התזונה בתחילת המחלה קובעת את הזיכרון הדלקתי של הרקמה), מאמר בגישה פתוחה שפורסם ב-28 באוקטובר 2026, מאת Zewen Jiang, John M. Tayeri ועמיתים, עד Sagar P. Bapat.\n\nמה המאמר מצא (לפי התקציר ב-Nature):\n• חשיפה קצרה לתזונה עתירת שומן בדיוק בתחילת דלקת עור חריפה החמירה את המחלה בעכברים רזים עד לרמה שדומה לזו של עכברים שמנים.\n• ההשפעה מוגבלת לחלון של כ-4 ימים סביב תחילת הדלקת; תזונה עתירת שומן מחוץ לחלון הזה לא השפיעה, ומעבר של עכברים שמנים לתזונה דלת שומן באותו חלון ביטל את ההחמרה.\n• המנגנון: התזונה עתירת השומן גייסה במהירות נויטרופילים לעור, דרך ציר נויטרופילים–NLRP3–IL-1β שמפעיל תאי T מסוג TH17. סילוק נויטרופילים או חסימה של NLRP3 מנעו את ההחמרה.\n• אחרי ההחלמה נשארה בעור אוכלוסייה של תאי T זיכרון שוכני רקמה, ולכן כשהדלקת חזרה היא הייתה חמורה יותר, גם אחרי החלמה ותזונה דלת שומן – ורק ברקמה שכבר הודלקה בעבר.\n• תוצאה דומה נמצאה גם בדלקת מסוג TH17 בריאות.\n\nהסתייגויות: זה מחקר טרום-קליני בעכברים בלבד (עכברים זכרים, במעבדה ב-UCSF), ולא הוכחה להשפעה בבני אדם. זו טענה של ג'ונסון שמבוססת על המחקר, לא המלצה רפואית.",
-   "full_en": "\"Avoid eating dirty during an acute immune reaction bc it can permanently lock in how immune cells react in the future.\n\n*viral infection, autoimmune flare, tissue injury...\"\n\nThe attached image: a screenshot of a Nature article, \"Diet at disease onset determines tissue inflammatory memory\", open access, published 28 October 2026, by Zewen Jiang, John M. Tayeri and colleagues through Sagar P. Bapat.\n\nWhat the paper found (per its Nature abstract):\n• Brief high-fat diet exposure right at the onset of acute skin inflammation made the disease worse in lean mice, to levels comparable with obese mice.\n• The effect is limited to a 4-day window around onset; a high-fat diet outside that window had no impact, and switching obese mice to a low-fat diet during the same window fully blunted the amplification.\n• Mechanism: the high-fat diet rapidly recruited neutrophils into the skin via a neutrophil–NLRP3–IL-1β axis that licenses pathogenic TH17 T cells. Depleting neutrophils or blocking NLRP3 blunted the effect.\n• After recovery, a tissue-resident memory T cell population persisted, so recurrences were more severe even after recovery and a low-fat diet, and only in the previously inflamed tissue.\n• A similar effect was seen in TH17 lung inflammation.\n\nCaveats: this is a preclinical study in mice only (male mice, in a UCSF lab), not a demonstration of effects in humans. This is Johnson's claim based on the study, not medical advice."
   },
   {
    "id": "johnson-sauna-60-seconds",
