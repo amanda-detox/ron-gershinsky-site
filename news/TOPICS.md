@@ -1,0 +1,62 @@
+# נושאי עדכוניפיי · Updatify Topics
+
+רשימת הנושאים של רון לעדכוניפיי. הקובץ הזה הוא מקור האמת, גם לרון וגם לאמנדוש.
+Ron's Updatify topic list. This file is the source of truth for both Ron and Amandush.
+עודכן · Updated: 2026-10-29
+
+## 🩺 בריאות · Health
+| עברית | English | id | סטטוס · Status |
+|---|---|---|---|
+| גארי בראקה | Gary Brecka | brecka | ✅ פעיל · active |
+| ג'ו דיספנזה | Dr. Joe Dispenza | dispenza | ✅ |
+| דייב אספריי | Dave Asprey | asprey | ✅ |
+| ברוס ליפטון | Dr. Bruce Lipton | lipton | ✅ |
+| מיכאלה פיטרסון | Mikhaila Peterson | mikhaila | ✅ |
+| בריאן ארדיס | Dr. Bryan Ardis | ardis | ✅ |
+| פיטר מקולה | Dr. Peter McCullough | mccullough | ✅ |
+| מדיקל מדיום | Medical Medium (Anthony William) | medicalmedium | ✅ |
+| בריאן ג'ונסון | Bryan Johnson | johnson | ✅ |
+
+## 💻 טכנולוגיה ועסקים · Tech & Business
+| עברית | English | id | סטטוס · Status |
+|---|---|---|---|
+| אילון מאסק | Elon Musk | musk | ✅ |
+| ג'נסון הואנג | Jensen Huang | huang | ✅ |
+| פאבל דורוב | Pavel Durov | durov | ✅ |
+| טסלה | Tesla | tesla | ✅ |
+| ספייסאקס | SpaceX | spacex | ✅ |
+| גרוק | Grok | grok | ✅ |
+| בוט | Grok Bot | grokbot | ✅ |
+| אפל | Apple | apple | ✅ |
+| קראקן | Kraken | kraken | ✅ |
+| סולאנה | Solana | solana | ⏳ עוד לא באפליקציה · not in the app yet |
+| סטארטר סטורי | Starter Story | starterstory | ✅ |
+
+## ⭐ אנשים · People
+| עברית | English | id | סטטוס · Status |
+|---|---|---|---|
+| בר רפאלי | Bar Refaeli | refaeli | ✅ |
+
+## 🎙️ פודקאסטים · Podcasts
+| תוכנית · Show | id |
+|---|---|
+| The Ultimate Human (Gary Brecka) | brecka |
+| The Mikhaila Peterson Podcast | mikhaila |
+| The Jordan B. Peterson Podcast | jbp |
+| The Human Upgrade (Dave Asprey) | asprey |
+
+## ➕ נוספו על ידי אמנדוש · Added by Amandush
+אלה כבר באפליקציה, אבל לא הופיעו ברשימה של רון.
+These are already in the app but were missing from Ron's list.
+| עברית | English | id |
+|---|---|---|
+| טים קוק (Apple) | Tim Cook | cook |
+| ד"ר מרקולה | Dr. Joseph Mercola | mercola |
+| ג'ורדן פיטרסון (פודקאסט) | Jordan B. Peterson (podcast) | jbp |
+
+## ❓ לבירור · Needs clarification
+| מה כתוב · As written | אפשרויות · Possible matches |
+|---|---|
+| ג'ון טראנוס | לא ברור למי הכוונה, וגם אין באפליקציה מקור כזה · Unclear who is meant, and the app has no such source |
+| אמילי ווטסון | Emily Watson (השחקנית · actress)? Emma Watson? Emily Ratajkowski? |
+| אמה כלשהי | Emma Watson? Emma Stone? Emma Roberts? |
