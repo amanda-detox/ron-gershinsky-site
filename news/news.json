@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T20:02:29+02:00",
+ "updated": "2026-10-29T20:49:05+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -6939,6 +6939,108 @@
    },
    "full_he": "ראיינתי מייסד שבנה מאפס אפליקציה שמכניסה 25 אלף דולר בחודש.\n\nהוא זיהה פער בשוק וחשב: \"אני יכול לפתור את זה עם AI\".\nהוא בנה גרסה משלו והשיק את ה־MVP תוך 48 שעות.\n\nהוא תיקף את הרעיון בעזרת ידע עמוק בתחום, לא בעזרת תואר בטכנולוגיה.\n\nהוא קידם אותה כשהציע שותפות למישהו עם 500 אלף עוקבים, וקיבל הפצה מיידית.\n\nהיום יש לאפליקציה 355 משתמשים משלמים ועקומת צמיחה ישרה.\nמדריך 6 הצעדים שלו פשוט ואפשר ליישם אותו.\n\nהתגובה של הכותב מתחת לפוסט: לידיעתך, בכל פעם שאני מוצא מפתחים עצמאיים שבונים דברים מגניבים כמו חסאם, אני מוסיף אותם למאגר הזה. (קישור)\n\nמדריך 6 הצעדים (מתוך התמונה), \"שיטת 'הידע בתחום' שלי לאפליקציות AI\":\n1. לגלות את הידע שלך בתחום (לזהות את היתרון שלך): לאתר מה אתה יודע שהמפתח הממוצע לא יודע. לעבור על הניסיון המקצועי שלך ועל התעשיות שחיית בהן כדי למצוא נקודות כאב של \"מבפנים\". לרשום 3 עד 5 תחומים שבהם הידע העמוק שלך נותן לך יתרון לא הוגן.\n2. לבחור שוק מתוקף (להעתיק ולכבוש): להפסיק לחפש רעיון \"ייחודי\" ולחפש רעיון מוכח. להשתמש בכלים כמו Ahrefs או Sensor Tower כדי למצוא כלים מצליחים בתחום שלך. נתח של 1% משוק ענק ומוכח שווה הרבה יותר מ־100% משוק קטנטן וניסיוני. לרשום 5 מתחרים ולחקור את ההצלחה שלהם.\n3. בדיקת חיכוכים לעומק (לכרות את התלונות): להשקיע יותר מ־10 שעות ב־Reddit, בקבוצות פייסבוק ובאתרי ביקורות. למפות בדיוק איפה הכלים הקיימים מאכזבים את המשתמשים ואילו פיצ'רים הם מתחננים לקבל. את מפת הדרכים שלך צריכים לכתוב הלקוחות המתוסכלים של המתחרים.\n4. ספרינט MVP של 72 שעות (לבנות את הליבה): להתמקד בפיצ'ר אחד עם התשואה הגבוהה ביותר והיישום הקל ביותר. להשתמש ב־Cursor כדי לפרק את הבנייה לצעדים קטנטנים (למשל Apify לנתונים ← Cursor ללוגיקה). לכוון לגרסה עובדת, לא מושלמת, תוך 48 עד 72 שעות. לבנות אותה בסוף השבוע הזה.\n5. הפצה עם מינוף גבוה (לשאול קהל): לא לבזבז חודשים על בניית קהל מאפס. למצוא חברות אימון או משפיענים שכבר מחזיקים בקהל היעד שלך. להציע שותפות נועזת: \"אני אבנה לך את זה תוך 48 שעות; אם תאהב, נהיה שותפים.\" 50% מעוגה ענקית עדיפים על 100% מכלום.\n6. לולאת השקה איטרטיבית (להשיק כל יום או למות): השלמות היא האויב של ההתקדמות. להכניס את הכלי לידי המשתמשים ולהשיק שיפור אחד כל יום. לשים לב למה שהמשתמשים עושים, לא למה שהם אומרים. לעבור ממידע גולמי לתובנות מעשיות: המשתמשים רוצים שה־AI יגיד להם מה לעשות עכשיו.",
    "full_en": "I interviewed this founder who built a $25k/month app from scratch.\n\nHe saw a gap in the market and thought “I can solve this with AI”.\nbuilt his own version and launched the MVP in 48 hours.\n\nHe validated it with deep domain knowledge instead of a tech degree.\n\nHe promoted it by pitching a partner with 500k followers for instant distribution.\n\nNow the app has 355 paying users and a straight-line growth curve.\nHis 6-step playbook is simple and applicable.\n\nThe author's own reply under the post: FYI, every time I find solo devs building cool stuff like Hassam, I add them to this database. (link)\n\nThe 6-step playbook (from the image), \"My 'Domain knowledge' system for AI apps\":\n1. Domain knowledge discovery (identify your edge): pinpoint what you know that the average developer doesn't. Audit your professional history and the industries you've lived in to find \"insider\" pain points. Write down 3–5 domains where your deep knowledge gives you an unfair advantage.\n2. Validated market selection (clone and conquer): stop looking for a \"unique\" idea and look for a proven one. Use tools like Ahrefs or Sensor Tower to find successful tools in your domain. A 1% slice of a massive, proven market is worth far more than 100% of a tiny experimental one. List 5 competitors and study their success.\n3. Deep-dive friction audit (mine the complaints): spend 10+ hours on Reddit, Facebook groups and review sites. Map exactly where current tools fail users and what features they beg for. Your roadmap should be written by your competitors' frustrated customers.\n4. The 72-hour MVP sprint (build the core): focus on the single feature with the highest ROI and the easiest implementation. Use Cursor to break the build into tiny steps (e.g., Apify for data → Cursor for logic). Aim for a functional, non-perfect version within 48–72 hours. Build it this weekend.\n5. High-leverage distribution (borrow the audience): don't spend months building a following from scratch. Find coaching companies or influencers who already own your target audience. Offer a bold partnership: \"I'll build this for you in 48 hours; if you like it, we partner.\" 50% of a massive pie beats 100% of nothing.\n6. The iterative shipping loop (ship daily or die): perfection is the enemy of progress. Get the tool into users' hands and ship one improvement every day. Watch what users do, not what they say. Move from raw information to actionable insights: users want the AI to tell them what to do next."
+  },
+  {
+   "id": "spacex-falcon9-crew-dragon-phaseout-2030",
+   "topic": "spacex",
+   "date": "2026-10-29T18:25:49Z",
+   "url": "https://x.com/i/trending/2115870737068073355",
+   "source": "X",
+   "he": {
+    "title": "ספייסאקס תפסיק את פלקון 9 ודרגון של הצוותים עבור נאס\"א עד 2030",
+    "summary": "ספייסאקס הודיעה לנאס\"א שתפסיק למכור שיגורי פלקון 9 מסחריים חדשים אחרי 2028 ואת טיסות קרו דרגון עד 2030, כדי להתמקד בסטארשיפ. מנהל נאס\"א ג'ארד אייזקמן אישר את המהלך, והחוזים הקיימים יכובדו."
+   },
+   "en": {
+    "title": "SpaceX to phase out Falcon 9 and Crew Dragon for NASA by 2030",
+    "summary": "SpaceX told NASA it will stop selling new commercial Falcon 9 launches after 2028 and end Crew Dragon flights by 2030 to focus on Starship. NASA Administrator Jared Isaacman confirmed the shift, with current contracts honored."
+   },
+   "full_he": "ספייסאקס מצמצמת את תפקידה כשותפת השיגור המרכזית של נאס\"א: היא תפסיק למכור שיגורי פלקון 9 חדשים אחרי 2028 ואת טיסות קרו דרגון עד 2030, כדי להתמקד בסטארשיפ.\n\n• החברה הודיעה לנאס\"א שתפסיק שיגורי פלקון 9 מסחריים חדשים אחרי 2028.\n• טיסות קרו דרגון ייפסקו ב־2030 או לפני כן.\n• ספייסאקס לא תגיש הצעות למכרזים של חיל החלל, ותפסיק לתמוך בנחתות ירח קטנות.\n• מנהל נאס\"א ג'ארד אייזקמן אישר שספייסאקס מעבירה את סדר העדיפויות לסטארשיפ, ושהחוזים הקיימים יכובדו לאורך העשור, כולל החלפות הצוותים בתחנת החלל הבינלאומית.\n• יש שרואים בזה הישג לחלל המסחרי שפותח דלת למתחרות כמו בלו אוריג'ין, אבל המהלך גם מבליט עד כמה נאס\"א תלויה בספייסאקס להטסת צוותים ומעלה שאלות לגבי הגישה העתידית למסלול נמוך סביב כדור הארץ.\n\nזהו סיכום של פוסטים ב־X (סיפור טרנדינג), והוא עשוי להשתנות.",
+   "full_en": "SpaceX is stepping back from its role as NASA's main launch partner, ending Falcon 9 sales after 2028 and Crew Dragon flights by 2030 to focus on Starship.\n\n• The company has told NASA it will halt new commercial Falcon 9 launches after 2028.\n• Crew Dragon will stop flying by or before 2030.\n• SpaceX will skip Space Force bids and drop support for small lunar landers.\n• NASA Administrator Jared Isaacman confirmed SpaceX's shift to prioritize Starship while honoring current contracts through the decade for ISS crew rotations.\n• Some see this as a win for commercial space, opening doors for rivals like Blue Origin, though it spotlights NASA's reliance on SpaceX for crew transport and raises questions about future low-Earth orbit access.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "spacex-kristol-nationalize-debate",
+   "topic": "spacex",
+   "date": "2026-10-29T18:26:37Z",
+   "url": "https://x.com/i/trending/2115870740012581236",
+   "source": "X",
+   "he": {
+    "title": "ביל קריסטול: מאסק הוא סיכון ביטחוני, והוויכוח על הלאמת ספייסאקס מתלהט",
+    "summary": "הפרשן ביל קריסטול כינה את מאסק סיכון לביטחון הלאומי בגלל השליטה שלו בספייסאקס, והצית ויכוח אם הממשלה צריכה להתערב. המתנגדים מזהירים שהלאמה תחסל את החדשנות."
+   },
+   "en": {
+    "title": "Bill Kristol calls Musk a security risk as SpaceX nationalization debate heats up",
+    "summary": "Commentator Bill Kristol called Elon Musk a national security risk over his control of SpaceX, sparking arguments over whether the government should step in. Opponents warn nationalization would kill innovation."
+   },
+   "full_he": "ביל קריסטול כינה את אילון מאסק סיכון לביטחון הלאומי בגלל השליטה שלו בספייסאקס, ועורר ויכוח אם הממשלה צריכה להיכנס ולהשתלט.\n\n• המבקרים טוענים שהתלות הכבדה של ספייסאקס בחוזים של ממשלת ארה\"ב והשליטה של בעלים יחיד הופכות אותה לנקודת תורפה. הם מקדמים רעיונות כמו הלאמה, פירוק או רגולציה מחמירה, בעקבות מאמר באתר The Bulwark מ־27 באוקטובר.\n• המתנגדים מזהירים שזה יחסל את החדשנות, ומזכירים את הרקטות הרב־פעמיות של ספייסאקס ואת ההכנסות של 14.6 מיליארד דולר ברבעון השלישי של 2026 מסטארלינק ומצמיחה בתחום הבינה המלאכותית.\n• העימות מבליט את המתח בין הצלחה פרטית בטכנולוגיות חלל לבין פיקוח ציבורי על תשתיות קריטיות.\n\nזהו סיכום של פוסטים ב־X (סיפור טרנדינג), והוא עשוי להשתנות.",
+   "full_en": "Bill Kristol called Elon Musk a national security risk due to his control of SpaceX, sparking arguments on whether the government should step in to take over.\n\n• Critics argue SpaceX's heavy reliance on U.S. government contracts and single-owner control make it a vulnerability, pushing ideas like nationalization, breakup, or stricter rules after an October 27 Bulwark article.\n• Opponents warn it would kill innovation, citing SpaceX's reusable rockets and $14.6 billion Q3 2026 revenue from Starlink and AI growth.\n• The clash highlights tensions between private success in space tech and public oversight of critical infrastructure.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "brecka-live-to-120-bet",
+   "topic": "brecka",
+   "date": "2026-10-29T18:30:50Z",
+   "url": "https://x.com/thegarybrecka/status/2115874015290261907",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: \"מי רוצה להתערב?\" על הטענה שתוך 5 שנים נבחר לחיות עד 120",
+    "summary": "גארי בראקה ציטט קליפ שבו הוא טוען שכל מי שיהיה בחיים בעוד 5 שנים יוכל לבחור אם לחיות עד 120, ואולי עד 140. זו טענה שלו, ואין לה כרגע ביסוס מדעי."
+   },
+   "en": {
+    "title": "Brecka: \"Who wants to bet?\" on choosing to live to 120 within 5 years",
+    "summary": "Gary Brecka quoted a clip of himself claiming that anyone alive in 5 years will get to choose whether to live to 120, possibly 140. It is his claim; there's currently no scientific evidence for it."
+   },
+   "full_he": "מי רוצה להתערב?\n\nהפוסט שהוא ציטט:\n\"גארי בראקה טוען שכל מי שיהיה בחיים בעוד 5 שנים יוכל לבחור אם לחיות עד 120!\n'זו תהיה הבחירה שלך אם אתה רוצה לחיות עד 120, אולי 140'\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: זו טענה של בראקה. אין כיום ראיות מדעיות לכך שאפשר יהיה להאריך את תוחלת החיים עד 120 או 140 כבחירה אישית בתוך חמש שנים.",
+   "full_en": "Who wants to bet?\n\nThe quoted post:\n\"Gary Brecka claims anyone alive in 5 years will get to choose whether they live to 120!\n'It will be your choice whether or not you wanna live to 120, possibly 140'\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is Brecka's claim. There's currently no scientific evidence that living to 120 or 140 will become a personal choice within five years."
+  },
+  {
+   "id": "brecka-kids-years-under-roof",
+   "topic": "brecka",
+   "date": "2026-10-29T18:29:48Z",
+   "url": "https://x.com/thegarybrecka/status/2115873751569252482",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: יש לך רק כמה שנים עם הילדים בבית, תהיה נוכח",
+    "summary": "גארי בראקה ציטט קליפ שלו על כך שיש לך רק כ־19 שנים עם הילדים, וקרא להיות נוכח, ליצור זיכרונות ולא לקחת אף רגע כמובן מאליו."
+   },
+   "en": {
+    "title": "Brecka: you only get so many years with your kids at home",
+    "summary": "Gary Brecka quoted a clip of himself on why you only get about 19 years with your kids, urging parents to be present, make memories and not take a moment for granted."
+   },
+   "full_he": "יש לך רק כמה שנים שהם גרים תחת הקורת גג שלך. תהיה נוכח, תיצור זיכרונות, ואל תיקח אף רגע כמובן מאליו.\n\nהפוסט שהוא ציטט:\n\"גארי בראקה על למה יש לך רק 19 שנים עם הילדים שלך.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "You only get so many years with them under your roof. Be present, make the memories, and don't take a single moment for granted.\n\nThe quoted post:\n\"Gary Brecka on why you only get 19 years with your kids.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "brecka-exosomes-skincare",
+   "topic": "brecka",
+   "date": "2026-10-29T18:25:06Z",
+   "url": "https://x.com/thegarybrecka/status/2115872572139266303",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: למה כולם מדברים פתאום על אקסוזומים לעור?",
+    "summary": "בשרשור קצר מסביר גארי בראקה שאקסוזומים הם חלקיקים זעירים שתאים משחררים, ושהם צוברים תשומת לב בטיפוח העור. לדבריו, תכשירים כאלה נועדו לתמוך בלחות, במרקם ובזוהר של העור, והתוצאות תלויות בפורמולה ובראיות הקליניות."
+   },
+   "en": {
+    "title": "Brecka: why is everyone talking about exosomes for skin?",
+    "summary": "In a short thread, Gary Brecka explains that exosomes are tiny particles released by cells now gaining attention in skincare. He says such products are designed to support hydration, texture and radiance, with results depending on the formula and clinical evidence."
+   },
+   "full_he": "למה כולם מדברים לאחרונה על אקסוזומים?\nומה זה בעצם אומר לעור שלך…\n\nהתאים שלך מתקשרים כל הזמן.\n\nאקסוזומים הם חלקיקים זעירים שתאים משחררים, והם נושאים חלבונים וחומרים ביולוגיים אחרים. עכשיו הם צוברים תשומת לב בתחום טיפוח העור בזכות השימושים הקוסמטיים האפשריים שלהם.\n\nמה טיפוח עור מבוסס אקסוזומים יכול לעשות לעור שלך?\nכשהם מנוסחים נכון, הרכיבים הקוסמטיים האלה נועדו לתמוך ב:\n• לחות: עוזרים לעור להיראות ולהרגיש לח יותר.\n• מרקם: עוזרים לשפר את המראה של מרקם עור לא אחיד.\n• זוהר: תומכים במראה עור בריא יותר.\n• עמידות: עוזרים לעור לשמור על מראה חלק ועמיד יותר.\n\nהתוצאות הספציפיות תלויות בפורמולה הסופית ובראיות הקליניות שתומכות בה.\n\nהערה: אלה דברים של בראקה. המחקר על אקסוזומים בקוסמטיקה עדיין מוקדם ומוגבל.",
+   "full_en": "WHY IS EVERYONE TALKING ABOUT EXOSOMES LATELY?\n& what they actually mean for your skin…\n\nYOUR CELLS ARE CONSTANTLY COMMUNICATING.\n\nExosomes are tiny particles released by cells that carry proteins and other biological materials. Now, they're gaining attention in skincare for their potential cosmetic applications.\n\nWHAT CAN EXOSOME-BASED SKINCARE DO FOR YOUR SKIN?\nWhen properly formulated, these cosmetic ingredients are designed to support:\n• Hydration: Helps skin look and feel more hydrated.\n• Texture: Helps improve the appearance of uneven skin texture.\n• Radiance: Supports a healthier-looking complexion.\n• Resilience: Helps skin maintain a smoother, more resilient appearance.\n\nSpecific results depend on the finished formula and supporting clinical evidence.\n\nNote: these are Brecka's statements. Research on exosomes in cosmetics is still early and limited."
+  },
+  {
+   "id": "asprey-supplement-before-bed",
+   "topic": "asprey",
+   "date": "2026-10-29T18:00:18Z",
+   "url": "https://x.com/daveasprey/status/2115866330804920396",
+   "source": "X · @daveasprey",
+   "he": {
+    "title": "אספריי: \"אל תיקח את התוסף הזה לפני השינה\"",
+    "summary": "דייב אספריי פרסם סרטון קצר (כ־47 שניות) עם אזהרה לא לקחת תוסף מסוים לפני השינה. שם התוסף מופיע רק בסרטון."
+   },
+   "en": {
+    "title": "Asprey: \"Don't take this supplement before bed\"",
+    "summary": "Dave Asprey posted a short video (about 47 seconds) warning against taking a certain supplement before bed. The supplement is named only in the video."
+   },
+   "full_he": "אל תיקח את התוסף הזה לפני השינה.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. שם התוסף לא מופיע בטקסט של הפוסט.",
+   "full_en": "Don't take this supplement before bed.\n\nThe rest of the post is a video, so there's no more text to show. The supplement isn't named in the post text."
   }
  ]
 }
