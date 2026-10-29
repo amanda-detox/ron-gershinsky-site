@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T23:59:31+02:00",
+ "updated": "2026-10-30T00:46:50+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,21 +197,38 @@
  ],
  "items": [
   {
-   "id": "johnson-young-stroke-risk-factors",
-   "topic": "johnson",
-   "date": "2026-10-29T21:04:00Z",
-   "url": "https://x.com/bryan_johnson/status/2115912558372626513",
-   "source": "X · @bryan_johnson",
+   "id": "musk-fraudsters-moral-outrage",
+   "topic": "musk",
+   "date": "2026-10-29T22:34:49Z",
+   "url": "https://x.com/elonmusk/status/2115935413882048832",
+   "source": "X · @elonmusk",
    "he": {
-    "title": "בריאן ג'ונסון: צעירים שעוברים שבץ מגיעים עם גוף של בן 60",
-    "summary": "ג'ונסון מצטט מחקר שלפיו בקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה גורמי סיכון לבבי־כלי דם או יותר עלה ב־50% בתוך שמונה שנים. לדבריו, האשמים הם לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון."
+    "title": "מאסק: לרמאים תמיד היו הזעם המוסרי הגדול ביותר",
+    "summary": "מאסק הגיב לקטע שבו מייסד־שותף של פלנטיר נזכר שמאסק אמר בימי PayPal: כשסוגרים הונאה, מי שצועקים הכי חזק הם הרמאים. לדבריו, לרמאים היו תמיד הזעם המוסרי והסיפורים הקורעים ביותר – שהתבררו כשקריים."
    },
    "en": {
-    "title": "Bryan Johnson: young stroke patients increasingly have the bodies of 60-year-olds",
-    "summary": "Johnson cites a study finding that among stroke patients aged 18–35, the share with 3+ major cardiovascular risk factors rose 50% in eight years. He names high blood pressure, high cholesterol, obesity and smoking as the culprits."
+    "title": "Musk: the fraudsters always had the most moral outrage",
+    "summary": "Musk responded to a clip of a Palantir cofounder recalling Musk's PayPal-era point that when you shut off fraud, the fraudsters scream the loudest. Musk added that they always had outsized outrage and heart-breaking stories that were totally false."
    },
-   "full_he": "שבץ אצל צעירים נחשב פעם לאירוע נדיר ומקרי. מחקר חדש מצא שצעירים שעוברים שבץ מגיעים יותר ויותר עם גוף של בני 60.\n\nבקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה סימני אזהרה לבביים־כלי דם מרכזיים או יותר קפץ ב־50% בתוך שמונה שנים.\n\nהאשמים, לדבריו: לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון.\n\nבתמונה שצירף מופיע המחקר:\n• Neurology (כתב העת של האקדמיה האמריקאית לנוירולוגיה), 19 בפברואר 2025, כרך 104(6):e213447\n• הכותרת: מגמות לאורך זמן בעומס גורמי הסיכון של כלי הדם בקרב צעירים עם שבץ איסכמי – מרשם השבץ של פלורידה\n• החוקר הראשי: אהרון שוסקס (Aaron Shoskes) ועמיתיו\n\nבשרשור אין המשך מצד ג'ונסון.",
-   "full_en": "Strokes in young people used to be considered freak events. A new study found that young adults having strokes increasingly have the bodies of 60 yr olds.\n\nIn stroke patients aged 18–35, those with 3+ major cardiovascular warning signs jumped by 50% in eight years.\n\nThe culprits: high blood pressure, high cholesterol, obesity, and smoking.\n\nThe attached image shows the study:\n• Neurology (American Academy of Neurology), 2025 Feb 19;104(6):e213447\n• Title: Temporal Trends in Vascular Risk Factor Burden Among Young Adults With Ischemic Stroke – The Florida Stroke Registry\n• Lead author: Aaron Shoskes, with colleagues\n\nJohnson has no further posts in the thread."
+   "full_he": "לרמאים תמיד היו זעם מוסרי מופרז והסיפורים הכי קורעי לב, ש… היו שקריים לגמרי.\n\nהפוסט שהוא ציטט (Tesla Owners Silicon Valley):\nמייסד־שותף של פלנטיר: \"אילון מאסק העלה נקודה מצוינת כשהייתי מעורב כצעיר ב־PayPal: בכל פעם שמפסיקים הונאה או גניבה, מי שצועקים הכי הרבה הם הרמאים.\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג. בפוסט לא נאמר בשמו מי המייסד־השותף.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "The fraudsters always had outsized moral outrage and the most heart-breaking stories that were … totally false\n\nThe quoted post (Tesla Owners Silicon Valley):\nPalantir cofounder: \"@elonmusk made a great point when I was involved as a kid at PayPal: whenever you turn off fraud or grift, the people who would scream the most were the fraudsters.\"\n\nThe rest of the quoted post is a video, so there's no more text to show. The post doesn't name which cofounder it is.\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-zeroday-binance-hack",
+   "topic": "musk",
+   "date": "2026-10-29T22:33:23Z",
+   "url": "https://x.com/elonmusk/status/2115935053347786773",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק על הפריצה החשודה לבינאנס: \"כל יום הוא יום אפס\"",
+    "summary": "מאסק ציטט דיווח של The Kobeissi Letter על פריצה חשודה לארנקים של בורסת הקריפטו בינאנס, עם יציאת כספים של כ־5.7 מיליארד דולר, והגיב במילים \"Everyday is Zeroday\" – רמז לפרצות אבטחה מסוג \"יום אפס\"."
+   },
+   "en": {
+    "title": "Musk on the suspected Binance hack: \"Everyday is Zeroday\"",
+    "summary": "Musk quoted a Kobeissi Letter report of a suspected hack of Binance wallets with about $5.7B in outflows, adding \"Everyday is Zeroday\", a nod to zero-day security exploits."
+   },
+   "full_he": "Everyday is Zeroday (\"כל יום הוא יום אפס\").\n\nהפוסט שהוא ציטט (The Kobeissi Letter):\nמבזק: בינאנס נפרצה, וארנקים ברשתות את'ריום, ביטקוין ו־TRON רואים יציאת כספים של 5.7 מיליארד דולר.\n\nהפריצה כוללת ביטקוין בשווי 1.45 מיליארד דולר ו־ETH בשווי 875 מיליון דולר.\n\nאם הדבר יאושר, זו תהיה הפריצה הגדולה בתולדות הקריפטו.\n\nאנחנו מצפים למידע נוסף בקרוב.\n\nרקע מתוך סיכום החדשות של X (\"Suspected Major Hack Hits Binance Hot Wallets\"):\n• בינאנס אישרה שהיא מודעת לבעיית אבטחה אפשרית ומסרה שכספי המשתמשים בטוחים; המייסד CZ אמר שהבורסה תכסה כל הפסד.\n• Tether הקפיאה יותר מ־1.567 מיליארד דולר ב־USDT ו־Circle עצרה יותר מ־800 מיליון דולר ב־USDC, בתיאום עם רשויות האכיפה.\n• נתונים על השרשרת הראו העברות של יותר מ־2.5 מיליארד דולר באת'ריום מארנקים חמים מסומנים, ירידות מחיר חדות ויותר מ־600 מיליון דולר בחיסולי פוזיציות.\n• הפרטים עדיין מתפתחים, וחלק מהנתונים טרם אומתו.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "Everyday is Zeroday\n\nThe quoted post (The Kobeissi Letter):\nBREAKING: Binance has been hacked with wallets across the Ethereum, Bitcoin, and TRON networks seeing outflows of -$5.7 billion.\n\nThe hack includes $1.45 billion worth of Bitcoin and $875 million worth of ETH.\n\nIf confirmed, this would mark the biggest hack in crypto history.\n\nWe expect more information shortly.\n\nBackground from the X news story (\"Suspected Major Hack Hits Binance Hot Wallets\"):\n• Binance confirmed awareness of a potential security issue and said user funds remain safe; founder CZ said the exchange would cover any losses.\n• Tether froze over $1.567 billion in USDT and Circle halted more than $800 million in USDC, both coordinating with law enforcement.\n• On-chain data showed transfers of more than $2.5 billion on Ethereum from labeled hot wallets, sharp price drops and over $600 million in liquidations.\n• The story is still developing and some figures are unconfirmed.\n\nMusk has no further posts in the thread."
   },
   {
    "id": "grokbot-musk-no-free-tier",
@@ -231,6 +248,57 @@
    "full_en": "\"Worth noting that Grok Bot has no free tier.\"\n\nThe quoted post (@XFreeze):\nGrok Bot is growing at an absolutely insane pace.\n\nDaily active users have increased for 16 consecutive days, marking its longest growth streak since launch.\n\nHere's how fast it's growing:\n• Under 100K daily active users in early September\n• Over 600K daily active users by October 26\n• More than 6X growth in less than two months\n\nAnd this is only the beginning.\n\nThat post itself quoted an update saying that as of October 26, Grok Bot has grown in DAUs for 16 consecutive days, its longest growth streak to date."
   },
   {
+   "id": "grok-rank-most-criticized-artists",
+   "topic": "grok",
+   "date": "2026-10-29T21:08:30Z",
+   "url": "https://x.com/i/trending/2115911591887556738",
+   "source": "X",
+   "he": {
+    "title": "טרנד: משתמשים מבקשים מגרוק לדרג את האמנים שהם הכי ביקרו",
+    "summary": "משתמשים ב־X נותנים לגרוק לסרוק את היסטוריית הפוסטים שלהם ולגלות על איזה אמן הם הכי התלוננו לאורך השנים, לפעמים ברשימת טופ 10."
+   },
+   "en": {
+    "title": "Trend: users ask Grok to rank the artists they've criticized most",
+    "summary": "People on X are having Grok scan their post histories to find which artist they've roasted most over the years, often as a top-10 list."
+   },
+   "full_he": "מעריצים מוסרים לגרוק את היסטוריית הציוצים שלהם, כדי לגלות איזה אמן הם \"קטלו\" הכי הרבה לאורך השנים. זו צלילה משעשעת וחושפנית לטינות האישיות ברשת.\n\n• אנשים ב־X מבקשים מגרוק לסרוק את הפוסטים הישנים שלהם ולזהות את האמן שהם ביקרו הכי הרבה, ולעתים קרובות מבקשים רשימת טופ 10 או פירוט של שמות שהם שנאו והגנו עליהם.\n• בדוגמה אחת, גרוק דירג גבוה את אוליביה רודריגו ואת צ'רלי XCX ברשימת הביקורת של משתמש, על סמך התגובות שלו.\n• הטרנד המשועשע מדגיש את כלי ניתוח הרגשות של גרוק ואת הרפלקציה העצמית הקלילה של המשתמשים על יריבויות בין קהלי מעריצים.\n\nזהו סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "Fans are handing their tweet histories to Grok, curious to learn which artist they've roasted the most over the years. It's a fun, revealing dive into personal online grudges.\n\n• People on X are prompting Grok to scan their past posts and identify the artist they've criticized most, often requesting top 10 lists or breakdowns of hated and defended names.\n• In one example, the AI ranked Olivia Rodrigo and Charli XCX high on a user's criticism list based on replies.\n• The playful trend highlights Grok's sentiment analysis tools and users' lighthearted self-reflection on music fandom rivalries.\n\nThis is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "apple-ipad-mini-korea-ad-gesture",
+   "topic": "apple",
+   "date": "2026-10-29T21:07:49Z",
+   "url": "https://x.com/i/trending/2115867041857241472",
+   "source": "X",
+   "he": {
+    "title": "אפל ערכה את פרסומת האייפד מיני בדרום קוריאה בגלל תנועת יד",
+    "summary": "אפל הסירה מהפרסומות בדרום קוריאה תנוחת אצבעות צבוטות שמזכירה סמל מקומי שנתפס כלעג לגברים, והשאירה אותה בגרסה האמריקאית. זו לא הפעם הראשונה – כך היה גם בשיווק ה־iPhone Air."
+   },
+   "en": {
+    "title": "Apple edits its iPad mini ad in South Korea over a hand gesture",
+    "summary": "Apple swapped out a pinched-fingers pose in its South Korean iPad mini ads, a gesture some there see as mocking men, while keeping it in the U.S. version. It did the same for iPhone Air marketing."
+   },
+   "full_he": "אפל החליפה תנוחה פשוטה של אצבעות צבוטות בפרסומות האייפד מיני שלה בדרום קוריאה, והשאירה את היד בגרסאות האמריקאיות כדי להדגיש את הדקות של המכשיר.\n\n• התנועה מזכירה סמל מקומי שחלק מהדרום־קוריאנים רואים בו לעג לגודל איבר המין של גברים, והוא קשור לוויכוחים קודמים ברשת ולמרחבים פמיניסטיים.\n• זו לא הפעם הראשונה שאפל עושה שינוי כזה שם – כך עשתה גם בשיווק ה־iPhone Air.\n• משתמשים ברשתות שיתפו השוואות, והתגובות התחלקו בין מי שרואה ברגישות תגובה מוגזמת לבין מי שרואה בעריכה מביכה, על רקע מתחים מגדריים רחבים במדינה.\n\nזהו סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "Apple swapped out a simple pinched-fingers pose in its iPad mini ads for South Korea, leaving the hand in U.S. versions to highlight the device's slim profile.\n\n• The gesture resembles a local symbol some South Koreans see as mocking men's genital size, linked to past online debates and feminist spaces.\n• This isn't Apple's first tweak there; it did the same for iPhone Air marketing.\n• Social media users shared comparisons, with reactions split between calling the sensitivity an overreaction and viewing the edit as embarrassing, amid broader gender tensions in the country.\n\nThis is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "johnson-young-stroke-risk-factors",
+   "topic": "johnson",
+   "date": "2026-10-29T21:04:00Z",
+   "url": "https://x.com/bryan_johnson/status/2115912558372626513",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: צעירים שעוברים שבץ מגיעים עם גוף של בן 60",
+    "summary": "ג'ונסון מצטט מחקר שלפיו בקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה גורמי סיכון לבבי־כלי דם או יותר עלה ב־50% בתוך שמונה שנים. לדבריו, האשמים הם לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון."
+   },
+   "en": {
+    "title": "Bryan Johnson: young stroke patients increasingly have the bodies of 60-year-olds",
+    "summary": "Johnson cites a study finding that among stroke patients aged 18–35, the share with 3+ major cardiovascular risk factors rose 50% in eight years. He names high blood pressure, high cholesterol, obesity and smoking as the culprits."
+   },
+   "full_he": "שבץ אצל צעירים נחשב פעם לאירוע נדיר ומקרי. מחקר חדש מצא שצעירים שעוברים שבץ מגיעים יותר ויותר עם גוף של בני 60.\n\nבקרב חולי שבץ בני 18–35, שיעור מי שיש להם שלושה סימני אזהרה לבביים־כלי דם מרכזיים או יותר קפץ ב־50% בתוך שמונה שנים.\n\nהאשמים, לדבריו: לחץ דם גבוה, כולסטרול גבוה, השמנה ועישון.\n\nבתמונה שצירף מופיע המחקר:\n• Neurology (כתב העת של האקדמיה האמריקאית לנוירולוגיה), 19 בפברואר 2025, כרך 104(6):e213447\n• הכותרת: מגמות לאורך זמן בעומס גורמי הסיכון של כלי הדם בקרב צעירים עם שבץ איסכמי – מרשם השבץ של פלורידה\n• החוקר הראשי: אהרון שוסקס (Aaron Shoskes) ועמיתיו\n\nבשרשור אין המשך מצד ג'ונסון.",
+   "full_en": "Strokes in young people used to be considered freak events. A new study found that young adults having strokes increasingly have the bodies of 60 yr olds.\n\nIn stroke patients aged 18–35, those with 3+ major cardiovascular warning signs jumped by 50% in eight years.\n\nThe culprits: high blood pressure, high cholesterol, obesity, and smoking.\n\nThe attached image shows the study:\n• Neurology (American Academy of Neurology), 2025 Feb 19;104(6):e213447\n• Title: Temporal Trends in Vascular Risk Factor Burden Among Young Adults With Ischemic Stroke – The Florida Stroke Registry\n• Lead author: Aaron Shoskes, with colleagues\n\nJohnson has no further posts in the thread."
+  },
+  {
    "id": "spacex-anthropic-top-customer-q3",
    "topic": "spacex",
    "date": "2026-10-29T20:55:52Z",
@@ -246,6 +314,23 @@
    },
    "full_he": "הדיווח האחרון של ספייסאקס חשף מובילה מפתיעה: חברת הבינה המלאכותית אנתרופיק היא עכשיו הלקוחה הגדולה שלה, לפני נאס\"א והפנטגון.\n\n• אנתרופיק אחראית ל-34.5% מההכנסות של ספייסאקס ברבעון השלישי של 2026, דרך עסקאות להשכרת כוח מחשוב במרכזי נתונים בממפיס, טנסי.\n• החוזים מתחייבים לעד 120.5 מיליארד דולר עד 2029, ומזינים את חטיבת הבינה המלאכותית של ספייסאקס, שהפכה לרווחית ונקראת עכשיו Super Intelligence.\n• השותפות מגבירה את הצמיחה לצד סטארלינק והשיגורים, אבל יש סיכון: אנתרופיק יכולה לצאת מהעסקה בהתראה של 90 יום החל מתחילת 2027.\n\nזהו סיכום של פוסטים ב-X (סיפור טרנדינג), והוא עשוי להשתנות.",
    "full_en": "SpaceX's latest filing revealed a surprise leader: AI firm Anthropic, now its top customer ahead of NASA and the Pentagon.\n\n• Anthropic accounted for 34.5% of SpaceX's third-quarter 2026 revenue through deals to rent computing power at data centers in Memphis, Tennessee.\n• The contracts commit up to $120.5 billion through 2029, fueling SpaceX's newly profitable AI division, now called Super Intelligence.\n• The partnership boosts growth alongside Starlink and launches, but risks remain: Anthropic can exit with 90 days' notice starting early 2027.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "solana-islanddao-demo-day-brazil",
+   "topic": "solana",
+   "date": "2026-10-29T20:42:09Z",
+   "url": "https://x.com/i/trending/2115905339283411207",
+   "source": "X",
+   "he": {
+    "title": "יום הדמו של IslandDAO בברזיל מציג פרויקטים על סולאנה",
+    "summary": "המהדורה הראשונה של IslandDAO באמריקה הלטינית הגיעה ליום הדמו בפלוריאנופוליס, שם צוותים מציגים פרויקטים על סולאנה שפיתחו במהלך ריטריט של כחודש והאקתון IslandHack."
+   },
+   "en": {
+    "title": "IslandDAO Demo Day showcases Solana projects in Brazil",
+    "summary": "IslandDAO's first Latin America edition held its Demo Day in Florianópolis, where teams pitched Solana projects built during a month-long retreat and the IslandHack hackathon."
+   },
+   "full_he": "בונים מאקוסיסטם סולאנה עולים לבמה בפלוריאנופוליס ומציגים רעיונות שליטשו במהלך ריטריט של כחודש תחת השמש הברזילאית.\n\n• המהדורה הראשונה של IslandDAO באמריקה הלטינית פתחה את יום הדמו ב־29 באוקטובר ב־18:00 UTC (20:00 שעון ישראל) בז'ורר (Jurerê), והמשתתפים מציגים פרויקטים מבוססי סולאנה שפותחו בהאקתון IslandHack.\n• הצוותים עובדים יחד מאז 19 באוקטובר, יוצרים שותפויות ומשפרים כלים – מתשתיות ועד יוזמות של מייסדים.\n• האירוע פתוח לציבור בהרשמה ומשודר בשידור חי.\n• המשתתפים משבחים את המארגנים על יצירת קשרים ועל חיזוק קהילת הבונים הצומחת בברזיל, וזה צעד חשוב בהרחבת הנוכחות של סולאנה באזור.\n\nזהו סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "Builders from the Solana ecosystem step onto the stage in Florianópolis, sharing ideas honed during a month-long retreat under sunny Brazilian skies.\n\n• IslandDAO's first Latin America edition kicked off Demo Day on October 29 at 18:00 UTC in Jurerê, where participants pitch Solana-based projects developed through the IslandHack hackathon.\n• Teams have coworked since October 19, forming partnerships and iterating on tools from infrastructure to founder initiatives.\n• The event is open to the public via registration and livestream.\n• Attendees praise the organizers for sparking connections and elevating Brazil's growing builder community, a key step in expanding Solana's footprint in the region.\n\nThis is a summary of posts on X and may evolve over time."
   },
   {
    "id": "johnson-motivation-sleep-problem",
@@ -314,6 +399,23 @@
    },
    "full_he": "זה מה שמסופר בסיפור ב-X:\n\nאילון מאסק אמר שמיזוג טסלה ו-SpaceX הוא \"רעיון טוב\", ועכשיו גם שוקי התחזיות מסכימים: 65% סיכוי למיזוג לפני מאי 2027.\n\n• שתי החברות הקימו ועדות מיוחדות של דירקטורים בלתי תלויים כדי לבחון איחוד אפשרי, אבל עדיין לא נקבעו תנאים, וההחלטה תהיה בידי בעלי המניות.\n• בדוחות האחרונים של SpaceX, עסקי ה-AI הניבו יותר ממחצית ההכנסות ברבעון השלישי, מה שמחזק את הדיבורים על סינרגיה ב-AI, רובוטיקה, רכב אוטונומי וסטארלינק.\n• השווי של SpaceX מוביל, 1,950 מיליארד דולר לעומת 1,602 מיליארד של טסלה, וספקנים מצביעים על מכשולי אישור גבוהים ועל כך שהבדיקה עדיין בשלב מוקדם.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
    "full_en": "Here's what the X story says:\n\nElon Musk called a Tesla-SpaceX merger \"a good idea,\" and now prediction markets agree, with a 65% chance before May 2027.\n\n• Both companies have formed special committees of independent directors to study a possible combination, though no terms are set and shareholders would decide.\n• SpaceX's recent earnings showed its AI business driving over half of third-quarter revenue, fueling talk of synergies in AI, robotics, autonomous vehicles and Starlink.\n• SpaceX's valuation leads at $1,950 billion versus Tesla's $1,602 billion, and skeptics highlight high approval hurdles and the early evaluation stage.\n\n(A summary of posts on X that may evolve over time.)"
+  },
+  {
+   "id": "spacex-starship-payload-door-debate",
+   "topic": "spacex",
+   "date": "2026-10-29T19:01:51Z",
+   "url": "https://x.com/i/trending/2115880092006298066",
+   "source": "X",
+   "he": {
+    "title": "ויכוח: האם סטארשיפ צריכה דלת מטען גדולה יותר?",
+    "summary": "סטארשיפ משגרת לווייני סטארלינק דרך פתח צר בסגנון \"מתקן פז\", ועכשיו מתווכחים אם תגיע דלת גדולה בסגנון צדפה למטענים מגושמים. אריק ברגר מ־Ars Technica ציין שהתעשייה מקווה לכך, אך אין עדות לפיתוח כזה."
+   },
+   "en": {
+    "title": "Experts debate whether Starship needs a larger payload door",
+    "summary": "Starship deploys Starlink satellites through a narrow 'Pez dispenser' slot, and many wonder whether a bigger clamshell-style door is coming for bulky cargo. Ars Technica's Eric Berger noted industry hopes for one, though there's no evidence of development yet."
+   },
+   "full_he": "סטארשיפ של ספייסאקס מצטיינת בפריסת לווייני סטארלינק דרך הדלת הצרה שלה בסגנון \"מתקן פז\", אבל רבים תוהים אם בדרך פתח גדול יותר בסגנון צדפה למטענים מגושמים.\n\n• אריק ברגר מ־Ars Technica עורר את הדיון כשציין שבתעשייה מקווים לדלת מטען מסורתית שתאפשר לשגר לוויינים גדולים, מודולים של תחנות חלל ומטען לירח – אך אין עדיין שום עדות לפיתוח כזה.\n• המבקרים רואים בכך מכשול בדרך להחלפת פאלקון 9 במשימות מגוונות.\n• התומכים מזכירים את החידושים המהירים של ספייסאקס, כמו כיפת קרו דרגון שפותחה בתוך שישה חודשים, ובדיקות דלתות בעבר.\n• הדיון שוקל את המבנה הנוכחי של סטארשיפ מול צרכים עתידיים של לקוחות כמו הלוויין Superbird-9 של איירבוס ב־2027 ושיגור Starlab בשיגור יחיד; רבים מצפים לשדרוג ברגע שהטיסות יהיו אמינות ושגרתיות.\n\nזהו סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "SpaceX's Starship shines at deploying Starlink satellites through its narrow 'Pez dispenser' door, but many wonder if a bigger clamshell-style opening is coming for bulkier cargo.\n\n• Ars Technica's Eric Berger sparked the talk by noting industry hopes for a traditional payload door to handle large satellites, space station modules and lunar cargo, though no development evidence exists yet.\n• Critics see it as a hurdle for replacing Falcon 9 on diverse missions.\n• Supporters highlight SpaceX's rapid innovations, like the six-month Crew Dragon dome and past door tests.\n• The discussion weighs Starship's current setup against future needs for customers like Airbus's Superbird-9 in 2027 and Starlab's single-launch flight, with many expecting the upgrade once reliable flights are routine.\n\nThis is a summary of posts on X and may evolve over time."
   },
   {
    "id": "mercola-winter-migraines",
