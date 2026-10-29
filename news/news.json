@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T06:47:11+02:00",
+ "updated": "2026-10-29T07:34:06+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -142,6 +142,57 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-pentagon-ig-declines-starlink-ukraine",
+   "topic": "spacex",
+   "date": "2026-10-29T03:25:26Z",
+   "url": "https://x.com/i/trending/2115644957906088440",
+   "source": "X",
+   "he": {
+    "title": "מבקר הפנטגון דחה בקשה לחקור את האטת סטארלינק באוקראינה",
+    "summary": "תשעה סנאטורים משתי המפלגות ביקשו מהמפקח הכללי של הפנטגון לחקור את שיבושי סטארלינק וסטארשילד באוקראינה. המפקח סירב והפנה אותם לחיל האוויר ולכוח החלל."
+   },
+   "en": {
+    "title": "Pentagon watchdog declines probe into Ukraine Starlink slowdowns",
+    "summary": "Nine senators from both parties asked the Pentagon inspector general to investigate Starlink and Starshield disruptions in Ukraine. The watchdog declined and pointed them to the Air Force and Space Force."
+   },
+   "full_he": "כוחות אוקראינה נתקלו בהאטה במהירויות של סטארלינק במהלך מבצעי רחפנים קריטיים ותקיפות אוויריות רוסיות, וזה עורר שאלות דחופות בגבעת הקפיטול.\n\n• תשעה סנאטורים, מחציתם רפובליקנים ומחציתם דמוקרטים, ובהם הסנאטורית ג'ין שהין, ביקשו מהמפקח הכללי של הפנטגון לחקור את השיבושים האחרונים בשירותי סטארלינק וסטארשילד באוקראינה.\n• המפקח, פלאט מורינג השלישי, סירב, בנימוק שמדובר בעניינים חוזיים של חיל האוויר וכוח החלל, והפנה את המחוקקים אליהם.\n• שהין אמרה שהתשובה מדאיגה, על רקע טענות סותרות: אילון מאסק מ-SpaceX הודה בהגבלת השירות בשל הפרות לכאורה, ואילו הנשיא טראמפ הכחיש שנתן הוראה כזו.\n• הפרשה מדגישה את אתגרי הפיקוח על רשתות לוויין פרטיות בסיוע הצבאי של ארה\"ב.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Ukrainian forces faced slowed Starlink speeds during critical drone operations and Russian air raids, prompting urgent questions from Capitol Hill.\n\n• Nine senators, split evenly between Republicans and Democrats and including Sen. Jeanne Shaheen, asked the Pentagon inspector general to investigate recent Starlink and Starshield service disruptions in Ukraine.\n• The watchdog, Platte Moring III, declined, citing Air Force and Space Force contractual matters, and directed the lawmakers there instead.\n• Shaheen called the response concerning amid conflicting claims: SpaceX's Elon Musk acknowledged throttling over alleged violations, while President Trump denied giving any orders.\n• The issue highlights oversight challenges for private satellite networks in U.S. military aid.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "spacex-rick-wilson-nationalize-starlink",
+   "topic": "spacex",
+   "date": "2026-10-29T04:22:51Z",
+   "url": "https://x.com/i/trending/2115658949492142358",
+   "source": "X",
+   "he": {
+    "title": "ריק ווילסון קורא להלאים את סטארלינק וסופג ביקורת חריפה",
+    "summary": "הפרשן הפוליטי ריק ווילסון קרא להלאים את סטארלינק, בהמשך לקריאה של רוברט רייך. המגיבים האשימו אותו בהתערבות ממשלתית בסגנון קומוניסטי שתפגע בחדשנות."
+   },
+   "en": {
+    "title": "Rick Wilson calls for nationalizing Starlink, draws sharp backlash",
+    "summary": "Political commentator Rick Wilson urged nationalizing Starlink, echoing Robert Reich's recent call. Replies accused him of communist-style overreach that would hurt innovation."
+   },
+   "full_he": "הפרשן הפוליטי ריק ווילסון פרסם קריאה ישירה להלאים את סטארלינק, והמשתמשים הגיבו בהאשמות על התערבות ממשלתית בסגנון קומוניסטי ועל איום על החדשנות.\n\n• ב-28 באוקטובר קרא ווילסון להלאים את סטארלינק, בהמשך לקריאה האחרונה של רוברט רייך להעביר את סטארלינק ו-SpaceX לשליטה ממשלתית, בגלל כוחן והתלות שלהן בחוזים ממשלתיים.\n• המבקרים טענו שצעד כזה יפגע בנטילת הסיכונים הפרטית וביזמות שבנו את החברה; היו שכינו זאת קומוניזם והזהירו שזה יקרר השקעות בטכנולוגיה.\n• חילופי הדברים חשפו את המתח סביב תפקיד הממשלה בתעשיות אסטרטגיות כמו תקשורת לוויינית, שבה סטארלינק משרתת צרכים מסחריים, ממשלתיים והומניטריים.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Political commentator Rick Wilson posted a direct call to nationalize Starlink, prompting users to fire back with accusations of communist overreach and threats to innovation.\n\n• On October 28, Wilson urged nationalizing Starlink, echoing Robert Reich's recent push for government control over Starlink and SpaceX due to their power and reliance on public contracts.\n• Critics argued this would undermine the private risk-taking and entrepreneurship that built the company, with replies labeling it communist and warning of chilled investment in tech.\n• The exchange highlighted tensions over government roles in strategic industries like satellite communications, where Starlink serves commercial, government and humanitarian needs.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "spacex-tmobile-satellite-ast-hopes",
+   "topic": "spacex",
+   "date": "2026-10-29T01:58:37Z",
+   "url": "https://x.com/i/trending/2115623066491617627",
+   "source": "X",
+   "he": {
+    "title": "גילויי הלוויין של טי-מובייל מעוררים תקוות אצל משקיעי AST SpaceMobile",
+    "summary": "טי-מובייל חשפה מיזם משותף עם AT&T ו-Verizon לגישה לוויינית, והמנכ\"ל דיבר על T-Satellite של SpaceX בלשון עבר. משקיעים פירשו זאת כרמז למעבר מסטארלינק ל-AST SpaceMobile."
+   },
+   "en": {
+    "title": "T-Mobile's satellite disclosures boost AST SpaceMobile hopes",
+    "summary": "T-Mobile disclosed a satellite joint venture with AT&T and Verizon, and its CEO spoke of the SpaceX-based T-Satellite in the past tense. Investors read it as a hint of a shift from Starlink toward AST SpaceMobile."
+   },
+   "full_he": "הדוח הרבעוני ושיחת הרווחים של טי-מובייל עוררו באזז בקרב משקיעים, ורבים חיפשו בין השורות סימנים לקשרים עמוקים יותר עם AST SpaceMobile.\n\n• בדוח ה-10-Q לרבעון השלישי של 2026 ובשיחת הרווחים פירטה טי-מובייל מיזם משותף חדש עם AT&T ו-Verizon, שהוקם בסביבות 14 בספטמבר, כדי לתקנן גישה לוויינית ולסגור פערי כיסוי בארה\"ב, תוך שמירה על שותפויות נפרדות כמו העסקה שלה עם SpaceX על T-Satellite.\n• המנכ\"ל סריני גופלן תיאר את הלוויין כשירות משלים, שלל הסדרי MVNO עם SpaceX ודיבר על T-Satellite בלשון עבר. משקיעים ראו בזה רמז לאפשרויות רציפות כמו טכנולוגיית החיבור הישיר לטלפון של AST SpaceMobile.\n• בקהילת AST SpaceMobile, שכבר שותפה של AT&T ו-Verizon, פירשו את הצעדים כהתרחקות מסטארלינק לטובת הרחבת רשת מלאה שתומכת בשיחות רגילות ובחיוג לחירום (911).\n• העדכונים מגיעים לצד תוצאות רבעוניות חזקות של טי-מובייל ומיקוד בבניית רשתות 5G ו-6G.\n\nשים לב: מדובר בפרשנות של משקיעים, לא בהודעה רשמית על שינוי בשותפות עם SpaceX.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "T-Mobile's recent filing and earnings call sent investors buzzing, with many reading between the lines for signs of deeper ties with AST SpaceMobile.\n\n• In its Q3 2026 10-Q and earnings call, T-Mobile detailed a new joint venture with AT&T and Verizon, formed around September 14, to standardize satellite access and close U.S. coverage gaps, while keeping individual partnerships like its SpaceX deal for T-Satellite.\n• CEO Srini Gopalan described satellite as a complementary service, ruled out MVNOs with SpaceX and spoke of T-Satellite in the past tense, which investors took as a nod toward seamless options like AST SpaceMobile's direct-to-phone tech.\n• AST SpaceMobile, already partnered with AT&T and Verizon, saw enthusiasm from its community, which interpreted the moves as a shift away from Starlink toward fuller network extensions supporting standard calls and 911 access.\n• The updates pair with T-Mobile's strong quarterly results and its focus on 5G and 6G builds.\n\nNote: this is investors' interpretation, not an official announcement of a change to the SpaceX partnership.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "tesla-waymo-texas-fleet-gap",
    "topic": "tesla",
