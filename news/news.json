@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T07:34:06+02:00",
+ "updated": "2026-10-29T09:06:52+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -142,6 +142,23 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-users-real-work-team",
+   "topic": "grokbot",
+   "date": "2026-10-29T05:40:13Z",
+   "url": "https://x.com/i/trending/2115678927087968596",
+   "source": "X",
+   "he": {
+    "title": "משתמשים מספרים איך Grok Bot עושה עבודה אמיתית כמו צוות",
+    "summary": "מארגן מועדון טסלה מספר שהוא נותן ל-Grok Bot לחתוך קליפים, להכין גרפיקות, לנהל חשבוניות ואפילו לעקוב אחרי הזמנת הקפה שלו. משתמשים מתארים צוות של סוכני AI שעובד בשבילם גם כשהמכשיר כבוי."
+   },
+   "en": {
+    "title": "Users share how Grok Bot handles real work like a team",
+    "summary": "A Tesla club organizer says he lets Grok Bot cut clips, create graphics, manage invoices and even track his coffee order. Users describe a team of AI agents that keeps working even when their devices are off."
+   },
+   "full_he": "מארגן של מועדון טסלה נותן היום ל-Grok Bot לחתוך קליפים, ליצור גרפיקות, לנהל חשבוניות ואפילו לעקוב אחרי הזמנת הקפה שלו – וכך מתפנות לו שעות בכל שבוע לדברים החשובים באמת.\n\n• Grok Bot מאפשר לבנות צוותים של סוכני AI שרצים על מחשבים בענן, מתחברים לאפליקציות ומבצעים משימות מרובות שלבים באופן עצמאי, גם כשהמכשירים כבויים.\n• משתמשים מכנים אותו \"יתרון לא הוגן\"; אחד השווה את זה לגיוס צבא של עובדים שמתכננים טיולי כביש או מזקקים עצות של מומחים מפוסטים פומביים.\n• משתמשים מוקדמים מספרים שהם מחזירים לעצמם זמן למשפחה או לעיסוקים יצירתיים, והכלי הופך לכוח עבודה שפועל מסביב לשעון ומטשטש את הגבול בין פרודוקטיביות אישית לניהול עסק קטן.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "One Tesla club organizer now lets Grok Bot cut clips, create graphics, manage invoices, and even track his coffee order—freeing up hours each week for what matters.\n\n• Grok Bot enables people to build teams of AI agents that run on cloud computers, sign into apps, and tackle multi-step tasks autonomously, even when devices are off.\n• Users call it an unfair advantage, with one comparing it to raising an army of workers that plan road trips or distill expert advice from public posts.\n• Early adopters report reclaiming time for family or creative pursuits, turning the tool into an always-on workforce that blurs lines between personal productivity and small business operations.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "spacex-pentagon-ig-declines-starlink-ukraine",
    "topic": "spacex",
