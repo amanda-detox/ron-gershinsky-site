@@ -7,7 +7,7 @@ window.RGMY_APPS = {
     { href: "ideas/",    icon: "ideas/icon-192.png",    he: "ליסטיפיי",         en: "Listify",        heLine: "רשימות לפי קטגוריות", enLine: "Lists by category" },
     { href: "rehabify/", icon: "rehabify/icon-192.png", he: "ריהאביפיי",        en: "Rehabify",       heLine: "ספירת ימים נקיים וכלים לרגעי חשק", enLine: "Clean-day counter and tools for cravings" },
     { href: "calmify/",  icon: "calmify/icon-192.png",  he: "רוגעלי",           en: "Calmify",        heLine: "צ'ק-אין רגשי, נשימה וקרקוע", enLine: "Mood check-ins, breathing and grounding" },
-    { href: "shopping/", icon: "shopping/icon-192.png", he: "קניותיפיי",      en: "Purchasify",  heLine: "מתעדכנת בזמן אמת בנייד ובלפטופ", enLine: "Updates live on phone and laptop" },
+    { href: "shopping/", icon: "shopping/icon-192.png?v=2", he: "קניותיפיי",      en: "Purchasify",  heLine: "מתעדכנת בזמן אמת בנייד ובלפטופ", enLine: "Updates live on phone and laptop" },
     { hidden: true, href: "clock/",    icon: "clock/icon-192.png",    he: "קלוקיפיי", en: "Clockify", heLine: "שעונים מעוררים עם רשימות משימות", enLine: "Alarms with task lists" }
   ]
 };
