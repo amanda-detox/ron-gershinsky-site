@@ -41,6 +41,7 @@ Ron's Updatify topic list. This file is the source of truth for both Ron and Ama
 | ונסה קירבי | Vanessa Kirby (השחקנית, הובס ושואו · actress, Hobbs & Shaw) | kirby | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 | אמילי בלאנט | Emily Blunt (השחקנית, קצה המחר · actress, Edge of Tomorrow) | emilyblunt | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 | ג'ניפר לורנס | Jennifer Lawrence (השחקנית, משחקי הרעב · actress, The Hunger Games) | lawrence | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
+| מילי בובי בראון | Millie Bobby Brown (השחקנית, דברים מוזרים · actress, Stranger Things) | milliebb | 🆕 חדש, מתחיל בריענון הבא · new, starts next refresh |
 
 ## 🎙️ פודקאסטים · Podcasts
 | תוכנית · Show | id |
