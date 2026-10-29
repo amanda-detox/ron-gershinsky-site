@@ -28,7 +28,7 @@ const T = {
     keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C V כלים · Q E טבעת · Esc תפריט',
     copy: '© כל הזכויות שמורות לחברת היליפיי בע"מ 2026',
     nogl: 'הדפדפן הזה לא תומך בתלת־ממד (WebGL). כדאי לנסות ב־Chrome או ב־Safari מעודכנים.',
-    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן',
+    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
     envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
@@ -49,7 +49,7 @@ const T = {
     keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C V tools · Q E ring · Esc menu',
     copy: '© 2026 Healify Ltd. All rights reserved.',
     nogl: 'This browser does not support 3D (WebGL). Please try an up-to-date Chrome or Safari.',
-    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player',
+    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
     envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
@@ -823,6 +823,36 @@ function resetCollectibles() {
   for (let i = 0; i < 6; i++) sparkPos[i].copy(player.pos).addScaledVector(fwd, 14 + i * 5);
 }
 let score = 0;
+/* combo: rings within COMBO_GAP seconds of each other raise the ring multiplier x2, then x3 */
+const COMBO_GAP = 4; let comboN = 0, comboT = -99, comboMul = 1;
+function comboHit() { comboN = time - comboT <= COMBO_GAP ? comboN + 1 : 1; comboT = time; comboMul = comboN >= 3 ? 3 : comboN >= 2 ? 2 : 1; comboHud(); return comboMul; }
+function comboTick() { if (comboMul > 1 && time - comboT > COMBO_GAP) { comboN = 0; comboMul = 1; comboHud(); } }
+function comboHud() { const el = $('combo'); if (!el) return; el.textContent = comboMul > 1 ? T[lang].combo + ' x' + comboMul : ''; el.classList.toggle('on', comboMul > 1); }
+function resetCombo() { comboN = 0; comboT = -99; comboMul = 1; comboHud(); }
+/* rare golden comet: crosses near the player for 10 s; catching it gives +200 */
+const COMET_PTS = 200, COMET_LIFE = 10;
+const comet = new THREE.Group();
+comet.add(new THREE.Mesh(new THREE.SphereGeometry(1.3, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe08a })));
+const cometGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xffd76a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); cometGlow.scale.setScalar(9); comet.add(cometGlow);
+const cometTail = new THREE.Mesh(new THREE.ConeGeometry(1.2, 14, 12, 1, true), new THREE.MeshBasicMaterial({ color: 0xffc94a, transparent: true, opacity: 0.45, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
+cometTail.rotation.x = -Math.PI / 2; cometTail.position.z = 7.5; comet.add(cometTail);
+comet.visible = false; scene.add(comet);
+const cometVel = new THREE.Vector3(); let cometLeft = 0, cometWait = rand(60, 120);
+function spawnComet() {
+  heading(); const side = Math.random() < 0.5 ? -1 : 1;
+  comet.position.copy(player.pos).addScaledVector(fwd, rand(70, 110)).addScaledVector(right, side * 55); comet.position.y = clamp(player.pos.y + rand(-4, 8), floorAt(comet.position.x, comet.position.z) + 6, env.maxY - 5);
+  cometVel.copy(right).multiplyScalar(-side * 11).addScaledVector(fwd, -2); // drifts across the view, toward the player a little
+  comet.lookAt(tmp.copy(comet.position).sub(cometVel)); comet.visible = true; cometLeft = COMET_LIFE; flash(T[lang].cometSeen);
+}
+function updateComet(dt, playing) {
+  if (!playing) return;
+  if (!comet.visible) { cometWait -= dt; if (cometWait <= 0) { spawnComet(); cometWait = rand(60, 120); } return; }
+  cometLeft -= dt; comet.position.addScaledVector(cometVel, dt); cometGlow.material.rotation += dt * 2;
+  if (powerOn('magnet') && comet.position.distanceTo(player.pos) < 40) comet.position.lerp(player.pos, damp(1.5, dt));
+  if (comet.position.distanceTo(player.pos) < 4 + player.model.userData.size) { comet.visible = false; addScore(COMET_PTS); showCel(T[lang].comet, T[lang].cometSub); }
+  else if (cometLeft <= 0) comet.visible = false;
+}
+function resetComet() { comet.visible = false; cometWait = rand(60, 120); }
 function addScore(n, bonus) {
   score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = score; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
   if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
@@ -850,7 +880,7 @@ function updateCollectibles(t, dt, playing) {
       continue;
     }
     const d = r.position.distanceTo(player.pos);
-    if (playing && d < 3.6 + (powerOn('magnet') ? 1.5 : 0)) { addScore(powerOn('double') ? 10 : 5); u.flash = 0.6; flash(pick(T[lang].ring)); if (powerOn('double')) burst(14, 0xffd76a); }
+    if (playing && d < 3.6 + (powerOn('magnet') ? 1.5 : 0)) { const cm = comboHit(); addScore((powerOn('double') ? 10 : 5) * cm); u.flash = 0.6; flash(cm > 1 ? T[lang].combo + ' x' + cm + '!' : pick(T[lang].ring)); if (powerOn('double')) burst(14, 0xffd76a); }
     else if (playing && d < 60 && powerOn('magnet')) { r.position.lerp(player.pos, damp(1.2, dt)); faceRing(r); }
     else if (d > 340) { placeAhead(r.position, 120, 260, 120, true); faceRing(r); }
   }
@@ -1365,12 +1395,13 @@ function start() {
   stats.newGame();
   state = 'play'; score = 0; $('score').textContent = '0';
   player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
-  resetCollectibles(); resetPowers(); showHud(); resumable = true;
+  resetCollectibles(); resetPowers(); resetCombo(); resetComet(); showHud(); resumable = true;
+  const sbn = stats.daily(); if (sbn > 0) setTimeout(() => { if (state !== 'play') return; addScore(sbn, true); showCel(T[lang].streakBonus(stats.get().streak, sbn), T[lang].streakSub); menuStreak(); }, 900);
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
   if (store.get('rg-fly-tut', '0') !== '1') setTimeout(() => { if (state === 'play' && tutStep < 0) tutStart(); }, 300);
 }
 function toMenu() {
-  stats.flush();
+  stats.flush(); menuStreak(); comet.visible = false;
   if (tutStep >= 0) tutEnd();
   state = 'menu'; $('hud').classList.add('hidden'); $('photoUi').classList.add('hidden'); $('menu').classList.remove('hidden');
   if (resumable) $('startBtn').textContent = T[lang].resume; snapCam = true;
@@ -1432,14 +1463,15 @@ function checkHoles() {
 const BONUS_EVERY = 369, BONUS = 400;
 const stats = (() => {
   const A = window.RGAccount;
-  const blank = () => ({ v: 1, total: 0, earned: 0, best: 0, games: 0, bonuses: 0 });
+  const blank = () => ({ v: 1, total: 0, earned: 0, best: 0, games: 0, bonuses: 0, streak: 0, lastDay: '' });
+  const dayStr = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   const uid = () => (A && A.user && A.user() ? A.user().id : '');
   const lkey = () => 'rg-fly-stats:' + (uid() || 'guest');
   const load = () => { try { return Object.assign(blank(), JSON.parse(store.get(lkey(), '') || '{}')); } catch (e) { return blank(); } };
   let s = load(), dirty = false, timer = 0, lbSent = '';
   const legacyBest = best; if (legacyBest > s.best) s.best = legacyBest;
   const save = () => { store.set(lkey(), JSON.stringify(s)); };
-  const merge = (a, b) => { const r = blank(); for (const k of ['total', 'earned', 'best', 'games', 'bonuses']) r[k] = Math.max(a[k] || 0, b[k] || 0); return r; };
+  const merge = (a, b) => { const r = blank(); for (const k of ['total', 'earned', 'best', 'games', 'bonuses']) r[k] = Math.max(a[k] || 0, b[k] || 0); const sb = (b.lastDay || '') > (a.lastDay || '') ? b : a; r.streak = sb.streak || 0; r.lastDay = sb.lastDay || ''; return r; };
   function push() {
     timer = 0; if (!dirty || !uid()) return; dirty = false;
     A.set('fly', 'stats', s).catch(() => { dirty = true; });
@@ -1457,6 +1489,7 @@ const stats = (() => {
     const guest = (() => { try { return JSON.parse(store.get('rg-fly-stats:guest', '') || 'null'); } catch (e) { return null; } })();
     A.get('fly', 'stats').then((cloud) => {
       s = merge(load(), cloud || blank());
+      if (guest && guest.lastDay && guest.lastDay > (s.lastDay || '')) { s.streak = guest.streak || 0; s.lastDay = guest.lastDay; }
       if (guest && guest.total > 0) { // points collected while signed out move into the account once
         for (const k of ['total', 'earned', 'games', 'bonuses']) s[k] += guest[k] || 0; s.best = Math.max(s.best, guest.best || 0);
         store.set('rg-fly-stats:guest', '');
@@ -1479,12 +1512,21 @@ const stats = (() => {
       }
       later();
     },
+    /* daily streak: once per day on the first game; +20 per consecutive day, capped at +300; a missed day restarts at 1. Counts as bonus (not toward 369). */
+    daily() {
+      const now = new Date(), today = dayStr(now), y = new Date(now); y.setDate(y.getDate() - 1);
+      if (s.lastDay === today) return 0;
+      s.streak = s.lastDay === dayStr(y) ? (s.streak || 0) + 1 : 1; s.lastDay = today;
+      const n = Math.min(300, 20 * s.streak); later(); return n;
+    },
+    streakNow() { const y = new Date(); y.setDate(y.getDate() - 1); return s.lastDay === dayStr(new Date()) || s.lastDay === dayStr(y) ? s.streak || 0 : 0; },
     toNext: () => BONUS_EVERY - (s.earned % BONUS_EVERY),
     flush() { if (timer) { clearTimeout(timer); } push(); }
   };
 })();
-function celebrate() {
-  const c = $('celebrate'); c.querySelector('b').textContent = T[lang].bonus; c.querySelector('span').textContent = T[lang].bonusSub;
+function celebrate() { showCel(T[lang].bonus, T[lang].bonusSub); }
+function showCel(title, sub) {
+  const c = $('celebrate'); c.querySelector('b').textContent = title; c.querySelector('span').textContent = sub;
   c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
   for (let i = 0; i < 4; i++) setTimeout(() => { burst(30, 0xffd76a); burst(20, 0x6f9bff); }, i * 220);
   if (navigator.vibrate) try { navigator.vibrate([60, 40, 120]); } catch (e) {}
@@ -1521,7 +1563,7 @@ function esc(x) { return String(x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '
 function openLb() {
   const L = T[lang], s = stats.get(), A = window.RGAccount, me = A && A.user && A.user();
   const box = $('lbBox'); $('lbPanel').classList.remove('hidden');
-  const mine = `<div class="lbm"><b>${L.lbMine}</b> · ${L.lbTotal}: <b>${s.total}</b> · ${L.lbBest}: <b>${s.best}</b> · ${L.lbGames}: ${s.games} · ${stats.toNext()} ${L.lbNext}</div>` + (me ? '' : `<p class="lbs">${L.lbSignIn}</p>`);
+  const mine = `<div class="lbm"><b>${L.lbMine}</b> · ${L.lbTotal}: <b>${s.total}</b> · ${L.lbBest}: <b>${s.best}</b> · ${L.lbGames}: ${s.games} · ${L.streak}: <b>${stats.streakNow()}</b> · ${stats.toNext()} ${L.lbNext}</div>` + (me ? '' : `<p class="lbs">${L.lbSignIn}</p>`);
   box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}<p>${L.lbLoad}</p>`;
   lb.top().then((rows) => {
     const body = rows.length ? `<ol>${rows.map((r, i) => `<li class="${me && r.id === 'flylb' + me.id ? 'me' : ''}"><span>${['🥇', '🥈', '🥉'][i] || i + 1}</span><span>${esc(r.n || L.player + ' ' + r.id.slice(-4))}</span><b>${r.t}</b></li>`).join('')}</ol>` : `<p>${L.lbEmpty}</p>`;
@@ -1529,6 +1571,8 @@ function openLb() {
   }, () => { box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}<p>${L.lbErr}</p>`; });
 }
 $('lbBtn').addEventListener('click', openLb);
+function menuStreak() { const el = $('streakLine'); if (el) { const n = stats.streakNow(); el.textContent = n > 0 ? T[lang].streak + ': ' + n + ' ' + T[lang].streakDay + (lang === 'en' && n > 1 ? 's' : lang === 'he' && n > 1 ? 'ים' : '') : ''; } }
+menuStreak(); setTimeout(menuStreak, 3000);
 $('lbClose').addEventListener('click', () => $('lbPanel').classList.add('hidden'));
 
 const clock = new THREE.Clock();
@@ -1539,6 +1583,7 @@ function frame() {
   if (playing) updatePlayer(dt);
   if (playing) tickPowers(dt);
   if (playing && env.holes) checkHoles();
+  if (playing) { comboTick(); updateComet(dt, playing); }
   const wdt = state === 'photo' ? 0 : playing && powerOn('slow') ? dt * 0.3 : dt; wtime += wdt; // slow time: the world around you moves at 30%
   if (state !== 'photo') env.update(wtime, wdt, player.pos);
   if (nightOn && ENV_IDS[envIdx] === 'dimension') skyMat.uniforms.hor.value.lerp(NIGHT, 0.8);
@@ -1555,12 +1600,12 @@ requestAnimationFrame(frame);
 
 /* small hook for automated checks */
 window.__fly = {
-  setEnv, setChar, start, toMenu,
+  setEnv, setChar, start, toMenu, spawnComet, comboHit, stats,
   setCam(i) { camIdx = i; snapCam = true; syncSelects(); },
   setLang(l) { lang = l; store.set('rg-lang', l); applyLang(); },
   setTheme(t) { theme = t; applyTheme(); },
   steer(x, y) { input.jx = x; input.jy = y; },
   tool(id) { const i = TI[id]; pw[i].cd = 0; return useTool(i); }, setRing, tutStart, exitPhoto,
   get tools() { return { ring: ringIdx, mode: player.mode, buddy: buddyOn && !!buddy, music: musicOn, audio: actx ? actx.state : null, night: nightOn, trail: trailIdx, tut: tutStep, list: pw.map((p, i) => TOOLS[i].id + (toolActive(TOOLS[i].id) ? '*' : '') + (p.cd > 0 ? '(' + p.cd.toFixed(1) + ')' : '')).join(' ') }; },
-  get info() { return { state, score, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
+  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
 };

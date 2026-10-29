@@ -155,6 +155,9 @@
   #celebrate { position:absolute; top:34%; left:50%; transform:translate(-50%,-50%) scale(.6); opacity:0; text-align:center; pointer-events:none;
     background:linear-gradient(135deg,#0d2a6b,#1a4bb8); border:2px solid #f5c84a; border-radius:20px; padding:14px 26px; box-shadow:0 0 40px #f5c84a88; color:#fff; }
   #celebrate b { display:block; font-size:30px; color:#ffd76a; } #celebrate span { font-size:14px; }
+  #combo { position:absolute; top:calc(env(safe-area-inset-top) + 58px); left:50%; transform:translateX(-50%); padding:4px 14px; border-radius:999px; background:#0b1f4dcc; border:1px solid #ffd76a; color:#ffd76a; font-weight:800; font-size:16px; opacity:0; transition:opacity .2s; pointer-events:none; }
+  #combo.on { opacity:1; }
+  #streakLine { text-align:center; color:#ffd76a; font-weight:700; margin-top:6px; min-height:1em; }
   #celebrate.show { animation:cel 2.6s ease-out; }
   @keyframes cel { 0%{opacity:0;transform:translate(-50%,-50%) scale(.6)} 12%{opacity:1;transform:translate(-50%,-50%) scale(1.12)} 22%{transform:translate(-50%,-50%) scale(1)} 80%{opacity:1} 100%{opacity:0;transform:translate(-50%,-60%) scale(1)} }
   #lbPanel { position:fixed; inset:0; z-index:40; display:flex; align-items:center; justify-content:center; background:#020818cc; padding:16px; }
@@ -186,6 +189,7 @@
   </div>
   <div id="msg"></div>
   <div id="celebrate"><b></b><span></span></div>
+  <div id="combo"></div>
   <div id="joy" class="hidden" role="application" aria-label="joystick"><span class="ar u">▲</span><span class="ar d">▼</span><span class="ar l">◀</span><span class="ar r">▶</span><i></i></div>
   <div id="powers" class="hidden">
     <div class="ring" data-ring="0" role="group">
@@ -248,6 +252,7 @@
     </div>
     <button class="btn main" id="startBtn" data-t="start"></button>
     <div class="mrow"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="tutBtn"></button><button class="tbtn inst" id="lbBtn"></button></div>
+    <div id="streakLine"></div>
     <div class="install-hint hidden" id="installHint"></div>
     <p class="help" id="help"></p>
     <div class="foot" data-t="copy"></div>
@@ -259,7 +264,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=5"></script>
+<script type="module" src="game.js?v=6"></script>
 <script src="../shared/rg-topbar.js?v=2" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 </body>
 </html>
