@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-29T13:50:24+02:00",
+ "updated": "2026-10-29T14:29:27+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,74 @@
  ],
  "items": [
   {
+   "id": "brecka-egg-labels",
+   "topic": "brecka",
+   "date": "2026-10-29T12:26:25Z",
+   "url": "https://x.com/thegarybrecka/status/2115782303574024545",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: לא כל תווית על ביצים אומרת אותו דבר",
+    "summary": "בראקה מסביר את ההבדל בין \"ללא כלובים\", \"חופש\", \"מרעה\" ו\"אורגני\" על אריזות ביצים, וממליץ לא לתת לאריזה לבלבל אותך."
+   },
+   "en": {
+    "title": "Gary Brecka: not all egg labels mean the same thing",
+    "summary": "Brecka breaks down what cage-free, free-range, pasture-raised and organic mean on egg cartons, and warns not to let the packaging fool you."
+   },
+   "full_he": "לא כל התוויות על ביצים אומרות אותו דבר…\n\n• ללא כלובים (Cage-free) = אין כלובים, אבל לא בהכרח יציאה החוצה.\n• חופש (Free-range) = גישה מסוימת לשטח פתוח.\n• מרעה (Pasture-raised) = יותר מרחב לשוטט בחוץ.\n• אורגני (Organic) = מזון וחקלאות בתקן אורגני מאושר.\n\nאל תיתן לאריזה לעבוד עליך.\n\nלפוסט אין תמונות, ואין לו המשך שרשור מאת בראקה עצמו.",
+   "full_en": "Not all egg labels mean the same thing…\n\n• Cage-free = No cages, but not necessarily outdoors.\n• Free-range = Some outdoor access.\n• Pasture-raised = More space to roam outdoors.\n• Organic = Certified organic feed and farming standards.\n\nDon't let the packaging fool you.\n\nThe post has no images and no thread continuation by Brecka himself."
+  },
+  {
+   "id": "musk-saving-pointless-abundance",
+   "topic": "musk",
+   "date": "2026-10-29T12:00:25Z",
+   "url": "https://x.com/i/trending/2115774531390280045",
+   "source": "X",
+   "he": {
+    "title": "מאסק: בקרוב לא יהיה טעם לחסוך לעתיד",
+    "summary": "בתגובה למשתמש שחלם על עולם של שפע, מאסק כתב שחיסכון לעשורים קדימה לא ישנה הרבה בעידן של שפע מבוסס בינה־על. התגובות התפצלו בין אופטימיות לבין חשש מהחשבונות של היום."
+   },
+   "en": {
+    "title": "Musk says saving for the future will soon be pointless",
+    "summary": "Replying to a user dreaming of abundance, Musk said saving money for decades ahead won't matter amid superintelligent plenty. Replies split between optimism and worries about today's bills."
+   },
+   "full_he": "אילון מאסק השיב בקצרה למשתמש שחלם על עולם של שפע: לדבריו, לחסוך כסף לעשורים קדימה לא יהיה משנה בעידן של שפע שתביא בינה־על.\n\nב־29 באוקטובר 2026 כתב מאסק ב־X שההתקדמות בבינה מלאכותית, ברובוטיקה ובאנרגיה זמינה תהפוך מזון, דיור, בריאות ותחבורה לנגישים הרבה יותר. זה מהדהד את מה שאמר בפודקאסט בינואר, שחיסכון לפנסיה לטווח ארוך עלול להפוך ללא רלוונטי.\n\n• חלק מהמגיבים אימצו את החזון של עולם שבו העבודה היא בחירה.\n• אחרים הדגישו את החשבונות של היום, את הסיכון למקומות עבודה ואת הצורך בכרית ביטחון כלכלית לטווח הקרוב.\n• המגיבים התווכחו גם על השאלה אם כולם יקבלו גישה שווה לעתיד הזה, על ביטקוין כהגנה, ועל כך שהשפע אולי לא יגיע לכולם באותה מידה.\n\nהדיון חשף פער בין אופטימיות לזהירות, בזמן שהחברות של מאסק, כמו טסלה ו־SpaceXAI, בונות לקראת העתיד הזה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Elon Musk replied simply to a user dreaming of abundance: saving money for decades ahead won't matter amid superintelligent plenty.\n\nOn October 29, 2026, Musk posted on X that advances in AI, robotics and abundant energy will make food, housing, healthcare and transport far more accessible, echoing his January podcast view that long-term retirement savings could become irrelevant.\n\n• Some replies embraced a world where work is optional.\n• Others stressed today's bills, job risks and the need for near-term financial buffers.\n• Commenters debated equal access to this future, Bitcoin as a hedge, and whether abundance will arrive evenly.\n\nThe discussion highlighted a split between optimism and caution as Musk's companies like Tesla and SpaceXAI build toward it.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
+  {
+   "id": "solana-rwa-519b-polygon-spat",
+   "topic": "solana",
+   "date": "2026-10-29T11:34:23Z",
+   "url": "https://x.com/i/trending/2115768199681544489",
+   "source": "X",
+   "he": {
+    "title": "נכסים מהעולם האמיתי על סולאנה שוברים שיא: 5.19 מיליארד דולר",
+    "summary": "שווי הנכסים המטוקנים על סולאנה הגיע לשיא של 5.19 מיליארד דולר, בהובלת גופים כמו בלקרוק וג'יי.פי מורגן. במקביל, החשבון הרשמי של סולאנה ניהל \"ריב\" משועשע עם פוליגון ב-X."
+   },
+   "en": {
+    "title": "Solana real-world assets hit a record $5.19 billion",
+    "summary": "Tokenized real-world assets on Solana hit an all-time high of $5.19 billion, driven by names like BlackRock and JPMorgan, while Solana's official account traded playful blocks and mutes with Polygon on X."
+   },
+   "full_he": "הנכסים מהעולם האמיתי (RWA) על סולאנה עברו את רף 5.19 מיליארד הדולר, שיא של כל הזמנים, בדחיפה של שמות גדולים כמו בלקרוק וג'יי.פי מורגן. בדיוק באותו זמן החשבון הרשמי של סולאנה החליף חסימות והשתקות עם פוליגון בריב קליל ב-X.\n\n• הזינוק מגיע אחרי צמיחה מהירה מכמעט אפס בסוף 2023, וממקם את סולאנה כאחת הרשתות המובילות לנכסים מטוקנים כמו קרנות כספיות ומניות, אחרי את'ריום ו-BNB Chain בלבד.\n• נתונים מ-rwa.xyz מאשרים את העלייה, כשהעניין המוסדי מניע מוצרים מטוקנים שמהווים כיום את רוב האחזקות.\n• במקביל, חילופי הדברים המשעשעים (סרטון של פוליגון בנוסח \"שאף אחד לא יעשה מזה עניין מוזר\", אחר כך השתקה, ואז חסימה מצד סולאנה) הצחיקו את הקהילה. צופים התבדחו שהמתמחים רבים ביניהם והזכירו את רוח ה-\"wagmi\".\n• אנליסטים רואים בזה הקנטה רגילה בעולם הקריפטו, כששתי הרשתות ממשיכות לבנות תשתיות ותשלומים בביצועים גבוהים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Solana's real-world assets just smashed past $5.19 billion, a new all-time high fueled by big names like BlackRock and JPMorgan. Right on cue, its official account traded blocks and mutes with Polygon in a lighthearted X spat.\n\n• The surge marks rapid growth from near zero in late 2023, positioning Solana as a top chain for tokenized assets like money market funds and equities, trailing only Ethereum and BNB Chain.\n• Data from rwa.xyz confirms the climb, with institutional interest driving tokenized products that now dominate holdings.\n• Meanwhile, the fun exchange—Polygon's 'nobody make this weird' video followed by muting, then Solana blocking back—drew laughs, with observers joking about interns fighting and reminding everyone of the 'wagmi' spirit.\n• Analysts see it as typical crypto banter, as both networks keep building on high-performance payments and infrastructure.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "apple-indie-dev-account-terminations",
+   "topic": "apple",
+   "date": "2026-10-29T11:10:44Z",
+   "url": "https://x.com/i/trending/2115537948452036786",
+   "source": "X",
+   "he": {
+    "title": "מפתחי iOS עצמאיים מקבלים הודעות סגירת חשבון מאפל",
+    "summary": "מפתחת בשם סטייסי, שהאפליקציה שלה הכניסה 114 אלף דולר בשלוש שנים, קיבלה מאפל הודעה על סגירת חשבון מתוכננת בטענה ל\"פעילות לא כנה\". מפתחים אחרים מספרים על מקרים דומים ודורשים כללים ברורים יותר."
+   },
+   "en": {
+    "title": "Indie iOS developers face sudden Apple account terminations",
+    "summary": "A developer named Stacy, whose app earned $114,000 over three years, got an Apple Pending Termination Notice citing dishonest activity. Other developers share similar stories and call for clearer rules."
+   },
+   "full_he": "סטייסי השקיעה שלוש שנים באפליקציית iOS שלה, הרוויחה 114 אלף דולר עם משתמשים מרוצים, ואז הודעה אחת איימה למחוק הכול.\n\n• סטייסי קיבלה מאפל הודעה על סגירת חשבון מתוכננת (Pending Termination Notice), עם טענה לפעילות לא כנה הקשורה לדחיות קודמות בבדיקת האפליקציות, בזמן שניסתה להעלות עדכון שגרתי.\n• למרות שעמדה בדרישות, כמו שינוי שם האפליקציה וחודשים של התכתבויות על המטא-דאטה, האפליקציה שלה, שמצליחה, עלולה כעת להימחק לגמרי, היא עלולה לאבד את המשתמשים ולקבל חסימה לצמיתות כמפתחת, בזמן שהערעור שלה ממתין לוועדת הערעורים של App Review.\n• מפתחים אחרים משתפים סיפורים דומים על פחד מסימונים אוטומטיים בגלל דחיות ישנות, וקוראים לכללים ולאזהרות ברורים יותר.\n• כל זה על רקע המאבק של אפל ב-2025, שבו נסגרו 193 אלף חשבונות מתחזים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Stacy poured three years into her iOS app, earning $114,000 with happy users—then a single notice threatened to wipe it all out.\n\n• Stacy received a Pending Termination Notice from Apple, accusing her account of dishonest activity tied to past App Review rejections during a routine update attempt.\n• Despite complying with demands like renaming her app and facing months of back-and-forth over metadata, her well-performing app now risks full removal, user loss, and a permanent developer ban while her appeal awaits the App Review Board.\n• Other developers share similar stories of fear over automated flags from old rejections, sparking calls for clearer rules and warnings.\n• This comes amid Apple's 2025 crackdown on 193,000 fraudulent accounts.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
    "id": "huang-megaspeed-alice-huang-spy",
    "topic": "huang",
    "date": "2026-10-29T10:46:56Z",
@@ -212,23 +280,6 @@
    },
    "full_he": "מנהלת של חברת מרכזי נתונים בסינגפור, המקורבת למנכ\"ל אנבידיה, עוררה את תשומת לב המודיעין האמריקאי בגלל קשריה עם בייג'ינג ורכישות ענק של שבבי AI.\n\n• לפי הדיווחים, סוכנויות אמריקאיות הגיעו למסקנה שאליס הואנג (הואנג לה) מחברת Megaspeed פעלה כנכס של המודיעין הסיני, בזמן שקנתה שבבי AI של אנבידיה בשווי מיליארדי דולרים ושמרה על קשר אישי עם המנכ\"ל ג'נסון הואנג.\n• השניים הופיעו יחד באירועים, בין השאר בטייוואן, מה שעורר חשש מגישה אפשרית לטכנולוגיה של אנבידיה ומהשפעה על מדיניות הייצוא האמריקאית של שבבי AI, על רקע התחרות בין ארה\"ב לסין.\n• הנשיא טראמפ תודרך על כך לפני כשנה, אך לא נקט צעד פומבי.\n• אנבידיה דחתה את החששות וציינה שמדובר בפגישות שגרתיות עם לקוחות, ו-Megaspeed משתפת פעולה עם בדיקות בנוגע להעברה אפשרית של שבבים ליעדים אחרים.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן. מדובר בטענות מדווחות, ולא בממצא שפורסם רשמית.",
    "full_en": "A Singapore data center executive close to Nvidia's CEO caught U.S. intelligence's eye for her Beijing connections and massive AI chip buys.\n\n• U.S. agencies reportedly concluded that Alice Huang, or Huang Le, of Megaspeed acted as a Chinese intelligence asset while buying billions in Nvidia AI chips and maintaining a personal relationship with CEO Jensen Huang.\n• They appeared together at events, including in Taiwan, sparking worries over potential access to Nvidia tech and U.S. AI export policies amid U.S.-China rivalry.\n• President Trump was briefed a year ago but took no public action.\n• Nvidia dismissed the concerns, noting routine customer meetings, while Megaspeed cooperates with probes into possible chip rerouting.\n\nThis story is a summary of posts on X and may evolve over time. These are reported claims, not a published official finding."
-  },
-  {
-   "id": "apple-teleai-privacy-camera-j450",
-   "topic": "apple",
-   "date": "2026-10-29T10:35:09Z",
-   "url": "https://x.com/i/trending/2115753344144715822",
-   "source": "X",
-   "he": {
-    "title": "מצלמת הפרטיות הסינית של TeleAI הקדימה את אפל בשנה",
-    "summary": "TeleAI של צ'יינה טלקום השיקה השנה מצלמה שמזהה נפילות, קטטות ועישון בלי לשתף פנים או צילומים. החיישן J450 של אפל, עם רעיון דומה, עדיין בפיתוח לקראת השקה ב-2027."
-   },
-   "en": {
-    "title": "China's TeleAI privacy camera beats Apple to market by a year",
-    "summary": "China Telecom's TeleAI launched a camera this year that detects falls, fights and smoking without sharing faces or footage. Apple's similar J450 sensor is still in development for a 2027 launch."
-   },
-   "full_he": "כבר בפברואר 2026 חשף צוות סיני מצלמה שמזהה נפילות או קטטות בלי לשתף פנים או צילומים. היא הגיעה הרבה לפני פרויקט דומה של אפל, ועוררה דיון על חדשנות שלא קיבלה תשומת לב.\n\n• TeleAI, מכון ה-AI של צ'יינה טלקום, השיק השנה את ה-Privacy Camera, שמעבדת את הווידאו על המכשיר עצמו והופכת אותו ל\"טוקנים\" מופשטים שמסננים את הזהות לפני ניתוח בענן.\n• המערכת מזהה סיכונים כמו עישון או אלימות במקומות כמו בתי ספר ושירותים, ומפיקה התראות או קווי מתאר בסגנון קומיקס בלי לחשוף פרטים אישיים.\n• היא כבר פועלת בעוזר TeleCare של TeleAI.\n• החיישן J450 של אפל, שעדיין בפיתוח לקראת השקה ב-2027, מכוון לזיהוי פעילות דומה בלי הקלטה, במסגרת התוכניות של אפל לבית החכם.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
-   "full_en": "Back in February 2026, a Chinese team unveiled a camera that spots falls or fights without ever sharing faces or footage. It arrived well before Apple's similar project, prompting talk of overlooked innovation.\n\n• TeleAI, from China Telecom's AI institute, launched its Privacy Camera this year, processing video on-device to create abstract tokens that filter out identities before cloud analysis.\n• The system detects risks like smoking or aggression in places such as schools and restrooms, generating alerts or comic-style outlines without exposing personal details.\n• It's already deployed in TeleAI's TeleCare assistant.\n• Apple's J450 sensor, still in development for a 2027 launch, aims for similar no-recording activity detection amid its smart-home plans.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "mccullough-cramer-buy-then-silence",
@@ -248,21 +299,55 @@
    "full_en": "Peter McCullough's post:\n\n\"Buy, Buy, Buy — Then Silence. Jim Cramer's 2021 mRNA hype, zeal for mandates, his writer & nephew's death at 41, and the question he won't touch on air in 2026.\" The article is on TheFocalPoints, tagging Cramer, Mad Money, Squawk Box and CNBC.\n\nWhat the attached image says:\n• It's the article header on TheFocalPoints, by Peter A. McCullough, MD, MPH, Oct 29, 2026, marked as paid content.\n• It includes a screenshot of a CNBC piece from Nov 29, 2021: \"Jim Cramer says the U.S. government should make Covid vaccine mandatory nationwide\", saying that on Mad Money Cramer argued a national Covid vaccine mandate was the only way for the U.S. to beat the pandemic.\n\nThe full article is paywalled, so there's no more text to show. McCullough added no further replies in the thread.\n\nNote: the post implies a link between Covid vaccines and the nephew's death; that's McCullough's claim, not shown in the post, and mainstream medical consensus considers mRNA vaccines safe for most people."
   },
   {
-   "id": "spacex-putin-musk-genius-rassvet",
-   "topic": "spacex",
-   "date": "2026-10-29T08:13:12Z",
-   "url": "https://x.com/i/trending/2115717344785821931",
+   "id": "apple-teleai-privacy-camera-j450",
+   "topic": "apple",
+   "date": "2026-10-29T10:35:09Z",
+   "url": "https://x.com/i/trending/2115753344144715822",
    "source": "X",
    "he": {
-    "title": "פוטין קרא לאילון מאסק \"גאון אמיתי\" בסיור בתערוכת לוויינים",
-    "summary": "בפסגת רוסיה–אפריקה במוסקבה שיבח פוטין את מאסק ליד דגם של רשת הלוויינים הרוסית \"ראסווט\", שנועדה להתחרות בסטארלינק. לדבריו יש תיאום שוטף עם מאסק ועם שותפים אמריקאים כדי למנוע הפרעות במסלול."
+    "title": "מצלמת הפרטיות הסינית של TeleAI הקדימה את אפל בשנה",
+    "summary": "TeleAI של צ'יינה טלקום השיקה השנה מצלמה שמזהה נפילות, קטטות ועישון בלי לשתף פנים או צילומים. החיישן J450 של אפל, עם רעיון דומה, עדיין בפיתוח לקראת השקה ב-2027."
    },
    "en": {
-    "title": "Putin calls Elon Musk a \"real genius\" during a satellite tour",
-    "summary": "At the Russia-Africa Summit in Moscow, Putin praised Musk beside a model of Russia's Rassvet constellation, an early Starlink rival. He said there is ongoing coordination with Musk and American partners to prevent orbital interference."
+    "title": "China's TeleAI privacy camera beats Apple to market by a year",
+    "summary": "China Telecom's TeleAI launched a camera this year that detects falls, fights and smoking without sharing faces or footage. Apple's similar J450 sensor is still in development for a 2027 launch."
    },
-   "full_he": "כשעמד ליד דגם של רשת הלוויינים החדשה של רוסיה, עצר פוטין כדי לציין במיוחד את אילון מאסק ולשבח אותו, מול חדר מלא במנהיגים אפריקאים.\n\nבפסגת רוסיה–אפריקה במוסקבה כינה הנשיא ולדימיר פוטין את מאסק \"גאון אמיתי\" בזמן שצפה בתצוגה של רשת הלוויינים הרוסית \"ראסווט\" (Rassvet). זה ניסיון ראשוני להתחרות בסטארלינק, עם 30 לוויינים בלבד במסלול לעומת אלפי הלוויינים של מאסק.\n\nפוטין הדגיש שיש תיאום שוטף עם מאסק ועם שותפים אמריקאים כדי למנוע הפרעות במסלול ולשמור על סדר בחלל.\n\nהדברים משכו תשומת לב על רקע שיבושים אחרונים בסטארלינק באוקראינה ועל רקע תוכניות רוסיה להרחיב את רשת התקשורת המקומית שלה.\n\n(זה סיכום של פוסטים ב-X, ולא כתבה אחת.)",
-   "full_en": "Standing beside a model of Russia's new satellite network, Putin paused to single out Elon Musk with high praise amid a room full of African leaders.\n\nAt the Russia-Africa Summit in Moscow, President Vladimir Putin praised Musk as a \"real genius\" while viewing a display of Russia's Rassvet satellite constellation, an early effort to rival Starlink with just 30 satellites in orbit compared to Musk's thousands.\n\nHe highlighted ongoing coordination with Musk and American partners to prevent orbital interference and maintain order in space.\n\nThe comments drew notice amid recent Starlink disruptions in Ukraine and Russia's plans to expand its domestic communications network.\n\n(This story is a summary of posts on X.)"
+   "full_he": "כבר בפברואר 2026 חשף צוות סיני מצלמה שמזהה נפילות או קטטות בלי לשתף פנים או צילומים. היא הגיעה הרבה לפני פרויקט דומה של אפל, ועוררה דיון על חדשנות שלא קיבלה תשומת לב.\n\n• TeleAI, מכון ה-AI של צ'יינה טלקום, השיק השנה את ה-Privacy Camera, שמעבדת את הווידאו על המכשיר עצמו והופכת אותו ל\"טוקנים\" מופשטים שמסננים את הזהות לפני ניתוח בענן.\n• המערכת מזהה סיכונים כמו עישון או אלימות במקומות כמו בתי ספר ושירותים, ומפיקה התראות או קווי מתאר בסגנון קומיקס בלי לחשוף פרטים אישיים.\n• היא כבר פועלת בעוזר TeleCare של TeleAI.\n• החיישן J450 של אפל, שעדיין בפיתוח לקראת השקה ב-2027, מכוון לזיהוי פעילות דומה בלי הקלטה, במסגרת התוכניות של אפל לבית החכם.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Back in February 2026, a Chinese team unveiled a camera that spots falls or fights without ever sharing faces or footage. It arrived well before Apple's similar project, prompting talk of overlooked innovation.\n\n• TeleAI, from China Telecom's AI institute, launched its Privacy Camera this year, processing video on-device to create abstract tokens that filter out identities before cloud analysis.\n• The system detects risks like smoking or aggression in places such as schools and restrooms, generating alerts or comic-style outlines without exposing personal details.\n• It's already deployed in TeleAI's TeleCare assistant.\n• Apple's J450 sensor, still in development for a 2027 launch, aims for similar no-recording activity detection amid its smart-home plans.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "lawrence-set-nudity-crew-principle",
+   "topic": "lawrence",
+   "date": "2026-10-29T10:34:00Z",
+   "url": "https://www.independent.co.uk/arts-entertainment/films/news/jennifer-lawrence-nude-scene-crew-b3075517.html",
+   "source": "The Independent",
+   "he": {
+    "title": "ג'ניפר לורנס: \"הגבתי בתקיפות\" כשאנשי צוות לא מורשים היו על הסט בסצנת עירום",
+    "summary": "לורנס סיפרה ב-Call Her Daddy שעמדה על שלה כדי לקבוע עיקרון שיגן על שחקניות צעירות ולא מוכרות. היא דיברה גם על מטרות היופי שלה כאמא לשניים."
+   },
+   "en": {
+    "title": "Jennifer Lawrence 'came down hard' over unapproved crew during a nude scene",
+    "summary": "On Call Her Daddy, Lawrence said she took a firm stance to set a principle that protects young, unknown actresses. She also spoke about her beauty goals as a mother of two."
+   },
+   "full_he": "ג'ניפר לורנס תיארה פעם שבה נקטה עמדה תקיפה אחרי שאנשי צוות לא מורשים הופיעו על הסט בזמן סצנת עירום.\n\n• השחקנית בת ה-36 הדגישה שגמישות היא \"חלק מהעבודה\", למשל השינוי הדרמטי בשיער שלה לסרט \"Die My Love\" (2025), אבל יש רגעים שבהם צריך לעמוד על שלך כדי להגן על עצמך ועל אחרים בתעשייה.\n• בפודקאסט Call Her Daddy אמרה: \"היה מקרה על הסט שבו אנשי צוות שלא אושרו היו שם כשעשיתי עירום. הגבתי בתקיפות, רק כי אם אנחנו לא קובעים את העיקרון הזה, מה לכל הרוחות יקרה לבחורה לא מוכרת בת 18 כשהיא תגיע ויהיו על הסט אנשים לא מורשים?\"\n• \"היא תהיה במצב של: 'אני אומרת משהו ומקבלת מוניטין של קשה, או שאני נותנת לאנשים שלא נוח לי שיראו אותי עירומה לראות אותי עירומה?' היה חשוב לי להסביר לאנשים למה זה לא בסדר.\"\n• בעבר אמרה ל-Vulture שרצתה לתת לבמאית לין רמזי \"חופש אמנותי מוחלט\" ב-Die My Love: \"לא אכפת לי מעירום. אני לא רגישה לזה.\"\n• היא סיפרה שההיריון עם ילדה השני בזמן הצילומים הוריד ממנה הרבה מ\"חרדת היוהרה\", ושכששלחו לה תקריב עם צלוליט ושאלו אם לרטש, ענתה: \"לא. זה תחת.\"\n• בראיון שער ל-The Cut אמרה: \"אני רוצה להיות אמא סקסית... בהורדה לגן אני רוצה להיראות כמו אישה שהכול אצלה מסודר, גם כשרק התעוררתי וכלום לא מסודר.\"\n• אמא לשניים דיברה בעבר על טיפולים קוסמטיים ושינויים בגוף אחרי הלידות (\"אחרי הראשון הכול חזר פחות או יותר, אחרי השני כלום לא חזר\"), ומאז אישרה שעברה הרמת חזה ושוקלת מתיחת פנים בעתיד, אחרי שסיפרה בעבר ל-Vogue על כמויות קטנות של בוטוקס.",
+   "full_en": "Jennifer Lawrence described the time she took a firm stance after unauthorised crew members appeared on set during a nude scene.\n\n• The 36-year-old said being \"malleable\" is \"part of the job\", citing her dramatic hair transformation for 2025's Die My Love, but there are moments to put her foot down to protect herself and others in the industry.\n• On the Call Her Daddy podcast she said: \"There was an instance on set where crew members who were not approved when I was doing nudity were on set. I came down hard on it, purely because if we are not setting that principle, then what on earth is going to happen to an 18-year-old unknown when she shows up and there's people on set who are not approved?\"\n• \"She's going to be in a position of: 'Do I say something and get a reputation for being difficult, or do I let these people that I'm not comfortable seeing me naked see me naked?' It was important to me to explain that to the people why that was not okay.\"\n• She previously told Vulture she wanted to give director Lynne Ramsay \"total freedom artistically\" on Die My Love: \"I don't care about nudity. I'm not sensitive about it.\"\n• Being pregnant with her second child while filming took much of her \"vanity anxiety away\"; when sent a close-up of cellulite asking whether to touch it up, she said: \"No. That's an ass.\"\n• In a cover interview with The Cut: \"I want to be a sexy mom... At drop-off, I want to look like a woman that has her s*** together even when I've just woken up and don't have my s*** together.\"\n• The mother of two has discussed cosmetic procedures and post-pregnancy changes (\"Everything bounced back, pretty much, after the first one. Second one, nothing bounced back.\"), has since confirmed a breast lift and is considering a future facelift, having previously described \"baby Botox\" to Vogue."
+  },
+  {
+   "id": "solana-whale-sells-104m-near-100",
+   "topic": "solana",
+   "date": "2026-10-29T10:07:37Z",
+   "url": "https://x.com/i/trending/2115745877906391349",
+   "source": "X",
+   "he": {
+    "title": "סולאנה מחזיקה סביב 100 דולר אחרי שלווייתן מכר SOL ב-104 מיליון דולר",
+    "summary": "ארנק לא מזוהה מכר יותר ממיליון SOL בשווי כ-104 מיליון דולר במשך חמישה ימים. המחיר ירד מתחת ל-100 דולר ב-29 באוקטובר והתייצב סביבו."
+   },
+   "en": {
+    "title": "Solana holds near $100 after a whale sells $104 million in SOL",
+    "summary": "An unidentified wallet sold over 1 million SOL worth about $104 million over five days. SOL dipped below $100 on October 29 and then stabilized around that level."
+   },
+   "full_he": "לווייתן מסתורי מכר בשקט יותר ממיליון מטבעות SOL בשווי 104 מיליון דולר במשך חמישה ימים, ובחן את רמת התמיכה החשובה של המטבע.\n\n• עוקבים על-השרשרת זיהו שהארנק מפקיד כ-200 אלף SOL ביום לבורסות כמו Binance ו-Kraken, בלי מכירה גדולה אחת.\n• סולאנה ירדה מתחת ל-100 דולר ב-29 באוקטובר אבל התייצבה סביב הרמה הזו, על רקע יציאות כספים מקרנות ה-ETF ושוק חלש.\n• חלק מהסוחרים רואים תקווה בדפוסי צבירה שמצביעים על 151 דולר, אחרים נזכרים בזינוק של 2022 מ-10 דולר ומתווכחים אם \"הכסף החכם\" יוצא מוקדם.\n\nזה לא ייעוץ השקעות.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "A mysterious whale quietly sold over 1 million SOL tokens worth $104 million across five days, testing the crypto's key support level.\n\n• On-chain trackers spotted the wallet depositing around 200,000 SOL daily to exchanges like Binance and Kraken, without one big dump.\n• Solana dipped below $100 on October 29 but stabilized there amid ETF outflows and market softness.\n• Traders see hope in accumulation patterns pointing to $151, while others recall its 2022 surge from $10 and debate if smart money is exiting early.\n\nNot investment advice.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
   },
   {
    "id": "musk-true-highest-iq-on-x",
@@ -282,6 +367,40 @@
    "full_en": "Elon Musk kept it simple with a single word: \"True.\" He was replying to a claim that the sharpest minds hang out on X.\n\nNate Esparza posted that people with the highest IQs are on X, and Musk's agreement amplified the idea among users praising the platform's text-based debates over image-heavy sites. Memes like a frog-themed dump truck added playful flair, while some noted plenty of users lack common sense despite smarts.\n\nA related thread debated intelligence and anti-Semitism, naming figures like Bobby Fischer and Henry Ford, highlighting X's open style where bold claims spark quick support and pushback.\n\nSuch discussions rely on observation, not formal IQ measures.\n\n(This story is a summary of posts on X.)"
   },
   {
+   "id": "lawrence-vogue-house-coat-nyc",
+   "topic": "lawrence",
+   "date": "2026-10-29T10:00:00Z",
+   "url": "https://www.vogue.com/article/jennifer-lawrence-is-taking-her-house-coat-and-slippers-out-on-the-town-2026-10-29",
+   "source": "Vogue",
+   "he": {
+    "title": "ג'ניפר לורנס יוצאת לרחובות ניו יורק בחלוק ובנעלי בית",
+    "summary": "ווג מתאר את הופעתה של לורנס בניו יורק במעיל־חלוק קטיפה ארוך בצבע שרטרוז ובנעלי בית פרוותיות, כהמשך לאהבתה לצבעים עזים."
+   },
+   "en": {
+    "title": "Jennifer Lawrence takes her house coat and slippers out on the town",
+    "summary": "Vogue covers Lawrence's New York outing in a floor-sweeping chartreuse velvet house coat and fuzzy slippers, continuing her love of bold color."
+   },
+   "full_he": "לפעמים להתלבש מרגיש כמו טרחה מיותרת, ונראה שג'ניפר לורנס מצאה פתרון: היא נצפתה בניו יורק כשהיא לוקחת את הנוחות של הבית, פשוטו כמשמעו, אל הרחוב.\n\n• המעיל הוא כל התלבושת: מעיל־חלוק קטיפה ארוך עד הרצפה בצבע שרטרוז של המעצבת הניו־יורקית קולין אלן, עם צווארון גבוה, כפתורים מצופי בד וגזרה רפויה ואוברסייז.\n• מתחת: קרדיגן צמר ירוק־ליים של Miu Miu מעל חולצת טי לבנה ומכנסיים שחורים רחבים.\n• ברגליים: נעלי בית שחורות ופרוותיות.\n• אביזרים: תיק קלוע מקולקציית אביב 2027 של Tory Burch, משקפי שמש גדולים של Dita, שרשרת זהב של Sidney Garber, טבעת אמרלד של Yi Collection וטבעת האירוסין שלה של Alison Lou.\n• השיער אסוף בקוקו נמוך עם גומייה בצבע שמנת, והפוני נופל סביב הפנים.\n\nלפי ווג, לורנס מצטיינת כבר זמן רב בשילוב של יוקרה ופשטות, מעצבים צעירים ופריטי וינטג'. בקיץ לבשה חליפה בשלושה חלקים בגוון שרטרוז של Harris Tapper, ולאחרונה נראתה עם תיק Hermès Bolide בירוק עז. המסקנה של ווג: הסתיו אינו סיבה לחזור לחום, אפור ושחור.\n\nלורנס מתוארת בכתבה גם כמי שהשיקה לאחרונה מותג יופי.",
+   "full_en": "There are days when getting dressed feels like an unnecessary inconvenience, and Jennifer Lawrence seems to have found a workaround: spotted in New York City, the actor and recent beauty brand founder took the comforts of home quite literally onto the streets.\n\n• The coat is the outfit: a floor-sweeping chartreuse velvet house coat by New York designer Colleen Allen, with a high neckline, fabric-covered buttons and a slouchy, oversized fit.\n• Underneath: a lime Miu Miu wool cardigan over a white T-shirt and loose black trousers.\n• On her feet: textured, fuzzy black slippers.\n• Accessories: a woven tote from Tory Burch's spring 2027 collection, oversized Dita Scandal sunglasses, a gold Sidney Garber necklace, her emerald-set Yi Collection ring and her Alison Lou engagement ring.\n• Her hair was in a low ponytail with a cream scrunchie, wispy bangs framing her face.\n\nVogue notes she has long excelled at high-low dressing, mixing emerging designers with vintage accessories and staples from Leset and La Ligne. Earlier this summer she wore a three-piece chartreuse silk-georgette set by Harris Tapper, and she recently carried a slime-green Hermès Bolide. Vogue's takeaway: fall is no reason to retreat into browns, grays and blacks."
+  },
+  {
+   "id": "tesla-italy-backs-eu-fsd-approval",
+   "topic": "tesla",
+   "date": "2026-10-29T09:55:31Z",
+   "url": "https://x.com/i/trending/2115743202351444276",
+   "source": "X",
+   "he": {
+    "title": "איטליה תומכת באישור מהיר של הנהיגה המסייעת של טסלה באיחוד האירופי",
+    "summary": "סגן ראש ממשלת איטליה ושר התחבורה מתאו סלביני כתב אחרי שיחה עם אילון מאסק שאיטליה תומכת באישור מהיר של מערכת הנהיגה המסייעת של טסלה באיחוד. זה עשוי לעזור להשיג רוב בהצבעה אפשרית בדצמבר."
+   },
+   "en": {
+    "title": "Italy backs swift EU approval of Tesla's assisted driving",
+    "summary": "Italy's deputy PM and transport minister Matteo Salvini said after a talk with Elon Musk that Italy supports quick EU approval of Tesla's assisted driving, which could help reach a qualified majority in a possible December vote."
+   },
+   "full_he": "שר התחבורה של איטליה סיפר על שיחה חיובית עם אילון מאסק, והביע תמיכה באישור מהיר יותר באיחוד האירופי לטכנולוגיית הנהיגה המסייעת של טסלה.\n\n• סגן ראש הממשלה מתאו סלביני כתב שאיטליה תומכת באישור מהיר של Tesla Assisted Driving באיחוד, תוך דגש על חדשנות ובטיחות בדרכים, אחרי שיחה בונה עם מאסק.\n• זה מחזק את המומנטום לקראת הצבעה אפשרית בדצמבר בוועדה הטכנית לכלי רכב מנועיים של האיחוד (TCMV). לאיטליה 13.1% מאוכלוסיית האיחוד, וזה יכול לעזור לעבור את סף הרוב המיוחס.\n• עשר מדינות כבר מכירות במערכת ברמה הלאומית, וגרמניה אותתה שהיא תומכת.\n• עם זאת, תהליך האישור של איטליה עצמה עדיין נמשך, וכללים לנהיגה אוטונומית מלאה עלולים להוסיף אתגרים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Italy's transport minister shared a positive chat with Elon Musk, throwing his weight behind faster EU green lights for Tesla's assisted driving tech.\n\n• Deputy Prime Minister Matteo Salvini posted that Italy supports quick EU approval of Tesla Assisted Driving, emphasizing innovation and road safety after a constructive talk with Musk.\n• This boosts momentum for a potential December vote in the EU's Technical Committee on Motor Vehicles, where Italy's 13.1% share of the population could help meet the qualified majority threshold.\n• Ten countries already recognize it nationally, and Germany has signaled support.\n• Italy's own approval process is ongoing, and full autonomous rules may add challenges.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
    "id": "pod-asprey-e36010165f",
    "topic": "podcasts",
    "kind": "podcast",
@@ -299,6 +418,23 @@
    },
    "full_en": "How Hops Extract Suppresses Hunger, Reduces Cravings, Supports Weight Loss, and Makes Intermittent Fasting Easier\n\nHost Dave Asprey sits down with Sarah Kennedy, CEO of Calocurb, to explore the science of hunger suppression, natural GLP-1 activation, intermittent fasting, weight loss, visceral fat reduction, and a patented hops extract that may help people eat less without relying on willpower.\n\nThe conversation centers on Amarasate, a natural compound derived from New Zealand hops, the same plant used to make beer. Originally investigated through a multimillion-dollar research program, this bitter plant extract activates specialized receptors in the digestive tract that stimulate the body's natural appetite-regulating hormones. Sarah explains how this discovery led to Calocurb, a supplement designed to reduce hunger, control cravings, and make fasting and calorie restriction easier.\n\nDave and Sarah break down the biology of GLP-1, CCK, PYY, ghrelin, and leptin and how these hormones influence hunger, fullness, cravings and metabolic health. Unlike injectable GLP-1 medications such as Ozempic and Wegovy, Amarasate works through bitter taste receptors in the gut to stimulate the body's own satiety signaling. They examine why the timing and location of these signals matter, how quickly the extract begins working, and how it differs from conventional appetite suppressants.\n\nSarah shares findings from four human clinical trials, including research reporting an average 18% reduction in calorie intake after taking the extract. The discussion also covers a six-month randomized, placebo-controlled study of about 150 participants that reported an average 5.5% reduction in body weight, with estimated fat loss and no detected average muscle loss, and about 3.5 times greater visceral fat reduction than placebo.\n\nThey also discuss how the extract may make intermittent and extended fasting easier by reducing hunger and cravings, and challenge the idea that overeating is simply a failure of willpower, looking at gut-brain signaling and metabolic hormones.\n\nYou'll learn:\n• How a patented compound from hops activates bitter receptors in the gut to stimulate GLP-1, CCK and PYY\n• Why clinical research found the extract reduced calorie intake by about 18%\n• How a six-month trial reported 5.5% body-weight loss, reduced visceral fat and no detected average muscle loss\n• Why hunger, cravings and overeating involve hormonal signaling rather than just a lack of willpower\n• How natural appetite regulation may make intermittent fasting, extended fasting and calorie restriction easier\n• How hops-derived compounds differ from injectable GLP-1 medications\n\nTimestamps:\n• 00:00 Trailer\n• 01:32 Intro\n• 03:06 Discovering Hops Extract\n• 07:58 Finding the Right Hop\n• 10:15 Clinical Trial Results\n• 15:34 No Rebound Weight Gain\n• 19:47 Personal Story & Fasting\n• 23:05 Women's Fasting Study\n• 29:32 Willpower & Hunger\n• 38:42 Combining With GLP-1s\n\nNote: these are the host's and guest's claims, and the guest is the CEO of the company that sells the supplement; the studies mentioned are as described in the episode notes. This isn't medical advice.",
    "full_he": "איך תמצית כשות מדכאת רעב, מפחיתה חשקים, תומכת בירידה במשקל ומקלה על צום לסירוגין\n\nדייב אספרי מארח את שרה קנדי, מנכ\"לית Calocurb, לשיחה על המדע של דיכוי רעב, הפעלה טבעית של GLP-1, צום לסירוגין, ירידה במשקל, הפחתת שומן ויסרלי (בטני), ותמצית כשות בפטנט שלדבריהם עשויה לעזור לאכול פחות בלי להסתמך על כוח רצון.\n\nהשיחה מתמקדת ב-Amarasate, תרכובת טבעית שמופקת מכשות ניו זילנדית, אותו צמח שממנו מכינים בירה. לדבריהם, התמצית המרירה הזו נחקרה בתוכנית מחקר של מיליוני דולרים, והיא מפעילה קולטנים מיוחדים במערכת העיכול שמעודדים את ההורמונים הטבעיים של הגוף לוויסות התיאבון. שרה מספרת איך התגלית הובילה ל-Calocurb, תוסף שנועד להפחית רעב, לשלוט בחשקים ולהקל על צום והגבלת קלוריות.\n\nדייב ושרה מסבירים את הביולוגיה של GLP-1, CCK, PYY, גרלין ולפטין, ואיך ההורמונים האלה משפיעים על רעב, שובע, חשקים ובריאות מטבולית. בניגוד לתרופות GLP-1 בזריקה כמו אוזמפיק ו-וגובי, לדבריהם Amarasate פועלת דרך קולטני טעם מר במעי כדי לעורר את אותות השובע של הגוף עצמו. הם דנים בחשיבות התזמון והמיקום של האותות, בכמה מהר התמצית מתחילה לפעול ובמה היא שונה ממדכאי תיאבון רגילים.\n\nשרה מציגה ממצאים מארבעה ניסויים קליניים בבני אדם, כולל מחקר שדיווח על ירידה ממוצעת של 18% בצריכת הקלוריות אחרי נטילת התמצית. הם מדברים גם על מחקר אקראי מבוקר פלצבו של חצי שנה עם כ-150 משתתפים, שדיווח על ירידה ממוצעת של 5.5% במשקל הגוף, עם ירידה משוערת בשומן ובלי ירידה ממוצעת שזוהתה במסת השריר, ועל הפחתה של שומן ויסרלי שגדולה פי 3.5 בערך מאשר בפלצבו.\n\nעוד הם מדברים על כך שהתמצית עשויה להקל על צום לסירוגין וצום ממושך בזכות פחות רעב וחשקים, ומערערים על הרעיון שאכילת יתר היא פשוט כישלון של משמעת עצמית, דרך התקשורת בין המעי למוח וההורמונים המטבוליים.\n\nמה תלמד בפרק:\n• איך תרכובת בפטנט מכשות מפעילה קולטני מרירות במעי ומעודדת GLP-1, CCK ו-PYY\n• למה מחקר קליני מצא שהתמצית הפחיתה את צריכת הקלוריות בכ-18%\n• איך ניסוי של חצי שנה דיווח על ירידה של 5.5% במשקל, פחות שומן ויסרלי ובלי ירידה ממוצעת שזוהתה בשריר\n• למה רעב, חשקים ואכילת יתר קשורים לאיתות הורמונלי ולא רק לחוסר כוח רצון\n• איך ויסות תיאבון טבעי עשוי להקל על צום לסירוגין, צום ממושך והגבלת קלוריות\n• במה תרכובות מכשות שונות מתרופות GLP-1 בזריקה\n\nחותמות זמן:\n• 00:00 טריילר\n• 01:32 פתיחה\n• 03:06 הגילוי של תמצית הכשות\n• 07:58 מציאת הכשות הנכונה\n• 10:15 תוצאות הניסויים הקליניים\n• 15:34 בלי עלייה חוזרת במשקל\n• 19:47 סיפור אישי וצום\n• 23:05 מחקר צום אצל נשים\n• 29:32 כוח רצון ורעב\n• 38:42 שילוב עם תרופות GLP-1\n\nהערה: אלה טענות המנחה והאורחת, והאורחת היא מנכ\"לית החברה שמוכרת את התוסף; המחקרים מתוארים כפי שהם מופיעים בתיאור הפרק. זו לא עצה רפואית."
+  },
+  {
+   "id": "spacex-putin-musk-genius-rassvet",
+   "topic": "spacex",
+   "date": "2026-10-29T08:13:12Z",
+   "url": "https://x.com/i/trending/2115717344785821931",
+   "source": "X",
+   "he": {
+    "title": "פוטין קרא לאילון מאסק \"גאון אמיתי\" בסיור בתערוכת לוויינים",
+    "summary": "בפסגת רוסיה–אפריקה במוסקבה שיבח פוטין את מאסק ליד דגם של רשת הלוויינים הרוסית \"ראסווט\", שנועדה להתחרות בסטארלינק. לדבריו יש תיאום שוטף עם מאסק ועם שותפים אמריקאים כדי למנוע הפרעות במסלול."
+   },
+   "en": {
+    "title": "Putin calls Elon Musk a \"real genius\" during a satellite tour",
+    "summary": "At the Russia-Africa Summit in Moscow, Putin praised Musk beside a model of Russia's Rassvet constellation, an early Starlink rival. He said there is ongoing coordination with Musk and American partners to prevent orbital interference."
+   },
+   "full_he": "כשעמד ליד דגם של רשת הלוויינים החדשה של רוסיה, עצר פוטין כדי לציין במיוחד את אילון מאסק ולשבח אותו, מול חדר מלא במנהיגים אפריקאים.\n\nבפסגת רוסיה–אפריקה במוסקבה כינה הנשיא ולדימיר פוטין את מאסק \"גאון אמיתי\" בזמן שצפה בתצוגה של רשת הלוויינים הרוסית \"ראסווט\" (Rassvet). זה ניסיון ראשוני להתחרות בסטארלינק, עם 30 לוויינים בלבד במסלול לעומת אלפי הלוויינים של מאסק.\n\nפוטין הדגיש שיש תיאום שוטף עם מאסק ועם שותפים אמריקאים כדי למנוע הפרעות במסלול ולשמור על סדר בחלל.\n\nהדברים משכו תשומת לב על רקע שיבושים אחרונים בסטארלינק באוקראינה ועל רקע תוכניות רוסיה להרחיב את רשת התקשורת המקומית שלה.\n\n(זה סיכום של פוסטים ב-X, ולא כתבה אחת.)",
+   "full_en": "Standing beside a model of Russia's new satellite network, Putin paused to single out Elon Musk with high praise amid a room full of African leaders.\n\nAt the Russia-Africa Summit in Moscow, President Vladimir Putin praised Musk as a \"real genius\" while viewing a display of Russia's Rassvet satellite constellation, an early effort to rival Starlink with just 30 satellites in orbit compared to Musk's thousands.\n\nHe highlighted ongoing coordination with Musk and American partners to prevent orbital interference and maintain order in space.\n\nThe comments drew notice amid recent Starlink disruptions in Ukraine and Russia's plans to expand its domestic communications network.\n\n(This story is a summary of posts on X.)"
   },
   {
    "id": "musk-2008-gamble-tesla-spacex",
@@ -352,6 +488,23 @@
    },
    "full_he": "אילון מאסק שיתף ש-Ship 42 תהיה השלב העליון הראשון שייתפס בזרועות מגדל השיגור – אבן דרך שמחכים לה הרבה זמן בתחום מיחזור הרקטות.\n\n• SpaceX השלימה ב-Massey's ניסויים מרכזיים של Ship 42, כולל צריבה סטטית מלאה של כל ששת מנועי ה-Raptor והדמיה של צריבת יציאה ממסלול במנוע יחיד.\n• טיסה 15, שמתוכננת לא לפני 8 בנובמבר, נועדה לתפוס בעזרת \"מקלות האכילה\" של המגדל גם את בוסטר ה-Super Heavy וגם את Ship 42 – התפיסה הראשונה של שלב עליון.\n• מאסק אמר שהסיכוי להצליח כבר בניסיון הראשון גבוה מהסיכוי להיכשל, צעד לקראת שיגורים למסלול שניתנים למיחזור מלא, גישה זולה יותר לחלל ויעדי מאדים.\n• צופים כינו את זה נקודת מפנה אפשרית בהיסטוריה של חקר החלל.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "Elon Musk shared that Ship 42 will be the first upper stage caught by the launch tower's arms, fulfilling a long-awaited milestone in rocket recovery.\n\n• SpaceX completed key tests for Ship 42 at Massey's site, including a full-duration static fire of all six Raptor engines and a single-engine deorbit simulation.\n• Flight 15, no earlier than November 8, aims to catch both the Super Heavy booster and Ship 42 using the tower's chopstick arms, marking the first such upper stage recovery.\n• Musk called success on the first try more likely than not, a step toward fully reusable orbital launches for cheaper space access and Mars goals.\n• Observers hailed it as a potential turning point in space exploration history.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "tesla-trick-or-treat-mode",
+   "topic": "tesla",
+   "date": "2026-10-29T06:52:33Z",
+   "url": "https://x.com/i/trending/2115613992186184008",
+   "source": "X",
+   "he": {
+    "title": "מצב \"ממתק או תעלול\" של טסלה משמח ילדים בהאלווין",
+    "summary": "מצב חדש בטסלה גורם לרכב חונה להשמיע צלילים מפחידים ולהבהב באורות כשמישהו מתקרב. בעלי רכבים משתפים סרטונים לקראת האלווין."
+   },
+   "en": {
+    "title": "Tesla's Trick or Treat mode delights Halloween trick-or-treaters",
+    "summary": "A new Tesla mode makes parked cars play spooky sounds and flash their lights when visitors approach, and owners are sharing videos ahead of Halloween."
+   },
+   "full_he": "ילדים בתחפושות מתקרבים לטסלה חונה בשעת דמדומים, ופתאום נשמעים מהרמקולים צלילים מפחידים והאורות מהבהבים בפראות. זו ההפתעה המפחידה שבעלי הרכבים חיכו לה בהאלווין הזה.\n\n• מצב Trick or Treat החדש גורם לרכב חונה להשמיע אודיו מסתורי ולהבהב באורות כשמבקרים מתקרבים. מפעילים אותו בקלות מתפריט Toybox בעדכוני התוכנה האחרונים.\n• בעלי רכבים משתפים סרטונים של אווטאר רכב עטוף בסדין כמו רוח רפאים, מסכי בית קברות, דלעות האלווין ואפילו את שיר הנושא של מכסחי השדים.\n• זה משתלב עם תצוגות ה-FSD, כמו מסלולים סגולים והולכי רגל בצורת שלדים.\n• המצב הופך את תא המטען הקדמי (פרנק) לעמדת ממתקים ומשבית את מצב Sentry בזמן הכיף, ונהגים מתלהבים מהשמחה שזה מביא לילדי השכונה ב-31 באוקטובר.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
+   "full_en": "Costumed kids approach a parked Tesla at dusk, only for eerie sounds to blast from its speakers and lights to flicker wildly. It's the spooky surprise owners have been waiting for this Halloween.\n\n• Tesla's new Trick or Treat mode lets parked cars play haunting audio and pulse lights when visitors draw near, activated easily through the Toybox menu in recent software updates.\n• Owners share videos of ghost-sheeted car avatars, graveyard screens, jack-o'-lantern scenes, and even the Ghostbusters theme.\n• It pairs with Full Self-Driving visuals like purple paths and skeleton pedestrians.\n• The feature turns the frunk into a candy station, disables Sentry Mode for the fun, and has drivers raving about the joy it brings to neighborhood kids on October 31.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
   },
   {
    "id": "tesla-robotaxi-free-first-ride-tx",
@@ -779,6 +932,40 @@
    "full_en": "Brecka's post: \"A MUST WATCH EPISODE\"\n\nThe quoted post:\n\"Daymond John went in for dental work and walked out with his rotator cuff pain gone.\n\nGary Brecka chipped a tooth, sent a photo to Dr. Gandhi, and got a text back asking if he had left shoulder pain, lower lobe lung pain during cardio, and a left toe that randomly went numb. All of it was real. None of it had been mentioned. After the tooth was cleaned and capped, everything cleared in 48 hours.\n\nThey keep pointing to meridian lines and old root canals as the connection. Two people with public platforms describing the same odd pattern.\n\nBodies keep more receipts than most of us give them credit for. A tooth problem doesn't always stay in the mouth.\"\n\nNote: these are personal experiences and the people's own claims. Tooth-to-organ meridian charts are not a validated diagnostic tool in mainstream medicine (Brecka's own episode 315 notes say so too), and chest or shoulder pain or numbness should be checked by a physician."
   },
   {
+   "id": "ternus-touch-mac-who-knew-wired",
+   "topic": "ternus",
+   "date": "2026-10-28T20:33:00Z",
+   "url": "https://9to5mac.com/2026/10/28/ternus-addresses-apple-breaking-touchscreen-mac-taboo-who-knew/",
+   "source": "9to5Mac",
+   "he": {
+    "title": "טרנוס על שבירת הטאבו של מק עם מסך מגע: \"מי היה מאמין?\"",
+    "summary": "בראיון ל-WIRED הסביר מנכ\"ל אפל ג'ון טרנוס למה אפל הוסיפה סוף סוף מסך מגע ל-MacBook Pro: המגע הוא תוספת, והמוצר לא נעשה כבד או עבה יותר בגללו."
+   },
+   "en": {
+    "title": "Ternus on breaking the touchscreen Mac taboo: \"Who knew?\"",
+    "summary": "In a WIRED interview, Apple CEO John Ternus explained why Apple finally added touch to the MacBook Pro: touch is an add-on that didn't make the product heavier or thicker."
+   },
+   "full_he": "בראיון ל-WIRED דיברו בכירי אפל, ובהם המנכ\"ל ג'ון טרנוס, ראש החומרה ג'וני סרוג'י וראש השיווק גרג \"ג'וז\" ג'וזוויאק, על ההחלטה להביא מגע למק.\n\n• במשך שנים, מגיבים ברשת דחו שמועות על מק עם מסך מגע בציטוטים של סטיב ג'ובס ושל בכירים אחרים, כמו פיל שילר, שטענו שלמסך מגע אין מקום במק.\n• זמן קצר אחרי ההכרזה על ה-MacBook Pro בגודל 14 ו-16 אינץ' עם מסך PROLED XDR, פרסם העיתונאי סטיבן לוי ראיון ב-WIRED. כששאל אם אפל עומדת לשבור טאבו ותיק ולהציג מקינטוש עם מסך מגע, טרנוס קרן ואמר: \"מי היה מאמין?\"\n• לדברי טרנוס, הקלט העקיף דרך משטח המגע והמקלדת נשאר במרכז חוויית המק, אבל \"יש פעמים שנוח ושימושי שיהיה מגע\". הוא מדגיש שאפל רואה במגע תוספת, לא פיצ'ר שמחייב פשרות בעיצוב.\n• \"היינו צריכים להגיע לנקודה שבה הוספת מגע לא הופכת את המוצר לנחות בשום צורה. הוא לא נעשה כבד יותר. הוא לא נעשה עבה יותר. זה התחבר יחד עם מסך ה-OLED, המסך הכי טוב ששמנו אי פעם במק. כל הדברים האלה, ואה, כן, יש לו גם מגע.\"\n• סרוג'י אמר שהתקדמות הטכנולוגיה בעשור האחרון אפשרה סוף סוף לעמוד בסטנדרטים של אפל: \"עשר שנים זה זמן מאוד מאוד ארוך\". לדבריו, השילוב של שבבים, טכנולוגיית מסך וארכיטקטורת תוכנה \"עמד ברף שלנו\", והוסיף: \"אני רוצה שהמהנדסים שלי יוגבלו על ידי הפיזיקה, לא על ידי הדמיון או לוחות זמנים.\"\n• בין השינויים: שבבים ייעודיים, מערכת קירור חדשה כדי שהמסך לא ירגיש חם למגע, וציר מחודש שמצמצם את רעידות המסך בזמן נגיעה.\n• ג'וזוויאק אמר שחלק מההחלטה נבע מדור חדש של משתמשים שרגילים לגעת במסך: \"רוב אנשי המקצוע מחזיקים אייפד, וכמעט כל איש מקצוע מחזיק אייפון... יש דור של יוצרים צעירים ואנשים צעירים שמשתמשים ב-MacBook Pro שלנו ומצפים לגעת.\" לדבריו, גם מהנדסים, מדענים, מפתחי תוכנה ויוצרי מדיה ביקשו מגע במק.\n• הראיון המלא עוסק גם בהתאמת macOS למגע, במחוות החדשות ל-Dynamic Island ובשאלה אם המגע יגיע בעתיד למקים אחרים.",
+   "full_en": "In an interview with WIRED, Apple executives including CEO John Ternus, hardware chief Johny Srouji, and marketing chief Greg \"Joz\" Joswiak discussed the company's decision to bring touch to the Mac.\n\n• For years, online commenters countered rumors of touchscreen Macs with quotes from Steve Jobs and other Apple executives, including Phil Schiller, arguing that touchscreens had no place on the Mac.\n• Shortly after Apple announced the 14-inch and 16-inch MacBook Pro with PROLED XDR Display, journalist Steven Levy published an interview in WIRED. Asked if Apple was about to break a long-imposed taboo and introduce a Macintosh with a touch screen, Ternus beamed: \"Who knew?\"\n• Ternus notes that while indirect input through the trackpad and keyboard remains central to the Mac, \"there's times when it's comfortable and handy to have touch.\" Apple sees touch as an add-on, not a feature that should require compromises to the design.\n• \"We needed to get to a point where adding touch didn't make the product lesser in any way. It didn't make it heavier. It didn't make it thicker. That came together with the OLED screen, the best display we've ever put into a Mac. All of these things, and, oh yeah, it has touch as well.\"\n• Srouji said a decade of advances finally let Apple meet its standards: \"Ten years is a very, very long time.\" The confluence of chips, display tech, and software architecture \"met our bar.\" \"I like my engineers to be gated by physics, not imagination or timelines.\"\n• The work included custom silicon, a redesigned thermal system to keep the display from feeling hot to the touch, and a reworked hinge to minimize screen wobble.\n• Joswiak said a new generation of touch-first users drove part of the decision: \"Most pros own an iPad, and almost every pro owns an iPhone... There's a generation of young creators and young people using our MacBook Pros that expect to touch.\" Engineers, scientists, software developers, and media creators had also asked for it.\n• The full interview also covers how Apple adapted macOS for touch, new Dynamic Island gestures, and whether touch might come to other Macs."
+  },
+  {
+   "id": "milliebb-fall-photo-dump-second-baby",
+   "topic": "milliebb",
+   "date": "2026-10-28T20:00:00Z",
+   "url": "https://people.com/millie-bobby-brown-shares-fall-photo-dump-with-snaps-baby-number-two-12200065",
+   "source": "People",
+   "he": {
+    "title": "מילי בובי בראון שיתפה תמונות סתיו עם הצצה לתינוק השני שלה",
+    "summary": "כוכבת \"דברים מוזרים\" פרסמה באינסטגרם קרוסלת תמונות סתיו, ובהן הצצה לבן שאימצה עם בעלה ג'ייק בונג'ובי בחודש שעבר."
+   },
+   "en": {
+    "title": "Millie Bobby Brown shares a fall photo dump with a glimpse of her second baby",
+    "summary": "The Stranger Things star posted an Instagram carousel of fall photos, including a glimpse of the son she and husband Jake Bongiovi adopted last month."
+   },
+   "full_he": "מילי בובי בראון התאהבה בסתיו.\n\n• כוכבת \"דברים מוזרים\", בת 22, שיתפה ביום רביעי, 28 באוקטובר, קרוסלת תמונות באינסטגרם עם הצצה לחייה בתקופה האחרונה.\n• האמא לשניים הראתה ל-70.4 מיליון העוקבים שלה הצצה לתינוק השני, שהיא ובעלה ג'ייק בונג'ובי (24) קיבלו בחודש שעבר.\n• באחת התמונות היא מחזיקה את התינוק בחיקה, ורק יד קטנה נראית; בתמונה אחרת רואים את כפות רגליו בגרביים עם דלעות, בדיוק לקראת האלווין.\n• הכיתוב: \"התאהבתי בטירוף בסתיו\". בקרוסלה גם עריכת שולחן עם הכיתוב \"Mommy\", סלפי במראה בפיג'מה, ותמונה שלה ושל בונג'ובי מדברים באירוע של Gift of Adoption, ארגון שעוזר למשפחות להשלים אימוץ של ילדים במצבים פגיעים.\n• ב-17 בספטמבר שיתפו השניים את ההצצה הראשונה לתינוק עם הכיתוב \"היי בחור קטן\", ובתמונה נראתה היד שלו מוחזקת בידיהם, כשמילי עונדת טבעת \"Mom\". הרמז הראשון הגיע ב-7 בספטמבר, בתמונה שבה היא מחזיקה את בתם ובונג'ובי הולך לצידה עם מנשא תינוק.\n• כמעט לפני שנה הודיעה שהם אימצו את בתם הראשונה: \"הקיץ קיבלנו את התינוקת המתוקה שלנו באימוץ... ואז היינו שלושה\" (אוגוסט 2025).\n• ביוני סיפרה שאימוץ \"תמיד היה חלק מחלומות הילדות שלי\", ושכל הבובות שלה בילדות היו \"מאומצות\". היא הבהירה שהיא מקווה גם ללדת בעצמה יום אחד: \"זה לא כי אני לא רוצה את זה. אני מקווה שיום אחד זה בעתיד שלי.\" ו-\"אימוץ זו אהבה, אימוץ זה לתמיד.\"",
+   "full_en": "Millie Bobby Brown has fallen hard for fall!\n\n• The Stranger Things star, 22, shared an Instagram carousel on Wednesday, Oct. 28, offering a glimpse into her life lately.\n• The mom of two gave her 70.4 million followers a glimpse of her second baby, whom she welcomed with husband Jake Bongiovi, 24, last month.\n• One snap showed her cradling the infant in her lap with just a tiny hand on show; another showed the baby's tiny feet in pumpkin socks, just in time for Halloween.\n• Caption: \"Fallen so madly for fall.\" The dump also included a \"Mommy\" table setting, a pajama mirror selfie, and an image of her and Bongiovi speaking at an event for Gift of Adoption, which helps families complete adoptions of children in vulnerable circumstances.\n• On Sept. 17 the couple shared their first glimpse of the infant with the caption \"Hi little guy,\" showing his hand held by theirs, with Brown wearing a \"Mom\" ring. The first hint came Sept. 7, in a post showing her holding their daughter while Bongiovi carried a baby carrier.\n• Almost a year ago she announced their first daughter: \"This summer we welcomed our sweet baby girl through adoption... And then there were 3.\" (August 2025)\n• In June she said adoption \"was always part of my childhood dreams\" and that her baby dolls were all \"adopted\"; she hopes to carry children one day too: \"It's not because I don't want that. Hopefully one day that's in my future.\" \"Adoption is love, adoption is forever.\""
+  },
+  {
    "id": "brecka-sauna-immune-cells",
    "topic": "brecka",
    "date": "2026-10-28T19:38:52Z",
@@ -1066,6 +1253,23 @@
    },
    "full_he": "בישורת האחרונה לפני הבחירות הצמודות למושל טקסס, שופטת קבעה שהמושל גרג אבוט חייב למסור למתחרה שלו, ג'ינה הינוחוסה, מיילים לא מושחרים שהחליף עם אילון מאסק. בית משפט לערעורים הקפיא מיד את המועד.\n\n• חברת בית הנבחרים של המדינה ג'ינה הינוחוסה תבעה לפי חוק חופש המידע של טקסס כדי לקבל יותר מ-1,000 עמודים של התכתבויות בין לשכת אבוט למאסק, אחרי שקיבלה גרסאות מושחרות ברובן.\n• השופטת קתרין מוזי קבעה שלשכת אבוט הערימה קשיים על הגישה, והורתה לשחרר את המיילים עד יום חמישי.\n• בית המשפט ה-15 לערעורים – שכל שופטיו רפובליקנים שמינה אבוט – הקפיא את הצו לקראת דיון ב-2 בנובמבר.\n• המאבק מבליט את הקשרים ההדוקים בין אבוט למאסק, כולל תרומה של 5 מיליון דולר ותמריצים עסקיים לטסלה ול-SpaceX, בזמן שהינוחוסה דורשת שקיפות בעיצומה של ההצבעה המוקדמת לבחירות ב-3 בנובמבר.\n\nזהו סיכום של פוסטים ב-X שנכתב על ידי Grok, והוא עשוי להשתנות ולכלול טעויות.",
    "full_en": "In the final stretch before Texas's tight gubernatorial election, a judge ruled that Gov. Greg Abbott must hand over unredacted emails with Elon Musk to his rival Gina Hinojosa. An appeals court quickly hit pause on that deadline.\n\n• State Rep. Gina Hinojosa sued under the Texas Public Information Act to access over 1,000 pages of unredacted emails between Abbott's office and Musk, after receiving mostly redacted versions.\n• Judge Catherine Mauzy found Abbott's office obstructed access and ordered release by Thursday.\n• The all-Republican 15th Court of Appeals, whose judges Abbott appointed, paused the order ahead of a November 2 hearing.\n• The fight highlights Abbott's close ties to Musk, including a $5 million donation and business incentives for Tesla and SpaceX, as Hinojosa pushes for transparency amid early voting in the November 3 race.\n\nThis is a Grok summary of posts on X; it may evolve over time and can contain mistakes."
+  },
+  {
+   "id": "lawrence-hunger-games-sunrise-return",
+   "topic": "lawrence",
+   "date": "2026-10-28T15:54:13Z",
+   "url": "https://www.hollywoodreporter.com/movies/movie-news/jennifer-lawrence-hunger-games-return-sunrise-reaping-1236741782/",
+   "source": "The Hollywood Reporter",
+   "he": {
+    "title": "ג'ניפר לורנס מאשרת: חוזרת למשחקי הרעב ב\"זריחה ביום הקציר\"",
+    "summary": "בפודקאסט Call Her Daddy אישרה לורנס שהיא חוזרת לתפקיד קטניס אוורדין בסרט הפריקוול, ושהתאחדה עם ג'וש האצ'רסון ווודי הרלסון. הסרט יוצא ב-20 בנובמבר."
+   },
+   "en": {
+    "title": "Jennifer Lawrence confirms her Hunger Games return in 'Sunrise on the Reaping'",
+    "summary": "On Call Her Daddy, Lawrence confirmed she returns as Katniss Everdeen in the prequel and reunited with Josh Hutcherson and Woody Harrelson. The film opens Nov. 20."
+   },
+   "full_he": "ג'ניפר לורנס מאשרת סוף סוף שהיא חוזרת לסדרת משחקי הרעב.\n\n• לורנס דיברה על החזרה לתפקיד קטניס אוורדין בסרט \"זריחה ביום הקציר\" (Sunrise on the Reaping), שיוצא בחודש הבא, ואישרה שהתאחדה עם שותפיה לשעבר ג'וש האצ'רסון ווודי הרלסון, שעל השתתפותם השמועות רצו זמן רב.\n• כשמנחת Call Her Daddy, אלכס קופר, שאלה אותה על החזרה, ענתה: \"לא ייאמן. זה היה כל כך מטורף כי זה היה אותו צוות. אותם צלמים, אותו עוזר במאי שעבדתי איתו מיליון פעם... וג'וש ווודי, וזה היה כל כך מרגש. ג'וש ואני לא הלכנו אפילו לשירותים בלי ללכת חבוקים. זה היה כל כך יפה.\"\n• היא הוסיפה שהרלסון טיפס לחדר המלון שלה דרך החלון: \"וודי כמובן נכנס דרך החלון של החדר שלי בלי הזמנה, כי זה לא היה אותו דבר אם הוא היה מכבד גבולות ומשתמש בדלת.\"\n• היא גם סיפרה שב-2013 גזרה לעצמה תספורת פיקסי כמחאה, אחרי שההפקה סירבה לתת לה פאה ל\"עורבני חקיין\" והיא נמאסה לה מצביעת השיער לחום: \"זו הייתה המחאה הקטנה הראשונה שלי, התספורת הכי גרועה שמישהו ראה אי פעם.\"\n• \"זריחה ביום הקציר\" הוא פריקוול שמתרחש 24 שנה לפני הסרט המקורי, ועוקב אחרי היימיץ' אברנתי בן ה-16 במשחקי הרעב ה-50 (הרבעון השני), שבהם פי שניים מחווים נאלצים להילחם עד מוות. ג'וזף זאדה מגלם את היימיץ' הצעיר ורייף פיינס את הנשיא סנואו. הדמויות הוותיקות צפויות להופיע בקפיצות קדימה בזמן או בסיפור מסגרת. הסרט יוצא ב-20 בנובמבר.\n\nהערה: התקציר מבוסס על החלק הזמין של הכתבה.",
+   "full_en": "Jennifer Lawrence is finally confirming she's returning to The Hunger Games franchise.\n\n• Lawrence discussed being back as Katniss Everdeen in the upcoming Sunrise on the Reaping, which opens next month, and confirmed she reunited with former co-stars Josh Hutcherson and Woody Harrelson, whose participation had long been speculated.\n• Asked by Call Her Daddy host Alex Cooper about returning, she said: \"Unbelievable. It was so crazy because it was the same crew. It was the same camera guys, the same AD, who I've worked with a million times … and Josh and Woody and it was so emotional. Like Josh and I like didn't walk to the bathroom without our arms around each other. It was so beautiful.\"\n• She added that Harrelson climbed through her hotel window: \"And Woody obviously came through the window of my hotel room uninvited cause it would not be the same. It wouldn't be the same if he listened to boundaries and used a door.\"\n• She also revealed she gave herself a pixie cut in 2013 to protest producers refusing her a wig for Mockingjay after she grew tired of dyeing her hair brown: \"my first tiny little protest of giving myself the worst haircut anyone has ever seen in their life.\"\n• Sunrise on the Reaping is a prequel set 24 years before the original film, following 16-year-old Haymitch Abernathy in the 50th Hunger Games (the Second Quarter Quell), where twice as many tributes fight to the death. Joseph Zada plays young Haymitch and Ralph Fiennes is President Snow. Legacy characters are expected in flashforwards or a framing device. The film opens Nov. 20.\n\nNote: this summary is based on the available part of the article."
   },
   {
    "id": "musk-cybernetic-woman-video",
@@ -3010,23 +3214,6 @@
    "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
-   "id": "refaeli-anna-zak-tiger-guess",
-   "topic": "refaeli",
-   "date": "2026-10-27T00:00:00+02:00",
-   "url": "https://trari.com/il/story/keshet12-17694/",
-   "source": "Trari · קשת 12",
-   "he": {
-    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
-    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
-   },
-   "en": {
-    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
-    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
-   },
-   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
-   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
-  },
-  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -3059,6 +3246,23 @@
    },
    "full_he": "במחקר, משתתפים שאכלו מזון אולטרה-מעובד צרכו בממוצע 500 קלוריות נוספות ביום ועלו כמעט 2 פאונד (קרוב לקילו) בתוך שבועיים בלבד.\n\nכשאותם משתתפים אכלו מזון מלא ולא מעובד, הם דווקא ירדו כמעט 2 פאונד.\n\nשתי הדיאטות תוכננו כך שיהיו להן פרופילים תזונתיים דומים. המסקנה? להתחיל מאוכל אמיתי. הגוף שלך יודע להבחין בהבדל.\n\nמהתמונה: שני גרפים של שינוי במשקל הגוף (בק\"ג) לאורך 14 ימי דיאטה.\n• \"המשקל שלך על מזון אולטרה-מעובד\": עלייה הדרגתית לכ-1 ק\"ג עד היום השישי בערך, ומשם יציבות סביב 0.9-1 ק\"ג.\n• \"המשקל שלך על מזון מלא\": ירידה הדרגתית, עד כ-0.9- ק\"ג ביום ה-14.",
    "full_en": "In a research study, participants eating ultra-processed foods consumed an average of 500 extra calories per day and gained nearly 2 pounds in just TWO weeks.\n\nWhen those same participants ate whole, unprocessed foods, they lost nearly 2 pounds instead.\n\nBoth diets were designed to have similar nutritional profiles. The takeaway? Start with real food. Your body knows the difference.\n\nFrom the image: two charts of body weight change (kg) over 14 days on the diet.\n• \"Your bodyweight on ultra-processed foods\": a steady rise to about 1 kg by around day 6, then holding near 0.9-1 kg.\n• \"Your bodyweight on whole foods\": a gradual drop to about -0.9 kg by day 14."
+  },
+  {
+   "id": "refaeli-anna-zak-tiger-guess",
+   "topic": "refaeli",
+   "date": "2026-10-27T00:00:00+02:00",
+   "url": "https://trari.com/il/story/keshet12-17694/",
+   "source": "Trari · קשת 12",
+   "he": {
+    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
+    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
+   },
+   "en": {
+    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
+    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
+   },
+   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
+   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
   },
   {
    "id": "johnson-il11-mice",
@@ -3690,23 +3894,6 @@
    "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
   },
   {
-   "id": "refaeli-peretz-tears",
-   "topic": "refaeli",
-   "date": "2026-10-26T07:10:00+02:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
-    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
-   },
-   "en": {
-    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
-    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
-   },
-   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
-   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
-  },
-  {
    "id": "spacex-ford-cancels-starlink",
    "topic": "spacex",
    "date": "2026-10-26T05:56:46Z",
@@ -3739,6 +3926,23 @@
    },
    "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "refaeli-peretz-tears",
+   "topic": "refaeli",
+   "date": "2026-10-26T07:10:00+02:00",
+   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
+   "source": "mako",
+   "he": {
+    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
+    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
+   },
+   "en": {
+    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
+    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
+   },
+   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
+   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
   },
   {
    "id": "tesla-semi-nevada-55",
@@ -5173,23 +5377,6 @@
    "full_en": "McCullough Foundation Report:  Determinants of Autism Spectrum Disorder\n\nAmong susceptible infants, routine childhood scheduled vaccinations are a risk factor for the development of autism.  Peer-reviewed, published, conclusive.  URL  McCulloughfnd.\n\nThe quoted post:\nThe autism numbers are shocking...\n\nThe image shows the Journal of Independent Medicine (2026, Vol. 2 No. 3) paper \"Determinants of Autism Spectrum Disorder\", with charts of autism prevalence and vaccine doses by birth year. This is the McCullough Foundation's claim. Major health bodies and large studies have found no link between vaccines and autism."
   },
   {
-   "id": "durov-hidden-signup",
-   "topic": "durov",
-   "date": "2026-10-24T16:58:15+03:00",
-   "url": "https://www.securitylab.ru/news/579212.php",
-   "source": "securitylab.ru",
-   "he": {
-    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
-    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
-   },
-   "en": {
-    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
-    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
-   },
-   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
-   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
-  },
-  {
    "id": "ss-start-business",
    "topic": "starterstory",
    "date": "2026-10-24T16:51:16Z",
@@ -5326,6 +5513,23 @@
    "full_en": "Elon Musk sees real potential in blending Tesla and SpaceX, but he's stepped back from the talks to avoid conflicts. Independent director committees are now digging into what a combination could look like.\n\nTesla and SpaceX have each set up special committees of independent directors to consider deepening their ties, possibly through a business combination that could value the pair at $3.5 trillion to $3.7 trillion. Musk praised the idea for synergies in AI and superintelligence during a SpaceX earnings call, while noting Tesla shareholders would need to approve by majority vote. The companies already share links like SpaceX buying Tesla Megapacks and Tesla holding a valuable SpaceX stake, though no deal is certain amid regulatory and approval hurdles. Supporters highlight AI and energy benefits, while critics raise governance questions."
   },
   {
+   "id": "durov-hidden-signup",
+   "topic": "durov",
+   "date": "2026-10-24T16:58:15+03:00",
+   "url": "https://www.securitylab.ru/news/579212.php",
+   "source": "securitylab.ru",
+   "he": {
+    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
+    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
+   },
+   "en": {
+    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
+    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
+   },
+   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
+   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
+  },
+  {
    "id": "mercola-gum-health",
    "topic": "mercola",
    "date": "2026-10-24T13:00:46Z",
@@ -5394,6 +5598,23 @@
    "full_en": "From Next Level Soul podcast episode 737 (Oct 24, 2026), with cell biologist Dr. Bruce Lipton, author of \"The Biology of Belief\", about his new book \"Beyond Darwin\":\n• Negative beliefs (the nocebo effect) are as powerful as positive ones. A prognosis delivered as certainty can act \"like a prescription\".\n• Two minds: the creative conscious mind and the subconscious, \"a hard drive of programs\". He says we spend about 95% of the day on autopilot, and about 60% of the programs are self-sabotaging.\n• The first seven years of life are a \"download\" of beliefs from family and community. A program from his own childhood kept him from sustaining a relationship for 40 years. With his partner Margaret (32 years together) he agreed never to argue, and instead to gently point out each other's negative programs.\n• His cancer: about two and a half years ago an ENT doctor found cancer in his tongue. Lipton sees it as a sign of stress and of putting off the book he needed to write. He says that as he wrote, the scans went from malignant to benign to no tumor, and he's still rebuilding the tongue muscle. This is his personal account, not medical advice.\n• \"Beyond Darwin\": nature is a garden, not a battlefield. Cooperation, not competition, drives evolution. The book reached the New York Times bestseller list in its first week.\n• His claims: over 90% of the health crisis comes from stress and lifestyle; we eat too much and too often; rice and beans are a cheap, complete staple; keep two months of dry food at home.\n• Reincarnation: the body is a television set and you are the broadcast. When the TV stops, the broadcast continues. \"Earth is heaven.\"\n• Ways to apply it: notice your autopilot; name programs with someone you trust, with love; tend your own backyard first; put knowledge into practice; choose cooperation."
   },
   {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   },
+   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
+   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
+  },
+  {
    "id": "durov-telegram-agent",
    "topic": "durov",
    "date": "2026-10-24T11:03:00+03:00",
@@ -5409,6 +5630,23 @@
    },
    "full_he": "מתוך click-or-die.ru (איגור ז'יז'ין, 24 באוקטובר 2026), \"טלגרם תוסיף את הפיצ'ר הכי חשוב של 2026\":\n• גרסת הבטא 13.1.0 של טלגרם ל־macOS כוללת תשתית לפיצ'ר בשם \"Agent\". הוא יחבר מודלי AI של צד שלישי למסנג'ר, רק עם מפתח API של המשתמש עצמו.\n• בקוד מופיעים חמישה שירותים: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) ו־OpenRouter. בוחרים שירות ומדביקים מפתח, ולכל ספק יש קישור ישיר לדף המפתחות שלו. לפי TBetaLeak, ייתכן שאפשר יהיה גם לבחור מודל ספציפי.\n• רשימת הספקים נטענת מהשרת, ואפשר לחבר כמה מודלים ולעבור ביניהם. קוראים ל־AI עם @agent. עדיין לא ברור איך זה ייראה בצ'אטים.\n• בזמן החיבור, המפתח עובר דרך השרתים של טלגרם כדי לבדוק שהוא עובד. טלגרם שומרת מתי השירות חובר (וגם את ארבעת התווים האחרונים של המפתח), וההגדרות מסונכרנות בין המכשירים.\n• אותה בטא מחזירה את פיד ההמלצות \"בשבילך\", וגם הודעות HTML עם מיני־משחקים ולוח שנה להודעות: מסמנים ימים, והצ'אט מאותם ימים נמחק, גם אצל הצד השני.\n• הפיצ'ר עדיין לא זמין למשתמשים, ואין תאריך השקה.",
    "full_en": "From click-or-die.ru (Igor Zhizhin, Oct 24, 2026), \"Telegram will add the most important feature of 2026\":\n• Telegram 13.1.0 beta for macOS contains groundwork for a feature called \"Agent\". It will connect third-party AI models to the messenger, using the user's own API key only.\n• The code lists five services: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) and OpenRouter. You pick a service and paste a key, and each provider gets a direct link to its key page. According to TBetaLeak, you may also be able to choose a specific model.\n• The provider list loads from the server, and you can connect several AIs and switch between them. You call the AI with @agent. How it will look in chats isn't clear yet.\n• When you connect, the key passes through Telegram's servers to check that it works. Telegram stores when the service was connected (plus the key's last four characters), and settings sync across devices.\n• The same beta brings back the \"For you\" recommendations feed, plus HTML messages with mini-games and a message calendar: mark days and the chat from those days is deleted, on the other side too.\n• The feature isn't available to users yet, and there's no launch date."
+  },
+  {
+   "id": "tesla-app-foldables",
+   "topic": "tesla",
+   "date": "2026-10-24T07:04:34Z",
+   "url": "https://x.com/i/trending/2113841861756371071",
+   "source": "X",
+   "he": {
+    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
+    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
+   },
+   "en": {
+    "title": "Tesla app gets a big-screen layout for foldables and tablets",
+    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
+   },
+   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
+   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "durov-mvd-drugs",
@@ -5428,23 +5666,6 @@
    "full_en": "From the obshestvo24.info report:\n• The head of the Russian Interior Ministry's anti-drug department says Telegram won't cooperate in fighting drug promotion.\n• According to him, the ministry works with social networks and messengers to remove drug propaganda, but Telegram refuses to take part.\n• The site also reports that Pavel Durov is on Rosfinmonitoring's list of terrorists and extremists and is on an international wanted list. According to the agencies, the terrorism-assistance charges are linked to the use of a chatbot and other channels. These are the Russian authorities' claims."
   },
   {
-   "id": "grok-imagine-music",
-   "topic": "grok",
-   "date": "2026-10-24T09:40:26Z",
-   "url": "https://x.com/i/trending/2113927722418479264",
-   "source": "X",
-   "he": {
-    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
-    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
-   },
-   "en": {
-    "title": "Grok Imagine adds music generation",
-    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
-   },
-   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
-   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
-  },
-  {
    "id": "durov-vk-datacenter",
    "topic": "durov",
    "date": "2026-10-24T09:00:00+03:00",
@@ -5460,23 +5681,6 @@
    },
    "full_he": "מתוך sanktpeterburg78.info:\n• פבל דורוב כתב בערוץ הטלגרם שלו בשפה הרוסית שמרכז הנתונים שבנה לפני 15 שנה נפגע בתקיפה.\n• בלשונו: \"מכרתי את החברה לפני 12 שנה. רואים שמרכז הנתונים נבנה טוב, הקירות עבים. אבל לא הגנו עליו.\"\n• בליל 18 באוקטובר תקפו כוחות אוקראינים את מרכז הנתונים של VK במחוז לנינגרד. VK אישרה את הפגיעה ואמרה שהשירותים שלה פועלים כרגיל, אבל משתמשים דיווחו על תקלות ב־VK וב־VK Music.",
    "full_en": "From sanktpeterburg78.info:\n• In his Russian-language Telegram channel, Pavel Durov wrote that the data center he built 15 years ago had been hit in an attack.\n• His words: \"Sold the company 12 years ago. You can see the data center was built well, the walls are thick. But they didn't protect it.\"\n• On the night of October 18, Ukrainian forces attacked VK's data center in the Leningrad region. VK confirmed the strike and said its services were running normally, but users reported outages in VK and VK Music."
-  },
-  {
-   "id": "tesla-app-foldables",
-   "topic": "tesla",
-   "date": "2026-10-24T07:04:34Z",
-   "url": "https://x.com/i/trending/2113841861756371071",
-   "source": "X",
-   "he": {
-    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
-    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
-   },
-   "en": {
-    "title": "Tesla app gets a big-screen layout for foldables and tablets",
-    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
-   },
-   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
-   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "spacex-ukraine-sovereign",
@@ -6227,159 +6431,6 @@
    },
    "full_he": "מתוך דף הפרק (The Dr. Ardis Show, 21 באוקטובר 2026), \"איך פטריות ועובש הורסים חיים\":\n• ד\"ר בריאן ארדיס מסביר את ההבדל בין עובש לפטריות, איך עובש מתפשט בבתים ובמזון, ולמה מיקוטוקסינים חשובים. הוא מצטט את ההנחיות של משרד החקלאות האמריקאי לגבי מזון עם עובש, ואת ההערכה של ארגון המזון והחקלאות של האו\"ם ש־25% מגידולי המזון בעולם מושפעים ממיקוטוקסינים.\n• הוא מתמקד באפלטוקסין, מיקוטוקסין מסרטן שנמצא בתירס מספוא ובבוטנים, ובספר \"מחקר סין\" של ד\"ר ט' קולין קמפבל.\n• הוא סוקר החזרות אחרונות של עוגות חטיף, מזון תינוקות, רסק תפוחים ומזון לכלבים בגלל עובש ורעלני עובש.\n• הצעד הראשון שלו לגדילת יתר של פטריות הוא דיאטה נגד קנדידה: דלת סוכר, נוגדת דלקת, מבוססת על ירקות לא עמילניים, פירות דלי סוכר, חלבון איכותי ומזון מותסס.\n• מחקרים שהוא מצטט: תימוקינון משמן קצח (Nigella sativa) עיכב שמרים שמקלקלים מוצרי חלב טוב יותר מחומרים משמרים נפוצים (במעבדה); שמן קצח ותמצית תמרים הפחיתו את הנזק של אפלטוקסין לכבד ולכליות (בחולדות); תרכובות נחושת נגד 21 זנים מבודדים של קנדידה והביופילם שלהם; תמצית שורש ליקריץ עיכבה את כל 19 זני הקנדידה שנבדקו; פקטין תפוחים כסיב שקושר פסולת.\n• הפרק מקדם מוצרים של החברה שלו (Nature Wins), כמו BioDefense ו־Bio-Active Copper. רוב הראיות מגיעות ממחקרי מעבדה ובעלי חיים.",
    "full_en": "From the episode page (The Dr. Ardis Show, Oct 21, 2026), \"How Fungi and Mold Destroy Lives\":\n• Dr. Bryan Ardis explains the difference between mold and fungi, how mold spreads through homes and food, and why mycotoxins matter. He cites USDA guidance on moldy food and the UN FAO estimate that 25% of the world's food crops are affected by mycotoxins.\n• His focus is aflatoxin, a carcinogenic mycotoxin found in field corn and peanuts, and the book \"The China Study\" by Dr. T. Colin Campbell.\n• He reviews recent recalls of snack cakes, baby food, applesauce and dog food over mold and mold toxins.\n• His first step for fungal overgrowth is the anti-Candida diet: low in sugar, anti-inflammatory, built on non-starchy vegetables, low-sugar fruit, quality protein and fermented foods.\n• Studies he cites: thymoquinone from black seed oil (Nigella sativa) inhibited dairy spoilage yeasts better than common preservatives (lab); Nigella sativa oil and date extract reduced aflatoxin liver and kidney damage (rats); copper complexes against 21 Candida isolates and their biofilms; licorice root extract inhibited all 19 Candida strains tested; apple pectin as a fiber that binds waste.\n• The episode promotes products from his company (Nature Wins), such as BioDefense and Bio-Active Copper. Most of the evidence comes from lab and animal studies."
-  },
-  {
-   "id": "tesla-italy-backs-eu-fsd-approval",
-   "topic": "tesla",
-   "date": "2026-10-29T09:55:31Z",
-   "url": "https://x.com/i/trending/2115743202351444276",
-   "source": "X",
-   "he": {
-    "title": "איטליה תומכת באישור מהיר של הנהיגה המסייעת של טסלה באיחוד האירופי",
-    "summary": "סגן ראש ממשלת איטליה ושר התחבורה מתאו סלביני כתב אחרי שיחה עם אילון מאסק שאיטליה תומכת באישור מהיר של מערכת הנהיגה המסייעת של טסלה באיחוד. זה עשוי לעזור להשיג רוב בהצבעה אפשרית בדצמבר."
-   },
-   "en": {
-    "title": "Italy backs swift EU approval of Tesla's assisted driving",
-    "summary": "Italy's deputy PM and transport minister Matteo Salvini said after a talk with Elon Musk that Italy supports quick EU approval of Tesla's assisted driving, which could help reach a qualified majority in a possible December vote."
-   },
-   "full_he": "שר התחבורה של איטליה סיפר על שיחה חיובית עם אילון מאסק, והביע תמיכה באישור מהיר יותר באיחוד האירופי לטכנולוגיית הנהיגה המסייעת של טסלה.\n\n• סגן ראש הממשלה מתאו סלביני כתב שאיטליה תומכת באישור מהיר של Tesla Assisted Driving באיחוד, תוך דגש על חדשנות ובטיחות בדרכים, אחרי שיחה בונה עם מאסק.\n• זה מחזק את המומנטום לקראת הצבעה אפשרית בדצמבר בוועדה הטכנית לכלי רכב מנועיים של האיחוד (TCMV). לאיטליה 13.1% מאוכלוסיית האיחוד, וזה יכול לעזור לעבור את סף הרוב המיוחס.\n• עשר מדינות כבר מכירות במערכת ברמה הלאומית, וגרמניה אותתה שהיא תומכת.\n• עם זאת, תהליך האישור של איטליה עצמה עדיין נמשך, וכללים לנהיגה אוטונומית מלאה עלולים להוסיף אתגרים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
-   "full_en": "Italy's transport minister shared a positive chat with Elon Musk, throwing his weight behind faster EU green lights for Tesla's assisted driving tech.\n\n• Deputy Prime Minister Matteo Salvini posted that Italy supports quick EU approval of Tesla Assisted Driving, emphasizing innovation and road safety after a constructive talk with Musk.\n• This boosts momentum for a potential December vote in the EU's Technical Committee on Motor Vehicles, where Italy's 13.1% share of the population could help meet the qualified majority threshold.\n• Ten countries already recognize it nationally, and Germany has signaled support.\n• Italy's own approval process is ongoing, and full autonomous rules may add challenges.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
-  },
-  {
-   "id": "tesla-trick-or-treat-mode",
-   "topic": "tesla",
-   "date": "2026-10-29T06:52:33Z",
-   "url": "https://x.com/i/trending/2115613992186184008",
-   "source": "X",
-   "he": {
-    "title": "מצב \"ממתק או תעלול\" של טסלה משמח ילדים בהאלווין",
-    "summary": "מצב חדש בטסלה גורם לרכב חונה להשמיע צלילים מפחידים ולהבהב באורות כשמישהו מתקרב. בעלי רכבים משתפים סרטונים לקראת האלווין."
-   },
-   "en": {
-    "title": "Tesla's Trick or Treat mode delights Halloween trick-or-treaters",
-    "summary": "A new Tesla mode makes parked cars play spooky sounds and flash their lights when visitors approach, and owners are sharing videos ahead of Halloween."
-   },
-   "full_he": "ילדים בתחפושות מתקרבים לטסלה חונה בשעת דמדומים, ופתאום נשמעים מהרמקולים צלילים מפחידים והאורות מהבהבים בפראות. זו ההפתעה המפחידה שבעלי הרכבים חיכו לה בהאלווין הזה.\n\n• מצב Trick or Treat החדש גורם לרכב חונה להשמיע אודיו מסתורי ולהבהב באורות כשמבקרים מתקרבים. מפעילים אותו בקלות מתפריט Toybox בעדכוני התוכנה האחרונים.\n• בעלי רכבים משתפים סרטונים של אווטאר רכב עטוף בסדין כמו רוח רפאים, מסכי בית קברות, דלעות האלווין ואפילו את שיר הנושא של מכסחי השדים.\n• זה משתלב עם תצוגות ה-FSD, כמו מסלולים סגולים והולכי רגל בצורת שלדים.\n• המצב הופך את תא המטען הקדמי (פרנק) לעמדת ממתקים ומשבית את מצב Sentry בזמן הכיף, ונהגים מתלהבים מהשמחה שזה מביא לילדי השכונה ב-31 באוקטובר.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
-   "full_en": "Costumed kids approach a parked Tesla at dusk, only for eerie sounds to blast from its speakers and lights to flicker wildly. It's the spooky surprise owners have been waiting for this Halloween.\n\n• Tesla's new Trick or Treat mode lets parked cars play haunting audio and pulse lights when visitors draw near, activated easily through the Toybox menu in recent software updates.\n• Owners share videos of ghost-sheeted car avatars, graveyard screens, jack-o'-lantern scenes, and even the Ghostbusters theme.\n• It pairs with Full Self-Driving visuals like purple paths and skeleton pedestrians.\n• The feature turns the frunk into a candy station, disables Sentry Mode for the fun, and has drivers raving about the joy it brings to neighborhood kids on October 31.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
-  },
-  {
-   "id": "apple-indie-dev-account-terminations",
-   "topic": "apple",
-   "date": "2026-10-29T11:10:44Z",
-   "url": "https://x.com/i/trending/2115537948452036786",
-   "source": "X",
-   "he": {
-    "title": "מפתחי iOS עצמאיים מקבלים הודעות סגירת חשבון מאפל",
-    "summary": "מפתחת בשם סטייסי, שהאפליקציה שלה הכניסה 114 אלף דולר בשלוש שנים, קיבלה מאפל הודעה על סגירת חשבון מתוכננת בטענה ל\"פעילות לא כנה\". מפתחים אחרים מספרים על מקרים דומים ודורשים כללים ברורים יותר."
-   },
-   "en": {
-    "title": "Indie iOS developers face sudden Apple account terminations",
-    "summary": "A developer named Stacy, whose app earned $114,000 over three years, got an Apple Pending Termination Notice citing dishonest activity. Other developers share similar stories and call for clearer rules."
-   },
-   "full_he": "סטייסי השקיעה שלוש שנים באפליקציית iOS שלה, הרוויחה 114 אלף דולר עם משתמשים מרוצים, ואז הודעה אחת איימה למחוק הכול.\n\n• סטייסי קיבלה מאפל הודעה על סגירת חשבון מתוכננת (Pending Termination Notice), עם טענה לפעילות לא כנה הקשורה לדחיות קודמות בבדיקת האפליקציות, בזמן שניסתה להעלות עדכון שגרתי.\n• למרות שעמדה בדרישות, כמו שינוי שם האפליקציה וחודשים של התכתבויות על המטא-דאטה, האפליקציה שלה, שמצליחה, עלולה כעת להימחק לגמרי, היא עלולה לאבד את המשתמשים ולקבל חסימה לצמיתות כמפתחת, בזמן שהערעור שלה ממתין לוועדת הערעורים של App Review.\n• מפתחים אחרים משתפים סיפורים דומים על פחד מסימונים אוטומטיים בגלל דחיות ישנות, וקוראים לכללים ולאזהרות ברורים יותר.\n• כל זה על רקע המאבק של אפל ב-2025, שבו נסגרו 193 אלף חשבונות מתחזים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
-   "full_en": "Stacy poured three years into her iOS app, earning $114,000 with happy users—then a single notice threatened to wipe it all out.\n\n• Stacy received a Pending Termination Notice from Apple, accusing her account of dishonest activity tied to past App Review rejections during a routine update attempt.\n• Despite complying with demands like renaming her app and facing months of back-and-forth over metadata, her well-performing app now risks full removal, user loss, and a permanent developer ban while her appeal awaits the App Review Board.\n• Other developers share similar stories of fear over automated flags from old rejections, sparking calls for clearer rules and warnings.\n• This comes amid Apple's 2025 crackdown on 193,000 fraudulent accounts.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
-  },
-  {
-   "id": "solana-rwa-519b-polygon-spat",
-   "topic": "solana",
-   "date": "2026-10-29T11:34:23Z",
-   "url": "https://x.com/i/trending/2115768199681544489",
-   "source": "X",
-   "he": {
-    "title": "נכסים מהעולם האמיתי על סולאנה שוברים שיא: 5.19 מיליארד דולר",
-    "summary": "שווי הנכסים המטוקנים על סולאנה הגיע לשיא של 5.19 מיליארד דולר, בהובלת גופים כמו בלקרוק וג'יי.פי מורגן. במקביל, החשבון הרשמי של סולאנה ניהל \"ריב\" משועשע עם פוליגון ב-X."
-   },
-   "en": {
-    "title": "Solana real-world assets hit a record $5.19 billion",
-    "summary": "Tokenized real-world assets on Solana hit an all-time high of $5.19 billion, driven by names like BlackRock and JPMorgan, while Solana's official account traded playful blocks and mutes with Polygon on X."
-   },
-   "full_he": "הנכסים מהעולם האמיתי (RWA) על סולאנה עברו את רף 5.19 מיליארד הדולר, שיא של כל הזמנים, בדחיפה של שמות גדולים כמו בלקרוק וג'יי.פי מורגן. בדיוק באותו זמן החשבון הרשמי של סולאנה החליף חסימות והשתקות עם פוליגון בריב קליל ב-X.\n\n• הזינוק מגיע אחרי צמיחה מהירה מכמעט אפס בסוף 2023, וממקם את סולאנה כאחת הרשתות המובילות לנכסים מטוקנים כמו קרנות כספיות ומניות, אחרי את'ריום ו-BNB Chain בלבד.\n• נתונים מ-rwa.xyz מאשרים את העלייה, כשהעניין המוסדי מניע מוצרים מטוקנים שמהווים כיום את רוב האחזקות.\n• במקביל, חילופי הדברים המשעשעים (סרטון של פוליגון בנוסח \"שאף אחד לא יעשה מזה עניין מוזר\", אחר כך השתקה, ואז חסימה מצד סולאנה) הצחיקו את הקהילה. צופים התבדחו שהמתמחים רבים ביניהם והזכירו את רוח ה-\"wagmi\".\n• אנליסטים רואים בזה הקנטה רגילה בעולם הקריפטו, כששתי הרשתות ממשיכות לבנות תשתיות ותשלומים בביצועים גבוהים.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
-   "full_en": "Solana's real-world assets just smashed past $5.19 billion, a new all-time high fueled by big names like BlackRock and JPMorgan. Right on cue, its official account traded blocks and mutes with Polygon in a lighthearted X spat.\n\n• The surge marks rapid growth from near zero in late 2023, positioning Solana as a top chain for tokenized assets like money market funds and equities, trailing only Ethereum and BNB Chain.\n• Data from rwa.xyz confirms the climb, with institutional interest driving tokenized products that now dominate holdings.\n• Meanwhile, the fun exchange—Polygon's 'nobody make this weird' video followed by muting, then Solana blocking back—drew laughs, with observers joking about interns fighting and reminding everyone of the 'wagmi' spirit.\n• Analysts see it as typical crypto banter, as both networks keep building on high-performance payments and infrastructure.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
-  },
-  {
-   "id": "solana-whale-sells-104m-near-100",
-   "topic": "solana",
-   "date": "2026-10-29T10:07:37Z",
-   "url": "https://x.com/i/trending/2115745877906391349",
-   "source": "X",
-   "he": {
-    "title": "סולאנה מחזיקה סביב 100 דולר אחרי שלווייתן מכר SOL ב-104 מיליון דולר",
-    "summary": "ארנק לא מזוהה מכר יותר ממיליון SOL בשווי כ-104 מיליון דולר במשך חמישה ימים. המחיר ירד מתחת ל-100 דולר ב-29 באוקטובר והתייצב סביבו."
-   },
-   "en": {
-    "title": "Solana holds near $100 after a whale sells $104 million in SOL",
-    "summary": "An unidentified wallet sold over 1 million SOL worth about $104 million over five days. SOL dipped below $100 on October 29 and then stabilized around that level."
-   },
-   "full_he": "לווייתן מסתורי מכר בשקט יותר ממיליון מטבעות SOL בשווי 104 מיליון דולר במשך חמישה ימים, ובחן את רמת התמיכה החשובה של המטבע.\n\n• עוקבים על-השרשרת זיהו שהארנק מפקיד כ-200 אלף SOL ביום לבורסות כמו Binance ו-Kraken, בלי מכירה גדולה אחת.\n• סולאנה ירדה מתחת ל-100 דולר ב-29 באוקטובר אבל התייצבה סביב הרמה הזו, על רקע יציאות כספים מקרנות ה-ETF ושוק חלש.\n• חלק מהסוחרים רואים תקווה בדפוסי צבירה שמצביעים על 151 דולר, אחרים נזכרים בזינוק של 2022 מ-10 דולר ומתווכחים אם \"הכסף החכם\" יוצא מוקדם.\n\nזה לא ייעוץ השקעות.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
-   "full_en": "A mysterious whale quietly sold over 1 million SOL tokens worth $104 million across five days, testing the crypto's key support level.\n\n• On-chain trackers spotted the wallet depositing around 200,000 SOL daily to exchanges like Binance and Kraken, without one big dump.\n• Solana dipped below $100 on October 29 but stabilized there amid ETF outflows and market softness.\n• Traders see hope in accumulation patterns pointing to $151, while others recall its 2022 surge from $10 and debate if smart money is exiting early.\n\nNot investment advice.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
-  },
-  {
-   "id": "ternus-touch-mac-who-knew-wired",
-   "topic": "ternus",
-   "date": "2026-10-28T20:33:00Z",
-   "url": "https://9to5mac.com/2026/10/28/ternus-addresses-apple-breaking-touchscreen-mac-taboo-who-knew/",
-   "source": "9to5Mac",
-   "he": {
-    "title": "טרנוס על שבירת הטאבו של מק עם מסך מגע: \"מי היה מאמין?\"",
-    "summary": "בראיון ל-WIRED הסביר מנכ\"ל אפל ג'ון טרנוס למה אפל הוסיפה סוף סוף מסך מגע ל-MacBook Pro: המגע הוא תוספת, והמוצר לא נעשה כבד או עבה יותר בגללו."
-   },
-   "en": {
-    "title": "Ternus on breaking the touchscreen Mac taboo: \"Who knew?\"",
-    "summary": "In a WIRED interview, Apple CEO John Ternus explained why Apple finally added touch to the MacBook Pro: touch is an add-on that didn't make the product heavier or thicker."
-   },
-   "full_he": "בראיון ל-WIRED דיברו בכירי אפל, ובהם המנכ\"ל ג'ון טרנוס, ראש החומרה ג'וני סרוג'י וראש השיווק גרג \"ג'וז\" ג'וזוויאק, על ההחלטה להביא מגע למק.\n\n• במשך שנים, מגיבים ברשת דחו שמועות על מק עם מסך מגע בציטוטים של סטיב ג'ובס ושל בכירים אחרים, כמו פיל שילר, שטענו שלמסך מגע אין מקום במק.\n• זמן קצר אחרי ההכרזה על ה-MacBook Pro בגודל 14 ו-16 אינץ' עם מסך PROLED XDR, פרסם העיתונאי סטיבן לוי ראיון ב-WIRED. כששאל אם אפל עומדת לשבור טאבו ותיק ולהציג מקינטוש עם מסך מגע, טרנוס קרן ואמר: \"מי היה מאמין?\"\n• לדברי טרנוס, הקלט העקיף דרך משטח המגע והמקלדת נשאר במרכז חוויית המק, אבל \"יש פעמים שנוח ושימושי שיהיה מגע\". הוא מדגיש שאפל רואה במגע תוספת, לא פיצ'ר שמחייב פשרות בעיצוב.\n• \"היינו צריכים להגיע לנקודה שבה הוספת מגע לא הופכת את המוצר לנחות בשום צורה. הוא לא נעשה כבד יותר. הוא לא נעשה עבה יותר. זה התחבר יחד עם מסך ה-OLED, המסך הכי טוב ששמנו אי פעם במק. כל הדברים האלה, ואה, כן, יש לו גם מגע.\"\n• סרוג'י אמר שהתקדמות הטכנולוגיה בעשור האחרון אפשרה סוף סוף לעמוד בסטנדרטים של אפל: \"עשר שנים זה זמן מאוד מאוד ארוך\". לדבריו, השילוב של שבבים, טכנולוגיית מסך וארכיטקטורת תוכנה \"עמד ברף שלנו\", והוסיף: \"אני רוצה שהמהנדסים שלי יוגבלו על ידי הפיזיקה, לא על ידי הדמיון או לוחות זמנים.\"\n• בין השינויים: שבבים ייעודיים, מערכת קירור חדשה כדי שהמסך לא ירגיש חם למגע, וציר מחודש שמצמצם את רעידות המסך בזמן נגיעה.\n• ג'וזוויאק אמר שחלק מההחלטה נבע מדור חדש של משתמשים שרגילים לגעת במסך: \"רוב אנשי המקצוע מחזיקים אייפד, וכמעט כל איש מקצוע מחזיק אייפון... יש דור של יוצרים צעירים ואנשים צעירים שמשתמשים ב-MacBook Pro שלנו ומצפים לגעת.\" לדבריו, גם מהנדסים, מדענים, מפתחי תוכנה ויוצרי מדיה ביקשו מגע במק.\n• הראיון המלא עוסק גם בהתאמת macOS למגע, במחוות החדשות ל-Dynamic Island ובשאלה אם המגע יגיע בעתיד למקים אחרים.",
-   "full_en": "In an interview with WIRED, Apple executives including CEO John Ternus, hardware chief Johny Srouji, and marketing chief Greg \"Joz\" Joswiak discussed the company's decision to bring touch to the Mac.\n\n• For years, online commenters countered rumors of touchscreen Macs with quotes from Steve Jobs and other Apple executives, including Phil Schiller, arguing that touchscreens had no place on the Mac.\n• Shortly after Apple announced the 14-inch and 16-inch MacBook Pro with PROLED XDR Display, journalist Steven Levy published an interview in WIRED. Asked if Apple was about to break a long-imposed taboo and introduce a Macintosh with a touch screen, Ternus beamed: \"Who knew?\"\n• Ternus notes that while indirect input through the trackpad and keyboard remains central to the Mac, \"there's times when it's comfortable and handy to have touch.\" Apple sees touch as an add-on, not a feature that should require compromises to the design.\n• \"We needed to get to a point where adding touch didn't make the product lesser in any way. It didn't make it heavier. It didn't make it thicker. That came together with the OLED screen, the best display we've ever put into a Mac. All of these things, and, oh yeah, it has touch as well.\"\n• Srouji said a decade of advances finally let Apple meet its standards: \"Ten years is a very, very long time.\" The confluence of chips, display tech, and software architecture \"met our bar.\" \"I like my engineers to be gated by physics, not imagination or timelines.\"\n• The work included custom silicon, a redesigned thermal system to keep the display from feeling hot to the touch, and a reworked hinge to minimize screen wobble.\n• Joswiak said a new generation of touch-first users drove part of the decision: \"Most pros own an iPad, and almost every pro owns an iPhone... There's a generation of young creators and young people using our MacBook Pros that expect to touch.\" Engineers, scientists, software developers, and media creators had also asked for it.\n• The full interview also covers how Apple adapted macOS for touch, new Dynamic Island gestures, and whether touch might come to other Macs."
-  },
-  {
-   "id": "lawrence-hunger-games-sunrise-return",
-   "topic": "lawrence",
-   "date": "2026-10-28T15:54:13Z",
-   "url": "https://www.hollywoodreporter.com/movies/movie-news/jennifer-lawrence-hunger-games-return-sunrise-reaping-1236741782/",
-   "source": "The Hollywood Reporter",
-   "he": {
-    "title": "ג'ניפר לורנס מאשרת: חוזרת למשחקי הרעב ב\"זריחה ביום הקציר\"",
-    "summary": "בפודקאסט Call Her Daddy אישרה לורנס שהיא חוזרת לתפקיד קטניס אוורדין בסרט הפריקוול, ושהתאחדה עם ג'וש האצ'רסון ווודי הרלסון. הסרט יוצא ב-20 בנובמבר."
-   },
-   "en": {
-    "title": "Jennifer Lawrence confirms her Hunger Games return in 'Sunrise on the Reaping'",
-    "summary": "On Call Her Daddy, Lawrence confirmed she returns as Katniss Everdeen in the prequel and reunited with Josh Hutcherson and Woody Harrelson. The film opens Nov. 20."
-   },
-   "full_he": "ג'ניפר לורנס מאשרת סוף סוף שהיא חוזרת לסדרת משחקי הרעב.\n\n• לורנס דיברה על החזרה לתפקיד קטניס אוורדין בסרט \"זריחה ביום הקציר\" (Sunrise on the Reaping), שיוצא בחודש הבא, ואישרה שהתאחדה עם שותפיה לשעבר ג'וש האצ'רסון ווודי הרלסון, שעל השתתפותם השמועות רצו זמן רב.\n• כשמנחת Call Her Daddy, אלכס קופר, שאלה אותה על החזרה, ענתה: \"לא ייאמן. זה היה כל כך מטורף כי זה היה אותו צוות. אותם צלמים, אותו עוזר במאי שעבדתי איתו מיליון פעם... וג'וש ווודי, וזה היה כל כך מרגש. ג'וש ואני לא הלכנו אפילו לשירותים בלי ללכת חבוקים. זה היה כל כך יפה.\"\n• היא הוסיפה שהרלסון טיפס לחדר המלון שלה דרך החלון: \"וודי כמובן נכנס דרך החלון של החדר שלי בלי הזמנה, כי זה לא היה אותו דבר אם הוא היה מכבד גבולות ומשתמש בדלת.\"\n• היא גם סיפרה שב-2013 גזרה לעצמה תספורת פיקסי כמחאה, אחרי שההפקה סירבה לתת לה פאה ל\"עורבני חקיין\" והיא נמאסה לה מצביעת השיער לחום: \"זו הייתה המחאה הקטנה הראשונה שלי, התספורת הכי גרועה שמישהו ראה אי פעם.\"\n• \"זריחה ביום הקציר\" הוא פריקוול שמתרחש 24 שנה לפני הסרט המקורי, ועוקב אחרי היימיץ' אברנתי בן ה-16 במשחקי הרעב ה-50 (הרבעון השני), שבהם פי שניים מחווים נאלצים להילחם עד מוות. ג'וזף זאדה מגלם את היימיץ' הצעיר ורייף פיינס את הנשיא סנואו. הדמויות הוותיקות צפויות להופיע בקפיצות קדימה בזמן או בסיפור מסגרת. הסרט יוצא ב-20 בנובמבר.\n\nהערה: התקציר מבוסס על החלק הזמין של הכתבה.",
-   "full_en": "Jennifer Lawrence is finally confirming she's returning to The Hunger Games franchise.\n\n• Lawrence discussed being back as Katniss Everdeen in the upcoming Sunrise on the Reaping, which opens next month, and confirmed she reunited with former co-stars Josh Hutcherson and Woody Harrelson, whose participation had long been speculated.\n• Asked by Call Her Daddy host Alex Cooper about returning, she said: \"Unbelievable. It was so crazy because it was the same crew. It was the same camera guys, the same AD, who I've worked with a million times … and Josh and Woody and it was so emotional. Like Josh and I like didn't walk to the bathroom without our arms around each other. It was so beautiful.\"\n• She added that Harrelson climbed through her hotel window: \"And Woody obviously came through the window of my hotel room uninvited cause it would not be the same. It wouldn't be the same if he listened to boundaries and used a door.\"\n• She also revealed she gave herself a pixie cut in 2013 to protest producers refusing her a wig for Mockingjay after she grew tired of dyeing her hair brown: \"my first tiny little protest of giving myself the worst haircut anyone has ever seen in their life.\"\n• Sunrise on the Reaping is a prequel set 24 years before the original film, following 16-year-old Haymitch Abernathy in the 50th Hunger Games (the Second Quarter Quell), where twice as many tributes fight to the death. Joseph Zada plays young Haymitch and Ralph Fiennes is President Snow. Legacy characters are expected in flashforwards or a framing device. The film opens Nov. 20.\n\nNote: this summary is based on the available part of the article."
-  },
-  {
-   "id": "lawrence-set-nudity-crew-principle",
-   "topic": "lawrence",
-   "date": "2026-10-29T10:34:00Z",
-   "url": "https://www.independent.co.uk/arts-entertainment/films/news/jennifer-lawrence-nude-scene-crew-b3075517.html",
-   "source": "The Independent",
-   "he": {
-    "title": "ג'ניפר לורנס: \"הגבתי בתקיפות\" כשאנשי צוות לא מורשים היו על הסט בסצנת עירום",
-    "summary": "לורנס סיפרה ב-Call Her Daddy שעמדה על שלה כדי לקבוע עיקרון שיגן על שחקניות צעירות ולא מוכרות. היא דיברה גם על מטרות היופי שלה כאמא לשניים."
-   },
-   "en": {
-    "title": "Jennifer Lawrence 'came down hard' over unapproved crew during a nude scene",
-    "summary": "On Call Her Daddy, Lawrence said she took a firm stance to set a principle that protects young, unknown actresses. She also spoke about her beauty goals as a mother of two."
-   },
-   "full_he": "ג'ניפר לורנס תיארה פעם שבה נקטה עמדה תקיפה אחרי שאנשי צוות לא מורשים הופיעו על הסט בזמן סצנת עירום.\n\n• השחקנית בת ה-36 הדגישה שגמישות היא \"חלק מהעבודה\", למשל השינוי הדרמטי בשיער שלה לסרט \"Die My Love\" (2025), אבל יש רגעים שבהם צריך לעמוד על שלך כדי להגן על עצמך ועל אחרים בתעשייה.\n• בפודקאסט Call Her Daddy אמרה: \"היה מקרה על הסט שבו אנשי צוות שלא אושרו היו שם כשעשיתי עירום. הגבתי בתקיפות, רק כי אם אנחנו לא קובעים את העיקרון הזה, מה לכל הרוחות יקרה לבחורה לא מוכרת בת 18 כשהיא תגיע ויהיו על הסט אנשים לא מורשים?\"\n• \"היא תהיה במצב של: 'אני אומרת משהו ומקבלת מוניטין של קשה, או שאני נותנת לאנשים שלא נוח לי שיראו אותי עירומה לראות אותי עירומה?' היה חשוב לי להסביר לאנשים למה זה לא בסדר.\"\n• בעבר אמרה ל-Vulture שרצתה לתת לבמאית לין רמזי \"חופש אמנותי מוחלט\" ב-Die My Love: \"לא אכפת לי מעירום. אני לא רגישה לזה.\"\n• היא סיפרה שההיריון עם ילדה השני בזמן הצילומים הוריד ממנה הרבה מ\"חרדת היוהרה\", ושכששלחו לה תקריב עם צלוליט ושאלו אם לרטש, ענתה: \"לא. זה תחת.\"\n• בראיון שער ל-The Cut אמרה: \"אני רוצה להיות אמא סקסית... בהורדה לגן אני רוצה להיראות כמו אישה שהכול אצלה מסודר, גם כשרק התעוררתי וכלום לא מסודר.\"\n• אמא לשניים דיברה בעבר על טיפולים קוסמטיים ושינויים בגוף אחרי הלידות (\"אחרי הראשון הכול חזר פחות או יותר, אחרי השני כלום לא חזר\"), ומאז אישרה שעברה הרמת חזה ושוקלת מתיחת פנים בעתיד, אחרי שסיפרה בעבר ל-Vogue על כמויות קטנות של בוטוקס.",
-   "full_en": "Jennifer Lawrence described the time she took a firm stance after unauthorised crew members appeared on set during a nude scene.\n\n• The 36-year-old said being \"malleable\" is \"part of the job\", citing her dramatic hair transformation for 2025's Die My Love, but there are moments to put her foot down to protect herself and others in the industry.\n• On the Call Her Daddy podcast she said: \"There was an instance on set where crew members who were not approved when I was doing nudity were on set. I came down hard on it, purely because if we are not setting that principle, then what on earth is going to happen to an 18-year-old unknown when she shows up and there's people on set who are not approved?\"\n• \"She's going to be in a position of: 'Do I say something and get a reputation for being difficult, or do I let these people that I'm not comfortable seeing me naked see me naked?' It was important to me to explain that to the people why that was not okay.\"\n• She previously told Vulture she wanted to give director Lynne Ramsay \"total freedom artistically\" on Die My Love: \"I don't care about nudity. I'm not sensitive about it.\"\n• Being pregnant with her second child while filming took much of her \"vanity anxiety away\"; when sent a close-up of cellulite asking whether to touch it up, she said: \"No. That's an ass.\"\n• In a cover interview with The Cut: \"I want to be a sexy mom... At drop-off, I want to look like a woman that has her s*** together even when I've just woken up and don't have my s*** together.\"\n• The mother of two has discussed cosmetic procedures and post-pregnancy changes (\"Everything bounced back, pretty much, after the first one. Second one, nothing bounced back.\"), has since confirmed a breast lift and is considering a future facelift, having previously described \"baby Botox\" to Vogue."
-  },
-  {
-   "id": "milliebb-fall-photo-dump-second-baby",
-   "topic": "milliebb",
-   "date": "2026-10-28T20:00:00Z",
-   "url": "https://people.com/millie-bobby-brown-shares-fall-photo-dump-with-snaps-baby-number-two-12200065",
-   "source": "People",
-   "he": {
-    "title": "מילי בובי בראון שיתפה תמונות סתיו עם הצצה לתינוק השני שלה",
-    "summary": "כוכבת \"דברים מוזרים\" פרסמה באינסטגרם קרוסלת תמונות סתיו, ובהן הצצה לבן שאימצה עם בעלה ג'ייק בונג'ובי בחודש שעבר."
-   },
-   "en": {
-    "title": "Millie Bobby Brown shares a fall photo dump with a glimpse of her second baby",
-    "summary": "The Stranger Things star posted an Instagram carousel of fall photos, including a glimpse of the son she and husband Jake Bongiovi adopted last month."
-   },
-   "full_he": "מילי בובי בראון התאהבה בסתיו.\n\n• כוכבת \"דברים מוזרים\", בת 22, שיתפה ביום רביעי, 28 באוקטובר, קרוסלת תמונות באינסטגרם עם הצצה לחייה בתקופה האחרונה.\n• האמא לשניים הראתה ל-70.4 מיליון העוקבים שלה הצצה לתינוק השני, שהיא ובעלה ג'ייק בונג'ובי (24) קיבלו בחודש שעבר.\n• באחת התמונות היא מחזיקה את התינוק בחיקה, ורק יד קטנה נראית; בתמונה אחרת רואים את כפות רגליו בגרביים עם דלעות, בדיוק לקראת האלווין.\n• הכיתוב: \"התאהבתי בטירוף בסתיו\". בקרוסלה גם עריכת שולחן עם הכיתוב \"Mommy\", סלפי במראה בפיג'מה, ותמונה שלה ושל בונג'ובי מדברים באירוע של Gift of Adoption, ארגון שעוזר למשפחות להשלים אימוץ של ילדים במצבים פגיעים.\n• ב-17 בספטמבר שיתפו השניים את ההצצה הראשונה לתינוק עם הכיתוב \"היי בחור קטן\", ובתמונה נראתה היד שלו מוחזקת בידיהם, כשמילי עונדת טבעת \"Mom\". הרמז הראשון הגיע ב-7 בספטמבר, בתמונה שבה היא מחזיקה את בתם ובונג'ובי הולך לצידה עם מנשא תינוק.\n• כמעט לפני שנה הודיעה שהם אימצו את בתם הראשונה: \"הקיץ קיבלנו את התינוקת המתוקה שלנו באימוץ... ואז היינו שלושה\" (אוגוסט 2025).\n• ביוני סיפרה שאימוץ \"תמיד היה חלק מחלומות הילדות שלי\", ושכל הבובות שלה בילדות היו \"מאומצות\". היא הבהירה שהיא מקווה גם ללדת בעצמה יום אחד: \"זה לא כי אני לא רוצה את זה. אני מקווה שיום אחד זה בעתיד שלי.\" ו-\"אימוץ זו אהבה, אימוץ זה לתמיד.\"",
-   "full_en": "Millie Bobby Brown has fallen hard for fall!\n\n• The Stranger Things star, 22, shared an Instagram carousel on Wednesday, Oct. 28, offering a glimpse into her life lately.\n• The mom of two gave her 70.4 million followers a glimpse of her second baby, whom she welcomed with husband Jake Bongiovi, 24, last month.\n• One snap showed her cradling the infant in her lap with just a tiny hand on show; another showed the baby's tiny feet in pumpkin socks, just in time for Halloween.\n• Caption: \"Fallen so madly for fall.\" The dump also included a \"Mommy\" table setting, a pajama mirror selfie, and an image of her and Bongiovi speaking at an event for Gift of Adoption, which helps families complete adoptions of children in vulnerable circumstances.\n• On Sept. 17 the couple shared their first glimpse of the infant with the caption \"Hi little guy,\" showing his hand held by theirs, with Brown wearing a \"Mom\" ring. The first hint came Sept. 7, in a post showing her holding their daughter while Bongiovi carried a baby carrier.\n• Almost a year ago she announced their first daughter: \"This summer we welcomed our sweet baby girl through adoption... And then there were 3.\" (August 2025)\n• In June she said adoption \"was always part of my childhood dreams\" and that her baby dolls were all \"adopted\"; she hopes to carry children one day too: \"It's not because I don't want that. Hopefully one day that's in my future.\" \"Adoption is love, adoption is forever.\""
   }
  ]
 }
