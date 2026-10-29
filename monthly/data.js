@@ -24,9 +24,9 @@ window.MONTHLY_DATA = {
         { he: "יום המודעות העולמי לאוטיזם (2 באפריל)", en: "World Autism Awareness Day (April 2)", where: "intl", src: "https://www.un.org/en/observances/autism-day" }],
     5: [{ he: "חודש המודעות לבריאות הנפש", en: "Mental Health Awareness Month", where: "us", src: "https://mhanational.org/mental-health-month" }],
     6: [{ he: "חודש בריאות הגבר", en: "Men's Health Month", where: "us", src: "https://www.menshealthmonth.org/" }],
-    7: [{ he: "חודש הבטיחות מקרינת UV", en: "UV Safety Awareness Month", where: "us", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" }],
+    7: [{ he: "מודעות להשפעות קרני אולטרה סגול", en: "Awareness of the effects of ultraviolet rays", where: "us", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" }],
     8: [{ he: "חודש המודעות לחיסונים", en: "National Immunization Awareness Month", where: "us", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" }],
-    9: [{ he: "חודש המודעות למניעת אובדנות", en: "Suicide Prevention Awareness Month", where: "us", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" },
+    9: [{ he: "מודעות לאובדנות והתאבדות", en: "Awareness of suicidality and suicide", where: "us", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" },
         { he: "היום העולמי למניעת אובדנות (10 בספטמבר)", en: "World Suicide Prevention Day (Sept 10)", where: "intl", src: "https://www.who.int/campaigns/world-suicide-prevention-day" }],
     10: [{ he: "חודש הפיזיותרפיה", en: "National Physical Therapy Month", where: "us", src: "https://www.apta.org/national-physical-therapy-month" },
          { he: "חודש המודעות לסרטן השד", en: "Breast Cancer Awareness Month", where: "intl", src: "https://www.healthnet.com/content/dam/centene/healthnet/pdfs/broker/national/national-observances-calendar-flyer.pdf" }],
@@ -37,7 +37,7 @@ window.MONTHLY_DATA = {
   },
 
   tracks: [
-    { id: "mental", color: "#8b5cf6", icon: "🧠", he: "אבחנה בבריאות הנפש", en: "Mental-health diagnosis",
+    { id: "mental", color: "#8b5cf6", icon: "🧠", he: "חודש לכל אבחנה של בריאות", en: "A month for each health diagnosis",
       items: [
         { he: "הפרעה רגשית עונתית (SAD)", en: "Seasonal affective disorder (SAD)" },
         { he: "הפרעות אכילה", en: "Eating disorders" },
@@ -52,7 +52,7 @@ window.MONTHLY_DATA = {
         { he: "הפרעה טורדנית-כפייתית (OCD)", en: "Obsessive-compulsive disorder (OCD)" },
         { he: "חרדה חברתית", en: "Social anxiety disorder" }
       ] },
-    { id: "substances", color: "#ef4444", icon: "💊", he: "מודעות לסמים וחומרים", en: "Drug & substance awareness",
+    { id: "substances", color: "#ef4444", icon: "💊", he: "חודש מודעות לכל סם", en: "Awareness month for each substance",
       items: [
         { he: "אלכוהול (ינואר יבש)", en: "Alcohol (Dry January)" },
         { he: "ניקוטין ווייפים", en: "Nicotine & vaping" },
@@ -112,8 +112,8 @@ window.MONTHLY_DATA = {
         { he: "כשל שיעור הבסיס", en: "Base rate fallacy" },
         { he: "הטיית החוכמה שבדיעבד", en: "Hindsight bias" }
       ] },
-    { id: "theories", color: "#64748b", icon: "🛸", he: "תיאוריית קונספירציה מוכרת (להכיר, לא עובדה)", en: "Well-known conspiracy theory (to learn about, not fact)",
-      tag: { he: "תיאוריית קונספירציה", en: "Conspiracy theory" },
+    { id: "theories", color: "#64748b", icon: "🛸", he: "קונספירציה מעניינת", en: "Interesting conspiracy",
+      tag: { he: "קונספירציה מעניינת", en: "Interesting conspiracy" },
       items: [
         { he: "הנחיתה על הירח", en: "Moon landing hoax claims" },
         { he: "השערת הזמן הפנטום", en: "Phantom time hypothesis" },
