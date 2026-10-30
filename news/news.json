@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T18:47:00+02:00",
+ "updated": "2026-10-30T19:36:38+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "mccullough-hurts-doacs-kurdi",
+   "topic": "mccullough",
+   "date": "2026-10-30T17:31:17Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116221414651130249",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: ג'יילן הרטס מצטרף לעלייה בשימוש במדללי דם מודרניים",
+    "summary": "ד\"ר פיטר מקולה כתב שקוורטרבק האיגלס ג'יילן הרטס מצטרף למספר הולך וגדל של מבוגרים שנוטלים מדללי דם מסוג DOAC, לקרישים שלדבריו נגרמים מחלבון הספייק מהדבקה בקורונה או מהחיסון. הוא צירף מחקר אנגלי שמצא עלייה של יותר מ־100% בשימוש ב־DOAC; הקשר לספייק הוא טענה שלו."
+   },
+   "en": {
+    "title": "McCullough: Jalen Hurts joins a surge in modern blood-thinner use",
+    "summary": "Dr. Peter McCullough wrote that Eagles QB Jalen Hurts joins growing numbers of adults on DOAC blood-thinners for clots he says are caused by spike protein from COVID infection or vaccination. He attached an English study showing a >100% rise in DOAC use; the spike link is his claim."
+   },
+   "full_he": "\"ג'יילן הרטס מצטרף למספר הולך וגדל של מבוגרים שנוטלים נוגדי קרישה פומיים ישירים (DOACs), מדללי דם מודרניים, לטיפול בקרישי דם שנגרמים לדבריו מחלבון הספייק שנרכש בהדבקה ב־SARS-CoV-2 או בחיסון נגד קורונה. קורדי ועמיתיו דיווחו על עלייה של יותר מ־100% בשימוש בשנים האחרונות.\" (תייג את @McCulloughFund, @JalenHurts, @Eagles ו־@NFLPA)\n\nבתמונה: העמוד הראשון של מאמר בכתב העת Expert Review of Clinical Pharmacology: \"השפעת מגפת הקורונה על דפוסי המרשם של נוגדי קרישה פומיים ברפואה הראשונית באנגליה: ניתוח סדרות עתיות מקוטעות על יותר מ־53 מיליון בני אדם\", מאת אמאנג' קורדי ועמיתיו. בטבלה 1 (שינויים בשימוש בין מרץ 2018 למרץ 2024) מודגשות השורות של סך ה־DOACs:\n• מספר מרשמים לכל 1,000 תושבים: עלייה מוחלטת של 13.69, עלייה יחסית של 113.64%.\n• מינון יומי מוגדר לכל 1,000 תושבים ליום: עלייה מוחלטת של 10.59, עלייה יחסית של 114.50%.\n• באותה תקופה השימוש בוורפרין ירד בכ־60%, ושימוש באדוקסבן ובאפיקסבן עלה מאוד. סך נוגדי הקרישה עלה ב־27% (מרשמים) וב־49% (מינון יומי).\n\nהפוסט שהוא ציטט (The Wellness Company, @twc_health):\n\"שני קרישי דם. בן 28.\n'שמעתם בכלל על קרישי דם לפני השנתיים האחרונות?'\n'אנשים מתים מקרישי דם שנגרמים מחיסון הקורונה.'\n'הבעיה האמיתית היא שליגות הספורט המקצועניות חייבו את הספורטאים שלהן לקבל את הזריקה, ועכשיו אנחנו משלמים את המחיר.'\n'אנחנו רואים ספורטאים צעירים יותר, בקולג', בתיכון, ילדים שמתמוטטים על המגרש.' – פיטר גילולי\nלמה ספורטאים בריאים לכאורה כמו ג'יילן הרטס חווים קרישי דם חמורים? ולמה רמות הטסטוסטרון יורדות אצל גברים אמריקאים? פיטר גילולי, מנכ\"ל The Wellness Company, מתארח אצל @jfradioshow כדי לדבר על שניהם.\" שאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: המחקר של קורדי מתאר את העלייה בשימוש ב־DOAC באנגליה, וגם את המעבר מוורפרין לתרופות החדשות; מה שמופיע בתמונה לא מייחס את העלייה לחלבון הספייק. הקשר לחיסון או לספייק הוא טענה של מקולה, והוא לא מקובל בקונצנזוס הרפואי.",
+   "full_en": "\"Jalen Hurts joins growing numbers of adults taking direct oral anticoagulants (DOACs), modern blood-thinners for blood clots caused by the spike protein acquired via SARS-CoV-2 infection or COVID-19 vaccination. Kurdi et al reported a > 100% increase in use over the last few years.\" (He tagged @McCulloughFund, @JalenHurts, @Eagles and @NFLPA.)\n\nThe image: the first page of a paper in Expert Review of Clinical Pharmacology, \"Impact of COVID-19 pandemic on the prescribing pattern of oral anticoagulants in the English primary care setting: a population-based segmented interrupted time series analysis of over 53 million individuals\" by Amanj Kurdi et al. Table 1 (changes between March 2018 and March 2024) highlights the Total DOACs rows:\n• Items per 1,000 inhabitants: absolute change 13.69, relative change 113.64%.\n• Defined daily dose per 1,000 inhabitants per day: absolute change 10.59, relative change 114.50%.\n• Over the same period warfarin use fell about 60%, while edoxaban and apixaban rose sharply. Total oral anticoagulants rose 27% (items) and 49% (daily dose).\n\nThe quoted post (The Wellness Company, @twc_health):\n\"TWO BLOOD CLOTS. 28 YEARS OLD.\n'Did you ever hear about blood clots before the last couple years?'\n'People are dying of blood clots that are being caused by the COVID vaccine.'\n'The real problem is that these professional sports leagues mandated that their athletes get this shot, and now we're paying the consequences.'\n'We're seeing younger athletes, college, high school, kids collapsing on the field.' — Peter Gillooly\nWhy are seemingly healthy athletes like Eagles QB Jalen Hurts experiencing serious blood clots? And why are testosterone levels declining among American men? Peter Gillooly, CEO of The Wellness Company, joins @jfradioshow to discuss both.\" The rest of the quoted post is a video, so there's no more text to show.\n\nNote: the Kurdi study describes the rise in DOAC use in England, including the switch away from warfarin to the newer drugs; nothing shown in the image attributes the rise to spike protein. The vaccine/spike link is McCullough's claim and is not mainstream medical consensus."
+  },
+  {
+   "id": "johnson-kate-tolo-role-model",
+   "topic": "johnson",
+   "date": "2026-10-30T17:26:21Z",
+   "url": "https://x.com/bryan_johnson/status/2116220173321715910",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: קייט טולו היא מודל לחיקוי",
+    "summary": "ג'ונסון שיתף כתבת דעה בוושינגטון פוסט על קייט טולו, היזמית בת ה־31 שרוצה להיות \"האישה הנמדדת ביותר בעולם\", וכתב שהיא דוחה את המוסכמות ומבינה את העולם בדרך ייחודית לה."
+   },
+   "en": {
+    "title": "Bryan Johnson: Kate Tolo is a good role model",
+    "summary": "Johnson shared a Washington Post opinion piece on Kate Tolo, the 31-year-old entrepreneur on a quest to be the world's \"most measured woman,\" saying she rejects the status quo and understands the world in her own unique way."
+   },
+   "full_he": "\"למי מכם שמנסה להשאיר חותם בעולם, קייט היא מודל טוב לחיקוי.\n\nהיא דוחה את הסטטוס קוו ובוחרת להבין את העולם בדרך הייחודית לה.\n\nרוב האנשים לא מבינים אותה.\n\nתוסיפו לזה עקשנות ועבודה קשה, ומקבלים משהו מיוחד.\"\n\nבתמונה: צילום מסך של כתבת דעה בוושינגטון פוסט מאת קייט אנדרוז, \"המסע של קייט טולו להיות 'האישה הנמדדת ביותר בעולם'\". כותרת המשנה: \"'כוח העל שלנו בעולם הוא להפוך נושאים לוויראליים ולהכניס אותם לרוח התקופה', אומרת היזמית בת ה־31.\" בכיתוב לתמונה: קייט טולו עם קסדת מעקב המוח של Kernel במעבדה בדירתה בלוס אנג'לס.\n\nהטקסט המלא של הכתבה לא זמין כאן (הוא מאחורי חומת התשלום של הוושינגטון פוסט).",
+   "full_en": "\"For those of you striving to make your mark on the world, Kate is a good role model.\n\nShe's rejects the status quo and chooses to understand the world in her own unique way.\n\nShe's unintelligible to most.\n\nAdd grit and hard work and you get something special.\"\n\nThe image: a screenshot of a Washington Post opinion piece by Kate Andrews, \"Kate Tolo's quest to be the world's 'most measured woman'\". Subhead: \"'Our superpower in the world is to make topics viral and to get them into the zeitgeist,' says the 31-year-old entrepreneur.\" Caption: Kate Tolo with her Kernel brain-tracking headset in her Los Angeles apartment lab.\n\nThe article's full text isn't available here (it's behind the Washington Post paywall)."
+  },
+  {
+   "id": "musk-democrat-party-racist-asians-whites",
+   "topic": "musk",
+   "date": "2026-10-30T17:19:11Z",
+   "url": "https://x.com/elonmusk/status/2116218370362122746",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"המפלגה הדמוקרטית גזענית נגד אסייתים ולבנים\"",
+    "summary": "מאסק ציטט פוסט של @kane שהשווה בין \"איזון\" בתי ספר בווירג'יניה שבהם 50% מהתלמידים אסייתים לבין גאוות המושלת על קבינט ש־75% ממנו שחורים, וכתב שהמפלגה הדמוקרטית גזענית נגד אסייתים ולבנים."
+   },
+   "en": {
+    "title": "Musk: \"The Democrat Party is racist against Asians and Whites\"",
+    "summary": "Musk quoted @kane, who contrasted Virginia \"rebalancing\" schools that were 50% Asian with the governor calling a 75% Black cabinet \"the most diverse,\" and wrote that the Democrat Party is racist against Asians and Whites."
+   },
+   "full_he": "\"המפלגה הדמוקרטית גזענית נגד אסייתים ולבנים.\"\n\nהפוסט שהוא ציטט (Kane, @kane):\n\"כשבבתי ספר בווירג'יניה היו 50% אסייתים, המדינה אמרה שהם 'מיוצגים יתר על המידה', לא מגוונים מספיק, וצריך 'לאזן' אותם בשם השוויון.\n\nעכשיו המושלת אומרת שקבינט שבו 75% שחורים הוא 'המגוון ביותר'. הצביעות מתישה.\"\nבתמונה: כתבה של NPR מ־12 במרץ 2022 (סוכנות AP): \"שופט: בית ספר בווירג'יניה עושה 'איזון גזעי' על חשבון אמריקאים־אסייתים\".\n\nהפוסט ש־Kane ציטט (מושלת וירג'יניה, @GovernorVA): \"אני גאה שיש לי את הקבינט המוכשר והחרוץ ביותר בתולדות וירג'יניה. הוא גם הקבינט המגוון ביותר שווירג'יניה ראתה אי־פעם. כל אחד ממזכירי הקבינט שלנו נבחר כי הוא הטוב ביותר בתחומו. הם גם מביאים נקודות מבט יקרות מכל רחבי המדינה – מדנוויל, המפטון רודס, ריצ'מונד, צפון וירג'יניה ועוד. אני אסירת תודה שאני עובדת עם אנשי הקבינט המסורים, החרוצים והמוכשרים האלה כדי לשרת את מדינת וירג'יניה.\" (עם קישור לטור דעה ב־richmond.com.)",
+   "full_en": "\"The Democrat Party is racist against Asians and Whites\"\n\nThe quoted post (Kane, @kane):\n\"When Virginia schools were 50% Asian, the state said they were 'overrepresented,' not diverse enough, and needed to be 'rebalanced' for equity.\n\nNow the governor is saying that a cabinet that is 75% black is 'the most diverse'. The double standard is exhausting.\"\nThe image: an NPR story from March 12, 2022 (by The Associated Press): \"Judge says Virginia school is 'racial balancing' at the expense of Asian Americans\".\n\nThe post Kane quoted (Virginia's governor, @GovernorVA): \"I'm proud to have the most talented, hardest-working cabinet in Virginia's history. They are also the most diverse cabinet Virginia has ever seen. Every single one of our cabinet secretaries were selected because they're the best of the best in their respective fields. They also bring invaluable perspectives from across the Commonwealth — from Danville, Hampton Roads, Richmond, NOVA, and more. I'm grateful to get to work with these incredibly dedicated, hard-working, and talented cabinet officials to serve the Commonwealth of Virginia.\" (With a link to an opinion column on richmond.com.)"
+  },
+  {
+   "id": "musk-cool-google-suncatcher-haiku",
+   "topic": "musk",
+   "date": "2026-10-30T17:08:25Z",
+   "url": "https://x.com/elonmusk/status/2116215659214561518",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מגיב \"מגניב\" ללוויין ה־AI של גוגל שכתב הייקו מהחלל",
+    "summary": "סונדאר פיצ'אי הודיע שהלוויין הניסיוני של Project Suncatcher הפעיל שבב TPU במסלול, הריץ פרומפט והחזיר לכדור הארץ הייקו. מאסק הגיב במילה אחת: \"Cool\"."
+   },
+   "en": {
+    "title": "Musk says \"Cool\" to Google's AI satellite that wrote a haiku from orbit",
+    "summary": "Sundar Pichai announced that Project Suncatcher's prototype satellite booted a TPU in orbit, ran a prompt and sent a haiku back to Earth. Musk replied with one word: \"Cool\"."
+   },
+   "full_he": "\"מגניב\" (Cool)\n\nהפוסט שהוא ציטט (סונדאר פיצ'אי, @sundarpichai):\n\"אבן דרך של 'hello world' ל־Project Suncatcher 🚀\n\nאחרי ששיגרנו את לוויין האב־טיפוס שלנו לפני כמה שבועות, הצלחנו עכשיו לשלוח פקודה למסלול, להפעיל את ה־TPU, להריץ את הפרומפט ולקבל בחזרה לכדור הארץ את התשובה המלאה הראשונה – הייקו!\" שאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nמהסיכום של X לסיפור:\n• לפי פיצ'אי, הלוויין של Project Suncatcher שוגר ב־1 באוקטובר על Falcon 9 של ספייסאקס. הוא הפעיל שבב TPU, הריץ פרומפט במודל Gemma 4 והחזיר הייקו על כדור הארץ הכחול ואור הכוכבים, במעבר מעל סבאלברד שבנורווגיה.\n• גם ניסויים נוספים, עם לימריקים ובקשות טלמטריה, עברו בהצלחה. זו הריצה המלאה הראשונה של הסקת AI על חומרה ברמת דאטה־סנטר במסלול.\n• הלוויין מונע ב־1 קילוואט של אנרגיה סולארית, אבל מוגבל לריצות של 20 דקות בגלל אתגרי הקירור בחלל.\n• הפרויקט בודק אם אנרגיה סולארית במסלול יכולה לתמוך במחשוב AI בקנה מידה גדול, ומתוכננים עוד שני לוויינים ב־2027.\n\nזה סיכום של X לפוסטים בנושא, והוא עשוי להשתנות.",
+   "full_en": "\"Cool\"\n\nThe quoted post (Sundar Pichai, @sundarpichai):\n\"A 'hello world' milestone for Project Suncatcher 🚀\n\nAfter launching our prototype satellite a few weeks ago, we've now successfully sent a command up to orbit, booted up the TPU, ran the prompt, and received our first complete response back on earth - a haiku!\" The rest of the quoted post is a video, so there's no more text to show.\n\nFrom X's summary of the story:\n• Per Pichai, the Project Suncatcher satellite launched October 1 on a SpaceX Falcon 9. It booted a Tensor Processing Unit, ran a Gemma 4 model prompt and returned a haiku about our blue planet and starlight during a pass over Svalbard, Norway.\n• Further tests with limericks and telemetry requests worked smoothly, marking the first full AI inference by data-center-class hardware in orbit.\n• It's powered by 1 kilowatt of solar but limited to 20-minute runs due to thermal challenges in space.\n• The project tests whether orbital solar power can support large-scale AI compute, with two more satellites planned for 2027.\n\nThis is X's summary of posts on the topic and may evolve."
+  },
+  {
+   "id": "brecka-coffee-mold-lab-results",
+   "topic": "brecka",
+   "date": "2026-10-30T17:06:00Z",
+   "url": "https://x.com/thegarybrecka/status/2116215052638319013",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: הלאטה שלך עלול להכיל רעלני עובש",
+    "summary": "גארי בראקה טוען שפולי קפה עלולים להיחשף לעובש בקטיף, בעיבוד ובאחסון, ושבלי תוצאות מעבדה אין הוכחה שהקפה נקי. הוא ממליץ לבקש תוצאות מעבדה, ובתגובה לעצמו מקשר למותג הקפה שהוא שותה."
+   },
+   "en": {
+    "title": "Brecka: your latte could come with mold toxins",
+    "summary": "Gary Brecka claims coffee beans can be exposed to mold during harvesting, processing and storage, and that without lab results there's no proof coffee is mold-free. He says to ask for lab results, and in a self-reply links the coffee brand he drinks."
+   },
+   "full_he": "\"הלאטה עם תבלין דלעת ב־8 דולר שלך עלול להגיע עם משהו שלא הזמנת: רעלני עובש.\n\nפולי קפה עלולים להיחשף לעובש בזמן הקטיף, העיבוד והאחסון.\n\nאין תוצאות מעבדה = אין הוכחה שהוא נקי מעובש\nיקר ≠ נקי מרעלים\nמותג גדול ≠ נבדק במעבדה\n\nתתחילו לבקש את תוצאות המעבדה...\"\n\nבתמונה: צילום תקריב של עובש (גבעול עם נבגים).\n\nבתגובה שלו לפוסט: \"הקפה שאני שותה כל יום הוא\" – עם קישור לאתר theultimatebrew.com.\n\nהערה: אלה טענות של בראקה, והפוסט מפנה גם למותג קפה שהוא קשור אליו. רעלני עובש (מיקוטוקסינים) אכן נמצאים לפעמים בקפה, אבל לפי רשויות הבריאות ברוב המקרים ברמות נמוכות מאוד ומפוקחות.",
+   "full_en": "\"Your $8 pumpkin spice latte could come with something you didn't order: mold toxins.\n\nCoffee beans can be exposed to mold during harvesting, processing, and storage.\n\nNO LAB RESULTS = NO PROOF IT'S MOLD-FREE\nEXPENSIVE ≠ TOXIN-FREE\nBIG-NAME BRAND ≠ LAB-TESTED\n\nStart asking for the lab results...\"\n\nThe image: a close-up of mold (a stalk with spores).\n\nHis own reply under the post: \"The coffee I drink everyday is\" – with a link to theultimatebrew.com.\n\nNote: these are Brecka's claims, and the post also points to a coffee brand he's tied to. Mold toxins (mycotoxins) are sometimes found in coffee, but according to health authorities usually at very low, regulated levels."
+  },
   {
    "id": "musk-i-miss-larry-page",
    "topic": "musk",
