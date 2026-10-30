@@ -176,8 +176,8 @@
   }
   var NF = null;
   function fmtPrice(n) { try { NF = NF || new Intl.NumberFormat("he-IL", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); return NF.format(n || 0); } catch (e) { return String(Math.round((n || 0) * 100) / 100); } }
-  /* order inside a category: "ord" (set when an item is dragged with ☰); items never dragged keep their creation time,
-     which is always larger, so a new item lands at the end of the list */
+  /* order inside a category: "ord" (set when an item is dragged with ☰); items never dragged keep their creation time;
+     add() and moveItem() give a new item an "ord" just below the smallest one, so it lands at the TOP */
   function ordOf(x) { return typeof x.ord === "number" && isFinite(x.ord) ? x.ord : (x.created || 0); }
   function setItemOrder(ids, f) { f = f || "ord"; ids.forEach(function (id, n) { var x = items[id], p = {}; p[f] = (n + 1) * 1000; if (x && !x.deleted && x[f] !== p[f]) upd(id, p); }); }
   /* order inside "נבחר": "dord" (set when a selected item is dragged with ☰); an item without it (just selected) goes to the bottom */
@@ -189,10 +189,17 @@
     var id = newId(), at = now(); items[id] = { id: id, text: text, done: false, created: at, at: at };
     if (typeof price === "number" && isFinite(price)) items[id].price = price;
     cid = cid || curTab(); if (cid && cid !== "main") items[id].list = cid;
+    items[id].ord = topOrd(cid || "main", id);
+  }
+  /* a new (or moved) item goes to the TOP of its category (Ron, 2026-10-30): one step before the smallest order there */
+  function topOrd(cid, skip) {
+    var m = Infinity;
+    for (var k in items) { var y = items[k]; if (k !== skip && y && !y.deleted && !y.done && y.type !== "cat" && listOf(y) === cid) m = Math.min(m, ordOf(y)); }
+    return m === Infinity ? 1000 : m - 1000;
   }
   function upd(id, patch) { var x = items[id]; if (!x || x.deleted) return; var y = {}, k; for (k in x) y[k] = x[k]; for (k in patch) { if (patch[k] == null) delete y[k]; else y[k] = patch[k]; } y.at = now(); items[id] = y; }
   function del(id) { var x = items[id]; if (!x) return; items[id] = { id: id, deleted: true, at: now() }; }
-  function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid }); return true; }
+  function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid, ord: topOrd(cid, id) }); return true; }
 
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -237,7 +244,7 @@
     ai.setAttribute("data-i18n-ph", ph); ai.setAttribute("data-i18n-label", ph); ai.placeholder = t(ph); ai.setAttribute("aria-label", t(ph));
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
-    act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the end
+    act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the top
     done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
