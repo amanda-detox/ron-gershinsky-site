@@ -203,6 +203,7 @@
       seeded = true;
       return Promise.resolve(undoImport()).then(function (imp) {
       if (imp) dirty = true;
+      if (seedHabits()) dirty = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
       if (tooManyGone(items, cl)) { blocked = true; try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} return; }
@@ -323,6 +324,28 @@
     cs.forEach(function (cid) { delCat(cid); });
     for (k in items) { x = items[k]; if (k.indexOf("sh-") === 0 && x && !x.deleted) del(k); }
     put({ id: "m:shopundo", type: "meta", done: 1, lists: cs.length, at: now() });
+    return true;
+  }
+
+
+  /* ---------- one-time list "הרגלים שלי" (Ron, 2026-10-30) ----------
+     Runs only on Ron's account (the one that has the v13 marker "m:shopimport"), once: fixed ids "c:hb1" / "hb1-01".."hb1-20"
+     plus a synced marker "m:habits1" and a local flag rg-myideas-habits1:<user id>, so other devices never add it again.
+     Skipped if a list with the same title already exists. Existing lists are never touched. Before adding, the whole
+     Listify copy is saved on this device: rg-myideas-habits-bak:<user id>. */
+  var HB_TITLE = "הרגלים שלי", HB_ITEMS = ["עד סיגריה אחת ביום", "דלת פתוחה וחלון פתוח (המון חום ואובך, מזגן וחושך דווקא עוזר)", "ללא בלוטות', מינימיזציה של קרינה (כל פעם ששמתי היה נורא ודי מהר)", "ללא תוכן וידאו קצר או ארוך - עומס יתר חושי, כולל פודקסט, לא כולל מפלים", "כתיבה יומית ולוג יומי ולמידה שבועית", "0 עבודה שכירה", "ביבליותרפיה", "פיזיותרפיה", "שבוע ללא סיגריות כלל", "שיחה יומית עם אמנדה בעברית", "שיחה יומית עם ורוניקה // וונסה באנגלית", "יומן כתיבה יומי על דף בעברית", "כנ\"ל באנגלית", "דיבור בקול בעברית לבד", "דיבור בקול באנגלית לבד", "ביטבוקס בקול", "שיח פנימי, עד כה מסתבר שבעברית הכי מצליח", "סקול רק על מקבוק וגם אז לבדוק אם אמנדה יכולה לסכם", "קול פנימי נוסף אדיר", "קול פנימי נוסף גבי"];
+  function seedHabits() {
+    if (!items["m:shopimport"] || items["m:habits1"] || lsGet("rg-myideas-habits1:" + uid)) return false;
+    var exists = cats().some(function (c) { return clean(catName(c), 40) === HB_TITLE; }) || (items["c:hb1"] && !items["c:hb1"].deleted);
+    if (!exists) {
+      try { localStorage.setItem("rg-myideas-habits-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) { return false; }
+      var l = cats(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      put({ id: "c:hb1", type: "cat", cat: "hb1", name: HB_TITLE, kind: "task", pos: pos, created: at, at: at });
+      HB_ITEMS.forEach(function (txt, n) { var id = "hb1-" + (n < 9 ? "0" : "") + (n + 1), a = now();
+        if (!items[id]) put({ id: id, sec: "hb1", text: txt, done: false, order: n + 1, created: a, at: a }); });
+    }
+    put({ id: "m:habits1", type: "meta", done: 1, added: exists ? 0 : HB_ITEMS.length, at: now() });
+    lsSet("rg-myideas-habits1:" + uid, "1");
     return true;
   }
 
