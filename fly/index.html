@@ -187,6 +187,12 @@
     #menu .panel { display:block; max-height:calc(100vh - 70px); overflow-y:auto; }
     #menu .sets { grid-template-columns:1fr 1fr; }
   }
+  /* v8: tutorial/install/leaderboard as full-width blue rows above takeoff; icons before labels */
+  #menu .sets label > .ic { flex:0 0 1.4em; font-style:normal; font-size:18px; text-align:center; }
+  #menu .sets label > span { flex:0 0 6.2em; }
+  #menu .mrows { display:flex; flex-direction:column; gap:6px; margin-top:6px; }
+  #menu .mrows .tbtn.inst { width:100%; margin:0; min-height:0; border-radius:12px; border:1px solid var(--line); background:var(--panel2); color:var(--ink); font-size:16px; font-weight:600; padding:9px 10px; }
+  #menu .btn.main { display:block; margin:10px auto 2px; }
 </style>
 </head>
 <body data-rg-account-none>
@@ -265,13 +271,13 @@
   </div>
   <div class="panel">
     <div class="sets">
-      <label><span data-t="choose"></span><select id="charSel"></select></label>
-      <label><span data-t="world"></span><select id="envSel"></select></label>
-      <label><span data-t="view"></span><select id="camSel"></select></label>
-      <label><span data-t="buddy"></span><select id="buddySel"></select></label>
+      <label><i class="ic" aria-hidden="true">🧑</i><span data-t="choose"></span><select id="charSel"></select></label>
+      <label><i class="ic" aria-hidden="true">🗺️</i><span data-t="world"></span><select id="envSel"></select></label>
+      <label><i class="ic" aria-hidden="true">📷</i><span data-t="view"></span><select id="camSel"></select></label>
+      <label><i class="ic" aria-hidden="true">🤝</i><span data-t="buddy"></span><select id="buddySel"></select></label>
     </div>
+    <div class="mrow mrows"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="tutBtn"></button><button class="tbtn inst" id="lbBtn"></button></div>
     <button class="btn main" id="startBtn" data-t="start"></button>
-    <div class="mrow"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="tutBtn"></button><button class="tbtn inst" id="lbBtn"></button></div>
     <div id="streakLine"></div>
     <div class="install-hint hidden" id="installHint"></div>
     <div class="foot" data-t="copy"></div>
@@ -283,7 +289,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=8"></script>
+<script type="module" src="game.js?v=9"></script>
 <script src="../shared/rg-topbar.js?v=2" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 </body>
 </html>

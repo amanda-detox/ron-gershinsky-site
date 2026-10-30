@@ -775,7 +775,7 @@ function disposeTree(o) {
 /* ================= player ================= */
 const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
-const MULS = [0.1618, 0.2, 0.4, 1, 4, 9, 15];
+const MULS = [0.1618, 0.2, 0.4, 1, 2.19, 4, 9, 15];
 let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
 function setChar(i) {
   charIdx = i; store.set('rg-fly-char3', String(i));
