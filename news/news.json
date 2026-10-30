@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T14:06:27+02:00",
+ "updated": "2026-10-30T14:53:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,38 +197,21 @@
  ],
  "items": [
   {
-   "id": "mccullough-romeo-spike-organ-donation",
-   "topic": "mccullough",
-   "date": "2026-10-30T11:54:24Z",
-   "url": "https://x.com/P_McCulloughMD/status/2116136634580443304",
-   "source": "X · @P_McCulloughMD",
+   "id": "solana-why-we-ship-cesto",
+   "topic": "solana",
+   "date": "2026-10-30T12:30:01Z",
+   "url": "https://x.com/solana/status/2116145599351607689",
+   "source": "X · @solana",
    "he": {
-    "title": "מקולה: חושש ששון רומיאו היה \"עמוס בחלבון ספייק\" ואיבריו נתרמו",
-    "summary": "ד\"ר פיטר מקולה כתב שהוא מודאג מאוד שהשוער לשעבר שון רומיאו, שמת בגיל 31 משבץ, היה לדבריו עמוס בחלבון ספייק מהדבקה בקורונה ומחיסונים, ושאיבריו נתרמו לאחרים. הכתבה שצירף לא מזכירה חיסונים, והקשר הוא טענה שלו."
+    "title": "Why We Ship: סולאנה מציגה את Cesto, סלי השקעה לפי השקפת עולם",
+    "summary": "סולאנה מציגה את Cesto של ג'ייסון רודריגס: אפליקציה שמאפשרת לכל אחד לגבות סל השקעות שמשקף את השקפת העולם שלו, ופשוטה מספיק כדי שגם ההורים שלו יוכלו להשתמש בה."
    },
    "en": {
-    "title": "McCullough: concerned Sean Romeo was \"loaded with spike protein\" and his organs were donated",
-    "summary": "Dr. Peter McCullough wrote that he is greatly concerned former goalie Sean Romeo, who died of a stroke at 31, was loaded with spike protein from COVID infection and vaccination, and that his organs were donated. The article he attached doesn't mention vaccination; the link is his claim."
+    "title": "Why We Ship: Solana spotlights Cesto's worldview investment baskets",
+    "summary": "Solana features Cesto, built by Jason Rodrigues so anyone can back an investment basket that reflects their worldview, simple enough that even his parents can use it."
    },
-   "full_he": "\"אני מודאג מאוד שרומיאו היה עמוס בחלבון ספייק מהדבקה קודמת ב־SARS-CoV-2 ומחיסון נגד קורונה. עכשיו האיברים שלו נתרמים לאחרים. ראו Ota ואחרים.\" (תייג את @McCulloughFund)\n\nבפוסט שתי תמונות:\n\nתמונה 1, צילום מסך של כתבה מ־CBS Pittsburgh (מאת מייקל גייז, עודכנה ב־28 באוקטובר 2026): \"שון רומיאו, כוכב הוקי מכללות לשעבר, מת אחרי שבץ\".\n• שון רומיאו, שוער לשעבר בנבחרת ההוקי של אוניברסיטת אוהיו סטייט, מת מסיבוכים של שבץ, כך הודיעה האוניברסיטה. הוא היה בן 31.\n• לפי האוניברסיטה, הוא מת בשבת, יותר משבוע אחרי שלקה בשבץ ב־15 באוקטובר. הוא שיחק בקבוצה בשנים 2016–2019, והיה חלק מקבוצת ה־Frozen Four של 2018 ומאלופת הביג טן של 2019.\n• לפני כן שיחק שנתיים במיין. הוא נבחר לנבחרת השנייה של הביג טן והיה השחקן הראשון של אוהיו סטייט שהגיע לחצי הגמר של פרס מייק ריכטר.\n• \"רומיאו היה תורם איברים, ותרם את הלב, הריאות, הכבד והכליות שלו כדי לתת לאחרים הזדמנות שנייה לחיים\", מסרה האוניברסיטה.\n\nתמונה 2, העמוד הראשון של מאמר בכתב העת Journal of Clinical Neuroscience (כרך 136, 2025): \"ביטוי של חלבון הספייק של SARS-CoV-2 בעורקי המוח: השלכות על שבץ דימומי אחרי חיסון mRNA\", מאת נקאו אוטה ועמיתיו מבתי חולים ואוניברסיטאות ביפן. בתמונה צביעה של מקטע S2 של חלבון הספייק בדופן כלי הדם וברקמת המוח, וטבלה של מטופלים עם מספר החיסונים, הזמן מהחיסון האחרון עד הניתוח ותוצאת הצביעה לספייק ולנוקלאוקפסיד (אצל חלק מהם חיובי לספייק ושלילי לנוקלאוקפסיד, ואצל אחרים שלילי).\n\nהערה: הכתבה על רומיאו לא מזכירה חיסונים, הדבקה בקורונה או חלבון ספייק, ואין בה מידע על סיבת השבץ. הקשר לחלבון הספייק הוא השערה של מקולה בלבד. המחקר של אוטה הוא מחקר קטן על רקמות של מנותחים, והוא לא בדק את המקרה הזה.",
-   "full_en": "\"Greatly concerned Romeo was loaded with spike protein from past SARS-CoV-2 infection and COVID-19 vaccination. Now his organs are being donated to others. See Ota et al.\" (tagging @McCulloughFund)\n\nThe post has two images:\n\nImage 1, a screenshot of a CBS Pittsburgh article (by Michael Guise, updated October 28, 2026): \"Sean Romeo, former college hockey star, dies after suffering stroke\".\n• Sean Romeo, a former hockey star at Ohio State University, died from complications of a stroke, the university announced. He was 31.\n• The university said Romeo died on Saturday, more than a week after he suffered a stroke on Oct. 15. A goaltender, he was in the program from 2016–19 and was on Ohio State's 2018 NCAA Frozen Four team and 2019 Big Ten Championship squad.\n• He transferred to Ohio State after two years at Maine, earned Second Team All-Big Ten honors and was the first Buckeye named a Mike Richter Award semifinalist.\n• \"Romeo was an organ donor, donating his heart, lungs, liver and kidneys to give others a second chance at life,\" the university said.\n\nImage 2, the first page of a paper in the Journal of Clinical Neuroscience (vol. 136, 2025): \"Expression of SARS-CoV-2 spike protein in cerebral arteries: Implications for hemorrhagic stroke post-mRNA vaccination\", by Nakao Ota et al. from hospitals and universities in Japan. It shows staining of the spike S2 segment in blood-vessel endothelium and brain tissue, and a table of patients with their number of vaccinations, time from last vaccination to surgery, and spike/nucleocapsid staining results (some positive for spike and negative for nucleocapsid, others negative).\n\nNote: the Romeo article doesn't mention vaccination, COVID infection or spike protein, and gives no cause for the stroke. The spike-protein link is McCullough's own speculation. The Ota study is a small tissue study of surgical patients and did not examine this case."
-  },
-  {
-   "id": "mccullough-mrna-vs-flu-636-fold-szebeni",
-   "topic": "mccullough",
-   "date": "2026-10-30T11:35:13Z",
-   "url": "https://x.com/P_McCulloughMD/status/2116131807171076403",
-   "source": "X · @P_McCulloughMD",
-   "he": {
-    "title": "מקולה מצטט סקירה: פי 636 סיכון לדלקת שריר הלב מחיסוני mRNA לעומת שפעת",
-    "summary": "מקולה מצטט סקירה של יאנוש סבני שלפיה, לעומת חיסוני שפעת, מוצרי mRNA קשורים לסיכון גבוה פי 636 לדלקת שריר הלב וקרום הלב ופי 530 לפקקת, ושואל למה עדיין דוחפים אותם. הנתונים מבוססים על דיווחי VAERS, שלא מוכיחים קשר סיבתי."
-   },
-   "en": {
-    "title": "McCullough cites review: 636-fold myopericarditis risk for mRNA vs. flu vaccines",
-    "summary": "McCullough cites a review by Janos Szebeni that, compared with flu vaccines, found mRNA products linked to 636-fold and 530-fold higher risks of myopericarditis and thrombosis, and asks why they're still being pushed. The figures come from VAERS reports, which don't prove causation."
-   },
-   "full_he": "\"בהשוואה לחיסוני שפעת, הניתוח הזה מצא שמוצרי mRNA מעלים פי 636 ופי 530 את הסיכון לדלקת שריר הלב וקרום הלב ולפקקת, בהתאמה. למה התעשייה הביו־פרמצבטית עדיין דוחפת את הביוטכנולוגיה המסוכנת הזאת?\"\n\nהמקור שציין: Szebeni J. Expanded Spectrum and Increased Incidence of Adverse Events Linked to COVID-19 Genetic Vaccines: New Concepts on Prophylactic Immuno-Gene Therapy, Iatrogenic Orphan Disease, and Platform-Inherent Challenges. Pharmaceutics. 2025; 17(4):450.\n\n(מקולה פרסם את הפוסט שלוש פעמים בהפרש של כמה דקות עם תיקוני ניסוח קלים; זו הגרסה האחרונה.)\n\nבתמונה, העמוד הראשון של הסקירה ב־Pharmaceutics (MDPI), מאת יאנוש סבני מאוניברסיטת זמלווייס בבודפשט. מתוך התקציר:\n• חיסוני הקורונה ה\"גנטיים\" מבוססי mRNA ו־DNA יכולים לגרום למגוון רחב של תופעות לוואי, והסטטיסטיקות משתנות מאוד לפי התזמון ושיטות ניתוח הנתונים.\n• הסקירה מתמקדת בחיסוני mRNA עטופים בננו־חלקיקי שומן, ועוקבת אחרי התפתחות המסקנות לגבי שכיחות תופעות הלוואי, מהערכת חסר ראשונית של רעילויות חריגות וחמורות ועד טענות עדכניות שחיסוני הקורונה אולי תרמו לתמותה העודפת במדינות רבות.\n• מתוך מאות תופעות הלוואי ברשימת המעקב של פייזר, הסקירה ממיינת את התסמינים לפי מערכות גוף, וכמעט כולן מושפעות.\n• לפי נתוני מערכת הדיווח האמריקאית VAERS ונתוני חיסון עולמיים, תופעות הלוואי מחיסונים גנטיים היו בממוצע פי 26 יותר מאשר מחיסוני שפעת.\n• הפער בולט במיוחד בתופעות חמורות מ\"רשימת ברייטון\": פי 636 בדלקת שריר הלב, פי 530 בפקקת, פי 220 במוות, פי 231 באוטם שריר הלב, פי 155 בדופק מהיר, פי 90 בקוצר נשימה ופי 133 ביתר לחץ דם.\n• המחבר מציע לראות בחיסונים הגנטיים \"טיפול אימונו־גנטי מונע\", ולסווג את תופעות הלוואי הכרוניות המגבילות כ\"מחלות יתומות יאטרוגניות\" (שנגרמו מהטיפול). הסקירה בוחנת גם תכונות של החיסון שעשויות לגרום לתגובות חיסוניות חריגות.\n\nהערה: אלה טענות של מקולה ושל מחבר הסקירה. ההשוואה מבוססת על דיווחים וולונטריים ל־VAERS, שאינם מוכיחים קשר סיבתי ומושפעים ממודעות ומהיקף הדיווח. גופי בריאות מרכזיים מכירים בסיכון מוגבר ונדיר לדלקת שריר הלב, בעיקר אצל גברים צעירים, אבל לא בסדרי הגודל האלה.",
-   "full_en": "\"Compared to influenza vaccines, this analysis found mRNA products confer 636 and 530-fold increased risks of myopericarditis and thrombosis, respectively. Why is the Bio-Pharmaceutical Complex still pushing this dangerous biotechnology?\"\n\nThe source he cites: Szebeni J. Expanded Spectrum and Increased Incidence of Adverse Events Linked to COVID-19 Genetic Vaccines: New Concepts on Prophylactic Immuno-Gene Therapy, Iatrogenic Orphan Disease, and Platform-Inherent Challenges. Pharmaceutics. 2025; 17(4):450.\n\n(McCullough posted this three times within a few minutes with small wording edits; this is the latest version.)\n\nThe image shows the first page of the review in Pharmaceutics (MDPI), by Janos Szebeni of Semmelweis University, Budapest. From the abstract:\n• The mRNA- and DNA-based \"genetic\" COVID-19 vaccines can induce a broad range of adverse events, with statistics varying significantly depending on timing and data-analysis methods.\n• Focusing on lipid-nanoparticle-enclosed mRNA vaccines, the review traces how conclusions on adverse-event prevalence evolved, from initial underestimation of atypical, severe toxicities to recent claims that COVID-19 vaccination may have contributed to excess deaths in many countries.\n• Of the hundreds of adverse events in Pfizer's pharmacovigilance survey, it categorizes the main symptoms by organ system, with nearly all affected.\n• Using US VAERS data and a global vaccination dataset, it found an average 26-fold increase in adverse events with genetic vaccines versus flu vaccines.\n• The difference is especially large for severe \"Brighton-listed\" events: 636x for myocarditis, 530x thrombosis, 220x death, 231x myocardial infarction, 155x tachycardia, 90x dyspnea and 133x hypertension.\n• The author proposes viewing genetic vaccines as \"prophylactic immuno-gene therapies\" and classifying chronic disabling adverse events as \"iatrogenic orphan diseases\"; the review also examines vaccine characteristics that could cause abnormal immune responses.\n\nNote: these are McCullough's and the review author's claims. The comparison relies on voluntary VAERS reports, which don't establish causation and are affected by awareness and reporting volume. Major health agencies acknowledge a rare increased myocarditis risk, mostly in young men, but not on this scale."
+   "full_he": "Why We Ship: ‏@cesto_co\n\n\"כל אחד יכול לגשת למידע. ההזדמנויות שמאחוריו הרבה פחות נגישות.\"\n\n‏@jasonrodrigues בנה את Cesto כדי שכל אחד יוכל לגבות סל השקעות שמשקף את השקפת העולם שלו, ופשוט מספיק כדי שאפילו ההורים שלו יוכלו להשתמש בו.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Why We Ship: @cesto_co\n\n\"Anyone can access information. The opportunities behind it aren't as easy to reach.\"\n\n@jasonrodrigues built Cesto so anyone can back an investment basket that reflects their worldview, simple enough that even his parents can use it.\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
    "id": "musk-cz-calls-out-trolling-binance-hack",
@@ -248,21 +231,21 @@
    "full_en": "As Binance reeled from a massive $6.3 billion hack, founder CZ had a pointed message for Elon Musk: respect the gravity of the moment.\n\n• On October 29, North Korean-linked hackers stole $6.3 billion in assets from Binance, the world's largest crypto exchange, in the biggest theft on record.\n• Stablecoin issuers froze $3 billion, and Binance pledged to cover all user losses using its SAFU reserve and other funds, while halting withdrawals for investigation.\n• CZ publicly asked Musk to stop trolling about AI and \"zeroday\" exploits, noting Binance's $500 million investment in his 2022 Twitter buy, now worth over $1 billion in SPCX shares, as a tie worth supporting, later clarifying it wasn't a sales threat.\n• Co-founder Yi He added that annual revenue would handle the shortfall without selling.\n\nThis is X's summary of posts on the topic and may evolve over time."
   },
   {
-   "id": "musk-445m-midterms-top-donor",
-   "topic": "musk",
-   "date": "2026-10-30T11:30:45Z",
-   "url": "https://x.com/i/trending/2116129480733319476",
-   "source": "X",
+   "id": "mccullough-romeo-spike-organ-donation",
+   "topic": "mccullough",
+   "date": "2026-10-30T11:54:24Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116136634580443304",
+   "source": "X · @P_McCulloughMD",
    "he": {
-    "title": "מאסק הזרים יותר מ־445 מיליון דולר לבחירות האמצע",
-    "summary": "לפי דיווחים פדרליים, תרומותיו של מאסק במחזור הבחירות הזה עברו 445 מיליון דולר, רובן דרך America PAC, מה שהופך אותו לתורם היחיד הגדול בפוליטיקה האמריקאית המודרנית. הסנאטורית אליזבת וורן תקפה אותו על כך."
+    "title": "מקולה: חושש ששון רומיאו היה \"עמוס בחלבון ספייק\" ואיבריו נתרמו",
+    "summary": "ד\"ר פיטר מקולה כתב שהוא מודאג מאוד שהשוער לשעבר שון רומיאו, שמת בגיל 31 משבץ, היה לדבריו עמוס בחלבון ספייק מהדבקה בקורונה ומחיסונים, ושאיבריו נתרמו לאחרים. הכתבה שצירף לא מזכירה חיסונים, והקשר הוא טענה שלו."
    },
    "en": {
-    "title": "Musk has poured over $445 million into the midterms",
-    "summary": "Federal filings show Musk's contributions this cycle have topped $445 million, mostly through America PAC, making him the largest individual donor in modern US politics. Sen. Elizabeth Warren called him out over it."
+    "title": "McCullough: concerned Sean Romeo was \"loaded with spike protein\" and his organs were donated",
+    "summary": "Dr. Peter McCullough wrote that he is greatly concerned former goalie Sean Romeo, who died of a stroke at 31, was loaded with spike protein from COVID infection and vaccination, and that his organs were donated. The article he attached doesn't mention vaccination; the link is his claim."
    },
-   "full_he": "הסנאטורית אליזבת וורן אמרה זאת ישירות: אילון מאסק הזרים כמעט חצי מיליארד דולר לבחירות האמצע כדי לשמור על השפעתו בדמוקרטיה ששייכת לאנשים הרגילים.\n\n• לפי דיווחים פדרליים, תרומותיו של מאסק עברו 445 מיליון דולר במחזור הזה, רובן דרך America PAC וסופר־PACים רפובליקניים אחרים, עם התמקדות במרוצים מרכזיים כמו המרוץ לסנאט בטקסס בין קן פקסטון לג'יימס טלריקו.\n• הסכום עוקף את מה שהוציא לטובת הרפובליקנים ב־2024 והופך אותו לתורם היחיד הגדול ביותר בפוליטיקה האמריקאית המודרנית.\n• התגובות התחלקו כרגיל: התומכים רואים בזה חופש ביטוי, והמבקרים קוראים לרפורמות כמו ביטול פסק הדין Citizens United, על רקע חשש רחב מהשפעת הכסף הגדול לקראת הבחירות.\n\nזה סיכום של X לפוסטים בנושא, והוא עשוי להשתנות.",
-   "full_en": "Sen. Elizabeth Warren called it out directly: Elon Musk has funneled nearly half a billion dollars into the midterms to safeguard his influence in a democracy that belongs to everyday people.\n\n• Federal filings reveal Musk's contributions have exceeded $445 million this cycle, mostly through America PAC and other Republican super PACs, targeting key races like the Texas Senate matchup between Ken Paxton and James Talarico.\n• This total outpaces his 2024 Republican spending and positions him as the largest individual donor in modern U.S. politics.\n• Reactions split along familiar lines, with supporters viewing it as free speech and critics pushing for reforms like repealing Citizens United amid broader worries over big money's sway as midterms near.\n\nThis is X's summary of posts on the topic and may evolve over time."
+   "full_he": "\"אני מודאג מאוד שרומיאו היה עמוס בחלבון ספייק מהדבקה קודמת ב־SARS-CoV-2 ומחיסון נגד קורונה. עכשיו האיברים שלו נתרמים לאחרים. ראו Ota ואחרים.\" (תייג את @McCulloughFund)\n\nבפוסט שתי תמונות:\n\nתמונה 1, צילום מסך של כתבה מ־CBS Pittsburgh (מאת מייקל גייז, עודכנה ב־28 באוקטובר 2026): \"שון רומיאו, כוכב הוקי מכללות לשעבר, מת אחרי שבץ\".\n• שון רומיאו, שוער לשעבר בנבחרת ההוקי של אוניברסיטת אוהיו סטייט, מת מסיבוכים של שבץ, כך הודיעה האוניברסיטה. הוא היה בן 31.\n• לפי האוניברסיטה, הוא מת בשבת, יותר משבוע אחרי שלקה בשבץ ב־15 באוקטובר. הוא שיחק בקבוצה בשנים 2016–2019, והיה חלק מקבוצת ה־Frozen Four של 2018 ומאלופת הביג טן של 2019.\n• לפני כן שיחק שנתיים במיין. הוא נבחר לנבחרת השנייה של הביג טן והיה השחקן הראשון של אוהיו סטייט שהגיע לחצי הגמר של פרס מייק ריכטר.\n• \"רומיאו היה תורם איברים, ותרם את הלב, הריאות, הכבד והכליות שלו כדי לתת לאחרים הזדמנות שנייה לחיים\", מסרה האוניברסיטה.\n\nתמונה 2, העמוד הראשון של מאמר בכתב העת Journal of Clinical Neuroscience (כרך 136, 2025): \"ביטוי של חלבון הספייק של SARS-CoV-2 בעורקי המוח: השלכות על שבץ דימומי אחרי חיסון mRNA\", מאת נקאו אוטה ועמיתיו מבתי חולים ואוניברסיטאות ביפן. בתמונה צביעה של מקטע S2 של חלבון הספייק בדופן כלי הדם וברקמת המוח, וטבלה של מטופלים עם מספר החיסונים, הזמן מהחיסון האחרון עד הניתוח ותוצאת הצביעה לספייק ולנוקלאוקפסיד (אצל חלק מהם חיובי לספייק ושלילי לנוקלאוקפסיד, ואצל אחרים שלילי).\n\nהערה: הכתבה על רומיאו לא מזכירה חיסונים, הדבקה בקורונה או חלבון ספייק, ואין בה מידע על סיבת השבץ. הקשר לחלבון הספייק הוא השערה של מקולה בלבד. המחקר של אוטה הוא מחקר קטן על רקמות של מנותחים, והוא לא בדק את המקרה הזה.",
+   "full_en": "\"Greatly concerned Romeo was loaded with spike protein from past SARS-CoV-2 infection and COVID-19 vaccination. Now his organs are being donated to others. See Ota et al.\" (tagging @McCulloughFund)\n\nThe post has two images:\n\nImage 1, a screenshot of a CBS Pittsburgh article (by Michael Guise, updated October 28, 2026): \"Sean Romeo, former college hockey star, dies after suffering stroke\".\n• Sean Romeo, a former hockey star at Ohio State University, died from complications of a stroke, the university announced. He was 31.\n• The university said Romeo died on Saturday, more than a week after he suffered a stroke on Oct. 15. A goaltender, he was in the program from 2016–19 and was on Ohio State's 2018 NCAA Frozen Four team and 2019 Big Ten Championship squad.\n• He transferred to Ohio State after two years at Maine, earned Second Team All-Big Ten honors and was the first Buckeye named a Mike Richter Award semifinalist.\n• \"Romeo was an organ donor, donating his heart, lungs, liver and kidneys to give others a second chance at life,\" the university said.\n\nImage 2, the first page of a paper in the Journal of Clinical Neuroscience (vol. 136, 2025): \"Expression of SARS-CoV-2 spike protein in cerebral arteries: Implications for hemorrhagic stroke post-mRNA vaccination\", by Nakao Ota et al. from hospitals and universities in Japan. It shows staining of the spike S2 segment in blood-vessel endothelium and brain tissue, and a table of patients with their number of vaccinations, time from last vaccination to surgery, and spike/nucleocapsid staining results (some positive for spike and negative for nucleocapsid, others negative).\n\nNote: the Romeo article doesn't mention vaccination, COVID infection or spike protein, and gives no cause for the stroke. The spike-protein link is McCullough's own speculation. The Ota study is a small tissue study of surgical patients and did not examine this case."
   },
   {
    "id": "spacex-starshield-ukraine-slowdown-restored",
@@ -282,6 +265,57 @@
    "full_en": "A cheeky meme pits \"DEMOCRAT\" against \"PUTIN\" on a voting sign, capturing online unease over Elon Musk's Starlink role in the Ukraine war.\n\n• Recent slowdowns hit Starshield, the military version of Starlink that Ukrainian forces use for drones and communications, prompting worries about U.S. involvement and service reliability.\n• Putin praised Musk as a \"real genius\" while noting contacts to avoid orbital interference, as Musk reaffirmed Starlink won't cut off Ukraine despite policy disagreements.\n• Ukrainian officials confirmed service restoration, but the episode highlights Ukraine's heavy reliance on the network since 2022 and divides over Musk's influence amid the ongoing war and approaching 2026 midterms.\n\nThis is X's summary of posts on the topic and may evolve over time."
   },
   {
+   "id": "mccullough-mrna-vs-flu-636-fold-szebeni",
+   "topic": "mccullough",
+   "date": "2026-10-30T11:35:13Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116131807171076403",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה מצטט סקירה: פי 636 סיכון לדלקת שריר הלב מחיסוני mRNA לעומת שפעת",
+    "summary": "מקולה מצטט סקירה של יאנוש סבני שלפיה, לעומת חיסוני שפעת, מוצרי mRNA קשורים לסיכון גבוה פי 636 לדלקת שריר הלב וקרום הלב ופי 530 לפקקת, ושואל למה עדיין דוחפים אותם. הנתונים מבוססים על דיווחי VAERS, שלא מוכיחים קשר סיבתי."
+   },
+   "en": {
+    "title": "McCullough cites review: 636-fold myopericarditis risk for mRNA vs. flu vaccines",
+    "summary": "McCullough cites a review by Janos Szebeni that, compared with flu vaccines, found mRNA products linked to 636-fold and 530-fold higher risks of myopericarditis and thrombosis, and asks why they're still being pushed. The figures come from VAERS reports, which don't prove causation."
+   },
+   "full_he": "\"בהשוואה לחיסוני שפעת, הניתוח הזה מצא שמוצרי mRNA מעלים פי 636 ופי 530 את הסיכון לדלקת שריר הלב וקרום הלב ולפקקת, בהתאמה. למה התעשייה הביו־פרמצבטית עדיין דוחפת את הביוטכנולוגיה המסוכנת הזאת?\"\n\nהמקור שציין: Szebeni J. Expanded Spectrum and Increased Incidence of Adverse Events Linked to COVID-19 Genetic Vaccines: New Concepts on Prophylactic Immuno-Gene Therapy, Iatrogenic Orphan Disease, and Platform-Inherent Challenges. Pharmaceutics. 2025; 17(4):450.\n\n(מקולה פרסם את הפוסט שלוש פעמים בהפרש של כמה דקות עם תיקוני ניסוח קלים; זו הגרסה האחרונה.)\n\nבתמונה, העמוד הראשון של הסקירה ב־Pharmaceutics (MDPI), מאת יאנוש סבני מאוניברסיטת זמלווייס בבודפשט. מתוך התקציר:\n• חיסוני הקורונה ה\"גנטיים\" מבוססי mRNA ו־DNA יכולים לגרום למגוון רחב של תופעות לוואי, והסטטיסטיקות משתנות מאוד לפי התזמון ושיטות ניתוח הנתונים.\n• הסקירה מתמקדת בחיסוני mRNA עטופים בננו־חלקיקי שומן, ועוקבת אחרי התפתחות המסקנות לגבי שכיחות תופעות הלוואי, מהערכת חסר ראשונית של רעילויות חריגות וחמורות ועד טענות עדכניות שחיסוני הקורונה אולי תרמו לתמותה העודפת במדינות רבות.\n• מתוך מאות תופעות הלוואי ברשימת המעקב של פייזר, הסקירה ממיינת את התסמינים לפי מערכות גוף, וכמעט כולן מושפעות.\n• לפי נתוני מערכת הדיווח האמריקאית VAERS ונתוני חיסון עולמיים, תופעות הלוואי מחיסונים גנטיים היו בממוצע פי 26 יותר מאשר מחיסוני שפעת.\n• הפער בולט במיוחד בתופעות חמורות מ\"רשימת ברייטון\": פי 636 בדלקת שריר הלב, פי 530 בפקקת, פי 220 במוות, פי 231 באוטם שריר הלב, פי 155 בדופק מהיר, פי 90 בקוצר נשימה ופי 133 ביתר לחץ דם.\n• המחבר מציע לראות בחיסונים הגנטיים \"טיפול אימונו־גנטי מונע\", ולסווג את תופעות הלוואי הכרוניות המגבילות כ\"מחלות יתומות יאטרוגניות\" (שנגרמו מהטיפול). הסקירה בוחנת גם תכונות של החיסון שעשויות לגרום לתגובות חיסוניות חריגות.\n\nהערה: אלה טענות של מקולה ושל מחבר הסקירה. ההשוואה מבוססת על דיווחים וולונטריים ל־VAERS, שאינם מוכיחים קשר סיבתי ומושפעים ממודעות ומהיקף הדיווח. גופי בריאות מרכזיים מכירים בסיכון מוגבר ונדיר לדלקת שריר הלב, בעיקר אצל גברים צעירים, אבל לא בסדרי הגודל האלה.",
+   "full_en": "\"Compared to influenza vaccines, this analysis found mRNA products confer 636 and 530-fold increased risks of myopericarditis and thrombosis, respectively. Why is the Bio-Pharmaceutical Complex still pushing this dangerous biotechnology?\"\n\nThe source he cites: Szebeni J. Expanded Spectrum and Increased Incidence of Adverse Events Linked to COVID-19 Genetic Vaccines: New Concepts on Prophylactic Immuno-Gene Therapy, Iatrogenic Orphan Disease, and Platform-Inherent Challenges. Pharmaceutics. 2025; 17(4):450.\n\n(McCullough posted this three times within a few minutes with small wording edits; this is the latest version.)\n\nThe image shows the first page of the review in Pharmaceutics (MDPI), by Janos Szebeni of Semmelweis University, Budapest. From the abstract:\n• The mRNA- and DNA-based \"genetic\" COVID-19 vaccines can induce a broad range of adverse events, with statistics varying significantly depending on timing and data-analysis methods.\n• Focusing on lipid-nanoparticle-enclosed mRNA vaccines, the review traces how conclusions on adverse-event prevalence evolved, from initial underestimation of atypical, severe toxicities to recent claims that COVID-19 vaccination may have contributed to excess deaths in many countries.\n• Of the hundreds of adverse events in Pfizer's pharmacovigilance survey, it categorizes the main symptoms by organ system, with nearly all affected.\n• Using US VAERS data and a global vaccination dataset, it found an average 26-fold increase in adverse events with genetic vaccines versus flu vaccines.\n• The difference is especially large for severe \"Brighton-listed\" events: 636x for myocarditis, 530x thrombosis, 220x death, 231x myocardial infarction, 155x tachycardia, 90x dyspnea and 133x hypertension.\n• The author proposes viewing genetic vaccines as \"prophylactic immuno-gene therapies\" and classifying chronic disabling adverse events as \"iatrogenic orphan diseases\"; the review also examines vaccine characteristics that could cause abnormal immune responses.\n\nNote: these are McCullough's and the review author's claims. The comparison relies on voluntary VAERS reports, which don't establish causation and are affected by awareness and reporting volume. Major health agencies acknowledge a rare increased myocarditis risk, mostly in young men, but not on this scale."
+  },
+  {
+   "id": "musk-445m-midterms-top-donor",
+   "topic": "musk",
+   "date": "2026-10-30T11:30:45Z",
+   "url": "https://x.com/i/trending/2116129480733319476",
+   "source": "X",
+   "he": {
+    "title": "מאסק הזרים יותר מ־445 מיליון דולר לבחירות האמצע",
+    "summary": "לפי דיווחים פדרליים, תרומותיו של מאסק במחזור הבחירות הזה עברו 445 מיליון דולר, רובן דרך America PAC, מה שהופך אותו לתורם היחיד הגדול בפוליטיקה האמריקאית המודרנית. הסנאטורית אליזבת וורן תקפה אותו על כך."
+   },
+   "en": {
+    "title": "Musk has poured over $445 million into the midterms",
+    "summary": "Federal filings show Musk's contributions this cycle have topped $445 million, mostly through America PAC, making him the largest individual donor in modern US politics. Sen. Elizabeth Warren called him out over it."
+   },
+   "full_he": "הסנאטורית אליזבת וורן אמרה זאת ישירות: אילון מאסק הזרים כמעט חצי מיליארד דולר לבחירות האמצע כדי לשמור על השפעתו בדמוקרטיה ששייכת לאנשים הרגילים.\n\n• לפי דיווחים פדרליים, תרומותיו של מאסק עברו 445 מיליון דולר במחזור הזה, רובן דרך America PAC וסופר־PACים רפובליקניים אחרים, עם התמקדות במרוצים מרכזיים כמו המרוץ לסנאט בטקסס בין קן פקסטון לג'יימס טלריקו.\n• הסכום עוקף את מה שהוציא לטובת הרפובליקנים ב־2024 והופך אותו לתורם היחיד הגדול ביותר בפוליטיקה האמריקאית המודרנית.\n• התגובות התחלקו כרגיל: התומכים רואים בזה חופש ביטוי, והמבקרים קוראים לרפורמות כמו ביטול פסק הדין Citizens United, על רקע חשש רחב מהשפעת הכסף הגדול לקראת הבחירות.\n\nזה סיכום של X לפוסטים בנושא, והוא עשוי להשתנות.",
+   "full_en": "Sen. Elizabeth Warren called it out directly: Elon Musk has funneled nearly half a billion dollars into the midterms to safeguard his influence in a democracy that belongs to everyday people.\n\n• Federal filings reveal Musk's contributions have exceeded $445 million this cycle, mostly through America PAC and other Republican super PACs, targeting key races like the Texas Senate matchup between Ken Paxton and James Talarico.\n• This total outpaces his 2024 Republican spending and positions him as the largest individual donor in modern U.S. politics.\n• Reactions split along familiar lines, with supporters viewing it as free speech and critics pushing for reforms like repealing Citizens United amid broader worries over big money's sway as midterms near.\n\nThis is X's summary of posts on the topic and may evolve over time."
+  },
+  {
+   "id": "musk-medical-school-pointless-ai",
+   "topic": "musk",
+   "date": "2026-10-30T10:51:51Z",
+   "url": "https://x.com/i/trending/2116119401800044736",
+   "source": "X",
+   "he": {
+    "title": "מאסק: אין טעם ללמוד רפואה, הבינה המלאכותית תחליף רופאים",
+    "summary": "בקטע שחזר לרשת מהפודקאסט Moonshots טוען מאסק שבתוך ארבע-חמש שנים בינה מלאכותית ורובוטים כמו אופטימוס יעניקו לכל אחד טיפול רפואי טוב יותר משמקבל היום הנשיא. זו תחזית שלו, ומבקרים מטילים ספק בלוח הזמנים."
+   },
+   "en": {
+    "title": "Musk: medical school is pointless as AI reshapes healthcare",
+    "summary": "In a resurfaced clip from the Moonshots podcast, Musk predicts that within four or five years AI and humanoid robots like Optimus will give everyone better care than the president gets today. It's his prediction, and critics question the timeline."
+   },
+   "full_he": "אילון מאסק מדמיין עתיד שבו בינה מלאכותית תעניק טיפול רפואי ברמה הגבוהה ביותר לכל אדם, כך שבתוך ארבע או חמש שנים כבר לא יהיה טעם ללמוד רפואה.\n\n• בקטע שחזר לרשת מהפודקאסט Moonshots, מאסק חוזה שבינה מלאכותית ורובוטים דמויי אדם כמו אופטימוס של טסלה יעניקו בקרוב טיפול רפואי טוב יותר ממה שמקבל היום הנשיא, ויעלו על מנתחים אנושיים בהיקף רחב.\n• לדבריו זה נכון לכל תחומי ההשכלה, וטיפול ברמה עולמית יהיה נגיש בכל העולם בתוך כמה שנים.\n• מבקרים חולקים על לוח הזמנים: הם מזכירים עיכובים מהעבר, מחסור ברופאים אם אף אחד לא יתמחה, וסיכונים כמו עלויות גבוהות או הסתמכות יתר על בינה מלאכותית, ומציינים מכשולים אמיתיים ברגולציה ובטיפול במקרים מורכבים.\n\nהערה: זו תחזית של מאסק, לא עובדה. רופאים ומנתחים עדיין חיוניים, והבינה המלאכותית ברפואה נמצאת בשלבי פיתוח ובדיקה.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Elon Musk envisions a future where AI delivers top-tier medical care to everyone, making medical school obsolete in just four or five years.\n\n• In a resurfaced clip from the Moonshots podcast, Musk predicted that AI and humanoid robots like Tesla's Optimus will soon provide better healthcare than the president gets today, outperforming human surgeons at scale.\n• He argued this applies to all education, with world-class care accessible globally within years.\n• Critics push back on the timeline, citing past delays, doctor shortages if no one trains, and risks like rising costs or over-reliance on AI, while noting real hurdles in regulation and complex care.\n\nNote: this is Musk's prediction, not an established fact. Doctors and surgeons remain essential, and AI in medicine is still being developed and tested.\n\n(A summary of posts on X that may evolve over time.)"
+  },
+  {
    "id": "musk-steak-eggs-vegetarian-ceos",
    "topic": "musk",
    "date": "2026-10-30T10:51:40Z",
@@ -297,6 +331,23 @@
    },
    "full_he": "הערה פשוטה על כך ששלושה ממנכ\"לי הטכנולוגיה הבולטים צמחונים תפסה תשומת לב ברשת, ואילון מאסק הגיב בהתרברבות על ארוחת הבוקר היומית שלו: סטייק, ביצים וקפה.\n\n• ההערה הזכירה את דריו אמודיי מ־Anthropic, סם אלטמן מ־OpenAI וסונדאר פיצ'אי מ־Alphabet כצמחונים: אלטמן צמחוני מילדות, פיצ'אי בוחר בחביתות, ואמודיי אימץ את זה בגיל צעיר יחד עם אחותו.\n• מאסק השיב בשיתוף שגרת ארוחת הבוקר העתירה בחלבון שלו, ואחרים מנו אוכלי בשר כמו מארק צוקרברג, ג'ף בזוס ומאסק עצמו, עם עקיצות על אהבתו של צוקרברג לנאגטס וממים של פפה הצפרדע וטבלאות תזונה.\n• הבדיחות כללו קריקטורות, רשימות של צמחונים היסטוריים ותזכורות לאתגר \"תאכל רק מה שאתה צד\" של צוקרברג.\n\nזה סיכום של X לפוסטים בנושא, והוא עשוי להשתנות.",
    "full_en": "A simple note about three top tech CEOs going vegetarian caught eyes online, leading Elon Musk to boast about his daily steak, eggs, and coffee breakfast.\n\n• The observation highlighted Anthropic's Dario Amodei, OpenAI's Sam Altman, and Alphabet's Sundar Pichai as vegetarians, with Altman vegetarian since childhood, Pichai opting for omelettes, and Amodei adopting it young alongside his sister.\n• Musk countered by sharing his high-protein routine, while others listed meat-eaters like Meta's Mark Zuckerberg, Amazon's Jeff Bezos, and Musk himself, complete with jabs at Zuckerberg's chicken nugget love and memes featuring Pepe the Frog and nutrition charts.\n• Playful banter included cartoons, lists of historical vegetarians, and nods to Zuckerberg's past \"kill what you eat\" challenge.\n\nThis is X's summary of posts on the topic and may evolve over time."
+  },
+  {
+   "id": "tesla-robotaxi-2am-new-features",
+   "topic": "tesla",
+   "date": "2026-10-30T10:45:33Z",
+   "url": "https://x.com/i/trending/2115598446799274122",
+   "source": "X",
+   "he": {
+    "title": "רובוטקסי של טסלה פועל עכשיו עד 2 בלילה, עם פיצ'רים חדשים לנוסעים",
+    "summary": "באוסטין השירות פועל מ-6 בבוקר עד 2 בלילה, עם עדכונים כמו צפייה חיה במצלמות, מצבי רוגע בתא ושיתוף פרטי נסיעה. לפי הסיפור, הצי עבר יותר מ-4 מיליון מיילים אוטונומיים בלי פציעות מדווחות."
+   },
+   "en": {
+    "title": "Tesla Robotaxi extends hours to 2 a.m. with new rider features",
+    "summary": "In Austin the service now runs from 6 a.m. to 2 a.m., with updates like live camera feeds, relaxing cabin modes and shareable trip details. The fleet has driven over 4 million autonomous miles with zero reported injuries, according to the story."
+   },
+   "full_he": "נסיעות הביתה בשעות הלילה המאוחרות נעשו קלות יותר באוסטין: שירות הרובוטקסי של טסלה פועל עכשיו מ-6 בבוקר עד 2 בלילה, עם עדכונים שימושיים כמו שידור חי מהמצלמות ומצבי רוגע בתא הנוסעים.\n\n• טסלה הרחיבה את פעילות הרובוטקסי בשווקים מרכזיים כמו אוסטין.\n• נוספו פיצ'רים כמו שיתוף פרטי הנסיעה, גישה לגרוק ברכבי Model Y וכלי נגישות, למשל משוב רטט (הפטי) שעוזר למצוא את הרכב.\n• הצי עבר כבר יותר מ-4 מיליון מיילים אוטונומיים בלי פציעות מדווחות, בדרך לשירות מסביב לשעון.\n• הנוסעים מעריכים את הזמינות בשעות הלילה אחרי אירועים, אבל יש שמציינים שצריך עוד התאמות, למשל בדלתות של הסייברקאב אחרי תקרית קלה באוסטין.\n\nזהו סיכום של פוסטים ב-X, והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Late-night rides home just got easier in Austin, as Tesla's Robotaxi service stretches from 6 a.m. to 2 a.m. with handy updates like live camera feeds and relaxing cabin modes.\n\n• Tesla expanded Robotaxi operations in key markets like Austin.\n• New features include shareable trip details, Grok access in Model Y vehicles, and accessibility tools like haptic feedback for finding rides.\n• The fleet has now driven over 4 million autonomous miles with zero reported injuries, building toward round-the-clock service.\n• Riders appreciate the late-night availability after events, though some note tweaks are needed for designs like the Cybercab's doors after a minor Austin incident.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "mccullough-population-prone-blood-clots",
@@ -4829,6 +4880,23 @@
    "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
+   "id": "refaeli-anna-zak-tiger-guess",
+   "topic": "refaeli",
+   "date": "2026-10-27T00:00:00+02:00",
+   "url": "https://trari.com/il/story/keshet12-17694/",
+   "source": "Trari · קשת 12",
+   "he": {
+    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
+    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
+   },
+   "en": {
+    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
+    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
+   },
+   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
+   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
+  },
+  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -4861,23 +4929,6 @@
    },
    "full_he": "במחקר, משתתפים שאכלו מזון אולטרה-מעובד צרכו בממוצע 500 קלוריות נוספות ביום ועלו כמעט 2 פאונד (קרוב לקילו) בתוך שבועיים בלבד.\n\nכשאותם משתתפים אכלו מזון מלא ולא מעובד, הם דווקא ירדו כמעט 2 פאונד.\n\nשתי הדיאטות תוכננו כך שיהיו להן פרופילים תזונתיים דומים. המסקנה? להתחיל מאוכל אמיתי. הגוף שלך יודע להבחין בהבדל.\n\nמהתמונה: שני גרפים של שינוי במשקל הגוף (בק\"ג) לאורך 14 ימי דיאטה.\n• \"המשקל שלך על מזון אולטרה-מעובד\": עלייה הדרגתית לכ-1 ק\"ג עד היום השישי בערך, ומשם יציבות סביב 0.9-1 ק\"ג.\n• \"המשקל שלך על מזון מלא\": ירידה הדרגתית, עד כ-0.9- ק\"ג ביום ה-14.",
    "full_en": "In a research study, participants eating ultra-processed foods consumed an average of 500 extra calories per day and gained nearly 2 pounds in just TWO weeks.\n\nWhen those same participants ate whole, unprocessed foods, they lost nearly 2 pounds instead.\n\nBoth diets were designed to have similar nutritional profiles. The takeaway? Start with real food. Your body knows the difference.\n\nFrom the image: two charts of body weight change (kg) over 14 days on the diet.\n• \"Your bodyweight on ultra-processed foods\": a steady rise to about 1 kg by around day 6, then holding near 0.9-1 kg.\n• \"Your bodyweight on whole foods\": a gradual drop to about -0.9 kg by day 14."
-  },
-  {
-   "id": "refaeli-anna-zak-tiger-guess",
-   "topic": "refaeli",
-   "date": "2026-10-27T00:00:00+02:00",
-   "url": "https://trari.com/il/story/keshet12-17694/",
-   "source": "Trari · קשת 12",
-   "he": {
-    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
-    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
-   },
-   "en": {
-    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
-    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
-   },
-   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
-   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
   },
   {
    "id": "johnson-il11-mice",
@@ -5509,6 +5560,23 @@
    "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
   },
   {
+   "id": "refaeli-peretz-tears",
+   "topic": "refaeli",
+   "date": "2026-10-26T07:10:00+02:00",
+   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
+   "source": "mako",
+   "he": {
+    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
+    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
+   },
+   "en": {
+    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
+    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
+   },
+   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
+   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
+  },
+  {
    "id": "spacex-ford-cancels-starlink",
    "topic": "spacex",
    "date": "2026-10-26T05:56:46Z",
@@ -5541,23 +5609,6 @@
    },
    "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
-  },
-  {
-   "id": "refaeli-peretz-tears",
-   "topic": "refaeli",
-   "date": "2026-10-26T07:10:00+02:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
-    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
-   },
-   "en": {
-    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
-    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
-   },
-   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
-   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
   },
   {
    "id": "tesla-semi-nevada-55",
@@ -6992,6 +7043,23 @@
    "full_en": "McCullough Foundation Report:  Determinants of Autism Spectrum Disorder\n\nAmong susceptible infants, routine childhood scheduled vaccinations are a risk factor for the development of autism.  Peer-reviewed, published, conclusive.  URL  McCulloughfnd.\n\nThe quoted post:\nThe autism numbers are shocking...\n\nThe image shows the Journal of Independent Medicine (2026, Vol. 2 No. 3) paper \"Determinants of Autism Spectrum Disorder\", with charts of autism prevalence and vaccine doses by birth year. This is the McCullough Foundation's claim. Major health bodies and large studies have found no link between vaccines and autism."
   },
   {
+   "id": "durov-hidden-signup",
+   "topic": "durov",
+   "date": "2026-10-24T16:58:15+03:00",
+   "url": "https://www.securitylab.ru/news/579212.php",
+   "source": "securitylab.ru",
+   "he": {
+    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
+    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
+   },
+   "en": {
+    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
+    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
+   },
+   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
+   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
+  },
+  {
    "id": "ss-start-business",
    "topic": "starterstory",
    "date": "2026-10-24T16:51:16Z",
@@ -7128,23 +7196,6 @@
    "full_en": "Elon Musk sees real potential in blending Tesla and SpaceX, but he's stepped back from the talks to avoid conflicts. Independent director committees are now digging into what a combination could look like.\n\nTesla and SpaceX have each set up special committees of independent directors to consider deepening their ties, possibly through a business combination that could value the pair at $3.5 trillion to $3.7 trillion. Musk praised the idea for synergies in AI and superintelligence during a SpaceX earnings call, while noting Tesla shareholders would need to approve by majority vote. The companies already share links like SpaceX buying Tesla Megapacks and Tesla holding a valuable SpaceX stake, though no deal is certain amid regulatory and approval hurdles. Supporters highlight AI and energy benefits, while critics raise governance questions."
   },
   {
-   "id": "durov-hidden-signup",
-   "topic": "durov",
-   "date": "2026-10-24T16:58:15+03:00",
-   "url": "https://www.securitylab.ru/news/579212.php",
-   "source": "securitylab.ru",
-   "he": {
-    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
-    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
-   },
-   "en": {
-    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
-    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
-   },
-   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
-   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
-  },
-  {
    "id": "mercola-gum-health",
    "topic": "mercola",
    "date": "2026-10-24T13:00:46Z",
@@ -7213,23 +7264,6 @@
    "full_en": "From Next Level Soul podcast episode 737 (Oct 24, 2026), with cell biologist Dr. Bruce Lipton, author of \"The Biology of Belief\", about his new book \"Beyond Darwin\":\n• Negative beliefs (the nocebo effect) are as powerful as positive ones. A prognosis delivered as certainty can act \"like a prescription\".\n• Two minds: the creative conscious mind and the subconscious, \"a hard drive of programs\". He says we spend about 95% of the day on autopilot, and about 60% of the programs are self-sabotaging.\n• The first seven years of life are a \"download\" of beliefs from family and community. A program from his own childhood kept him from sustaining a relationship for 40 years. With his partner Margaret (32 years together) he agreed never to argue, and instead to gently point out each other's negative programs.\n• His cancer: about two and a half years ago an ENT doctor found cancer in his tongue. Lipton sees it as a sign of stress and of putting off the book he needed to write. He says that as he wrote, the scans went from malignant to benign to no tumor, and he's still rebuilding the tongue muscle. This is his personal account, not medical advice.\n• \"Beyond Darwin\": nature is a garden, not a battlefield. Cooperation, not competition, drives evolution. The book reached the New York Times bestseller list in its first week.\n• His claims: over 90% of the health crisis comes from stress and lifestyle; we eat too much and too often; rice and beans are a cheap, complete staple; keep two months of dry food at home.\n• Reincarnation: the body is a television set and you are the broadcast. When the TV stops, the broadcast continues. \"Earth is heaven.\"\n• Ways to apply it: notice your autopilot; name programs with someone you trust, with love; tend your own backyard first; put knowledge into practice; choose cooperation."
   },
   {
-   "id": "grok-imagine-music",
-   "topic": "grok",
-   "date": "2026-10-24T09:40:26Z",
-   "url": "https://x.com/i/trending/2113927722418479264",
-   "source": "X",
-   "he": {
-    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
-    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
-   },
-   "en": {
-    "title": "Grok Imagine adds music generation",
-    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
-   },
-   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
-   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
-  },
-  {
    "id": "durov-telegram-agent",
    "topic": "durov",
    "date": "2026-10-24T11:03:00+03:00",
@@ -7245,23 +7279,6 @@
    },
    "full_he": "מתוך click-or-die.ru (איגור ז'יז'ין, 24 באוקטובר 2026), \"טלגרם תוסיף את הפיצ'ר הכי חשוב של 2026\":\n• גרסת הבטא 13.1.0 של טלגרם ל־macOS כוללת תשתית לפיצ'ר בשם \"Agent\". הוא יחבר מודלי AI של צד שלישי למסנג'ר, רק עם מפתח API של המשתמש עצמו.\n• בקוד מופיעים חמישה שירותים: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) ו־OpenRouter. בוחרים שירות ומדביקים מפתח, ולכל ספק יש קישור ישיר לדף המפתחות שלו. לפי TBetaLeak, ייתכן שאפשר יהיה גם לבחור מודל ספציפי.\n• רשימת הספקים נטענת מהשרת, ואפשר לחבר כמה מודלים ולעבור ביניהם. קוראים ל־AI עם @agent. עדיין לא ברור איך זה ייראה בצ'אטים.\n• בזמן החיבור, המפתח עובר דרך השרתים של טלגרם כדי לבדוק שהוא עובד. טלגרם שומרת מתי השירות חובר (וגם את ארבעת התווים האחרונים של המפתח), וההגדרות מסונכרנות בין המכשירים.\n• אותה בטא מחזירה את פיד ההמלצות \"בשבילך\", וגם הודעות HTML עם מיני־משחקים ולוח שנה להודעות: מסמנים ימים, והצ'אט מאותם ימים נמחק, גם אצל הצד השני.\n• הפיצ'ר עדיין לא זמין למשתמשים, ואין תאריך השקה.",
    "full_en": "From click-or-die.ru (Igor Zhizhin, Oct 24, 2026), \"Telegram will add the most important feature of 2026\":\n• Telegram 13.1.0 beta for macOS contains groundwork for a feature called \"Agent\". It will connect third-party AI models to the messenger, using the user's own API key only.\n• The code lists five services: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) and OpenRouter. You pick a service and paste a key, and each provider gets a direct link to its key page. According to TBetaLeak, you may also be able to choose a specific model.\n• The provider list loads from the server, and you can connect several AIs and switch between them. You call the AI with @agent. How it will look in chats isn't clear yet.\n• When you connect, the key passes through Telegram's servers to check that it works. Telegram stores when the service was connected (plus the key's last four characters), and settings sync across devices.\n• The same beta brings back the \"For you\" recommendations feed, plus HTML messages with mini-games and a message calendar: mark days and the chat from those days is deleted, on the other side too.\n• The feature isn't available to users yet, and there's no launch date."
-  },
-  {
-   "id": "tesla-app-foldables",
-   "topic": "tesla",
-   "date": "2026-10-24T07:04:34Z",
-   "url": "https://x.com/i/trending/2113841861756371071",
-   "source": "X",
-   "he": {
-    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
-    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
-   },
-   "en": {
-    "title": "Tesla app gets a big-screen layout for foldables and tablets",
-    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
-   },
-   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
-   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "durov-mvd-drugs",
@@ -7281,6 +7298,23 @@
    "full_en": "From the obshestvo24.info report:\n• The head of the Russian Interior Ministry's anti-drug department says Telegram won't cooperate in fighting drug promotion.\n• According to him, the ministry works with social networks and messengers to remove drug propaganda, but Telegram refuses to take part.\n• The site also reports that Pavel Durov is on Rosfinmonitoring's list of terrorists and extremists and is on an international wanted list. According to the agencies, the terrorism-assistance charges are linked to the use of a chatbot and other channels. These are the Russian authorities' claims."
   },
   {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   },
+   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
+   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
+  },
+  {
    "id": "durov-vk-datacenter",
    "topic": "durov",
    "date": "2026-10-24T09:00:00+03:00",
@@ -7296,6 +7330,23 @@
    },
    "full_he": "מתוך sanktpeterburg78.info:\n• פבל דורוב כתב בערוץ הטלגרם שלו בשפה הרוסית שמרכז הנתונים שבנה לפני 15 שנה נפגע בתקיפה.\n• בלשונו: \"מכרתי את החברה לפני 12 שנה. רואים שמרכז הנתונים נבנה טוב, הקירות עבים. אבל לא הגנו עליו.\"\n• בליל 18 באוקטובר תקפו כוחות אוקראינים את מרכז הנתונים של VK במחוז לנינגרד. VK אישרה את הפגיעה ואמרה שהשירותים שלה פועלים כרגיל, אבל משתמשים דיווחו על תקלות ב־VK וב־VK Music.",
    "full_en": "From sanktpeterburg78.info:\n• In his Russian-language Telegram channel, Pavel Durov wrote that the data center he built 15 years ago had been hit in an attack.\n• His words: \"Sold the company 12 years ago. You can see the data center was built well, the walls are thick. But they didn't protect it.\"\n• On the night of October 18, Ukrainian forces attacked VK's data center in the Leningrad region. VK confirmed the strike and said its services were running normally, but users reported outages in VK and VK Music."
+  },
+  {
+   "id": "tesla-app-foldables",
+   "topic": "tesla",
+   "date": "2026-10-24T07:04:34Z",
+   "url": "https://x.com/i/trending/2113841861756371071",
+   "source": "X",
+   "he": {
+    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
+    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
+   },
+   "en": {
+    "title": "Tesla app gets a big-screen layout for foldables and tablets",
+    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
+   },
+   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
+   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "spacex-ukraine-sovereign",
@@ -8010,23 +8061,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "musk-medical-school-pointless-ai",
-   "topic": "musk",
-   "date": "2026-10-30T10:51:51Z",
-   "url": "https://x.com/i/trending/2116119401800044736",
-   "source": "X",
-   "he": {
-    "title": "מאסק: אין טעם ללמוד רפואה, הבינה המלאכותית תחליף רופאים",
-    "summary": "בקטע שחזר לרשת מהפודקאסט Moonshots טוען מאסק שבתוך ארבע-חמש שנים בינה מלאכותית ורובוטים כמו אופטימוס יעניקו לכל אחד טיפול רפואי טוב יותר משמקבל היום הנשיא. זו תחזית שלו, ומבקרים מטילים ספק בלוח הזמנים."
-   },
-   "en": {
-    "title": "Musk: medical school is pointless as AI reshapes healthcare",
-    "summary": "In a resurfaced clip from the Moonshots podcast, Musk predicts that within four or five years AI and humanoid robots like Optimus will give everyone better care than the president gets today. It's his prediction, and critics question the timeline."
-   },
-   "full_he": "אילון מאסק מדמיין עתיד שבו בינה מלאכותית תעניק טיפול רפואי ברמה הגבוהה ביותר לכל אדם, כך שבתוך ארבע או חמש שנים כבר לא יהיה טעם ללמוד רפואה.\n\n• בקטע שחזר לרשת מהפודקאסט Moonshots, מאסק חוזה שבינה מלאכותית ורובוטים דמויי אדם כמו אופטימוס של טסלה יעניקו בקרוב טיפול רפואי טוב יותר ממה שמקבל היום הנשיא, ויעלו על מנתחים אנושיים בהיקף רחב.\n• לדבריו זה נכון לכל תחומי ההשכלה, וטיפול ברמה עולמית יהיה נגיש בכל העולם בתוך כמה שנים.\n• מבקרים חולקים על לוח הזמנים: הם מזכירים עיכובים מהעבר, מחסור ברופאים אם אף אחד לא יתמחה, וסיכונים כמו עלויות גבוהות או הסתמכות יתר על בינה מלאכותית, ומציינים מכשולים אמיתיים ברגולציה ובטיפול במקרים מורכבים.\n\nהערה: זו תחזית של מאסק, לא עובדה. רופאים ומנתחים עדיין חיוניים, והבינה המלאכותית ברפואה נמצאת בשלבי פיתוח ובדיקה.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
-   "full_en": "Elon Musk envisions a future where AI delivers top-tier medical care to everyone, making medical school obsolete in just four or five years.\n\n• In a resurfaced clip from the Moonshots podcast, Musk predicted that AI and humanoid robots like Tesla's Optimus will soon provide better healthcare than the president gets today, outperforming human surgeons at scale.\n• He argued this applies to all education, with world-class care accessible globally within years.\n• Critics push back on the timeline, citing past delays, doctor shortages if no one trains, and risks like rising costs or over-reliance on AI, while noting real hurdles in regulation and complex care.\n\nNote: this is Musk's prediction, not an established fact. Doctors and surgeons remain essential, and AI in medicine is still being developed and tested.\n\n(A summary of posts on X that may evolve over time.)"
   }
  ]
 }
