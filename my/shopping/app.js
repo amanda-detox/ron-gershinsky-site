@@ -639,30 +639,27 @@
     var bk = $("cat-back"); if (catOpen && uid && !bk) { bk = document.createElement("div"); bk.id = "cat-back"; bk.className = "cp-back"; document.body.appendChild(bk); bk.addEventListener("pointerdown", function (e) { e.preventDefault(); closeCats(); }); }
     else if ((!catOpen || !uid) && bk) bk.parentNode.removeChild(bk);
     if (!catOpen || !uid) return;
-    $("cp-title").textContent = t(catEdit ? "editTitle" : "pickTitle");
-    var eb = $("cat-edit"); eb.classList.toggle("on", catEdit); eb.textContent = catEdit ? t("editDone") : "☰";
-    eb.setAttribute("aria-label", catEdit ? t("editDone") : t("editOrder")); eb.title = eb.getAttribute("aria-label");
+    $("cp-title").textContent = t("pickTitle");
     $("cat-new").textContent = t("newCat");
     var list = $("cat-list"), st = list.scrollTop;
     list.classList.toggle("editing", catEdit);
     list.innerHTML = cats().map(function (cc) {
       var nm = esc(catName(cc)), id = esc(cc.cat), on = cc.cat === cur;
       if (!catEdit) return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button></li>";
-      return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '" title="' + esc(t("handle")) + '">☰</span><span class="nm">' + nm + "</span>" +
+      return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '" title="' + esc(t("handle")) + '">☰</span><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button>" +
         '<button type="button" class="cp-act" data-ren="' + id + '" aria-label="' + esc(t("renameOne") + ": " + catName(cc)) + '" title="' + esc(t("renameOne")) + '">✏️</button>' +
         '<button type="button" class="cp-act" data-del="' + id + '" aria-label="' + esc(t("delOne") + ": " + catName(cc)) + '" title="' + esc(t("delOne")) + '">🗑</button></li>';
     }).join("");
     list.scrollTop = st;
   }
-  function openCats() { catOpen = true; catEdit = false; hideHint(); render(); var l = $("cat-list"), b = l && l.querySelector("li.cur"); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} }
+  function openCats() { catOpen = true; catEdit = true; /* rows always show ☰ drag · name (tap = open) · ✏️ · 🗑 */ hideHint(); render(); var l = $("cat-list"), b = l && l.querySelector("li.cur"); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} }
   function closeCats() { if (drag) return; var was = catEdit; catOpen = false; catEdit = false; render(); if (was) syncSoon(); }
   function bootCats() {
     var list = $("cat-list");
     on("cat-btn", "click", function () { if (catOpen) closeCats(); else openCats(); });
-    on("cat-edit", "click", function () { if (drag) return; catEdit = !catEdit; render(); if (!catEdit) syncSoon(); });
     on("cat-new", "click", function () {
-      nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v); if (!id) return; if (!catEdit) { tab = id; lsSet("rg-my-shopping-tab", id); catOpen = false; } changed();
-        if (catEdit) { var b = $("cat-list").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } });
+      nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v); if (!id) return; { tab = id; lsSet("rg-my-shopping-tab", id); catOpen = false; } changed();
+        if (catOpen) { var b = $("cat-list").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } });
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && catOpen && !$("sheet")) closeCats(); });
     list.addEventListener("click", function (e) {

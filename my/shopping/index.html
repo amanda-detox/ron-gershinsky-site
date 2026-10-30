@@ -37,6 +37,7 @@
   .cp-pick .ck { flex: none; color: var(--accent); font-weight: 900; }
   .cp-list li.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
   .cp-list.editing li { padding-inline-end: 4px; }
+  .cp-list.editing .cp-pick { padding: 0 6px; }
   .cp-list.editing .nm { padding-inline-start: 2px; font: 700 17px var(--sans); color: var(--fg); }
   .cp-handle { flex: none; width: 48px; height: 54px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; font-weight: 900; cursor: grab; touch-action: none; }
   .cp-act { flex: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 17px; cursor: pointer; }
@@ -171,7 +172,7 @@
     <div class="catpick" id="catpick">
       <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="catpanel" id="cat-panel" hidden>
-        <div class="cp-head"><span class="cp-title" id="cp-title"></span><button type="button" class="cp-edit" id="cat-edit">☰</button></div>
+        <div class="cp-head"><span class="cp-title" id="cp-title"></span></div>
         <ul class="cp-list" id="cat-list"></ul>
         <button type="button" class="cp-new" id="cat-new"></button>
       </div>
@@ -208,7 +209,7 @@ window.RGMY_STRINGS = {
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
         confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
         pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה",
-        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. ☰ שם: סידור בגרירה, שינוי שם ומחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
+        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
@@ -220,14 +221,14 @@ window.RGMY_STRINGS = {
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
         confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
         pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category",
-        catHint: "Tip: tap the category name to see all categories. ☰ there: drag to reorder, rename and delete. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move or delete.",
+        catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move or delete.",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
         pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=30"></script>
+<script src="app.js?v=31"></script>
 <script src="../../shared/rg-topbar.js?v=2" data-slot=".topbar"></script>
 </body>
 </html>
