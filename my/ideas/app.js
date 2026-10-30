@@ -398,7 +398,7 @@
     var cur = curTab(), cc = cur && catOf(cur);
     pn.textContent = cc ? catName(cc) : t("noCats");
     $("picker").setAttribute("aria-label", t("pickList") + ": " + pn.textContent); $("picker").title = t("pickList");
-    var le = $("list-edit"); le.setAttribute("aria-label", t("editTitle")); le.title = t("editTitle");
+    // (the ☰ list-edit button was removed: rename/delete/reorder live inside the list menu)
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint2"); }
     panels.innerHTML = !cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>";
@@ -546,22 +546,22 @@
   function fillMenu() {
     var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
-    var head = '<div class="pm-head"><span class="pm-title">' + esc(t(pmEdit ? "editTitle" : "pickList")) + '</span><button type="button" class="pm-edit' + (pmEdit ? " on" : "") + '" data-pick="edit" aria-label="' + esc(pmEdit ? t("finish") : t("editTitle")) + '" title="' + esc(pmEdit ? t("finish") : t("editTitle")) + '">' + (pmEdit ? esc(t("editDone")) : "☰") + "</button></div>";
-    var rows = cats().map(function (c) {
+    var head = '<div class="pm-head"><span class="pm-title">' + esc(t("pickList")) + "</span></div>";
+    var rows = cats().map(function (c) { // one row per list: ☰ drag · name (tap = open) · ✏️ rename · ₪ · 🗑 delete
       var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price);
-      if (!pmEdit) return '<li data-cat="' + id + '"><button type="button" class="popt" role="option" data-pick="' + id + '" aria-selected="' + on + '"><span class="pn">' + nm + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button></li>";
-      return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">☰</span><span class="ename">' + nm + "</span>" +
+      return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">☰</span>' +
+        '<button type="button" class="popt pm-name" role="option" data-pick="' + id + '" aria-selected="' + on + '"><span class="pn">' + nm + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
         '<button type="button" class="eic" data-pick="ren:' + id + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
         '<button type="button" class="eic eprice' + (pr ? " on" : "") + '" data-pick="prc:' + id + '" title="' + esc(t("priceToggle")) + '" aria-pressed="' + pr + '" aria-label="' + esc(t("priceToggle") + ": " + catName(c)) + '">₪</button>' +
         '<button type="button" class="eic" data-pick="del:' + id + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
     }).join("");
-    m.innerHTML = head + '<ul class="pm-list' + (pmEdit ? " editing" : "") + '">' + rows + "</ul>" + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
+    m.innerHTML = head + '<ul class="pm-list editing">' + rows + "</ul>" + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
     m.querySelector(".pm-list").scrollTop = st;
   }
-  function openMenu(edit) { hideHint(); pmEdit = !!edit; fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
+  function openMenu() { hideHint(); pmEdit = true; fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
   function menuAction(p) {
     if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
-    if (p === "+") { newList(function (id) { if (pmEdit) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }); return; }
+    if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }); return; }
     var cid = p.slice(4), c = catOf(cid);
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
@@ -668,7 +668,6 @@
 
   function bootLists() {
     $("picker").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen()) closeMenu(); else openMenu(); });
-    $("list-edit").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen() && pmEdit) closeMenu(); else openMenu(true); });
     $("pmenu").addEventListener("click", function (e) {
       e.stopPropagation(); if (noClick) { noClick = false; return; } var b = e.target.closest("[data-pick]"); if (!b) return;
       menuAction(b.getAttribute("data-pick"));

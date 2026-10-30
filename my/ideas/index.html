@@ -193,6 +193,9 @@
   .pm-list { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; -webkit-user-select: none; user-select: none; }
   .pm-list > li { display: flex; }
   .pm-list > li > .popt { flex: 1; min-width: 0; }
+  .pm-list .pm-name { min-height: 52px; padding: 0 8px; }
+  .pm-list .erow { gap: 2px; padding: 0 2px; }
+  .pm-list .eic { width: 40px; }
   .pm-list .erow.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
   .pm-list .pm-h { width: 46px; height: 52px; color: var(--accent); font-size: 22px; font-weight: 900; }
   .eprice.on { background: var(--accent); color: var(--accentink); }
@@ -232,7 +235,6 @@
   <main data-when="in" hidden>
     <div class="listbar" id="listbar">
       <button type="button" class="picker" id="picker" aria-haspopup="listbox" aria-expanded="false" aria-controls="pmenu"><span class="pname" id="picker-name"></span><span class="pchev" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
-      <button type="button" class="iconbtn" id="list-edit">☰</button>
       <div class="pmenu" id="pmenu" role="listbox" hidden></div>
     </div>
     <p class="cathint" id="cathint" hidden></p>
@@ -252,7 +254,7 @@ window.RGMY_STRINGS = {
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", moveR: "▶ הזזה ימינה", moveL: "הזזה שמאלה ◀", delCat: "🗑 מחיקת הקטגוריה",
         confirmDelCat: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות רשימה אחת.", noCats: "אין רשימות. לחץ על השם למעלה ובחר ＋ רשימה חדשה.",
         tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
-        catHint: "טיפ: לחיצה על שם הרשימה פותחת את כל הרשימות ו־＋ רשימה חדשה. ☰ ליד השם: סידור הרשימות, שינוי שם ומחיקה. ☰ ליד פריט: גרירה לסידור. החלקת פריט ימינה: נבחר · שמאלה: העברה לרשימה אחרת או מחיקה.",
+        catHint: "טיפ: לחיצה על שם הרשימה פותחת את כל הרשימות ו־＋ רשימה חדשה. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לסידור. החלקת פריט ימינה: נבחר · שמאלה: העברה לרשימה אחרת או מחיקה.",
         dragNote: "כדי להזיז: לחיצה ארוכה על הקטגוריה וגרירה לכל מקום.", phTitle: "כותרת פריט", emptyList: "הרשימה ריקה. כתוב למעלה את הפריט הראשון.",
         dropHint: "גרור למעלה או למטה ושחרר במקום הרצוי",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
@@ -276,7 +278,7 @@ window.RGMY_STRINGS = {
         rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
         confirmDelCat: "Delete the list “{x}” and everything in it?", lastCat: "At least one list has to stay.", noCats: "No lists. Tap the name above and choose ＋ New list.",
         tabTip: "Tap again: rename and delete · Long-press and drag: move",
-        catHint: "Tip: tap the list name to see all your lists and ＋ New list. ☰ next to the name: arrange, rename and delete lists. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move to another list or delete.",
+        catHint: "Tip: tap the list name to see all your lists and ＋ New list. In each row: ☰ drag to arrange, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move to another list or delete.",
         dragNote: "To move it: long-press the category and drag it anywhere.", phTitle: "Item title", emptyList: "The list is empty. Write the first item above.",
         dropHint: "Drag up or down and release where you want it",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
@@ -300,6 +302,6 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=2" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=19"></script>
+<script src="app.js?v=20"></script>
 </body>
 </html>
