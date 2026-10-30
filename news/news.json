@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T00:46:50+02:00",
+ "updated": "2026-10-30T02:18:24+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,108 @@
   }
  ],
  "items": [
+  {
+   "id": "kraken-binance-clients-safe",
+   "topic": "kraken",
+   "date": "2026-10-29T23:44:11Z",
+   "url": "https://x.com/krakenfx/status/2115952872240099658",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן על המצב בבייננס: הלקוחות שלנו בטוחים",
+    "summary": "על רקע החשד לפריצה גדולה לבייננס, קראקן הודיעה שהיא עוקבת מקרוב אחרי המצב, שלקוחותיה בטוחים ושכל השירותים פועלים כרגיל."
+   },
+   "en": {
+    "title": "Kraken on the Binance situation: our clients remain safe",
+    "summary": "Amid the suspected major hack at Binance, Kraken said it is monitoring the situation closely, that its clients remain safe and that all services are operating normally."
+   },
+   "full_he": "אנחנו ממשיכים לעקוב מקרוב אחרי המצב בבייננס. הלקוחות של קראקן בטוחים, וכל השירותים פועלים כרגיל.\n\nאנחנו כאן כדי לעזור.\n\nרקע (מתוך סיפור החדשות ב־X על המקרה): בשעות הלילה של 29 באוקטובר זוהו יציאות כספים חריגות מהארנקים החמים של בייננס, מה שעורר חשש לפריצת אבטחה גדולה. לפי הסיפור, מייסד בייננס CZ אישר שזה נראה כמו פריצה והבטיח שכספי המשתמשים בטוחים; טת'ר הקפיאה יותר מ־1.567 מיליארד USDT, וסך הנכסים המוקפאים הגיע ל־2.54 מיליארד דולר, ועשוי לעלות. שוקי הקריפטו ירדו, ופוזיציות של יותר מ־600 מיליון דולר חוסלו. הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.\n\nבשרשור אין המשך מצד קראקן.",
+   "full_en": "We continue to monitor the situation at Binance closely. Kraken clients remain safe, and all services are operating normally.\n\nWe are here to help.\n\nBackground (from the X news story on the incident): late on October 29, massive outflows from Binance's hot wallets sparked fears of a huge security breach. According to the story, Binance founder CZ confirmed it looked like a hack while assuring users their funds are safe; Tether froze over $1.567 billion USDT, and total frozen assets hit $2.54 billion, possibly rising. Crypto markets tumbled, liquidating over $600 million in positions. The story is a summary of posts on X and may evolve.\n\nKraken has no further posts in the thread."
+  },
+  {
+   "id": "ss-nicole-4-apps-150k",
+   "topic": "starterstory",
+   "date": "2026-10-29T23:48:43Z",
+   "url": "https://x.com/starter_story/status/2115954011367182538",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "היא בנתה 4 אפליקציות שמכניסות כ־150 אלף דולר בחודש כל אחת",
+    "summary": "Starter Story מציגים את ניקול, שלא מתכנתת ואחראית על עיצוב והפצה: האפליקציות שלה מגיעות ל־400–500 מיליון צפיות בחודש בטיקטוק, אינסטגרם ויוטיוב שורטס, ובשיא היא ניהלה יותר מ־200 יוצרי תוכן במקביל."
+   },
+   "en": {
+    "title": "She built 4 apps doing about $150K/month each",
+    "summary": "Starter Story profiles Nicole, who doesn't code and runs design and distribution: her apps pull 400–500 million monthly views across TikTok, Instagram and YouTube Shorts, and at peak she managed 200+ UGC creators at once."
+   },
+   "full_he": "היא בנתה 4 אפליקציות, שכל אחת מכניסה בערך 150 אלף דולר בחודש!\n\nתכירו את ניקול. היא לא מתכנתת.\nהיא אחראית על העיצוב וההפצה.\n\nהאפליקציות שלה מושכות 400–500 מיליון צפיות בחודש בטיקטוק, באינסטגרם וביוטיוב שורטס. בשיא היא ניהלה יותר מ־200 יוצרי תוכן (UGC) פעילים במקביל.\n\nהשיטה:\n\n• למצוא ערוץ הפצה ויראלי (רדיט, טיקטוק/אינסטגרם בלי פנים, UGC עם פנים, UGC מבוסס AI, פרסום ממומן)\n• לבדוק כל ערוץ במשך 2–3 שבועות ולמצות את מה שעובד\n• לגייס יוצרים גם מבחוץ פנימה (טופסי הרשמה, Sideshift) וגם באופן יזום (עוזרים וירטואליים שפונים למיקרו־משפיענים)\n• לקלוט אותם עם ראיון וקורס יוצרים מלא (יותר מ־50% מהיוצרים שלה הופכים ויראליים)\n• לנהל דרך דיסקורד, דרך היוצרים המובילים או בשיחות דו־שבועיות\n• כשזה עובד – להפוך את זה למערכת עם הפניות ודשבורדים\n\nהכלים שלה: React Native, RevenueCat, Superwall, PostHog, Atio, Sideshift.\n\nהשורה התחתונה: ויראליות היא לא מזל. זה תהליך שאפשר להריץ שוב ושוב, אפליקציה אחרי אפליקציה.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. בשרשור אין המשך מצד Starter Story.",
+   "full_en": "She built 4 apps, doing about $150K/month each!\n\nMeet Nicole. She doesn't code.\nShe runs design + distribution.\n\nHer apps pull 400–500 million monthly views across TikTok, Instagram, and YouTube Shorts. At peak, she was managing 200+ active UGC creators at once.\n\nThe system:\n\n• Find a viral distribution channel (Reddit, faceless TikTok/IG, face UGC, AI UGC, paid)\n• Test each one for 2–3 weeks and milk what works\n• Source creators inbound (application forms, Sideshift) + outbound (VAs to micro-influencers)\n• Onboard with an interview + a full creator course (more than 50% of hers go viral)\n• Manage via Discord, top creators, or bi-weekly calls\n• Systemize with referrals + dashboards once it's working\n\nHer stack: React Native, RevenueCat, Superwall, PostHog, Atio, Sideshift.\n\nThe takeaway: virality isn't luck. It's a process you can run on app after app.\n\nThe rest of the post is a video, so there's no more text to show. Starter Story has no further posts in the thread."
+  },
+  {
+   "id": "musk-exactly-harsher-on-fraudsters",
+   "topic": "musk",
+   "date": "2026-10-29T23:04:59Z",
+   "url": "https://x.com/elonmusk/status/2115943007627141584",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מסכים: צריך להיות הרבה יותר קשוחים כלפי רמאים",
+    "summary": "מאסק הגיב במילה \"בדיוק\" לפוסט של ארתור מקווטרס, שטען שמי שמוכן לגנוב מוכן גם לשקר לגבי הסיבה, ושה\"חמלה כלפי פושעים ורמאים\" גרמה למערב נזק עצום."
+   },
+   "en": {
+    "title": "Musk agrees: be far harsher on fraudsters",
+    "summary": "Musk replied \"Exactly\" to Arthur MacWaters, who argued that someone willing to steal is willing to lie about why, and that \"compassion for criminals and fraudsters\" has done enormous damage to the West."
+   },
+   "full_he": "בדיוק\n\nהפוסט שהוא ציטט (Arthur MacWaters):\nלרוב האנשים יש תפיסה לא מפותחת של איך הרוע חושב.\n\nמי שמוכן לגנוב מוכן גם לשקר לגבי הסיבה שהוא גונב.\n\nאין להם שום נקיפות מצפון לנצל את המודל המחשבתי החלש של החברה שהם הורסים.\n\nכל ה\"פסיופ\" של \"חמלה כלפי פושעים ורמאים\" גרם למערב יותר נזק ממה שאפשר לדמיין.\n\nאנחנו צריכים להיות הרבה, הרבה יותר קשוחים כלפי רמאים וגנבים.\n\n(הפוסט של מקווטרס עצמו ציטט את הפוסט הקודם של מאסק: \"לרמאים תמיד היו זעם מוסרי מופרז והסיפורים הכי קורעי לב, ש… היו שקריים לגמרי.\")\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "Exactly\n\nThe quoted post (Arthur MacWaters):\nMost peoples' theory of mind for evil is under-developed\n\nSomeone who is willing to steal is willing to lie about why they are stealing\n\nThey have no compunction for exploiting the weak mental model of the society they are destroying\n\nThe entire \"compassion for criminals and fraudsters\" psyop has done more damage to the west than you can possibly imagine\n\nWe should be far, far more harsh to fraudsters and theives\n\n(MacWaters' post itself quoted Musk's earlier post: \"The fraudsters always had outsized moral outrage and the most heart-breaking stories that were … totally false.\")\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-msg-trump-rally-entrance",
+   "topic": "musk",
+   "date": "2026-10-30T00:05:49Z",
+   "url": "https://x.com/i/trending/2115956569569407366",
+   "source": "X",
+   "he": {
+    "title": "מאסק התקבל בתשואות בעצרת של טראמפ במדיסון סקוור גארדן",
+    "summary": "מאסק עלה לבמה בעצרת של טראמפ במדיסון סקוור גארדן ב־29 באוקטובר וזכה לקבלת פנים סוערת מהקהל. תומכים כינו זאת \"כניסה של בוס\", ואחרים הזכירו את הפוסט שלו מ־2025 על הקשר של טראמפ לאפשטיין."
+   },
+   "en": {
+    "title": "Musk gets a hero's welcome at Trump's Madison Square Garden rally",
+    "summary": "Musk walked onto the stage at Trump's Madison Square Garden rally on October 29 to a roaring crowd. Fans called it a \"boss entrance,\" while others pointed to his 2025 post questioning Trump's Epstein ties."
+   },
+   "full_he": "אילון מאסק עלה לבמת מדיסון סקוור גארדן בבגדים כהים, והקהל קיבל אותו בשאגות, בנפנופי דגלים ובשלטים. הרגע חשמל את האולם המלא בעצרת של דונלד טראמפ ב־29 באוקטובר 2026.\n\n• הכניסה של מאסק הפכה לאחד משיאי האירוע, ותומכים כינו אותה \"כניסה של בוס\" שמראה את הקשר החזק שלו לתומכי טראמפ.\n• בעצרת נאמו גם דנה וייט ויו\"ר בית הנבחרים מייק ג'ונסון, כתחנה מרכזית לפני הבחירות.\n• לצד התשואות, היו שהזכירו את הפוסט של מאסק מ־2025 שהטיל ספק בקשרים של טראמפ לאפשטיין, כדוגמה לשינוי ביחסים הפומביים ביניהם.\n\nהסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.",
+   "full_en": "Elon Musk strode onto the Madison Square Garden stage in dark clothes, greeted by a roaring crowd waving flags and holding signs. The moment electrified the packed arena at Donald Trump's rally on October 29, 2026.\n\n• Musk's entrance became a highlight of the high-energy event, with supporters calling it a \"boss entrance\" that showed his strong bond with Trump backers.\n• The rally featured speakers like Dana White and House Speaker Mike Johnson as a key stop before votes.\n• While fans cheered, some pointed to Musk's 2025 post questioning Trump's Epstein ties, highlighting their evolved public relationship.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "tesla-board-letter-reelect-musk",
+   "topic": "tesla",
+   "date": "2026-10-30T00:04:40Z",
+   "url": "https://x.com/i/trending/2115956563714126020",
+   "source": "X",
+   "he": {
+    "title": "מועצת טסלה קוראת לבעלי המניות לבחור מחדש במאסק, דנהולם וסטראובל",
+    "summary": "במסמך חדש ל־SEC לקראת האספה השנתית ב־3 בדצמבר, מועצת המנהלים של טסלה מונה הישגים – 10 מיליון רכבים, 100 מיליארד דולר הכנסות ו־1.74 מיליון לקוחות FSD משלמים – וקוראת לבחור מחדש בשלושת הדירקטורים."
+   },
+   "en": {
+    "title": "Tesla board urges shareholders to re-elect Musk, Denholm and Straubel",
+    "summary": "In a new SEC filing ahead of the December 3 annual meeting, Tesla's board lists milestones – 10 million vehicles, $100 billion in revenue, 1.74 million paid FSD customers – and urges re-electing the three directors."
+   },
+   "full_he": "מועצת המנהלים של טסלה פנתה לבעלי המניות במכתב מלא באבני דרך – מ־10 מיליון רכבים שנמסרו ועד 100 מיליארד דולר הכנסות – כדי לשמור על ההנהגה הנוכחית.\n\n• המכתב הוגש ל־SEC לקראת האספה השנתית ב־3 בדצמבר.\n• בין ההישגים: 1.74 מיליון לקוחות FSD משלמים, ו־Model Y כרכב הנמכר ביותר בעולם ב־2025.\n• המועצה מדגישה את הבחירה מחדש של אילון מאסק, רובין דנהולם ו־JB סטראובל כדי להוביל את הפרויקטים הבאים: מתקן Terafab, מפעל ה־Semi, ייצור Optimus והשקת ה־Cybercab.\n• בעלי המניות מצביעים באינטרנט או בדואר על הדירקטורים, על תגמול המנהלים ועל אישור רואה החשבון, ורבים מהם מביעים תמיכה בצוות הנוכחי.\n\nהסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.",
+   "full_en": "Tesla's board is rallying shareholders with a letter packed with milestones, from 10 million vehicles delivered to $100 billion in revenue, all to keep the leadership driving future growth.\n\n• The letter is a new SEC filing ahead of the December 3 annual meeting.\n• Achievements highlighted include 1.74 million paid FSD customers and Model Y as 2025's top-selling vehicle worldwide.\n• The board stresses re-electing Elon Musk, Robyn Denholm and JB Straubel to guide upcoming projects including the Terafab facility, the Semi factory, Optimus production and the Cybercab rollout.\n• Shareholders are voting online or by mail on these directors, executive pay and auditor ratification, with many expressing support for the current team.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "huang-nvidia-nscale-anthropic-credit",
+   "topic": "huang",
+   "date": "2026-10-29T23:33:32Z",
+   "url": "https://x.com/i/trending/2115948146949837116",
+   "source": "X",
+   "he": {
+    "title": "אנבידיה במגעים לגבות את עסקת מרכז הנתונים של Nscale עבור Anthropic",
+    "summary": "אנבידיה של ג'נסון הואנג דנה במתן גיבוי אשראי של מיליארדים לספקית הענן Nscale, כדי לממן הרחבה של 460 מגה־וואט במערב וירג'יניה שתשרת את Anthropic עם שבבי Vera Rubin מסוף 2027."
+   },
+   "en": {
+    "title": "Nvidia in talks to back Nscale's Anthropic data center build",
+    "summary": "Jensen Huang's Nvidia is discussing billions in credit support for AI cloud provider Nscale to fund a 460-megawatt West Virginia expansion serving Anthropic on Vera Rubin GPUs from late 2027."
+   },
+   "full_he": "אנבידיה נכנסת לתמונה כדי לעזור לספקית ענן צעירה להשיג מימון ענק לצורכי ה־AI של Anthropic, מה שעשוי להוסיף מיליארדים להתחייבויות שלה בתשתיות AI.\n\n• אנבידיה דנה בגיבוי אשראי של מיליארדי דולרים ל־Nscale, ספקית ענן AI מתפתחת, למימון הרחבה של מרכז נתונים בהספק 460 מגה־וואט בקמפוס Monarch Compute במערב וירג'יניה.\n• המרכז יפעיל את Anthropic עם שבבי Vera Rubin העתידיים של אנבידיה, החל מסוף 2027, על בסיס החוזה הקיים בהיקף 45 מיליארד דולר מאוגוסט.\n• מדובר בסוג חדש של ערבות שמתמקדת במרכז הנתונים עצמו, כשסך הגיבוי של אנבידיה בפרויקטי AI מגיע לעד 164.5 מיליארד דולר.\n• המגעים עדיין ראשוניים, אבל הם עוזרים לסטארטאפים כמו Nscale להשיג מימון חוב לבנייה ענקית. מניית אנבידיה ירדה מעט במסחר המאוחר ב־29 באוקטובר.\n\nהסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.",
+   "full_en": "Nvidia is stepping up to help a young cloud provider secure massive financing for Anthropic's AI needs, potentially adding billions to its AI infrastructure commitments.\n\n• Nvidia is discussing billions in credit support for Nscale, an emerging AI cloud provider, to fund a 460-megawatt data center expansion at its Monarch Compute Campus in West Virginia.\n• It would power Anthropic's operations using Nvidia's upcoming Vera Rubin GPUs, starting late 2027, building on their existing $45 billion contract from August.\n• The talks mark a new type of guarantee focused on the data center itself, amid Nvidia's total backing in AI projects reaching up to $164.5 billion.\n• While preliminary, the move helps startups like Nscale access debt financing for huge builds, with Nvidia shares dipping slightly after hours on Oct. 29.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "musk-fraudsters-moral-outrage",
    "topic": "musk",
