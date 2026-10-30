@@ -184,10 +184,11 @@
   function dordOf(x) { return typeof x.dord === "number" && isFinite(x.dord) ? x.dord : Infinity; }
   function toggleDone(id) { var x = items[id]; if (!x || x.deleted) return; upd(id, { done: !x.done, dord: null }); }
   function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
-  function add(text, cid, price) {
+  function add(text, cid, price, note) {
     text = clean(text, 200); if (!text) return;
     var id = newId(), at = now(); items[id] = { id: id, text: text, done: false, created: at, at: at };
     if (typeof price === "number" && isFinite(price)) items[id].price = price;
+    note = clean(note || "", 500); if (note) items[id].note = note; // optional short note (like Listify); old items simply have none
     cid = cid || curTab(); if (cid && cid !== "main") items[id].list = cid;
     items[id].ord = topOrd(cid || "main", id);
   }
@@ -206,8 +207,10 @@
   function row(x) {
     var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
-      ? '<input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">'
-      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) + "</span>";
+      ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
+        '<textarea class="enote" data-enote="' + id + '" maxlength="500" rows="2" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + "</textarea></div>"
+      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) +
+        (x.note ? '<span class="note">' + esc(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
     return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
@@ -249,6 +252,8 @@
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
     if (editing && ae && ae.getAttribute && ae.getAttribute("data-edit") === editing) keep = { v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
+    var nk = null; if (editing) { var na = document.querySelector('[data-enote="' + editing + '"]'); if (na) nk = { v: na.value, f: ae === na, s: na.selectionStart, e: na.selectionEnd }; }
+    if (editing && !keep) { var ia = document.querySelector('[data-edit="' + editing + '"]'); if (ia) keep = { v: ia.value, s: ia.value.length, e: ia.value.length, nofocus: !!(nk && nk.f) }; }
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
     rendering = true; // replacing the rows blurs an open edit box; that blur must not count as "done editing"
     $("active").innerHTML = act.map(row).join("");
@@ -260,7 +265,10 @@
     $("empty").hidden = !!(act.length || done.length);
     if (editing) {
       var inp = document.querySelector('[data-edit="' + editing + '"]');
-      if (inp && !pk) { if (keep) { inp.value = keep.v; } inp.focus(); try { if (keep) inp.setSelectionRange(keep.s, keep.e); } catch (e) {} }
+      var nta = document.querySelector('[data-enote="' + editing + '"]');
+      if (nta && nk) nta.value = nk.v;
+      if (nta && nk && nk.f && !pk) { if (inp && keep) inp.value = keep.v; nta.focus(); try { nta.setSelectionRange(nk.s, nk.e); } catch (e) {} }
+      else if (inp && !pk) { if (keep) { inp.value = keep.v; } inp.focus(); try { if (keep && !keep.nofocus) inp.setSelectionRange(keep.s, keep.e); } catch (e) {} }
     }
     if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; if (pk.bad) pi.classList.add("bad"); pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
     rendering = false;
@@ -269,10 +277,13 @@
   function commitEdit(inp, cancel) {
     var id = inp.getAttribute("data-edit"); if (editing !== id) return;
     editing = null;
-    var v = clean(inp.value, 200), x = items[id];
+    var v = clean(inp.value, 200), x = items[id], na = document.querySelector('[data-enote="' + id + '"]');
     if (!cancel && x && !x.deleted) {
       if (!v) { del(id); changed(); return; }
-      if (v !== x.text) { upd(id, { text: v }); changed(); return; }
+      var patch = {}, any = false;
+      if (v !== x.text) { patch.text = v; any = true; }
+      if (na) { var nt = clean(na.value, 500); if (nt !== (x.note || "")) { patch.note = nt || null; any = true; } } // empty note = removed
+      if (any) { upd(id, patch); changed(); return; }
     }
     render();
   }
@@ -553,10 +564,10 @@
       canStart: function () { return !editing; },
       onDrop: function (ids) { setItemOrder(ids, "dord"); changed(); } });
     on("add-form", "submit", function (e) {
-      e.preventDefault(); var i = $("add-input"), pi = $("add-price"), pr = parsePrice(pi.value);
+      e.preventDefault(); var i = $("add-input"), pi = $("add-price"), ni = $("add-note"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
       if (!i.value.trim()) { i.focus(); return; }
-      add(i.value, null, pr); i.value = ""; pi.value = ""; changed(); i.focus();
+      add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; changed(); i.focus();
     });
     on("suggest", "click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
     var main = document.querySelector("main");
@@ -575,6 +586,12 @@
         else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
         return;
       }
+      if (e.target.getAttribute("data-enote")) {
+        var tb = e.target.closest(".ebox").querySelector("[data-edit]");
+        if (e.key === "Escape") { e.preventDefault(); commitEdit(tb, true); }
+        else if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); commitEdit(tb); }
+        return;
+      }
       if (e.target.getAttribute("data-edit")) {
         if (e.key === "Enter") { e.preventDefault(); commitEdit(e.target); }
         else if (e.key === "Escape") { e.preventDefault(); commitEdit(e.target, true); }
@@ -583,7 +600,10 @@
     main.addEventListener("focusout", function (e) {
       if (rendering || !e.target.getAttribute) return;
       if (e.target.getAttribute("data-price")) { commitPrice(e.target); return; }
-      if (e.target.getAttribute("data-edit")) commitEdit(e.target);
+      if (e.target.getAttribute("data-edit") || e.target.getAttribute("data-enote")) {
+        var box = e.target.closest(".ebox"); if (box && e.relatedTarget && box.contains(e.relatedTarget)) return; // moving between title and note
+        var ti = box && box.querySelector("[data-edit]"); if (ti) commitEdit(ti);
+      }
     });
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
   }

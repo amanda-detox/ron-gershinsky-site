@@ -73,6 +73,12 @@
   .list.dragging li:not(.lifted) { transition: transform .16s ease; }
   .listcard:has(.list.dragging) { overflow: visible; }
   body.sorting { -webkit-user-select: none; user-select: none; cursor: grabbing; }
+  .addform input.note-in { grid-column: 1 / -1; height: 44px; font-size: 15px; }
+  .ebox { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
+  .enote { width: 100%; min-width: 0; box-sizing: border-box; min-height: 56px; padding: 8px 10px; border-radius: 10px; border: 2px solid var(--line2); background: var(--bg); color: var(--fg); font: inherit; font-size: 15px; line-height: 1.4; resize: vertical; outline: none; }
+  .enote:focus { border-color: var(--accent); }
+  .txt .note { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  .txt .addnote { display: block; margin-top: 2px; color: var(--faint); font-size: 12.5px; font-weight: 600; }
   .addform input.price-in { padding: 0 6px; text-align: center; direction: ltr; font-size: 16px; }
   @media (max-width: 480px) { /* phones: the name gets the whole first row, price + add below it */
     .addform { grid-template-columns: 96px minmax(0, 1fr); }
@@ -160,6 +166,7 @@
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
       <input id="add-price" class="price-in" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" data-i18n-ph="pricePh" data-i18n-label="priceLabel">
       <button type="submit" data-i18n="add"></button>
+      <input id="add-note" class="note-in" type="text" maxlength="500" enterkeyhint="done" data-i18n-ph="phNote" data-i18n-label="note">
     </form>
     <div class="status" id="status" role="status" aria-live="polite"></div>
     <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
@@ -177,7 +184,7 @@
 <script>
 window.RGMY_SW = "../sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "קניותיפיי", title: "קניותיפיי", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף",
+  he: { doc: "קניותיפיי", title: "קניותיפיי", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים",
@@ -189,7 +196,7 @@ window.RGMY_STRINGS = {
         catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. ☰ שם: סידור בגרירה, שינוי שם ומחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
-  en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add",
+  en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items",
@@ -205,7 +212,7 @@ window.RGMY_STRINGS = {
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 <script src="../../shared/rg-topbar.js?v=2" data-slot=".topbar"></script>
 </body>
 </html>
