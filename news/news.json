@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T17:56:00+02:00",
+ "updated": "2026-10-30T18:47:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-i-miss-larry-page",
+   "topic": "musk",
+   "date": "2026-10-30T16:11:39Z",
+   "url": "https://x.com/elonmusk/status/2116201375613018416",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"אני מתגעגע ללארי פייג'\"",
+    "summary": "מאסק מצטט פוסט של ‎@Dogetothemoon על סיפור שסיפר לו סטיב ג'רווטסון: לארי פייג' אמר פעם שאם ידרוס אותו אוטובוס, הוא היה משאיר את כל כספו לאילון מאסק. מאסק מגיב בקצרה: \"אני מתגעגע ללארי פייג'\"."
+   },
+   "en": {
+    "title": "Musk: \"I miss Larry Page\"",
+    "summary": "Musk quotes a post by @Dogetothemoon recounting Steve Jurvetson's story that Larry Page once said that if he were hit by a bus, he'd leave all his money to Elon Musk. Musk's reply: \"I miss Larry Page.\""
+   },
+   "full_he": "אני מתגעגע ללארי פייג'\n\nהפוסט שהוא ציטט (‎@Dogetothemoon):\n\nסטיב ג'רווטסון סיפר פעם לאילון מאסק סיפור שהוא מעולם לא שמע.\n\nבאירוע של גוגל, לארי פייג' פנה פתאום לג'רווטסון ותהה בקול כמה כסף יש לו. אחרי שהזכיר סכום, פייג' אמר שאם ידרוס אותו אוטובוס באותו יום, הוא צריך להשאיר את כולו לאילון מאסק.\n\nאילון שאל אם הוא באמת אמר את זה. ג'רווטסון אישר, והתבדח שמיד רצה לקבל את זה בכתב.\n\nאילון אמר שהוא אוהב את זה, וקרא לפייג' חבר טוב. הוא ציין שהם מכירים בערך מ־1997, עוד לפני שפייג' קיבל מימון הון סיכון.\n\nג'רווטסון הוסיף שפייג' האמין שתאגיד שרודף מטרות שתואמות את האינטרסים שלו – כמו מעבר מנפט ויישוב כוכבי לכת אחרים – ישיג הרבה יותר מאשר אם הכסף יינתן לעמותה. פייג' הצטער שהוא לא יכול לעשות יותר מזה בעצמו.\n\nהפוסט המצוטט כולל גם סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "I miss Larry Page\n\nThe quoted post (@Dogetothemoon):\n\nSteve Jurvetson once told Elon Musk a story he had never heard before.\n\nAt a Google event, Larry Page turned to Jurvetson out of the blue and wondered aloud how much money he had. After mentioning a number, Page said that if he were hit by a bus that day, he should leave all of it to Elon Musk.\n\nElon asked if he had really said that. Jurvetson confirmed it and joked that he immediately wanted to get it in writing.\n\nElon said he loved that and called Page a good friend. He noted they had known each other since around 1997, before Page received venture funding.\n\nJurvetson added that Page believed a corporation pursuing goals aligned with his own interests—such as moving away from oil and colonizing other planets—would accomplish far more than giving the money to a nonprofit. Page wished he could do more of that himself.\n\nThe quoted post also includes a video, so there's no more text to show."
+  },
   {
    "id": "musk-yes-fdr-court-packing-firewall",
    "topic": "musk",
