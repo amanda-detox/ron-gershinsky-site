@@ -370,7 +370,7 @@
       '<button type="button" class="bm" data-act="' + (sv ? "unsave" : "save") + '" aria-pressed="' + (sv ? "true" : "false") + '" aria-label="' + esc(sv ? t().unsave : t().save) + '" title="' + esc(sv ? t().unsave : t().save) + '">' + (sv ? BMKF : BMK) + "</button>" +
       podBadge(it) + "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
       '</p><div class="meta"><span class="when">' + (tl ? '<b class="tp">' + esc(tl) + "</b> · " : "") + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
-      '</span><span class="acts">' + (inSaved ? "" : '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>") +
+      '</span><span class="acts">' + '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>" +
       '<button type="button" class="sh" data-act="share" aria-label="' + esc(t().shareAria) + '" title="' + esc(t().shareAria) + '">' + SHARE + '<span>' + esc(t().share) + "</span></button>" +
       '<button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
   }
@@ -394,7 +394,7 @@
       var its = data.items.filter(function (it) { return it.topic === tp.id && (showRead || !isRead(it.id)); })
         .sort(function (a, b) { return new Date(b.date) - new Date(a.date); });
       its.forEach(function (it) { if (isRead(it.id)) readShown++; else unreadShown++; });
-      if (its.length) html += '<section class="group"><h2>' + esc(tp[lang] || tp.he) + "</h2>" + its.map(card).join("") + "</section>";
+      if (its.length) html += '<section class="group"><h2>' + esc(tp[lang] || tp.he) + "</h2>" + its.map(function (it) { return card(it, false); }).join("") + "</section>";
     });
     // read items in the current topic (for the "show read (N)" toggle)
     var readHere = data.items.filter(function (it) { return isRead(it.id) && (topic === "all" || it.topic === topic); }).length;
@@ -432,7 +432,7 @@
       else { renderChips(); renderFeed(); }
       return;
     }
-    if (act === "read" && c) { markRead([c.getAttribute("data-id")]); afterMark([c]); }
+    if (act === "read" && c) { markRead([c.getAttribute("data-id")]); if (topic === SAVED_VIEW) { renderChips(); renderFeed(); } else afterMark([c]); }
     else if (act === "unread" && c) { markUnread(c.getAttribute("data-id")); renderChips(); renderFeed(); }
     else if (act === "all") {
       var cs = Array.prototype.slice.call($("feed").querySelectorAll(".card:not(.isread)"));
