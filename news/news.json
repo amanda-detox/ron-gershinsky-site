@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T07:51:24+02:00",
+ "updated": "2026-10-30T08:37:07+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-report-voter-fraud-america-gov",
+   "topic": "musk",
+   "date": "2026-10-30T06:07:24Z",
+   "url": "https://x.com/elonmusk/status/2116049311163122143",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"דווחו לממשלה על הונאות בבחירות\"",
+    "summary": "מאסק קרא לדווח לממשלה על הונאות בבחירות, וציטט את אדוארד קוריסטין, שכתב שאפשר לדווח עליהן דרך האתר הממשלתי America.gov."
+   },
+   "en": {
+    "title": "Musk: \"Report voter fraud to the government\"",
+    "summary": "Musk urged people to report voter fraud to the government, quoting Edward Coristine, who wrote that it can be reported through the America.gov site."
+   },
+   "full_he": "\"דווחו לממשלה על הונאות בבחירות\"\n\nהפוסט שהוא ציטט (Edward Coristine, @as400495):\n\nאפשר לדווח על הונאות בבחירות דרך הפלטפורמה America.gov.\n\nהפוסט של קוריסטין ציטט את National Design Studio (@ndstudio), שכתבו: \"עכשיו ב־america.gov/fraud: דווחו על הונאות בבחירות!\" (העמוד שייך לכוח המשימה הפדרלי למיגור הונאות). הפוסט הזה ציטט בעצמו פוסט של הבית הלבן עם ציטוט של הנשיא טראמפ: \"כל מי שידווח על הונאה בבחירות הקודמות, או בבחירות האמצע הקרובות של 2026, יקבל מיליון דולר עם מעצרם והרשעתם של מי שיצרו את ההונאה!\"\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "\"Report voter fraud to the government\"\n\nThe quoted post (Edward Coristine, @as400495):\n\nYou can report voter fraud through the America.gov platform.\n\nCoristine's post quoted National Design Studio (@ndstudio): \"Now on america.gov/fraud: report voter fraud!\" (the page belongs to the federal Task Force to Eliminate Fraud). That post in turn quoted a White House post with a quote from President Trump: \"Anybody reporting Voter Fraud in the past Elections, or the upcoming 2026 Midterm Election, will be paid $1,000,000 upon the arrest and conviction of those that created the Fraud!\"\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "grok-musk-48-not-disappointment",
+   "topic": "grok",
+   "date": "2026-10-30T05:17:18Z",
+   "url": "https://x.com/elonmusk/status/2116036703538606301",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Grok 4.8 מתעכב, אבל \"לא יאכזב\"",
+    "summary": "מאסק הודה ש־Grok 4.8 לוקח יותר זמן מהצפוי, אבל הבטיח שהוא לא יאכזב. לדבריו, SpaceXAI לא מכוונים לציונים במבחני ביצועים, אלא לכך שגרוק יהיה שימושי מאוד בפועל."
+   },
+   "en": {
+    "title": "Musk: Grok 4.8 is late, but \"will not be a disappointment\"",
+    "summary": "Musk admitted Grok 4.8 has taken longer than expected but promised it won't disappoint. He said SpaceXAI isn't optimizing for benchmarks but for making Grok incredibly useful in practice."
+   },
+   "full_he": "(תגובה ל־@techdevnotes)\n\nאני יודע שזה לוקח יותר זמן מהצפוי, אבל Grok 4.8 לא יאכזב.\n\nאנחנו לא מכוונים למבחני ביצועים (בנצ'מרקים), ובאמת לא אכפת לי איך גרוק מצליח בהם, אבל הוא יהיה שימושי להפליא.\n\nהפוסט שהוא הגיב עליו (Tech Dev Notes, @techdevnotes): \"חוץ מ־Voice, ל־SpaceXSI כמעט אין מודלים מהשורה הראשונה (SOTA)…\"\n\nהרקע לפי הסיכום של X: ‏Grok 4.7 יצא בספטמבר וזכה לשבחים על תכנות, משימות ידע וטיפול בהקשרים ארוכים יותר באותו מחיר. המעריצים הגיבו באופטימיות ובממים, ורבים רואים בזה מעבר נבון מהייפ סביב מבחני ביצועים לשימושיות אמיתית.",
+   "full_en": "(Reply to @techdevnotes)\n\nI know it's taken longer than expected, but Grok 4.8 will not be a disappointment.\n\nWe're not optimizing for benchmarks and I really don't care how Grok does on those, but it will be incredibly useful.\n\nThe post he replied to (Tech Dev Notes, @techdevnotes): \"Apart from Voice, SpaceXSI barely has any SOTA models …\"\n\nBackground, per X's story summary: Grok 4.7 was released in September and was praised for coding, knowledge tasks and longer handling at the same price. Fans reacted with optimism and memes, with many seeing it as a smart pivot from benchmark hype to real-world usefulness."
+  },
   {
    "id": "musk-voted-early-texas",
    "topic": "musk",
