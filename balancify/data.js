@@ -124,6 +124,43 @@ window.BAL_DATA = {
             info: { he: "אימון על אופני כושר ביתיים תוך נשימה ממסכה שמחוברת למחולל חמצן או למאגר חמצן. השיטה מכונה לפעמים EWOT.", en: "Riding a home exercise bike while breathing from a mask connected to an oxygen concentrator or reservoir. Sometimes called EWOT." } }
         ] }
       ]
+    },
+    {
+      id: "power", icon: "💎", style: "power",
+      title: { he: "הדמיות עוצמה", en: "Power visualizations" },
+      items: [
+        {"he": "מתקנ\"ת"},
+        {"he": "איש פלוטוניום"},
+        {"he": "רוח"},
+        {"he": "מקדש"},
+        {"he": "מגדל"},
+        {"he": "אש"},
+        {"he": "איש הברזל (אקסמן)"},
+        {"he": "זכוכית (אני ואו הפלאשים עצמם)"},
+        {"he": "פסל מוזהב של בודהא", "note": "לא עבד מספר פעמים, כן עבד מספר פעמים"},
+        {"he": "קריסטל רב מימדי", "note": "בעיקר לא עבד"},
+        {"he": "הר לאבה שחור", "note": "בעיקר לא עבד"},
+        {"he": "רוח", "note": "עובד לפעמים, הרבה פעמים לא"},
+        {"he": "אני עשוי מחשמל", "note": "כנ\"ל"},
+        {"he": "אני עשוי מסלע", "note": "כנ\"ל"},
+        {"he": "אני עשוי מאבן", "note": "כנ\"ל"},
+        {"he": "אני עשוי מספינה חסינה איירון קלאד"},
+        {"he": "מגן פלוטוניום", "note": "בעיקר לא עובד"},
+        {"he": "אדמה חרוכה", "note": "בעיקר לא עובד"},
+        {"he": "הר", "note": "בעיקר לא עובד"},
+        {"he": "אור"},
+        {"he": "גלי פלזמה", "note": "בעיקר לא עובד"},
+        {"he": "רולקייג'"},
+        {"he": "גוף קריסטל לבן", "note": "בעיקר לא עובד"}
+      ],
+      questions: {
+        title: { he: "שאלות מחקר", en: "Research questions" },
+        items: [
+          { he: "מה אני מנסה להשיג?", en: "What am I trying to achieve?" },
+          { he: "מה נחשב ל\"עובד\" ו\"לא עובד\"?", en: "What counts as \"working\" and \"not working\"?" },
+          { he: "אם זה הקלה והרגעה עצמית אולי באמת עדיף מתקנ\"ת ותה ומקלחת וקירור ואוורור וכו׳", en: "If it is relief and self-soothing, maybe it really is better to use the toolkit, tea, a shower, cooling down, fresh air, etc." }
+        ]
+      }
     }
   ],
   defaultBg: "sunset",

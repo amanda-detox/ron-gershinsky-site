@@ -135,3 +135,23 @@ html[data-theme=light] .ichk input:checked + .box{color:#fff}
 .hdl{flex:none;display:grid;place-items:center;width:40px;border-radius:12px;font-size:20px;color:var(--mute);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
 .drow.lifted .item{border-color:var(--on);box-shadow:0 6px 18px rgba(0,0,0,.25)}
 .items.dragging .hdl{cursor:grabbing}
+
+/* הדמיות עוצמה */
+.prow{position:relative;display:flex;gap:6px;align-items:stretch;overflow:hidden;border-radius:16px}
+.prow .pitem{flex:1;min-width:0;position:relative;z-index:1;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:default}
+.prow .sw{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding:0 18px;font-size:20px;opacity:0;transition:opacity .12s;border-radius:16px}
+.prow .sw-del{left:0;right:0;justify-content:flex-start;background:rgba(20,40,110,.85)}
+.prow .sw-mv{left:0;right:0;justify-content:flex-end;background:rgba(180,140,40,.85)}
+.prow.sdel .sw-del,.prow.smv .sw-mv{opacity:1}
+.prow.lifted .pitem{border-color:var(--on);box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.pempty{padding:14px;color:var(--mute);text-align:center}
+.padd{display:flex;gap:8px;margin-top:14px}
+.padd input{flex:1;min-width:0;padding:12px 14px;border-radius:14px;border:1px solid var(--line2);background:var(--card2);color:var(--ink);font:500 16px var(--sans)}
+.questions{margin-top:20px;padding:16px 18px;border-radius:18px;border:1px solid rgba(212,175,55,.55);background:var(--card2)}
+.questions h3{margin:0 0 8px;font-size:17px;color:#e6c15a}
+html[data-theme=light] .questions h3{color:#8a6a10}
+.questions ul{margin:0;padding-inline-start:20px;line-height:1.6}
+.mv-grid{display:grid;gap:10px}
+.mvopt{padding:14px 16px;font-size:17px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;display:flex;gap:14px;align-items:center;max-width:92vw;padding:12px 16px;border-radius:14px;background:#1b1f4a;color:#fff;border:1px solid rgba(212,175,55,.6);box-shadow:0 8px 24px rgba(0,0,0,.35);font:600 15px var(--sans)}
+.toast button{background:none;border:0;color:#e6c15a;font:800 15px var(--sans);cursor:pointer}
