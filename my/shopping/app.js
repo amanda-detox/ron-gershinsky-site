@@ -258,7 +258,10 @@
     { cat: "tr1", mark: "treat1", title: "treatments", items: ["medical pedicure", "reflexology", "hydrogen peroxide bath", "sea salt bath"] },
     { cat: "of1", mark: "office1", title: "משרד", items: ["chair libernovo", "chair heavyduty", "desk manual adjustable", "notebooks", "laptop screen wiper", "macbook", "iphone", "chargers", "safes", "different color keys + digital locks", "hemp notebooks", "pens", "faraday sleeves and bags", "wifi mobile and non mobile", "playstation", "movemate", "envelopes", "ohmni block wifi", "diffuser", "cigars", "candles", "freedom bulbs", "lapis lazulai", "emerald", "karnelien", "librem phone", "unplugged phone"] },
     { cat: "bk1", mark: "books1", title: "ספרים", items: [{"t": "As Long as Space Endures: Essays on the Kalacakra Tantra in Honor of H.H. the Dalai Lama", "u": "https://www.shambhala.com/browse-categories/as-long-as-space-endures-14905.html"}, {"t": "Jigme Lingpa", "u": "https://www.shambhala.com/authors/g-n/jigme-lingpa.html"}, {"t": "Shambhala Publications: Books, Audio, & More", "u": "https://www.shambhala.com"}, {"t": "Karmapas", "u": "https://www.shambhala.com/topic/karmapas/"}, {"t": "Nyingma: Mahayoga, Anuyoga, and Atiyoga, Part Two: Essential Teachings of the Eight Practice Lineages of Tibet, Volume 2 (The Treasury of Precious Instructions)", "u": "https://www.shambhala.com/browse-categories/nyingma-mahayoga-anuyoga-and-atiyoga-part-two.html"}, {"t": "Seven Line Prayer to Guru Rinpoche (Padmasambhava)", "u": "https://www.shambhala.com/topic/seven-line-prayer/"}, {"t": "Shambhala Pocket Library Series", "u": "https://www.shambhala.com/browse-categories/pocket-library.html"}, {"t": "Secret Teachings of Padmasambhava: Essential Instructions on Mastering the Energies of Life", "u": "https://www.shambhala.com/browse-categories/secret-teachings-of-padmasambhava-1311.html"}, {"t": "The Thirteen Core Indian Buddhist Texts: A Reader's Guide", "u": "https://www.shambhala.com/the-thirteen-core-indian-texts-a-readers-guide/"}, {"t": "The Precious Treasury of the Dharmadhatu", "u": "https://www.shambhala.com/browse-categories/the-precious-treasury-of-the-dharmadhatu.html"}, {"t": "Essential Buddhist Texts to Read", "u": "https://www.shambhala.com/topic/foundational-texts/"}, {"t": "Karmapas: Recognizing a Tulku", "u": "https://www.shambhala.com/snowlion_articles/karmapas-tulku-kagyu-lineage/"}, {"t": "Terma / Treasure Texts", "u": "https://www.shambhala.com/topic/terma-treasure-texts/"}, {"t": "Dream Yoga and the Practice of Natural Light", "u": "https://www.shambhala.com/snowlion_articles/dream-yoga-and-the-practice-of-natural-light-3/"}, "vimalamitra?", {"t": "Buddhist Topics", "u": "https://www.shambhala.com/buddhist-topics/"}, {"t": "The Nyingma School of Tibetan Buddhism", "u": "https://www.shambhala.com/topic/nyingma-tradition/"}] },
-    { cat: "fu1", mark: "furniture1", title: "furniture", items: ["fashion cabinet", "squeegee broom", "supplements cabinet", "fitness and movement cabinet", "laundry baskets", "bed", "pillows", "blankets", "sheets", "pillow cases", "flooring", "wall paint", "air ventilator", "new ac", "fan", "alarm clocks", "lighting", "posters", "futon mat", "moon pillow"] }
+    { cat: "fu1", mark: "furniture1", title: "furniture", items: ["fashion cabinet", "squeegee broom", "supplements cabinet", "fitness and movement cabinet", "laundry baskets", "bed", "pillows", "blankets", "sheets", "pillow cases", "flooring", "wall paint", "air ventilator", "new ac", "fan", "alarm clocks", "lighting", "posters", "futon mat", "moon pillow"] },
+    { cat: "sm1", mark: "smoke1", title: "עישונים", items: ["organic tobacco 300 at abudi tobacco", "cigarettes for 1600 for 4 packs"] },
+    { cat: "ap1", mark: "apps1", title: "אפליקציות", items: ["grok 300", "proton 50 or 500", "spotify 30", "rav kav 170", "numero 40 NIS per month", "sms line 20 NIS"] },
+    { cat: "pl1", mark: "pills1", title: "כדורים", items: ["relaxine", "nerven", "region", "lorivan", "paxxet", "seraquel", "trazodil"] }
   ];
   function seedOne(S) {
     if (!uid || catsMap["m:" + S.mark] || lsGet("rg-my-shopping-" + S.mark + ":" + uid) || !isRon()) return false;
@@ -276,7 +279,23 @@
     lsSet("rg-my-shopping-" + S.mark + ":" + uid, "1");
     return true;
   }
-  function seedMore() { var any = false; MORE_SEEDS.forEach(function (S) { if (seedOne(S)) any = true; }); return any; }
+  /* one-time append "copper jewelry" (id tb1-10) to list "tbd" (Ron, 2026-10-30), marker "m:tbd2", local flag rg-my-shopping-tbd2:<user id>. */
+  function seedTbd2() {
+    if (!uid || catsMap["m:tbd2"] || lsGet("rg-my-shopping-tbd2:" + uid) || !isRon()) return false;
+    if (!catsMap["c:tb1"] || catsMap["c:tb1"].deleted) return false;
+    var T = "copper jewelry", k, has = !!items["tb1-10"], mx = 0;
+    for (k in items) { var it = items[k]; if (it && it.list === "tb1") { if (String(it.text || "").trim().toLowerCase() === T && !it.deleted) has = true; if (it.ord > mx) mx = it.ord; } }
+    if (!has) {
+      try { localStorage.setItem("rg-my-shopping-tbd2-bak:" + uid, JSON.stringify({ t: Date.now(), items: items, cats: catsMap })); } catch (e) { return false; }
+      var ni = {}, a = now(); for (k in items) ni[k] = items[k];
+      ni["tb1-10"] = { id: "tb1-10", text: T, done: false, list: "tb1", ord: mx + 1000, created: a, at: a };
+      items = ni;
+    }
+    putCat({ id: "m:tbd2", type: "meta", done: 1, added: has ? 0 : 1, at: now() });
+    lsSet("rg-my-shopping-tbd2:" + uid, "1");
+    return true;
+  }
+  function seedMore() { var any = false; MORE_SEEDS.forEach(function (S) { if (seedOne(S)) any = true; }); if (seedTbd2()) any = true; return any; }
   function sync() {
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
