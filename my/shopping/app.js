@@ -256,7 +256,9 @@
     { cat: "sv1", mark: "savings1", title: "חסכונות", items: ["cash", "bit", "amazon", "iherb", "grok", "airbnb", "stocks", "crypto", "foreign currency cash", "cash for bitcoin"] },
     { cat: "tb1", mark: "tbd1", title: "tbd", items: ["Bee pollen (94 vitamins and minerals, 1 tbsp per day)", "netra tarpana", "natural eye health fixes", "apple of eve https://www.theworldsgreatestrejuvenation.com/products/apple-of-eve", "colloidal gold removes nanotech by Dr. David Nixon", "trip to countries where sex work is legal and promoted", "sex toys", "peterson academy $500 for 1 year", "udacity 3100ils per program: agentic ai, agentic ai for life scienses"] },
     { cat: "tr1", mark: "treat1", title: "treatments", items: ["medical pedicure", "reflexology", "hydrogen peroxide bath", "sea salt bath"] },
-    { cat: "of1", mark: "office1", title: "משרד", items: ["chair libernovo", "chair heavyduty", "desk manual adjustable", "notebooks", "laptop screen wiper", "macbook", "iphone", "chargers", "safes", "different color keys + digital locks", "hemp notebooks", "pens", "faraday sleeves and bags", "wifi mobile and non mobile", "playstation", "movemate", "envelopes", "ohmni block wifi", "diffuser", "cigars", "candles", "freedom bulbs", "lapis lazulai", "emerald", "karnelien", "librem phone", "unplugged phone"] }
+    { cat: "of1", mark: "office1", title: "משרד", items: ["chair libernovo", "chair heavyduty", "desk manual adjustable", "notebooks", "laptop screen wiper", "macbook", "iphone", "chargers", "safes", "different color keys + digital locks", "hemp notebooks", "pens", "faraday sleeves and bags", "wifi mobile and non mobile", "playstation", "movemate", "envelopes", "ohmni block wifi", "diffuser", "cigars", "candles", "freedom bulbs", "lapis lazulai", "emerald", "karnelien", "librem phone", "unplugged phone"] },
+    { cat: "bk1", mark: "books1", title: "ספרים", items: [{"t": "As Long as Space Endures: Essays on the Kalacakra Tantra in Honor of H.H. the Dalai Lama", "u": "https://www.shambhala.com/browse-categories/as-long-as-space-endures-14905.html"}, {"t": "Jigme Lingpa", "u": "https://www.shambhala.com/authors/g-n/jigme-lingpa.html"}, {"t": "Shambhala Publications: Books, Audio, & More", "u": "https://www.shambhala.com"}, {"t": "Karmapas", "u": "https://www.shambhala.com/topic/karmapas/"}, {"t": "Nyingma: Mahayoga, Anuyoga, and Atiyoga, Part Two: Essential Teachings of the Eight Practice Lineages of Tibet, Volume 2 (The Treasury of Precious Instructions)", "u": "https://www.shambhala.com/browse-categories/nyingma-mahayoga-anuyoga-and-atiyoga-part-two.html"}, {"t": "Seven Line Prayer to Guru Rinpoche (Padmasambhava)", "u": "https://www.shambhala.com/topic/seven-line-prayer/"}, {"t": "Shambhala Pocket Library Series", "u": "https://www.shambhala.com/browse-categories/pocket-library.html"}, {"t": "Secret Teachings of Padmasambhava: Essential Instructions on Mastering the Energies of Life", "u": "https://www.shambhala.com/browse-categories/secret-teachings-of-padmasambhava-1311.html"}, {"t": "The Thirteen Core Indian Buddhist Texts: A Reader's Guide", "u": "https://www.shambhala.com/the-thirteen-core-indian-texts-a-readers-guide/"}, {"t": "The Precious Treasury of the Dharmadhatu", "u": "https://www.shambhala.com/browse-categories/the-precious-treasury-of-the-dharmadhatu.html"}, {"t": "Essential Buddhist Texts to Read", "u": "https://www.shambhala.com/topic/foundational-texts/"}, {"t": "Karmapas: Recognizing a Tulku", "u": "https://www.shambhala.com/snowlion_articles/karmapas-tulku-kagyu-lineage/"}, {"t": "Terma / Treasure Texts", "u": "https://www.shambhala.com/topic/terma-treasure-texts/"}, {"t": "Dream Yoga and the Practice of Natural Light", "u": "https://www.shambhala.com/snowlion_articles/dream-yoga-and-the-practice-of-natural-light-3/"}, "vimalamitra?", {"t": "Buddhist Topics", "u": "https://www.shambhala.com/buddhist-topics/"}, {"t": "The Nyingma School of Tibetan Buddhism", "u": "https://www.shambhala.com/topic/nyingma-tradition/"}] },
+    { cat: "fu1", mark: "furniture1", title: "furniture", items: ["fashion cabinet", "squeegee broom", "supplements cabinet", "fitness and movement cabinet", "laundry baskets", "bed", "pillows", "blankets", "sheets", "pillow cases", "flooring", "wall paint", "air ventilator", "new ac", "fan", "alarm clocks", "lighting", "posters", "futon mat", "moon pillow"] }
   ];
   function seedOne(S) {
     if (!uid || catsMap["m:" + S.mark] || lsGet("rg-my-shopping-" + S.mark + ":" + uid) || !isRon()) return false;
@@ -267,7 +269,7 @@
       putCat({ id: "c:" + S.cat, type: "cat", cat: S.cat, name: S.title, pos: pos, created: at, at: at });
       var ni = {}, k; for (k in items) ni[k] = items[k];
       S.items.forEach(function (txt, n) { var id = S.cat + "-" + (n < 9 ? "0" : "") + (n + 1), a = now();
-        if (!ni[id]) ni[id] = { id: id, text: txt, done: false, list: S.cat, ord: (n + 1) * 1000, created: a, at: a }; });
+        if (!ni[id]) { var it = typeof txt === "string" ? { t: txt } : txt; ni[id] = { id: id, text: it.t, done: false, list: S.cat, ord: (n + 1) * 1000, created: a, at: a }; if (it.u) ni[id].url = it.u; } });
       items = ni;
     }
     putCat({ id: "m:" + S.mark, type: "meta", done: 1, added: exists ? 0 : S.items.length, at: now() });
@@ -369,7 +371,7 @@
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
     return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
       '<button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
-      txt + pin + "</li>";
+      txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
   function sumNow() { // the total line; a price being typed counts live, before it is saved
     var cur = curTab(), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
@@ -663,7 +665,7 @@
     var main = document.querySelector("main"), SLOP = 10, SWIPE = 0.35;
     function reset() { if (idrag && idrag.li) { idrag.li.classList.remove("swiping", "sw-r", "sw-l", "sw-go"); idrag.li.style.removeProperty("--sx"); } idrag = null; if (needRender && !drag) { needRender = false; render(); } }
     main.addEventListener("pointerdown", function (e) {
-      var li = e.target.closest(".list li"); if (!li || e.target.closest("button,input,.hdl") || editing || drag) return;
+      var li = e.target.closest(".list li"); if (!li || e.target.closest("button,input,.hdl,a") || editing || drag) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       reset();
       idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType };
