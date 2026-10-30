@@ -1,6 +1,6 @@
 /* Offline cache for the private area (my/ and my/shopping/; my/clock/, my/ideas/, my/rehabify/ and my/calmify/ have their own workers). Scope: my/ only.
    Only the app shell is cached; personal data never goes through this cache (the Appwrite API is cross-origin and skipped). */
-var CACHE = "rg-my-v34";
+var CACHE = "rg-my-v35";
 var FILES = ["./", "index.html", "common.css", "common.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png",
   "shopping/", "shopping/index.html", "shopping/app.js", "shopping/manifest.json", "shopping/icon.svg", "shopping/icon-192.png", "shopping/icon-512.png",
   "ideas/icon-192.png", "journal/icon-192.png", "clock/icon-192.png", "rehabify/icon-192.png", "calmify/icon-192.png",
