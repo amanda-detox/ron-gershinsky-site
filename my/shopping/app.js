@@ -179,6 +179,75 @@
     s.className = "status" + (offline ? " off" : "");
     s.textContent = !uid ? "" : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced");
   }
+
+  /* ---------- one-time list "ניקויים" (Ron, 2026-10-30) ----------
+     Runs only on Ron's account: one that already has his own list "חודש הבא", or whose Listify copy on this device carries
+     the Listify marker "m:shopimport" (same owner signal as Listify's one-time list). Once only: fixed ids "c:cl1" / "cl1-01".."cl1-13",
+     a synced marker record "m:cleanse1" (in the cats row) and a local flag rg-my-shopping-cleanse1:<user id>.
+     Skipped if a list with the same name already exists. Existing lists are never touched. Before adding, the whole
+     Purchasify copy is saved on this device: rg-my-shopping-cleanse-bak:<user id>. Items are unselected, without a price. */
+  var CL_TITLE = "ניקויים", CL_ITEMS = ["nattokinase for heart plaque", "parasite cleanse", "heavy metals cleanse", "fluoride cleanse with tamarind", "mold cleanse from the body", "mold cleanse from the apartment", "microplastics cleanse from the apartment and the body", "foreign protein by ardis", "air purifiers", "water distillers", "water filters", "rife machine", "ark of sweden drops"];
+  function isRon() {
+    if (cats().some(function (c) { return clean(catName(c), 40) === "חודש הבא"; })) return true;
+    var li = jparse(lsGet("rg-myideas-v1:" + uid), null);
+    return !!(li && li.items && li.items["m:shopimport"]);
+  }
+  function seedCleanse() {
+    if (!uid || catsMap["m:cleanse1"] || lsGet("rg-my-shopping-cleanse1:" + uid) || !isRon()) return false;
+    var exists = cats().some(function (c) { return clean(catName(c), 40) === CL_TITLE; }) || (catsMap["c:cl1"] && !catsMap["c:cl1"].deleted);
+    if (!exists) {
+      try { localStorage.setItem("rg-my-shopping-cleanse-bak:" + uid, JSON.stringify({ t: Date.now(), items: items, cats: catsMap })); } catch (e) { return false; }
+      var pos = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      putCat({ id: "c:cl1", type: "cat", cat: "cl1", name: CL_TITLE, pos: pos, created: at, at: at });
+      var ni = {}, k; for (k in items) ni[k] = items[k];
+      CL_ITEMS.forEach(function (txt, n) { var id = "cl1-" + (n < 9 ? "0" : "") + (n + 1), a = now();
+        if (!ni[id]) ni[id] = { id: id, text: txt, done: false, list: "cl1", ord: (n + 1) * 1000, created: a, at: a }; });
+      items = ni;
+    }
+    putCat({ id: "m:cleanse1", type: "meta", done: 1, added: exists ? 0 : CL_ITEMS.length, at: now() });
+    lsSet("rg-my-shopping-cleanse1:" + uid, "1");
+    return true;
+  }
+  /* ---------- one-time list "טיפוח גוף" (Ron, 2026-10-30): same pattern, ids "c:bc1" / "bc1-01".."bc1-19",
+     marker "m:bodycare1", local flag rg-my-shopping-bodycare1:<user id>, backup rg-my-shopping-bodycare-bak:<user id>.
+     Placed after "ניקויים". ---------- */
+  var BC_TITLE = "טיפוח גוף", BC_ITEMS = ["laundry detergent", "hand soap", "dish soap", "deodorant", "tongue scraper", "coconut water for the mouth", "ghee butter", "boar bristle brush", "nose strip", "pre shave", "post shave", "shaving gear", "toiletry bags", "towels", "trash bags", "talcum powder", "baby pasta", "self aid kit", "antifungal cream and spray"];
+  function seedBodycare() {
+    if (!uid || catsMap["m:bodycare1"] || lsGet("rg-my-shopping-bodycare1:" + uid) || !isRon()) return false;
+    var exists = cats().some(function (c) { return clean(catName(c), 40) === BC_TITLE; }) || (catsMap["c:bc1"] && !catsMap["c:bc1"].deleted);
+    if (!exists) {
+      try { localStorage.setItem("rg-my-shopping-bodycare-bak:" + uid, JSON.stringify({ t: Date.now(), items: items, cats: catsMap })); } catch (e) { return false; }
+      var pos = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      putCat({ id: "c:bc1", type: "cat", cat: "bc1", name: BC_TITLE, pos: pos, created: at, at: at });
+      var ni = {}, k; for (k in items) ni[k] = items[k];
+      BC_ITEMS.forEach(function (txt, n) { var id = "bc1-" + (n < 9 ? "0" : "") + (n + 1), a = now();
+        if (!ni[id]) ni[id] = { id: id, text: txt, done: false, list: "bc1", ord: (n + 1) * 1000, created: a, at: a }; });
+      items = ni;
+    }
+    putCat({ id: "m:bodycare1", type: "meta", done: 1, added: exists ? 0 : BC_ITEMS.length, at: now() });
+    lsSet("rg-my-shopping-bodycare1:" + uid, "1");
+    return true;
+  }
+  /* ---------- one-time list "פאשן" (Ron, 2026-10-30): same pattern, ids "c:fs1" / "fs1-01".."fs1-12",
+     marker "m:fashion1", local flag rg-my-shopping-fashion1:<user id>, backup rg-my-shopping-fashion-bak:<user id>.
+     Placed after "טיפוח גוף". ---------- */
+  var FS_TITLE = "פאשן", FS_ITEMS = ["shorts", "pants", "socks", "sliders", "shoes 15 US width 4E fitville", "soles for shoes colorful", "hats", "beanies", "tshirts", "boxers organic cotton", "jackets", "wallets"];
+  function seedFashion() {
+    if (!uid || catsMap["m:fashion1"] || lsGet("rg-my-shopping-fashion1:" + uid) || !isRon()) return false;
+    var exists = cats().some(function (c) { return clean(catName(c), 40) === FS_TITLE; }) || (catsMap["c:fs1"] && !catsMap["c:fs1"].deleted);
+    if (!exists) {
+      try { localStorage.setItem("rg-my-shopping-fashion-bak:" + uid, JSON.stringify({ t: Date.now(), items: items, cats: catsMap })); } catch (e) { return false; }
+      var pos = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      putCat({ id: "c:fs1", type: "cat", cat: "fs1", name: FS_TITLE, pos: pos, created: at, at: at });
+      var ni = {}, k; for (k in items) ni[k] = items[k];
+      FS_ITEMS.forEach(function (txt, n) { var id = "fs1-" + (n < 9 ? "0" : "") + (n + 1), a = now();
+        if (!ni[id]) ni[id] = { id: id, text: txt, done: false, list: "fs1", ord: (n + 1) * 1000, created: a, at: a }; });
+      items = ni;
+    }
+    putCat({ id: "m:fashion1", type: "meta", done: 1, added: exists ? 0 : FS_ITEMS.length, at: now() });
+    lsSet("rg-my-shopping-fashion1:" + uid, "1");
+    return true;
+  }
   function sync() {
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
@@ -191,6 +260,8 @@
       snap = stamp(items, snap); csnap = stamp(catsMap, csnap);
       var mi = merge(items, cl), mc = merge(catsMap, cc);
       if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; snap = stamp(items, null); csnap = stamp(catsMap, null); saveLocal(); render(); }
+      var sA = seedCleanse(), sB = seedBodycare(), sC = seedFashion();
+      if (sA || sB || sC) { mi = items; mc = catsMap; saveLocal(); render(); }
       var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
       if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
       if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
