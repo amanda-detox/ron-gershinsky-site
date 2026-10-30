@@ -184,6 +184,31 @@
   .eic:hover { background: var(--card); }
   .sheetwrap.editmode .sheet { max-height: 92vh; }
   body.idragging .list > li:not(.sorting) { pointer-events: none; }
+  /* list menu head + edit mode (same as Purchasify) */
+  .pmenu { max-height: min(70vh, 560px); overflow: hidden; }
+  .pm-head { display: flex; align-items: center; gap: 8px; padding: 2px 6px 2px 10px; min-height: 44px; }
+  .pm-title { flex: 1; color: var(--faint); font-size: 14px; font-weight: 700; }
+  .pm-edit { flex: none; min-width: 46px; height: 42px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 20px; font-weight: 800; line-height: 1; }
+  .pm-edit.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); font-size: 16px; }
+  .pm-list { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; -webkit-user-select: none; user-select: none; }
+  .pm-list > li { display: flex; }
+  .pm-list > li > .popt { flex: 1; min-width: 0; }
+  .pm-list .erow.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .pm-list .pm-h { width: 46px; height: 52px; color: var(--accent); font-size: 22px; font-weight: 900; }
+  .eprice.on { background: var(--accent); color: var(--accentink); }
+  /* sheets (move menu etc.): never taller than the screen; the list of lists scrolls */
+  .sheet { max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; }
+  .sheet .mlist { display: flex; flex-direction: column; gap: 6px; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain; flex: 0 1 auto; }
+  .sheet .mlist .mi { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .sheet .mi .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sheet .mi .mc { flex: none; color: var(--faint); font-size: 13px; font-weight: 700; }
+  @media (min-width: 700px) { /* computer: a smaller centered window */
+    .sheetwrap { align-items: center; }
+    .sheet { max-width: 420px; max-height: 80vh; padding: 14px 14px 12px; gap: 6px; }
+    .sheet h3 { font-size: 16px; }
+    .sheet .mi { min-height: 38px; padding: 0 12px; font-size: 14.5px; border-radius: 10px; }
+    .sheet .mlist { gap: 4px; }
+  }
 </style>
 <script src="../../shared/rg-bg.js" data-app="myideas" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -245,7 +270,7 @@ window.RGMY_STRINGS = {
         check: "סמן כנבחר", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
         confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
-        pickList: "בחירת רשימה", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", seedTask: "לבקר במרקטפלייס בוטים" },
+        pickList: "בחירת רשימה", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", seedTask: "לבקר במרקטפלייס בוטים" },
   en: { doc: "Listify", title: "Listify", sub: "Your lists by category, saved in your account – only you can see them",
         catAdd: "New list", catPh: "List name", catKind: "Category type", create: "Create", kTask: "✓ Checklist", kIdea: "💡 Ideas", kGoal: "🎯 Goals",
         rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
@@ -269,12 +294,12 @@ window.RGMY_STRINGS = {
         check: "Mark as selected", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
         confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
         synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online",
-        pickList: "Choose a list", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", seedTask: "Visit the bots marketplace" }
+        pickList: "Choose a list", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", seedTask: "Visit the bots marketplace" }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=2" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=18"></script>
+<script src="app.js?v=19"></script>
 </body>
 </html>

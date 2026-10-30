@@ -479,9 +479,9 @@
     var x = items[id]; if (!x || x.deleted) return;
     var from = x.sec, others = cats().filter(function (c) { return c.cat !== from; });
     var html = '<h3>' + esc(t("moveTitle")) + '</h3><p class="mnote">' + esc(label(x)) + "</p>";
-    if (others.length) html += others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '">' + esc(catName(c)) + "</button>"; }).join("");
+    if (others.length) html += '<div class="mlist">' + others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '"><span class="mn">' + esc(catName(c)) + '</span><span class="mc">' + live(c.cat).length + "</span></button>"; }).join("") + "</div>";
     else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>";
-    html += '<button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button>";
+    html += '<div class="mrow"><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button></div>";
     sheet(html, function (a) {
       if (a === "x") { closeSheet(); return; }
       if (a === "del") { closeSheet(); delWithUndo(id); return; }
@@ -537,15 +537,60 @@
   }
 
   /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
+  var pmEdit = false, pmSort = null;
   function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
-  function closeMenu() { var m = $("pmenu"), p = $("picker"); if (m) m.hidden = true; if (p) p.setAttribute("aria-expanded", "false"); }
+  function closeMenu() { if (pmSort) return; var m = $("pmenu"), p = $("picker"), was = pmEdit; pmEdit = false; if (m) m.hidden = true; if (p) p.setAttribute("aria-expanded", "false"); if (was) syncSoon(); }
+  /* the list menu, same as Purchasify's category menu: tap = open the list, ＋ = new list, ☰ (in the menu head) = edit mode.
+     Edit mode: ☰ handle on every row (drag to any place; the menu scrolls at its edges), ✏️ rename, ₪ price column, 🗑 delete, "סיום" ends it.
+     Every change is saved at once (local copy + sync), so nothing is lost if the menu is closed. */
   function fillMenu() {
-    var m = $("pmenu"), cur = curTab(); if (!m) return;
-    m.innerHTML = cats().map(function (c) {
-      return '<button type="button" class="popt" role="option" data-pick="' + esc(c.cat) + '" aria-selected="' + (c.cat === cur) + '"><span class="pn">' + esc(catName(c)) + '</span><span class="pk" aria-hidden="true">' + (c.cat === cur ? "✓" : "") + "</span></button>";
-    }).join("") + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
+    var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
+    var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
+    var head = '<div class="pm-head"><span class="pm-title">' + esc(t(pmEdit ? "editTitle" : "pickList")) + '</span><button type="button" class="pm-edit' + (pmEdit ? " on" : "") + '" data-pick="edit" aria-label="' + esc(pmEdit ? t("finish") : t("editTitle")) + '" title="' + esc(pmEdit ? t("finish") : t("editTitle")) + '">' + (pmEdit ? esc(t("editDone")) : "☰") + "</button></div>";
+    var rows = cats().map(function (c) {
+      var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price);
+      if (!pmEdit) return '<li data-cat="' + id + '"><button type="button" class="popt" role="option" data-pick="' + id + '" aria-selected="' + on + '"><span class="pn">' + nm + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button></li>";
+      return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">☰</span><span class="ename">' + nm + "</span>" +
+        '<button type="button" class="eic" data-pick="ren:' + id + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
+        '<button type="button" class="eic eprice' + (pr ? " on" : "") + '" data-pick="prc:' + id + '" title="' + esc(t("priceToggle")) + '" aria-pressed="' + pr + '" aria-label="' + esc(t("priceToggle") + ": " + catName(c)) + '">₪</button>' +
+        '<button type="button" class="eic" data-pick="del:' + id + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
+    }).join("");
+    m.innerHTML = head + '<ul class="pm-list' + (pmEdit ? " editing" : "") + '">' + rows + "</ul>" + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
+    m.querySelector(".pm-list").scrollTop = st;
   }
-  function openMenu() { hideHint(); fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) s.focus(); }
+  function openMenu(edit) { hideHint(); pmEdit = !!edit; fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
+  function menuAction(p) {
+    if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
+    if (p === "+") { newList(function (id) { if (pmEdit) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }); return; }
+    var cid = p.slice(4), c = catOf(cid);
+    if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
+    if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
+    if (p.indexOf("del:") === 0) {
+      if (!c) return; if (cats().length <= 1) { window.alert(t("lastCat")); return; }
+      if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); } changed(); }
+      return;
+    }
+    selectTab(p);
+  }
+  function bootMenuDrag() {
+    var m = $("pmenu"), sd = null;
+    m.addEventListener("pointerdown", function (e) {
+      var h = e.target.closest(".pm-h"); if (!h || !pmEdit || pmSort || (e.pointerType === "mouse" && e.button !== 0)) return;
+      e.preventDefault(); e.stopPropagation();
+      var list = m.querySelector(".pm-list"), li = h.closest("li"), rows = [].slice.call(list.children);
+      sd = { pid: e.pointerId }; pmSort = makeSorter(rows, li, e.clientY, list.scrollHeight > list.clientHeight + 2 ? list : null);
+      try { h.setPointerCapture(e.pointerId); } catch (e2) {}
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+    });
+    m.addEventListener("pointermove", function (e) { if (pmSort && sd && e.pointerId === sd.pid) { e.preventDefault(); pmSort.move(e.clientY); } });
+    function upE(e) {
+      if (!pmSort || !sd || e.pointerId !== sd.pid) return;
+      var r = pmSort.end(); pmSort = null; sd = null; noClick = true; setTimeout(function () { noClick = false; }, 350);
+      if (r.moved) { setOrder(r.order.map(function (li) { return li.getAttribute("data-cat"); })); changed(); } else fillMenu();
+    }
+    m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
+    m.addEventListener("touchmove", function (e) { if (pmSort) e.preventDefault(); }, { passive: false });
+  }
   function newList(after) {
     nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v, "task"); if (id) { changed(); if (after) after(id); } });
   }
@@ -623,14 +668,14 @@
 
   function bootLists() {
     $("picker").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen()) closeMenu(); else openMenu(); });
-    $("list-edit").addEventListener("click", function (e) { e.stopPropagation(); editSheet(); });
+    $("list-edit").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen() && pmEdit) closeMenu(); else openMenu(true); });
     $("pmenu").addEventListener("click", function (e) {
-      e.stopPropagation(); var b = e.target.closest("[data-pick]"); if (!b) return;
-      var p = b.getAttribute("data-pick");
-      if (p === "+") { closeMenu(); newList(function (id) { selectTab(id); }); } else selectTab(p);
+      e.stopPropagation(); if (noClick) { noClick = false; return; } var b = e.target.closest("[data-pick]"); if (!b) return;
+      menuAction(b.getAttribute("data-pick"));
     });
-    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest("#listbar")) closeMenu(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen()) { closeMenu(); $("picker").focus(); } });
+    bootMenuDrag();
+    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest("#listbar") && !e.target.closest("#sheet")) closeMenu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); $("picker").focus(); } });
   }
 
   /* ---------- items: swipe (on the row body) right = נבחר (and back), left = move/delete menu;
