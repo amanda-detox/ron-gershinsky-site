@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T07:03:31+02:00",
+ "updated": "2026-10-30T07:51:24+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,74 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-voted-early-texas",
+   "topic": "musk",
+   "date": "2026-10-30T05:21:24Z",
+   "url": "https://x.com/elonmusk/status/2116037732845957434",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"הצבעתי היום בהצבעה המוקדמת בטקסס!\"",
+    "summary": "מאסק סיפר שהצביע היום בהצבעה המוקדמת בטקסס, ביום האחרון שלה, שעה אחרי שקרא לתושבי המדינה להצביע לקן פקסטון."
+   },
+   "en": {
+    "title": "Musk: \"I voted early today in Texas!\"",
+    "summary": "Musk said he cast his ballot in Texas early voting today, on its last day, after urging Texans to vote for Ken Paxton."
+   },
+   "full_he": "🇺🇸🇺🇸 הצבעתי היום בהצבעה המוקדמת בטקסס!! 🇺🇸🇺🇸\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "🇺🇸🇺🇸 I voted early today in Texas!! 🇺🇸🇺🇸\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-2028-clean-sweep-concern-senate",
+   "topic": "musk",
+   "date": "2026-10-30T05:28:57Z",
+   "url": "https://x.com/elonmusk/status/2116039632743702637",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: החשש הכי גדול שלי – ניצחון מוחלט של הדמוקרטים ב־2028",
+    "summary": "מאסק מונה שלושה צעדים שלדבריו הדמוקרטים יעשו אם ישלטו בבית הנבחרים, בסנאט ובנשיאות ב־2028, וטוען שזה יהפוך את אמריקה למדינת מפלגה אחת. לכן הוא קורא להצביע לסנאטורים רפובליקנים."
+   },
+   "en": {
+    "title": "Musk: my biggest concern is a Democratic clean sweep in 2028",
+    "summary": "Musk lists three steps he says Democrats would take if they won the House, Senate and presidency in 2028, claiming it would make America a permanent one-party state, and urges votes for Republican senators."
+   },
+   "full_he": "החשש הכי גדול שלי הוא שאם הדמוקרטים ינצחו ניצחון מוחלט בבית הנבחרים, בסנאט ובנשיאות ב־2028, הם:\n\n1. יהפכו את וושינגטון הבירה ואת פוארטו ריקו למדינות, כדי לזכות ברוב חזק בסנאט.\n2. יפתחו את הגבולות ויעניקו מעמד חוקי לכל מי שחי באמריקה באופן לא חוקי, כדי לקבע רוב קבוע.\n3. יגדילו את בית המשפט העליון כדי לזכות ברוב מיידי.\n\nזה יהפוך את אמריקה למדינת מפלגה אחת לצמיתות, ולסוף הדמוקרטיה בכל מובן ממשי של המילה.\n\nכל מה שצריך כדי להבטיח שזה לא יקרה הוא 51 סנאטורים רפובליקנים ב־2029. לכן כדאי להצביע לסנאטורים רפובליקנים בבחירות האלה. כל הסיבות האחרות לא רלוונטיות לעומת הסיבה הזאת.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "My biggest concern is that if there is a clean sweep by Democrats of the House, Senate and Presidency in 2028, they will:\n\n1. Make DC and Puerto Rico states to gain a strong majority in the Senate.\n2. Open the borders and legalize everyone living in America illegally to cement a permanent majority.\n3. Increase the size of the Supreme Court to gain an immediate majority.\n\nThis would result in America becoming a permanent one-party state and the end of democracy in any meaningful sense of the word.\n\nAll that is needed to ensure this doesn't happen is 51 Republican senators in 2029. That is why you should vote for Republican senators this election. Other reasons are irrelevant compared to this one.\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-terafab-going-well",
+   "topic": "musk",
+   "date": "2026-10-30T05:12:01Z",
+   "url": "https://x.com/elonmusk/status/2116035373361230325",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"פרויקט טרהפאב מתקדם יפה\"",
+    "summary": "מאסק ציטט פוסט שלפיו מפעל השבבים טרהפאב (של טסלה, xAI וספייסאקס) מתקדם במהירות כי המהנדסים עצמם מוסמכים לקבל החלטות, וספקים קוריאנים מתרשמים ממהירות הביצוע."
+   },
+   "en": {
+    "title": "Musk: \"The Terafab project is going well\"",
+    "summary": "Musk quoted a post saying the Terafab chip fab (Tesla, xAI and SpaceX) is moving fast because engineers are empowered to decide, with Korean suppliers impressed by its execution speed."
+   },
+   "full_he": "פרויקט טרהפאב מתקדם יפה.\n\nהפוסט שהוא ציטט (Ming, @tslaming):\nסימן חזק 🚨 טרהפאב מתקדם במהירות הבזק, כי למהנדסים עצמם יש סמכות לקבל החלטות 🔥\n\nלפי האתר הקוריאני The Elec, מנהל באחת החברות הספקיות הקוריאניות סיפר שגם שאלות שנשלחות בשעות הבוקר המוקדמות בארה\"ב מקבלות תשובה תוך חצי שעה עד שעה. לדבריו, העבודה עם טרהפאב שונה לגמרי מעבודה עם לקוחות רגילים בתעשיית השבבים.\n\nמנהל בחברת ציוד מחו\"ל הרחיק לכת: \"מעולם לא ראיתי מהירות ביצוע כזאת בתעשיית המוליכים למחצה.\"\n\nבבניית מפעל שבבים עולות אינספור שאלות כאלה, על כל כלי וכל חומר שנכנס אליו. כשכל אחת מהן מקבלת תשובה מהירה, הזמן שנחסך מצטבר, וזה יכול להסתכם ביתרון רציני עוד לפני שעובדים על הפרוסה הראשונה.\n\nתעשיית השבבים השקיעה עשרות שנים בשכלול האופן שבו מפעל צריך לפעול. את טרהפאב בונים מהנדסים שעונים לשאלה של ספק עוד לפני שארה\"ב התעוררה, וסומכים עליהם להחליט במקום, ואולי זה יתברר כשינוי התהליך המשבש מכולם.\n\nבפוסט המצוטט שתי תמונות: הלוגו של TERAFAB עם הלוגואים של טסלה, xAI וספייסאקס, והדמיה אווירית לילית של מתחם מפעל ענק ומואר.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "The Terafab project is going well.\n\nThe quoted post (Ming, @tslaming):\nSTRONG SIGNAL 🚨 Terafab is moving forward at lightning speed because the engineers themselves have the authority to make decisions 🔥\n\nAccording to Korea's The Elec, a Korean supplier executive said that even questions sent during the early morning hours in the US get answered within 30 minutes to an hour. In his view, working with Terafab is completely different from dealing with conventional semiconductor customers.\n\nAn executive at an overseas equipment maker went even further: \"I've never seen this level of execution speed in the semiconductor industry.\"\n\nBuilding a fab involves countless questions like these, across every tool and material that goes into it. When each one gets a fast answer, the time saved keeps compounding, and that could add up to a serious head start before a single wafer is even processed.\n\nThe chip industry spent decades perfecting how a fab should run. Terafab is being built by engineers who answer a supplier's question before the US is even awake and are trusted to decide on the spot, and that may turn out to be the most disruptive process change of all.\n\nThe quoted post has two images: the TERAFAB logo with the Tesla, xAI and SpaceX logos, and a nighttime aerial rendering of a huge, lit-up fab campus.\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-longevity-is-coming-paralysis",
+   "topic": "musk",
+   "date": "2026-10-30T05:30:26Z",
+   "url": "https://x.com/i/trending/2116038347315695994",
+   "source": "X",
+   "he": {
+    "title": "מאסק: \"אריכות ימים בדרך\" – ושיקום משיתוק בתוך כמה שנים",
+    "summary": "מאסק כתב ש\"אריכות ימים בדרך\" והוסיף חזון שבו אותות מהמוח יחזירו תנועה לגפיים משותקות בתוך כמה שנים, על רקע ההתקדמות של נוירלינק. אלה תחזיות שלו, ולוחות הזמנים לא מוכחים."
+   },
+   "en": {
+    "title": "Musk: \"Longevity is coming\" – and paralysis recovery within a few years",
+    "summary": "Musk posted that \"longevity is coming\" and described brain signals restoring movement to paralyzed limbs within a few years, pointing to Neuralink's progress. These are his predictions; the timelines are unproven."
+   },
+   "full_he": "אילון מאסק שיתף מסר פשוט ואופטימי: \"אריכות ימים בדרך.\" בהמשך הוסיף חזון שבו אותות מהמוח יחזירו תנועה לגפיים משותקות בתוך כמה שנים בלבד.\n\n• הפוסטים שלו מדגישים את ההתקדמות של ממשק המוח-מחשב של נוירלינק, כמו פענוח דיבור אצל חולי ALS, ומצביעים על עתיד שבו אנשים יחזרו ללכת ולהשתמש בידיים.\n• הם מגיעים לצד השקעות גדולות של אנשי טכנולוגיה: ג'ף בזוס עם 3 מיליארד דולר ל־Altos Labs להצערת תאים, סם אלטמן עם 180 מיליון דולר שהזניקו את Retro Biosciences ל־1.8 מיליארד, ומארק צוקרברג עם 500 מיליון דולר למחקר מחלות מבוסס בינה מלאכותית ב־Biohub.\n• התגובות שילבו התלהבות מהפוטנציאל לאנושות עם הסתייגויות לגבי לוחות הזמנים, האתיקה והנגישות, על רקע התקדמות במעבדות ברחבי העולם בניסויים בבעלי חיים שמרמזים על היפוך הזדקנות.\n\nהערה: אלה תחזיות של מאסק, לא עובדות מבוססות. שיקום משיתוק והאטת הזדקנות עדיין נמצאים בשלבי מחקר.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Elon Musk shared a simple, hopeful message: \"Longevity is coming.\" He followed up with a vision of brain signals restoring movement to paralyzed limbs in just a few years.\n\n• Musk's posts spotlight Neuralink's brain-computer interface progress, like decoding speech for ALS patients, and point to a future where people regain the ability to walk and use their hands.\n• They arrive alongside heavy investments from tech leaders: Jeff Bezos with $3 billion for Altos Labs on cellular rejuvenation, Sam Altman's $180 million kickstarting Retro Biosciences to $1.8 billion, and Mark Zuckerberg's $500 million for AI-driven disease research at Biohub.\n• Responses mixed excitement over humanity's potential gains with cautions on timelines, ethics, and access, reflecting worldwide lab advances in animal studies that hint at reversing aging.\n\nNote: these are Musk's predictions, not established facts. Paralysis recovery and slowing aging are still at the research stage.\n\n(A summary of posts on X that may evolve over time.)"
+  },
   {
    "id": "musk-sanders-617b-gains-since-trump-win",
    "topic": "musk",
