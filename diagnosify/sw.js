@@ -1,5 +1,5 @@
 /* Offline cache for Diagnosify (דיאגנוסיפיי). Scope: diagnosify/ only. */
-var CACHE = "rg-diagnosify-v9";
+var CACHE = "rg-diagnosify-v10";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "data.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
