@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2366">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="חישובלי">
+<script>(function(){var d=document.documentElement;try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>חישובלי · Calcify</title>
+<link rel="manifest" href="manifest.json?v=1">
+<link rel="icon" href="icon.svg?v=1" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png?v=1">
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<style>
+:root{--ink:#fff;--mute:#b7c3e6;--line:rgba(255,255,255,.14);--gold:#ffd25a;--gold2:#d9a52b;--key:rgba(255,255,255,.08);--sans:"Heebo","Assistant","Segoe UI",system-ui,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:var(--sans);color:var(--ink);background:radial-gradient(60% 40% at 100% 0%,rgba(255,210,90,.16),transparent 70%),linear-gradient(180deg,#14307e,#0b1c55 55%,#071234)}
+.wrap{max-width:460px;margin:0 auto;padding:14px 14px 40px}
+header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px}.brand h1{font-size:22px;margin:0;color:var(--gold)}
+.btn{font:inherit;color:var(--ink);background:var(--key);border:1px solid var(--line);border-radius:12px;padding:8px 12px;cursor:pointer}
+.screen{background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:18px;padding:12px}
+#expr{width:100%;font:inherit;font-size:22px;color:var(--ink);background:transparent;border:0;outline:0;direction:ltr;text-align:left}
+#res{direction:ltr;text-align:left;font-size:40px;font-weight:700;color:var(--gold);min-height:52px;word-break:break-all}
+#res.err{font-size:18px;color:#ffb3b3}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:12px;direction:ltr}
+.keys button{font:inherit;font-size:24px;padding:16px 0;border-radius:16px;border:1px solid var(--line);background:var(--key);color:var(--ink);cursor:pointer}
+.keys .op{color:var(--gold)}.keys .eq{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#14214d;font-weight:700}
+.keys .cl{background:rgba(64,120,255,.3)}
+h2{font-size:16px;color:var(--mute);margin:18px 0 6px}
+#hist{list-style:none;padding:0;margin:0}#hist li{direction:ltr;display:flex;justify-content:space-between;gap:8px;padding:8px 10px;border-bottom:1px solid var(--line);cursor:pointer}
+#hist li b{color:var(--gold)}
+.hint{color:var(--mute);font-size:13px;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand"><img src="icon-192.png" alt="" width="40" height="40"><h1 data-t="title"></h1></div>
+    <div class="tools"><button class="btn" id="langBtn"></button></div>
+  </header>
+  <div class="screen">
+    <input id="expr" inputmode="text" autocomplete="off" spellcheck="false" aria-label="expression">
+    <div id="res" aria-live="polite"></div>
+  </div>
+  <div class="hint" data-t="hint"></div>
+  <div class="keys">
+    <button class="cl" data-k="C">C</button><button data-k="(">(</button><button data-k=")">)</button><button class="op" data-k="÷">÷</button>
+    <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button class="op" data-k="×">×</button>
+    <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button class="op" data-k="-">−</button>
+    <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button class="op" data-k="+">+</button>
+    <button data-k="0">0</button><button data-k=".">.</button><button data-k="BS" aria-label="backspace">⌫</button><button class="eq" data-k="=">=</button>
+  </div>
+  <h2 data-t="hist"></h2>
+  <ul id="hist"></ul>
+  <button class="btn" id="clearHist" data-t="clearHist" style="margin-top:10px"></button>
+</div>
+<script src="app.js?v=1"></script>
+<script src="../shared/rg-topbar.js?v=2" data-slot=".wrap > header"></script>
+</body>
+</html>
