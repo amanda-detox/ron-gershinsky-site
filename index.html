@@ -204,6 +204,7 @@
   .app:hover { background: var(--surface-2); border-color: var(--accent); transform: translateY(-2px); }
   .app img { width: 3rem; height: 3rem; border-radius: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
   .app-name { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
+  .app-sep { grid-column: 1 / -1; height: 1px; margin: 0.5rem 12%; background: linear-gradient(90deg, transparent, rgba(245, 197, 66, 0.7), rgba(91, 141, 239, 0.7), rgba(245, 197, 66, 0.7), transparent); list-style: none; }
   .app-line { color: var(--muted); font-size: 0.71875rem; line-height: 1.4; text-wrap: pretty; }
   .priv-apps[hidden] { display: none; }
   .app-lock { display: inline-flex; vertical-align: 0.05em; margin-inline-start: 0.25rem; color: #f5c542; opacity: 0.85; }
@@ -416,7 +417,7 @@ var apps = [
 ];
 
 // Site owner signed in: ONE merged grid (public + private apps from my/apps.js), these first, private ones marked with a lock.
-var OWNER_FIRST = ["my/shopping/", "my/ideas/", "fly/index.html", "news/index.html"];
+var OWNER_FIRST = ["my/shopping/", "my/ideas/", "fly/index.html", "news/index.html", "my/journal/"]; // group A (Ron 2026-10-30): shown above all the others, then a separator
 function ownerApps() {
   var u = window.RGAccount ? RGAccount.user() : null;
   if (!isOwner(u) || !privData || !privData.apps) return null;
@@ -427,7 +428,8 @@ function ownerApps() {
   });
   var first = [];
   OWNER_FIRST.forEach(function (h) { all.forEach(function (a) { if (a.href === h) first.push(a); }); });
-  return first.concat(all.filter(function (a) { return first.indexOf(a) === -1; }));
+  var rest = all.filter(function (a) { return first.indexOf(a) === -1 && !a.hidden; });
+  return first.length && rest.length ? first.concat([{ sep: true }], rest) : first.concat(rest);
 }
 var LOCK_SVG = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg>';
 function renderApps(he) {
@@ -435,6 +437,7 @@ function renderApps(he) {
   grid.innerHTML = "";
   (ownerApps() || apps).forEach(function (app) {
     if (app.hidden) return;
+    if (app.sep) { var hr = document.createElement("li"); hr.className = "app-sep"; hr.setAttribute("role", "separator"); grid.appendChild(hr); return; }
     var li = document.createElement("li");
     var a = document.createElement("a");
     a.className = "app";
