@@ -34,26 +34,81 @@
   function loadLocal() {
     var c = uid ? jparse(lsGet(cacheKey(uid)), null) : null;
     items = (c && c.items && typeof c.items === "object") ? c.items : {};
-    catsMap = (c && c.cats && typeof c.cats === "object") ? c.cats : {};
+    catsMap = (c && c.cats && typeof c.cats === "object") ? c.cats : {}; snap = stamp(items, null); csnap = stamp(catsMap, null);
     pending = !!(c && c.pending);
   }
-  function saveLocal() { if (uid) lsSet(cacheKey(uid), JSON.stringify({ items: items, cats: catsMap, pending: pending })); }
+  var snap = {}, csnap = {};
+  function saveLocal() { snap = stamp(items, snap); csnap = stamp(catsMap, csnap); if (uid) lsSet(cacheKey(uid), JSON.stringify({ items: items, cats: catsMap, pending: pending })); }
   window.addEventListener("storage", function (e) { if (uid && e.key === cacheKey(uid)) { loadLocal(); render(); } });
 
-  /* ---------- merge ---------- */
+  /* ---------- merge (per field, since Oct 2026) ----------
+     Every item may carry "_f": { <field>: <ms of the last edit of that field> }, written by stamp() on every local save.
+     Two live copies of the same item are merged field by field: each field takes the value with the newer edit time,
+     so edits of different fields on two devices are both kept, and for the same field the latest edit wins.
+     Fallbacks (old data / older app versions that do not know "_f"): a field without its own time uses the item's "at";
+     a copy whose "at" is newer than all its "_f" times was edited by an older app version, so all its fields count as of "at"
+     (the old "newer item wins" rule, nothing worse than before). A field missing on one side with no time there never beats a value.
+     Deletions (tombstones { id, deleted: true, at }) keep the old rule: the newer "at" wins. */
+  var FM_META = { id: 1, at: 1, _f: 1 };
   function newer(a, b) {
     if (!a) return b; if (!b) return a;
     if ((a.at || 0) !== (b.at || 0)) return (a.at || 0) > (b.at || 0) ? a : b;
     if (!!a.deleted !== !!b.deleted) return a.deleted ? a : b; // same instant: deletion wins
     return JSON.stringify(a) >= JSON.stringify(b) ? a : b;     // deterministic on every device
   }
+  // "_f"["~"] = the item's "at" when this app version last wrote it; a newer "at" means an older app version edited it since
+  function fmOld(x) { var s = x._f; return !!(s && typeof s === "object" && typeof s["~"] === "number" && x.at > s["~"]); }
+  function fmTime(x, f, old) {
+    var s = x._f && typeof x._f === "object" ? x._f : null, has = Object.prototype.hasOwnProperty.call(x, f);
+    if (old) return (has || (s && f in s)) ? x.at : -1;
+    if (s && typeof s[f] === "number") return s[f];
+    return has ? x.at : -1;
+  }
+  function fmPlain(x) { var o = {}, l = Object.keys(x).filter(function (k) { return !FM_META[k]; }).sort(); l.forEach(function (k) { o[k] = x[k]; }); return JSON.stringify(o); }
+  function mergeItem(a, b) {
+    if (JSON.stringify(a) === JSON.stringify(b)) return a;
+    if (a.deleted || b.deleted) return newer(a, b);
+    var oa = fmOld(a), ob = fmOld(b), keys = {}, o = { id: a.id }, F = {}, f, i, l, ta, tb, src, va, vb;
+    [a, b, a._f || {}, b._f || {}].forEach(function (m) { for (var k in m) if (!FM_META[k] && k !== "~") keys[k] = 1; });
+    l = Object.keys(keys).sort();
+    for (i = 0; i < l.length; i++) {
+      f = l[i]; ta = fmTime(a, f, oa); tb = fmTime(b, f, ob);
+      if (ta !== tb) src = ta > tb ? a : b;
+      else { va = JSON.stringify(a[f]); vb = JSON.stringify(b[f]); src = vb === undefined ? a : va === undefined ? b : va >= vb ? a : b; }
+      if (Object.prototype.hasOwnProperty.call(src, f)) o[f] = src[f];
+      if (Math.max(ta, tb) >= 0) F[f] = Math.max(ta, tb);
+    }
+    o.at = Math.max(a.at, b.at);
+    // a result that differs from both copies gets a newer "at", so older app versions (whole item, newer "at" wins) adopt it too
+    if (fmPlain(o) !== fmPlain(a) && fmPlain(o) !== fmPlain(b)) o.at++;
+    F["~"] = o.at; o._f = F;
+    return o;
+  }
   function valid(x) { return x && typeof x === "object" && typeof x.id === "string" && typeof x.at === "number"; }
   function merge(a, b) {
     var out = {}, cut = Date.now() - TOMB_MS, k;
     for (k in a) if (valid(a[k])) out[k] = a[k];
-    for (k in b) if (valid(b[k])) out[k] = newer(out[k], b[k]);
+    for (k in b) if (valid(b[k])) out[k] = out[k] ? mergeItem(out[k], b[k]) : b[k];
     for (k in out) if (out[k].deleted && out[k].at < cut) delete out[k];
     return out;
+  }
+  /* stamp(map, snap): for every item that changed since "snap" (the map as last saved / merged), record the edit time ("at")
+     of each field that changed (or was removed) in its "_f". Items are copied, never changed in place. Returns the new snap. */
+  function stamp(m, snap) {
+    var k, x, p, ch, f, keys, F, y;
+    for (k in m) {
+      x = m[k]; p = snap && snap[k];
+      if (x === p || !valid(x) || x.deleted || !p || !valid(p) || p.deleted) continue;
+      keys = {}; ch = [];
+      for (f in x) if (!FM_META[f]) keys[f] = 1; for (f in p) if (!FM_META[f]) keys[f] = 1;
+      for (f in keys) if (JSON.stringify(x[f]) !== JSON.stringify(p[f])) ch.push(f);
+      if (!ch.length) continue;
+      F = {}; var base = x._f && typeof x._f === "object" ? x._f : null;
+      if (base && !fmOld(x)) for (f in base) F[f] = base[f]; else for (f in p) if (!FM_META[f]) F[f] = p.at;
+      ch.forEach(function (f) { F[f] = x.at; }); F["~"] = x.at;
+      y = {}; for (f in x) y[f] = x[f]; y._f = F; m[k] = y;
+    }
+    var s = {}; for (k in m) s[k] = m[k]; return s;
   }
   function same(a, b) {
     var ka = Object.keys(a), kb = Object.keys(b); if (ka.length !== kb.length) return false;
@@ -133,8 +188,9 @@
       if (who !== uid) return;
       var cl = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
       var cc = (r[1] && r[1].cats && typeof r[1].cats === "object") ? r[1].cats : {};
+      snap = stamp(items, snap); csnap = stamp(catsMap, csnap);
       var mi = merge(items, cl), mc = merge(catsMap, cc);
-      if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; saveLocal(); render(); }
+      if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; snap = stamp(items, null); csnap = stamp(catsMap, null); saveLocal(); render(); }
       var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
       if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
       if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
