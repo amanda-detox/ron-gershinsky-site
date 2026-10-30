@@ -1,6 +1,6 @@
 /* Offline cache for Calcify (חישובלי). Scope: calc/ only. */
-var CACHE = "rg-calc-v1";
-var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../shared/rg-site.css", "../shared/fonts/heebo.css", "../shared/fonts/heebo-hebrew.woff2"];
+var CACHE = "rg-calc-v2";
+var FILES = ["./", "index.html", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../shared/rg-topbar.js", "../shared/rg-site.css", "../shared/fonts/heebo.css", "../shared/fonts/heebo-hebrew.woff2"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
 });
