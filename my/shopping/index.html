@@ -132,6 +132,20 @@
   .suggest { background: none; border: 0; padding: 4px; color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
   html[data-theme="light"] .suggest { color: var(--blue); }
   .count { color: var(--faint); font-size: 13px; margin-inline-start: auto; }
+  .mrow { display: flex; gap: 8px; } .mrow .mi { flex: 1; text-align: center; }
+  /* sheets (move menu etc.): never taller than the screen; the list of categories scrolls */
+  .sheet { max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; }
+  .sheet .mlist { display: flex; flex-direction: column; gap: 6px; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain; flex: 0 1 auto; }
+  .sheet .mlist .mi { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .sheet .mi .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sheet .mi .mc { flex: none; color: var(--faint); font-size: 13px; font-weight: 700; }
+  @media (min-width: 700px) {
+    .sheetwrap { align-items: center; }
+    .sheet { max-width: 420px; max-height: 80vh; padding: 14px 14px 12px; gap: 6px; }
+    .sheet h3 { font-size: 16px; }
+    .sheet .mi { min-height: 38px; padding: 0 12px; font-size: 14.5px; border-radius: 10px; }
+    .sheet .mlist { gap: 4px; }
+  }
 </style>
 <script src="../../shared/rg-bg.js" data-app="my" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -213,7 +227,7 @@ window.RGMY_STRINGS = {
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=29"></script>
+<script src="app.js?v=30"></script>
 <script src="../../shared/rg-topbar.js?v=2" data-slot=".topbar"></script>
 </body>
 </html>

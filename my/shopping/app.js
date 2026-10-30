@@ -521,9 +521,9 @@
     var x = items[id]; if (!x || x.deleted) return;
     var from = listOf(x), others = cats().filter(function (c) { return c.cat !== from; });
     var html = '<h3>' + esc(t("moveTitle")) + '</h3><p class="mnote">' + esc(x.text) + "</p>";
-    if (others.length) html += others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '">' + esc(catName(c)) + "</button>"; }).join("");
+    if (others.length) html += '<div class="mlist">' + others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '"><span class="mn">' + esc(catName(c)) + '</span><span class="mc">' + liveIn(c.cat).length + "</span></button>"; }).join("") + "</div>";
     else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>";
-    html += '<button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button>";
+    html += '<div class="mrow"><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button></div>";
     sheet(html, function (a) {
       if (a === "x") { closeSheet(); return; }
       if (a === "del") { closeSheet(); delWithUndo(id); return; }
