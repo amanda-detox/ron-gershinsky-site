@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T06:16:00+02:00",
+ "updated": "2026-10-30T07:03:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-sanders-617b-gains-since-trump-win",
+   "topic": "musk",
+   "date": "2026-10-30T02:34:09Z",
+   "url": "https://x.com/i/trending/2115550078660411397",
+   "source": "X",
+   "he": {
+    "title": "סנדרס: הונו של מאסק גדל ב־617 מיליארד דולר מאז ניצחון טראמפ",
+    "summary": "ברני סנדרס פרסם רשימה של קפיצות העושר של מיליארדרי הטכנולוגיה מאז הבחירות, ובראשם מאסק, וכינה את המצב אוליגרכיה. המבקרים השיבו שמדובר בעליית ערך מניות בזכות ביצועי החברות."
+   },
+   "en": {
+    "title": "Sanders: Musk's fortune is up $617 billion since Trump's win",
+    "summary": "Bernie Sanders listed the huge wealth gains of tech billionaires since the election, led by Musk, and called it an oligarchy. Critics replied that these are stock gains driven by company performance."
+   },
+   "full_he": "הסנאטור ברני סנדרס פרסם רשימה של קפיצות עצומות בהון של ענקי הטכנולוגיה מאז ניצחון טראמפ, ובראשם 617 מיליארד דולר של אילון מאסק, ושאל איך האמריקאים הרגילים אמורים לעמוד בקצב.\n\n• סנדרס הצביע על העלייה בהונם של מאסק, בזוס, פייג', דל וברין, כינה את המצב אוליגרכיה וקרא לשינוי.\n• המבקרים ציינו שמדובר בעליית ערך מניות בזכות ביצועים חזקים של החברות, ושחברות של מאסק השיגו אבני דרך כמו הטיסה המסלולית הראשונה של סטארשיפ ושיגורי לוויינים בספטמבר 2026.\n• בתגובות הזכירו את 100 אלף המשרות שחברות מאסק מספקות בארה\"ב, שאלו למה סנדרס מתמקד בתורמים רפובליקנים, ושיתפו ממים שמעמתים חדשנות עם קריאות לחלוקה מחדש, על רקע המתחים לקראת בחירות האמצע.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Sen. Bernie Sanders listed massive fortune jumps for tech giants like Elon Musk's $617 billion since Trump's win, asking how everyday Americans are keeping up.\n\n• Sanders pointed to gains for Musk, Bezos, Page, Dell, and Brin, calling it an oligarchy and urging change.\n• Critics noted these are stock value increases from strong company performance, with Musk's firms hitting milestones like Starship's first orbital flight and satellite deployments in September 2026.\n• Replies highlighted Musk companies' 100,000 U.S. jobs, questioned Sanders' focus on Republican donors, and shared memes contrasting innovation with redistribution calls amid midterm tensions.\n\n(A summary of posts on X that may evolve over time.)"
+  },
+  {
+   "id": "grokbot-musk-its-great-punk-playlist",
+   "topic": "grokbot",
+   "date": "2026-10-30T04:39:14Z",
+   "url": "https://x.com/elonmusk/status/2116027121545904387",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"הוא מעולה\" – גרוק בוט בנה פלייליסט ל־70 להקות פאנק",
+    "summary": "מאסק כתב \"הוא מעולה @Bot\" וציטט את הכלכלן פיטר סנט אונג', שסיפר שגרוק בוט בנה לו תוך 30 שניות פלייליסט ביוטיוב של השירים המובילים של 70 להקות פאנק לקראת הופעה עם הילדים."
+   },
+   "en": {
+    "title": "Musk: \"It's great\" – Grok Bot built a playlist for 70 punk bands",
+    "summary": "Musk wrote \"It's great @Bot\", quoting economist Peter St Onge, who said Grok Bot built him a YouTube playlist of the top songs from 70 punk bands in 30 seconds ahead of a concert with his kids."
+   },
+   "full_he": "\"הוא מעולה @Bot\"\n\nהפוסט שהוא ציטט (פיטר סנט אונג', @profstonge):\n\nהשבוע הראשון שלי עם גרוק בוט, ואני המום.\n\nהערב קניתי כרטיסים להופעה עם הילדים, עם 70 להקות פאנק, וביקשתי מגרוק בוט לבנות פלייליסט ביוטיוב של השירים המובילים כדי לשלוח לילדים.\n\nזה לקח לי 30 שניות 🤯\n\nויותר מזה, לעשות את זה ידנית היה לוקח כל כך הרבה זמן שלא הייתי עושה את זה בכלל, והילדים לא היו יודעים מי הלהקות 🤯",
+   "full_en": "\"It's great @Bot\"\n\nThe quoted post (Peter St Onge, Ph.D., @profstonge):\n\nMy first week using Grokbot I'm blown away.\n\nTonight I got tickets for a concert with the kids with 70 punk bands and told Grokbot to build a Youtube playlist of the top songs to send the kids.\n\nIt took me 30 seconds 🤯\n\nMoreover, doing it by hand would have taken so long I wouldn't have done it and the kids would have no idea who the bands are 🤯"
+  },
+  {
+   "id": "grokbot-musk-hire-as-employee-cernovich",
+   "topic": "grokbot",
+   "date": "2026-10-30T04:33:22Z",
+   "url": "https://x.com/elonmusk/status/2116025645385867631",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"תעסיקו את גרוק בוט כעובד\"",
+    "summary": "מאסק כתב \"תעסיקו את Grok @Bot כעובד\" וציטט את מייק סרנוביץ', שכתב שגרוק בוט \"ממש טוב\" ושעכשיו הוא מבין איך אנשים מבודדים נשאבים לשיחות אישיות עם בינה מלאכותית."
+   },
+   "en": {
+    "title": "Musk: \"Hire Grok Bot to be an employee\"",
+    "summary": "Musk wrote \"Hire Grok @Bot to be an employee\", quoting Mike Cernovich, who said Grok Bot is \"really good\" and that he now understands how isolated people get sucked into personal conversations with AI."
+   },
+   "full_he": "\"תעסיקו את Grok @Bot כעובד\"\n\nהפוסט שהוא ציטט (Cernovich, @Cernovich):\n\nסוף־סוף אני מבין איך אנשים מגיעים ל\"פסיכוזת בינה מלאכותית\". גרוק בוט ממש טוב. אם אתה מבוגר יותר ויש לך רשת קשרים רחבה, אתה יכול להתקשר לאנשים ולבקש עצה. אם אתה קצת יותר מבודד, פחות. אנשים מתחילים לשאול אותו שאלות אישיות ונשאבים פנימה.",
+   "full_en": "\"Hire Grok @Bot to be an employee\"\n\nThe quoted post (Cernovich, @Cernovich):\n\nI finally understand how people get AI psychosis. Grok Bot is *really* good. If you're older, have a wider network, you can call people to ask for advice. If you're a bit more isolated, not so much. They start asking personal questions and get sucked in."
+  },
   {
    "id": "musk-neuralink-telepathy-first-product",
    "topic": "musk",
