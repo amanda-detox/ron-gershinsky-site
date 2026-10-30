@@ -53,6 +53,36 @@
     if (list.items) return list.items;
     var a = []; (list.sections || []).forEach(function (sec) { a = a.concat(sec.items || []); }); return a;
   }
+  /* Ron's own order (☰ drag), per list, stored by Hebrew text; synced as a pref */
+  var ORD_KEY = "rg-balancify-order";
+  function getOrd() { try { var o = JSON.parse(get(ORD_KEY) || "{}"); return o && typeof o === "object" ? o : {}; } catch (e) { return {}; } }
+  function sorted(list) {
+    var ord = getOrd()[list.id] || [], items = list.items.slice();
+    return items.map(function (it, i) { var p = ord.indexOf(it.he); return { it: it, k: p === -1 ? 1e6 + i : p }; })
+      .sort(function (x, y) { return x.k - y.k; }).map(function (x) { return x.it; });
+  }
+  function saveOrd(id, arr) { var o = getOrd(); o[id] = arr; set(ORD_KEY, JSON.stringify(o)); try { window.dispatchEvent(new StorageEvent("storage", { key: ORD_KEY })); } catch (e) {} }
+  function enableDrag(ul, list) {
+    ul.addEventListener("pointerdown", function (e) {
+      var h = e.target.closest(".hdl"); if (!h) return;
+      e.preventDefault();
+      var li = h.closest("li"); li.classList.add("lifted"); ul.classList.add("dragging");
+      try { h.setPointerCapture(e.pointerId); } catch (x) {}
+      function mv(ev) {
+        var rows = Array.prototype.slice.call(ul.children);
+        for (var i = 0; i < rows.length; i++) {
+          var r = rows[i]; if (r === li) continue; var b = r.getBoundingClientRect();
+          if (ev.clientY > b.top && ev.clientY < b.bottom) { if (ev.clientY < b.top + b.height / 2) ul.insertBefore(li, r); else ul.insertBefore(li, r.nextSibling); break; }
+        }
+      }
+      function up() {
+        h.removeEventListener("pointermove", mv); h.removeEventListener("pointerup", up); h.removeEventListener("pointercancel", up);
+        li.classList.remove("lifted"); ul.classList.remove("dragging");
+        saveOrd(list.id, Array.prototype.map.call(ul.children, function (r) { return r.getAttribute("data-he"); }));
+      }
+      h.addEventListener("pointermove", mv); h.addEventListener("pointerup", up); h.addEventListener("pointercancel", up);
+    });
+  }
   function countChecked(list) { var c = getChecked(list.id); return itemsOf(list).filter(function (it) { return c.indexOf(it.he) !== -1; }).length; }
 
   function applyTheme() {
@@ -88,17 +118,17 @@
     var ul = $("items"); ul.innerHTML = ""; ul.className = "items";
     var chk = getChecked(list.id);
     if (list.style === "info") renderInfoList(list, ul, chk);
-    else list.items.forEach(function (it) {
-      var li = document.createElement("li");
+    else { enableDrag(ul, list); sorted(list).forEach(function (it) {
+      var li = document.createElement("li"); li.className = "drow"; li.setAttribute("data-he", it.he);
       var on = chk.indexOf(it.he) !== -1;
-      li.innerHTML = '<label class="item' + (on ? " on" : "") + '"><input type="checkbox"' + (on ? " checked" : "") + '><span class="box">' + CHECK + '</span><span class="tw"><span class="t">' + esc(nm(it)) + "</span>" + (it.detail ? '<span class="d">' + esc(nm(it.detail)) + "</span>" : "") + "</span></label>";
+      li.innerHTML = '<label class="item' + (on ? " on" : "") + '"><input type="checkbox"' + (on ? " checked" : "") + '><span class="box">' + CHECK + '</span><span class="tw"><span class="t">' + esc(nm(it)) + "</span>" + (it.detail ? '<span class="d">' + esc(nm(it.detail)) + "</span>" : "") + "</span></label>" + '<span class="hdl" role="button" aria-label="' + (lang === "en" ? "Drag to reorder" : "גרור לשינוי הסדר") + '">☰</span>';
       li.querySelector("input").onchange = function (e) {
         var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
         if (e.target.checked) c.push(it.he);
         setChecked(list.id, c); li.firstChild.classList.toggle("on", e.target.checked); renderCount(list);
       };
       ul.appendChild(li);
-    });
+    }); }
     var mo = $("list-more"); mo.hidden = !list.more; if (list.more) mo.textContent = nm(list.more);
     var empty = !itemsOf(list).length;
     $("soon").hidden = !empty; $("soon").textContent = t().soon;

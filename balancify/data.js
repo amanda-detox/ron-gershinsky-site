@@ -38,7 +38,8 @@ window.BAL_DATA = {
         { he: "5 אוג'אי + 5555 בישיבה", en: "5 Ujjayi breaths + 5555 sitting" },
         { he: "הפסקת שתיה", en: "A drink break" },
         { he: "לבדוק: אנלומה וילומה", en: "To check: Anulom Vilom" },
-        { he: "זיהוי צרכים", en: "Identifying needs" }
+        { he: "זיהוי צרכים", en: "Identifying needs" },
+        { he: "כינוס חושים (פרטיאהארה): כיסוי עיניים, שמיכה ואטמים", en: "Sense withdrawal (Pratyahara): eye mask, blanket and earplugs" }
       ]
     },
     {

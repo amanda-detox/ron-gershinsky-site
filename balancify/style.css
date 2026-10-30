@@ -128,3 +128,10 @@ html[data-theme=light] .ichk input:checked + .box{color:#fff}
 .more{text-align:center;font-size:14.5px;font-weight:700;color:var(--mute);margin:14px 0 0}
 /* phones: background button icon-only so the whole top bar stays in one row */
 @media (max-width: 480px) { header.top #bg-btn { font-size: 0 !important; width: 36px; height: 36px; min-height: 0; padding: 0 !important; display: inline-flex; align-items: center; justify-content: center; } header.top #bg-btn::before { content: "\1F5BC\FE0F"; font-size: 16px; } }
+
+/* ☰ drag to reorder */
+.items .drow{display:flex;align-items:stretch;gap:6px}
+.items .drow .item{flex:1;min-width:0}
+.hdl{flex:none;display:grid;place-items:center;width:40px;border-radius:12px;font-size:20px;color:var(--mute);cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none}
+.drow.lifted .item{border-color:var(--on);box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.items.dragging .hdl{cursor:grabbing}
