@@ -854,7 +854,7 @@ function updateComet(dt, playing) {
 }
 function resetComet() { comet.visible = false; cometWait = rand(60, 120); }
 function addScore(n, bonus) {
-  score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = score; el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+  score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = stats.get().total; /* HUD shows the user's accumulated total */ el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
   if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
 }
 let msgTimer = 0;
@@ -1381,6 +1381,23 @@ $('charSel').addEventListener('change', (e) => { setChar(parseInt(e.target.value
 $('mulSel2').addEventListener('change', onMul);
 $('camSel').addEventListener('change', onCam); $('camSel2').addEventListener('change', onCam);
 $('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); if (buddyOn) buildBuddy(); e.target.blur(); });
+/* in-game icon pickers: 📷 view, 🗺️ world, 💨 pace. Each opens a readable list built from the hidden select. */
+const PICK_SELS = { camPick: 'camSel2', envPick: 'envSel2', mulPick: 'mulSel2' };
+function closePick() { $('pickMenu').classList.add('hidden'); }
+function openPick(btnId) {
+  const sel = $(PICK_SELS[btnId]), m = $('pickMenu'), L = T[lang];
+  if (!m.classList.contains('hidden') && m.dataset.for === btnId) { closePick(); return; }
+  m.dataset.for = btnId;
+  const title = btnId === 'camPick' ? L.view : btnId === 'envPick' ? L.world : L.mul;
+  m.innerHTML = '<div class="ph">' + $(btnId).textContent + ' ' + (title || '') + '</div>' + Array.from(sel.options).map((o) => `<button type="button" class="po${o.value === sel.value ? ' on' : ''}" data-v="${o.value}">${o.textContent}</button>`).join('');
+  m.classList.remove('hidden');
+}
+for (const id of Object.keys(PICK_SELS)) $(id).addEventListener('click', (e) => { e.stopPropagation(); openPick(id); });
+$('pickMenu').addEventListener('click', (e) => {
+  e.stopPropagation(); const b = e.target.closest('.po'); if (!b) return;
+  const sel = $(PICK_SELS[$('pickMenu').dataset.for]); sel.value = b.dataset.v; sel.dispatchEvent(new Event('change')); closePick();
+});
+document.addEventListener('pointerdown', (e) => { if (!e.target.closest('#pickMenu') && !e.target.closest('.pk')) closePick(); });
 function showHud() {
   $('menu').classList.add('hidden'); $('hud').classList.remove('hidden');
   $('joy').classList.remove('hidden'); $('powers').classList.remove('hidden');
@@ -1389,7 +1406,7 @@ function showHud() {
 let resumable = false;
 function start() {
   stats.newGame();
-  state = 'play'; score = 0; $('score').textContent = '0';
+  state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
   player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); resetCombo(); resetComet(); showHud(); resumable = true;
   const sbn = stats.daily(); if (sbn > 0) setTimeout(() => { if (state !== 'play') return; addScore(sbn, true); showCel(T[lang].streakBonus(stats.get().streak, sbn), T[lang].streakSub); menuStreak(); }, 900);
@@ -1399,7 +1416,7 @@ function start() {
 function toMenu() {
   stats.flush(); menuStreak(); comet.visible = false;
   if (tutStep >= 0) tutEnd();
-  state = 'menu'; $('hud').classList.add('hidden'); $('photoUi').classList.add('hidden'); $('menu').classList.remove('hidden');
+  closePick(); state = 'menu'; $('hud').classList.add('hidden'); $('photoUi').classList.add('hidden'); $('menu').classList.remove('hidden');
   if (resumable) $('startBtn').textContent = T[lang].resume; snapCam = true;
   input.jx = input.jy = input.mx = input.my = input.up = input.down = 0; joyId = mouseId = null; joyRest();
 }
@@ -1481,7 +1498,7 @@ const stats = (() => {
     lb.post(u.id, val).catch(() => { lbSent = ''; });
   }
   function pull() {
-    if (!uid()) { s = load(); return; }
+    if (!uid()) { s = load(); hudTotal(); return; }
     const guest = (() => { try { return JSON.parse(store.get('rg-fly-stats:guest', '') || 'null'); } catch (e) { return null; } })();
     A.get('fly', 'stats').then((cloud) => {
       s = merge(load(), cloud || blank());
@@ -1490,11 +1507,13 @@ const stats = (() => {
         for (const k of ['total', 'earned', 'games', 'bonuses']) s[k] += guest[k] || 0; s.best = Math.max(s.best, guest.best || 0);
         store.set('rg-fly-stats:guest', '');
       }
-      dirty = true; save(); push(); lbPost();
+      dirty = true; save(); push(); lbPost(); hudTotal();
     }).catch(() => {});
   }
   if (A) { (A.ready && A.ready.then ? A.ready : Promise.resolve()).then(pull, pull); if (A.onChange) A.onChange(pull); }
-  addEventListener('pagehide', () => push());
+  function hudTotal() { const el = document.getElementById('score'); if (el) el.textContent = String(s.total); }
+  addEventListener('pagehide', () => { save(); push(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { save(); push(); } });
   return {
     get: () => s,
     newGame() { s.games++; later(); },

@@ -65,7 +65,12 @@
   #hud .top { position:absolute; top:max(8px, env(safe-area-inset-top)); left:8px; right:8px; display:flex; flex-direction:column; gap:6px; }
   #hud .r1 { display:flex; justify-content:space-between; align-items:center; gap:6px; }
   #hud .r2 { display:flex; gap:6px; pointer-events:auto; max-width:560px; }
-  #hud .r2 select { flex:1; font-size:13px; padding:6px 8px; min-width:0; }
+  #hud .r2 select { display:none; }
+  #hud .r2 .pk { width:46px; height:42px; padding:0; font-size:21px; border:1.5px solid var(--gold); }
+  #pickMenu { pointer-events:auto; align-self:flex-start; width:min(300px, calc(100vw - 16px)); max-height:58vh; overflow-y:auto; background:linear-gradient(180deg,#0d2a6b,#0a1a52); border:1.5px solid var(--gold); border-radius:14px; padding:6px; box-shadow:0 6px 24px rgba(0,0,0,.45); display:flex; flex-direction:column; gap:4px; }
+  #pickMenu .ph { color:var(--gold); font-weight:700; font-size:14px; padding:4px 8px 6px; }
+  #pickMenu .po { text-align:start; background:rgba(44,92,255,.18); border:1px solid rgba(243,207,107,.3); border-radius:10px; padding:10px 12px; font-size:16px; color:#eaf0ff; font-family:inherit; }
+  #pickMenu .po.on { border:2px solid var(--gold); color:var(--gold2); font-weight:700; }
   .score { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:4px 12px; font-size:14px; }
   .score b { color:var(--gold); font-size:19px; font-weight:700; }
   html[data-theme="light"] .score b { color:#a07c10; }
@@ -195,10 +200,14 @@
       <button class="tbtn" id="pauseBtn" aria-label="menu">☰</button>
     </div>
     <div class="r2">
-      <select id="camSel2" aria-label="view"></select>
-      <select id="envSel2" aria-label="world"></select>
-      <select id="mulSel2" aria-label="pace" class="mul"></select>
+      <button type="button" class="tbtn pk" id="camPick" aria-label="view">📷</button>
+      <button type="button" class="tbtn pk" id="envPick" aria-label="world">🗺️</button>
+      <button type="button" class="tbtn pk" id="mulPick" aria-label="pace">💨</button>
+      <select id="camSel2" aria-label="view" hidden></select>
+      <select id="envSel2" aria-label="world" hidden></select>
+      <select id="mulSel2" aria-label="pace" class="mul" hidden></select>
     </div>
+    <div id="pickMenu" class="hidden"></div>
   </div>
   <div id="msg"></div>
   <div id="celebrate"><b></b><span></span></div>
@@ -274,7 +283,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=7"></script>
+<script type="module" src="game.js?v=8"></script>
 <script src="../shared/rg-topbar.js?v=2" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 </body>
 </html>
