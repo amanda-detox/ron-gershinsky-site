@@ -201,10 +201,10 @@
   function dordOf(x) { return typeof x.dord === "number" && isFinite(x.dord) ? x.dord : Infinity; }
   function selIn(sec) { return live(sec).filter(isSel).sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); } // Ron's order (☰ drag), last selected at the very bottom
   function setItemOrder(ids, f) { f = f || "order"; ids.forEach(function (id, n) { var x = items[id], p = {}; p[f] = n + 1; if (x && !x.deleted && x[f] !== n + 1) upd(id, p); }); }
-  function nextOrder(sec) { // give every item in the list a number first (old items may have none), then one more for the new item
+  function nextOrder(sec) { // give every item in the list a number first (old items may have none), then one less for the new item (top of the list)
     var l = live(sec).sort(byOrder);
     if (l.some(function (x) { return typeof x.order !== "number"; })) setItemOrder(l.map(function (x) { return x.id; }));
-    return live(sec).reduce(function (m, y) { return Math.max(m, typeof y.order === "number" ? y.order : 0); }, 0) + 1;
+    return live(sec).reduce(function (m, y) { return Math.min(m, typeof y.order === "number" ? y.order : 1); }, 1) - 1; // one less than the smallest: a new item goes to the TOP (Ron, 2026-10-30)
   }
   function add(sec, text, note, price) {
     text = clean(text, 200); if (!text) return;
@@ -214,7 +214,7 @@
     put(x);
   }
   function toggleSel(id) { var x = items[id]; if (x && !x.deleted) upd(id, { done: !isSel(x), dord: null }); } // dord reset: lands at the bottom of "נבחר"
-  /* move one item to another category (list); it keeps its selected state and goes to the end of that list */
+  /* move one item to another category (list); it keeps its selected state and goes to the top of that list */
   function moveItem(id, cid) {
     var x = items[id]; if (!x || x.deleted || x.sec === cid || !catOf(cid)) return false;
     upd(id, { sec: cid, done: isSel(x), order: nextOrder(cid), dord: null }); return true;
