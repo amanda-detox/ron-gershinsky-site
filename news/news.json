@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T21:09:13+02:00",
+ "updated": "2026-10-30T21:58:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-shares-dip-near-ipo-retail-buyers",
+   "topic": "spacex",
+   "date": "2026-10-30T19:44:29Z",
+   "url": "https://x.com/i/trending/2115544016569696371",
+   "source": "X",
+   "he": {
+    "title": "מניית ספייסאקס צונחת לקרבת מחיר ההנפקה, והמשקיעים הקטנים קונים",
+    "summary": "מניית ספייסאקס ירדה ב־30 באוקטובר לאזור 130 דולר ומשהו, קרוב למחיר ההנפקה מיוני (135 דולר), ומחקה יותר מ־400 מיליארד דולר משווי השוק מאז השיא של תחילת אוקטובר. משקיעים פרטיים ב־X ניצלו את הירידה לקנייה."
+   },
+   "en": {
+    "title": "SpaceX shares dip to near-IPO levels, drawing retail buyers",
+    "summary": "SpaceX stock slid into the mid-$130s on Oct. 30, close to its June IPO price of $135, erasing over $400 billion in market value since early-October highs. Retail investors on X used the dip to buy."
+   },
+   "full_he": "מניית ספייסאקס נסגרה ב־29 באוקטובר על 143.89 דולר, וב־30 באוקטובר ירדה לאזור 130 דולר ומשהו – קרוב למחיר ההנפקה מיוני, 135 דולר. הירידה מחקה יותר מ־400 מיליארד דולר משווי השוק לעומת השיא של תחילת אוקטובר.\n\n• הירידה הגיעה אחרי פקיעת תקופת חסימה (lockup) גדולה של מניות ועל רקע לחץ על מגזר הטכנולוגיה.\n• משקיעים פרטיים ב־X קנו מניות בירידה; חלקם החליפו מניות טסלה במניות ספייסאקס, ואחרים מסתכלים על צמיחה לטווח ארוך, לאור תוצאות רבעון שלישי חזקות עם קפיצה של 161% בהכנסות. משקיע אחד תהה אם הוא חולם על הזדמנות הקנייה.\n• האופטימיות נשמרת: יעדי אנליסטים מעל 250 דולר, ודיבורים על מיזוג אפשרי בין ספייסאקס לטסלה.\n• סוחרים טכניים מזהירים מירידה נוספת לאזור 120 דולר אם המניה לא תחזור מעל 144 דולר.\n\nזהו סיכום של פוסטים ב־X שנכתב על ידי Grok, והוא עשוי להתעדכן ולהכיל טעויות.",
+   "full_en": "SpaceX stock closed at $143.89 on Oct. 29 before dipping into the mid-$130s on Oct. 30, close to its June IPO price of $135, erasing over $400 billion in market value from early-October highs.\n\n• The slide followed a large share lockup expiration and pressure on the tech sector.\n• Retail investors on X scooped up shares, some swapping Tesla holdings and others eyeing long-term growth after strong Q3 results showing a 161% revenue jump. One investor wondered if he was dreaming about the buying opportunity.\n• Optimism persists, with analyst targets above $250 and chatter about a potential SpaceX–Tesla merger.\n• Technical traders warn of further drops to $120 without a rebound above $144.\n\nThis story is a summary of posts on X written by Grok; it may evolve over time and can contain mistakes."
+  },
   {
    "id": "mercola-hydration-electrolytes-molecular-hydrogen",
    "topic": "mercola",
