@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T12:32:51+02:00",
+ "updated": "2026-10-30T13:18:21+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -7908,6 +7908,23 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "musk-medical-school-pointless-ai",
+   "topic": "musk",
+   "date": "2026-10-30T10:51:51Z",
+   "url": "https://x.com/i/trending/2116119401800044736",
+   "source": "X",
+   "he": {
+    "title": "מאסק: אין טעם ללמוד רפואה, הבינה המלאכותית תחליף רופאים",
+    "summary": "בקטע שחזר לרשת מהפודקאסט Moonshots טוען מאסק שבתוך ארבע-חמש שנים בינה מלאכותית ורובוטים כמו אופטימוס יעניקו לכל אחד טיפול רפואי טוב יותר משמקבל היום הנשיא. זו תחזית שלו, ומבקרים מטילים ספק בלוח הזמנים."
+   },
+   "en": {
+    "title": "Musk: medical school is pointless as AI reshapes healthcare",
+    "summary": "In a resurfaced clip from the Moonshots podcast, Musk predicts that within four or five years AI and humanoid robots like Optimus will give everyone better care than the president gets today. It's his prediction, and critics question the timeline."
+   },
+   "full_he": "אילון מאסק מדמיין עתיד שבו בינה מלאכותית תעניק טיפול רפואי ברמה הגבוהה ביותר לכל אדם, כך שבתוך ארבע או חמש שנים כבר לא יהיה טעם ללמוד רפואה.\n\n• בקטע שחזר לרשת מהפודקאסט Moonshots, מאסק חוזה שבינה מלאכותית ורובוטים דמויי אדם כמו אופטימוס של טסלה יעניקו בקרוב טיפול רפואי טוב יותר ממה שמקבל היום הנשיא, ויעלו על מנתחים אנושיים בהיקף רחב.\n• לדבריו זה נכון לכל תחומי ההשכלה, וטיפול ברמה עולמית יהיה נגיש בכל העולם בתוך כמה שנים.\n• מבקרים חולקים על לוח הזמנים: הם מזכירים עיכובים מהעבר, מחסור ברופאים אם אף אחד לא יתמחה, וסיכונים כמו עלויות גבוהות או הסתמכות יתר על בינה מלאכותית, ומציינים מכשולים אמיתיים ברגולציה ובטיפול במקרים מורכבים.\n\nהערה: זו תחזית של מאסק, לא עובדה. רופאים ומנתחים עדיין חיוניים, והבינה המלאכותית ברפואה נמצאת בשלבי פיתוח ובדיקה.\n\n(סיכום של פוסטים ב-X, שעשוי להשתנות עם הזמן.)",
+   "full_en": "Elon Musk envisions a future where AI delivers top-tier medical care to everyone, making medical school obsolete in just four or five years.\n\n• In a resurfaced clip from the Moonshots podcast, Musk predicted that AI and humanoid robots like Tesla's Optimus will soon provide better healthcare than the president gets today, outperforming human surgeons at scale.\n• He argued this applies to all education, with world-class care accessible globally within years.\n• Critics push back on the timeline, citing past delays, doctor shortages if no one trains, and risks like rising costs or over-reliance on AI, while noting real hurdles in regulation and complex care.\n\nNote: this is Musk's prediction, not an established fact. Doctors and surgeons remain essential, and AI in medicine is still being developed and tested.\n\n(A summary of posts on X that may evolve over time.)"
   }
  ]
 }
