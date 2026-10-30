@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T17:17:00+02:00",
+ "updated": "2026-10-30T17:56:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -8250,6 +8250,23 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "tesla-musk-model-y-long-wheelbase",
+   "topic": "tesla",
+   "date": "2026-10-30T15:28:25Z",
+   "url": "https://x.com/elonmusk/status/2116190494300504403",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מציג את Model Y בגרסת בסיס גלגלים ארוכה",
+    "summary": "מאסק כותב \"Tesla Model Y בגרסת בסיס גלגלים ארוכה\" ומצטט פוסט של ‎@DevinOlsenn עם סרטון של דקה על ה־Model Y L, שלדבריו \"כל הפרטים הקטנים\" הופכים אותה לרכב מדהים."
+   },
+   "en": {
+    "title": "Musk shows off the long-wheelbase Tesla Model Y",
+    "summary": "Musk writes \"Tesla Model Y long wheel base variant,\" quoting a post by @DevinOlsenn with a one-minute video of the Model Y L, which he says is an amazing vehicle because of \"all the little things.\""
+   },
+   "full_he": "Tesla Model Y בגרסת בסיס גלגלים ארוכה\n\nהפוסט שהוא ציטט (‎@DevinOlsenn):\n\nכל הפרטים הקטנים ב־YL הם מה שהופכים אותה לרכב מדהים.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Tesla Model Y long wheel base variant\n\nThe quoted post (@DevinOlsenn):\n\nIt's all the little things in the YL that make it an amazing vehicle.\n\nThe rest of the post is a video, so there's no more text to show."
   }
  ]
 }
