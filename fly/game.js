@@ -28,7 +28,7 @@ const T = {
     keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C V כלים · Q E טבעת · Esc תפריט',
     copy: '© כל הזכויות שמורות לחברת היליפיי בע"מ 2026',
     nogl: 'הדפדפן הזה לא תומך בתלת־ממד (WebGL). כדאי לנסות ב־Chrome או ב־Safari מעודכנים.',
-    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
+    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
     envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
@@ -49,7 +49,7 @@ const T = {
     keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C V tools · Q E ring · Esc menu',
     copy: '© 2026 Healify Ltd. All rights reserved.',
     nogl: 'This browser does not support 3D (WebGL). Please try an up-to-date Chrome or Safari.',
-    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
+    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
     envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
@@ -541,13 +541,22 @@ const ENVS = {
       start: new THREE.Vector3(0, 45, 0), minY: 3, maxY: 320, R: 520, heightAt, spark: 0xffc93a,
       update(t, dt, p) { updateLocal(snowP, p, -4, dt, t, 2); } };
   },
-  solar() {
+  solar(gv = 0) {
+    /* gv = which galaxy the white hole took you to (0 = home). Each one has its own stars, sun, nebula tints and planets — blue/gold only */
+    const GV = [
+      { n: 2200, st: [0xffffff, 0xdde6ff, 0xfff0d0, 0xbfd3ff], sun: 0xffd36b, sg: [0xffb340, 0xfff0b0], neb: [], sky: [0x02030c, 0x070a22, 0x02030c], pc: null },
+      { n: 4200, st: [0xbfd3ff, 0x8fb0ff, 0xffffff, 0x6f8fff], sun: 0x9fc0ff, sg: [0x4f7dff, 0xd8e6ff], neb: [0x2d5bd8, 0x4f7dff, 0x1b3a9a, 0xf3cf6b], sky: [0x01041a, 0x0a1a4a, 0x020618], pc: [0x9fc0ff, 0x4a6df0, 0xe8c47a, 0x3d7fe0, 0xdfe8ff, 0xf3cf6b, 0x6f8fff, 0x2d5bd8] },
+      { n: 3200, st: [0xfff0d0, 0xffe08a, 0xffffff, 0xf3cf6b], sun: 0xfff0b0, sg: [0xffc94a, 0xfff6e0], neb: [0xffb340, 0xf3cf6b, 0x4f7dff, 0xc9962a], sky: [0x0a0602, 0x1f1406, 0x060300], pc: [0xf3cf6b, 0xd9a95b, 0x4f7dff, 0xffe7a3, 0xb98a45, 0x8fb0ff, 0xe6d29c, 0x3f62a8] },
+      { n: 5200, st: [0xffffff, 0xbfd3ff, 0xffe7a3], sun: 0xffffff, sg: [0x8fb0ff, 0xffe7a3], neb: [0x4f7dff, 0xffc94a, 0x2d5bd8, 0xfff0b0, 0x6f8fff], sky: [0x000208, 0x061036, 0x000208], pc: [0xdfe8ff, 0xffe08a, 0x6f8fff, 0x4a6df0, 0xf3cf6b, 0x9fe0f0, 0xbfd3ff, 0xc9962a] }
+    ][gv % 4];
     const g = new THREE.Group();
-    g.add(points(2200, () => sphereShell(rand(1300, 1800)), 2.2, { atten: false, colors: () => pick([0xffffff, 0xdde6ff, 0xfff0d0, 0xbfd3ff]), fog: false }));
-    const sun = ball(42, new THREE.MeshBasicMaterial({ color: 0xffd36b }), 3); g.add(sun);
-    g.add(glowSprite(0xffb340, 210, 0.85), glowSprite(0xfff0b0, 120, 0.9));
+    g.add(points(GV.n, () => sphereShell(rand(1300, 1800)), 2.2, { atten: false, colors: () => pick(GV.st), fog: false }));
+    for (let i = 0; i < GV.neb.length * 5; i++) { const nb = glowSprite(GV.neb[i % GV.neb.length], rand(260, 620), rand(0.12, 0.26)); nb.position.copy(sphereShell(rand(700, 1100))); g.add(nb); }
+    const sun = ball(42, new THREE.MeshBasicMaterial({ color: GV.sun }), 3); g.add(sun);
+    g.add(glowSprite(GV.sg[0], 210, 0.85), glowSprite(GV.sg[1], 120, 0.9));
     const pl = new THREE.PointLight(0xfff1d8, 3.2, 0, 0); g.add(pl);
     const defs = [[75, 2.6, 0xb5a596], [105, 4.5, 0xe8c47a], [140, 5, 0x3d7fe0, 'earth'], [175, 3.6, 0xd2603b], [240, 13, 0xd9b08c], [310, 11, 0xe6d29c, 'ring'], [375, 8, 0x9fe0f0], [430, 7.5, 0x4a6df0]];
+    if (GV.pc) defs.forEach((d, i) => { d[2] = GV.pc[i]; d[1] *= rand(0.7, 1.5); if (d[3] === 'earth') d[3] = ''; });
     const planets = [];
     for (const [r, s, c, k] of defs) {
       const piv = new THREE.Group(); piv.rotation.y = Math.random() * Math.PI * 2; g.add(piv);
@@ -573,7 +582,7 @@ const ENVS = {
       h.add(glowSprite(0x6f8fff, 70, 0.5));
       g.add(h); holes.push({ g: h, disk, disk2, r: 11, cd: 0 });
     }
-    return { g, sky: [0x02030c, 0x070a22, 0x02030c], fog: null, hemi: [0x8899cc, 0x111122, 0.35], sun: [0xffffff, 0.0, [0, 1, 0]],
+    return { g, gv, sky: GV.sky, fog: null, hemi: [0x8899cc, 0x111122, 0.35], sun: [0xffffff, 0.0, [0, 1, 0]],
       start: new THREE.Vector3(0, 25, 200), minY: -160, maxY: 160, R: 480, spark: 0xfff0b0,
       avoid: [[0, 0, 0, 52]], holes, update(t, dt) { for (const h of holes) { h.disk.rotation.z += dt * 1.6; h.disk2.rotation.z -= dt * 0.9; h.cd = Math.max(0, h.cd - dt); } for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; } sun.rotation.y += dt * 0.05; } };
   },
@@ -837,7 +846,7 @@ const cometGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), co
 const cometTail = new THREE.Mesh(new THREE.ConeGeometry(1.2, 14, 12, 1, true), new THREE.MeshBasicMaterial({ color: 0xffc94a, transparent: true, opacity: 0.45, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
 cometTail.rotation.x = -Math.PI / 2; cometTail.position.z = 7.5; comet.add(cometTail);
 comet.visible = false; scene.add(comet);
-const cometVel = new THREE.Vector3(); let cometLeft = 0, cometWait = rand(60, 120);
+const cometVel = new THREE.Vector3(); let cometLeft = 0, cometWait = rand(30, 50);
 function spawnComet() {
   heading(); const side = Math.random() < 0.5 ? -1 : 1;
   comet.position.copy(player.pos).addScaledVector(fwd, rand(70, 110)).addScaledVector(right, side * 55); comet.position.y = clamp(player.pos.y + rand(-4, 8), floorAt(comet.position.x, comet.position.z) + 6, env.maxY - 5);
@@ -846,13 +855,13 @@ function spawnComet() {
 }
 function updateComet(dt, playing) {
   if (!playing) return;
-  if (!comet.visible) { cometWait -= dt; if (cometWait <= 0) { spawnComet(); cometWait = rand(60, 120); } return; }
+  if (!comet.visible) { cometWait -= dt; if (cometWait <= 0) { spawnComet(); cometWait = rand(30, 50); } return; }
   cometLeft -= dt; comet.position.addScaledVector(cometVel, dt); cometGlow.material.rotation += dt * 2;
   if (powerOn('magnet') && comet.position.distanceTo(player.pos) < 40) comet.position.lerp(player.pos, damp(1.5, dt));
   if (comet.position.distanceTo(player.pos) < 4 + player.model.userData.size) { comet.visible = false; addScore(COMET_PTS); showCel(T[lang].comet, T[lang].cometSub); }
   else if (cometLeft <= 0) comet.visible = false;
 }
-function resetComet() { comet.visible = false; cometWait = rand(60, 120); }
+function resetComet() { comet.visible = false; cometWait = rand(30, 50); }
 function addScore(n, bonus) {
   score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = stats.get().total; /* HUD shows the user's accumulated total */ el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
   if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
@@ -1408,13 +1417,13 @@ function start() {
   stats.newGame();
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
   player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
-  resetCollectibles(); resetPowers(); resetCombo(); resetComet(); showHud(); resumable = true;
+  resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); showHud(); resumable = true;
   const sbn = stats.daily(); if (sbn > 0) setTimeout(() => { if (state !== 'play') return; addScore(sbn, true); showCel(T[lang].streakBonus(stats.get().streak, sbn), T[lang].streakSub); menuStreak(); }, 900);
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
   if (store.get('rg-fly-tut', '0') !== '1') setTimeout(() => { if (state === 'play' && tutStep < 0) tutStart(); }, 300);
 }
 function toMenu() {
-  stats.flush(); menuStreak(); comet.visible = false;
+  stats.flush(); menuStreak(); comet.visible = false; wh.visible = false;
   if (tutStep >= 0) tutEnd();
   closePick(); state = 'menu'; $('hud').classList.add('hidden'); $('photoUi').classList.add('hidden'); $('menu').classList.remove('hidden');
   if (resumable) $('startBtn').textContent = T[lang].resume; snapCam = true;
@@ -1471,6 +1480,49 @@ function checkHoles() {
     }
   }
 }
+
+/* ================= white hole (space world): a glowing white/gold portal that appears ahead of you every ~39 s; flying in takes you to another galaxy ================= */
+const WH_EVERY = 39, WH_LIFE = 30;
+const wh = new THREE.Group();
+wh.add(new THREE.Mesh(new THREE.SphereGeometry(6, 24, 16), new THREE.MeshBasicMaterial({ color: 0xffffff })));
+const whDisk = new THREE.Mesh(new THREE.RingGeometry(8, 20, 64), new THREE.MeshBasicMaterial({ color: 0xffe7a3, transparent: true, opacity: 0.85, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+const whDisk2 = new THREE.Mesh(new THREE.RingGeometry(20, 28, 64), new THREE.MeshBasicMaterial({ color: 0xf3cf6b, transparent: true, opacity: 0.45, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false }));
+const whGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xfff6e0, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); whGlow.scale.setScalar(80);
+wh.add(whDisk, whDisk2, whGlow); wh.visible = false; scene.add(wh);
+let whWait = WH_EVERY, whLeft = 0, galaxyN = 0;
+const isSpace = () => ENV_IDS[envIdx] === 'solar';
+function spawnWhite() {
+  wh.position.copy(player.pos).addScaledVector(fwd, rand(110, 150)).addScaledVector(right, rand(-10, 10));
+  wh.position.y = clamp(player.pos.y + rand(-5, 8), env.minY + 10, env.maxY - 10);
+  wh.lookAt(player.pos); wh.visible = true; whLeft = WH_LIFE; flash(T[lang].whSeen);
+}
+function nextGalaxy() {
+  galaxyN++; const keep = player.yaw;
+  scene.remove(env.g); disposeTree(env.g);
+  env = ENVS.solar(galaxyN); scene.add(env.g); applyLighting();
+  sparkMat.color.set(env.spark); sparkGlow.material.color.set(env.spark);
+  player.pos.copy(env.start); player.yaw = keep; player.vy = 0; resetCollectibles(); snapCam = true;
+  addScore(100); showCel(T[lang].wh, T[lang].whSub); burst(30, 0xffffff); burst(24, 0xffd76a);
+}
+function updateWhite(dt) {
+  if (!isSpace()) { wh.visible = false; return; }
+  whWait -= dt; if (whWait <= 0) { whWait = WH_EVERY; spawnWhite(); } // a fresh one every 39 s, no matter the speed
+  /* keep the black holes coming too: if none is near, move the farthest one ahead of you every ~45 s */
+  holeWait -= dt;
+  if (holeWait <= 0 && env.holes) {
+    holeWait = 45; let far = null, fd = -1, near = false;
+    for (const h of env.holes) { const hd = h.g.position.distanceTo(player.pos); if (hd < 160) near = true; if (hd > fd) { fd = hd; far = h; } }
+    if (!near && far) { far.g.position.copy(player.pos).addScaledVector(fwd, rand(140, 180)).addScaledVector(right, rand(-40, 40)); far.g.position.y = clamp(far.g.position.y, env.minY + 15, env.maxY - 15); }
+  }
+  if (!wh.visible) return;
+  whLeft -= dt; whDisk.rotation.z -= dt * 1.8; whDisk2.rotation.z += dt * 1; whGlow.material.rotation += dt;
+  const d = wh.position.distanceTo(player.pos);
+  if (d < 45) wh.position.lerp(player.pos, damp(1.2, dt)); // gentle pull once you are close
+  if (d < 16 + player.model.userData.size) { wh.visible = false; nextGalaxy(); }
+  else if (whLeft <= 0) wh.visible = false;
+}
+let holeWait = 45;
+function resetWhite() { wh.visible = false; whWait = WH_EVERY; holeWait = 45; }
 
 /* ================= points: saved per user, accumulated across games, +400 bonus every 369 points ================= */
 const BONUS_EVERY = 369, BONUS = 400;
@@ -1598,7 +1650,7 @@ function frame() {
   if (playing) updatePlayer(dt);
   if (playing) tickPowers(dt);
   if (playing && env.holes) checkHoles();
-  if (playing) { comboTick(); updateComet(dt, playing); }
+  if (playing) { comboTick(); updateComet(dt, playing); updateWhite(dt); }
   const wdt = state === 'photo' ? 0 : playing && powerOn('slow') ? dt * 0.3 : dt; wtime += wdt; // slow time: the world around you moves at 30%
   if (state !== 'photo') env.update(wtime, wdt, player.pos);
   if (nightOn && ENV_IDS[envIdx] === 'dimension') skyMat.uniforms.hor.value.lerp(NIGHT, 0.8);
@@ -1615,7 +1667,7 @@ requestAnimationFrame(frame);
 
 /* small hook for automated checks */
 window.__fly = {
-  setEnv, setChar, start, toMenu, spawnComet, comboHit, stats,
+  setEnv, setChar, start, toMenu, spawnComet, spawnWhite, get galaxy() { return galaxyN; }, get whiteHole() { return { on: wh.visible, wait: whWait, pos: wh.position.toArray().map(Math.round) }; }, comboHit, stats,
   setCam(i) { camIdx = i; snapCam = true; syncSelects(); },
   setLang(l) { lang = l; store.set('rg-lang', l); applyLang(); },
   setTheme(t) { theme = t; applyTheme(); },
