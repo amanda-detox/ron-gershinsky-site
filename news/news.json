@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T03:52:00+02:00",
+ "updated": "2026-10-30T05:23:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-yes-vance-texas-not-california",
+   "topic": "musk",
+   "date": "2026-10-30T03:17:07Z",
+   "url": "https://x.com/elonmusk/status/2116006456763818028",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"כן\" – טקסס לא תהפוך לקליפורניה",
+    "summary": "מאסק הגיב ב\"כן\" לפוסט של Gunther Eagleman, שציטט את ג'יי די ואנס: טקסס לא הופכת לקליפורניה, והגברים באלאמו לא מתו כדי שטקסס תהפוך לסקרמנטו."
+   },
+   "en": {
+    "title": "Musk: \"Yes\" – Texas is not becoming California",
+    "summary": "Musk replied \"Yes\" to a post by Gunther Eagleman quoting JD Vance: Texas is not becoming California, and the men at the Alamo did not die so Texas could become Sacramento."
+   },
+   "full_he": "כן\n\nהפוסט שהוא ציטט (Gunther Eagleman):\nג'יי די ואנס אמר שטקסס לא הופכת לקליפורניה, והגברים באלאמו לא מתו כדי שטקסס תהפוך לסקרמנטו.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "Yes\n\nThe quoted post (Gunther Eagleman):\nJD Vance said Texas is not becoming California, and the men at the Alamo did not die so Texas could become Sacramento.\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-vote-paxton-early-voting-texas",
+   "topic": "musk",
+   "date": "2026-10-30T03:02:22Z",
+   "url": "https://x.com/elonmusk/status/2116002744586920092",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק קורא להצביע לקן פקסטון ביום האחרון של ההצבעה המוקדמת בטקסס",
+    "summary": "מאסק כתב שמחר הוא היום האחרון של ההצבעה המוקדמת בטקסס וקרא להצביע לקן פקסטון, בציטוט של פוסט של סקוט פרסלר שקרא לשיעור הצבעה גבוה."
+   },
+   "en": {
+    "title": "Musk urges Texans to vote for Ken Paxton on the last day of early voting",
+    "summary": "Musk wrote that tomorrow is the last day of early voting in Texas and urged people to vote for Ken Paxton, quoting a post by Scott Presler calling for strong turnout."
+   },
+   "full_he": "מחר הוא היום האחרון של ההצבעה המוקדמת בטקסס.\n\nהצביעו לקן פקסטון!\n\nהפוסט שהוא ציטט (סקוט פרסלר, ThePersistence):\nאנחנו צריכים שיעור הצבעה חזק בשני הימים האחרונים של ההצבעה המוקדמת בטקסס בשביל קן פקסטון.\n\nמחר הוא היום האחרון להצביע מוקדם.\n\nבפוסט של פרסלר יש תמונה שלו עם קן פקסטון, שניהם מרימים אגודל מול דגל ארה\"ב.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "Tomorrow is the last day of early voting in Texas.\n\nVote for Ken Paxton!\n\nThe quoted post (Scott Presler, ThePersistence):\nWe need strong turnout on these last 2 days of early voting in Texas for Ken Paxton.\n\nTomorrow is the last day to vote early.\n\nPresler's post includes a photo of him with Ken Paxton, both giving a thumbs-up in front of a U.S. flag.\n\nMusk has no further posts in the thread."
+  },
+  {
+   "id": "musk-clinton-swisher-probe-allies",
+   "topic": "musk",
+   "date": "2026-10-30T01:48:28Z",
+   "url": "https://x.com/i/trending/2115939272247390620",
+   "source": "X",
+   "he": {
+    "title": "קלינטון: אם הדמוקרטים יזכו בקונגרס, יחקרו את טראמפ ובני בריתו – וסווישר מזכירה את מאסק",
+    "summary": "בפודקאסט של קארה סווישר אמרה הילרי קלינטון שקונגרס דמוקרטי יחקור את טראמפ, משפחתו ותומכיו. סווישר הציעה להתמקד בין השאר באילון מאסק, בפיט הגסת' ובאדוארד קוריסטין מ-DOGE."
+   },
+   "en": {
+    "title": "Clinton: a Democratic Congress would investigate Trump's allies – Swisher names Musk",
+    "summary": "On Kara Swisher's podcast, Hillary Clinton said a Democratic Congress would investigate Trump, his family and supporters. Swisher suggested focusing on figures including Elon Musk, Pete Hegseth and DOGE's Edward Coristine."
+   },
+   "full_he": "הילרי קלינטון הציגה בפודקאסט תוכנית ברורה: אם הדמוקרטים ישתלטו על הקונגרס, הם יחקרו את טראמפ, משפחתו, תומכיו ובני בריתו, כולל מתכנת צעיר מ-DOGE שמכונה \"Big Balls\".\n\n• בפודקאסט \"High Stakes\" עם קארה סווישר קראה קלינטון לטראמפ \"ברווז צולע\" שיעמוד מול מתן דין וחשבון, ואמרה שהדמוקרטים יכוונו לממשל שלו באופן רחב.\n• סווישר המליצה להתמקד בדמויות כמו פיט הגסת', אילון מאסק ואדוארד קוריסטין, מתכנת בן 20 (יליד 2005) שהצטרף ל-DOGE אחרי התיכון ואחרי עבודה בנוירלינק.\n• שמרנים תקפו את הדברים כאיום בנקמה פוליטית, אפילו נגד אנשי צוות צעירים ללא רבב, ואילו קלינטון הציגה זאת כפיקוח הכרחי על שחיתות לכאורה.\n• חילופי הדברים ממחישים את המתח בין המפלגות לקראת בחירות האמצע.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Hillary Clinton laid out a clear plan on a podcast: if Democrats take Congress, they'd investigate Trump, his family, supporters, and allies like a young DOGE coder nicknamed 'Big Balls.'\n\n• On the 'High Stakes' podcast with Kara Swisher, Clinton called Trump a lame duck facing accountability and said Democrats would target his administration broadly.\n• Swisher recommended focusing on figures like Pete Hegseth, Elon Musk, and Edward Coristine, the 20-year-old programmer born in 2005 who joined DOGE after high school and Neuralink work.\n• Conservatives decried the comments as threats of political reprisals against even young staffers with clean records, while Clinton framed it as necessary oversight for alleged corruption.\n• The exchange highlights partisan tensions as midterms approach.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "spacex-atlantic-starlink-ukraine-contract-push",
+   "topic": "spacex",
+   "date": "2026-10-30T02:51:10Z",
+   "url": "https://x.com/i/trending/2115998373677592719",
+   "source": "X",
+   "he": {
+    "title": "ה-Atlantic: הפסקות סטארלינק באוקראינה קשורות ללחץ של SpaceX לחוזה יקר יותר",
+    "summary": "תחקיר של ה-Atlantic טוען שהשיבושים האחרונים בסטארלינק באוקראינה נבעו מכך ש-SpaceX דחפה לחוזה צבאי משודרג ויקר יותר. מאסק טען בעבר להפרות של תנאי השימוש."
+   },
+   "en": {
+    "title": "The Atlantic: Ukraine Starlink outages tied to SpaceX push for a costlier contract",
+    "summary": "An Atlantic investigation claims recent Starlink disruptions in Ukraine came as SpaceX pushed for an upgraded, more expensive military contract. Musk has previously cited terms violations."
+   },
+   "full_he": "אוקראינה נשענת על יותר מ-250,000 מסופי סטארלינק שמפעילים תקיפות רחפנים ותקשורת בשדה הקרב. תחקיר חדש של ה-Atlantic טוען שההפסקות האחרונות היו דחיפה של SpaceX לעבר עסקה צבאית יקרה יותר.\n\n• לפי התחקיר, SpaceX הרוויחה מאות מיליוני דולרים ממסופים שאוקראינה משלמת עליהם 2,500 דולר בחודש; השירות נותק בגלל חשבונות שלא שולמו, ובזמן ההפסקות הוצעו שדרוגים יקרים יותר.\n• קצין בצבא ארה\"ב הזהיר שבלי סטארלינק המלחמה תיעצר, כי לאוקראינה אין חלופות.\n• התחקיר משווה למקרים במזרח התיכון שבהם SpaceX העלתה מחירים אחרי שימוש ברחפנים.\n• כל זה על רקע טענות מאסק להפרות של תנאי השימוש, ושבחים פומביים של פוטין ליזם.\n• לפי סיפור קשור ב-X, מזכר אוקראיני הזהיר קצינים להכין תוכניות מגירה, והשירות חזר מאז למהירויות רגילות.\n\nזהו סיכום של פוסטים ב-X, והסיפור עשוי להתעדכן.",
+   "full_en": "Ukraine relies on Starlink for over 250,000 terminals powering drone strikes and battlefield comms. A new Atlantic report claims recent outages were SpaceX nudging toward a costlier military deal.\n\n• The investigation details SpaceX earning hundreds of millions from terminals charged at $2,500 monthly to Ukraine, with service cuts over unpaid bills and suggestions for pricier upgrades during outages.\n• A U.S. military officer warned that without Starlink, the war would grind to a halt, as Ukraine lacks alternatives.\n• It draws parallels to Middle East cases where SpaceX hiked prices after drone use.\n• All this amid Musk's claims of terms violations and Putin's praise for the entrepreneur.\n• According to a related X story, a Ukrainian memo warned officers to prepare contingencies, and the network is now back to normal speeds.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "johnson-stay-up-late-more-time",
+   "topic": "johnson",
+   "date": "2026-10-30T02:41:00Z",
+   "url": "https://x.com/bryan_johnson/status/2115997366604161163",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: \"פעם הייתי נשאר ער עד מאוחר כדי שיהיה לי יותר זמן...\"",
+    "summary": "פוסט קצר של ג'ונסון, שרומז שהוויתור על שינה בשביל עוד זמן היה טעות בעיניו – בהמשך לקו שלו שהשינה היא בראש סדרי העדיפויות."
+   },
+   "en": {
+    "title": "Bryan Johnson: \"i used to stay up late to have more time...\"",
+    "summary": "A short post from Johnson hinting that trading sleep for extra time was a mistake in his view, in line with his sleep-first message."
+   },
+   "full_he": "\"פעם הייתי נשאר ער עד מאוחר כדי שיהיה לי יותר זמן...\"\n\nזה כל הפוסט: אין בו תמונות, ובשרשור אין תגובות נוספות של ג'ונסון עצמו.",
+   "full_en": "\"i used to stay up late to have more time...\"\n\nThat's the whole post: there are no images, and Johnson didn't add any replies of his own in the thread."
+  },
   {
    "id": "mccullough-fanchon-stinger-program",
    "topic": "mccullough",
