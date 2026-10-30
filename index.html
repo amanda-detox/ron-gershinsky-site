@@ -11,10 +11,10 @@
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <script>/* site owner (Ron) signed in on this device: hide the brand block (icon, name, bio, install) and waitlist / contact / about / recommended game before first paint; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=23">
-<link rel="icon" href="favicon-32.png?v=23" type="image/png" sizes="32x32">
-<link rel="icon" href="favicon.ico?v=23" sizes="any">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=23">
+<link rel="manifest" href="manifest.json?v=24">
+<link rel="icon" href="favicon-32.png?v=24" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.ico?v=24" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=24">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -334,7 +334,7 @@
       <button type="button" class="iconbtn" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button>
     </div>
   </div>
-  <img class="mark owner-hide" id="mark" src="app-icon.svg?v=23" alt="היליפיי בע&quot;מ" width="120" height="120">
+  <img class="mark owner-hide" id="mark" src="app-icon.svg?v=24" alt="היליפיי בע&quot;מ" width="120" height="120">
   <h1 class="owner-hide"><span id="name">היליפיי בע"מ</span></h1>
   <p class="bio owner-hide" id="bio"></p>
   <div class="install-wrap owner-hide" id="install-wrap">
@@ -411,6 +411,7 @@ var apps = [
   { href: "diagnosify/index.html", icon: "diagnosify/icon-192.png", he: "דיאגנוסיפיי",   en: "Diagnosify", heLine: "בדיקות סינון עצמיות חינמיות",          enLine: "Free self-screening checks" },
   { href: "fly/index.html",       icon: "fly/icon-192.png",       he: "פלייפיי",       en: "Flyify",   heLine: "משחק תעופה בתלת מימד בעולמות מופלאים", enLine: "A 3D flying game through wondrous worlds" },
   { href: "game/index.html",      icon: "game/icon-192.png",      he: "לייטיפיי",      en: "Lightify",  heLine: "משחק תלת מימד של אור וחסד",          enLine: "A 3D game of light and kindness" },
+  { href: "calc/index.html",      icon: "calc/icon-192.png",      he: "חישובלי",       en: "Calcify",   heLine: "מחשבון פשוט: מקלידים תרגיל ומקבלים תשובה", enLine: "A simple calculator: type a sum, get the answer" },
   { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" }
 ];
 
