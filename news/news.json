@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-30T05:23:00+02:00",
+ "updated": "2026-10-30T06:16:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,74 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-neuralink-telepathy-first-product",
+   "topic": "musk",
+   "date": "2026-10-30T04:06:05Z",
+   "url": "https://x.com/elonmusk/status/2116018780111597911",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: המוצר הראשון של נוירולינק נקרא Telepathy",
+    "summary": "מאסק כותב שהמוצר הראשון של נוירולינק, Telepathy, מאפשר לתקשר עם מחשבים ועם אנשים במהירות גבוהה רק באמצעות מחשבה, ולדבריו בתוך כמה שנים הקצב יעקוף בהרבה את הדיבור וההקלדה המהירים ביותר."
+   },
+   "en": {
+    "title": "Musk: Neuralink's first product is called Telepathy",
+    "summary": "Musk says Neuralink's first product, Telepathy, enables high-speed communication with computers or people just by thinking, and claims its output bandwidth will vastly exceed the fastest speech or typing within a few years."
+   },
+   "full_he": "\"המוצר הראשון של נוירולינק נקרא Telepathy.\n\nהוא מאפשר תקשורת מהירה עם מחשבים או עם בני אדם פשוט באמצעות מחשבה. בתוך כמה שנים, רוחב הפס של הפלט יעלה בהרבה על הדיבור או ההקלדה המהירים ביותר של בני אדם. תקראו את המשפט הזה שוב.\"\n\nלא נמצאו תגובות המשך של מאסק עצמו מתחת לפוסט.\n\nהפוסט שהוא ציטט:\n\nהשרשור של נוירולינק שהוא ציטט (29 באוקטובר):\n\n\"המהנדסים שלנו ביקרו לאחרונה אצל אחד המשתתפים במחקר להשבת הדיבור, להאקתון של 72 שעות. המטרה: לבנות במהירות כמה שיותר אבות־טיפוס של פיצ'רים שישפרו את החוויה של תקשורת באמצעות מחשבה עם נוירולינק. הנה חלק ממה שבנינו:\"\n\n1. זיהוי דיבור אוטומטי – כדי לוותר על לחיצה על כפתור להתחלה ולעצירה של הקלטת כוונת הדיבור, בנו מערכת שמזהה לבד מתי המשתמש מנסה לדבר ומתי לא. לדבריהם זה צעד גדול לקראת תקשורת בלי ידיים בכלל לאנשים עם פגיעה בדיבור.\n\n2. תצוגות בזמן אמת – אחד האתגרים בממשקי מוח־מחשב הוא להבין אילו פעולות מכוונות או מדומיינות מייצרות את הפעילות העצבית החזקה ביותר, כדי לשפר את הפענוח. הם בנו תצוגות שנותנות למשתתף משוב בזמן אמת על עוצמת האותות שהשתל קולט ועל פיזורם.\n\n3. סוכן לשימוש במחשב – אב־טיפוס שמאפשר להפעיל סוכן של Grok כשהמשתמש חושב על המילים \"Hey Neuralink\" יחד עם המשימה הרצויה. לדבריהם זו המחשה ראשונה לאיך רוחב פס גבוה יותר בין המוח למחשב יכול לצמצם את הפער בין מחשבה לפעולה.\n\n4. אפליקציה לדיבור – בחודשים האחרונים בנו את Bloom, אפליקציה לנייד שמנגישה את ממשק הדיבור, וההאקתון הראה להם את החוויה בעולם האמיתי ומה אפשר לשפר.\n\n5. שילוב בשיחות טלפון – חיברו את Bloom לשיחות באייפון, כך שהדיבור מהממשק מוזרק ישירות למיקרופון של השיחה והצד השני שומע קול ברור ואחיד. הם גם בדקו ברכה אופציונלית בתחילת שיחה (למשל \"השיחה הזו היא ממישהו שמשתמש במכשיר תקשורת מסייע\").\n\nההאקתון נגמר, אבל לדבריהם הם רק מתחילים, והם מגייסים מהנדסים בלמידת מכונה, תוכנה ותחומים נוספים. הם מפנים גם לפוסט בבלוג על ההאקתון.\n\nהערת נוירולינק: המכשירים ניסיוניים ולא אושרו על ידי ה־FDA או רשויות אחרות, והסרטונים מציגים משתתפים מתנדבים בניסוי קליני שהחוויה שלהם לא בהכרח מייצגת את כל המשתתפים או תוצאות עתידיות.",
+   "full_en": "\"Neuralink's first product is called Telepathy.\n\nIt enables high-speed communication with computers or humans simply by thinking. Output bandwidth will vastly exceed the fastest human speech or typing in a few years. Read that sentence again.\"\n\nNo follow-up replies by Musk himself were found under the post.\n\nThe quoted post:\n\nNeuralink's quoted thread (Oct 29):\n\n\"Our engineers recently visited one of our speech restoration study participants for a 72-hour hackathon. The goal: rapidly prototype as many features as possible to enhance the experience of using Neuralink to communicate with thought. Here are some of the things we built:\"\n\n1. Voice activity detection – To remove the need for pressing a button to start and stop recording of speech intention, they created a system that automatically detects when the user is and isn't trying to speak; a big step toward completely hands-free communication for people with speech impairment.\n\n2. Real-time visualizations – One technical challenge with brain-computer interfaces (BCIs) is figuring out which intended or imagined actions produce the strongest neural activity, to improve decoding. They configured visualizations that give participants real-time feedback on the intensity and distribution of the signals the implant detects.\n\n3. Computer use agent – They prototyped a feature that lets users trigger a Grok agent by thinking of saying \"Hey Neuralink\" along with a desired task, an early illustration of how higher brain-computer bandwidth could close the gap between thought and action.\n\n4. Mobile app for speech – Over the last few months they built Bloom, a mobile app to make speech BCI more accessible; the hackathon showed the real-world experience and ways to improve it.\n\n5. Phone call integration – They integrated Bloom with iPhone calling so BCI speech is injected directly into the call's mic stream, giving the other person clear, consistent audio. They also tested optional greetings at the start of calls (e.g., \"this call is from someone using an assistive communication device\").\n\nThe hackathon is over, but they say they're just getting started, and they're hiring engineers in machine learning, software and other fields. They also link to a blog post about the hackathon.\n\nNeuralink's note: the devices are investigational and have not been approved by the FDA or other regulators; the videos show voluntary clinical-trial participants whose experiences may not reflect all participants or future outcomes."
+  },
+  {
+   "id": "musk-neuralink-blindsight-awaiting-approval",
+   "topic": "musk",
+   "date": "2026-10-30T04:10:41Z",
+   "url": "https://x.com/elonmusk/status/2116019939056513218",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Blindsight של נוירולינק מוכן הנדסית ומחכה לאישור",
+    "summary": "לדברי מאסק, המוצר השני של נוירולינק, Blindsight, נועד לאפשר גם לעיוורים לגמרי ולמי שמעולם לא ראה לראות. הוא כותב שהמוצר מוכן מבחינה הנדסית ומחכה רק לאישור הרגולטורים."
+   },
+   "en": {
+    "title": "Musk: Neuralink's Blindsight is engineering-ready, awaiting approval",
+    "summary": "Musk says Neuralink's second product, Blindsight, is meant to let even the completely blind, or those who have never seen, see. He says it is ready from an engineering standpoint and only awaits regulatory approval."
+   },
+   "full_he": "\"המוצר השני שלנו נקרא Blindsight, וכפי שהשם מרמז, הוא יאפשר אפילו למי שעיוור לגמרי או שמעולם לא ראה – לראות.\n\nהוא מוכן מבחינה הנדסית. מחכים רק לאישור רגולטורי.\"\n\nהערה: זו טענה של מאסק. Blindsight עדיין לא אושר, ותוצאות בבני אדם טרם הוצגו.\n\nלא נמצאו תגובות המשך של מאסק עצמו מתחת לפוסט.\n\nהפוסט שהוא ציטט (הפוסט הקודם שלו):\n\n\"המוצר הראשון של נוירולינק נקרא Telepathy. הוא מאפשר תקשורת מהירה עם מחשבים או עם בני אדם פשוט באמצעות מחשבה. בתוך כמה שנים, רוחב הפס של הפלט יעלה בהרבה על הדיבור או ההקלדה המהירים ביותר של בני אדם. תקראו את המשפט הזה שוב.\"",
+   "full_en": "\"Our second product is called Blindsight and it will, as the name suggests, enable even those who are completely blind or have never seen to see.\n\nIt is ready from an engineering standpoint. Just waiting on regulatory approval.\"\n\nNote: this is Musk's claim. Blindsight has not been approved, and human results have not yet been shown.\n\nNo follow-up replies by Musk himself were found under the post.\n\nThe quoted post (his previous post):\n\n\"Neuralink's first product is called Telepathy. It enables high-speed communication with computers or humans simply by thinking. Output bandwidth will vastly exceed the fastest human speech or typing in a few years. Read that sentence again.\""
+  },
+  {
+   "id": "tesla-accessibility-day-blind-robotaxi-rider",
+   "topic": "tesla",
+   "date": "2026-10-29T23:20:21Z",
+   "url": "https://x.com/i/trending/2115905340260618698",
+   "source": "X",
+   "he": {
+    "title": "יום הנגישות של טסלה: נוסע עיוור לגמרי ברובוטקסי",
+    "summary": "טסלה אספה משוב מאנשים עם מוגבלויות כדי לעצב את הסייברקאב והרובוטקסי, ונוסע עיוור תיאר את הנסיעה האוטונומית הראשונה שלו כ\"רגילה באופן מפתיע\"."
+   },
+   "en": {
+    "title": "Tesla Accessibility Day: a fully blind rider takes a Robotaxi",
+    "summary": "Tesla gathered feedback from people with disabilities to shape Cybercab and Robotaxi, and a blind rider called his first autonomous ride \"unusually normal\"."
+   },
+   "full_he": "נוסע עיוור לגמרי נכנס לרובוטקסי בפעם הראשונה ותיאר את החוויה כ\"רגילה באופן מפתיע\": הרכב צפר כדי לכוון אותו אליו, ופקודות קוליות טיפלו בכל השאר.\n\n• בשבוע שעבר טסלה ערכה יום נגישות, ואספה משוב ממשתמשי כיסאות גלגלים ומאנשים נוספים עם מוגבלויות כדי לשפר את העיצוב של הסייברקאב והרובוטקסי, כולל ידיות אחיזה בתקרה וכפתורים בכתב ברייל.\n• הסרטון של המשתתף העיוור מהנסיעה האוטונומית המלאה זכה לשבחים על העצמאות שהיא נותנת: האפליקציה, האיסוף וההורדה נגישים בעזרת רמזים קוליים ופקודות קוליות של Grok.\n• החברה מציעה נסיעה ראשונה בחינם במקומות כמו יוסטון ודאלאס, ובמקביל מפתחת בטקסס רכב אוטונומי ייעודי שמותאם לכיסאות גלגלים.\n• המטרה, לפי הסיפור: תחבורה לפי דרישה שכוללת את כולם מההתחלה.\n\n(סיפור X שמסכם פוסטים, ועשוי להשתנות.)",
+   "full_en": "A totally blind rider stepped into a Robotaxi for the first time and called the experience \"unusually normal\": the car honked to guide him, and voice commands handled everything seamlessly.\n\n• Tesla hosted Accessibility Day last week, gathering input from wheelchair users and others with disabilities to refine the Cybercab and Robotaxi designs, including features like ceiling grab handles and Braille controls.\n• The blind participant's video of his fully autonomous ride drew praise for its independence, with the app, pickup and drop-off all accessible via sound cues and Grok voice commands.\n• Tesla is offering free first rides in places like Houston and Dallas while developing a dedicated wheelchair-accessible autonomous vehicle in Texas.\n• The aim, per the story: on-demand transport that includes everyone from the start.\n\n(An X story summarizing posts; it may evolve over time.)"
+  },
+  {
+   "id": "apple-ios27-live-listen-remote-control-privacy",
+   "topic": "apple",
+   "date": "2026-10-30T01:57:50Z",
+   "url": "https://x.com/i/trending/2115942194993328318",
+   "source": "X",
+   "he": {
+    "title": "הגדרה ב־Live Listen של iOS 27 מעוררת חשש לפרטיות",
+    "summary": "צילומי מסך של מתג \"שליטה מרחוק\" שמופעל ב־Live Listen הובילו לחשש שאפשר לצותת דרך המיקרופון של האייפון, אבל אחרים הבהירו שמדובר בשליטה ממכשירים קרובים באותו חשבון אפל בלבד."
+   },
+   "en": {
+    "title": "An iOS 27 Live Listen setting sparks privacy fears",
+    "summary": "Screenshots of a 'Remote Control' toggle switched on in Live Listen raised worries about eavesdropping through the iPhone mic, but others clarified it only lets nearby devices on the same Apple Account control sessions."
+   },
+   "full_he": "צילומי מסך הראו מתג \"שליטה מרחוק\" שמופעל בתכונת Live Listen של iOS 27, והעלו חשש שהוא מאפשר לאחרים לצותת דרך המיקרופון של האייפון.\n\n• Live Listen היא כלי נגישות של אפל מאז 2014, שמזרים את הקול מהמיקרופון של האייפון ל־AirPods או למכשירי שמיעה, כדי לשמוע טוב יותר במקומות רועשים.\n• אפשרות \"שליטה מרחוק\" מאפשרת למכשירים קרובים באותו חשבון אפל, כמו שעון אפל מחובר, לנהל את ההאזנה – רק בטווח הבלוטות' ובלי גישה להודעות או לאפליקציות.\n• חלק ממשתמשי iOS 27 גילו שהיא מופעלת כברירת מחדל, אבל אחרים הבהירו שזו לא דלת אחורית לריגול.\n• אם תרצה לכבות אותה: הגדרות > נגישות > שמע וחזותי > Live Listen.\n\n(סיפור X שמסכם פוסטים, ועשוי להשתנות.)",
+   "full_en": "Screenshots surfaced showing a 'Remote Control' toggle switched on in iOS 27's Live Listen feature, prompting worries it could let others eavesdrop on iPhone mics.\n\n• Live Listen is an Apple accessibility tool since 2014 that streams iPhone microphone audio to AirPods or hearing aids for better hearing in noisy places.\n• The 'Remote Control' option lets nearby devices on the same Apple Account, like a paired Apple Watch, manage sessions, but only within Bluetooth range and without access to texts or apps.\n• Some iOS 27 users found it enabled by default, while others clarified it's not a spying backdoor.\n• To disable it: Settings > Accessibility > Audio & Visual > Live Listen.\n\n(An X story summarizing posts; it may evolve over time.)"
+  },
   {
    "id": "musk-yes-vance-texas-not-california",
    "topic": "musk",
