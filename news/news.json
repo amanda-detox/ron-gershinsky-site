@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-30T23:29:55+02:00",
+  "updated": "2026-10-31T00:09:29+02:00",
   "topics": [
     {
       "id": "podcasts",
@@ -8607,6 +8607,40 @@
       },
       "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
       "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+    },
+    {
+      "id": "musk-x-reach-limitations-under-the-hood",
+      "topic": "musk",
+      "date": "2026-10-30T22:03:47Z",
+      "url": "https://x.com/elonmusk/status/2116289989914787912",
+      "source": "X · @elonmusk",
+      "he": {
+        "title": "מאסק: עכשיו אפשר לבדוק אם הוגבלה החשיפה של החשבון שלך ב־X",
+        "summary": "מאסק כתב שכעת אפשר לגלות אם הוחלו הגבלות חשיפה על החשבון שלך, וציטט את X Open Source: דוח Under the Hood מציג עכשיו אילו פוסטים קיבלו תווית שמגבילה את הנראות שלהם."
+      },
+      "en": {
+        "title": "Musk: you can now see if X limited your account's reach",
+        "summary": "Musk wrote that you can now find out if any reach limitations have been applied to your account, quoting X Open Source: the Under the Hood report now shows which posts received a visibility-limiting label."
+      },
+      "full_he": "\"עכשיו אפשר לגלות אם הוחלו הגבלות חשיפה כלשהן על החשבון שלך.\"\n\nהפוסט שהוא ציטט (X Open Source, @XOpenSource):\n\"Under the Hood מראה עכשיו אילו פוסטים קיבלו תווית שמגבילה את הנראות שלהם, כך שקל יותר לראות מה הושפע (קישור: x.com/i/jf/under_the_hood).\n\nזו הייתה אחת הבקשות הנפוצות ביותר – תודה על המשוב.\n\nהפוסטים הספציפיים יוצגו ברשימה כשפחות מ־5% מהפוסטים שלך בתקופת הדוח קיבלו את התווית הזו.\"\n\nבתמונה שצורפה – דוגמה ל\"דוח Under the hood\":\n• הסבר: אפשר ללמוד מתי ייתכן שהחשיפה של פוסט הוגבלה דרך הקוד הפתוח והמדריך של X, ועל אפשרויות האכיפה ברמת החשבון והפוסט. הדוח ניתן על בסיס \"מאמץ מיטבי\", והקוד שמפיק אותו פתוח.\n• פוסטים בתקופה: 229. תקופה: 1–30 בספטמבר 2026 (UTC). הדוח הופק ב־9 באוקטובר 2026.\n• תוויות פוסטים (תוויות שעלולות להגביל נראות): SPAM_HIGH_RECALL – 2 מתוך 229 פוסטים (0.87%).\n• מה זה אומר: הפוסט זוהה על ידי מערכות אוטומטיות כפוסט שעשוי להכיל ספאם.\n• ההשפעה על הנראות: הפוסט מוסתר מהמלצות למי שלא עוקב אחריך.\n• מתחת מופיעה רשימת שני הפוסטים (11 ו־24 בספטמבר) עם המזהים שלהם, ואחריה פרק \"תוויות חשבון\".",
+      "full_en": "\"You can now find out if any reach limitations have been applied to your account\"\n\nThe quoted post (X Open Source, @XOpenSource):\n\"Under the Hood now shows you which posts received a visibility-limiting label, making it easier to see what's affected (link: x.com/i/jf/under_the_hood).\n\nThis was a top request — thanks for the feedback.\n\nYou'll see the specific posts listed when fewer than 5% of your posts during the report period have that label.\"\n\nThe attached image shows a sample \"Under the hood report\":\n• Intro: you can learn more about instances when a post's reach may be limited by reading X's open-source code and guide, and about account- and post-level enforcement options. The report is provided on a best-effort basis, and the code that generates it is open source.\n• Posts in period: 229. Period: Sep 1, 2026 to Sep 30, 2026 UTC. Report generated: Oct 9, 2026.\n• Post labels (labels that could limit post visibility): SPAM_HIGH_RECALL – 2 of 229 posts (0.87%).\n• What it means: post detected by automated systems as one that may contain spam.\n• Effect on visibility: post hidden from recommendations to non-followers.\n• Below it the two affected posts (Sep 11 and Sep 24) are listed by id, followed by an \"Account labels\" section."
+    },
+    {
+      "id": "spacex-maguire-growth-model-dip",
+      "topic": "spacex",
+      "date": "2026-10-30T21:57:13Z",
+      "url": "https://x.com/i/trending/2116268587082039307",
+      "source": "X",
+      "he": {
+        "title": "מניית ספייסאקס יורדת, ומודל הצמיחה של שון מגוייר מושך קונים",
+        "summary": "מניית ספייסאקס ירדה ב־5% ב־30 באוקטובר על רקע חששות בשווקים, אבל תחזית צמיחה מפורטת עד 2028 של שון מגוייר, שותף ב־Sequoia, גורמת למשקיעים לראות במחיר של 135–138 דולר נקודת כניסה נדירה."
+      },
+      "en": {
+        "title": "SpaceX shares dip as Shaun Maguire's growth model draws buyers",
+        "summary": "SpaceX stock fell 5% on Oct. 30 amid market jitters, but Sequoia partner Shaun Maguire's detailed forecast through 2028 has investors seeing $135–$138 as a rare entry point."
+      },
+      "full_he": "מניית ספייסאקס ירדה ב־5% ב־30 באוקטובר על רקע חששות בשווקים, אבל מודל הצמיחה הנועז של שון מגוייר, שותף בקרן Sequoia, גורם למשקיעים למהר לקנות.\n\n• מגוייר שיתף תחזית מפורטת עד 2028, שצופה קפיצות ענק בהכנסות, במיוחד בתחום המחשוב של ספייסאקס ל\"סופר־אינטליגנציה\", אחרי תוצאות רבעון שלישי של 14.6 מיליארד דולר הכנסות ו־4.4 מיליארד דולר רווח.\n• המודל מציג צמיחה של יותר מ־7,900% ברווח הנקי, בזכות תוכניות ל־13 ג'יגה־וואט של כושר מחשוב עד סוף 2027.\n• הוא משך קונים שרואים במחיר הנוכחי, 135–138 דולר, נקודת כניסה נדירה.\n• דאגות מאקרו כמו אינפלציה וגאופוליטיקה הכבידו על השווקים, ומשקיעים רבים החליפו מניות טסלה בחשיפה גדולה יותר לספייסאקס, על רקע דיבורים על מיזוג.\n\nזהו סיכום של פוסטים ב־X שנכתב על ידי Grok, והוא עשוי להתעדכן ולהכיל טעויות.",
+      "full_en": "SpaceX stock dropped 5% on Oct. 30 amid market jitters, but Sequoia partner Shaun Maguire's bold growth model has investors rushing in.\n\n• Maguire shared a detailed forecast through 2028 projecting massive revenue jumps, especially in SpaceX's Super Intelligence compute segment, following Q3 results with $14.6 billion in revenue and $4.4 billion in profit.\n• The model highlights over 7,900% net income growth, fueled by plans for 13 GW of compute capacity by end-2027.\n• It is drawing buyers who see current $135–$138 prices as a rare entry point.\n• Macro worries like inflation and geopolitics weighed on markets, and many investors swapped Tesla shares for more SpaceX exposure amid merger chatter.\n\nThis story is a summary of posts on X written by Grok; it may evolve over time and can contain mistakes."
     }
   ]
 }
