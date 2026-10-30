@@ -781,7 +781,7 @@ function setChar(i) {
   charIdx = i; store.set('rg-fly-char3', String(i));
   if (player.model) { scene.remove(player.model); disposeTree(player.model); }
   player.model = CHAR_BUILD[i](); scene.add(player.model);
-  document.querySelectorAll('.ch').forEach((b, k) => b.classList.toggle('on', k === i));
+  if (document.getElementById('charSel')) document.getElementById('charSel').value = String(i);
   snapCam = true;
   if (typeof buildBuddy === 'function' && buddyOn) buildBuddy();
 }
@@ -1140,7 +1140,8 @@ const TUT = [
   { sel: '#powers', key: 'tSwipe', done: 'ringchg', ring: 0, rings: true },
   { sel: '#powers', key: 'tFlight', done: 'tool', ring: 1 },
   { sel: '#powers', key: 'tAtmo', done: null, ring: 2 },
-  { sel: '#hud .r2', key: 'tCam', done: null }
+  { sel: '#hud .r2', key: 'tCam', done: null },
+  { sel: '#hud .r1', key: 'help', done: null }
 ];
 let tutStep = -1;
 function tutStart() { tutBusy = false; tutStep = 0; $('tut').classList.remove('hidden'); tutShow(); }
@@ -1150,8 +1151,8 @@ function tutShow() {
   if (s.ring !== undefined && ringIdx !== s.ring) setRing(s.ring, false);
   const el = document.querySelector(s.sel), r = el.getBoundingClientRect(), pad = 8;
   const spot = $('tutSpot'); spot.style.left = (r.left - pad) + 'px'; spot.style.top = (r.top - pad) + 'px'; spot.style.width = (r.width + pad * 2) + 'px'; spot.style.height = (r.height + pad * 2) + 'px';
-  spot.style.borderRadius = s.sel === '#hud .r2' ? '16px' : '50%';
-  const tx = $('tutTxt'); tx.innerHTML = L[s.key] + (s.rings ? '<div class="rn">' + L.rings.map((n, i) => `<span>${i + 1}. ${n}</span>`).join('') + '</div>' : '');
+  spot.style.borderRadius = (s.sel === '#hud .r2' || s.sel === '#hud .r1') ? '16px' : '50%';
+  const tx = $('tutTxt'); tx.innerHTML = (s.key === 'help' ? '<span style="font-size:14px;font-weight:500">' + (isTouch ? L.helpTouch : L.helpDesk) + '</span>' : L[s.key]) + (s.rings ? '<div class="rn">' + L.rings.map((n, i) => `<span>${i + 1}. ${n}</span>`).join('') + '</div>' : '');
   // put the text on the side of the screen away from the spotlight
   const bx = $('tutBox'), below = r.top < innerHeight / 2;
   bx.style.top = below ? Math.min(innerHeight - bx.offsetHeight - 8, r.bottom + 18) + 'px' : ''; bx.style.bottom = below ? '' : Math.min(innerHeight - bx.offsetHeight - 8, Math.max(8, innerHeight - r.top + 18)) + 'px';
@@ -1350,15 +1351,9 @@ function applyLang() {
   if (resumable) $('startBtn').textContent = L.resume;
   document.title = lang === 'he' ? 'פלייפיי · Flyify' : 'Flyify · פלייפיי';
   $('langBtn').textContent = L.lang;
-  $('help').textContent = isTouch ? L.helpTouch : L.helpDesk;
-  const chars = $('chars');
-  if (!chars.children.length) CHAR_EMOJI.forEach((e, i) => {
-    const b = document.createElement('button'); b.className = 'ch'; b.type = 'button';
-    b.innerHTML = `<span class="e">${e}</span><span class="n"></span>`; b.addEventListener('click', () => setChar(i)); chars.appendChild(b);
-  });
-  [...chars.children].forEach((b, i) => { b.querySelector('.n').textContent = L.chars[i]; b.classList.toggle('on', i === charIdx); });
+  $('charSel').innerHTML = L.chars.map((n, i) => `<option value="${i}">${CHAR_EMOJI[i]} ${n}</option>`).join(''); $('charSel').value = String(charIdx); $('charSel').setAttribute('aria-label', L.choose);
   for (const id of ['envSel', 'envSel2']) $(id).innerHTML = L.envs.map((n, i) => `<option value="${i}">${n}</option>`).join('');
-  for (const id of ['mulSel', 'mulSel2']) { $(id).innerHTML = MULS.map((m) => `<option value="${m}">x${m}</option>`).join(''); $(id).value = String(speedMul); $(id).setAttribute('aria-label', L.mul); }
+  for (const id of ['mulSel2']) { $(id).innerHTML = MULS.map((m) => `<option value="${m}">x${m}</option>`).join(''); $(id).value = String(speedMul); $(id).setAttribute('aria-label', L.mul); }
   $('lbBtn').textContent = L.lb;
   for (const id of ['camSel', 'camSel2']) $(id).innerHTML = L.cams.map((n, i) => `<option value="${i}">${n}</option>`).join('');
   syncSelects(); applyTheme(); setSpeed(player.level);
@@ -1381,8 +1376,9 @@ $('themeBtn').addEventListener('click', () => { theme = theme === 'dark' ? 'ligh
 const onEnv = (e) => { setEnv(parseInt(e.target.value, 10)); e.target.blur(); };
 const onCam = (e) => { camIdx = parseInt(e.target.value, 10); store.set('rg-fly-cam', String(camIdx)); snapCam = true; syncSelects(); e.target.blur(); };
 $('envSel').addEventListener('change', onEnv); $('envSel2').addEventListener('change', onEnv);
-const onMul = (e) => { speedMul = parseFloat(e.target.value); store.set('rg-fly-mul', String(speedMul)); $('mulSel').value = $('mulSel2').value = String(speedMul); e.target.blur(); };
-$('mulSel').addEventListener('change', onMul); $('mulSel2').addEventListener('change', onMul);
+const onMul = (e) => { speedMul = parseFloat(e.target.value); store.set('rg-fly-mul', String(speedMul)); $('mulSel2').value = String(speedMul); e.target.blur(); };
+$('charSel').addEventListener('change', (e) => { setChar(parseInt(e.target.value, 10)); e.target.blur(); });
+$('mulSel2').addEventListener('change', onMul);
 $('camSel').addEventListener('change', onCam); $('camSel2').addEventListener('change', onCam);
 $('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); if (buddyOn) buildBuddy(); e.target.blur(); });
 function showHud() {
