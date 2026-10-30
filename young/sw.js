@@ -1,5 +1,5 @@
 /* Offline cache for Youngify · יאנגיפיי (scope: this folder only). */
-var CACHE = "rg-young-v4";
+var CACHE = "rg-young-v5";
 var FILES = ["./", "index.html", "app.js", "data.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
   "manifest.json", "icon-maskable-512.png", "icon-192.png", "icon-512.png", "../shared/rg-topbar.js"];
 self.addEventListener("install", function (e) {
