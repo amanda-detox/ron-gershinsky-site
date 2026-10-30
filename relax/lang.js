@@ -72,7 +72,7 @@
     if (document.body) translateTree(document.body);
     var btn = document.getElementById("rg-lang-btn");
     if (btn) {
-      btn.textContent = lang === "he" ? "EN" : "עב";
+      btn.textContent = "🌐"; btn.title = "Language / שפה";
       btn.setAttribute("lang", lang === "he" ? "en" : "he");
       btn.setAttribute("aria-label", lang === "he" ? "Switch to English" : "מעבר לעברית");
     }
