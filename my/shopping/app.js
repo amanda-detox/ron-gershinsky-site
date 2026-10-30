@@ -248,6 +248,33 @@
     lsSet("rg-my-shopping-fashion1:" + uid, "1");
     return true;
   }
+  /* ---------- six more one-time lists (Ron, 2026-10-30): same pattern as "פאשן", placed after it in this order.
+     ids "c:<cat>" / "<cat>-01".., marker "m:<mark>", local flag rg-my-shopping-<mark>:<user id>, backup rg-my-shopping-<mark>-bak:<user id>. ---------- */
+  var MORE_SEEDS = [
+    { cat: "dr1", mark: "drinks1", title: "drinks", items: ["fridge", "refridgerator", "frozen fruits", "supplements", "blender", "coffee mugs", "coconut drinks"] },
+    { cat: "fa1", mark: "fortify1", title: "fortification accessories", items: ["freezing hat", "electrolytes", "eye cover", "stimmers", "gua sha", "acupuncture pen", "light saber", "star keychain (has 5 buttons programmed to each his own: order food, order cab, voice reminder, ai voice call)", "room soap (liquid no water required)", "tuning forks"] },
+    { cat: "sv1", mark: "savings1", title: "חסכונות", items: ["cash", "bit", "amazon", "iherb", "grok", "airbnb", "stocks", "crypto", "foreign currency cash", "cash for bitcoin"] },
+    { cat: "tb1", mark: "tbd1", title: "tbd", items: ["Bee pollen (94 vitamins and minerals, 1 tbsp per day)", "netra tarpana", "natural eye health fixes", "apple of eve https://www.theworldsgreatestrejuvenation.com/products/apple-of-eve", "colloidal gold removes nanotech by Dr. David Nixon", "trip to countries where sex work is legal and promoted", "sex toys", "peterson academy $500 for 1 year", "udacity 3100ils per program: agentic ai, agentic ai for life scienses"] },
+    { cat: "tr1", mark: "treat1", title: "treatments", items: ["medical pedicure", "reflexology", "hydrogen peroxide bath", "sea salt bath"] },
+    { cat: "of1", mark: "office1", title: "משרד", items: ["chair libernovo", "chair heavyduty", "desk manual adjustable", "notebooks", "laptop screen wiper", "macbook", "iphone", "chargers", "safes", "different color keys + digital locks", "hemp notebooks", "pens", "faraday sleeves and bags", "wifi mobile and non mobile", "playstation", "movemate", "envelopes", "ohmni block wifi", "diffuser", "cigars", "candles", "freedom bulbs", "lapis lazulai", "emerald", "karnelien", "librem phone", "unplugged phone"] }
+  ];
+  function seedOne(S) {
+    if (!uid || catsMap["m:" + S.mark] || lsGet("rg-my-shopping-" + S.mark + ":" + uid) || !isRon()) return false;
+    var exists = cats().some(function (c) { return clean(catName(c), 40) === S.title; }) || (catsMap["c:" + S.cat] && !catsMap["c:" + S.cat].deleted);
+    if (!exists) {
+      try { localStorage.setItem("rg-my-shopping-" + S.mark + "-bak:" + uid, JSON.stringify({ t: Date.now(), items: items, cats: catsMap })); } catch (e) { return false; }
+      var pos = cats().reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
+      putCat({ id: "c:" + S.cat, type: "cat", cat: S.cat, name: S.title, pos: pos, created: at, at: at });
+      var ni = {}, k; for (k in items) ni[k] = items[k];
+      S.items.forEach(function (txt, n) { var id = S.cat + "-" + (n < 9 ? "0" : "") + (n + 1), a = now();
+        if (!ni[id]) ni[id] = { id: id, text: txt, done: false, list: S.cat, ord: (n + 1) * 1000, created: a, at: a }; });
+      items = ni;
+    }
+    putCat({ id: "m:" + S.mark, type: "meta", done: 1, added: exists ? 0 : S.items.length, at: now() });
+    lsSet("rg-my-shopping-" + S.mark + ":" + uid, "1");
+    return true;
+  }
+  function seedMore() { var any = false; MORE_SEEDS.forEach(function (S) { if (seedOne(S)) any = true; }); return any; }
   function sync() {
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
@@ -260,8 +287,8 @@
       snap = stamp(items, snap); csnap = stamp(catsMap, csnap);
       var mi = merge(items, cl), mc = merge(catsMap, cc);
       if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; snap = stamp(items, null); csnap = stamp(catsMap, null); saveLocal(); render(); }
-      var sA = seedCleanse(), sB = seedBodycare(), sC = seedFashion();
-      if (sA || sB || sC) { mi = items; mc = catsMap; saveLocal(); render(); }
+      var sA = seedCleanse(), sB = seedBodycare(), sC = seedFashion(), sD = seedMore();
+      if (sA || sB || sC || sD) { mi = items; mc = catsMap; saveLocal(); render(); }
       var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
       if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
       if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
