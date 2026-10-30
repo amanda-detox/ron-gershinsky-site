@@ -279,7 +279,7 @@
     if (uid) for (var k in items) { var x = items[k]; if (x.deleted || listOf(x) !== cur) continue; any = true;
       var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (x.done) sel += p; }
     var sum = $("sum"); if (!sum) return; sum.hidden = !any;
-    sum.innerHTML = '<span>' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + ' ₪</b></span><span class="sel">· ' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>";
+    sum.innerHTML = '<span class="sel">' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>";
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
