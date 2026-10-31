@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T07:16:12+02:00",
+ "updated": "2026-10-31T08:05:56+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -790,6 +790,23 @@
    },
    "full_he": "\"הלאטה עם תבלין דלעת ב־8 דולר שלך עלול להגיע עם משהו שלא הזמנת: רעלני עובש.\n\nפולי קפה עלולים להיחשף לעובש בזמן הקטיף, העיבוד והאחסון.\n\nאין תוצאות מעבדה = אין הוכחה שהוא נקי מעובש\nיקר ≠ נקי מרעלים\nמותג גדול ≠ נבדק במעבדה\n\nתתחילו לבקש את תוצאות המעבדה...\"\n\nבתמונה: צילום תקריב של עובש (גבעול עם נבגים).\n\nבתגובה שלו לפוסט: \"הקפה שאני שותה כל יום הוא\" – עם קישור לאתר theultimatebrew.com.\n\nהערה: אלה טענות של בראקה, והפוסט מפנה גם למותג קפה שהוא קשור אליו. רעלני עובש (מיקוטוקסינים) אכן נמצאים לפעמים בקפה, אבל לפי רשויות הבריאות ברוב המקרים ברמות נמוכות מאוד ומפוקחות.",
    "full_en": "\"Your $8 pumpkin spice latte could come with something you didn't order: mold toxins.\n\nCoffee beans can be exposed to mold during harvesting, processing, and storage.\n\nNO LAB RESULTS = NO PROOF IT'S MOLD-FREE\nEXPENSIVE ≠ TOXIN-FREE\nBIG-NAME BRAND ≠ LAB-TESTED\n\nStart asking for the lab results...\"\n\nThe image: a close-up of mold (a stalk with spores).\n\nHis own reply under the post: \"The coffee I drink everyday is\" – with a link to theultimatebrew.com.\n\nNote: these are Brecka's claims, and the post also points to a coffee brand he's tied to. Mold toxins (mycotoxins) are sometimes found in coffee, but according to health authorities usually at very low, regulated levels."
+  },
+  {
+   "id": "ternus-ai-jobs-not-business-ceos",
+   "topic": "ternus",
+   "date": "2026-10-30T16:17:00Z",
+   "url": "https://appleinsider.com/articles/26/10/30/ternus-talks-ai-steve-jobs-and-not-looking-to-emulate-business-ceos",
+   "source": "AppleInsider",
+   "he": {
+    "title": "טרנוס על בינה מלאכותית, סטיב ג'ובס ולמה הוא לא מחקה מנהלים עסקיים",
+    "summary": "בראיון ל־WIRED אמר מנכ\"ל אפל ג'ון טרנוס שאפל לא רוצה \"AI לשם AI\", שהוא רואה את עצמו תלמיד של תורת ג'ובס ושהוא מתייעץ עם טים קוק. הוא הדגיש שהוא נשאר איש מוצר בנשמה."
+   },
+   "en": {
+    "title": "Ternus talks AI, Steve Jobs, and not looking to emulate business CEOs",
+    "summary": "In a WIRED interview, Apple CEO John Ternus said Apple doesn't want to ship \"AI for AI's sake,\" that he sees himself as a student of Steve Jobs' teachings, and that he consults Tim Cook. He stressed he remains a product guy at heart."
+   },
+   "full_en": "Apple CEO John Ternus has been promoting the new MacBook Pro, and has now also taken questions about his approach to running Apple. AppleInsider summarizes his interview with WIRED's Steven Levy.\n\n• Asked which business leaders inspire him, Ternus was stumped: \"I haven't really thought about that. Of course I've read books, but there's so much to be learned from the people I get to work with.\"\n• He says he had only \"a handful of interactions\" with Steve Jobs, \"but I've always felt like sort of a student of Steve's teachings. And then being able to work very closely with Tim, I've been very lucky.\"\n• Tim Cook, now executive chairman, has said he won't interfere with Ternus's decisions, but Ternus consults him: \"Tim is available to help wherever I ask him… He obviously has a ton of relationships he's developed over the years, and of course, I'm building new relationships in this role as well.\"\n• On AI: \"We're absolutely going to leverage AI… We don't want to ship AI for AI's sake. When we're doing it right, people won't have to think about whether it was AI that made this happen or more traditional software. What matters is, did we build something that they really love?\"\n• He wouldn't say whether he supports AI regulation: \"clearly these models are very capable of doing things. Our focus is on making sure that our products are secure and safe, and protecting the users' information.\"\n• On the job itself: \"One of the amazing privileges of this job is getting to learn so many new things… But, you know, I do love product. I'm super passionate about it.\"\n• Greg Joswiak: \"John innately has a great sense for great products, and that's what Apple is. You can't teach that.\" Johny Srouji: \"He's a product guy at heart, but Apple's secret weapon is the DNA, the culture, which is not going to change… John has been here for 25 years.\"\n• The article notes it has already been reported that Ternus wants Apple to release more products, more often.",
+   "full_he": "מנכ\"ל אפל ג'ון טרנוס מקדם בימים אלה את ה־MacBook Pro החדש, ועכשיו ענה גם על שאלות על הדרך שבה הוא מנהל את החברה. AppleInsider מסכם את הראיון שלו עם סטיבן לוי מ־WIRED.\n\n• כשנשאל אילו מנהלים עסקיים מעוררים בו השראה, טרנוס נתפס לא מוכן: \"לא ממש חשבתי על זה. ברור שקראתי ספרים, אבל יש כל כך הרבה מה ללמוד מהאנשים שאני עובד איתם.\"\n• לדבריו היו לו רק \"קומץ מפגשים\" עם סטיב ג'ובס, \"אבל תמיד הרגשתי כמו תלמיד של התורה של סטיב. ואחר כך זכיתי לעבוד צמוד לטים, והתמזל לי מאוד.\"\n• טים קוק, היום יו\"ר פעיל, אמר שלא יתערב בהחלטות של טרנוס, אבל טרנוס מתייעץ איתו: \"טים זמין לעזור בכל מקום שאני מבקש... יש לו המון קשרים שבנה לאורך השנים, וכמובן גם אני בונה קשרים חדשים בתפקיד.\"\n• על בינה מלאכותית: \"אנחנו בהחלט ננצל את ה־AI... אנחנו לא רוצים להוציא AI לשם AI. כשאנחנו עושים את זה נכון, אנשים לא יצטרכו לחשוב אם זה AI או תוכנה רגילה. מה שחשוב הוא אם בנינו משהו שהם באמת אוהבים.\"\n• הוא סירב לומר אם הוא בעד רגולציה על AI: \"ברור שהמודלים האלה מסוגלים לעשות הרבה. המיקוד שלנו הוא לוודא שהמוצרים שלנו מאובטחים ובטוחים ולהגן על המידע של המשתמשים.\"\n• על התפקיד עצמו: \"אחת הזכויות המדהימות בתפקיד הזה היא ללמוד כל כך הרבה דברים חדשים... אבל אתה יודע, אני אוהב מוצר. אני ממש נלהב מזה.\"\n• גרג ג'וזוויאק: \"לג'ון יש חוש מולד למוצרים מעולים, וזה מה שאפל היא. את זה אי אפשר ללמד.\" ג'וני סרוג'י: \"הוא איש מוצר בנשמה, אבל הנשק הסודי של אפל הוא ה־DNA, התרבות, וזה לא ישתנה... ג'ון כאן כבר 25 שנה.\"\n• לפי הכתבה, כבר דווח שטרנוס רוצה שאפל תוציא יותר מוצרים, בתדירות גבוהה יותר."
   },
   {
    "id": "musk-i-miss-larry-page",
