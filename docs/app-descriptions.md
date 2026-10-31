@@ -34,6 +34,10 @@
 - HE: להפגת שעמום
 - EN: Beat boredom
 
+### פוסיטיפיי · Positify (`positify/`)
+- HE: אפליקציה להפקת לקח ומשמעות חיוביים מכל סיטואציה
+- EN: Turn every situation into a positive lesson and meaning
+
 ### פסיכדליפיי · Psychedelify (`psychedelify/`)
 - HE: לשימוש בריא ונכון בפסיכדליה
 - EN: For healthy, responsible psychedelic use
