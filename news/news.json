@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T19:07:26+02:00",
+ "updated": "2026-10-31T19:48:29+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,57 @@
  ],
  "items": [
   {
+   "id": "kraken-bitcoin-white-paper-day-2026",
+   "topic": "kraken",
+   "date": "2026-10-31T17:45:01Z",
+   "url": "https://x.com/krakenfx/status/2116587257029177710",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: יום הולדת שמח לספר הלבן של ביטקוין",
+    "summary": "ב-31 באוקטובר, יום השנה לפרסום הספר הלבן של ביטקוין, קראקן איחלה \"יום ספר לבן שמח\" לכל מי שחוגג. היא ציטטה פוסט שלה מ-2025 עם סרטון על הספר הלבן \"שנראה בבית הלבן\"."
+   },
+   "en": {
+    "title": "Kraken: Happy Bitcoin White Paper Day",
+    "summary": "On October 31, the anniversary of the Bitcoin white paper, Kraken wished a happy White Paper Day to all who celebrate. It quoted its own 2025 post with a video about the white paper being \"spotted at the White House\"."
+   },
+   "full_he": "\"יום ספר לבן של ביטקוין שמח לכל מי שחוגג\"\n\nהפוסט שהיא ציטטה (של קראקן עצמה, ממרץ 2025):\n\n\"רגע, רגע... הספר הלבן של ביטקוין נראה בבית הלבן!?\"\n\nשאר הפוסט המצוטט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nבשרשור אין המשך מצד קראקן.",
+   "full_en": "\"Happy Bitcoin White Paper Day to all who celebrate\"\n\nThe quoted post (Kraken's own, from March 2025):\n\n\"Wait, hollup... btc white paper spotted at the Whitehouse!?\"\n\nThe rest of the quoted post is a video, so there's no more text to show.\n\nKraken has no further posts in the thread."
+  },
+  {
+   "id": "grok-2x2-chart-smart-vs-sounds-smart",
+   "topic": "grok",
+   "date": "2026-10-31T17:42:39Z",
+   "url": "https://x.com/i/trending/2116583974361301377",
+   "source": "X",
+   "he": {
+    "title": "טבלת 2x2 של Grok מדרגת ידוענים: נשמעים חכמים מול חכמים באמת",
+    "summary": "ג'ון לפבר פרסם טבלה שבנה Grok, שממיינת אישי ציבור לפי כמה הם נשמעים חכמים מול כמה הם חכמים באמת. מאסק הגיב \"לא רע\", והפוסט עבר 13,000 לייקים ועורר ויכוחים משעשעים."
+   },
+   "en": {
+    "title": "Grok's 2x2 chart ranks public figures by smarts vs. sounding smart",
+    "summary": "John LeFevre posted a Grok-made chart sorting public figures by how smart they sound versus how smart they are. Musk replied \"Not bad,\" and the post passed 13,000 likes and sparked playful debate."
+   },
+   "full_he": "טבלה פשוטה שממיינת ידוענים לפי כמה הם נשמעים חכמים מול כמה הם חכמים באמת גורמת לכולם לצחוק ולהגיב. אילון מאסק נתן לה אישור עם \"לא רע\".\n\n• ג'ון לפבר פרסם את הטבלה ב-31 באוקטובר וייחס ל-Grok את המיקומים, למשל אילון מאסק ומרגרט תאצ'ר ברבע הימני העליון, \"נשמע חכם, וגם חכם\", בעוד AOC וניל דגראס טייסון הגיעו נמוך יותר.\n• הפוסט צבר יותר מ-13,000 לייקים, ועורר צחוק, ויכוחים על מיקומים כמו של דולי פרטון או ג'ו רוגן, ובקשות לשנות את הטבלה.\n• לפי הסיכום, הגרפיקה המשעשעת מראה איך בינה מלאכותית שוקלת דפוסי חשיבה מול סגנון ציבורי, ומעוררת ויכוח קליל על מה הופך מישהו ל\"חכם\".\n\nזהו סיכום של פוסטים ב-X שעשוי להשתנות.",
+   "full_en": "A simple grid sorting celebrities by how smart they sound versus how smart they are has everyone chuckling and chiming in. Elon Musk gave it a nod with 'Not bad.'\n\n• John LeFevre posted the chart on October 31, crediting Grok for placements like Elon Musk and Margaret Thatcher in the top-right 'sounds smart, is smart' spot, while AOC and Neil deGrasse Tyson landed lower.\n• It racked up over 13,000 likes, sparking laughs, disagreements over spots like Dolly Parton or Joe Rogan, and requests for Grok tweaks.\n• The fun visual highlights how AI weighs reasoning patterns against public style, fueling playful debates on what makes someone 'smart.'\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "spacex-musk-starlink-saves-lives-nz-sailor",
+   "topic": "spacex",
+   "date": "2026-10-31T17:13:16Z",
+   "url": "https://x.com/elonmusk/status/2116579270856507805",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"Starlink מציל חיים\", חילוץ מלח מול חופי ניו זילנד",
+    "summary": "אילון מאסק ציטט פוסט שמספר איך Starlink עזר להציל מלח שחלה קשה הרחק מחופי ניו זילנד. דרך החיבור, רופא הדריך את הסקיפר בטיפול חירום עד שמסוק החילוץ הגיע והטיס את המלח לבית החולים."
+   },
+   "en": {
+    "title": "Musk: \"Starlink saves lives\", a sailor rescued off New Zealand",
+    "summary": "Elon Musk quoted a post about how Starlink helped save a seriously ill sailor far off New Zealand's coast. Over the link, a doctor guided the skipper through emergency care until a rescue helicopter arrived and flew the sailor to hospital."
+   },
+   "full_he": "\"Starlink מציל חיים\"\n\nהפוסט שהוא ציטט (@cb_doge):\n\nStarlink עזר להציל חיים של מלח הרחק מחופי ניו זילנד.\n\nמלח חלה קשה ונזקק לעזרה רפואית דחופה.\n\nStarlink חיבר את הסקיפר לרופא, שהדריך אותו בניתוח חירום בזמן שמסוק חילוץ היה בדרך.\n\nהמחלצים העלו אותו מהסירה והטיסו אותו לבית החולים. הוא שרד, ובהמשך הודה לצוות החילוץ.\n\nStarlink היא טכנולוגיה מצילת חיים, שמביאה עזרה רפואית של מומחים גם לאמצע הים.\n\nבתמונה שצורפה: צילום לילי מלמעלה, כנראה מהמסוק, של ירכתי סירה בים סוער, ועליה איש צוות במעיל הצלה כתום.\n\nבשרשור אין המשך מצד מאסק.",
+   "full_en": "\"Starlink saves lives\"\n\nThe quoted post (@cb_doge):\n\nStarlink helped save a sailor's life far off New Zealand's coast.\n\nA sailor became seriously ill and needed urgent medical help.\n\nStarlink connected the skipper with a doctor, who guided him through an emergency surgery while a rescue helicopter was on its way.\n\nRescuers lifted him from the boat and flew him to hospital. He survived and later thanked the rescue crew.\n\nStarlink is a life-saving technology, bringing expert medical help within reach even far out at sea.\n\nThe attached photo: a night shot from above, apparently from the helicopter, of a boat's stern in rough water, with a crew member in an orange life jacket on deck.\n\nMusk has no further posts in the thread."
+  },
+  {
    "id": "mikhaila-halloween-mario-family-of-6",
    "topic": "mikhaila",
    "date": "2026-10-31T17:00:11Z",
@@ -316,21 +367,21 @@
    "full_en": "Elon Musk wrote: \"All true\".\n\nThe quoted post (Wall Street Mav, @WallStreetMav):\n\n\"James Talarico is the most left wing, extreme radical candidate imaginable. Every single position he has taken would be considered far left even in California. Yet this guy is running in Texas.\n\nTalarico wants to shutdown the oil industry in Texas, he wants to trans children and he believes there are 6 genders. It is bizarre that he is even competitive in Texas.\"\n\nThat post quoted Rep. Chip Roy (@chiproytx): \"James Talarico supported the Biden Border Crisis, attacked law enforcement during the BLM riots, and wants to end run oil and gas in Texas. He is not moderate in the least. His vote for six years in the Senate would be a disaster for Texas and the USA.\" (Roy's post includes a video, which has no text to show.)\n\nThere are no self-replies from Musk in the thread."
   },
   {
-   "id": "ternus-joswiak-calls-him-jt",
-   "topic": "ternus",
-   "date": "2026-10-31T06:04:23Z",
-   "url": "https://www.theapplepost.com/2026/10/31/73754/greg-joswiak-shares-nickname-for-apple-ceo-john-ternus/",
-   "source": "The Apple Post",
+   "id": "musk-tesla-spacex-wealth-employees-retirement",
+   "topic": "musk",
+   "date": "2026-10-31T15:24:27Z",
+   "url": "https://x.com/elonmusk/status/2116551882219090231",
+   "source": "X · @elonmusk",
    "he": {
-    "title": "גרג ג'וזוויאק: אני קורא לג'ון טרנוס \"JT\"",
-    "summary": "סגן נשיא השיווק של אפל נשאל בראיון ל-Gizmodo אם קרה לו שקרא בטעות למנכ\"ל החדש \"טים\". הוא אמר שלא, כי הוא בכלל לא קורא לו בשמו הפרטי, אלא \"JT\"."
+    "title": "מאסק: טסלה וספייסאקס יצרו עושר לעובדים ולחסכונות הפנסיה",
+    "summary": "מאסק כתב שטסלה וספייסאקס יצרו לאורך השנים עושר משמעותי למאות אלפי עובדים ושיפרו את חסכונות הפרישה של מאות מיליוני אנשים. הוא ציטט מאמר של Larry Goldberg בשם \"אילון מאסק עוזר להאכיל כמעט מיליון משפחות\"."
    },
    "en": {
-    "title": "Greg Joswiak: I call John Ternus \"JT\"",
-    "summary": "Asked by Gizmodo whether he'd ever accidentally called Apple's new CEO \"Tim\", marketing chief Greg Joswiak said no, because he doesn't call Ternus by his first name at all. He calls him \"JT\"."
+    "title": "Musk: Tesla and SpaceX built wealth for employees and retirement savings",
+    "summary": "Musk wrote that Tesla and SpaceX have created meaningful wealth for hundreds of thousands of employees over time and improved the retirement savings of hundreds of millions of people. He quoted Larry Goldberg's X article \"Elon Musk Helps Feed Nearly a Million Families\"."
    },
-   "full_he": "לפי The Apple Post:\n\n• גרג ג'וזוויאק, סגן הנשיא הבכיר של אפל לשיווק עולמי, חשף את הכינוי שבו הוא קורא למנכ\"ל ג'ון טרנוס.\n• בראיון גלוי בתוך חנות אפל, Gizmodo שאלו אותו אם קרה לו פעם שקרא לטרנוס בטעות \"טים\", על שם המנכ\"ל הקודם טים קוק.\n• ג'וזוויאק אמר שלא, והסביר שהוא בכלל לא קורא לטרנוס בשמו הפרטי, אלא \"JT\".\n• השיחה הקלילה מגיעה שבועות ספורים אחרי שטרנוס נכנס רשמית לתפקיד מנכ\"ל אפל ב-1 בספטמבר, במקום קוק אחרי 15 שנה בראש החברה.\n• קוק נשאר באפל כיו\"ר מבצעי, וטרנוס כבר הוביל את החברה בהשקות המוצרים הגדולות הראשונות שלו כמנכ\"ל.",
-   "full_en": "According to The Apple Post:\n\n• Greg Joswiak, Apple's senior vice president of Worldwide Marketing, revealed the nickname he uses for CEO John Ternus.\n• During a candid interview inside an Apple Store, Gizmodo asked him whether he had ever mistakenly called Ternus \"Tim\", after former CEO Tim Cook.\n• Joswiak said he had not, explaining that he doesn't actually call Ternus by his first name. Instead, he calls him \"JT\".\n• The lighthearted exchange comes just weeks after Ternus officially took over as Apple CEO on September 1, succeeding Cook after 15 years at the top of the company.\n• Cook remains at Apple as executive chairman, while Ternus has already led the company through his first major product launches as chief executive."
+   "full_he": "אילון מאסק כתב: \"טסלה וספייסאקס יצרו לאורך זמן עושר משמעותי למאות אלפי עובדים ושיפרו את חסכונות הפרישה של מאות מיליוני אנשים.\"\n\nהפוסט שהוא ציטט (Larry Goldberg, @TeslaLarry, מ-1 באוקטובר 2026) הוא מאמר ב-X בשם \"אילון מאסק עוזר להאכיל כמעט מיליון משפחות\". הטקסט המלא של המאמר לא זמין לי, ולכן יש כאן רק את הכותרת שלו.\n\nאין לו תגובות המשך משלו בשרשור.",
+   "full_en": "Elon Musk wrote: \"Tesla and SpaceX have created meaningful wealth for hundreds of thousands of employees over time and improved the retirement savings of hundreds of millions of people.\"\n\nThe quoted post (Larry Goldberg, @TeslaLarry, from October 1, 2026) is an X article titled \"Elon Musk Helps Feed Nearly a Million Families\". The article's full text isn't available, so only its title is shown here.\n\nThere are no self-replies from him in the thread."
   },
   {
    "id": "musk-60-minutes-2012-falcon1-14-years",
@@ -348,23 +399,6 @@
    },
    "full_he": "אילון מאסק כתב: \"לפני 14 שנה\".\n\nהפוסט שהוא ציטט (Tesla Owners Silicon Valley, @teslaownersSV):\n\n\"אילון מאסק בתוכנית 60 דקות ב-2012, בתוך המפעל של ספייסאקס, מדבר על כך שפלקון 1 נכשל שלוש פעמים ברצף ועל כך שהגיבורים שלו עצמו העידו נגד טיסות חלל מסחריות.\n\nפלקון 1 נכשל בשלושת השיגורים הראשונים שלו. אילון אמר שאם גם הרביעי היה נכשל, לספייסאקס לא היו המשאבים לנסות חמישי.\n\n'אני כנראה לא הבחור שרוב האנשים היו מהמרים עליו.'\n\nחודשיים אחרי שהראיון שודר, דרגון הפכה לחללית המסחרית הראשונה שהגיעה לתחנת החלל. ב-2020 ספייסאקס הטיסה לשם אסטרונאוטים של נאס\"א, שיגור הצוות הראשון מאדמת ארה\"ב מאז 2011.\n\nהסרטון: CBS 60 Minutes\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. אין לו תגובות המשך משלו בשרשור.",
    "full_en": "Elon Musk wrote: \"14 years ago\".\n\nThe quoted post (Tesla Owners Silicon Valley, @teslaownersSV):\n\n\"Elon Musk on 60 Minutes in 2012, inside the SpaceX factory, on Falcon 1 failing three times in a row and his own heroes testifying against commercial spaceflight.\n\nFalcon 1 failed on its first three launches. Elon said that if the fourth had failed too, SpaceX would not have had the resources to try a fifth.\n\n'I'm probably not the guy that most people would bet on.'\n\nTwo months after it aired, Dragon became the first commercial spacecraft to reach the space station. In 2020, SpaceX flew NASA astronauts there, the first crew launch from American soil since 2011.\n\nVideo: CBS 60 Minutes\"\n\nThe rest of the post is a video, so there's no more text to show. There are no self-replies from him in the thread."
-  },
-  {
-   "id": "musk-tesla-spacex-wealth-employees-retirement",
-   "topic": "musk",
-   "date": "2026-10-31T15:24:27Z",
-   "url": "https://x.com/elonmusk/status/2116551882219090231",
-   "source": "X · @elonmusk",
-   "he": {
-    "title": "מאסק: טסלה וספייסאקס יצרו עושר לעובדים ולחסכונות הפנסיה",
-    "summary": "מאסק כתב שטסלה וספייסאקס יצרו לאורך השנים עושר משמעותי למאות אלפי עובדים ושיפרו את חסכונות הפרישה של מאות מיליוני אנשים. הוא ציטט מאמר של Larry Goldberg בשם \"אילון מאסק עוזר להאכיל כמעט מיליון משפחות\"."
-   },
-   "en": {
-    "title": "Musk: Tesla and SpaceX built wealth for employees and retirement savings",
-    "summary": "Musk wrote that Tesla and SpaceX have created meaningful wealth for hundreds of thousands of employees over time and improved the retirement savings of hundreds of millions of people. He quoted Larry Goldberg's X article \"Elon Musk Helps Feed Nearly a Million Families\"."
-   },
-   "full_he": "אילון מאסק כתב: \"טסלה וספייסאקס יצרו לאורך זמן עושר משמעותי למאות אלפי עובדים ושיפרו את חסכונות הפרישה של מאות מיליוני אנשים.\"\n\nהפוסט שהוא ציטט (Larry Goldberg, @TeslaLarry, מ-1 באוקטובר 2026) הוא מאמר ב-X בשם \"אילון מאסק עוזר להאכיל כמעט מיליון משפחות\". הטקסט המלא של המאמר לא זמין לי, ולכן יש כאן רק את הכותרת שלו.\n\nאין לו תגובות המשך משלו בשרשור.",
-   "full_en": "Elon Musk wrote: \"Tesla and SpaceX have created meaningful wealth for hundreds of thousands of employees over time and improved the retirement savings of hundreds of millions of people.\"\n\nThe quoted post (Larry Goldberg, @TeslaLarry, from October 1, 2026) is an X article titled \"Elon Musk Helps Feed Nearly a Million Families\". The article's full text isn't available, so only its title is shown here.\n\nThere are no self-replies from him in the thread."
   },
   {
    "id": "musk-mamdani-south-africa-model-spectator",
@@ -722,6 +756,23 @@
    },
    "full_he": "אילון מאסק כתב: \"משהו ממש לא בסדר עם טלאריקו\".\n\nהפוסט שהוא ציטט:\n\nביל מאהר פותח את הסכר כשהוא שואל \"למה?\" – ג'יימס טלאריקו הוא \"בחור מוזר מאוד\".\n\nטד קרוז מקדיש את שתי הדקות הבאות למעבר על הרשימה.\n\nמאהר נותן לטלאריקו את הספק לטובתו, עד שמגיע הציטוט \"אני ממש אוהב ילדים טרנסים\".\n\nואז הוא מתקפל.\n\nקרוז: \"אני לא אשכנע אותך לאהוב את קן פקסטון. אבל אתה חייב להודות שטלאריקו, לדעתי, הוא בחור מוזר מאוד.\"\n\nמאהר: \"למה?\"\n\nקרוז: \"כי הוא כמו לוחם הצדק החברתי הווֹק האולטימטיבי. זה בחור שעומד מול כנסייה... הוא אומר שאלוהים הוא א־בינארי. הוא אומר שיש שישה מגדרים. הוא עומד מול כנסייה ואומר שהוא בוכה על הלובן שלו ובוכה על הגבריות שלו.\"\n\nמאהר: \"זה פשוט מוזר. זה מוזר. אני לא יכול להסכים איתך יותר.\"\n\nקיד רוק: \"אולי הוא גיי.\"\n\nמאהר: \"מה?\"\n\nקיד רוק: \"אולי הוא פשוט גיי.\"\n\nמאהר: \"אבל למה אנחנו מסיקים את זה – בגלל שהוא חושב שישו א־בינארי, ואני לא חושב שהוא מתכוון לזה כ–\"\n\n[הפרצוף של קיד רוק לא קונה אף מילה מההסבר של מאהר]\n\nקיד רוק: \"אני יודע למה הוא התכוון!\"\n\nמאהר: \"למה לדעתך הוא התכוון?\"\n\nקיד רוק: \"כן, הוא מנסה להיכנס לכל העניין של 'מה זו אישה'. כאילו, באמת אנחנו מדברים על זה 250 שנה אחרי?\"\n\nמאהר: \"לא, אני פשוט חושב – תראה, אני לא יודע על זה הרבה, אבל שמעתי את הציטוטים האלה. אני חושב שמה שהוא התכוון אליו בעניין של ישו הא־בינארי זה שיש הרבה אנשים שמאמינים באלוהים. כלומר, כל האלבום שלך עוסק בישו, אבל בצורה יותר אתרית, יותר רוחנית. אתה יודע, הוא לא האיש עם הזקן בשמיים, משהו כזה.\"\n\nקרוז: \"אז ביל, כל הדברים האלה מתועדים בווידאו. שאלו אותו 'את מי אתה באמת אוהב?' והתשובה שלו הייתה 'ילדים טרנסים'. אני לא מכיר אף אחד אחר שהיה עונה כך על השאלה הזאת.\"\n\nמאהר: \"זאת התשובה המלאה?\"\n\nקרוז: \"כן, אני מבטיח לך. אתה יכול להעלות את הסרטון. שאלו אותו 'את מי אתה באמת אוהב?' והוא עוצר, חושב ואומר 'אני ממש אוהב ילדים טרנסים'... הוא גם אומר בווידאו שהמטרה שלו היא, בציטוט, 'לפרק את הקפיטליזם'.\"\n\nמאהר: \"תראה, אני לא בעד שום דבר מהשטויות האלה.\"\n\nהקשר: טלאריקו באמת אמר את זה. בפודקאסט ב־2023 שאלו אותו מה הוא אוהב מלבד משפחה וחברים, והתשובה שלו הייתה \"הילדים הטרנסים\" שהפגינו יום קודם בקפיטול של טקסס.\n\nהפוסט המצוטט כולל גם סרטון של הקטע, ולכן אין עוד טקסט להציג.",
    "full_en": "Elon Musk wrote: \"Something seriously wrong with Talarico.\"\n\nThe quoted post:\n\nBill Maher opens the floodgates when he asks, \"Why?\" James Talarico is a \"very weird dude.\"\n\nTed Cruz spends the next 2 full minutes going down the list.\n\nMaher gives Talarico the benefit of the doubt until the \"I really love trans children\" quote drops.\n\nThen he folds.\n\nCRUZ: \"I'm not going to convince you to love Ken Paxton. But you got to admit, Talarico, I think, is a very weird dude.\"\n\nMAHER: \"Why?\"\n\nCRUZ: \"Because he is like the ultimate woke social justice warrior. This is a guy who stands in front of a church... he says God is non-binary. He says there's six genders. He stands in front of a church and says he weeps for his whiteness and weeps for his masculinity.\"\n\nMAHER: \"That's just weird. That is weird. I couldn't agree with you more.\"\n\nKID ROCK: \"Maybe he's gay.\"\n\nMAHER: \"What?\"\n\nKID ROCK: \"Maybe he's just gay.\"\n\nMAHER: \"But why are we inferring — because he thinks Jesus is non-binary, which I don't think he means as —\"\n\n[Kid Rock's face isn't buying a word of Maher's explanation]\n\nKID ROCK: \"I know what he meant!\"\n\nMAHER: \"What do you think he meant?\"\n\nKID ROCK: \"Yeah, he's trying to go into this whole 'what's a woman.' Like, are we really talking about this 250 years later?\"\n\nMAHER: \"No, I just think — look, I don't know that much about it, but I have heard those quotes. I think what he meant by the Jesus is non-binary thing is that, you know, there are a lot of people who believe in God. I mean, your whole album is about Jesus, but in a more sort of ethereal way, more spiritual way. You know, he's not the man in the sky with the beard, that kind of thing.\"\n\nCRUZ: \"So Bill, all of these, he's on video. He was asked, 'Who do you really love?' And his answer is, 'Trans children.' Well, I don't know anyone else who would answer that question that way.\"\n\nMAHER: \"Is that the full answer?\"\n\nCRUZ: \"Yes, I promise you. You can pull up the video. He was asked, 'Who do you really love?' And he pauses and thinks and says, 'I really love trans children.' ... He also says on video that his objective is to, quote, 'dismantle capitalism.'\"\n\nMAHER: \"Look, I am not for any of that sh*t.\"\n\nCONTEXT: Talarico really did say it. On a 2023 podcast, he was asked what he loves other than family and friends, and his answer was the \"trans children\" who had rallied at the Texas Capitol the day before.\n\nThe quoted post also includes a video of the segment, so there's no more text to show."
+  },
+  {
+   "id": "ternus-joswiak-calls-him-jt",
+   "topic": "ternus",
+   "date": "2026-10-31T06:04:23Z",
+   "url": "https://www.theapplepost.com/2026/10/31/73754/greg-joswiak-shares-nickname-for-apple-ceo-john-ternus/",
+   "source": "The Apple Post",
+   "he": {
+    "title": "גרג ג'וזוויאק: אני קורא לג'ון טרנוס \"JT\"",
+    "summary": "סגן נשיא השיווק של אפל נשאל בראיון ל-Gizmodo אם קרה לו שקרא בטעות למנכ\"ל החדש \"טים\". הוא אמר שלא, כי הוא בכלל לא קורא לו בשמו הפרטי, אלא \"JT\"."
+   },
+   "en": {
+    "title": "Greg Joswiak: I call John Ternus \"JT\"",
+    "summary": "Asked by Gizmodo whether he'd ever accidentally called Apple's new CEO \"Tim\", marketing chief Greg Joswiak said no, because he doesn't call Ternus by his first name at all. He calls him \"JT\"."
+   },
+   "full_he": "לפי The Apple Post:\n\n• גרג ג'וזוויאק, סגן הנשיא הבכיר של אפל לשיווק עולמי, חשף את הכינוי שבו הוא קורא למנכ\"ל ג'ון טרנוס.\n• בראיון גלוי בתוך חנות אפל, Gizmodo שאלו אותו אם קרה לו פעם שקרא לטרנוס בטעות \"טים\", על שם המנכ\"ל הקודם טים קוק.\n• ג'וזוויאק אמר שלא, והסביר שהוא בכלל לא קורא לטרנוס בשמו הפרטי, אלא \"JT\".\n• השיחה הקלילה מגיעה שבועות ספורים אחרי שטרנוס נכנס רשמית לתפקיד מנכ\"ל אפל ב-1 בספטמבר, במקום קוק אחרי 15 שנה בראש החברה.\n• קוק נשאר באפל כיו\"ר מבצעי, וטרנוס כבר הוביל את החברה בהשקות המוצרים הגדולות הראשונות שלו כמנכ\"ל.",
+   "full_en": "According to The Apple Post:\n\n• Greg Joswiak, Apple's senior vice president of Worldwide Marketing, revealed the nickname he uses for CEO John Ternus.\n• During a candid interview inside an Apple Store, Gizmodo asked him whether he had ever mistakenly called Ternus \"Tim\", after former CEO Tim Cook.\n• Joswiak said he had not, explaining that he doesn't actually call Ternus by his first name. Instead, he calls him \"JT\".\n• The lighthearted exchange comes just weeks after Ternus officially took over as Apple CEO on September 1, succeeding Cook after 15 years at the top of the company.\n• Cook remains at Apple as executive chairman, while Ternus has already led the company through his first major product launches as chief executive."
   },
   {
    "id": "grokbot-always-on-teammates-overnight",
