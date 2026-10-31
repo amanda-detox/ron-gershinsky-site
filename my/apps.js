@@ -5,7 +5,7 @@ window.RGMY_APPS = {
   title: { he: "האפליקציות הפרטיות שלי", en: "My private apps" },
   apps: [
     { href: "ideas/",    icon: "ideas/icon-192.png",    he: "ליסטיפיי",         en: "Listify",        heLine: "רשימות לפי קטגוריות", enLine: "Lists by category" },
-    { href: "journal/",  icon: "journal/icon-192.png?v=4",  he: "יומןלי",           en: "Journalify",     heLine: "יומן אישי: פסקה ונושא, לפי יום או נושא", enLine: "A personal journal: a paragraph and a topic, by day or topic" },
+    { href: "journal/",  icon: "journal/icon-192.png?v=5",  he: "יומןלי",           en: "Journalify",     heLine: "יומן אישי: פסקה ונושא, לפי יום או נושא", enLine: "A personal journal: a paragraph and a topic, by day or topic" },
     { href: "rehabify/", icon: "rehabify/icon-192.png", he: "ריהאביפיי",        en: "Rehabify",       heLine: "ספירת ימים נקיים וכלים לרגעי חשק", enLine: "Clean-day counter and tools for cravings" },
     { href: "calmify/",  icon: "calmify/icon-192.png",  he: "רוגעלי",           en: "Calmify",        heLine: "צ'ק-אין רגשי, נשימה וקרקוע", enLine: "Mood check-ins, breathing and grounding" },
     { href: "shopping/", icon: "shopping/icon-192.png?v=5", he: "קניותיפיי",      en: "Purchasify",  heLine: "מתעדכנת בזמן אמת בנייד ובלפטופ", enLine: "Updates live on phone and laptop" },
