@@ -8,34 +8,63 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>פוסיטיפיי · Positify</title>
-<link rel="manifest" href="manifest.json?v=1">
+<link rel="manifest" href="manifest.json?v=2">
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <style>
 :root{--gold:#f3cf6b;--gold2:#ffe7a3;--ink:#eaf0ff}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;background:radial-gradient(ellipse at 50% 0%,#1a2f8a,#070d2e 70%) fixed;color:var(--ink);font-family:Heebo,system-ui,Arial,sans-serif}
-.wrap{max-width:560px;margin:0 auto;padding:max(10px,env(safe-area-inset-top)) 14px 24px;text-align:center}
-.logo{width:120px;height:120px;margin:18px auto 6px;display:block;filter:drop-shadow(0 10px 18px rgba(0,0,0,.5))}
-h1{margin:4px 0;font-size:32px;background:linear-gradient(180deg,#fff,var(--gold2) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
-.desc{font-size:17px;line-height:1.5;color:#dfe7ff;margin:6px 0 18px}
-.soon{display:inline-block;border:1px solid rgba(243,207,107,.55);background:rgba(30,52,150,.6);border-radius:999px;padding:10px 22px;color:var(--gold2);font-weight:700}
-.back{display:inline-block;margin-top:24px;color:#9fb4ff;text-decoration:none}
+.wrap{max-width:560px;margin:0 auto;padding:max(10px,env(safe-area-inset-top)) 14px 24px}
+.logo{width:72px;height:72px;margin:10px auto 0;display:block}
+h1{margin:4px 0 12px;text-align:center;font-size:28px;background:linear-gradient(180deg,#fff,var(--gold2) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn{border:1px solid rgba(243,207,107,.6);background:rgba(30,52,150,.7);color:var(--gold2);border-radius:999px;padding:11px 20px;font:700 16px Heebo,sans-serif;cursor:pointer}
+.btn.pri{background:linear-gradient(180deg,var(--gold2),var(--gold));color:#0a1238}
+.btn:disabled{opacity:.35}
+.prog{color:#9fb4ff;font-size:14px;margin-bottom:6px}
+.prompt{font-size:18px;line-height:1.55;margin:0 0 10px;white-space:pre-wrap}
+textarea{width:100%;min-height:40vh;border-radius:14px;border:1px solid rgba(243,207,107,.45);background:rgba(7,13,46,.7);color:var(--ink);font:17px/1.5 Heebo,sans-serif;padding:12px;resize:vertical}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:12px}
+.card{background:rgba(30,52,150,.35);border:1px solid rgba(243,207,107,.3);border-radius:14px;padding:12px;margin:10px 0}
+.card .dt{color:var(--gold2);font-weight:700;cursor:pointer}
+.card .q{color:#9fb4ff;font-size:14px;margin-top:8px}.card .a{white-space:pre-wrap;margin-top:2px}
+.c{text-align:center}.back{display:inline-block;margin-top:20px;color:#9fb4ff;text-decoration:none}
+.hide{display:none}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="top" id="top"></div>
   <img class="logo" src="icon.svg" alt="">
-  <h1 id="t"></h1>
-  <p class="desc" id="d"></p>
-  <div class="soon" id="s"></div><br>
-  <a class="back" id="b" href="../"></a>
+  <h1>פוסיטיפיי</h1>
+  <div id="home">
+    <div class="c"><button class="btn pri" id="new">+ רשומה חדשה</button></div>
+    <div id="list"></div>
+  </div>
+  <div id="wiz" class="hide">
+    <div class="prog" id="prog"></div>
+    <p class="prompt" id="prompt"></p>
+    <textarea id="ta"></textarea>
+    <div class="nav"><button class="btn" id="prev">הקודם</button><button class="btn pri" id="next">הבא</button></div>
+  </div>
+  <div class="c"><a class="back" href="../">→ לדף הראשי</a></div>
 </div>
 <script>
-var S={"he": {"t": "פוסיטיפיי", "d": "אפליקציה להפקת לקח ומשמעות חיוביים מכל סיטואציה", "s": "בקרוב · התוכן בבנייה", "b": "→ לדף הראשי"}, "en": {"t": "Positify", "d": "Turn every situation into a positive lesson and meaning", "s": "Coming soon · content in progress", "b": "← Home"}};
-function R(){var l="he";try{l=localStorage.getItem("rg-lang")==="en"?"en":"he";}catch(e){}var d=document.documentElement;d.lang=l;d.dir=l==="en"?"ltr":"rtl";var s=S[l];document.title=s.t;["t","d","s","b"].forEach(function(k){document.getElementById(k).textContent=s[k];});}
-R();addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+var STEPS=["א. מה קרה?", "ב. מה חיובי בזה? מה אתה למד מזה? מה אתה יכול להפיק מזה? כיצד אתה יכול להשתמש בזה לטובה? איזו השראה זה מאפשג לך? מה הלב שלך שלך אומר לגבי זה? איזו דלת זה פותח לך? איזו הזדמנות מתחבאת בזה?", "ג. אילו פעולות תרצה לעשות בעקבות התובנות החיוביות שרכשת והמשמעויות החיוביות שנתת למאורע או לסיטואציה שהתרחשה? מנה כמה אם תרצה", "ד. העתק את הפעולות למקום שאתה משתמש בו באופן קבוע, כמו אפליקציית ליסטיפיי, יומן, אפליקציית משימות או פרויקטים עיקרית שלך.", "ה. שתף את התובנות שלך ממה שכתבת כאן עם אהוביך, עוקביך או מי שתבחר לזה.", "ו. המשך לכתוב כאן על חוויות, בכך תאמן את רשת הניורונים שלך ואת התודעה שלך להפוך כל מצב לחיובי בהרבה מובנים ובצורה פרקטית מעשית."];
+var KE="positify-entries",KD="positify-draft";
+function ld(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var $=function(i){return document.getElementById(i)};
+var dr=null;
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function list(){var es=ld(KE,[]);$("list").innerHTML=es.slice().reverse().map(function(e,i){var d=new Date(e.t);var body=e.a.map(function(a,j){return a?'<div class="q">'+esc(STEPS[j].slice(0,2))+'</div><div class="a">'+esc(a)+'</div>':""}).join("");return '<div class="card"><div class="dt">'+d.toLocaleDateString("he-IL")+" "+d.toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"})+'</div>'+body+'</div>'}).join("");}
+function show(w){$("home").classList.toggle("hide",w);$("wiz").classList.toggle("hide",!w);if(!w)list();}
+function step(){var i=dr.i;$("prog").textContent=(i+1)+" / "+STEPS.length;$("prompt").textContent=STEPS[i];$("ta").value=dr.a[i]||"";$("prev").disabled=false;$("next").textContent=i===STEPS.length-1?"שמירה":"הבא";window.scrollTo(0,0);}
+$("ta").addEventListener("input",function(){dr.a[dr.i]=this.value;sv(KD,dr)});
+$("new").onclick=function(){dr=ld(KD,null)||{i:0,a:["","","","","",""]};sv(KD,dr);show(true);step();};
+$("prev").onclick=function(){if(dr.i===0){show(false);return;}dr.i--;sv(KD,dr);step();};
+$("next").onclick=function(){if(dr.i<STEPS.length-1){dr.i++;sv(KD,dr);step();return;}var es=ld(KE,[]);es.push({t:Date.now(),a:dr.a});sv(KE,es);localStorage.removeItem(KD);dr=null;show(false);};
+list();
 </script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="#top" data-where="prepend"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js");});</script>
