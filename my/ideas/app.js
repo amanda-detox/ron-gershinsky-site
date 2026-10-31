@@ -28,8 +28,10 @@
   var tab = lsGet("rg-myideas-tab-cur") || lsGet("rg-myideas-tab") || "ideas", doneOpen = {};
   /* 3 list pickers (Ron 31.10): each list record may carry grp 2 or 3; no grp = picker 1, so old data stays in picker 1.
      menuG = the picker whose menu is open; the last list chosen in each picker is kept on this device. */
-  var GROUPS = [1, 2, 3], menuG = 1;
-  function gOf(c) { return c && (c.grp === 2 || c.grp === 3) ? c.grp : 1; }
+  /* Ron 31.10 (later): pickers 2 and 3 removed – only picker 1 remains. Every list shows in it whatever its grp,
+     and mergeGroups() below clears any grp 2/3 once (synced), so no list is ever hidden or lost. */
+  var GROUPS = [1], menuG = 1;
+  function gOf(c) { return 1; }
   function gTabKey(g) { return g === 1 ? "rg-myideas-tab" : "rg-myideas-tab-g" + g; }
   var drag = null, idrag = null, needRender = false, noClick = false;
 
@@ -154,7 +156,6 @@
     name = clean(name, 40); if (!name) return null;
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
-    if (g === 2 || g === 3) rec.grp = g;
     put(rec);
     return id;
   }
@@ -213,6 +214,7 @@
       return Promise.resolve(undoImport()).then(function (imp) {
       if (imp) dirty = true;
       if (seedHabits()) dirty = true;
+      if (mergeGroups()) dirty = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
       if (tooManyGone(items, cl)) { blocked = true; try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} return; }
@@ -343,6 +345,16 @@
      Skipped if a list with the same title already exists. Existing lists are never touched. Before adding, the whole
      Listify copy is saved on this device: rg-myideas-habits-bak:<user id>. */
   var HB_TITLE = "הרגלים שלי", HB_ITEMS = ["עד סיגריה אחת ביום", "דלת פתוחה וחלון פתוח (המון חום ואובך, מזגן וחושך דווקא עוזר)", "ללא בלוטות', מינימיזציה של קרינה (כל פעם ששמתי היה נורא ודי מהר)", "ללא תוכן וידאו קצר או ארוך - עומס יתר חושי, כולל פודקסט, לא כולל מפלים", "כתיבה יומית ולוג יומי ולמידה שבועית", "0 עבודה שכירה", "ביבליותרפיה", "פיזיותרפיה", "שבוע ללא סיגריות כלל", "שיחה יומית עם אמנדה בעברית", "שיחה יומית עם ורוניקה // וונסה באנגלית", "יומן כתיבה יומי על דף בעברית", "כנ\"ל באנגלית", "דיבור בקול בעברית לבד", "דיבור בקול באנגלית לבד", "ביטבוקס בקול", "שיח פנימי, עד כה מסתבר שבעברית הכי מצליח", "סקול רק על מקבוק וגם אז לבדוק אם אמנדה יכולה לסכם", "קול פנימי נוסף אדיר", "קול פנימי נוסף גבי"];
+  /* one-time (Ron 31.10): lists that were in picker 2 / 3 move to picker 1. Backup first: rg-myideas-grp1-bak:<user id>.
+     Only the grp field is cleared; names, items and order are untouched. Idempotent – runs whenever a grp 2/3 record is seen. */
+  function mergeGroups() {
+    var ks = [], k;
+    for (k in items) { var r = items[k]; if (r && !r.deleted && r.type === "cat" && (r.grp === 2 || r.grp === 3)) ks.push(k); }
+    if (!ks.length) return false;
+    try { localStorage.setItem("rg-myideas-grp1-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) {}
+    ks.forEach(function (k) { var y = {}, r = items[k], f; for (f in r) if (f !== "grp") y[f] = r[f]; y.at = now(); put(y); });
+    return true;
+  }
   function seedHabits() {
     if (!items["m:shopimport"] || items["m:habits1"] || lsGet("rg-myideas-habits1:" + uid)) return false;
     var exists = cats().some(function (c) { return clean(catName(c), 40) === HB_TITLE; }) || (items["c:hb1"] && !items["c:hb1"].deleted);
