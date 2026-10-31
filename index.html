@@ -11,10 +11,10 @@
 <script>/* app scope is index.html only, so sub-apps (sounds/, wealthify/...) install separately */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <script>/* site owner (Ron) signed in on this device: hide the brand block (icon, name, bio, install) and waitlist / contact / about / recommended game before first paint; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=29">
-<link rel="icon" href="favicon-32.png?v=29" type="image/png" sizes="32x32">
-<link rel="icon" href="favicon.ico?v=29" sizes="any">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=29">
+<link rel="manifest" href="manifest.json?v=30">
+<link rel="icon" href="favicon-32.png?v=30" type="image/png" sizes="32x32">
+<link rel="icon" href="favicon.ico?v=30" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=30">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -354,7 +354,7 @@
       <button type="button" class="iconbtn" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button>
     </div>
   </div>
-  <img class="mark owner-hide" id="mark" src="app-icon.svg?v=29" alt="היליפיי בע&quot;מ" width="120" height="120">
+  <img class="mark owner-hide" id="mark" src="app-icon.svg?v=30" alt="היליפיי בע&quot;מ" width="120" height="120">
   <h1 class="owner-hide"><span id="name">היליפיי בע"מ</span></h1>
   <p class="bio owner-hide" id="bio"></p>
   <div class="install-wrap owner-hide" id="install-wrap">
@@ -920,22 +920,22 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
-window.RG_METRICS = window.RG_METRICS || {installs:0,dau:0,wau:0,mau:0,rating:0,reviews:0,revenueUsd:0};
+window.RG_METRICS = window.RG_METRICS || {revenueUsd:0,mrrUsd:0,installs:0,dau:0,rating:0};
 (function(){
-  var L={he:{t:"מדדים",installs:"הורדות כולל",dau:"משתמשים יומיים",wau:"משתמשים שבועיים",mau:"משתמשים חודשיים",rating:"דירוג",reviews:"תגובות",revenueUsd:"הכנסות נטו ($)"},
-         en:{t:"Metrics",installs:"Total downloads",dau:"Daily users",wau:"Weekly users",mau:"Monthly users",rating:"Rating",reviews:"Reviews",revenueUsd:"Net revenue (USD)"}};
-  var K=["installs","dau","wau","mau","rating","reviews","revenueUsd"];
+  var L={he:{t:"מדדים",revenueUsd:"הכנסות סה״כ ($)",mrrUsd:"MRR",mrrSub:"מחזור חודשי",installs:"הורדות",dau:"משתמשים יומיים",rating:"דירוג"},
+         en:{t:"Metrics",revenueUsd:"Total revenue (USD)",mrrUsd:"MRR",mrrSub:"Monthly recurring revenue",installs:"Downloads",dau:"Daily users",rating:"Rating"}};
+  var K=["revenueUsd","mrrUsd","installs","dau","rating"];
   function render(){
     var lg=document.documentElement.lang==="en"?"en":"he",t=L[lg],m=window.RG_METRICS||{},g=document.getElementById("mgrid");if(!g)return;
     document.getElementById("metrics-title").textContent=t.t;
     var nf=new Intl.NumberFormat(lg==="en"?"en-US":"he-IL");
     g.innerHTML="";
     K.forEach(function(k){var n=Number(m[k])||0,v;
-      if(k==="revenueUsd")v="$"+nf.format(n);else if(k==="rating")v=n?n.toFixed(1)+" ★":"0";else v=nf.format(n);
+      if(k==="revenueUsd"||k==="mrrUsd")v="$"+nf.format(n);else if(k==="rating")v=n?n.toFixed(1)+" ★":"0";else v=nf.format(n);
       var c=document.createElement("div");c.className="mcard";
       var a=document.createElement("span");a.className="mv";a.textContent=v;a.dir="ltr";
       var b=document.createElement("span");b.className="ml";b.textContent=t[k];
-      c.appendChild(a);c.appendChild(b);g.appendChild(c);});
+      c.appendChild(a);c.appendChild(b);if(k==="mrrUsd"){var s=document.createElement("span");s.className="ml";s.style.cssText="font-size:.75em;opacity:.75";s.textContent=t.mrrSub;c.appendChild(s);}g.appendChild(c);});
   }
   window.RG_renderMetrics=render;render();
   new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
