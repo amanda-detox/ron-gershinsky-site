@@ -414,7 +414,9 @@
     if (drag || idrag) { needRender = true; return; } // never rebuild under a finger that is dragging
     var cur = curTab(), c = catOf(cur) || {};
     var act = [], done = [];
-    if (uid) for (var k in items) { var x = items[k]; if (x.deleted) continue; if (listOf(x) === cur) (x.done ? done : act).push(x); }
+    var unm = false; // one list only (Ron 31.10): items once marked "נבחר" are unmarked and stay in the regular list
+    if (uid) for (var k in items) { var x = items[k]; if (x.deleted || x.type === "cat") continue; if (x.done) { upd(k, { done: false, dord: null }); x = items[k]; unm = true; } if (listOf(x) === cur) act.push(x); }
+    if (unm) { pending = true; saveLocal(); syncSoon(); }
     renderCats();
     var hint = $("cathint"); hint.textContent = t("catHint"); hint.hidden = !uid || !!lsGet("rg-my-shopping-hint");
     var ph = c.ph || "ph", ai = $("add-input");
