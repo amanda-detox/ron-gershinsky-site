@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-31T20:38:06+02:00",
+  "updated": "2026-10-31T21:25:50+02:00",
   "topics": [
     {
       "id": "podcasts",
@@ -196,6 +196,74 @@
     }
   ],
   "items": [
+    {
+      "id": "starterstory-optician-samuel-3-apps-35k",
+      "topic": "starterstory",
+      "date": "2026-10-31T19:20:43Z",
+      "url": "https://x.com/starter_story/status/2116611341494731035",
+      "source": "X · @starter_story",
+      "he": {
+        "title": "אופטיקאי בלי ניסיון בקוד מריץ 3 אפליקציות שמכניסות 35 אלף דולר בחודש",
+        "summary": "סטארטר סטורי מציגים את סמואל, אופטיקאי שלמד לתכנת מקורס של 15 שעות ביוטיוב. הכלל שלו: לבנות רק מוצרים שכבר קיימים ועובדים, ושלוש האפליקציות שלו מכניסות יחד כ־35 אלף דולר בחודש."
+      },
+      "en": {
+        "title": "Optician with zero coding experience runs 3 apps making $35K/month",
+        "summary": "Starter Story features Samuel, an optician who learned to code from a 15-hour YouTube course. His rule is to build only what already exists and already works, and his three apps now bring in about $35K a month."
+      },
+      "full_he": "הוא היה אופטיקאי בלי שום ניסיון בתכנות. היום הוא מריץ 3 אפליקציות שמכניסות 35 אלף דולר בחודש, ובכל פעם הוא העתיק את הרעיון.\n\nתכירו את סמואל. הוא לימד את עצמו לתכנת מקורס של 15 שעות ביוטיוב. יש לו כלל אחד: לעולם לא לבנות משהו שעוד לא קיים ושעוד לא מוכיח שהוא עובד.\n\nתיק האפליקציות שלו:\n\n• useArtemis – כלי לגריפת נתונים מלינקדאין, כ־15 אלף דולר בחודש, כ־10,000 לקוחות\n• StoryShort – מחולל סרטונים \"בלי פנים\" מבוסס AI, כ־20 אלף דולר בחודש, כ־4,000 לקוחות\n• Capacity – כלי תכנות מבוסס AI, חדש לגמרי, 900 דולר בחודש\n\nהשיטה: למצוא ב־X מוצר שמפרסמים צילומי מסך של הכנסות מ־Stripe, לבדוק את התנועה שלו ב־Ahrefs, לבנות MVP תוך שבועיים, להתחיל עם מודעות, ואז להוסיף SEO, ערוצי יוטיוב \"בלי פנים\" ושותפים (affiliates). \"כלים פשוטים ומשעממים הם אלה שמרוויחים הכי הרבה כסף.\"\n\nמה כתוב בתמונות:\n\nתמונה 1: \"העתקתי אפליקציות מצליחות ועכשיו אני מרוויח 35 אלף דולר בחודש\" – על רקע לוח בקרה של Stripe שמראה הכנסה חודשית חוזרת (MRR) של כ־15,177 אירו, 390 מנויים פעילים ומחזור מכירות נטו של 147.9 אלף אירו (יוני 2024 עד יוני 2025).\n\nתמונה 2 – useArtemis.co: מכניסה כ־15 אלף דולר בחודש ויש לה כ־10,000 לקוחות.\n• כלי לגריפת נתונים מלינקדאין ולאיתור כתובות מייל, שמתחרה בשמות גדולים כמו Apollo ו־Lemlist\n• המשתמשים שולפים לידים מלינקדאין ומוצאים את כתובות המייל שלהם כדי לפנות אליהם\n• מיועד לצוותי מכירות ופניות שרוצים למצוא לידים בלי לשלם לשחקנים הגדולים\n\nתמונה 3 – StoryShort.ai: מכניסה כ־20 אלף דולר בחודש עם כ־4,000 לקוחות, וצמחה מהר בזכות מודעות בפייסבוק.\n• מחולל סרטוני AI שמפרסם אוטומטית סרטונים \"בלי פנים\" בטיקטוק וביוטיוב\n• המשתמשים מקימים ערוצים שמפרסמים כל יום סרטונים בסגנון UGC ביוטיוב, בטיקטוק ובאינסטגרם על טייס אוטומטי\n• מיועד ליוצרים שמריצים ערוצים \"בלי פנים\" ולמייסדים שרוצים שידברו על המוצר שלהם כל יום\n\nתמונה 4 – Capacity.so: חדשה לגמרי, מכניסה כרגע 900 דולר בחודש עם כ־50 משתמשים.\n• כלי תכנות מבוסס AI שבונה בשבילך אתרים ואפליקציות\n• המשתמשים בונים את הפרויקט עם AI, ו־Capacity מרים מופע (instance) שמעלה את האתר לאוויר בכל פעם\n• מיועד למי שרוצה להוציא אפליקציות לאוויר בעזרת כלי AI במקום ללמוד לתכנת בדרך המסורתית\n\nבשרשור אין תגובות נוספות של סטארטר סטורי מעבר לפוסט עצמו.",
+      "full_en": "He was an optician with zero coding experience. Now he runs 3 apps making $35K/month, and he copied the idea every time.\n\nMeet Samuel. He taught himself to code from a 15-hour YouTube course. His one rule: never build something that doesn't already exist and isn't already working.\n\nHis portfolio:\n\n• useArtemis – LinkedIn scraping tool, ~$15K/month, ~10,000 customers\n• StoryShort – AI faceless video generator, ~$20K/month, ~4,000 customers\n• Capacity – AI coding tool, brand new, $900/month\n\nThe playbook: find a product with Stripe screenshots on X, check its traffic in Ahrefs, build an MVP in 2 weeks, start with ads, then layer on SEO, faceless YouTube channels and affiliates. \"Simple, boring tools are what make the most of money.\"\n\nWhat the images say:\n\nImage 1: \"I copied successful apps and now make $35K/month\" – over a Stripe dashboard showing MRR of about €15,177, 390 active subscribers and €147.9K net volume from sales (Jun 2024 to Jun 2025).\n\nImage 2 – useArtemis.co: makes around $15K/month and has around 10,000 customers.\n• It's a LinkedIn scraping and email finding tool, going up against big names like Apollo and Lemlist\n• Users pull leads from LinkedIn and find their contact emails to run outreach\n• It's built for sales and outreach teams who want to find leads without paying for the big players\n\nImage 3 – StoryShort.ai: makes around $20K/month with around 4,000 customers, grown fast on Facebook ads.\n• It's an AI video generator that automates posting faceless videos on TikTok and YouTube\n• Users set up channels that publish daily UGC-style videos on YouTube, TikTok and Instagram on autopilot\n• It's built for creators running faceless channels and founders who want their product talked about every day\n\nImage 4 – Capacity.so: brand new, currently making $900/month with around 50 users.\n• It's an AI coding tool that builds websites and apps for you\n• Users build their project with AI and Capacity spins up an instance to deploy the website each time\n• It's built for people who want to ship apps with AI coding tools instead of learning to code the traditional way\n\nThere are no further replies from Starter Story in the thread beyond the post itself."
+    },
+    {
+      "id": "musk-gay-men-ugly-pride-flag",
+      "topic": "musk",
+      "date": "2026-10-31T19:08:42Z",
+      "url": "https://x.com/elonmusk/status/2116608316776571063",
+      "source": "X · @elonmusk",
+      "he": {
+        "title": "מאסק: לגברים הומואים יש יותר מדי טעם בשביל דגל הגאווה המכוער",
+        "summary": "מאסק ציטט פוסט של גבר הומו שטוען שאקטיביסטים \"ווק\" השתלטו על התנועה שלו, וכתב: \"ברור. לגברים הומואים יש יותר מדי טעם בשביל דגל גאווה מכוער כל כך. פשע אופנה שלא ייאמן.\""
+      },
+      "en": {
+        "title": "Musk: gay men have far too much taste for such an ugly pride flag",
+        "summary": "Musk quoted a gay man's post arguing that woke activists hijacked his movement, writing: \"Of course. Gay men have far too much taste for such a laboriously ugly pride flag! Fashion crime beyond belief.\""
+      },
+      "full_he": "ברור.\n\nלגברים הומואים יש יותר מדי טעם בשביל דגל גאווה מכוער ומאולץ כל כך! פשע אופנה שלא ייאמן.\n\nהפוסט שהוא ציטט (@AlexToughTakes):\n\nכגבר הומו, אני אגיד את מה שהרבה מאיתנו חושבים.\n\nנלחמנו כדי שיניחו לנו. כדי להתחתן עם הגבר שאנחנו אוהבים, לשמור על העבודה שלנו ולחיות חיים שקטים.\n\nניצחנו.\n\nואז אקטיביסטים \"ווק\" לקחו את האותיות שלנו, הדביקו להן תריסר מטרות שמעולם לא חתמנו עליהן, והתחילו לקרוא לנו קנאים כי אנחנו אומרים שמין ביולוגי הוא דבר אמיתי.\n\nזו כבר לא התנועה שלנו.\n\nאין בשרשור תגובות נוספות של מאסק.",
+      "full_en": "Of course.\n\nGay men have far too much taste for such a laboriously ugly pride flag! Fashion crime beyond belief.\n\nThe quoted post (@AlexToughTakes):\n\nAs a gay man, I'll say what a lot of us are thinking.\n\nWe fought to be left alone. To marry the man we love, keep our jobs, and live a quiet life.\n\nWe won.\n\nThen woke activists took our letters, stapled on a dozen causes we never signed up for, and started calling us bigots for saying sex is real.\n\nThat isn't our movement anymore.\n\nThere are no further replies from Musk in the thread."
+    },
+    {
+      "id": "brecka-christina-rahm-immune-fatigue",
+      "topic": "brecka",
+      "date": "2026-10-31T19:00:01Z",
+      "url": "https://x.com/thegarybrecka/status/2116606135482589592",
+      "source": "X · @thegarybrecka",
+      "he": {
+        "title": "בראקה וד\"ר כריסטינה רם על \"עייפות חיסונית\" והזדקנות",
+        "summary": "גארי בראקה מארח את ד\"ר כריסטינה רם לשיחה על התאוריה המתפתחת של \"עייפות חיסונית\", ועל האופן שבו, לדבריהם, עומס מתמשך על מערכת החיסון עשוי להשפיע על תהליך ההזדקנות."
+      },
+      "en": {
+        "title": "Brecka and Dr. Christina Rahm on \"immune fatigue\" and aging",
+        "summary": "Gary Brecka hosts Dr. Christina Rahm to discuss the emerging theory of \"immune fatigue\" and how, by their account, ongoing immune challenges may affect the aging process."
+      },
+      "full_he": "מערכת החיסון שלך עושה הרבה יותר מאשר להילחם בהצטננות. לדברי בראקה, ככל שאנחנו מזדקנים, מערכת החיסון עלולה להיות פחות יעילה בזיהוי תאים פגומים, בניהול דלקות ובהגנה על הגוף.\n\nד\"ר כריסטינה רם מצטרפת אליו כדי לדבר על התאוריה המתפתחת של \"עייפות חיסונית\" ועל האופן שבו אתגרים חיסוניים מתמשכים עשויים להשפיע על תהליך ההזדקנות.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. בשרשור אין תגובות נוספות של בראקה.\n\nהערה: \"עייפות חיסונית\" מוצגת כאן כתאוריה של המשתתפים; זה לא מונח רפואי מבוסס, אף שהיחלשות מערכת החיסון עם הגיל (immunosenescence) מוכרת במחקר.",
+      "full_en": "Your immune system does a lot more than fight off a cold. As we age, our immune system can become less efficient at identifying damaged cells, managing inflammation, and protecting our bodies.\n\nDr. Christina Rahm joins me to discuss the emerging theory of immune fatigue and how ongoing immune challenges may affect the aging process.\n\nThe rest of the post is a video, so there's no more text to show. There are no further replies from Brecka in the thread.\n\nNote: \"immune fatigue\" is presented here as the speakers' theory; it isn't an established medical term, although age-related decline of the immune system (immunosenescence) is recognized in research."
+    },
+    {
+      "id": "spacex-colossus2-gun-range-spam-clusters",
+      "topic": "spacex",
+      "date": "2026-10-31T18:35:39Z",
+      "url": "https://x.com/i/trending/2116598310169415854",
+      "source": "X",
+      "he": {
+        "title": "ספייסאקס מרחיבה את Colossus 2 בממפיס עם שני אשכולות GPU חדשים",
+        "summary": "מאסק סייר בלילה באתר בממפיס ושיתף תמונות של הבנייה המהירה. ספייסאקס מוסיפה את האשכולות Gun Range ו־Spam, ולדבריו האתר בדרך ל־1.2 מיליון שבבי Blackwell עד סוף השנה."
+      },
+      "en": {
+        "title": "SpaceX expands Colossus 2 with two new GPU clusters in Memphis",
+        "summary": "Musk toured the Memphis site overnight and shared photos of the rapid buildout. SpaceX is adding the Gun Range and Spam clusters, and he says the site is on track for 1.2 million Blackwells by year-end."
+      },
+      "full_he": "אילון מאסק סייר באתר בממפיס במהלך הלילה, ושיתף למחרת בבוקר תמונות חדשות של הבנייה המהירה. נראה שהעבודה על האשכולות Gun Range ו־Spam מתקדמת יפה.\n\n• ספייסאקס מוסיפה את האשכולות Gun Range ו־Spam לקמפוס מחשוב־העל ל־AI של Colossus 2, ומעלה לאוויר מאות אלפי מעבדי NVIDIA GB300 בנובמבר ובדצמבר.\n• האשכולות Macroharder ו־Minihard כבר מריצים כל אחד 220,000 מעבדים לאימון מודלים; Gun Range יגיע לאותו היקף, ו־Spam יתמקד בהסקה (inference) עם רשת פשוטה יותר, בתוך מבנה לשעבר של Hormel.\n• מאסק אישר שהאתר בדרך ל־1.2 מיליון שבבי Blackwell עד סוף השנה, ושיבח את העבודה הצמודה של צוות ספייסאקס למרות אתגרי חשמל ובנייה.\n\nזהו סיכום של פוסטים ב־X שנכתב על ידי Grok, והוא עשוי להתעדכן ולהכיל טעויות.",
+      "full_en": "Elon Musk toured the Memphis site overnight, then shared fresh photos of the rapid buildout the next morning. Progress looks strong on clusters named Gun Range and Spam.\n\n• SpaceX is adding Gun Range and Spam clusters to its Colossus 2 AI supercomputing campus, bringing hundreds of thousands of NVIDIA GB300 GPUs online by November and December.\n• Macroharder and Minihard each already run 220,000 GPUs for training, while Gun Range will match that and Spam focuses on inference with simpler networking in a former Hormel building.\n• Musk confirmed the site is on track for 1.2 million Blackwells by year-end, praising the SpaceX team's hands-on work amid power and construction challenges.\n\nThis story is a summary of posts on X written by Grok; it may evolve over time and can contain mistakes."
+    },
     {
       "id": "musk-actually-true-importing-voters-repost",
       "topic": "musk",
