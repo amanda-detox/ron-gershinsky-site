@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T12:49:12+02:00",
+ "updated": "2026-10-31T13:37:39+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "mccullough-deion-sanders-thrombophilia-vaccines",
+   "topic": "mccullough",
+   "date": "2026-10-31T11:32:49Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116493591862554707",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: דיון סנדרס סובל מתרומבופיליה וקיבל חיסוני קורונה",
+    "summary": "פיטר מקולה טוען שלדיון סנדרס יש נטייה תורשתית לקרישי דם ושחיסוני הקורונה פגעו בו, ומשתף קטע מהפודקאסט של סטינצ'פילד. זו טענה שלו; הכתבה שבתמונה מתארת קרישי דם שהתפתחו אחרי ניתוח קודם."
+   },
+   "en": {
+    "title": "McCullough: Deion Sanders has thrombophilia and took COVID vaccines",
+    "summary": "Peter McCullough claims Deion Sanders has an inherited clotting tendency and that COVID-19 vaccines harmed him, sharing a clip from Stinchfield's podcast. This is his claim; the article in the image attributes Sanders' clots to a previous operation."
+   },
+   "full_he": "דיון סנדרס סובל מתרומבופיליה וקיבל חיסוני קורונה. תראו מה זה עשה לו. באדיבות הפודקאסט של סטינצ'פילד.\n\nבתמונה המצורפת לפוסט רואים צילום מסך של שתי כתבות:\n• כותרת מאוגוסט 2021: \"דיון סנדרס טוען שכולם צריכים להתחסן\".\n• כתבה מ-10 במרץ 2022: \"דיון סנדרס איבד שתי אצבעות רגל וכמעט את רגלו בגלל קרישי דם\". לפי הכתבה, סנדרס, חבר היכל התהילה ומאמן הפוטבול של ג'קסון סטייט, סיפר בסרטון לסדרת הרשת שלו \"Coach Prime\" שהמנתחים קטעו את הבוהן ואת האצבע השנייה ברגל שמאל, אחרי שאושפז בגלל קרישי דם שהתפתחו בעקבות ניתוח קודם.\n• עוד לפי הכתבה, נוצר אצלו קריש דם בעורק הירך ותסמונת מדור. הוא עבר שמונה ניתוחים, שהה 23 ימים בבית חולים במיסיסיפי, רובם בטיפול נמרץ, ירד כ-18 ק\"ג ובילה את המשך עונת 2021 בכיסא גלגלים. לפי סוכנות AP, הרופאים חששו בתחילה שיאבד את רגלו.\n• האבחנה חשפה שיש במשפחתו היסטוריה של קרישי דם, גורם סיכון משמעותי, ומי שיש לו היסטוריה כזו עשוי לשאת תרומבופיליה תורשתית.\n\nשאר הפוסט הוא סרטון (כשתי דקות מתוך הפודקאסט), ולכן אין עוד טקסט להציג.\n\nהערה: זו טענה של מקולה. הכתבה שהוא עצמו מצרף מייחסת את הקרישים לניתוח קודם ולנטייה משפחתית, ולא לחיסון, והקונצנזוס הרפואי המקובל רואה בחיסוני הקורונה בטוחים לרוב האנשים.",
+   "full_en": "Deion Sanders has a thrombophilia and took COVID-19 vaccines. Look what it did to him. Courtesy Stinchfield the Podcast.\n\nThe image attached to the post shows a screenshot of two articles:\n• An August 2021 headline: \"Deion Sanders makes case for everyone to get vaccinated\".\n• A March 10, 2022 article: \"Deion Sanders lost two toes and almost his leg to blood clots\". It says Sanders, the Hall of Fame cornerback and Jackson State football coach, revealed in a teaser for his web series \"Coach Prime\" that surgeons amputated the big toe and second toe on his left foot after he was hospitalized for blood clots that developed following a previous operation.\n• Per the article, he developed a femoral arterial blood clot and compartment syndrome, had eight surgical procedures, spent 23 days in a Mississippi hospital (mostly in the ICU), lost 40 pounds and spent the rest of the 2021 season in a wheelchair. According to the AP, doctors initially feared he might lose his leg.\n• The diagnosis revealed a family history of blood clots, a powerful risk factor, and someone with such a history may have inherited a thrombophilia.\n\nThe rest of the post is a video (about two minutes from the podcast), so there's no more text to show.\n\nNote: this is McCullough's claim. The article he attaches attributes the clots to a previous operation and a family history, not to the vaccine, and mainstream medical consensus considers COVID-19 vaccines safe for most people."
+  },
+  {
+   "id": "tesla-halloween-cybercabs-skeleton-passengers",
+   "topic": "tesla",
+   "date": "2026-10-31T10:46:25Z",
+   "url": "https://x.com/i/trending/2116408710436397394",
+   "source": "X",
+   "he": {
+    "title": "קייברקאבים בלי נהג משייטים באוסטין עם נוסעי שלדים",
+    "summary": "טסלה חגגה את ליל כל הקדושים עם קייברקאבים אוטונומיים שהסיעו שלדים ברחובות אוסטין, תחת הכותרת \"Bone voyage\". במקביל השיקה עדכון Halloween Mode שהופך את מסך הרכב לבית קברות ומוסיף צלילים ואורות מפחידים."
+   },
+   "en": {
+    "title": "Tesla's driverless Cybercabs haunt Austin with skeleton passengers",
+    "summary": "Tesla marked Halloween by sending driverless Cybercabs through Austin with skeletons in the seats, in a \"Bone voyage\" clip. It also rolled out a Halloween Mode update that turns the car screen into a graveyard with spooky sounds and lights."
+   },
+   "full_he": "דמיין קייברקאבים כתומים וזוהרים משייטים ברחובות אוסטין בליל כל הקדושים, עם שלדים חגורים במושבים ובלי נהג בכלל. טסלה משכה תשומת לב עם התעלול האוטונומי והמצמרר הזה.\n\nטסלה ציינה את ליל כל הקדושים כששלחה קייברקאבים בלי נהג לנסוע באוסטין עם נוסעים־שלדים, ושיתפה סרטון בשם \"Bone voyage\" מחשבון ה-Robotaxi שלה. הקידום המשעשע הדגיש את הצי ההולך וגדל של מאות רכבים שמציעים נסיעות בטוחות הביתה לציבור. החברה גם השיקה עדכון תוכנה בשם Halloween Mode, שהופך את מסכי הרכב לבית קברות, מוסיף דמויות רפאים ומפעיל צלילים ואורות מפחידים לילדים שמסתובבים בשכונה. המעריצים אהבו את היצירתיות ושיבחו את ההומור ואת ההדגמה של הטכנולוגיה בעולם האמיתי.\n\n(סיכום של סיפור מגמה ב-X, שמבוסס על פוסטים ועשוי להתעדכן.)",
+   "full_en": "Picture glowing orange Cybercabs cruising Austin's Halloween streets, skeletons buckled in the seats, and no driver in sight. Tesla turned heads with this eerie, autonomous stunt.\n\nTesla marked Halloween by sending driverless Cybercabs through Austin carrying skeleton passengers, sharing a \"Bone voyage\" clip from its Robotaxi account. The fun promo highlighted the growing fleet of hundreds of vehicles offering safe, public rides home. They also rolled out a Halloween Mode software update, transforming car screens into graveyards, adding ghost avatars, and enabling spooky sounds and lights for trick-or-treaters. Fans loved the creativity, praising the humor and real-world demo of the tech.\n\n(Summary of an X trending story; it is based on posts and may evolve.)"
+  },
   {
    "id": "musk-california-model-2022-clip-one-party",
    "topic": "musk",
