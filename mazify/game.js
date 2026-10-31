@@ -1,15 +1,16 @@
-/* מבוכפיי · Mazify: daily maze (seeded by date) + free play. Keyboard, swipe, D-pad. */
+/* מבוכפיי · Mazify: 99 seeded levels (size 9→41, progress saved) + daily maze (seeded by date) + free play. Keyboard, swipe, D-pad. */
 (function () {
   "use strict";
   var T = {
-    he: { title: "מבוכפיי", daily: "מבוך יומי", free: "משחק חופשי", newm: "מבוך חדש", time: "זמן:", best: "שיא:", size: ["קטן", "בינוני", "גדול"],
+    he: { title: "מבוכפיי", levels: "שלבים", lvl: "שלב", lvlDone: "שלב הושלם! עוברים לשלב הבא…", allDone: "סיימת את כל 99 השלבים! 🏆", daily: "מבוך יומי", free: "משחק חופשי", newm: "מבוך חדש", time: "זמן:", best: "שיא:", size: ["קטן", "בינוני", "גדול"],
       win: "יצאת מהמבוך! ", rec: "שיא חדש! ⭐", hint: "חצים / WASD, החלקה על המבוך או הכפתורים. הגיעו לכוכב הזהוב.", lang: "EN", already: "את המבוך של היום כבר פתרת. אפשר לשפר את השיא!" },
-    en: { title: "Mazify", daily: "Daily maze", free: "Free play", newm: "New maze", time: "Time:", best: "Best:", size: ["Small", "Medium", "Large"],
+    en: { title: "Mazify", levels: "Levels", lvl: "Level", lvlDone: "Level complete! Next level…", allDone: "You finished all 99 levels! 🏆", daily: "Daily maze", free: "Free play", newm: "New maze", time: "Time:", best: "Best:", size: ["Small", "Medium", "Large"],
       win: "You escaped! ", rec: "New record! ⭐", hint: "Arrows / WASD, swipe on the maze or use the buttons. Reach the gold star.", lang: "עב", already: "You already solved today's maze. Try to beat your best!" }
   };
   var SIZES = [11, 17, 25];
   var lang = "he"; try { lang = localStorage.getItem("rg-lang") === "en" ? "en" : "he"; } catch (e) {}
-  var mode = "daily", sizeIdx = 1, grid, N, px, py, t0 = 0, running = false, done = false, seedStr = "", trail = [];
+  var MAXL = 99, level = 1; try { level = Math.min(MAXL, Math.max(1, +localStorage.getItem("mazify-level") || 1)); } catch (e) {}
+  var mode = "levels", sizeIdx = 1, grid, N, px, py, t0 = 0, running = false, done = false, seedStr = "", trail = [];
   var $ = function (id) { return document.getElementById(id); };
   var cv = $("c"), ctx = cv.getContext("2d");
 
@@ -30,16 +31,18 @@
     }
     return g;
   }
-  function bestKey() { return "mazify-best-" + (mode === "daily" ? "daily-" + seedStr : "free-" + SIZES[sizeIdx]); }
+  function lvlSize(k) { return 9 + 2 * Math.round((k - 1) * 16 / (MAXL - 1)); }
+  function bestKey() { return "mazify-best-" + (mode === "levels" ? "level-" + level : mode === "daily" ? "daily-" + seedStr : "free-" + SIZES[sizeIdx]); }
   function getBest() { try { var v = +localStorage.getItem(bestKey()); return v > 0 ? v : 0; } catch (e) { return 0; } }
   function newMaze() {
-    N = mode === "daily" ? 21 : SIZES[sizeIdx];
-    seedStr = mode === "daily" ? today() : String(Date.now()) + Math.random();
+    N = mode === "levels" ? lvlSize(level) : mode === "daily" ? 21 : SIZES[sizeIdx];
+    seedStr = mode === "levels" ? "level-" + level : mode === "daily" ? today() : String(Date.now()) + Math.random();
     grid = build(N, rng(hash("mazify:" + seedStr)));
     px = 1; py = 1; trail = [[1, 1]]; running = false; done = false; t0 = 0;
     $("time").textContent = "0.0"; $("msg").textContent = mode === "daily" && getBest() ? T[lang].already : "";
-    showBest(); draw();
+    showBest(); showLvl(); draw();
   }
+  function showLvl() { $("lvl").hidden = mode !== "levels"; $("lvl").textContent = T[lang].lvl + " " + level + " / " + MAXL; }
   function showBest() { var b = getBest(); $("best").textContent = b ? (b / 1000).toFixed(1) : "—"; }
   function move(dx, dy) {
     if (done) return;
@@ -58,6 +61,10 @@
     if (rec) try { localStorage.setItem(bestKey(), Math.round(ms)); } catch (e) {}
     $("msg").textContent = L.win + (ms / 1000).toFixed(1) + "s" + (rec ? " · " + L.rec : "");
     showBest();
+    if (mode === "levels") {
+      if (level < MAXL) { level++; try { localStorage.setItem("mazify-level", level); } catch (e) {} $("msg").textContent += " · " + L.lvlDone; setTimeout(function () { if (mode === "levels") newMaze(); }, 1600); }
+      else $("msg").textContent += " · " + L.allDone;
+    }
   }
   function draw() {
     var W = cv.width, s = W / N; ctx.clearRect(0, 0, W, W);
@@ -79,14 +86,15 @@
   function applyLang() {
     var L = T[lang]; document.documentElement.lang = lang; document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
     $("title").textContent = L.title; document.title = "מבוכפיי · Mazify";
-    $("mDaily").textContent = L.daily; $("mFree").textContent = L.free; $("newBtn").textContent = L.newm;
+    $("mLevels").textContent = L.levels; $("mDaily").textContent = L.daily; showLvl(); $("mFree").textContent = L.free; $("newBtn").textContent = L.newm;
     $("sizeBtn").textContent = L.size[sizeIdx]; $("lTime").textContent = L.time; $("lBest").textContent = L.best;
     $("hint").textContent = L.hint; $("langBtn").textContent = L.lang;
-    $("sizeBtn").hidden = $("newBtn").hidden = mode === "daily";
+    $("sizeBtn").hidden = $("newBtn").hidden = mode !== "free";
   }
-  function setMode(m) { mode = m; $("mDaily").classList.toggle("on", m === "daily"); $("mFree").classList.toggle("on", m === "free"); applyLang(); newMaze(); }
+  function setMode(m) { mode = m; $("mLevels").classList.toggle("on", m === "levels"); $("mDaily").classList.toggle("on", m === "daily"); $("mFree").classList.toggle("on", m === "free"); applyLang(); newMaze(); }
 
   $("langBtn").addEventListener("click", function () { lang = lang === "he" ? "en" : "he"; try { localStorage.setItem("rg-lang", lang); } catch (e) {} applyLang(); });
+  $("mLevels").onclick = function () { setMode("levels"); };
   $("mDaily").onclick = function () { setMode("daily"); };
   $("mFree").onclick = function () { setMode("free"); };
   $("newBtn").onclick = newMaze;
@@ -109,6 +117,6 @@
     }
   });
   cv.addEventListener("pointerup", function () { sx = sy = null; });
-  window.Mazify = { move: move, state: function () { return { N: N, px: px, py: py, done: done, mode: mode, grid: grid }; } };
+  window.Mazify = { move: move, state: function () { return { N: N, px: px, py: py, done: done, mode: mode, grid: grid, level: level }; } };
   applyLang(); newMaze(); tick();
 })();

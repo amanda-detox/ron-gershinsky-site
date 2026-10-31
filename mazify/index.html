@@ -36,11 +36,13 @@ h1{margin:4px 0;font-size:30px;background:linear-gradient(180deg,#fff,var(--gold
   <div class="top" id="top"><button id="langBtn" type="button">EN</button></div>
   <h1 id="title">מבוכפיי</h1>
   <div class="row">
-    <button class="btn on" id="mDaily"></button>
+    <button class="btn on" id="mLevels"></button>
+    <button class="btn" id="mDaily"></button>
     <button class="btn" id="mFree"></button>
     <button class="btn" id="sizeBtn"></button>
     <button class="btn" id="newBtn"></button>
   </div>
+  <div class="stats"><b id="lvl"></b></div>
   <div class="stats"><span><span id="lTime"></span> <b id="time">0.0</b></span><span><span id="lBest"></span> <b id="best">—</b></span></div>
   <div class="msg" id="msg"></div>
   <canvas id="c" width="520" height="520"></canvas>
@@ -50,7 +52,7 @@ h1{margin:4px 0;font-size:30px;background:linear-gradient(180deg,#fff,var(--gold
   </div>
   <p class="hint" id="hint"></p>
 </div>
-<script src="game.js?v=1"></script>
+<script src="game.js?v=2"></script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="#top" data-where="prepend"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});</script>
 </body>
