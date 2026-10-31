@@ -42,6 +42,10 @@
   .reasonsbox { margin-top: 6px; padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--line2); }
   .reasonsbox p { margin: 2px 0; font-size: 14.5px; }
   .call { display: inline-flex; margin: 6px 6px 0 0; }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; white-space: normal; overflow-wrap: anywhere; min-height: 0; }
+  .status:empty { display: none; }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
 </style>
 <script src="../../shared/rg-bg.js" data-app="myrehab" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -70,10 +74,10 @@
 
   <main data-when="in" hidden>
     <nav class="tabs" id="tabs" role="tablist"></nav>
-    <div class="status" id="status" role="status" aria-live="polite"></div>
     <div id="panels"></div>
     <p class="disclaim" data-i18n="disclaim"></p>
   </main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
   <p class="privnote" data-i18n="privNote"></p>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
