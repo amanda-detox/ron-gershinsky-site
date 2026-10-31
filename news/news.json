@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T05:02:00+02:00",
+ "updated": "2026-10-31T05:48:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -8862,6 +8862,23 @@
    },
    "full_en": "Elon Musk (replying to @SPCX100T):\n\nTerrestrial compute will be peanuts compared to orbital compute.\n\nOrbital compute deployed per month probably exceeds terrestrial around the end of 2028 and then far exceeds it in 2029.\n\nThe post he replied to (@SPCX100T):\n\nShaun Maguire's bottoms-up SpaceX $SPCX model (50th percentile) shows a clear inflection starting in 2027.\n\nI converted the quarterly figures into charts, and the 2027 revenue explosion stands out immediately.\n\nKey points:\n\n• FY2026 revenue: ~$51.5B\n• FY2027 revenue: ~$274B (≈5.3× year-over-year)\n• FY2028 revenue: ~$731B\n• Driver: Space Infrastructure (SI), especially terrestrial compute\n• Terrestrial compute capacity scales from 1 GW (early 2026) to 21 GW (end-2028)\n• Assumption: ~$40B annual revenue per GW\n• By FY2028, SI is ~85% of total revenue\n• Operating income turns positive in Q3'26, accelerates from 2027\n• EBITDA reaches ~$536B in FY2028\n• Free cash flow stays negative through 2027, turns positive mid-2028 amid ~$369B of annual capex\n• Starship ramps to 250 flights in 2028\n\nShaun himself noted this is a 25th–50th percentile estimate that factors in risks like political headwinds and major supply chain issues. Elon replied: \"I think we can do better.\"\n\nThe quoted post (Shaun Maguire, Sequoia):\n\nOver the last week I built a bottoms up SpaceX financial model through the end of 2028. The numbers that came out are insane. There are wide error bars given how quickly things are changing, but I wanted to distill something complicated into something that can at least be debated.\n\n• This is not investment advice.\n• Sequoia is a major SpaceX shareholder.\n• Past performance is not indicative of future results.\n\nThe @SPCX100T post also includes two chart images of the model's quarterly figures, which aren't transcribed here.",
    "full_he": "אילון מאסק (בתגובה ל־@SPCX100T):\n\nהמחשוב הקרקעי יהיה בוטנים לעומת המחשוב במסלול.\n\nהיקף המחשוב שייפרס במסלול בכל חודש יעבור כנראה את הקרקעי בסביבות סוף 2028, ובשנת 2029 כבר יעלה עליו בהרבה.\n\nהפוסט שהוא הגיב לו (@SPCX100T):\n\nהמודל של שון מגווייר לספייסאקס, שנבנה מלמטה למעלה (תרחיש האחוזון ה־50), מראה נקודת מפנה ברורה החל מ־2027.\n\nהפכתי את הנתונים הרבעוניים לגרפים, וזינוק ההכנסות ב־2027 קופץ מיד לעין.\n\nנקודות עיקריות:\n\n• הכנסות 2026: כ־51.5 מיליארד דולר\n• הכנסות 2027: כ־274 מיליארד דולר (פי 5.3 בערך משנה לשנה)\n• הכנסות 2028: כ־731 מיליארד דולר\n• המנוע: תשתיות חלל (SI), ובעיקר מחשוב קרקעי\n• קיבולת המחשוב הקרקעי גדלה מ־1 ג'יגה־וואט (תחילת 2026) ל־21 ג'יגה־וואט (סוף 2028)\n• הנחה: כ־40 מיליארד דולר הכנסה שנתית לכל ג'יגה־וואט\n• ב־2028 תשתיות החלל הן כ־85% מכלל ההכנסות\n• הרווח התפעולי הופך לחיובי ברבעון השלישי של 2026 ומאיץ מ־2027\n• ה־EBITDA מגיע לכ־536 מיליארד דולר ב־2028\n• תזרים המזומנים החופשי נשאר שלילי עד סוף 2027 והופך לחיובי באמצע 2028, לצד השקעות הון של כ־369 מיליארד דולר בשנה\n• סטארשיפ מגיעה ל־250 שיגורים ב־2028\n\nשון עצמו ציין שזו הערכה של האחוזון ה־25 עד 50, שמביאה בחשבון סיכונים כמו רוחות נגדיות פוליטיות ובעיות גדולות בשרשרת האספקה. אילון הגיב: \"אני חושב שנוכל לעשות טוב יותר.\"\n\nהפוסט שצוטט (שון מגווייר, סקויה):\n\nבשבוע האחרון בניתי מודל פיננסי לספייסאקס מלמטה למעלה עד סוף 2028. המספרים שיצאו מטורפים. טווחי הטעות רחבים, כי הדברים משתנים מהר מאוד, אבל רציתי לזקק משהו מסובך למשהו שאפשר לפחות להתווכח עליו.\n\n• זו לא המלצת השקעה.\n• סקויה היא בעלת מניות גדולה בספייסאקס.\n• ביצועי עבר אינם מעידים על ביצועים בעתיד.\n\nבפוסט של @SPCX100T יש גם שתי תמונות של גרפים עם הנתונים הרבעוניים של המודל, שלא הועתקו לכאן."
+  },
+  {
+   "id": "tesla-musk-gates-short-feud-revived",
+   "topic": "tesla",
+   "date": "2026-10-31T00:35:53Z",
+   "url": "https://x.com/i/trending/2116326723453428153",
+   "source": "X",
+   "he": {
+    "title": "מאסק מחדש את העימות עם ביל גייטס על השורט בטסלה",
+    "summary": "מאסק כתב שגייטס עדיין מחזיק פוזיציית שורט ענקית נגד טסלה, ובמקביל מממן מבקרים שלו. העימות בין השניים נמשך כבר שנים."
+   },
+   "en": {
+    "title": "Musk revives his feud over Bill Gates' Tesla short",
+    "summary": "Musk posted that Gates still holds a huge short position against Tesla while funding his critics, reigniting their years-long clash."
+   },
+   "full_en": "Elon Musk called out Bill Gates for holding a huge short against Tesla while funding his critics, reigniting their years-long clash.\n\nOn October 30, Musk posted that Gates maintains a massive short position in Tesla, now worth about $1.58 trillion in market cap with shares near $400. He tied it to Gates funding critics like Kara Swisher's podcast via the Gates Foundation, referencing 2022 texts where Gates admitted to a half-billion-dollar short with $1.5 billion in losses. Observers noted a 1% short from years ago, when Tesla was valued at $40 billion, could mean nearly $15.7 billion in losses today; reactions split between Musk backers seeing it as a bet against progress and others calling it billionaire drama.",
+   "full_he": "אילון מאסק תקף את ביל גייטס על כך שהוא מחזיק פוזיציית שורט ענקית נגד טסלה ובמקביל מממן את המבקרים שלו, וכך הצית מחדש את העימות הוותיק ביניהם.\n\nב-30 באוקטובר כתב מאסק שגייטס עדיין מחזיק שורט מסיבי בטסלה, ששווי השוק שלה עומד כיום על כ-1.58 טריליון דולר, עם מניה סביב 400 דולר. הוא קשר זאת למימון שגייטס נותן, דרך קרן גייטס, למבקרים כמו הפודקאסט של קארה סוויישר, והזכיר הודעות מ-2022 שבהן גייטס הודה בשורט של חצי מיליארד דולר עם הפסדים של 1.5 מיליארד דולר.\n\nמשקיפים ציינו ששורט של 1% מלפני שנים, כשטסלה הייתה שווה 40 מיליארד דולר, עשוי להסתכם היום בהפסד של כמעט 15.7 מיליארד דולר. התגובות התחלקו: תומכי מאסק רואים בזה הימור נגד הקידמה, ואחרים קוראים לזה דרמה של מיליארדרים.\n\n(זהו סיכום של פוסטים ב-X, והוא עשוי להשתנות עם הזמן.)"
   }
  ]
 }
