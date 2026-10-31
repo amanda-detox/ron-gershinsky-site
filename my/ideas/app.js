@@ -391,7 +391,7 @@
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x);
     return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
-      '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + '<button type="button" class="chk" data-a="toggle" aria-pressed="' + sel + '" aria-label="' + esc((sel ? t("uncheck") : t("check")) + ": " + n) + '"><i aria-hidden="true">✓</i></button>' +
+      '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + 
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
@@ -803,8 +803,8 @@
         reset();
         if (Math.abs(dx) >= w * SWIPE) {
           var x = items[id];
-          if (dx > 0 && x && !x.deleted) { toggleSel(id); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
-          else if (dx < 0) moveMenu(id);
+          if (dx > 0 && x && !x.deleted) moveMenu(id); // right = move to another list or trash (2026-10-31)
+          else if (dx < 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // left = delete
         }
         return;
       }
@@ -860,8 +860,7 @@
       var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       if (a === "move") { moveMenu(id); return; }
       if (a === "trash") { delWithUndo(id); return; }
-      if (a === "toggle") { toggleSel(id); changed(); }
-      else if (a === "edit") { editing = id; render(); }
+      if (a === "edit") { editing = id; render(); }
       else if (a === "save") saveEdit(id);
       else if (a === "cancel") { editing = null; render(); }
       else if (a === "del") askDel(id);
