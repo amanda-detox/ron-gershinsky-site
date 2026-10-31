@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T02:34:30+02:00",
+ "updated": "2026-10-31T04:07:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,23 @@
  ],
  "items": [
   {
+   "id": "musk-kneeling-photo-reactions",
+   "topic": "musk",
+   "date": "2026-10-31T01:36:08Z",
+   "url": "https://x.com/i/trending/2116341886705156503",
+   "source": "X",
+   "he": {
+    "title": "תמונה של מאסק כורע על הרצפה מעוררת אמפתיה וגם ביקורת",
+    "summary": "תמונה שמראה את אילון מאסק כורע על רצפה מבריקה, ראשו מורכן וידו על פניו ליד רכב כסוף, התפשטה במהירות ב־X. תומכים קראו לגלות כלפיו אמפתיה, ומבקרים הגיבו בחריפות."
+   },
+   "en": {
+    "title": "Photo of Elon Musk kneeling draws empathy and criticism",
+    "summary": "A photo showing Elon Musk kneeling on a glossy floor, head down and hand to his face next to a silver vehicle, spread quickly on X. Supporters called for empathy, while critics responded harshly."
+   },
+   "full_he": "תמונה שמראה את אילון מאסק כורע על רצפה מבריקה, ראשו מורכן וידו על פניו, ליד רכב כסוף. לפי הסיכום ב־X, היא מציגה רגע נדיר של פגיעוּת אצל איש הטכנולוגיה.\n\n• התמונה התפשטה במהירות, ותומכים קראו לגלות אמפתיה לנוכח הלחץ של ניהול טסלה, ספייסאקס ושאר החברות שלו.\n• בפוסטים הוא כונה \"אדם יוצא דופן\" ו\"על־אנושי\", ומשתמשים שלחו תפילות והביעו נאמנות.\n• מבקרים, לעומת זאת, הטילו ספק במעשיו והציעו יחס קשוח יותר, וזה משקף את הדעות החלוקות שמלוות בדרך כלל את מאסק.\n\nהסיכום לא מציין איפה ומתי צולמה התמונה ומה ההקשר שלה. זהו סיכום של פוסטים ב־X שעשוי להשתנות.",
+   "full_en": "A photo shows Elon Musk kneeling on a glossy floor, head down and hand to his face, next to a silver vehicle. According to the X summary, it captures a rare glimpse of vulnerability from the tech leader.\n\n• The image spread quickly, prompting supporters to call for empathy amid the pressures of running Tesla, SpaceX and his other ventures.\n• Posts praised him as a \"remarkable man\" and \"super human,\" offering prayers and loyalty.\n• Critics, however, questioned his actions and suggested harsher treatment, reflecting the divided views that often surround Musk.\n\nThe summary doesn't say where or when the photo was taken or what its context is. This story is a summary of posts on X and may evolve over time."
+  },
+  {
    "id": "spacex-krugman-padilla-seize-starlink",
    "topic": "spacex",
    "date": "2026-10-31T00:26:24Z",
@@ -280,23 +297,6 @@
    },
    "full_he": "מאסק: \"תחשבו על Grok Bot כעל עמית לעבודה.\"\n\nהפוסט שהוא ציטט (‎@0xgaut):\n\nמשהו ששמתי לב אליו שהופך את העבודה עם גרוק בוט לכיפית יותר: זה באמת מרגיש כמו לדבר עם עמית לעבודה. משפטים קצרים יותר, פחות שטויות ומילים מיותרות.",
    "full_en": "Musk: \"Think of Grok @Bot as a work colleague.\"\n\nThe quoted post (@0xgaut):\n\nSomething I've noticed that makes working with grok bot more delightful: it actually feels like you're talking to a coworker. Shorter sentences, less BS and fluff."
-  },
-  {
-   "id": "apple-palantir-earnings-week-nov2",
-   "topic": "apple",
-   "date": "2026-10-30T20:57:44Z",
-   "url": "https://x.com/i/trending/2116226600161165361",
-   "source": "X",
-   "he": {
-    "title": "שבוע הדוחות נפתח: אפל ופלנטיר מדווחות ב־2 בנובמבר",
-    "summary": "שבוע דוחות עמוס נפתח ביום שני, 2 בנובמבר, עם אפל ופלנטיר אחרי סגירת המסחר. המשקיעים מחפשים סימני יציבות במכירות האייפון, בהוצאות על AI ובביקושים לשבבים."
-   },
-   "en": {
-    "title": "Earnings week kicks off: Apple and Palantir report on Nov 2",
-    "summary": "A packed earnings week starts Monday, November 2, with Apple and Palantir after the close. Investors are looking for stability in iPhone sales, AI spending and chip demand."
-   },
-   "full_he": "משקיע אחד תפס את הציפייה במדויק: \"תכינו פופקורן.\" הסוחרים מסתכלים על לוח זמנים עמוס בחיפוש אחרי סימני יציבות אחרי הירידות האחרונות בשוק.\n\nשבוע הדוחות הגורלי נפתח ב־2 בנובמבר 2026, כשאפל ופלנטיר מדווחות אחרי סגירת המסחר ביום שני, ואחריהן Shopify, AMD, Uber, מקדונלד'ס ואחרות עד יום שישי. המשקיעים מקווים שהדוחות של ענקיות הטכנולוגיה, חברות ה־AI וחברות הצריכה יראו חוזק בהוצאות על AI, בביקושים לשבבים, במכירות האייפון ובתנועה היומיומית כמו נסיעות וביקורים במסעדות. אחרי ירידות אחרונות במניות כמו אינטל ואמזון, כל העיניים על התחזיות קדימה, שעשויות להשפיע על הסנטימנט יחד עם דוח התעסוקה של יום שישי.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; Grok עלול לטעות.)",
-   "full_en": "One investor captured the anticipation perfectly: 'Get your popcorn ready.' Traders are eyeing a packed schedule for signs of stability after recent market dips.\n\nThe high-stakes earnings week kicks off November 2, 2026, with Apple and Palantir reporting after Monday's close, followed by Shopify, AMD, Uber, McDonald's, and others through Friday. Investors hope reports from tech giants, AI players, and consumer names will reveal strength in AI spending, chip demand, iPhone sales, and everyday traffic like rides and restaurant visits. Amid recent drops for stocks like Intel and Amazon, all eyes are on forward guidance, which could sway sentiment alongside Friday's jobs report.\n\n(This story is a summary of posts on X and may evolve over time; Grok can make mistakes.)"
   },
   {
    "id": "medicalmedium-steamed-green-beans-pets",
@@ -467,6 +467,23 @@
    },
    "full_he": "\"חמש דוגמאות לחלבונים ויראליים שנשארים בגוף – ובכל זאת הכחשה של המסקנה המקבילה לגבי SARS-CoV-2.\n\nהם דורשים הוכחה לכך שהספייק נשאר בגוף, אבל הם עצמם מפרסמים הוכחה כזו כבר עשרות שנים – לגבי נגיפים אחרים.\" (קישור ל־The Focal Points, תייג את @McCulloughFund)\n\nבתמונה: כותרת המאמר על רקע צילום של מאמר המקרה של ניקולס הולשר ועמיתיו בכתב העת של European Society of Medicine (על mRNA מהחיסון, DNA פלסמידי, חלבון ספייק ושיבוש גנומי שנים אחרי חיסון ה־mRNA), והכיתוב \"מה עוד היה שם אחרי 3.5 שנים? מאמר מקרה מעלה שאלות קשות\".\n\nמתוך הפתיחה של המאמר ב־The Focal Points (מאת מקולה):\n• לדבריו, בזמן שהעולם מתמודד עם שרידות חלבון הספייק שגורמת לקורונה ארוכה ולתסמונות פגיעה מחיסון, הממסד הרפואי נשאר בהכחשה.\n• הוא כותב שהמאמר של הולשר ועמיתיו הראה שחלבון הספייק מחיסון פייזר נשאר שנים, בזמן שמומחי חיסונים אומרים שזה בלתי אפשרי.\n• לטענתו, SARS-CoV-2 אינו הנגיף הראשון שגורם לבעיה כזו: זה כלל כללי בווירולוגיה, שנגיפים משאירים חלקים מעצמם מאחור, והשאריות האלה משפיעות.\n\nהמשך המאמר, כולל חמש הדוגמאות עצמן, זמין רק למנויים בתשלום, ולכן הוא לא מופיע כאן.\n\nהערה: הטענה שחלבון הספייק מהחיסון נשאר בגוף שנים וגורם לפגיעה היא טענה של מקולה, והיא לא מקובלת בקונצנזוס הרפואי.",
    "full_en": "\"Five Examples of Viral Protein Persistence — Yet Denial of the Corollary to SARS-CoV-2\n\nThey're demanding proof of spike persistence, yet they've been publishing that proof for decades — about other viruses.\" (Link: The Focal Points; tagged @McCulloughFund)\n\nThe image: the article's title over a screenshot of the Nicolas Hulscher et al. case report in the European Society of Medicine's journal (on vaccine mRNA, plasmid DNA, spike protein and genomic dysregulation years after COVID-19 mRNA vaccination), with the caption \"What Was Still There 3.5 Years Later? A case report raises difficult questions.\"\n\nFrom the opening of the Focal Points article (by McCullough):\n• He says that as the world struggles with persistence of the SARS-CoV-2 spike protein causing long-COVID and vaccine injury syndromes, the medical establishment remains in denial.\n• He writes that the Hulscher et al. paper demonstrated vaccine spike protein after Pfizer mRNA injection lasts for years, yet vaccinologists say that's impossible.\n• He argues SARS-CoV-2 is not the first virus to cause this: it is a general rule of virology that viruses leave parts of themselves behind, and those remnants matter.\n\nThe rest of the article, including the five examples themselves, is for paid subscribers only, so it isn't shown here.\n\nNote: the claim that vaccine spike protein persists for years and causes injury is McCullough's claim and is not accepted by mainstream medical consensus."
+  },
+  {
+   "id": "apple-palantir-earnings-week-nov2",
+   "topic": "apple",
+   "date": "2026-10-30T20:57:44Z",
+   "url": "https://x.com/i/trending/2116226600161165361",
+   "source": "X",
+   "he": {
+    "title": "שבוע הדוחות נפתח: אפל ופלנטיר מדווחות ב־2 בנובמבר",
+    "summary": "שבוע דוחות עמוס נפתח ביום שני, 2 בנובמבר, עם אפל ופלנטיר אחרי סגירת המסחר. המשקיעים מחפשים סימני יציבות במכירות האייפון, בהוצאות על AI ובביקושים לשבבים."
+   },
+   "en": {
+    "title": "Earnings week kicks off: Apple and Palantir report on Nov 2",
+    "summary": "A packed earnings week starts Monday, November 2, with Apple and Palantir after the close. Investors are looking for stability in iPhone sales, AI spending and chip demand."
+   },
+   "full_he": "משקיע אחד תפס את הציפייה במדויק: \"תכינו פופקורן.\" הסוחרים מסתכלים על לוח זמנים עמוס בחיפוש אחרי סימני יציבות אחרי הירידות האחרונות בשוק.\n\nשבוע הדוחות הגורלי נפתח ב־2 בנובמבר 2026, כשאפל ופלנטיר מדווחות אחרי סגירת המסחר ביום שני, ואחריהן Shopify, AMD, Uber, מקדונלד'ס ואחרות עד יום שישי. המשקיעים מקווים שהדוחות של ענקיות הטכנולוגיה, חברות ה־AI וחברות הצריכה יראו חוזק בהוצאות על AI, בביקושים לשבבים, במכירות האייפון ובתנועה היומיומית כמו נסיעות וביקורים במסעדות. אחרי ירידות אחרונות במניות כמו אינטל ואמזון, כל העיניים על התחזיות קדימה, שעשויות להשפיע על הסנטימנט יחד עם דוח התעסוקה של יום שישי.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; Grok עלול לטעות.)",
+   "full_en": "One investor captured the anticipation perfectly: 'Get your popcorn ready.' Traders are eyeing a packed schedule for signs of stability after recent market dips.\n\nThe high-stakes earnings week kicks off November 2, 2026, with Apple and Palantir reporting after Monday's close, followed by Shopify, AMD, Uber, McDonald's, and others through Friday. Investors hope reports from tech giants, AI players, and consumer names will reveal strength in AI spending, chip demand, iPhone sales, and everyday traffic like rides and restaurant visits. Amid recent drops for stocks like Intel and Amazon, all eyes are on forward guidance, which could sway sentiment alongside Friday's jobs report.\n\n(This story is a summary of posts on X and may evolve over time; Grok can make mistakes.)"
   },
   {
    "id": "tesla-buffett-cybertruck-video-claim",
