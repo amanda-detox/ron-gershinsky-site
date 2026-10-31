@@ -3,7 +3,7 @@
   "short_name": "סאונדיפיי",
   "description": "סאונדיפיי: צלילי טבע להרגעה ולשינה · Soundify, ambient sounds for relaxing and sleep",
   "id": "./",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
@@ -11,10 +11,28 @@
   "theme_color": "#161a3a",
   "lang": "he",
   "dir": "rtl",
-  "categories": ["health", "lifestyle", "music"],
+  "categories": [
+    "health",
+    "lifestyle",
+    "music"
+  ],
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ]
 }
