@@ -1,0 +1,33 @@
+{
+ "name": "פוסיטיפיי · Positify",
+ "short_name": "פוסיטיפיי",
+ "description": "אפליקציה להפקת לקח ומשמעות חיוביים מכל סיטואציה · Turn every situation into a positive lesson and meaning",
+ "id": "./",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait",
+ "lang": "he",
+ "dir": "rtl",
+ "background_color": "#070d2e",
+ "theme_color": "#0a1238",
+ "icons": [
+  {
+   "src": "icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any maskable"
+  },
+  {
+   "src": "icon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml"
+  }
+ ]
+}
