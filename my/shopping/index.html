@@ -103,9 +103,6 @@
   .pin.bad { border-color: #e3bd5b; box-shadow: 0 0 0 2px rgba(227,189,91,.35); }
   .done .pin { color: var(--faint); }
   .addform button { min-width: 0; height: 52px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
-  .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
-  .status.off { color: var(--accent); font-weight: 600; }
-  html[data-theme="light"] .status.off { color: #8a5a00; }
   .list { list-style: none; margin: 12px 0 0; padding: 0; }
   .list li { display: flex; align-items: center; gap: 2px; min-height: 52px; padding: 3px 4px; border-bottom: 1px solid var(--line); }
   .list li:last-child { border-bottom: 0; }
@@ -154,6 +151,10 @@
     .sheet .mi { min-height: 38px; padding: 0 12px; font-size: 14.5px; border-radius: 10px; }
     .sheet .mlist { gap: 4px; }
   }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; white-space: normal; overflow-wrap: anywhere; min-height: 0; }
+  .status:empty { display: none; }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
 </style>
 <script src="../../shared/rg-bg.js" data-app="my" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -191,7 +192,6 @@
       <button type="submit" data-i18n="add"></button>
       <input id="add-note" class="note-in" type="text" maxlength="500" enterkeyhint="done" data-i18n-ph="phNote" data-i18n-label="note">
     </form>
-    <div class="status" id="status" role="status" aria-live="polite"></div>
     <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
     <p class="sum" id="sum" role="status" aria-live="polite" hidden></p>
     <div id="done-wrap" hidden>
@@ -200,6 +200,7 @@
     </div>
     <div class="card listcard" id="active-card" style="margin-top:14px"><ul class="list" id="active"></ul></div>
   </main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
   <p class="privnote" data-i18n="privNote"></p>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
