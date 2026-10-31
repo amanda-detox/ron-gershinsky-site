@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T08:05:56+02:00",
+ "updated": "2026-10-31T08:55:28+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-something-seriously-wrong-talarico",
+   "topic": "musk",
+   "date": "2026-10-31T06:19:41Z",
+   "url": "https://x.com/elonmusk/status/2116414789194789254",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"משהו ממש לא בסדר עם טלאריקו\"",
+    "summary": "מאסק ציטט פוסט על קטע מהתוכנית של ביל מאהר, שבו טד קרוז מונה את הסיבות לכך שמועמד הסנאט הדמוקרטי מטקסס ג'יימס טלאריקו הוא \"בחור מוזר מאוד\", והוסיף: \"משהו ממש לא בסדר עם טלאריקו\"."
+   },
+   "en": {
+    "title": "Musk: \"Something seriously wrong with Talarico\"",
+    "summary": "Musk quoted a post about a Bill Maher segment in which Ted Cruz lists why Texas Democratic Senate candidate James Talarico is a \"very weird dude,\" adding: \"Something seriously wrong with Talarico.\""
+   },
+   "full_he": "אילון מאסק כתב: \"משהו ממש לא בסדר עם טלאריקו\".\n\nהפוסט שהוא ציטט:\n\nביל מאהר פותח את הסכר כשהוא שואל \"למה?\" – ג'יימס טלאריקו הוא \"בחור מוזר מאוד\".\n\nטד קרוז מקדיש את שתי הדקות הבאות למעבר על הרשימה.\n\nמאהר נותן לטלאריקו את הספק לטובתו, עד שמגיע הציטוט \"אני ממש אוהב ילדים טרנסים\".\n\nואז הוא מתקפל.\n\nקרוז: \"אני לא אשכנע אותך לאהוב את קן פקסטון. אבל אתה חייב להודות שטלאריקו, לדעתי, הוא בחור מוזר מאוד.\"\n\nמאהר: \"למה?\"\n\nקרוז: \"כי הוא כמו לוחם הצדק החברתי הווֹק האולטימטיבי. זה בחור שעומד מול כנסייה... הוא אומר שאלוהים הוא א־בינארי. הוא אומר שיש שישה מגדרים. הוא עומד מול כנסייה ואומר שהוא בוכה על הלובן שלו ובוכה על הגבריות שלו.\"\n\nמאהר: \"זה פשוט מוזר. זה מוזר. אני לא יכול להסכים איתך יותר.\"\n\nקיד רוק: \"אולי הוא גיי.\"\n\nמאהר: \"מה?\"\n\nקיד רוק: \"אולי הוא פשוט גיי.\"\n\nמאהר: \"אבל למה אנחנו מסיקים את זה – בגלל שהוא חושב שישו א־בינארי, ואני לא חושב שהוא מתכוון לזה כ–\"\n\n[הפרצוף של קיד רוק לא קונה אף מילה מההסבר של מאהר]\n\nקיד רוק: \"אני יודע למה הוא התכוון!\"\n\nמאהר: \"למה לדעתך הוא התכוון?\"\n\nקיד רוק: \"כן, הוא מנסה להיכנס לכל העניין של 'מה זו אישה'. כאילו, באמת אנחנו מדברים על זה 250 שנה אחרי?\"\n\nמאהר: \"לא, אני פשוט חושב – תראה, אני לא יודע על זה הרבה, אבל שמעתי את הציטוטים האלה. אני חושב שמה שהוא התכוון אליו בעניין של ישו הא־בינארי זה שיש הרבה אנשים שמאמינים באלוהים. כלומר, כל האלבום שלך עוסק בישו, אבל בצורה יותר אתרית, יותר רוחנית. אתה יודע, הוא לא האיש עם הזקן בשמיים, משהו כזה.\"\n\nקרוז: \"אז ביל, כל הדברים האלה מתועדים בווידאו. שאלו אותו 'את מי אתה באמת אוהב?' והתשובה שלו הייתה 'ילדים טרנסים'. אני לא מכיר אף אחד אחר שהיה עונה כך על השאלה הזאת.\"\n\nמאהר: \"זאת התשובה המלאה?\"\n\nקרוז: \"כן, אני מבטיח לך. אתה יכול להעלות את הסרטון. שאלו אותו 'את מי אתה באמת אוהב?' והוא עוצר, חושב ואומר 'אני ממש אוהב ילדים טרנסים'... הוא גם אומר בווידאו שהמטרה שלו היא, בציטוט, 'לפרק את הקפיטליזם'.\"\n\nמאהר: \"תראה, אני לא בעד שום דבר מהשטויות האלה.\"\n\nהקשר: טלאריקו באמת אמר את זה. בפודקאסט ב־2023 שאלו אותו מה הוא אוהב מלבד משפחה וחברים, והתשובה שלו הייתה \"הילדים הטרנסים\" שהפגינו יום קודם בקפיטול של טקסס.\n\nהפוסט המצוטט כולל גם סרטון של הקטע, ולכן אין עוד טקסט להציג.",
+   "full_en": "Elon Musk wrote: \"Something seriously wrong with Talarico.\"\n\nThe quoted post:\n\nBill Maher opens the floodgates when he asks, \"Why?\" James Talarico is a \"very weird dude.\"\n\nTed Cruz spends the next 2 full minutes going down the list.\n\nMaher gives Talarico the benefit of the doubt until the \"I really love trans children\" quote drops.\n\nThen he folds.\n\nCRUZ: \"I'm not going to convince you to love Ken Paxton. But you got to admit, Talarico, I think, is a very weird dude.\"\n\nMAHER: \"Why?\"\n\nCRUZ: \"Because he is like the ultimate woke social justice warrior. This is a guy who stands in front of a church... he says God is non-binary. He says there's six genders. He stands in front of a church and says he weeps for his whiteness and weeps for his masculinity.\"\n\nMAHER: \"That's just weird. That is weird. I couldn't agree with you more.\"\n\nKID ROCK: \"Maybe he's gay.\"\n\nMAHER: \"What?\"\n\nKID ROCK: \"Maybe he's just gay.\"\n\nMAHER: \"But why are we inferring — because he thinks Jesus is non-binary, which I don't think he means as —\"\n\n[Kid Rock's face isn't buying a word of Maher's explanation]\n\nKID ROCK: \"I know what he meant!\"\n\nMAHER: \"What do you think he meant?\"\n\nKID ROCK: \"Yeah, he's trying to go into this whole 'what's a woman.' Like, are we really talking about this 250 years later?\"\n\nMAHER: \"No, I just think — look, I don't know that much about it, but I have heard those quotes. I think what he meant by the Jesus is non-binary thing is that, you know, there are a lot of people who believe in God. I mean, your whole album is about Jesus, but in a more sort of ethereal way, more spiritual way. You know, he's not the man in the sky with the beard, that kind of thing.\"\n\nCRUZ: \"So Bill, all of these, he's on video. He was asked, 'Who do you really love?' And his answer is, 'Trans children.' Well, I don't know anyone else who would answer that question that way.\"\n\nMAHER: \"Is that the full answer?\"\n\nCRUZ: \"Yes, I promise you. You can pull up the video. He was asked, 'Who do you really love?' And he pauses and thinks and says, 'I really love trans children.' ... He also says on video that his objective is to, quote, 'dismantle capitalism.'\"\n\nMAHER: \"Look, I am not for any of that sh*t.\"\n\nCONTEXT: Talarico really did say it. On a 2023 podcast, he was asked what he loves other than family and friends, and his answer was the \"trans children\" who had rallied at the Texas Capitol the day before.\n\nThe quoted post also includes a video of the segment, so there's no more text to show."
+  },
   {
    "id": "grokbot-always-on-teammates-overnight",
    "topic": "grokbot",
