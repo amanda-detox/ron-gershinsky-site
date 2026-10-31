@@ -417,7 +417,8 @@ var apps = [
 ];
 
 // Site owner signed in: ONE merged grid (public + private apps from my/apps.js), these first, private ones marked with a lock.
-var OWNER_FIRST = ["my/shopping/", "my/ideas/", "fly/index.html", "news/index.html", "my/journal/"]; // group A (Ron 2026-10-30): shown above all the others, then a separator
+var OWNER_GROUPS = [["my/ideas/", "my/journal/", "fly/index.html"], ["balancify/index.html"]]; // Ron 2026-10-31: row 1 Listify, Journalli, Playify; row 2 Balancify (Mistify to be added when it exists); then the rest, previous group A (Purchasify, Updatify) first
+var OWNER_AFTER = ["my/shopping/", "news/index.html"];
 function ownerApps() {
   var u = window.RGAccount ? RGAccount.user() : null;
   if (!isOwner(u) || !privData || !privData.apps) return null;
@@ -426,10 +427,12 @@ function ownerApps() {
     if (!app || app.hidden || typeof app.href !== "string" || /^[a-z]+:|^\/|\.\./i.test(app.href)) return; // only paths inside my/; hidden: true = off the list
     all.push({ href: "my/" + app.href, icon: "my/" + app.icon, he: app.he, en: app.en, heLine: app.heLine, enLine: app.enLine, priv: true });
   });
-  var first = [];
-  OWNER_FIRST.forEach(function (h) { all.forEach(function (a) { if (a.href === h) first.push(a); }); });
-  var rest = all.filter(function (a) { return first.indexOf(a) === -1 && !a.hidden; });
-  return first.length && rest.length ? first.concat([{ sep: true }], rest) : first.concat(rest);
+  var out = [], used = [];
+  function pick(hrefs) { var g = []; hrefs.forEach(function (h) { all.forEach(function (a) { if (a.href === h && !a.hidden && used.indexOf(a) === -1) { g.push(a); used.push(a); } }); }); return g; }
+  OWNER_GROUPS.forEach(function (hrefs) { var g = pick(hrefs); if (g.length) { if (out.length) out.push({ sep: true }); out = out.concat(g); } });
+  var rest = pick(OWNER_AFTER).concat(all.filter(function (a) { return used.indexOf(a) === -1 && !a.hidden; }));
+  if (rest.length) { if (out.length) out.push({ sep: true }); out = out.concat(rest); }
+  return out;
 }
 var LOCK_SVG = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg>';
 function renderApps(he) {
