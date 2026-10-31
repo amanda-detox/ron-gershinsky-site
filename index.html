@@ -206,6 +206,16 @@
   .app-name { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
   .app-sep { grid-column: 1 / -1; height: 1px; margin: 0.5rem 12%; background: linear-gradient(90deg, transparent, rgba(245, 197, 66, 0.7), rgba(91, 141, 239, 0.7), rgba(245, 197, 66, 0.7), transparent); list-style: none; }
   .app-line { color: var(--muted); font-size: 0.71875rem; line-height: 1.4; text-wrap: pretty; }
+  .more-apps { margin-top: 0.75rem; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface); }
+  .more-apps > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 3rem; padding: 0 1rem; font-weight: 600; color: var(--fg); border-radius: 0.75rem; }
+  .more-apps > summary::-webkit-details-marker { display: none; }
+  .more-apps > summary .chev { display: inline-block; width: 0.55rem; height: 0.55rem; border-inline-end: 2px solid #f5c542; border-bottom: 2px solid #f5c542; transform: rotate(45deg); margin-top: -0.25rem; transition: transform 0.15s ease; }
+  .more-apps[open] > summary .chev { transform: rotate(-135deg); margin-top: 0.2rem; }
+  .more-list { list-style: none; margin: 0; padding: 0.25rem 0.5rem 0.5rem; max-height: 60vh; overflow-y: auto; -webkit-overflow-scrolling: touch; border-top: 1px solid var(--line); }
+  .more-list a { display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding: 0.4rem 0.5rem; border-radius: 0.5rem; color: var(--fg); text-decoration: none; }
+  .more-list a:hover, .more-list a:focus-visible { background: var(--surface-2); }
+  .more-list img { width: 2.25rem; height: 2.25rem; border-radius: 0.6rem; flex: none; }
+  .more-list .app-name { font-size: 0.9375rem; }
   .priv-apps[hidden] { display: none; }
   .app-lock { display: inline-flex; vertical-align: 0.05em; margin-inline-start: 0.25rem; color: #f5c542; opacity: 0.85; }
   html[data-theme="light"] .app-lock { color: #b8901c; }
@@ -345,6 +355,7 @@
   <section class="apps" aria-labelledby="apps-title">
     <h2 id="apps-title" class="owner-hide"></h2>
     <ul class="app-grid" id="app-grid"></ul>
+    <details class="more-apps" id="more-apps" hidden><summary><span id="more-title"></span><span class="chev" aria-hidden="true"></span></summary><ul class="more-list" id="more-list"></ul></details>
   </section>
   <section class="apps priv-apps" id="priv-apps" aria-labelledby="priv-title" hidden>
     <h2 id="priv-title"></h2>
@@ -431,14 +442,36 @@ function ownerApps() {
   function pick(hrefs) { var g = []; hrefs.forEach(function (h) { all.forEach(function (a) { if (a.href === h && !a.hidden && used.indexOf(a) === -1) { g.push(a); used.push(a); } }); }); return g; }
   OWNER_GROUPS.forEach(function (hrefs) { var g = pick(hrefs); if (g.length) { if (out.length) out.push({ sep: true }); out = out.concat(g); } });
   var rest = pick(OWNER_AFTER).concat(all.filter(function (a) { return used.indexOf(a) === -1 && !a.hidden; }));
-  if (rest.length) { if (out.length) out.push({ sep: true }); out = out.concat(rest); }
-  return out;
+  return { top: out, rest: rest };
 }
 var LOCK_SVG = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg>';
+// Ron 2026-10-31: only the featured apps are tiles; every other app is one row (icon + name) in the "שאר האפליקציות" dropdown.
+// All app descriptions are kept in docs/app-descriptions.md (heLine/enLine stay in the data above).
+function publicApps() {
+  var top = [], used = [];
+  OWNER_GROUPS.forEach(function (hrefs) {
+    var g = [];
+    hrefs.forEach(function (h) { apps.forEach(function (a) { if (a.href === h && !a.hidden && used.indexOf(a) === -1) { g.push(a); used.push(a); } }); });
+    if (g.length) { if (top.length) top.push({ sep: true }); top = top.concat(g); }
+  });
+  return { top: top, rest: apps.filter(function (a) { return !a.hidden && used.indexOf(a) === -1; }) };
+}
+function appName(app, he) {
+  var name = document.createElement("span");
+  name.className = "app-name";
+  name.textContent = he ? app.he : app.en;
+  if (app.priv) {
+    var lock = document.createElement("span"); lock.className = "app-lock"; lock.innerHTML = LOCK_SVG;
+    lock.title = he ? "פרטי, רק אתה רואה" : "Private, only you see it";
+    name.appendChild(lock);
+  }
+  return name;
+}
 function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
-  (ownerApps() || apps).forEach(function (app) {
+  var set = ownerApps() || publicApps();
+  set.top.forEach(function (app) {
     if (app.hidden) return;
     if (app.sep) { var hr = document.createElement("li"); hr.className = "app-sep"; hr.setAttribute("role", "separator"); grid.appendChild(hr); return; }
     var li = document.createElement("li");
@@ -447,21 +480,28 @@ function renderApps(he) {
     a.href = app.href;
     var img = document.createElement("img");
     img.src = app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy";
-    var name = document.createElement("span");
-    name.className = "app-name";
-    name.textContent = he ? app.he : app.en;
-    if (app.priv) {
-      var lock = document.createElement("span"); lock.className = "app-lock"; lock.innerHTML = LOCK_SVG;
-      lock.title = he ? "פרטי, רק אתה רואה" : "Private, only you see it";
-      name.appendChild(lock);
-    }
     var line = document.createElement("span");
     line.className = "app-line";
     line.textContent = he ? app.heLine : app.enLine;
-    a.appendChild(img); a.appendChild(name); a.appendChild(line);
+    a.appendChild(img); a.appendChild(appName(app, he)); a.appendChild(line);
     li.appendChild(a);
     grid.appendChild(li);
   });
+  var box = document.getElementById("more-apps"), list = document.getElementById("more-list");
+  document.getElementById("more-title").textContent = he ? "שאר האפליקציות" : "More apps";
+  list.innerHTML = "";
+  var rest = set.rest.filter(function (a) { return a && !a.hidden && !a.sep; });
+  rest.forEach(function (app) {
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.href = app.href;
+    var img = document.createElement("img");
+    img.src = app.icon; img.alt = ""; img.width = 36; img.height = 36; img.loading = "lazy";
+    a.appendChild(img); a.appendChild(appName(app, he));
+    li.appendChild(a);
+    list.appendChild(li);
+  });
+  box.hidden = !rest.length;
 }
 
 var copy = {
