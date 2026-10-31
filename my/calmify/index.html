@@ -29,6 +29,7 @@
   .plansec + .plansec { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
 </style>
 <script src="../../shared/rg-bg.js" data-app="mycalm" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+<style>.hero .topics{color:var(--text,inherit);font-weight:600}.hero .crisis{font-size:13px;color:#f3cf6b}</style>
 </head>
 <body>
 <div class="wrap">
@@ -42,7 +43,7 @@
   <div class="backrow"><a class="back" href="../" data-i18n="backHub"></a></div>
   <div class="hero">
     <img src="icon-192.png" alt="" width="56" height="56">
-    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p><p class="sub topics" data-i18n="topics"></p><p class="sub crisis" data-i18n="crisis"></p></div>
   </div>
   <div class="helpwrap" id="help-now"></div>
 
@@ -66,7 +67,7 @@
 <script>
 window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "רוגעלי", title: "רוגעלי", sub: "מקום שקט להתמודד עם מה שעובר עליך, שמור בחשבון – רק אתה רואה אותו",
+  he: { doc: "רוגעלי", title: "רוגעלי", topics: "אפליקציה למתמודדים עם אתגרים נפשיים, כולל איך להתמודד עם פסיכיאטרים, מטפלים, אבחנה, התמכרות ואובדנות", crisis: "במצוקה? ער״ן 1201 · בסכנה מיידית: 101", sub: "מקום שקט להתמודד עם מה שעובר עליך, שמור בחשבון – רק אתה רואה אותו",
         tabCheck: "צ'ק-אין", tabTools: "כלים", tabPlan: "התוכנית שלי", tabHist: "היסטוריה",
         chkTitle: "איך אתה מרגיש עכשיו?", chkLead: "צ'ק-אין קצר עוזר לשים לב למה שקורה איתך לאורך זמן.", todayDone: "כבר עשית היום {n} צ'ק-אין. אפשר להוסיף עוד אחד.",
         mood: "מצב רוח", m1: "קשה", m2: "לא טוב", m3: "בסדר", m4: "טוב", m5: "מצוין",
@@ -99,7 +100,7 @@ window.RGMY_STRINGS = {
         hFeel: "רגש: {f} · {a}→{b}", today: "היום", yesterday: "אתמול", confirmDelH: "למחוק את הרשומה הזו מההיסטוריה?",
         disclaim: "רוגעלי היא כלי אישי לתמיכה ולמעקב, ואינה תחליף לייעוץ או לטיפול מקצועי. אם קשה לך לאורך זמן, כדאי לפנות לאיש מקצוע.",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת" },
-  en: { doc: "Calmify", title: "Calmify", sub: "A quiet place to cope with whatever you're going through, saved in your account – only you can see it",
+  en: { doc: "Calmify", title: "Calmify", topics: "An app for people facing mental health challenges, including how to deal with psychiatrists, therapists, diagnosis, addiction and suicidality", crisis: "In distress? ERAN 1201 · Immediate danger: 101", sub: "A quiet place to cope with whatever you're going through, saved in your account – only you can see it",
         tabCheck: "Check-in", tabTools: "Tools", tabPlan: "My plan", tabHist: "History",
         chkTitle: "How are you feeling right now?", chkLead: "A short check-in helps you notice what's going on with you over time.", todayDone: "You've done {n} check-in(s) today. You can add another.",
         mood: "Mood", m1: "Hard", m2: "Not good", m3: "Okay", m4: "Good", m5: "Great",
@@ -138,7 +139,7 @@ window.RGMY_STRINGS = {
 <script src="../common.js"></script>
 <script src="../help-now.js"></script>
 <script src="../store.js?v=2"></script>
-<script src="app.js"></script>
+<script src="app.js?v=2"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 </body>
 </html>
