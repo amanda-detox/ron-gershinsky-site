@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T12:00:06+02:00",
+ "updated": "2026-10-31T12:49:12+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-california-model-2022-clip-one-party",
+   "topic": "musk",
+   "date": "2026-10-31T10:40:41Z",
+   "url": "https://x.com/i/trending/2116479551513440310",
+   "source": "X",
+   "he": {
+    "title": "מאסק מעלה מחדש קליפ מ-2022: קליפורניה כמודל לשלטון של מפלגה אחת",
+    "summary": "מאסק הפיץ מחדש ראיון מ-2022 שבו אמר שהאיגודים ועורכי הדין של התובעים שולטים במפלגה הדמוקרטית בקליפורניה, וקשר אותו לאזהרה שלו ששליטה דמוקרטית ארצית תסיים את הדמוקרטיה באמריקה. התומכים רואים בזה הטיה מבנית, והמבקרים טוענים שזו השלכה."
+   },
+   "en": {
+    "title": "Musk resurfaces a 2022 clip: California as the model for one-party rule",
+    "summary": "Musk resurfaced a 2022 interview in which he said unions and plaintiff lawyers control California's Democratic Party, tying it to his warning that national Democratic control would end democracy in America. Supporters see structural bias; critics call it projection."
+   },
+   "full_he": "אילון מאסק העלה מחדש קליפ מ-2022 שבו הוא מסביר את הדומיננטיות של הדמוקרטים בקליפורניה, וקשר אותו לחשש משלטון של מפלגה אחת בכל ארצות הברית.\n\n• בראיון מיוני 2022 לערוץ Tesla Owners Silicon Valley אמר מאסק שבקליפורניה המפלגה הדמוקרטית נשלטת בעיקר על ידי האיגודים המקצועיים ועורכי הדין של התובעים, שכותבים חוקים שמעודדים תביעות ומממנים נבחרי ציבור כדי לחסום את הרפובליקנים.\n• לאחרונה כתב מאסק שאם הדמוקרטים ישיגו שליטה ארצית, זה יהיה סוף הדמוקרטיה באמריקה, והצביע על כך שקליפורניה מצביעה לדמוקרטים בבחירות לנשיאות ברציפות מאז 1992.\n• התומכים רואים בזה הטיות מבניות של ממש, ואילו המבקרים מבטלים את הטענה כהשלכה, בתוך ויכוחים סוערים ברשת.\n\nזהו סיכום של סיפור מגמה ב-X, שמבוסס על פוסטים ועשוי להשתנות עם הזמן.",
+   "full_en": "Elon Musk resurfaced a 2022 clip explaining Democratic dominance in California, tying it to fears of one-party rule nationwide.\n\n• In a June 2022 interview with Tesla Owners Silicon Valley, Musk said unions and plaintiff lawyers mainly control the Democratic Party there, writing laws to favor lawsuits and funding officials to block Republicans.\n• He recently posted that Democrats gaining national control would end democracy in America, pointing to California's unbroken Democratic presidential wins since 1992.\n• Supporters see structural biases at work, while critics dismiss it as projection amid heated online exchanges.\n\nThis is a summary of an X trending story based on posts, and it may evolve over time."
+  },
   {
    "id": "solana-markets-never-close-sunrise-weekend",
    "topic": "solana",
