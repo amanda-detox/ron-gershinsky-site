@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T01:47:57+02:00",
+ "updated": "2026-10-31T02:34:30+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-krugman-padilla-seize-starlink",
+   "topic": "spacex",
+   "date": "2026-10-31T00:26:24Z",
+   "url": "https://x.com/i/trending/2116324342581612726",
+   "source": "X",
+   "he": {
+    "title": "קרוגמן וסנאטור פדייה קוראים לממשל להשתלט על סטארלינק",
+    "summary": "הכלכלן פול קרוגמן והסנאטור אלכס פדייה דורשים שממשלת ארה\"ב תיקח את סטארלינק מאילון מאסק, בטענה שמדובר בתשתית צבאית קריטית ושההגבלות באוקראינה מוכיחות את הסכנה. מאסק טוען שהוא רק אוכף את התנאים המסחריים נגד שימוש בכטב\"מים התקפיים."
+   },
+   "en": {
+    "title": "Krugman and Sen. Padilla push for a U.S. takeover of Starlink",
+    "summary": "Economist Paul Krugman and Senator Alex Padilla call for the U.S. government to seize Starlink from Elon Musk, calling it critical military infrastructure after the Ukraine throttling. Musk says he is enforcing commercial terms against offensive drone use."
+   },
+   "full_he": "הכלכלן פול קרוגמן מזהיר ששליטה של אדם אחד בסטארלינק מעצבת את מדיניות החוץ של ארה\"ב באוקראינה, וקורא לממשלה להתערב מטעמי ביטחון לאומי.\n\n• קולות בולטים כמו קרוגמן והסנאטור אלכס פדייה קוראים לממשלת ארה\"ב להשתלט על סטארלינק ולקחת אותה מאילון מאסק, בטענה שהיא תשתית צבאית קריטית, ובעקבות ההחלטה של מאסק להגביל את הגישה באוקראינה.\n• מאסק מגן על הצעד ואומר שמדובר באכיפת התנאים המסחריים נגד שימוש בכטב\"מים התקפיים, ומציין שהגרסה הצבאית, Starshield, נשארת בשליטת הממשלה.\n• גורמים רשמיים באוקראינה מכחישים שהייתה הפרה כלשהי של התנאים.\n• הוויכוח מדגיש את הסיכונים בשליטה פרטית בתשתית בזמן סכסוך. התגובות ברשת חלוקות, בקשה לבדיקה של הפנטגון נדחתה, ומהירויות השירות כבר חזרו לשגרה.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Economist Paul Krugman warns that one person's control over Starlink shapes U.S. foreign policy in Ukraine, urging government intervention for national security.\n\n• Prominent voices like Krugman and Senator Alex Padilla call for the U.S. government to seize Starlink from Elon Musk, citing its role as critical military infrastructure and Musk's decision to throttle access in Ukraine.\n• Musk defends the move as enforcing commercial terms against offensive drone use, while noting the military Starshield version remains under government control.\n• Ukrainian officials deny any breach.\n• The debate highlights the risks of private control in conflicts, with divided reactions and a declined Pentagon review request, though service speeds have normalized.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "tesla-cybercab-unsupervised-debate-templeton",
+   "topic": "tesla",
+   "date": "2026-10-30T23:38:15Z",
+   "url": "https://x.com/i/trending/2116311589142098414",
+   "source": "X",
+   "he": {
+    "title": "ויכוח: האם הסייברקאבים של טסלה באמת נוסעים בלי פיקוח?",
+    "summary": "בראד טמפלטון מפורבס טוען שפיקוח מרחוק במשרה מלאה על הרובוטקסים של טסלה בטקסס הוא עדיין פיקוח. סוייר מריט משיב שבני אדם בהמתנה למקרי חירום נדירים אינם פיקוח."
+   },
+   "en": {
+    "title": "Debate heats up over Tesla Cybercab 'unsupervised' claims",
+    "summary": "Forbes writer Brad Templeton argues that full-time remote oversight of Tesla's Texas robotaxis still counts as supervision. Sawyer Merritt counters that standby humans for rare emergencies don't qualify."
+   },
+   "full_he": "הסייברקאבים של טסלה נוסעים באוסטין בלי הגה ובלי דוושות, אבל האם ניטור מרחוק עדיין משאיר אדם בלולאה? מבקרים ותומכים צוללים לפרטים.\n\n• בראד טמפלטון, כותב בפורבס, מטיל ספק בכך ש־1,080 הרובוטקסים הרשומים של טסלה בטקסס, ובהם 573 סייברקאבים ייעודיים, באמת נוסעים בלי פיקוח. לטענתו, השגחה מרחוק של עובדים במשרה מלאה נחשבת פיקוח.\n• תומכים כמו סוייר מריט משיבים שבני אדם שעומדים מהצד למקרי חירום נדירים אינם פיקוח, ומשווים זאת לטייסים שמטיסים מטוס בלי שליטה רציפה מהקרקע.\n• צי טסלה כבר צבר יותר ממיליון מייל בלי פיקוח בתוך התרחבות מהירה, והוויכוח נשען על כך שאין יומנים מפורטים על מידת המעורבות מרחוק, בזמן שהחברה מכוונת לערים כמו דאלאס.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Tesla's Cybercabs zip through Austin without steering wheels or pedals, but is remote monitoring still keeping a human in the loop? Critics and fans are digging into the details.\n\n• Forbes writer Brad Templeton questions whether Tesla's 1,080 registered robotaxis in Texas, including 573 purpose-built Cybercabs, truly run unsupervised, arguing that full-time remote employee oversight counts as supervision.\n• Defenders like Sawyer Merritt counter that standby humans for rare emergencies don't qualify as supervision, comparing it to pilots flying planes without constant ground control.\n• With Tesla's fleet logging over a million unsupervised miles amid rapid expansion, the back-and-forth hinges on the lack of detailed remote-involvement logs as the company eyes cities like Dallas.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
   {
    "id": "starterstory-30m-saas-will-3-ideas",
    "topic": "starterstory",
