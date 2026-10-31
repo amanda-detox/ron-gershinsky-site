@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#050a24">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>מיסטיפיי · Mystify</title>
+<link rel="manifest" href="manifest.json?v=1">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<style>
+:root{--gold:#f3cf6b;--gold2:#ffe7a3;--blue:#2c5cff;--navy:#050a24;--ink:#eaf0ff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--navy);color:var(--ink);font-family:Heebo,system-ui,Arial,sans-serif;user-select:none;-webkit-user-select:none;touch-action:none;overscroll-behavior:none}
+#c{position:fixed;inset:0;width:100vw;height:100vh;display:block}
+.hidden{display:none!important}
+#menu{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px;text-align:center;background:radial-gradient(ellipse at 50% 30%,rgba(44,92,255,.35),rgba(5,10,36,.92) 70%)}
+h1{margin:0;font-size:clamp(34px,8vw,56px);background:linear-gradient(180deg,#fff,var(--gold2) 55%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0;color:#c9d6ff;max-width:520px}
+.btn{border:1px solid rgba(243,207,107,.55);background:rgba(30,52,150,.6);color:var(--ink);border-radius:999px;padding:10px 18px;font:inherit;font-size:16px;cursor:pointer}
+.btn.main{font-size:22px;font-weight:700;padding:12px 44px;border:none;color:#1a1d3a;background:linear-gradient(180deg,var(--gold2),var(--gold))}
+.help{font-size:13px;color:#9fb4ff;max-width:520px;line-height:1.6}
+#hud{position:fixed;inset:0;pointer-events:none;z-index:5}
+#cross{position:absolute;left:50%;top:50%;width:22px;height:22px;margin:-11px;border:2px solid rgba(255,231,163,.85);border-radius:50%}
+#cross:after{content:"";position:absolute;left:8px;top:8px;width:2px;height:2px;background:#fff}
+.bar{position:absolute;top:max(8px,env(safe-area-inset-top));left:0;right:0;display:flex;justify-content:center;gap:16px;font-weight:700;text-shadow:0 1px 3px #000}
+.bar b{color:var(--gold2)}
+#wpn{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);font-weight:700;color:var(--gold2);text-shadow:0 1px 3px #000}
+#feed{position:absolute;top:44px;right:12px;left:12px;text-align:center;font-size:13px;color:#cfe0ff;text-shadow:0 1px 2px #000}
+#hurt{position:absolute;inset:0;background:radial-gradient(ellipse,transparent 50%,rgba(120,160,255,.55));opacity:0;transition:opacity .25s}
+#touch{position:fixed;inset:0;z-index:6}
+#stick{position:absolute;left:28px;bottom:max(28px,env(safe-area-inset-bottom));width:130px;height:130px;border-radius:50%;border:2px solid rgba(243,207,107,.45);background:rgba(30,52,150,.25)}
+#knob{position:absolute;left:40px;top:40px;width:50px;height:50px;border-radius:50%;background:rgba(243,207,107,.6)}
+.tb{position:absolute;border-radius:50%;border:2px solid rgba(243,207,107,.6);background:rgba(30,52,150,.45);color:var(--gold2);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center}
+#tFire{right:26px;bottom:max(40px,env(safe-area-inset-bottom));width:86px;height:86px}
+#tJump{right:126px;bottom:max(24px,env(safe-area-inset-bottom));width:64px;height:64px}
+#tSwap{right:40px;bottom:150px;width:56px;height:56px}
+#tMenu{left:12px;top:max(10px,env(safe-area-inset-top));width:44px;height:44px;font-size:18px}
+.topwrap{position:fixed;top:0;left:0;right:0;z-index:25}
+#langBtn{display:none}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="hud" class="hidden">
+  <div id="hurt"></div><div id="cross"></div>
+  <div class="bar"><span><span id="lHp"></span> <b id="hp">100</b></span><span><span id="lScore"></span> <b id="score">0</b></span><span><span id="lDeaths"></span> <b id="deaths">0</b></span></div>
+  <div id="feed"></div><div id="wpn"></div>
+</div>
+<div id="touch" class="hidden"><div id="stick"><div id="knob"></div></div><div class="tb" id="tSwap">⇄</div><div class="tb" id="tJump"></div><div class="tb" id="tFire"></div><div class="tb" id="tMenu">☰</div></div>
+<div id="menu">
+  <div class="topwrap" id="top"><button id="langBtn" type="button"></button></div>
+  <h1 id="title">מיסטיפיי</h1>
+  <p class="sub" id="sub"></p>
+  <button class="btn main" id="play"></button>
+  <div><button class="btn" id="bots"></button> <button class="btn" id="sens"></button></div>
+  <p class="help" id="help"></p>
+</div>
+<script type="module" src="game.js?v=1"></script>
+<script src="../shared/rg-topbar.js?v=3" data-slot="#top" data-where="prepend" data-pin="1"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});});</script>
+</body>
+</html>
