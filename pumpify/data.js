@@ -14,6 +14,7 @@
      { type: "quote", text: { he: "…", en: "…" }, author: { he: "…", en: "…" } } */
 window.PUMP_DATA = {
   APP_NAME: { he: "פַּאמְפִּיפַיי", en: "Pumpify" },
+  idea: { he: "מורה מדליקה לאנגלית, חדשות ממיקומים מקבילים עם שדרנים מגניבים", en: "A brilliant English teacher, news from parallel locations with cool presenters" },
   subtitle: { he: "מדיה מעוררת השראה", en: "Inspiring media" },
   sections: [
     { id: "videos", icon: "🎬", color: "#ff8a3d", title: { he: "סרטונים", en: "Videos" }, items: [] },

@@ -56,6 +56,7 @@ a.back{color:var(--mute);text-decoration:none;padding:8px 2px;white-space:nowrap
 .hero{display:flex;align-items:center;gap:14px;padding:22px 2px 4px}
 .hero img{width:66px;height:66px;border-radius:17px;box-shadow:0 10px 26px rgba(0,0,0,.3),0 0 0 1px rgba(255,210,90,.25);flex:none}
 h1{font-weight:800;font-size:36px;line-height:1.15;margin:0;letter-spacing:.005em}
+.idea{margin:4px 0 0;font-size:14.5px;opacity:.9}
 .tagline{color:var(--gold);margin:2px 0 0;font-size:16.5px;font-weight:700}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line2);border-radius:999px;padding:9px 16px;font:700 14px var(--sans);cursor:pointer;color:var(--ink2);background:var(--card)}
 .btn.primary{color:var(--accentink);background:var(--accent);border-color:transparent;box-shadow:0 6px 18px rgba(255,150,40,.25)}
@@ -113,6 +114,7 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
     <div>
       <h1 id="title"></h1>
       <p class="tagline" id="tagline"></p>
+      <p class="idea" id="idea"></p>
     </div>
   </div>
 
@@ -121,8 +123,8 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer class="f rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </div>
-<script src="data.js"></script>
-<script src="app.js"></script>
+<script src="data.js?v=2"></script>
+<script src="app.js?v=2"></script>
 <script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-pumpify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="header.top"></script>

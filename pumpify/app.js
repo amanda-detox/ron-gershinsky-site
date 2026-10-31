@@ -121,6 +121,7 @@
     $("back").textContent = t().back;
     $("title").textContent = nm(D.APP_NAME);
     $("tagline").textContent = nm(D.subtitle);
+    if ($("idea")) $("idea").textContent = D.idea ? nm(D.idea) : "";
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
