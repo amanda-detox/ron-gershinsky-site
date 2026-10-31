@@ -71,7 +71,8 @@
   .addextra input, .addextra textarea { flex: 1; height: 42px; padding: 0 14px; font-size: 15px; border-width: 1px; }
   .addextra label { color: var(--muted); font-size: 13.5px; white-space: nowrap; }
   .addextra input[type=date] { flex: 0 1 11rem; }
-  .status { display: flex; align-items: center; gap: 6px; min-height: 22px; margin: 10px 2px 0; color: var(--faint); font-size: 13px; }
+  .status { flex: 0 1 auto; min-width: 0; max-width: 42vw; margin: 0 4px; color: var(--faint); font-size: 11px; opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; align-self: center; }
+  .status:empty { display: none; }
   .status.off { color: var(--accent); font-weight: 600; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
   .tools2 { display: flex; align-items: center; gap: 8px; margin: 6px 2px 0; color: var(--muted); font-size: 13.5px; }
@@ -240,6 +241,7 @@
 <body>
 <div class="wrap">
   <header class="topbar">
+    <div class="status" id="status" role="status" aria-live="polite"></div>
     <div class="tools">
       <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
       <span data-rg-account></span>
@@ -263,7 +265,6 @@
     </div>
     <p class="cathint" id="cathint" hidden></p>
     <p class="drophint" id="drophint" hidden></p>
-    <div class="status" id="status" role="status" aria-live="polite"></div>
     <div id="panels"></div>
   </main>
   <p class="privnote" data-i18n="privNote"></p>
@@ -326,6 +327,6 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=25"></script>
+<script src="app.js?v=26"></script>
 </body>
 </html>

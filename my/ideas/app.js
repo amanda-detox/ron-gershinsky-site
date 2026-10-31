@@ -193,6 +193,7 @@
     var s = $("status"); if (!s) return;
     s.className = "status" + (offline ? " off" : "");
     s.textContent = !uid ? "" : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced");
+    s.title = s.textContent;
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
