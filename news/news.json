@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T08:55:28+02:00",
+ "updated": "2026-10-31T09:41:12+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -8981,6 +8981,23 @@
    },
    "full_he": "זאק מקמנוס, שחי עם ALS, חשף את תהליך ההחלמה שלו כשפרסם תמונת תקריב של סיכות המתכת והתפרים לאורך הקרקפת המגולחת שלו.\n\n• מקמנוס הוא המטופל ה-22 בניסוי הקליני PRIME של נוירלינק. הוא קיבל את שתל ה-N1 בגודל מטבע במכון הנוירולוגי Barrow בפיניקס, ופרסם את התמונה ב-30 באוקטובר כדי להראות לאחרים איך נראית ההחלמה.\n• החתך המעוקל מראה אדמומיות סביב הסיכות, אבל צלקות כאלה בדרך כלל דוהות עם הזמן, ואחרי ההחלמה לא רואים שום חומרה.\n• לדבריו החוויה חיובית: הוא משתמש בשתל כדי לשלוט בשואב אבק רובוטי במחשבה, ומדגיש את הפוטנציאל להחזיר עצמאות לחולי ALS, כולל התקדמות לדיבור בקצב של 75 מילים לדקה.\n\nהמקור הוא סיכום סיפור מגמה ב-X (שנכתב על ידי Grok על סמך פוסטים), ולכן זה כל הטקסט הזמין.",
    "full_en": "Zach Mcmanus, living with ALS, pulled back the curtain on his recovery by posting a close-up photo of the staples and sutures across his shaved scalp.\n\n• As Neuralink's 22nd patient in the PRIME clinical trial, Mcmanus received the coin-sized N1 implant at Barrow Neurological Institute in Phoenix and shared the image on October 30 to show others what healing looks like.\n• The curved incision shows redness around the staples, though scars typically fade over time, with no visible hardware once healed.\n• He reports positive experiences, using the device to control a robot vacuum with his thoughts, and highlights its potential to restore independence for people with ALS, including progress toward speech at 75 words per minute.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
+  },
+  {
+   "id": "spacex-sanders-no-ai-bailouts",
+   "topic": "spacex",
+   "date": "2026-10-31T07:09:50Z",
+   "url": "https://x.com/i/trending/2116306264288280972",
+   "source": "X",
+   "he": {
+    "title": "ברני סנדרס לענקיות ה-AI, ובהן SpaceX ו-Nvidia: לא יהיה חילוץ מכספי משלמי המסים",
+    "summary": "על רקע ירידה של כמעט 3% בנאסד\"ק, סנדרס הזהיר את מיקרוסופט, מטא, גוגל, אמזון, SpaceX, אורקל ו-Nvidia, שלקחו חובות של 3 טריליון דולר כדי לרדוף אחרי AI, שהממשלה לא תחלץ אותן אם זה ייכשל."
+   },
+   "en": {
+    "title": "Bernie Sanders to AI giants including SpaceX and Nvidia: no taxpayer bailouts",
+    "summary": "As the Nasdaq fell nearly 3%, Sanders warned Microsoft, Meta, Google, Amazon, SpaceX, Oracle and Nvidia, which have taken on $3 trillion in debt to chase AI, that they won't get a government rescue if it flops."
+   },
+   "full_he": "בזמן שמניות הטכנולוגיה צנחו בכמעט 3% בנאסד\"ק, הסנאטור ברני סנדרס שלח מסר חד לענקיות ה-AI: תסתדרו לבד.\n\nסנדרס פנה למיקרוסופט, מטא, גוגל, אמזון, SpaceX, אורקל ו-Nvidia, שלקחו על עצמן חובות של 3 טריליון דולר כדי לרדוף אחרי AI, והבהיר שהן לא יקבלו חילוץ ממשלתי אם זה ייכשל.\n\n• הפוסט שלו עלה בתוך ירידה חדה בשוק, שסוחרים כינו \"סטוק-פוקליפסה\".\n• התגובות התחלקו: תומכים שמחו שלא יהיה חילוץ על חשבון משלמי המסים, ומבקרים הגנו על ה-AI כחדשנות חיונית.\n• הוויכוח מדגיש את המתח סביב סיכוני ה-AI, החובות של החברות ואחריות ציבורית, במיוחד עם בחירות האמצע שמתקרבות ודוחות רבעוניים שמטילים ספק בתשואה מהירה.\n\nזה סיכום של פוסטים ב-X שנכתב על ידי Grok, והוא עשוי להשתנות ולכלול טעויות.",
+   "full_en": "As tech stocks plunged nearly 3% on the Nasdaq, Sen. Bernie Sanders fired off a stark message to AI giants: sink or swim on your own.\n\nSanders called out Microsoft, Meta, Google, Amazon, SpaceX, Oracle, and Nvidia for taking on $3 trillion in debt to chase AI, insisting they won't get a government rescue if it flops.\n\n• His post hit amid a market drop dubbed a 'stock-pocalypse' by traders.\n• Reactions split between supporters cheering no taxpayer bailouts and critics defending AI as vital innovation.\n• The exchange underscores tensions over AI risks, company debt, and public accountability, especially with midterm elections looming and earnings reports questioning quick returns.\n\nThis story is a summary of posts on X by Grok and may evolve over time and contain mistakes."
   }
  ]
 }
