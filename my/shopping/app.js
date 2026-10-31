@@ -629,7 +629,7 @@
      (drag it, or press and hold the row ~300 ms) to move the category to ANY place in one drag; the other rows
      shift live to show the drop spot and the list auto-scrolls at its edges. ✏️ rename, 🗑 delete. ✓ ends edit mode.
      Every drop is saved at once (local copy + sync), so nothing is lost if the list is closed without ✓. ---------- */
-  var catOpen = false, catEdit = false;
+  var catOpen = false, catEdit = false, catOpt = null, catMove = false;
   function renderCats() {
     var cur = curTab(), c = catOf(cur);
     $("cat-name").textContent = c ? catName(c) : "";
@@ -643,28 +643,49 @@
     $("cat-new").textContent = t("newCat");
     var list = $("cat-list"), st = list.scrollTop;
     list.classList.toggle("editing", catEdit);
-    list.innerHTML = cats().map(function (cc) {
+    /* v32: row = name (tap = open) + one ⋮ options button → ↕ reorder · ✏️ rename · 🗑 delete. Reorder = move mode: ☰ drag or ▲▼. */
+    $("cp-title").textContent = catMove ? t("moveNote") : t("pickTitle");
+    $("cat-new").textContent = catMove ? t("editDone") : t("newCat");
+    var all = cats();
+    list.innerHTML = all.map(function (cc, i) {
       var nm = esc(catName(cc)), id = esc(cc.cat), on = cc.cat === cur;
-      if (!catEdit) return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button></li>";
-      return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '" title="' + esc(t("handle")) + '">☰</span><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button>" +
-        '<button type="button" class="cp-act" data-ren="' + id + '" aria-label="' + esc(t("renameOne") + ": " + catName(cc)) + '" title="' + esc(t("renameOne")) + '">✏️</button>' +
-        '<button type="button" class="cp-act" data-del="' + id + '" aria-label="' + esc(t("delOne") + ": " + catName(cc)) + '" title="' + esc(t("delOne")) + '">🗑</button></li>';
+      if (catMove) return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '" title="' + esc(t("handle")) + '">☰</span><span class="nm">' + nm + "</span>" +
+        '<button type="button" class="cp-act" data-up="' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + catName(cc)) + '">▲</button>' +
+        '<button type="button" class="cp-act" data-dn="' + id + '"' + (i === all.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown") + ": " + catName(cc)) + '">▼</button></li>';
+      var open = catOpt === cc.cat;
+      return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button>" +
+        '<button type="button" class="cp-more' + (open ? " on" : "") + '" data-opt="' + id + '" aria-expanded="' + open + '" title="' + esc(t("optMenu")) + '" aria-label="' + esc(t("optMenu") + ": " + catName(cc)) + '">⋮</button></li>' +
+        (open ? '<li class="cp-opts">' +
+          '<button type="button" class="cp-oi" data-mov="' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
+          '<button type="button" class="cp-oi" data-ren="' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
+          '<button type="button" class="cp-oi" data-del="' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
     list.scrollTop = st;
   }
-  function openCats() { catOpen = true; catEdit = true; /* rows always show ☰ drag · name (tap = open) · ✏️ · 🗑 */ hideHint(); render(); var l = $("cat-list"), b = l && l.querySelector("li.cur"); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} }
-  function closeCats() { if (drag) return; var was = catEdit; catOpen = false; catEdit = false; render(); if (was) syncSoon(); }
+  function openCats() { catOpen = true; catEdit = false; catMove = false; catOpt = null; hideHint(); render(); var l = $("cat-list"), b = l && l.querySelector("li.cur"); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} }
+  function closeCats() { if (drag) return; var was = catEdit; catOpen = false; catEdit = false; catMove = false; catOpt = null; render(); if (was) syncSoon(); }
   function bootCats() {
     var list = $("cat-list");
     on("cat-btn", "click", function () { if (catOpen) closeCats(); else openCats(); });
     on("cat-new", "click", function () {
+      if (catMove) { catMove = false; catEdit = false; render(); syncSoon(); return; }
       nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v); if (!id) return; { tab = id; lsSet("rg-my-shopping-tab", id); catOpen = false; } changed();
         if (catOpen) { var b = $("cat-list").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } });
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && catOpen && !$("sheet")) closeCats(); });
     list.addEventListener("click", function (e) {
       if (noClick) { noClick = false; e.preventDefault(); return; }
-      var b = e.target.closest("[data-pick],[data-ren],[data-del]"); if (!b) return;
+      var b = e.target.closest("[data-pick],[data-ren],[data-del],[data-opt],[data-mov],[data-up],[data-dn]"); if (!b) return;
+      if (b.hasAttribute("data-opt")) { var oc = b.getAttribute("data-opt"); catOpt = catOpt === oc ? null : oc; render(); var ob = $("cat-list").querySelector(".cp-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e2) {} return; }
+      if (b.hasAttribute("data-mov")) { catOpt = null; catMove = true; catEdit = true; render(); return; }
+      if (b.hasAttribute("data-up") || b.hasAttribute("data-dn")) {
+        var up = b.hasAttribute("data-up"), mc = b.getAttribute(up ? "data-up" : "data-dn"), ids = cats().map(function (x) { return x.cat; }), i = ids.indexOf(mc), j = up ? i - 1 : i + 1;
+        if (i < 0 || j < 0 || j >= ids.length) return;
+        ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); changed();
+        var nb = $("cat-list").querySelector(up ? '[data-up="' + mc + '"]' : '[data-dn="' + mc + '"]'); if (nb && !nb.disabled) nb.focus();
+        return;
+      }
+      if (b.hasAttribute("data-ren")) catOpt = null;
       if (b.hasAttribute("data-pick")) { catOpen = false; selectTab(b.getAttribute("data-pick")); }
       else if (b.hasAttribute("data-ren")) renameCat(b.getAttribute("data-ren"));
       else deleteCat(b.getAttribute("data-del"));
@@ -672,7 +693,7 @@
     list.addEventListener("contextmenu", function (e) { if (catEdit) e.preventDefault(); });
 
     sortable({ list: list, scroller: list, hold: 300, edge: 44, rowSel: "li",
-      canStart: function (e) { return catEdit && !e.target.closest("button"); },
+      canStart: function (e) { return catMove && !e.target.closest("button"); },
       onDrop: function (ids) { setOrder(ids); changed(); } });
   }
 

@@ -45,6 +45,13 @@
   .cp-list.dragging li:not(.lifted) { transition: transform .16s ease; }
   .cp-list.dragging { cursor: grabbing; }
   .cp-new { min-height: 52px; border-radius: 14px; border: 1.5px dashed var(--accent); background: transparent; color: var(--accent); font: 800 17px var(--sans); cursor: pointer; }
+  .cp-more { flex: none; width: 42px; height: 46px; margin-inline-end: 4px; border-radius: 12px; border: 0; background: transparent; color: var(--accent); font: 900 22px var(--sans); cursor: pointer; }
+  .cp-more.on { background: var(--accent); color: var(--accentink); }
+  .cp-list li.cp-opts { flex-direction: column; align-items: stretch; gap: 2px; min-height: 0; margin: 0 6px 4px; padding: 4px; border: 1px solid var(--accent); border-radius: 12px; }
+  .cp-oi { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--fg); font: 700 16px var(--sans); text-align: start; cursor: pointer; }
+  .cp-oi > span { width: 24px; text-align: center; color: var(--accent); font-weight: 900; }
+  .cp-list.editing li > .nm { padding: 0 4px; }
+  .cp-act:disabled { opacity: .3; }
   .cp-back { position: fixed; inset: 0; z-index: 44; }
   .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
   .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
@@ -208,7 +215,7 @@ window.RGMY_STRINGS = {
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
         confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
-        pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה",
+        pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optDelete: "אשפה", moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה",
         catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: נבחר · שמאלה: העברה או מחיקה.",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
@@ -220,7 +227,7 @@ window.RGMY_STRINGS = {
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
         confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
-        pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category",
+        pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category", optMenu: "Options", optMove: "Reorder", optRename: "Rename", optDelete: "Delete", moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Move up", moveDown: "Move down",
         catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: selected · left: move or delete.",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
         pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
@@ -228,7 +235,7 @@ window.RGMY_STRINGS = {
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=31"></script>
+<script src="app.js?v=32"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 </body>
 </html>
