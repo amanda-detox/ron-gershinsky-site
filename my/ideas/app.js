@@ -25,7 +25,12 @@
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
   var editing = null, rendering = false;
-  var tab = lsGet("rg-myideas-tab") || "ideas", doneOpen = {};
+  var tab = lsGet("rg-myideas-tab-cur") || lsGet("rg-myideas-tab") || "ideas", doneOpen = {};
+  /* 3 list pickers (Ron 31.10): each list record may carry grp 2 or 3; no grp = picker 1, so old data stays in picker 1.
+     menuG = the picker whose menu is open; the last list chosen in each picker is kept on this device. */
+  var GROUPS = [1, 2, 3], menuG = 1;
+  function gOf(c) { return c && (c.grp === 2 || c.grp === 3) ? c.grp : 1; }
+  function gTabKey(g) { return g === 1 ? "rg-myideas-tab" : "rg-myideas-tab-g" + g; }
   var drag = null, idrag = null, needRender = false, noClick = false;
 
   function $(id) { return document.getElementById(id); }
@@ -130,10 +135,12 @@
     SECTIONS.forEach(function (s) { map[s.id] = { cat: s.id, kind: s.kind, pos: s.pos, created: 0, def: s.tab }; });
     for (k in items) { var r = items[k]; if (r.deleted || r.type !== "cat" || typeof r.cat !== "string") continue;
       var b = map[r.cat] || { cat: r.cat }; map[r.cat] = { cat: r.cat, kind: KINDS.indexOf(r.kind) >= 0 ? r.kind : (b.kind || "task"), pos: typeof r.pos === "number" ? r.pos : (b.pos || 0),
-        created: r.created || 0, name: r.name, gone: r.gone, def: b.def }; }
+        created: r.created || 0, name: r.name, gone: r.gone, def: b.def, grp: r.grp }; }
     for (k in map) { c = map[k]; if (!c.gone) out.push(c); }
     return out.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.cat < b.cat ? -1 : 1); });
   }
+  function catsG(g) { return cats().filter(function (c) { return gOf(c) === g; }); }
+  function gTab(g) { var l = catsG(g), s = lsGet(gTabKey(g)); if (g === gOf(catOf(tab)) && l.some(function (c) { return c.cat === tab; })) return tab; return l.some(function (c) { return c.cat === s; }) ? s : (l.length ? l[0].cat : ""); }
   function catName(c) { return c.name || (c.def ? t(c.def) : "…"); }
   function catOf(cid) { var l = cats(); for (var i = 0; i < l.length; i++) if (l[i].cat === cid) return l[i]; return null; }
   function upCat(cid, patch) {
@@ -143,10 +150,12 @@
     for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
     y.at = now(); put(y);
   }
-  function addCat(name, kind) {
+  function addCat(name, kind, g) {
     name = clean(name, 40); if (!name) return null;
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
-    put({ id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at });
+    var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (g === 2 || g === 3) rec.grp = g;
+    put(rec);
     return id;
   }
   function setOrder(ids) { ids.forEach(function (cid, n) { var c = catOf(cid); if (c && c.pos !== n) upCat(cid, { pos: n }); }); }
@@ -396,8 +405,13 @@
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
     rendering = true;
     var cur = curTab(), cc = cur && catOf(cur);
-    pn.textContent = cc ? catName(cc) : t("noCats");
-    $("picker").setAttribute("aria-label", t("pickList") + ": " + pn.textContent); $("picker").title = t("pickList");
+    GROUPS.forEach(function (g) { // each picker shows its own last list; the one whose list is open below is marked
+      var p = $(g === 1 ? "picker" : "picker" + g), nm = $(g === 1 ? "picker-name" : "picker-name" + g); if (!p || !nm) return;
+      var gc = catOf(gTab(g)), ph = t("pickerPh").replace("{n}", g);
+      nm.textContent = gc ? catName(gc) : ph; p.classList.toggle("active", !!cc && gOf(cc) === g); p.classList.toggle("empty", !gc);
+      p.setAttribute("aria-label", ph + ": " + nm.textContent); p.title = ph;
+    });
+    if (!cc) pn.textContent = t("noCats");
     // (the ☰ list-edit button was removed: rename/delete/reorder live inside the list menu)
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint2"); }
@@ -489,7 +503,7 @@
       if (a.indexOf("to:") === 0) { closeSheet(); moveTo(id, a.slice(3)); }
     });
   }
-  function selectTab(cid) { tab = cid; editing = null; lsSet("rg-myideas-tab", tab); closeMenu(); render(); try { window.scrollTo({ top: 0 }); } catch (e) {} }
+  function selectTab(cid) { tab = cid; editing = null; lsSet("rg-myideas-tab-cur", tab); lsSet(gTabKey(gOf(catOf(cid))), tab); closeMenu(); render(); try { window.scrollTo({ top: 0 }); } catch (e) {} }
   function hideHint() { lsSet("rg-myideas-hint2", "1"); var h = $("cathint"); if (h) h.hidden = true; }
 
   /* ---------- drag-to-reorder for a vertical list of rows (lists in ☰ edit mode, items in a list).
@@ -539,15 +553,15 @@
   /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
   var pmEdit = false, pmSort = null;
   function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
-  function closeMenu() { if (pmSort) return; var m = $("pmenu"), p = $("picker"), was = pmEdit; pmEdit = false; if (m) m.hidden = true; if (p) p.setAttribute("aria-expanded", "false"); if (was) syncSoon(); }
+  function closeMenu() { if (pmSort) return; var m = $("pmenu"), was = pmEdit; pmEdit = false; if (m) m.hidden = true; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", "false"); }); if (was) syncSoon(); }
   /* the list menu, same as Purchasify's category menu: tap = open the list, ＋ = new list, ☰ (in the menu head) = edit mode.
      Edit mode: ☰ handle on every row (drag to any place; the menu scrolls at its edges), ✏️ rename, ₪ price column, 🗑 delete, "סיום" ends it.
      Every change is saved at once (local copy + sync), so nothing is lost if the menu is closed. */
   function fillMenu() {
-    var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
+    var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return; var gl = catsG(menuG);
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
-    var head = '<div class="pm-head"><span class="pm-title">' + esc(t("pickList")) + "</span></div>";
-    var rows = cats().map(function (c) { // one row per list: ☰ drag · name (tap = open) · ✏️ rename · ₪ · 🗑 delete
+    var head = '<div class="pm-head"><span class="pm-title">' + esc(t("pickerPh").replace("{n}", menuG)) + "</span></div>";
+    var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(t("groupEmpty")) + "</li>") + gl.map(function (c) { // one row per list: ☰ drag · name (tap = open) · ✏️ rename · ₪ · 🗑 delete
       var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price);
       return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">☰</span>' +
         '<button type="button" class="popt pm-name" role="option" data-pick="' + id + '" aria-selected="' + on + '"><span class="pn">' + nm + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
@@ -558,16 +572,17 @@
     m.innerHTML = head + '<ul class="pm-list editing">' + rows + "</ul>" + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
     m.querySelector(".pm-list").scrollTop = st;
   }
-  function openMenu() { hideHint(); pmEdit = true; fillMenu(); var m = $("pmenu"); m.hidden = false; $("picker").setAttribute("aria-expanded", "true"); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
+  function pickerEl(g) { return $(g === 1 ? "picker" : "picker" + g); }
+  function openMenu(g) { hideHint(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
   function menuAction(p) {
     if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
-    if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }); return; }
+    if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }, menuG); return; }
     var cid = p.slice(4), c = catOf(cid);
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
     if (p.indexOf("del:") === 0) {
       if (!c) return; if (cats().length <= 1) { window.alert(t("lastCat")); return; }
-      if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); } changed(); }
+      if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab-cur", curTab()); } changed(); }
       return;
     }
     selectTab(p);
@@ -591,8 +606,8 @@
     m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
     m.addEventListener("touchmove", function (e) { if (pmSort) e.preventDefault(); }, { passive: false });
   }
-  function newList(after) {
-    nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v, "task"); if (id) { changed(); if (after) after(id); } });
+  function newList(after, g) {
+    nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v, "task", g); if (id) { changed(); if (after) after(id); } });
   }
 
   function editSheet() {
@@ -635,7 +650,7 @@
         } else if (a.indexOf("del:") === 0) {
           if (cats().length <= 1) { window.alert(t("lastCat")); return; }
           if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) {
-            bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab", curTab()); }
+            bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab-cur", curTab()); }
             order = order.filter(function (x) { return x !== cid; }); li.parentNode.removeChild(li); changed();
           }
         }
@@ -667,14 +682,14 @@
   }
 
   function bootLists() {
-    $("picker").addEventListener("click", function (e) { e.stopPropagation(); if (menuOpen()) closeMenu(); else openMenu(); });
+    GROUPS.forEach(function (g) { var p = pickerEl(g); if (p) p.addEventListener("click", function (e) { e.stopPropagation(); var same = menuOpen() && menuG === g; if (menuOpen()) closeMenu(); if (!same) openMenu(g); }); });
     $("pmenu").addEventListener("click", function (e) {
       e.stopPropagation(); if (noClick) { noClick = false; return; } var b = e.target.closest("[data-pick]"); if (!b) return;
       menuAction(b.getAttribute("data-pick"));
     });
     bootMenuDrag();
-    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest("#listbar") && !e.target.closest("#sheet")) closeMenu(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); $("picker").focus(); } });
+    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest(".listbars") && !e.target.closest("#sheet")) closeMenu(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
   }
 
   /* ---------- items: swipe (on the row body) right = נבחר (and back), left = move/delete menu;

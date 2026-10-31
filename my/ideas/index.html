@@ -161,6 +161,11 @@
   .iconbtn { flex: none; width: 60px; height: 60px; border-radius: 16px; border: 1px solid var(--line2); background: var(--card); color: var(--accent); font-size: 26px; font-weight: 800; line-height: 1; box-shadow: var(--shadow); }
   .pmenu { position: absolute; top: calc(100% + 6px); inset-inline: 0; z-index: 40; max-height: 60vh; overflow-y: auto; padding: 6px; display: flex; flex-direction: column; gap: 4px; border-radius: 16px; border: 1px solid var(--line2); background: var(--card); box-shadow: 0 14px 34px rgba(0,0,0,.45); }
   .pmenu[hidden] { display: none; }
+  .listbars .listbar + .listbar { margin-top: 8px; }
+  .listbars .listbar:has(.pmenu:not([hidden])) { z-index: 41; }
+  .picker.empty .pname { opacity: .6; font-weight: 700; }
+  .picker:not(.active) { border-color: var(--line2); }
+  .pm-empty { padding: 12px 16px; opacity: .7; }
   .popt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; color: var(--fg); font-size: 17.5px; font-weight: 700; text-align: start; }
   .popt .pn { overflow-wrap: anywhere; }
   .popt .pk { color: var(--accent); font-weight: 900; }
@@ -233,9 +238,17 @@
   </section>
 
   <main data-when="in" hidden>
+    <div class="listbars">
     <div class="listbar" id="listbar">
       <button type="button" class="picker" id="picker" aria-haspopup="listbox" aria-expanded="false" aria-controls="pmenu"><span class="pname" id="picker-name"></span><span class="pchev" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
       <div class="pmenu" id="pmenu" role="listbox" hidden></div>
+    </div>
+    <div class="listbar" id="listbar2">
+      <button type="button" class="picker" id="picker2" aria-haspopup="listbox" aria-expanded="false" aria-controls="pmenu"><span class="pname" id="picker-name2"></span><span class="pchev" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+    </div>
+    <div class="listbar" id="listbar3">
+      <button type="button" class="picker" id="picker3" aria-haspopup="listbox" aria-expanded="false" aria-controls="pmenu"><span class="pname" id="picker-name3"></span><span class="pchev" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+    </div>
     </div>
     <p class="cathint" id="cathint" hidden></p>
     <p class="drophint" id="drophint" hidden></p>
@@ -272,7 +285,7 @@ window.RGMY_STRINGS = {
         check: "סמן כנבחר", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
         confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
-        pickList: "בחירת רשימה", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", seedTask: "לבקר במרקטפלייס בוטים" },
+        pickList: "בחירת רשימה", pickerPh: "רשימות {n}", groupEmpty: "אין כאן רשימות עדיין. ＋ רשימה חדשה למטה.", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", seedTask: "לבקר במרקטפלייס בוטים" },
   en: { doc: "Listify", title: "Listify", sub: "Your lists by category, saved in your account – only you can see them",
         catAdd: "New list", catPh: "List name", catKind: "Category type", create: "Create", kTask: "✓ Checklist", kIdea: "💡 Ideas", kGoal: "🎯 Goals",
         rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
@@ -296,12 +309,12 @@ window.RGMY_STRINGS = {
         check: "Mark as selected", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
         confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
         synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online",
-        pickList: "Choose a list", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", seedTask: "Visit the bots marketplace" }
+        pickList: "Choose a list", pickerPh: "Lists {n}", groupEmpty: "No lists here yet. ＋ New list below.", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", seedTask: "Visit the bots marketplace" }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=20"></script>
+<script src="app.js?v=21"></script>
 </body>
 </html>
