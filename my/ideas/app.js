@@ -553,31 +553,55 @@
   /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
   var pmEdit = false, pmSort = null;
   function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
-  function closeMenu() { if (pmSort) return; var m = $("pmenu"), was = pmEdit; pmEdit = false; if (m) m.hidden = true; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", "false"); }); if (was) syncSoon(); }
+  function closeMenu() { if (pmSort) return; var m = $("pmenu"), was = pmEdit; pmEdit = false; pmOpt = null; pmMove = false; if (m) m.hidden = true; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", "false"); }); if (was) syncSoon(); }
   /* the list menu, same as Purchasify's category menu: tap = open the list, ＋ = new list, ☰ (in the menu head) = edit mode.
      Edit mode: ☰ handle on every row (drag to any place; the menu scrolls at its edges), ✏️ rename, ₪ price column, 🗑 delete, "סיום" ends it.
      Every change is saved at once (local copy + sync), so nothing is lost if the menu is closed. */
+  /* v22: each row = name (tap = open) + one ⋮ options button; ⋮ opens a small menu under the row:
+     ↕ reorder (move mode: ☰ drag or ▲▼ on every row, "סיום" ends it) · ✏️ rename · ₪ price column on/off · 🗑 delete (confirm). */
+  var pmOpt = null, pmMove = false;
   function fillMenu() {
     var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return; var gl = catsG(menuG);
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
-    var head = '<div class="pm-head"><span class="pm-title">' + esc(t("pickerPh").replace("{n}", menuG)) + "</span></div>";
-    var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(t("groupEmpty")) + "</li>") + gl.map(function (c) { // one row per list: ☰ drag · name (tap = open) · ✏️ rename · ₪ · 🗑 delete
+    var head = '<div class="pm-head"><span class="pm-title">' + esc(pmMove ? t("moveNote") : t("pickerPh").replace("{n}", menuG)) + "</span>" +
+      (pmMove ? '<button type="button" class="pm-edit on" data-pick="mvend">' + esc(t("editDone")) + "</button>" : "") + "</div>";
+    var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(t("groupEmpty")) + "</li>") + gl.map(function (c, i) {
       var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price);
-      return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '" title="' + esc(t("dragHandle")) + '">☰</span>' +
+      if (pmMove) return '<li class="erow mvrow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '">☰</span>' +
+        '<span class="pm-mname">' + nm + "</span>" +
+        '<button type="button" class="eic" data-pick="upp:' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + catName(c)) + '">▲</button>' +
+        '<button type="button" class="eic" data-pick="dwn:' + id + '"' + (i === gl.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown") + ": " + catName(c)) + '">▼</button></li>';
+      var open = pmOpt === c.cat;
+      return '<li class="erow' + (on ? " cur" : "") + '" data-cat="' + id + '">' +
         '<button type="button" class="popt pm-name" role="option" data-pick="' + id + '" aria-selected="' + on + '"><span class="pn">' + nm + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
-        '<button type="button" class="eic" data-pick="ren:' + id + '" title="' + esc(t("renameShort")) + '" aria-label="' + esc(t("renameShort") + ": " + catName(c)) + '">✏️</button>' +
-        '<button type="button" class="eic eprice' + (pr ? " on" : "") + '" data-pick="prc:' + id + '" title="' + esc(t("priceToggle")) + '" aria-pressed="' + pr + '" aria-label="' + esc(t("priceToggle") + ": " + catName(c)) + '">₪</button>' +
-        '<button type="button" class="eic" data-pick="del:' + id + '" title="' + esc(t("delShort")) + '" aria-label="' + esc(t("delShort") + ": " + catName(c)) + '">🗑</button></li>';
+        '<button type="button" class="eic pm-more' + (open ? " on" : "") + '" data-pick="opt:' + id + '" aria-expanded="' + open + '" title="' + esc(t("optMenu")) + '" aria-label="' + esc(t("optMenu") + ": " + catName(c)) + '">⋮</button></li>' +
+        (open ? '<li class="pm-opts" data-opts="' + id + '">' +
+          '<button type="button" class="pm-oi" data-pick="mov:' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
+          '<button type="button" class="pm-oi" data-pick="ren:' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
+          '<button type="button" class="pm-oi" data-pick="prc:' + id + '" aria-pressed="' + pr + '"><span aria-hidden="true">₪</span>' + esc(t("optPrice")) + '<b class="pm-st' + (pr ? " on" : "") + '">' + esc(pr ? t("stOn") : t("stOff")) + "</b></button>" +
+          '<button type="button" class="pm-oi pm-del" data-pick="del:' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
-    m.innerHTML = head + '<ul class="pm-list editing">' + rows + "</ul>" + '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>";
+    m.innerHTML = head + '<ul class="pm-list' + (pmMove ? " editing" : "") + '">' + rows + "</ul>" + (pmMove ? "" : '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>");
     m.querySelector(".pm-list").scrollTop = st;
+    if (pmOpt) { var ob = m.querySelector(".pm-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e) {} }
   }
   function pickerEl(g) { return $(g === 1 ? "picker" : "picker" + g); }
   function openMenu(g) { hideHint(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
   function menuAction(p) {
     if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
     if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }, menuG); return; }
+    if (p === "mvend") { pmMove = false; fillMenu(); syncSoon(); return; }
     var cid = p.slice(4), c = catOf(cid);
+    if (p.indexOf("opt:") === 0) { pmOpt = pmOpt === cid ? null : cid; fillMenu(); return; }
+    if (p.indexOf("mov:") === 0) { pmOpt = null; pmMove = true; fillMenu(); return; }
+    if (p.indexOf("upp:") === 0 || p.indexOf("dwn:") === 0) {
+      var ids = catsG(menuG).map(function (x) { return x.cat; }), i = ids.indexOf(cid), j = p.indexOf("upp:") === 0 ? i - 1 : i + 1;
+      if (i < 0 || j < 0 || j >= ids.length) return;
+      ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); changed();
+      var mb = $("pmenu").querySelector('[data-pick="' + p + '"]'); if (mb && !mb.disabled) mb.focus(); else { var li2 = $("pmenu").querySelector('[data-cat="' + cid + '"]'); if (li2) li2.scrollIntoView({ block: "nearest" }); }
+      return;
+    }
+    if (p.indexOf("ren:") === 0) { pmOpt = null; fillMenu(); }
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
     if (p.indexOf("del:") === 0) {
@@ -590,7 +614,7 @@
   function bootMenuDrag() {
     var m = $("pmenu"), sd = null;
     m.addEventListener("pointerdown", function (e) {
-      var h = e.target.closest(".pm-h"); if (!h || !pmEdit || pmSort || (e.pointerType === "mouse" && e.button !== 0)) return;
+      var h = e.target.closest(".pm-h"); if (!h || !pmMove || pmSort || (e.pointerType === "mouse" && e.button !== 0)) return;
       e.preventDefault(); e.stopPropagation();
       var list = m.querySelector(".pm-list"), li = h.closest("li"), rows = [].slice.call(list.children);
       sd = { pid: e.pointerId }; pmSort = makeSorter(rows, li, e.clientY, list.scrollHeight > list.clientHeight + 2 ? list : null);

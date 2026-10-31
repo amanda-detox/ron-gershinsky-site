@@ -204,6 +204,18 @@
   .pm-list .erow.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
   .pm-list .pm-h { width: 46px; height: 52px; color: var(--accent); font-size: 22px; font-weight: 900; }
   .eprice.on { background: var(--accent); color: var(--accentink); }
+  /* v22 options menu */
+  .pm-list .pm-name .pn { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pm-list .pm-more { width: 40px; height: 44px; border-radius: 12px; color: var(--accent); font-size: 22px; font-weight: 900; }
+  .pm-list .pm-more.on { background: var(--accent); color: var(--accentink); }
+  .pm-opts { display: flex !important; flex-direction: column; gap: 2px; margin: 0 6px 4px; padding: 4px; border-radius: 12px; border: 1px solid var(--accent); background: var(--card2); }
+  .pm-oi { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .pm-oi > span { width: 24px; text-align: center; color: var(--accent); font-weight: 900; }
+  .pm-oi:hover { background: var(--card); }
+  .pm-st { margin-inline-start: auto; font-size: 13px; padding: 2px 10px; border-radius: 10px; border: 1px solid var(--line2); color: var(--faint); }
+  .pm-st.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); }
+  .pm-mname { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; padding: 0 4px; }
+  .mvrow .eic:disabled { opacity: .3; }
   /* sheets (move menu etc.): never taller than the screen; the list of lists scrolls */
   .sheet { max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; }
   .sheet .mlist { display: flex; flex-direction: column; gap: 6px; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain; flex: 0 1 auto; }
@@ -285,7 +297,7 @@ window.RGMY_STRINGS = {
         check: "סמן כנבחר", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
         confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
-        pickList: "בחירת רשימה", pickerPh: "רשימות {n}", groupEmpty: "אין כאן רשימות עדיין. ＋ רשימה חדשה למטה.", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", seedTask: "לבקר במרקטפלייס בוטים" },
+        pickList: "בחירת רשימה", pickerPh: "רשימות {n}", groupEmpty: "אין כאן רשימות עדיין. ＋ רשימה חדשה למטה.", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optPrice: "עמודת מחיר", optDelete: "אשפה", stOn: "פעיל", stOff: "כבוי", moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה", seedTask: "לבקר במרקטפלייס בוטים" },
   en: { doc: "Listify", title: "Listify", sub: "Your lists by category, saved in your account – only you can see them",
         catAdd: "New list", catPh: "List name", catKind: "Category type", create: "Create", kTask: "✓ Checklist", kIdea: "💡 Ideas", kGoal: "🎯 Goals",
         rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
@@ -309,12 +321,12 @@ window.RGMY_STRINGS = {
         check: "Mark as selected", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
         confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
         synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online",
-        pickList: "Choose a list", pickerPh: "Lists {n}", groupEmpty: "No lists here yet. ＋ New list below.", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", seedTask: "Visit the bots marketplace" }
+        pickList: "Choose a list", pickerPh: "Lists {n}", groupEmpty: "No lists here yet. ＋ New list below.", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", optMenu: "Options", optMove: "Reorder", optRename: "Rename", optPrice: "Price column", optDelete: "Delete", stOn: "On", stOff: "Off", moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Move up", moveDown: "Move down", seedTask: "Visit the bots marketplace" }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 </body>
 </html>
