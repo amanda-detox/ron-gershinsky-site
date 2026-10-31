@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-10-31T15:07:55+02:00",
+ "updated": "2026-10-31T15:56:18+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-musk-congrats-700-falcon9-flights",
+   "topic": "spacex",
+   "date": "2026-10-31T13:32:56Z",
+   "url": "https://x.com/elonmusk/status/2116523818449805452",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק מברך את צוות ספייסאקס על יותר מ-700 טיסות של פלקון 9",
+    "summary": "אילון מאסק בירך את צוות ספייסאקס על חציית רף 700 השיגורים של פלקון 9. בפוסט שציטט נכתב ש-Starlink 15-16 היה השיגור ה-700 ב-27 באוקטובר, ו-Starlink 15-18 היה ה-701 ב-31 באוקטובר."
+   },
+   "en": {
+    "title": "Musk congratulates SpaceX on over 700 Falcon 9 flights",
+    "summary": "Elon Musk congratulated the SpaceX team on passing 700 Falcon 9 launches. The post he quoted notes that Starlink 15-16 was the 700th mission on October 27 and Starlink 15-18 the 701st on October 31."
+   },
+   "full_he": "\"כל הכבוד לצוות של ספייסאקס על יותר מ-700 טיסות של פלקון 9!\"\n\nהפוסט שהוא ציטט:\n\nספייסאקס חצתה עכשיו את רף 700 השיגורים של פלקון 9.\n\n700 משימות שהטיסה משפחת טילים אחת, בהיקף ובקצב ששינו לגמרי את תעופת החלל המודרנית.\n\nStarlink 15-16 היה המשימה ה-700 ב-27 באוקטובר, ו-Starlink 15-18 בא אחריו כמשימה ה-701 ב-31 באוקטובר.\n\nמאז הטיסה הראשונה ב-2010, פלקון 9 חולל מהפכה בתחבורה לחלל בזכות טכנולוגיית טילים רב־פעמיים.\n\nמה שפעם לקח שנים קורה היום כל כמה ימים.\n\nספייסאקס הפכה שיגור ונחיתה של טילים לשגרה.\n\nוזה הישג הנדסי יוצא דופן לחלוטין.",
+   "full_en": "\"Congrats to the @SpaceX team on over 700 Falcon 9 flights!\"\n\nThe quoted post:\n\nSpaceX has now crossed 700 Falcon 9 launches.\n\n700 missions flown by a single rocket family, at a scale and pace that have completely transformed modern spaceflight.\n\nStarlink 15-16 marked the 700th mission on October 27, with Starlink 15-18 following as the 701st on October 31.\n\nSince its first flight in 2010, Falcon 9 has revolutionized space transportation through reusable rocket technology.\n\nWhat once took years now happens every few days.\n\nSpaceX has turned launching and landing rockets into routine spaceflight.\n\nAnd that's an absolutely extraordinary engineering achievement."
+  },
+  {
+   "id": "musk-dems-said-they-will-do-charlie-hurt",
+   "topic": "musk",
+   "date": "2026-10-31T13:30:03Z",
+   "url": "https://x.com/elonmusk/status/2116523096551440822",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"זה מה שהדמוקרטים אמרו שיעשו!\"",
+    "summary": "מאסק שיתף קטע וידאו של צ'רלי הרט, שפורסם על ידי קייטי מילר, על כך שמושבי הסנאט שיוכרעו בבחירות הקרובות עשויים לקבוע אם לדמוקרטים יהיו קולות לשנות את הכללים, ועל האזהרה של מאסק מפני סחף דמוקרטי עתידי."
+   },
+   "en": {
+    "title": "Musk: \"This is what Dems have said they will do!\"",
+    "summary": "Musk shared a Charlie Hurt clip, posted by Katie Miller, saying the Senate seats decided this fall could determine whether Democrats eventually have the votes to rewrite the rules, and highlighting Musk's warning about a future Democratic sweep."
+   },
+   "full_he": "\"זה מה שהדמוקרטים אמרו שיעשו!\"\n\nמאסק צירף סרטון (42 שניות) שפורסם במקור על ידי קייטי מילר (@KatieMiller), עם הטקסט הבא:\n\nצ'רלי הרט: \"מושבי הסנאט שהבוחרים יכריעו בסתיו הזה עשויים לקבוע אם בסופו של דבר יהיו לדמוקרטים הקולות לשכתב את הכללים.\n\n\"בזמן שהנשיא טראמפ משמיע את טיעוני הסיום שלו לאומה, אילון מאסק משמיע אזהרה.\n\n\"הוא טוען שסחף דמוקרטי עתידי...\"\n\nהטקסט של קייטי מילר נקטע כאן, ושאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"This is wnat Dems have said they will do!\" (sic)\n\nMusk attached a 42-second video originally posted by Katie Miller (@KatieMiller), with this text:\n\nCHARLIE HURT: \"The Senate seats voters decide this fall could determine whether Democrats eventually have the votes to rewrite the rules.\n\n\"As President Trump makes his closing arguments to the country, Elon Musk is issuing a warning.\n\n\"He argues that a future Democratic sweep...\"\n\nKatie Miller's text breaks off there. The rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "tesla-robotaxi-fleet-1204-trails-waymo-55",
+   "topic": "tesla",
+   "date": "2026-10-31T11:59:26Z",
+   "url": "https://x.com/i/trending/2116375029596176688",
+   "source": "X",
+   "he": {
+    "title": "צי הרובוטקסי של טסלה בטקסס הגיע ל-1,204 רכבים, 55 בלבד מאחורי Waymo",
+    "summary": "טסלה הוסיפה השבוע 124 רכבי Model Y והגיעה ל-1,204 רכבים אוטונומיים רשומים בטקסס, מהם 573 קייברקאבים בלי הגה. Waymo עדיין מובילה עם 1,259, ובמקביל מאמר ב-Forbes מטיל ספק בכך שהנסיעות באמת לא מפוקחות."
+   },
+   "en": {
+    "title": "Tesla's Texas robotaxi fleet hits 1,204, trailing Waymo by 55",
+    "summary": "Tesla added 124 Model Ys this week, reaching 1,204 registered autonomous vehicles in Texas, including 573 steering-wheel-free Cybercabs. Waymo still leads with 1,259, while a Forbes piece questions whether Tesla's rides are truly unsupervised."
+   },
+   "full_he": "קבוצות חברים באוסטין נדחסות לקייברקאבים בלי נהג לנסיעות הביתה בשעות הלילה המאוחרות, בלי הגה ובלי נהג אנושי. הצי של טסלה חצה עכשיו את רף 1,200 הרכבים ומתקרב ל-Waymo המובילה.\n\n• טסלה הוסיפה השבוע 124 רכבי Model Y והגיעה ל-1,204 רכבים אוטונומיים רשומים בטקסס: 631 Model Y ו-573 קייברקאבים בלי הגה.\n• זה רק 55 רכבים מאחורי Waymo, שיש לה 1,259 רכבים, רובם Jaguar I-Pace ודגמי Zeekr.\n• מאמר ב-Forbes של בראד טמפלטון, מהעובדים הראשונים של Waymo, מטיל ספק בכך שטסלה באמת פועלת בלי פיקוח, וטוען שצופים מרחוק במשרה מלאה לוחצים על עצירות חירום.\n• מעריצי טסלה משיבים שניטור בהמתנה הוא סטנדרט בתעשייה ושהבינה המלאכותית היא שבאמת נוהגת.\n• הנוסעים כבר משתמשים בשירות ליציאות לילה באוסטין, וטסלה מכוונת לדאלאס בשלב הבא.\n\n(סיכום של סיפור מגמה ב-X, שמבוסס על פוסטים ועשוי להתעדכן.)",
+   "full_en": "Groups in Austin pile into driverless Cybercabs for late-night rides home, no steering wheel or human driver in sight. Tesla's fleet just surged past 1,200 vehicles, closing in on leader Waymo.\n\n• Tesla added 124 Model Ys this week, reaching 1,204 registered autonomous vehicles in Texas: 631 Model Ys and 573 steering-wheel-free Cybercabs.\n• That puts it just 55 behind Waymo's 1,259, mostly Jaguar I-Paces and Zeekr models.\n• A Forbes piece by early Waymo alum Brad Templeton questions whether Tesla runs truly unsupervised, claiming full-time remote watchers hit emergency stops.\n• Tesla fans counter that standby monitoring is industry standard and the AI truly drives.\n• Riders already use the service for Austin nights out, and Tesla eyes Dallas next.\n\n(Summary of an X trending story; it is based on posts and may evolve.)"
+  },
   {
    "id": "mercola-lung-cancer-indoor-air",
    "topic": "mercola",
