@@ -27,3 +27,33 @@
 | רוגעלי | Calmify | my/calmify/ | צ'ק-אין רגשי, נשימה וקרקוע | Mood check-ins, breathing and grounding | פרטי / private (owner) |
 | קניותיפיי | Purchasify | my/shopping/ | מתעדכנת בזמן אמת בנייד ובלפטופ | Updates live on phone and laptop | פרטי / private (owner) |
 | קלוקיפיי | Clockify | my/clock/ | שעונים מעוררים עם רשימות משימות | Alarms with task lists | פרטי / private (owner) — מוסתר / hidden |
+
+## New templates (2026-10-31)
+
+### בורדיפיי · Boredify (`boredify/`)
+- HE: להפגת שעמום
+- EN: Beat boredom
+
+### פסיכדליפיי · Psychedelify (`psychedelify/`)
+- HE: לשימוש בריא ונכון בפסיכדליה
+- EN: For healthy, responsible psychedelic use
+
+### וורקיפיי · Workify (`workify/`)
+- HE: המלצות לשכירים, מג׳וניורים ועד בכירים
+- EN: Recommendations for employees, from juniors to seniors
+
+### אקטיביסט · Activist (`activist/`)
+- HE: למצוא את דרכי הפעולה שמתאימות לך, למה שאכפת לך, לתשוקות ולחוזקות שלך, כדי להיות אקטיבי ולהשפיע ולשנות תחום בעולם
+- EN: Find the ways to act that fit you, what you care about, your passions and strengths, to be active and change a field in the world
+
+### דיפורניפיי · Depornify (`depornify/`)
+- HE: גמילה מפורנו
+- EN: Quitting porn
+
+### ריהאבסטר · Rehabster (`rehabster/`)
+- HE: גמילה מפסיכדלים, מטפלים, פסיכיאטריה וסושיאל מדיה
+- EN: Weaning off psychedelics, therapists, psychiatry and social media
+
+### Updates (2026-10-31)
+- רוגעלי · Calmify: אפליקציה למתמודדים עם אתגרים נפשיים, כולל איך להתמודד עם פסיכיאטרים, מטפלים, אבחנה, התמכרות ואובדנות / An app for people facing mental health challenges, including psychiatrists, therapists, diagnosis, addiction and suicidality
+- פאמפיפיי · Pumpify idea: מורה מדליקה לאנגלית, חדשות ממיקומים מקבילים עם שדרנים מגניבים / A brilliant English teacher, news from parallel locations with cool presenters
