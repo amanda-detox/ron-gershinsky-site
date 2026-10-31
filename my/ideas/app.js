@@ -455,14 +455,26 @@
     render();
   }
 
-  /* ---------- toast (gold, at the bottom) + delete with a 5-second undo ---------- */
+  /* ---------- toast (gold, at the top; X or swipe any direction dismisses) + delete with a 5-second undo ---------- */
   var toastT = 0;
+  function toastHide(el) { clearTimeout(toastT); el.classList.remove("on", "act", "drag"); el.style.transform = ""; el.style.opacity = ""; }
+  function toastSwipe(el) {
+    if (el._sw) return; el._sw = 1;
+    var sx = 0, sy = 0, dx = 0, dy = 0, on = false;
+    el.addEventListener("pointerdown", function (e) { if (!el.classList.contains("on") || e.target.closest("button")) return; on = true; sx = e.clientX; sy = e.clientY; dx = dy = 0; el.classList.add("drag"); clearTimeout(toastT); try { el.setPointerCapture(e.pointerId); } catch (x) {} });
+    el.addEventListener("pointermove", function (e) { if (!on) return; dx = e.clientX - sx; dy = e.clientY - sy; var d = Math.sqrt(dx * dx + dy * dy); el.style.transform = "translate(calc(-50% + " + dx + "px), " + dy + "px)"; el.style.opacity = String(Math.max(0.2, 1 - d / 160)); });
+    function end() { if (!on) return; on = false; el.classList.remove("drag");
+      if (Math.sqrt(dx * dx + dy * dy) >= 40) { el.style.transform = "translate(calc(-50% + " + dx * 3 + "px), " + dy * 3 + "px)"; el.style.opacity = "0"; setTimeout(function () { toastHide(el); }, 200); }
+      else { el.style.transform = ""; el.style.opacity = ""; toastT = setTimeout(function () { toastHide(el); }, 3000); } }
+    el.addEventListener("pointerup", end); el.addEventListener("pointercancel", end);
+  }
   function toast(msg, undo) {
     var el = $("toast"); if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite"); document.body.appendChild(el); }
-    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>" + (undo ? '<button type="button" class="tundo">' + esc(t("undo")) + "</button>" : "");
+    toastSwipe(el); el.style.transform = ""; el.style.opacity = "";
+    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>" + (undo ? '<button type="button" class="tundo">' + esc(t("undo")) + '</button><button type="button" class="tx" aria-label="close">✕</button>' : "");
     el.classList.toggle("act", !!undo);
-    if (undo) el.querySelector(".tundo").addEventListener("click", function () { el.classList.remove("on", "act"); clearTimeout(toastT); undo(); });
-    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { el.classList.remove("on", "act"); }, undo ? 5000 : 2200);
+    if (undo) { el.querySelector(".tundo").addEventListener("click", function () { toastHide(el); undo(); }); el.querySelector(".tx").addEventListener("click", function () { toastHide(el); }); }
+    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { toastHide(el); }, undo ? 5000 : 2200);
   }
   function delWithUndo(id) {
     var x = items[id]; if (!x || x.deleted) return;

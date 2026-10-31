@@ -136,9 +136,12 @@
   .ighost { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -130%); max-width: 70vw; padding: 8px 14px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
   body.idragging { -webkit-user-select: none; user-select: none; }
   .idea .chip { margin-inline-end: 2px; }
-  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 70; transform: translate(-50%, 20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast { position: fixed; left: 50%; top: calc(14px + env(safe-area-inset-top)); z-index: 70; transform: translate(-50%, -20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
   .toast.on { opacity: 1; transform: translate(-50%, 0); }
   .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; padding-inline-end: 8px; }
+  .toast.drag { transition: none; }
+  .toast.act { touch-action: none; }
+  .tx { flex: none; width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--accentink); font-weight: 900; font-size: 16px; line-height: 28px; padding: 0; cursor: pointer; }
   .toast .tmsg { overflow: hidden; text-overflow: ellipsis; }
   .tundo { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--accentink); color: var(--accent); font-weight: 800; font-size: 14px; }
   /* swipe: the row content slides, a gold ✓ shows on the left (swipe right) and the move icon on the right (swipe left) */
@@ -321,6 +324,6 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=23"></script>
+<script src="app.js?v=24"></script>
 </body>
 </html>
