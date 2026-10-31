@@ -389,7 +389,6 @@
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
     return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
-      '<button type="button" class="chk" data-a="toggle" aria-pressed="' + (x.done ? "true" : "false") + '" aria-label="' + esc((x.done ? t("uncheck") : t("check")) + ": " + x.text) + '"><i aria-hidden="true">✓</i></button>' +
       txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
   function sumNow() { // the total line; a price being typed counts live, before it is saved
@@ -733,8 +732,8 @@
       reset();
       if (Math.abs(dx) >= w * SWIPE) {
         var x = items[id];
-        if (dx > 0 && x && !x.deleted) { toggleDone(id); changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
-        else if (dx < 0) moveMenu(id);
+        if (dx > 0 && x && !x.deleted) moveMenu(id); // right = move to another list or trash (2026-10-31)
+        else if (dx < 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // left = delete
       }
     }
     main.addEventListener("pointerup", up);
@@ -769,8 +768,7 @@
       var b = e.target.closest("[data-a]"); if (!b) return;
       var li = b.closest("li"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       var a = b.getAttribute("data-a");
-      if (a === "toggle") { toggleDone(id); changed(); }
-      else if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
+      if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
     });
     main.addEventListener("keydown", function (e) {
       if (e.target.classList.contains("txt") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.target.click(); }
