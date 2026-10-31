@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-31T23:42:08+02:00",
+  "updated": "2026-11-01T01:20:17+02:00",
   "topics": [
     {
       "id": "podcasts",
@@ -197,6 +197,57 @@
   ],
   "items": [
     {
+      "id": "mccullough-public-feared-vaccine-side-effects-2022",
+      "topic": "mccullough",
+      "date": "2026-10-31T23:12:18Z",
+      "url": "https://x.com/P_McCulloughMD/status/2116669620996157706",
+      "source": "X · @P_McCulloughMD",
+      "he": {
+        "title": "מקולה: ב־2022 הציבור חשש יותר מתופעות הלוואי של החיסון מאשר מהקורונה",
+        "summary": "מקולה טוען שעד 2022 הציבור חשש יותר מתופעות לוואי חמורות של חיסון הקורונה מאשר מהסיכון האישי שלו מההדבקה, ושזה \"אומר הרבה על מבצע החיסונים\". הוא מצרף מחקר עוקבה מ־The Lancet על עמדות כלפי החיסון בקרב 1.1 מיליון אנשים באנגליה."
+      },
+      "en": {
+        "title": "McCullough: by 2022 the public feared vaccine side effects more than COVID itself",
+        "summary": "McCullough says that by 2022 the public was more concerned about serious COVID-19 vaccine side effects than about their personal risk from infection, and that this \"says a lot about the vaccine campaign.\" He attaches a Lancet cohort study of vaccine attitudes in 1.1 million people in England."
+      },
+      "full_he": "עד 2022 הציבור היה מודאג יותר מתופעות לוואי חמורות של חיסון הקורונה מאשר מהסיכון האישי שלו מהדבקה ב־SARS-CoV-2. זה אומר הרבה על מבצע החיסונים. (הוא תייג את @TheLancet ואת @McCulloughFund.)\n\nבתמונה המצורפת: העמוד הראשון של המחקר \"Profiling vaccine attitudes and subsequent uptake in 1.1 million people in England: a nationwide cohort study\" (פרופיל של עמדות כלפי החיסון והתחסנות בפועל בקרב 1.1 מיליון אנשים באנגליה: מחקר עוקבה ארצי), מאת מתיו ויטאקר, ג'ושוע אליוט, אינס ג'רארד־אורסין, גרהם ס. קוק, כריסטל א. דונלי, הלן וורד, פול אליוט ומרק שאדו־היאם. פורסם ב־The Lancet ב־12 בינואר 2025 (גישה פתוחה, doi:10.1016/S0140-6736(25)01912-9). מה שרואים בתמונה:\n• גרף לאורך זמן (דצמבר 2020 עד מרץ 2022) של שיעור המשתתפים שהביעו היסוס להתחסן, לצד מספר מקרי הקורונה היומיים לפי וריאנטים (אלפא, דלתא, אומיקרון BA.1 ו־BA.2), עם ציוני דרך: אישור חיסוני פייזר ואסטרהזניקה, תחילת מבצע החיסונים, הגבלת אסטרהזניקה לצעירים, פרסומים על דלקת שריר הלב אחרי חיסוני mRNA ועוד.\n• גרף של סיבות ההיסוס לפי קבוצות גיל (18–24 עד 75 ומעלה), מחולק לאשכולות: (A) חשש מתופעות לוואי, מהשפעות ארוכות טווח ו\"לראות איך החיסון עובד\"; (B) קושי להגיע למרכז החיסונים; (C) חוסר אמון ביצרני החיסון ותחושה שהקורונה אינה סיכון אישי או שהשפעתה מוגזמת; (D) דאגות בריאותיות אישיות, כמו חשש להרגיש רע, תגובה אלרגית או מצב רפואי קיים; (E) פחד או דאגה מהחיסון ומהתגובות אליו.\n\nהערה: המסקנה ש\"זה אומר הרבה על מבצע החיסונים\" היא הפרשנות של מקולה. הקונצנזוס הרפואי הוא שחיסוני הקורונה בטוחים ויעילים ושתופעות לוואי חמורות נדירות.",
+      "full_en": "By 2022 the public was more concerned about serious COVID-19 vaccine side effects than their personal risks with SARS-CoV-2 infection. Says a lot about the vaccine campaign. (He tagged @TheLancet and @McCulloughFund.)\n\nThe attached image: the first page of \"Profiling vaccine attitudes and subsequent uptake in 1.1 million people in England: a nationwide cohort study\" by Matthew Whitaker, Joshua Elliott, Ines Gerard-Ursin, Graham S Cooke, Christl A Donnelly, Helen Ward, Paul Elliott and Marc Chadeau-Hyam, published in The Lancet on January 12, 2025 (open access, doi:10.1016/S0140-6736(25)01912-9). What the image shows:\n• A timeline chart (December 2020 to March 2022) of the share of participants reporting vaccine hesitancy, alongside daily COVID-19 cases by variant (Alpha, Delta, Omicron BA.1 and BA.2), with milestones such as the Pfizer and AstraZeneca approvals, the start of the rollout, the AstraZeneca restriction for younger people, and publications on myocarditis after mRNA vaccines.\n• A chart of reasons for hesitancy by age group (18–24 to 75+), grouped into clusters: (A) concerns about side effects, long-term health effects and wanting to \"see how well the vaccine works\"; (B) travel barriers to the vaccination centre; (C) low trust in vaccine developers or seeing COVID-19 as not a personal risk or exaggerated; (D) personal health concerns such as feeling ill, an allergic reaction or an existing condition; (E) fear or concern about the vaccine and reactions.\n\nNote: the conclusion that this \"says a lot about the vaccine campaign\" is McCullough's interpretation. Mainstream medical consensus is that COVID-19 vaccines are safe and effective and that serious side effects are rare."
+    },
+    {
+      "id": "medicalmedium-1111-not-the-number-144",
+      "topic": "medicalmedium",
+      "date": "2026-10-31T23:01:21Z",
+      "url": "https://x.com/MedicalMedium/status/2116666868476133758",
+      "source": "X · @MedicalMedium",
+      "he": {
+        "title": "מדיקל מדיום: \"1111 זה לא המספר\" – המספר הוא 144",
+        "summary": "אנתוני וויליאם אומר שהמספר שהוא מדבר עליו כבר שנים הוא 144, לא 1111 או 1313. לדבריו, \"רוח החמלה\" לימדה אותו עליו כשהיה ילד, וזה מספר קדוש של האור שקשור לייעוד שלו ולהגנה על בעלי חיים."
+      },
+      "en": {
+        "title": "Medical Medium: \"1111 is not the number\" – it's 144",
+        "summary": "Anthony William says the number he has talked about for years is 144, not 1111 or 1313. He says the \"Spirit of Compassion\" taught him about it as a child, calling it a holy number of the light tied to his life's work and to protecting animals."
+      },
+      "full_he": "1111 זה לא המספר\n\nיש מספר אחד שאני מדבר עליו כבר שנים, והוא 144.\n\nלא 1111. לא 1313. זה 144.\n\nרוח החמלה לימדה אותי על המספר הזה כשהייתי ילד קטן. כל הזמן ראיתי 1:44 על השעון, ורציתי לדעת למה.\n\nהרוח הסבירה שזה קשור לעבודה שנועדתי לעשות בגלגול הזה ולדרך שנפרשה לפניי.\n\nאבל יש בזה הרבה יותר.\n\n144 הוא אחד המספרים החזקים ביותר של האור. זה מספר קדוש, מוגן רוחנית על ידי אלוהים, שמייצג כוונות טובות ואהבה ללא תנאים.\n\nלמדתי גם איך המספר הזה קשור להגנה על בעלי חיים בטבע ולמאבקים הרוחניים שמתרחשים סביבנו.\n\nאז אם אתה ממשיך לראות 144, תבין למה המספר הזה כל כך מיוחד בשבילי.\n\nהוא מפנה לספר \"Angels, Demons and Spiritual Tools\" (מלאכים, שדים וכלים רוחניים) באתר medicalmedium.com, ולשידור החי המלא ביוטיוב.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+      "full_en": "1111 Is Not The Number\n\nThere's one number I've been talking about for years, and it's 144.\n\nNot 1111. Not 1313. It's 144.\n\nSpirit of Compassion taught me about this number when I was just a little kid. I kept seeing 1:44 on the clock, and I wanted to know why.\n\nSpirit explained that it was connected to the work I was meant to do in this lifetime and the path laid out in front of me.\n\nBut there's so much more to it.\n\n144 is one of the most powerful numbers of the light. It's a holy number, spiritually protected by God, representing good intentions and unconditional love.\n\nI've also learned how this number is connected to protecting animals in nature and the spiritual battles taking place around us.\n\nSo if you keep seeing 144, understand why this number is so special to me.\n\nHe links to \"Angels, Demons and Spiritual Tools\" on medicalmedium.com and to the full livestream on YouTube.\n\nThe rest of the post is a video, so there's no more text to show."
+    },
+    {
+      "id": "mccullough-florida-doctor-platelet-disorder-natural",
+      "topic": "mccullough",
+      "date": "2026-10-31T22:46:47Z",
+      "url": "https://x.com/P_McCulloughMD/status/2116663200007541030",
+      "source": "X · @P_McCulloughMD",
+      "he": {
+        "title": "מקולה: רופא מפלורידה מת מהפרעת טסיות אחרי חיסון פייזר, והבודק קבע \"טבעי\"",
+        "summary": "מקולה מזכיר את ד\"ר גרגורי מייקל, רופא מפלורידה שפיתח הפרעת טסיות קטלנית ימים ספורים אחרי מנת חיסון פייזר בתחילת מבצע החיסונים, והבודק הרפואי קבע שמת מסיבות טבעיות. הוא מצרף כתבה של NBC 6 ומאמר ישראלי על TTP נרכש בהקשר לחיסון."
+      },
+      "en": {
+        "title": "McCullough: Florida doctor died of a platelet disorder after Pfizer shot, ruled 'natural'",
+        "summary": "McCullough recalls Dr. Gregory Michael, a Florida doctor who developed a fatal platelet disorder days after his Pfizer COVID-19 shot early in the vaccine campaign, while the medical examiner ruled the death natural. He attaches an NBC 6 report and an Israeli paper on acquired TTP associated with the vaccine."
+      },
+      "full_he": "בתחילת מבצע החיסונים, הרופא הזה מפלורידה פיתח הפרעת טסיות קטלנית שלושה ימים אחרי חיסון ה־mRNA של פייזר נגד קורונה. הבודק הרפואי אמר שזה היה \"טבעי\". (הוא תייג את @McCulloughFund.)\n\nבתמונה המצורפת יש שני מסמכים:\n\nכתבה של NBC 6 South Florida (פורסמה ב־8 באפריל 2021): \"רופא מקומי שנפטר אחרי זריקת החיסון מת מסיבות טבעיות: הבודק הרפואי\". מה שכתוב בה:\n• רופא מדרום פלורידה שנפטר שבועיים אחרי שקיבל מנה ראשונה של חיסון קורונה מת מסיבות טבעיות, כך קבע הבודק הרפואי.\n• ד\"ר גרגורי מייקל מת מסיבוכים של תרומבוציטופניה חיסונית (ירידה בטסיות) אחרי קבלת החיסון, לפי דוח של הבודק הרפואי של מחוז מיאמי־דייד שפורסם ביום חמישי.\n• מייקל, רופא נשים ומיילד במרכז הרפואי מאונט סיני במיאמי ביץ' במשך יותר מעשור, מת ב־3 בינואר.\n• לפי הדוח, בן ה־56 קיבל את חיסון פייזר־ביונטק ב־19 בדצמבר 2020 ואושפז ב־22 בדצמבר.\n• אשתו, היידי נקלמן, סיפרה שהוא התחיל לחוות תסמינים מוזרים כמה ימים אחרי המנה, כולל כתמים קטנים על הידיים והרגליים.\n• בסוף הוא אושפז בטיפול נמרץ עם אבחנה של ITP חריף (פורפורה טרומבוציטופנית אידיופתית), מצב נדיר שבו מערכת החיסון תוקפת בטעות את הטסיות. אצל מבוגרים הוא יכול להיות כרוני.\n• \"יומיים לפני ניתוח שהיה המוצא האחרון, הוא לקה בשבץ דימומי בגלל המחסור בטסיות, שלקח את חייו בתוך דקות\", כתבה נקלמן בפייסבוק.\n\nמאמר מדעי (Accepted Article, doi:10.1111/jth.15420): \"Acquired Thrombotic Thrombocytopenic Purpura: a rare disease associated with BNT162b2 vaccine\" (TTP נרכש: מחלה נדירה הקשורה לחיסון BNT162b2), מאת חנה מעיין, איליה קירגנר, אודית גוטווין, קטרין הרצוג־צרפתי, נעמי רחימי־לבנה, מאיה קורן־מיכוביץ ודורית בליקשטיין, מהמחלקה ההמטולוגית ובנק הדם במרכז הרפואי שמיר (צריפין), מבנק הדם ויחידת האפרזיס במרכז הרפואי סוראסקי בתל אביב ומהפקולטה לרפואה סאקלר באוניברסיטת תל אביב. מילות מפתח: ADAMTS13, aTTP, אוטואימוניות, חיסון BNT162b2, SARS-CoV-2.\n\nהערה: הטענה שקביעת \"מוות טבעי\" מסתירה מוות שנגרם מהחיסון היא של מקולה. הספרות הרפואית מתארת מקרים נדירים של הפרעות טסיות אחרי חיסון, והקונצנזוס הוא שהתועלת של החיסון גוברת על הסיכון.",
+      "full_en": "Early in the vaccine campaign this Florida doctor developed a fatal platelet disorder 3 days after his Pfizer mRNA COVID-19 vaccine. Medical examiner said it was \"natural.\" (He tagged @McCulloughFund.)\n\nThe attached image has two documents:\n\nAn NBC 6 South Florida article (published April 8, 2021): \"Local Doctor Who Passed Away After Vaccine Shot Died of Natural Causes: Medical Examiner\". Its text:\n• A South Florida doctor who passed away two weeks after receiving his first dose of a COVID-19 vaccine died of natural causes, a medical examiner has ruled.\n• Dr. Gregory Michael died from complications of immune thrombocytopenia following receipt of the vaccine, according to a Miami-Dade County Medical Examiner's report released Thursday.\n• Michael, who had worked as an OBGYN at Miami Beach's Mt. Sinai Medical Center for more than a decade, died on January 3rd.\n• According to the report, the 56-year-old had received the Pfizer-BioNTech vaccine on Dec. 19, 2020, and was hospitalized on Dec. 22.\n• His wife, Heidi Neckelmann, said he had begun experiencing strange symptoms several days after receiving the dose, including small spots on his hands and feet.\n• He was eventually admitted to the ICU with a diagnosis of acute Idiopathic thrombocytopenic purpura (ITP), a rare condition in which the body's immune system mistakenly attacks cell fragments found in the blood known as platelets. In adults, it can be chronic.\n• \"Two days before a last resort surgery, he got a hemorrhagic stroke caused by the lack of platelets that took his life in a matter of minutes,\" Neckelmann wrote in a Facebook post.\n\nA scientific paper (Accepted Article, doi:10.1111/jth.15420): \"Acquired Thrombotic Thrombocytopenic Purpura: a rare disease associated with BNT162b2 vaccine\" by Hannah Maayan, Ilya Kirgner, Odit Gutwein, Katrin Herzog-Tzarfati, Naomi Rahimi-Levene, Maya Koren-Michowitz and Dorit Blickstein, from the Department of Hematology and Blood Bank at Shamir Medical Center (Zerifin), the Blood Bank and Apheresis Unit at Tel Aviv Sourasky Medical Center, and the Sackler Faculty of Medicine, Tel Aviv University. Key words: ADAMTS13, aTTP, autoimmunity, BNT162b2 vaccine, SARS-CoV-2.\n\nNote: the claim that a \"natural\" ruling hides a vaccine-caused death is McCullough's. The medical literature does describe rare platelet disorders after vaccination, and the mainstream consensus is that the vaccine's benefits outweigh its risks."
+    },
+    {
       "id": "musk-ted-talk-say-nothing-laugh",
       "topic": "musk",
       "date": "2026-10-31T21:04:01Z",
@@ -212,23 +263,6 @@
       },
       "full_en": "😂\n\nThe quoted post (@lumenxbt, \"Lumen\"):\n\nTen million people have watched a comedian accidentally destroy the entire TED talk industry.\n\nHe filmed the talk once at TEDxNewYork in 2014 and openly admitted he had nothing to say.\n\nSpeaking coaches charge $5,000 to teach the exact tricks he used in 6 minutes to say nothing.\n\nThe rest of the quoted post is a video (the talk itself), so there's no more text to show. The quoted post also quotes an earlier post by the same author linking to his own X article, \"The Five Equations That Quietly Run Your Entire Financial Life\", which is unrelated to the TED talk. Musk added no further replies of his own.",
       "full_he": "😂\n\nהפוסט שהוא ציטט (@lumenxbt, \"Lumen\"):\n\nעשרה מיליון אנשים צפו בקומיקאי שבלי כוונה הרס את כל תעשיית הרצאות ה־TED.\n\nהוא צילם את ההרצאה פעם אחת, ב־TEDxNewYork ב־2014, והודה בגלוי שאין לו שום דבר להגיד.\n\nמאמני נאום גובים 5,000 דולר כדי ללמד בדיוק את הטריקים שבהם הוא השתמש במשך 6 דקות כדי לא להגיד כלום.\n\nשאר הפוסט המצוטט הוא סרטון (ההרצאה עצמה), ולכן אין עוד טקסט להציג. הפוסט המצוטט גם מצטט פוסט קודם של אותו כותב, עם קישור למאמר שלו ב־X, \"חמש המשוואות שמנהלות בשקט את כל החיים הכלכליים שלך\", שאינו קשור להרצאה. למאסק אין תגובות המשך משלו בשרשור."
-    },
-    {
-      "id": "musk-moon-mass-driver-petawatt",
-      "topic": "musk",
-      "date": "2026-10-31T13:42:53Z",
-      "url": "https://x.com/elonmusk/status/2116526323938328597",
-      "source": "X · @elonmusk",
-      "he": {
-        "title": "מאסק: מאיץ מסה על הירח ישגר לוויני בינה־על לחלל העמוק",
-        "summary": "בתגובה לספנסר פראט, שהמליץ לקרוא פעמיים את התחזית של שון מגווייר לספייסאקס, מאסק כתב ששיגור לוויני בינה־על לחלל העמוק בעזרת מאיץ מסה על הירח יכול להגיע ליכולת של הרבה יותר מפטה־וואט בשנה, הרבה מעבר לערך של כל כלכלת כדור הארץ."
-      },
-      "en": {
-        "title": "Musk: a Moon mass driver could launch superintelligence satellites into deep space",
-        "summary": "Replying to Spencer Pratt, who urged people to read Shaun Maguire's SpaceX forecast twice, Musk wrote that launching superintelligence satellites into deep space with a mass driver on the Moon could reach well over a petawatt per year, far beyond the value of Earth's whole economy."
-      },
-      "full_en": "Musk's reply to Spencer Pratt:\n\nLaunching super intelligence satellites into deep space with a mass driver on the Moon can achieve >>petawatt/year capability, which would far exceed the best case value of Earth's economy.\n\nThe post he replied to (Spencer Pratt, @spencerpratt):\n\nYou may need to read this twice to fully grasp this, but it is very important that you do. So read it twice.\n\nPratt was quoting Sequoia partner Shaun Maguire's X article \"People don't understand SpaceX\". Its main points:\n\n• Caveats from Maguire: not investment advice; Sequoia holds a large SpaceX position, so he calls himself extremely biased; past performance doesn't predict future results.\n• After SpaceX's earnings call he built a bottom-up model through 2028 (his 50th-percentile forecast, with wide error bars on revenue per gigawatt, CapEx per gigawatt and Terafab CapEx). He expects a revenue ramp whose only parallel is NVIDIA's over the last three years, barring war, an AI moratorium or revolution.\n• Best team on Earth: a max-intensity culture plus the ultimate test (does the rocket fly or explode?) lets SpaceX solve any problem, from making its own turbines to building power across state lines.\n• Starship is \"the biggest moat in history\": he argues it is among the hardest machines ever built, and that China is about 10 years behind SpaceX in launch.\n• SpaceX is the low-cost producer in AI compute, which he compares to oil rather than the overbuilt dot-com broadband; he sees cost per gigawatt unlikely to drop below $20B in the next ~4 years.\n• Starlink economics: about $20B/yr of revenue built on ~400 Falcon 9 launches; each Starship flight equals ~20 Falcon 9 launches, so roughly $5B of lifetime revenue per Starship flight. He wagers Direct to Cell will out-earn Starlink by 2029–2030.\n• Orbital compute shows up from 2029, and he expects SpaceX to become as vertically integrated in chips as in rockets within a decade.\n\nOn X the post grew into a trending story: supporters call it the next step after reusable rockets, while skeptics say such abundance feels far away amid today's inflation.",
-      "full_he": "התגובה של מאסק לספנסר פראט:\n\nשיגור לווייני בינה־על לחלל העמוק בעזרת מאיץ מסה (mass driver) על הירח יכול להגיע ליכולת של הרבה יותר מפטה־וואט בשנה, וזה יעלה בהרבה על הערך של כלכלת כדור הארץ, גם בתרחיש הטוב ביותר.\n\nהפוסט שהוא הגיב לו (ספנסר פראט, @spencerpratt):\n\nאולי תצטרך לקרוא את זה פעמיים כדי להבין עד הסוף, אבל זה חשוב מאוד שתעשה את זה. אז תקרא פעמיים.\n\nפראט ציטט את המאמר של שון מגווייר, שותף ב־Sequoia, ב־X, \"אנשים לא מבינים את ספייסאקס\". עיקרי המאמר:\n\n• הסתייגויות של מגווייר: זו לא המלצת השקעה; ל־Sequoia יש החזקה גדולה בספייסאקס, ולכן לדבריו הוא מוטה מאוד; ביצועי עבר אינם מעידים על העתיד.\n• אחרי שיחת הדוחות של ספייסאקס הוא בנה מודל מלמטה למעלה עד 2028 (התחזית החציונית שלו, עם טווחי טעות רחבים בהכנסה לג'יגה־וואט, בהשקעה לג'יגה־וואט ובהשקעה ב־Terafab). הוא צופה זינוק בהכנסות שההשוואה היחידה אליו היא הזינוק של אנבידיה בשלוש השנים האחרונות, אלא אם תהיה מלחמה, הקפאת AI או מהפכה.\n• הצוות הטוב בעולם: תרבות של עצימות מקסימלית, יחד עם המבחן האולטימטיבי (הטיל טס או מתפוצץ?), מאפשרת לספייסאקס לפתור כל בעיה, מייצור טורבינות בעצמה ועד הקמת חשמל מעבר לגבול בין מדינות.\n• סטארשיפ הוא \"החפיר הגדול בהיסטוריה\": לטענתו זו אחת המכונות הקשות ביותר שנבנו אי פעם, וסין מפגרת אחרי ספייסאקס בשיגורים בכעשר שנים.\n• ספייסאקס היא היצרנית הזולה ביותר של כוח מחשוב ל־AI, שאותו הוא משווה לנפט ולא לפס הרחב שנבנה בעודף בבועת הדוט־קום; לדעתו לא סביר שהעלות לג'יגה־וואט תרד מתחת ל־20 מיליארד דולר בכ־4 השנים הקרובות.\n• הכלכלה של סטארלינק: הכנסות של כ־20 מיליארד דולר בשנה, שנבנו על כ־400 שיגורי פלקון 9; כל טיסת סטארשיפ שווה לכ־20 שיגורי פלקון 9, כלומר בערך 5 מיליארד דולר הכנסות לאורך חיים לכל טיסה. הוא מהמר ש־Direct to Cell תכניס יותר מסטארלינק עד 2029–2030.\n• מחשוב במסלול יתחיל להופיע מ־2029, ולדעתו בתוך עשור ספייסאקס תהיה משולבת אנכית בשבבים כמו שהיא היום בטילים.\n\nב־X הפוסט הפך לסיפור חם: התומכים רואים בזה את הצעד הבא אחרי הטילים הרב־פעמיים, והספקנים אומרים שהשפע הזה מרגיש רחוק מול האינפלציה של היום."
     },
     {
       "id": "spacex-q3-revenue-14-6b-ai-segment",
@@ -280,6 +314,23 @@
       },
       "full_he": "בשיחה כנה בפודקאסט של ג'ו רוגן, צ'מאת' פליהפיטיה סיפר שאמר לאשתו שאילון מאסק הוא האדם היחיד שהוא סומך עליו עם סופר־אינטליגנציה, וכינה אותו \"הכי פחות מושחת\" לנוכח הסיכונים הגבוהים של ה־AI.\n\n• בהופעתו ב־Joe Rogan Experience במאי 2026 הסביר איש ההון־סיכון למה לדעתו מאסק מתאים במיוחד: הוא מתמקד ביעדים ארוכי טווח כמו יישוב מאדים, ולא ברווחים קצרי טווח ובלחצים של וול סטריט.\n• הוא הדגיש את האמפתיה האמיתית של מאסק לאנשים, וג'ו רוגן הצטרף ושיבח את החשיבה העצמאית שלו.\n• הקטע חזר לרשת ועורר גם הסכמה עם העקרונות של מאסק וגם ספקנות לגבי הרעיון שאדם אחד יחזיק בכוח כזה, ומזה התפתח ויכוח על הנהגה ואמון בעולם ה־AI.\n\nזהו סיכום של פוסטים ב־X שנכתב על ידי Grok, והוא עשוי להתעדכן ולהכיל טעויות.",
       "full_en": "In a candid chat on Joe Rogan's podcast, Chamath Palihapitiya told his wife that Elon Musk is the one person he trusts with superintelligence, calling him the least corruptible amid AI's high stakes.\n\n• During his May 2026 appearance on the Joe Rogan Experience, the venture capitalist explained why he sees Musk as uniquely suited, citing his focus on long-term goals like Mars colonization over short-term profits and Wall Street pressures.\n• He highlighted Musk's genuine empathy for people, a view Joe Rogan echoed by praising his independent thinking.\n• The clip has resurfaced, prompting agreement on Musk's principles alongside skepticism that no single person should hold such power, fueling debate on AI leadership and trust.\n\nThis story is a summary of posts on X written by Grok; it may evolve over time and can contain mistakes."
+    },
+    {
+      "id": "grok-ai-text-watermarks-nov7",
+      "topic": "grok",
+      "date": "2026-10-31T20:10:54Z",
+      "url": "https://x.com/i/trending/2116508820818022767",
+      "source": "X",
+      "he": {
+        "title": "סימני מים בלתי נראים בטקסט של Grok החל מ־7 בנובמבר",
+        "summary": "SpaceXAI תתחיל להטמיע סימני מים סטטיסטיים בטקסט של גרסאות grok-4 מ־7 בנובמבר, ו־Anthropic תעשה זאת במודלי Claude מ־3 בנובמבר, בהתאם לכללי חוק ה־AI של האיחוד האירופי."
+      },
+      "en": {
+        "title": "Invisible watermarks in Grok's text starting November 7",
+        "summary": "SpaceXAI will start embedding statistical watermarks in text from grok-4 variants on November 7, and Anthropic will do so in Claude models from November 3, in line with EU AI Act rules."
+      },
+      "full_he": "חברות ה־AI הגדולות מוסיפות בשקט סמנים נסתרים לטקסט שהמודלים שלהן מייצרים, כך שיהיה קל יותר לזהות תוכן שנכתב במכונה בלי לשנות אף מילה.\n\n• Anthropic מתחילה להטמיע סימני מים במודלי Claude כמו Mythos 5 ו־Opus 4.7 החל מ־3 בנובמבר.\n• SpaceXAI מטמיעה אותם בגרסאות grok-4 החל מ־7 בנובמבר.\n• מדובר בדפוסים סטטיסטיים עדינים ששורדים עריכה, ותואמים את כללי חוק ה־AI של האיחוד האירופי לזיהוי טקסט סינתטי.\n• התגובות חלוקות: מבקרים צופים שימצאו דרכים לעקוף את זה מהר, ותומכים מברכים על סימון ברור יותר של כתיבה בעזרת AI.\n\n(זהו סיכום של פוסטים ב־X שעשוי להשתנות עם הזמן.)",
+      "full_en": "Major AI companies are quietly adding hidden markers to their text outputs, making it easier to spot machine-generated content without changing a word.\n\n• Anthropic starts watermarking Claude models like Mythos 5 and Opus 4.7 from November 3.\n• SpaceXAI applies them to grok-4 variants beginning November 7.\n• These subtle statistical patterns survive editing and align with EU AI Act rules for detecting synthetic text.\n• Reactions split between critics predicting quick workarounds and supporters welcoming clearer labeling for AI-assisted writing.\n\n(This story is a summary of posts on X and may evolve over time.)"
     },
     {
       "id": "starterstory-flame-couples-app-phone-rack",
@@ -348,23 +399,6 @@
       },
       "full_he": "\"צלילה לעומק על Neuralink.\"\n\nהפוסט שהוא ציטט (קליאו אברם, @cleoabram):\n\"הפרק המלא של HUGE* If True על Neuralink ועל העתיד של ממשקי מוח־מחשב.\n\nסיירתי ב־Neuralink וראיתי מקרוב את רובוט הניתוח החדש שלהם, R1, כדי לראות את העתיד שהם ואילון מאסק בונים, ואיך הוא כבר משנה חיים...\"\n\nפרקי הסרטון:\n• 00:00 מה אם מכניסים שבב למוח?\n• 01:02 איך מרגיש מוח אנושי?\n• 02:17 איך המוח עובד?\n• 03:58 האם ממשק מוח־מחשב יכול לקרוא מחשבות?\n• 05:19 איך מכניסים שבב למוח?\n• 08:07 מה יש בתוך השתל של Neuralink?\n• 10:06 איך בונים שתל מוחי?\n• 11:07 איך רובוט מבצע ניתוח מוח?\n• 12:20 מה אפשר לעשות עם שבב במוח?\n• 15:05 איך משתמשים כבר היום בממשקי מוח־מחשב?\n• 16:07 למה שבבי מוח הם \"ענקיים אם זה נכון\"?\n\nשאר הפוסט המצוטט הוא סרטון (כ־18 דקות), ולכן אין עוד טקסט להציג.",
       "full_en": "\"Neuralink deep dive\"\n\nThe quoted post (Cleo Abram, @cleoabram):\n\"Full HUGE* If True episode on Neuralink and the future of brain computer interfaces\n\nI toured Neuralink and got a close up view of their new R1 surgical robot, to see the future they and Elon Musk are building and how it is already changing lives...\"\n\nChapters:\n• 00:00 What if you put a chip in your brain?\n• 01:02 What does a human brain feel like?\n• 02:17 How does your brain work?\n• 03:58 Can a brain computer interface read your thoughts?\n• 05:19 How do you get a chip into your brain?\n• 08:07 What's inside Neuralink's implant?\n• 10:06 How do you build a brain implant?\n• 11:07 How does robot do brain surgery?\n• 12:20 What could you do with a brain chip?\n• 15:05 How are brain computer interfaces already being used today?\n• 16:07 How are brain chips huge if true?\n\nThe rest of the quoted post is a video (about 18 minutes), so there's no more text to show."
-    },
-    {
-      "id": "grok-ai-text-watermarks-nov7",
-      "topic": "grok",
-      "date": "2026-10-31T20:10:54Z",
-      "url": "https://x.com/i/trending/2116508820818022767",
-      "source": "X",
-      "he": {
-        "title": "סימני מים בלתי נראים בטקסט של Grok החל מ־7 בנובמבר",
-        "summary": "SpaceXAI תתחיל להטמיע סימני מים סטטיסטיים בטקסט של גרסאות grok-4 מ־7 בנובמבר, ו־Anthropic תעשה זאת במודלי Claude מ־3 בנובמבר, בהתאם לכללי חוק ה־AI של האיחוד האירופי."
-      },
-      "en": {
-        "title": "Invisible watermarks in Grok's text starting November 7",
-        "summary": "SpaceXAI will start embedding statistical watermarks in text from grok-4 variants on November 7, and Anthropic will do so in Claude models from November 3, in line with EU AI Act rules."
-      },
-      "full_he": "חברות ה־AI הגדולות מוסיפות בשקט סמנים נסתרים לטקסט שהמודלים שלהן מייצרים, כך שיהיה קל יותר לזהות תוכן שנכתב במכונה בלי לשנות אף מילה.\n\n• Anthropic מתחילה להטמיע סימני מים במודלי Claude כמו Mythos 5 ו־Opus 4.7 החל מ־3 בנובמבר.\n• SpaceXAI מטמיעה אותם בגרסאות grok-4 החל מ־7 בנובמבר.\n• מדובר בדפוסים סטטיסטיים עדינים ששורדים עריכה, ותואמים את כללי חוק ה־AI של האיחוד האירופי לזיהוי טקסט סינתטי.\n• התגובות חלוקות: מבקרים צופים שימצאו דרכים לעקוף את זה מהר, ותומכים מברכים על סימון ברור יותר של כתיבה בעזרת AI.\n\n(זהו סיכום של פוסטים ב־X שעשוי להשתנות עם הזמן.)",
-      "full_en": "Major AI companies are quietly adding hidden markers to their text outputs, making it easier to spot machine-generated content without changing a word.\n\n• Anthropic starts watermarking Claude models like Mythos 5 and Opus 4.7 from November 3.\n• SpaceXAI applies them to grok-4 variants beginning November 7.\n• These subtle statistical patterns survive editing and align with EU AI Act rules for detecting synthetic text.\n• Reactions split between critics predicting quick workarounds and supporters welcoming clearer labeling for AI-assisted writing.\n\n(This story is a summary of posts on X and may evolve over time.)"
     },
     {
       "id": "starterstory-optician-samuel-3-apps-35k",
@@ -724,6 +758,23 @@
       "full_en": "Elon Musk wrote: \"Tesla and SpaceX have created meaningful wealth for hundreds of thousands of employees over time and improved the retirement savings of hundreds of millions of people.\"\n\nThe quoted post (Larry Goldberg, @TeslaLarry, from October 1, 2026) is an X article titled \"Elon Musk Helps Feed Nearly a Million Families\". The article's full text isn't available, so only its title is shown here.\n\nThere are no self-replies from him in the thread."
     },
     {
+      "id": "solana-harri-obi-steps-down-superteam-nigeria",
+      "topic": "solana",
+      "date": "2026-10-31T15:23:02Z",
+      "url": "https://x.com/i/trending/2116550194523234619",
+      "source": "X",
+      "he": {
+        "title": "הארי אובי עוזב אחרי שהפך את Superteam Nigeria למעצמה של סולאנה",
+        "summary": "צ'ינונסו אוביפולה (הארי אובי) בנה במשך שלוש שנים את Superteam Nigeria, קהילת סולאנה בניגריה, מאירועים של 20 משתתפים לרשת שפרוסה בכל 36 המדינות. עכשיו הוא עובר ל־Nuvion כאסטרטג שיווק גלובלי בכיר."
+      },
+      "en": {
+        "title": "Harri Obi steps down after building Superteam Nigeria into a Solana powerhouse",
+        "summary": "Chinonso Obiefule (Harri Obi) spent three years growing Superteam Nigeria, the country's Solana hub, from 20-person events to a network across all 36 states. He's now joining Nuvion as Senior Global Marketing Strategist."
+      },
+      "full_he": "מאירועים עם 20 משתתפים בלבד ועד רשת שפרוסה בכל 36 המדינות של ניגריה: צ'ינונסו אוביפולה הפך ניצוץ קטן למרכז סולאנה משגשג בניגריה במשך שלוש שנים.\n\n• אוביפולה, שמוכר כהארי אובי או \"ד\"ר הארי\", בנה את Superteam Nigeria מהתחלה צנועה לכוח עם יותר מ־500 אירועים פרונטליים ל־20,000 איש, 5,000 מפגשים וירטואליים שהגיעו ל־100,000 איש, ו־1.6 מיליון דולר בהכנסות ל־200 חברי הליבה.\n• הקהילה חממה פרויקטים כמו NectarFi, שעיבד 15 מיליון דולר על סולאנה, וחיברה עשרות אנשים לתפקידים במשרה מלאה באקוסיסטם.\n• עכשיו הוא מצטרף ל־Nuvion כאסטרטג שיווק גלובלי בכיר, בתחום של בנקאות רב־מטבעית וכלי סטייבלקוין.\n• חברי הקהילה משבחים את המגע האישי שלו בחיבור בין בונים, והמחוות מדגישות את ההשפעה המתמשכת שלו לצד התרגשות מהשלב הבא.\n\n(זה סיכום של סיפור מגמה ב־X, שנכתב מפוסטים ב־X ועשוי להתעדכן.)",
+      "full_en": "From events with just 20 attendees to a network spanning all 36 states, Chinonso Obiefule turned a small spark into Nigeria's thriving Solana hub over three years.\n\n• Known as Harri Obi or Dr. Harri, Obiefule grew Superteam Nigeria from humble beginnings into a force with over 500 in-person events for 20,000 people, 5,000 virtual sessions reaching 100,000, and $1.6 million in earnings for 200 core members.\n• The chapter incubated projects like NectarFi, which processed $15 million on Solana, and connected dozens to full-time ecosystem roles.\n• He's now joining Nuvion as Senior Global Marketing Strategist for multi-currency banking and stablecoin tools.\n• Community members praise his personal touch in bringing builders together; tributes highlight his lasting impact, with excitement for the next era.\n\n(This is a summary of an X trending story, compiled from posts on X, and may evolve over time.)"
+    },
+    {
       "id": "musk-60-minutes-2012-falcon1-14-years",
       "topic": "musk",
       "date": "2026-10-31T15:21:45Z",
@@ -790,6 +841,23 @@
       },
       "full_he": "אילון מאסק כתב: \"טלאריקו רוצה לפתוח את הגבולות ולהכשיר את כולם כדי להשיג רוב קבוע ולשים קץ לדמוקרטיה באמריקה.\"\n\nהפוסט שהוא ציטט (America, @america):\n\n\"המועמד הדמוקרטי לסנאט האמריקאי בטקסס, ג'יימס טלאריקו, קורא ל'מסלול לאזרחות' למהגרים לא חוקיים.\n\nהם רוצים להפוך אותם לבוחרים החדשים שלהם.\"\n\nשאר הפוסט המצוטט הוא סרטון (כ-33 שניות), ולכן אין עוד טקסט להציג. אין למאסק תגובות המשך משלו בשרשור.",
       "full_en": "Elon Musk wrote: \"Talarico wants to open the borders and legalize everyone to gain a permanent majority to end democracy in America.\"\n\nThe quoted post (America, @america):\n\n\"Democrat Nominee for U.S. Senate in Texas James Talarico calls for “a pathway for citizenship” for illegal aliens.\n\nThey want to make them their new voters.\"\n\nThe rest of the quoted post is a video (about 33 seconds), so there's no more text to show. Musk has no self-replies in the thread."
+    },
+    {
+      "id": "musk-moon-mass-driver-petawatt",
+      "topic": "musk",
+      "date": "2026-10-31T13:42:53Z",
+      "url": "https://x.com/elonmusk/status/2116526323938328597",
+      "source": "X · @elonmusk",
+      "he": {
+        "title": "מאסק: מאיץ מסה על הירח ישגר לוויני בינה־על לחלל העמוק",
+        "summary": "בתגובה לספנסר פראט, שהמליץ לקרוא פעמיים את התחזית של שון מגווייר לספייסאקס, מאסק כתב ששיגור לוויני בינה־על לחלל העמוק בעזרת מאיץ מסה על הירח יכול להגיע ליכולת של הרבה יותר מפטה־וואט בשנה, הרבה מעבר לערך של כל כלכלת כדור הארץ."
+      },
+      "en": {
+        "title": "Musk: a Moon mass driver could launch superintelligence satellites into deep space",
+        "summary": "Replying to Spencer Pratt, who urged people to read Shaun Maguire's SpaceX forecast twice, Musk wrote that launching superintelligence satellites into deep space with a mass driver on the Moon could reach well over a petawatt per year, far beyond the value of Earth's whole economy."
+      },
+      "full_en": "Musk's reply to Spencer Pratt:\n\nLaunching super intelligence satellites into deep space with a mass driver on the Moon can achieve >>petawatt/year capability, which would far exceed the best case value of Earth's economy.\n\nThe post he replied to (Spencer Pratt, @spencerpratt):\n\nYou may need to read this twice to fully grasp this, but it is very important that you do. So read it twice.\n\nPratt was quoting Sequoia partner Shaun Maguire's X article \"People don't understand SpaceX\". Its main points:\n\n• Caveats from Maguire: not investment advice; Sequoia holds a large SpaceX position, so he calls himself extremely biased; past performance doesn't predict future results.\n• After SpaceX's earnings call he built a bottom-up model through 2028 (his 50th-percentile forecast, with wide error bars on revenue per gigawatt, CapEx per gigawatt and Terafab CapEx). He expects a revenue ramp whose only parallel is NVIDIA's over the last three years, barring war, an AI moratorium or revolution.\n• Best team on Earth: a max-intensity culture plus the ultimate test (does the rocket fly or explode?) lets SpaceX solve any problem, from making its own turbines to building power across state lines.\n• Starship is \"the biggest moat in history\": he argues it is among the hardest machines ever built, and that China is about 10 years behind SpaceX in launch.\n• SpaceX is the low-cost producer in AI compute, which he compares to oil rather than the overbuilt dot-com broadband; he sees cost per gigawatt unlikely to drop below $20B in the next ~4 years.\n• Starlink economics: about $20B/yr of revenue built on ~400 Falcon 9 launches; each Starship flight equals ~20 Falcon 9 launches, so roughly $5B of lifetime revenue per Starship flight. He wagers Direct to Cell will out-earn Starlink by 2029–2030.\n• Orbital compute shows up from 2029, and he expects SpaceX to become as vertically integrated in chips as in rockets within a decade.\n\nOn X the post grew into a trending story: supporters call it the next step after reusable rockets, while skeptics say such abundance feels far away amid today's inflation.",
+      "full_he": "התגובה של מאסק לספנסר פראט:\n\nשיגור לווייני בינה־על לחלל העמוק בעזרת מאיץ מסה (mass driver) על הירח יכול להגיע ליכולת של הרבה יותר מפטה־וואט בשנה, וזה יעלה בהרבה על הערך של כלכלת כדור הארץ, גם בתרחיש הטוב ביותר.\n\nהפוסט שהוא הגיב לו (ספנסר פראט, @spencerpratt):\n\nאולי תצטרך לקרוא את זה פעמיים כדי להבין עד הסוף, אבל זה חשוב מאוד שתעשה את זה. אז תקרא פעמיים.\n\nפראט ציטט את המאמר של שון מגווייר, שותף ב־Sequoia, ב־X, \"אנשים לא מבינים את ספייסאקס\". עיקרי המאמר:\n\n• הסתייגויות של מגווייר: זו לא המלצת השקעה; ל־Sequoia יש החזקה גדולה בספייסאקס, ולכן לדבריו הוא מוטה מאוד; ביצועי עבר אינם מעידים על העתיד.\n• אחרי שיחת הדוחות של ספייסאקס הוא בנה מודל מלמטה למעלה עד 2028 (התחזית החציונית שלו, עם טווחי טעות רחבים בהכנסה לג'יגה־וואט, בהשקעה לג'יגה־וואט ובהשקעה ב־Terafab). הוא צופה זינוק בהכנסות שההשוואה היחידה אליו היא הזינוק של אנבידיה בשלוש השנים האחרונות, אלא אם תהיה מלחמה, הקפאת AI או מהפכה.\n• הצוות הטוב בעולם: תרבות של עצימות מקסימלית, יחד עם המבחן האולטימטיבי (הטיל טס או מתפוצץ?), מאפשרת לספייסאקס לפתור כל בעיה, מייצור טורבינות בעצמה ועד הקמת חשמל מעבר לגבול בין מדינות.\n• סטארשיפ הוא \"החפיר הגדול בהיסטוריה\": לטענתו זו אחת המכונות הקשות ביותר שנבנו אי פעם, וסין מפגרת אחרי ספייסאקס בשיגורים בכעשר שנים.\n• ספייסאקס היא היצרנית הזולה ביותר של כוח מחשוב ל־AI, שאותו הוא משווה לנפט ולא לפס הרחב שנבנה בעודף בבועת הדוט־קום; לדעתו לא סביר שהעלות לג'יגה־וואט תרד מתחת ל־20 מיליארד דולר בכ־4 השנים הקרובות.\n• הכלכלה של סטארלינק: הכנסות של כ־20 מיליארד דולר בשנה, שנבנו על כ־400 שיגורי פלקון 9; כל טיסת סטארשיפ שווה לכ־20 שיגורי פלקון 9, כלומר בערך 5 מיליארד דולר הכנסות לאורך חיים לכל טיסה. הוא מהמר ש־Direct to Cell תכניס יותר מסטארלינק עד 2029–2030.\n• מחשוב במסלול יתחיל להופיע מ־2029, ולדעתו בתוך עשור ספייסאקס תהיה משולבת אנכית בשבבים כמו שהיא היום בטילים.\n\nב־X הפוסט הפך לסיפור חם: התומכים רואים בזה את הצעד הבא אחרי הטילים הרב־פעמיים, והספקנים אומרים שהשפע הזה מרגיש רחוק מול האינפלציה של היום."
     },
     {
       "id": "spacex-musk-congrats-700-falcon9-flights",
