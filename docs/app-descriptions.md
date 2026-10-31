@@ -16,6 +16,8 @@
 | פַּאמְפִּיפַיי | Pumpify | pumpify/index.html | מדיה מעוררת השראה | Inspiring media | ציבורי / public |
 | דיאגנוסיפיי | Diagnosify | diagnosify/index.html | בדיקות סינון עצמיות חינמיות | Free self-screening checks | ציבורי / public |
 | פלייפיי | Flyify | fly/index.html | משחק תעופה בתלת מימד בעולמות מופלאים | A 3D flying game through wondrous worlds | ציבורי / public |
+| מיסטיפיי | Mystify | mystify/index.html | יריות בחלל בתלת מימד: שני מגדלים, כבידה נמוכה ונשקי לייזר וברק | A 3D space arena shooter: two towers, low gravity, laser and lightning guns | ציבורי / public — אריח מוצג / featured tile |
+| מבוכפיי | Mazify | mazify/index.html | מבוך חדש בכל יום, ומשחק חופשי עם שיא אישי | A new maze every day, plus free play with a personal best | ציבורי / public |
 | לייטיפיי | Lightify | game/index.html | משחק תלת מימד של אור וחסד | A 3D game of light and kindness | ציבורי / public |
 | חישובלי | Calcify | calc/index.html | מחשבון פשוט: מקלידים תרגיל ומקבלים תשובה | A simple calculator: type a sum, get the answer | ציבורי / public |
 | יאנגיפיי | Youngify | young/index.html | המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא) | Tips for young people for a good, healthy, thriving life (beta) | ציבורי / public |
