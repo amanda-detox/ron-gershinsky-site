@@ -373,9 +373,12 @@
   /* ---------- render ---------- */
   var MVICON = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
   var TRASHICON = '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M10 11v6M14 11v6"/><path d="M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4h6v3"/></svg>';
+  /* title fields are textareas that wrap and grow to fit the whole text (Enter still saves; newlines are never stored) */
+  function grow(el) { el.style.height = "auto"; el.style.height = (el.scrollHeight + 4) + "px"; }
+  function growAll() { document.querySelectorAll("textarea.grow").forEach(grow); }
   function editor(x) {
     return '<div class="ed" data-ed="' + esc(x.id) + '">' +
-      '<input type="text" class="e-text" maxlength="200" enterkeyhint="done" value="' + esc(label(x)) + '" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' +
+      '<textarea class="e-text grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' + esc(label(x)) + '</textarea>' +
       '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
       '<input type="text" class="e-price" inputmode="decimal" maxlength="10" placeholder="' + esc(t("priceLabel")) + '" aria-label="' + esc(t("priceLabel")) + '" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '">' +
       '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
@@ -395,7 +398,7 @@
   function panel(sec) {
     showP = hasPrices(sec);
     var act = openIn(sec), done = selIn(sec);
-    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><input type="text" name="text" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"><button type="submit">' + esc(t("add")) + "</button></div>" +
+    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
@@ -411,7 +414,7 @@
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
     var ae = document.activeElement, keep = null;
     if (ae && ae.closest && ae.closest(".addform")) keep = { form: ae.closest(".addform").getAttribute("data-add"), name: ae.name };
-    var drafts = {}; document.querySelectorAll(".addform input").forEach(function (i) { drafts[i.closest("form").getAttribute("data-add") + "/" + i.name] = i.value; });
+    var drafts = {}; document.querySelectorAll(".addform input,.addform textarea").forEach(function (i) { drafts[i.closest("form").getAttribute("data-add") + "/" + i.name] = i.value; });
     var edVals = null, ed = editing && document.querySelector('[data-ed="' + editing + '"]');
     if (ed) edVals = [].map.call(ed.querySelectorAll("input,textarea"), function (e) { return e.value; });
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
@@ -428,8 +431,9 @@
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint2"); }
     panels.innerHTML = !cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>";
-    document.querySelectorAll(".addform input").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
+    document.querySelectorAll(".addform input,.addform textarea").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
+    growAll();
     if (editing) {
       var ne = document.querySelector('[data-ed="' + editing + '"]');
       if (ne) { if (edVals) [].forEach.call(ne.querySelectorAll("input,textarea"), function (e, n) { if (n < edVals.length) e.value = edVals[n]; }); if (!ed) { var ti = ne.querySelector(".e-text"); ti.focus(); var L = ti.value.length; try { ti.setSelectionRange(L, L); } catch (e) {} } }
@@ -825,7 +829,7 @@
       var sec = f.getAttribute("data-add"), ti = f.querySelector('[name="text"]'); if (!clean(ti.value, 200)) { ti.focus(); return; }
       var nf = f.querySelector('[name="note"]'), pf = f.querySelector('[name="price"]'), pr = pf ? parsePrice(pf.value) : null;
       if (typeof pr === "number" && isNaN(pr)) { pf.focus(); pf.select(); return; }
-      add(sec, ti.value, nf ? nf.value : "", pr); f.reset(); f.querySelectorAll("input").forEach(function (i) { i.value = ""; });
+      add(sec, ti.value, nf ? nf.value : "", pr); f.reset(); f.querySelectorAll("input,textarea").forEach(function (i) { i.value = ""; }); growAll();
       changed(); var n = document.querySelector('.addform[data-add="' + sec + '"] [name="text"]'); if (n) n.focus();
     });
     main.addEventListener("keydown", function (e) {
@@ -835,7 +839,7 @@
       var ed = e.target.closest && e.target.closest("[data-ed]");
       if (ed) {
         if (e.key === "Escape") { e.preventDefault(); editing = null; render(); }
-        else if (e.key === "Enter" && e.target.tagName === "INPUT") { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
+        else if (e.key === "Enter" && !e.isComposing && (e.target.tagName === "INPUT" || e.target.classList.contains("e-text"))) { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
       }
     });
     main.addEventListener("keydown", function (e) {
@@ -844,6 +848,8 @@
       else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
     });
     main.addEventListener("focusout", function (e) { if (!rendering && e.target.getAttribute && e.target.getAttribute("data-price")) commitPrice(e.target); });
+    main.addEventListener("input", function (e) { if (e.target.classList && e.target.classList.contains("grow")) { if (/[\r\n]/.test(e.target.value)) e.target.value = e.target.value.replace(/[\r\n]+/g, " "); grow(e.target); } });
+    window.addEventListener("resize", growAll);
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
     main.addEventListener("click", function (e) {

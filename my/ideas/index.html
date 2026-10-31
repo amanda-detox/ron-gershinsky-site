@@ -59,7 +59,9 @@
   .mi.dng { color: var(--muted); }
   .mrow { display: flex; gap: 8px; } .mrow .mi { flex: 1; text-align: center; }
   .addform { margin-top: 14px; }
-  .addrow { display: flex; gap: 8px; }
+  .addrow { display: flex; gap: 8px; align-items: flex-start; }
+  textarea.grow { display: block; width: 100%; box-sizing: border-box; resize: none; overflow-y: auto; max-height: 40vh; min-height: 44px; padding: 10px 12px; line-height: 1.4; font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; touch-action: pan-y; -webkit-user-select: text; user-select: text; }
+  .addrow textarea.grow { flex: 1 1 auto; }
   .addform input, .addform textarea, .ed input, .ed textarea, .ed select, .tools2 select { min-width: 0; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 16.5px; outline: none; }
   .addform input[type=text] { flex: 1; height: 50px; padding: 0 16px; }
   .addform input:focus, .addform textarea:focus, .ed input:focus, .ed textarea:focus, .ed select:focus { border-color: var(--accent); }
@@ -324,6 +326,6 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=24"></script>
+<script src="app.js?v=25"></script>
 </body>
 </html>
