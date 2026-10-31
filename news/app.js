@@ -28,7 +28,7 @@
       savedEmpty: "עוד לא שמרת עדכונים", savedEmptySub: "לחץ על סימן השמירה שליד עדכון, והוא יחכה לך כאן גם אחרי שייעלם מהפיד.",
       savedCount: "עדכונים שמורים", savedOne: "עדכון שמור אחד",
       copy: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
-      share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
+      summ: "📝 סכם לי", summSent: "✓ נשלח לסיכום", summDone: "📝 לסיכום", summFail: "אין חיבור, נשלח כשיחזור", summOk: "נשלח לסיכום. הסיכום יופיע בסיכומיפיי", share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
       gone: "העדכון שביקשת כבר לא זמין. הנה כל העדכונים.",
       refresh: "רענון", refreshing: "מרענן…", newItems: "נוספו עדכונים חדשים", noNew: "אין עדכונים חדשים כרגע", noNet: "אין חיבור לאינטרנט", refreshFail: "הרענון לא הצליח, נסה שוב",
       locale: "he-IL"
@@ -56,7 +56,7 @@
       savedEmpty: "No saved updates yet", savedEmptySub: "Tap the bookmark next to any update and it will wait for you here, even after it leaves the feed.",
       savedCount: "saved updates", savedOne: "1 saved update",
       copy: "© 2026 Healify Ltd. All rights reserved.",
-      share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
+      summ: "📝 Summarize", summSent: "✓ Sent for summary", summDone: "📝 Summary", summFail: "Offline, will send when back", summOk: "Sent. The summary will appear in Summarify", share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
       gone: "That update is no longer available. Here are all the updates.",
       refresh: "Refresh", refreshing: "Refreshing…", newItems: "New updates added", noNew: "No new updates right now", noNet: "No internet connection", refreshFail: "Refresh failed, please try again",
       locale: "en-GB"
@@ -363,6 +363,39 @@
     if (!it || it.kind !== "podcast") return "";
     return '<div class="pod"><span aria-hidden="true">🎙️</span> <b>' + esc(t().newEp) + "</b>" + (it.show ? " · " + esc(it.show) : "") + "</div>";
   }
+
+  /* ----- "סכם לי": summary requests. A request = {id,url,title,kind,show,at} POSTed to a public ntfy.sh topic
+     (free, no account, CORS open; no personal data, only the public item link). A routine polls the topic,
+     writes summaries to ../summarify/summaries.json (entry.req = item id). Local state: rg-news-summ {id: time}. */
+  var SUMM_KEY = "rg-news-summ", SUMM_Q = "rg-news-summ-q", SUMM_TOPIC = "https://ntfy.sh/rg-summ-req-e052dce29652", summDoneSet = {};
+  function summMap() { var o = null; try { o = JSON.parse(get(SUMM_KEY) || "{}"); } catch (e) {} return o && typeof o === "object" ? o : {}; }
+  function summQueue() { var a = null; try { a = JSON.parse(get(SUMM_Q) || "[]"); } catch (e) {} return Array.isArray(a) ? a : []; }
+  function summPost(r) { return fetch(SUMM_TOPIC, { method: "POST", body: JSON.stringify(r) }).then(function (x) { if (!x.ok) throw new Error(x.status); }); }
+  function summFlush() {
+    var q = summQueue(); if (!q.length || !navigator.onLine) return;
+    var r = q[0];
+    summPost(r).then(function () { set(SUMM_Q, JSON.stringify(summQueue().filter(function (x) { return x.id !== r.id; }))); summFlush(); }, function () {});
+  }
+  function requestSummary(id) {
+    var it = findItem(id); if (!it) return;
+    var c = pick(it), m = summMap(); m[id] = Date.now(); set(SUMM_KEY, JSON.stringify(m));
+    var r = { id: id, url: it.url || "", title: c.title || "", kind: it.kind || "", show: it.show || "", lang: lang, at: new Date().toISOString() };
+    var q = summQueue().filter(function (x) { return x.id !== id; }); q.push(r); set(SUMM_Q, JSON.stringify(q));
+    summFlush(); if (typeof toast === "function") toast(navigator.onLine ? t().summOk : t().summFail);
+  }
+  function summBtn(id) {
+    if (summDoneSet[id]) return '<a class="sm done" href="../summarify/?item=' + encodeURIComponent(id) + '">' + esc(t().summDone) + "</a>";
+    var sent = !!summMap()[id];
+    return '<button type="button" class="sm' + (sent ? " sent" : "") + '" data-act="summ"' + (sent ? " disabled" : "") + ">" + esc(sent ? t().summSent : t().summ) + "</button>";
+  }
+  function loadSummDone() {
+    fetch("../summarify/summaries.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
+      if (!j || !Array.isArray(j.items)) return; var ch = false;
+      j.items.forEach(function (x) { var k = x && (x.req || x.id); if (k && !summDoneSet[k]) { summDoneSet[k] = 1; ch = true; } });
+      if (ch && data) renderFeed();
+    }).catch(function () {});
+  }
+  window.addEventListener("online", summFlush);
   function card(it, inSaved) {
     var id = itemId(it), c = pick(it), r = isRead(id), sv = isSaved(id);
     var tn = inSaved ? (topicName(it.topic) || it._topic) : null, tl = tn ? (tn[lang] || tn.he || tn.en) : "";
@@ -370,7 +403,7 @@
       '<button type="button" class="bm" data-act="' + (sv ? "unsave" : "save") + '" aria-pressed="' + (sv ? "true" : "false") + '" aria-label="' + esc(sv ? t().unsave : t().save) + '" title="' + esc(sv ? t().unsave : t().save) + '">' + (sv ? BMKF : BMK) + "</button>" +
       podBadge(it) + "<h3>" + esc(c.title) + "</h3><p>" + esc(c.summary) +
       '</p><div class="meta"><span class="when">' + (tl ? '<b class="tp">' + esc(tl) + "</b> · " : "") + esc(rel(it.date)) + (it.source ? " · " + esc(it.source) : "") +
-      '</span><span class="acts">' + '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>" +
+      '</span><span class="acts">' + summBtn(id) + '<button type="button" class="rd" data-act="' + (r ? "unread" : "read") + '">' + esc(r ? t().markUnread : t().markRead) + "</button>" +
       '<button type="button" class="sh" data-act="share" aria-label="' + esc(t().shareAria) + '" title="' + esc(t().shareAria) + '">' + SHARE + '<span>' + esc(t().share) + "</span></button>" +
       '<button type="button" class="more" data-act="more" aria-haspopup="dialog">' + esc(t().more) + MORE + "</button></span></div></article>";
   }
@@ -424,6 +457,7 @@
     var c = el.closest(".card"), act = el.getAttribute("data-act");
     if (el.classList.contains("src")) return; // opening the source doesn't mark it read; only the read button does
     if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
+    if (act === "summ" && c) { requestSummary(c.getAttribute("data-id")); el.disabled = true; el.classList.add("sent"); el.textContent = t().summSent; return; }
     if (act === "share" && c) { shareItem(c.getAttribute("data-id")); return; }
     if (act === "save" && c) { saveItem(findItem(c.getAttribute("data-id"))); renderChips(); renderFeed(); return; }
     if (act === "unsave" && c) {
@@ -440,6 +474,7 @@
     } else if (act === "toggle") { showRead = !showRead; renderChips(); renderFeed(); }
   });
 
+  setTimeout(function () { summFlush(); loadSummDone(); }, 600);
   function renderAll() { renderChrome(); renderStatus(); renderChips(); renderFeed(); }
 
   function load() {

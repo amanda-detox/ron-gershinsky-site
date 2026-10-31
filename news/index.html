@@ -115,6 +115,10 @@ html[dir=rtl] .card .meta a svg{transform:scaleX(-1)}
 .card .acts{display:inline-flex;align-items:center;gap:12px}
 .card .rd{font:700 13px var(--sans);color:var(--ink2);background:var(--chip);border:1px solid var(--line2);border-radius:999px;padding:4px 11px;cursor:pointer;white-space:nowrap}
 .card .rd:hover{border-color:var(--em)}
+.card .sm{font:700 12px var(--sans);color:#f5c542;background:rgba(26,71,160,.22);border:1px solid rgba(245,197,66,.55);border-radius:999px;padding:4px 10px;cursor:pointer;white-space:nowrap;text-decoration:none}
+.card .sm:hover{border-color:#f5c542}
+.card .sm.sent{opacity:.7;cursor:default}
+html[data-theme=light] .card .sm{color:#0b2a6b;background:rgba(245,197,66,.18);border-color:#c99a1e}
 .feedbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 2px -6px;font-size:13.5px}
 .lnk{background:none;border:0;padding:4px 0;font:700 13.5px var(--sans);color:var(--em);cursor:pointer}
 .lnk.dim{color:var(--dim);font-weight:600}
@@ -308,7 +312,7 @@ html[data-theme=dark] .card .sh svg{color:#f5c542}
 <div class="sheet-back" id="rd-sheet" hidden><div class="rdr" role="dialog" aria-modal="true" aria-labelledby="rd-title"><div class="grab"></div><div class="rhd"><div class="tt"><h2 id="rd-title"></h2><div class="rmeta" id="rd-meta"></div></div><button type="button" class="rsh" id="rd-share"></button><button type="button" class="x" id="rd-close">×</button></div><div class="rdr-scroll"><div class="body" id="rd-body"></div><div class="rft"><a id="rd-src" class="src" href="#" target="_blank" rel="noopener noreferrer"></a></div></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <script src="../shared/rg-account.js"></script>
-<script src="app.js?v=22"></script>
+<script src="app.js?v=23"></script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="header.top"></script>
 </body>
 </html>
