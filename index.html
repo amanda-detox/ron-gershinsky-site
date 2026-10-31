@@ -216,6 +216,14 @@
   .more-list a:hover, .more-list a:focus-visible { background: var(--surface-2); }
   .more-list img { width: 2.25rem; height: 2.25rem; border-radius: 0.6rem; flex: none; }
   .more-list .app-name { font-size: 0.9375rem; }
+  .more-metrics { margin: 0 0.5rem 0.5rem; border-top: 1px solid var(--line); }
+  .more-metrics > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 0.75rem; min-height: 3rem; padding: 0.4rem 0.5rem; border-radius: 0.5rem; color: var(--fg); font-size: 0.9375rem; }
+  .more-metrics > summary::-webkit-details-marker { display: none; }
+  .more-metrics > summary:hover, .more-metrics > summary:focus-visible { background: var(--surface-2); }
+  .more-metrics .mm-ico { width: 2.25rem; height: 2.25rem; display: inline-flex; align-items: center; justify-content: center; font-size: 1.4rem; flex: none; }
+  .more-metrics > summary .chev { margin-inline-start: auto; display: inline-block; width: 0.5rem; height: 0.5rem; border-inline-end: 2px solid #f5c542; border-bottom: 2px solid #f5c542; transform: rotate(45deg); transition: transform 0.15s ease; }
+  .more-metrics[open] > summary .chev { transform: rotate(-135deg); }
+  .more-metrics .mgrid { padding: 0.25rem 0 0.5rem; }
   .priv-apps[hidden] { display: none; }
   .app-lock { display: inline-flex; vertical-align: 0.05em; margin-inline-start: 0.25rem; color: #f5c542; opacity: 0.85; }
   html[data-theme="light"] .app-lock { color: #b8901c; }
@@ -355,7 +363,7 @@
   <section class="apps" aria-labelledby="apps-title">
     <h2 id="apps-title" class="owner-hide"></h2>
     <ul class="app-grid" id="app-grid"></ul>
-    <details class="more-apps" id="more-apps" hidden><summary><span id="more-title"></span><span class="chev" aria-hidden="true"></span></summary><ul class="more-list" id="more-list"></ul></details>
+    <details class="more-apps" id="more-apps" hidden><summary><span id="more-title"></span><span class="chev" aria-hidden="true"></span></summary><ul class="more-list" id="more-list"></ul><details class="more-metrics" id="metrics"><summary><span class="mm-ico" aria-hidden="true">📊</span><span id="metrics-title"></span><span class="chev" aria-hidden="true"></span></summary><div class="mgrid" id="mgrid"></div></details></details>
   </section>
   <section class="apps priv-apps" id="priv-apps" aria-labelledby="priv-title" hidden>
     <h2 id="priv-title"></h2>
@@ -386,7 +394,7 @@
     <iframe class="game-frame" id="game-frame" src="relax/still-pond.html" title="Still Pond" loading="lazy"></iframe>
     <a class="mail" id="game-open" href="relax/still-pond.html"></a>
   </section>
-  <section class="metrics" id="metrics" aria-labelledby="metrics-title"><h2 id="metrics-title"></h2><div class="mgrid" id="mgrid"></div></section>
+  
   <footer id="foot"></footer>
 </main>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
@@ -501,7 +509,7 @@ function renderApps(he) {
     li.appendChild(a);
     list.appendChild(li);
   });
-  box.hidden = !rest.length;
+  box.hidden = false; // Ron 2026-10-31: מדדים lives in this dropdown too, so it is always shown
 }
 
 var copy = {
