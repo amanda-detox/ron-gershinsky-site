@@ -398,7 +398,7 @@
   }
   function panel(sec) {
     showP = hasPrices(sec);
-    var act = openIn(sec), done = selIn(sec);
+    var act = live(sec).sort(byOrder), done = []; // one list only (Ron 31.10)
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
@@ -412,6 +412,8 @@
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
     if (drag || idrag) { needRender = true; return; } // never rebuild under a finger that is dragging (a category or an item)
     if (!uid) { pn.textContent = ""; closeMenu(); panels.innerHTML = ""; setStatus(); return; } // signed out: nothing private on the page
+    var unm = false; for (var uk in items) { var ux = items[uk]; if (!ux.deleted && ux.type !== "meta" && ux.sec && isSel(ux)) { upd(uk, { done: false, dord: null }); unm = true; } } // unmark old "נבחר" items: one list only (Ron 31.10)
+    if (unm) { pending = true; saveLocal(); syncSoon(); }
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
     var ae = document.activeElement, keep = null;
     if (ae && ae.closest && ae.closest(".addform")) keep = { form: ae.closest(".addform").getAttribute("data-add"), name: ae.name };
