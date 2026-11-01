@@ -2,7 +2,7 @@
   "name": "סאונדיפיי · Soundify",
   "short_name": "סאונדיפיי",
   "description": "סאונדיפיי: צלילי טבע להרגעה ולשינה · Soundify, ambient sounds for relaxing and sleep",
-  "id": "./",
+  "id": "/ron-gershinsky-site/sounds/",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
