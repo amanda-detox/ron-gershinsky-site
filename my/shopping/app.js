@@ -404,9 +404,9 @@
       var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (chk ? x.ck : x.done) sel += p; }
     var sum = $("sum"); if (!sum) return; sum.hidden = !any;
     // Ron 1.11: total of the whole list + selected + not selected (in a checklist: checked / not checked)
-    sum.innerHTML = '<span class="tot">' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + " ₪</b></span>" +
+    sum.innerHTML = '<span class="tot">' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + " ₪</b></span>" + (chk ?
       '<span class="sel">' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>" +
-      '<span class="sel">' + esc(t("sumUnsel")) + ': <b>' + esc(fmtPrice(tot - sel)) + " ₪</b></span>";
+      '<span class="sel">' + esc(t("sumUnsel")) + ': <b>' + esc(fmtPrice(tot - sel)) + " ₪</b></span>" : "");
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
