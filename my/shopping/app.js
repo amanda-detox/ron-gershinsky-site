@@ -122,7 +122,7 @@
     BUILTIN.forEach(function (s) { map[s.cat] = { cat: s.cat, pos: s.pos, created: 0, def: s.def, ph: s.ph, empty: s.empty }; });
     for (k in catsMap) { var r = catsMap[k]; if (!r || r.deleted || r.type !== "cat" || typeof r.cat !== "string") continue;
       var b = map[r.cat] || {};
-      map[r.cat] = { cat: r.cat, pos: typeof r.pos === "number" ? r.pos : (b.pos || 0), created: r.created || 0, name: r.name, gone: r.gone, def: b.def, ph: b.ph, empty: b.empty }; }
+      map[r.cat] = { cat: r.cat, pos: typeof r.pos === "number" ? r.pos : (b.pos || 0), created: r.created || 0, name: r.name, gone: r.gone, check: r.check, def: b.def, ph: b.ph, empty: b.empty }; }
     for (k in map) { c = map[k]; if (!c.gone) out.push(c); }
     return out.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.cat < b.cat ? -1 : 1); });
   }
@@ -358,6 +358,10 @@
   /* order inside "נבחר": "dord" (set when a selected item is dragged with ☰); an item without it (just selected) goes to the bottom */
   function dordOf(x) { return typeof x.dord === "number" && isFinite(x.dord) ? x.dord : Infinity; }
   function toggleDone(id) { var x = items[id]; if (!x || x.deleted) return; upd(id, { done: !x.done, dord: null }); }
+  /* checklist mode (Ron 1.11, same as Listify): per list, category record field check: 1 (synced). No field = regular list.
+     In a checklist each item has its own "ck" (true = checked): ✓, moves to the bottom, no strikethrough, no fading. */
+  function isChk(cid) { var c = catOf(cid); return !!(c && c.check); }
+  function toggleCk(id) { var x = items[id]; if (x && !x.deleted) upd(id, { ck: x.ck ? null : true }); }
   function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
   function add(text, cid, price, note) {
     text = clean(text, 200); if (!text) return;
@@ -380,6 +384,7 @@
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function row(x) {
+    var showC = isChk(curTab()), ck = showC && !!x.ck;
     var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
       ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
@@ -388,16 +393,20 @@
         (x.note ? '<span class="note">' + esc(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
-    return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
+    return '<li data-id="' + id + '"' + (x.done ? ' class="done"' : ck ? ' class="ckd"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
+      (showC && editing !== x.id ? '<button type="button" class="ckbox" data-a="ck" role="checkbox" aria-checked="' + ck + '" aria-label="' + esc(x.text) + '">' + (ck ? "✓" : "") + "</button>" : "") +
       txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
   function sumNow() { // the total line; a price being typed counts live, before it is saved
-    var cur = curTab(), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
+    var cur = curTab(), chk = isChk(cur), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
     if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) live = { id: ae.getAttribute("data-price"), v: v || 0 }; }
     if (uid) for (var k in items) { var x = items[k]; if (x.deleted || listOf(x) !== cur) continue; any = true;
-      var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (x.done) sel += p; }
+      var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (chk ? x.ck : x.done) sel += p; }
     var sum = $("sum"); if (!sum) return; sum.hidden = !any;
-    sum.innerHTML = '<span class="sel">' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>";
+    // Ron 1.11: total of the whole list + selected + not selected (in a checklist: checked / not checked)
+    sum.innerHTML = '<span class="tot">' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + " ₪</b></span>" +
+      '<span class="sel">' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>" +
+      '<span class="sel">' + esc(t("sumUnsel")) + ': <b>' + esc(fmtPrice(tot - sel)) + " ₪</b></span>";
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
@@ -424,6 +433,7 @@
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the top
+    if (isChk(cur)) act = act.filter(function (x) { return !x.ck; }).concat(act.filter(function (x) { return !!x.ck; })); // checklist: checked items go to the bottom
     done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
@@ -658,6 +668,7 @@
         '<button type="button" class="cp-more' + (open ? " on" : "") + '" data-opt="' + id + '" aria-expanded="' + open + '" title="' + esc(t("optMenu")) + '" aria-label="' + esc(t("optMenu") + ": " + catName(cc)) + '">⋮</button></li>' +
         (open ? '<li class="cp-opts">' +
           '<button type="button" class="cp-oi" data-mov="' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
+          '<button type="button" class="cp-oi" data-chk="' + id + '"><span aria-hidden="true">' + (cc.check ? "☰" : "☑") + "</span>" + esc(t(cc.check ? "optToList" : "optToCheck")) + "</button>" +
           '<button type="button" class="cp-oi" data-ren="' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
           '<button type="button" class="cp-oi" data-del="' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
@@ -676,7 +687,8 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && catOpen && !$("sheet")) closeCats(); });
     list.addEventListener("click", function (e) {
       if (noClick) { noClick = false; e.preventDefault(); return; }
-      var b = e.target.closest("[data-pick],[data-ren],[data-del],[data-opt],[data-mov],[data-up],[data-dn]"); if (!b) return;
+      var b = e.target.closest("[data-pick],[data-ren],[data-del],[data-opt],[data-mov],[data-up],[data-dn],[data-chk]"); if (!b) return;
+      if (b.hasAttribute("data-chk")) { var kc = b.getAttribute("data-chk"); upCat(kc, { check: isChk(kc) ? null : 1 }); changed(); return; }
       if (b.hasAttribute("data-opt")) { var oc = b.getAttribute("data-opt"); catOpt = catOpt === oc ? null : oc; render(); var ob = $("cat-list").querySelector(".cp-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e2) {} return; }
       if (b.hasAttribute("data-mov")) { catOpt = null; catMove = true; catEdit = true; render(); return; }
       if (b.hasAttribute("data-up") || b.hasAttribute("data-dn")) {
@@ -770,6 +782,7 @@
       var b = e.target.closest("[data-a]"); if (!b) return;
       var li = b.closest("li"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       var a = b.getAttribute("data-a");
+      if (a === "ck") { toggleCk(id); changed(); return; }
       if (a === "edit") { editing = id; render(); var inp = document.querySelector('[data-edit="' + id + '"]'); if (inp) { var n = inp.value.length; try { inp.setSelectionRange(n, n); } catch (e2) {} } }
     });
     main.addEventListener("keydown", function (e) {
