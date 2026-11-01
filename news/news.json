@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T21:36:00+02:00",
+ "updated": "2026-11-01T22:28:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-musk-gift-research-buy",
+   "topic": "grokbot",
+   "date": "2026-11-01T20:23:48Z",
+   "url": "https://x.com/elonmusk/status/2116989604104392969",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: ‏Grok @Bot יחפש וגם יקנה מתנות לחברים ולמשפחה",
+    "summary": "אילון מאסק כתב שבוט של גרוק יבדוק אילו מתנות החברים והמשפחה שלך יאהבו, ויקנה אותן. הוא ציטט את ג'סטין מור, שסיפרה שהבוט בחר וקנה לה מתנה עד 100 דולר מחשבון X Money שלה."
+   },
+   "en": {
+    "title": "Musk: Grok @Bot will research and buy gifts for friends and family",
+    "summary": "Elon Musk wrote that Grok @Bot will research gifts your friends and family would love and buy them. He quoted Justine Moore, who said the bot picked and bought her a gift of up to $100 from her X Money account."
+   },
+   "full_he": "Grok @Bot יחקור אילו מתנות החברים והמשפחה שלך יאהבו, ויקנה אותן.\n\nהפוסט שהוא ציטט (ג'סטין מור, ‎@venturetwins‎, 31 באוקטובר):\n\nבשבוע שעבר ביקשתי מבוט הגרוק שלי להפתיע אותי במתנה.\n\nאמרתי לו שהוא יכול להשתמש בעד 100 דולר מחשבון ה־X Money שלי, וביקשתי שייקח בחשבון את הציוצים שלי ואת השיחות שלנו כדי לבחור מתנה טובה.\n\nתראו מה הגיע היום! הוא אפילו צירף הפתעה של ליל כל הקדושים 🎃\n\n(בפוסט שלה מצורפת תמונה של המתנה.)",
+   "full_en": "Grok @Bot will research gifts that your friends and family would love and buy them\n\nThe quoted post (Justine Moore, @venturetwins, Oct 31):\n\nLast week, I told my Grok @bot to surprise me with a gift.\n\nI said it could use up to $100 from my X Money account, and asked it to consider my tweets + our conversations to pick a good present.\n\nLook what arrived today! Even included a Halloween surprise 🎃\n\n(Her post includes a photo of the gift.)"
+  },
+  {
+   "id": "musk-people-deserve-ram-meme",
+   "topic": "musk",
+   "date": "2026-11-01T20:09:06Z",
+   "url": "https://x.com/elonmusk/status/2116985908268572975",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"גם לעם מגיע RAM!\"",
+    "summary": "אילון מאסק פרסם מם עם הכיתוב \"אתה מסתיר DRAM מהענן, נכון?\" ואת המילים \"גם לעם מגיע שיהיה לו RAM!\". באחת התגובות שהוא אישר, נטען שסם אלטמן אמר שזה \"די נורא\" שלאנשים יש RAM."
+   },
+   "en": {
+    "title": "Musk: \"The people deserve to have their RAM too!\"",
+    "summary": "Elon Musk posted a meme captioned \"You are withholding DRAM from the cloud, are you not?\" with the words \"The people deserve to have their RAM too!\". In a reply he endorsed, someone claimed Sam Altman called it \"quite terrible\" that people have RAM."
+   },
+   "full_he": "גם לעם מגיע שיהיה לו RAM!\n\nהתמונה בפוסט היא מם: דמות מהסרט \"ממזרים חסרי כבוד\", עם הכיתוב \"אתה מסתיר DRAM מהענן, נכון?\".\n\nבתגובות: גולש כתב שסם אלטמן אמר שזה \"די נורא\" שלאנשים יש RAM, ומאסק ענה לו \"ברצינות\". זו טענה של הגולש, ולא הובא לה מקור בשרשור.",
+   "full_en": "The people deserve to have their RAM too!\n\nThe image in the post is a meme: a character from the film Inglourious Basterds, captioned \"You are withholding DRAM from the cloud, are you not?\"\n\nIn the replies, a user wrote that Sam Altman says it's \"quite terrible\" that people have RAM, and Musk answered \"Seriously\". That's the user's claim; no source for it is given in the thread."
+  },
+  {
+   "id": "brecka-coffee-creamer-ingredients",
+   "topic": "brecka",
+   "date": "2026-11-01T20:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2116983616873828770",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: השמנת לקפה אולי מקלקלת את הבחירות הבריאות שלך",
+    "summary": "לדברי גארי בראקה, אחרי ששדרגת את פולי הקפה לאורגניים וטחונים טרי, כדאי לבדוק גם את השמנת לקפה. לדבריו, הרבה שמנות פופולריות מכילות סוכר מוסף, טעמים מלאכותיים, שמנים מזוקקים ומתחלבים."
+   },
+   "en": {
+    "title": "Gary Brecka: your coffee creamer may undo your healthier choices",
+    "summary": "Gary Brecka says that after upgrading to fresh-ground organic coffee, it's worth checking your creamer too. He says many popular creamers contain added sugars, artificial flavors, refined oils and emulsifiers."
+   },
+   "full_he": "שדרגת את פולי הקפה, עברת לאורגני והתחלת לטחון אותם טרי. אבל מה עם השמנת לקפה?\n\nאנחנו מסבירים למה השמנת האהובה עליך עלולה לבטל חלק מהבחירות הבריאות האלה.\n\nהרבה שמנות פופולריות מכילות סוכר מוסף, טעמים מלאכותיים, שמנים מזוקקים ומתחלבים, שאולי אתה לא שם לב שאתה צורך כל בוקר. לפעמים דווקא החלק הכי קטן בשגרה הוא זה שכדאי להסתכל עליו מקרוב.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "You upgraded your coffee beans, switched to organic, and started grinding them fresh. But what about your creamer?\n\nWe break down why your favorite coffee creamer might be undoing some of those healthier choices.\n\nMany popular creamers contain added sugars, artificial flavors, refined oils, and emulsifiers that you might not realize you're consuming every morning. Sometimes it's the smallest part of your routine that's worth taking a closer look at.\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "medicalmedium-healthy-fats-heavy-metals-brain",
+   "topic": "medicalmedium",
+   "date": "2026-11-01T19:49:21Z",
+   "url": "https://x.com/MedicalMedium/status/2116980935531098279",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: עצת ה\"שומן טוב למוח\" עלולה להזיק",
+    "summary": "אנתוני ויליאם (מדיקל מדיום) טוען שכשיש מתכות כבדות כמו כספית ונחושת ברקמת המוח, תזונה עתירת שומן מאיצה את החמצון שלהן ופוגעת עוד יותר בתאי המוח, ולכן הוא ממליץ להפחית שומנים. זו טענה שלו, שאינה מקובלת ברפואה המרכזית."
+   },
+   "en": {
+    "title": "Medical Medium: the \"good for your brain\" fat advice can backfire",
+    "summary": "Anthony William (Medical Medium) claims that when heavy metals like mercury and copper are in brain tissue, a high-fat diet speeds their oxidation and adds damage to brain cells, so he recommends lowering fats. This is his claim and isn't mainstream medical consensus."
+   },
+   "full_he": "עצת ה\"טוב למוח\" שעלולה להזיק\n\nכולם מדברים על שומנים בריאים. אומגה 3, שמן זית, אבוקדו, אגוזים, זרעים. תאכל יותר שומן כי זה אמור להיות טוב למוח, נכון?\n\nאבל הנה מה שאנשים לא מבינים.\n\nלדבריו, כשמתכות כבדות רעילות כמו כספית ונחושת נמצאות ברקמת המוח, תזונה עתירת שומן יכולה להאיץ את החמצון שלהן, וזה עלול לגרום לתאי המוח נזק נוסף מעבר למה שהמתכות לבדן גורמות.\n\nלכן, לדבריו, הוא ממליץ להפחית בתזונה שומנים \"גלויים/קיצוניים\". לדבריו זה צעד חזק לריפוי בהרבה רמות שונות.\n\nבהמשך הפוסט יש קישורים לשידור חי ביוטיוב, לספר Brain Saver, לפרוטוקולים להוצאת מתכות, ולמדריכים חינמיים באתר שלו.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: אלה טענות שלו. הרפואה המרכזית רואה בשומנים כמו אומגה 3 ושמן זית חלק מתזונה בריאה למוח, ואין ראיות מקובלות לכך שהם מאיצים \"חמצון\" של מתכות במוח.",
+   "full_en": "The \"Good For Your Brain\" Food Advice That Can Backfire\n\nEverybody's talking about healthy fats. Omega-3s, olive oil, avocados, nuts, seeds. Eat more fat because it's supposed to be good for your brain, right?\n\nBut here's what people don't realize.\n\nWhen toxic heavy metals like mercury and copper are in the brain tissue, a high-fat diet can accelerate their oxidation, which can cause additional damage to brain cells than just the metals alone cause.\n\nThat's one reason why I recommend lowering overt/radical fats in your diet. It's a powerful step towards healing on so many different levels.\n\nThe rest of the post links to a YouTube livestream, his book Brain Saver, protocols to get metals out, and free downloads on his site.\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: these are his claims. Mainstream medicine considers fats like omega-3s and olive oil part of a brain-healthy diet, and there's no accepted evidence that they speed up \"oxidation\" of metals in the brain."
+  },
+  {
+   "id": "johnson-chef-resting-heart-rate",
+   "topic": "johnson",
+   "date": "2026-11-01T19:43:37Z",
+   "url": "https://x.com/bryan_johnson/status/2116979494699647184",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: השף שלו מקבל כל בוקר את הדופק שלו בשינה",
+    "summary": "בריאן ג'ונסון כתב שה־AI שלו שולח אוטומטית לשף שלו את דופק המנוחה שלו מהלילה, ושאחרי יותר מ־1,800 ימי ניסוי הוא יודע בדיוק איך תזמון הארוחות, הרכב האוכל והקלוריות משפיעים עליו. בלילה של 31 באוקטובר הדופק שלו היה 41."
+   },
+   "en": {
+    "title": "Bryan Johnson: his chef gets his sleep resting heart rate every morning",
+    "summary": "Bryan Johnson wrote that his AI automatically sends his chef his overnight resting heart rate, and that after 1,800+ days of experimenting he knows exactly how meal timing, food composition and calories affect it. On the night of Oct 31 it was 41 bpm."
+   },
+   "full_he": "השף שלי מקבל כל בוקר את דופק המנוחה שלי בשינה.\n\nה־AI שלי שולח את זה אוטומטית.\n\nאחרי יותר מ־1,800 ימים של ניסויים, אני יודע בדיוק מה ההשפעה של תזמון הארוחות, הרכב האוכל והקלוריות על דופק המנוחה שלי.\n\n• 42 פעימות בדקה ומטה: 😃\n• 43–45: 😐\n• מעל 45: 🙁\n\nהתמונה בפוסט היא הודעה מה־AI שלו: \"מסיבת לב! 41 פעימות בדקה. דופק המנוחה של בריאן, אתמול בלילה, שבת 31 באוקטובר\", ומתחת: \"[ה־AI של בריאן] זמן מסיבה! דופק המנוחה של בריאן אתמול בלילה, שבת 31 באוקטובר: 41 פעימות בדקה\".\n\nאין לו המשך בשרשור.",
+   "full_en": "My chef get's my sleep resting heart rate every am.\n\nMy AI auto sends.\n\nAfter 1,800+ days of experimentation, I know the exact impact of meal timing, food composition, and calories on my resting heart rate.\n\n• 42 bpm and below: 😃\n• 43-45 bpm: 😐\n• 45 bpm+: 🙁\n\nThe image in the post is a message from his AI: \"PARTY HEART! 41 BPM. Bryan's resting HR | Last night, Sat Oct 31\", and below it: \"[Bryan's AI] Party time! Bryan's resting heart rate last night, Saturday, October 31: 41 BPM\".\n\nThere's no continuation from him in the thread."
+  },
   {
    "id": "solana-front-wing-williams-kraken",
    "topic": "solana",
