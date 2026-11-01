@@ -62,9 +62,9 @@
     color: #1a1d44; background: color-mix(in srgb, var(--c, var(--lav)) 85%, white); border: 2px solid #e6c36a; box-shadow: 0 0 12px color-mix(in srgb, var(--c, var(--lav)) 35%, transparent); cursor: pointer; touch-action: manipulation; }
   .vstep button:active { transform: scale(0.94); }
   .vstep button:disabled { opacity: 0.35; box-shadow: none; cursor: default; }
-  .vstep .vdb { min-width: 0; flex: 0 1 auto; text-align: center; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; color: #e6c36a; white-space: nowrap; }
+  .vstep .vdb { width: 3.2em; flex: none; font-family: inherit; background: rgba(0,0,0,0.25); border: 1px solid rgba(230,195,106,0.45); border-radius: 8px; padding: 3px 2px; min-height: 28px; color-scheme: dark; text-align: center; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; color: #e6c36a; white-space: nowrap; }
   html[data-theme="light"] .vstep button { background: #1a47a0; color: #ffffff; border-color: #c9a23a; }
-  html[data-theme="light"] .vstep .vdb { color: #0b2a6b; }
+  html[data-theme="light"] .vstep .vdb { color: #0b2a6b; background: #fff; border-color: rgba(201,162,39,0.6); }
   .volrow .ico { font-size: 13px; opacity: 0.7; }
   input[type=range] { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 32px; background: transparent; margin: 0; --p: 50%; --c2: var(--c, var(--lav)); }
   input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 999px;
@@ -83,11 +83,11 @@
   .ico[aria-expanded="true"] { background: rgba(59,130,246,0.3); }
   .ico-n { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
   .ico-n:empty { display: none; }
-  .bar .vstep button { width: 36px; height: 36px; font-size: 20px; }
+  .bar .vstep button { width: 28px; height: 28px; font-size: 16px; }
   .bar .timer .chip { min-height: 32px; padding: 3px 8px; font-size: 12.5px; white-space: nowrap; }
   .bar .timer { flex-wrap: nowrap; gap: 4px; }
   html[data-theme="light"] .ico { color: #0b2a6b; background: #fff8e6; border-color: rgba(201,162,39,0.6); }
-  .tile .vstep button { width: 40px; height: 40px; font-size: 22px; }
+  .tile .vstep button { width: 30px; height: 30px; font-size: 17px; }
   .row.mrow { justify-content: center; }
   .row.prow { justify-content: center; gap: 14px; }
   .master .vstep { flex: none; gap: 10px; }
@@ -110,9 +110,9 @@
   .left { margin-inline-start: auto; color: var(--lav); font-variant-numeric: tabular-nums; }
   .note { margin: 22px 0 0; padding: 14px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line);
     font-size: 14px; line-height: 1.6; font-weight: 300; color: var(--soft); }
-  .note-w { position: relative; } .note-w .note { padding-top: 36px; } .note-ctl { position: absolute; top: 28px; inset-inline-end: 8px; display: flex; gap: 4px; z-index: 1; }
+  .note-w { position: relative; } .note-w .note { margin-top: 0; padding-top: 6px; border-top-left-radius: 0; border-top-right-radius: 0; border-top: 0; } .note-ctl { display: flex; justify-content: flex-end; gap: 6px; margin-top: 22px; padding: 8px 10px 0; background: var(--card); border: 1px solid var(--line); border-bottom: 0; border-radius: 18px 18px 0 0; }
   .note-ctl button { width: 24px; height: 24px; padding: 0; border-radius: 50%; border: 1px solid rgba(212,175,55,.5); background: rgba(13,42,92,.6); color: #f3d77a; font-size: 13px; line-height: 22px; cursor: pointer; }
-  .note-w.min .note { display: none; } .note-w.min .note-ctl { position: static; justify-content: flex-end; margin-top: 22px; } .note-w.min #note-x { display: none; } .note-w.gone { display: none; }
+  .note-w.min .note { display: none; } .note-w.min .note-ctl { background: none; border: 0; padding: 0; } .note-w.min #note-x { display: none; } .note-w.gone { display: none; }
   .note b { font-weight: 500; color: rgba(241,245,249,0.85); }
   .install-wrap { text-align: center; margin: 20px 0 0; }
   .install-wrap.top { margin: 4px 0 14px; }
@@ -154,7 +154,7 @@
   .actual { display: block; font-size: 11px; color: var(--faint); text-align: center; padding: 0 12px 4px; min-height: 0; }
   .tile:not(.on) .actual { display: none; }
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(70px + env(safe-area-inset-bottom, 0px)); z-index: 30;
-    background: rgba(44,42,98,0.95); border: 1px solid rgba(59,130,246,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
+    background: rgba(11,42,107,0.95); border: 1px solid rgba(230,195,106,0.45); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
   /* ---- light mode (toggle + backgrounds from shared/rg-bg.js): cream + navy, blue/gold accents ---- */
   /* blue & gold shimmer for frequency / brainwave symbols */
   .glyph, .hzbig { background: linear-gradient(110deg, #3b82f6 0%, #93c5fd 25%, #f3d77a 45%, #fff6d0 50%, #d4af37 55%, #60a5fa 80%, #3b82f6 100%);
@@ -193,6 +193,20 @@
   /* © footer line: follows the language toggle */
   html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
   .rg-copy { margin-top: 8px; font-size: 12px; }
+  .mix-box { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(62px + env(safe-area-inset-bottom, 0px)); z-index: 6; width: min(360px, 92vw); max-height: 60vh; overflow: auto;
+    background: rgba(11,31,77,0.97); border: 1px solid rgba(230,195,106,0.5); border-radius: 18px; padding: 12px; box-shadow: 0 0 24px rgba(230,195,106,0.25); color: #f1f5f9; }
+  .mix-box h3 { margin: 0 0 8px; font-size: 14px; font-weight: 500; color: #e6c36a; }
+  .mix-save { display: flex; gap: 6px; margin-bottom: 12px; }
+  .mix-save input { flex: 1; min-width: 0; font: inherit; font-size: 14px; color: #f1f5f9; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 6px 10px; min-height: 36px; }
+  .mix-save button, .mix-row .ml { min-height: 36px; border-radius: 999px; border: 1px solid rgba(230,195,106,0.5); background: rgba(59,130,246,0.2); color: #f5d77a; padding: 0 12px; font-size: 14px; }
+  .mix-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .mix-row { display: flex; gap: 6px; align-items: center; }
+  .mix-row .ml { flex: 1; text-align: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #f1f5f9; }
+  .mix-row .md { flex: none; width: 32px; height: 32px; padding: 0; border-radius: 50%; border: 1px solid rgba(212,175,55,.5); background: rgba(13,42,92,.6); color: #f3d77a; font-size: 13px; }
+  .mix-empty { font-size: 13px; color: rgba(214,224,240,0.7); margin: 0; }
+  html[data-theme="light"] .mix-box { background: #fffdf6; color: #0b1f4d; border-color: rgba(201,162,39,0.6); }
+  html[data-theme="light"] .mix-box h3 { color: #0b2a6b; } html[data-theme="light"] .mix-save input { color: #0b1f4d; background: #fff; border-color: rgba(11,42,107,0.25); }
+  html[data-theme="light"] .mix-save button, html[data-theme="light"] .mix-row .ml { color: #0b2a6b; background: #fff8e6; }
 </style>
 <script src="../shared/rg-bg.js" data-app="sounds" data-theme-key="rg-sounds-theme" data-light-color="#f3efe6" data-slot="#acct-row" data-before=""></script>
 </head>
@@ -219,11 +233,18 @@
       <button type="button" class="ico" id="vol-btn" aria-expanded="false">🔊<span class="ico-n" id="vol-n"></span></button>
       <div class="master" id="vol-box" hidden>
         <label hidden><span class="long" id="master-l"></span></label>
-        <div class="vstep" id="master" dir="ltr" style="--c: #3b82f6"><button type="button" class="vm">−</button><span class="vdb"></span><button type="button" class="vp">+</button></div>
+        <div class="vstep" id="master" dir="ltr" style="--c: #3b82f6"><button type="button" class="vm">−</button><input type="text" class="vdb" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off"><button type="button" class="vp">+</button></div>
       </div>
     </div>
+    <button type="button" class="ico" id="mix-btn" aria-expanded="false">💾</button>
     <button type="button" class="stopall" id="stopall" hidden></button>
   </div>
+</div>
+<div class="mix-box" id="mix-box" hidden>
+  <h3 id="mix-save-h"></h3>
+  <div class="mix-save"><input type="text" id="mix-name" maxlength="40" autocomplete="off"><button type="button" id="mix-save"></button></div>
+  <h3 id="mix-list-h"></h3>
+  <ul class="mix-list" id="mix-list"></ul>
 </div>
 <div class="flash" id="flash"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -258,7 +279,7 @@
     SOUNDS.push({ id: "bw-" + b[0], cat: "brain", kind: "bw", g: b[1], he: b[2], en: b[3], min: b[4], max: b[5], def: b[6], step: b[7], c: b[8] });
   });
   // Special frequencies: neutral labels only.
-  [[432, "כיוון ורדי", "Verdi tuning", "#86efac"], [528, "סולפג׳יו", "Solfeggio", "#fde68a"], [174, "סולפג׳יו", "Solfeggio", "#fca5a5"],
+  [[432, "סולפג׳יו", "Solfeggio", "#86efac"], [528, "סולפג׳יו", "Solfeggio", "#fde68a"], [174, "סולפג׳יו", "Solfeggio", "#fca5a5"],
    [285, "סולפג׳יו", "Solfeggio", "#fdba74"], [396, "סולפג׳יו", "Solfeggio", "#fcd34d"], [417, "סולפג׳יו", "Solfeggio", "#bef264"],
    [639, "סולפג׳יו", "Solfeggio", "#67e8f9"], [741, "סולפג׳יו", "Solfeggio", "#93c5fd"], [852, "סולפג׳יו", "Solfeggio", "#93c5fd"],
    [963, "סולפג׳יו", "Solfeggio", "#fcd34d"]].forEach(function (f) {
@@ -362,7 +383,7 @@
   function vToDb(v) { if (!(v > 0)) return DB_OFF; return Math.max(DB_MIN, Math.min(DB_MAX, Math.round(v * DB_MAX))); }
   function dbToV(d) { return d <= DB_OFF ? 0 : d / DB_MAX; }
   function dbText(d) { return d <= DB_OFF ? (lang === "en" ? "Off" : "כבוי") : String(d); }
-  function paintStep(el, d) { el.querySelector(".vdb").textContent = dbText(d); el.querySelector(".vm").disabled = d <= DB_OFF; el.querySelector(".vp").disabled = d >= DB_MAX; }
+  function paintStep(el, d) { var vi = el.querySelector(".vdb"); if (document.activeElement !== vi) { vi.value = d <= DB_OFF ? "" : String(d); vi.placeholder = dbText(DB_OFF); } el.querySelector(".vm").disabled = d <= DB_OFF; el.querySelector(".vp").disabled = d >= DB_MAX; }
   function stepAria(el, label, on) {
     el.setAttribute("role", "group"); el.setAttribute("aria-label", label);
     var m = el.querySelector(".vm"), p = el.querySelector(".vp");
@@ -370,6 +391,11 @@
     m.tabIndex = p.tabIndex = on ? 0 : -1; el.querySelector(".vdb").setAttribute("aria-live", "polite");
   }
   function bindStep(el, get, set) {
+    var inp = el.querySelector(".vdb");
+    function typed(final) { var v = parseInt(inp.value, 10); if (!isFinite(v)) { if (final) paintStep(el, get()); return; } v = Math.max(1, Math.min(DB_MAX, v)); if (v !== get()) set(v); if (final) { inp.value = String(v); paintStep(el, get()); } }
+    inp.addEventListener("input", function () { inp.value = inp.value.replace(/\D/g, "").slice(0, 2); typed(false); });
+    inp.addEventListener("blur", function () { typed(true); });
+    inp.addEventListener("keydown", function (e) { if (e.key === "Enter") { typed(true); inp.blur(); } });
     function go(dir) { var d = get(), n = Math.max(DB_OFF, Math.min(DB_MAX, d + dir)); if (n !== d) { set(n); } paintStep(el, get()); }
     // tap = 1 step; press and hold repeats faster
     [["vm", -1], ["vp", 1]].forEach(function (b) {
@@ -680,7 +706,7 @@
       '<input type="number" class="fin" inputmode="decimal" step="any" min="' + s.min + '" max="' + s.max + '"><span class="unit">Hz</span></div><span class="actual"></span>' : "";
     var mt = s.kind === "mantra" ? '<span class="mtext" dir="auto"></span>' : "";
     return '<button type="button" class="tbtn" aria-pressed="false">' + icon + '<span class="nm"></span>' + mt + '<span class="st"></span></button>' + fr +
-      '<div class="volrow"><div class="vstep vol" dir="ltr"><button type="button" class="vm">−</button><span class="vdb"></span><button type="button" class="vp">+</button></div></div>';
+      '<div class="volrow"><div class="vstep vol" dir="ltr"><button type="button" class="vm">−</button><input type="text" class="vdb" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off"><button type="button" class="vp">+</button></div></div>';
   }
   var freqTimers = {};
   function setFreq(id, v, li, fromNumber) {
@@ -783,7 +809,56 @@
     p.setAttribute("aria-label", playing ? L().pause : L().play);
     p.disabled = !st.on.length;
   }
-  function renderTimer() { $("vol-btn").setAttribute("aria-label", L().master); }
+  function renderTimer() { $("vol-btn").setAttribute("aria-label", L().master); renderMixes(); }
+  /* ---------- saved mixes (templates) ---------- */
+  var MIX_KEY = "rg-snd-mixes";
+  var MT = { he: { btn: "המיקסים שלי", saveH: "שמירת מיקס", listH: "המיקסים שלי", ph: "שם המיקס", save: "שמירה", empty: "עדיין אין מיקסים שמורים",
+      saved: function (n) { return "המיקס \"" + n + "\" נשמר"; }, loaded: function (n) { return "המיקס \"" + n + "\" נטען"; },
+      del: "מחיקת המיקס", confirm: function (n) { return "למחוק את המיקס \"" + n + "\"?"; }, replace: function (n) { return "כבר יש מיקס בשם \"" + n + "\". להחליף אותו?"; }, none: "קודם מפעילים צליל אחד לפחות", noName: "צריך לתת שם למיקס" },
+    en: { btn: "My mixes", saveH: "Save mix", listH: "My mixes", ph: "Mix name", save: "Save", empty: "No saved mixes yet",
+      saved: function (n) { return "Mix \"" + n + "\" saved"; }, loaded: function (n) { return "Mix \"" + n + "\" loaded"; },
+      del: "Delete mix", confirm: function (n) { return "Delete the mix \"" + n + "\"?"; }, replace: function (n) { return "A mix named \"" + n + "\" already exists. Replace it?"; }, none: "Turn on at least one sound first", noName: "Give the mix a name" } };
+  function getMixes() { try { var a = JSON.parse(localStorage.getItem(MIX_KEY)); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  function putMixes(a) { try { localStorage.setItem(MIX_KEY, JSON.stringify(a)); } catch (e) {} }
+  function saveMix() {
+    var t = MT[lang], name = ($("mix-name").value || "").trim();
+    if (!name) { toast(t.noName); $("mix-name").focus(); return; }
+    if (!st.on.length) { toast(t.none); return; }
+    var a = getMixes(), i = -1;
+    a.forEach(function (m, k) { if (m.name === name) i = k; });
+    if (i >= 0 && !confirm(t.replace(name))) return;
+    var vols = {}, freqs = {};
+    st.on.forEach(function (id) { vols[id] = vol(id); if (typeof st.freqs[id] === "number") freqs[id] = st.freqs[id]; });
+    var m = { name: name, on: st.on.slice(), vols: vols, freqs: freqs, master: st.master, mode: st.mode, carrier: st.carrier, gender: st.gender, t: Date.now() };
+    if (i >= 0) a[i] = m; else a.unshift(m);
+    putMixes(a); $("mix-name").value = ""; renderMixes(); toast(t.saved(name));
+  }
+  function loadMix(m) {
+    ensureCtx();
+    st.on = (m.on || []).filter(byId);
+    Object.keys(m.vols || {}).forEach(function (id) { if (byId(id)) st.vols[id] = m.vols[id]; });
+    Object.keys(m.freqs || {}).forEach(function (id) { if (byId(id)) st.freqs[id] = m.freqs[id]; });
+    if (typeof m.master === "number") st.master = dbToV(vToDb(m.master));
+    st.mode = m.mode === "iso" ? "iso" : "binaural"; if (m.carrier) st.carrier = clamp(+m.carrier || 200, 100, 500); if (m.gender) st.gender = m.gender === "f" ? "f" : "m";
+    save(); buildCats(); render(); paintStep($("master"), vToDb(st.master)); $("vol-n").textContent = dbText(vToDb(st.master)); applyElementVolume();
+    togglePop(null);
+    if (st.on.length) { playing = true; interrupted = false; startOutput(); syncVoices(); renderAll(); } else pause();
+    toast(MT[lang].loaded(m.name));
+  }
+  function renderMixes() {
+    var t = MT[lang], ul = $("mix-list"); if (!ul) return;
+    $("mix-btn").setAttribute("aria-label", t.btn); $("mix-btn").title = t.btn;
+    $("mix-save-h").textContent = t.saveH; $("mix-list-h").textContent = t.listH; $("mix-name").placeholder = t.ph; $("mix-save").textContent = t.save;
+    var a = getMixes(); ul.innerHTML = "";
+    if (!a.length) { var e = document.createElement("li"); e.className = "mix-empty"; e.textContent = t.empty; ul.appendChild(e); return; }
+    a.forEach(function (m) {
+      var li = document.createElement("li"); li.className = "mix-row";
+      var b = document.createElement("button"); b.type = "button"; b.className = "ml"; b.textContent = m.name; b.onclick = function () { loadMix(m); };
+      var d = document.createElement("button"); d.type = "button"; d.className = "md"; d.textContent = "✕"; d.setAttribute("aria-label", t.del + " " + m.name);
+      d.onclick = function () { if (!confirm(t.confirm(m.name))) return; putMixes(getMixes().filter(function (x) { return x.name !== m.name; })); renderMixes(); };
+      li.appendChild(b); li.appendChild(d); ul.appendChild(li);
+    });
+  }
   function renderAll() { renderTiles(); renderStatus(); renderTimer(); updateMediaSession(); }
   function render() {
     var t = L();
@@ -809,11 +884,14 @@
     nr(); window.rgNoteRender = nr;
   })();
   function togglePop(which) {
-    [["vol-btn", "vol-box"]].forEach(function (p) {
+    [["vol-btn", "vol-box"], ["mix-btn", "mix-box"]].forEach(function (p) {
       var open = p[0] === which && $(p[1]).hidden; $(p[1]).hidden = !open; $(p[0]).setAttribute("aria-expanded", String(open));
     });
   }
   $("vol-btn").onclick = function () { togglePop("vol-btn"); };
+  $("mix-btn").onclick = function () { togglePop("mix-btn"); };
+  $("mix-save").onclick = saveMix;
+  $("mix-name").addEventListener("keydown", function (e) { if (e.key === "Enter") saveMix(); });
   st.master = dbToV(vToDb(st.master));
   bindStep($("master"), function () { return vToDb(st.master); }, function (d) { st.master = dbToV(d); save(); applyElementVolume(); $("vol-n").textContent = dbText(d); });
   $("vol-n").textContent = dbText(vToDb(st.master));
@@ -854,7 +932,7 @@
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=25", { scope: "./" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=26", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
