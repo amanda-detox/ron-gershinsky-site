@@ -2,7 +2,7 @@
   "name": "יאנגיפיי · Youngify",
   "short_name": "יאנגיפיי",
   "description": "המלצות לצעירים לבניית בסיס לחיים טובים, בריאים ומשגשגים · Tips for young people to build a good, healthy, thriving life",
-  "id": "./",
+  "id": "/ron-gershinsky-site/young/",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
