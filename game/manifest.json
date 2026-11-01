@@ -2,7 +2,7 @@
   "name": "לייטיפיי · Lightify",
   "short_name": "לייטיפיי",
   "description": "משחק אור בתלת־ממד · A 3D game of light",
-  "id": "./",
+  "id": "/ron-gershinsky-site/game/",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
