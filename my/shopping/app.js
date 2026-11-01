@@ -640,14 +640,14 @@
      (drag it, or press and hold the row ~300 ms) to move the category to ANY place in one drag; the other rows
      shift live to show the drop spot and the list auto-scrolls at its edges. ✏️ rename, 🗑 delete. ✓ ends edit mode.
      Every drop is saved at once (local copy + sync), so nothing is lost if the list is closed without ✓. ---------- */
-  var catOpen = false, catEdit = false, catOpt = null, catMove = false;
+  var catShut = 0, catOpen = false, catEdit = false, catOpt = null, catMove = false;
   function renderCats() {
     var cur = curTab(), c = catOf(cur);
     $("cat-name").textContent = c ? catName(c) : "";
     var btn = $("cat-btn"); btn.setAttribute("aria-expanded", catOpen ? "true" : "false"); btn.setAttribute("aria-label", t("chooseCat") + ": " + (c ? catName(c) : ""));
     $("catpick").hidden = !uid;
     var panel = $("cat-panel"); panel.hidden = !catOpen || !uid;
-    var bk = $("cat-back"); if (catOpen && uid && !bk) { bk = document.createElement("div"); bk.id = "cat-back"; bk.className = "cp-back"; document.body.appendChild(bk); bk.addEventListener("pointerdown", function (e) { e.preventDefault(); closeCats(); }); }
+    var bk = $("cat-back"); if (catOpen && uid && !bk) { bk = document.createElement("div"); bk.id = "cat-back"; bk.className = "cp-back"; document.body.appendChild(bk); bk.addEventListener("pointerdown", function (e) { e.preventDefault(); catShut = Date.now(); closeCats(); }); }
     else if ((!catOpen || !uid) && bk) bk.parentNode.removeChild(bk);
     if (!catOpen || !uid) return;
     $("cp-title").textContent = t("pickTitle");
@@ -678,7 +678,7 @@
   function closeCats() { if (drag) return; var was = catEdit; catOpen = false; catEdit = false; catMove = false; catOpt = null; render(); if (was) syncSoon(); }
   function bootCats() {
     var list = $("cat-list");
-    on("cat-btn", "click", function () { if (catOpen) closeCats(); else openCats(); });
+    on("cat-btn", "click", function () { if (catOpen) closeCats(); else if (Date.now() - catShut < 700) return; /* v39: the outside-tap layer already closed it on this same tap (it covers the arrow) */ else openCats(); });
     on("cat-new", "click", function () {
       if (catMove) { catMove = false; catEdit = false; render(); syncSoon(); return; }
       nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v); if (!id) return; { tab = id; lsSet("rg-my-shopping-tab", id); catOpen = false; } changed();
