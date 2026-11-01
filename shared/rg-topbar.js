@@ -10,7 +10,7 @@
 (function () {
   var me = document.currentScript || document.querySelector('script[src*="rg-topbar.js"]');
   var ds = (me && me.dataset) || {}, ROOT = new URL("../", me ? me.src : location.href).href;
-  var SLOT = ds.slot || "header.top", WHERE = ds.where || "before", IS_HOME = ds.home === "1", PIN = ds.pin === "1"; // data-pin="1": pinned to the top of the slot (game overlays)
+  var SLOT = ds.slot || "header.top", WHERE = ds.where || "before", IS_HOME = ds.home === "1", NO_HOME = ds.nohome === "1", PIN = ds.pin === "1"; // data-pin="1": pinned to the top of the slot (game overlays)
   var d = document.documentElement;
   var ZOOMS = [75, 90, 100, 110, 125, 150], ZKEY = "rg-zoom";
   function getZoom() { var z = 100; try { z = parseInt(localStorage.getItem(ZKEY), 10) || 100; } catch (e) {} return ZOOMS.indexOf(z) < 0 ? 100 : z; }
@@ -128,7 +128,7 @@
     document.addEventListener("click", function (e) { if (!gZoom.contains(e.target) && !gLang.contains(e.target)) closeMenus(); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenus(); });
     tools.appendChild(acct); tools.appendChild(bBg); tools.appendChild(bTheme); tools.appendChild(gZoom); tools.appendChild(gLang);
-    bar.appendChild(bHome); bar.appendChild(tools);
+    if (!NO_HOME) bar.appendChild(bHome); bar.appendChild(tools); // data-nohome="1": standalone app, no link back to the main site
     if (slotEl && WHERE === "prepend") slotEl.insertBefore(bar, slotEl.firstChild);
     else if (slotEl) slotEl.parentNode.insertBefore(bar, slotEl);
     else document.body.insertBefore(bar, document.body.firstChild);
