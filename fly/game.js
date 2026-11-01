@@ -1204,8 +1204,9 @@ addEventListener('keydown', (e) => {
   if (e.target && e.target.tagName === 'SELECT') return;
   keys[e.code] = true;
   if (state === 'photo') { if (e.code === 'Escape') exitPhoto(); return; }
+  if (state === 'pause') { if (e.code === 'Escape' || e.code === 'KeyP') { if (!$('lbPanel').classList.contains('hidden')) $('lbClose').click(); else resumePause(); } return; }
   if (state === 'play') {
-    if (e.code === 'Escape' || e.code === 'KeyP') { if (tutStep >= 0) tutEnd(); else toMenu(); }
+    if (e.code === 'Escape' || e.code === 'KeyP') { if (tutStep >= 0) tutEnd(); else openPause(); }
     if (e.code === 'Digit1') setSpeed(0);
     if (e.code === 'Digit2') setSpeed(1);
     if (e.code === 'Digit3') setSpeed(2);
@@ -1414,7 +1415,7 @@ function showHud() {
 }
 let resumable = false;
 function start() {
-  stats.newGame();
+  stats.newGame(); $('pausePanel') && $('pausePanel').classList.add('hidden');
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
   player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); showHud(); resumable = true; if (buddyOn) buildBuddy();
@@ -1430,9 +1431,39 @@ function toMenu() {
   input.jx = input.jy = input.mx = input.my = input.up = input.down = 0; joyId = mouseId = null; joyRest();
 }
 $('startBtn').addEventListener('click', () => { if (resumable) { state = 'play'; showHud(); } else start(); if (musicOn && !mTimer) setMusic(true); });
-$('pauseBtn').addEventListener('click', toMenu);
+$('pauseBtn').addEventListener('click', openPause);
+/* v16: pause overlay with 6 options */
+const PZ = { he: { t: 'הפסקה', res: '▶️ המשך', spd: '⏩ מהירות', snd: '🔊 קול', on: 'פועל', off: 'כבוי', lb: '🏆 טבלת שיאים', rs: '🔄 התחלה מחדש', home: '🏠 למסך הראשי' },
+  en: { t: 'Paused', res: '▶️ Resume', spd: '⏩ Speed', snd: '🔊 Sound', on: 'on', off: 'off', lb: '🏆 Leaderboard', rs: '🔄 Restart', home: '🏠 Main menu' } };
+function pzRender() {
+  const P = PZ[lang] || PZ.he;
+  $('pzTitle').textContent = P.t; $('pzRes').textContent = P.res; $('pzLb').textContent = P.lb; $('pzRs').textContent = P.rs; $('pzHome').textContent = P.home;
+  $('pzSpdL').textContent = P.spd;
+  $('pzSnd').textContent = (musicOn ? '🔊 ' : '🔇 ') + P.snd.slice(3) + ': ' + (musicOn ? P.on : P.off);
+  $('pzSpd').innerHTML = MULS.map((m) => `<button type="button" class="pzm${m === speedMul ? ' on' : ''}" data-v="${m}">x${m}</button>`).join('');
+}
+function openPause() {
+  if (state !== 'play') return;
+  if (tutStep >= 0) tutEnd();
+  closePick(); state = 'pause';
+  input.jx = input.jy = input.mx = input.my = input.up = input.down = 0; joyId = mouseId = null; joyRest();
+  if (actx && musicOn) actx.suspend();
+  pzRender(); $('pausePanel').classList.remove('hidden');
+}
+function closePause() { $('pausePanel').classList.add('hidden'); }
+function resumePause() {
+  closePause(); state = 'play'; snapCam = true; clock.getDelta();
+  if (actx && musicOn) actx.resume(); if (musicOn && !mTimer) setMusic(true);
+}
+$('pzRes').addEventListener('click', resumePause);
+$('pzSpd').addEventListener('click', (e) => { const b = e.target.closest('.pzm'); if (!b) return; speedMul = parseFloat(b.dataset.v); store.set('rg-fly-mul', String(speedMul)); $('mulSel2').value = String(speedMul); pzRender(); });
+$('pzSnd').addEventListener('click', () => { setMusic(!musicOn); if (actx && musicOn) actx.suspend(); updatePowerBtns(); pzRender(); });
+$('pzLb').addEventListener('click', () => { openLb(); });
+$('pzRs').addEventListener('click', () => { closePause(); start(); if (musicOn && !mTimer) setMusic(true); else if (actx && musicOn) actx.resume(); });
+$('pzHome').addEventListener('click', () => { closePause(); state = 'play'; toMenu(); });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden && (state === 'play' || state === 'photo')) toMenu();
+  if (state === 'pause' && !document.hidden) { if (actx && musicOn) actx.suspend(); return; }
   if (actx && musicOn) { if (document.hidden) actx.suspend(); else actx.resume(); }
 });
 
@@ -1667,7 +1698,7 @@ requestAnimationFrame(frame);
 
 /* small hook for automated checks */
 window.__fly = {
-  setEnv, setChar, start, toMenu, spawnComet, spawnWhite, get galaxy() { return galaxyN; }, get whiteHole() { return { on: wh.visible, wait: whWait, pos: wh.position.toArray().map(Math.round) }; }, comboHit, stats,
+  setEnv, setChar, start, toMenu, spawnComet, spawnWhite, get paused() { return state === 'pause'; }, openPause, get galaxy() { return galaxyN; }, get whiteHole() { return { on: wh.visible, wait: whWait, pos: wh.position.toArray().map(Math.round) }; }, comboHit, stats,
   setCam(i) { camIdx = i; snapCam = true; syncSelects(); },
   setLang(l) { lang = l; store.set('rg-lang', l); applyLang(); },
   setTheme(t) { theme = t; applyTheme(); },
