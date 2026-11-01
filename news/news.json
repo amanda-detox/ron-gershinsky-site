@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T20:03:20+02:00",
+ "updated": "2026-11-01T20:56:30+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "starterstory-abmax-lino-18-no-code-60k",
+   "topic": "starterstory",
+   "date": "2026-11-01T18:50:15Z",
+   "url": "https://x.com/starter_story/status/2116966065477714205",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "בן 18 בלי ידע בקוד: אפליקציית AbMax בדרך ל־60 אלף דולר בחודש",
+    "summary": "סטארטר סטורי מציגים את לינו, שעזב את הלימודים אחרי סמסטר אחד ובנה את AbMax, אפליקציה לבניית שרירי בטן. תוך חצי שנה היא בקצב של 60 אלף דולר בחודש עם יותר מ־3,000 לקוחות משלמים."
+   },
+   "en": {
+    "title": "18-year-old non-coder's app AbMax on pace for $60K/month",
+    "summary": "Starter Story features Lino, who dropped out after one semester and built AbMax, an app for getting abs. Six months later it's on pace for $60K a month with 3,000+ paying customers."
+   },
+   "full_en": "He's 18, dropped out after one semester, and never wrote a line of code.\n\n6 months later, Lino's app AbMax is on pace for $60K/month with 3,000+ paying customers and 16,000 downloads in the last 28 days.\n\nThe idea came from the gym. His friends kept arguing over who had better abs. He searched for an app that actually helped you get them… and nothing existed.\n\nSo he built one.\n\nFirst attempt: 2 months grinding in Lovable. Right before launch he looked at it and said \"there's absolutely no way I can release this.\" Scrapped it. Rebuilt V2 in Rourke in 1 month. Did $7K the first month.\n\nHow he scaled from $7K → $55K:\n\n• Killed every UGC deal (margins were 5-10%, brutal)\n• Partnered with ONE big fitness influencer for equity instead\n• Doubled down on Meta ads at 2-2.5x ROAS\n• Took the same creatives to TikTok → got 5-6x better performance (younger audience, 15-30)\n\nHis 5-step playbook if he had to start today:\n\n1. Live inside the X app founder community\n2. Use SensorTower to find niches with multiple apps doing $10K+/mo\n3. Validate with faceless TikTok slideshows (\"comment APP and I'll send it\") before building\n4. Ship in 7 days - stop obsessing over the product\n5. Pay micro-influencers (500-1K followers) $100 for 10 videos to find your winning hook\n\nHis parting advice: \"It's physically impossible for you to lose as long as you never give up and get better every day.\"\n\nThe image in the post, \"How To Build & Grow Your First App\":\n\n• Step 1 – Do your research: follow app founders on X for free advice; use Sensor Tower to find niches with $10K/month apps\n• Step 2 – Post before building: post 3-4 TikTok slideshows daily for a week; ask people to \"comment APP\" to test demand\n• Step 3 – Ship in 7 days: build with Rork or whatever tool you prefer; get it out there – you can improve it later\n• Step 4 – Test with small creators: offer creators $100 for 10 videos; test hooks, formats and CTAs to find what works\n• Step 5 – Scale your winning content: get 10-15 creators posting consistently; run paid ads behind the content that performs\n\nThe post also has a short video (8 seconds), so there's no more text to show. There are no further replies from Starter Story in the thread.",
+   "full_he": "הוא בן 18, עזב את הלימודים אחרי סמסטר אחד ומעולם לא כתב שורת קוד.\n\nחצי שנה אחר כך, האפליקציה של לינו, AbMax, בקצב של 60 אלף דולר בחודש, עם יותר מ־3,000 לקוחות משלמים ו־16,000 הורדות ב־28 הימים האחרונים.\n\nהרעיון נולד בחדר הכושר. החברים שלו התווכחו כל הזמן למי יש שרירי בטן יפים יותר. הוא חיפש אפליקציה שבאמת עוזרת להגיע אליהם, ולא היה כזה דבר.\n\nאז הוא בנה אחת.\n\nניסיון ראשון: חודשיים של עבודה קשה ב־Lovable. רגע לפני ההשקה הוא הסתכל על התוצאה ואמר: \"אין שום סיכוי שאני מוציא את זה\". הוא גנז אותה, בנה גרסה שנייה ב־Rourke תוך חודש, והכניס 7,000 דולר בחודש הראשון.\n\nאיך הוא גדל מ־7,000 ל־55,000 דולר:\n\n• ויתר על כל העסקאות עם יוצרי UGC (שולי רווח של 5–10%, אכזרי)\n• במקום זה, שיתף פעולה עם משפיען כושר גדול אחד בתמורה למניות\n• הגביר את הפרסום במטא, עם החזר של פי 2–2.5 על ההוצאה (ROAS)\n• העביר את אותם קריאייטיבים לטיקטוק וקיבל ביצועים טובים פי 5–6 (קהל צעיר יותר, בני 15–30)\n\nתוכנית 5 הצעדים שלו, אם היה מתחיל היום:\n\n1. לחיות בתוך קהילת מייסדי האפליקציות ב־X\n2. להשתמש ב־SensorTower כדי למצוא נישות שיש בהן כמה אפליקציות שמכניסות 10,000 דולר ומעלה בחודש\n3. לבדוק ביקוש עם מצגות טיקטוק \"בלי פנים\" (\"כתבו APP בתגובות ואשלח לכם\") לפני שבונים\n4. להשיק תוך 7 ימים, ולהפסיק להיות אובססיבי למוצר\n5. לשלם למיקרו־משפיענים (500–1,000 עוקבים) 100 דולר על 10 סרטונים כדי למצוא את ההוק המנצח\n\nהעצה שלו לסיום: \"פיזית אי אפשר להפסיד, כל עוד אתה אף פעם לא מוותר ומשתפר כל יום.\"\n\nהתמונה בפוסט, \"איך לבנות ולהצמיח את האפליקציה הראשונה שלך\":\n\n• צעד 1 – לעשות מחקר: לעקוב אחרי מייסדי אפליקציות ב־X בשביל עצות בחינם; להשתמש ב־Sensor Tower כדי למצוא נישות עם אפליקציות של 10 אלף דולר בחודש\n• צעד 2 – לפרסם לפני שבונים: 3–4 מצגות טיקטוק ביום במשך שבוע; לבקש מאנשים לכתוב \"APP\" בתגובות כדי לבדוק ביקוש\n• צעד 3 – להשיק תוך 7 ימים: לבנות עם Rork או כל כלי שנוח לך; להוציא את זה לעולם – אפשר לשפר אחר כך\n• צעד 4 – לבדוק עם יוצרים קטנים: להציע ליוצרים 100 דולר על 10 סרטונים; לבדוק הוקים, פורמטים וקריאות לפעולה כדי לגלות מה עובד\n• צעד 5 – להגדיל את התוכן המנצח: לגייס 10–15 יוצרים שמפרסמים בקביעות; להריץ מודעות ממומנות על התוכן שמצליח\n\nבפוסט יש גם סרטון קצר (8 שניות), ולכן אין עוד טקסט להציג. אין בשרשור תגובות נוספות של סטארטר סטורי."
+  },
+  {
+   "id": "solana-four-accelerators-closing-applications",
+   "topic": "solana",
+   "date": "2026-11-01T18:46:42Z",
+   "url": "https://x.com/solana/status/2116965169201115631",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: ארבע תוכניות האצה סוגרות הרשמה בקרוב",
+    "summary": "חשבון סולאנה מזכיר למי שבונה פרויקט בשלב מוקדם שההרשמה לארבע תוכניות האצה נסגרת בימים הקרובים: speedrun (עד מיליון דולר), Y Combinator W27, Alliance ו־Techstars."
+   },
+   "en": {
+    "title": "Solana: four accelerators are about to close applications",
+    "summary": "Solana reminds early-stage builders that four accelerators close applications soon: speedrun (up to $1M), Y Combinator W27, Alliance ALL19 and Techstars Spring 2027."
+   },
+   "full_en": "Building something early on Solana? Four accelerators are about to close applications.\n\n• speedrun closes tonight at 11:59pm PT with up to $1M.\n• Y Combinator's W27 batch closes Nov 2 with $500K and three months in San Francisco.\n• Alliance ALL19 closes Nov 18 with $400K at $4M post.\n• Techstars Spring 2027 also closes Nov 18.\n\nIn his own reply under the post, Solana listed the application link for each of the four accelerators (speedrun, Y Combinator, Alliance, Techstars).",
+   "full_he": "בונה משהו בשלב מוקדם על סולאנה? ארבע תוכניות האצה עומדות לסגור את ההרשמה.\n\n• speedrun נסגרת הלילה ב־23:59 לפי שעון החוף המערבי בארה\"ב (10:00 בבוקר ב־2 בנובמבר שעון ישראל), עם השקעה של עד מיליון דולר.\n• המחזור W27 של Y Combinator נסגר ב־2 בנובמבר, עם 500 אלף דולר ושלושה חודשים בסן פרנסיסקו.\n• Alliance ALL19 נסגרת ב־18 בנובמבר, עם 400 אלף דולר לפי שווי של 4 מיליון דולר אחרי ההשקעה.\n• גם Techstars לאביב 2027 נסגרת ב־18 בנובמבר.\n\nבתגובה שלו מתחת לפוסט, חשבון סולאנה צירף את קישור ההרשמה לכל אחת מארבע התוכניות (speedrun, Y Combinator, Alliance ו־Techstars)."
+  },
+  {
+   "id": "johnson-music-longevity-therapy-meta-analysis",
+   "topic": "johnson",
+   "date": "2026-11-01T18:36:45Z",
+   "url": "https://x.com/bryan_johnson/status/2116962664572477809",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: מוזיקה היא \"טיפול לאריכות ימים\"",
+    "summary": "לדברי בריאן ג'ונסון, מוזיקה מורידה דופק, לחץ דם, קורטיזול וחרדה, והפרוטוקול פשוט: שיר שאתה אוהב. הוא מסתמך על סקירה של 104 ניסויים אקראיים ב־9,617 משתתפים."
+   },
+   "en": {
+    "title": "Bryan Johnson: music is a \"longevity therapy\"",
+    "summary": "Bryan Johnson says music lowers heart rate, blood pressure, cortisol and anxiety, and the protocol is simply a song you love. He cites a review of 104 randomized trials with 9,617 people."
+   },
+   "full_en": "Music is a longevity therapy\n\n• lowers heart rate\n• lowers blood pressure\n• lowers cortisol\n• lowers anxiety and restlessness\n\nProtocol: a song you love.\n\n104 randomized trials\n9,617 people\n\nThe image in the post is the header of the study he cites: \"Effects of music interventions on stress-related outcomes: a systematic review and two meta-analyses\" by Martina de Witte, Anouk Spruit, Susan van Hooren, Xavier Moonen and Geert-Jan Stams (pages 294-324, published online 15 July 2019, doi:10.1080/17437199.2019.1627897).\n\nNote: the study he cites measured stress-related outcomes (physiological and psychological stress); calling music a \"longevity therapy\" is his own framing, not a finding about lifespan. There are no further replies from him in the thread.",
+   "full_he": "מוזיקה היא טיפול לאריכות ימים\n\n• מורידה דופק\n• מורידה לחץ דם\n• מורידה קורטיזול\n• מפחיתה חרדה ואי־שקט\n\nהפרוטוקול: שיר שאתה אוהב.\n\n104 ניסויים אקראיים\n9,617 משתתפים\n\nהתמונה בפוסט היא כותרת המחקר שהוא מצטט: \"ההשפעות של התערבויות מוזיקליות על מדדים הקשורים למתח: סקירה שיטתית ושתי מטא־אנליזות\", מאת מרטינה דה ויטה, אנוק ספרויט, סוזן ואן הורן, חאוויאר מונן וחרט־יאן סטמס (עמודים 294–324, פורסם ברשת ב־15 ביולי 2019, doi:10.1080/17437199.2019.1627897).\n\nהערה: המחקר שהוא מצטט בדק מדדים של מתח (גופני ונפשי); ההגדרה של מוזיקה כ\"טיפול לאריכות ימים\" היא שלו, ולא ממצא על תוחלת חיים. אין בשרשור תגובות נוספות שלו."
+  },
+  {
+   "id": "musk-french-prosecutors-summon-musk-yaccarino",
+   "topic": "musk",
+   "date": "2026-11-01T18:49:16Z",
+   "url": "https://x.com/i/trending/2116893530111054235",
+   "source": "X",
+   "he": {
+    "title": "התובעים בצרפת מזמנים את מאסק ואת יקרינו לחקירה בפרשת X",
+    "summary": "רשויות התביעה בצרפת זימנו את אילון מאסק ואת מנכ\"לית X לשעבר לינדה יקרינו לחקירה פלילית שנפתחה בינואר 2025. החקירה עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים של Grok."
+   },
+   "en": {
+    "title": "French prosecutors summon Musk and Yaccarino in X investigation",
+    "summary": "French authorities have summoned Elon Musk and former X CEO Linda Yaccarino for questioning in a criminal probe launched in January 2025. It covers alleged algorithmic bias, election interference, child sexual abuse material and non-consensual Grok deepfakes."
+   },
+   "full_en": "Elon Musk and former X CEO Linda Yaccarino now face questioning from French authorities over serious allegations tied to the platform.\n\nThe criminal probe, launched in January 2025, targets claims of algorithmic bias, election interference, child sexual abuse material, and non-consensual deepfakes from Grok. It expanded after reports of Holocaust denial content and deepfakes involving minors, leading to a February 2026 search of X's Paris offices.\n\nAuthorities list potential offenses like complicity in child pornography distribution and denial of crimes against humanity; X has called some scrutiny politically motivated.\n\nDiscussions highlight divides, with some seeing accountability for AI harms and others viewing it as a distraction from France's unrest.\n\n(This is X's own summary of posts on the story, which may change over time.)",
+   "full_he": "אילון מאסק ומנכ\"לית X לשעבר לינדה יקרינו יצטרכו להיחקר עכשיו על ידי הרשויות בצרפת, בעקבות טענות חמורות שקשורות לפלטפורמה.\n\nהחקירה הפלילית, שנפתחה בינואר 2025, עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים שנוצרו ב־Grok בלי הסכמה. היא הורחבה אחרי דיווחים על תוכן של הכחשת שואה ועל דיפ־פייקים של קטינים, ובפברואר 2026 נערך חיפוש במשרדי X בפריז.\n\nהרשויות מונות עבירות אפשריות כמו סיוע להפצת פורנוגרפיית ילדים והכחשת פשעים נגד האנושות; X טענה שחלק מהבדיקות מונעות משיקולים פוליטיים.\n\nהדיון ברשת חצוי: יש מי שרואים בזה לקיחת אחריות על נזקי בינה מלאכותית, ויש מי שרואים בזה הסחת דעת מהמהומות בצרפת.\n\n(זה הסיכום של X עצמה לפוסטים על הסיפור, והוא עשוי להשתנות.)"
+  },
+  {
+   "id": "musk-talarico-open-borders-texas-senate-final-days",
+   "topic": "musk",
+   "date": "2026-11-01T18:29:03Z",
+   "url": "https://x.com/i/trending/2116958575079936257",
+   "source": "X",
+   "he": {
+    "title": "יומיים לבחירות: מאסק נגד טלריקו במרוץ לסנאט בטקסס",
+    "summary": "מאסק טוען שהמועמד הדמוקרטי ג'יימס טלריקו מתכנן להעניק מעמד חוקי לכולם כדי להבטיח שלטון של מפלגה אחת, וטלריקו השיב לו בהתקפה על המיליונים שמאסק משקיע בתמיכה ביריבו קן פקסטון."
+   },
+   "en": {
+    "title": "Two days out: Musk vs. Talarico in the Texas Senate race",
+    "summary": "Musk claims Democratic candidate James Talarico aims to legalize everyone for permanent one-party rule; Talarico hit back over the millions Musk is spending to back rival Ken Paxton."
+   },
+   "full_en": "With Election Day two days away, Elon Musk accused Democratic candidate James Talarico of plotting to legalize everyone for permanent one-party rule. Talarico fired back, calling out Musk's millions backing rival Ken Paxton.\n\nThe open Texas Senate seat pits state Rep. James Talarico against Attorney General Ken Paxton, fueled by Musk's tens of millions through super PACs that have made it one of the priciest races.\n\nTalarico rallies crowds by framing himself as an underdog against Musk's influence, while Musk posts that Talarico would abolish democracy; border security dominates online talk with memes like \"Don't Talarico my Texas.\"\n\nPolls show Talarico with a slight edge, and the result could sway Senate control amid debates over big money versus grassroots momentum.\n\n(This is X's own summary of posts on the story, which may change over time.)",
+   "full_he": "יומיים לפני יום הבחירות, אילון מאסק האשים את המועמד הדמוקרטי ג'יימס טלריקו שהוא מתכנן להעניק מעמד חוקי לכולם כדי להבטיח שלטון קבוע של מפלגה אחת. טלריקו השיב באש, ותקף את המיליונים שמאסק משקיע בתמיכה ביריבו, קן פקסטון.\n\nעל המושב הפתוח בסנאט מטקסס מתמודדים חבר בית הנבחרים של המדינה ג'יימס טלריקו והתובע הכללי קן פקסטון. עשרות מיליוני הדולרים שמאסק הזרים דרך ועדות סופר־PAC הפכו את המרוץ לאחד היקרים ביותר.\n\nטלריקו מלהיב קהלים כשהוא מציג את עצמו כאנדרדוג מול ההשפעה של מאסק, ומאסק מפרסם שטלריקו יבטל את הדמוקרטיה. ברשת, ביטחון הגבול שולט בשיח, עם ממים כמו \"Don't Talarico my Texas\".\n\nהסקרים מראים יתרון קל לטלריקו, והתוצאה עשויה להשפיע על השליטה בסנאט, על רקע הוויכוח בין כסף גדול לבין תנופה מהשטח.\n\n(זה הסיכום של X עצמה לפוסטים על הסיפור, והוא עשוי להשתנות.)"
+  },
   {
    "id": "refaeli-khaite-peplum-top-shelbia-masked-singer",
    "topic": "refaeli",
