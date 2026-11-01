@@ -46,7 +46,7 @@
 - HE: המלצות לשכירים, מג׳וניורים ועד בכירים
 - EN: Recommendations for employees, from juniors to seniors
 
-### אקטיביסט · Activist (`activist/`)
+### אקטיביפיי · Activify (`activist/`)
 - HE: למצוא את דרכי הפעולה שמתאימות לך, למה שאכפת לך, לתשוקות ולחוזקות שלך, כדי להיות אקטיבי ולהשפיע ולשנות תחום בעולם
 - EN: Find the ways to act that fit you, what you care about, your passions and strengths, to be active and change a field in the world
 
