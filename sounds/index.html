@@ -836,11 +836,16 @@
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="#acct-row"></script>
 
-<!-- rg-install-x: close button for the install button -->
-<style>html.rg-inst-off #install-wrap{display:none!important}.rg-inst-a{position:relative;display:inline-block}#rg-inst-x{position:absolute;top:-12px;right:-12px;z-index:5;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-12px}</style>
+<!-- rg-install-x v3: install button only when the browser offers a real install prompt; no instruction text -->
+<style>html:not(.rg-bip) #install-wrap,html.rg-inst-off #install-wrap,#install-hint,#install-wrap .install-hint,#install-wrap .rg-install-hint{display:none!important}.rg-inst-a{position:relative;display:inline-block}#rg-inst-x{position:absolute;top:-12px;right:-12px;z-index:5;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-12px}</style>
 <script>(function(){
 var K="rg-inst-off",r=document.documentElement;try{if(localStorage.getItem(K)==="1")r.classList.add(K);}catch(e){}
+function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
+addEventListener("beforeinstallprompt",function(){if(!sa())r.classList.add("rg-bip");});
+addEventListener("appinstalled",function(){r.classList.remove("rg-bip");});
 var b=document.getElementById("install-btn");if(!b)return;
+/* the page's own click handler calls prompt(); after one use the prompt is spent, so hide until Chrome offers it again */
+b.addEventListener("click",function(){setTimeout(function(){r.classList.remove("rg-bip");},0);});
 var a=document.createElement("span");a.className="rg-inst-a";b.parentNode.insertBefore(a,b);a.appendChild(b);
 var x=document.createElement("button");x.type="button";x.id="rg-inst-x";x.textContent="✕";a.appendChild(x);
 function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(r.lang)?"en":"he";var t=l==="en"?"Close":"סגירה";x.title=t;x.setAttribute("aria-label",t);}
