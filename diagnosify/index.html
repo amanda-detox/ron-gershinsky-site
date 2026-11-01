@@ -141,18 +141,26 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-diagnosify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=3" data-slot="header.top"></script>
 
-<!-- rg-install: התקנה למסך הבית -->
-<style>#rg-inst{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}#rg-inst-h{position:fixed;bottom:62px;inset-inline-start:14px;z-index:9999;max-width:260px;font:14px/1.4 Heebo,system-ui,sans-serif;background:#0b1a3f;color:#f5e6b8;border:1px solid #d4af37;border-radius:12px;padding:10px 12px}</style>
-<button id="rg-inst" type="button" hidden>📲 התקנה למסך הבית</button>
-<div id="rg-inst-h" hidden>ב־Chrome: ⋮ ← התקנת אפליקציה (או "הוספה למסך הבית")</div>
+<!-- rg-install v2: install-to-home-screen, bilingual, closable -->
+<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;max-width:300px;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}#rg-inst-h{margin-bottom:8px;background:#0b1a3f;color:#f5e6b8;border:1px solid #d4af37;border-radius:12px;padding:10px 12px}#rg-inst-h b{color:#f5d27a}</style>
+<div id="rg-inst-w" hidden><div id="rg-inst-h" hidden></div><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
 <script>(function(){
 if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}
-var b=document.getElementById("rg-inst"),h=document.getElementById("rg-inst-h"),dp=null;
-var sa=(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||(window.matchMedia&&matchMedia("(display-mode: fullscreen)").matches)||navigator.standalone;
-if(!sa)b.hidden=false;
-window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;if(!sa)b.hidden=false;});
-window.addEventListener("appinstalled",function(){dp=null;b.hidden=true;h.hidden=true;});
-b.onclick=function(){if(dp){var d=dp;dp=null;d.prompt();return;}h.hidden=!h.hidden;};
+var K="rg-inst-off",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),h=document.getElementById("rg-inst-h"),x=document.getElementById("rg-inst-x"),dp=null;
+var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה",d:"ב־Chrome במחשב: לוחצים על סמל ההתקנה בצד ימין של שורת הכתובת, או בתפריט <b>⋮</b> ← <b>העברה, שמירה ושיתוף</b> ← <b>התקנת הדף כאפליקציה</b>.",m:"ב־Chrome בטלפון: תפריט <b>⋮</b> ← <b>התקנת אפליקציה</b> או <b>הוספה למסך הבית</b>.",i:"באייפון/אייפד: כפתור השיתוף (□↑) ב־Safari ← <b>הוספה למסך הבית</b>."},
+en:{b:"📲 Install app",x:"Close",d:"In Chrome on a computer: click the install icon at the right end of the address bar, or menu <b>⋮</b> → <b>Cast, save and share</b> → <b>Install page as app</b>.",m:"In Chrome on a phone: menu <b>⋮</b> → <b>Install app</b> or <b>Add to Home screen</b>.",i:"On iPhone/iPad: tap Share (□↑) in Safari → <b>Add to Home Screen</b>."}};
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
+function kind(){var u=navigator.userAgent;if(/iPhone|iPad|iPod/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1))return"i";return/Android|Mobi/.test(u)?"m":"d";}
+function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);h.innerHTML=t[kind()];}
+var sa=(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone;
+var off=false;try{off=localStorage.getItem(K)==="1";}catch(e){}
+R();if(!sa&&!off)w.hidden=false;
+addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;});
+addEventListener("appinstalled",function(){dp=null;w.hidden=true;});
+b.onclick=function(){if(dp){var d=dp;dp=null;d.prompt();d.userChoice.then(function(c){if(c&&c.outcome==="accepted")w.hidden=true;}).catch(function(){});return;}h.hidden=!h.hidden;};
+x.onclick=function(){w.hidden=true;try{localStorage.setItem(K,"1");}catch(e){}};
 })();</script>
 </body>
 </html>
