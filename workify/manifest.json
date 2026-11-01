@@ -2,7 +2,7 @@
  "name": "וורקיפיי · Workify",
  "short_name": "וורקיפיי",
  "description": "המלצות לשכירים, מג׳וניורים ועד בכירים · Recommendations for employees, from juniors to seniors",
- "id": "./",
+ "id": "/ron-gershinsky-site/workify/",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
