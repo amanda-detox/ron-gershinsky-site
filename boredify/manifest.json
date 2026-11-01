@@ -2,7 +2,7 @@
  "name": "בורדיפיי · Boredify",
  "short_name": "בורדיפיי",
  "description": "להפגת שעמום · Beat boredom",
- "id": "./",
+ "id": "/ron-gershinsky-site/boredify/",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
