@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#0f172a">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="סאונדיפיי: צלילי טבע להרגעה ולשינה. Soundify, ambient sounds for relaxing and sleep.">
-<link rel="manifest" href="manifest.json?v=4">
+<link rel="manifest" href="manifest.json?v=5">
 <link rel="icon" href="icon.svg?v=2" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png?v=2">
 <meta name="mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
   button { font: inherit; color: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--lav); outline-offset: 2px; }
   [hidden] { display: none !important; }
-  main { max-width: 820px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(250px + env(safe-area-inset-bottom, 0px)); }
+  main { max-width: 820px; margin: 0 auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(90px + env(safe-area-inset-bottom, 0px)); }
   .lang { display: flex; justify-content: center; gap: 6px; margin: 0 0 18px; direction: ltr; }
   .chip { font-size: 14px; letter-spacing: 0.04em; color: rgba(226,232,240,0.75); background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1); border-radius: 999px; padding: 7px 14px; min-height: 36px; transition: background 0.4s, color 0.4s; }
@@ -75,16 +75,25 @@
   input[type=range]::-moz-range-track { height: 6px; border-radius: 999px; background: rgba(255,255,255,0.14); }
   input[type=range]::-moz-range-progress { height: 6px; border-radius: 999px; background: var(--c2); }
   input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #f1f5f9; border: 0; box-shadow: 0 0 0 4px color-mix(in srgb, var(--c2) 45%, transparent); }
-  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; padding: 5px 12px calc(5px + env(safe-area-inset-bottom, 0px));
     background: rgba(15,23,42,0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-top: 1px solid var(--line); }
-  .bar-in { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .bar-in { max-width: 820px; margin: 0 auto; display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; flex-wrap: nowrap; }
+  .pop { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .ico { flex: none; height: 40px; min-width: 40px; padding: 0 10px; border-radius: 999px; border: 1px solid rgba(230,195,106,0.45); background: rgba(59,130,246,0.12); color: #e6c36a; font-size: 17px; display: inline-flex; align-items: center; gap: 5px; }
+  .ico[aria-expanded="true"] { background: rgba(59,130,246,0.3); }
+  .ico-n { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .ico-n:empty { display: none; }
+  .bar .vstep button { width: 36px; height: 36px; font-size: 20px; }
+  .bar .timer .chip { min-height: 32px; padding: 3px 8px; font-size: 12.5px; white-space: nowrap; }
+  .bar .timer { flex-wrap: nowrap; gap: 4px; }
+  html[data-theme="light"] .ico { color: #0b2a6b; background: #fff8e6; border-color: rgba(201,162,39,0.6); }
   .tile .vstep button { width: 40px; height: 40px; font-size: 22px; }
   .row.mrow { justify-content: center; }
   .row.prow { justify-content: center; gap: 14px; }
   .master .vstep { flex: none; gap: 10px; }
-  .master .vstep .vdb { min-width: 70px; }
+  .master .vstep .vdb { min-width: 30px; }
   .row { display: flex; align-items: center; gap: 10px; }
-  .play { flex: none; width: 56px; height: 56px; border-radius: 50%; border: 0; font-size: 22px; color: #f5d77a;
+  .play { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 0; font-size: 22px; color: #f5d77a;
     background: linear-gradient(135deg, #1e4fb8, #0b2a6b); border: 2px solid #e6c36a; box-shadow: 0 0 20px rgba(230,195,106,0.3); display: grid; place-items: center; }
   .play:disabled { opacity: 0.35; box-shadow: none; cursor: default; }
   .master { flex: none; min-width: 0; display: flex; align-items: center; gap: 8px; }
@@ -141,7 +150,7 @@
   .unit { font-size: 12px; color: var(--faint); }
   .actual { display: block; font-size: 11px; color: var(--faint); text-align: center; padding: 0 12px 4px; min-height: 0; }
   .tile:not(.on) .actual { display: none; }
-  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(150px + env(safe-area-inset-bottom, 0px)); z-index: 30;
+  .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(70px + env(safe-area-inset-bottom, 0px)); z-index: 30;
     background: rgba(44,42,98,0.95); border: 1px solid rgba(59,130,246,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
   /* ---- light mode (toggle + backgrounds from shared/rg-bg.js): cream + navy, blue/gold accents ---- */
   html[data-theme="light"] { --text: #0b1f4d; --soft: #44557b; --faint: #5d6e93; --card: rgba(255,255,255,0.75); --line: rgba(11,42,107,0.13); --lav: #1a47a0; color-scheme: light; }
@@ -193,24 +202,26 @@
 
 <div class="bar">
   <div class="bar-in">
-    <div class="row mrow">
-      <div class="master">
-        <label><span class="long" id="master-l"></span><span class="short" aria-hidden="true">🔊</span></label>
+    <button type="button" class="play" id="play" aria-label="Play">▶</button>
+    <div class="pop" id="vol-pop">
+      <button type="button" class="ico" id="vol-btn" aria-expanded="false">🔊<span class="ico-n" id="vol-n"></span></button>
+      <div class="master" id="vol-box" hidden>
+        <label hidden><span class="long" id="master-l"></span></label>
         <div class="vstep" id="master" dir="ltr" style="--c: #3b82f6"><button type="button" class="vm">−</button><span class="vdb"></span><button type="button" class="vp">+</button></div>
       </div>
     </div>
-    <div class="row prow">
-      <button type="button" class="play" id="play" aria-label="Play">▶</button>
-      <button type="button" class="stopall" id="stopall"></button>
+    <div class="pop" id="tm-pop">
+      <button type="button" class="ico" id="tm-btn" aria-expanded="false">⏲<span class="ico-n" id="tm-n"></span></button>
+      <div class="timer" role="group" id="timer" hidden>
+        <span class="long" id="timer-l" hidden></span>
+        <button type="button" class="chip" data-min="0" aria-pressed="true"></button>
+        <button type="button" class="chip" data-min="15" aria-pressed="false"></button>
+        <button type="button" class="chip" data-min="30" aria-pressed="false"></button>
+        <button type="button" class="chip" data-min="60" aria-pressed="false"></button>
+      </div>
     </div>
-    <div class="timer" role="group" id="timer">
-      <span class="long" id="timer-l"></span><span class="short" aria-hidden="true">⏲</span>
-      <button type="button" class="chip" data-min="0" aria-pressed="true"></button>
-      <button type="button" class="chip" data-min="15" aria-pressed="false"></button>
-      <button type="button" class="chip" data-min="30" aria-pressed="false"></button>
-      <button type="button" class="chip" data-min="60" aria-pressed="false"></button>
-      <span class="left" id="left"></span>
-    </div>
+    <span class="left" id="left"></span>
+    <button type="button" class="stopall" id="stopall" hidden></button>
   </div>
 </div>
 <div class="flash" id="flash"></div>
@@ -328,11 +339,11 @@
   function byId(id) { for (var i = 0; i < SOUNDS.length; i++) if (SOUNDS[i].id === id) return SOUNDS[i]; }
 
   /* ---------- state ---------- */
-  var st = { on: [], vols: {}, master: 0.8, freqs: {}, mode: "binaural", carrier: 200, gender: "m", cats: { nature: true, instruments: true, mantras: true, brain: false, special: false } };
+  var st = { on: [], vols: {}, master: 0.5, freqs: {}, mode: "binaural", carrier: 200, gender: "m", cats: { nature: true, instruments: true, mantras: true, brain: false, special: false } };
   try {
     var sv = JSON.parse(localStorage.getItem(KEY));
     if (sv && Array.isArray(sv.on)) {
-      st.on = sv.on.filter(byId); st.vols = sv.vols || {}; st.master = typeof sv.master === "number" ? sv.master : 0.8;
+      st.on = sv.on.filter(byId); st.vols = sv.vols || {}; st.master = typeof sv.master === "number" ? sv.master : 0.5;
       st.freqs = sv.freqs || {}; st.mode = sv.mode === "iso" ? "iso" : "binaural"; st.gender = sv.gender === "f" ? "f" : "m";
       st.carrier = clamp(+sv.carrier || 200, 100, 500); if (sv.cats) for (var ck in st.cats) if (typeof sv.cats[ck] === "boolean") st.cats[ck] = sv.cats[ck];
     }
@@ -340,23 +351,28 @@
   function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
   function freq(id) { var s = byId(id), v = st.freqs[id]; return typeof v === "number" && isFinite(v) ? clamp(v, s.min, s.max) : s.def; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
-  // Volume steppers: level in dB, 3 dB per tap, 0 dB down to -39 dB, then Off. Stored value v keeps the old
-  // 0..1 format (gain = v*v), so v = 10^(dB/40) and gain = 10^(dB/20); old saved values snap to the nearest step.
-  var DB_STEP = 3, DB_MIN = -39, DB_OFF = -999;
-  function vToDb(v) { if (!(v > 0)) return DB_OFF; var d = Math.round(40 * Math.log10(v) / DB_STEP) * DB_STEP; return d > 0 ? 0 : d < DB_MIN ? DB_OFF : d; }
-  function dbToV(d) { return d <= DB_OFF ? 0 : Math.pow(10, d / 40); }
-  function dbText(d) { return d <= DB_OFF ? (lang === "en" ? "Off" : "כבוי") : (d === 0 ? "0" : "−" + Math.abs(d)) + " dB"; }
-  function paintStep(el, d) { el.querySelector(".vdb").textContent = dbText(d); el.querySelector(".vm").disabled = d <= DB_OFF; el.querySelector(".vp").disabled = d >= 0; }
+  // Volume steppers: level 1..99 (0 = off). Stored value v keeps the old 0..1 format (gain = v*v), v = level/99.
+  var DB_STEP = 1, DB_MIN = 1, DB_OFF = 0, DB_MAX = 99;
+  function vToDb(v) { if (!(v > 0)) return DB_OFF; return Math.max(DB_MIN, Math.min(DB_MAX, Math.round(v * DB_MAX))); }
+  function dbToV(d) { return d <= DB_OFF ? 0 : d / DB_MAX; }
+  function dbText(d) { return d <= DB_OFF ? (lang === "en" ? "Off" : "כבוי") : String(d); }
+  function paintStep(el, d) { el.querySelector(".vdb").textContent = dbText(d); el.querySelector(".vm").disabled = d <= DB_OFF; el.querySelector(".vp").disabled = d >= DB_MAX; }
   function stepAria(el, label, on) {
     el.setAttribute("role", "group"); el.setAttribute("aria-label", label);
     var m = el.querySelector(".vm"), p = el.querySelector(".vp");
-    m.setAttribute("aria-label", label + " −" + DB_STEP + " dB"); p.setAttribute("aria-label", label + " +" + DB_STEP + " dB");
+    m.setAttribute("aria-label", label + " −"); p.setAttribute("aria-label", label + " +");
     m.tabIndex = p.tabIndex = on ? 0 : -1; el.querySelector(".vdb").setAttribute("aria-live", "polite");
   }
   function bindStep(el, get, set) {
-    function go(dir) { var d = get(), n; if (dir < 0) n = d <= DB_MIN ? DB_OFF : d - DB_STEP; else n = d <= DB_OFF ? DB_MIN : Math.min(0, d + DB_STEP); if (n !== d) { set(n); } paintStep(el, get()); }
-    el.querySelector(".vm").addEventListener("click", function () { go(-1); });
-    el.querySelector(".vp").addEventListener("click", function () { go(1); });
+    function go(dir) { var d = get(), n = Math.max(DB_OFF, Math.min(DB_MAX, d + dir)); if (n !== d) { set(n); } paintStep(el, get()); }
+    // tap = 1 step; press and hold repeats faster
+    [["vm", -1], ["vp", 1]].forEach(function (b) {
+      var btn = el.querySelector("." + b[0]), t1 = 0, t2 = 0, held = false;
+      function stop() { clearTimeout(t1); clearInterval(t2); }
+      btn.addEventListener("pointerdown", function () { held = false; stop(); t1 = setTimeout(function () { held = true; t2 = setInterval(function () { go(b[1] * 2); }, 70); }, 400); });
+      ["pointerup", "pointerleave", "pointercancel"].forEach(function (ev) { btn.addEventListener(ev, stop); });
+      btn.addEventListener("click", function () { if (held) { held = false; return; } go(b[1]); });
+    });
     paintStep(el, get());
   }
   function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : ({ nature: 0.7, mantra: 0.8 }[byId(id).kind] || 0.5); }
@@ -466,16 +482,17 @@
     var s = byId(id);
     if (s.kind === "bw") {
       var c = q(st.carrier), b = q(freq(id));
-      return st.mode === "iso" ? { fl: c, fr: c, pulse: b, amp: 0.22 } : { fl: c, fr: c + b, pulse: 0, amp: 0.18 };
+      return st.mode === "iso" ? { fl: c, fr: c, pulse: b, amp: 0.16 } : { fl: c, fr: c + b, pulse: 0, amp: 0.18 };
     }
     var f = q(s.kind === "freq" ? s.hz : freq(id));
     return { fl: f, fr: f, pulse: 0, amp: 0.18 };
   }
+  var ISO_DEPTH = 0.28;
   function addTone(L, R, spec, g) {
     var n = L.length, il = spec.fl / SR, ir = spec.fr / SR, ip = spec.pulse / SR, a = spec.amp * g, i;
     for (i = 0; i < n; i++) {
       var e = 1;
-      if (ip > 0) { var m = 0.5 - 0.5 * sinc(i * ip + 0.25); e = m * Math.sqrt(m); }   // smooth isochronic pulse, no clicks
+      if (ip > 0) { e = 1 - ISO_DEPTH * (0.5 - 0.5 * sinc(i * ip + 0.25)); }   // gentle sine swell (low depth), steady tone, no chopping
       L[i] += sinc(i * il) * a * e; R[i] += sinc(i * ir) * a * e;
     }
   }
@@ -768,6 +785,7 @@
     for (var i = 0; i < cs.length; i++) { var m = +cs[i].dataset.min; cs[i].textContent = m ? L().min(m) : L().off; cs[i].setAttribute("aria-pressed", String(m === timerMin)); }
     if (timerEnd) { var s = Math.max(0, Math.round((timerEnd - Date.now()) / 1000)); $("left").textContent = L().left(Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0")); }
     else $("left").textContent = "";
+    $("tm-btn").setAttribute("aria-label", L().timer); $("vol-btn").setAttribute("aria-label", L().master);
   }
   function renderAll() { renderTiles(); renderStatus(); renderTimer(); updateMediaSession(); }
   function render() {
@@ -786,10 +804,18 @@
   $("lang-en").onclick = function () { setLang("en"); };
   $("play").onclick = function () { if (playing) pause(); else play(); };
   $("stopall").onclick = stopAll;
+  function togglePop(which) {
+    [["vol-btn", "vol-box"], ["tm-btn", "timer"]].forEach(function (p) {
+      var open = p[0] === which && $(p[1]).hidden; $(p[1]).hidden = !open; $(p[0]).setAttribute("aria-expanded", String(open));
+    });
+  }
+  $("vol-btn").onclick = function () { togglePop("vol-btn"); };
+  $("tm-btn").onclick = function () { togglePop("tm-btn"); };
   st.master = dbToV(vToDb(st.master));
-  bindStep($("master"), function () { return vToDb(st.master); }, function (d) { st.master = dbToV(d); save(); applyElementVolume(); });
+  bindStep($("master"), function () { return vToDb(st.master); }, function (d) { st.master = dbToV(d); save(); applyElementVolume(); $("vol-n").textContent = dbText(d); });
+  $("vol-n").textContent = dbText(vToDb(st.master));
   var tb = document.querySelectorAll("#timer .chip");
-  for (var i = 0; i < tb.length; i++) tb[i].onclick = function () { setTimer(+this.dataset.min); };
+  for (var i = 0; i < tb.length; i++) tb[i].onclick = function () { setTimer(+this.dataset.min); togglePop(""); };
   function toast(msg) { var el = $("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { el.hidden = true; }, 2600); }
 
   /* ---------- install button ---------- */
@@ -827,7 +853,7 @@
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=23", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
