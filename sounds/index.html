@@ -156,6 +156,15 @@
   .toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(70px + env(safe-area-inset-bottom, 0px)); z-index: 30;
     background: rgba(44,42,98,0.95); border: 1px solid rgba(59,130,246,0.3); padding: 9px 16px; border-radius: 999px; font-size: 14px; max-width: 90vw; text-align: center; }
   /* ---- light mode (toggle + backgrounds from shared/rg-bg.js): cream + navy, blue/gold accents ---- */
+  /* blue & gold shimmer for frequency / brainwave symbols */
+  .glyph, .hzbig { background: linear-gradient(110deg, #3b82f6 0%, #93c5fd 25%, #f3d77a 45%, #fff6d0 50%, #d4af37 55%, #60a5fa 80%, #3b82f6 100%);
+    background-size: 250% 100%; -webkit-background-clip: text; background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
+    animation: rgShine 5s linear infinite; filter: drop-shadow(0 0 6px rgba(230,195,106,0.35)); }
+  .tile[data-id^="f-"] { border-color: rgba(212,175,55,0.35); }
+  .tile[data-id^="f-"]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: linear-gradient(115deg, transparent 35%, rgba(243,215,122,0.16) 48%, rgba(147,197,253,0.14) 52%, transparent 65%); background-size: 300% 100%; animation: rgShine 6s linear infinite; }
+  @keyframes rgShine { from { background-position: 100% 0; } to { background-position: -150% 0; } }
+  @media (prefers-reduced-motion: reduce) { .glyph, .hzbig, .tile[data-id^="f-"]::after { animation: none; } }
   html[data-theme="light"] { --text: #0b1f4d; --soft: #44557b; --faint: #5d6e93; --card: rgba(255,255,255,0.75); --line: rgba(11,42,107,0.13); --lav: #1a47a0; color-scheme: light; }
   html[data-theme="light"], html[data-theme="light"] body { background-color: #f3efe6; }
   html[data-theme="light"] body { background: linear-gradient(180deg, #f6f2ea 0%, #f3efe6 50%, #ebe5d8 100%) fixed; }
@@ -276,6 +285,11 @@
       t: "I am grateful that my homes are free of toxins, supremely beautiful, and deeply safe for me and my loved ones." }
   ];
   MANTRAS.forEach(function (x, i) { SOUNDS.push({ id: "mantra-" + (i + 1), n: i + 1, cat: "mantras", kind: "mantra", e: "🙏", he: x.he, en: x.en, c: x.c, m: x.m, f: x.f, t: x.t }); });
+  // Blue and gold only: every card accent cycles through this palette.
+  var PAL = ["#60a5fa", "#e6c36a", "#93c5fd", "#d4af37", "#3b82f6", "#f3d77a"];
+  SOUNDS.forEach(function (s, k) { s.c = PAL[k % PAL.length]; });
+  // Real recordings (audio/<id>.mp3, see audio/CREDITS.md); the synth stays as fallback if a file fails.
+  var REAL = { ocean: 1, river: 1, waterfall: 1, rain: 1, thunder: 1, crickets: 1, fireplace: 1, birds: 1, jawharp: 1, didgeridoo: 1, flute: 1, bansuri: 1, clarinet: 1 };
   var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "instruments", he: "כלי נגינה", en: "Instruments" }, { id: "mantras", he: "מנטרות", en: "Mantras" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
   var T = {
     he: {
@@ -515,6 +529,7 @@
     mantraLoad[file] = p; loading[id] = p; renderTiles();
     return p;
   }
+  var realBufs = {}, realLoad = {}, realFail = {};
   function bufferFor(id) {
     var s = byId(id), n = SR * LOOP;
     if (s.kind === "mantra") return mantraBuffer(id);
@@ -522,6 +537,17 @@
       var ab = ctx.createBuffer(2, n, SR);
       addTone(ab.getChannelData(0), ab.getChannelData(1), toneSpec(id), 1);
       return Promise.resolve(ab);
+    }
+    if (REAL[id] && !realFail[id]) {
+      if (realBufs[id]) return Promise.resolve(realBufs[id]);
+      if (!realLoad[id]) {
+        realLoad[id] = fetch("audio/" + id + ".mp3?v=1").then(function (r) { if (!r.ok) throw new Error("http " + r.status); return r.arrayBuffer(); })
+          .then(function (data) { return new Promise(function (res, rej) { ctx.decodeAudioData(data, res, rej); }); })
+          .then(function (ab) { realBufs[id] = ab; delete realLoad[id]; delete loading[id]; renderTiles(); return ab; },
+                function () { realFail[id] = 1; delete realLoad[id]; delete loading[id]; renderTiles(); return bufferFor(id); });
+        loading[id] = realLoad[id]; renderTiles();
+      }
+      return realLoad[id];
     }
     return getSound(id).then(function (b) {
       if (b.ab) return b.ab;
@@ -828,7 +854,7 @@
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=24", { scope: "./" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=25", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
@@ -855,7 +881,7 @@ new MutationObserver(function(){a.hidden=b.hidden;}).observe(b,{attributes:true,
 x.onclick=function(e){e.stopPropagation();r.classList.add(K);try{localStorage.setItem(K,"1");}catch(e){}};
 })();</script>
 <!-- rg-about -->
-<script>(function(){var HE="צלילי טבע, כלים ומנטרות להרגעה ולשינה",EN="Nature sounds, instruments and mantras for calm and sleep";
+<script>(function(){var HE="צלילי טבע, כלים ומנטרות להרגעה ולשינה. צלילי הטבע והכלים הם הקלטות אמיתיות מוויקישיתוף (CC0, נחלת הכלל, CC BY, CC BY-SA) מאת Luftrum, jackthemurray, Yupanasimi, cori, RHumphries, DrTrumpet, Glaneur de sons, DivyaCM, Roland Bades, Cassa342, Scott Goff, Theo Jörgensmann. פירוט: audio/CREDITS.md",EN="Nature sounds, instruments and mantras for calm and sleep. Nature and instrument sounds are real recordings from Wikimedia Commons (CC0, public domain, CC BY, CC BY-SA) by Luftrum, jackthemurray, Yupanasimi, cori, RHumphries, DrTrumpet, Glaneur de sons, DivyaCM, Roland Bades, Cassa342, Scott Goff, Theo Jörgensmann. Details: audio/CREDITS.md";
 function L(){var l=localStorage.getItem("rg-lang")||document.documentElement.lang||"he";return /^en/.test(l)?"en":"he";}
 var s=document.createElement("style");s.textContent="#rgAbBtn{position:fixed;top:calc(env(safe-area-inset-top) + 4px);left:50%;transform:translateX(-50%);z-index:99998;width:24px;height:24px;border-radius:50%;border:1px solid rgba(212,175,55,.6);background:rgba(13,42,92,.55);color:#f3d77a;font:600 14px/22px system-ui,sans-serif;padding:0;cursor:pointer;opacity:.7}#rgAbBtn:hover{opacity:1}#rgAbOv{position:fixed;inset:0;z-index:99999;background:rgba(4,14,34,.55);display:none;align-items:center;justify-content:center;padding:20px}#rgAbOv.on{display:flex}#rgAbBox{position:relative;max-width:360px;width:100%;background:linear-gradient(160deg,#0d2a5c,#123b7a);color:#fff;border:1px solid #d4af37;border-radius:14px;padding:18px 18px 16px;font:16px/1.5 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.4)}#rgAbBox h3{margin:0 0 8px;color:#f3d77a;font-size:18px}#rgAbBox p{margin:0}#rgAbX{position:absolute;top:8px;inset-inline-end:8px;background:none;border:0;color:#f3d77a;font-size:20px;cursor:pointer;line-height:1}";
 function init(){document.head.appendChild(s);var b=document.createElement("button");b.id="rgAbBtn";b.type="button";b.textContent="i";
