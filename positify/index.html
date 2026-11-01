@@ -47,7 +47,7 @@ textarea{width:100%;min-height:40vh;border-radius:14px;border:1px solid rgba(243
     <textarea id="ta"></textarea>
     <div class="nav"><button class="btn" id="prev">הקודם</button><button class="btn pri" id="next">הבא</button></div>
   </div>
-  <div class="c"><a class="back" href="../">→ לדף הראשי</a></div>
+  <div class="c"><a hidden class="back">→ לדף הראשי</a></div>
 </div>
 <script>
 var STEPS=["א. מה קרה?", "ב. מה חיובי בזה? מה אתה למד מזה? מה אתה יכול להפיק מזה? כיצד אתה יכול להשתמש בזה לטובה? איזו השראה זה מאפשג לך? מה הלב שלך שלך אומר לגבי זה? איזו דלת זה פותח לך? איזו הזדמנות מתחבאת בזה?", "ג. אילו פעולות תרצה לעשות בעקבות התובנות החיוביות שרכשת והמשמעויות החיוביות שנתת למאורע או לסיטואציה שהתרחשה? מנה כמה אם תרצה", "ד. העתק את הפעולות למקום שאתה משתמש בו באופן קבוע, כמו אפליקציית ליסטיפיי, יומן, אפליקציית משימות או פרויקטים עיקרית שלך.", "ה. שתף את התובנות שלך ממה שכתבת כאן עם אהוביך, עוקביך או מי שתבחר לזה.", "ו. המשך לכתוב כאן על חוויות, בכך תאמן את רשת הניורונים שלך ואת התודעה שלך להפוך כל מצב לחיובי בהרבה מובנים ובצורה פרקטית מעשית."];
@@ -66,7 +66,7 @@ $("prev").onclick=function(){if(dr.i===0){show(false);return;}dr.i--;sv(KD,dr);s
 $("next").onclick=function(){if(dr.i<STEPS.length-1){dr.i++;sv(KD,dr);step();return;}var es=ld(KE,[]);es.push({t:Date.now(),a:dr.a});sv(KE,es);localStorage.removeItem(KD);dr=null;show(false);};
 list();
 </script>
-<script src="../shared/rg-topbar.js?v=4" data-slot="#top" data-where="prepend"></script>
+<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#top" data-where="prepend"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js");});</script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
