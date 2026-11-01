@@ -14,15 +14,15 @@ const damp = (k, dt) => 1 - Math.exp(-k * dt);
 /* ================= texts ================= */
 const T = {
   he: {
-    title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בוחרים דמות', world: 'עולם', view: 'זווית צפייה',
-    start: 'להמריא ✨', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
+    title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
+    start: 'לטס פליי', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
     helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, החלקה מחליפה טבעת (כוחות, תעופה, אווירה), לחיצה ארוכה מראה את השם. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C V: ארבעת הכלים בטבעת, Q / E: החלפת טבעת. Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     tools: ['האצה', 'מגן', 'מגנט', 'האטת זמן', 'סלטה', 'נחיתה והליכה', 'שובל אור – נקודות כפולות', 'חבר למסע', 'מצב צילום', 'מוזיקה', 'צבע השובל', 'יום / לילה'],
     rings: ['כוחות', 'תעופה', 'אווירה'], on: 'פועל', off: 'כבוי', day: 'יום', night: 'לילה', saved: 'התמונה נשמרה',
     landing: 'נוחתים…', hover: 'ריחוף במקום', takeoff: 'ממריאים!', trailNames: ['כחול', 'זהב', 'לבן', 'סגול', 'ורוד', 'קשת'],
-    buddy: 'חבר למסע', tutorial: '🎓 הדרכה', tSkip: 'דלג', tNext: 'הבא', tDone: 'יאללה!',
+    buddy: 'בחרו חבר למסע', tutorial: '🎓 הדרכה', tSkip: 'דלג', tNext: 'הבא', tDone: 'יאללה!',
     tJoy: 'גוררים כאן כדי לעוף', tPow: 'נוגעים בכוח כדי להפעיל', tSwipe: 'מחליקים כדי להחליף טבעת', tFlight: 'טבעת תעופה: סלטה, נחיתה ועוד', tAtmo: 'טבעת אווירה: צילום, מוזיקה ועוד', tCam: 'כאן מחליפים זווית. תהנה!',
     photoHint: 'גוררים כדי לסובב',
     keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C V כלים · Q E טבעת · Esc תפריט',
@@ -784,7 +784,7 @@ function disposeTree(o) {
 /* ================= player ================= */
 const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
-const MULS = [0.1618, 0.2, 0.4, 1, 2.19, 4, 9, 15];
+const MULS = [0.1618, 0.2, 0.4, 1, 1.3, 1.7, 1.9, 2.19, 4, 9, 15];
 let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
 function setChar(i) {
   charIdx = i; store.set('rg-fly-char3', String(i));
@@ -915,7 +915,7 @@ function useTool(i) {
     if (P.id === 'double') burst(28, 0xffd76a);
     if (P.id === 'roll' && player.mode === 'walk') player.hop = 1;
   } else if (P.id === 'land') toggleLand();
-  else if (P.id === 'buddy') { buddyOn = !buddyOn; store.set('rg-fly-buddy', buddyOn ? '1' : '0'); buildBuddy(); flash(P.ic + ' ' + (buddyOn ? L.chars[buddyIdx()] : L.off)); }
+  else if (P.id === 'buddy') { buddyOn = !buddyOn; store.set('rg-fly-buddy2', buddyOn ? '1' : '0'); buildBuddy(); flash(P.ic + ' ' + (buddyOn ? L.chars[buddyIdx()] : L.off)); }
   else if (P.id === 'photo') enterPhoto();
   else if (P.id === 'music') { setMusic(!musicOn); flash(P.ic + ' ' + (musicOn ? L.on : L.off)); }
   else if (P.id === 'trail') { trailIdx = (trailIdx + 1) % TRAIL_COLORS.length; store.set('rg-fly-trail', String(trailIdx)); flash(P.ic + ' ' + L.trailNames[trailIdx]); }
@@ -1038,7 +1038,7 @@ function toggleLand() {
 const groundH = () => { const u = player.model.userData; return u.stand ? u.size * 1.0 : u.size * 0.6; };
 
 /* ---- companion ---- */
-let buddyOn = store.get('rg-fly-buddy', '0') === '1', buddy = null, buddyChar = parseInt(store.get('rg-fly-buddy-char', '-1'), 10);
+let buddyOn = store.get('rg-fly-buddy2', '1') === '1', buddy = null, buddyChar = parseInt(store.get('rg-fly-buddy-char', '-1'), 10);
 const buddyYaw = { v: 0 }, buddyPrev = new THREE.Vector3();
 function buddyIdx() { let i = buddyChar >= 0 && buddyChar < CHAR_BUILD.length ? buddyChar : (charIdx + 4) % CHAR_BUILD.length; if (i === charIdx) i = (i + 1) % CHAR_BUILD.length; return i; }
 function buildBuddy() {
@@ -1389,7 +1389,7 @@ const onMul = (e) => { speedMul = parseFloat(e.target.value); store.set('rg-fly-
 $('charSel').addEventListener('change', (e) => { setChar(parseInt(e.target.value, 10)); e.target.blur(); });
 $('mulSel2').addEventListener('change', onMul);
 $('camSel').addEventListener('change', onCam); $('camSel2').addEventListener('change', onCam);
-$('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); if (buddyOn) buildBuddy(); e.target.blur(); });
+$('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); buddyOn = true; store.set('rg-fly-buddy2', '1'); buildBuddy(); e.target.blur(); });
 /* in-game icon pickers: 📷 view, 🗺️ world, 💨 pace. Each opens a readable list built from the hidden select. */
 const PICK_SELS = { camPick: 'camSel2', envPick: 'envSel2', mulPick: 'mulSel2' };
 function closePick() { $('pickMenu').classList.add('hidden'); }
@@ -1417,8 +1417,8 @@ function start() {
   stats.newGame();
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
   player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
-  resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); showHud(); resumable = true;
-  const sbn = stats.daily(); if (sbn > 0) setTimeout(() => { if (state !== 'play') return; addScore(sbn, true); showCel(T[lang].streakBonus(stats.get().streak, sbn), T[lang].streakSub); menuStreak(); }, 900);
+  resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); showHud(); resumable = true; if (buddyOn) buildBuddy();
+  stats.daily();
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
   if (store.get('rg-fly-tut', '0') !== '1') setTimeout(() => { if (state === 'play' && tutStep < 0) tutStart(); }, 300);
 }
