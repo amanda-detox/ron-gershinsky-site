@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T00:48:05+02:00",
+ "updated": "2026-11-02T01:31:54+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-musk-try-dozens-fixes-daily",
+   "topic": "grokbot",
+   "date": "2026-11-01T23:20:05Z",
+   "url": "https://x.com/elonmusk/status/2117033967782113327",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"תנסו את Grok Bot, אתם תאהבו אותו\" – עשרות תיקונים ופיצ'רים כל יום",
+    "summary": "מאסק ציטט משתמש יפני שהמליץ על Grok Bot מעל Claude Code ו-Codex, וכתב שהצוות מעלה עשרות תיקונים, פיצ'רים ולפעמים יכולות חדשות לבוט שבעה ימים בשבוע, תוך מעקב אחרי המשוב של המשתמשים."
+   },
+   "en": {
+    "title": "Musk: \"Try Grok Bot! You will love it\" – dozens of fixes and features every day",
+    "summary": "Musk quoted a Japanese user who recommended Grok Bot over Claude Code and Codex, saying the team lands a few dozen fixes, features and sometimes new powers to Bot seven days a week, guided by user feedback."
+   },
+   "full_he": "\"תנסו את Grok Bot! אתם תאהבו אותו.\n\nאנחנו מעלים עשרות תיקונים, פיצ'רים ולפעמים גם יכולות חדשות לבוט, שבעה ימים בשבוע, ואנחנו מסתכלים על המשוב שלכם כדי להפוך את הבוט למושלם ככל האפשר.\"\n\nהפוסט שהוא ציטט (שימאבו, @shimabu_it, ביפנית):\n\"באמת, בדיוק ככה.\n\nמי שעדיין לא משתמש ב-Cursor (Grok Bot), שינסה לפחות פעם אחת.\n\nזה הרבה יותר טוב מ-Claude Code ומ-Codex. מבחינת חוויית משתמש, אני באמת לא חושב שיש משהו ש-Cursor מפסיד בו כרגע.\n\nמבחינת ביצועי המודל, כרגע אני עדיין נאלץ להשתמש גם ב-Claude Code, אבל ברגע ש-Grok יגיע לרמה של Opus 5.5, אני חושב שאוכל לעבור רק ל-Cursor.\n\nSpaceXAI, אני סומך עליכם עם ה-Grok הבא. גם 4.7 לא רע, אבל בהשוואה ל-Opus הוא עדיין חלש מדי...\"\n\nשימאבו עצמו ציטט את ג'ק אליס (@JackEllis), שכתב: \"הרכישה של Cursor על ידי SpaceX הייתה מהלך גאוני. הצוות של Cursor מטורף. ניסיתי עכשיו את Claude Code במשך שעתיים, וזה פשוט נורא לעומת Cursor Projects. Anthropic מנצחת בסבסוד השימוש, Opus עוקף את Grok בפער גדול, אבל חוויית המשתמש של Cursor מחוץ לסקאלה.\"\n\nלא נמצאו למאסק תגובות נוספות משלו בשרשור.",
+   "full_en": "\"Try Grok @Bot! You will love it.\n\nWe land a few dozen fixes, features and sometimes powers to Bot 7 days a week and we look at your feedback to make Bot as perfect as possible.\"\n\nThe quoted post (しまぶー, @shimabu_it, in Japanese, translated):\n\"Seriously, this.\n\nIf you're not using Cursor (Grok Bot) yet, please try it just once.\n\nIt's far better than Claude Code or Codex. Honestly, I don't think there's anywhere Cursor loses right now in terms of UX.\n\nOn model performance, I still have to use Claude Code for now, but once Grok reaches the level of Opus 5.5, I think I can go Cursor-only.\n\nSpaceXAI, I'm counting on you for the next Grok. 4.7 isn't bad, but compared to Opus it's still not strong enough...\"\n\nThat post itself quoted Jack Ellis (@JackEllis): \"SpaceX acquiring Cursor was a genius move. The Cursor team are WILD. I just took Claude Code for a spin for the last two hours and it's just horrible compared to Cursor Projects. Anthropic wins on usage subsidies, Opus beats Grok by miles, but Cursor's UX is off the charts.\"\n\nNo further replies by Musk were found in the thread."
+  },
+  {
+   "id": "medicalmedium-rescued-animals-rescue-us",
+   "topic": "medicalmedium",
+   "date": "2026-11-01T23:18:04Z",
+   "url": "https://x.com/MedicalMedium/status/2117033460485529825",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: איך החיות שאנחנו מצילים מצילות אותנו",
+    "summary": "אנתוני ויליאם (מדיקל מדיום) כותב שהכלבים והחתולים שלו עזרו לו לעבור את התקופות הקשות בחייו, ושהקשר עם חיות, בניגוד לקשרים בין בני אדם, לא נשבר."
+   },
+   "en": {
+    "title": "Medical Medium: how the animals we rescue end up rescuing us",
+    "summary": "Anthony William (Medical Medium) writes that his dogs and cats helped him through the hardest times of his life, and that the bond with animals, unlike human bonds, doesn't break."
+   },
+   "full_he": "איך החיות שאנחנו מצילים מצילות אותנו בסוף\n\nהחיות שלי הן כל העולם בשבילי. הן חלק עצום ממה שאפשר לי לעשות את מה שעשיתי ולעבור את מה שעברתי.\n\nהכלבים והחתולים בחיי עיצבו חלק גדול ממי שאני.\n\nהכלב שלך בבית, החתול שלך בבית – הם מבינים עניין. הם מכירים אותך אולי יותר טוב ממה שאתה מכיר את עצמך.\n\nאני יודע שהחיות שלי ריככו כל כך הרבה ממה שעברתי. אלמלא החיות שלי, אני לא יודע אם הייתי עובר את התקופות הכי קשות בחיי.\n\nהן כל כך נאמנות. אנשים יכולים להיות נאמנים, אבל הם גם יכולים לא להיות. ככה זה, זה טבע האדם. אנשים יכולים ליצור קשר עם אדם אחר, והקשר הזה יכול להישבר בגלל מילה אחת.\n\nעם הכלבים והחתולים שלך זה לא עובד ככה. עם החיות שלך זה לא עובד ככה. הקשר שנוצר לא נשבר.\n\nבסוף הפוסט יש קישורים לספר Healing Your Pet ולמדריכים חינמיים באתר שלו (תסמינים נוירולוגיים, מחלות אוטואימוניות, ונקודת התחלה ל\"מסע הריפוי\").\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. לא נמצאו תגובות המשך של המחבר בשרשור.",
+   "full_en": "How The Animals We Rescue End Up Rescuing Us\n\nMy animals mean the world to me. It's a massive part of how I've been able to do what I've done and get through what I've gotten through.\n\nThe dogs and cats in my life have shaped a big part of who I am.\n\nYour dog at home, your cat at home—they know what's up. They know you better than you might know yourself.\n\nI know that my animals have buffered so much of what I have gone through. If it wasn't for my animals, I don't know if I could have gotten through the hardest times in my life.\n\nThey're so loyal. People can be loyal, but they also may not be loyal. That's just the way it works. It's human nature. People can create a bond with another person, and that bond can break through just one word.\n\nIt doesn't work like that with your dogs and cats. It doesn't work like that with your animals. The bond that gets formed does not break.\n\nThe post ends with links to his book Healing Your Pet and free guides on his site (neurological symptoms, autoimmune disease, and a \"start here\" page for the healing journey).\n\nThe rest of the post is a video, so there's no more text to show. No further replies by the author were found in the thread."
+  },
+  {
+   "id": "brecka-gluten-europe-fortification",
+   "topic": "brecka",
+   "date": "2026-11-01T23:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2117028916904837383",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: אולי האשמת את הגלוטן מהסיבה הלא נכונה",
+    "summary": "גארי בראקה שואל למה אנשים שלא סובלים גלוטן אוכלים לחם באירופה ומרגישים מצוין. לדבריו, יחד עם רוז פרגוסון הוא בוחן את הגלוטן, העשרת המזון ומה שבאמת נמצא באוכל שלנו."
+   },
+   "en": {
+    "title": "Gary Brecka: maybe you've been blaming gluten for the wrong reason",
+    "summary": "Gary Brecka asks why people who say they can't tolerate gluten eat bread in Europe and feel fine. He and Rose Ferguson dig into gluten, food fortification and what's actually in our food."
+   },
+   "full_he": "מה אם האשמת את הגלוטן מהסיבה הלא נכונה?\n\nפגשתי כל כך הרבה אנשים שנשבעים שהם לא סובלים גלוטן, ובכל זאת הם טסים לאירופה, אוכלים לחם ומרגישים מצוין. אז מה שונה?\n\nרוז פרגוסון ואני צוללים לעומק לנושא הגלוטן, העשרת המזון, ולמה אנחנו צריכים לשים לב יותר למה שבאמת נמצא באוכל שלנו.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. לא נמצאו תגובות המשך של המחבר בשרשור.\n\nהערה: אלה דבריו. מי שאובחן עם צליאק צריך להימנע מגלוטן גם באירופה.",
+   "full_en": "What if you've been blaming gluten for the wrong reason?\n\nI've met so many people who swear they can't tolerate gluten, yet they travel to Europe, eat bread, and feel completely fine. So what's different?\n\nRose Ferguson and I go deeper into gluten, food fortification, and why we need to pay closer attention to what's actually in our food.\n\nThe rest of the post is a video, so there's no more text to show. No further replies by the author were found in the thread.\n\nNote: these are his views. People diagnosed with celiac disease need to avoid gluten in Europe too."
+  },
+  {
+   "id": "tesla-fsd-traction-cdg-referral-trials",
+   "topic": "tesla",
+   "date": "2026-11-01T22:55:59Z",
+   "url": "https://x.com/i/trending/2116989755250672123",
+   "source": "X",
+   "he": {
+    "title": "ה-FSD של טסלה צובר תאוצה עם עדכונים חלקים יותר וניסיון חינם",
+    "summary": "Car Dealership Guy הזמין Model Y עם FSD כדי לבחון אותו בעצמו, ובעלים משבחים את גרסה 14.3.13. תוכנית ההפניות החדשה של טסלה מציעה חודש ניסיון של FSD."
+   },
+   "en": {
+    "title": "Tesla FSD gains traction with smoother updates and easy trials",
+    "summary": "Car Dealership Guy ordered a Model Y with FSD to test it himself, and owners praise version 14.3.13. Tesla's new referral program offers one-month FSD trials."
+   },
+   "full_he": "זה מה שמסופר בסיפור ב-X:\n\nמומחה לסוכנויות רכב הזמין עכשיו טסלה Model Y עם נהיגה עצמית מלאה (FSD) כדי לבדוק אותה בעצמו, אחרי יותר משנה הפסקה. בעלים משתפים סיפורים על מקרים שבהם הרכב מנע תאונה, שמראים כמה הוא נעשה חכם יותר.\n\n• Car Dealership Guy הוסיף לחניה שלו Model Y לונג ריינג' עם FSD כדי להעריך אותו בכנות, ומצטרף לחובבים שמשבחים את השיפורים בגרסה 14.3.13: היגוי חלק יותר, חנייה מדויקת וטיפול טוב יותר בפניות.\n• תוכנית ההפניות החדשה של טסלה מציעה חודש ניסיון, והממליצים מקבלים קרדיטים כשעשרות מפעילים את הפיצ'ר.\n• דיווחים מהשטח מראים שיעורי שימוש גבוהים, נסיעות בלי התערבות וזיהוי סכנות.\n• עם זאת, חלק מהנהגים עדיין מעדיפים לנהוג בעצמם, כשהציפיות בתעשייה משתנות.",
+   "full_en": "Here's what the X story says:\n\nA car dealership expert just ordered a Tesla Model Y with Full Self-Driving to test it himself after over a year away. Owners are sharing stories of near-miss saves that highlight its growing smarts.\n\n• Car Dealership Guy added a Model Y Long Range with FSD to his garage for an honest evaluation, joining enthusiasts praising version 14.3.13's refinements like smoother steering, precise parking, and better handling of turns.\n• Tesla's new referral program offers one-month trials, with referrers earning credits as dozens activate the feature.\n• Real-world accounts show high usage rates, intervention-free drives, and hazard detection.\n• Some drivers still prefer manual control amid shifting industry expectations."
+  },
+  {
+   "id": "mccullough-cdc-myocarditis-takada-fatality",
+   "topic": "mccullough",
+   "date": "2026-11-01T22:52:17Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117026973822193745",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: ה-CDC ממעיט בחומרת דלקת שריר הלב מהחיסון",
+    "summary": "ד\"ר פיטר מקולה טוען שה-CDC ממעיט בסכנה, ומצטט מחקר יפני (טקדה ושותפיו) שלפי חישובו מצא שיעור תמותה של 9.6% ממקרי דלקת שריר לב שדווחו אחרי חיסון. אלה טענותיו; הנתונים מגיעים ממאגר דיווחי תופעות לוואי, ולא ממחקר שמודד שכיחות."
+   },
+   "en": {
+    "title": "McCullough: the CDC downplays fatal vaccine myocarditis",
+    "summary": "Dr. Peter McCullough says the CDC downplays the danger, citing a Japanese study (Takada et al.) that by his calculation shows a 9.6% fatality rate among reported post-vaccine myocarditis cases. These are his claims; the data come from an adverse-event report database, not a study measuring incidence."
+   },
+   "full_he": "ה-CDC אומר ש\"אף שדלקת שריר לב אחרי חיסון היא בדרך כלל נדירה, קלה וחולפת מעצמה, היו מקרים נדירים של מוות והם נבדקו\". אבל טקדה ושותפיו דיווחו על שיעור תמותה של 9.6% מדלקת שריר לב מהחיסון. למה ה-CDC ממעיט בתוצאה החמורה הזאת? @McCulloughFund\n\nבתמונה בפוסט:\n• כותרת מאמר מכתב העת Journal of Infection and Chemotherapy (הוצאת Elsevier): \"דלקת שריר הלב ומעטפת הלב שקשורה לחיסון mRNA לקורונה: ניתוח של מאגר דיווחי תופעות הלוואי היפני\", מאת קייסוקה טקדה ושותפיו (אוניברסיטת קייו ובית החולים הכללי של יוקוהמה).\n• תוספת של מקולה בתמונה: \"שיעור תמותה מדלקת שריר ומעטפת הלב מהחיסון = 97 מתוך 1,014 (9.6%) לאחר 64 ימים\".\n• תרשימי עוגה של תוצאות המקרים (החלמה, הפוגה, נזק מתמשך, ללא החלמה, מוות), לדלקת שריר הלב (759 מקרים) ולדלקת מעטפת הלב (255 מקרים), כולל פירוק לפי חיסון פייזר ומודרנה.\n• ציטוט מסעיף התוצאות: אחרי הופעת דלקת שריר הלב ודלקת מעטפת הלב, שיפור (החלמה או הפוגה) נרשם ב-78% (595 מקרים) וב-87% (222 מקרים) בהתאמה; תוצאה חמורה (נזק מתמשך או ללא החלמה) נרשמה ב-11% (80 מקרים) וב-8% (20 מקרים); ומוות דווח ב-11% (84 מקרים) וב-5% (13 מקרים). מגמות דומות נראו בפילוח לפי פייזר ומודרנה.\n\nלא נמצאו תגובות המשך של המחבר בשרשור.\n\nהערה: אלה טענותיו של ד\"ר מקולה. האחוזים במחקר הם מתוך מקרים שדווחו למאגר תופעות לוואי, שבו מקרים חמורים נוטים להיות מדווחים יותר, ולכן הם לא מראים את הסיכון האמיתי לכל מתחסן. הגופים הרפואיים המרכזיים רואים בדלקת שריר לב מהחיסון תופעה נדירה, ובדרך כלל קלה.",
+   "full_en": "The @CDCgov says \"while post-vaccination myocarditis is generally rare, mild, and self-limiting, rare fatal cases have occurred and been evaluated.\" Yet Takada et al reported case fatality rate for vaccine myocarditis of 9.6%. Why does @CDCgov downplay this serious outcome? @McCulloughFund\n\nThe image in the post shows:\n• The header of a Journal of Infection and Chemotherapy (Elsevier) original article: \"SARS-CoV-2 mRNA vaccine-related myocarditis and pericarditis: An analysis of the Japanese Adverse Drug Event Report database\" by Keisuke Takada et al. (Keio University, Yokohama General Hospital and others).\n• McCullough's added caption: \"Case Fatality Rate for Vaccine Myopericarditis = 97/1014 (9.6%) at 64 days\".\n• Pie charts of case outcomes (recovered, remission, with sequela, not recovered, death) for myocarditis (n=759) and pericarditis (n=255), broken down for BNT162b2 (Pfizer) and mRNA-1273 (Moderna).\n• An excerpt from the results (3.4 Outcome): after the onset of myocarditis and pericarditis, improvement (recovery or remission) was noted in 78% (595 cases) and 87% (222 cases) respectively; a severe outcome (sequela or non-recovery) in 11% (80 cases) and 8% (20 cases); and death was reported in 11% (84 cases) and 5% (13 cases). Similar trends were seen for BNT162b2 and mRNA-1273.\n\nNo further replies by the author were found in the thread.\n\nNote: these are Dr. McCullough's claims. The study's percentages are among cases reported to an adverse-event database, where severe cases tend to be over-reported, so they don't show the actual risk per vaccinated person. Mainstream medical bodies consider vaccine myocarditis rare and usually mild."
+  },
   {
    "id": "mccullough-smallpox-subclinical-myocarditis",
    "topic": "mccullough",
