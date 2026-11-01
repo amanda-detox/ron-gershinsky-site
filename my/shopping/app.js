@@ -433,7 +433,7 @@
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the top
-    if (isChk(cur)) act = act.filter(function (x) { return !x.ck; }).concat(act.filter(function (x) { return !!x.ck; })); // checklist: checked items go to the bottom
+    if (isChk(cur)) act = act.filter(function (x) { return !!x.ck; }).concat(act.filter(function (x) { return !x.ck; })); // checklist (Ron 1.11): checked items on top, unchecked below; drag order kept within each group
     done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
