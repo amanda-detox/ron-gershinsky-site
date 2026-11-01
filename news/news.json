@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T06:02:38+02:00",
+ "updated": "2026-11-01T09:52:57+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-buffalu-12s-to-150ms-core-upgrades",
+   "topic": "solana",
+   "date": "2026-11-01T07:16:51Z",
+   "url": "https://x.com/solana/status/2116791563426893874",
+   "source": "X · @solana",
+   "he": {
+    "title": "מ־12 שניות ל־150 אלפיות שנייה: קצב השדרוגים של סולאנה",
+    "summary": "סולאנה שיתפה קטע שבו ‎@buffalu__‎ מדבר על הקצב המהיר של שדרוגי הליבה ברשת, מ־12 שניות ל־150 אלפיות שנייה. הפרק המלא שודר אצל ‎@paulbarrontv‎."
+   },
+   "en": {
+    "title": "12 seconds to 150 milliseconds: the pace of Solana's core upgrades",
+    "summary": "Solana shared a clip of @buffalu__ talking about the pace of core upgrades on the network, from 12 seconds down to 150 milliseconds. The full episode is on @paulbarrontv."
+   },
+   "full_he": "\"12 שניות ל־150 אלפיות שנייה. ‎@buffalu__‎ על הקצב של שדרוגי הליבה בסולאנה.\"\n\nבהמשך השרשור סולאנה כתבה: \"צפו בפרק המלא אצל ‎@paulbarrontv‎.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"12 seconds to 150 milliseconds. @buffalu__ on the pace of core upgrades on Solana.\"\n\nIn its follow-up reply in the thread, Solana wrote: \"Watch the full episode on @paulbarrontv.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "musk-wealth-debate-moran-yup",
+   "topic": "musk",
+   "date": "2026-11-01T07:37:13Z",
+   "url": "https://x.com/i/trending/2116795424153723082",
+   "source": "X",
+   "he": {
+    "title": "ויכוח סביב העושר של מאסק: לאגור או להשקיע?",
+    "summary": "צ'אד מורן קרא למאסק לפתור בעיות אמיתיות עכשיו במקום להגדיל את ההון שלו, ומאסק השיב \"Yup\" לתגובה שהגנה על הדרך שלו. תומכיו מזכירים שכמעט כל ההון שלו מושקע בטסלה, SpaceX ו־Neuralink."
+   },
+   "en": {
+    "title": "Debate heats up over Musk's wealth and investments",
+    "summary": "Chad Moran challenged Musk to solve real problems now instead of building his fortune, and Musk replied \"Yup\" to a post defending his approach. Supporters note nearly all his wealth is tied up in Tesla, SpaceX and Neuralink."
+   },
+   "full_he": "צ'אד מורן קרא לאילון מאסק לפתור בעיות אמיתיות כבר עכשיו במקום להמשיך לבנות את ההון שלו. מאסק השיב במילה אחת, \"Yup\", לתגובה שהגנה על הגישה שלו.\n\n• הדיון שואל אם מאסק אוגר את העושר שלו או משקיע אותו בפרויקטים כמו רכבים חשמליים, טילים רב־פעמיים, אינטרנט לווייני וממשקי מוח־מחשב, בחברות כמו טסלה, SpaceX ו־Neuralink.\n• התומכים מציינים שכמעט כל ההון שלו קשור למיזמים האלה, ושאין לו משכורת רגילה במזומן.\n• המבקרים מעלים שאלות על חבילות התגמול העתידיות של טסלה, ששוויין עשוי להגיע עד טריליון דולר במניות.\n• שני הצדדים מסכימים שהשאלה המרכזית היא שימוש יעיל במשאבים, על רקע ויכוח רחב יותר על התמריצים של מיליארדרים לחדשנות.\n\nהוויכוח הזה התפתח גם סביב הטענה של מאסק שבקרוב לא יהיה טעם לחסוך כסף לעתיד בגלל השפע שיביאו הבינה המלאכותית והרובוטיקה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Chad Moran challenged Elon Musk to solve real problems now instead of building his fortune. Musk replied with a simple \"Yup\" to a post defending his approach.\n\n• The conversation questions whether Musk hoards wealth or invests it in projects like electric vehicles, reusable rockets, satellite internet and brain interfaces at companies such as Tesla, SpaceX and Neuralink.\n• Supporters note nearly all his fortune is tied to these ventures, with no traditional cash salary.\n• Critics question massive potential Tesla compensation packages worth up to $1 trillion in stock.\n• Both sides agree the key issue is effective use of resources, amid broader views on billionaire incentives for innovation.\n\nThe debate also grew out of Musk's claim that saving money for the future will soon be pointless because of AI- and robotics-driven abundance.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
+  {
+   "id": "grokbot-personal-ai-teams-everyday-tasks",
+   "topic": "grokbot",
+   "date": "2026-11-01T06:39:52Z",
+   "url": "https://x.com/i/trending/2116781246671897010",
+   "source": "X",
+   "he": {
+    "title": "משתמשי Grok Bot בונים צוותי AI אישיים למשימות היומיום",
+    "summary": "משתמשים מעבירים לבוטים מיילים, תהליכי עבודה ודוחות, ומתייחסים אליהם כמו לצוות מתמחים אמין. המהנדסת לורן טן ומשתמשים מתקדמים משתפים מדריכים לבניית צוותי בוטים קטנים ומיומנויות לשימוש חוזר."
+   },
+   "en": {
+    "title": "Grok Bot users build personal AI teams for everyday tasks",
+    "summary": "Users are handing off emails, workflows and reports to bots that keep working while they're away, treating them like a reliable intern team. Engineer Lauren Tan and power users share guides on small bot teams and reusable skills."
+   },
+   "full_he": "דמיין שאתה מעביר מיילים, תהליכי עבודה ודוחות לסוכני AI שממשיכים לעבוד גם כשאתה לא ליד המחשב. משתמשים ראשונים כבר עושים את זה עם Grok Bot, ומתייחסים לבוטים כמו לצוות מתמחים אמין.\n\n• Grok Bot, שהושק בבטא ציבורית באוגוסט 2026 על ידי SpaceXAI, רץ על מחשבי ענן ייעודיים עם דפדפן ומערכת קבצים, ולכן הוא יכול לבצע משימות לבד, כמו להתחבר לכלים ולנסח מיילים.\n• משתמשים כמו המהנדסת לורן טן משתפים מדריכים לארגון צוותים קטנים של בוטים, לשימוש ב־'dr eggbot' לעיצובים מותאמים, וליצירת מיומנויות לשימוש חוזר ממשימות קודמות, מה שלדבריהם חוסך שעות בכל שבוע.\n• משתמשים מתקדמים בונים מבנים עם \"ראשי מחלקות\" או בוטים שמחלקים משימות. ההמלצות: להתחיל בקטן, ללמד את הבוט את ההעדפות שלך ולבדוק את התוצרים, בזמן שהבוטים משתפרים בעזרת פרומפטים מהקהילה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Imagine handing off emails, workflows and reports to AI agents that keep working even when you step away. Early users are doing just that with Grok Bot, treating them like a reliable intern team.\n\n• Grok Bot, launched in public beta in August 2026 by SpaceXAI, runs on dedicated cloud computers with browsers and file systems, allowing autonomous tasks like signing into tools and drafting emails.\n• Users like engineer Lauren Tan share guides on organizing small bot teams, using 'dr eggbot' for custom designs, and creating reusable skills from past tasks to save hours weekly.\n• Power users set up structures with department heads or delegators, always starting small, teaching preferences and verifying outputs as the bots improve through community prompts.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
   {
    "id": "huang-nvidia-ai-agents-seti-telescope",
    "topic": "huang",
