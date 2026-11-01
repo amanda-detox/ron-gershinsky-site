@@ -2,7 +2,7 @@
   "name": "מבוכפיי · Mazify",
   "short_name": "מבוכפיי",
   "description": "מבוך יומי חדש בכל יום · A new maze every day",
-  "id": "./", "start_url": "./", "scope": "./",
+  "id": "/ron-gershinsky-site/mazify/", "start_url": "./", "scope": "./",
   "display": "standalone", "orientation": "portrait", "lang": "he", "dir": "rtl",
   "background_color": "#070d2e", "theme_color": "#0a1238",
   "icons": [
