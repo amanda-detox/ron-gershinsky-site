@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T16:17:00+02:00",
+ "updated": "2026-11-01T16:53:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-nothing-stands-up-superintelligence",
+   "topic": "musk",
+   "date": "2026-11-01T14:35:36Z",
+   "url": "https://x.com/i/trending/2116900761871511934",
+   "source": "X",
+   "he": {
+    "title": "מאסק: „שום דבר לא יעמוד מול סופר־אינטליגנציה”",
+    "summary": "מאסק הגיב לפוסט על מערכת המס שלא תחזיק מעמד מול AGI וכתב שבעצם שום דבר לא יעמוד מול סופר־אינטליגנציה. התגובות נעו בין דיונים על כוח מחשוב ושליטה אנושית לבין בדיחות ופסוקים מהתנ\"ך."
+   },
+   "en": {
+    "title": "Musk: \"Nothing will stand up to super intelligence\"",
+    "summary": "Replying to a post saying today's tax system won't stand up to AGI, Musk wrote that nothing will stand up to super intelligence. Replies ranged from compute and human-control debates to jokes and Bible verses."
+   },
+   "full_he": "הפוסט של מאסק (בתגובה ל־Sholto Douglas):\n\n„שום דבר לא יעמוד מול סופר־אינטליגנציה.”\n\nהפוסט שהוא הגיב לו (Sholto Douglas):\n\n„הצעה ממש מעוררת מחשבה על מיסוי של גובי רנטה שלא תורמים לצמיחה דרך השקעות. מערכת המס הנוכחית שלנו מאוד לא יעילה, אפשר לשפר אותה מאוד, והיא בכלל לא תעמוד מול AGI.”\n\nמה כותבים ב־X על הסיפור:\n\n• מאסק הסביר שרובוטים יצטרכו יותר זיכרון RAM מכל השאר על כדור הארץ ביחד, כי הם מעצבים אטומים בעולם הפיזי, ואילו כוח המחשוב של הסופר־אינטליגנציה יעבור לחלל העמוק. (בפוסט מ־26 באוקטובר, ששיתף מחדש היום, כתב: „צורכי ה־RAM של רובוטים יעלו על כל השאר בכדור הארץ… צורכי הסופר־אינטליגנציה יעלו על זה בהרבה, אבל כמעט 100% ממנה יהיה מחשוב בחלל העמוק. מובן מאליו.”)\n• המגיבים שילבו חששות מעשיים, כמו הגדלת כוח המחשוב ושמירה על שליטה אנושית, עם קריאות ל„כפתור חירום”.\n• אחרים התבדחו, והיו שהציגו את הסופר־אינטליגנציה במונחים דתיים; מֵמים ופסוקים על מגדל בבל שגרוק שלף הוסיפו לשלל הדעות על הצרכים והסיכונים של העתיד של ה־AI.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Musk's post (replying to Sholto Douglas):\n\n\"Nothing will stand up to super intelligence\"\n\nThe post he replied to (Sholto Douglas):\n\n\"really thought provoking proposal on taxing rent extractors who don't contribute to growth via investment. Our current tax system is very inefficient, could be hugely improved and will not stand up to AGI at all\"\n\nWhat X is saying about the story:\n\n• Musk explained that robots will need more RAM than everything else on Earth combined, as they shape atoms in the real world, while superintelligence compute moves to deep space. (In an Oct 26 post he reposted today, he wrote: \"Robot RAM needs will exceed everything else on Earth, as you need the robots to be on physical substates in order to shape atoms. Super intelligence needs will vastly exceed that, but ~100% of SI will be deep space compute. Obviously.\")\n• Commenters mixed practical concerns like scaling compute and human control with calls for an \"oh shit button\".\n• Others joked, and some framed superintelligence in religious terms; memes and AI-pulled Bible verses on the Tower of Babel added to the wide-ranging takes on AI's future demands and risks.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
   {
    "id": "spacex-musk-starlink-saves-lives-wetheral-rescue",
    "topic": "spacex",
