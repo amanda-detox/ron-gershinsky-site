@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T13:45:19+02:00",
+ "updated": "2026-11-01T14:38:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "mccullough-stem-cell-injections-orthopedic",
+   "topic": "mccullough",
+   "date": "2026-11-01T12:34:42Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116871553035940043",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה וד\"ר גירגיס: איך משתמשים בזריקות תאי גזע מקומיות לפציעות אורתופדיות",
+    "summary": "מקולה משתף כתבה חדשה ב־Focal Points, שבה הוא וד\"ר עמאד גירגיס עוברים על הפרקטיקה הנוכחית: זריקות ממוקדות למפרקים וזריקות אפידורליות, מינונים מקובלים, לוחות זמנים צפויים, ומה המחקר מראה ומה עדיין לא. זה תיאור שלהם, לא המלצה רפואית."
+   },
+   "en": {
+    "title": "McCullough and Dr. Guirguis: how localized stem cell injections are used for orthopedic injuries",
+    "summary": "McCullough shares a new Focal Points piece in which he and Dr. Emad Guirguis walk through current practice: targeted joint and epidural injections, typical dosing, expected timelines, and what the evidence does and doesn't yet show. This is their account, not medical advice."
+   },
+   "full_he": "איך משתמשים בזריקות תאי גזע מקומיות לפציעות אורתופדיות\n\nד\"ר מקולה וד\"ר גירגיס עוברים על הפרקטיקה הנוכחית: זריקות ממוקדות למפרקים וזריקות אפידורליות, מינונים מקובלים, לוחות זמנים צפויים, ומה הראיות מראות ומה הן עדיין לא מראות. הכתובת: TheFocalPoints. (הוא תייג את @McCulloughFund.)\n\nבתמונה: צילום של הכתבה באתר www.thefocalpoints.com, באותה כותרת ובאותו תיאור, מאת פיטר א. מקולה, MD, MPH, מ־1 בנובמבר 2026, עם הסימון \"PAID\" (לתוכן בתשלום). מתחת מופיע צילום מתוך שיחת וידאו של ד\"ר פיטר מקולה, נשיא קרן מקולה, עם ד\"ר עמאד גירגיס (Dr. Emad G).\n\nהכתבה עצמה נמצאת מאחורי חומת תשלום, ולכן אין עוד טקסט להציג ממנה. לא נמצאו תגובות המשך של מקולה בשרשור.\n\nהערה: טיפולי תאי גזע אורתופדיים עדיין נחשבים ניסיוניים ברובם, והראיות ליעילותם מוגבלות; זה תיאור של הרופאים בכתבה ולא המלצה.",
+   "full_en": "How Localized Stem Cell Injections Are Used for Orthopedic Injuries\n\nDrs McCullough and Guirguis walk through the current practice: targeted joint and epidural injections, typical dosing, expected timelines, and what the evidence does and doesn't yet show. URL: TheFocalPoints. (He tagged @McCulloughFund.)\n\nThe image: a screenshot of the article on www.thefocalpoints.com with the same title and description, by Peter A McCullough, MD, MPH, dated Nov 01, 2026 and marked \"PAID\". Below it is a still from a video call between Dr Peter McCullough, President of the McCullough Foundation, and Dr. Emad G (Guirguis).\n\nThe article itself is behind a paywall, so there's no more text to show from it. No follow-up replies by McCullough were found in the thread.\n\nNote: orthopedic stem cell treatments are still largely considered experimental, with limited evidence of effectiveness; this is the doctors' account in the article, not a recommendation."
+  },
   {
    "id": "spacex-musk-capex-efficiency-underestimated",
    "topic": "spacex",
