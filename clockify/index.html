@@ -581,13 +581,13 @@ var INST_TXT = {
     iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>.</li></ol>",
     iosOther: "<ol><li>קודם פותחים את הדף ב־<b>Safari</b>: בתפריט (⋯ או ⋮) בוחרים <b>„פתח ב־Safari”</b> או <b>„פתח בדפדפן”</b>.</li><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>",
     android: "<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b> (ב־Samsung: <b>„הוסף דף אל” ← „מסך הבית”</b>).</li></ol>פתחת מתוך וואטסאפ, אינסטגרם או פייסבוק? קודם בוחרים בתפריט <b>„פתח בדפדפן”</b>.",
-    desktop: "<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>"
+    desktop: "<ol><li>ב־Chrome במחשב: לוחצים על סמל ההתקנה בצד ימין של שורת הכתובת, או בתפריט <b>⋮</b> ← <b>„העברה, שמירה ושיתוף”</b> ← <b>„התקנת הדף כאפליקציה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>"
   },
   en: {
     iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>.</li></ol>",
     iosOther: "<ol><li>First open this page in <b>Safari</b>: from the menu (⋯ or ⋮) choose <b>“Open in Safari”</b> or <b>“Open in browser”</b>.</li><li>In Safari, tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>",
     android: "<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b> (Samsung: <b>“Add page to” → “Home screen”</b>).</li></ol>Opened from WhatsApp, Instagram or Facebook? First choose <b>“Open in browser”</b> from its menu.",
-    desktop: "<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>"
+    desktop: "<ol><li>In Chrome on a computer: click the install icon at the right end of the address bar, or menu <b>⋮</b> → <b>“Cast, save and share”</b> → <b>“Install page as app”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>"
   }
 };
 var instDeferred = null, instDone = false;
@@ -1060,5 +1060,18 @@ document.getElementById("install-btn").addEventListener("click", function () {
   return true;
 });</script>
 <script src="../shared/rg-topbar.js?v=3" data-slot=".top"></script>
+
+<!-- rg-install-x: close button for the install button -->
+<style>html.rg-inst-off #install-wrap{display:none!important}.rg-inst-a{position:relative;display:inline-block}#rg-inst-x{position:absolute;top:-12px;right:-12px;z-index:5;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-12px}</style>
+<script>(function(){
+var K="rg-inst-off",r=document.documentElement;try{if(localStorage.getItem(K)==="1")r.classList.add(K);}catch(e){}
+var b=document.getElementById("install-btn");if(!b)return;
+var a=document.createElement("span");a.className="rg-inst-a";b.parentNode.insertBefore(a,b);a.appendChild(b);
+var x=document.createElement("button");x.type="button";x.id="rg-inst-x";x.textContent="✕";a.appendChild(x);
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(r.lang)?"en":"he";var t=l==="en"?"Close":"סגירה";x.title=t;x.setAttribute("aria-label",t);}
+L();addEventListener("storage",function(e){if(e.key==="rg-lang")L();});new MutationObserver(L).observe(r,{attributes:true,attributeFilter:["lang","dir"]});
+new MutationObserver(function(){a.hidden=b.hidden;}).observe(b,{attributes:true,attributeFilter:["hidden"]});a.hidden=b.hidden;
+x.onclick=function(e){e.stopPropagation();r.classList.add(K);try{localStorage.setItem(K,"1");}catch(e){}};
+})();</script>
 </body>
 </html>
