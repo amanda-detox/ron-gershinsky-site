@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T22:28:00+02:00",
+ "updated": "2026-11-01T23:10:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-musk-supercompute-colossus2-ahead",
+   "topic": "spacex",
+   "date": "2026-11-01T20:32:14Z",
+   "url": "https://x.com/elonmusk/status/2116991729660575998",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: פרויקטי המחשוב האחרים לא מגיעים ליעדים, ספייסאקס כבר כן",
+    "summary": "מאסק ציטט גרף שלפיו Colossus 2 בממפיס הוא מרכז הנתונים החזק בעולם לבינה מלאכותית, עם כ־1.11 מיליון מקבילות H100, לפני Stargate של OpenAI."
+   },
+   "en": {
+    "title": "Musk: other supercompute projects miss their goals, SpaceX is hitting ours",
+    "summary": "Musk quoted a chart ranking Colossus 2 in Memphis as the world's most powerful AI data center, at about 1.11 million H100 equivalents, ahead of OpenAI's Stargate."
+   },
+   "full_he": "\"פרויקטי מחשוב־העל האחרים לא מצליחים להגיע ליעדים שלהם, אבל ספייסאקס כבר משיגה את שלנו.\"\n\nהפוסט שהוא ציטט (@Rothmus):\n\"Colossus 2 של SpaceXAI בממפיס הוא מרכז הנתונים החזק בעולם לבינה מלאכותית.\n\nבערך 1.11 מיליון מקבילות H100, לפני Stargate של OpenAI והקמפוסים של חברות הטכנולוגיה הגדולות.\n\nעד אמצע 2027 צפוי Colossus להגדיל את הפער, עם עוד אשכולות Blackwell שייכנסו לפעולה.\"\n\nהגרף שבפוסט: \"Colossus 2 של xAI הוא מרכז הנתונים החזק בעולם לבינה מלאכותית\" – כוח מחשוב בכל מרכז נתונים היום, במקבילות שבב Nvidia H100:\n• Colossus 2, ממפיס (xAI) – 1.11 מיליון\n• Stargate, אבילין (OpenAI/Oracle) – 1.02 מיליון\n• ניו קרלייל, אינדיאנה (Amazon) – 818 אלף\n• Fairwater, אטלנטה (Microsoft) – 769 אלף\n• פרייור, אוקלהומה (Google) – 637 אלף\n• נוסאג'איה, מלזיה (DayOne) – 584 אלף\n• Prometheus, אוהיו (Meta) – 536 אלף\n• קמפס, מלזיה (DayOne) – 481 אלף\n\nמקור הגרף: Epoch AI Frontier Data Centers, נובמבר 2026 (הערכות).",
+   "full_en": "\"The other supercompute projects are unable to reach their goals, but SpaceX is already achieving ours\"\n\nThe quoted post (@Rothmus):\n\"SpaceXAI's Colossus 2 in Memphis is the world's most powerful AI data center.\n\nRoughly 1.11 million H100 equivalents, ahead of OpenAI's Stargate and the big tech campuses.\n\nBy mid 2027, Colossus is expected to widen the gap with more Blackwell clusters coming online.\"\n\nThe chart in the post: \"xAI's Colossus 2 Is the World's Most Powerful AI Data Center\" – computing power in each data center today, in Nvidia H100 chip equivalents:\n• Colossus 2, Memphis (xAI) – 1.11M\n• Stargate, Abilene (OpenAI/Oracle) – 1.02M\n• New Carlisle, Indiana (Amazon) – 818K\n• Fairwater, Atlanta (Microsoft) – 769K\n• Pryor, Oklahoma (Google) – 637K\n• Nusajaya, Malaysia (DayOne) – 584K\n• Prometheus, Ohio (Meta) – 536K\n• Kempas, Malaysia (DayOne) – 481K\n\nChart source: Epoch AI Frontier Data Centers, Nov. 2026 (estimates)."
+  },
+  {
+   "id": "musk-grandfather-ww2-fought-nazism",
+   "topic": "musk",
+   "date": "2026-11-01T20:27:41Z",
+   "url": "https://x.com/elonmusk/status/2116990584048984346",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק על סבו שלחם במלחמת העולם השנייה: \"כן\"",
+    "summary": "מאסק אישר בתגובה \"כן\" סרטון שבו הוא מספר שסבו לחם כמעט שש שנים נגד הנאצים, היה היחיד מחבריו ששרד, ועבר בסוף המלחמה למודיעין הבריטי בלונדון."
+   },
+   "en": {
+    "title": "Musk on his grandfather in World War II: \"Yes\"",
+    "summary": "Musk replied \"Yes\" to a clip of himself saying his grandfather fought the Nazis for almost six years, was the only one of his friends to survive, and was moved to British intelligence in London near the war's end."
+   },
+   "full_he": "\"כן\"\n\nהפוסט שהוא ציטט (@Napoleon__Bon):\n\"אילון מאסק על סבו במלחמת העולם השנייה:\n\n'סבא שלי היה במלחמת העולם השנייה כמעט שש שנים. כל החברים שלו נהרגו.\n\nהוא היחיד מבין חבריו ששרד. והוא היה בטראומה קשה.\n\nהוא פשוט לא הצליח אפילו לדבר אחר כך.\n\nרוב הזמן הזה היה במזרח אפריקה, בצפון אפריקה ובאיטליה.\n\nהסיבה היחידה שהוא בכלל חי, בכנות, היא שלקראת סוף המלחמה עשו מבחן כשירות, כי הוא היה רק רב־טוראי.\n\nהוא לא סיים תיכון, אז הוא לא היה זכאי לקורס קצינים. ושלפו אותו כנראה רגע לפני שהיה נהרג, ושלחו אותו לעבוד במודיעין הבריטי בלונדון, ושם הוא פגש את סבתא שלי.\n\nאז הוא היה אחד מאלה שנלחמו לעצור את הנאצים, יחד עם מיליונים אחרים.\n\nאז בואו לא נשכח שרוב רובו של המערב נלחם ומת כדי לעצור את הנאציזם.'\"\n\nהפוסט המצוטט כולל סרטון של כדקה.",
+   "full_en": "\"Yes\"\n\nThe quoted post (@Napoleon__Bon):\n\"Elon Musk on his grandfather in World War 2:\n\n'My grandfather was in World War II for almost six years. All his friends got killed.\n\nHe's the only one of his friends to survive. And he was severely traumatized.\n\nHe really just couldn't even talk afterwards.\n\nMost of that time was in East Africa, North Africa, Italy.\n\nThe only reason he's even alive frankly is because towards the end of the war they gave an aptitude test because he was just a corporal.\n\nHe didn't graduate high school so he wasn't eligible for officer school. And they plucked him out probably right before he died and sent him to work for British intelligence in London which is where he met my grandmother.\n\nSo he was one of the people fighting to stop the Nazis along with millions of others.\n\nSo let's not forget that the vast majority of the West fought and died to stop Nazism.'\"\n\nThe quoted post includes a video of about one minute."
+  },
+  {
+   "id": "musk-star-wars-what-they-stole-meme",
+   "topic": "musk",
+   "date": "2026-11-01T20:29:04Z",
+   "url": "https://x.com/elonmusk/status/2116990933103509723",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"זה מה שגנבו מאיתנו\" – תמונה של משפחת סקייווקר על כס האימפריה",
+    "summary": "מאסק פרסם תמונה בדיונית מעולם מלחמת הכוכבים: אנקין עם פדמה, לוק ולאה הילדים על כס המלכות, כשמשמר הקיסר וחיילי סער מאחוריהם."
+   },
+   "en": {
+    "title": "Musk: \"This is what they stole from us\" – the Skywalker family on the imperial throne",
+    "summary": "Musk posted a fan-made Star Wars image showing Anakin with Padmé and young Luke and Leia at the imperial throne, flanked by the Emperor's red guards and stormtroopers."
+   },
+   "full_he": "\"זה מה שגנבו מאיתנו\"\n\nהתמונה שבפוסט: תמונה מעובדת בסגנון מלחמת הכוכבים, ובה אנקין סקייווקר בגלימה שחורה יושב על כס מלכות שחור ומחודד, פדמה לצידו בשמלה שחורה וכתר, ולפניהם לוק ולאה כילדים במדים אימפריאליים. מאחוריהם עומדים משמר הקיסר בגלימות אדומות ושורות של חיילי סער, ובחלון ברקע נראות ספינות כוכבים. אין בתמונה טקסט.",
+   "full_en": "\"This is what they stole from us\"\n\nThe image in the post: an edited Star Wars-style picture of Anakin Skywalker in black robes seated on a black, spiked throne, Padmé beside him in a black gown and crown, and young Luke and Leia in imperial uniforms in front of them. Behind them stand the Emperor's red-robed guards and rows of stormtroopers, with star destroyers visible through a window in the background. The image has no text."
+  },
+  {
+   "id": "musk-delta-flight-ai-sandbox-joke",
+   "topic": "musk",
+   "date": "2026-11-01T21:05:15Z",
+   "url": "https://x.com/i/trending/2116998392895480035",
+   "source": "X",
+   "he": {
+    "title": "מאסק: הדרך הכי טובה לבודד בינה מלאכותית – לשים אותה בטיסה של דלתא",
+    "summary": "מאסק לקח תלונה של איש טכנולוגיה על ה־Wi‑Fi של דלתא והפך אותה לבדיחה על בטיחות AI: \"אין שום אפשרות לברוח\". זה קרה סביב טקס מדליות המדע והטכנולוגיה הלאומיות."
+   },
+   "en": {
+    "title": "Musk: the best way to sandbox an AI is to put it on a Delta flight",
+    "summary": "Musk turned a tech leader's complaint about Delta's spotty Wi‑Fi into an AI safety joke: \"No escape is possible.\" It came around the National Medals of Science and Technology event."
+   },
+   "full_he": "אילון מאסק ציטט תלונה של איש טכנולוגיה על ה־Wi‑Fi הלא יציב של דלתא, והפך אותה לעקיצה על בטיחות בינה מלאכותית: \"הדרך הכי טובה לבודד (sandbox) בינה מלאכותית? לשים אותה בטיסה של דלתא: אין שום אפשרות לברוח.\"\n\nבכינוס במכון האמריקאי לשלום, שבו מאסק, ג'נסון הואנג מ־Nvidia, סרגיי ברין מגוגל ואחרים קיבלו את מדליות המדע והטכנולוגיה הלאומיות, החבורה החליפה סיפורים על המחסור בכוח מחשוב ל־AI. מאסק סיפר שגרג ברוקמן מ־OpenAI ביקש ממנו ומברין מעבדים גרפיים (GPU) אחרי מתיחויות בעבר, וברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן.\n\nלפי הסיכום, חילופי הדברים הדגישו את היריבויות בעמק הסיליקון על רקע הביקוש הגובר לכוח מחשוב, וקשורים להיסטוריה של מאסק כמייסד־שותף של OpenAI שתבע אותה מאוחר יותר על המעבר למטרות רווח.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
+   "full_en": "Elon Musk quoted a tech leader's gripe about Delta's spotty Wi‑Fi and turned it into an AI safety zinger: \"Best way to sandbox an AI? Put it on a Delta flight: No escape is possible.\"\n\nAt a U.S. Institute of Peace gathering where Musk, Nvidia's Jensen Huang, Google's Sergey Brin and others received National Medals of Science and Technology, the group swapped stories about AI compute shortages. Musk recalled OpenAI's Greg Brockman asking him and Brin for GPUs after past tensions, with Brin teasing Brockman's old habit of keeping a diary.\n\nThe exchange highlighted Silicon Valley rivalries amid surging AI demands, tying back to Musk's history as an OpenAI co-founder who later sued over its shift to for-profit status.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
+  },
+  {
+   "id": "huang-musk-brin-mock-brockman-compute",
+   "topic": "huang",
+   "date": "2026-11-01T19:46:16Z",
+   "url": "https://x.com/i/trending/2116978257950118342",
+   "source": "X",
+   "he": {
+    "title": "ג'נסון הואנג, מאסק וברין צוחקים על בקשות המחשוב של ברוקמן",
+    "summary": "בזמן המתנה בטקס מדליות בבית הלבן, הואנג, מאסק, ברין, נאדלה, ליסה סו ומייקל דל החליפו סיפורים, ומאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש מהמתחרים כוח מחשוב."
+   },
+   "en": {
+    "title": "Jensen Huang, Musk and Brin mock Brockman's compute requests",
+    "summary": "While waiting at a White House medal ceremony, Huang, Musk, Brin, Nadella, Lisa Su and Michael Dell swapped stories, and Musk called out OpenAI's Greg Brockman for asking rivals for scarce AI compute."
+   },
+   "full_he": "בזמן המתנה בטקס מדליות בבית הלבן, אילון מאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש ממתחרים כמוהו וכמו סרגיי ברין כוח מחשוב ל־AI, שנמצא במחסור.\n\n• ג'נסון הואנג, אילון מאסק, סרגיי ברין, סאטיה נאדלה, ליסה סו ומייקל דל סיפרו את הסיפור בזמן ההמתנה.\n• מאסק התבדח שברוקמן \"גנב את הצדקה שלי\" ושאינו יכול לבקש טובות אחרי שהתנהג בצורה גסה מאוד כלפיו.\n• ברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן משנות ה־2010, שהופיע בתביעה של מאסק נגד OpenAI ב־2024.\n• מאוחר יותר מאסק התבדח ב־X על בידוד בינה מלאכותית בטיסה של דלתא בלי Wi‑Fi, מה שעורר צחוק סביב צרות חברות התעופה.\n• לפי הסיכום, הסיפור מגיע מכתבה של Colossus על יועץ המדע של הבית הלבן מייקל קרציוס, ומשקף את המתיחות בתעשייה שמאסק היה ממייסדיה ועזב.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
+   "full_en": "While waiting at a White House medal ceremony, Elon Musk called out OpenAI's Greg Brockman for begging rivals like him and Sergey Brin for scarce AI computing power.\n\n• Jensen Huang, Elon Musk, Sergey Brin, Satya Nadella, Lisa Su and Michael Dell shared the story during downtime.\n• Musk quipped that Brockman \"stole my charity\" and couldn't ask for favors after being a \"huge dick.\"\n• Brin teased Brockman's old diary habit from the 2010s, which featured in Musk's 2024 lawsuit against OpenAI.\n• Musk later joked on X about sandboxing AI on a Delta flight with no Wi‑Fi, sparking laughs tied to airline woes and highlighting AI rivalries over tight resources.\n• The exchange comes from a Colossus article on science advisor Michael Kratsios and reflects ongoing tensions in the industry Musk co-founded but left.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
+  },
   {
    "id": "grokbot-musk-gift-research-buy",
    "topic": "grokbot",
