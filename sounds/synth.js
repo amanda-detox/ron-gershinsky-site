@@ -232,14 +232,14 @@
   function crickets() {
     var r = rng(61), L = scale(bq(pink(rng(610)), LP, 1500, 0.7), 0.25), R = scale(bq(pink(rng(611)), LP, 1500, 0.7), 0.25), c, i;
     for (c = 0; c < 6; c++) {
-      var fc = 3700 + r() * 1300, np = 3 + (r() < 0.5 ? 0 : 1), P = 0.42 + r() * 0.45, A = 0.05 + 0.12 * r() * r(), pan = r() * 2 - 1;
+      var fc = 3700 + r() * 1300, np = 3 + (r() < 0.5 ? 0 : 1), P = 0.85 + r() * 0.9, A = 0.05 + 0.12 * r() * r(), pan = r() * 2 - 1;
       var pd = 0.016 + r() * 0.006, gap = pd * 0.9;
       var pulse = tone(pd, (function (fc) { return function (u) { return fc * (1 - 0.04 * u); }; })(fc), function (u) { var s = Math.sin(Math.PI * u); return s * s; }, 0.12);
       var t = r() * LOOP, end = t + LOOP, singing = true, segEnd = t + 6 + r() * 20;
       while (t < end) {
-        if (t > segEnd) { singing = !singing; segEnd = t + (singing ? 6 + r() * 20 : 1.5 + r() * 6); }
+        if (t > segEnd) { singing = !singing; segEnd = t + (singing ? 6 + r() * 18 : 3 + r() * 9); }
         if (singing) { var a = A * (0.85 + 0.3 * r()); for (var p = 0; p < np; p++) put(L, R, S(t + p * (pd + gap)), pulse, pan, a * (p === 0 ? 0.75 : 1)); }
-        t += P * (0.97 + 0.06 * r());
+        t += P * (0.9 + 0.25 * r()) + (r() < 0.15 ? P * r() : 0);
       }
     }
     for (c = 0; c < 2; c++) {

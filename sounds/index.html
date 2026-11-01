@@ -57,6 +57,14 @@
   .tile.on .st { color: color-mix(in srgb, var(--c) 70%, white); }
   .volrow { padding: 0 12px 14px; display: flex; align-items: center; gap: 8px; }
   .tile:not(.on) .volrow { visibility: hidden; }
+  .vstep { display: flex; align-items: center; gap: 6px; flex: 1; min-width: 0; justify-content: center; direction: ltr; }
+  .vstep button { flex: none; width: 46px; height: 46px; border-radius: 50%; font-size: 24px; line-height: 1; font-weight: 600; display: grid; place-items: center;
+    color: #1a1d44; background: color-mix(in srgb, var(--c, var(--lav)) 85%, white); border: 2px solid #e6c36a; box-shadow: 0 0 12px color-mix(in srgb, var(--c, var(--lav)) 35%, transparent); cursor: pointer; touch-action: manipulation; }
+  .vstep button:active { transform: scale(0.94); }
+  .vstep button:disabled { opacity: 0.35; box-shadow: none; cursor: default; }
+  .vstep .vdb { min-width: 74px; text-align: center; font-size: 16px; font-weight: 600; font-variant-numeric: tabular-nums; color: #e6c36a; white-space: nowrap; }
+  html[data-theme="light"] .vstep button { background: #1a47a0; color: #ffffff; border-color: #c9a23a; }
+  html[data-theme="light"] .vstep .vdb { color: #0b2a6b; }
   .volrow .ico { font-size: 13px; opacity: 0.7; }
   input[type=range] { -webkit-appearance: none; appearance: none; flex: 1; min-width: 0; height: 32px; background: transparent; margin: 0; --p: 50%; --c2: var(--c, var(--lav)); }
   input[type=range]::-webkit-slider-runnable-track { height: 6px; border-radius: 999px;
@@ -183,8 +191,8 @@
     <div class="row">
       <button type="button" class="play" id="play" aria-label="Play">▶</button>
       <div class="master">
-        <label for="master"><span class="long" id="master-l"></span><span class="short" aria-hidden="true">🔊</span></label>
-        <input type="range" id="master" min="0" max="100" value="80" style="--c: #c9b8ff">
+        <label><span class="long" id="master-l"></span><span class="short" aria-hidden="true">🔊</span></label>
+        <div class="vstep" id="master" dir="ltr" style="--c: #c9b8ff"><button type="button" class="vm">−</button><span class="vdb"></span><button type="button" class="vp">+</button></div>
       </div>
       <button type="button" class="stopall" id="stopall"></button>
     </div>
@@ -325,6 +333,25 @@
   function clamp(v, a, b) { return Math.min(b, Math.max(a, v)); }
   function freq(id) { var s = byId(id), v = st.freqs[id]; return typeof v === "number" && isFinite(v) ? clamp(v, s.min, s.max) : s.def; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch (e) {} }
+  // Volume steppers: level in dB, 3 dB per tap, 0 dB down to -39 dB, then Off. Stored value v keeps the old
+  // 0..1 format (gain = v*v), so v = 10^(dB/40) and gain = 10^(dB/20); old saved values snap to the nearest step.
+  var DB_STEP = 3, DB_MIN = -39, DB_OFF = -999;
+  function vToDb(v) { if (!(v > 0)) return DB_OFF; var d = Math.round(40 * Math.log10(v) / DB_STEP) * DB_STEP; return d > 0 ? 0 : d < DB_MIN ? DB_OFF : d; }
+  function dbToV(d) { return d <= DB_OFF ? 0 : Math.pow(10, d / 40); }
+  function dbText(d) { return d <= DB_OFF ? (lang === "en" ? "Off" : "כבוי") : (d === 0 ? "0" : "−" + Math.abs(d)) + " dB"; }
+  function paintStep(el, d) { el.querySelector(".vdb").textContent = dbText(d); el.querySelector(".vm").disabled = d <= DB_OFF; el.querySelector(".vp").disabled = d >= 0; }
+  function stepAria(el, label, on) {
+    el.setAttribute("role", "group"); el.setAttribute("aria-label", label);
+    var m = el.querySelector(".vm"), p = el.querySelector(".vp");
+    m.setAttribute("aria-label", label + " −" + DB_STEP + " dB"); p.setAttribute("aria-label", label + " +" + DB_STEP + " dB");
+    m.tabIndex = p.tabIndex = on ? 0 : -1; el.querySelector(".vdb").setAttribute("aria-live", "polite");
+  }
+  function bindStep(el, get, set) {
+    function go(dir) { var d = get(), n; if (dir < 0) n = d <= DB_MIN ? DB_OFF : d - DB_STEP; else n = d <= DB_OFF ? DB_MIN : Math.min(0, d + DB_STEP); if (n !== d) { set(n); } paintStep(el, get()); }
+    el.querySelector(".vm").addEventListener("click", function () { go(-1); });
+    el.querySelector(".vp").addEventListener("click", function () { go(1); });
+    paintStep(el, get());
+  }
   function vol(id) { var v = st.vols[id]; return typeof v === "number" ? v : ({ nature: 0.7, mantra: 0.8 }[byId(id).kind] || 0.5); }
   function isOn(id) { return st.on.indexOf(id) >= 0; }
   var playing = false;          // what the user wants
@@ -626,7 +653,7 @@
       '<input type="number" class="fin" inputmode="decimal" step="any" min="' + s.min + '" max="' + s.max + '"><span class="unit">Hz</span></div><span class="actual"></span>' : "";
     var mt = s.kind === "mantra" ? '<span class="mtext" dir="auto"></span>' : "";
     return '<button type="button" class="tbtn" aria-pressed="false">' + icon + '<span class="nm"></span>' + mt + '<span class="st"></span></button>' + fr +
-      '<div class="volrow"><span class="ico" aria-hidden="true">🔈</span><input type="range" min="0" max="100" class="vol"><span class="ico" aria-hidden="true">🔊</span></div>';
+      '<div class="volrow"><div class="vstep vol" dir="ltr"><button type="button" class="vm">−</button><span class="vdb"></span><button type="button" class="vp">+</button></div></div>';
   }
   var freqTimers = {};
   function setFreq(id, v, li, fromNumber) {
@@ -659,8 +686,8 @@
         li.innerHTML = tileHtml(s);
         li.querySelector(".tbtn").addEventListener("click", function () { toggleSound(s.id); });
         var r = li.querySelector(".vol");
-        r.value = Math.round(vol(s.id) * 100); r.style.setProperty("--p", r.value + "%");
-        r.addEventListener("input", function () { r.style.setProperty("--p", r.value + "%"); st.vols[s.id] = r.value / 100; save(); if (playing && isOn(s.id)) scheduleRefresh(); });
+        st.vols[s.id] = dbToV(vToDb(vol(s.id)));
+        bindStep(r, function () { return vToDb(vol(s.id)); }, function (d) { st.vols[s.id] = dbToV(d); save(); if (playing && isOn(s.id)) scheduleRefresh(); });
         var fr = li.querySelector(".fr"), fin = li.querySelector(".fin");
         if (fr) {
           var v0 = freq(s.id); fr.value = v0; fin.value = fmtHz(v0); fr.style.setProperty("--p", ((v0 - s.min) / (s.max - s.min) * 100) + "%");
@@ -711,7 +738,7 @@
       if (s.kind === "mantra") li.querySelector(".mtext").textContent = lang === "en" ? s.t : (st.gender === "f" ? s.f : s.m);
       var sub = s.kind === "bw" ? ltr(on ? fmtHz(freq(id)) + " Hz" : s.min + "–" + s.max + " Hz") : s.kind === "custom" ? ltr(on ? fmtHz(freq(id)) + " Hz" : "20–2000 Hz") : (on ? L().on : "");
       li.querySelector(".st").textContent = on && loading[id] ? L().preparing : sub;
-      var r = li.querySelector(".vol"); r.setAttribute("aria-label", L().vol + ": " + nameOf(s)); r.tabIndex = on ? 0 : -1;
+      var r = li.querySelector(".vol"); stepAria(r, L().vol + ": " + nameOf(s), on); paintStep(r, vToDb(vol(id)));
       var act = li.querySelector(".actual");
       if (act) {
         var f = freq(id), qf = q(f);
@@ -741,7 +768,7 @@
     document.documentElement.lang = lang; document.documentElement.dir = lang === "he" ? "rtl" : "ltr"; document.title = t.doc;
     $("lang-he").setAttribute("aria-pressed", String(lang === "he")); $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
     $("title").textContent = t.title; $("sub").textContent = t.sub; $("note").innerHTML = t.note;
-    $("master-l").textContent = t.master; $("master").setAttribute("aria-label", t.master); $("stopall").textContent = t.stopAll; $("timer-l").textContent = t.timer;
+    $("master-l").textContent = t.master; stepAria($("master"), t.master, true); paintStep($("master"), vToDb(st.master)); $("stopall").textContent = t.stopAll; $("timer-l").textContent = t.timer;
     $("install-btn").textContent = t.install; $("back").textContent = t.back; $("games").textContent = t.games;
     if (hintKey) $("install-hint").innerHTML = t[hintKey];
     renderAll();
@@ -752,9 +779,8 @@
   $("lang-en").onclick = function () { setLang("en"); };
   $("play").onclick = function () { if (playing) pause(); else play(); };
   $("stopall").onclick = stopAll;
-  $("master").value = Math.round(st.master * 100);
-  $("master").style.setProperty("--p", $("master").value + "%");
-  $("master").addEventListener("input", function () { this.style.setProperty("--p", this.value + "%"); st.master = this.value / 100; save(); applyElementVolume(); });
+  st.master = dbToV(vToDb(st.master));
+  bindStep($("master"), function () { return vToDb(st.master); }, function (d) { st.master = dbToV(d); save(); applyElementVolume(); });
   var tb = document.querySelectorAll("#timer .chip");
   for (var i = 0; i < tb.length; i++) tb[i].onclick = function () { setTimer(+this.dataset.min); };
   function toast(msg) { var el = $("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(function () { el.hidden = true; }, 2600); }
