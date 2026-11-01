@@ -30,14 +30,14 @@ h1{margin:4px 0;font-size:32px;background:linear-gradient(180deg,#fff,var(--gold
   <h1 id="t"></h1>
   <p class="desc" id="d"></p>
   <div class="soon" id="s"></div><br>
-  <a class="back" id="b" href="../"></a>
+  <a hidden class="back" id="b"></a>
 </div>
 <script>
 var S={"he": {"t": "אקטיביפיי", "d": "למצוא את דרכי הפעולה שמתאימות לך, למה שאכפת לך, לתשוקות ולחוזקות שלך, כדי להיות אקטיבי ולהשפיע ולשנות תחום בעולם", "s": "בקרוב · התוכן בבנייה", "b": "→ לדף הראשי"}, "en": {"t": "Activify", "d": "Find the ways to act that fit you, what you care about, your passions and strengths, to be active and change a field in the world", "s": "Coming soon · content in progress", "b": "← Home"}};
 function R(){var l="he";try{l=localStorage.getItem("rg-lang")==="en"?"en":"he";}catch(e){}var d=document.documentElement;d.lang=l;d.dir=l==="en"?"ltr":"rtl";var s=S[l];document.title=s.t;["t","d","s","b"].forEach(function(k){document.getElementById(k).textContent=s[k];});}
 R();addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
 </script>
-<script src="../shared/rg-topbar.js?v=4" data-slot="#top" data-where="prepend"></script>
+<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#top" data-where="prepend"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js");});</script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
