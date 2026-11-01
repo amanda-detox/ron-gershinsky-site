@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T20:56:30+02:00",
+ "updated": "2026-11-01T21:36:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-front-wing-williams-kraken",
+   "topic": "solana",
+   "date": "2026-11-01T19:04:31Z",
+   "url": "https://x.com/solana/status/2116969653641814501",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה על הכנף הקדמית של וויליאמס",
+    "summary": "חשבון סולאנה פרסם ארבע תמונות של מכונית הפורמולה 1 של וויליאמס, שהלוגו של סולאנה מופיע על הכנף הקדמית שלה לצד הלוגו של קראקן, ותייג את קראקן ואת Williams Racing."
+   },
+   "en": {
+    "title": "Solana on the Williams front wing",
+    "summary": "Solana posted four photos of the Williams F1 car with the Solana logo on its front wing next to Kraken's, tagging Kraken and Williams Racing."
+   },
+   "full_en": "Solana wrote: \"Solana on the front wing 🏁\", tagging @krakenfx and @WilliamsRacing.\n\nWhat the four photos show:\n• A close-up of the Williams car's blue front wing, with the SOLANA and kraken logos printed on it, alongside other sponsor logos such as Atlassian and betway.\n• Three shots of the blue Williams F1 car on track.\n\nThe post doesn't say which race the photos are from. There are no self-replies from Solana in the thread.",
+   "full_he": "חשבון סולאנה כתב: \"סולאנה על הכנף הקדמית 🏁\", ותייג את קראקן (@krakenfx) ואת Williams Racing.\n\nמה רואים בארבע התמונות:\n• תקריב של הכנף הקדמית הכחולה של מכונית וויליאמס, ועליה הלוגו של SOLANA והלוגו של kraken, לצד לוגואים של נותני חסות אחרים כמו Atlassian ו־betway.\n• שלוש תמונות של מכונית הפורמולה 1 הכחולה של וויליאמס על המסלול.\n\nהפוסט לא מציין מאיזה מרוץ התמונות. אין לחשבון סולאנה תגובות המשך משלו בשרשור."
+  },
+  {
+   "id": "musk-true-not-using-ai-modeling-negligence",
+   "topic": "musk",
+   "date": "2026-11-01T19:08:10Z",
+   "url": "https://x.com/elonmusk/status/2116970572592861616",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"נכון\" – לא להשתמש ב־AI בבניית מודלים זו רשלנות",
+    "summary": "מאסק הגיב \"True\" לפוסט של אהרון ברנט, שטוען שבעוד שנה־שנתיים יהיה מובן מאליו שבניית מודלים פיננסיים בלי AI היא רשלנות, \"כמו FSD להחלטות השקעה\". הוויכוח התחיל סביב מודל ההכנסות של SpaceX ששון מגוויר מ־Sequoia בנה."
+   },
+   "en": {
+    "title": "Musk: \"True\" that not using AI for modeling is negligence",
+    "summary": "Musk replied \"True\" to Aaron Burnett's post arguing that within 1–2 years, building financial models without AI will be seen as negligence, \"like FSD for investment decision making.\" The debate grew out of Sequoia partner Shaun Maguire's SpaceX revenue model."
+   },
+   "full_en": "Elon Musk wrote: \"True\".\n\nThe quoted post (Aaron Burnett, @aaronburnett):\n\n\"I believe that not using AI when modeling should be considered negligence. In the near future 1-2 years, this opinion will be considered obvious.\n\nlike FSD for investment decision making. You can absolutely model by hand if you so choose, but it's not the smart decision. Every institution will have to grapple with this truth in the coming months.\"\n\nBurnett was responding to a post by Waterworld Capital (@WaterworldCapi1): \"Idiot VC discovers making up stuff in excel (via Claude)..to be fair he is just putting in numbers Elon is saying that make zero sense.\" That post, in turn, quoted Sequoia's Shaun Maguire: \"Over the last week I built a bottoms up SpaceX financial model through the end of 2028. The numbers that came out are insane. There are wide error bars given how quickly things are changing but I wanted to distill something complicated into something that can at least be debated. * This is not investment advice!!! ** Sequoia is a major SpaceX shareholder *** Past performance is not indicative of future results\"\n\nThere are no self-replies from Musk in the thread.",
+   "full_he": "אילון מאסק כתב: \"נכון\" (True).\n\nהפוסט שהוא ציטט (אהרון ברנט, @aaronburnett):\n\n\"אני חושב שלא להשתמש ב־AI כשבונים מודלים צריך להיחשב רשלנות. בעתיד הקרוב, תוך שנה־שנתיים, הדעה הזאת תיראה מובנת מאליה.\n\nזה כמו FSD (נהיגה אוטונומית מלאה) לקבלת החלטות השקעה. אתה בהחלט יכול לבנות מודל ידנית אם תבחר בזה, אבל זו לא ההחלטה החכמה. כל מוסד יצטרך להתמודד עם האמת הזאת בחודשים הקרובים.\"\n\nברנט הגיב לפוסט של Waterworld Capital ‏(@WaterworldCapi1): \"משקיע הון סיכון אידיוט מגלה שאפשר להמציא דברים באקסל (בעזרת Claude)... למען ההגינות, הוא רק מכניס מספרים שאילון אומר, שאין בהם שום היגיון.\" הפוסט הזה ציטט בתורו את שון מגוויר מ־Sequoia: \"בשבוע האחרון בניתי מודל פיננסי של SpaceX מלמטה למעלה עד סוף 2028. המספרים שיצאו מטורפים. יש טווחי טעות רחבים, כי הדברים משתנים מהר מאוד, אבל רציתי לזקק משהו מסובך למשהו שאפשר לפחות להתווכח עליו. * זו לא המלצת השקעה!!! ** ל־Sequoia יש אחזקה גדולה ב־SpaceX *** ביצועי עבר אינם מעידים על העתיד\"\n\nאין למאסק תגובות המשך משלו בשרשור."
+  },
   {
    "id": "starterstory-abmax-lino-18-no-code-60k",
    "topic": "starterstory",
