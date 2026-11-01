@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T09:52:57+02:00",
+ "updated": "2026-11-01T10:42:04+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,21 +197,55 @@
  ],
  "items": [
   {
-   "id": "solana-buffalu-12s-to-150ms-core-upgrades",
-   "topic": "solana",
-   "date": "2026-11-01T07:16:51Z",
-   "url": "https://x.com/solana/status/2116791563426893874",
-   "source": "X · @solana",
+   "id": "musk-yup-superintelligence-upend-industries",
+   "topic": "musk",
+   "date": "2026-11-01T08:39:08Z",
+   "url": "https://x.com/i/trending/2116811097303105833",
+   "source": "X",
    "he": {
-    "title": "מ־12 שניות ל־150 אלפיות שנייה: קצב השדרוגים של סולאנה",
-    "summary": "סולאנה שיתפה קטע שבו ‎@buffalu__‎ מדבר על הקצב המהיר של שדרוגי הליבה ברשת, מ־12 שניות ל־150 אלפיות שנייה. הפרק המלא שודר אצל ‎@paulbarrontv‎."
+    "title": "מאסק מסכים: בינת־על עלולה למחוק עסקים שלמים תוך חודשים",
+    "summary": "מאסק השיב \"Yup\" לפוסט שהזהיר שבינת־על תשבש במהירות תעשיות, מקצועות ועבודות תוכנה, ושהעולם הפיזי ישתנה בהמשך כשרובוטים דמויי אדם יגיעו להיקף גדול. התגובה עוררה דיון ער על עבודה, עושר ואי־שוויון."
    },
    "en": {
-    "title": "12 seconds to 150 milliseconds: the pace of Solana's core upgrades",
-    "summary": "Solana shared a clip of @buffalu__ talking about the pace of core upgrades on the network, from 12 seconds down to 150 milliseconds. The full episode is on @paulbarrontv."
+    "title": "Musk agrees superintelligent AI could wipe out businesses in months",
+    "summary": "Musk replied \"Yup\" to a post warning that superintelligence will quickly disrupt industries, professions and software jobs, with the physical world following once humanoid robots scale. The reply sparked a lively debate about work, wealth and inequality."
    },
-   "full_he": "\"12 שניות ל־150 אלפיות שנייה. ‎@buffalu__‎ על הקצב של שדרוגי הליבה בסולאנה.\"\n\nבהמשך השרשור סולאנה כתבה: \"צפו בפרק המלא אצל ‎@paulbarrontv‎.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
-   "full_en": "\"12 seconds to 150 milliseconds. @buffalu__ on the pace of core upgrades on Solana.\"\n\nIn its follow-up reply in the thread, Solana wrote: \"Watch the full episode on @paulbarrontv.\"\n\nThe rest of the post is a video, so there's no more text to show."
+   "full_he": "אילון מאסק השיב במילה אחת, \"Yup\", לפוסט שהזהיר שבינה מלאכותית ברמת בינת־על תשבש במהירות עסקים, מקצועות ועבודות תוכנה, בעוד שעבודה פיזית תיקח יותר זמן, כי היא תלויה בהתרחבות של רובוטים דמויי אדם.\n\n• ההסכמה של מאסק מהדהדת את מה שאמר באוקטובר, שבקרוב לא יהיה טעם לחסוך לעתיד בגלל השפע שהבינה המלאכותית תביא במוצרים, בשירותים וברפואה.\n• היא הגיעה על רקע התקדמות מהירה בתחום, כמו מעצרו של אדם בסידני אחרי שהשיחות שלו עם צ'טבוט סומנו לרשויות, ומזכירה את החששות של סטיבן הוקינג מבינה מלאכותית שתעקוף את האנושות.\n• משתמשים סיפרו איך בינה מלאכותית כבר מטפלת להם במיסים, ואחרים הביעו דאגה משחיקת המריטוקרטיה, מאובדן משרות, מאי־שוויון ומאובדן תחושת משמעות. חלק קראו להסתגל מהר לכלים החדשים.\n• התומכים ציינו שההון של מאסק מממן את הטכנולוגיות האלה דרך המניות בחברות שלו, והספקנים שאלו על אגירת עושר ועל הסיכונים של תקופת המעבר.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Elon Musk replied with a single word, \"Yup\", to a post warning that superintelligent AI will quickly disrupt businesses, professions and software jobs, while physical work will take longer because it depends on humanoid robots scaling up.\n\n• Musk's agreement echoes his October view that saving for the future will become pointless amid AI-driven abundance in goods, services and medical care.\n• It came amid fast AI advances, like a Sydney man's arrest after his chatbot chats were flagged to authorities, and echoes Stephen Hawking's past fears of AI outpacing humanity.\n• People shared stories of AI handling their taxes, while others worried about eroding meritocracy, job losses, inequality and lost purpose; some urged quick adaptation to the new tools.\n• Supporters noted his wealth funds these technologies through company equity, while skeptics questioned wealth hoarding and the risks of the transition.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
+  {
+   "id": "tesla-ranbir-kapoor-roadster-pushpak",
+   "topic": "tesla",
+   "date": "2026-11-01T08:32:57Z",
+   "url": "https://x.com/i/trending/2116776917130998136",
+   "source": "X",
+   "he": {
+    "title": "רנביר קאפור משווה את הרודסטר המעופף של טסלה למרכבה מהמיתולוגיה ההודית",
+    "summary": "בראיון לקידום \"רמאיאנה: חלק ראשון\" אמר הכוכב ההודי שבזמן שמאסק הדגים רודסטר מעופף, האפוסים ההודיים תיארו משהו דומה כבר לפני 5,000 שנה – הפושפאק וימאנה."
+   },
+   "en": {
+    "title": "Ranbir Kapoor compares Tesla's flying Roadster to the ancient Pushpak Vimana",
+    "summary": "Promoting Ramayana: Part One, the Indian star said that while Musk just demoed a flying Roadster, India's epics described something similar 5,000 years ago – the Pushpak Vimana."
+   },
+   "full_he": "בראיון חי לקידום הסרט, רנביר קאפור חייך וציין שבזמן שאילון מאסק הדגים זה עתה רודסטר מעופף של טסלה, האפוסים ההודיים העתיקים תיארו משהו דומה כבר לפני 5,000 שנה.\n\n• בראיון עם המגישה סומה קנקאלה לקידום \"רמאיאנה: חלק ראשון\", קאפור קישר את הדגמת הרודסטר של טסלה מ־15 באוקטובר 2026 – כולל סלטות באוויר וריחוף – לפושפאק וימאנה, המרכבה המעופפת מהאפוס.\n• הסרט, בבימוי ניטש טיוארי, עם קאפור בתפקיד ראמה, יאש בתפקיד ראוואנה וסאי פאלאווי בתפקיד סיטה, יוצא לאקרנים בכל העולם ב־5 בנובמבר 2026.\n• התגובות ברשת נעו בין ממים משעשעים עם תמונות זו לצד זו וסרטונים ערוכים, לבין ויכוחים על ערבוב מיתולוגיה עם היסטוריה של טכנולוגיה – שילוב של גאווה תרבותית, הומור וקצת תסכול לקראת הבכורה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "In a lively promo chat, Ranbir Kapoor grinned and pointed out that while Elon Musk just demoed a flying Tesla Roadster, India's ancient epics described something similar 5,000 years ago.\n\n• During an interview with anchor Suma Kanakala to promote Ramayana: Part One, Kapoor linked Tesla's October 15, 2026 Roadster demo – complete with mid-air kickflips and hovering – to the mythical Pushpak Vimana from the epic.\n• The film, directed by Nitesh Tiwari with Kapoor as Lord Rama, Yash as Ravana and Sai Pallavi as Sita, hits screens worldwide on November 5, 2026.\n• Online reactions ranged from fun memes with side-by-side images and edited videos to debates over mixing mythology with modern tech history, blending cultural pride, humor and some frustration ahead of the release.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
+  {
+   "id": "spacex-musk-inspects-spam-anthropic-ipo",
+   "topic": "spacex",
+   "date": "2026-11-01T07:51:30Z",
+   "url": "https://x.com/i/trending/2116760489510207595",
+   "source": "X",
+   "he": {
+    "title": "מאסק ביקר במרכזי הנתונים החדשים בממפיס, ואנתרופיק דוהרת להנפקה",
+    "summary": "מאסק בדק שני מרכזי נתונים ענקיים ליד ממפיס, ואחד מהם נקרא \"Spam\" כי היה פעם מחסן של הורמל. במקביל אנתרופיק דיווחה על הכנסות של 16.8 מיליארד דולר ברבעון ומגישה בקשה להנפקה בנאסד\"ק."
+   },
+   "en": {
+    "title": "Musk tours new Memphis AI clusters as Anthropic charges toward IPO",
+    "summary": "Musk inspected two huge new data centers near Memphis, one dubbed \"Spam\" after its past as a Hormel warehouse. Meanwhile Anthropic reported $16.8B in Q3 revenue and is filing for a Nasdaq IPO."
+   },
+   "full_he": "אילון מאסק ביקר בשני מרכזי נתונים חדשים וענקיים לבינה מלאכותית ליד ממפיס, ואחד מהם קיבל את השם \"Spam\", כי בעבר היה מחסן של חברת הורמל (יצרנית השימורים Spam). זו נגיעה משעשעת בתוך הבנייה המהירה של SpaceX למאות אלפי מעבדים גרפיים.\n\n• אנתרופיק דיווחה על הכנסות של 16.8 מיליארד דולר ברבעון השלישי, עלייה של 45% לעומת הרבעון הקודם, עם רווחיות מתואמת ותזרים מזומנים חופשי חיובי. היא מגישה בקשה להנפקה בנאסד\"ק תחת הסימול ANT, בשווי אפשרי של 1.5 עד 2 טריליון דולר.\n• SpaceX ממהרת להפעיל את \"Spam\" עם 200 אלף מעבדים גרפיים להסקה (inference) עד דצמבר, ואת \"Gun Range\" עם 220 אלף לאימון עד סוף נובמבר, ומושכת חלק גדול מההוצאות של אנתרופיק על מחשוב הרחק מספקיות הענן המסורתיות.\n• במקביל OpenAI הורידה את יעד הגיוס שלה מ־30 ל־20 מיליארד דולר, על רקע זהירות של משקיעים לגבי מניות AI.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Elon Musk inspected two massive new AI data centers near Memphis, dubbing one \"Spam\" after its old life as a Hormel warehouse. It's a quirky nod amid SpaceX's breakneck buildout for hundreds of thousands of GPUs.\n\n• Anthropic reported third-quarter revenue of $16.8 billion, up 45% from the prior quarter, with adjusted profitability and positive free cash flow, as it files for a Nasdaq IPO under the ticker ANT at a potential $1.5 to $2 trillion valuation.\n• SpaceX is racing to launch \"Spam\" with 200,000 GPUs for inference by December and \"Gun Range\" with 220,000 for training by late November, drawing much of Anthropic's compute spending away from traditional clouds.\n• Meanwhile, OpenAI cut its fundraising target from $30 billion to $20 billion amid investor caution over AI stocks.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
   },
   {
    "id": "musk-wealth-debate-moran-yup",
@@ -231,6 +265,23 @@
    "full_en": "Chad Moran challenged Elon Musk to solve real problems now instead of building his fortune. Musk replied with a simple \"Yup\" to a post defending his approach.\n\n• The conversation questions whether Musk hoards wealth or invests it in projects like electric vehicles, reusable rockets, satellite internet and brain interfaces at companies such as Tesla, SpaceX and Neuralink.\n• Supporters note nearly all his fortune is tied to these ventures, with no traditional cash salary.\n• Critics question massive potential Tesla compensation packages worth up to $1 trillion in stock.\n• Both sides agree the key issue is effective use of resources, amid broader views on billionaire incentives for innovation.\n\nThe debate also grew out of Musk's claim that saving money for the future will soon be pointless because of AI- and robotics-driven abundance.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
   },
   {
+   "id": "solana-buffalu-12s-to-150ms-core-upgrades",
+   "topic": "solana",
+   "date": "2026-11-01T07:16:51Z",
+   "url": "https://x.com/solana/status/2116791563426893874",
+   "source": "X · @solana",
+   "he": {
+    "title": "מ־12 שניות ל־150 אלפיות שנייה: קצב השדרוגים של סולאנה",
+    "summary": "סולאנה שיתפה קטע שבו ‎@buffalu__‎ מדבר על הקצב המהיר של שדרוגי הליבה ברשת, מ־12 שניות ל־150 אלפיות שנייה. הפרק המלא שודר אצל ‎@paulbarrontv‎."
+   },
+   "en": {
+    "title": "12 seconds to 150 milliseconds: the pace of Solana's core upgrades",
+    "summary": "Solana shared a clip of @buffalu__ talking about the pace of core upgrades on the network, from 12 seconds down to 150 milliseconds. The full episode is on @paulbarrontv."
+   },
+   "full_he": "\"12 שניות ל־150 אלפיות שנייה. ‎@buffalu__‎ על הקצב של שדרוגי הליבה בסולאנה.\"\n\nבהמשך השרשור סולאנה כתבה: \"צפו בפרק המלא אצל ‎@paulbarrontv‎.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "\"12 seconds to 150 milliseconds. @buffalu__ on the pace of core upgrades on Solana.\"\n\nIn its follow-up reply in the thread, Solana wrote: \"Watch the full episode on @paulbarrontv.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
    "id": "grokbot-personal-ai-teams-everyday-tasks",
    "topic": "grokbot",
    "date": "2026-11-01T06:39:52Z",
@@ -246,6 +297,23 @@
    },
    "full_he": "דמיין שאתה מעביר מיילים, תהליכי עבודה ודוחות לסוכני AI שממשיכים לעבוד גם כשאתה לא ליד המחשב. משתמשים ראשונים כבר עושים את זה עם Grok Bot, ומתייחסים לבוטים כמו לצוות מתמחים אמין.\n\n• Grok Bot, שהושק בבטא ציבורית באוגוסט 2026 על ידי SpaceXAI, רץ על מחשבי ענן ייעודיים עם דפדפן ומערכת קבצים, ולכן הוא יכול לבצע משימות לבד, כמו להתחבר לכלים ולנסח מיילים.\n• משתמשים כמו המהנדסת לורן טן משתפים מדריכים לארגון צוותים קטנים של בוטים, לשימוש ב־'dr eggbot' לעיצובים מותאמים, וליצירת מיומנויות לשימוש חוזר ממשימות קודמות, מה שלדבריהם חוסך שעות בכל שבוע.\n• משתמשים מתקדמים בונים מבנים עם \"ראשי מחלקות\" או בוטים שמחלקים משימות. ההמלצות: להתחיל בקטן, ללמד את הבוט את ההעדפות שלך ולבדוק את התוצרים, בזמן שהבוטים משתפרים בעזרת פרומפטים מהקהילה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
    "full_en": "Imagine handing off emails, workflows and reports to AI agents that keep working even when you step away. Early users are doing just that with Grok Bot, treating them like a reliable intern team.\n\n• Grok Bot, launched in public beta in August 2026 by SpaceXAI, runs on dedicated cloud computers with browsers and file systems, allowing autonomous tasks like signing into tools and drafting emails.\n• Users like engineer Lauren Tan share guides on organizing small bot teams, using 'dr eggbot' for custom designs, and creating reusable skills from past tasks to save hours weekly.\n• Power users set up structures with department heads or delegators, always starting small, teaching preferences and verifying outputs as the bots improve through community prompts.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
+  {
+   "id": "spacex-musk-orbital-compute-2028-maguire-model",
+   "topic": "spacex",
+   "date": "2026-11-01T03:57:03Z",
+   "url": "https://x.com/i/trending/2116534536091709780",
+   "source": "X",
+   "he": {
+    "title": "מאסק: עד סוף 2028 יוצב בחלל יותר כוח מחשוב מבכדור הארץ",
+    "summary": "שון מגוויר מסקויה פרסם מודל פיננסי שצופה צמיחה מטורפת לעסקי ה־AI של SpaceX אחרי הרבעון השיא. מאסק הוסיף שכוח המחשוב שיוצב במסלול בכל חודש יעבור את זה שעל הקרקע עד סוף 2028."
+   },
+   "en": {
+    "title": "Musk: orbital compute will outpace Earth's by late 2028",
+    "summary": "Sequoia's Shaun Maguire released a model projecting explosive growth for SpaceX's AI business after its record quarter. Musk added that monthly orbital compute deployment will exceed terrestrial levels by late 2028."
+   },
+   "full_he": "שון מגוויר, שותף בקרן סקויה, כינה את התחזית שלו ל־SpaceX \"מטורפת\" ושיתף מודל פיננסי מפורט מיד אחרי הדוחות השיא של החברה. אילון מאסק גיבה אותו וחזה שכוח המחשוב במסלול יעקוף בקרוב את כל המערכות שעל פני כדור הארץ.\n\n• המודל של מגוויר בנוי מלמטה למעלה עד 2028, ומבוסס על תוצאות הרבעון השלישי: הכנסות של 14.6 מיליארד דולר, שמהן מגזר ה־Super Intelligence הכניס 7.6 מיליארד, יותר מ־5.25 מיליארד של סטארלינק.\n• מאסק אמר שכוח המחשוב שיוצב במסלול בכל חודש יעבור את הרמה הקרקעית עד סוף 2028, ויעקוף אותה בהרבה ב־2029, בזכות סטארשיפ שאמורה להעלות למסלול מאות אלפי טונות.\n• חלק מהמגיבים מטילים ספק בהנחות האופטימיות של המודל לגבי מיסים והון, ואחרים מצביעים על היכולות ההנדסיות של SpaceX ועל הסינרגיה עם טסלה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Shaun Maguire called his SpaceX forecast \"insane,\" sharing a detailed model right after the company's record earnings. Elon Musk backed it up, predicting orbital computing will soon outpace all Earth-based systems.\n\n• Sequoia Capital's Maguire released a bottoms-up financial model through 2028, based on Q3 results showing $14.6 billion in revenue, with the Super Intelligence segment at $7.6 billion topping Starlink's $5.25 billion.\n• Musk said orbital compute deployed per month will exceed terrestrial levels by late 2028 and far surpass them in 2029, enabled by Starship's planned lift of hundreds of thousands of tons to orbit.\n• Some question the model's optimistic assumptions on taxes and capital; others point to SpaceX's engineering strengths and synergies with Tesla.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
   },
   {
    "id": "huang-nvidia-ai-agents-seti-telescope",
@@ -299,6 +367,23 @@
    "full_en": "XBB.1.5 COVID-19 boosters performed poorly in the VA Healthcare System 2023-24 yet annual boosters are still encouraged. See Ioannou et al 2025. (He tagged @DeptVetAffairs, @McCulloughFund and @AnnalsofIM.)\n\nThe image: a visual abstract of \"Effectiveness of the 2023-to-2024 XBB.1.5 COVID-19 Vaccines Over Long-Term Follow-up: A Target Trial Emulation\" by George N. Ioannou, Kristin Berry, Nallakkandi Rajeevan and others (Annals of Internal Medicine, published online February 11, 2025, doi:10.7326/ANNALS-24-01015). The question: what is the vaccine effectiveness (VE) of the 2023–2024 COVID-19 vaccine targeting the XBB.1.5 Omicron variant over long-term follow-up?\n\n• Population: U.S. Veterans Health Administration, October 2023–May 2024.\n• Method: target trial emulation, 7 sequential biweekly trials; XBB.1.5 vaccine recipients matched 1:1 to unvaccinated persons.\n• SARS-CoV-2 infection (from 10 days after index date): VE −3.26% (95% CI −6.78% to −0.22%).\n• SARS-CoV-2-associated hospitalization: VE 16.64% (95% CI 6.47% to 25.77%).\n• SARS-CoV-2-associated death: VE 26.61% (95% CI 5.53% to 42.32%).\n• Follow-up ran up to 210 days.\n\nNote: \"performed poorly\" is McCullough's interpretation. The chart itself shows no protection against infection over long-term follow-up, but a modest reduction in hospitalization and death.\n\nNo follow-up replies by McCullough were found in the thread."
   },
   {
+   "id": "mccullough-spike-protein-unusual-cardiac-pathology",
+   "topic": "mccullough",
+   "date": "2026-10-31T23:50:19Z",
+   "url": "https://x.com/P_McCulloughMD/status/2116679189860434354",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: פתולוגים שבדקו גידולי לב חריגים מצאו בהם חלבון ספייק",
+    "summary": "מקולה טוען שכאשר פתולוגים צבעו לחלבון הספייק של הקורונה (מהנגיף או מהחיסון) במקרים של פתולוגיה לבבית חריגה, הם מצאו אותו, ושחבל שרוב המעבדות מתעלמות מזה. הוא מצרף טבלה ממאמר רוסי ב־Life משנת 2023 על גידולי לב אחרי קורונה."
+   },
+   "en": {
+    "title": "McCullough: pathologists who stained unusual heart tumors found spike protein",
+    "summary": "McCullough says that when pathologists stained for the SARS-CoV-2 spike protein (from virus or vaccine) in unusual cardiac pathology, they found it, and that it's a shame most labs ignore these findings. He attaches a table from a 2023 paper in Life on heart tumors after COVID-19."
+   },
+   "full_he": "כשפתולוגים צבעו לחלבון הספייק של SARS-CoV-2 (מהנגיף או מהחיסון) במקרים של פתולוגיה לבבית חריגה, הם מצאו אותו. חבל שרוב מעבדות הפתולוגיה מתעלמות מהממצאים פורצי הדרך האלה. (הוא תייג את @CUAnschutz ואת @McCulloughFund.)\n\nבתמונה המצורפת: קטע מהמאמר \"High Risk of Heart Tumors after COVID-19\" (סיכון גבוה לגידולי לב אחרי קורונה) מאת ליובוב מיטרופנובה, איגור מקרוב, יקטרינה גונצ'רובה, טאיאנה מקרובה, אנה סטרשינובה, דמיטרי קודלאי ויבגני שליאחטו, שפורסם בכתב העת Life של MDPI ב־2023 (כרך 13, 2087, doi:10.3390/life13102087). בתמונה טבלה של 11 גידולי לב מהשנים 2022–2023, עם אחוז תאי הגידול שבהם נמצא חלבון ספייק ואחוז התאים שמבטאים CD68:\n• 1–3: פיברואלסטומה פפילרית: 95%, 98%, 98% ספייק (CD68: ‏30, 48, 7)\n• 4–7: מיקסומה של הלב: 98%, 0%, 93%, 42% ספייק (CD68: ‏48, 75, 38, 49)\n• 8: מיקסומה מתרבה: 72% (CD68: ‏77)\n• 9: כונדרוסרקומה: 87% (CD68: ‏61)\n• 10: מיקסופיברוסרקומה: 87% (CD68: ‏32)\n• 11: מיקסופיברוסרקומה (בביופסיה מהלב): 7% (CD68: ‏1)\n\nמתחת לטבלה כתוב שחלבון הספייק נמצא בתאי האנדותל (CD34+) של כל הפיברואלסטומות הפפילריות, וגם בתאים לא תקינים של מיקסופיברוסרקומה וכונדרוסרקומה ובגרורה בכבד של האחרונה, ושמיקרוסקופיה פלואורסצנטית אישרה את נוכחות הנגיף בתאי הגידול ובמקרופאגים, ואת הספייק בכלי הדם. בקטע שבתמונה המאמר לא מבחין אם הספייק הגיע מהנגיף או מחיסון.\n\nהערה: מדובר בסדרת מקרים קטנה, והקביעה שיש כאן סיכון מוגבר היא טענת המחברים ומקולה. זה לא מקובל בקונצנזוס הרפואי.",
+   "full_en": "When pathologists have stained for SARS-CoV-2 spike protein (from virus or vaccine) in cases of unusual cardiac pathology, they have found it. Shame most pathology labs ignore these seminal findings. (He tagged @CUAnschutz and @McCulloughFund.)\n\nThe attached image: an excerpt from \"High Risk of Heart Tumors after COVID-19\" by Lubov Mitrofanova, Igor Makarov, Ekaterina Goncharova, Taiana Makarova, Anna Starshinova, Dmitry Kudlay and Evgeny Shlaykhto, published in MDPI's Life in 2023 (13, 2087, doi:10.3390/life13102087). It shows a table of 11 heart tumors from 2022–2023 with the percentage of tumor cells expressing SARS-CoV-2 spike protein and the percentage of cells expressing CD68:\n• 1–3: papillary fibroelastoma: 95%, 98%, 98% spike (CD68: 30, 48, 7)\n• 4–7: cardiac myxoma: 98%, 0%, 93%, 42% spike (CD68: 48, 75, 38, 49)\n• 8: proliferating myxoma: 72% (CD68: 77)\n• 9: chondrosarcoma: 87% (CD68: 61)\n• 10: myxofibrosarcoma: 87% (CD68: 32)\n• 11: myxofibrosarcoma by endomyocardial biopsy: 7% (CD68: 1)\n\nThe text below the table says spike was found in the endothelial CD34+ lining of all the papillary fibroelastomas, and in atypical cells of myxofibrosarcoma and chondrosarcoma (and a liver metastasis of the latter), and that immunofluorescence confirmed the virus in tumor cells and macrophages and spike protein in vessels. The excerpt shown doesn't say whether the spike came from the virus or a vaccine.\n\nNote: this is a small case series; the claim of a \"high risk\" is the authors' and McCullough's, and it isn't accepted by mainstream medical consensus."
+  },
+  {
    "id": "tesla-benioff-flying-roadster-video",
    "topic": "tesla",
    "date": "2026-10-31T23:43:43Z",
@@ -331,57 +416,6 @@
    },
    "full_he": "בעלים חדש התלהב שה־Model Y L המוארכת מרגישה \"שמימית\" בכל פרט, וכתב שזו המכונית והמוצר הטובים ביותר שהשתמש בהם אי פעם.\n\nטסלה הציגה את Model Y L בקיץ בג'יגה טקסס כגרסה לשישה מושבים עם בסיס גלגלים ארוך יותר ושורה שלישית שמישה בתצורת 2+2+2. המחיר מתחיל ב־61,990 דולר, עם טווח של 325 מייל ותאוצה מ־0 ל־60 מייל לשעה ב־4.4 שניות. משפחות אוהבות את מקום האחסון והנוחות לילדים ולציוד, ולעתים קרובות בוחרות בה על פני Model 3, ויכולת הנהיגה העצמית המלאה (FSD) זוכה לשבחים כתכונה הבולטת. יש שמעדיפים את Model X בזכות הרוחב והתחושה היוקרתית, אבל בעלים ראשונים ונהגי מבחן מציינים את המסך הנקי בתא הנוסעים ואת המרחב המעשי, בזמן שהמסירות מתגברות בסתיו.\n\n(זה סיכום של סיפור ב־X שנבנה מפוסטים, והפוסטים המקוריים לא מופיעים בו במלואם.)",
    "full_en": "One new owner raved that the stretched Model Y L feels 'heavenly' in every detail, calling it the best car and product they've ever used.\n\nTesla introduced the Model Y L this summer at Giga Texas as a six-seat variant with a longer wheelbase and usable third row in a 2+2+2 layout, starting at $61,990 with 325 miles of range and 0-60 in 4.4 seconds. Families love its storage and comfort for kids and gear, often choosing it over the Model 3, while Full Self-Driving capability wins raves as the top feature. Some prefer the Model X for its width and premium feel, but early owners and test drivers highlight the clean interior screen and practical space as deliveries pick up this fall.\n\n(This is a summary of an X story built from posts; the original posts aren't shown in full.)"
-  },
-  {
-   "id": "spacex-carney-warns-billionaire-satellites",
-   "topic": "spacex",
-   "date": "2026-10-31T23:18:09Z",
-   "url": "https://x.com/i/trending/2116669174101766491",
-   "source": "X",
-   "he": {
-    "title": "מארק קרני מזהיר מפני תלות בלוויינים שבשליטת מיליארדר",
-    "summary": "ראש ממשלת קנדה מארק קרני אמר בראיון ל־POLITICO שלא חכם לסמוך על מערכת לוויינים של מיליארדר שאפשר לכבות ברגע, ורמז ל־Starlink. הוא קרא לגוון את נכסי החלל עם קנדה ואירופה, והזכיר את ההשקעה ברשת Lightspeed של Telesat."
-   },
-   "en": {
-    "title": "Mark Carney warns against relying on billionaire-controlled satellites",
-    "summary": "Canadian PM Mark Carney told POLITICO that relying on a billionaire's satellite system that could be switched off instantly isn't wise, alluding to Starlink. He called for diversified space assets with Canada and Europe and pointed to investment in Telesat's Lightspeed network."
-   },
-   "full_he": "מארק קרני עמד מול דגל קנדה והעלה חשש: לא חכם, מבחינת ביטחון לאומי, להסתמך על מערכת לוויינים של מיליארדר שאפשר לכבות ברגע.\n\nבראיון ל־POLITICO קרא ראש ממשלת קנדה לגוון את נכסי החלל עם קנדה ואירופה כדי להימנע מנקודת כשל אחת, כמו ההגבלות על Starlink שנראו במהלך הפעולות הצבאיות של אוקראינה. הוא הדגיש את ההשקעות של קנדה, ובהן מיליארדים לרשת Lightspeed של Telesat, שאמורה להתחיל לפעול ב־2028 ולחזק את התקשורת הצבאית באזור הארקטי ואת האינטרנט באזורים כפריים. בתגובות ברשת הצביעו על החברות של קרני עם מנכ\"ל Telesat, דן גולדברג, על רקע חוזים ממשלתיים, והשוו בין הסיכון בלוויינים פרטיים לבין צעדים ממשלתיים כמו הקפאת חשבונות בנק.\n\n(זה סיכום של סיפור ב־X שנבנה מפוסטים, והפוסטים המקוריים לא מופיעים בו במלואם.)",
-   "full_en": "Mark Carney stood before a Canadian flag and raised a concern: relying on a billionaire's satellite system that could be switched off in an instant isn't wise for national security.\n\nIn a POLITICO interview, Canadian Prime Minister Mark Carney called for diversified space assets from Canada and Europe to avoid single-point risks, like those seen in Starlink restrictions during Ukraine's military operations. He highlighted Canada's investments, including billions for Telesat's Lightspeed network set for 2028 service to bolster Arctic military communications and rural broadband. Online reactions pointed to Carney's friendship with Telesat CEO Dan Goldberg amid government contracts, and contrasted private satellite risks with government actions like bank account freezes.\n\n(This is a summary of an X story built from posts; the original posts aren't shown in full.)"
-  },
-  {
-   "id": "musk-suspends-coparenting-account",
-   "topic": "musk",
-   "date": "2026-10-31T23:07:42Z",
-   "url": "https://x.com/i/trending/2116666834229616737",
-   "source": "X",
-   "he": {
-    "title": "חשבון שתיאר את סידורי ההורות של מאסק הושעה ב־X",
-    "summary": "החשבון @spacetourist0 תיאר את סידורי המשפחה של מאסק כמו מבצע תאגידי, עם מטפלות ולוח שנה משותף, והושעה ב־31 באוקטובר. ההשעיה עוררה ביקורת על צביעות בנושא חופש הביטוי, לצד מי שהגנו על פרטיות המשפחה."
-   },
-   "en": {
-    "title": "Account detailing Musk's co-parenting setup suspended on X",
-    "summary": "The @spacetourist0 account described Musk's family logistics like a corporate operation, with nannies and shared calendars, and was suspended on October 31. The move drew free-speech hypocrisy criticism alongside defenses citing family privacy."
-   },
-   "full_he": "חשבון ב־X פרש את הלוגיסטיקה המשפחתית של אילון מאסק כמו מבצע תאגידי, כולל מטפלות ולוחות שנה משותפים בכמה משקי בית. ב־31 באוקטובר החשבון הושעה.\n\nהחשבון @spacetourist0 תיאר את הסידורים של מאסק עבור 14 ילדיו הידועים מג'סטין מאסק, גריימס ושיבון זיליס, וטען שהאימהות מתקשרות דרך אנשי צוות ושלוח שנה מרכזי מנהל את הביקורים. מאסק השיב בעבר שחמשת ילדיו הגדולים חיים באופן עצמאי, שהוא רואה את ילדיו מגריימס כל שבוע שני ואת ילדיו מזיליס כל כמה ימים, והדגיש רגעים חשובים על פני מעורבות יומיומית. ההשעיה עוררה ביקורת על צביעות בנושא חופש הביטוי, לצד מי שהגנו עליה בשם פרטיות המשפחה, והציתה מחדש את הוויכוח על כללי התוכן של X כשמבקרים את הבעלים.\n\n(זה סיכום של סיפור ב־X שנבנה מפוסטים, והפוסטים המקוריים לא מופיעים בו במלואם.)",
-   "full_en": "An X account laid out Elon Musk's family logistics like a corporate operation, complete with nannies and shared calendars across multiple households. Musk hit suspend on October 31.\n\nThe @spacetourist0 account described Musk's arrangements for his 14 publicly known children with Justine Musk, Grimes, and Shivon Zilis, claiming mothers communicate through staff and a central calendar handles visits. Musk has countered that his five oldest children live independently, he sees Grimes' kids every other week, and Zilis' every few days, emphasizing key moments over daily involvement. The suspension sparked backlash over free speech hypocrisy and defenses citing family privacy, reigniting debates on X's content rules for criticizing the owner.\n\n(This is a summary of an X story built from posts; the original posts aren't shown in full.)"
-  },
-  {
-   "id": "mccullough-spike-protein-unusual-cardiac-pathology",
-   "topic": "mccullough",
-   "date": "2026-10-31T23:50:19Z",
-   "url": "https://x.com/P_McCulloughMD/status/2116679189860434354",
-   "source": "X · @P_McCulloughMD",
-   "he": {
-    "title": "מקולה: פתולוגים שבדקו גידולי לב חריגים מצאו בהם חלבון ספייק",
-    "summary": "מקולה טוען שכאשר פתולוגים צבעו לחלבון הספייק של הקורונה (מהנגיף או מהחיסון) במקרים של פתולוגיה לבבית חריגה, הם מצאו אותו, ושחבל שרוב המעבדות מתעלמות מזה. הוא מצרף טבלה ממאמר רוסי ב־Life משנת 2023 על גידולי לב אחרי קורונה."
-   },
-   "en": {
-    "title": "McCullough: pathologists who stained unusual heart tumors found spike protein",
-    "summary": "McCullough says that when pathologists stained for the SARS-CoV-2 spike protein (from virus or vaccine) in unusual cardiac pathology, they found it, and that it's a shame most labs ignore these findings. He attaches a table from a 2023 paper in Life on heart tumors after COVID-19."
-   },
-   "full_he": "כשפתולוגים צבעו לחלבון הספייק של SARS-CoV-2 (מהנגיף או מהחיסון) במקרים של פתולוגיה לבבית חריגה, הם מצאו אותו. חבל שרוב מעבדות הפתולוגיה מתעלמות מהממצאים פורצי הדרך האלה. (הוא תייג את @CUAnschutz ואת @McCulloughFund.)\n\nבתמונה המצורפת: קטע מהמאמר \"High Risk of Heart Tumors after COVID-19\" (סיכון גבוה לגידולי לב אחרי קורונה) מאת ליובוב מיטרופנובה, איגור מקרוב, יקטרינה גונצ'רובה, טאיאנה מקרובה, אנה סטרשינובה, דמיטרי קודלאי ויבגני שליאחטו, שפורסם בכתב העת Life של MDPI ב־2023 (כרך 13, 2087, doi:10.3390/life13102087). בתמונה טבלה של 11 גידולי לב מהשנים 2022–2023, עם אחוז תאי הגידול שבהם נמצא חלבון ספייק ואחוז התאים שמבטאים CD68:\n• 1–3: פיברואלסטומה פפילרית: 95%, 98%, 98% ספייק (CD68: ‏30, 48, 7)\n• 4–7: מיקסומה של הלב: 98%, 0%, 93%, 42% ספייק (CD68: ‏48, 75, 38, 49)\n• 8: מיקסומה מתרבה: 72% (CD68: ‏77)\n• 9: כונדרוסרקומה: 87% (CD68: ‏61)\n• 10: מיקסופיברוסרקומה: 87% (CD68: ‏32)\n• 11: מיקסופיברוסרקומה (בביופסיה מהלב): 7% (CD68: ‏1)\n\nמתחת לטבלה כתוב שחלבון הספייק נמצא בתאי האנדותל (CD34+) של כל הפיברואלסטומות הפפילריות, וגם בתאים לא תקינים של מיקסופיברוסרקומה וכונדרוסרקומה ובגרורה בכבד של האחרונה, ושמיקרוסקופיה פלואורסצנטית אישרה את נוכחות הנגיף בתאי הגידול ובמקרופאגים, ואת הספייק בכלי הדם. בקטע שבתמונה המאמר לא מבחין אם הספייק הגיע מהנגיף או מחיסון.\n\nהערה: מדובר בסדרת מקרים קטנה, והקביעה שיש כאן סיכון מוגבר היא טענת המחברים ומקולה. זה לא מקובל בקונצנזוס הרפואי.",
-   "full_en": "When pathologists have stained for SARS-CoV-2 spike protein (from virus or vaccine) in cases of unusual cardiac pathology, they have found it. Shame most pathology labs ignore these seminal findings. (He tagged @CUAnschutz and @McCulloughFund.)\n\nThe attached image: an excerpt from \"High Risk of Heart Tumors after COVID-19\" by Lubov Mitrofanova, Igor Makarov, Ekaterina Goncharova, Taiana Makarova, Anna Starshinova, Dmitry Kudlay and Evgeny Shlaykhto, published in MDPI's Life in 2023 (13, 2087, doi:10.3390/life13102087). It shows a table of 11 heart tumors from 2022–2023 with the percentage of tumor cells expressing SARS-CoV-2 spike protein and the percentage of cells expressing CD68:\n• 1–3: papillary fibroelastoma: 95%, 98%, 98% spike (CD68: 30, 48, 7)\n• 4–7: cardiac myxoma: 98%, 0%, 93%, 42% spike (CD68: 48, 75, 38, 49)\n• 8: proliferating myxoma: 72% (CD68: 77)\n• 9: chondrosarcoma: 87% (CD68: 61)\n• 10: myxofibrosarcoma: 87% (CD68: 32)\n• 11: myxofibrosarcoma by endomyocardial biopsy: 7% (CD68: 1)\n\nThe text below the table says spike was found in the endothelial CD34+ lining of all the papillary fibroelastomas, and in atypical cells of myxofibrosarcoma and chondrosarcoma (and a liver metastasis of the latter), and that immunofluorescence confirmed the virus in tumor cells and macrophages and spike protein in vessels. The excerpt shown doesn't say whether the spike came from the virus or a vaccine.\n\nNote: this is a small case series; the claim of a \"high risk\" is the authors' and McCullough's, and it isn't accepted by mainstream medical consensus."
   },
   {
    "id": "mccullough-jama-tylenol-pregnancy-no-autism-link",
@@ -418,6 +452,23 @@
    "full_en": "mRNA vaccines destabilize the human genome in ways we have never seen before. This study is a call for @NIH to do genotoxicity study in a large sample of COVID-19 vaccinated patients. (He also tagged @neo7bioscience, @Docjohnc, @NicHulscher and @McCulloughFund.)\n\nThe attached image: the observational study \"Synthetic messenger RNA vaccines and transcriptomic dysregulation: Evidence from new-onset adverse events and cancers post-vaccination\" by Natalia Lidmar Von Ranke, Wei Zhang, Philipp Anokhin, Nicolas Hulscher, Kevin McKernan, Peter McCullough and John Catanzaro, World J Exp Med, 2025 December 20; 15(4): 113869. It shows:\n• The core tip, in the authors' words: individuals with new-onset adverse events or cancer after mRNA COVID-19 vaccination show widespread transcriptomic dysregulation. Bulk RNA sequencing revealed mitochondrial dysfunction, systemic inflammation, proteasome and ribosomal stress, and nonsense-mediated decay, with genomic instability and epigenetic reprogramming in the cancer patients, plus MYC oncogene activation and heightened immune signalling via toll-like receptors and type I interferons. They call for further investigation into long-term mRNA vaccine safety.\n• Table 1: 10 patients. Three with non-malignant adverse events (brain fog and chronic fatigue; cardiovascular injury, thrombosis and chronic fatigue, twice) and seven with cancer: glioblastoma multiforme (two), prostate adenocarcinoma, bladder tumor, follicular lymphoma (two) and prostate cancer.\n• Figure 3: a protein-protein interaction network of the most dysregulated genes in the cancer group (n=7), compared with 803 unvaccinated individuals from the GTEx dataset.\n\nNote: this is a very small study without a healthy vaccinated control group, and McCullough is a co-author. The claim that mRNA vaccines damage the genome is his and the authors'; scientific consensus is that mRNA vaccines don't alter DNA and are safe."
   },
   {
+   "id": "spacex-carney-warns-billionaire-satellites",
+   "topic": "spacex",
+   "date": "2026-10-31T23:18:09Z",
+   "url": "https://x.com/i/trending/2116669174101766491",
+   "source": "X",
+   "he": {
+    "title": "מארק קרני מזהיר מפני תלות בלוויינים שבשליטת מיליארדר",
+    "summary": "ראש ממשלת קנדה מארק קרני אמר בראיון ל־POLITICO שלא חכם לסמוך על מערכת לוויינים של מיליארדר שאפשר לכבות ברגע, ורמז ל־Starlink. הוא קרא לגוון את נכסי החלל עם קנדה ואירופה, והזכיר את ההשקעה ברשת Lightspeed של Telesat."
+   },
+   "en": {
+    "title": "Mark Carney warns against relying on billionaire-controlled satellites",
+    "summary": "Canadian PM Mark Carney told POLITICO that relying on a billionaire's satellite system that could be switched off instantly isn't wise, alluding to Starlink. He called for diversified space assets with Canada and Europe and pointed to investment in Telesat's Lightspeed network."
+   },
+   "full_he": "מארק קרני עמד מול דגל קנדה והעלה חשש: לא חכם, מבחינת ביטחון לאומי, להסתמך על מערכת לוויינים של מיליארדר שאפשר לכבות ברגע.\n\nבראיון ל־POLITICO קרא ראש ממשלת קנדה לגוון את נכסי החלל עם קנדה ואירופה כדי להימנע מנקודת כשל אחת, כמו ההגבלות על Starlink שנראו במהלך הפעולות הצבאיות של אוקראינה. הוא הדגיש את ההשקעות של קנדה, ובהן מיליארדים לרשת Lightspeed של Telesat, שאמורה להתחיל לפעול ב־2028 ולחזק את התקשורת הצבאית באזור הארקטי ואת האינטרנט באזורים כפריים. בתגובות ברשת הצביעו על החברות של קרני עם מנכ\"ל Telesat, דן גולדברג, על רקע חוזים ממשלתיים, והשוו בין הסיכון בלוויינים פרטיים לבין צעדים ממשלתיים כמו הקפאת חשבונות בנק.\n\n(זה סיכום של סיפור ב־X שנבנה מפוסטים, והפוסטים המקוריים לא מופיעים בו במלואם.)",
+   "full_en": "Mark Carney stood before a Canadian flag and raised a concern: relying on a billionaire's satellite system that could be switched off in an instant isn't wise for national security.\n\nIn a POLITICO interview, Canadian Prime Minister Mark Carney called for diversified space assets from Canada and Europe to avoid single-point risks, like those seen in Starlink restrictions during Ukraine's military operations. He highlighted Canada's investments, including billions for Telesat's Lightspeed network set for 2028 service to bolster Arctic military communications and rural broadband. Online reactions pointed to Carney's friendship with Telesat CEO Dan Goldberg amid government contracts, and contrasted private satellite risks with government actions like bank account freezes.\n\n(This is a summary of an X story built from posts; the original posts aren't shown in full.)"
+  },
+  {
    "id": "mccullough-public-feared-vaccine-side-effects-2022",
    "topic": "mccullough",
    "date": "2026-10-31T23:12:18Z",
@@ -433,6 +484,23 @@
    },
    "full_he": "עד 2022 הציבור היה מודאג יותר מתופעות לוואי חמורות של חיסון הקורונה מאשר מהסיכון האישי שלו מהדבקה ב־SARS-CoV-2. זה אומר הרבה על מבצע החיסונים. (הוא תייג את @TheLancet ואת @McCulloughFund.)\n\nבתמונה המצורפת: העמוד הראשון של המחקר \"Profiling vaccine attitudes and subsequent uptake in 1.1 million people in England: a nationwide cohort study\" (פרופיל של עמדות כלפי החיסון והתחסנות בפועל בקרב 1.1 מיליון אנשים באנגליה: מחקר עוקבה ארצי), מאת מתיו ויטאקר, ג'ושוע אליוט, אינס ג'רארד־אורסין, גרהם ס. קוק, כריסטל א. דונלי, הלן וורד, פול אליוט ומרק שאדו־היאם. פורסם ב־The Lancet ב־12 בינואר 2025 (גישה פתוחה, doi:10.1016/S0140-6736(25)01912-9). מה שרואים בתמונה:\n• גרף לאורך זמן (דצמבר 2020 עד מרץ 2022) של שיעור המשתתפים שהביעו היסוס להתחסן, לצד מספר מקרי הקורונה היומיים לפי וריאנטים (אלפא, דלתא, אומיקרון BA.1 ו־BA.2), עם ציוני דרך: אישור חיסוני פייזר ואסטרהזניקה, תחילת מבצע החיסונים, הגבלת אסטרהזניקה לצעירים, פרסומים על דלקת שריר הלב אחרי חיסוני mRNA ועוד.\n• גרף של סיבות ההיסוס לפי קבוצות גיל (18–24 עד 75 ומעלה), מחולק לאשכולות: (A) חשש מתופעות לוואי, מהשפעות ארוכות טווח ו\"לראות איך החיסון עובד\"; (B) קושי להגיע למרכז החיסונים; (C) חוסר אמון ביצרני החיסון ותחושה שהקורונה אינה סיכון אישי או שהשפעתה מוגזמת; (D) דאגות בריאותיות אישיות, כמו חשש להרגיש רע, תגובה אלרגית או מצב רפואי קיים; (E) פחד או דאגה מהחיסון ומהתגובות אליו.\n\nהערה: המסקנה ש\"זה אומר הרבה על מבצע החיסונים\" היא הפרשנות של מקולה. הקונצנזוס הרפואי הוא שחיסוני הקורונה בטוחים ויעילים ושתופעות לוואי חמורות נדירות.",
    "full_en": "By 2022 the public was more concerned about serious COVID-19 vaccine side effects than their personal risks with SARS-CoV-2 infection. Says a lot about the vaccine campaign. (He tagged @TheLancet and @McCulloughFund.)\n\nThe attached image: the first page of \"Profiling vaccine attitudes and subsequent uptake in 1.1 million people in England: a nationwide cohort study\" by Matthew Whitaker, Joshua Elliott, Ines Gerard-Ursin, Graham S Cooke, Christl A Donnelly, Helen Ward, Paul Elliott and Marc Chadeau-Hyam, published in The Lancet on January 12, 2025 (open access, doi:10.1016/S0140-6736(25)01912-9). What the image shows:\n• A timeline chart (December 2020 to March 2022) of the share of participants reporting vaccine hesitancy, alongside daily COVID-19 cases by variant (Alpha, Delta, Omicron BA.1 and BA.2), with milestones such as the Pfizer and AstraZeneca approvals, the start of the rollout, the AstraZeneca restriction for younger people, and publications on myocarditis after mRNA vaccines.\n• A chart of reasons for hesitancy by age group (18–24 to 75+), grouped into clusters: (A) concerns about side effects, long-term health effects and wanting to \"see how well the vaccine works\"; (B) travel barriers to the vaccination centre; (C) low trust in vaccine developers or seeing COVID-19 as not a personal risk or exaggerated; (D) personal health concerns such as feeling ill, an allergic reaction or an existing condition; (E) fear or concern about the vaccine and reactions.\n\nNote: the conclusion that this \"says a lot about the vaccine campaign\" is McCullough's interpretation. Mainstream medical consensus is that COVID-19 vaccines are safe and effective and that serious side effects are rare."
+  },
+  {
+   "id": "musk-suspends-coparenting-account",
+   "topic": "musk",
+   "date": "2026-10-31T23:07:42Z",
+   "url": "https://x.com/i/trending/2116666834229616737",
+   "source": "X",
+   "he": {
+    "title": "חשבון שתיאר את סידורי ההורות של מאסק הושעה ב־X",
+    "summary": "החשבון @spacetourist0 תיאר את סידורי המשפחה של מאסק כמו מבצע תאגידי, עם מטפלות ולוח שנה משותף, והושעה ב־31 באוקטובר. ההשעיה עוררה ביקורת על צביעות בנושא חופש הביטוי, לצד מי שהגנו על פרטיות המשפחה."
+   },
+   "en": {
+    "title": "Account detailing Musk's co-parenting setup suspended on X",
+    "summary": "The @spacetourist0 account described Musk's family logistics like a corporate operation, with nannies and shared calendars, and was suspended on October 31. The move drew free-speech hypocrisy criticism alongside defenses citing family privacy."
+   },
+   "full_he": "חשבון ב־X פרש את הלוגיסטיקה המשפחתית של אילון מאסק כמו מבצע תאגידי, כולל מטפלות ולוחות שנה משותפים בכמה משקי בית. ב־31 באוקטובר החשבון הושעה.\n\nהחשבון @spacetourist0 תיאר את הסידורים של מאסק עבור 14 ילדיו הידועים מג'סטין מאסק, גריימס ושיבון זיליס, וטען שהאימהות מתקשרות דרך אנשי צוות ושלוח שנה מרכזי מנהל את הביקורים. מאסק השיב בעבר שחמשת ילדיו הגדולים חיים באופן עצמאי, שהוא רואה את ילדיו מגריימס כל שבוע שני ואת ילדיו מזיליס כל כמה ימים, והדגיש רגעים חשובים על פני מעורבות יומיומית. ההשעיה עוררה ביקורת על צביעות בנושא חופש הביטוי, לצד מי שהגנו עליה בשם פרטיות המשפחה, והציתה מחדש את הוויכוח על כללי התוכן של X כשמבקרים את הבעלים.\n\n(זה סיכום של סיפור ב־X שנבנה מפוסטים, והפוסטים המקוריים לא מופיעים בו במלואם.)",
+   "full_en": "An X account laid out Elon Musk's family logistics like a corporate operation, complete with nannies and shared calendars across multiple households. Musk hit suspend on October 31.\n\nThe @spacetourist0 account described Musk's arrangements for his 14 publicly known children with Justine Musk, Grimes, and Shivon Zilis, claiming mothers communicate through staff and a central calendar handles visits. Musk has countered that his five oldest children live independently, he sees Grimes' kids every other week, and Zilis' every few days, emphasizing key moments over daily involvement. The suspension sparked backlash over free speech hypocrisy and defenses citing family privacy, reigniting debates on X's content rules for criticizing the owner.\n\n(This is a summary of an X story built from posts; the original posts aren't shown in full.)"
   },
   {
    "id": "medicalmedium-1111-not-the-number-144",
