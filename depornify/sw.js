@@ -1,5 +1,5 @@
 /* Offline cache for Depornify · דיפורניפיי (scope: this folder only). */
-var CACHE = "rg-depornify-v4";
+var CACHE = "rg-depornify-v5";
 var FILES = ["./", "index.html", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
