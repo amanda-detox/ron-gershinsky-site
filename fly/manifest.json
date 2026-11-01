@@ -2,7 +2,7 @@
   "name": "פלייפיי · Flyify",
   "short_name": "פלייפיי",
   "description": "משחק תעופה רגוע בתלת־ממד · A relaxed 3D flying game",
-  "id": "./",
+  "id": "/ron-gershinsky-site/fly/",
   "start_url": "./",
   "scope": "./",
   "display": "fullscreen",
