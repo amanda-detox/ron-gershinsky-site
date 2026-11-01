@@ -301,6 +301,10 @@
   var NF = null;
   function fmtPrice(n) { try { NF = NF || new Intl.NumberFormat("he-IL", { minimumFractionDigits: 0, maximumFractionDigits: 2 }); return NF.format(n || 0); } catch (e) { return String(Math.round((n || 0) * 100) / 100); } }
   function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
+  /* checklist mode (Ron 1.11): per list, category record field check: 1 (synced + kept in the local copy like price). No field = regular list,
+     so old data needs no migration. In a checklist each item has its own "ck" (true = checked); "done" / נבחר is never touched. */
+  function isChk(sec) { var r = catRec(sec); return !!(r && r.check); }
+  function toggleCk(id) { var x = items[id]; if (x && !x.deleted) upd(id, { ck: x.ck ? null : true }); }
   function hasPrices(sec) { var r = catRec(sec); if (r && r.price) return true; return live(sec).some(function (x) { return typeof x.price === "number"; }); }
   function sumNow() {
     var el = $("sum"), sec = curTab(); if (!el) return;
@@ -386,19 +390,21 @@
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
   }
   var GRIP = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>';
-  var showP = false;
+  var showP = false, showC = false;
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
-    var sel = isSel(x), n = label(x);
-    return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : "") + '>' +
+    var sel = isSel(x), n = label(x), ck = showC && !!x.ck;
+    return '<li data-id="' + esc(x.id) + '"' + (sel ? ' class="done"' : ck ? ' class="ckd"' : "") + '>' +
+      (showC ? '<button type="button" class="ckbox" data-a="ck" role="checkbox" aria-checked="' + ck + '" aria-label="' + esc(n) + '">' + (ck ? "✓" : "") + "</button>" : "") +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + 
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
   }
   function panel(sec) {
-    showP = hasPrices(sec);
-    var act = live(sec).sort(byOrder), done = []; // one list only (Ron 31.10)
+    showP = hasPrices(sec); showC = isChk(sec);
+    var act = live(sec).sort(byOrder); if (showC) act = act.filter(function (x) { return !x.ck; }).concat(act.filter(function (x) { return !!x.ck; })); // checked items go to the bottom
+    var done = []; // one list only (Ron 31.10)
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
@@ -597,7 +603,7 @@
     var head = '<div class="pm-head"><span class="pm-title">' + esc(pmMove ? t("moveNote") : t("pickerPh").replace("{n}", menuG)) + "</span>" +
       (pmMove ? '<button type="button" class="pm-edit on" data-pick="mvend">' + esc(t("editDone")) + "</button>" : "") + "</div>";
     var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(t("groupEmpty")) + "</li>") + gl.map(function (c, i) {
-      var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price);
+      var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price), ckm = isChk(c.cat);
       if (pmMove) return '<li class="erow mvrow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '">☰</span>' +
         '<span class="pm-mname">' + nm + "</span>" +
         '<button type="button" class="eic" data-pick="upp:' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + catName(c)) + '">▲</button>' +
@@ -610,6 +616,7 @@
           '<button type="button" class="pm-oi" data-pick="mov:' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
           '<button type="button" class="pm-oi" data-pick="ren:' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
           '<button type="button" class="pm-oi" data-pick="prc:' + id + '" aria-pressed="' + pr + '"><span aria-hidden="true">₪</span>' + esc(t("optPrice")) + '<b class="pm-st' + (pr ? " on" : "") + '">' + esc(pr ? t("stOn") : t("stOff")) + "</b></button>" +
+          '<button type="button" class="pm-oi" data-pick="chk:' + id + '"><span aria-hidden="true">' + (ckm ? "☰" : "☑") + "</span>" + esc(t(ckm ? "optToList" : "optToCheck")) + "</button>" +
           '<button type="button" class="pm-oi pm-del" data-pick="del:' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
     m.innerHTML = head + '<ul class="pm-list' + (pmMove ? " editing" : "") + '">' + rows + "</ul>" + (pmMove ? "" : '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>");
@@ -635,6 +642,7 @@
     if (p.indexOf("ren:") === 0) { pmOpt = null; fillMenu(); }
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
+    if (p.indexOf("chk:") === 0) { if (c) { upCat(cid, { check: isChk(cid) ? null : 1 }); changed(); } return; }
     if (p.indexOf("del:") === 0) {
       if (!c) return; if (cats().length <= 1) { window.alert(t("lastCat")); return; }
       if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab-cur", curTab()); } changed(); }
@@ -862,6 +870,7 @@
       var li = b.closest("[data-id]"), id = li && li.getAttribute("data-id"), x = id && items[id]; if (!x) return;
       if (a === "move") { moveMenu(id); return; }
       if (a === "trash") { delWithUndo(id); return; }
+      if (a === "ck") { toggleCk(id); changed(); return; }
       if (a === "edit") { editing = id; render(); }
       else if (a === "save") saveEdit(id);
       else if (a === "cancel") { editing = null; render(); }
