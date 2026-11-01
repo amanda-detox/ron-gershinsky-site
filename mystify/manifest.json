@@ -2,7 +2,7 @@
   "name": "מיסטיפיי · Mystify",
   "short_name": "מיסטיפיי",
   "description": "יריות בחלל בתלת מימד · A 3D space arena shooter",
-  "id": "./", "start_url": "./", "scope": "./",
+  "id": "/ron-gershinsky-site/mystify/", "start_url": "./", "scope": "./",
   "display": "fullscreen", "orientation": "landscape", "lang": "he", "dir": "rtl",
   "background_color": "#070d2e", "theme_color": "#050a24",
   "icons": [
