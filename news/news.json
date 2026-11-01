@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-01T23:56:00+02:00",
+ "updated": "2026-11-02T00:48:05+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,40 @@
  ],
  "items": [
   {
+   "id": "mccullough-smallpox-subclinical-myocarditis",
+   "topic": "mccullough",
+   "date": "2026-11-01T22:37:13Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117023180468392175",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: דלקת שריר לב סמויה דווחה גם אחרי חיסון נגד אבעבועות שחורות",
+    "summary": "ד\"ר פיטר מקולה כותב שחיסוני ה־mRNA לקורונה אינם המוצר הראשון שגרם לדלקת שריר לב תת־קלינית (סמויה), ומצרף מחקר מ־2015 על חיסון אבעבועות שחורות ומאמר סקירה שלו עצמו. אלה טענותיו; הגוף הרפואי המרכזי מכיר בדלקת שריר לב כתופעת לוואי נדירה של חיסוני mRNA, אך לא מקבל את הטענות על נזק סמוי נרחב."
+   },
+   "en": {
+    "title": "McCullough: subclinical myocarditis was also seen after smallpox vaccination",
+    "summary": "Dr. Peter McCullough says COVID-19 mRNA vaccines aren't the first products linked to subclinical myocarditis, citing a 2015 smallpox-vaccine study and his own review article. These are his claims; mainstream medicine recognizes myocarditis as a rare mRNA vaccine side effect but does not accept claims of widespread hidden heart damage."
+   },
+   "full_en": "COVID-19 mRNA vaccines are not the first products to result in subclinical myocarditis; it has also been reported after smallpox immunization. @McCulloughFund\n\nThe post has two images:\n\n1. The first page of a review article in Medical Research Archives (European Society of Medicine, Vol. 13 Issue 11, published 30 November 2025): \"COVID-19 Vaccine-Induced Subclinical Myopericarditis: Pathophysiology, Diagnosis, and Clinical Management\" by Peter A. McCullough, M. Nathaniel Mead and Nicolas Hulscher. The abstract says:\n• The approved COVID-19 mRNA boosters carry a warning for acute, clinically apparent vaccine-induced myocarditis, which has led to hospitalization and, in well-documented cases, deaths.\n• The authors say there is growing concern that long-lasting synthetic mRNA and persistent Spike protein production may build up in the heart and cause cardiotoxicity over time.\n• Subtler symptoms that may not need hospitalization include atypical or pleuritic chest pain, palpitations, intermittent arrhythmias, labile blood pressure with highs and lows, and effort intolerance (highlighted).\n• Areas of inflammation found at autopsy too small to be seen on cardiac MRI have been associated with sudden death, and the first presentation can be cardiac arrest with no warning symptoms (highlighted).\n• Suggested evaluation: history of COVID infections, number and type of mRNA vaccines, Spike antibody levels, ECG, imaging and lab tests.\n• They suggest oral nattokinase, bromelain and curcumin may support \"detoxification\" from Spike protein, and that colchicine and other targeted therapies may reduce inflammation.\n\n2. A 2015 PLOS ONE study by Engler et al., \"A Prospective Study of the Incidence of Myocarditis/Pericarditis and New Onset Cardiac Symptoms following Smallpox and Influenza Vaccination\". Its flowchart: 1,245 smallpox vaccinees enrolled (1,081 analyzed) versus 200 flu vaccinees (189 analyzed). Outcomes after smallpox vaccine: 4 clinical myocarditis, 1 pericarditis, 31 possible subclinical myocarditis, 115 new-onset cardiac symptoms. After flu vaccine: 0, 0, 0 and 5. The image also shows the study's myocarditis case-definition table (suspected, probable, confirmed).\n\nNote: these are Dr. McCullough's claims. Mainstream medical bodies recognize myocarditis as a rare, usually mild side effect of mRNA vaccines, but do not accept the claim of widespread hidden heart damage, and the \"detox\" supplements he mentions are not an accepted treatment. No further replies by the author were found in the thread.",
+   "full_he": "חיסוני ה־mRNA לקורונה אינם המוצרים הראשונים שגרמו לדלקת שריר לב תת־קלינית (סמויה); היא דווחה גם אחרי חיסון נגד אבעבועות שחורות. @McCulloughFund\n\nבפוסט שתי תמונות:\n\n1. העמוד הראשון של מאמר סקירה בכתב העת Medical Research Archives (האגודה האירופית לרפואה, כרך 13 גיליון 11, פורסם ב־30 בנובמבר 2025): \"דלקת שריר לב ומעטפת לב תת־קלינית שנגרמה מחיסון הקורונה: פתופיזיולוגיה, אבחון וטיפול\", מאת פיטר מקולה, נתנאל מיד וניקולס הולשר. בתקציר נכתב:\n• לבוסטרים המאושרים של mRNA יש אזהרה על דלקת שריר לב חריפה וגלויה מהחיסון, שהובילה לאשפוזים ובמקרים מתועדים היטב גם למוות.\n• לטענת הכותבים, יש חשש גובר שה־mRNA הסינתטי העמיד וייצור מתמשך של חלבון הספייק עלולים להצטבר בלב ולפגוע בו לאורך זמן.\n• תסמינים עדינים יותר, שלא תמיד דורשים אשפוז: כאב חזה לא טיפוסי, דפיקות לב, הפרעות קצב לסירוגין, לחץ דם לא יציב (גבוה ונמוך) וקושי במאמץ (מודגש).\n• אזורי דלקת שנמצאו בנתיחה, קטנים מכדי להיראות ב־MRI של הלב, נקשרו למוות פתאומי, והסימן הראשון יכול להיות דום לב בלי שום תסמין מקדים (מודגש).\n• הבירור המוצע: היסטוריה של הדבקות בקורונה, מספר וסוג חיסוני ה־mRNA, רמת נוגדנים לספייק, אק\"ג, הדמיה ובדיקות מעבדה.\n• לדבריהם, נאטוקינאז, ברומלין וכורכומין בבליעה עשויים לסייע ב\"ניקוי\" הלב מחלבון הספייק, וקולכיצין וטיפולים ממוקדים אחרים עשויים להפחית דלקת.\n\n2. מחקר מ־2015 בכתב העת PLOS ONE (אנגלר ושותפיו): \"מחקר פרוספקטיבי על שכיחות דלקת שריר הלב/מעטפת הלב ותסמיני לב חדשים אחרי חיסון לאבעבועות שחורות ולשפעת\". לפי התרשים: 1,245 מתחסנים לאבעבועות שחורות (1,081 נותחו) מול 200 מתחסנים לשפעת (189 נותחו). אחרי חיסון האבעבועות: 4 מקרי דלקת שריר לב קלינית, מקרה אחד של דלקת מעטפת הלב, 31 מקרים אפשריים של דלקת תת־קלינית ו־115 מקרים של תסמיני לב חדשים. אחרי חיסון השפעת: 0, 0, 0 ו־5. בתמונה מופיעה גם טבלת ההגדרות של המחקר למקרה חשוד, סביר ומאושר.\n\nהערה: אלה טענותיו של ד\"ר מקולה. הגופים הרפואיים המרכזיים מכירים בדלקת שריר לב כתופעת לוואי נדירה ובדרך כלל קלה של חיסוני mRNA, אבל לא מקבלים את הטענה על נזק לבבי סמוי ונרחב, ותוספי ה\"ניקוי\" שהוא מזכיר אינם טיפול מוכר. לא נמצאו תגובות המשך של המחבר בשרשור."
+  },
+  {
+   "id": "mccullough-king-county-cardiac-arrests",
+   "topic": "mccullough",
+   "date": "2026-11-01T22:08:05Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117015850116895106",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: עלייה בדומי לב במחוז קינג בסיאטל אחרי חיסוני הקורונה",
+    "summary": "ד\"ר פיטר מקולה טוען שצריך אוכלוסייה של כ־2 מיליון איש כדי לראות עלייה מורגשת בדומי לב בעקבות חיסוני הקורונה, ושזה מה שהוא וצוותו ראו במחוז קינג (סיאטל) ב־2021. זו טענה שלו, על סמך מחקר שלו עצמו; הגוף הרפואי המרכזי לא מקבל קשר סיבתי כזה."
+   },
+   "en": {
+    "title": "McCullough: rise in cardiac arrests in Seattle's King County after COVID vaccines",
+    "summary": "Dr. Peter McCullough claims it takes a population of about 2 million to detect a rise in cardiac arrests from COVID-19 vaccination, and says his team saw this in King County (Seattle) in 2021. This is his claim, based on his own paper; mainstream medicine does not accept such a causal link."
+   },
+   "full_en": "It takes a population size of ~2 million to see a detectable rise in cardiac arrests with COVID-19 vaccination. We observed this in Seattle King County in 2021. @MedicOneFndn @UWDIDD @UWCardiology @UW @NicHulscher\n\nThe attached image is from a paper in the Journal of Emergency Medicine: Open Access (2024, 2(1), 01-11): \"Excess Cardiopulmonary Arrest and Mortality After COVID-19 Vaccination in King County, Washington\" by Nicolas Hulscher (McCullough Foundation), Michael J. Cook, Raphael B. Stricker and Peter A. McCullough. Submitted 10 Oct 2024, accepted 17 Oct 2024, published 28 Oct 2024.\n\n• Highlighted results text: about 98% of King County's population had at least one COVID-19 vaccine dose by 2023. As of 2 August 2024 there were about 589,247 confirmed COVID-19 cases (~26% of the population), 28,238 COVID-19 hospitalizations and 3,797 deaths attributed to COVID-19 in the county.\n• Chart, \"Excess Cardiopulmonary Arrest Deaths from 2015 to 2023 in King County\", against the 2015–2020 trend line: 2015: 7, 2016: 4, 2017: -14, 2018: -7, 2019: -5, 2020: 11, 2021: 75, 2022: 111, 2023: 147.\n\nNote: this is Dr. McCullough's claim. The chart shows a rise over time, which by itself doesn't prove the vaccines caused it; mainstream medical consensus does not accept that COVID-19 vaccines caused a rise in cardiac arrests. No further replies by the author were found in the thread.",
+   "full_he": "צריך אוכלוסייה של כ־2 מיליון איש כדי לראות עלייה מורגשת בדומי לב בעקבות חיסוני הקורונה. ראינו את זה במחוז קינג בסיאטל ב־2021. @MedicOneFndn @UWDIDD @UWCardiology @UW @NicHulscher\n\nהתמונה המצורפת לקוחה ממאמר בכתב העת Journal of Emergency Medicine: Open Access (2024, כרך 2 גיליון 1, עמ' 1–11): \"עודף דומי לב־ריאה ותמותה אחרי חיסון הקורונה במחוז קינג, וושינגטון\", מאת ניקולס הולשר (קרן מקולה), מייקל קוק, רפאל סטריקר ופיטר מקולה. הוגש ב־10 באוקטובר 2024, התקבל ב־17 באוקטובר ופורסם ב־28 באוקטובר 2024.\n\n• בקטע התוצאות המודגש: כ־98% מתושבי המחוז קיבלו לפחות מנת חיסון אחת עד 2023. נכון ל־2 באוגוסט 2024 היו במחוז כ־589,247 מקרי קורונה מאומתים (כ־26% מהאוכלוסייה), 28,238 אשפוזים ו־3,797 מקרי מוות שיוחסו לקורונה.\n• בגרף \"עודף מקרי מוות מדום לב־ריאה, 2015–2023, במחוז קינג\" (ביחס לקו המגמה של 2015–2020): 2015: 7, 2016: 4, 2017: 14-, 2018: 7-, 2019: 5-, 2020: 11, 2021: 75, 2022: 111, 2023: 147.\n\nהערה: זו טענתו של ד\"ר מקולה. הגרף מראה עלייה לאורך זמן, וזה כשלעצמו לא מוכיח שהחיסונים גרמו לה; הגוף הרפואי המרכזי לא מקבל את הטענה שחיסוני הקורונה הביאו לעלייה בדומי לב. לא נמצאו תגובות המשך של המחבר בשרשור."
+  },
+  {
    "id": "mccullough-europe-uptake-mortality",
    "topic": "mccullough",
    "date": "2026-11-01T21:52:04Z",
@@ -231,6 +265,40 @@
    "full_he": "שנת 2021, עם השקת חיסוני הקורונה, תיזכר כאחת השנים הגרועות ביותר בתמותה העודפת מכל הסיבות בארה\"ב. מבצע החיסונים הגדול בהיסטוריה בבירור לא הוריד את התמותה באוכלוסייה. ‎@JAMA_current @McCulloughFund\n\nהתמונה המצורפת לקוחה ממכתב מחקר בכתב העת JAMA Network Open (בריאות הציבור): \"מגמות תמותה בקרב מבוגרים צעירים בארה\"ב, 1999–2023\", מאת אליזבת ריגלי־פילד, רפאיה ראקיב, קייטלין ברי, קילי מוריס ואנדרו סטוקס (JAMA Netw Open. 2025;8(1):e2457538). באיור, \"שיעורי תמותה עודפת לפי סיבה בקרב בני 25–44, 2011–2023\", יש שני חלקים:\n• A: שיעור התמותה העודפת ל־100 אלף איש בכל שנה, מחולק לפי סיבת המוות. הוא עולה מכמעט אפס ב־2011 לכ־40 ב־2019, כ־80 ב־2020, מגיע לשיא של כ־115 ב־2021, ואחר כך כ־92 ב־2022 וכ־78 ב־2023. הרעלות סמים הן הגורם הבודד הגדול ביותר מ־2016 והלאה, והקורונה היא נתח גדול ב־2020–2021 וקטן יותר ב־2022–2023; סיבות נוספות בגרף: סיבות טבעיות אחרות, תאונות דרכים, אלכוהול, רצח, מחלות לב וכלי דם, סרטן, התאבדות, מחלות הורמונליות ומטבוליות, מערכת העיכול, סיבות חיצוניות אחרות ומחלות נשימה.\n• B: היחס בין התמותה בפועל לתמותה הצפויה (בסקאלה לוגריתמית) לפי סיבה, 2011–2023. התמותה מכל הסיבות מגיעה לשיא בסביבות 2021 ואז יורדת; היחסים הגבוהים ביותר ב־2023 הם של סיבות טבעיות אחרות, תאונות דרכים ומוות שקשור לאלכוהול.\n\nאין בשרשור תגובות נוספות של הכותב עצמו.\n\nלתשומת לבך: זו טענה של ד\"ר מקולה. הגרף מתייחס רק לבני 25–44, מראה שהקורונה עצמה והרעלות סמים היו בין הגורמים המרכזיים לתמותה העודפת ב־2021, והמחקר לא מייחס את התמותה העודפת לחיסונים. רשויות הבריאות המרכזיות מעריכות שחיסוני הקורונה הצילו חיים רבים."
   },
   {
+   "id": "musk-delta-flight-ai-sandbox-joke",
+   "topic": "musk",
+   "date": "2026-11-01T21:05:15Z",
+   "url": "https://x.com/i/trending/2116998392895480035",
+   "source": "X",
+   "he": {
+    "title": "מאסק: הדרך הכי טובה לבודד בינה מלאכותית – לשים אותה בטיסה של דלתא",
+    "summary": "מאסק לקח תלונה של איש טכנולוגיה על ה־Wi‑Fi של דלתא והפך אותה לבדיחה על בטיחות AI: \"אין שום אפשרות לברוח\". זה קרה סביב טקס מדליות המדע והטכנולוגיה הלאומיות."
+   },
+   "en": {
+    "title": "Musk: the best way to sandbox an AI is to put it on a Delta flight",
+    "summary": "Musk turned a tech leader's complaint about Delta's spotty Wi‑Fi into an AI safety joke: \"No escape is possible.\" It came around the National Medals of Science and Technology event."
+   },
+   "full_he": "אילון מאסק ציטט תלונה של איש טכנולוגיה על ה־Wi‑Fi הלא יציב של דלתא, והפך אותה לעקיצה על בטיחות בינה מלאכותית: \"הדרך הכי טובה לבודד (sandbox) בינה מלאכותית? לשים אותה בטיסה של דלתא: אין שום אפשרות לברוח.\"\n\nבכינוס במכון האמריקאי לשלום, שבו מאסק, ג'נסון הואנג מ־Nvidia, סרגיי ברין מגוגל ואחרים קיבלו את מדליות המדע והטכנולוגיה הלאומיות, החבורה החליפה סיפורים על המחסור בכוח מחשוב ל־AI. מאסק סיפר שגרג ברוקמן מ־OpenAI ביקש ממנו ומברין מעבדים גרפיים (GPU) אחרי מתיחויות בעבר, וברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן.\n\nלפי הסיכום, חילופי הדברים הדגישו את היריבויות בעמק הסיליקון על רקע הביקוש הגובר לכוח מחשוב, וקשורים להיסטוריה של מאסק כמייסד־שותף של OpenAI שתבע אותה מאוחר יותר על המעבר למטרות רווח.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
+   "full_en": "Elon Musk quoted a tech leader's gripe about Delta's spotty Wi‑Fi and turned it into an AI safety zinger: \"Best way to sandbox an AI? Put it on a Delta flight: No escape is possible.\"\n\nAt a U.S. Institute of Peace gathering where Musk, Nvidia's Jensen Huang, Google's Sergey Brin and others received National Medals of Science and Technology, the group swapped stories about AI compute shortages. Musk recalled OpenAI's Greg Brockman asking him and Brin for GPUs after past tensions, with Brin teasing Brockman's old habit of keeping a diary.\n\nThe exchange highlighted Silicon Valley rivalries amid surging AI demands, tying back to Musk's history as an OpenAI co-founder who later sued over its shift to for-profit status.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
+  },
+  {
+   "id": "spacex-louisiana-300b-projects-starbase",
+   "topic": "spacex",
+   "date": "2026-11-01T21:05:10Z",
+   "url": "https://x.com/i/trending/2116920006315217079",
+   "source": "X",
+   "he": {
+    "title": "לואיזיאנה מכריזה על פרויקטים של יותר מ־300 מיליארד דולר, כולל סטארבייס של ספייסאקס",
+    "summary": "מושל לואיזיאנה ג'ף לנדרי הכריז ש\"לואיזיאנה בפריחה\", עם יותר מ־300 מיליארד דולר בפרויקטים, ביניהם סטארבייס של ספייסאקס במחוז ורמיליון בהיקף של 100 מיליארד דולר ומרכז נתונים של מטא ב־50 מיליארד."
+   },
+   "en": {
+    "title": "Louisiana touts $300B+ in projects, including a $100B SpaceX Starbase",
+    "summary": "Louisiana Governor Jeff Landry said \"Louisiana is booming!\", citing over $300 billion in announced or underway projects, including a $100 billion SpaceX Starbase in Vermilion Parish and a $50 billion Meta AI data center."
+   },
+   "full_en": "Governor Jeff Landry shared a buzzing list of investments on social media, proclaiming \"Louisiana is booming!\" as energy, AI, and space projects take shape along the Gulf Coast.\n\nLouisiana is seeing more than $300 billion in announced or underway projects, including:\n• A $100 billion SpaceX Starbase in Vermilion Parish.\n• A $50 billion Meta AI data center in Richland Parish.\n• Expansions in LNG exports, such as Venture Global's facilities.\n\nThese developments leverage the state's ports, natural gas and river access to meet global demand for AI power and energy exports, with similar booms in Texas topping $500 billion. While officials highlight job creation and growth, some voices call for strong environmental protections and fair benefits for local communities.\n\n(This is an X story summary of posts on X; X notes it may evolve over time.)",
+   "full_he": "מושל לואיזיאנה, ג'ף לנדרי, שיתף ברשתות רשימה של השקעות והכריז: \"לואיזיאנה בפריחה!\", בזמן שפרויקטים של אנרגיה, בינה מלאכותית וחלל קורמים עור וגידים לאורך חוף המפרץ.\n\nבלואיזיאנה הוכרזו או נמצאים בביצוע פרויקטים של יותר מ־300 מיליארד דולר, ביניהם:\n• סטארבייס של ספייסאקס במחוז ורמיליון, בהיקף של 100 מיליארד דולר.\n• מרכז נתונים לבינה מלאכותית של מטא במחוז ריצ'לנד, ב־50 מיליארד דולר.\n• הרחבות של ייצוא גז טבעי נוזלי (LNG), כמו המתקנים של Venture Global.\n\nהפרויקטים נשענים על הנמלים של המדינה, על הגז הטבעי ועל הגישה לנהר, כדי לענות על הביקוש העולמי לחשמל עבור בינה מלאכותית ולייצוא אנרגיה; בטקסס יש פריחה דומה של יותר מ־500 מיליארד דולר. בעוד שבכירים מדגישים יצירת משרות וצמיחה, יש מי שקוראים להגנות סביבתיות חזקות ולחלוקה הוגנת של התועלת לקהילות המקומיות.\n\n(זהו סיכום של X לפוסטים ברשת, ולדברי X הוא עשוי להשתנות עם הזמן.)"
+  },
+  {
    "id": "spacex-musk-supercompute-colossus2-ahead",
    "topic": "spacex",
    "date": "2026-11-01T20:32:14Z",
@@ -246,23 +314,6 @@
    },
    "full_he": "\"פרויקטי מחשוב־העל האחרים לא מצליחים להגיע ליעדים שלהם, אבל ספייסאקס כבר משיגה את שלנו.\"\n\nהפוסט שהוא ציטט (@Rothmus):\n\"Colossus 2 של SpaceXAI בממפיס הוא מרכז הנתונים החזק בעולם לבינה מלאכותית.\n\nבערך 1.11 מיליון מקבילות H100, לפני Stargate של OpenAI והקמפוסים של חברות הטכנולוגיה הגדולות.\n\nעד אמצע 2027 צפוי Colossus להגדיל את הפער, עם עוד אשכולות Blackwell שייכנסו לפעולה.\"\n\nהגרף שבפוסט: \"Colossus 2 של xAI הוא מרכז הנתונים החזק בעולם לבינה מלאכותית\" – כוח מחשוב בכל מרכז נתונים היום, במקבילות שבב Nvidia H100:\n• Colossus 2, ממפיס (xAI) – 1.11 מיליון\n• Stargate, אבילין (OpenAI/Oracle) – 1.02 מיליון\n• ניו קרלייל, אינדיאנה (Amazon) – 818 אלף\n• Fairwater, אטלנטה (Microsoft) – 769 אלף\n• פרייור, אוקלהומה (Google) – 637 אלף\n• נוסאג'איה, מלזיה (DayOne) – 584 אלף\n• Prometheus, אוהיו (Meta) – 536 אלף\n• קמפס, מלזיה (DayOne) – 481 אלף\n\nמקור הגרף: Epoch AI Frontier Data Centers, נובמבר 2026 (הערכות).",
    "full_en": "\"The other supercompute projects are unable to reach their goals, but SpaceX is already achieving ours\"\n\nThe quoted post (@Rothmus):\n\"SpaceXAI's Colossus 2 in Memphis is the world's most powerful AI data center.\n\nRoughly 1.11 million H100 equivalents, ahead of OpenAI's Stargate and the big tech campuses.\n\nBy mid 2027, Colossus is expected to widen the gap with more Blackwell clusters coming online.\"\n\nThe chart in the post: \"xAI's Colossus 2 Is the World's Most Powerful AI Data Center\" – computing power in each data center today, in Nvidia H100 chip equivalents:\n• Colossus 2, Memphis (xAI) – 1.11M\n• Stargate, Abilene (OpenAI/Oracle) – 1.02M\n• New Carlisle, Indiana (Amazon) – 818K\n• Fairwater, Atlanta (Microsoft) – 769K\n• Pryor, Oklahoma (Google) – 637K\n• Nusajaya, Malaysia (DayOne) – 584K\n• Prometheus, Ohio (Meta) – 536K\n• Kempas, Malaysia (DayOne) – 481K\n\nChart source: Epoch AI Frontier Data Centers, Nov. 2026 (estimates)."
-  },
-  {
-   "id": "musk-grandfather-ww2-fought-nazism",
-   "topic": "musk",
-   "date": "2026-11-01T20:27:41Z",
-   "url": "https://x.com/elonmusk/status/2116990584048984346",
-   "source": "X · @elonmusk",
-   "he": {
-    "title": "מאסק על סבו שלחם במלחמת העולם השנייה: \"כן\"",
-    "summary": "מאסק אישר בתגובה \"כן\" סרטון שבו הוא מספר שסבו לחם כמעט שש שנים נגד הנאצים, היה היחיד מחבריו ששרד, ועבר בסוף המלחמה למודיעין הבריטי בלונדון."
-   },
-   "en": {
-    "title": "Musk on his grandfather in World War II: \"Yes\"",
-    "summary": "Musk replied \"Yes\" to a clip of himself saying his grandfather fought the Nazis for almost six years, was the only one of his friends to survive, and was moved to British intelligence in London near the war's end."
-   },
-   "full_he": "\"כן\"\n\nהפוסט שהוא ציטט (@Napoleon__Bon):\n\"אילון מאסק על סבו במלחמת העולם השנייה:\n\n'סבא שלי היה במלחמת העולם השנייה כמעט שש שנים. כל החברים שלו נהרגו.\n\nהוא היחיד מבין חבריו ששרד. והוא היה בטראומה קשה.\n\nהוא פשוט לא הצליח אפילו לדבר אחר כך.\n\nרוב הזמן הזה היה במזרח אפריקה, בצפון אפריקה ובאיטליה.\n\nהסיבה היחידה שהוא בכלל חי, בכנות, היא שלקראת סוף המלחמה עשו מבחן כשירות, כי הוא היה רק רב־טוראי.\n\nהוא לא סיים תיכון, אז הוא לא היה זכאי לקורס קצינים. ושלפו אותו כנראה רגע לפני שהיה נהרג, ושלחו אותו לעבוד במודיעין הבריטי בלונדון, ושם הוא פגש את סבתא שלי.\n\nאז הוא היה אחד מאלה שנלחמו לעצור את הנאצים, יחד עם מיליונים אחרים.\n\nאז בואו לא נשכח שרוב רובו של המערב נלחם ומת כדי לעצור את הנאציזם.'\"\n\nהפוסט המצוטט כולל סרטון של כדקה.",
-   "full_en": "\"Yes\"\n\nThe quoted post (@Napoleon__Bon):\n\"Elon Musk on his grandfather in World War 2:\n\n'My grandfather was in World War II for almost six years. All his friends got killed.\n\nHe's the only one of his friends to survive. And he was severely traumatized.\n\nHe really just couldn't even talk afterwards.\n\nMost of that time was in East Africa, North Africa, Italy.\n\nThe only reason he's even alive frankly is because towards the end of the war they gave an aptitude test because he was just a corporal.\n\nHe didn't graduate high school so he wasn't eligible for officer school. And they plucked him out probably right before he died and sent him to work for British intelligence in London which is where he met my grandmother.\n\nSo he was one of the people fighting to stop the Nazis along with millions of others.\n\nSo let's not forget that the vast majority of the West fought and died to stop Nazism.'\"\n\nThe quoted post includes a video of about one minute."
   },
   {
    "id": "musk-star-wars-what-they-stole-meme",
@@ -282,38 +333,21 @@
    "full_en": "\"This is what they stole from us\"\n\nThe image in the post: an edited Star Wars-style picture of Anakin Skywalker in black robes seated on a black, spiked throne, Padmé beside him in a black gown and crown, and young Luke and Leia in imperial uniforms in front of them. Behind them stand the Emperor's red-robed guards and rows of stormtroopers, with star destroyers visible through a window in the background. The image has no text."
   },
   {
-   "id": "musk-delta-flight-ai-sandbox-joke",
+   "id": "musk-grandfather-ww2-fought-nazism",
    "topic": "musk",
-   "date": "2026-11-01T21:05:15Z",
-   "url": "https://x.com/i/trending/2116998392895480035",
-   "source": "X",
+   "date": "2026-11-01T20:27:41Z",
+   "url": "https://x.com/elonmusk/status/2116990584048984346",
+   "source": "X · @elonmusk",
    "he": {
-    "title": "מאסק: הדרך הכי טובה לבודד בינה מלאכותית – לשים אותה בטיסה של דלתא",
-    "summary": "מאסק לקח תלונה של איש טכנולוגיה על ה־Wi‑Fi של דלתא והפך אותה לבדיחה על בטיחות AI: \"אין שום אפשרות לברוח\". זה קרה סביב טקס מדליות המדע והטכנולוגיה הלאומיות."
+    "title": "מאסק על סבו שלחם במלחמת העולם השנייה: \"כן\"",
+    "summary": "מאסק אישר בתגובה \"כן\" סרטון שבו הוא מספר שסבו לחם כמעט שש שנים נגד הנאצים, היה היחיד מחבריו ששרד, ועבר בסוף המלחמה למודיעין הבריטי בלונדון."
    },
    "en": {
-    "title": "Musk: the best way to sandbox an AI is to put it on a Delta flight",
-    "summary": "Musk turned a tech leader's complaint about Delta's spotty Wi‑Fi into an AI safety joke: \"No escape is possible.\" It came around the National Medals of Science and Technology event."
+    "title": "Musk on his grandfather in World War II: \"Yes\"",
+    "summary": "Musk replied \"Yes\" to a clip of himself saying his grandfather fought the Nazis for almost six years, was the only one of his friends to survive, and was moved to British intelligence in London near the war's end."
    },
-   "full_he": "אילון מאסק ציטט תלונה של איש טכנולוגיה על ה־Wi‑Fi הלא יציב של דלתא, והפך אותה לעקיצה על בטיחות בינה מלאכותית: \"הדרך הכי טובה לבודד (sandbox) בינה מלאכותית? לשים אותה בטיסה של דלתא: אין שום אפשרות לברוח.\"\n\nבכינוס במכון האמריקאי לשלום, שבו מאסק, ג'נסון הואנג מ־Nvidia, סרגיי ברין מגוגל ואחרים קיבלו את מדליות המדע והטכנולוגיה הלאומיות, החבורה החליפה סיפורים על המחסור בכוח מחשוב ל־AI. מאסק סיפר שגרג ברוקמן מ־OpenAI ביקש ממנו ומברין מעבדים גרפיים (GPU) אחרי מתיחויות בעבר, וברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן.\n\nלפי הסיכום, חילופי הדברים הדגישו את היריבויות בעמק הסיליקון על רקע הביקוש הגובר לכוח מחשוב, וקשורים להיסטוריה של מאסק כמייסד־שותף של OpenAI שתבע אותה מאוחר יותר על המעבר למטרות רווח.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
-   "full_en": "Elon Musk quoted a tech leader's gripe about Delta's spotty Wi‑Fi and turned it into an AI safety zinger: \"Best way to sandbox an AI? Put it on a Delta flight: No escape is possible.\"\n\nAt a U.S. Institute of Peace gathering where Musk, Nvidia's Jensen Huang, Google's Sergey Brin and others received National Medals of Science and Technology, the group swapped stories about AI compute shortages. Musk recalled OpenAI's Greg Brockman asking him and Brin for GPUs after past tensions, with Brin teasing Brockman's old habit of keeping a diary.\n\nThe exchange highlighted Silicon Valley rivalries amid surging AI demands, tying back to Musk's history as an OpenAI co-founder who later sued over its shift to for-profit status.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
-  },
-  {
-   "id": "huang-musk-brin-mock-brockman-compute",
-   "topic": "huang",
-   "date": "2026-11-01T19:46:16Z",
-   "url": "https://x.com/i/trending/2116978257950118342",
-   "source": "X",
-   "he": {
-    "title": "ג'נסון הואנג, מאסק וברין צוחקים על בקשות המחשוב של ברוקמן",
-    "summary": "בזמן המתנה בטקס מדליות בבית הלבן, הואנג, מאסק, ברין, נאדלה, ליסה סו ומייקל דל החליפו סיפורים, ומאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש מהמתחרים כוח מחשוב."
-   },
-   "en": {
-    "title": "Jensen Huang, Musk and Brin mock Brockman's compute requests",
-    "summary": "While waiting at a White House medal ceremony, Huang, Musk, Brin, Nadella, Lisa Su and Michael Dell swapped stories, and Musk called out OpenAI's Greg Brockman for asking rivals for scarce AI compute."
-   },
-   "full_he": "בזמן המתנה בטקס מדליות בבית הלבן, אילון מאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש ממתחרים כמוהו וכמו סרגיי ברין כוח מחשוב ל־AI, שנמצא במחסור.\n\n• ג'נסון הואנג, אילון מאסק, סרגיי ברין, סאטיה נאדלה, ליסה סו ומייקל דל סיפרו את הסיפור בזמן ההמתנה.\n• מאסק התבדח שברוקמן \"גנב את הצדקה שלי\" ושאינו יכול לבקש טובות אחרי שהתנהג בצורה גסה מאוד כלפיו.\n• ברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן משנות ה־2010, שהופיע בתביעה של מאסק נגד OpenAI ב־2024.\n• מאוחר יותר מאסק התבדח ב־X על בידוד בינה מלאכותית בטיסה של דלתא בלי Wi‑Fi, מה שעורר צחוק סביב צרות חברות התעופה.\n• לפי הסיכום, הסיפור מגיע מכתבה של Colossus על יועץ המדע של הבית הלבן מייקל קרציוס, ומשקף את המתיחות בתעשייה שמאסק היה ממייסדיה ועזב.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
-   "full_en": "While waiting at a White House medal ceremony, Elon Musk called out OpenAI's Greg Brockman for begging rivals like him and Sergey Brin for scarce AI computing power.\n\n• Jensen Huang, Elon Musk, Sergey Brin, Satya Nadella, Lisa Su and Michael Dell shared the story during downtime.\n• Musk quipped that Brockman \"stole my charity\" and couldn't ask for favors after being a \"huge dick.\"\n• Brin teased Brockman's old diary habit from the 2010s, which featured in Musk's 2024 lawsuit against OpenAI.\n• Musk later joked on X about sandboxing AI on a Delta flight with no Wi‑Fi, sparking laughs tied to airline woes and highlighting AI rivalries over tight resources.\n• The exchange comes from a Colossus article on science advisor Michael Kratsios and reflects ongoing tensions in the industry Musk co-founded but left.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
+   "full_he": "\"כן\"\n\nהפוסט שהוא ציטט (@Napoleon__Bon):\n\"אילון מאסק על סבו במלחמת העולם השנייה:\n\n'סבא שלי היה במלחמת העולם השנייה כמעט שש שנים. כל החברים שלו נהרגו.\n\nהוא היחיד מבין חבריו ששרד. והוא היה בטראומה קשה.\n\nהוא פשוט לא הצליח אפילו לדבר אחר כך.\n\nרוב הזמן הזה היה במזרח אפריקה, בצפון אפריקה ובאיטליה.\n\nהסיבה היחידה שהוא בכלל חי, בכנות, היא שלקראת סוף המלחמה עשו מבחן כשירות, כי הוא היה רק רב־טוראי.\n\nהוא לא סיים תיכון, אז הוא לא היה זכאי לקורס קצינים. ושלפו אותו כנראה רגע לפני שהיה נהרג, ושלחו אותו לעבוד במודיעין הבריטי בלונדון, ושם הוא פגש את סבתא שלי.\n\nאז הוא היה אחד מאלה שנלחמו לעצור את הנאצים, יחד עם מיליונים אחרים.\n\nאז בואו לא נשכח שרוב רובו של המערב נלחם ומת כדי לעצור את הנאציזם.'\"\n\nהפוסט המצוטט כולל סרטון של כדקה.",
+   "full_en": "\"Yes\"\n\nThe quoted post (@Napoleon__Bon):\n\"Elon Musk on his grandfather in World War 2:\n\n'My grandfather was in World War II for almost six years. All his friends got killed.\n\nHe's the only one of his friends to survive. And he was severely traumatized.\n\nHe really just couldn't even talk afterwards.\n\nMost of that time was in East Africa, North Africa, Italy.\n\nThe only reason he's even alive frankly is because towards the end of the war they gave an aptitude test because he was just a corporal.\n\nHe didn't graduate high school so he wasn't eligible for officer school. And they plucked him out probably right before he died and sent him to work for British intelligence in London which is where he met my grandmother.\n\nSo he was one of the people fighting to stop the Nazis along with millions of others.\n\nSo let's not forget that the vast majority of the West fought and died to stop Nazism.'\"\n\nThe quoted post includes a video of about one minute."
   },
   {
    "id": "grokbot-musk-gift-research-buy",
@@ -384,6 +418,23 @@
    "full_en": "The \"Good For Your Brain\" Food Advice That Can Backfire\n\nEverybody's talking about healthy fats. Omega-3s, olive oil, avocados, nuts, seeds. Eat more fat because it's supposed to be good for your brain, right?\n\nBut here's what people don't realize.\n\nWhen toxic heavy metals like mercury and copper are in the brain tissue, a high-fat diet can accelerate their oxidation, which can cause additional damage to brain cells than just the metals alone cause.\n\nThat's one reason why I recommend lowering overt/radical fats in your diet. It's a powerful step towards healing on so many different levels.\n\nThe rest of the post links to a YouTube livestream, his book Brain Saver, protocols to get metals out, and free downloads on his site.\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: these are his claims. Mainstream medicine considers fats like omega-3s and olive oil part of a brain-healthy diet, and there's no accepted evidence that they speed up \"oxidation\" of metals in the brain."
   },
   {
+   "id": "huang-musk-brin-mock-brockman-compute",
+   "topic": "huang",
+   "date": "2026-11-01T19:46:16Z",
+   "url": "https://x.com/i/trending/2116978257950118342",
+   "source": "X",
+   "he": {
+    "title": "ג'נסון הואנג, מאסק וברין צוחקים על בקשות המחשוב של ברוקמן",
+    "summary": "בזמן המתנה בטקס מדליות בבית הלבן, הואנג, מאסק, ברין, נאדלה, ליסה סו ומייקל דל החליפו סיפורים, ומאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש מהמתחרים כוח מחשוב."
+   },
+   "en": {
+    "title": "Jensen Huang, Musk and Brin mock Brockman's compute requests",
+    "summary": "While waiting at a White House medal ceremony, Huang, Musk, Brin, Nadella, Lisa Su and Michael Dell swapped stories, and Musk called out OpenAI's Greg Brockman for asking rivals for scarce AI compute."
+   },
+   "full_he": "בזמן המתנה בטקס מדליות בבית הלבן, אילון מאסק עקץ את גרג ברוקמן מ־OpenAI על כך שביקש ממתחרים כמוהו וכמו סרגיי ברין כוח מחשוב ל־AI, שנמצא במחסור.\n\n• ג'נסון הואנג, אילון מאסק, סרגיי ברין, סאטיה נאדלה, ליסה סו ומייקל דל סיפרו את הסיפור בזמן ההמתנה.\n• מאסק התבדח שברוקמן \"גנב את הצדקה שלי\" ושאינו יכול לבקש טובות אחרי שהתנהג בצורה גסה מאוד כלפיו.\n• ברין התבדח על ההרגל הישן של ברוקמן לכתוב יומן משנות ה־2010, שהופיע בתביעה של מאסק נגד OpenAI ב־2024.\n• מאוחר יותר מאסק התבדח ב־X על בידוד בינה מלאכותית בטיסה של דלתא בלי Wi‑Fi, מה שעורר צחוק סביב צרות חברות התעופה.\n• לפי הסיכום, הסיפור מגיע מכתבה של Colossus על יועץ המדע של הבית הלבן מייקל קרציוס, ומשקף את המתיחות בתעשייה שמאסק היה ממייסדיה ועזב.\n\n(סיכום של פוסטים ב־X שעשוי להשתנות; נוצר על ידי Grok, שעלול לטעות.)",
+   "full_en": "While waiting at a White House medal ceremony, Elon Musk called out OpenAI's Greg Brockman for begging rivals like him and Sergey Brin for scarce AI computing power.\n\n• Jensen Huang, Elon Musk, Sergey Brin, Satya Nadella, Lisa Su and Michael Dell shared the story during downtime.\n• Musk quipped that Brockman \"stole my charity\" and couldn't ask for favors after being a \"huge dick.\"\n• Brin teased Brockman's old diary habit from the 2010s, which featured in Musk's 2024 lawsuit against OpenAI.\n• Musk later joked on X about sandboxing AI on a Delta flight with no Wi‑Fi, sparking laughs tied to airline woes and highlighting AI rivalries over tight resources.\n• The exchange comes from a Colossus article on science advisor Michael Kratsios and reflects ongoing tensions in the industry Musk co-founded but left.\n\n(This story is a summary of posts on X and may evolve over time; it's generated by Grok, which can make mistakes.)"
+  },
+  {
    "id": "johnson-chef-resting-heart-rate",
    "topic": "johnson",
    "date": "2026-11-01T19:43:37Z",
@@ -399,23 +450,6 @@
    },
    "full_he": "השף שלי מקבל כל בוקר את דופק המנוחה שלי בשינה.\n\nה־AI שלי שולח את זה אוטומטית.\n\nאחרי יותר מ־1,800 ימים של ניסויים, אני יודע בדיוק מה ההשפעה של תזמון הארוחות, הרכב האוכל והקלוריות על דופק המנוחה שלי.\n\n• 42 פעימות בדקה ומטה: 😃\n• 43–45: 😐\n• מעל 45: 🙁\n\nהתמונה בפוסט היא הודעה מה־AI שלו: \"מסיבת לב! 41 פעימות בדקה. דופק המנוחה של בריאן, אתמול בלילה, שבת 31 באוקטובר\", ומתחת: \"[ה־AI של בריאן] זמן מסיבה! דופק המנוחה של בריאן אתמול בלילה, שבת 31 באוקטובר: 41 פעימות בדקה\".\n\nאין לו המשך בשרשור.",
    "full_en": "My chef get's my sleep resting heart rate every am.\n\nMy AI auto sends.\n\nAfter 1,800+ days of experimentation, I know the exact impact of meal timing, food composition, and calories on my resting heart rate.\n\n• 42 bpm and below: 😃\n• 43-45 bpm: 😐\n• 45 bpm+: 🙁\n\nThe image in the post is a message from his AI: \"PARTY HEART! 41 BPM. Bryan's resting HR | Last night, Sat Oct 31\", and below it: \"[Bryan's AI] Party time! Bryan's resting heart rate last night, Saturday, October 31: 41 BPM\".\n\nThere's no continuation from him in the thread."
-  },
-  {
-   "id": "solana-front-wing-williams-kraken",
-   "topic": "solana",
-   "date": "2026-11-01T19:04:31Z",
-   "url": "https://x.com/solana/status/2116969653641814501",
-   "source": "X · @solana",
-   "he": {
-    "title": "סולאנה על הכנף הקדמית של וויליאמס",
-    "summary": "חשבון סולאנה פרסם ארבע תמונות של מכונית הפורמולה 1 של וויליאמס, שהלוגו של סולאנה מופיע על הכנף הקדמית שלה לצד הלוגו של קראקן, ותייג את קראקן ואת Williams Racing."
-   },
-   "en": {
-    "title": "Solana on the Williams front wing",
-    "summary": "Solana posted four photos of the Williams F1 car with the Solana logo on its front wing next to Kraken's, tagging Kraken and Williams Racing."
-   },
-   "full_en": "Solana wrote: \"Solana on the front wing 🏁\", tagging @krakenfx and @WilliamsRacing.\n\nWhat the four photos show:\n• A close-up of the Williams car's blue front wing, with the SOLANA and kraken logos printed on it, alongside other sponsor logos such as Atlassian and betway.\n• Three shots of the blue Williams F1 car on track.\n\nThe post doesn't say which race the photos are from. There are no self-replies from Solana in the thread.",
-   "full_he": "חשבון סולאנה כתב: \"סולאנה על הכנף הקדמית 🏁\", ותייג את קראקן (@krakenfx) ואת Williams Racing.\n\nמה רואים בארבע התמונות:\n• תקריב של הכנף הקדמית הכחולה של מכונית וויליאמס, ועליה הלוגו של SOLANA והלוגו של kraken, לצד לוגואים של נותני חסות אחרים כמו Atlassian ו־betway.\n• שלוש תמונות של מכונית הפורמולה 1 הכחולה של וויליאמס על המסלול.\n\nהפוסט לא מציין מאיזה מרוץ התמונות. אין לחשבון סולאנה תגובות המשך משלו בשרשור."
   },
   {
    "id": "musk-true-not-using-ai-modeling-negligence",
@@ -435,6 +469,23 @@
    "full_he": "אילון מאסק כתב: \"נכון\" (True).\n\nהפוסט שהוא ציטט (אהרון ברנט, @aaronburnett):\n\n\"אני חושב שלא להשתמש ב־AI כשבונים מודלים צריך להיחשב רשלנות. בעתיד הקרוב, תוך שנה־שנתיים, הדעה הזאת תיראה מובנת מאליה.\n\nזה כמו FSD (נהיגה אוטונומית מלאה) לקבלת החלטות השקעה. אתה בהחלט יכול לבנות מודל ידנית אם תבחר בזה, אבל זו לא ההחלטה החכמה. כל מוסד יצטרך להתמודד עם האמת הזאת בחודשים הקרובים.\"\n\nברנט הגיב לפוסט של Waterworld Capital ‏(@WaterworldCapi1): \"משקיע הון סיכון אידיוט מגלה שאפשר להמציא דברים באקסל (בעזרת Claude)... למען ההגינות, הוא רק מכניס מספרים שאילון אומר, שאין בהם שום היגיון.\" הפוסט הזה ציטט בתורו את שון מגוויר מ־Sequoia: \"בשבוע האחרון בניתי מודל פיננסי של SpaceX מלמטה למעלה עד סוף 2028. המספרים שיצאו מטורפים. יש טווחי טעות רחבים, כי הדברים משתנים מהר מאוד, אבל רציתי לזקק משהו מסובך למשהו שאפשר לפחות להתווכח עליו. * זו לא המלצת השקעה!!! ** ל־Sequoia יש אחזקה גדולה ב־SpaceX *** ביצועי עבר אינם מעידים על העתיד\"\n\nאין למאסק תגובות המשך משלו בשרשור."
   },
   {
+   "id": "solana-front-wing-williams-kraken",
+   "topic": "solana",
+   "date": "2026-11-01T19:04:31Z",
+   "url": "https://x.com/solana/status/2116969653641814501",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה על הכנף הקדמית של וויליאמס",
+    "summary": "חשבון סולאנה פרסם ארבע תמונות של מכונית הפורמולה 1 של וויליאמס, שהלוגו של סולאנה מופיע על הכנף הקדמית שלה לצד הלוגו של קראקן, ותייג את קראקן ואת Williams Racing."
+   },
+   "en": {
+    "title": "Solana on the Williams front wing",
+    "summary": "Solana posted four photos of the Williams F1 car with the Solana logo on its front wing next to Kraken's, tagging Kraken and Williams Racing."
+   },
+   "full_en": "Solana wrote: \"Solana on the front wing 🏁\", tagging @krakenfx and @WilliamsRacing.\n\nWhat the four photos show:\n• A close-up of the Williams car's blue front wing, with the SOLANA and kraken logos printed on it, alongside other sponsor logos such as Atlassian and betway.\n• Three shots of the blue Williams F1 car on track.\n\nThe post doesn't say which race the photos are from. There are no self-replies from Solana in the thread.",
+   "full_he": "חשבון סולאנה כתב: \"סולאנה על הכנף הקדמית 🏁\", ותייג את קראקן (@krakenfx) ואת Williams Racing.\n\nמה רואים בארבע התמונות:\n• תקריב של הכנף הקדמית הכחולה של מכונית וויליאמס, ועליה הלוגו של SOLANA והלוגו של kraken, לצד לוגואים של נותני חסות אחרים כמו Atlassian ו־betway.\n• שלוש תמונות של מכונית הפורמולה 1 הכחולה של וויליאמס על המסלול.\n\nהפוסט לא מציין מאיזה מרוץ התמונות. אין לחשבון סולאנה תגובות המשך משלו בשרשור."
+  },
+  {
    "id": "starterstory-abmax-lino-18-no-code-60k",
    "topic": "starterstory",
    "date": "2026-11-01T18:50:15Z",
@@ -450,6 +501,23 @@
    },
    "full_en": "He's 18, dropped out after one semester, and never wrote a line of code.\n\n6 months later, Lino's app AbMax is on pace for $60K/month with 3,000+ paying customers and 16,000 downloads in the last 28 days.\n\nThe idea came from the gym. His friends kept arguing over who had better abs. He searched for an app that actually helped you get them… and nothing existed.\n\nSo he built one.\n\nFirst attempt: 2 months grinding in Lovable. Right before launch he looked at it and said \"there's absolutely no way I can release this.\" Scrapped it. Rebuilt V2 in Rourke in 1 month. Did $7K the first month.\n\nHow he scaled from $7K → $55K:\n\n• Killed every UGC deal (margins were 5-10%, brutal)\n• Partnered with ONE big fitness influencer for equity instead\n• Doubled down on Meta ads at 2-2.5x ROAS\n• Took the same creatives to TikTok → got 5-6x better performance (younger audience, 15-30)\n\nHis 5-step playbook if he had to start today:\n\n1. Live inside the X app founder community\n2. Use SensorTower to find niches with multiple apps doing $10K+/mo\n3. Validate with faceless TikTok slideshows (\"comment APP and I'll send it\") before building\n4. Ship in 7 days - stop obsessing over the product\n5. Pay micro-influencers (500-1K followers) $100 for 10 videos to find your winning hook\n\nHis parting advice: \"It's physically impossible for you to lose as long as you never give up and get better every day.\"\n\nThe image in the post, \"How To Build & Grow Your First App\":\n\n• Step 1 – Do your research: follow app founders on X for free advice; use Sensor Tower to find niches with $10K/month apps\n• Step 2 – Post before building: post 3-4 TikTok slideshows daily for a week; ask people to \"comment APP\" to test demand\n• Step 3 – Ship in 7 days: build with Rork or whatever tool you prefer; get it out there – you can improve it later\n• Step 4 – Test with small creators: offer creators $100 for 10 videos; test hooks, formats and CTAs to find what works\n• Step 5 – Scale your winning content: get 10-15 creators posting consistently; run paid ads behind the content that performs\n\nThe post also has a short video (8 seconds), so there's no more text to show. There are no further replies from Starter Story in the thread.",
    "full_he": "הוא בן 18, עזב את הלימודים אחרי סמסטר אחד ומעולם לא כתב שורת קוד.\n\nחצי שנה אחר כך, האפליקציה של לינו, AbMax, בקצב של 60 אלף דולר בחודש, עם יותר מ־3,000 לקוחות משלמים ו־16,000 הורדות ב־28 הימים האחרונים.\n\nהרעיון נולד בחדר הכושר. החברים שלו התווכחו כל הזמן למי יש שרירי בטן יפים יותר. הוא חיפש אפליקציה שבאמת עוזרת להגיע אליהם, ולא היה כזה דבר.\n\nאז הוא בנה אחת.\n\nניסיון ראשון: חודשיים של עבודה קשה ב־Lovable. רגע לפני ההשקה הוא הסתכל על התוצאה ואמר: \"אין שום סיכוי שאני מוציא את זה\". הוא גנז אותה, בנה גרסה שנייה ב־Rourke תוך חודש, והכניס 7,000 דולר בחודש הראשון.\n\nאיך הוא גדל מ־7,000 ל־55,000 דולר:\n\n• ויתר על כל העסקאות עם יוצרי UGC (שולי רווח של 5–10%, אכזרי)\n• במקום זה, שיתף פעולה עם משפיען כושר גדול אחד בתמורה למניות\n• הגביר את הפרסום במטא, עם החזר של פי 2–2.5 על ההוצאה (ROAS)\n• העביר את אותם קריאייטיבים לטיקטוק וקיבל ביצועים טובים פי 5–6 (קהל צעיר יותר, בני 15–30)\n\nתוכנית 5 הצעדים שלו, אם היה מתחיל היום:\n\n1. לחיות בתוך קהילת מייסדי האפליקציות ב־X\n2. להשתמש ב־SensorTower כדי למצוא נישות שיש בהן כמה אפליקציות שמכניסות 10,000 דולר ומעלה בחודש\n3. לבדוק ביקוש עם מצגות טיקטוק \"בלי פנים\" (\"כתבו APP בתגובות ואשלח לכם\") לפני שבונים\n4. להשיק תוך 7 ימים, ולהפסיק להיות אובססיבי למוצר\n5. לשלם למיקרו־משפיענים (500–1,000 עוקבים) 100 דולר על 10 סרטונים כדי למצוא את ההוק המנצח\n\nהעצה שלו לסיום: \"פיזית אי אפשר להפסיד, כל עוד אתה אף פעם לא מוותר ומשתפר כל יום.\"\n\nהתמונה בפוסט, \"איך לבנות ולהצמיח את האפליקציה הראשונה שלך\":\n\n• צעד 1 – לעשות מחקר: לעקוב אחרי מייסדי אפליקציות ב־X בשביל עצות בחינם; להשתמש ב־Sensor Tower כדי למצוא נישות עם אפליקציות של 10 אלף דולר בחודש\n• צעד 2 – לפרסם לפני שבונים: 3–4 מצגות טיקטוק ביום במשך שבוע; לבקש מאנשים לכתוב \"APP\" בתגובות כדי לבדוק ביקוש\n• צעד 3 – להשיק תוך 7 ימים: לבנות עם Rork או כל כלי שנוח לך; להוציא את זה לעולם – אפשר לשפר אחר כך\n• צעד 4 – לבדוק עם יוצרים קטנים: להציע ליוצרים 100 דולר על 10 סרטונים; לבדוק הוקים, פורמטים וקריאות לפעולה כדי לגלות מה עובד\n• צעד 5 – להגדיל את התוכן המנצח: לגייס 10–15 יוצרים שמפרסמים בקביעות; להריץ מודעות ממומנות על התוכן שמצליח\n\nבפוסט יש גם סרטון קצר (8 שניות), ולכן אין עוד טקסט להציג. אין בשרשור תגובות נוספות של סטארטר סטורי."
+  },
+  {
+   "id": "musk-french-prosecutors-summon-musk-yaccarino",
+   "topic": "musk",
+   "date": "2026-11-01T18:49:16Z",
+   "url": "https://x.com/i/trending/2116893530111054235",
+   "source": "X",
+   "he": {
+    "title": "התובעים בצרפת מזמנים את מאסק ואת יקרינו לחקירה בפרשת X",
+    "summary": "רשויות התביעה בצרפת זימנו את אילון מאסק ואת מנכ\"לית X לשעבר לינדה יקרינו לחקירה פלילית שנפתחה בינואר 2025. החקירה עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים של Grok."
+   },
+   "en": {
+    "title": "French prosecutors summon Musk and Yaccarino in X investigation",
+    "summary": "French authorities have summoned Elon Musk and former X CEO Linda Yaccarino for questioning in a criminal probe launched in January 2025. It covers alleged algorithmic bias, election interference, child sexual abuse material and non-consensual Grok deepfakes."
+   },
+   "full_en": "Elon Musk and former X CEO Linda Yaccarino now face questioning from French authorities over serious allegations tied to the platform.\n\nThe criminal probe, launched in January 2025, targets claims of algorithmic bias, election interference, child sexual abuse material, and non-consensual deepfakes from Grok. It expanded after reports of Holocaust denial content and deepfakes involving minors, leading to a February 2026 search of X's Paris offices.\n\nAuthorities list potential offenses like complicity in child pornography distribution and denial of crimes against humanity; X has called some scrutiny politically motivated.\n\nDiscussions highlight divides, with some seeing accountability for AI harms and others viewing it as a distraction from France's unrest.\n\n(This is X's own summary of posts on the story, which may change over time.)",
+   "full_he": "אילון מאסק ומנכ\"לית X לשעבר לינדה יקרינו יצטרכו להיחקר עכשיו על ידי הרשויות בצרפת, בעקבות טענות חמורות שקשורות לפלטפורמה.\n\nהחקירה הפלילית, שנפתחה בינואר 2025, עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים שנוצרו ב־Grok בלי הסכמה. היא הורחבה אחרי דיווחים על תוכן של הכחשת שואה ועל דיפ־פייקים של קטינים, ובפברואר 2026 נערך חיפוש במשרדי X בפריז.\n\nהרשויות מונות עבירות אפשריות כמו סיוע להפצת פורנוגרפיית ילדים והכחשת פשעים נגד האנושות; X טענה שחלק מהבדיקות מונעות משיקולים פוליטיים.\n\nהדיון ברשת חצוי: יש מי שרואים בזה לקיחת אחריות על נזקי בינה מלאכותית, ויש מי שרואים בזה הסחת דעת מהמהומות בצרפת.\n\n(זה הסיכום של X עצמה לפוסטים על הסיפור, והוא עשוי להשתנות.)"
   },
   {
    "id": "solana-four-accelerators-closing-applications",
@@ -486,23 +554,6 @@
    "full_he": "מוזיקה היא טיפול לאריכות ימים\n\n• מורידה דופק\n• מורידה לחץ דם\n• מורידה קורטיזול\n• מפחיתה חרדה ואי־שקט\n\nהפרוטוקול: שיר שאתה אוהב.\n\n104 ניסויים אקראיים\n9,617 משתתפים\n\nהתמונה בפוסט היא כותרת המחקר שהוא מצטט: \"ההשפעות של התערבויות מוזיקליות על מדדים הקשורים למתח: סקירה שיטתית ושתי מטא־אנליזות\", מאת מרטינה דה ויטה, אנוק ספרויט, סוזן ואן הורן, חאוויאר מונן וחרט־יאן סטמס (עמודים 294–324, פורסם ברשת ב־15 ביולי 2019, doi:10.1080/17437199.2019.1627897).\n\nהערה: המחקר שהוא מצטט בדק מדדים של מתח (גופני ונפשי); ההגדרה של מוזיקה כ\"טיפול לאריכות ימים\" היא שלו, ולא ממצא על תוחלת חיים. אין בשרשור תגובות נוספות שלו."
   },
   {
-   "id": "musk-french-prosecutors-summon-musk-yaccarino",
-   "topic": "musk",
-   "date": "2026-11-01T18:49:16Z",
-   "url": "https://x.com/i/trending/2116893530111054235",
-   "source": "X",
-   "he": {
-    "title": "התובעים בצרפת מזמנים את מאסק ואת יקרינו לחקירה בפרשת X",
-    "summary": "רשויות התביעה בצרפת זימנו את אילון מאסק ואת מנכ\"לית X לשעבר לינדה יקרינו לחקירה פלילית שנפתחה בינואר 2025. החקירה עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים של Grok."
-   },
-   "en": {
-    "title": "French prosecutors summon Musk and Yaccarino in X investigation",
-    "summary": "French authorities have summoned Elon Musk and former X CEO Linda Yaccarino for questioning in a criminal probe launched in January 2025. It covers alleged algorithmic bias, election interference, child sexual abuse material and non-consensual Grok deepfakes."
-   },
-   "full_en": "Elon Musk and former X CEO Linda Yaccarino now face questioning from French authorities over serious allegations tied to the platform.\n\nThe criminal probe, launched in January 2025, targets claims of algorithmic bias, election interference, child sexual abuse material, and non-consensual deepfakes from Grok. It expanded after reports of Holocaust denial content and deepfakes involving minors, leading to a February 2026 search of X's Paris offices.\n\nAuthorities list potential offenses like complicity in child pornography distribution and denial of crimes against humanity; X has called some scrutiny politically motivated.\n\nDiscussions highlight divides, with some seeing accountability for AI harms and others viewing it as a distraction from France's unrest.\n\n(This is X's own summary of posts on the story, which may change over time.)",
-   "full_he": "אילון מאסק ומנכ\"לית X לשעבר לינדה יקרינו יצטרכו להיחקר עכשיו על ידי הרשויות בצרפת, בעקבות טענות חמורות שקשורות לפלטפורמה.\n\nהחקירה הפלילית, שנפתחה בינואר 2025, עוסקת בטענות להטיה אלגוריתמית, להתערבות בבחירות, לתוכן של התעללות מינית בילדים ולדיפ־פייקים שנוצרו ב־Grok בלי הסכמה. היא הורחבה אחרי דיווחים על תוכן של הכחשת שואה ועל דיפ־פייקים של קטינים, ובפברואר 2026 נערך חיפוש במשרדי X בפריז.\n\nהרשויות מונות עבירות אפשריות כמו סיוע להפצת פורנוגרפיית ילדים והכחשת פשעים נגד האנושות; X טענה שחלק מהבדיקות מונעות משיקולים פוליטיים.\n\nהדיון ברשת חצוי: יש מי שרואים בזה לקיחת אחריות על נזקי בינה מלאכותית, ויש מי שרואים בזה הסחת דעת מהמהומות בצרפת.\n\n(זה הסיכום של X עצמה לפוסטים על הסיפור, והוא עשוי להשתנות.)"
-  },
-  {
    "id": "musk-talarico-open-borders-texas-senate-final-days",
    "topic": "musk",
    "date": "2026-11-01T18:29:03Z",
@@ -520,21 +571,21 @@
    "full_he": "יומיים לפני יום הבחירות, אילון מאסק האשים את המועמד הדמוקרטי ג'יימס טלריקו שהוא מתכנן להעניק מעמד חוקי לכולם כדי להבטיח שלטון קבוע של מפלגה אחת. טלריקו השיב באש, ותקף את המיליונים שמאסק משקיע בתמיכה ביריבו, קן פקסטון.\n\nעל המושב הפתוח בסנאט מטקסס מתמודדים חבר בית הנבחרים של המדינה ג'יימס טלריקו והתובע הכללי קן פקסטון. עשרות מיליוני הדולרים שמאסק הזרים דרך ועדות סופר־PAC הפכו את המרוץ לאחד היקרים ביותר.\n\nטלריקו מלהיב קהלים כשהוא מציג את עצמו כאנדרדוג מול ההשפעה של מאסק, ומאסק מפרסם שטלריקו יבטל את הדמוקרטיה. ברשת, ביטחון הגבול שולט בשיח, עם ממים כמו \"Don't Talarico my Texas\".\n\nהסקרים מראים יתרון קל לטלריקו, והתוצאה עשויה להשפיע על השליטה בסנאט, על רקע הוויכוח בין כסף גדול לבין תנופה מהשטח.\n\n(זה הסיכום של X עצמה לפוסטים על הסיפור, והוא עשוי להשתנות.)"
   },
   {
-   "id": "refaeli-khaite-peplum-top-shelbia-masked-singer",
-   "topic": "refaeli",
-   "date": "2026-11-01T11:39:17Z",
-   "url": "https://fashionforward.mako.co.il/news/322623/",
-   "source": "mako · Fashion Forward",
+   "id": "musk-ruffalo-taxes-criticism",
+   "topic": "musk",
+   "date": "2026-11-01T17:08:12Z",
+   "url": "https://x.com/i/trending/2116937981743497312",
+   "source": "X",
    "he": {
-    "title": "בר רפאלי ב\"הזמר במסכה\" עם גופיית Khaite, שיעל שלביה כבר לבשה בקיץ",
-    "summary": "לפרק הנוכחי של \"הזמר במסכה\" רפאלי לבשה גופיית פפלום אסימטרית בגוון בהיר ומכנסי עור שחורים של המותג הניו יורקי Khaite. ב־Fashion Forward שמו לב שיעל שלביה לבשה את אותה גופייה בקיץ, במרוץ פורמולה 1 בבריטניה."
+    "title": "מארק רופאלו תוקף את מאסק על מסים ופוליטיקה, והתגובות לא מאחרות",
+    "summary": "השחקן מארק רופאלו האשים את מאסק בהתחמקות ממסים ובתלונות על תוצאות בחירות, ואף רמז לשורשיו בדרום אפריקה. משתמשים מיהרו להגן על מאסק והזכירו את חשבון המס הענק שלו מ־2021."
    },
    "en": {
-    "title": "Bar Refaeli wears a Khaite peplum top on 'The Masked Singer', the same one Yael Shelbia wore this summer",
-    "summary": "For the latest 'Masked Singer' episode, Refaeli wore a light asymmetric peplum top and black leather pants by New York label Khaite. Fashion Forward noticed Yael Shelbia wore the very same top this summer at a Formula 1 race in Britain."
+    "title": "Mark Ruffalo slams Musk over taxes and politics, draws sharp replies",
+    "summary": "Actor Mark Ruffalo accused Musk of dodging taxes and griping about elections, even nodding to his South Africa roots. Replies quickly defended Musk, citing his huge 2021 tax bill."
    },
-   "full_he": "ההשתתפות של בר רפאלי בעונה הנוכחית של \"הזמר במסכה\" היא, לפי Fashion Forward של mako, הזדמנות להכיר עוד צד בסגנון האופנתי שלה, ובכל פרק הוא מקבל עוד עומק.\n\n• הפעם רפאלי לבשה מערכת של המותג הניו יורקי Khaite, שנחשב לנציג הבולט של \"היוקרה השקטה\" באופנה האמריקאית.\n• הסטייליסטית הקבועה שלה, אור לוזון, בחרה עבורה בפקטורי 54 גופיית פפלום אסימטרית בגוון בהיר, לצד מכנסי עור שחורים של אותו מותג.\n• הגופייה כבר לא זמינה לקנייה, והמכנסיים עדיין נמכרים. לפי הכתבה מחירם כ־16 אלף שקל (הניסוח של המחיר בכתבה לא ברור לגמרי).\n• הלוק הזכיר לכותבות את יעל שלביה, שלבשה את אותה גופייה בדיוק בקיץ האחרון, כשנצפתה עם בן זוגה לאנס סטרול במרוץ פורמולה 1 בבריטניה, אז עם מכנסיים קצרים תואמים.\n• רפאלי, לעומתה, הלכה על הגרסה הסתווית ושילבה את הגופייה עם מכנסי עור כהים, \"הטוויסט הדרוש למעברי העונות\", כך לפי הכתבה.",
-   "full_en": "According to mako's Fashion Forward, Bar Refaeli's part in this season of 'The Masked Singer' is a chance to see another side of her fashion persona, gaining more depth with every episode.\n\n• This time Refaeli wore an outfit by New York label Khaite, seen as the leading name in American \"quiet luxury\" fashion.\n• Her regular stylist, Or Luzon, picked it for her at Factory 54: a light-toned asymmetric peplum top with black leather pants from the same label.\n• The top is no longer available, while the pants are still on sale. The article puts their price at about 16,000 shekels (its wording of the price is a little unclear).\n• The look reminded the writers of Yael Shelbia, who wore the exact same top last summer when she was seen with her partner Lance Stroll at a Formula 1 race in Britain, paired with matching shorts.\n• Refaeli instead went for the autumn version, pairing the top with dark leather pants, \"the twist you need for the change of seasons\", as the article puts it."
+   "full_he": "מה כותבים ב־X על הסיפור:\n\nהשחקן מארק רופאלו מתח ביקורת על אילון מאסק על כך שלדבריו הוא מתחמק ממסים ומתלונן על בחירות, ואף רמז לשורשיו בדרום אפריקה. התגובות הגיעו מהר, ורבות מהן הגנו על תשלומי המס העצומים של מאסק.\n\n• רופאלו האשים את מאסק בהתחמקות ממסים, בהתנגדות לפיקוח על חוזים ממשלתיים ועל יוזמת DOGE, ובתלונות על תוצאות בחירות.\n• משתמשים השיבו בחריפות והזכירו את חשבון המס הפדרלי של מאסק מ־2021, כ־11 מיליארד דולר ממכירת מניות, מהגבוהים שנרשמו אי פעם, ואת התרומות שלו בהיקף 446 מיליון דולר לבחירות האמצע.\n• הם פסלו את הרמז לדרום אפריקה כקלישאה עצלה, בהתחשב בכך שמאסק אזרח אמריקני מאז 2002.\n• חילופי הדברים חשפו את הפערים סביב עושר, מסים והשפעה פוליטית. DOGE, שמאסק היה שותף להובלתה עד אמצע 2026, התמקדה בקיצוצים בהוצאות הממשלה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות. הטקסט המלא של הפוסט של רופאלו לא היה זמין.)",
+   "full_en": "What X is saying about the story:\n\nActor Mark Ruffalo called out Elon Musk for dodging taxes and griping about elections, even nodding to his South Africa roots. Replies poured in fast, defending Musk's massive tax payments.\n\n• Ruffalo accused Musk of avoiding taxes, resisting oversight on government contracts and the DOGE initiative, and complaining about election results.\n• Users pushed back hard, citing Musk's $11 billion federal tax bill in 2021 from stock sales, one of the largest ever, and his $446 million in midterm donations.\n• They dismissed the South Africa reference as a lazy trope, given Musk's U.S. citizenship since 2002.\n• The exchange highlighted divides over wealth, taxes and political influence. DOGE, which Musk co-led until mid-2026, focused on government spending cuts amid ongoing debates.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes. The full text of Ruffalo's post wasn't available.)"
   },
   {
    "id": "mccullough-mageean-bowel-cancer-turbo-cancer",
@@ -807,6 +858,23 @@
    },
    "full_he": "„היעילות של ההשקעות ההוניות שלנו מוערכת בחסר בהרבה.”\n\nזו הייתה תגובה של מאסק לפוסט של Milk Road Stocks (@MilkRoadStocks) מ־26 באוקטובר:\n\nקייל רידהד: ספייסאקס בדרך להוציא 470 מיליארד דולר על השקעות הוניות (capex) בחמשת הרבעונים הקרובים, בערך פי 2 ממה שכל אחת מאמזון, גוגל או מטא מוציאה.\n\nלדבריו, ספייסאקס יכולה לממן את זה כי היא בונה כל כך מהר: „אילון יכול לעשות את זה בשישים יום, תשעים יום”, ו„תוך חצי שנה זה כבר מחזיר את עצמו”.\n\nבמודל שלו, ההכנסות הרבעוניות של ספייסאקס יגיעו לכ־122 מיליארד דולר ברבעון הרביעי של 2027, לעומת 14.6 מיליארד ברבעון השלישי.\n\nהוא עדיין צופה כ־150 מיליארד דולר של חוב בחמשת הרבעונים הקרובים, כך שזה הימור מבני על הביקוש לכוח מחשוב ל־AI.\n\nהאם ספייסאקס יכולה להחזיר את ההשקעות כל כך מהר, או שהחוב יהפוך לבעיה?\n\nשאר הפוסט של Milk Road Stocks הוא סרטון (כ־4.5 דקות), ולכן אין עוד טקסט להציג.\n\nהפוסט ש־Milk Road Stocks ציטט (קייל רידהד, @KyleReidhead, 21 באוקטובר), בקיצור:\n• כדי להגיע ל־13 גיגה־וואט עד סוף 2027 (התחזית החדשה של אילון), ההשקעות ההוניות של ספייסאקס בחמשת הרבעונים הקרובים צריכות להגיע לכ־470 מיליארד דולר.\n• לדבריו, המרוויחה הגדולה היא אנבידיה, שתקבל 83%–89% מכל ההוצאה: כ־414 מיליארד דולר הכנסות מלקוח אחד, לעומת הכנסות של 216 מיליארד דולר לאנבידיה בכל השנה שעברה.\n• בעידן Blackwell כ־25 מיליארד מכל 30 מיליארד לגיגה־וואט הולכים לאנבידיה (83%), ובעידן Vera Rubin כ־40 מיליארד מכל 45 מיליארד (89%).\n• ספייסאקס ידועה באינטגרציה אנכית, אבל לדבריו את ה־GPU של אנבידיה אי אפשר לייצר בעצמך.\n• הוא מציין שהוא מחזיק במניות של שתי החברות. (סוף הפוסט הוא פרסומת למנוי בתשלום, ולכן הושמט.)",
    "full_en": "\"Our capex efficiency is greatly underestimated\"\n\nThis was Musk's reply to an Oct 26 post by Milk Road Stocks (@MilkRoadStocks):\n\nKyle Reidhead: SpaceX is on track to spend $470B on capex in the next 5 quarters, ~2x what Amazon, Google or Meta each spend.\n\nHe says SpaceX can fund it because it builds so fast: \"Elon can do this in sixty days, ninety days,\" and \"within six months, it's already paid back.\"\n\nHis model has SpaceX at about $122B of quarterly revenue by Q4 2027, up from $14.6B in Q3.\n\nHe still sees about $150B of debt over the next 5 quarters, so it's a structural bet on AI compute demand.\n\nCan SpaceX earn back its capex that fast, or does the debt become the problem?\n\nThe rest of the Milk Road Stocks post is a video (about 4.5 minutes), so there's no more text to show.\n\nThe post Milk Road Stocks quoted (Kyle Reidhead, @KyleReidhead, Oct 21), in brief:\n• To reach 13 GW by end of 2027 (Elon's new guide), SpaceX capex over the next 5 quarters needs to hit about $470B.\n• He says the biggest winner is Nvidia, taking 83–89% of the spend: about $414B of revenue from one customer, versus Nvidia's $216B total revenue last year.\n• Blackwell era: ~$25B of every $30B per GW goes to Nvidia (83%); Vera Rubin era: ~$40B of every $45B per GW (89%).\n• SpaceX is famous for vertical integration, but he says you can't vertically integrate Nvidia GPUs.\n• He notes he owns both stocks. (The end of the post is an ad for a paid subscription, so it's left out.)"
+  },
+  {
+   "id": "refaeli-khaite-peplum-top-shelbia-masked-singer",
+   "topic": "refaeli",
+   "date": "2026-11-01T11:39:17Z",
+   "url": "https://fashionforward.mako.co.il/news/322623/",
+   "source": "mako · Fashion Forward",
+   "he": {
+    "title": "בר רפאלי ב\"הזמר במסכה\" עם גופיית Khaite, שיעל שלביה כבר לבשה בקיץ",
+    "summary": "לפרק הנוכחי של \"הזמר במסכה\" רפאלי לבשה גופיית פפלום אסימטרית בגוון בהיר ומכנסי עור שחורים של המותג הניו יורקי Khaite. ב־Fashion Forward שמו לב שיעל שלביה לבשה את אותה גופייה בקיץ, במרוץ פורמולה 1 בבריטניה."
+   },
+   "en": {
+    "title": "Bar Refaeli wears a Khaite peplum top on 'The Masked Singer', the same one Yael Shelbia wore this summer",
+    "summary": "For the latest 'Masked Singer' episode, Refaeli wore a light asymmetric peplum top and black leather pants by New York label Khaite. Fashion Forward noticed Yael Shelbia wore the very same top this summer at a Formula 1 race in Britain."
+   },
+   "full_he": "ההשתתפות של בר רפאלי בעונה הנוכחית של \"הזמר במסכה\" היא, לפי Fashion Forward של mako, הזדמנות להכיר עוד צד בסגנון האופנתי שלה, ובכל פרק הוא מקבל עוד עומק.\n\n• הפעם רפאלי לבשה מערכת של המותג הניו יורקי Khaite, שנחשב לנציג הבולט של \"היוקרה השקטה\" באופנה האמריקאית.\n• הסטייליסטית הקבועה שלה, אור לוזון, בחרה עבורה בפקטורי 54 גופיית פפלום אסימטרית בגוון בהיר, לצד מכנסי עור שחורים של אותו מותג.\n• הגופייה כבר לא זמינה לקנייה, והמכנסיים עדיין נמכרים. לפי הכתבה מחירם כ־16 אלף שקל (הניסוח של המחיר בכתבה לא ברור לגמרי).\n• הלוק הזכיר לכותבות את יעל שלביה, שלבשה את אותה גופייה בדיוק בקיץ האחרון, כשנצפתה עם בן זוגה לאנס סטרול במרוץ פורמולה 1 בבריטניה, אז עם מכנסיים קצרים תואמים.\n• רפאלי, לעומתה, הלכה על הגרסה הסתווית ושילבה את הגופייה עם מכנסי עור כהים, \"הטוויסט הדרוש למעברי העונות\", כך לפי הכתבה.",
+   "full_en": "According to mako's Fashion Forward, Bar Refaeli's part in this season of 'The Masked Singer' is a chance to see another side of her fashion persona, gaining more depth with every episode.\n\n• This time Refaeli wore an outfit by New York label Khaite, seen as the leading name in American \"quiet luxury\" fashion.\n• Her regular stylist, Or Luzon, picked it for her at Factory 54: a light-toned asymmetric peplum top with black leather pants from the same label.\n• The top is no longer available, while the pants are still on sale. The article puts their price at about 16,000 shekels (its wording of the price is a little unclear).\n• The look reminded the writers of Yael Shelbia, who wore the exact same top last summer when she was seen with her partner Lance Stroll at a Formula 1 race in Britain, paired with matching shorts.\n• Refaeli instead went for the autumn version, pairing the top with dark leather pants, \"the twist you need for the change of seasons\", as the article puts it."
   },
   {
    "id": "musk-fake-meme-buy-microsoft-fire-gates",
@@ -10972,23 +11040,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "musk-ruffalo-taxes-criticism",
-   "topic": "musk",
-   "date": "2026-11-01T17:08:12Z",
-   "url": "https://x.com/i/trending/2116937981743497312",
-   "source": "X",
-   "he": {
-    "title": "מארק רופאלו תוקף את מאסק על מסים ופוליטיקה, והתגובות לא מאחרות",
-    "summary": "השחקן מארק רופאלו האשים את מאסק בהתחמקות ממסים ובתלונות על תוצאות בחירות, ואף רמז לשורשיו בדרום אפריקה. משתמשים מיהרו להגן על מאסק והזכירו את חשבון המס הענק שלו מ־2021."
-   },
-   "en": {
-    "title": "Mark Ruffalo slams Musk over taxes and politics, draws sharp replies",
-    "summary": "Actor Mark Ruffalo accused Musk of dodging taxes and griping about elections, even nodding to his South Africa roots. Replies quickly defended Musk, citing his huge 2021 tax bill."
-   },
-   "full_he": "מה כותבים ב־X על הסיפור:\n\nהשחקן מארק רופאלו מתח ביקורת על אילון מאסק על כך שלדבריו הוא מתחמק ממסים ומתלונן על בחירות, ואף רמז לשורשיו בדרום אפריקה. התגובות הגיעו מהר, ורבות מהן הגנו על תשלומי המס העצומים של מאסק.\n\n• רופאלו האשים את מאסק בהתחמקות ממסים, בהתנגדות לפיקוח על חוזים ממשלתיים ועל יוזמת DOGE, ובתלונות על תוצאות בחירות.\n• משתמשים השיבו בחריפות והזכירו את חשבון המס הפדרלי של מאסק מ־2021, כ־11 מיליארד דולר ממכירת מניות, מהגבוהים שנרשמו אי פעם, ואת התרומות שלו בהיקף 446 מיליון דולר לבחירות האמצע.\n• הם פסלו את הרמז לדרום אפריקה כקלישאה עצלה, בהתחשב בכך שמאסק אזרח אמריקני מאז 2002.\n• חילופי הדברים חשפו את הפערים סביב עושר, מסים והשפעה פוליטית. DOGE, שמאסק היה שותף להובלתה עד אמצע 2026, התמקדה בקיצוצים בהוצאות הממשלה.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות. הטקסט המלא של הפוסט של רופאלו לא היה זמין.)",
-   "full_en": "What X is saying about the story:\n\nActor Mark Ruffalo called out Elon Musk for dodging taxes and griping about elections, even nodding to his South Africa roots. Replies poured in fast, defending Musk's massive tax payments.\n\n• Ruffalo accused Musk of avoiding taxes, resisting oversight on government contracts and the DOGE initiative, and complaining about election results.\n• Users pushed back hard, citing Musk's $11 billion federal tax bill in 2021 from stock sales, one of the largest ever, and his $446 million in midterm donations.\n• They dismissed the South Africa reference as a lazy trope, given Musk's U.S. citizenship since 2002.\n• The exchange highlighted divides over wealth, taxes and political influence. DOGE, which Musk co-led until mid-2026, focused on government spending cuts amid ongoing debates.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes. The full text of Ruffalo's post wasn't available.)"
   }
  ]
 }
