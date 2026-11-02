@@ -1,5 +1,5 @@
 /* Offline cache for the Sound Mixer (scope: sounds/ only). */
-var CACHE = "rg-sounds-v32";
+var CACHE = "rg-sounds-v33";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "synth.js", "manifest.json", "icon.svg", "save-icon.svg", "icon-192.png", "icon-512.png",
   "audio/ocean.mp3", "audio/river.mp3", "audio/waterfall.mp3", "audio/rain.mp3", "audio/thunder.mp3", "audio/crickets.mp3", "audio/fireplace.mp3", "audio/birds.mp3", "audio/jawharp.mp3", "audio/didgeridoo.mp3", "audio/flute.mp3", "audio/bansuri.mp3", "audio/clarinet.mp3", "mantras/he-m-1.mp3", "mantras/he-m-2.mp3", "mantras/he-m-3.mp3", "mantras/he-m-4.mp3", "mantras/he-f-1.mp3", "mantras/he-f-2.mp3", "mantras/he-f-3.mp3", "mantras/he-f-4.mp3", "mantras/en-m-1.mp3", "mantras/en-m-2.mp3", "mantras/en-m-3.mp3", "mantras/en-m-4.mp3", "mantras/en-f-1.mp3", "mantras/en-f-2.mp3", "mantras/en-f-3.mp3", "mantras/en-f-4.mp3"];
 

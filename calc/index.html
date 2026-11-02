@@ -81,17 +81,5 @@ addEventListener("appinstalled",function(){dp=null;U();});
 b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
 x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
 })();</script>
-<!-- rg-about -->
-<script>(function(){var HE="מחשבון פשוט: מקלידים תרגיל ומקבלים תשובה",EN="A simple calculator: type a sum, get the answer";
-function L(){var l=localStorage.getItem("rg-lang")||document.documentElement.lang||"he";return /^en/.test(l)?"en":"he";}
-var s=document.createElement("style");s.textContent="#rgAbBtn{position:fixed;top:calc(env(safe-area-inset-top) + 4px);left:50%;transform:translateX(-50%);z-index:99998;width:24px;height:24px;border-radius:50%;border:1px solid rgba(212,175,55,.6);background:rgba(13,42,92,.55);color:#f3d77a;font:600 14px/22px system-ui,sans-serif;padding:0;cursor:pointer;opacity:.7}#rgAbBtn:hover{opacity:1}#rgAbOv{position:fixed;inset:0;z-index:99999;background:rgba(4,14,34,.55);display:none;align-items:center;justify-content:center;padding:20px}#rgAbOv.on{display:flex}#rgAbBox{position:relative;max-width:360px;width:100%;background:linear-gradient(160deg,#0d2a5c,#123b7a);color:#fff;border:1px solid #d4af37;border-radius:14px;padding:18px 18px 16px;font:16px/1.5 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.4)}#rgAbBox h3{margin:0 0 8px;color:#f3d77a;font-size:18px}#rgAbBox p{margin:0}#rgAbX{position:absolute;top:8px;inset-inline-end:8px;background:none;border:0;color:#f3d77a;font-size:20px;cursor:pointer;line-height:1}";
-function init(){document.head.appendChild(s);var b=document.createElement("button");b.id="rgAbBtn";b.type="button";b.textContent="i";
-var o=document.createElement("div");o.id="rgAbOv";o.innerHTML='<div id="rgAbBox" role="dialog"><button id="rgAbX" type="button">✕</button><h3></h3><p></p></div>';
-function open(){var e=L()=="en";var x=o.firstChild;x.dir=e?"ltr":"rtl";x.querySelector("h3").textContent=e?"About":"אודות";x.querySelector("p").textContent=e?EN:HE;o.querySelector("#rgAbX").setAttribute("aria-label",e?"Close":"סגירה");o.classList.add("on");}
-function upd(){var e=L()=="en";b.title=e?"About":"אודות";b.setAttribute("aria-label",b.title);}
-b.onclick=function(ev){ev.stopPropagation();upd();open();};o.onclick=function(ev){if(ev.target===o||ev.target.id=="rgAbX")o.classList.remove("on");};
-document.addEventListener("keydown",function(ev){if(ev.key=="Escape")o.classList.remove("on");});
-upd();document.body.appendChild(b);document.body.appendChild(o);window.rgAbout=open;}
-if(document.body)init();else document.addEventListener("DOMContentLoaded",init);})();</script>
 </body>
 </html>
