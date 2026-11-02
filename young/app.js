@@ -80,6 +80,32 @@
       li.appendChild(b); ul.appendChild(li);
     });
     if (current >= 0) renderStage();
+    renderRecs();
+  }
+
+  function renderRecs() {
+    var h = $("recsTitle"), ul = $("recs");
+    if (!h || !ul || typeof RECS === "undefined") return;
+    h.textContent = RECS[lang];
+    ul.innerHTML = "";
+    RECS.items.forEach(function (it) {
+      var li = document.createElement("li");
+      var text = it[lang] || it.he;
+      var at = it.href && it.link ? text.indexOf(it.link) : -1;
+      if (at !== -1) {
+        li.appendChild(document.createTextNode(text.slice(0, at)));
+        var a = document.createElement("a");
+        a.href = it.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = it.link;
+        li.appendChild(a);
+        li.appendChild(document.createTextNode(text.slice(at + it.link.length)));
+      } else {
+        li.textContent = text;
+      }
+      ul.appendChild(li);
+    });
   }
 
   function openStage(i) { current = i; openWhy = {}; $("home").classList.add("hidden"); $("stageView").classList.remove("hidden"); renderStage(); window.scrollTo(0, 0); }
