@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T05:30:36+02:00",
+ "updated": "2026-11-02T06:18:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -11261,6 +11261,40 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "tesla-spacex-merger-exchange-ratio-models",
+   "topic": "tesla",
+   "date": "2026-11-02T03:58:22Z",
+   "url": "https://x.com/i/trending/2117102971360075803",
+   "source": "X",
+   "he": {
+    "title": "משקיעים מחשבים יחסי המרה בזמן שוועדות טסלה וספייסאקס בוחנות מיזוג",
+    "summary": "בשיחת הרבעון השלישי של ספייסאקס סיפר מאסק שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות מיזוג אפשרי, והוא עצמו לא משתתף בהן. משקיעים ב-X כבר משתפים טבלאות של יחסי המרה בין 2:1 ל-5.5:1 מניות ספייסאקס לכל מניית טסלה."
+   },
+   "en": {
+    "title": "Investors model exchange ratios as Tesla and SpaceX committees study a merger",
+    "summary": "On SpaceX's Q3 earnings call, Musk said independent board committees at Tesla and SpaceX are studying a possible combination, with him recused. Investors on X are sharing charts modeling exchange ratios from 2:1 to 5.5:1 SpaceX shares per Tesla share."
+   },
+   "full_he": "אילון מאסק סיפר שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות עכשיו איחוד אפשרי של שתי החברות, בעקבות בקשות של בעלי מניות.\n\n• בשיחת הדוחות של ספייסאקס לרבעון השלישי הסביר מאסק שהוועדות המיוחדות הוקמו באוקטובר כדי לבחון מיזוג, ושהוא עצמו לא משתתף בהן בגלל התפקידים והאחזקות שלו בשתי החברות.\n• משקיעים משתפים טבלאות מפורטות שמדמות יחסי המרה של 2:1 עד 5.5:1 מניות SPCX לכל מניית TSLA, על בסיס מחירי הסגירה של 20 באוקטובר: 373.71 דולר לטסלה ו-147.79 דולר לספייסאקס.\n• תחזית של שותף בקרן Sequoia Capital צופה לספייסאקס הכנסות של 731 מיליארד דולר עד 2028, בזכות כוח מחשוב, סטארלינק ושיגורים.\n• כל זה מלבה ויכוח על סינרגיות בבינה מלאכותית, רובוטיקה וחלל, לצד חששות לגבי השווי ולגבי אישור בעלי המניות.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
+   "full_en": "Elon Musk revealed that independent board committees at Tesla and SpaceX are now studying a possible company combination, sparked by shareholder requests.\n\n• During SpaceX's third-quarter earnings call, Musk explained that special committees formed in October to assess a merger, with him recused due to his leadership roles and stakes in both firms.\n• Investors have shared detailed charts modeling exchange ratios from 2:1 to 5.5:1 SPCX shares per TSLA share, anchored to October 20 closing prices of $373.71 for Tesla and $147.79 for SpaceX.\n• A Sequoia Capital partner's forecast projects SpaceX revenue at $731 billion by 2028, driven by compute capacity, Starlink and launches.\n• This is fueling debates on synergies in AI, robotics and space, amid concerns over valuations and shareholder approval.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
+  },
+  {
+   "id": "durov-fragment-drops-kyc-stars-premium",
+   "topic": "durov",
+   "date": "2026-11-01T22:55:31Z",
+   "url": "https://kod.ru/fragment-otmenil-kyc",
+   "source": "Kod.ru",
+   "he": {
+    "title": "Fragment ביטלה את אימות הזהות החובה לקניית Telegram Stars ו-Premium",
+    "summary": "לפי האתר הרוסי Kod.ru, בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות (KYC) לקניית Stars,‏ Premium ומוצרים נוספים של טלגרם. Fragment וטלגרם עדיין לא הגיבו."
+   },
+   "en": {
+    "title": "Fragment drops mandatory ID checks for buying Telegram Stars and Premium",
+    "summary": "According to Russian site Kod.ru, on the night of November 2 the Fragment platform stopped requiring identity verification (KYC) to buy Telegram Stars, Premium and other items. Neither Fragment nor Telegram has commented."
+   },
+   "full_he": "לפי כתבה באתר הרוסי Kod.ru (ולאד ווייטנקו), בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות חובה, והמערכת של האתר בדקה ווידאה את זה.\n\n• אימות KYC היה נדרש עד עכשיו כדי לקנות Telegram Stars,‏ Telegram Premium ועוד כמה מוצרים. משתמשים בלי אימות יכולים שוב לבצע את הרכישות האלה, אף שהפלטפורמה לא הודיעה רשמית על שינוי בכללים.\n• באותו זמן נעלם מהאתר האזור שקשור לאימות, והקישורים לחשבון ולתהליך האימות מפנים עכשיו לדף הבית.\n• Fragment הנהיגה את האימות החובה בנובמבר 2024: כדי לקנות Stars ושירותים אחרים היה צריך למסור אימייל, מספר טלפון, תעודה מזהה ותמונת פנים, והבדיקה נעשתה דרך השירות Sumsub.\n• הסיבות לשינוי עדיין לא ידועות, ו-Fragment וטלגרם לא הגיבו לו בפומבי.",
+   "full_en": "According to an article on the Russian site Kod.ru (by Vlad Voitenko), on the night of November 2 the Fragment platform stopped requiring mandatory identity verification, which the site's editors confirmed themselves.\n\n• KYC verification had been required to buy Telegram Stars, Telegram Premium and a number of other items. Users without KYC can once again make these purchases, although the platform has not officially announced any rule change.\n• At the same time, the verification section disappeared from the site, and the links to the account and the KYC process now redirect to the home page.\n• Fragment introduced mandatory verification in November 2024: buying Stars and other services required an email, phone number, ID document and a face photo, with checks run by Sumsub.\n• The reasons for the change are still unknown, and neither Fragment nor Telegram has commented publicly."
   }
  ]
 }
