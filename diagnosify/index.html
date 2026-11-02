@@ -86,13 +86,29 @@ blockquote.q footer{margin-top:8px;font-size:14px;color:var(--mute)}
 .item img{display:block;width:100%;height:auto}
 .item audio{width:100%;display:block;margin-top:8px}
 .intro{color:var(--ink2);margin:14px 2px 0;font-size:16px}
-.checks{display:grid;gap:10px;margin-top:16px}
+.checks-h{display:flex;align-items:center;gap:10px;margin:18px 2px 0;font-size:21px;font-weight:800;line-height:1.3}
+.checks-h .cnt{margin-inline-start:auto;font-size:13px;font-weight:700;color:var(--mute);background:var(--card2);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.checks{display:grid;gap:10px;margin-top:12px}
 .chk{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden}
-.chk>button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;cursor:pointer;font:700 17px var(--sans);color:var(--ink)}
-.chk>button:focus-visible{outline:3px solid rgba(255,207,90,.75);outline-offset:-3px}
+.chk.done{border-color:color-mix(in srgb,var(--gold) 70%,var(--line))}
+.chk>.row{box-sizing:border-box;display:flex;align-items:center;gap:12px;width:100%;padding:13px 14px;font:700 17px var(--sans);color:var(--ink)}
+.chk .row>button{all:unset;box-sizing:border-box;flex:1;min-width:0;display:flex;align-items:center;gap:12px;cursor:pointer;font:inherit;color:inherit;text-align:inherit}
+.chk .row>button.tog{flex:none}
+.chk .row>button:focus-visible,.chk a.ttl:focus-visible,.chk .mark input:focus-visible+.box{outline:3px solid rgba(255,207,90,.75);outline-offset:2px}
+.chk .mark{position:relative;flex:none;display:grid;place-items:center;cursor:pointer;margin:-8px;padding:8px}
+.chk .mark input{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.chk .box{width:26px;height:26px;border-radius:8px;border:2px solid color-mix(in srgb,var(--gold) 72%,var(--line));display:grid;place-items:center;color:var(--accentink);background:transparent}
+.chk .box svg{width:16px;height:16px;opacity:0}
+.chk .mark input:checked+.box{background:var(--gold);border-color:var(--gold)}
+.chk .mark input:checked+.box svg{opacity:1}
 .chk .num{flex:none;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--gold);background:rgba(255,207,90,.12);border:1px solid rgba(255,207,90,.4)}
-.chk .ttl{flex:1}
+.chk .ttl{flex:1;min-width:0}
+.chk a.ttl{flex:1;min-width:0;display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
+.chk a.ttl .name{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.18em;text-decoration-color:var(--gold)}
+.chk a.ttl:hover .name{text-decoration-thickness:2.5px}
+.chk .ar{flex:none;margin-inline-start:auto;color:var(--gold);font-size:18px;font-weight:800;line-height:1}
 .chk .chev{flex:none;color:var(--mute);transition:transform .2s;font-size:14px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .chk.open .chev{transform:rotate(180deg)}
 .chk .panel{padding:0 14px 14px}
 .chk .panel[hidden]{display:none}
@@ -130,7 +146,10 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   </div>
 
   <p class="intro" id="intro"></p>
-  <main class="checks" id="checks"></main>
+  <main>
+    <h2 class="checks-h"><span id="checks-h"></span><span class="cnt" id="checks-cnt"></span></h2>
+    <div class="checks" id="checks"></div>
+  </main>
   <p class="disc" id="disc"></p>
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer class="f rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
@@ -138,7 +157,7 @@ footer.f{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
 <script src="data.js"></script>
 <script src="app.js"></script>
 <script src="../shared/rg-account.js"></script>
-<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-diagnosify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-diagnosify-theme", "rg-diagnosify-done"].concat(window.RGBg ? RGBg.keys : []), function (c) { if (c && Object.prototype.hasOwnProperty.call(c, "rg-diagnosify-done")) { if (window.DIAG_ON_DONE) window.DIAG_ON_DONE(c["rg-diagnosify-done"]); delete c["rg-diagnosify-done"]; } return window.RGBg ? RGBg.apply(c) : !c || !Object.keys(c).length; });</script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
