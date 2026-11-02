@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T08:40:23+02:00",
+ "updated": "2026-11-02T10:06:50+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -246,6 +246,23 @@
    },
    "full_he": "סולאנה כתבה: \"בשידור חי מ-Solana Summit India עם ‎@SuperteamIN\n\n📍 מומבאי\"\n\nהפוסט מקשר לשידור חי ב-X (‏\"Solana Events\" – ‏Solana Summit India), ולכן אין עוד טקסט להציג. אין לה תגובות המשך משלה בשרשור.",
    "full_en": "Solana wrote: \"Live from Solana Summit India with @SuperteamIN\n\n📍 Mumbai\"\n\nThe post links to a live broadcast on X (\"Solana Events\" – Solana Summit India), so there's no more text to show. There are no self-replies from Solana in the thread."
+  },
+  {
+   "id": "solana-dex-volume-24-months-lead-eth",
+   "topic": "solana",
+   "date": "2026-11-02T06:00:29Z",
+   "url": "https://x.com/i/trending/2117133783837323745",
+   "source": "X",
+   "he": {
+    "title": "סולאנה עוקפת את את'ריום בנפח המסחר ב-DEX כבר 24 חודשים ברציפות",
+    "summary": "לפי סיכום חדשות של X, סולאנה עקפה את הרשת הראשית של את'ריום בנפח המסחר החודשי בבורסות מבוזרות 24 חודשים ברציפות עד אוקטובר 2026. כמעט 1.7 מיליון כתובות מחזיקות בה מניות מטוקנות, ו-SOL נסחר סביב 95 דולר."
+   },
+   "en": {
+    "title": "Solana has led Ethereum in DEX volume for 24 straight months",
+    "summary": "Per an X news summary, Solana outpaced Ethereum mainnet in monthly DEX trading volume for 24 consecutive months through October 2026. Nearly 1.7 million addresses hold tokenized equities on the chain, and SOL trades near $95."
+   },
+   "full_he": "החשבון הרשמי של סולאנה רמז ל\"שבוע גדול\" שמחכה, בזמן שסוחרים משתפים רווחים וגרפים שמראים את הדומיננטיות של הרשת במסחר.\n\nסיכום הסיפור (מסיכום חדשות של X):\n\n• סולאנה עקפה את הרשת הראשית של את'ריום בנפח המסחר החודשי בבורסות מבוזרות (DEX) במשך 24 חודשים ברציפות, עד אוקטובר 2026, בזכות מהירות גבוהה ופעילות ערה של מטבעות מם.\n• כמעט 1.7 מיליון כתובות מחזיקות כיום מניות מטוקנות על הרשת, ופלטפורמות כמו xStocks ו-Backpack מובילות את הצמיחה.\n• SOL נסחר סביב 95 דולר, ו-99 דולר נחשב לרמת ההתנגדות הבאה.\n• הקהילה עסוקה בניסויים בתחום התשלומים ובנכסים מהעולם האמיתי.\n\nהערה: זה סיכום אוטומטי של פוסטים ב-X, והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Solana's official account teased a \"big week\" ahead, with traders sharing profits and charts showing the network's trading dominance.\n\nStory summary (from an X news summary):\n\n• Solana has outpaced Ethereum's mainnet in monthly DEX trading volume for 24 straight months through October 2026, thanks to fast speeds and booming memecoin activity.\n• Nearly 1.7 million addresses now hold tokenized equities on the chain, with platforms like xStocks and Backpack driving growth.\n• SOL trades near $95, eyeing $99 as the next resistance.\n• The community is buzzing over payments and real-world asset experiments.\n\nNote: this story is an automated summary of posts on X and may evolve over time."
   },
   {
    "id": "tesla-spacex-merger-exchange-ratio-models",
