@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T11:01:09+02:00",
+ "updated": "2026-11-02T11:41:36+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-q3-app-revenue-300m-parabolic",
+   "topic": "solana",
+   "date": "2026-11-02T09:01:22Z",
+   "url": "https://x.com/solana/status/2117180254347526255",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: כמעט 300 מיליון דולר הכנסות מאפליקציות ברבעון השלישי",
+    "summary": "החשבון הרשמי של סולאנה מדווח על זינוק של 50% בהכנסות האפליקציות ברשת לעומת הרבעון הקודם, 197 מיליארד דולר במסחר ספוט בבורסות מבוזרות, ושיא חדש של 17.51 מיליארד דולר בסטייבלקוינים."
+   },
+   "en": {
+    "title": "Solana: nearly $300M in app revenue in Q3, up 50%",
+    "summary": "Solana's official account reports app revenue up 50% from Q2, $197B in spot DEX volume, a record $17.51B stablecoin market cap and almost 2,900 projects submitted to Colosseum's Frontier."
+   },
+   "full_he": "\"הצמיחה פשוט פרבולית בכל התחומים.\"\n\nכמעט 300 מיליון דולר הכנסות מאפליקציות ברבעון השלישי, עלייה של 50% לעומת הרבעון השני. 197 מיליארד דולר במסחר ספוט בבורסות מבוזרות (DEX). שווי השוק של הסטייבלקוינים ברשת עומד על 17.51 מיליארד דולר, עוד שיא כל הזמנים. כמעט 2,900 פרויקטים הוגשו ל־Frontier של Colosseum.\n\n– ‎@paarugsethi\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. אין בשרשור תגובות נוספות של סולאנה עצמה.\n\nלהשוואה, לפי הדוח של Messari/Blockworks לרבעון השלישי (15 באוקטובר):\n• הכנסות האפליקציות היו 299.1 מיליון דולר, עלייה של 48% מ־201.5 מיליון ברבעון השני\n• המובילות: Pump (121.5 מיליון), Collector Crypt (35 מיליון), Fomo (24.9 מיליון), Pacifica (18 מיליון), Axiom (16.2 מיליון)\n• נפח המסחר ב־DEX עלה ב־23% ל־197.2 מיליארד דולר, ונתח השוק של סולאנה במסחר ספוט ב־DEX הגיע ל־36%\n• היצע הסטייבלקוינים נסגר ברבעון על 16.8 מיליארד דולר; השיא של 17.51 מיליארד נרשם בספטמבר לפי דוח קרן סולאנה",
+   "full_en": "\"The growth is just parabolic all across the board.\"\n\nAlmost $300 million in app revenue in Q3, up 50% from Q2. $197 billion in spot DEX volume. Stablecoin market cap at $17.51 billion, another ATH. Almost 2,900 projects submitted for Colosseum's Frontier.\n\n- @paarugsethi\n\nThe rest of the post is a video, so there's no more text to show. Solana posted no further replies of its own in the thread.\n\nFor context, the Messari/Blockworks Q3 report (October 15) says:\n• App revenue was $299.1M, up 48% from Q2's $201.5M\n• Top apps: Pump ($121.5M), Collector Crypt ($35.0M), Fomo ($24.9M), Pacifica ($18.0M), Axiom ($16.2M)\n• DEX volume rose 23% to $197.2B, and Solana's share of spot DEX volume across chains reached 36%\n• Stablecoin supply ended the quarter at $16.8B; the $17.51B record came in September, per the Solana Foundation's roundup"
+  },
+  {
+   "id": "ternus-first-earnings-test-memory-costs",
+   "topic": "ternus",
+   "date": "2026-11-02T08:38:00Z",
+   "url": "https://www.rte.ie/news/business/2026/1102/1597594-apples-new-ceo-ternus-to-face-first-earnings-test/",
+   "source": "RTÉ / Reuters",
+   "he": {
+    "title": "ג'ון טרנוס מול שיחת הדוחות הראשונה שלו כמנכ\"ל אפל",
+    "summary": "היום מארח טרנוס את שיחת הדוחות הראשונה שלו, והמשקיעים יבדקו את התחזית לרבעון החגים, את מה שיגיד על AI ועל סירי, ואת ההשפעה של זינוק מחירי שבבי הזיכרון. האנליסטים צופים הכנסות של 113.39 מיליארד דולר."
+   },
+   "en": {
+    "title": "John Ternus faces his first earnings test as Apple CEO",
+    "summary": "Ternus hosts his first earnings call today, with investors watching the holiday-quarter outlook, his remarks on AI and Siri, and surging memory-chip costs. Analysts expect revenue of $113.39 billion."
+   },
+   "full_he": "ג'ון טרנוס יארח היום את שיחת הדוחות הראשונה שלו כמנכ\"ל אפל, והמשקיעים יבדקו בתחזית אם גל המוצרים החדשים יוכל לקזז את העלייה במחירי שבבי הזיכרון.\n\nטרנוס, שהחליף את טים קוק בספטמבר, הוביל את השקת הטלפון המתקפל הראשון של אפל, רכזת הבית החכם, והמחשבים הניידים הראשונים עם מסך מגע. כולם התחילו להישלח ברבעון הנוכחי, בתוך מה שקוק כינה \"שיטפון של פעם במאה שנה\" במחירי הזיכרון.\n\nשלושה דברים יעמדו במוקד:\n• התחזית לרבעון החגים, החשוב ביותר\n• מה שטרנוס יגיד על AI ועל סירי המחודשת\n• מחירי שבבי הזיכרון, שלפי האנליסטים יורידו את צמיחת הרווח הרבעונית לנמוכה ביותר בשישה רבעונים\n\nאפל מנסה למצב את ה־AI שלה אחרת מהמתחרות, כמו הסוכן Muse של מטא שכבש את דירוגי ה־App Store, ומשווקת אותו ל\"אנשים רגילים\" ולא לאנשי עמק הסיליקון. גם OpenAI, שאפל תובעת בטענה לגניבת סודות מסחריים, מפתחת מכשירים שנועדו להחליף את האייפון. המשקיעים רוצים לדעת גם אם אפל תוכל להרוויח מהפצת סוכני AI של צד שלישי ב־App Store.\n\nבינתיים ההימנעות של אפל ממרוץ ההוצאות על AI משתלמת: המניה עלתה כ־27% השנה, יותר ממיקרוסופט, אלפבית, מטא ואמזון.\n\nהתחזיות (לפי LSEG):\n• הכנסות: 113.39 מיליארד דולר, עלייה של כמעט 11%\n• רווח נקי: 29.04 מיליארד דולר, עלייה של כ־6%\n• שירותים: 31.56 מיליארד דולר, צמיחה של כמעט 10%, האיטית ביותר מזה יותר משלוש שנים\n• אייפון: 56.54 מיליארד דולר, עלייה של כ־15% (לעומת 22% ברבעון הקודם); הדוח כולל רק תשעה ימי מכירות של iPhone 18 Pro\n\nה־iPhone Duo, שיצא ב־23 באוקטובר ומתחיל ב־1,999 דולר, ייתרם לרבעון החגים. יבדקו גם את מכירותיו, אחרי שחלק מהקונים דיווחו על סדקים וקווים לאורך הקיפול של המסך הפנימי ואפל מציעה החלפות. ההזמנות אזלו תוך דקות. אנליסטית IDC נבילה פופל צופה שהביקוש ימשיך לעלות על ההיצע; לפי בנק אוף אמריקה, זמן ההמתנה הממוצע הוא 79 יום, עם משלוחים עד ינואר.\n\nהשיחה מתוכננת להיום ב־14:00 שעון החוף המערבי (00:00 בלילה שעון ישראל).",
+   "full_en": "John Ternus will host his first earnings call as Apple's CEO today, with investors looking to the company's forecast to see whether a blitz of new products can offset rising memory-chip costs.\n\nTernus, who took over from Tim Cook in September, has overseen Apple's first foldable phone, a smart home hub and Apple's first touch-screen laptops. All of them began shipping in the current fiscal first quarter, amid what Cook called a \"100-year flood\" of rising memory costs.\n\nThree key issues:\n• The crucial holiday-quarter outlook\n• Ternus' remarks on AI and the revamped Siri\n• Memory-chip costs, which analysts expect to drag quarterly profit growth to its weakest in six quarters\n\nApple is positioning its AI differently from rivals such as Meta's Muse agent, which took App Store rankings by storm, and markets it to \"everyday people\" rather than Silicon Valley insiders. OpenAI, which Apple is suing over alleged trade-secret theft, is also developing devices aimed at displacing the iPhone. Investors also want to know whether Apple could profit by distributing third-party AI agents through the App Store.\n\nFor now, staying out of the AI spending race has paid off: the shares are up about 27% this year, beating Microsoft, Alphabet, Meta and Amazon.\n\nExpectations (LSEG):\n• Revenue: $113.39B, up nearly 11%\n• Net profit: $29.04B, up about 6%\n• Services: $31.56B, up almost 10%, the slowest in more than three years\n• iPhone: $56.54B, up about 15% (vs. 22% the previous quarter); only nine days of iPhone 18 Pro sales are included\n\nThe iPhone Duo, out October 23 from $1,999, will benefit the holiday quarter. Its sales will be scrutinised after some buyers reported cracks and lines along the inner display's fold, prompting Apple to offer replacements. Online orders sold out within minutes. IDC's Nabila Popal expects demand to keep exceeding supply; Bank of America estimates average delivery waits of 79 days, stretching into January.\n\nThe call is set for 2:00 p.m. Pacific time today."
+  },
   {
    "id": "solana-tokenized-equities-1-7m-holders",
    "topic": "solana",
