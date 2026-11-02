@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T04:46:04+02:00",
+ "updated": "2026-11-02T05:30:36+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "tesla-robotaxi-fleet-1244-nears-waymo",
+   "topic": "tesla",
+   "date": "2026-11-02T03:06:15Z",
+   "url": "https://x.com/i/trending/2117089627693842559",
+   "source": "X",
+   "he": {
+    "title": "צי הרובוטקסי של טסלה בטקסס הגיע ל־1,244 – רק 15 פחות מוויימו",
+    "summary": "טסלה הוסיפה 40 מכוניות Model Y ב־1 בנובמבר ועלתה ל־1,244 רכבים רשומים בטקסס, לעומת 1,259 של ויימו. הרישום לא מעיד על כמה מהם באמת מסיעים נוסעים."
+   },
+   "en": {
+    "title": "Tesla's Texas robotaxi fleet hits 1,244, just 15 behind Waymo",
+    "summary": "Tesla added 40 Model Ys on November 1, reaching 1,244 registered vehicles in Texas versus Waymo's 1,259. Registrations don't show how many are actually carrying passengers."
+   },
+   "full_he": "מספר הרובוטקסי של טסלה בטקסס הגיע ל־1,244 ב־1 בנובמבר, רק 15 פחות מ־1,259 של ויימו, אחרי שנוספו 40 מכוניות Model Y באותו יום.\n\n• הזינוק הגיע ממנות של Model Y מפס הייצור ומ־Cybercab חדשים, שהעלו את טסלה מ־1,204 ל־1,244 רכבים רשומים, לפי רישומי משרד הרישוי של טקסס (DMV).\n• ויימו מובילה עם 1,259 רכבים: 863 יגואר I-PACE ו־396 Zeekr RT. ל־Zoox הקטנה יש 63.\n• טסלה התחילה את יוני עם כ־59 רכבים, ובאוקטובר לבדו הצי שלה יותר מהוכפל.\n• הסתייגות: מספר הרכבים הרשומים לא מראה כמה מהם באמת מסיעים נוסעים או כמה קילומטרים הם נוסעים.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "Tesla's robotaxi count in Texas hit 1,244 on November 1, just 15 shy of Waymo's 1,259, after adding 40 Model Ys that day.\n\n• The surge came from batches of production Model Ys and new Cybercabs, pushing Tesla from 1,204 to 1,244 registered vehicles per Texas DMV records.\n• Waymo leads with 1,259, including 863 Jaguar I-PACEs and 396 Zeekr RTs, while smaller Zoox has 63.\n• Tesla started June with about 59 vehicles and more than doubled in October alone.\n• Caveat: registrations don't reflect active passenger service or miles driven.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
+  {
+   "id": "tesla-fsd-crashes-intervention-debate",
+   "topic": "tesla",
+   "date": "2026-11-02T03:16:12Z",
+   "url": "https://x.com/i/trending/2117091588723847201",
+   "source": "X",
+   "he": {
+    "title": "תאונות עם FSD של טסלה מעוררות ויכוח: מתי הנהג צריך להתערב?",
+    "summary": "בעלי טסלה משתפים מקרים שבהם FSD ניסה להתחמק מתאונה והנהג השתלט, ולפעמים זה נגמר בפגיעה. טסלה מדגישה שזו נהיגה בפיקוח ושהנהג תמיד אחראי."
+   },
+   "en": {
+    "title": "Tesla FSD crashes spark a debate over when drivers should intervene",
+    "summary": "Owners are sharing cases where FSD tried to dodge a crash and the driver took over, sometimes ending in a hit. Tesla stresses it's supervised driving and the driver is always in charge."
+   },
+   "full_he": "טסלה במצב FSD (נהיגה עצמית מלאה) סטתה לכיוון התנועה, הנהג תפס את ההגה – ונפגע מאחור, כשהרכב ניסה להתחמק מהסכנה שהגיעה מאחוריו.\n\n• בעלי טסלה מפרסמים מקרים אמיתיים שבהם FSD עשה תמרון מהיר. באחד מהם הרכב זיהה רכב צמוד מאחור שלא בולם, וניסה לסטות לשוליים כדי להימנע מהתנגשות; הנהג התערב ברגע האחרון, והפגיעה קרתה בכל זאת.\n• דיווחים אחרים מתארים תאונות עם FSD, כמו פגיעה ברוכבי אופנוע ופגיעה קטלנית בהולך רגל בכביש 80, שבה הרכב בלם וסטה אבל עדיין פגע. יש גם סרטונים שמראים פספוסים בזיהוי.\n• העדכון האחרון, 2026.38.5.11, הביא לחלק מהנהגים נסיעה חלקה יותר, ולאחרים התנהגות לא יציבה.\n• הנהגים חלוקים: יש שאומרים שהתערבות של הנהג רק מחמירה את המצב, ויש שמתעקשים להישאר ערניים. חלק משבחים את המודעות של FSD למה שקורה מאחור, יותר מנהג אנושי.\n• לפי נתוני טסלה, רכבים עם FSD עוברים בממוצע יותר מ־6 מיליון מייל בין תאונות משמעותיות, הרבה יותר טוב מהממוצע בארה\"ב.\n• דיווחים בלתי תלויים מאשרים ש־FSD היה פעיל בתאונות קטלניות באוהיו ובקליפורניה ב־2025.\n• טסלה מדגישה שמדובר בנהיגה בפיקוח, שהנהג תמיד אחראי, ושהמערכת ממשיכה להשתפר.\n\n(זה סיכום של שני סיפורים חמים ב־X, שמבוססים על פוסטים ועלולים להשתנות.)",
+   "full_en": "A Tesla on FSD veered toward traffic, prompting the driver to grab the wheel, only to get rear-ended as the car tried to dodge the threat behind.\n\n• Owners are posting real-world accounts of FSD making quick moves. In one, the car spotted a tailgater not braking and swerved toward the shoulder to avoid a rear-end collision; the driver intervened at the last second and the hit happened anyway.\n• Other accounts describe FSD crashes such as striking motorcyclists and a fatal pedestrian hit on Interstate 80, where the car braked and swerved but still made contact. Clips also show detection misses.\n• The latest 2026.38.5.11 update brought smoother drives for some and erratic behavior for others.\n• Drivers debate overriding the software: some say intervention worsens situations, others insist on staying vigilant. Some praise FSD's rear awareness over humans.\n• Tesla data shows FSD vehicles average over 6 million miles between major collisions, far better than U.S. averages.\n• Independent reports confirm FSD was active in deadly 2025 Ohio and California incidents.\n• Tesla stresses it's supervised driving, with drivers always in charge, as refinements continue.\n\n(This is a summary of two X trending stories, based on posts, and may evolve.)"
+  },
+  {
+   "id": "musk-unverified-eu-starlink-clash",
+   "topic": "musk",
+   "date": "2026-11-02T03:06:18Z",
+   "url": "https://x.com/i/trending/2117057808290214210",
+   "source": "X",
+   "he": {
+    "title": "טענות לא מאומתות על עימות בין מאסק לאיחוד האירופי מתפשטות ברשת",
+    "summary": "פוסטים ויראליים טענו שהאיחוד האירופי איים על X בקנס של 5 מיליארד יורו ושמאסק כיבה את סטארלינק מעל אירופה. רבים סימנו את זה כבדיה: אין הודעה רשמית, וסטארלינק עבד כרגיל."
+   },
+   "en": {
+    "title": "Unverified claims of a Musk–EU clash spread widely online",
+    "summary": "Viral posts claimed the EU threatened X with a €5 billion fine and Musk shut Starlink off over Europe. Many flagged it as fabricated: there's no official statement and Starlink ran normally."
+   },
+   "full_he": "פוסטים ויראליים תיארו עימות דרמטי: האיחוד האירופי מאיים על X בקנס של 5 מיליארד יורו, מאסק מעביר את סטארלינק ל\"מצב חירום\", ואירופה נכנסת להאפלת לוויינים.\n\n• לפי הסיפורים, הרגולטורים באירופה דרשו ממאסק לצנזר תוכן, אחרת יקבל קנס עצום ואיסורים על ספייסאקס, ובתגובה הוא כביכול כיבה את ממסרי סטארלינק מעל המרחב האווירי של האיחוד – מה שהקפיא ספנות ותעופה והפיל את מניות הטכנולוגיה ב־12%.\n• הפוסטים הופצו עם תמונות של מאסק ושל נשיאת הנציבות אורסולה פון דר ליין, ונשענו על מתחים אמיתיים: קנס של 120 מיליון יורו ל־X בדצמבר 2025 על הפרות של חוק השירותים הדיגיטליים (DSA), והמאמצים של האיחוד לבנות מתחרה לסטארלינק.\n• רבים סימנו את האולטימטום של 5 מיליארד יורו ואת ההאפלות כבדיה: אין שום הודעה רשמית תואמת, וסטארלינק פעל כרגיל.\n• המקרה מראה איך סיפורים לא מאומתים מלבים ויכוחים על רגולציה ועל הכוח של חברות הטכנולוגיה.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "Posts painted a dramatic showdown: the EU threatens a €5 billion fine on X, Musk flips Starlink to emergency mode, and Europe plunges into satellite blackout chaos.\n\n• The viral accounts said European regulators demanded Musk censor content or face a massive fine and SpaceX bans, prompting him to reportedly shut down Starlink relays over EU airspace, freezing shipping and aviation and tanking tech stocks 12%.\n• They were shared with images of Musk and EU Commission President Ursula von der Leyen, and tapped into real tensions such as a December 2025 €120 million fine on X for Digital Services Act violations and EU efforts to rival Starlink.\n• Many flagged the €5 billion ultimatum and the blackouts as fabricated: no matching official statements exist, and Starlink services ran normally.\n• The episode highlights how unconfirmed stories amplify debates on regulation and tech power.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
+  {
+   "id": "solana-mobile-skr-claim-phishing-app",
+   "topic": "solana",
+   "date": "2026-11-02T01:19:32Z",
+   "url": "https://x.com/i/trending/2116978256545010134",
+   "source": "X",
+   "he": {
+    "title": "Solana Mobile הסירה אפליקציית פישינג בשם SKR Claim אחרי שעה באוויר",
+    "summary": "תוקפים פרצו לפורטל הפרסום של Solana Mobile והכניסו אפליקציה מזויפת שביקשה ממשתמשים את מילות השחזור (seed phrase). החברה הסירה אותה ותיקנה את הפרצה, ומי שהזין את המילים התבקש להעביר מיד את הנכסים לארנק חדש."
+   },
+   "en": {
+    "title": "Solana Mobile pulls the malicious 'SKR Claim' app after an hour live",
+    "summary": "Attackers breached Solana Mobile's publishing portal and pushed a fake app that asked users for their seed phrases. The company removed it and patched the bug, and anyone who entered a seed phrase was urged to move assets to a new wallet."
+   },
+   "full_he": "אפליקציה מזויפת בשם SKR Claim גרמה למשתמשים להזין את מילות השחזור (seed phrase) שלהם – ישר מתוך אזור ה־Spotlight המומלץ של Solana Mobile. היא נשארה זמינה כשעה עד שהצוות פעל.\n\n• ב־1 בנובמבר תוקפים פרצו לפורטל פרסום האפליקציות (dApp Publishing Portal) של Solana Mobile, ודחפו את אפליקציית הפישינג לאזור ה־Spotlight ולממשק המשימות (Quests).\n• Solana Mobile הסירה אותה במהירות, מחקה אותה מהמכשירים ותיקנה את הבאג. לדבריה, ה־Seed Vault והמערכות שעל הבלוקצ'יין נשארו בטוחים.\n• בקהילה הזהירו: בעלי Seeker שאולי הזינו את מילות השחזור צריכים להעביר את הנכסים לארנק חדש מיד.\n• החברה הזכירה: הטבה אמיתית אף פעם לא מבקשת מילות שחזור.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "A fake app called SKR Claim tricked users into entering seed phrases right in Solana Mobile's trusted Spotlight section. It stayed live for about an hour before the team acted.\n\n• On November 1, attackers breached the Solana Mobile dApp Publishing Portal and pushed the phishing app into the curated Spotlight and Quests UI.\n• Solana Mobile quickly removed it, wiped it from devices and patched the bug, confirming its Seed Vault and on-chain systems stayed safe.\n• Community alerts urged Seeker owners who might have entered seed phrases to move their assets to new wallets immediately.\n• The company reminded everyone: legitimate claims never ask for seed phrases.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
+  {
+   "id": "apple-duo-fold-or-open-hinge-debate",
+   "topic": "apple",
+   "date": "2026-11-02T03:16:09Z",
+   "url": "https://x.com/i/trending/2116933401617760336",
+   "source": "X",
+   "he": {
+    "title": "בעלי iPhone Duo מתווכחים: לסגור אותו או להשאיר פתוח?",
+    "summary": "טיפ להשאיר את ה־iPhone Duo פתוח בזמן טעינה, כדי לחסוך עומס מהציר ומהמסך הפנימי, עורר ויכוח. המבקרים טוענים שהמכשיר בנוי לקיפול יומיומי בלי פינוקים."
+   },
+   "en": {
+    "title": "iPhone Duo owners debate folding habits for hinge health",
+    "summary": "A tip to leave the iPhone Duo open while charging, to spare the hinge and inner screen, sparked a debate. Critics say the device is built for daily folding without special care."
+   },
+   "full_he": "ה־iPhone Duo מפצל את הבעלים שלו סביב שאלה פשוטה: לקפל אותו כשהוא לא בשימוש, או להשאיר אותו פתוח?\n\n• TechDroider המליץ להשאיר את ה־iPhone Duo פתוח בזמן טעינה או על השולחן, כדי להפחית עומס מהציר ומהמסך הפנימי, על סמך הניסיון שלו עם מכשיר מתקפל של סמסונג.\n• מבקרים כמו דרו קופמן אמרו שזו זהירות מוגזמת ופינוק מיותר, ושהמכשיר בנוי לקיפול יומיומי בלי טיפול מיוחד.\n• הרקע: המתקפל הראשון של אפל נחשף בספטמבר, עם מסך פנימי של 7.6 אינץ' ומסגרת טיטניום, במחיר שמתחיל ב־1,999 דולר. הוא מתגאה בסוללה חזקה ובריבוי משימות, אבל הביקוש הגבוה דחה משלוחים ל־2027.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "Apple's iPhone Duo has owners split on a simple question: fold it shut or leave it open when idle?\n\n• TechDroider recommended leaving the iPhone Duo open while charging or on a desk to reduce strain on the hinge and inner screen, based on experience with a Samsung foldable.\n• Critics like Drew Coffman called it overcautious babying, insisting the device is built for daily folding without special care.\n• Background: Apple's first foldable, unveiled in September with a 7.6-inch inner display and titanium frame starting at $1,999, boasts strong battery life and multitasking, though high demand has delayed deliveries into 2027.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
   {
    "id": "mccullough-chris-murphy-stroke-spike",
    "topic": "mccullough",
