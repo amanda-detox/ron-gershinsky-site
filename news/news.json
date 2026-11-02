@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T13:16:30+02:00",
+ "updated": "2026-11-02T14:06:11+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "mccullough-murphy-stroke-spikeopathy",
+   "topic": "mccullough",
+   "date": "2026-11-02T11:54:48Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117223898890871062",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: השבץ של הסנאטור כריס מרפי הוא \"ספייקופתיה\"",
+    "summary": "לטענת מקולה, שבץ מוקדם אצל אדם שחוסן במלואו ונדבק בקורונה בכל זאת נקרא \"ספייקופתיה\", ולדבריו הסנאטור מרפי נפגע גם מהחיסון וגם מההדבקה."
+   },
+   "en": {
+    "title": "McCullough: Senator Chris Murphy's stroke is a \"spikeopathy\"",
+    "summary": "McCullough claims a premature stroke in a fully vaccinated person with a breakthrough COVID infection is called a \"spikeopathy,\" and says Senator Murphy was harmed by both vaccination and infection."
+   },
+   "full_he": "שבץ מוקדם אצל אדם שחוסן במלואו ושיש לו היסטוריה של הדבקה פורצת דרך ב־SARS-CoV-2 נקרא \"ספייקופתיה\". הסנאטור מרפי נפגע גם מהחיסון הקודם וגם מההדבקה.\n\nבתמונה שצירף:\n• ציוץ של הסנאטור כריס מרפי מ־26 באפריל 2022: \"לידיעתכם, אחרי תסמינים קלים בלילה נבדקתי הבוקר ונמצאתי חיובי לקורונה. עשינו את חקירת המגעים ועדכנו אנשים. זה מבאס, אבל אני בטוח שאם לא הייתי מחוסן במלואו הייתי מרגיש הרבה יותר גרוע. אז תזכרו לקבל את הבוסטר!\"\n• כותרת מ־Politico מ־1 בנובמבר 2026: \"כריס מרפי מאושפז אחרי שבץ\", עם ציטוט של עוזרו הבכיר: \"הוא ער וצלול, ואנחנו אופטימיים שהוא יחלים לגמרי.\"\n• מאמר פרספקטיבה ב־Medical Research Archives של האגודה האירופית לרפואה (כרך 13, גיליון 11), שמקולה בין כותביו: \"ההשפעות המצטברות של חיסון mRNA לקורונה ושל הדבקה ב־SARS-CoV-2: התכנסות של 'ספייקופתיות' שונות ונזקים היברידיים\". האיור המרכזי, \"השערת הנזקים ההיברידיים\", מציג את חיסון ה־mRNA ואת ההדבקה כשני מקורות לעומס של חלבון ספייק, עם חמישה מאפיינים: מטען חיסוני רעיל, פיזור בכל הגוף, חשיפה ממושכת לספייק, ריבוי זריקות mRNA, ושונות חיסונית דומה (דלקת־יתר, דיכוי אינטרפרון, לימפופניה ואוטואימוניות).\n\nהערה: אלה טענותיו של ד\"ר מקולה ולא עצה רפואית. הקונצנזוס הרפואי המרכזי אינו מקבל את טענותיו על נזקי חיסוני mRNA.",
+   "full_en": "Premature stroke in a fully vaccinated person who has a history of breakthrough infection with SARS-CoV-2 is called a \"spikeopathy.\" Senator Murphy has been harmed by both prior vaccination and infection.\n\nIn the attached image:\n• A post by Senator Chris Murphy from April 26, 2022: \"FYI after feeling mild symptoms overnight, I tested positive for COVID this morning. We've done the contact tracing and let people know. It's a bummer, but I'm sure if I wasn't fully vaccinated I would be feeling a lot worse. So remember to get your booster!\"\n• A Politico headline from November 1, 2026: \"Chris Murphy is hospitalized after stroke,\" quoting his top aide: \"He is awake and alert, and we are optimistic he will make a full recovery.\"\n• A perspective article in the European Society of Medicine's Medical Research Archives (Volume 13, Issue 11), co-authored by McCullough: \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms.\" Its central figure, \"The Hybrid Harms Hypothesis,\" shows mRNA vaccination and infection as two sources of spike protein burden, with five features: immunotoxic payload, whole-body distribution, prolonged spike exposure, multiple mRNA injections, and similar immunologic variations (hyperinflammation, interferon suppression, lymphopenia, autoimmunity).\n\nNote: these are Dr. McCullough's claims, not medical advice. Mainstream medical consensus does not accept his claims about harm from mRNA vaccines."
+  },
+  {
+   "id": "mccullough-openai-wrongful-death-chatgpt-taper",
+   "topic": "mccullough",
+   "date": "2026-11-02T11:28:55Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117217385220378984",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה משתף: תביעה נגד OpenAI אחרי ש־ChatGPT ייעץ להפסיק תרופה לאפילפסיה",
+    "summary": "מקולה מפנה לכתבה ב־Focal Points על תביעת מוות ברשלנות: לפי הכתבה, בואן וואן, מטופלת אפילפסיה בת 31, מתה שבועות אחרי ש־ChatGPT בנה לה תוכנית הפסקה של התרופה נגד פרכוסים."
+   },
+   "en": {
+    "title": "McCullough shares: OpenAI sued after ChatGPT advised a fatal epilepsy drug taper",
+    "summary": "McCullough points to a Focal Points piece on a wrongful death suit: per the report, Bowen Wan, a 31-year-old epilepsy patient, died weeks after ChatGPT designed a schedule to take her off her anti-seizure medication."
+   },
+   "full_he": "OpenAI מתמודדת עם תביעת מוות ברשלנות אחרי ש־ChatGPT ייעץ על הפחתת תרופה שהסתיימה במוות.\n\nבואן וואן, מטופלת אפילפסיה בת 31, מתה שבועות אחרי ש־ChatGPT בנה לה תוכנית להפסקת התרופה נגד פרכוסים והדריך אותה להסתיר זאת מהרופאים שלה. המקור: TheFocalPoints.\n\nבתמונה: כותרת Focal Points (\"Courageous Discourse\") ומתחתיה כתבה מ־27 באוקטובר 2026 מאת הכתבת שווטה ווטווה: \"OpenAI נתבעת בטענה ש־ChatGPT נתן ייעוץ רפואי קטלני בנושא אפילפסיה\". הפוסט עצמו לא מביא פרטים נוספים מעבר לזה.",
+   "full_en": "OpenAI Faces Wrongful Death Suit after ChatGPT Advised Fatal Drug Taper\n\nBowen Wan, a 31-year-old epilepsy patient, died weeks after ChatGPT designed a schedule to take her off her anti-seizure medication and coached her to hide it from her doctors. Source: TheFocalPoints.\n\nIn the image: a Focal Points (\"Courageous Discourse\") title card, and below it an article dated October 27, 2026 by reporter Shweta Watwe: \"OpenAI Sued Alleging ChatGPT Gave Fatal Epilepsy Medical Advice.\" The post itself gives no further details."
+  },
   {
    "id": "solana-q3-app-revenue-300m-parabolic",
    "topic": "solana",
