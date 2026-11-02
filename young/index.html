@@ -77,6 +77,13 @@
   .link { background:none; border:none; padding:4px 0; color:var(--gold2); font-size:13.5px; text-decoration:underline; }
   .task .btn[disabled] { opacity:.6; cursor:default; }
 
+  .recs { margin-top:18px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:4px 16px 14px; }
+  .recs h2 { margin:10px 0 8px; }
+  .rec-list { margin:0; padding-inline-start:1.25em; }
+  .rec-list li { font-size:16px; line-height:1.5; margin:0 0 8px; }
+  .rec-list li:last-child { margin-bottom:0; }
+  .rec-list a { color:var(--gold2); }
+
   .foot { margin-top:22px; text-align:center; font-size:12px; color:#9fb0e6; font-weight:300; line-height:1.6; }
   .disc { font-size:12px; color:#9fb0e6; margin:0 auto 6px; max-width:520px; }
   .reset { margin-top:8px; font-size:12px; padding:5px 12px; background:transparent; }
@@ -118,6 +125,10 @@
     </section>
     <h2 data-t="path"></h2>
     <ul class="stages" id="stages"></ul>
+    <section class="recs" aria-labelledby="recsTitle">
+      <h2 id="recsTitle"></h2>
+      <ul class="rec-list" id="recs"></ul>
+    </section>
   </main>
 
   <main id="stageView" class="hidden">

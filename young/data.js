@@ -105,3 +105,19 @@ var STAGES = [
         heW: "השינוי האמיתי קורה כשהרגל נשאר. התמקדות בהרגל אחד הופכת אותו לחלק מהשגרה.", enW: "Real change happens when a habit stays. Focusing on one habit makes it part of your routine." }
     ] }
 ];
+
+/* Standalone recommendations. Hebrew wording is kept as given; not part of the points path. */
+var RECS = {
+  he: "המלצות לצעירים",
+  en: "Recommendations for young people",
+  items: [
+    { he: "ביטוח תאונות אישיות", en: "Personal accident insurance" },
+    { he: "לקנות טסלה וספייסאקס", en: "Buy Tesla and SpaceX" },
+    { he: "ביטוח אובדן כושר עבודה", en: "Loss of work capacity insurance" },
+    { he: "ביטוח חיים", en: "Life insurance" },
+    { he: "תוכנה לצבע מסך f.lux", en: "Screen color software f.lux", href: "https://justgetflux.com/", link: "f.lux" },
+    { he: "בדיקה עצמית לאבחון חרדה GAD7 ודיכאון PHQ9", en: "Self-test for anxiety GAD7 and depression PHQ9" },
+    { he: "לרכוש ערכות בדיקה חוקי ומגיע לבית מ־test kit plus", en: "Buy legal test kits that arrive at home from test kit plus" },
+    { he: "להתנסות בשקיקי ניקוטין במקום סיגריה Zyn וטבק אורגני.", en: "Try nicotine pouches instead of a cigarette, Zyn and organic tobacco." }
+  ]
+};
