@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T06:18:31+02:00",
+ "updated": "2026-11-02T07:07:52+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -11295,6 +11295,23 @@
    },
    "full_he": "לפי כתבה באתר הרוסי Kod.ru (ולאד ווייטנקו), בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות חובה, והמערכת של האתר בדקה ווידאה את זה.\n\n• אימות KYC היה נדרש עד עכשיו כדי לקנות Telegram Stars,‏ Telegram Premium ועוד כמה מוצרים. משתמשים בלי אימות יכולים שוב לבצע את הרכישות האלה, אף שהפלטפורמה לא הודיעה רשמית על שינוי בכללים.\n• באותו זמן נעלם מהאתר האזור שקשור לאימות, והקישורים לחשבון ולתהליך האימות מפנים עכשיו לדף הבית.\n• Fragment הנהיגה את האימות החובה בנובמבר 2024: כדי לקנות Stars ושירותים אחרים היה צריך למסור אימייל, מספר טלפון, תעודה מזהה ותמונת פנים, והבדיקה נעשתה דרך השירות Sumsub.\n• הסיבות לשינוי עדיין לא ידועות, ו-Fragment וטלגרם לא הגיבו לו בפומבי.",
    "full_en": "According to an article on the Russian site Kod.ru (by Vlad Voitenko), on the night of November 2 the Fragment platform stopped requiring mandatory identity verification, which the site's editors confirmed themselves.\n\n• KYC verification had been required to buy Telegram Stars, Telegram Premium and a number of other items. Users without KYC can once again make these purchases, although the platform has not officially announced any rule change.\n• At the same time, the verification section disappeared from the site, and the links to the account and the KYC process now redirect to the home page.\n• Fragment introduced mandatory verification in November 2024: buying Stars and other services required an email, phone number, ID document and a face photo, with checks run by Sumsub.\n• The reasons for the change are still unknown, and neither Fragment nor Telegram has commented publicly."
+  },
+  {
+   "id": "spacex-andreessen-founders-vs-managers",
+   "topic": "spacex",
+   "date": "2026-11-02T01:52:52Z",
+   "url": "https://x.com/i/trending/2116911973430424039",
+   "source": "X",
+   "he": {
+    "title": "מארק אנדריסן: חברות של מייסדים כמו ספייסאקס עוקפות מנהלים מקצועיים",
+    "summary": "אנדריסן שיתף קטע מהרצאה שבו הסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות מאחור מנהלים מקצועיים בזמן טלטלות בענף. הוא שיבח מייסדים כמו אילון מאסק שמשתתפים בעצמם בסקירות התכנון היומיות."
+   },
+   "en": {
+    "title": "Marc Andreessen: founder-led companies like SpaceX outrun professional managers",
+    "summary": "Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers behind during industry shakeups. He praised hands-on founders like Elon Musk who join daily design reviews."
+   },
+   "full_he": "מארק אנדריסן שיתף קטע שבו הוא מסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות לא פעם מאחור מנהלים מסורתיים בזמן טלטלות בענף.\n\n• בהרצאה הוא חזר לשורשים של בית הספר לעסקים של הרווארד, שלדבריו נולד מדחיפה באמצע המאה ה-20 ל\"ניהולנות\": מנהלים שלומדים כישורים ניידים שמאפשרים להם לנהל כל חברה גדולה, בדומה למודל מימי המהפכה התעשייתית.\n• לטענתו, בתחומים שמשתנים מהר המנהלים האלה מתקשים להסתגל. הוא הביא את הרקטות הרב־פעמיות של ספייסאקס כהוכחה, ושיבח מייסדים מעורבים כמו אילון מאסק, שצוללים בעצמם לסקירות התכנון היומיות.\n• מגיבים הסכימו שבתי ספר לעסקים מצטיינים בהפעלה יציבה של חברה, אבל נופלים כשמדובר בחדשנות, והציעו שעדיף ללמד מייסדים ניהול מאשר להביא מנהלים מקצועיים שיובילו אותם.\n• הדיון נשען על הרעיונות של ג'יימס ברנהאם על מעבר הכוח למנהלים, כדי להסביר למה בעלי חזון מצליחים לא פעם יותר ממנהלים שפועלים לפי תסריט.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
+   "full_en": "Marc Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers in the dust during industry shakeups.\n\n• In a recent talk, Andreessen traced Harvard Business School's roots to a mid-20th-century push for \"managerialism,\" where executives learned portable skills to run any large firm, much like the model from the Industrial Revolution.\n• He argued that in fast-changing fields, these managers struggle to adapt, citing SpaceX's reusable rockets as proof while praising hands-on founders like Elon Musk who dive into daily design reviews.\n• Commenters agreed business schools excel at steady operations but fall short for innovation, suggesting it's better to train founders in management than hire pros to lead them.\n• The discussion draws on James Burnham's ideas about power shifts to explain why visionaries often outperform scripted executives.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
   }
  ]
 }
