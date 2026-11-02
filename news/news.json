@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T11:41:36+02:00",
+ "updated": "2026-11-02T13:16:30+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -11448,6 +11448,23 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "spacex-boost-mobile-echostar-talks",
+   "topic": "spacex",
+   "date": "2026-11-02T11:08:22Z",
+   "url": "https://x.com/i/trending/2117211258222936561",
+   "source": "X",
+   "he": {
+    "title": "ספייסאקס בשיחות לרכישת בוסט מובייל או לשיתוף פעולה סלולרי",
+    "summary": "לפי הוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על גישה לרשת שלה מהבעלים EchoStar, צעד שייתן לה בבת אחת מיליוני מנויים ותשתית קרקעית. שום דבר עדיין לא אושר."
+   },
+   "en": {
+    "title": "SpaceX in talks to buy Boost Mobile or partner for cell service",
+    "summary": "The Washington Post reports SpaceX has discussed buying Boost Mobile or getting network access from its owner EchoStar, which would give it millions of subscribers and ground infrastructure overnight. Nothing is confirmed yet."
+   },
+   "full_en": "SpaceX eyes a quick entry into the U.S. cellphone world by teaming up with Boost Mobile, blending Starlink satellites with everyday cell towers for coverage everywhere.\n\nThe Washington Post reports SpaceX has discussed buying Boost Mobile or gaining network access from its owner EchoStar, giving the rocket company millions of subscribers and ground infrastructure overnight. Boost serves about 7 million customers using leased capacity from AT&T and T-Mobile, and this hybrid setup could pair it with Starlink for seamless service from cities to remote spots. Talks follow a prior $17 billion spectrum deal and a recent meeting between Elon Musk and EchoStar's Charlie Ergen, though nothing is confirmed yet. Observers see it as a smart path into the $235 billion wireless market without starting from zero.\n\nThis is an X story summarizing posts on X; it may change over time.",
+   "full_he": "ספייסאקס מכוונת לכניסה מהירה לשוק הסלולר האמריקאי דרך שיתוף פעולה עם בוסט מובייל, שישלב את לווייני סטארלינק עם אנטנות סלולריות רגילות לכיסוי בכל מקום.\n\nלפי דיווח בוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על קבלת גישה לרשת מהבעלים שלה, EchoStar. מהלך כזה ייתן לחברת הטילים בבת אחת מיליוני מנויים ותשתית קרקעית. לבוסט כ־7 מיליון לקוחות, והיא פועלת על קיבולת שהיא שוכרת מ־AT&T ומ־T-Mobile. השילוב הזה עם סטארלינק יכול לאפשר שירות רציף מהערים ועד אזורים מרוחקים.\n\nהשיחות מגיעות אחרי עסקת תדרים קודמת בשווי 17 מיליארד דולר ואחרי פגישה לאחרונה בין אילון מאסק לצ'רלי ארגן מ־EchoStar, אבל עדיין שום דבר לא אושר. משקיפים רואים בזה דרך חכמה להיכנס לשוק התקשורת האלחוטית, ששוויו 235 מיליארד דולר, בלי להתחיל מאפס.\n\nזהו סיכום של X לפוסטים ב־X, והוא עשוי להשתנות עם הזמן."
   }
  ]
 }
