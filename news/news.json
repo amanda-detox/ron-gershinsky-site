@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T07:07:52+02:00",
+ "updated": "2026-11-02T08:40:23+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,21 +197,72 @@
  ],
  "items": [
   {
-   "id": "tesla-robotaxi-fleet-1244-nears-waymo",
-   "topic": "tesla",
-   "date": "2026-11-02T03:06:15Z",
-   "url": "https://x.com/i/trending/2117089627693842559",
-   "source": "X",
+   "id": "solana-tokenization-inevitable-krakenpro",
+   "topic": "solana",
+   "date": "2026-11-02T06:34:32Z",
+   "url": "https://x.com/solana/status/2117143300264341772",
+   "source": "X · @solana",
    "he": {
-    "title": "צי הרובוטקסי של טסלה בטקסס הגיע ל־1,244 – רק 15 פחות מוויימו",
-    "summary": "טסלה הוסיפה 40 מכוניות Model Y ב־1 בנובמבר ועלתה ל־1,244 רכבים רשומים בטקסס, לעומת 1,259 של ויימו. הרישום לא מעיד על כמה מהם באמת מסיעים נוסעים."
+    "title": "סולאנה: \"הטוקניזציה היא בלתי נמנעת\"",
+    "summary": "סולאנה ציטטה פוסט של Kraken Pro עם אותו משפט בדיוק – \"הטוקניזציה היא בלתי נמנעת\" – בזמן שחברות אמריקאיות גדולות מתנגדות לטוקניזציה של המניות שלהן בפלטפורמת OKXICE."
    },
    "en": {
-    "title": "Tesla's Texas robotaxi fleet hits 1,244, just 15 behind Waymo",
-    "summary": "Tesla added 40 Model Ys on November 1, reaching 1,244 registered vehicles in Texas versus Waymo's 1,259. Registrations don't show how many are actually carrying passengers."
+    "title": "Solana: \"tokenization is inevitable\"",
+    "summary": "Solana quoted a Kraken Pro post with the exact same line – \"tokenization is inevitable\" – as major U.S. companies object to tokenized versions of their shares on the OKXICE platform."
    },
-   "full_he": "מספר הרובוטקסי של טסלה בטקסס הגיע ל־1,244 ב־1 בנובמבר, רק 15 פחות מ־1,259 של ויימו, אחרי שנוספו 40 מכוניות Model Y באותו יום.\n\n• הזינוק הגיע ממנות של Model Y מפס הייצור ומ־Cybercab חדשים, שהעלו את טסלה מ־1,204 ל־1,244 רכבים רשומים, לפי רישומי משרד הרישוי של טקסס (DMV).\n• ויימו מובילה עם 1,259 רכבים: 863 יגואר I-PACE ו־396 Zeekr RT. ל־Zoox הקטנה יש 63.\n• טסלה התחילה את יוני עם כ־59 רכבים, ובאוקטובר לבדו הצי שלה יותר מהוכפל.\n• הסתייגות: מספר הרכבים הרשומים לא מראה כמה מהם באמת מסיעים נוסעים או כמה קילומטרים הם נוסעים.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
-   "full_en": "Tesla's robotaxi count in Texas hit 1,244 on November 1, just 15 shy of Waymo's 1,259, after adding 40 Model Ys that day.\n\n• The surge came from batches of production Model Ys and new Cybercabs, pushing Tesla from 1,204 to 1,244 registered vehicles per Texas DMV records.\n• Waymo leads with 1,259, including 863 Jaguar I-PACEs and 396 Zeekr RTs, while smaller Zoox has 63.\n• Tesla started June with about 59 vehicles and more than doubled in October alone.\n• Caveat: registrations don't reflect active passenger service or miles driven.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+   "full_he": "סולאנה כתבה: \"הטוקניזציה היא בלתי נמנעת\"\n\nהפוסט שהיא ציטטה (Kraken Pro, ‏@krakenpro, ‏1 בנובמבר):\n\n\"הטוקניזציה היא בלתי נמנעת\"\n\nאין לה תגובות המשך משלה בשרשור.\n\nרקע (מסיכום חדשות של X באותו יום): 50 חברות אמריקאיות גדולות, ביניהן אנבידיה, מיקרוסופט, אלפבית וג'יי.פי. מורגן, התנגדו רשמית לכך שהמניות שלהן יונפקו כטוקנים בפלטפורמת OKXICE של OKX ו-ICE; אפל, טסלה ואמזון עדיין לא התנגדו.",
+   "full_en": "Solana wrote: \"tokenization is inevitable\"\n\nThe quoted post (Kraken Pro, @krakenpro, November 1):\n\n\"tokenization is inevitable\"\n\nThere are no self-replies from Solana in the thread.\n\nBackground (from an X news summary the same day): 50 major U.S. companies, including Nvidia, Microsoft, Alphabet and JPMorgan Chase, have formally objected to their shares being tokenized on the OKXICE platform backed by OKX and Intercontinental Exchange; Apple, Tesla and Amazon have not objected yet."
+  },
+  {
+   "id": "apple-most-valuable-5-03t-cash-flow",
+   "topic": "apple",
+   "date": "2026-11-02T06:14:01Z",
+   "url": "https://x.com/i/trending/2116621594412093648",
+   "source": "X",
+   "he": {
+    "title": "אפל חוזרת להיות החברה השווה בעולם, עם 5.03 טריליון דולר",
+    "summary": "למרות ירידה של 1.2% במניה, שווי השוק של אפל הגיע ל-5.03 טריליון דולר ועקף את אנבידיה (4.93 טריליון), בזכות תזרים מזומנים חופשי צפוי של 142 מיליארד דולר. זה קורה רגע לפני דוח הרבעון הרביעי, הראשון בהנהגת המנכ\"ל החדש ג'ון טרנוס."
+   },
+   "en": {
+    "title": "Apple reclaims world's most valuable company spot at $5.03 trillion",
+    "summary": "Despite a 1.2% share dip, Apple's market cap reached $5.03 trillion, edging past Nvidia's $4.93 trillion, on projected fiscal-2026 free cash flow of $142 billion. It comes just before fiscal Q4 earnings on November 2 under new CEO John Ternus."
+   },
+   "full_he": "ביום קשה לטכנולוגיה, מכונת המזומנים היציבה של אפל דחפה את שווי השוק שלה ל-5.03 טריליון דולר, מעט מעל 4.93 הטריליון של אנבידיה.\n\n• אפל סגרה את המסחר כחברה השווה ביותר בעולם, אף שהמניה ירדה ב-1.2%.\n• הסיבה: תזרים מזומנים חופשי צפוי של 142 מיליארד דולר בשנת הכספים 2026 – הרבה לפני מתחרות שמשקיעות בכבדות ב-AI ושורפות מזומנים על הוצאות עתק.\n• המניה עלתה ב-27% מתחילת השנה, פי שניים מהעלייה של אנבידיה, כשהמשקיעים מעדיפים את מוצרי הצריכה האמינים של אפל על פני מניות השבבים התנודתיות.\n• אבן הדרך מגיעה רגע לפני דוח הרבעון הרביעי של שנת הכספים של אפל, ב-2 בנובמבר, בהנהגת המנכ\"ל החדש ג'ון טרנוס, עם צפי להכנסות של 113 מיליארד דולר – בשבוע עמוס בדוחות טכנולוגיה ובבחירות האמצע בארה\"ב.\n\nזה סיכום של X לפוסטים בנושא, והוא עשוי להשתנות עם הזמן.",
+   "full_en": "On a tough day for tech, Apple's steady cash machine pushed its market cap to $5.03 trillion, edging out Nvidia's $4.93 trillion.\n\n• Apple closed as the world's most valuable company despite shares dipping 1.2 percent.\n• The driver: its projected $142 billion free cash flow in fiscal 2026 — far ahead of AI-heavy rivals burning through cash on massive spending.\n• Shares have climbed 27 percent this year, doubling Nvidia's gains, as investors favor Apple's reliable consumer products over volatile chips.\n• The milestone arrives just before Apple's fiscal fourth-quarter earnings on November 2 under new CEO John Ternus, with revenue expected at $113 billion amid a busy week of tech reports and U.S. midterms.\n\nThis is X's summary of posts on the topic and may evolve over time."
+  },
+  {
+   "id": "solana-summit-india-mumbai-live",
+   "topic": "solana",
+   "date": "2026-11-02T06:08:07Z",
+   "url": "https://x.com/solana/status/2117136653907312808",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה בשידור חי מכנס Solana Summit India במומבאי",
+    "summary": "סולאנה משדרת בשידור חי ב-X את כנס Solana Summit India, שמתקיים במומבאי יחד עם קהילת Superteam India."
+   },
+   "en": {
+    "title": "Solana live from Solana Summit India in Mumbai",
+    "summary": "Solana is livestreaming Solana Summit India on X, held in Mumbai together with the Superteam India community."
+   },
+   "full_he": "סולאנה כתבה: \"בשידור חי מ-Solana Summit India עם ‎@SuperteamIN\n\n📍 מומבאי\"\n\nהפוסט מקשר לשידור חי ב-X (‏\"Solana Events\" – ‏Solana Summit India), ולכן אין עוד טקסט להציג. אין לה תגובות המשך משלה בשרשור.",
+   "full_en": "Solana wrote: \"Live from Solana Summit India with @SuperteamIN\n\n📍 Mumbai\"\n\nThe post links to a live broadcast on X (\"Solana Events\" – Solana Summit India), so there's no more text to show. There are no self-replies from Solana in the thread."
+  },
+  {
+   "id": "tesla-spacex-merger-exchange-ratio-models",
+   "topic": "tesla",
+   "date": "2026-11-02T03:58:22Z",
+   "url": "https://x.com/i/trending/2117102971360075803",
+   "source": "X",
+   "he": {
+    "title": "משקיעים מחשבים יחסי המרה בזמן שוועדות טסלה וספייסאקס בוחנות מיזוג",
+    "summary": "בשיחת הרבעון השלישי של ספייסאקס סיפר מאסק שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות מיזוג אפשרי, והוא עצמו לא משתתף בהן. משקיעים ב-X כבר משתפים טבלאות של יחסי המרה בין 2:1 ל-5.5:1 מניות ספייסאקס לכל מניית טסלה."
+   },
+   "en": {
+    "title": "Investors model exchange ratios as Tesla and SpaceX committees study a merger",
+    "summary": "On SpaceX's Q3 earnings call, Musk said independent board committees at Tesla and SpaceX are studying a possible combination, with him recused. Investors on X are sharing charts modeling exchange ratios from 2:1 to 5.5:1 SpaceX shares per Tesla share."
+   },
+   "full_he": "אילון מאסק סיפר שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות עכשיו איחוד אפשרי של שתי החברות, בעקבות בקשות של בעלי מניות.\n\n• בשיחת הדוחות של ספייסאקס לרבעון השלישי הסביר מאסק שהוועדות המיוחדות הוקמו באוקטובר כדי לבחון מיזוג, ושהוא עצמו לא משתתף בהן בגלל התפקידים והאחזקות שלו בשתי החברות.\n• משקיעים משתפים טבלאות מפורטות שמדמות יחסי המרה של 2:1 עד 5.5:1 מניות SPCX לכל מניית TSLA, על בסיס מחירי הסגירה של 20 באוקטובר: 373.71 דולר לטסלה ו-147.79 דולר לספייסאקס.\n• תחזית של שותף בקרן Sequoia Capital צופה לספייסאקס הכנסות של 731 מיליארד דולר עד 2028, בזכות כוח מחשוב, סטארלינק ושיגורים.\n• כל זה מלבה ויכוח על סינרגיות בבינה מלאכותית, רובוטיקה וחלל, לצד חששות לגבי השווי ולגבי אישור בעלי המניות.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
+   "full_en": "Elon Musk revealed that independent board committees at Tesla and SpaceX are now studying a possible company combination, sparked by shareholder requests.\n\n• During SpaceX's third-quarter earnings call, Musk explained that special committees formed in October to assess a merger, with him recused due to his leadership roles and stakes in both firms.\n• Investors have shared detailed charts modeling exchange ratios from 2:1 to 5.5:1 SPCX shares per TSLA share, anchored to October 20 closing prices of $373.71 for Tesla and $147.79 for SpaceX.\n• A Sequoia Capital partner's forecast projects SpaceX revenue at $731 billion by 2028, driven by compute capacity, Starlink and launches.\n• This is fueling debates on synergies in AI, robotics and space, amid concerns over valuations and shareholder approval.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
   },
   {
    "id": "tesla-fsd-crashes-intervention-debate",
@@ -231,40 +282,6 @@
    "full_en": "A Tesla on FSD veered toward traffic, prompting the driver to grab the wheel, only to get rear-ended as the car tried to dodge the threat behind.\n\n• Owners are posting real-world accounts of FSD making quick moves. In one, the car spotted a tailgater not braking and swerved toward the shoulder to avoid a rear-end collision; the driver intervened at the last second and the hit happened anyway.\n• Other accounts describe FSD crashes such as striking motorcyclists and a fatal pedestrian hit on Interstate 80, where the car braked and swerved but still made contact. Clips also show detection misses.\n• The latest 2026.38.5.11 update brought smoother drives for some and erratic behavior for others.\n• Drivers debate overriding the software: some say intervention worsens situations, others insist on staying vigilant. Some praise FSD's rear awareness over humans.\n• Tesla data shows FSD vehicles average over 6 million miles between major collisions, far better than U.S. averages.\n• Independent reports confirm FSD was active in deadly 2025 Ohio and California incidents.\n• Tesla stresses it's supervised driving, with drivers always in charge, as refinements continue.\n\n(This is a summary of two X trending stories, based on posts, and may evolve.)"
   },
   {
-   "id": "musk-unverified-eu-starlink-clash",
-   "topic": "musk",
-   "date": "2026-11-02T03:06:18Z",
-   "url": "https://x.com/i/trending/2117057808290214210",
-   "source": "X",
-   "he": {
-    "title": "טענות לא מאומתות על עימות בין מאסק לאיחוד האירופי מתפשטות ברשת",
-    "summary": "פוסטים ויראליים טענו שהאיחוד האירופי איים על X בקנס של 5 מיליארד יורו ושמאסק כיבה את סטארלינק מעל אירופה. רבים סימנו את זה כבדיה: אין הודעה רשמית, וסטארלינק עבד כרגיל."
-   },
-   "en": {
-    "title": "Unverified claims of a Musk–EU clash spread widely online",
-    "summary": "Viral posts claimed the EU threatened X with a €5 billion fine and Musk shut Starlink off over Europe. Many flagged it as fabricated: there's no official statement and Starlink ran normally."
-   },
-   "full_he": "פוסטים ויראליים תיארו עימות דרמטי: האיחוד האירופי מאיים על X בקנס של 5 מיליארד יורו, מאסק מעביר את סטארלינק ל\"מצב חירום\", ואירופה נכנסת להאפלת לוויינים.\n\n• לפי הסיפורים, הרגולטורים באירופה דרשו ממאסק לצנזר תוכן, אחרת יקבל קנס עצום ואיסורים על ספייסאקס, ובתגובה הוא כביכול כיבה את ממסרי סטארלינק מעל המרחב האווירי של האיחוד – מה שהקפיא ספנות ותעופה והפיל את מניות הטכנולוגיה ב־12%.\n• הפוסטים הופצו עם תמונות של מאסק ושל נשיאת הנציבות אורסולה פון דר ליין, ונשענו על מתחים אמיתיים: קנס של 120 מיליון יורו ל־X בדצמבר 2025 על הפרות של חוק השירותים הדיגיטליים (DSA), והמאמצים של האיחוד לבנות מתחרה לסטארלינק.\n• רבים סימנו את האולטימטום של 5 מיליארד יורו ואת ההאפלות כבדיה: אין שום הודעה רשמית תואמת, וסטארלינק פעל כרגיל.\n• המקרה מראה איך סיפורים לא מאומתים מלבים ויכוחים על רגולציה ועל הכוח של חברות הטכנולוגיה.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
-   "full_en": "Posts painted a dramatic showdown: the EU threatens a €5 billion fine on X, Musk flips Starlink to emergency mode, and Europe plunges into satellite blackout chaos.\n\n• The viral accounts said European regulators demanded Musk censor content or face a massive fine and SpaceX bans, prompting him to reportedly shut down Starlink relays over EU airspace, freezing shipping and aviation and tanking tech stocks 12%.\n• They were shared with images of Musk and EU Commission President Ursula von der Leyen, and tapped into real tensions such as a December 2025 €120 million fine on X for Digital Services Act violations and EU efforts to rival Starlink.\n• Many flagged the €5 billion ultimatum and the blackouts as fabricated: no matching official statements exist, and Starlink services ran normally.\n• The episode highlights how unconfirmed stories amplify debates on regulation and tech power.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
-  },
-  {
-   "id": "solana-mobile-skr-claim-phishing-app",
-   "topic": "solana",
-   "date": "2026-11-02T01:19:32Z",
-   "url": "https://x.com/i/trending/2116978256545010134",
-   "source": "X",
-   "he": {
-    "title": "Solana Mobile הסירה אפליקציית פישינג בשם SKR Claim אחרי שעה באוויר",
-    "summary": "תוקפים פרצו לפורטל הפרסום של Solana Mobile והכניסו אפליקציה מזויפת שביקשה ממשתמשים את מילות השחזור (seed phrase). החברה הסירה אותה ותיקנה את הפרצה, ומי שהזין את המילים התבקש להעביר מיד את הנכסים לארנק חדש."
-   },
-   "en": {
-    "title": "Solana Mobile pulls the malicious 'SKR Claim' app after an hour live",
-    "summary": "Attackers breached Solana Mobile's publishing portal and pushed a fake app that asked users for their seed phrases. The company removed it and patched the bug, and anyone who entered a seed phrase was urged to move assets to a new wallet."
-   },
-   "full_he": "אפליקציה מזויפת בשם SKR Claim גרמה למשתמשים להזין את מילות השחזור (seed phrase) שלהם – ישר מתוך אזור ה־Spotlight המומלץ של Solana Mobile. היא נשארה זמינה כשעה עד שהצוות פעל.\n\n• ב־1 בנובמבר תוקפים פרצו לפורטל פרסום האפליקציות (dApp Publishing Portal) של Solana Mobile, ודחפו את אפליקציית הפישינג לאזור ה־Spotlight ולממשק המשימות (Quests).\n• Solana Mobile הסירה אותה במהירות, מחקה אותה מהמכשירים ותיקנה את הבאג. לדבריה, ה־Seed Vault והמערכות שעל הבלוקצ'יין נשארו בטוחים.\n• בקהילה הזהירו: בעלי Seeker שאולי הזינו את מילות השחזור צריכים להעביר את הנכסים לארנק חדש מיד.\n• החברה הזכירה: הטבה אמיתית אף פעם לא מבקשת מילות שחזור.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
-   "full_en": "A fake app called SKR Claim tricked users into entering seed phrases right in Solana Mobile's trusted Spotlight section. It stayed live for about an hour before the team acted.\n\n• On November 1, attackers breached the Solana Mobile dApp Publishing Portal and pushed the phishing app into the curated Spotlight and Quests UI.\n• Solana Mobile quickly removed it, wiped it from devices and patched the bug, confirming its Seed Vault and on-chain systems stayed safe.\n• Community alerts urged Seeker owners who might have entered seed phrases to move their assets to new wallets immediately.\n• The company reminded everyone: legitimate claims never ask for seed phrases.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
-  },
-  {
    "id": "apple-duo-fold-or-open-hinge-debate",
    "topic": "apple",
    "date": "2026-11-02T03:16:09Z",
@@ -282,6 +299,57 @@
    "full_en": "Apple's iPhone Duo has owners split on a simple question: fold it shut or leave it open when idle?\n\n• TechDroider recommended leaving the iPhone Duo open while charging or on a desk to reduce strain on the hinge and inner screen, based on experience with a Samsung foldable.\n• Critics like Drew Coffman called it overcautious babying, insisting the device is built for daily folding without special care.\n• Background: Apple's first foldable, unveiled in September with a 7.6-inch inner display and titanium frame starting at $1,999, boasts strong battery life and multitasking, though high demand has delayed deliveries into 2027.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
   },
   {
+   "id": "musk-unverified-eu-starlink-clash",
+   "topic": "musk",
+   "date": "2026-11-02T03:06:18Z",
+   "url": "https://x.com/i/trending/2117057808290214210",
+   "source": "X",
+   "he": {
+    "title": "טענות לא מאומתות על עימות בין מאסק לאיחוד האירופי מתפשטות ברשת",
+    "summary": "פוסטים ויראליים טענו שהאיחוד האירופי איים על X בקנס של 5 מיליארד יורו ושמאסק כיבה את סטארלינק מעל אירופה. רבים סימנו את זה כבדיה: אין הודעה רשמית, וסטארלינק עבד כרגיל."
+   },
+   "en": {
+    "title": "Unverified claims of a Musk–EU clash spread widely online",
+    "summary": "Viral posts claimed the EU threatened X with a €5 billion fine and Musk shut Starlink off over Europe. Many flagged it as fabricated: there's no official statement and Starlink ran normally."
+   },
+   "full_he": "פוסטים ויראליים תיארו עימות דרמטי: האיחוד האירופי מאיים על X בקנס של 5 מיליארד יורו, מאסק מעביר את סטארלינק ל\"מצב חירום\", ואירופה נכנסת להאפלת לוויינים.\n\n• לפי הסיפורים, הרגולטורים באירופה דרשו ממאסק לצנזר תוכן, אחרת יקבל קנס עצום ואיסורים על ספייסאקס, ובתגובה הוא כביכול כיבה את ממסרי סטארלינק מעל המרחב האווירי של האיחוד – מה שהקפיא ספנות ותעופה והפיל את מניות הטכנולוגיה ב־12%.\n• הפוסטים הופצו עם תמונות של מאסק ושל נשיאת הנציבות אורסולה פון דר ליין, ונשענו על מתחים אמיתיים: קנס של 120 מיליון יורו ל־X בדצמבר 2025 על הפרות של חוק השירותים הדיגיטליים (DSA), והמאמצים של האיחוד לבנות מתחרה לסטארלינק.\n• רבים סימנו את האולטימטום של 5 מיליארד יורו ואת ההאפלות כבדיה: אין שום הודעה רשמית תואמת, וסטארלינק פעל כרגיל.\n• המקרה מראה איך סיפורים לא מאומתים מלבים ויכוחים על רגולציה ועל הכוח של חברות הטכנולוגיה.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "Posts painted a dramatic showdown: the EU threatens a €5 billion fine on X, Musk flips Starlink to emergency mode, and Europe plunges into satellite blackout chaos.\n\n• The viral accounts said European regulators demanded Musk censor content or face a massive fine and SpaceX bans, prompting him to reportedly shut down Starlink relays over EU airspace, freezing shipping and aviation and tanking tech stocks 12%.\n• They were shared with images of Musk and EU Commission President Ursula von der Leyen, and tapped into real tensions such as a December 2025 €120 million fine on X for Digital Services Act violations and EU efforts to rival Starlink.\n• Many flagged the €5 billion ultimatum and the blackouts as fabricated: no matching official statements exist, and Starlink services ran normally.\n• The episode highlights how unconfirmed stories amplify debates on regulation and tech power.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
+  {
+   "id": "tesla-robotaxi-fleet-1244-nears-waymo",
+   "topic": "tesla",
+   "date": "2026-11-02T03:06:15Z",
+   "url": "https://x.com/i/trending/2117089627693842559",
+   "source": "X",
+   "he": {
+    "title": "צי הרובוטקסי של טסלה בטקסס הגיע ל־1,244 – רק 15 פחות מוויימו",
+    "summary": "טסלה הוסיפה 40 מכוניות Model Y ב־1 בנובמבר ועלתה ל־1,244 רכבים רשומים בטקסס, לעומת 1,259 של ויימו. הרישום לא מעיד על כמה מהם באמת מסיעים נוסעים."
+   },
+   "en": {
+    "title": "Tesla's Texas robotaxi fleet hits 1,244, just 15 behind Waymo",
+    "summary": "Tesla added 40 Model Ys on November 1, reaching 1,244 registered vehicles in Texas versus Waymo's 1,259. Registrations don't show how many are actually carrying passengers."
+   },
+   "full_he": "מספר הרובוטקסי של טסלה בטקסס הגיע ל־1,244 ב־1 בנובמבר, רק 15 פחות מ־1,259 של ויימו, אחרי שנוספו 40 מכוניות Model Y באותו יום.\n\n• הזינוק הגיע ממנות של Model Y מפס הייצור ומ־Cybercab חדשים, שהעלו את טסלה מ־1,204 ל־1,244 רכבים רשומים, לפי רישומי משרד הרישוי של טקסס (DMV).\n• ויימו מובילה עם 1,259 רכבים: 863 יגואר I-PACE ו־396 Zeekr RT. ל־Zoox הקטנה יש 63.\n• טסלה התחילה את יוני עם כ־59 רכבים, ובאוקטובר לבדו הצי שלה יותר מהוכפל.\n• הסתייגות: מספר הרכבים הרשומים לא מראה כמה מהם באמת מסיעים נוסעים או כמה קילומטרים הם נוסעים.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "Tesla's robotaxi count in Texas hit 1,244 on November 1, just 15 shy of Waymo's 1,259, after adding 40 Model Ys that day.\n\n• The surge came from batches of production Model Ys and new Cybercabs, pushing Tesla from 1,204 to 1,244 registered vehicles per Texas DMV records.\n• Waymo leads with 1,259, including 863 Jaguar I-PACEs and 396 Zeekr RTs, while smaller Zoox has 63.\n• Tesla started June with about 59 vehicles and more than doubled in October alone.\n• Caveat: registrations don't reflect active passenger service or miles driven.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
+  },
+  {
+   "id": "spacex-andreessen-founders-vs-managers",
+   "topic": "spacex",
+   "date": "2026-11-02T01:52:52Z",
+   "url": "https://x.com/i/trending/2116911973430424039",
+   "source": "X",
+   "he": {
+    "title": "מארק אנדריסן: חברות של מייסדים כמו ספייסאקס עוקפות מנהלים מקצועיים",
+    "summary": "אנדריסן שיתף קטע מהרצאה שבו הסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות מאחור מנהלים מקצועיים בזמן טלטלות בענף. הוא שיבח מייסדים כמו אילון מאסק שמשתתפים בעצמם בסקירות התכנון היומיות."
+   },
+   "en": {
+    "title": "Marc Andreessen: founder-led companies like SpaceX outrun professional managers",
+    "summary": "Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers behind during industry shakeups. He praised hands-on founders like Elon Musk who join daily design reviews."
+   },
+   "full_he": "מארק אנדריסן שיתף קטע שבו הוא מסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות לא פעם מאחור מנהלים מסורתיים בזמן טלטלות בענף.\n\n• בהרצאה הוא חזר לשורשים של בית הספר לעסקים של הרווארד, שלדבריו נולד מדחיפה באמצע המאה ה-20 ל\"ניהולנות\": מנהלים שלומדים כישורים ניידים שמאפשרים להם לנהל כל חברה גדולה, בדומה למודל מימי המהפכה התעשייתית.\n• לטענתו, בתחומים שמשתנים מהר המנהלים האלה מתקשים להסתגל. הוא הביא את הרקטות הרב־פעמיות של ספייסאקס כהוכחה, ושיבח מייסדים מעורבים כמו אילון מאסק, שצוללים בעצמם לסקירות התכנון היומיות.\n• מגיבים הסכימו שבתי ספר לעסקים מצטיינים בהפעלה יציבה של חברה, אבל נופלים כשמדובר בחדשנות, והציעו שעדיף ללמד מייסדים ניהול מאשר להביא מנהלים מקצועיים שיובילו אותם.\n• הדיון נשען על הרעיונות של ג'יימס ברנהאם על מעבר הכוח למנהלים, כדי להסביר למה בעלי חזון מצליחים לא פעם יותר ממנהלים שפועלים לפי תסריט.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
+   "full_en": "Marc Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers in the dust during industry shakeups.\n\n• In a recent talk, Andreessen traced Harvard Business School's roots to a mid-20th-century push for \"managerialism,\" where executives learned portable skills to run any large firm, much like the model from the Industrial Revolution.\n• He argued that in fast-changing fields, these managers struggle to adapt, citing SpaceX's reusable rockets as proof while praising hands-on founders like Elon Musk who dive into daily design reviews.\n• Commenters agreed business schools excel at steady operations but fall short for innovation, suggesting it's better to train founders in management than hire pros to lead them.\n• The discussion draws on James Burnham's ideas about power shifts to explain why visionaries often outperform scripted executives.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
+  },
+  {
    "id": "mccullough-chris-murphy-stroke-spike",
    "topic": "mccullough",
    "date": "2026-11-02T01:44:04Z",
@@ -297,6 +365,23 @@
    },
    "full_he": "פוסט 1 (2 בנובמבר, 03:44 שעון ישראל):\n\"אני רואה במרפאה שלי הרבה שבצים מאוחרים אחרי חיסון הקורונה. נוסף על הבדיקות הרגילות, יצטרכו לבדוק את פנקס החיסונים שלו ואת רמות הספייק.\"\n\nהפוסט שהוא ציטט:\n\"'אז אל תשכחו לקבל את הבוסטר!' הסנטור כריס מרפי, שקיבל כמה 'חיסוני קורונה', אושפז עכשיו אחרי שבץ בגיל 53... הקטל נמשך...\"\n\nהתמונות בפוסט:\n• צילום מסך של מכתב בכתב העת Journal of Stroke (2024, כרך 26(3), עמ' 463-467, פורסם ב-13 בספטמבר 2024) של חוקרים קוריאנים מאוניברסיטת קיונג הי ואוניברסיטת CHA: \"הערכות עולמיות של שבץ איסכמי שדווח בקשר לחיסונים בשנים 1969–2023: ניתוח מקיף של מאגר הניטור התרופתי העולמי של ארגון הבריאות העולמי\".\n• גרפיקה בשם \"תכיר את המספרים, תכיר את הסכנה\" על בדיקת חלבון ספייק: מתחת ל-1,000 U/ml = בטוח; 1,000–5,000 = לעקוב מקרוב; מעל 5,000 = צריך לפעול; 10,000–25,000 = אזור סכנה. \"אם המספר שלך גבוה, אתה צריך יותר ממידע, אתה צריך פתרון.\"\n\nפוסט 2 (2 בנובמבר, 03:51 שעון ישראל, https://x.com/P_McCulloughMD/status/2117072069263323145):\n\"גם הדבקה ב-SARS-CoV-2 וגם, ובמיוחד, חיסון הקורונה מעמיסים על הגוף את חלבון הספייק שגורם לשבץ. אחרי הטיפול הרגיל, מרפי צריך לבדוק את רמות הספייק שלו.\"\nהוא ציטט פוסט שכתוב בו \"גיל: 53\" עם תמונה (התמונה לא תומללה).\n\nהתמונות בפוסט השני:\n• העמוד הראשון של מאמר דעה בכתב העת Medical Research Archives (האגודה האירופית לרפואה, כרך 13 גיליון 11) מאת מ. נתניאל מיד, ג'סיקה רוז, סטפני סנף, פיטר מקולה ואחרים: \"ההשפעות המצטברות של חיסון mRNA לקורונה ושל הדבקה ב-SARS-CoV-2: התכנסות של 'ספייקופתיות' שונות ונזקים היברידיים אחרים\". האיור שלו, \"השערת הנזקים ההיברידיים\", מונה חמש נקודות: מטען רעיל למערכת החיסון (חלבון ספייק, ננו-חלקיקי שומן וזיהומים מתהליך הייצור), פיזור בכל הגוף, חשיפה ממושכת לספייק, השפעה מצטברת של כמה זריקות, ושינויים חיסוניים דומים לאלה של ההדבקה (דלקת יתר, דיכוי אינטרפרון, מיעוט לימפוציטים ואוטואימוניות).\n• גרפיקה של twc.health, \"מחזור החיים של חלבון הספייק\", שמסתיימת בפרסומת לתוסף \"Ultimate Spike Detox\" של The Wellness Company (נאטוקינאז, שורש שן הארי, ברומלין, סלניום, קצח, פלפל שחור וכורכום).\n\nלא נמצאו תגובות נוספות של מקולה עצמו באף אחד משני השרשורים.\n\nהערה: אלה טענות של ד\"ר מקולה. לפי לשכתו של מרפי, הוא ער, צלול ומגיב טוב לטיפול בבית החולים ג'ונס הופקינס, ואין שום ראיה שקושרת את השבץ שלו לחיסון. מחקרים גדולים לא מצאו שחיסוני mRNA לקורונה מעלים את הסיכון הכללי לשבץ, ובדיקות \"רמת ספייק\" אינן חלק מקובל מהטיפול בשבץ. ספי הבדיקה והתוסף מגיעים מ-The Wellness Company, שבה מקולה מכהן כמדען הראשי.",
    "full_en": "Post 1 (Nov 2, 01:44 UTC):\n\"I see many late COVID-19 vaccine strokes in my clinical practice. In addition to the usual tests he will need a review of his immunization card and spike levels done.\"\n\nThe quoted post:\n\"'So remember to get your booster!' Senator Chris Murphy…who has had multiple 'Covid Vaccines' was just hospitalized after a stroke at 53 years of age… The carnage continues…\"\n\nThe images in the post:\n• A screenshot of a letter in the Journal of Stroke (2024;26(3):463-467, published September 13, 2024) by Korean researchers from Kyung Hee University and CHA University: \"Global Estimates of Reported Vaccine-Associated Ischemic Stroke for 1969–2023: A Comprehensive Analysis of the World Health Organization Global Pharmacovigilance Database\".\n• A graphic titled \"Know the Numbers, Know the Danger\" about a spike protein test: under 1,000 U/ml = safe; 1,000–5,000 = watch closely; over 5,000 = action needed; 10,000–25,000 = danger zone. \"If your number's high, you need more than information — you need a solution.\"\n\nPost 2 (Nov 2, 01:51 UTC, https://x.com/P_McCulloughMD/status/2117072069263323145):\n\"Both SARS-CoV-2 infection and especially COVID-19 vaccination load the body with the stroke-producing spike protein. After usual care Murphy needs his spike levels checked.\"\nIt quotes a post that says \"Age: 53\" with a photo (the photo was not transcribed).\n\nThe images in the second post:\n• The first page of a perspective article in Medical Research Archives (European Society of Medicine, vol. 13 issue 11) by M. Nathaniel Mead, Jessica Rose, Stephanie Seneff, Peter McCullough and others: \"Compound Impacts of COVID-19 mRNA Vaccination and SARS-CoV-2 Infection: A Convergence of Diverse 'Spikeopathies' and Other Hybrid Harms\". Its figure, \"The Hybrid Harms Hypothesis\", lists five points: an immunotoxic payload (spike protein, lipid nanoparticles, impurities), whole-body distribution, prolonged spike exposure, cumulative effects of multiple injections, and immune changes similar to infection (hyperinflammation, interferon suppression, lymphopenia, autoimmunity).\n• A twc.health graphic, \"The Spike Protein Lifespan\", that ends with an ad for The Wellness Company's \"Ultimate Spike Detox\" supplement (nattokinase, dandelion root, bromelain, selenium, black seed, black pepper, turmeric).\n\nNo further self-replies by McCullough were found in either thread.\n\nNote: these are Dr. McCullough's claims. Murphy's office said he is awake, alert and responding well to treatment at Johns Hopkins, and there is no evidence linking his stroke to vaccination. Large studies have not found that mRNA COVID vaccines raise the overall risk of stroke, and \"spike level\" tests are not a standard part of stroke care. The test thresholds and the supplement come from The Wellness Company, where McCullough is chief scientific officer."
+  },
+  {
+   "id": "solana-mobile-skr-claim-phishing-app",
+   "topic": "solana",
+   "date": "2026-11-02T01:19:32Z",
+   "url": "https://x.com/i/trending/2116978256545010134",
+   "source": "X",
+   "he": {
+    "title": "Solana Mobile הסירה אפליקציית פישינג בשם SKR Claim אחרי שעה באוויר",
+    "summary": "תוקפים פרצו לפורטל הפרסום של Solana Mobile והכניסו אפליקציה מזויפת שביקשה ממשתמשים את מילות השחזור (seed phrase). החברה הסירה אותה ותיקנה את הפרצה, ומי שהזין את המילים התבקש להעביר מיד את הנכסים לארנק חדש."
+   },
+   "en": {
+    "title": "Solana Mobile pulls the malicious 'SKR Claim' app after an hour live",
+    "summary": "Attackers breached Solana Mobile's publishing portal and pushed a fake app that asked users for their seed phrases. The company removed it and patched the bug, and anyone who entered a seed phrase was urged to move assets to a new wallet."
+   },
+   "full_he": "אפליקציה מזויפת בשם SKR Claim גרמה למשתמשים להזין את מילות השחזור (seed phrase) שלהם – ישר מתוך אזור ה־Spotlight המומלץ של Solana Mobile. היא נשארה זמינה כשעה עד שהצוות פעל.\n\n• ב־1 בנובמבר תוקפים פרצו לפורטל פרסום האפליקציות (dApp Publishing Portal) של Solana Mobile, ודחפו את אפליקציית הפישינג לאזור ה־Spotlight ולממשק המשימות (Quests).\n• Solana Mobile הסירה אותה במהירות, מחקה אותה מהמכשירים ותיקנה את הבאג. לדבריה, ה־Seed Vault והמערכות שעל הבלוקצ'יין נשארו בטוחים.\n• בקהילה הזהירו: בעלי Seeker שאולי הזינו את מילות השחזור צריכים להעביר את הנכסים לארנק חדש מיד.\n• החברה הזכירה: הטבה אמיתית אף פעם לא מבקשת מילות שחזור.\n\n(זה סיכום של סיפור חם ב־X, שמבוסס על פוסטים ועלול להשתנות.)",
+   "full_en": "A fake app called SKR Claim tricked users into entering seed phrases right in Solana Mobile's trusted Spotlight section. It stayed live for about an hour before the team acted.\n\n• On November 1, attackers breached the Solana Mobile dApp Publishing Portal and pushed the phishing app into the curated Spotlight and Quests UI.\n• Solana Mobile quickly removed it, wiped it from devices and patched the bug, confirming its Seed Vault and on-chain systems stayed safe.\n• Community alerts urged Seeker owners who might have entered seed phrases to move their assets to new wallets immediately.\n• The company reminded everyone: legitimate claims never ask for seed phrases.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
   },
   {
    "id": "starterstory-jake-excelexercises-30k-4-weeks",
@@ -382,6 +467,23 @@
    },
    "full_he": "זה מה שמסופר בסיפור ב-X:\n\nמומחה לסוכנויות רכב הזמין עכשיו טסלה Model Y עם נהיגה עצמית מלאה (FSD) כדי לבדוק אותה בעצמו, אחרי יותר משנה הפסקה. בעלים משתפים סיפורים על מקרים שבהם הרכב מנע תאונה, שמראים כמה הוא נעשה חכם יותר.\n\n• Car Dealership Guy הוסיף לחניה שלו Model Y לונג ריינג' עם FSD כדי להעריך אותו בכנות, ומצטרף לחובבים שמשבחים את השיפורים בגרסה 14.3.13: היגוי חלק יותר, חנייה מדויקת וטיפול טוב יותר בפניות.\n• תוכנית ההפניות החדשה של טסלה מציעה חודש ניסיון, והממליצים מקבלים קרדיטים כשעשרות מפעילים את הפיצ'ר.\n• דיווחים מהשטח מראים שיעורי שימוש גבוהים, נסיעות בלי התערבות וזיהוי סכנות.\n• עם זאת, חלק מהנהגים עדיין מעדיפים לנהוג בעצמם, כשהציפיות בתעשייה משתנות.",
    "full_en": "Here's what the X story says:\n\nA car dealership expert just ordered a Tesla Model Y with Full Self-Driving to test it himself after over a year away. Owners are sharing stories of near-miss saves that highlight its growing smarts.\n\n• Car Dealership Guy added a Model Y Long Range with FSD to his garage for an honest evaluation, joining enthusiasts praising version 14.3.13's refinements like smoother steering, precise parking, and better handling of turns.\n• Tesla's new referral program offers one-month trials, with referrers earning credits as dozens activate the feature.\n• Real-world accounts show high usage rates, intervention-free drives, and hazard detection.\n• Some drivers still prefer manual control amid shifting industry expectations."
+  },
+  {
+   "id": "durov-fragment-drops-kyc-stars-premium",
+   "topic": "durov",
+   "date": "2026-11-01T22:55:31Z",
+   "url": "https://kod.ru/fragment-otmenil-kyc",
+   "source": "Kod.ru",
+   "he": {
+    "title": "Fragment ביטלה את אימות הזהות החובה לקניית Telegram Stars ו-Premium",
+    "summary": "לפי האתר הרוסי Kod.ru, בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות (KYC) לקניית Stars,‏ Premium ומוצרים נוספים של טלגרם. Fragment וטלגרם עדיין לא הגיבו."
+   },
+   "en": {
+    "title": "Fragment drops mandatory ID checks for buying Telegram Stars and Premium",
+    "summary": "According to Russian site Kod.ru, on the night of November 2 the Fragment platform stopped requiring identity verification (KYC) to buy Telegram Stars, Premium and other items. Neither Fragment nor Telegram has commented."
+   },
+   "full_he": "לפי כתבה באתר הרוסי Kod.ru (ולאד ווייטנקו), בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות חובה, והמערכת של האתר בדקה ווידאה את זה.\n\n• אימות KYC היה נדרש עד עכשיו כדי לקנות Telegram Stars,‏ Telegram Premium ועוד כמה מוצרים. משתמשים בלי אימות יכולים שוב לבצע את הרכישות האלה, אף שהפלטפורמה לא הודיעה רשמית על שינוי בכללים.\n• באותו זמן נעלם מהאתר האזור שקשור לאימות, והקישורים לחשבון ולתהליך האימות מפנים עכשיו לדף הבית.\n• Fragment הנהיגה את האימות החובה בנובמבר 2024: כדי לקנות Stars ושירותים אחרים היה צריך למסור אימייל, מספר טלפון, תעודה מזהה ותמונת פנים, והבדיקה נעשתה דרך השירות Sumsub.\n• הסיבות לשינוי עדיין לא ידועות, ו-Fragment וטלגרם לא הגיבו לו בפומבי.",
+   "full_en": "According to an article on the Russian site Kod.ru (by Vlad Voitenko), on the night of November 2 the Fragment platform stopped requiring mandatory identity verification, which the site's editors confirmed themselves.\n\n• KYC verification had been required to buy Telegram Stars, Telegram Premium and a number of other items. Users without KYC can once again make these purchases, although the platform has not officially announced any rule change.\n• At the same time, the verification section disappeared from the site, and the links to the account and the KYC process now redirect to the home page.\n• Fragment introduced mandatory verification in November 2024: buying Stars and other services required an email, phone number, ID document and a face photo, with checks run by Sumsub.\n• The reasons for the change are still unknown, and neither Fragment nor Telegram has commented publicly."
   },
   {
    "id": "mccullough-cdc-myocarditis-takada-fatality",
@@ -11261,57 +11363,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "tesla-spacex-merger-exchange-ratio-models",
-   "topic": "tesla",
-   "date": "2026-11-02T03:58:22Z",
-   "url": "https://x.com/i/trending/2117102971360075803",
-   "source": "X",
-   "he": {
-    "title": "משקיעים מחשבים יחסי המרה בזמן שוועדות טסלה וספייסאקס בוחנות מיזוג",
-    "summary": "בשיחת הרבעון השלישי של ספייסאקס סיפר מאסק שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות מיזוג אפשרי, והוא עצמו לא משתתף בהן. משקיעים ב-X כבר משתפים טבלאות של יחסי המרה בין 2:1 ל-5.5:1 מניות ספייסאקס לכל מניית טסלה."
-   },
-   "en": {
-    "title": "Investors model exchange ratios as Tesla and SpaceX committees study a merger",
-    "summary": "On SpaceX's Q3 earnings call, Musk said independent board committees at Tesla and SpaceX are studying a possible combination, with him recused. Investors on X are sharing charts modeling exchange ratios from 2:1 to 5.5:1 SpaceX shares per Tesla share."
-   },
-   "full_he": "אילון מאסק סיפר שוועדות עצמאיות בדירקטוריונים של טסלה וספייסאקס בוחנות עכשיו איחוד אפשרי של שתי החברות, בעקבות בקשות של בעלי מניות.\n\n• בשיחת הדוחות של ספייסאקס לרבעון השלישי הסביר מאסק שהוועדות המיוחדות הוקמו באוקטובר כדי לבחון מיזוג, ושהוא עצמו לא משתתף בהן בגלל התפקידים והאחזקות שלו בשתי החברות.\n• משקיעים משתפים טבלאות מפורטות שמדמות יחסי המרה של 2:1 עד 5.5:1 מניות SPCX לכל מניית TSLA, על בסיס מחירי הסגירה של 20 באוקטובר: 373.71 דולר לטסלה ו-147.79 דולר לספייסאקס.\n• תחזית של שותף בקרן Sequoia Capital צופה לספייסאקס הכנסות של 731 מיליארד דולר עד 2028, בזכות כוח מחשוב, סטארלינק ושיגורים.\n• כל זה מלבה ויכוח על סינרגיות בבינה מלאכותית, רובוטיקה וחלל, לצד חששות לגבי השווי ולגבי אישור בעלי המניות.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
-   "full_en": "Elon Musk revealed that independent board committees at Tesla and SpaceX are now studying a possible company combination, sparked by shareholder requests.\n\n• During SpaceX's third-quarter earnings call, Musk explained that special committees formed in October to assess a merger, with him recused due to his leadership roles and stakes in both firms.\n• Investors have shared detailed charts modeling exchange ratios from 2:1 to 5.5:1 SPCX shares per TSLA share, anchored to October 20 closing prices of $373.71 for Tesla and $147.79 for SpaceX.\n• A Sequoia Capital partner's forecast projects SpaceX revenue at $731 billion by 2028, driven by compute capacity, Starlink and launches.\n• This is fueling debates on synergies in AI, robotics and space, amid concerns over valuations and shareholder approval.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
-  },
-  {
-   "id": "durov-fragment-drops-kyc-stars-premium",
-   "topic": "durov",
-   "date": "2026-11-01T22:55:31Z",
-   "url": "https://kod.ru/fragment-otmenil-kyc",
-   "source": "Kod.ru",
-   "he": {
-    "title": "Fragment ביטלה את אימות הזהות החובה לקניית Telegram Stars ו-Premium",
-    "summary": "לפי האתר הרוסי Kod.ru, בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות (KYC) לקניית Stars,‏ Premium ומוצרים נוספים של טלגרם. Fragment וטלגרם עדיין לא הגיבו."
-   },
-   "en": {
-    "title": "Fragment drops mandatory ID checks for buying Telegram Stars and Premium",
-    "summary": "According to Russian site Kod.ru, on the night of November 2 the Fragment platform stopped requiring identity verification (KYC) to buy Telegram Stars, Premium and other items. Neither Fragment nor Telegram has commented."
-   },
-   "full_he": "לפי כתבה באתר הרוסי Kod.ru (ולאד ווייטנקו), בליל 2 בנובמבר הפסיקה פלטפורמת Fragment לדרוש אימות זהות חובה, והמערכת של האתר בדקה ווידאה את זה.\n\n• אימות KYC היה נדרש עד עכשיו כדי לקנות Telegram Stars,‏ Telegram Premium ועוד כמה מוצרים. משתמשים בלי אימות יכולים שוב לבצע את הרכישות האלה, אף שהפלטפורמה לא הודיעה רשמית על שינוי בכללים.\n• באותו זמן נעלם מהאתר האזור שקשור לאימות, והקישורים לחשבון ולתהליך האימות מפנים עכשיו לדף הבית.\n• Fragment הנהיגה את האימות החובה בנובמבר 2024: כדי לקנות Stars ושירותים אחרים היה צריך למסור אימייל, מספר טלפון, תעודה מזהה ותמונת פנים, והבדיקה נעשתה דרך השירות Sumsub.\n• הסיבות לשינוי עדיין לא ידועות, ו-Fragment וטלגרם לא הגיבו לו בפומבי.",
-   "full_en": "According to an article on the Russian site Kod.ru (by Vlad Voitenko), on the night of November 2 the Fragment platform stopped requiring mandatory identity verification, which the site's editors confirmed themselves.\n\n• KYC verification had been required to buy Telegram Stars, Telegram Premium and a number of other items. Users without KYC can once again make these purchases, although the platform has not officially announced any rule change.\n• At the same time, the verification section disappeared from the site, and the links to the account and the KYC process now redirect to the home page.\n• Fragment introduced mandatory verification in November 2024: buying Stars and other services required an email, phone number, ID document and a face photo, with checks run by Sumsub.\n• The reasons for the change are still unknown, and neither Fragment nor Telegram has commented publicly."
-  },
-  {
-   "id": "spacex-andreessen-founders-vs-managers",
-   "topic": "spacex",
-   "date": "2026-11-02T01:52:52Z",
-   "url": "https://x.com/i/trending/2116911973430424039",
-   "source": "X",
-   "he": {
-    "title": "מארק אנדריסן: חברות של מייסדים כמו ספייסאקס עוקפות מנהלים מקצועיים",
-    "summary": "אנדריסן שיתף קטע מהרצאה שבו הסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות מאחור מנהלים מקצועיים בזמן טלטלות בענף. הוא שיבח מייסדים כמו אילון מאסק שמשתתפים בעצמם בסקירות התכנון היומיות."
-   },
-   "en": {
-    "title": "Marc Andreessen: founder-led companies like SpaceX outrun professional managers",
-    "summary": "Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers behind during industry shakeups. He praised hands-on founders like Elon Musk who join daily design reviews."
-   },
-   "full_he": "מארק אנדריסן שיתף קטע שבו הוא מסביר למה חברות שהמייסד מוביל, כמו ספייסאקס, משאירות לא פעם מאחור מנהלים מסורתיים בזמן טלטלות בענף.\n\n• בהרצאה הוא חזר לשורשים של בית הספר לעסקים של הרווארד, שלדבריו נולד מדחיפה באמצע המאה ה-20 ל\"ניהולנות\": מנהלים שלומדים כישורים ניידים שמאפשרים להם לנהל כל חברה גדולה, בדומה למודל מימי המהפכה התעשייתית.\n• לטענתו, בתחומים שמשתנים מהר המנהלים האלה מתקשים להסתגל. הוא הביא את הרקטות הרב־פעמיות של ספייסאקס כהוכחה, ושיבח מייסדים מעורבים כמו אילון מאסק, שצוללים בעצמם לסקירות התכנון היומיות.\n• מגיבים הסכימו שבתי ספר לעסקים מצטיינים בהפעלה יציבה של חברה, אבל נופלים כשמדובר בחדשנות, והציעו שעדיף ללמד מייסדים ניהול מאשר להביא מנהלים מקצועיים שיובילו אותם.\n• הדיון נשען על הרעיונות של ג'יימס ברנהאם על מעבר הכוח למנהלים, כדי להסביר למה בעלי חזון מצליחים לא פעם יותר ממנהלים שפועלים לפי תסריט.\n\nזהו סיכום של סיפור טרנדי ב-X שמבוסס על פוסטים של משתמשים, והוא עשוי להשתנות.",
-   "full_en": "Marc Andreessen shared a clip explaining why founder-led companies like SpaceX often leave traditional managers in the dust during industry shakeups.\n\n• In a recent talk, Andreessen traced Harvard Business School's roots to a mid-20th-century push for \"managerialism,\" where executives learned portable skills to run any large firm, much like the model from the Industrial Revolution.\n• He argued that in fast-changing fields, these managers struggle to adapt, citing SpaceX's reusable rockets as proof while praising hands-on founders like Elon Musk who dive into daily design reviews.\n• Commenters agreed business schools excel at steady operations but fall short for innovation, suggesting it's better to train founders in management than hire pros to lead them.\n• The discussion draws on James Burnham's ideas about power shifts to explain why visionaries often outperform scripted executives.\n\nThis is a summary of an X trending story based on users' posts, and it may evolve over time."
   }
  ]
 }
