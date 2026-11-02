@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T19:38:37+02:00",
+ "updated": "2026-11-02T20:28:31+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "starterstory-yoni-400k-ios-suspense-launch",
+   "topic": "starterstory",
+   "date": "2026-11-02T18:06:42Z",
+   "url": "https://x.com/starter_story/status/2117317489780736503",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "יוני, שבנה אפליקציית iOS של 400 אלף דולר בחודש: לבנות מתח לפני ההשקה",
+    "summary": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, מספר שצבר 100–150 אלף עוקבים באינסטגרם לפני ההשקה ושמר על מתח עם רשימת המתנה. ביום ההשקה, לדבריו, האפליקציה הכניסה בערך 10,000 דולר."
+   },
+   "en": {
+    "title": "Yoni, who built a $400K/month iOS app: build suspense before launch",
+    "summary": "Yoni, who built a $400K/month iOS app, says he amassed 100,000–150,000 Instagram followers before launch and kept it suspenseful with a waitlist. On launch day, he says, the app made about $10,000."
+   },
+   "full_he": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, אומר שבניית מתח לפני ההשקה היא טקטיקת צמיחה...\n\n\"צברתי בערך 100,000 או 150,000 עוקבים באינסטגרם לפני השקת האפליקציה. פשוט שמרתי על זה קצת במתח.\"\n\n\"אז אני בונה אפליקציה, תירשמו לרשימת ההמתנה. ככה בניתי את המתח. וכשהשקתי, היא עשתה בערך 10,000 דולר, נדמה לי, ביום הראשון.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "This dude Yoni who built a $400K/month iOS app says: building suspense before launch is a growth tactic...\n\n\"I had amassed like some 100,000 or 150,000 followers on Instagram before the launch of the app. I just was keeping it kind of suspenseful.\"\n\n\"So I'm building an app, sign up for the waitlist. I was kind of building the suspense. And then when I launched, it did about $10,000, I think, in the first day.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "tesla-spacex-merger-kalshi-75-before-2028",
+   "topic": "tesla",
+   "date": "2026-11-02T18:19:52Z",
+   "url": "https://x.com/i/trending/2117318345263354367",
+   "source": "X",
+   "he": {
+    "title": "ההימורים על מיזוג טסלה–ספייסאקס: 75% סיכוי לפני 2028",
+    "summary": "שוק התחזיות Kalshi נותן 75% סיכוי שטסלה וספייסאקס יתמזגו לפני 2028, ואנליסטים של פייפר סנדלר מעריכים שזה סביר יותר מלא. עסקה כזו עשויה ליצור ענקית של 3.5 טריליון דולר, אבל עדיין אין הודעה רשמית."
+   },
+   "en": {
+    "title": "Tesla-SpaceX merger speculation hits 75% odds before 2028",
+    "summary": "Prediction market Kalshi puts a 75% chance on Tesla and SpaceX combining before 2028, and Piper Sandler analysts call it more likely than not. A deal could create a $3.5 trillion giant, though there's no formal announcement yet."
+   },
+   "full_he": "טסלה וספייסאקס של אילון מאסק מעוררות שיח ער על מיזוג, שמתודלק משוק תחזיות שנותן 75% סיכוי לפני 2028 ומההבטחה של טראמפ להגן עליהן מאיומים פוליטיים.\n\n• שוק Kalshi נותן 75% סיכוי שהחברות יתאחדו לפני 2028.\n• אנליסטים של פייפר סנדלר מעריכים שהמיזוג סביר יותר מלא, ומציינים את הוועדות המיוחדות של דירקטורים בלתי תלויים שבוחנות את האפשרויות.\n• עסקה כזו עשויה ליצור ענקית של 3.5 טריליון דולר שמשלבת רכבים חשמליים, רקטות, אינטרנט לווייני ובינה מלאכותית, כשלמאסק יותר מ־70% משליטת ההצבעה ברוב התרחישים.\n• הסוחרים מתלהבים מהסינרגיות אבל שואלים שאלות על המבנה והתזמון, ועדיין אין הודעה רשמית.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות.",
+   "full_en": "Elon Musk's Tesla and SpaceX are drawing intense merger talk, fueled by a prediction market pegging 75% odds before 2028 and Trump's vow to shield them from political threats.\n\n• Kalshi's market gives a 75% chance of the companies combining before 2028.\n• Piper Sandler analysts call it more likely than not, noting special committees of independent directors exploring options.\n• A deal could create a $3.5 trillion giant blending EVs, rockets, satellite internet and AI, with Musk holding over 70% voting control in most scenarios.\n• Traders mix enthusiasm for synergies with questions on structure and timing, amid no formal announcement yet.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
+  {
+   "id": "tesla-talarico-taxpayer-dollars-success",
+   "topic": "tesla",
+   "date": "2026-11-02T18:19:51Z",
+   "url": "https://x.com/i/trending/2117318345234026789",
+   "source": "X",
+   "he": {
+    "title": "ג'יימס טלאריקו: ההצלחה של טסלה נשענת על כספי משלמי המסים",
+    "summary": "חבר בית הנבחרים של טקסס ג'יימס טלאריקו אמר בקטע וידאו נפוץ שהשקעות פדרליות הן שהניעו את טסלה, וקרא למיליארדרים כמו מאסק להחזיר יותר למדינה. התומכים במאסק הזכירו את תשלום המס של 11 מיליארד דולר ב־2021, והמבקרים ציטטו ניתוח של וושינגטון פוסט על 38 מיליארד דולר לפחות בסיוע ממשלתי."
+   },
+   "en": {
+    "title": "Texas Rep. Talarico: Tesla's success relies on taxpayer dollars",
+    "summary": "In a widely shared clip, Texas state Rep. James Talarico said federal investment drove Tesla's success and urged billionaires like Musk to give back more. Defenders cited Musk's $11 billion tax payment in 2021; critics cited a Washington Post analysis of at least $38 billion in government aid."
+   },
+   "full_he": "חבר בית הנבחרים של מדינת טקסס, ג'יימס טלאריקו, הצביע על ההשקעות הפדרליות בטסלה כמניע האמיתי להצלחתה, וקרא למיליארדרים כמו אילון מאסק להחזיר יותר למדינה שעזרה להם.\n\n• בקטע וידאו שהופץ בהרחבה, טלאריקו הדגיש איך תמיכה במימון משלמי המסים, כולל השקעות ממשלתיות, הניעה את טסלה, ואיך רוב המיליארדרים נהנו מבתי ספר ציבוריים ומכבישים.\n• המגינים על מאסק הזכירו את תשלום המס השיא שלו, 11 מיליארד דולר ב־2021, ממכירת מניות.\n• המבקרים ציטטו ניתוח של וושינגטון פוסט שלפיו החברות שלו קיבלו לפחות 38 מיליארד דולר בסיוע ממשלתי מאז 2003.\n• הוויכוח מדגיש את הדיון על סובסידיות, מסים ששולמו, מקומות עבודה שנוצרו, והאם תמיכה ציבורית מצדיקה החזר גדול יותר מהצלחה פרטית.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות.",
+   "full_en": "Texas state Rep. James Talarico pointed to Tesla's federal investments as the real driver of its success, urging billionaires like Elon Musk to give back more to the country that helped them.\n\n• In a widely shared clip, Talarico highlighted how taxpayer-funded support, including government investments, propelled Tesla, and how most billionaires benefited from public schools and highways.\n• Defenders noted Musk's record $11 billion tax payment in 2021 from stock sales.\n• Critics cited a Washington Post analysis showing his companies received at least $38 billion in government aid since 2003.\n• The back-and-forth underscores debates on subsidies, taxes paid, jobs created, and whether public support warrants more from private success.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
+  },
   {
    "id": "medicalmedium-resting-nerves-10-minute",
    "topic": "medicalmedium",
