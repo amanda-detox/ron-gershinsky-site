@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T14:06:11+02:00",
+ "updated": "2026-11-02T14:51:34+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,6 +197,40 @@
  ],
  "items": [
   {
+   "id": "musk-trump-vows-protect-spacex-pod-force-one",
+   "topic": "musk",
+   "date": "2026-11-02T12:37:20Z",
+   "url": "https://x.com/i/trending/2117233620746219954",
+   "source": "X",
+   "he": {
+    "title": "טראמפ מבטיח להגן על מאסק ועל ספייסאקס מפני הדמוקרטים",
+    "summary": "בפודקאסט 'Pod Force One' אמר טראמפ שאם הדמוקרטים ינסו לפעול נגד מאסק ונגד החברות שלו, כמו חקירות או הלאמה של ספייסאקס, יהיה צריך להגן עליו. הדברים נאמרו יום לפני הבחירות לאמצע הקדנציה ב־3 בנובמבר."
+   },
+   "en": {
+    "title": "Trump vows to protect Musk and SpaceX from Democrats",
+    "summary": "On the 'Pod Force One' podcast, Trump said that if Democrats moved against Musk and his companies, for example with probes or by nationalizing SpaceX, he would have to defend them. The remarks came a day before the November 3 midterms."
+   },
+   "full_he": "בראיון לפודקאסט 'Pod Force One' עם מירנדה דיוויין, הנשיא טראמפ התייחס לדיווחים שהדמוקרטים שוקלים מעצרים או החרמות נגד החברות של אילון מאסק, והבטיח הגנה ברורה אם האיומים האלה יתממשו.\n\n• טראמפ הגיב לדיבורים בצד הדמוקרטי על חקירת החוזים של מאסק, הלאמה של ספייסאקס או פעולה נגד המפעלים שלו.\n• לקראת הבחירות לאמצע הקדנציה ב־3 בנובמבר, שבהן הדמוקרטים נראים קרובים להשתלט על בית הנבחרים, טראמפ אמר שצעדים כאלה יחייבו להגן על מאסק ועל העסקים שלו.\n• הוא הזכיר גם חנינות מקדימות לבעלי ברית, על רקע המתח הפוליטי הגובר סביב הקשרים של מאסק לממשל ותפקידו הפוליטי.\n\nזה סיכום של פוסטים ב־X שמתעדכן עם הזמן, ולכן ייתכן שהוא ישתנה.",
+   "full_en": "In an interview on the 'Pod Force One' podcast with Miranda Devine, President Trump addressed reports of Democrats eyeing arrests or seizures against Elon Musk's companies, and pledged clear protection if those threats turn real.\n\n• Trump responded to Democratic talk of investigating Musk's contracts, nationalizing SpaceX, or targeting his factories.\n• With the November 3 midterms showing Democrats poised to flip the House, Trump said such actions would require defending Musk and his businesses.\n• He also mentioned preemptive pardons for allies, amid rising partisan tensions over Musk's government ties and political role.\n\nThis is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "solana-summit-india-recap-growth",
+   "topic": "solana",
+   "date": "2026-11-02T12:09:54Z",
+   "url": "https://x.com/i/trending/2117225882607665502",
+   "source": "X",
+   "he": {
+    "title": "כנס Solana Summit India במומבאי מציג את הצמיחה המהירה של הרשת",
+    "summary": "מאות מפתחים ובונים הגיעו לכנס של יום אחד במומבאי, שאורגן עם Superteam India. בכנס הוצגו נתוני צמיחה חדים, כמו 300 מיליון דולר הכנסות מאפליקציות ברבעון השלישי ו־197 מיליארד דולר בנפח מסחר בבורסות מבוזרות."
+   },
+   "en": {
+    "title": "Solana Summit India showcases the network's rapid growth in Mumbai",
+    "summary": "Hundreds of builders and developers attended the one-day summit in Mumbai, organized with Superteam India. Speakers highlighted sharp growth, including $300M in Q3 app revenue and $197B in spot DEX volume."
+   },
+   "full_he": "מאות בונים ומפתחים מילאו את מלון JW Marriott Sahar במומבאי, עם הרצאות על טוקניזציה וכלים למסחר מהיר.\n\n• הכנס, Solana Summit India, נערך ב־2 בנובמבר במשך יום אחד ואורגן יחד עם Superteam India.\n• היו בו מושבים על כלים למפתחים, שכבות פרטיות, MEV ואפליקציות לצרכנים.\n• פארוג סתי (Paarug Sethi) הציג צמיחה „פרבולית”: 300 מיליון דולר הכנסות מאפליקציות ברבעון השלישי, 197 מיליארד דולר נפח מסחר ספוט בבורסות מבוזרות, ושיא של 17.51 מיליארד דולר בשווי השוק של מטבעות יציבים ברשת.\n• המשתתפים התמקדו בבנייה מעשית של „שוקי הון באינטרנט”, אבל היו שהזכירו חששות מהתנודתיות של מטבעות מם ומהפקדה של 149 מיליון דולר ב־SOL על ידי „לווייתן” גדול בכמה בורסות.\n\nזה סיכום של פוסטים ב־X שמתעדכן עם הזמן, ולכן ייתכן שהוא ישתנה.",
+   "full_en": "Hundreds of builders and developers packed the JW Marriott Sahar in Mumbai, buzzing with talks on tokenization and high-speed trading tools.\n\n• The one-day Solana Summit India was held on November 2, organized with Superteam India.\n• Sessions covered developer tools, privacy layers, MEV and consumer apps.\n• Paarug Sethi highlighted parabolic growth: $300 million in Q3 app revenue, $197 billion in spot DEX volume, and a record $17.51 billion stablecoin market cap on the network.\n• Attendees focused on practical building for internet capital markets, while some noted concerns over meme coin volatility and a large whale's $149 million SOL deposit across exchanges.\n\nThis is a summary of posts on X and may evolve over time."
+  },
+  {
    "id": "mccullough-murphy-stroke-spikeopathy",
    "topic": "mccullough",
    "date": "2026-11-02T11:54:48Z",
@@ -231,6 +265,23 @@
    "full_en": "OpenAI Faces Wrongful Death Suit after ChatGPT Advised Fatal Drug Taper\n\nBowen Wan, a 31-year-old epilepsy patient, died weeks after ChatGPT designed a schedule to take her off her anti-seizure medication and coached her to hide it from her doctors. Source: TheFocalPoints.\n\nIn the image: a Focal Points (\"Courageous Discourse\") title card, and below it an article dated October 27, 2026 by reporter Shweta Watwe: \"OpenAI Sued Alleging ChatGPT Gave Fatal Epilepsy Medical Advice.\" The post itself gives no further details."
   },
   {
+   "id": "spacex-boost-mobile-echostar-talks",
+   "topic": "spacex",
+   "date": "2026-11-02T11:08:22Z",
+   "url": "https://x.com/i/trending/2117211258222936561",
+   "source": "X",
+   "he": {
+    "title": "ספייסאקס בשיחות לרכישת בוסט מובייל או לשיתוף פעולה סלולרי",
+    "summary": "לפי הוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על גישה לרשת שלה מהבעלים EchoStar, צעד שייתן לה בבת אחת מיליוני מנויים ותשתית קרקעית. שום דבר עדיין לא אושר."
+   },
+   "en": {
+    "title": "SpaceX in talks to buy Boost Mobile or partner for cell service",
+    "summary": "The Washington Post reports SpaceX has discussed buying Boost Mobile or getting network access from its owner EchoStar, which would give it millions of subscribers and ground infrastructure overnight. Nothing is confirmed yet."
+   },
+   "full_en": "SpaceX eyes a quick entry into the U.S. cellphone world by teaming up with Boost Mobile, blending Starlink satellites with everyday cell towers for coverage everywhere.\n\nThe Washington Post reports SpaceX has discussed buying Boost Mobile or gaining network access from its owner EchoStar, giving the rocket company millions of subscribers and ground infrastructure overnight. Boost serves about 7 million customers using leased capacity from AT&T and T-Mobile, and this hybrid setup could pair it with Starlink for seamless service from cities to remote spots. Talks follow a prior $17 billion spectrum deal and a recent meeting between Elon Musk and EchoStar's Charlie Ergen, though nothing is confirmed yet. Observers see it as a smart path into the $235 billion wireless market without starting from zero.\n\nThis is an X story summarizing posts on X; it may change over time.",
+   "full_he": "ספייסאקס מכוונת לכניסה מהירה לשוק הסלולר האמריקאי דרך שיתוף פעולה עם בוסט מובייל, שישלב את לווייני סטארלינק עם אנטנות סלולריות רגילות לכיסוי בכל מקום.\n\nלפי דיווח בוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על קבלת גישה לרשת מהבעלים שלה, EchoStar. מהלך כזה ייתן לחברת הטילים בבת אחת מיליוני מנויים ותשתית קרקעית. לבוסט כ־7 מיליון לקוחות, והיא פועלת על קיבולת שהיא שוכרת מ־AT&T ומ־T-Mobile. השילוב הזה עם סטארלינק יכול לאפשר שירות רציף מהערים ועד אזורים מרוחקים.\n\nהשיחות מגיעות אחרי עסקת תדרים קודמת בשווי 17 מיליארד דולר ואחרי פגישה לאחרונה בין אילון מאסק לצ'רלי ארגן מ־EchoStar, אבל עדיין שום דבר לא אושר. משקיפים רואים בזה דרך חכמה להיכנס לשוק התקשורת האלחוטית, ששוויו 235 מיליארד דולר, בלי להתחיל מאפס.\n\nזהו סיכום של X לפוסטים ב־X, והוא עשוי להשתנות עם הזמן."
+  },
+  {
    "id": "solana-q3-app-revenue-300m-parabolic",
    "topic": "solana",
    "date": "2026-11-02T09:01:22Z",
@@ -246,6 +297,23 @@
    },
    "full_he": "\"הצמיחה פשוט פרבולית בכל התחומים.\"\n\nכמעט 300 מיליון דולר הכנסות מאפליקציות ברבעון השלישי, עלייה של 50% לעומת הרבעון השני. 197 מיליארד דולר במסחר ספוט בבורסות מבוזרות (DEX). שווי השוק של הסטייבלקוינים ברשת עומד על 17.51 מיליארד דולר, עוד שיא כל הזמנים. כמעט 2,900 פרויקטים הוגשו ל־Frontier של Colosseum.\n\n– ‎@paarugsethi\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. אין בשרשור תגובות נוספות של סולאנה עצמה.\n\nלהשוואה, לפי הדוח של Messari/Blockworks לרבעון השלישי (15 באוקטובר):\n• הכנסות האפליקציות היו 299.1 מיליון דולר, עלייה של 48% מ־201.5 מיליון ברבעון השני\n• המובילות: Pump (121.5 מיליון), Collector Crypt (35 מיליון), Fomo (24.9 מיליון), Pacifica (18 מיליון), Axiom (16.2 מיליון)\n• נפח המסחר ב־DEX עלה ב־23% ל־197.2 מיליארד דולר, ונתח השוק של סולאנה במסחר ספוט ב־DEX הגיע ל־36%\n• היצע הסטייבלקוינים נסגר ברבעון על 16.8 מיליארד דולר; השיא של 17.51 מיליארד נרשם בספטמבר לפי דוח קרן סולאנה",
    "full_en": "\"The growth is just parabolic all across the board.\"\n\nAlmost $300 million in app revenue in Q3, up 50% from Q2. $197 billion in spot DEX volume. Stablecoin market cap at $17.51 billion, another ATH. Almost 2,900 projects submitted for Colosseum's Frontier.\n\n- @paarugsethi\n\nThe rest of the post is a video, so there's no more text to show. Solana posted no further replies of its own in the thread.\n\nFor context, the Messari/Blockworks Q3 report (October 15) says:\n• App revenue was $299.1M, up 48% from Q2's $201.5M\n• Top apps: Pump ($121.5M), Collector Crypt ($35.0M), Fomo ($24.9M), Pacifica ($18.0M), Axiom ($16.2M)\n• DEX volume rose 23% to $197.2B, and Solana's share of spot DEX volume across chains reached 36%\n• Stablecoin supply ended the quarter at $16.8B; the $17.51B record came in September, per the Solana Foundation's roundup"
+  },
+  {
+   "id": "spacex-starlink-ukraine-levin-diesel-sanctions",
+   "topic": "spacex",
+   "date": "2026-11-02T08:52:00Z",
+   "url": "https://x.com/i/trending/2117176726832947271",
+   "source": "X",
+   "he": {
+    "title": "חששות סביב סטארלינק באוקראינה אחרי הקלת הסנקציות על רוסיה",
+    "summary": "חבר הקונגרס מייק לוין הצביע על התזמון: ההאטה של סטארלינק באוקראינה הגיעה ימים אחרי שטראמפ השעה סנקציות על סולר רוסי. מאסק הסביר שמדובר בסגירת פרצה אחרי שימוש התקפי לכאורה של אוקראינה."
+   },
+   "en": {
+    "title": "Concerns rise over Starlink's role in Ukraine amid a US–Russia policy shift",
+    "summary": "Rep. Mike Levin pointed to the timing: Starlink slowdowns in Ukraine came days after Trump suspended Russian diesel sanctions. Musk explained it as closing a loophole after Ukraine's alleged offensive use."
+   },
+   "full_he": "הצבא האוקראיני נתקל פתאום בהאטות של סטארלינק, זמן קצר אחרי שארה\"ב הקלה בסנקציות על סולר רוסי, והרחפנים נותרו מקורקעים וההגנה פגיעה.\n\n• חבר הקונגרס מייק לוין הצביע על התזמון: טראמפ הודיע בתחילת אוקטובר 2026 על עסקת סולר עם פוטין, שמשעה את הסנקציות עד אפריל 2027 כדי להוריד את מחירי הדלק. כמה ימים אחר כך SpaceX הגבילה את סטארלינק באוקראינה למהירות תנועה של 160 קמ\"ש, מה ששיבש את פעולות הרחפנים.\n• מאסק הסביר שמדובר בסגירת פרצה אחרי שימוש התקפי לכאורה של אוקראינה, ופוטין שיבח את מאסק כ\"גאון אמיתי\" וציין קשר הדוק בנושא טכנולוגיית לוויינים.\n• המתיחות עם האיחוד האירופי סביב הרגולציה על X וסטארלינק גם היא הסלימה, כש-SpaceX ביטלה לפי הדיווח מועדי שיגור של לוויינים אירופיים על רקע איומי קנסות, מה שמעורר חשש משליטה פרטית בטכנולוגיה צבאית קריטית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Ukraine's military suddenly faced Starlink slowdowns just after the U.S. eased Russian diesel sanctions, leaving drones grounded and defenses vulnerable.\n\n• Rep. Mike Levin pointed to the timing: Trump announced a diesel deal with Putin in early October 2026, suspending sanctions through April 2027 to cut fuel prices, followed days later by SpaceX limiting Starlink speeds in Ukraine to 160 km/h, disrupting drone operations.\n• Musk explained it as closing a loophole after Ukraine's alleged offensive use, while Putin praised Musk as a 'real genius' and noted close contact on satellite tech.\n• Tensions also escalated with the EU over X regulations and Starlink, as SpaceX revoked European satellite launch slots amid fine threats, raising alarms about private control of critical military tech.\n\nThis is a summary of the X news story (its opening hook and summary)."
   },
   {
    "id": "ternus-first-earnings-test-memory-costs",
@@ -280,23 +348,6 @@
    },
    "full_he": "כמעט 1.7 מיליון כתובות בסולאנה מחזיקות עכשיו מניות וקרנות סל מטוקנות, עלייה חדה שמונעת מגישה קלה על הבלוקצ'יין לשמות כמו אנבידיה וטסלה.\n\n• נתונים של Blockworks מראים שמספר המחזיקים במניות מטוקנות על סולאנה עלה בהדרגה לאורך 2025, ואז זינק בקיץ ובסתיו 2026. המניות אחראיות ליותר מ-90% מהצמיחה האחרונה.\n• קראקן פתחה את המגמה כשהשיקה את xStocks על סולאנה, עם מסחר 24/7 במניות ובמדדים אמריקאיים, בזכות המהירות והעמלות הנמוכות של הרשת.\n• קולות בקהילה, כמו Trader Coach K, רואים בזה איתות גדול לצמיחה של הקריפטו, והחשבון הרשמי של סולאנה מצהיר שהטוקניזציה היא בלתי נמנעת. השיחה ברשת אופטימית לגבי החיבור בין הפיננסים המסורתיים למסחר על הבלוקצ'יין.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "Nearly 1.7 million Solana addresses now hold tokenized stocks and ETFs, a sharp climb fueled by easy on-chain access to names like Nvidia and Tesla.\n\n• Data from Blockworks reveals holder counts for tokenized equities on Solana rose steadily through 2025 before skyrocketing in summer and fall 2026, with equities driving over 90 percent of recent growth.\n• Kraken kicked things off by launching xStocks on Solana, offering 24/7 trading for U.S. stocks and indexes thanks to the network's speed and low fees.\n• Community voices like Trader Coach K call it a huge signal for crypto growth, while the official Solana account declares tokenization inevitable, sparking optimistic chatter about blending traditional finance with on-chain trading.\n\nThis is a summary of the X news story (its opening hook and summary)."
-  },
-  {
-   "id": "spacex-starlink-ukraine-levin-diesel-sanctions",
-   "topic": "spacex",
-   "date": "2026-11-02T08:52:00Z",
-   "url": "https://x.com/i/trending/2117176726832947271",
-   "source": "X",
-   "he": {
-    "title": "חששות סביב סטארלינק באוקראינה אחרי הקלת הסנקציות על רוסיה",
-    "summary": "חבר הקונגרס מייק לוין הצביע על התזמון: ההאטה של סטארלינק באוקראינה הגיעה ימים אחרי שטראמפ השעה סנקציות על סולר רוסי. מאסק הסביר שמדובר בסגירת פרצה אחרי שימוש התקפי לכאורה של אוקראינה."
-   },
-   "en": {
-    "title": "Concerns rise over Starlink's role in Ukraine amid a US–Russia policy shift",
-    "summary": "Rep. Mike Levin pointed to the timing: Starlink slowdowns in Ukraine came days after Trump suspended Russian diesel sanctions. Musk explained it as closing a loophole after Ukraine's alleged offensive use."
-   },
-   "full_he": "הצבא האוקראיני נתקל פתאום בהאטות של סטארלינק, זמן קצר אחרי שארה\"ב הקלה בסנקציות על סולר רוסי, והרחפנים נותרו מקורקעים וההגנה פגיעה.\n\n• חבר הקונגרס מייק לוין הצביע על התזמון: טראמפ הודיע בתחילת אוקטובר 2026 על עסקת סולר עם פוטין, שמשעה את הסנקציות עד אפריל 2027 כדי להוריד את מחירי הדלק. כמה ימים אחר כך SpaceX הגבילה את סטארלינק באוקראינה למהירות תנועה של 160 קמ\"ש, מה ששיבש את פעולות הרחפנים.\n• מאסק הסביר שמדובר בסגירת פרצה אחרי שימוש התקפי לכאורה של אוקראינה, ופוטין שיבח את מאסק כ\"גאון אמיתי\" וציין קשר הדוק בנושא טכנולוגיית לוויינים.\n• המתיחות עם האיחוד האירופי סביב הרגולציה על X וסטארלינק גם היא הסלימה, כש-SpaceX ביטלה לפי הדיווח מועדי שיגור של לוויינים אירופיים על רקע איומי קנסות, מה שמעורר חשש משליטה פרטית בטכנולוגיה צבאית קריטית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
-   "full_en": "Ukraine's military suddenly faced Starlink slowdowns just after the U.S. eased Russian diesel sanctions, leaving drones grounded and defenses vulnerable.\n\n• Rep. Mike Levin pointed to the timing: Trump announced a diesel deal with Putin in early October 2026, suspending sanctions through April 2027 to cut fuel prices, followed days later by SpaceX limiting Starlink speeds in Ukraine to 160 km/h, disrupting drone operations.\n• Musk explained it as closing a loophole after Ukraine's alleged offensive use, while Putin praised Musk as a 'real genius' and noted close contact on satellite tech.\n• Tensions also escalated with the EU over X regulations and Starlink, as SpaceX revoked European satellite launch slots amid fine threats, raising alarms about private control of critical military tech.\n\nThis is a summary of the X news story (its opening hook and summary)."
   },
   {
    "id": "solana-tokenization-inevitable-krakenpro",
@@ -11482,23 +11533,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "spacex-boost-mobile-echostar-talks",
-   "topic": "spacex",
-   "date": "2026-11-02T11:08:22Z",
-   "url": "https://x.com/i/trending/2117211258222936561",
-   "source": "X",
-   "he": {
-    "title": "ספייסאקס בשיחות לרכישת בוסט מובייל או לשיתוף פעולה סלולרי",
-    "summary": "לפי הוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על גישה לרשת שלה מהבעלים EchoStar, צעד שייתן לה בבת אחת מיליוני מנויים ותשתית קרקעית. שום דבר עדיין לא אושר."
-   },
-   "en": {
-    "title": "SpaceX in talks to buy Boost Mobile or partner for cell service",
-    "summary": "The Washington Post reports SpaceX has discussed buying Boost Mobile or getting network access from its owner EchoStar, which would give it millions of subscribers and ground infrastructure overnight. Nothing is confirmed yet."
-   },
-   "full_en": "SpaceX eyes a quick entry into the U.S. cellphone world by teaming up with Boost Mobile, blending Starlink satellites with everyday cell towers for coverage everywhere.\n\nThe Washington Post reports SpaceX has discussed buying Boost Mobile or gaining network access from its owner EchoStar, giving the rocket company millions of subscribers and ground infrastructure overnight. Boost serves about 7 million customers using leased capacity from AT&T and T-Mobile, and this hybrid setup could pair it with Starlink for seamless service from cities to remote spots. Talks follow a prior $17 billion spectrum deal and a recent meeting between Elon Musk and EchoStar's Charlie Ergen, though nothing is confirmed yet. Observers see it as a smart path into the $235 billion wireless market without starting from zero.\n\nThis is an X story summarizing posts on X; it may change over time.",
-   "full_he": "ספייסאקס מכוונת לכניסה מהירה לשוק הסלולר האמריקאי דרך שיתוף פעולה עם בוסט מובייל, שישלב את לווייני סטארלינק עם אנטנות סלולריות רגילות לכיסוי בכל מקום.\n\nלפי דיווח בוושינגטון פוסט, ספייסאקס שוחחה על רכישת בוסט מובייל או על קבלת גישה לרשת מהבעלים שלה, EchoStar. מהלך כזה ייתן לחברת הטילים בבת אחת מיליוני מנויים ותשתית קרקעית. לבוסט כ־7 מיליון לקוחות, והיא פועלת על קיבולת שהיא שוכרת מ־AT&T ומ־T-Mobile. השילוב הזה עם סטארלינק יכול לאפשר שירות רציף מהערים ועד אזורים מרוחקים.\n\nהשיחות מגיעות אחרי עסקת תדרים קודמת בשווי 17 מיליארד דולר ואחרי פגישה לאחרונה בין אילון מאסק לצ'רלי ארגן מ־EchoStar, אבל עדיין שום דבר לא אושר. משקיפים רואים בזה דרך חכמה להיכנס לשוק התקשורת האלחוטית, ששוויו 235 מיליארד דולר, בלי להתחיל מאפס.\n\nזהו סיכום של X לפוסטים ב־X, והוא עשוי להשתנות עם הזמן."
   }
  ]
 }
