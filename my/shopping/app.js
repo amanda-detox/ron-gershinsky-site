@@ -433,8 +433,8 @@
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the top
-    if (isChk(cur)) act = act.filter(function (x) { return !!x.ck; }).concat(act.filter(function (x) { return !x.ck; })); // checklist (Ron 1.11): checked items on top, unchecked below; drag order kept within each group
-    done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
+    var chkM = isChk(cur); if (chkM) { done = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist (Ron 2.11): checked items in their own section ABOVE the unchecked ones; drag order kept within each section
+    if (!chkM) done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); }); // Ron's order (☰ drag), last checked goes to the very bottom
     var keep = null, ae = document.activeElement;
     var pk = null; if (ae && ae.getAttribute && ae.getAttribute("data-price")) pk = { id: ae.getAttribute("data-price"), v: ae.value, s: ae.selectionStart, e: ae.selectionEnd, bad: ae.classList.contains("bad") }; // a price being typed survives a re-render (sync)
     if (editing && ae && ae.getAttribute && ae.getAttribute("data-edit") === editing) keep = { v: ae.value, s: ae.selectionStart, e: ae.selectionEnd };
@@ -446,7 +446,7 @@
     $("active-card").hidden = !act.length;
     $("done").innerHTML = done.map(row).join("");
     $("done-wrap").hidden = !done.length;
-    $("done-h").textContent = t("bought");
+    $("done-h").textContent = chkM ? "✓ " + (document.documentElement.lang !== "en" ? "סומנו" : "Checked") + " (" + done.length + ")" : t("bought");
     sumNow();
     $("empty").hidden = !!(act.length || done.length);
     if (editing) {
@@ -768,7 +768,7 @@
       onDrop: function (ids) { setItemOrder(ids); changed(); } });
     sortable({ list: $("done"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id", // "נבחר" items: same ☰ drag
       canStart: function () { return !editing; },
-      onDrop: function (ids) { setItemOrder(ids, "dord"); changed(); } });
+      onDrop: function (ids) { setItemOrder(ids, isChk(curTab()) ? "ord" : "dord"); changed(); } });
     on("add-form", "submit", function (e) {
       e.preventDefault(); var i = $("add-input"), pi = $("add-price"), ni = $("add-note"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
