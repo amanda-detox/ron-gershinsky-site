@@ -403,7 +403,7 @@
   }
   function panel(sec) {
     showP = hasPrices(sec); showC = isChk(sec);
-    var act = live(sec).sort(byOrder); if (showC) act = act.filter(function (x) { return !x.ck; }).concat(act.filter(function (x) { return !!x.ck; })); // checked items go to the bottom
+    var act = live(sec).sort(byOrder), cked = []; if (showC) { cked = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist (Ron 2.11): checked items in their own section ABOVE the unchecked ones
     var done = []; // one list only (Ron 31.10)
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
@@ -411,8 +411,9 @@
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
         '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "") +  // selected ("נבחר") group sits ABOVE the open items (Ron 30.10)
 
+      (cked.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "סומנו" : "Checked") + ' <span class="ckn">(' + cked.length + ')</span></div><div class="card listcard ckcard"><ul class="list" id="list-ck">' + cked.map(row).join("") + "</ul></div>" : "") +
       (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(row).join("") + "</ul></div>"
-        : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") + '<div class="sum" id="sum" hidden></div>';
+        : cked.length ? "" : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") + '<div class="sum" id="sum" hidden></div>';
   }
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
@@ -771,7 +772,7 @@
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var h = e.target.closest(".ihandle");
       if (h) { // drag handle: lift now
-        var ul = li.parentNode; if (!ul || (ul.id !== "list-active" && ul.id !== "list-done")) return;
+        var ul = li.parentNode; if (!ul || (ul.id !== "list-active" && ul.id !== "list-done" && ul.id !== "list-ck")) return;
         e.preventDefault(); reset(); hideHint();
         idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: true, f: ul.id === "list-done" ? "dord" : "order" };
         idrag.sorter = makeSorter([].slice.call(ul.children), li, e.clientY, null);
