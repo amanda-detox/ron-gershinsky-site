@@ -80,6 +80,7 @@
   .bar-in { max-width: 820px; margin: 0 auto; display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; flex-wrap: nowrap; }
   .pop { display: flex; align-items: center; gap: 6px; min-width: 0; }
   .ico { flex: none; height: 40px; min-width: 40px; padding: 0 10px; border-radius: 999px; border: 1px solid rgba(230,195,106,0.45); background: rgba(59,130,246,0.12); color: #e6c36a; font-size: 17px; display: inline-flex; align-items: center; gap: 5px; }
+  .ico img { width: 22px; height: 22px; display: block; }
   .ico[aria-expanded="true"] { background: rgba(59,130,246,0.3); }
   .ico-n { font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; }
   .ico-n:empty { display: none; }
@@ -236,7 +237,7 @@
         <div class="vstep" id="master" dir="ltr" style="--c: #3b82f6"><button type="button" class="vm">−</button><input type="text" class="vdb" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off"><button type="button" class="vp">+</button></div>
       </div>
     </div>
-    <button type="button" class="ico" id="mix-btn" aria-expanded="false">💾</button>
+    <button type="button" class="ico" id="mix-btn" aria-expanded="false"><img src="save-icon.svg?v=1" alt="" width="22" height="22" style="display:block"></button>
     <button type="button" class="stopall" id="stopall" hidden></button>
   </div>
 </div>
@@ -932,7 +933,7 @@
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=26", { scope: "./" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=27", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
