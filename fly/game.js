@@ -17,15 +17,15 @@ const T = {
     title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
     start: 'לטס פליי', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
-    helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, החלקה מחליפה טבעת (כוחות, תעופה, אווירה), לחיצה ארוכה מראה את השם. אוספים ניצוצות ועוברים בטבעות הזהובות.',
-    helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C V: ארבעת הכלים בטבעת, Q / E: החלפת טבעת. Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
+    helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. אוספים ניצוצות ועוברים בטבעות הזהובות.',
+    helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C: האצה, צילום, יום / לילה. גרירה בעכבר לפנייה (רגישות בתפריט). Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     tools: ['האצה', 'מגן', 'מגנט', 'האטת זמן', 'סלטה', 'נחיתה והליכה', 'שובל אור – נקודות כפולות', 'חבר למסע', 'מצב צילום', 'מוזיקה', 'צבע השובל', 'יום / לילה'],
     rings: ['כוחות', 'תעופה', 'אווירה'], on: 'פועל', off: 'כבוי', day: 'יום', night: 'לילה', saved: 'התמונה נשמרה',
     landing: 'נוחתים…', hover: 'ריחוף במקום', takeoff: 'ממריאים!', trailNames: ['כחול', 'זהב', 'לבן', 'סגול', 'ורוד', 'קשת'],
-    buddy: 'בחרו חבר למסע', tutorial: '🎓 הדרכה', tSkip: 'דלג', tNext: 'הבא', tDone: 'יאללה!',
+    buddy: 'בחרו חבר למסע', mouseSens: 'רגישות עכבר', tutorial: '🎓 הדרכה', tSkip: 'דלג', tNext: 'הבא', tDone: 'יאללה!',
     tJoy: 'גוררים כאן כדי לעוף', tPow: 'נוגעים בכוח כדי להפעיל', tSwipe: 'מחליקים כדי להחליף טבעת', tFlight: 'טבעת תעופה: סלטה, נחיתה ועוד', tAtmo: 'טבעת אווירה: צילום, מוזיקה ועוד', tCam: 'כאן מחליפים זווית. תהנה!',
     photoHint: 'גוררים כדי לסובב',
-    keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C V כלים · Q E טבעת · Esc תפריט',
+    keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C כלים · Esc תפריט',
     copy: '© כל הזכויות שמורות לחברת היליפיי בע"מ 2026',
     nogl: 'הדפדפן הזה לא תומך בתלת־ממד (WebGL). כדאי לנסות ב־Chrome או ב־Safari מעודכנים.',
     ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
@@ -38,15 +38,15 @@ const T = {
     title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
     start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
-    helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, swipe to switch ring (Powers, Flight, Atmosphere), long-press to see the name. Collect sparks and fly through the golden rings.',
-    helpDesk: 'Arrows or WASD: turn, climb and dive. Space up, Shift down, 1/2/3 or F for speed. Z X C V: the four tools on the ring, Q / E: switch ring. Esc for the menu. Collect sparks and fly through the golden rings.',
+    helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. Collect sparks and fly through the golden rings.',
+    helpDesk: 'Arrows or WASD: turn, climb and dive. Space up, Shift down, 1/2/3 or F for speed. Z X C: boost, photo, day / night. Drag the mouse to steer (sensitivity in the menu). Esc for the menu. Collect sparks and fly through the golden rings.',
     tools: ['Speed boost', 'Shield', 'Magnet', 'Slow time', 'Roll', 'Land & walk', 'Light trail – double points', 'Companion', 'Photo mode', 'Music', 'Trail color', 'Day / night'],
     rings: ['Powers', 'Flight', 'Atmosphere'], on: 'On', off: 'Off', day: 'Day', night: 'Night', saved: 'Photo saved',
     landing: 'Landing…', hover: 'Hovering in place', takeoff: 'Take off!', trailNames: ['Blue', 'Gold', 'White', 'Purple', 'Pink', 'Rainbow'],
-    buddy: 'Companion', tutorial: '🎓 Tutorial', tSkip: 'Skip', tNext: 'Next', tDone: "Let's fly!",
+    buddy: 'Companion', mouseSens: 'Mouse sensitivity', tutorial: '🎓 Tutorial', tSkip: 'Skip', tNext: 'Next', tDone: "Let's fly!",
     tJoy: 'Drag here to fly', tPow: 'Tap a power to use it', tSwipe: 'Swipe to switch rings', tFlight: 'Flight ring: roll, land and more', tAtmo: 'Atmosphere: photo, music and more', tCam: 'Change the view here. Enjoy!',
     photoHint: 'Drag to look around',
-    keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C V tools · Q E ring · Esc menu',
+    keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C tools · Esc menu',
     copy: '© 2026 Healify Ltd. All rights reserved.',
     nogl: 'This browser does not support 3D (WebGL). Please try an up-to-date Chrome or Safari.',
     ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
@@ -889,7 +889,7 @@ function updateCollectibles(t, dt, playing) {
       continue;
     }
     const d = r.position.distanceTo(player.pos);
-    if (playing && d < 3.6 + (powerOn('magnet') ? 1.5 : 0)) { const cm = comboHit(); addScore((powerOn('double') ? 10 : 5) * cm); u.flash = 0.6; flash(cm > 1 ? T[lang].combo + ' x' + cm + '!' : pick(T[lang].ring)); if (powerOn('double')) burst(14, 0xffd76a); }
+    if (playing && d < 3.6 + (usedMouse ? 0.6 + mouseSens * 0.12 : 0)) { const cm = comboHit(); addScore((powerOn('double') ? 10 : 5) * cm); u.flash = 0.6; flash(cm > 1 ? T[lang].combo + ' x' + cm + '!' : pick(T[lang].ring)); if (powerOn('double')) burst(14, 0xffd76a); }
     else if (playing && d < 60 && powerOn('magnet')) { r.position.lerp(player.pos, damp(1.2, dt)); faceRing(r); }
     else if (d > 340) { placeAhead(r.position, 120, 260, 120, true); faceRing(r); }
   }
@@ -905,8 +905,9 @@ const TI = Object.fromEntries(TOOLS.map((x, i) => [x.id, i]));
 const pw = TOOLS.map(() => ({ left: 0, cd: 0 }));
 const powerOn = (id) => pw[TI[id]].left > 0;
 let ringIdx = 0;
+const KEEP_TOOLS = [0, 8, 11]; // boost (speed up), photo, day/night — the rest were removed
 function useTool(i) {
-  if (state !== 'play') return false;
+  if (state !== 'play' || KEEP_TOOLS.indexOf(i) < 0) return false;
   const P = TOOLS[i], L = T[lang];
   if (P.dur) {
     if (pw[i].cd > 0) return false;
@@ -939,7 +940,7 @@ function updatePowerBtns() {
   $('hud').classList.toggle('slowfx', powerOn('slow'));
 }
 function setRing(r, show) {
-  const was = ringIdx; ringIdx = ((r % 3) + 3) % 3;
+  const was = ringIdx; ringIdx = 0; show = false;
   document.querySelectorAll('#powers .ring').forEach((el, k) => { el.classList.toggle('cur', k === ringIdx); el.classList.toggle('prev', k === (ringIdx + 2) % 3); });
   document.querySelectorAll('#powers .dot').forEach((el, k) => el.classList.toggle('on', k === ringIdx));
   if (show !== false) { const l = $('ringLbl'); l.textContent = T[lang].rings[ringIdx]; l.classList.add('show'); clearTimeout(setRing.t); setRing.t = setTimeout(() => l.classList.remove('show'), 1300); }
@@ -985,7 +986,7 @@ const magRing = new THREE.Mesh(new THREE.TorusGeometry(1, 0.035, 6, 48), new THR
 const magRing2 = magRing.clone(); magRing2.material = magRing.material.clone(); fx.add(magRing, magRing2);
 const TRAIL_COLORS = [0x6f9cff, 0xffd76a, 0xffffff, 0xb07cff, 0xff8fc8, -1]; // blue, gold, white, purple, pink, rainbow (no green)
 const RAINBOW = [0xff6b6b, 0xffa94d, 0xffe066, 0x74c0fc, 0x6f7bff, 0xb07cff, 0xff8fc8];
-let trailIdx = clamp(parseInt(store.get('rg-fly-trail', '0'), 10) || 0, 0, TRAIL_COLORS.length - 1);
+let trailIdx = 0; // trail color tool removed: always blue
 const trailColor = () => TRAIL_COLORS[trailIdx] >= 0 ? TRAIL_COLORS[trailIdx] : RAINBOW[(time * 6 | 0) % RAINBOW.length];
 const trailCss = () => TRAIL_COLORS[trailIdx] >= 0 ? '#' + TRAIL_COLORS[trailIdx].toString(16).padStart(6, '0') : 'conic-gradient(#ff6b6b,#ffe066,#74c0fc,#b07cff,#ff8fc8,#ff6b6b)';
 const TRAIL = [];
@@ -1038,7 +1039,7 @@ function toggleLand() {
 const groundH = () => { const u = player.model.userData; return u.stand ? u.size * 1.0 : u.size * 0.6; };
 
 /* ---- companion ---- */
-let buddyOn = store.get('rg-fly-buddy2', '1') === '1', buddy = null, buddyChar = parseInt(store.get('rg-fly-buddy-char', '-1'), 10);
+let buddyOn = false, buddy = null, buddyChar = parseInt(store.get('rg-fly-buddy-char', '-1'), 10);
 const buddyYaw = { v: 0 }, buddyPrev = new THREE.Vector3();
 function buddyIdx() { let i = buddyChar >= 0 && buddyChar < CHAR_BUILD.length ? buddyChar : (charIdx + 4) % CHAR_BUILD.length; if (i === charIdx) i = (i + 1) % CHAR_BUILD.length; return i; }
 function buildBuddy() {
@@ -1080,7 +1081,7 @@ function applyLighting() {
 }
 
 /* ---- music: soft generated tunes per world (Web Audio, no files), off by default ---- */
-let musicOn = store.get('rg-fly-music', '0') === '1', actx = null, mOut = null, mTimer = 0, mNext = 0, mStep = 0;
+let musicOn = false, actx = null, mOut = null, mTimer = 0, mNext = 0, mStep = 0;
 const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68] };
 const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
 function tone(f, t0, dur, vol, type) {
@@ -1146,9 +1147,6 @@ $('phSave').addEventListener('click', () => {
 const TUT = [
   { sel: '#joy', key: 'tJoy', done: 'joy' },
   { sel: '#powers', key: 'tPow', done: 'tool', ring: 0 },
-  { sel: '#powers', key: 'tSwipe', done: 'ringchg', ring: 0, rings: true },
-  { sel: '#powers', key: 'tFlight', done: 'tool', ring: 1 },
-  { sel: '#powers', key: 'tAtmo', done: null, ring: 2 },
   { sel: '#hud .r2', key: 'tCam', done: null },
   { sel: '#hud .r1', key: 'help', done: null }
 ];
@@ -1211,7 +1209,7 @@ addEventListener('keydown', (e) => {
     if (e.code === 'Digit2') setSpeed(1);
     if (e.code === 'Digit3') setSpeed(2);
     if (e.code === 'KeyF') setSpeed((player.level + 1) % 3);
-    const pk = ['KeyZ', 'KeyX', 'KeyC', 'KeyV'].indexOf(e.code); if (pk >= 0) useTool(ringIdx * 4 + pk);
+    const pk = ['KeyZ', 'KeyX', 'KeyC', 'KeyV'].indexOf(e.code); if (pk >= 0 && pk < 3) useTool(KEEP_TOOLS[pk]);
     if (e.code === 'KeyQ') setRing(ringIdx - 1); if (e.code === 'KeyE') setRing(ringIdx + 1);
     if (/^(Arrow|Space)/.test(e.code)) e.preventDefault();
   } else if (state === 'menu' && e.code === 'Enter' && document.activeElement === document.body) $('startBtn').click();
@@ -1219,7 +1217,7 @@ addEventListener('keydown', (e) => {
 addEventListener('keyup', (e) => { keys[e.code] = false; });
 addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
 const joy = $('joy'), knob = joy.querySelector('i'), touchEl = $('touch');
-let joyId = null, mouseId = null, mouseX0 = 0, mouseY0 = 0;
+let usedMouse = !isTouch, joyId = null, mouseId = null, mouseX0 = 0, mouseY0 = 0;
 function joyRest() { knob.style.transform = ''; joy.classList.remove('on'); input.jx = input.jy = 0; }
 /* Fixed joystick: the knob follows the finger inside the ring; analog in every direction (right/left = turn, up/down = climb/dive). */
 function joySet(e) {
@@ -1244,10 +1242,10 @@ joy.addEventListener('pointerup', joyEnd); joy.addEventListener('pointercancel',
 /* Mouse drag anywhere else on the screen still steers on a computer. */
 touchEl.addEventListener('pointerdown', (e) => {
   if (state !== 'play' || e.pointerType !== 'mouse') return;
-  mouseId = e.pointerId; mouseX0 = e.clientX; mouseY0 = e.clientY; touchEl.setPointerCapture(e.pointerId);
+  usedMouse = true; mouseId = e.pointerId; mouseX0 = e.clientX; mouseY0 = e.clientY; touchEl.setPointerCapture(e.pointerId);
 });
 touchEl.addEventListener('pointermove', (e) => {
-  if (e.pointerId === mouseId) { input.mx = clamp((e.clientX - mouseX0) / 140, -1, 1); input.my = clamp((e.clientY - mouseY0) / 140, -1, 1); }
+  if (e.pointerId === mouseId) { const dv = 260 - mouseSens * 22; input.mx = clamp((e.clientX - mouseX0) / dv, -1, 1); input.my = clamp((e.clientY - mouseY0) / dv, -1, 1); }
 });
 const endPtr = (e) => { if (e.pointerId === mouseId) { mouseId = null; input.mx = input.my = 0; } };
 touchEl.addEventListener('pointerup', endPtr); touchEl.addEventListener('pointercancel', endPtr);
@@ -1370,7 +1368,6 @@ function applyLang() {
   TOOLS.forEach((P, i) => { const b = $('pw' + i); b.setAttribute('aria-label', L.tools[i]); });
   document.querySelectorAll('#powers .ring').forEach((el, k) => el.setAttribute('aria-label', L.rings[k]));
   document.querySelectorAll('#powers .dot').forEach((el, k) => el.setAttribute('aria-label', L.rings[k]));
-  $('buddySel').innerHTML = L.chars.map((n, i) => `<option value="${i}">${CHAR_EMOJI[i]} ${n}</option>`).join(''); $('buddySel').value = String(buddyIdx());
   $('tutSkip').textContent = L.tSkip; $('tutBtn').textContent = L.tutorial; $('phHint').textContent = L.photoHint;
   if (tutStep >= 0) tutShow();
   if (!$('installHint').classList.contains('hidden')) $('installHint').innerHTML = instHint();
@@ -1390,7 +1387,11 @@ const onMul = (e) => { speedMul = parseFloat(e.target.value); store.set('rg-fly-
 $('charSel').addEventListener('change', (e) => { setChar(parseInt(e.target.value, 10)); e.target.blur(); });
 $('mulSel2').addEventListener('change', onMul);
 $('camSel').addEventListener('change', onCam); $('camSel2').addEventListener('change', onCam);
-$('buddySel').addEventListener('change', (e) => { buddyChar = parseInt(e.target.value, 10); store.set('rg-fly-buddy-char', String(buddyChar)); buddyOn = true; store.set('rg-fly-buddy2', '1'); buildBuddy(); e.target.blur(); });
+/* mouse sensitivity (computer only): 1–10, stored in rg-fly-mouse, default 7 ≈ as easy as touch */
+let mouseSens = clamp(parseInt(store.get('rg-fly-mouse', '7'), 10) || 7, 1, 10);
+$('mouseSens').value = String(mouseSens); $('mouseSensV').textContent = String(mouseSens);
+if (isTouch && !matchMedia('(pointer: fine)').matches) $('mouseRow').hidden = true;
+$('mouseSens').addEventListener('input', (e) => { mouseSens = clamp(parseInt(e.target.value, 10) || 7, 1, 10); $('mouseSensV').textContent = String(mouseSens); store.set('rg-fly-mouse', String(mouseSens)); });
 /* in-game icon pickers: 📷 view, 🗺️ world, 💨 pace. Each opens a readable list built from the hidden select. */
 const PICK_SELS = { camPick: 'camSel2', envPick: 'envSel2', mulPick: 'mulSel2' };
 function closePick() { $('pickMenu').classList.add('hidden'); }

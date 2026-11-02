@@ -210,6 +210,24 @@
   #menu .titlebar h1 { display:none; }
   #menu .panel { max-height:none; overflow:visible; }
   @media (max-height:700px) { #menu .sets select, #menu .mrows .tbtn.inst { padding:7px 10px; } #menu .sets { gap:4px; } #menu .mrows { gap:4px; } #menu .btn.main { margin:6px auto 2px; } }
+  /* v15: compact web menu, no sideways scroll, mouse sensitivity row */
+  html,body,.overlay,#menu.overlay,#menu .panel,#hud { overflow-x:hidden; max-width:100vw; }
+  #menu .panel { width:min(560px, 100%); box-sizing:border-box; padding:8px 10px 6px; }
+  #menu .sets { gap:4px; }
+  #menu .sets label { font-size:13px; gap:6px; }
+  #menu .sets label > .ic { font-size:15px; }
+  #menu .sets select { font-size:14px; padding:6px 8px; }
+  #menu .mrows { gap:4px; margin-top:4px; }
+  #menu .mrows .tbtn.inst { font-size:14px; padding:6px 8px; }
+  #menu .btn.main { font-size:17px; padding:8px 34px; margin:6px auto 2px; }
+  #menu .foot { font-size:11px; margin-top:2px; }
+  #menu.overlay { padding-top:calc(max(8px, env(safe-area-inset-top)) + 50px); }
+  .msw { flex:1; display:flex; align-items:center; gap:8px; min-width:0; }
+  .msw input { flex:1; min-width:0; accent-color:#f5c84a; }
+  .msw b { color:var(--gold); min-width:1.4em; text-align:center; }
+  #powers .dots { display:none; }
+  @media (min-width:900px) { #menu .sets { grid-template-columns:1fr 1fr; } #menu .mrows { flex-direction:row; } #menu .mrows .tbtn.inst { flex:1; } }
+  #menu .rgtb.rgtb-pin { left:0 !important; right:0 !important; width:auto !important; max-width:100vw; box-sizing:border-box; }
 </style>
 </head>
 <body data-rg-account-none>
@@ -237,25 +255,12 @@
   <div id="combo"></div>
   <div id="joy" class="hidden" role="application" aria-label="joystick"><span class="ar u">▲</span><span class="ar d">▼</span><span class="ar l">◀</span><span class="ar r">▶</span><i></i></div>
   <div id="powers" class="hidden">
-    <div class="ring" data-ring="0" role="group">
-      <button class="pw" id="pw0" data-i="0" style="--ang:45deg"><span class="tm"></span><span class="ic">⚡</span><span class="cd"></span></button>
-      <button class="pw" id="pw1" data-i="1" style="--ang:135deg"><span class="tm"></span><span class="ic">🛡️</span><span class="cd"></span></button>
-      <button class="pw" id="pw2" data-i="2" style="--ang:225deg"><span class="tm"></span><span class="ic">🧲</span><span class="cd"></span></button>
-      <button class="pw" id="pw3" data-i="3" style="--ang:315deg"><span class="tm"></span><span class="ic">⏳</span><span class="cd"></span></button>
+    <div class="ring cur" data-ring="0" role="group">
+      <button class="pw" id="pw0" data-i="0" style="--ang:0deg"><span class="tm"></span><span class="ic">⚡</span><span class="cd"></span></button>
+      <button class="pw" id="pw8" data-i="8" style="--ang:240deg"><span class="tm"></span><span class="ic">📸</span><span class="cd"></span></button>
+      <button class="pw" id="pw11" data-i="11" style="--ang:120deg"><span class="tm"></span><span class="ic">🌗</span><span class="cd"></span></button>
     </div>
-    <div class="ring" data-ring="1" role="group">
-      <button class="pw" id="pw4" data-i="4" style="--ang:45deg"><span class="tm"></span><span class="ic">🌀</span><span class="cd"></span></button>
-      <button class="pw" id="pw5" data-i="5" style="--ang:135deg"><span class="tm"></span><span class="ic">🛬</span><span class="cd"></span></button>
-      <button class="pw" id="pw6" data-i="6" style="--ang:225deg"><span class="tm"></span><span class="ic">✨</span><span class="cd"></span></button>
-      <button class="pw" id="pw7" data-i="7" style="--ang:315deg"><span class="tm"></span><span class="ic">🤝</span><span class="cd"></span></button>
-    </div>
-    <div class="ring" data-ring="2" role="group">
-      <button class="pw" id="pw8" data-i="8" style="--ang:45deg"><span class="tm"></span><span class="ic">📸</span><span class="cd"></span></button>
-      <button class="pw" id="pw9" data-i="9" style="--ang:135deg"><span class="tm"></span><span class="ic">🎵</span><span class="cd"></span></button>
-      <button class="pw trail" id="pw10" data-i="10" style="--ang:225deg"><span class="tm"></span><span class="ic">🌈</span><span class="cd"></span></button>
-      <button class="pw" id="pw11" data-i="11" style="--ang:315deg"><span class="tm"></span><span class="ic">🌗</span><span class="cd"></span></button>
-    </div>
-    <div class="dots"><button class="dot on" data-r="0"></button><button class="dot" data-r="1"></button><button class="dot" data-r="2"></button></div>
+    <div id="pwGone" hidden><button class="pw" id="pw1" data-i="1" hidden></button><button class="pw" id="pw2" data-i="2" hidden></button><button class="pw" id="pw3" data-i="3" hidden></button><button class="pw" id="pw4" data-i="4" hidden></button><button class="pw" id="pw5" data-i="5" hidden></button><button class="pw" id="pw6" data-i="6" hidden></button><button class="pw" id="pw7" data-i="7" hidden></button><button class="pw" id="pw9" data-i="9" hidden></button><button class="pw" id="pw10" data-i="10" hidden></button></div>
   </div>
   <div id="ringLbl"></div>
   <div class="keys hidden" id="keysHint" data-t="keys"></div>
@@ -290,7 +295,7 @@
       <label><i class="ic" aria-hidden="true">🧑</i><span data-t="choose"></span><select id="charSel"></select></label>
       <label><i class="ic" aria-hidden="true">🗺️</i><span data-t="world"></span><select id="envSel"></select></label>
       <label><i class="ic" aria-hidden="true">📷</i><span data-t="view"></span><select id="camSel"></select></label>
-      <label><i class="ic" aria-hidden="true">🤝</i><span data-t="buddy"></span><select id="buddySel"></select></label>
+      <label id="mouseRow"><i class="ic" aria-hidden="true">🖱️</i><span data-t="mouseSens"></span><span class="msw"><input type="range" id="mouseSens" min="1" max="10" step="1"><b id="mouseSensV"></b></span></label>
     </div>
     <div class="mrow mrows"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="tutBtn"></button><button class="tbtn inst" id="lbBtn"></button></div>
     <button class="btn main" id="startBtn" data-t="start"></button>
@@ -305,7 +310,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=14"></script>
+<script type="module" src="game.js?v=15"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 
 </body>
