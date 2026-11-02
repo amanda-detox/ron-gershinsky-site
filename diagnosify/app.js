@@ -1,52 +1,105 @@
 /* Diagnosify (דיאגנוסיפיי): free self-screening checks. Content is in data.js. */
 (function () {
   "use strict";
-  var LANG_KEY = "rg-lang", THEME_KEY = "rg-diagnosify-theme";
+  var LANG_KEY = "rg-lang", THEME_KEY = "rg-diagnosify-theme", DONE_KEY = "rg-diagnosify-done";
   var L = {
     he: {
       doc: "דיאגנוסיפיי · Diagnosify", back: "← חזרה לאתר", soon: "יצורף בקרוב",
       dark: "לילה", light: "בהיר", toLight: "מעבר למצב בהיר", toDark: "מעבר למצב לילה",
-      install: "📲 התקנה למסך הבית",
+      install: "📲 התקנה למסך הבית", newtab: "נפתח בלשונית חדשה", mark: "סימון שביצעתי",
+      doneOf: function (n, total) { return n + " מתוך " + total + " בוצעו"; },
       ios: "באייפון או באייפד: לוחצים על כפתור השיתוף (□↑) בתחתית Safari, ואז בוחרים „הוסף למסך הבית”.",
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”."
     },
     en: {
       doc: "Diagnosify · דיאגנוסיפיי", back: "← Back to site", soon: "Coming soon",
       dark: "Night", light: "Light", toLight: "Switch to light mode", toDark: "Switch to night mode",
-      install: "📲 Add to home screen",
+      install: "📲 Add to home screen", newtab: "opens in a new tab", mark: "Mark as done",
+      doneOf: function (n, total) { return n + " of " + total + " done"; },
       ios: "On iPhone or iPad: tap the Share button (□↑) at the bottom of Safari, then choose “Add to Home Screen”.",
       other: "Open your browser menu (⋮) and choose “Install app” or “Add to Home screen”."
     }
   };
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg>';
+  var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
 
   var D = window.DIAG_DATA || { APP_NAME: { he: "דיאגנוסיפיי", en: "Diagnosify" }, subtitle: {}, checks: [] };
   function $(id) { return document.getElementById(id); }
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
   var lang = get(LANG_KEY) === "en" ? "en" : "he";
   var theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
   function t() { return L[lang]; }
   function nm(o) { if (typeof o === "string") return o; return (o && (o[lang] || o.he || o.en)) || ""; }
 
   var openId = null;
+  var done = {};
+  try {
+    var saved = JSON.parse(get(DONE_KEY) || "null");
+    if (saved && typeof saved === "object" && !Array.isArray(saved)) done = saved;
+  } catch (e) {}
+  function saveDone() { set(DONE_KEY, JSON.stringify(done)); }
+  function renderCount() {
+    var list = D.checks || [], n = list.filter(function (c) { return !!done[c.id]; }).length, el = $("checks-cnt");
+    if (!el) return;
+    el.textContent = n + "/" + list.length;
+    el.setAttribute("aria-label", t().doneOf(n, list.length));
+  }
+  function markHtml(c) {
+    return '<label class="mark"><input type="checkbox"' + (done[c.id] ? " checked" : "") + ' aria-label="' +
+      esc(t().mark + ": " + nm(c.title)) + '"><span class="box" aria-hidden="true">' + CHECK + "</span></label>";
+  }
   function renderChecks() {
     var main = $("checks"); main.innerHTML = "";
     (D.checks || []).forEach(function (c, i) {
       var el = document.createElement("section");
       var isOpen = openId === c.id;
-      el.className = "chk" + (isOpen ? " open" : ""); el.id = "chk-" + c.id;
-      var body = nm(c.content) ? '<p style="margin:0">' + esc(nm(c.content)) + "</p>" : '<div class="soon">' + esc(t().soon) + "</div>";
-      el.innerHTML = '<button type="button" aria-expanded="' + isOpen + '" aria-controls="p-' + esc(c.id) + '">' +
-        '<span class="num" aria-hidden="true">' + (i + 1) + '</span><span class="ttl">' + esc(nm(c.title)) +
-        '</span><span class="chev" aria-hidden="true">▼</span></button>' +
-        '<div class="panel" id="p-' + esc(c.id) + '"' + (isOpen ? "" : " hidden") + ">" + body + "</div>";
-      el.querySelector("button").onclick = function () { openId = openId === c.id ? null : c.id; renderChecks(); };
+      var url = safeUrl(c.url);
+      var text = nm(c.content);
+      var showPanel = !url || !!text;
+      el.className = "chk" + (done[c.id] ? " done" : "") + (isOpen && showPanel ? " open" : "");
+      el.id = "chk-" + c.id;
+      var num = '<span class="num" aria-hidden="true">' + (i + 1) + "</span>";
+      var head;
+      if (url) {
+        head = '<div class="row">' + markHtml(c) + '<a class="ttl" href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' +
+          num + '<span class="name">' + esc(nm(c.title)) + '</span><span class="sr"> (' + esc(t().newtab) +
+          ')</span><span class="ar" aria-hidden="true">↗</span></a>' +
+          (text ? '<button type="button" class="tog" aria-expanded="' + isOpen + '" aria-controls="p-' + esc(c.id) + '" aria-label="' + esc(nm(c.title)) + '"><span class="chev" aria-hidden="true">▼</span></button>' : "") +
+          "</div>";
+      } else {
+        head = '<div class="row">' + markHtml(c) +
+          '<button type="button" aria-expanded="' + isOpen + '" aria-controls="p-' + esc(c.id) + '">' + num +
+          '<span class="ttl">' + esc(nm(c.title)) + '</span><span class="chev" aria-hidden="true">▼</span></button></div>';
+      }
+      var panel = "";
+      if (showPanel) {
+        var body = text ? '<p style="margin:0">' + esc(text) + "</p>" : '<div class="soon">' + esc(t().soon) + "</div>";
+        panel = '<div class="panel" id="p-' + esc(c.id) + '"' + (isOpen ? "" : " hidden") + ">" + body + "</div>";
+      }
+      el.innerHTML = head + panel;
+      var box = el.querySelector(".mark input");
+      if (box) box.addEventListener("change", function () {
+        if (box.checked) done[c.id] = 1; else delete done[c.id];
+        saveDone();
+        el.classList.toggle("done", !!done[c.id]);
+        renderCount();
+      });
+      var btn = el.querySelector("button");
+      if (btn) btn.onclick = function () { openId = openId === c.id ? null : c.id; renderChecks(); };
       main.appendChild(el);
     });
+    renderCount();
   }
+  window.DIAG_ON_DONE = function (raw) {
+    var d = null;
+    try { d = JSON.parse(raw || "null"); } catch (e) {}
+    done = d && typeof d === "object" && !Array.isArray(d) ? d : {};
+    renderChecks();
+  };
 
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
@@ -71,6 +124,7 @@
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("intro").textContent = nm(D.intro);
+    $("checks-h").textContent = nm(D.checksTitle);
     $("disc").textContent = nm(D.disclaimer);
     applyTheme(); renderChecks();
   }
