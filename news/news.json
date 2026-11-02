@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-02T23:29:39+02:00",
+ "updated": "2026-11-03T00:19:09+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "medicalmedium-bells-palsy-trigeminal-viral",
+   "topic": "medicalmedium",
+   "date": "2026-11-02T22:10:06Z",
+   "url": "https://x.com/MedicalMedium/status/2117378746290467091",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים",
+    "summary": "מדיקל מדיום טוען שנגיפים ממשפחת ההרפס, כמו שלבקת חוגרת, יכולים לפגוע בעצבי הפנים ולגרום לשיתוק בל ולנוירלגיה טריגמינלית, ומעודד את מי שסובל שנים לא לוותר על הקלה. זו טענה שלו; בפוסט עצמו הוא מודה שלא בכל מקרה יש סיבה נגיפית מאושרת."
+   },
+   "en": {
+    "title": "Medical Medium: Bell's palsy and trigeminal neuralgia are viral-caused",
+    "summary": "Medical Medium claims herpes-family viruses such as shingles can affect the facial nerves and drive Bell's palsy and trigeminal neuralgia, and urges long-time sufferers not to give up on relief. That is his claim; the post itself notes that not every case has a confirmed viral cause."
+   },
+   "full_he": "שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים\n\nנוירלגיה טריגמינלית יכולה להיות אכזרית: הכאב, ההתכווצות של עצבי הגולגולת, אי־הנוחות בשיניים ובחניכיים. לדבריו, הוא שומע על זה מאנשים שסובלים כבר שנים.\n\nהוא מזכיר שדיבר בעבר על כך ששלבקת חוגרת ונגיפים אחרים ממשפחת ההרפס יכולים להשפיע על העצבים, כולל עצבי הפנים, וכמה חשוב להבין עם מה אתה מתמודד.\n\nשלבקת חוגרת יכולה לגרום לכאב עצבי מתמשך, וזיהומים נגיפיים מסוימים יכולים לתרום לשיתוק בפנים. אבל לא בכל מקרה של נוירלגיה טריגמינלית או שיתוק בל יש סיבה נגיפית מאושרת.\n\nוהנה מה שהוא רוצה שתדע: גם אם אתה נאבק כבר הרבה זמן, אל תוותר על חיפוש הקלה. תמיכה בבריאות העצבים וקבלת הטיפול הנכון חשובות.\n\nבסוף הפוסט הוא מפנה להורדה חינמית על תסמינים ומצבים נוירולוגיים, להורדה חינמית על שלבקת חוגרת, לספר שלו עם מידע מעמיק על ריפוי שלבקת חוגרת ולשידור החי המלא ביוטיוב. שאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: הקשר בין נגיף ההרפס לשיתוק בל נחקר ברפואה המקובלת, אבל הכותרת \"נגרמים מנגיפים\" היא טענה גורפת שלו; לנוירלגיה טריגמינלית יש בדרך כלל סיבות אחרות (כמו לחץ של כלי דם על העצב), ואין לראות בכך ייעוץ רפואי.",
+   "full_en": "Bell's Palsy & Trigeminal Neuralgia Are Viral-Caused\n\nTrigeminal neuralgia can be brutal. The pain, the tightening of the cranial nerves, the discomfort in your teeth and gums. It's something I hear about from people who have been suffering for years.\n\nI've talked about how shingles and other herpes-family viruses can affect the nerves, including the facial nerves, and how important it is to understand what you're dealing with.\n\nShingles can cause lasting nerve pain, and certain viral infections can contribute to facial paralysis. But not every case of trigeminal neuralgia or Bell's palsy has a confirmed viral cause.\n\nAnd here's what I want you to know.\n\nEven when you've been struggling for a long time, don't give up on finding relief. Supporting nerve health and getting the right treatment matters.\n\nThe post ends with links to a free download on neurological symptoms and conditions, a free shingles download, his book with in-depth shingles healing info and the full YouTube livestream. The rest of the post is a video, so there's no more text to show.\n\nNote: a herpes-virus link to Bell's palsy is studied in mainstream medicine, but the headline \"viral-caused\" is his sweeping claim; trigeminal neuralgia usually has other causes (such as a blood vessel pressing on the nerve), and this is not medical advice."
+  },
+  {
+   "id": "grokbot-musk-high-costs-800k-paid-users",
+   "topic": "grokbot",
+   "date": "2026-11-02T22:12:23Z",
+   "url": "https://x.com/i/trending/2117377186600796390",
+   "source": "X",
+   "he": {
+    "title": "מאסק: הפעלת Grok Bot יקרה מדי, אחרי צמיחה ל־800 אלף משתמשים משלמים",
+    "summary": "משתמשי Grok Bot הגיעו למגבלה השבועית ימים לפני הזמן, במיוחד אחרי העומס של ליל כל הקדושים, ומאסק אישר שעלות ההפעלה גבוהה מדי ביחס להכנסות. לפי הסיכום ב־X, השירות צמח ל־800 אלף משתמשים משלמים בשבוע, המוצר הכי מהיר בצמיחה בתולדות SpaceX."
+   },
+   "en": {
+    "title": "Musk flags high costs of serving Grok Bot after growth to 800K paid users",
+    "summary": "Grok Bot users hit weekly limits days early, especially after Halloween spikes, and Musk confirmed serving the bot has become too expensive relative to income. Per X's summary, it grew to 800,000 paid weekly users, SpaceX's fastest-growing product ever."
+   },
+   "full_he": "משתמשי Grok Bot הגיעו למגבלה השבועית שלהם ימים לפני הזמן, במיוחד אחרי העומס של ליל כל הקדושים, ואילון מאסק חשף שהעלויות של השירות עולות על ההכנסות.\n\n• מאסק אישר ב־X שהפעלת Grok Bot נעשתה יקרה באופן לא בר־קיימא ביחס להכנסות, אחרי צמיחה מהירה ל־800 אלף משתמשים משלמים בשבוע, המוצר שצמח הכי מהר בתולדות SpaceX.\n• לפי הסיכום, חטיבת הבינה העל־אנושית (Super Intelligence), שכוללת את הבוט, מייצרת 52% מההכנסות של SpaceX ורווח של 431 מיליון דולר, אבל כוח המחשוב הכבד שדרוש למשימות רקע מעמיס על המנויים הנוכחיים.\n• משתמשים מתוסכלים מבקשים איפוס של המגבלות ומחפשים פתרונות עוקפים, כמו ייעול השגרות האוטומטיות שלהם או הסכמה לשימוש בנתונים שלהם לאימון בתמורה לרענון המגבלה, בזמן שמאסק ממליץ להתייחס לבוט כמו לחבר צוות שאפתני.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
+   "full_en": "Grok Bot users hit weekly limits days early, especially after Halloween spikes, prompting Elon Musk to reveal the service's costs outpace revenue.\n\n• Musk confirmed on X that serving Grok Bot has become unsustainably expensive relative to income, following explosive growth to 800,000 paid weekly users, SpaceX's fastest product ever.\n• The Super Intelligence division, including the bot, drives 52 percent of SpaceX revenue and a $431 million profit, but heavy compute for background tasks strains current subscriptions.\n• Frustrated users seek resets and workarounds like optimizing routines or opting into data training for limit refreshes, as Musk endorses treating the bot like a high-ambition teammate.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
+  },
   {
    "id": "brecka-strength-training-over-30",
    "topic": "brecka",
