@@ -2,7 +2,7 @@
   "name": "קלוקיפיי · Clockify",
   "short_name": "קלוקיפיי",
   "description": "שעון מעורר עם רשימות משימות · Alarm clock with task lists",
-  "start_url": "./",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
