@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T04:09:51+02:00",
+ "updated": "2026-11-03T05:51:23+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,74 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-musk-dkmitc-progressive-call",
+   "topic": "grokbot",
+   "date": "2026-11-03T03:48:10Z",
+   "url": "https://x.com/elonmusk/status/2117463822332314036",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק משתף: Grok Bot התקשר לחברת ביטוח במקום המשתמש",
+    "summary": "מאסק כתב \"Grok @Bot\" וציטט את המשתמש דילן, שנתן לבוט להשוות ביטוחי רכב ואפילו להתקשר בעצמו ל־Progressive כדי לברר פרטים על כיסוי שמשות, בזמן שהוא אסף את הילדים מבית הספר."
+   },
+   "en": {
+    "title": "Musk shares a user whose Grok Bot phoned an insurer for him",
+    "summary": "Musk wrote \"Grok @Bot\", quoting user Dylan, who had the Bot shop for car insurance and even phone Progressive itself to ask about glass coverage while he picked his kids up from school."
+   },
+   "full_he": "אילון מאסק כתב: \"Grok @Bot\", וציטט פוסט של המשתמש דילן (‎@dkmitc).\n\nהפוסט שהוא ציטט:\n\n\"נתתי ל־Grok Bot שלי לעשות סקר שוק לביטוח רכב חדש. הוא לא מצא מידע על כיסוי השמשות של Progressive, וכל בעלי הטסלה יודעים שהחלפת שמשה קדמית יכולה לעלות ביוקר. אז ביקשתי מ־Grok Bot להתקשר ל־Progressive ולהשיג לי עוד מידע, וכל זה בזמן שאספתי את הילדים מבית הספר, בלי שהייתי צריך לדבר עם אף אחד.\n\nהנה התמליל וההקלטה האמיתית של השיחה. פרטים אישיים צופצפו וחלקים קוצרו בשביל הזמן. יש עוד מה לשפר, אבל הוא עשה את העבודה.\n\nאני פשוט בהלם!\"\n\nהפוסט של דילן ציטט פוסט קודם שלו: \"משתמש ב־Grok Bot כדי להתקשר ל־Progressive ולקבל עוד מידע לפני שאני קונה ביטוח חדש.\" בצילום המסך המצורף רואים את כרטיס השיחה באפליקציה: \"שיחת טלפון · בשיחה · מתקשר ל־Progressive\", הודעת הפתיחה של Progressive (\"שלום, תודה שהתקשרת ל־Progressive. השיחה עשויה להיות מוקלטת או מנוטרת\"), ותשובת הבוט: \"התקשרתי ל־Progressive. אשלח לך את התשובות כשהשיחה תסתיים.\"\n\nשאר הפוסט של דילן הוא סרטון (התמליל וההקלטה של השיחה), ולכן אין עוד טקסט להציג. למאסק לא היו תגובות המשך משלו בשרשור.",
+   "full_en": "Elon Musk wrote: \"Grok @Bot\", quoting a post by user Dylan (@dkmitc).\n\nThe quoted post:\n\n\"I had my Grok Bot shop around new Auto Insurance. It couldn't find info about Progressive's Glass coverage and as all Tesla owners know Windshield replacements can be pricey. I had Grok Bot call Progressive and get additional information for me all while I picked my kids up from school without me ever having to talk to a person.\n\nHere is the transcript and actual recording from the call. Personal info was bleeped and some parts cut for time. While there's some improvements that can be made it got the job done.\n\nMy mind is thoroughly blown!\"\n\nDylan's post quoted an earlier post of his: \"Using Grok Bot to make calls to Progressive for additional info before I buy new insurance.\" The attached screenshot shows the in-app call card: \"Phone call · In call · Calling Progressive\", Progressive's greeting (\"Hello, thank you for calling Progressive. Your call may be recorded or monitored.\"), and the Bot's reply: \"I've placed the call to Progressive. I'll send you the answers when it ends.\"\n\nThe rest of Dylan's post is a video (the call transcript and recording), so there's no more text to show. Musk had no follow-up replies of his own in the thread."
+  },
+  {
+   "id": "musk-wow-eu-budget-farm-subsidies",
+   "topic": "musk",
+   "date": "2026-11-03T02:56:53Z",
+   "url": "https://x.com/elonmusk/status/2117450915875852697",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"וואו\" על כך ש־31% מתקציב האיחוד האירופי הולכים לסובסידיות חקלאות",
+    "summary": "מאסק הגיב \"וואו\" לפוסט של ‎@Rothmus, שלפיו כשליש מהתקציב הרב־שנתי של האיחוד האירופי מוקדש לסובסידיות חקלאות, לעומת 1.2% בלבד לביטחון ו־2% לגבולות."
+   },
+   "en": {
+    "title": "Musk: \"Wow\" at 31% of the EU budget going to farm subsidies",
+    "summary": "Musk replied \"Wow\" to a post by @Rothmus saying nearly a third of the EU's long-term budget goes to farm subsidies, versus just 1.2% for defense and 2% for borders."
+   },
+   "full_he": "אילון מאסק כתב: \"וואו\", וציטט פוסט של ‎@Rothmus.\n\nהפוסט שהוא ציטט:\n\n\"31% מתקציב האיחוד האירופי הם סובסידיות לחקלאות.\n\nביטחון מקבל 1.2%.\nגבולות מקבלים 2%.\n\nהמענקים לחקלאים גדולים פי 25 ממה שמקבל הביטחון ופי 15 ממה שמקבלים הגבולות.\n\nאירופה מתמודדת עם מלחמה יבשתית באגף המזרחי שלה ועם שנים של הגירה בלתי מבוקרת. והתגובה היא מכונת רווחה ענקית, בזמן שהביטחון האמיתי מוזנח.\n\nהם לא מתכוננים לעשור הבא.\"\n\nהתרשים המצורף: \"כמעט שליש מתקציב האיחוד האירופי הולך לסובסידיות חקלאות\" – התקציב הרב־שנתי 2021–2027, ‏1.21 טריליון אירו:\n• סיוע אזורי ולכידות: 427 מיליארד אירו (35%)\n• סובסידיות חקלאות (CAP): ‏378 מיליארד אירו (31%)\n• מחקר, דיגיטל ושוק אחיד: 150 מיליארד אירו (12%)\n• סיוע חוץ ושכנות: 111 מיליארד אירו (9%)\n• מנהלת האיחוד: 82 מיליארד אירו (7%)\n• הגירה וגבולות: 26 מיליארד אירו (2%)\n• דיג, סביבה ואקלים: 22 מיליארד אירו (2%)\n• ביטחון והגנה: 15 מיליארד אירו (1.2%)\n\nמקור לפי התרשים: הנציבות האירופית, MFF 2021–27 (מחירים שוטפים, ללא NextGenerationEU). למאסק לא היו תגובות המשך משלו בשרשור.",
+   "full_en": "Elon Musk wrote: \"Wow\", quoting a post by @Rothmus.\n\nThe quoted post:\n\n\"31% of the EU budget is farm subsidies.\n\nDefense gets 1.2%.\nBorders get 2%.\n\nFarm handouts get 25x what defense gets and 15x what borders get.\n\nEurope faces a land war on its eastern flank and years of uncontrolled migration. The response is a giant welfare machine, while actual security is ignored.\n\nThey're not preparing for the next decade.\"\n\nThe attached chart: \"Nearly a Third of the EU Budget Goes to Farm Subsidies\" – EU long-term budget 2021-2027, €1.21 trillion:\n• Regional aid & cohesion: €427B (35%)\n• Farm subsidies (CAP): €378B (31%)\n• Research, digital & single market: €150B (12%)\n• Foreign aid & neighbors: €111B (9%)\n• EU administration: €82B (7%)\n• Migration & borders: €26B (2%)\n• Fisheries, environment & climate: €22B (2%)\n• Security & defense: €15B (1.2%)\n\nSource per the chart: European Commission, MFF 2021-27 (current prices, excl. NextGenerationEU). Musk had no follow-up replies of his own in the thread."
+  },
+  {
+   "id": "mccullough-cause-unknown-deaths-stinchfield",
+   "topic": "mccullough",
+   "date": "2026-11-03T03:21:56Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117457222678487296",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה טוען: מקרי מוות מהחיסונים מוסתרים כ\"סיבה לא ידועה\"",
+    "summary": "בקטע מהפודקאסט של סטינצ'פילד טוען ד\"ר פיטר מקולה שלפני המגפה פחות מ־5% ממקרי המוות נרשמו כבעלי סיבה לא ידועה, ושמאז החיסונים מקרי מוות שנגרמו מטיפול רפואי מוסתרים כ\"סיבה לא ידועה\" או \"מוות טבעי\". זו טענתו, והיא מנוגדת לעמדת רשויות הבריאות."
+   },
+   "en": {
+    "title": "McCullough claims vaccine deaths are hidden as \"cause unknown\"",
+    "summary": "In a clip from Stinchfield the Podcast, Dr. Peter McCullough claims fewer than 5% of pre-pandemic deaths had an unknown cause, and that since the vaccine rollout, treatment-caused deaths are hidden as \"cause unknown\" or \"natural causes\". This is his claim and runs counter to health authorities' position."
+   },
+   "full_he": "ד\"ר פיטר מקולה כתב:\n\n\"לפני המגפה, פחות מ־5% ממקרי המוות היו באמת תעלומה, כלומר יוחסו לסיבה לא ידועה. מאז הפצת חיסוני הקורונה, מקרי מוות שנגרמו מטיפול רפואי (יאטרוגניים) מוסתרים במרמה כ'סיבה לא ידועה' או כ'מוות מסיבות טבעיות'. באדיבות הפודקאסט של סטינצ'פילד.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: זו טענתו של מקולה. רשויות הבריאות המרכזיות והמחקרים הגדולים לא מצאו הסתרה שיטתית של מקרי מוות מחיסוני הקורונה, והם רואים בחיסונים בטוחים לרוב האנשים.",
+   "full_en": "Dr. Peter McCullough wrote:\n\n\"Less than 5% of deaths before the pandemic were truly a mystery—attributed to unknown cause. Since the rollout of the COVID-19 vaccines, iatrogenic death has been fraudulently concealed as 'cause unknown' or 'death due to natural causes.' Courtesy Stinchfield the Podcast.\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is McCullough's claim. Major health authorities and large studies have not found systematic concealment of COVID-19 vaccine deaths, and consider the vaccines safe for most people."
+  },
+  {
+   "id": "spacex-starfall-microgravity-capsule",
+   "topic": "spacex",
+   "date": "2026-11-03T01:59:58Z",
+   "url": "https://x.com/i/trending/2117391934562197637",
+   "source": "X",
+   "he": {
+    "title": "ספייסאקס משיקה את Starfall: קפסולה לניסויים במיקרו־כבידה",
+    "summary": "Starfall היא קפסולה בלתי מאוישת שנושאת עד טונה של מטען למסלול נמוך לשבועות של מחקר במיקרו־כבידה, למשל בתרופות ובחומרים, ונוחתת באוקיינוס השקט. שתי טיסות הדגמה כבר בוצעו ולקוחות הזמינו משימות ל־2028."
+   },
+   "en": {
+    "title": "SpaceX launches Starfall, a capsule for microgravity research",
+    "summary": "Starfall is an uncrewed capsule carrying up to 1,000 kg to low-Earth orbit for weeks of microgravity work in fields like pharma and materials, splashing down in the Pacific. Two demo flights are done and customers have booked 2028 missions."
+   },
+   "full_he": "תאר לעצמך לגדל גבישי חלבון מושלמים בחלל כדי להאיץ תרופות לסרטן כמו קיטרודה. שירות Starfall החדש של ספייסאקס הופך את זה לשגרה עבור חוקרים וחברות.\n\n• Starfall היא קפסולה בלתי מאוישת שנושאת עד 1,000 ק\"ג של מטען למסלול נמוך סביב כדור הארץ, לשבועות של עבודה במיקרו־כבידה במחקר ביו־רפואי, תרופות ומדע החומרים.\n• היא משוגרת כרגע בטיסות משותפות של Falcon 9, ובהמשך גם על Starship, ואז נוחתת באוקיינוס השקט ונאספת.\n• שתי טיסות הדגמה כבר בוצעו, ביוני ובאוקטובר 2026.\n• לקוחות כמו Redwire ו־Space Cargo Unlimited כבר הזמינו משימות ל־2028, סימן לעניין מסחרי גובר בתרופות ובחומרים מתקדמים שמיוצרים בחלל ומשתפרים לעומת תהליכים על הקרקע.\n\nזהו סיכום של פוסטים ב־X, והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Imagine growing perfect protein crystals in space to speed up cancer drugs like Keytruda. SpaceX's new Starfall service makes that routine reality for researchers and companies.\n\n• Starfall is an uncrewed capsule that carries up to 1,000 kg of payload into low-Earth orbit for weeks of microgravity work in biomedical research, pharmaceuticals and materials science.\n• It launches on Falcon 9 rideshares now and Starship later, then splashes down in the Pacific for recovery.\n• Two demo flights were already completed, in June and October 2026.\n• Customers like Redwire and Space Cargo Unlimited have booked 2028 missions, marking growing commercial interest in space-made medicines and advanced materials that improve on Earth-bound processes.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "grokbot-musk-improvements-whats-new-mattyp",
    "topic": "grokbot",
