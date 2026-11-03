@@ -190,11 +190,7 @@
   .app img { width: 3rem; height: 3rem; border-radius: 0.875rem; box-shadow: 0 2px 8px rgba(0,0,0,0.35); }
   .app-name { font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
   .app-sep { display: none; }
-  /* hide-app "−" (top-left of each tile) + hidden apps list */
-  .app-li { position: relative; }
-  .app-hide { position: absolute; top: 4px; left: 4px; z-index: 2; width: 24px; height: 24px; padding: 0; border-radius: 50%; border: 1.5px solid #d4af37; background: #0b2a6b; color: #f5d27a; font: 700 16px/1 system-ui, sans-serif; cursor: pointer; opacity: 0.8; }
-  .app-hide:hover, .app-hide:focus-visible { opacity: 1; outline: none; box-shadow: 0 0 0 2px rgba(212,175,55,0.5); }
-  .dnd-ghost .app-hide { display: none; }
+  #app-grid .app, #more-list .app { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
   .hidden-apps { margin-top: 1rem; text-align: center; }
   .hidden-toggle { background: none; border: 0; color: var(--muted); font: inherit; font-size: 0.8125rem; text-decoration: none; cursor: pointer; padding: 0.4rem; }
   .hidden-list[hidden] { display: none !important; }
@@ -203,9 +199,34 @@
   .hidden-list img { border-radius: 0.5rem; }
   .hid-name { flex: 1; text-align: start; font-size: 0.875rem; }
   .hid-restore { border: 1.5px solid #d4af37; background: #0b2a6b; color: #f5d27a; border-radius: 999px; padding: 0.3rem 0.75rem; font: inherit; font-size: 0.8125rem; cursor: pointer; }
-  /* drag and drop (signed in): long-press / press-and-move; lifted ghost + gold dashed drop slot */
-  html.dnd-on #app-grid li[data-href], html.dnd-on #more-list li[data-href] { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  /* reorder mode (להזיז): tiles wiggle; drag to a new spot; סיום leaves the mode */
+  html.dnd-on #app-grid li[data-href] .app, html.dnd-on #more-list li[data-href] .app { animation: tile-wiggle 0.32s ease-in-out infinite; }
+  html.dnd-on #app-grid li:nth-child(even) .app, html.dnd-on #more-list li:nth-child(even) .app { animation-delay: 0.12s; }
+  html.dnd-on .app:hover { transform: none; }
+  @keyframes tile-wiggle { 0%, 100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    html.dnd-on #app-grid li[data-href] .app, html.dnd-on #more-list li[data-href] .app { animation: none; }
+  }
   html.dnd-on #more-list { min-height: 3.5rem; }
+  html.dnd-on { touch-action: none; }
+  .dnd-done { position: fixed; z-index: 80; left: 50%; bottom: calc(0.9rem + env(safe-area-inset-bottom)); transform: translateX(-50%);
+    min-height: 2.75rem; padding: 0 1.4rem; border-radius: 999px; cursor: pointer; font: 700 1rem/1 "Heebo", system-ui, sans-serif;
+    color: #fff6dc; background: linear-gradient(180deg, #1d4fb8, #143a8c); border: 1px solid #e3bd5b; box-shadow: 0 6px 18px rgba(8, 22, 60, 0.35); }
+  .dnd-done[hidden] { display: none !important; }
+  .tile-menu { position: fixed; z-index: 10000; min-width: 13.5rem; max-width: calc(100vw - 16px); padding: 2.15rem 0.4rem 0.4rem; margin: 0;
+    direction: rtl; text-align: start; color: #fff6dc; background: linear-gradient(180deg, #163a86, #0b1a3f);
+    border: 1px solid #e3bd5b; border-radius: 14px; box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45); }
+  .tile-menu[hidden] { display: none !important; }
+  .tile-menu button { display: block; width: 100%; margin: 0; padding: 0.7rem 0.85rem; border: 0; border-radius: 10px; background: transparent;
+    color: #f5d27a; font: 700 0.98rem/1.3 "Heebo", system-ui, sans-serif; text-align: start; cursor: pointer; }
+  .tile-menu button:hover, .tile-menu button:focus-visible { background: rgba(227, 189, 91, 0.18); outline: none; }
+  .tile-menu-x { position: absolute !important; top: 6px; inset-inline-end: 6px; width: 2rem !important; height: 2rem; padding: 0 !important;
+    border-radius: 50% !important; border: 1px solid #e3bd5b !important; background: #0b2a6b !important; color: #f5d27a !important;
+    font-size: 1.15rem !important; line-height: 1 !important; text-align: center !important; }
+  html[data-theme="light"] .tile-menu { background: #fff8e6; color: #0b1f4d; border-color: #c9a227; }
+  html[data-theme="light"] .tile-menu button { color: #0b2a6b; }
+  html[data-theme="light"] .tile-menu button:hover, html[data-theme="light"] .tile-menu button:focus-visible { background: rgba(201, 162, 39, 0.2); }
+  html[data-theme="light"] .tile-menu-x { background: #0b2a6b !important; color: #f5d27a !important; }
   .dnd-place { opacity: 1; border-radius: 14px; outline: 2px dashed #f5c542; outline-offset: 2px; background: rgba(245, 197, 66, 0.10); }
   .dnd-place > * { opacity: 0.25; }
   .dnd-ghost { position: fixed; left: 0; top: 0; z-index: 9999; list-style: none; pointer-events: none; margin: 0; border-radius: 14px;
@@ -374,6 +395,14 @@
     <ul class="app-grid" id="app-grid"></ul>
     <section class="more-section" id="more-apps" hidden><h2 class="more-head" id="more-title"></h2><ul class="app-grid more-grid" id="more-list"></ul></section>
     <div class="hidden-apps" id="hidden-apps" hidden><button type="button" class="hidden-toggle" id="hidden-toggle"></button><ul class="hidden-list" id="hidden-list" hidden></ul></div>
+    <button type="button" id="dnd-done" class="dnd-done" hidden>סיום</button>
+    <div id="tile-menu" class="tile-menu" hidden dir="rtl" role="menu" aria-label="פעולות על האפליקציה">
+      <button type="button" class="tile-menu-x" id="tile-menu-x" aria-label="סגירה">×</button>
+      <button type="button" data-act="move">להזיז</button>
+      <button type="button" data-act="hide">להסתיר</button>
+      <button type="button" data-act="pin">להצמיד למעלה</button>
+      <button type="button" data-act="newtab">פתיחה בחלון חדש</button>
+    </div>
     <details class="more-apps metrics-box" id="metrics"><summary><span aria-hidden="true">📊</span><span id="metrics-title"></span><span class="chev" aria-hidden="true"></span></summary><div class="mgrid" id="mgrid"></div></details>
   </section>
   <section class="apps priv-apps" id="priv-apps" aria-labelledby="priv-title" hidden>
@@ -410,7 +439,7 @@
 </main>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <script src="shared/rg-account.js"></script>
-<script src="home-dnd.js?v=33"></script>
+<script src="home-dnd.js?v=34"></script>
 <script>
 var CONTACT = "detoxify.ai@proton.me";
 // Site owner (Ron) by Appwrite user ID: only this account sees "My private apps" on this page.
@@ -497,21 +526,11 @@ function appName(app, he) {
   return name;
 }
 
-/* ---------- Hide apps from the main screen (Ron 2026-11-01): "−" on each tile; restore from "Hidden apps (N)" ---------- */
+/* ---------- Hide apps (Ron 2026-11-01, menu 2026-11-03): long-press / right-click → להסתיר; restore from "Hidden apps (N)" ---------- */
 var HIDE_KEY = "rg-home-hidden";
 function userHidden() { try { var v = JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } }
 function isUserHidden(href) { return userHidden().indexOf(href) !== -1; }
 function setUserHidden(href, on) { var l = userHidden().filter(function (h) { return h !== href; }); if (on) l.push(href); try { localStorage.setItem(HIDE_KEY, JSON.stringify(l)); } catch (e) {} renderApps(lang === "he"); }
-function addHideBtn(li, app, he) {
-  li.classList.add("app-li");
-  var b = document.createElement("button");
-  b.type = "button"; b.className = "app-hide"; b.textContent = "−";
-  var t = (he ? "הסתרת " : "Hide ") + (he ? app.he : app.en);
-  b.title = t; b.setAttribute("aria-label", t);
-  b.addEventListener("pointerdown", function (e) { e.stopPropagation(); });
-  b.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); setUserHidden(app.href, true); });
-  li.appendChild(b);
-}
 function renderHiddenApps(he, set) {
   var wrap = document.getElementById("hidden-apps"); if (!wrap) return;
   var all = (set.top || []).concat(set.rest || []).filter(function (a) { return a && !a.sep && !a.hidden; });
@@ -535,21 +554,22 @@ function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
   var set = ownerApps() || publicApps();
-  if (window.RGHomeDnd) set = RGHomeDnd.apply(set); // signed-in user's own order (drag and drop)
-  var dnd = !!(window.RGHomeDnd && RGHomeDnd.enabled());
+  if (window.RGHomeDnd) set = RGHomeDnd.apply(set); // saved order (להזיז / להצמיד למעלה), synced with the account when signed in
+  var dnd = !!(window.RGHomeDnd && RGHomeDnd.moving());
   document.documentElement.classList.toggle("dnd-on", dnd);
+  var doneBtn = document.getElementById("dnd-done"); if (doneBtn) doneBtn.hidden = !dnd;
   set.top.forEach(function (app) {
     if (app.hidden || (!app.sep && isUserHidden(app.href))) return;
     if (app.sep) { var hr = document.createElement("li"); hr.className = "app-sep"; hr.setAttribute("role", "separator"); grid.appendChild(hr); return; }
     var li = document.createElement("li");
-    if (dnd) li.setAttribute("data-href", app.href);
+    li.setAttribute("data-href", app.href);
     var a = document.createElement("a");
     a.className = "app";
     a.href = app.href;
     var img = document.createElement("img");
     img.src = app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy"; img.draggable = false;
     a.appendChild(img); a.appendChild(appName(app, he)); // Ron 2026-11-01: icon + name only, no description
-    li.appendChild(a); addHideBtn(li, app, he);
+    li.appendChild(a);
     grid.appendChild(li);
   });
   var box = document.getElementById("more-apps"), list = document.getElementById("more-list");
@@ -558,19 +578,90 @@ function renderApps(he) {
   var rest = set.rest.filter(function (a) { return a && !a.hidden && !a.sep && !isUserHidden(a.href); });
   rest.forEach(function (app) {
     var li = document.createElement("li");
-    if (dnd) li.setAttribute("data-href", app.href);
+    li.setAttribute("data-href", app.href);
     var a = document.createElement("a");
     a.className = "app";
     a.href = app.href;
     var img = document.createElement("img");
     img.src = app.icon; img.alt = ""; img.width = 52; img.height = 52; img.loading = "lazy"; img.draggable = false;
     a.appendChild(img); a.appendChild(appName(app, he));
-    li.appendChild(a); addHideBtn(li, app, he);
+    li.appendChild(a);
     list.appendChild(li);
   });
   renderHiddenApps(he, set);
   box.hidden = !rest.length && !dnd; // Ron 2026-10-31: מדדים is now its own dropdown; signed in it stays as a drop target
 }
+
+/* Tile menu: long-press (~500ms) or right-click. A normal tap still opens the app. */
+var tileMenu = document.getElementById("tile-menu");
+var tilePress = null, tileBlockClick = false;
+function tileOf(node) {
+  var li = node && node.closest && node.closest("#app-grid li[data-href], #more-list li[data-href]");
+  return li || null;
+}
+function closeTileMenu() { if (tileMenu) tileMenu.hidden = true; }
+function openTileMenu(li, x, y) {
+  if (!tileMenu || !li) return;
+  var a = li.querySelector("a.app");
+  tileMenu.dataset.href = li.getAttribute("data-href") || "";
+  tileMenu.dataset.url = a ? a.href : "";
+  tileMenu.hidden = false;
+  var r = li.getBoundingClientRect();
+  if (x == null) { x = r.left + r.width / 2; y = r.bottom; }
+  var mw = tileMenu.offsetWidth, mh = tileMenu.offsetHeight;
+  var left = Math.max(8, Math.min(x - mw / 2, window.innerWidth - mw - 8));
+  var top = Math.max(8, Math.min(y + 6, window.innerHeight - mh - 8));
+  tileMenu.style.left = left + "px";
+  tileMenu.style.top = top + "px";
+}
+function clearTilePress() { if (tilePress) { clearTimeout(tilePress.timer); tilePress = null; } }
+document.addEventListener("pointerdown", function (e) {
+  if (!tileMenu.hidden && !tileMenu.contains(e.target)) closeTileMenu();
+  if (e.pointerType === "mouse" && e.button !== 0) return;
+  if (window.RGHomeDnd && RGHomeDnd.moving()) return;
+  var li = tileOf(e.target);
+  if (!li || (e.target.closest && e.target.closest("#tile-menu, #dnd-done"))) return;
+  tilePress = { li: li, id: e.pointerId, x: e.clientX, y: e.clientY, timer: setTimeout(function () {
+    var p = tilePress; tilePress = null;
+    if (!p) return;
+    tileBlockClick = true;
+    if (navigator.vibrate) try { navigator.vibrate(15); } catch (err) {}
+    openTileMenu(p.li, p.x, p.y);
+  }, 500) };
+}, true);
+document.addEventListener("pointermove", function (e) {
+  if (!tilePress || e.pointerId !== tilePress.id) return;
+  if (Math.abs(e.clientX - tilePress.x) + Math.abs(e.clientY - tilePress.y) > 12) clearTilePress();
+});
+document.addEventListener("pointerup", function (e) { if (tilePress && e.pointerId === tilePress.id) clearTilePress(); });
+document.addEventListener("pointercancel", function (e) { if (tilePress && e.pointerId === tilePress.id) clearTilePress(); });
+document.addEventListener("contextmenu", function (e) {
+  var li = tileOf(e.target);
+  if (!li) return;
+  e.preventDefault();
+  clearTilePress();
+  openTileMenu(li, e.clientX, e.clientY);
+});
+document.addEventListener("click", function (e) {
+  if (!tileBlockClick) return;
+  tileBlockClick = false; // the click that ends a long-press or right-click must not open the app or hit the menu
+  e.preventDefault();
+  e.stopPropagation();
+}, true);
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeTileMenu(); });
+document.getElementById("tile-menu-x").addEventListener("click", function (e) { e.stopPropagation(); closeTileMenu(); });
+document.getElementById("dnd-done").addEventListener("click", function () { if (window.RGHomeDnd) RGHomeDnd.stopMove(); });
+tileMenu.addEventListener("click", function (e) {
+  var b = e.target.closest && e.target.closest("button[data-act]");
+  if (!b) return;
+  e.preventDefault(); e.stopPropagation();
+  var href = tileMenu.dataset.href, url = tileMenu.dataset.url, act = b.getAttribute("data-act");
+  closeTileMenu();
+  if (act === "hide") setUserHidden(href, true);
+  else if (act === "pin" && window.RGHomeDnd) RGHomeDnd.pin(href);
+  else if (act === "move" && window.RGHomeDnd) RGHomeDnd.startMove();
+  else if (act === "newtab" && url) window.open(url, "_blank", "noopener");
+});
 
 var copy = {
   he: {
@@ -986,7 +1077,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=63", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=64", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */

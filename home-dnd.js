@@ -1,16 +1,15 @@
-/* Home page drag and drop (Ron 2026-10-31): a signed-in user can reorder the apps inside the featured group,
-   inside "שאר האפליקציות", and move apps between the two. Touch: long-press ~350ms, then drag (taps and scrolling stay normal).
-   Mouse: press and move. Order is saved per user in localStorage "rg-home-order" and synced through RGAccount.syncPrefs.
-   Signed out: default order, no dragging. */
+/* Home page order (Ron 2026-10-31, menu 2026-11-03).
+   Reorder starts only from the tile menu (להזיז): tiles wiggle, then drag to a new spot.
+   Order is saved in localStorage "rg-home-order" and synced through RGAccount.syncPrefs when signed in.
+   Signed out with no saved order: the default order. A saved order is kept (same storage). */
 (function () {
   "use strict";
-  var KEY = "rg-home-order", LONG = 350, MOVE_CANCEL = 10;
-  function signedIn() { try { return !!(window.RGAccount && RGAccount.user()); } catch (e) { return false; } }
+  var KEY = "rg-home-order";
   function load() { try { var o = JSON.parse(localStorage.getItem(KEY) || "null"); return o && Array.isArray(o.top) && Array.isArray(o.rest) ? o : null; } catch (e) { return null; } }
   function save(o) { try { if (o) localStorage.setItem(KEY, JSON.stringify(o)); else localStorage.removeItem(KEY); } catch (e) {} }
-  // set = { top: [...apps, maybe {sep}], rest: [...] } -> same shape in the saved order; new apps keep their default group, at its end
+  // set = { top: [...apps, maybe {sep}], rest: [...] }. New apps keep their default group, at its end.
   function apply(set) {
-    var o = signedIn() ? load() : null;
+    var o = load();
     if (!o) return set;
     var all = set.top.concat(set.rest).filter(function (a) { return a && !a.sep && !a.hidden; });
     var used = [];
@@ -21,17 +20,47 @@
     return { top: top, rest: rest };
   }
   var rerender = function () {};
-  function hrefsOf(ul) { return Array.prototype.map.call(ul.querySelectorAll("li[data-href]"), function (li) { return li.getAttribute("data-href"); }); }
-
-  var st = null; // drag state
+  function hrefsOf(ul) { return ul ? Array.prototype.map.call(ul.querySelectorAll("li[data-href]"), function (li) { return li.getAttribute("data-href"); }) : []; }
   function lists() { return [document.getElementById("app-grid"), document.getElementById("more-list")].filter(Boolean); }
+  function snapshot() {
+    var o = load();
+    if (o) return { top: o.top.slice(), rest: o.rest.slice() };
+    return { top: hrefsOf(document.getElementById("app-grid")), rest: hrefsOf(document.getElementById("more-list")) };
+  }
+  function persistFromDom() {
+    save({ top: hrefsOf(document.getElementById("app-grid")), rest: hrefsOf(document.getElementById("more-list")) });
+  }
+
+  var mode = false, st = null;
+  function paintMode() {
+    document.documentElement.classList.toggle("dnd-on", mode);
+    var b = document.getElementById("dnd-done");
+    if (b) b.hidden = !mode;
+  }
   function clearTimer() { if (st && st.timer) { clearTimeout(st.timer); st.timer = 0; } }
+  function endDrag(keep) {
+    if (!st) return;
+    var s = st; st = null; clearTimer();
+    if (s.ghost) s.ghost.remove();
+    if (s.li) s.li.classList.remove("dnd-place");
+    document.documentElement.classList.remove("dnd-active");
+    if (!s.on) return;
+    if (keep) persistFromDom();
+    var kill = function (ev) {
+      if (ev.target.closest && ev.target.closest("#app-grid li[data-href], #more-list li[data-href], #tile-menu")) {
+        ev.preventDefault(); ev.stopPropagation();
+      }
+    };
+    window.addEventListener("click", kill, true);
+    setTimeout(function () { window.removeEventListener("click", kill, true); }, 400);
+    if (keep) rerender();
+  }
   function onDown(e) {
-    if (!signedIn() || st || (e.pointerType === "mouse" && e.button !== 0)) return;
+    if (!mode || st || (e.pointerType === "mouse" && e.button !== 0)) return;
+    if (e.target.closest && e.target.closest("#dnd-done, #tile-menu")) return;
     var li = e.target.closest && e.target.closest("li[data-href]");
     if (!li || lists().indexOf(li.parentNode) < 0) return;
-    st = { li: li, id: e.pointerId, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, touch: e.pointerType !== "mouse", on: false, timer: 0 };
-    if (st.touch) st.timer = setTimeout(function () { if (st && !st.on) start(); }, LONG);
+    st = { li: li, id: e.pointerId, x0: e.clientX, y0: e.clientY, x: e.clientX, y: e.clientY, on: false, timer: 0 };
   }
   function start() {
     var li = st.li, r = li.getBoundingClientRect();
@@ -43,7 +72,7 @@
     document.body.appendChild(g); st.ghost = g;
     li.classList.add("dnd-place");
     document.documentElement.classList.add("dnd-active");
-    if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {}
+    if (navigator.vibrate) try { navigator.vibrate(12); } catch (e) {}
     moveGhost();
   }
   function moveGhost() { st.ghost.style.transform = "translate(" + (st.x - st.dx) + "px," + (st.y - st.dy) + "px) scale(1.06)"; }
@@ -51,9 +80,7 @@
     if (!st || e.pointerId !== st.id) return;
     st.x = e.clientX; st.y = e.clientY;
     if (!st.on) {
-      var d = Math.abs(st.x - st.x0) + Math.abs(st.y - st.y0);
-      if (st.touch) { if (d > MOVE_CANCEL) { clearTimer(); st = null; } } // a scroll, not a drag
-      else if (d > 6) start();
+      if (Math.abs(st.x - st.x0) + Math.abs(st.y - st.y0) > 6) start();
       return;
     }
     e.preventDefault(); moveGhost();
@@ -65,36 +92,46 @@
       t.parentNode.insertBefore(st.li, after ? t.nextSibling : t);
     } else if ((ul = el.closest && el.closest("#app-grid, #more-list, #more-apps")) && !t) {
       if (ul.id === "more-apps") ul = document.getElementById("more-list");
-      if (st.li.parentNode !== ul || ul.lastElementChild !== st.li) ul.appendChild(st.li);
+      if (ul && (st.li.parentNode !== ul || ul.lastElementChild !== st.li)) ul.appendChild(st.li);
     }
   }
   function onUp(e) {
     if (!st || e.pointerId !== st.id) return;
-    var s = st; st = null; clearTimer();
-    if (!s.on) return;
-    s.ghost.remove(); s.li.classList.remove("dnd-place");
-    document.documentElement.classList.remove("dnd-active");
-    var kill = function (ev) { ev.preventDefault(); ev.stopPropagation(); };
-    window.addEventListener("click", kill, true);
-    setTimeout(function () { window.removeEventListener("click", kill, true); }, 350);
-    if (e.type === "pointercancel") { rerender(); return; }
-    var top = document.getElementById("app-grid"), more = document.getElementById("more-list");
-    save({ top: hrefsOf(top), rest: hrefsOf(more) });
-    rerender();
+    var cancel = e.type === "pointercancel";
+    endDrag(!cancel);
   }
+
   document.addEventListener("pointerdown", onDown);
   document.addEventListener("pointermove", onMove, { passive: false });
   document.addEventListener("pointerup", onUp);
   document.addEventListener("pointercancel", onUp);
-  document.addEventListener("touchmove", function (e) { if (st && (st.on || st.timer)) { if (st.on) e.preventDefault(); } }, { passive: false });
-  document.addEventListener("contextmenu", function (e) { if (st || (signedIn() && e.target.closest && e.target.closest("li[data-href]"))) e.preventDefault(); });
-  document.addEventListener("dragstart", function (e) { if (signedIn() && e.target.closest && e.target.closest("#app-grid, #more-list")) e.preventDefault(); });
+  document.addEventListener("touchmove", function (e) { if (st && st.on) e.preventDefault(); }, { passive: false });
+  document.addEventListener("dragstart", function (e) { if (e.target.closest && e.target.closest("#app-grid, #more-list")) e.preventDefault(); });
+  document.addEventListener("click", function (e) {
+    if (mode && e.target.closest && e.target.closest("#app-grid li[data-href], #more-list li[data-href]")) {
+      e.preventDefault(); e.stopPropagation();
+    }
+  }, true);
+
+  function pin(href) {
+    if (!href) return;
+    var o = snapshot();
+    o.top = o.top.filter(function (h) { return h !== href; });
+    o.rest = o.rest.filter(function (h) { return h !== href; });
+    o.top.unshift(href);
+    save(o);
+    rerender();
+  }
 
   window.RGHomeDnd = {
     KEY: KEY, apply: apply,
     hasCustom: function () { return !!load(); },
     reset: function () { save(null); rerender(); },
     setRender: function (f) { rerender = f; },
-    enabled: signedIn
+    moving: function () { return mode; },
+    enabled: function () { return mode; },
+    startMove: function () { mode = true; paintMode(); },
+    stopMove: function () { endDrag(!!(st && st.on)); mode = false; paintMode(); },
+    pin: pin
   };
 })();
