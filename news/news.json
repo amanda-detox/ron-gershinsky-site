@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T11:57:24+02:00",
+ "updated": "2026-11-03T14:24:43+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -12436,6 +12436,23 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "huang-blessing-marvell-lumentum-megadeal",
+   "topic": "huang",
+   "date": "2026-11-03T03:11:00Z",
+   "url": "https://www.bloomberg.com/news/articles/2026-11-03/nvidia-s-huang-gave-blessing-to-marvell-lumentum-megadeal",
+   "source": "Bloomberg",
+   "he": {
+    "title": "ג'נסון הואנג נתן את ברכתו לעסקת הענק בין Marvell ל־Lumentum",
+    "summary": "לפי בלומברג, מנכ\"לי Marvell ו־Lumentum התקשרו להואנג לשמוע את דעתו לפני שהכריזו על המיזוג בשווי כ־103 מיליארד דולר, והוא תמך. לפי הדיווח, זה מראה שאנבידיה מעודדת איחודים בין הספקים שלה, כשהחיבורים האופטיים המהירים הפכו לצוואר בקבוק במרכזי הנתונים."
+   },
+   "en": {
+    "title": "Jensen Huang gave his blessing to the Marvell–Lumentum megadeal",
+    "summary": "According to Bloomberg, the CEOs of Marvell and Lumentum called Huang for his views before announcing their roughly $103 billion merger, and he backed it. The report says this shows Nvidia encouraging consolidation among its suppliers as fast optical connections become a data-center bottleneck."
+   },
+   "full_he": "מנכ\"לי Marvell Technology ו־Lumentum Holdings קיבלו את ברכתו של ג'נסון הואנג, מנכ\"ל אנבידיה, לפני שסגרו את המיזוג ביניהן בשווי של כמעט 103 מיליארד דולר.\n\n• מנכ\"ל Marvell מתיו מרפי ומנכ\"ל Lumentum מייקל הרלסטון ביקשו לשמוע את דעתו של הואנג בשיחת טלפון לפני ההכרזה על העסקה, לפי אנשים שמכירים את הפרטים וביקשו לא להזדהות כי הפרטים אינם פומביים.\n• לפי הדיווח, התמיכה של הואנג מראה שאנבידיה, המובילה בתחום הבינה המלאכותית, מעודדת איחודים בין הספקים המרכזיים שלה, כשהביקוש לחיבורים אופטיים מהירים יותר הופך לצוואר בקבוק בבניית מרכזי נתונים גדולים יותר ויותר.\n• בראיון ל־Fox Business ביום שני תיאר הרלסטון את התגובה של אנבידיה כ„חיובית מאוד”, ואמר: „אנחנו מאמינים שבזכות המיזוג נוכל לספק לאנבידיה יותר מוצרים ובקצב מהיר יותר.”\n• מרפי אמר בשיחת משקיעים שלו ולהרלסטון יש „השקפות דומות מאוד” על כיוון התעשייה, ושהם מכירים זה את זה זמן רב, מקצועית ואישית; Lumentum היא לקוחה חשובה של Marvell.\n• לפי הדיווח, החברות התחילו לדבר על מיזוג בקיץ, והשיחות נשארו ביניהן בלבד. הן תכננו להכריז יחד עם הדוחות של Lumentum ביום חמישי, אבל הקדימו את ההודעה אחרי שהתוכנית דלפה לתקשורת.\n• העסקה כולה במניות: על כל מניית Lumentum יקבלו בעליה 4.5 מניות Marvell. כולל חוב, שווי העסקה כ־115 מיליארד דולר, והיא אמורה להיסגר במחצית הראשונה של 2028.\n• החברה המאוחדת תשלב את השבבים המותאמים של Marvell עם הרכיבים האופטיים של Lumentum (כמו לייזרים) להעברת נתונים בין שבבים לשרתים, ותהפוך לספקית משולבת יותר של חיבורים מהירים.\n\nהכתבה המלאה של בלומברג נעולה למנויים; הפרטים כאן מהחלק הפתוח שלה ומדיווחים שמצטטים אותה (Longbridge).",
+   "full_en": "The heads of Marvell Technology and Lumentum Holdings got the blessing of Nvidia CEO Jensen Huang before striking their nearly $103 billion tie-up.\n\n• Marvell CEO Matthew Murphy and Lumentum CEO Michael Hurlston sought Huang's views during a phone call before the deal was announced, according to people familiar with the matter, who asked not to be identified because the details aren't public.\n• Huang's support underscores how AI leader Nvidia is encouraging consolidation among key suppliers as demand for faster optical connections becomes a bottleneck in the build-out of increasingly large data centers.\n• In a Fox Business interview on Monday, Hurlston described Nvidia's reaction as \"very positive\": \"We believe that through this merger, we can actually provide more products to Nvidia at a faster pace.\"\n• Murphy told investors on a conference call that he and Hurlston have \"very similar views\" on the industry's direction, and that they have known each other a long time, professionally and personally; Lumentum is an important Marvell customer.\n• According to the report, the companies began discussing a merger this summer, with talks limited to the two of them. They had planned to announce alongside Lumentum's earnings this Thursday, but went early after the plan leaked to the media.\n• It's an all-stock deal: Lumentum shareholders get 4.5 Marvell shares per Lumentum share. Including debt, the deal is valued at about $115 billion, and it's expected to close in the first half of 2028.\n• The combined company will pair Marvell's custom chips with Lumentum's optical components (such as lasers) for chip-to-server data transmission, forming a more vertically integrated supplier of high-speed interconnects.\n\nBloomberg's full article is behind a paywall; these details come from its open portion and from reports citing it (Longbridge)."
   }
  ]
 }
