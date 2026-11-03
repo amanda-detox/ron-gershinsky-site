@@ -783,6 +783,8 @@
         return;
       }
       if (e.target.closest("button,input,select,textarea,summary,a")) return;
+      if (e.pointerType === "mouse" && e.target.closest(".txt,.note")) return; // mouse on text = select it
+      var sel = window.getSelection && window.getSelection(); if (sel && !sel.isCollapsed && String(sel).trim()) return; // a selection is active
       reset();
       idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false };
     });
@@ -797,6 +799,7 @@
         idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
         return;
       }
+      if (!idrag.swipe && !idrag.lifted) { var sl = window.getSelection && window.getSelection(); if (sl && !sl.isCollapsed && String(sl).trim()) { idrag = null; return; } }
       if (Math.abs(dx) <= SLOP && Math.abs(dy) <= SLOP) return;
       if (Math.abs(dx) > Math.abs(dy) * 1.5) { // clearly sideways: a swipe
         idrag.swipe = true; idrag.li.classList.add("swiping");
