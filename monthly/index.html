@@ -14,8 +14,8 @@
 <script>/* theme before first paint: dark (default) / light */(function(){var d=document.documentElement,t="dark";try{t=localStorage.getItem("rg-monthly-theme")==="light"?"light":"dark";}catch(e){}d.setAttribute("data-theme",t);var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#fbf1e6":"#3a1450");try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <title>חודשיפיי · Monthly</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="favicon-32.png?v=2" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" sizes="180x180">
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../shared/rg-site.css">
@@ -124,7 +124,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:10px}
   </header>
 
   <div class="hero">
-    <img src="icon.svg" alt="" width="62" height="62">
+    <img src="icon-192.png?v=2" alt="" width="62" height="62">
     <div>
       <h1 id="title"></h1>
       <p class="tagline" id="tagline"></p>
