@@ -34,23 +34,28 @@
   button { font: inherit; color: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   [hidden] { display: none !important; }
-  .app-title { display: flex; align-items: center; justify-content: center; gap: 0.6rem; margin: 1.25rem 0 0; font-size: 1.6rem; font-weight: 700; letter-spacing: 0.01em; }
-  .app-title img { border-radius: 0.55rem; }
   .wrap { width: 100%; max-width: 32rem; margin: 0 auto;
-    padding: max(1rem, env(safe-area-inset-top)) 1rem calc(6rem + env(safe-area-inset-bottom)); }
+    padding: max(0.75rem, env(safe-area-inset-top)) 1rem calc(1.5rem + env(safe-area-inset-bottom)); }
+  .rg-install-wrap { margin: 0.15rem auto 0.85rem; }
   .top { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
   .langs { display: flex; gap: 0.5rem; direction: ltr; }
   .pill { min-height: 2.75rem; border: 0; border-radius: 999px; padding: 0 0.9rem; background: var(--surface-2);
     font-size: 0.9rem; font-weight: 500; text-decoration: none; color: var(--fg); display: inline-flex; align-items: center; }
   .pill[aria-pressed="true"] { background: var(--accent); }
-  .clock { text-align: center; margin: 1.75rem 0 0; }
-  .now { font-size: clamp(3.5rem, 18vw, 5.5rem); font-weight: 700; letter-spacing: 0.02em; direction: ltr;
-    font-variant-numeric: tabular-nums; line-height: 1;
-    background: linear-gradient(to bottom right, #fff, #c7d2fe); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .today { margin-top: 0.5rem; color: var(--muted); }
-  .next { margin-top: 0.4rem; color: var(--accent); font-size: 0.95rem; min-height: 1.4em; }
-  .note { margin-top: 1.25rem; border: 1px solid var(--line); border-radius: 0.75rem; background: rgba(30,41,59,0.7);
-    padding: 0.9rem 1rem; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .next { margin: 0 0 0.75rem; color: var(--accent); font-size: 0.95rem; min-height: 1.4em; }
+  .note { margin-top: 0.35rem; border: 1px solid var(--line); border-radius: 0.75rem; background: rgba(30,41,59,0.7);
+    padding: 0.35rem 0.85rem 0.45rem; color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+  .note-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 0.75rem;
+    min-height: 2.75rem; margin: 0; padding: 0.3rem 0.15rem; border: 0; background: none; color: var(--fg);
+    font-size: 1.05rem; font-weight: 700; text-align: start; }
+  .note-chev { flex: none; width: 0.55rem; height: 0.55rem; margin-inline-end: 0.2rem;
+    border-inline-end: 2px solid currentColor; border-bottom: 2px solid currentColor;
+    transform: rotate(45deg); transition: transform 0.2s; }
+  .note-toggle[aria-expanded="true"] .note-chev { transform: rotate(-135deg); }
+  #note-body { padding-bottom: 0.45rem; }
+  #note-text { margin-top: 0.15rem; }
+  @media (prefers-reduced-motion: reduce) { .note-chev { transition: none; } }
   .note .row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
   .note .ok { color: #f5d37a; }
   h2 { font-size: 1.15rem; margin: 1.75rem 0 0.75rem; display: flex; justify-content: space-between; align-items: center; }
@@ -70,10 +75,12 @@
     border-radius: 50%; background: #fff; transition: inset-inline-start 0.2s; }
   .switch[aria-checked="true"] { background: var(--accent); }
   .switch[aria-checked="true"]::after { inset-inline-start: 1.65rem; }
-  .fab { position: fixed; bottom: calc(1.25rem + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
-    min-height: 3.5rem; padding: 0 1.75rem; border: 0; border-radius: 999px; font-size: 1.05rem; font-weight: 600;
-    background: linear-gradient(to bottom right, var(--accent), var(--violet)); color: var(--ink);
-    box-shadow: 0 10px 30px rgba(59,130,246,0.35); }
+  .add-row { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 3.25rem;
+    margin: 0 0 0.85rem; padding: 0.55rem 1rem; border: 1px solid #d4af37; border-radius: 0.9rem;
+    font-size: 1.05rem; font-weight: 700; color: #fff;
+    background: linear-gradient(to bottom right, #2563eb, #1e3a8a);
+    box-shadow: 0 6px 18px rgba(37,99,235,0.28); }
+  .add-row:active { transform: translateY(1px); }
   .empty { text-align: center; color: var(--faint); padding: 1rem; }
   /* sheets */
   .veil { position: fixed; inset: 0; background: rgba(2,6,23,0.75); display: flex; align-items: flex-end; justify-content: center; z-index: 10; }
@@ -114,14 +121,14 @@
   .tasks input:checked + span { text-decoration: line-through; color: var(--faint); }
   .ring .actions .btn { min-height: 4rem; font-size: 1.15rem; }
   .ring .more { color: var(--faint); font-size: 0.85rem; margin-top: 0.75rem; }
-  .toast { position: fixed; bottom: calc(5.5rem + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+  .toast { position: fixed; bottom: calc(1.25rem + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
     background: var(--surface-2); padding: 0.7rem 1.1rem; border-radius: 999px; font-size: 0.9rem; z-index: 30; box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
   .back { color: var(--faint); font-size: 0.85rem; text-align: center; margin-top: 2rem; }
   .back a { color: var(--muted); }
   .install-hint, .rg-install-hint { text-align: center; }
   .install-hint ol { margin: 0.2rem 0 0.4rem; padding-inline-start: 1.3em; }
   .install-hint li { margin: 0.15rem 0; }
-  .cal { margin-top: 1.25rem; border: 1px solid rgba(212,175,55,0.55); border-radius: 0.9rem; padding: 1rem;
+  .cal { margin-top: 1.75rem; margin-bottom: 0.35rem; border: 1px solid rgba(212,175,55,0.55); border-radius: 0.9rem; padding: 1rem;
     background: linear-gradient(to bottom right, rgba(59,130,246,0.18), rgba(30,41,59,0.85)); text-align: center; }
   .cal-btn { width: 100%; min-height: 3.5rem; border: 1px solid #d4af37; border-radius: 0.85rem; padding: 0.6rem 1rem;
     font-size: 1.05rem; font-weight: 700; color: #fff; background: linear-gradient(to bottom right, #2563eb, #1e3a8a);
@@ -184,7 +191,7 @@
   .top { flex-wrap: nowrap; gap: 0.3rem; } .top > span { flex-wrap: nowrap !important; gap: 0.3rem !important; min-width: 0; } .langs { gap: 0.3rem; flex: none; }
   @media (max-width: 440px) { .langs .pill { padding: 0 0.6rem; } }
   html { background: var(--bg-end); }
-  html[data-theme="light"] .fab { background: linear-gradient(to bottom right, #1a47a0, #0b2a6b); border: 1px solid #c9a227; box-shadow: 0 10px 30px rgba(11,42,107,0.3); }
+  html[data-theme="light"] .add-row { background: linear-gradient(to bottom right, #1a47a0, #0b2a6b); border-color: #c9a227; box-shadow: 0 8px 22px rgba(11,42,107,0.22); color: #fff; }
   .swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   @media (min-width: 440px) { .swatches { grid-template-columns: repeat(6, 1fr); } }
   .sw { border: 0; background: none; padding: 0; color: #e9e4f3; font-size: 12px; font-weight: 600; text-align: center; }
@@ -225,7 +232,7 @@
   html[data-theme="dark"]:not([data-bg="0"]) { --surface: rgba(12, 10, 24, 0.62); --surface-2: rgba(30, 26, 50, 0.72); --line: rgba(255, 255, 255, 0.16); --muted: #e6e1f0; --faint: #c9c2d9; }
   html[data-theme="dark"]:not([data-bg="0"]) .alarm, html[data-theme="dark"]:not([data-bg="0"]) .note, html[data-theme="dark"]:not([data-bg="0"]) .cal { -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
   html[data-theme="dark"]:not([data-bg="0"]) .note { background: rgba(12, 10, 24, 0.62); }
-  html[data-theme="dark"]:not([data-bg="0"]) h2, html[data-theme="dark"]:not([data-bg="0"]) .today, html[data-theme="dark"]:not([data-bg="0"]) .back { text-shadow: 0 1px 2px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.35); }
+  html[data-theme="dark"]:not([data-bg="0"]) h2, html[data-theme="dark"]:not([data-bg="0"]) .next, html[data-theme="dark"]:not([data-bg="0"]) .note-toggle, html[data-theme="dark"]:not([data-bg="0"]) .back { text-shadow: 0 1px 2px rgba(0,0,0,0.55), 0 0 14px rgba(0,0,0,0.35); }
   html[data-theme="dark"]:not([data-bg="0"]) .next { color: #bcd4ff; }
   html[data-theme="dark"]:not([data-bg="0"]) .arrow.prev, html[data-theme="dark"]:not([data-bg="0"]) .arrow.next { background: none; }
   /* ---------- light mode: bright blue/gold, no green (like the landing page) ---------- */
@@ -235,8 +242,8 @@
     color-scheme: light;
   }
   html[data-theme="light"] input, html[data-theme="light"] select, html[data-theme="light"] textarea { color-scheme: light; background: #fffdf8; }
-  html[data-theme="light"] .now { background: linear-gradient(to bottom right, #0b2a6b, #1a47a0 60%, #b8860b); -webkit-background-clip: text; background-clip: text; color: transparent; }
   html[data-theme="light"] .next { color: #1a47a0; }
+  html[data-theme="light"] .note-toggle { color: #0b1f4d; }
   html[data-theme="light"] .note { background: rgba(255, 253, 248, 0.88); }
   html[data-theme="light"] .note .ok { color: #8a6500; }
   html[data-theme="light"] .pill[aria-pressed="true"] { color: #fff; }
@@ -284,43 +291,43 @@
     <span style="display:inline-flex;align-items:center;gap:0.5rem;flex-wrap:wrap;justify-content:flex-end"><span data-rg-account></span><button type="button" class="pill tbtn" id="theme-btn"><span class="ti" aria-hidden="true"></span><span class="tl"></span></button><button type="button" class="pill tbtn icon" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button><button type="button" class="pill" id="test-sound"></button></span>
   </div>
 
-  <h1 class="app-title" id="app-title"><img src="icon.svg?v=4" alt="" width="36" height="36"><span id="app-name"></span></h1>
-
-  <section class="clock" aria-live="off">
-    <div class="now" id="now">--:--</div>
-    <div class="today" id="today"></div>
-    <div class="next" id="next"></div>
-  </section>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
 
   <section class="note" id="note">
-    <div id="note-text"></div>
-    <div class="ptabs" role="tablist" id="ptabs">
-      <button type="button" class="ptab" role="tab" id="pt-desktop" data-p="desktop" aria-controls="ppanel"></button>
-      <button type="button" class="ptab" role="tab" id="pt-android" data-p="android" aria-controls="ppanel"></button>
-      <button type="button" class="ptab" role="tab" id="pt-ios" data-p="ios" aria-controls="ppanel"></button>
+    <button type="button" class="note-toggle" id="note-toggle" aria-expanded="false" aria-controls="note-body">
+      <span id="note-title"></span><span class="note-chev" aria-hidden="true"></span>
+    </button>
+    <div id="note-body" hidden>
+      <div id="note-text"></div>
+      <div class="ptabs" role="tablist" id="ptabs">
+        <button type="button" class="ptab" role="tab" id="pt-desktop" data-p="desktop" aria-controls="ppanel"></button>
+        <button type="button" class="ptab" role="tab" id="pt-android" data-p="android" aria-controls="ppanel"></button>
+        <button type="button" class="ptab" role="tab" id="pt-ios" data-p="ios" aria-controls="ppanel"></button>
+      </div>
+      <div class="ppanel" id="ppanel" role="tabpanel"></div>
+      <div class="row">
+        <button type="button" class="pill" id="notif-btn"></button>
+        <button type="button" class="pill" id="wake-btn" aria-pressed="false"></button>
+      </div>
+      <div class="hint" id="notif-state"></div>
     </div>
-    <div class="ppanel" id="ppanel" role="tabpanel"></div>
-    <div class="row">
-      <button type="button" class="pill" id="notif-btn"></button>
-      <button type="button" class="pill" id="wake-btn" aria-pressed="false"></button>
-    </div>
-    <div class="hint" id="notif-state"></div>
   </section>
 
+  <section class="clocks" aria-labelledby="list-title">
+    <h2><span id="list-title"></span><span class="count" id="count"></span></h2>
+    <p class="next" id="next" aria-live="polite"></p>
+    <button type="button" class="add-row" id="add"></button>
+    <div class="chipbar"><button type="button" class="arrow prev" id="chip-prev" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></button><nav class="chips" id="chips"></nav><button type="button" class="arrow next" id="chip-next" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></div>
+    <ul id="list"></ul>
+    <p class="empty" id="empty" hidden></p>
+  </section>
+  <p class="back"><button type="button" id="reset" style="background:none;border:0;color:var(--faint);text-decoration:underline;font-size:inherit;padding:0.5rem"></button></p>
   <section class="cal" id="cal">
     <button type="button" class="cal-btn" id="cal-btn"></button>
     <p class="cal-help" id="cal-help"></p>
   </section>
-  <h2><span id="list-title"></span><span class="count" id="count"></span></h2>
-  <div class="chipbar"><button type="button" class="arrow prev" id="chip-prev" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></button><nav class="chips" id="chips"></nav><button type="button" class="arrow next" id="chip-next" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></div>
-  <ul id="list"></ul>
-  <p class="empty" id="empty" hidden></p>
-  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
-  <p class="back"><button type="button" id="reset" style="background:none;border:0;color:var(--faint);text-decoration:underline;font-size:inherit;padding:0.5rem"></button></p>
   <footer class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </main>
-
-<button type="button" class="fab" id="add"></button>
 
 <div class="veil" id="editor" hidden>
   <form class="sheet" id="form" novalidate role="dialog" aria-modal="true" aria-labelledby="form-title">
@@ -392,7 +399,8 @@
       title: "קלוקיפיי", test: "🔊 בדיקת צליל", list: "השעונים שלי", add: "+ שעון חדש",
       count: function (n, on) { return on + " פעילים מתוך " + n; },
       empty: "אין עדיין שעונים. לחץ על ״שעון חדש״.",
-      note: "<b>חשוב לדעת:</b> קלוקיפיי מצלצל רק כשהוא פתוח ופועל. כשהוא סגור, או כשהמכשיר ישן או נעול, הוא לא יצלצל, גם אם התקנת אותו כאפליקציה. אחרי שנכנסים, נוגעים פעם אחת בדף ולוחצים „בדיקת צליל” כדי לוודא שיש צליל. מה צריך לעשות תלוי במכשיר:",
+      noteTitle: "חשוב לדעת",
+      note: "קלוקיפיי מצלצל רק כשהוא פתוח ופועל. כשהוא סגור, או כשהמכשיר ישן או נעול, הוא לא יצלצל, גם אם התקנת אותו כאפליקציה. אחרי שנכנסים, נוגעים פעם אחת בדף ולוחצים „בדיקת צליל” כדי לוודא שיש צליל. מה צריך לעשות תלוי במכשיר:",
       pDesktop: "💻 מחשב", pAndroid: "📱 אנדרואיד", pIos: "🍎 אייפון",
       help: {"desktop": "<ul><li>משאירים את קלוקיפיי פתוח, בלשונית או כאפליקציה מותקנת. אפשר לעבור לחלונות אחרים או למזער אותו, אבל לא לסגור.</li><li>המחשב צריך להישאר ער. כשסוגרים את המכסה או שהמחשב נכנס למצב שינה, לא יהיה צלצול. בהגדרות החשמל של Windows או של המק אפשר לקבוע שהמחשב לא יירדם כשהוא מחובר לחשמל.</li><li>כשקלוקיפיי ברקע, הדפדפן מאט אותו, ולכן הצלצול יכול להתעכב עד כדקה.</li><li>כדי שהדפדפן לא ירדים את הלשונית: ב־Chrome נכנסים להגדרות ← ביצועים, ומוסיפים את האתר לרשימת האתרים שתמיד יישארו פעילים. ב־Edge: הגדרות ← מערכת וביצועים ← „לעולם אל תכניס את האתרים האלה למצב שינה”.</li><li>הרמקולים צריכים להיות פתוחים, והלשונית לא מושתקת.</li><li>לחיצה על „הפעלת התראות” תקפיץ הודעה גם כשהחלון מאחור. „נא לא להפריע” ב־Windows או „ריכוז” במק מסתירים את ההודעה, אבל הצליל עצמו עדיין יישמע.</li></ul><p class=\"tip\">לשעון חשוב (תרופות, יציאה מהבית) כדאי לכוון גם שעון מעורר בטלפון.</p>", "android": "<ul><li>קלוקיפיי צריך להיות פתוח על המסך. כשהמסך כבה או כשעוברים לאפליקציה אחרת, אנדרואיד עוצר את הדף אחרי זמן קצר, והשעון עלול לא לצלצל. גם התקנה למסך הבית לא משנה את זה.</li><li>לפני שהולכים לישון: פותחים את קלוקיפיי, לוחצים „מסך דלוק” ומחברים למטען. המסך יישאר דלוק כל עוד קלוקיפיי פתוח על המסך.</li><li>הצליל יוצא בעוצמת המדיה, לא בעוצמת הצלצול, אז צריך להעלות את עוצמת המדיה. במצב „נא לא להפריע” זה תלוי בהגדרות הטלפון, אז כדאי לבדוק עם „בדיקת צליל”.</li><li>מאשרים התראות. ההתראה מופיעה רק כשקלוקיפיי פועל, ולא כשהוא סגור.</li><li>כדאי לבטל את חיסכון הסוללה לדפדפן: הגדרות ← אפליקציות ← Chrome ← סוללה ← „ללא הגבלה”.</li></ul><p class=\"tip\">לשעון חשוב (תרופות, יציאה מהבית) כוון גם את השעון המעורר המובנה בטלפון. אפשר גם ללחוץ למטה על „הוסף את השעונים ליומן”: היומן מזכיר גם כשהמסך כבוי, אבל זו התראה קצרה ולא צלצול מתמשך.</p>", "ios": "<ul><li>באייפון ובאייפד קלוקיפיי מצלצל רק כשהוא פתוח על המסך והמסך דלוק. כשנועלים את המסך, חוזרים למסך הבית או עוברים לאפליקציה אחרת, iOS עוצר את הדף מיד, ולא יהיה צלצול וגם לא התראה. גם התקנה למסך הבית לא משנה את זה.</li><li>כשמתג השקט בצד הטלפון מופעל, הצליל לא יישמע. אתרים גם לא יכולים להפעיל רטט באייפון.</li><li>אם בכל זאת משאירים את קלוקיפיי פתוח: מחברים למטען, לוחצים „מסך דלוק” אם הכפתור מופיע, או בוחרים בהגדרות ← תצוגה ובהירות ← נעילה אוטומטית ← „אף פעם”.</li></ul><p class=\"tip\">באייפון כדאי לסמוך על השעון המעורר של אפליקציית „שעון”, ולהשתמש בקלוקיפיי לרשימת המשימות. אפשר גם ללחוץ למטה על „הוסף את השעונים ליומן”: היומן מזכיר גם כשהמסך נעול, אבל זו התראה קצרה ולא צלצול מתמשך.</p>"},
       all: "הכול", manage: "✎ קטגוריות", catsTitle: "קטגוריות וצלילים", catsHelp: "לכל קטגוריה יש צליל השכמה משלה. שעון בלי קטגוריה מצלצל בצליל של „ללא קטגוריה”.",
@@ -428,7 +436,8 @@
       title: "Clockify", test: "🔊 Test sound", list: "My alarms", add: "+ New alarm",
       count: function (n, on) { return on + " of " + n + " on"; },
       empty: "No alarms yet. Tap “New alarm”.",
-      note: "<b>Good to know:</b> Clockify rings only while it is open and running. When it is closed, or the device is asleep or locked, it will not ring, even if you installed it as an app. After opening it, tap the page once and press “Test sound” to make sure you hear it. What to do depends on your device:",
+      noteTitle: "Good to know",
+      note: "Clockify rings only while it is open and running. When it is closed, or the device is asleep or locked, it will not ring, even if you installed it as an app. After opening it, tap the page once and press “Test sound” to make sure you hear it. What to do depends on your device:",
       pDesktop: "💻 Computer", pAndroid: "📱 Android", pIos: "🍎 iPhone",
       help: {"desktop": "<ul><li>Keep Clockify open, in a tab or as an installed app. You can switch to other windows or minimize it, but don't close it.</li><li>The computer must stay awake. If you close the lid or it goes to sleep, there will be no alarm. In the Windows or Mac power settings you can stop it from sleeping while plugged in.</li><li>When Clockify is in the background the browser slows it down, so the alarm can be up to about a minute late.</li><li>To stop the browser from putting the tab to sleep: in Chrome go to Settings → Performance and add this site to the sites that always stay active. In Edge: Settings → System and performance → “Never put these sites to sleep”.</li><li>Speakers must be on and the tab not muted.</li><li>Press “Enable notifications” to get a pop-up even when the window is behind others. Do Not Disturb on Windows or Focus on Mac hides the pop-up, but the sound still plays.</li></ul><p class=\"tip\">For an important alarm (pills, leaving home) also set an alarm on your phone.</p>", "android": "<ul><li>Clockify needs to be open on the screen. When the screen turns off or you switch to another app, Android pauses the page after a short while and the alarm may not ring. Installing it to the home screen doesn't change this.</li><li>Before you go to sleep: open Clockify, press “Keep screen on” and plug in the charger. The screen stays on as long as Clockify is open on it.</li><li>The sound plays at media volume, not ringer volume, so turn the media volume up. In Do Not Disturb it depends on your phone settings, so check with “Test sound”.</li><li>Allow notifications. They only appear while Clockify is running, not when it is closed.</li><li>Turn off battery saving for the browser: Settings → Apps → Chrome → Battery → “Unrestricted”.</li></ul><p class=\"tip\">For an important alarm (pills, leaving home) also set the phone's built-in alarm clock. You can also press “Add alarms to phone calendar” below: the calendar reminds you even with the screen off, but it is a short alert, not a ringing alarm.</p>", "ios": "<ul><li>On iPhone and iPad, Clockify rings only while it is open on the screen and the screen is on. When you lock the screen, go to the home screen or switch apps, iOS pauses the page right away, so there is no sound and no notification. Installing it to the home screen doesn't change this.</li><li>When the silent switch on the side of the phone is on, you won't hear the sound. Websites also can't vibrate an iPhone.</li><li>If you still leave Clockify open: plug in the charger, press “Keep screen on” if the button shows, or set Settings → Display &amp; Brightness → Auto-Lock → “Never”.</li></ul><p class=\"tip\">On iPhone, rely on the alarm in the Clock app and use Clockify for the task list. You can also press “Add alarms to phone calendar” below: the calendar reminds you even when the phone is locked, but it is a short alert, not a ringing alarm.</p>"},
       all: "All", manage: "✎ Categories", catsTitle: "Categories & sounds", catsHelp: "Each category has its own wake-up sound. Alarms without a category use the “No category” sound.",
@@ -576,8 +585,8 @@
   };
 
 /* ---------- Install ----------
-   Same gold/blue button as the other apps (.rg-install), on the main screen.
-   Shown until the app is installed or already running standalone.
+   Same gold/blue button as the other apps (.rg-install). It sits under the toolbar
+   (the page title is gone) and stays visible until the app is installed or already standalone.
    Chromium: keep beforeinstallprompt and call prompt() on tap.
    iOS Safari has no install prompt, so the short hint under the button stays visible. */
 var instDeferred = null, instDone = false;
@@ -593,12 +602,13 @@ function instKey() {
 }
 function instIosSafari() { return instKey() === "iosSafari"; }
 function updateInstall() {
-  var btn = document.getElementById("install-btn"), hint = document.getElementById("install-hint");
+  var btn = document.getElementById("install-btn"), hint = document.getElementById("install-hint"), wrap = document.getElementById("install-wrap");
   var show = !instStandalone() && !instDone;
   btn.hidden = !show;
   var ios = show && instIosSafari();
   hint.hidden = !ios;
   if (ios) hint.textContent = t("installIos");
+  if (wrap) wrap.hidden = !show;
 }
 window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
 window.addEventListener("appinstalled", function () { instDeferred = null; instDone = true; updateInstall(); });
@@ -620,9 +630,10 @@ document.getElementById("install-btn").addEventListener("click", function () {
     var L = T[lang];
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = L.title; $("app-name").textContent = L.title;
+    document.title = L.title;
     $("he").setAttribute("aria-pressed", lang === "he"); $("en").setAttribute("aria-pressed", lang === "en");
-    var tl = L.test.replace(/^🔊\s*/, ""); $("test-sound").innerHTML = '<span aria-hidden="true">🔊</span><span class="tl"> ' + esc(tl) + "</span>"; $("test-sound").setAttribute("aria-label", tl); $("test-sound").title = tl; $("note-text").innerHTML = L.note;
+    var tl = L.test.replace(/^🔊\s*/, ""); $("test-sound").innerHTML = '<span aria-hidden="true">🔊</span><span class="tl"> ' + esc(tl) + "</span>"; $("test-sound").setAttribute("aria-label", tl); $("test-sound").title = tl;
+    $("note-title").textContent = L.noteTitle; $("note-text").innerHTML = L.note; applyNote();
     $("install-btn").textContent = L.install; updateInstall(); $("list-title").textContent = L.list; $("add").textContent = L.add;
     $("empty").textContent = L.empty; $("reset").textContent = L.reset;
     $("cal-btn").textContent = L.cal; $("cal-help").textContent = L.calHelp;
@@ -638,7 +649,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     $("addcat-name").placeholder = L.newCat; $("addcat-name").setAttribute("aria-label", L.newCat); $("addcat-btn").textContent = L.addCat;
     $("bg-title").textContent = L.bgTitle; $("bg-close").setAttribute("aria-label", L.close); $("bg-btn").setAttribute("aria-label", L.bgTitle); $("bg-btn").title = L.bgTitle;
     applyTheme(); if (!$("cats-sheet").hidden) renderCatRows(); if (!$("bg-sheet").hidden) renderSwatches();
-    renderNotif(); renderWake(); renderList(); tickClock(); if (ringing.length) renderRing();
+    renderNotif(); renderWake(); renderList(); if (ringing.length) renderRing();
   }
 
   function renderList() {
@@ -675,12 +686,6 @@ document.getElementById("install-btn").addEventListener("click", function () {
     var mins = Math.ceil((best - now) / 60000), h = Math.floor(mins / 60), m = mins % 60;
     var day = C.dateKey(best) === C.dateKey(now) ? "" : " · " + fmtDate(C.dateKey(best));
     $("next").textContent = t("next")(hm(best) + day + " (" + t("inMin")(h, m) + ")");
-  }
-
-  function tickClock() {
-    var now = new Date();
-    $("now").textContent = hm(now);
-    $("today").textContent = now.toLocaleDateString(locale(), { weekday: "long", day: "numeric", month: "long", year: "numeric" });
   }
 
   /* ---------- editing ---------- */
@@ -848,9 +853,23 @@ document.getElementById("install-btn").addEventListener("click", function () {
 
   var lastMinute = "";
   function loop() {
-    tickClock(); check();
+    check();
     var m = hm(new Date()); if (m !== lastMinute) { lastMinute = m; renderNext(); }
   }
+
+  /* ---------- "good to know": collapsed by default, choice kept on this device ---------- */
+  var NOTE_KEY = "rg-alarm-note-open";
+  function applyNote() {
+    var open = false;
+    try { open = localStorage.getItem(NOTE_KEY) === "1"; } catch (e) {}
+    $("note-body").hidden = !open;
+    $("note-toggle").setAttribute("aria-expanded", open ? "true" : "false");
+  }
+  function setNoteOpen(open) {
+    try { localStorage.setItem(NOTE_KEY, open ? "1" : "0"); } catch (e) {}
+    applyNote();
+  }
+  $("note-toggle").onclick = function () { setNoteOpen($("note-body").hidden); };
 
   /* ---------- per-platform help: tabs, opens on the detected device ---------- */
   var platform = (function () { var k = instKey(); return k === "android" ? "android" : (k === "iosSafari" || k === "iosOther") ? "ios" : "desktop"; })();
@@ -1041,6 +1060,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     if (e.key === DEFSND) { defSound = e.newValue || S.DEFAULT; }
     if (e.key === THEME_KEY || e.key === BG_KEY || e.key === LBG_KEY) { readThemeFromStorage(); }
     if (e.key === LANG) { lang = e.newValue === "en" ? "en" : "he"; render(); }
+    if (e.key === NOTE_KEY) applyNote();
   });
 
   render(); updateInstall(); loop();
