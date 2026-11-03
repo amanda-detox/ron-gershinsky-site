@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T11:18:48+02:00",
+ "updated": "2026-11-03T11:57:24+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-superintelligence-compute-in-space",
+   "topic": "musk",
+   "date": "2026-11-03T09:06:20Z",
+   "url": "https://x.com/i/trending/2117283309600583779",
+   "source": "X",
+   "he": {
+    "title": "מאסק: כמעט כל המחשוב של בינת־העל יהיה בחלל",
+    "summary": "מאסק כתב שבעתיד המחשוב של בינת־העל יתבצע ברובו המכריע בחלל. הטענה עוררה ויכוח מיידי על השאלה איך מקררים מחשבים בוואקום של המסלול."
+   },
+   "en": {
+    "title": "Musk: nearly all superintelligence compute will be in space",
+    "summary": "Musk posted that future superintelligence compute will be overwhelmingly in space, sparking an immediate debate over how to cool hardware in the vacuum of orbit."
+   },
+   "full_en": "Elon Musk declared that nearly all super intelligence computing will soon happen in space. The idea sparked instant back-and-forth on cooling challenges in orbit's vacuum.\n\nOn November 2, Musk posted that future super intelligence compute will be overwhelmingly in space, prompting critics like philosophy professor Jan Broersen to question heat dissipation without convection—only radiation works there. Musk fired back bluntly at skeptics while detailing aluminum radiators that could handle 1,300 watts per square meter against solar panels' 250 watts output. Supporters like physicist Shaun Maguire explained passive ammonia-loop systems, backed by real examples such as Starlink satellites and Google's orbital AI haiku from Project Suncatcher, highlighting how Starship could make vast radiators feasible despite hurdles like radiation and maintenance.\n\n(This is X's summary of the story, built from posts on X.)",
+   "full_he": "אילון מאסק הכריז שכמעט כל המחשוב של בינת־העל יתבצע בקרוב בחלל. הרעיון עורר מיד ויכוח על אתגרי הקירור בוואקום של המסלול.\n\nב־2 בנובמבר כתב מאסק שהמחשוב של בינת־העל בעתיד יהיה ברובו המכריע בחלל. מבקרים, כמו פרופסור לפילוסופיה יאן ברורסן, שאלו איך אפשר לפזר חום בלי הסעה (קונבקציה), כשבחלל עובדת רק קרינה. מאסק השיב בבוטות לספקנים ופירט רדיאטורים מאלומיניום שיכולים לפלוט כ־1,300 וואט למטר רבוע, לעומת תפוקה של כ־250 וואט למטר רבוע של פאנלים סולאריים. תומכים, כמו הפיזיקאי שון מגווייר, הסבירו מערכות פסיביות של לולאת אמוניה, ונתנו דוגמאות אמיתיות כמו לווייני סטארלינק והייקו שנכתב בידי בינה מלאכותית במסלול במסגרת Project Suncatcher של גוגל. לדבריהם, סטארשיפ יכולה להפוך רדיאטורים ענקיים לאפשריים, למרות מכשולים כמו קרינה ותחזוקה.\n\n(זה הסיכום של X לסיפור, שנבנה מפוסטים ב־X.)"
+  },
   {
    "id": "solana-price-92-fee-model-debate",
    "topic": "solana",
