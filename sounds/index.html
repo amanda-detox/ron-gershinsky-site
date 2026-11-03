@@ -194,8 +194,13 @@
   /* © footer line: follows the language toggle */
   html:not([lang="en"]) .rg-copy [lang="en"], html[lang="en"] .rg-copy [lang="he"] { display: none; }
   .rg-copy { margin-top: 8px; font-size: 12px; }
+  .mix-bg { position: fixed; inset: 0; z-index: 4; background: rgba(8,16,40,0.4); }
   .mix-box { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(62px + env(safe-area-inset-bottom, 0px)); z-index: 6; width: min(360px, 92vw); max-height: 60vh; overflow: auto;
-    background: rgba(11,31,77,0.97); border: 1px solid rgba(230,195,106,0.5); border-radius: 18px; padding: 12px; box-shadow: 0 0 24px rgba(230,195,106,0.25); color: #f1f5f9; }
+    background: rgba(11,31,77,0.97); border: 1px solid rgba(230,195,106,0.5); border-radius: 18px; padding: 0 0 12px; box-shadow: 0 0 24px rgba(230,195,106,0.25); color: #f1f5f9; }
+  .mix-top { position: sticky; top: 0; z-index: 2; display: flex; justify-content: flex-end; padding: 8px; background: rgba(11,31,77,0.98); border-radius: 17px 17px 0 0; }
+  .mix-x { flex: none; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border-radius: 50%; border: 1.5px solid #e6c36a; background: rgba(59,130,246,0.28); color: #f5d77a; font-size: 22px; font-weight: 600; line-height: 1; display: grid; place-items: center; cursor: pointer; touch-action: manipulation; box-shadow: 0 0 12px rgba(230,195,106,0.35); }
+  .mix-x:active { transform: scale(0.96); }
+  .mix-body { padding: 0 12px; }
   .mix-box h3 { margin: 0 0 8px; font-size: 14px; font-weight: 500; color: #e6c36a; }
   .mix-save { display: flex; gap: 6px; margin-bottom: 12px; }
   .mix-save input { flex: 1; min-width: 0; font: inherit; font-size: 14px; color: #f1f5f9; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.18); border-radius: 10px; padding: 6px 10px; min-height: 36px; }
@@ -205,7 +210,10 @@
   .mix-row .ml { flex: 1; text-align: start; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #f1f5f9; }
   .mix-row .md { flex: none; width: 32px; height: 32px; padding: 0; border-radius: 50%; border: 1px solid rgba(212,175,55,.5); background: rgba(13,42,92,.6); color: #f3d77a; font-size: 13px; }
   .mix-empty { font-size: 13px; color: rgba(214,224,240,0.7); margin: 0; }
+  html[data-theme="light"] .mix-bg { background: rgba(11,31,77,0.2); }
   html[data-theme="light"] .mix-box { background: #fffdf6; color: #0b1f4d; border-color: rgba(201,162,39,0.6); }
+  html[data-theme="light"] .mix-top { background: #fffdf6; }
+  html[data-theme="light"] .mix-x { color: #0b2a6b; background: #fff8e6; border-color: #c9a23a; box-shadow: none; }
   html[data-theme="light"] .mix-box h3 { color: #0b2a6b; } html[data-theme="light"] .mix-save input { color: #0b1f4d; background: #fff; border-color: rgba(11,42,107,0.25); }
   html[data-theme="light"] .mix-save button, html[data-theme="light"] .mix-row .ml { color: #0b2a6b; background: #fff8e6; }
 </style>
@@ -241,11 +249,15 @@
     <button type="button" class="stopall" id="stopall" hidden></button>
   </div>
 </div>
+<div class="mix-bg" id="mix-bg" hidden></div>
 <div class="mix-box" id="mix-box" hidden>
+  <div class="mix-top"><button type="button" class="mix-x" id="mix-x" aria-label="סגירה" title="סגירה">✕</button></div>
+  <div class="mix-body">
   <h3 id="mix-save-h"></h3>
   <div class="mix-save"><input type="text" id="mix-name" maxlength="40" autocomplete="off"><button type="button" id="mix-save"></button></div>
   <h3 id="mix-list-h"></h3>
   <ul class="mix-list" id="mix-list"></ul>
+  </div>
 </div>
 <div class="flash" id="flash"></div>
 <div class="toast" id="toast" role="status" hidden></div>
@@ -882,13 +894,29 @@
     $("note-x").onclick = function () { try { localStorage.setItem("rg-snd-note", "gone"); } catch (e) {} nr(); };
     nr(); window.rgNoteRender = nr;
   })();
+  function syncMixBg() { var bg = $("mix-bg"); if (bg) bg.hidden = $("mix-box").hidden; }
+  function closeMix() {
+    if ($("mix-box").hidden) return;
+    $("mix-box").hidden = true;
+    $("mix-btn").setAttribute("aria-expanded", "false");
+    syncMixBg();
+    try { $("mix-btn").focus(); } catch (e) {}
+  }
   function togglePop(which) {
     [["vol-btn", "vol-box"], ["mix-btn", "mix-box"]].forEach(function (p) {
       var open = p[0] === which && $(p[1]).hidden; $(p[1]).hidden = !open; $(p[0]).setAttribute("aria-expanded", String(open));
     });
+    syncMixBg();
   }
   $("vol-btn").onclick = function () { togglePop("vol-btn"); };
   $("mix-btn").onclick = function () { togglePop("mix-btn"); };
+  $("mix-x").onclick = function (e) { e.stopPropagation(); closeMix(); };
+  if ($("mix-bg")) $("mix-bg").addEventListener("click", function () { closeMix(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape" || $("mix-box").hidden) return;
+    e.preventDefault();
+    closeMix();
+  });
   $("mix-save").onclick = saveMix;
   $("mix-name").addEventListener("keydown", function (e) { if (e.key === "Enter") saveMix(); });
   st.master = dbToV(vToDb(st.master));
