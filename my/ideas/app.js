@@ -34,7 +34,7 @@
   var GROUPS = [1], menuG = 1;
   function gOf(c) { return 1; }
   function gTabKey(g) { return g === 1 ? "rg-myideas-tab" : "rg-myideas-tab-g" + g; }
-  var drag = null, idrag = null, needRender = false, noClick = false;
+  var drag = null, idrag = null, needRender = false, noClick = false, armedId = null;
 
   function $(id) { return document.getElementById(id); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -419,17 +419,20 @@
   }
   function panel(sec) {
     showP = hasPrices(sec); showC = isChk(sec);
-    var act = live(sec).sort(byOrder), cked = []; if (showC) { cked = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist (Ron 2.11): checked items in their own section ABOVE the unchecked ones
-    var done = []; // one list only (Ron 31.10)
+    var act = live(sec).sort(byOrder), cked = [], chosen = [];
+    if (showC) { cked = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist: the existing checked section
+    else { chosen = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); } // ✓ moves into נבחרים; clearing it returns the item
+    var done = []; // old "done" נבחר stays off (Ron 31.10). ✓ uses mark, which already syncs.
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
       '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
         '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "") +  // selected ("נבחר") group sits ABOVE the open items (Ron 30.10)
 
+      (chosen.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "נבחרים" : "Chosen") + ' <span class="ckn">(' + chosen.length + ')</span></div><div class="card listcard ckcard"><ul class="list" id="list-ck">' + chosen.map(row).join("") + "</ul></div>" : "") +
       (cked.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "סומנו" : "Checked") + ' <span class="ckn">(' + cked.length + ')</span></div><div class="card listcard ckcard"><ul class="list" id="list-ck">' + cked.map(row).join("") + "</ul></div>" : "") +
       (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(row).join("") + "</ul></div>"
-        : cked.length ? "" : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") + '<div class="sum" id="sum" hidden></div>';
+        : (cked.length || chosen.length) ? "" : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") + '<div class="sum" id="sum" hidden></div>';
   }
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
@@ -468,7 +471,17 @@
     sumNow();
     rendering = false;
     setStatus();
+    paintArmed();
   }
+  function paintArmed() {
+    var nodes = document.querySelectorAll(".list > li.armed");
+    for (var i = 0; i < nodes.length; i++) nodes[i].classList.remove("armed");
+    if (!armedId) return;
+    var all = document.querySelectorAll(".list > li[data-id]"), found = false;
+    for (var j = 0; j < all.length; j++) if (all[j].getAttribute("data-id") === armedId) { all[j].classList.add("armed"); found = true; }
+    if (!found) armedId = null;
+  }
+  function clearArmed() { if (!armedId) return; armedId = null; paintArmed(); }
 
   function saveEdit(id) {
     var ed = document.querySelector('[data-ed="' + id + '"]'), x = items[id]; editing = null;
@@ -771,13 +784,14 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
   }
 
-  /* ---------- items: swipe (on the row body) right = delete, left = move to another list;
-     swipe up toggles ✓, swipe down toggles ✕ (a quick flick only, so a slow drag still scrolls);
-     the ☰ handle on an open item = drag it to any place in the list, right away (no long-press) ---------- */
+  /* ---------- items: swipe right = delete, swipe left = move (immediate, same as before).
+     ✓ / ✕ only after a long-press selects the row (gold outline). Until then a vertical
+     drag is native scrolling. Tap outside the row, or finishing the mark, clears the selection.
+     The ☰ handle lifts the row at once (no long-press). ---------- */
   function bootItemDrag() {
-    var main = document.querySelector("main"), AXIS = 12, VGO = 40, VMAX = 120, FLICK = 350, SWIPE = 0.35;
+    var main = document.querySelector("main"), AXIS = 12, VGO = 40, HOLD = 500, SWIPE = 0.35;
     function reset() {
-      if (idrag) { unswipe(); if (idrag.sorter) idrag.sorter.end(); }
+      if (idrag) { if (idrag.hold) clearTimeout(idrag.hold); unswipe(); if (idrag.sorter) idrag.sorter.end(); }
       var tip = $("drophint"); if (tip) tip.hidden = true;
       document.body.classList.remove("idragging"); idrag = null;
       if (needRender && !drag) { needRender = false; render(); }
@@ -797,15 +811,18 @@
       }
       return document.scrollingElement || document.documentElement;
     }
+    function armRow(id) {
+      armedId = id; paintArmed();
+      noClick = true; setTimeout(function () { noClick = false; }, 450);
+      if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {}
+    }
     function commitFlick(d, dx, dy) {
-      if (!d || d.handled || d.swipe || d.lifted) return false;
+      if (!d || d.handled || d.swipe || d.lifted || !armedId || armedId !== d.id) return false;
       var adx = Math.abs(dx), ady = Math.abs(dy);
-      var quick = d.type === "mouse" || (Date.now() - d.t < FLICK);
-      var short = d.type === "mouse" || ady <= VMAX;
-      if (!(quick && short && ady >= VGO && ady > adx * 1.5)) return false;
+      if (!(ady >= VGO && ady > adx * 1.5)) return false;
       d.handled = true;
       noClick = true; setTimeout(function () { noClick = false; }, 400);
-      var id = d.id; reset();
+      var id = d.id; reset(); clearArmed();
       if (toggleMark(id, dy < 0 ? "ok" : "no")) { changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
       return true;
     }
@@ -822,23 +839,21 @@
       idrag.li.style.setProperty("--sx", dx + "px");
       idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
     }
-    /* A mouse drag that starts on the title is a text selection until it is clearly a swipe
-       (about a third of the row sideways, or 40px up/down). Touch, and a mouse drag that
-       starts off the text, still slides as soon as the axis is chosen. */
-    /* Vertical is never captured: the browser scrolls. A short fast flick is read at touchend.
-       preventDefault only after the gesture is clearly horizontal. */
+    /* A mouse drag that starts on the title is a text selection until it is clearly a sideways swipe.
+       Vertical never calls preventDefault unless this row is already selected. */
     function follow(dx, dy) {
       idrag._dx = dx; idrag._dy = dy;
+      if (idrag.hold && (Math.abs(dx) > AXIS || Math.abs(dy) > AXIS)) { clearTimeout(idrag.hold); idrag.hold = 0; }
       if (idrag.swipe) { paintH(dx); return "h"; }
       var adx = Math.abs(dx), ady = Math.abs(dy), text = idrag.fromText;
       if (!idrag.axis) {
         if (adx < AXIS && ady < AXIS) return "";
         if (adx > ady * 1.5) idrag.axis = "h";
-        else { idrag.axis = "v"; return ""; }
+        else { idrag.axis = "v"; return armedId === idrag.id ? "v" : ""; }
       }
       if (idrag.axis === "v") {
         if (adx > ady * 1.5 && adx >= AXIS) idrag.axis = "h";
-        else return "";
+        else return armedId === idrag.id && ady >= AXIS ? "v" : "";
       }
       if (idrag.axis === "h") {
         var w = idrag.li.offsetWidth || 1;
@@ -867,14 +882,25 @@
       if (e.pointerType === "mouse" && e.target.closest(".txt,.note") && sel0 && !sel0.isCollapsed && String(sel0).trim()) return;
       reset();
       var sc = scrollOf(li);
-      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
+      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
+      idrag.hold = setTimeout(function () {
+        if (!idrag || idrag.li !== li || idrag.swipe || idrag.lifted || idrag.handled) return;
+        if (Math.abs(idrag._dx || 0) > AXIS || Math.abs(idrag._dy || 0) > AXIS) return;
+        armRow(idrag.id);
+      }, HOLD);
     });
+    document.addEventListener("pointerdown", function (e) {
+      if (!armedId) return;
+      var row = e.target.closest && e.target.closest(".list > li[data-id]");
+      if (row && row.getAttribute("data-id") === armedId) return;
+      clearArmed();
+    }, true);
     document.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       var dx = e.clientX - idrag.x, dy = e.clientY - idrag.y;
       if (idrag.lifted) { e.preventDefault(); idrag.sorter.move(e.clientY); return; }
       var act = follow(dx, dy);
-      if (act === "h") e.preventDefault();
+      if (act === "h" || act === "v") e.preventDefault();
     });
     function up(e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
@@ -895,6 +921,7 @@
         var w = d.li.offsetWidth || 1, sdx = e.type === "pointerup" ? e.clientX - d.x : 0, sid = d.id;
         reset();
         if (Math.abs(sdx) >= w * SWIPE) {
+          clearArmed();
           var x = items[sid];
           if (sdx > 0 && x && !x.deleted) { delWithUndo(sid); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
           else if (sdx < 0 && x && !x.deleted) moveMenu(sid); // left = move to another list
@@ -926,6 +953,10 @@
       var tch = e.touches && e.touches[0]; if (!tch) return;
       follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
     }, { passive: true });
+    main.addEventListener("contextmenu", function (e) {
+      if ((armedId || (idrag && idrag.hold)) && e.target.closest(".list > li")) e.preventDefault();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && armedId && !$("sheet")) clearArmed(); });
   }
 
   function boot() {
