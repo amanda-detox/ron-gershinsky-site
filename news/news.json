@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T17:34:36+02:00",
+ "updated": "2026-11-03T18:17:35+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,108 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-musk-super-competent-employee",
+   "topic": "grokbot",
+   "date": "2026-11-03T16:11:58Z",
+   "url": "https://x.com/elonmusk/status/2117651007538884899",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: גרוק בוט הוא כמו לגייס עובד מוכשר במיוחד",
+    "summary": "מאסק ציטט את פיטר דיאמנדיס, שכתב שגרוק בוט מדהים וממכר, והוסיף שכדאי להתייחס לבוט כמו לעמית לעבודה."
+   },
+   "en": {
+    "title": "Musk: Grok Bot is like hiring a super competent employee",
+    "summary": "Quoting Peter Diamandis, who called Grok Bot awesome and addicting, Musk said you should treat Bot like you would a colleague."
+   },
+   "full_he": "גרוק בוט הוא כמו לגייס עובד מוכשר במיוחד. תתייחס לבוט כמו שהיית מתייחס לעמית לעבודה.\n\nהפוסט שהוא ציטט (פיטר דיאמנדיס, ‎@PeterDiamandis):\n\n\"חייב להגיד את זה. גרוק בוט מדהים. ממש ממכר.\"",
+   "full_en": "Grok Bot is like hiring a super competent employee. Treat Bot like you would a colleague.\n\nThe quoted post (Peter H. Diamandis, MD, @PeterDiamandis):\n\n\"Got to say it. GrokBot is AWESOME. Actually addicting.\""
+  },
+  {
+   "id": "spacex-starlink-zipair-airline-revenue",
+   "topic": "spacex",
+   "date": "2026-11-03T16:10:47Z",
+   "url": "https://x.com/elonmusk/status/2117650707398664501",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: סטארלינק מביא לחברות התעופה יותר לקוחות",
+    "summary": "מאסק ציטט דיווח שלפיו סטארלינק עזר לחברת התעופה היפנית ZIPAIR להגדיל את הכנסות הנוסעים ב־12.3% לעומת השנה שעברה, ושיעור התפוסה במושבים קפץ מ־73.7% ל־87.8%."
+   },
+   "en": {
+    "title": "Musk: Starlink grows customers for airlines",
+    "summary": "Musk quoted a report that Starlink helped Japan's ZIPAIR grow passenger revenue 12.3% year on year, with seat occupancy jumping from 73.7% to 87.8%."
+   },
+   "full_he": "סטארלינק מביא לחברות התעופה יותר לקוחות.\n\nהפוסט שהוא ציטט (‎@cb_doge):\n\nמבזק: סטארלינק עזר לחברת התעופה היפנית ZIPAIR להגדיל את הכנסות הנוסעים ב־12.3% לעומת השנה שעברה.\n\nג'פן איירליינס (JAL) אומרת שסטארלינק שיפר את חוויית הטיסה ב־ZIPAIR ועזר להניע את צמיחת ההכנסות, לצד תמחור גמיש.\n\nבמאי ZIPAIR הפכה לחברת התעופה הראשונה באסיה עם סטארלינק בכל הצי שלה. הכנסות הנוסעים באפריל–ספטמבר הגיעו ל־42.9 מיליארד ין, ושיעור התפוסה במושבים קפץ מ־73.7% ל־87.8%.\n\nבתמונה: מטוס של ZIPAIR מעל העננים, עם הלוגואים של ZIPAIR ושל STARLINK.",
+   "full_en": "Starlink grows customers for airlines\n\nThe quoted post (@cb_doge):\n\nBREAKING: Starlink helped Japan's ZIPAIR grow passenger revenue 12.3% YoY.\n\nJapan Airlines (JAL) says Starlink improved ZIPAIR's onboard experience and helped drive revenue growth alongside flexible pricing.\n\nZIPAIR became Asia's first airline with Starlink across its entire fleet in May. April–September passenger revenue reached ¥42.9 billion, while seat occupancy jumped from 73.7% to 87.8%.\n\nThe image shows a ZIPAIR plane above the clouds with the ZIPAIR and STARLINK logos."
+  },
+  {
+   "id": "musk-ai-wall-electrical-cooling-batteries",
+   "topic": "musk",
+   "date": "2026-11-03T16:07:23Z",
+   "url": "https://x.com/elonmusk/status/2117649850644705591",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: צוואר הבקבוק של ה־AI הוא גם ציוד חשמל, קירור, תקשורת וסוללות",
+    "summary": "מאסק ציטט סיכום של דבריו בפודקאסט של דוורקש פאטל, שלפיו עד סוף 2026 ייוצרו יותר שבבי AI ממה שאפשר להפעיל כי החשמל לא גדל, והוסיף שהמחסור הוא גם בציוד חשמלי, קירור, ציוד רשת וסוללות."
+   },
+   "en": {
+    "title": "Musk: AI's bottleneck is also electrical equipment, cooling, networking and batteries",
+    "summary": "Musk quoted a summary of his Dwarkesh Patel podcast remarks that by the end of 2026 more AI chips will be made than can be turned on because power is flat, adding that electrical equipment, cooling, networking and batteries are bottlenecks too."
+   },
+   "full_he": "וגם ציוד חשמלי, קירור, ציוד רשת וסוללות.\n\nהפוסט שהוא ציטט (‎@euwyn):\n\nאילון מאסק אומר שבום ה־AI ייתקל בקיר עד סוף 2026.\n\nלדבריו, כל התעשייה עומדת ללמוד שיעור קשה בחומרה.\n\nייצור השבבים מתפוצץ, אבל צריכת החשמל כמעט לא זזה בכל מקום מחוץ לסין.\n\nאז שני הקווים ייפגשו השנה.\n\nהוא אומר שעד סוף השנה נייצר יותר שבבי AI ממה שנוכל בפועל להפעיל.\n\nמיליונים מהם יצטברו בלי מקום לחבר אותם.\n\nבמילים שלו, צוואר הבקבוק לשנה הבאה הוא לא שבבים, אלא חשמל גולמי.\n\nמי שיצליח להפעיל הכי הרבה שבבים הכי מהר ינצח במרוץ.\n\nבסופו של דבר, מרוץ ה־AI מסתכם בדבר אחד: חשמל גולמי.\n\n— אילון מאסק בפודקאסט של דוורקש פאטל\n\nהפוסט הזה ציטט בעצמו פוסט קודם של ‎@euwyn מאותו פודקאסט: לדברי מאסק, חברות AI עשירות לא מצליחות לבנות תחנות כוח מהר מספיק, כי כל פרויקט חשמל גדול צריך אישורים וציוד:\n\n• ציוד מיתוג\n• טורבינות גז\n• היתרים לתחנות כוח\n• שנאים חשמליים\n• סקרי חיבור לרשת החשמל\n• קווי מתח גבוה\n• להבים וכנפונים מיוחדים לטורבינות\n\nאם אפילו רכיב אחד מתעכב, כל הפרויקט נתקע ושבבי ה־AI נשארים בלי חשמל. לדברי מאסק, טורבינות הגז אזלו עד 2030, והלהבים והכנפונים המיוחדים הם צוואר הבקבוק הגדול ביותר. שאר הפוסט הזה הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "And electrical equipment, cooling, networking and batteries\n\nThe quoted post (@euwyn):\n\nElon Musk says the AI boom will hit a WALL by the end of 2026.\n\nHe says the whole industry is about to learn a hard lesson in hardware.\n\nChip output is exploding, but electricity is nearly flat everywhere outside China.\n\nSo the two lines cross this year.\n\nHe says by the end of the year, we will be making more AI chips than we can actually turn on.\n\nMillions of them pile up with nowhere to plug in.\n\nIn his words, the bottleneck for the next year is not chips, it is raw power.\n\nWhoever can turn on the most chips fastest wins the race.\n\nIn the end, the AI race comes down to one thing: raw electricity.\n\n— Elon Musk on Dwarkesh Patel's podcast\n\nThat post itself quoted an earlier @euwyn clip from the same podcast: Musk says billion-dollar AI companies can't build power plants fast enough, because every major power project needs approvals and equipment, including:\n\n• Switchgear\n• Gas turbines\n• Power plant permits\n• Electrical transformers\n• Utility interconnection studies\n• High-voltage transmission lines\n• Specialized turbine blades and vanes\n\nIf even one component is delayed, the whole project stalls, leaving AI chips without electricity. Musk says gas turbines are sold out through 2030, with specialized blades and vanes the biggest bottleneck. The rest of that post is a video, so there's no more text to show."
+  },
+  {
+   "id": "mikhaila-halloween-parents-dr-strange-edna",
+   "topic": "mikhaila",
+   "date": "2026-11-03T15:51:41Z",
+   "url": "https://x.com/MikhailaFuller/status/2117645903423218143",
+   "source": "X · @MikhailaFuller",
+   "he": {
+    "title": "מיכאלה פיטרסון: אמא ואבא הגיעו למסיבת ההאלווין, ג'ורדן בתור דוקטור סטריינג'",
+    "summary": "מיכאלה שיתפה שהיא שמחה מאוד שהוריה, תמי וג'ורדן פיטרסון, הגיעו למסיבת ההאלווין שלה בנושא דמויות מסרטים: ג'ורדן התחפש לדוקטור סטריינג' ותמי לאדנה מ'משפחת סופר־על'."
+   },
+   "en": {
+    "title": "Mikhaila Peterson: mom and dad at her Halloween party, Jordan as Dr. Strange",
+    "summary": "Mikhaila said she was thrilled to have her parents, Tammy and Jordan Peterson, at her movie-character Halloween party: Jordan came as Dr. Strange and Tammy as Edna from The Incredibles."
+   },
+   "full_he": "כל כך כל כך כל כך שמחה שאמא ואבא (תמי פיטרסון וג'ורדן פיטרסון) הגיעו למסיבת ההאלווין שלנו (בנושא דמויות מסרטים!). לא יכולתי לחשוב על תחפושת מתאימה יותר מדוקטור סטריינג'. (אמא היא אדנה מ'משפחת סופר־על'. אני הייתי אל וודס מ'בלונדינית חוקית'). תודה לכל מי שהגיע :)\n\nבתמונה: ג'ורדן פיטרסון בגלימה אדומה ובתחפושת דוקטור סטריינג' עם תליון, ולידו תמי פיטרסון כאדנה, עם פאה שחורה, משקפיים עגולים ומעיל שחור מבריק.",
+   "full_en": "So so so so so so happy to have mom and dad (@Tammy1Peterson and @jordanbpeterson) at our Halloween party (movie character themed!) Couldn't think of an outfit more appropriate than Dr. Strange. (Mom's Edna from The Incredibles. I was Elle Woods from Legally Blonde). Thanks to everyone who came out :)\n\nThe photo shows Jordan Peterson in a red cloak and Dr. Strange costume with an amulet, next to Tammy Peterson as Edna, with a black wig, round glasses and a shiny black coat."
+  },
+  {
+   "id": "medicalmedium-banana-strawberry-baked-oatmeal-live",
+   "topic": "medicalmedium",
+   "date": "2026-11-03T15:56:09Z",
+   "url": "https://x.com/MedicalMedium/status/2117647024564670942",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום בשידור חי: מכין שיבולת שועל אפויה עם בננה ותות ועונה על שאלות",
+    "summary": "אנתוני וויליאם (מדיקל מדיום) העלה שידור חי ב־X שבו הוא מכין שיבולת שועל אפויה עם בננה ותותים ועונה על שאלות של הצופים."
+   },
+   "en": {
+    "title": "Medical Medium live: making banana strawberry baked oatmeal and answering questions",
+    "summary": "Anthony William (Medical Medium) went live on X, making banana strawberry baked oatmeal and answering viewers' questions."
+   },
+   "full_he": "מכין שיבולת שועל אפויה עם בננה ותותים ועונה על השאלות שלכם.\n\nהפוסט הוא קישור לשידור חי ב־X (x.com/i/broadcasts/2LPLdYklZObgBB), ולכן אין עוד טקסט להציג.",
+   "full_en": "Making Banana Strawberry Baked Oatmeal And Answering Your Questions\n\nThe post links to a live broadcast on X (x.com/i/broadcasts/2LPLdYklZObgBB), so there's no more text to show."
+  },
+  {
+   "id": "apple-nvidia-tops-apple-5t-after-earnings",
+   "topic": "apple",
+   "date": "2026-11-03T15:58:21Z",
+   "url": "https://x.com/i/trending/2117645876692947019",
+   "source": "X",
+   "he": {
+    "title": "אנבידיה עוקפת את אפל וחוזרת להיות החברה השווה בעולם, ב־5 טריליון דולר",
+    "summary": "ב־3 בנובמבר אנבידיה הגיעה לשווי של 5 טריליון דולר ועקפה את אפל (4.85 טריליון), אחרי שמניית אפל ירדה בעקבות תחזית רכה לרבעון דצמבר, למרות רבעון שיא."
+   },
+   "en": {
+    "title": "Nvidia tops Apple as the world's most valuable company at $5 trillion",
+    "summary": "On November 3 Nvidia hit a $5 trillion market cap, edging past Apple's $4.85 trillion, as Apple shares dipped on softer December guidance despite a record quarter."
+   },
+   "full_he": "אנבידיה עקפה את אפל ב־3 בנובמבר, הגיעה לשווי שוק של 5 טריליון דולר, בזמן שמניית אפל ירדה אחרי הדוחות.\n\n• אפל דיווחה על הכנסות שיא לרבעון ספטמבר: 114.48 מיליארד דולר, עלייה של 12% לעומת השנה שעברה.\n• מכירות האייפון הגיעו לשיא רבעוני של 57.58 מיליארד דולר, והשירותים הגיעו לשיא של כל הזמנים.\n• המנכ\"ל החדש ג'ון טרנוס הוביל את שיחת הדוחות הראשונה שלו, אבל המניה ירדה בכ־4% במסחר המוקדם בגלל תחזית רכה יותר לרבעון דצמבר, כולל שולי רווח גולמי של 45–46% על רקע עליית מחירי שבבי הזיכרון בגלל הביקוש ל־AI.\n• השינוי מראה איך ה־AI מפעיל לחץ גם על ענקיות כמו אפל, ומאפשר לאנבידיה לחזור למקום הראשון עם 5 טריליון דולר מול 4.85 טריליון של אפל.\n\nזה סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "Nvidia edged ahead of Apple on November 3, hitting a $5 trillion market cap while Apple's shares dipped after earnings.\n\n• Apple posted record September-quarter revenue of $114.48 billion, up 12% from last year.\n• iPhone sales hit a quarterly high of $57.58 billion, and services reached an all-time peak.\n• New CEO John Ternus led his first earnings call, but shares fell about 4% in premarket on softer December guidance, including gross margins of 45–46% amid rising memory-chip costs from AI demand.\n• The shift highlights how AI pressures even giants like Apple, letting Nvidia reclaim the top spot with $5 trillion versus Apple's $4.85 trillion.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "johnson-make-your-stand-exercise",
    "topic": "johnson",
