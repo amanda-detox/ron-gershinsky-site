@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T01:53:43+02:00",
+ "updated": "2026-11-03T02:41:27+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "starterstory-charlie-liinks-quitting-trap",
+   "topic": "starterstory",
+   "date": "2026-11-03T00:36:07Z",
+   "url": "https://x.com/starter_story/status/2117415489530155031",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "צ'ארלי מ-Liinks: המלכודת הכי קלה היום היא לוותר שוב ושוב",
+    "summary": "צ'ארלי בנה את Liinks, כלי \"לינק בביו\", לצד עבודה במשרה מלאה והגיע ל-31.5 אלף דולר בחודש, בתחום שבו ל-Linktree כבר היו מיליוני משתמשים. העצה שלו לעידן ה-AI: לבנות כבר לא קשה, הקושי הוא להישאר מספיק זמן ולעשות את העבודה הקשה."
+   },
+   "en": {
+    "title": "Liinks founder Charlie: the easiest trap right now is quitting over and over",
+    "summary": "Charlie built Liinks, a link-in-bio tool, alongside his full-time job and grew it to $31.5K/month in a space where Linktree already had millions of users. His advice for the AI era: building isn't the hard part anymore; sticking around to do the hard work is."
+   },
+   "full_he": "צ'ארלי אומר שהמלכודת הכי קלה ליפול אליה היום היא לוותר שוב ושוב.\n\nהוא בנה את Liinks, כלי \"לינק בביו\", לצד העבודה שלו במשרה מלאה, והגדיל אותו ל-31.5 אלף דולר בחודש.\n\nוזה בתחום שבו ל-Linktree כבר היו מיליוני משתמשים.\n\nהעצה שלו לעידן ה-AI:\n\n„לבנות נהיה כל כך זול, ובמובן מסוים הרבה יותר קל לקפוץ לרעיון הבא שיש לך, במקום באמת להשקיע את הזמן ולנסות לעשות את הדברים הקשים.”\n\nהדברים הקשים:\n\n• לפנות ללקוחות\n• שיווק\n• לעשות פניות יזומות (outreach)\n\nהבנייה היא כבר לא החלק הקשה. תבחר תחום שכבר הוכיח את עצמו, ותישאר בו מספיק זמן כדי לעשות את העבודה.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Charlie says the easiest trap to fall into right now is quitting over and over.\n\nHe built Liinks, a link-in-bio tool, on the side of his full-time job and grew it to $31.5K/month.\n\nThat was in a space where Linktree already had millions of users.\n\nHis advice for the AI era:\n\n\"It has gotten so cheap to build, and it's so much easier in a way to jump to the next idea you have, rather than actually spending the time trying to do the hard stuff.\"\n\nThe hard stuff:\n\n• reaching out to customers\n• marketing\n• doing outreach\n\nBuilding isn't the hard part anymore. Pick a space that's validated, then stick around long enough to do the work.\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "ternus-first-earnings-call-beat-margin-guide",
+   "topic": "ternus",
+   "date": "2026-11-02T23:59:00Z",
+   "url": "https://www.cnbc.com/2026/11/02/apple-aapl-q4-2026-earnings-live-updates.html",
+   "source": "CNBC",
+   "he": {
+    "title": "שיחת הרווחים הראשונה של טרנוס: אפל עקפה את התחזיות, אבל המניה ירדה",
+    "summary": "בדוח הראשון של ג'ון טרנוס כמנכ\"ל, אפל דיווחה על הכנסות של 114.48 מיליארד דולר ורווח של 2.10 דולר למניה, מעל הציפיות, אבל תחזית שולי רווח חלשה ומכירות אייפד נמוכות הורידו את המניה במסחר המאוחר. טרנוס אמר שזו \"שנת הכספים הטובה ביותר אי פעם\" ושהוא לא יכול לחזות מתי ההיצע של iPhone Duo יתאזן."
+   },
+   "en": {
+    "title": "Ternus's first earnings call: Apple beats estimates, but the stock slips",
+    "summary": "In John Ternus's first report as CEO, Apple posted $114.48B in revenue and $2.10 EPS, above expectations, but a weak margin forecast and soft iPad sales pushed the stock lower after hours. Ternus called it Apple's \"best fiscal year ever\" and said he can't predict when iPhone Duo supply will meet demand."
+   },
+   "full_he": "אפל פרסמה את דוח הרבעון הרביעי של שנת הכספים 2026, הראשון מאז שג'ון טרנוס החליף את טים קוק כמנכ\"ל ב-1 בספטמבר (קוק משמש עכשיו יו\"ר בפועל). לפי CNBC, ההכנסות והרווח עקפו את התחזיות, אבל מכירות האייפד ותחזית שולי הרווח אכזבו, והמניה ירדה במסחר המאוחר.\n\nהמספרים מול תחזיות האנליסטים (לפי LSEG):\n\n• רווח למניה: 2.10 דולר, מול 1.99 צפוי\n• הכנסות: 114.48 מיליארד דולר, מול 113.39 צפוי (עלייה של כ-12%)\n• אייפון: 57.58 מיליארד דולר, מול 56.54 צפוי\n• מק: 10.79 מיליארד דולר, מול 9.61 צפוי\n• אייפד: 6.23 מיליארד דולר, מול 6.7 צפוי\n• לבישים, בית ואביזרים: 31.57 מיליארד דולר, כמעט בדיוק כצפוי\n• רווח נקי: 30.71 מיליארד דולר, לעומת 27.46 מיליארד שנה קודם\n• הכנסות השירותים עלו בכמעט 10%\n\nהתחזית: אפל צופה צמיחה של 7%–10% בהכנסות ברבעון דצמבר, מעל ממוצע התחזיות (6.1%), אבל שולי רווח גולמיים של 45%–46%, מתחת לממוצע של 46.3%.\n\nמה טרנוס אמר:\n\n• לדבריו, אפל סיימה את \"שנת הכספים הטובה ביותר אי פעם\", למרות מגבלות היצע ורוחות נגד במטבע חוץ. \"מעולם לא היינו בטוחים יותר שהטוב ביותר עוד לפנינו.\"\n• על iPhone Duo (לפי 9to5Mac, בראיון לרויטרס): \"Duo מוגבל בהיצע נכון להיום... אנחנו לא יכולים לחזות מתי ההיצע והביקוש יתאזנו.\" מועדי המשלוח בחנות של אפל עדיין בסוף ינואר. הוא גם אמר ש\"אחוז קטן מאוד\" מהיחידות הוחזרו עם בעיות מסך, ואפל מחליפה אותן ביחידות חדשות.\n• בשיחה עם המשקיעים (לפי AppleInsider) הוא כינה את אפל \"החברה הגדולה בעולם\", דיבר על פרטיות, עמידות, מוצרים עם יותר חומרים ממוחזרים, ועל ייצור בארה\"ב: כמעט 100 רכיבים באייפונים החדשים מגיעים מחברות אמריקאיות, ואפל תומכת לדבריו ביותר מ-450 אלף משרות בארה\"ב במסגרת התחייבות של 600 מיליארד דולר לארבע שנים.\n• לפי SiliconANGLE, הוא נמנע מלפרט תוכניות למונטיזציה של AI. לפי Axios, משקיעים מחכים לרמזים על אסטרטגיית ה-AI שלו.",
+   "full_en": "Apple reported its fiscal Q4 2026 results, its first since John Ternus succeeded Tim Cook as CEO on Sept. 1 (Cook is now executive chair). According to CNBC, revenue and earnings beat estimates, but iPad sales and the margin forecast disappointed, and the stock slid in extended trading.\n\nResults vs. analyst estimates (per LSEG):\n\n• EPS: $2.10 vs. $1.99 expected\n• Revenue: $114.48B vs. $113.39B expected (up about 12%)\n• iPhone: $57.58B vs. $56.54B estimated\n• Mac: $10.79B vs. $9.61B estimated\n• iPad: $6.23B vs. $6.7B estimated\n• Wearables, Home and Accessories: $31.57B vs. $31.58B estimated\n• Net income: $30.71B, up from $27.46B a year earlier\n• Services revenue rose almost 10%\n\nGuidance: Apple expects December-quarter revenue to grow 7%–10% year over year, above the 6.1% average estimate, but a gross margin of 45%–46%, below the 46.3% average estimate.\n\nWhat Ternus said:\n\n• Apple capped off its \"best fiscal year ever,\" despite supply constraints and foreign-exchange headwinds. \"It just feels like we've never been more confident that the best is yet to come.\"\n• On iPhone Duo (per 9to5Mac, citing a Reuters interview): \"Duo is constrained as of today... at this point, we're not able to predict when supply and demand will be in balance.\" Apple Store shipping estimates remain in late January. He said \"a very small percentage\" of units were returned with display issues, and Apple is replacing them.\n• On the call (per AppleInsider) he called Apple \"the greatest company in the world,\" spoke about privacy, durability and more recycled content, and about US manufacturing: nearly 100 components in the newest iPhones come from American companies, and he said Apple supports more than 450,000 US jobs as part of a $600B four-year commitment.\n• Per SiliconANGLE, he declined to detail AI monetization plans; per Axios, investors are waiting for clues on his AI strategy."
+  },
   {
    "id": "pod-jbp-ded038a7d4",
    "topic": "podcasts",
