@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T23:04:56+02:00",
+ "updated": "2026-11-03T23:50:14+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -13101,6 +13101,23 @@
    },
    "full_he": "מנכ\"לי Marvell Technology ו־Lumentum Holdings קיבלו את ברכתו של ג'נסון הואנג, מנכ\"ל אנבידיה, לפני שסגרו את המיזוג ביניהן בשווי של כמעט 103 מיליארד דולר.\n\n• מנכ\"ל Marvell מתיו מרפי ומנכ\"ל Lumentum מייקל הרלסטון ביקשו לשמוע את דעתו של הואנג בשיחת טלפון לפני ההכרזה על העסקה, לפי אנשים שמכירים את הפרטים וביקשו לא להזדהות כי הפרטים אינם פומביים.\n• לפי הדיווח, התמיכה של הואנג מראה שאנבידיה, המובילה בתחום הבינה המלאכותית, מעודדת איחודים בין הספקים המרכזיים שלה, כשהביקוש לחיבורים אופטיים מהירים יותר הופך לצוואר בקבוק בבניית מרכזי נתונים גדולים יותר ויותר.\n• בראיון ל־Fox Business ביום שני תיאר הרלסטון את התגובה של אנבידיה כ„חיובית מאוד”, ואמר: „אנחנו מאמינים שבזכות המיזוג נוכל לספק לאנבידיה יותר מוצרים ובקצב מהיר יותר.”\n• מרפי אמר בשיחת משקיעים שלו ולהרלסטון יש „השקפות דומות מאוד” על כיוון התעשייה, ושהם מכירים זה את זה זמן רב, מקצועית ואישית; Lumentum היא לקוחה חשובה של Marvell.\n• לפי הדיווח, החברות התחילו לדבר על מיזוג בקיץ, והשיחות נשארו ביניהן בלבד. הן תכננו להכריז יחד עם הדוחות של Lumentum ביום חמישי, אבל הקדימו את ההודעה אחרי שהתוכנית דלפה לתקשורת.\n• העסקה כולה במניות: על כל מניית Lumentum יקבלו בעליה 4.5 מניות Marvell. כולל חוב, שווי העסקה כ־115 מיליארד דולר, והיא אמורה להיסגר במחצית הראשונה של 2028.\n• החברה המאוחדת תשלב את השבבים המותאמים של Marvell עם הרכיבים האופטיים של Lumentum (כמו לייזרים) להעברת נתונים בין שבבים לשרתים, ותהפוך לספקית משולבת יותר של חיבורים מהירים.\n\nהכתבה המלאה של בלומברג נעולה למנויים; הפרטים כאן מהחלק הפתוח שלה ומדיווחים שמצטטים אותה (Longbridge).",
    "full_en": "The heads of Marvell Technology and Lumentum Holdings got the blessing of Nvidia CEO Jensen Huang before striking their nearly $103 billion tie-up.\n\n• Marvell CEO Matthew Murphy and Lumentum CEO Michael Hurlston sought Huang's views during a phone call before the deal was announced, according to people familiar with the matter, who asked not to be identified because the details aren't public.\n• Huang's support underscores how AI leader Nvidia is encouraging consolidation among key suppliers as demand for faster optical connections becomes a bottleneck in the build-out of increasingly large data centers.\n• In a Fox Business interview on Monday, Hurlston described Nvidia's reaction as \"very positive\": \"We believe that through this merger, we can actually provide more products to Nvidia at a faster pace.\"\n• Murphy told investors on a conference call that he and Hurlston have \"very similar views\" on the industry's direction, and that they have known each other a long time, professionally and personally; Lumentum is an important Marvell customer.\n• According to the report, the companies began discussing a merger this summer, with talks limited to the two of them. They had planned to announce alongside Lumentum's earnings this Thursday, but went early after the plan leaked to the media.\n• It's an all-stock deal: Lumentum shareholders get 4.5 Marvell shares per Lumentum share. Including debt, the deal is valued at about $115 billion, and it's expected to close in the first half of 2028.\n• The combined company will pair Marvell's custom chips with Lumentum's optical components (such as lasers) for chip-to-server data transmission, forming a more vertically integrated supplier of high-speed interconnects.\n\nBloomberg's full article is behind a paywall; these details come from its open portion and from reports citing it (Longbridge)."
+  },
+  {
+   "id": "huang-nvidia-stock-pullback-ai-bubble-debate",
+   "topic": "huang",
+   "date": "2026-11-03T21:43:07Z",
+   "url": "https://x.com/i/trending/2117648664692756763",
+   "source": "X",
+   "he": {
+    "title": "הירידה במניית אנבידיה מציתה מחדש את הוויכוח על בועת ה-AI",
+    "summary": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וב-X מתווכחים אם צמיחת ה-AI היא שינוי של ממש או בועה שעומדת להתפוצץ."
+   },
+   "en": {
+    "title": "NVIDIA stock pullback fuels the AI bubble debate",
+    "summary": "NVIDIA shares sit near $208 after dropping from October highs, sparking debate on X over whether AI's growth is a lasting shift or an overhyped bubble."
+   },
+   "full_he": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וברשת מתנהל דיון אם הצמיחה העצומה של ה-AI מסמנת שינוי מתמשך או בועה מנופחת שעומדת להתפוצץ.\n\n• לפי הסיכום, יצרנית השבבים הניבה תשואה של יותר מ-500,000% מאז ימיה הראשונים, בזכות הביקוש ל-AI, אבל גל מכירות אחרון במניות הטכנולוגיה פילג את הדעות.\n• הספקנים קוראים ל-AI מכונת הייפ ששורפת מיליארדים והורסת משרות.\n• המגינים, כמו פול גרהם, מצביעים על הסתירה בטענה שה-AI גם מזויף וגם משבש.\n• האופטימיים משווים לתקופת הדוט-קום וטוענים שחברות איכותיות ישרדו כל תיקון, ולפי הסיכום נתוני השוק מראים הכנסות חזקות לצד שווי סביר.\n• לצד זה יש ממים שמשלבים תסכול והומור שחור, ושאלות על ההוצאות העצומות של ענקיות הענן.\n\nזה סיכום של פוסטים ב-X ועשוי להשתנות; Grok עלול לטעות.",
+   "full_en": "NVIDIA shares sit near $208 after dropping from October highs, prompting online chatter about whether AI's massive growth signals a lasting shift or an overhyped bubble ready to pop.\n\n• The semiconductor leader has delivered over 500,000% returns from its early days, fueled by AI demand, but a recent tech sell-off has sparked divided views.\n• Skeptics call AI a hype machine burning billions and destroying jobs.\n• Defenders like Paul Graham point out contradictions in claims that it's both fake and disruptive.\n• Optimists draw dot-com parallels, arguing quality companies will survive any correction, as market data shows strong revenue amid reasonable valuations.\n• Memes mix frustration with gallows humor amid questions over hyperscalers' huge spending.\n\nThis story is a summary of posts on X and may evolve over time; Grok can make mistakes."
   }
  ]
 }
