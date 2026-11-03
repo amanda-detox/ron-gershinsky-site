@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T16:44:30+02:00",
+ "updated": "2026-11-03T17:34:36+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "johnson-make-your-stand-exercise",
+   "topic": "johnson",
+   "date": "2026-11-03T15:20:51Z",
+   "url": "https://x.com/bryan_johnson/status/2117638139812642898",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: היום אתה מתעמל, ויהי מה",
+    "summary": "ג'ונסון פרסם קריאה קצרה ונחושה: לעמוד על שלך, ללכת עד הסוף ולא לוותר, כי היום אתה מזיז את הגוף ומתאמן."
+   },
+   "en": {
+    "title": "Bryan Johnson: today, you will exercise, come hell or high water",
+    "summary": "Johnson posted a short, determined call to action: make your stand, go all in, don't yield, because today you will move your body and exercise."
+   },
+   "full_he": "היום, תעמוד על שלך\nתתבצר בעמדה\nתלך עד הסוף\nאל תוותר\nויהי מה\nביום הזה\nאתה תזיז את הגוף\nביום הזה\nאתה תתאמן",
+   "full_en": "today, make your stand\ndig your heels in\ngo all in\ndo not yield\ncome hell or high water\non this day\nyou will move your body\non this day\nyou will exercise"
+  },
   {
    "id": "grokbot-musk-yes-give-it-a-job",
    "topic": "grokbot",
