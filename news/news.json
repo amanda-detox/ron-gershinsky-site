@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T07:21:22+02:00",
+ "updated": "2026-11-03T08:05:57+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-asia-capital-markets-sk-hynix",
+   "topic": "solana",
+   "date": "2026-11-03T05:50:00Z",
+   "url": "https://x.com/solana/status/2117494481771770306",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: אסיה מייצאת עכשיו שוקי הון, ו־SK Hynix כבר על השרשרת",
+    "summary": "סולאנה ציטטה דברים מכנס TOKEN2049: מניית SK Hynix נרשמה בנאסד\"ק ובאותו יום גם על סולאנה, עם נפח מסחר של 500 מיליון דולר עד כה ויותר מ־10,000 מחזיקים."
+   },
+   "en": {
+    "title": "Solana: Asia's next export is capital markets, with SK Hynix already onchain",
+    "summary": "Solana quoted a TOKEN2049 talk: SK Hynix listed on Nasdaq and on Solana the same day, with $500M in volume so far and over 10,000 holders."
+   },
+   "full_he": "אסיה ייצאה סחורות במשך 30 שנה. הייצוא הבא הוא שוקי הון, וזה קורה על סולאנה.\n\n„SK Hynix נרשמה בנאסד\"ק. באותו יום היא נרשמה גם על סולאנה והופצה לכל האקוסיסטם. נפח מסחר של 500 מיליון דולר עד כה. מספר המחזיקים עבר את 10,000. יש קהל עולמי לנכסים מהאזור הזה. השאלה היא אם אפשר להביא אותם לבלוקצ'יין.”\n\nהפוסט מתייג את ‎@shadddowfax ואת ‎@sunrise.\n\nבתגובה של סולאנה עצמה בשרשור: אפשר לצפות בהרצאה המלאה ב־‎@token2049.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Asia spent 30 years exporting goods. The next export is capital markets, and it's happening on Solana.\n\n\"SK Hynix listed on Nasdaq. Same day, it was listed on Solana and distributed to the entire ecosystem. $500M in volume so far. Holder counts above 10,000. There is a global audience for assets in this region. The question is, can you bring them onchain?\"\n\nThe post tags @shadddowfax and @sunrise.\n\nSolana's own reply in the thread: Watch the full talk at @token2049.\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "grokbot-spacexsi-data-bot",
+   "topic": "grokbot",
+   "date": "2026-11-03T05:35:35Z",
+   "url": "https://x.com/i/trending/2117489383188131859",
+   "source": "X",
+   "he": {
+    "title": "ב־SpaceXSI השיקו Data Bot שמבוסס על Grok Bot לכל העובדים",
+    "summary": "הבוט נותן לכל עובד ניתוח נתונים וניסויים דרך הודעות ישירות או ערוצי Slack, ולפי הסיפור חסך 70 שעות של עבודה שגרתית בשבוע אחד."
+   },
+   "en": {
+    "title": "SpaceXSI launches Data Bot, powered by Grok Bot, for every employee",
+    "summary": "The bot brings metrics tracking and experiment analysis to all employees via DMs or Slack, and reportedly handled 70 hours of routine work in one week."
+   },
+   "full_he": "תדמיין שאתה מבקש מבוט ניתוח מיידי של ניסוי ומקבל טבלאות ברורות עם שיפורים מובהקים סטטיסטית. זה כבר חלק מהשגרה ב־SpaceXSI.\n\nב־SpaceXSI הציגו את Data Bot, שמבוסס על Grok Bot ומביא יכולות של מדע נתונים, כמו מעקב אחרי מדדים וניתוח ניסויים, לכל העובדים דרך הודעות ישירות או ערוצי Slack. לפי מה ששיתפה מדענית הנתונים סאלי שו, הוא טיפל ב־70 שעות של עבודה שגרתית בשבוע אחד ופינה את צוות הנתונים למשימות אסטרטגיות. מנהלי מוצר ואנשי שיווק משבחים אותו על כך שנגמר להם הסבל עם SQL ושאפשר לשאול במהירות על שימוש ועל קמפיינים, ואילו פרויקטים מורכבים עדיין נשארים בידי בני אדם.\n\nזה סיכום של פוסטים ב־X, והסיפור עשוי להשתנות.",
+   "full_en": "Imagine asking a bot for instant experiment analysis, and getting clear tables with statistically significant lifts. That's now everyday life at SpaceXSI.\n\nSpaceXSI introduced Data Bot, powered by Grok Bot, which brings data science skills like metrics tracking and experiment analysis to all employees via direct messages or Slack channels. It handled 70 hours of routine work in one week, freeing the data team for strategic tasks, as shared by data scientist Sally Xu. Product managers and marketers praise it for ending SQL struggles and enabling quick queries on usage and campaigns, with humans still handling complex projects.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "musk-starlink-saves-lives-karolina-viking",
    "topic": "musk",
