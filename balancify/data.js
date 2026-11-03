@@ -5,6 +5,7 @@
      tag (optional): small label under the list title, shown as written.
      style: "info" lists use sections: [{ title, items }] and per-item info (explanation panel).
      item.detail (optional): { he, en } smaller second line under the item.
+     item.group (optional): { he, en } heading shown above a run of items (מנטרות).
    - backgrounds: the design picker. file = bg/<id>.webp, thumb = bg/<id>-t.webp. */
 var BAL_SOON = { he: "ההסבר יצורף בקרוב", en: "Explanation coming soon" }; // placeholder explanation
 window.BAL_DATA = {
@@ -39,7 +40,10 @@ window.BAL_DATA = {
         { he: "הפסקת שתיה", en: "A drink break" },
         { he: "לבדוק: אנלומה וילומה", en: "To check: Anulom Vilom" },
         { he: "זיהוי צרכים", en: "Identifying needs" },
-        { he: "כינוס חושים (פרטיאהארה): כיסוי עיניים, שמיכה ואטמים", en: "Sense withdrawal (Pratyahara): eye mask, blanket and earplugs" }
+        { he: "כינוס חושים (פרטיאהארה): כיסוי עיניים, שמיכה ואטמים", en: "Sense withdrawal (Pratyahara): eye mask, blanket and earplugs" },
+        { he: "הכל עבר", en: "It all passed", group: { he: "מנטרות", en: "Mantras" } },
+        { he: "הכל מצוין", en: "Everything is excellent", group: { he: "מנטרות", en: "Mantras" } },
+        { he: "הכל כמו שצריך", en: "Everything is as it should be", group: { he: "מנטרות", en: "Mantras" } }
       ]
     },
     {

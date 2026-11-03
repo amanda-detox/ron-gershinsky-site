@@ -1,7 +1,11 @@
-/* Balancify (באלאנסיפיי). Content lives in data.js. */
+/* Balancify (באלאנסיפיי). Content lives in data.js.
+   Every list: add items, notes, reorder, swipe right = delete (undo), swipe left = move.
+   Listify keeps its own swipe code in my/ideas (no shared module); directions here are physical:
+   clientX right = delete, clientX left = move to another list. */
 (function () {
   "use strict";
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-balancify-theme", BG_KEY = "rg-balancify-bg", CHK_PREFIX = "rg-balancify-checked-";
+  var USER_KEY = "rg-balancify-user", ORD_KEY = "rg-balancify-order";
   var D = window.BAL_DATA;
   var L = {
     he: {
@@ -29,9 +33,40 @@
       close: "Close"
     }
   };
+  var P = {
+    he: {
+      add: "הוספת פריט…", addBtn: "הוספה", del: "נמחק", undo: "ביטול", moved: "הועבר אל ",
+      moveTo: "להעביר לאיזו רשימה?", cancel: "ביטול",
+      hint: "החלק ימינה למחיקה, שמאלה להעברה לרשימה אחרת, וגרור את ☰ לשינוי הסדר.",
+      drag: "גרור לשינוי הסדר", empty: "הרשימה ריקה. אפשר להוסיף פריט בשדה למעלה.",
+      noteAdd: "הוספת הערה", noteEdit: "עריכת הערה", notePh: "הערה אישית…",
+      noteSave: "שמירה", noteClear: "מחיקת ההערה",
+      restore: "שחזור ברירת מחדל", restoreTitle: "לשחזר את הרשימה המקורית?",
+      restoreBody: "פריטים שהוספת, הערות, מחיקות ושינויי סדר ברשימה הזו יימחקו. פריטים שהועברו יחזרו למקומם.",
+      restoreAll: "שחזור כל הרשימות", restoreAllTitle: "לשחזר את כל ברירות המחדל?",
+      restoreAllBody: "כל הפריטים, ההערות והסדר ששינית בבאלאנסיפיי יחזרו למצב המקורי.",
+      restoreYes: "שחזור", restored: "הרשימה שוחזרה", restoredAll: "כל הרשימות שוחזרו"
+    },
+    en: {
+      add: "Add an item…", addBtn: "Add", del: "Deleted", undo: "Undo", moved: "Moved to ",
+      moveTo: "Move to which list?", cancel: "Cancel",
+      hint: "Swipe right to delete, swipe left to move to another list, drag ☰ to reorder.",
+      drag: "Drag to reorder", empty: "The list is empty. Add an item in the field above.",
+      noteAdd: "Add a note", noteEdit: "Edit note", notePh: "A personal note…",
+      noteSave: "Save", noteClear: "Delete note",
+      restore: "Restore defaults", restoreTitle: "Restore this list?",
+      restoreBody: "Items you added, notes, deletions and the order in this list will be cleared. Moved items go back where they belong.",
+      restoreAll: "Restore all lists", restoreAllTitle: "Restore every list?",
+      restoreAllBody: "Every item, note and order you changed in Balancify will return to the original.",
+      restoreYes: "Restore", restored: "List restored", restoredAll: "All lists restored"
+    }
+  };
   var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>';
   var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2z"/></svg>';
   var CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>';
+  var TRASH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M6 7l1 13a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-13"/><path d="M10 11v6M14 11v6"/></svg>';
+  var MOVE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"/><path d="M15 12H4"/><path d="M8 8l-4 4 4 4"/></svg>';
+  var PEN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z"/></svg>';
 
   function $(id) { return document.getElementById(id); }
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -41,71 +76,257 @@
   var theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
   var bg = get(BG_KEY) || D.defaultBg;
   if (!D.backgrounds.some(function (b) { return b.id === bg; })) bg = D.defaultBg;
-  var current = null; // open list id, or null = home
+  var current = null;
+  var openInfo = null;
+  var noteItem = null;
+  var confirmAction = null;
+  var toastT = null;
+  var swallow = false;
+
   function t() { return L[lang]; }
+  function p() { return P[lang]; }
   function nm(o) { return (o && (o[lang] || o.he || o.en)) || ""; }
   function rawList(id) { for (var i = 0; i < D.lists.length; i++) if (D.lists[i].id === id) return D.lists[i]; return null; }
-  /* a list as shown: data.js content + items Ron moved into it (rg-balancify-user.extra) */
-  function findList(id) {
-    var l = rawList(id); if (!l) return null;
-    var ex = (getUser().extra || {})[id] || [];
-    if (l.style === "power") { var c = Object.assign({}, l); c.items = powerItems(); return c; }
-    if (!ex.length) return l;
-    var o = Object.assign({}, l);
-    if (l.sections) o.sections = l.sections.concat([{ title: { he: "הועברו לכאן", en: "Moved here" }, items: ex }]);
-    else o.items = (l.items || []).concat(ex);
-    return o;
-  }
-  /* Ron's editable lists (items, deletions, moves, order); synced as a pref */
-  var USER_KEY = "rg-balancify-user";
-  function getUser() { try { var o = JSON.parse(get(USER_KEY) || "{}"); return o && typeof o === "object" ? o : {}; } catch (e) { return {}; } }
-  function saveUser(u) { set(USER_KEY, JSON.stringify(u)); try { window.dispatchEvent(new StorageEvent("storage", { key: USER_KEY })); } catch (e) {} }
   function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-  function powerItems() {
-    var u = getUser();
-    if (Array.isArray(u.power)) return u.power;
-    var l = rawList("power"); return (l ? l.items : []).map(function (it, i) { return { id: "d" + i, he: it.he, note: it.note || "" }; });
+  function builtinKey(listId, i) { return "b:" + listId + ":" + i; }
+  function cloneNote(n) {
+    if (!n) return { he: "", en: "" };
+    if (typeof n === "string") return { he: n, en: "" };
+    return { he: n.he || "", en: n.en || "" };
   }
-  function savePower(arr) { var u = getUser(); u.power = arr; saveUser(u); }
+  function noteText(n) {
+    if (!n) return "";
+    if (typeof n === "string") return n.trim();
+    return String(n[lang] || n.he || n.en || "").trim();
+  }
 
-  /* checked items are stored by their Hebrew text, so reordering/adding items in data.js keeps choices */
-  function getChecked(id) { try { var a = JSON.parse(get(CHK_PREFIX + id) || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
-  function setChecked(id, arr) { set(CHK_PREFIX + id, JSON.stringify(arr)); }
-  function itemsOf(list) {
-    if (list.items) return list.items;
-    var a = []; (list.sections || []).forEach(function (sec) { a = a.concat(sec.items || []); }); return a;
+  function emptyUser() { return { v: 2, notes: {}, custom: {}, hidden: {}, loc: {}, order: {} }; }
+  function normalize(u) {
+    if (!u || typeof u !== "object") u = emptyUser();
+    if (!u.notes || typeof u.notes !== "object") u.notes = {};
+    if (!u.custom || typeof u.custom !== "object") u.custom = {};
+    if (!u.hidden || typeof u.hidden !== "object") u.hidden = {};
+    if (!u.loc || typeof u.loc !== "object") u.loc = {};
+    if (!u.order || typeof u.order !== "object") u.order = {};
+    u.v = 2;
+    return u;
   }
-  /* Ron's own order (☰ drag), per list, stored by Hebrew text; synced as a pref */
-  var ORD_KEY = "rg-balancify-order";
-  function getOrd() { try { var o = JSON.parse(get(ORD_KEY) || "{}"); return o && typeof o === "object" ? o : {}; } catch (e) { return {}; } }
-  function sorted(list) {
-    var ord = getOrd()[list.id] || [], items = list.items.slice();
-    return items.map(function (it, i) { var p = ord.indexOf(it.he); return { it: it, k: p === -1 ? 1e6 + i : p }; })
-      .sort(function (x, y) { return x.k - y.k; }).map(function (x) { return x.it; });
+  function readRaw() {
+    try { var o = JSON.parse(get(USER_KEY) || "{}"); return o && typeof o === "object" ? o : {}; } catch (e) { return {}; }
   }
-  function saveOrd(id, arr) { var o = getOrd(); o[id] = arr; set(ORD_KEY, JSON.stringify(o)); try { window.dispatchEvent(new StorageEvent("storage", { key: ORD_KEY })); } catch (e) {} }
-  function enableDrag(ul, list) {
-    ul.addEventListener("pointerdown", function (e) {
-      var h = e.target.closest(".hdl"); if (!h) return;
-      e.preventDefault();
-      var li = h.closest("li"); li.classList.add("lifted"); ul.classList.add("dragging");
-      try { h.setPointerCapture(e.pointerId); } catch (x) {}
-      function mv(ev) {
-        var rows = Array.prototype.slice.call(ul.children);
-        for (var i = 0; i < rows.length; i++) {
-          var r = rows[i]; if (r === li) continue; var b = r.getBoundingClientRect();
-          if (ev.clientY > b.top && ev.clientY < b.bottom) { if (ev.clientY < b.top + b.height / 2) ul.insertBefore(li, r); else ul.insertBefore(li, r.nextSibling); break; }
+
+  var CATALOG = null;
+  function catalog() {
+    if (CATALOG) return CATALOG;
+    var out = [];
+    D.lists.forEach(function (list) {
+      var flat = [];
+      if (list.sections) {
+        list.sections.forEach(function (sec, si) {
+          (sec.items || []).forEach(function (it, ii) { flat.push({ it: it, section: si, seq: si * 1000 + ii }); });
+        });
+      } else {
+        (list.items || []).forEach(function (it, i) { flat.push({ it: it, section: null, seq: i }); });
+      }
+      flat.forEach(function (row, i) {
+        out.push({
+          id: builtinKey(list.id, i), origin: list.id, section: row.section, seq: row.seq,
+          he: row.it.he || "", en: row.it.en || "", detail: row.it.detail || null,
+          info: row.it.info || null, links: row.it.links || null, group: row.it.group || null,
+          defaultNote: cloneNote(row.it.note)
+        });
+      });
+    });
+    CATALOG = out;
+    return out;
+  }
+  function builtinsOf(listId) { return catalog().filter(function (b) { return b.origin === listId; }); }
+
+  function migrate(raw) {
+    var u = emptyUser();
+    var powerDefaults = builtinsOf("power");
+    var used = {};
+    if (Array.isArray(raw.power)) {
+      var order = [];
+      raw.power.forEach(function (it, n) {
+        if (!it || !it.he) return;
+        var m = /^d(\d+)$/.exec(String(it.id || ""));
+        var def = null;
+        if (m) {
+          var idx = +m[1];
+          if (powerDefaults[idx] && !used[powerDefaults[idx].id] && powerDefaults[idx].he === it.he) def = powerDefaults[idx];
         }
-      }
-      function up() {
-        h.removeEventListener("pointermove", mv); h.removeEventListener("pointerup", up); h.removeEventListener("pointercancel", up);
-        li.classList.remove("lifted"); ul.classList.remove("dragging");
-        saveOrd(list.id, Array.prototype.map.call(ul.children, function (r) { return r.getAttribute("data-he"); }));
-      }
-      h.addEventListener("pointermove", mv); h.addEventListener("pointerup", up); h.addEventListener("pointercancel", up);
+        if (!def) {
+          for (var i = 0; i < powerDefaults.length; i++) {
+            var d = powerDefaults[i];
+            if (!used[d.id] && d.he === it.he && (d.defaultNote.he || "") === (it.note || "")) { def = d; break; }
+          }
+        }
+        if (!def) {
+          for (var j = 0; j < powerDefaults.length; j++) {
+            if (!used[powerDefaults[j].id] && powerDefaults[j].he === it.he) { def = powerDefaults[j]; break; }
+          }
+        }
+        if (def) {
+          used[def.id] = 1;
+          order.push(def.id);
+          if ((it.note || "") !== (def.defaultNote.he || "")) u.notes[def.id] = { he: it.note || "", en: "" };
+        } else {
+          var cid = it.id && !/^d\d+$/.test(String(it.id)) ? String(it.id) : ("p" + n);
+          var id = "u:" + cid;
+          u.custom[id] = { id: id, list: "power", born: "power", he: it.he, en: it.he, note: { he: it.note || "", en: "" }, seq: 800000 + n };
+          order.push(id);
+        }
+      });
+      powerDefaults.forEach(function (d) { if (!used[d.id]) u.hidden[d.id] = 1; });
+      u.order.power = order;
+    }
+    var ex = raw.extra || {};
+    Object.keys(ex).forEach(function (listId) {
+      if (!rawList(listId)) return;
+      (ex[listId] || []).forEach(function (it, n) {
+        if (!it || !it.he) return;
+        var note = "";
+        if (it.detail && typeof it.detail === "object") note = it.detail.he || "";
+        else if (typeof it.note === "string") note = it.note;
+        var def = null;
+        powerDefaults.forEach(function (d) {
+          if (def || !u.hidden[d.id]) return;
+          if (d.he === it.he && (d.defaultNote.he || "") === note) def = d;
+        });
+        if (!def) powerDefaults.forEach(function (d) {
+          if (def || !u.hidden[d.id]) return;
+          if (d.he === it.he) def = d;
+        });
+        if (def) {
+          delete u.hidden[def.id];
+          u.loc[def.id] = listId;
+          if (note !== (def.defaultNote.he || "")) u.notes[def.id] = { he: note, en: "" };
+        } else {
+          var id = "u:x:" + listId + ":" + n;
+          u.custom[id] = { id: id, list: listId, born: "power", he: it.he, en: it.en || it.he, note: { he: note, en: "" }, seq: 900000 + n };
+        }
+      });
+    });
+    var ord = {};
+    try { ord = JSON.parse(get(ORD_KEY) || "{}") || {}; } catch (e) { ord = {}; }
+    D.lists.forEach(function (list) {
+      if (list.id === "power" && Array.isArray(raw.power)) return;
+      var arr = ord[list.id];
+      if (!Array.isArray(arr) || !arr.length) return;
+      var defs = builtinsOf(list.id), seen = {}, ids = [];
+      arr.forEach(function (he) {
+        for (var i = 0; i < defs.length; i++) {
+          if (!seen[defs[i].id] && defs[i].he === he) { seen[defs[i].id] = 1; ids.push(defs[i].id); break; }
+        }
+      });
+      if (ids.length) u.order[list.id] = ids;
+    });
+    return u;
+  }
+
+  function getUser() {
+    var raw = readRaw();
+    if (raw && raw.v === 2) return normalize(raw);
+    return migrate(raw || {});
+  }
+  function saveUser(u) {
+    var o = normalize(u);
+    set(USER_KEY, JSON.stringify({ v: 2, notes: o.notes, custom: o.custom, hidden: o.hidden, loc: o.loc, order: o.order }));
+    try { window.dispatchEvent(new StorageEvent("storage", { key: USER_KEY })); } catch (e) {}
+  }
+  function snap() {
+    return {
+      user: get(USER_KEY),
+      checks: D.lists.map(function (l) { return { id: l.id, v: get(CHK_PREFIX + l.id) }; })
+    };
+  }
+  function unsnap(s) {
+    try {
+      if (s.user == null) localStorage.removeItem(USER_KEY);
+      else localStorage.setItem(USER_KEY, s.user);
+    } catch (e) {}
+    (s.checks || []).forEach(function (c) {
+      var k = CHK_PREFIX + c.id;
+      try { if (c.v == null) localStorage.removeItem(k); else localStorage.setItem(k, c.v); } catch (e) {}
     });
   }
-  function countChecked(list) { var c = getChecked(list.id); return itemsOf(list).filter(function (it) { return c.indexOf(it.he) !== -1; }).length; }
+
+  function itemsIn(listId, u) {
+    var arr = [];
+    catalog().forEach(function (b) {
+      if (u.hidden[b.id]) return;
+      var dest = u.loc[b.id];
+      if (dest && !rawList(dest)) dest = null;
+      var where = dest || b.origin;
+      if (where !== listId) return;
+      var moved = !!dest && dest !== b.origin;
+      var ov = u.notes[b.id];
+      arr.push({
+        id: b.id, origin: b.origin, custom: false, list: listId,
+        section: moved ? null : b.section, seq: moved ? 500000 + b.seq : b.seq,
+        he: b.he, en: b.en, detail: b.detail, info: b.info, links: b.links,
+        group: moved ? null : b.group, note: ov ? cloneNote(ov) : cloneNote(b.defaultNote)
+      });
+    });
+    Object.keys(u.custom || {}).forEach(function (id) {
+      var c = u.custom[id];
+      if (!c || c.list !== listId || !c.he) return;
+      arr.push({
+        id: id, origin: c.born || listId, custom: true, list: listId, section: null,
+        seq: c.seq || Date.now(), he: c.he, en: c.en || c.he, detail: null, info: null, links: null,
+        group: null, note: cloneNote(c.note)
+      });
+    });
+    return arr;
+  }
+  function sortGroup(items, ord) {
+    return items.slice().sort(function (a, b) {
+      var ia = ord.indexOf(a.id), ib = ord.indexOf(b.id);
+      if (ia === -1 && ib === -1) return a.seq - b.seq;
+      if (ia === -1) return 1;
+      if (ib === -1) return -1;
+      return ia - ib;
+    });
+  }
+  function groupsOf(list, u) {
+    var items = list.resolved, ord = (u.order && u.order[list.id]) || [];
+    if (list.style !== "info") return [{ title: null, sec: "all", items: sortGroup(items, ord) }];
+    var groups = [];
+    (list.sections || []).forEach(function (sec, si) {
+      var mem = sortGroup(items.filter(function (it) { return it.section === si; }), ord);
+      if (mem.length) groups.push({ title: sec.title, sec: String(si), items: mem });
+    });
+    var extra = sortGroup(items.filter(function (it) { return it.section == null; }), ord);
+    if (extra.length) {
+      var anyCustom = extra.some(function (it) { return it.custom; });
+      var anyMoved = extra.some(function (it) { return !it.custom; });
+      var title = anyCustom && anyMoved ? { he: "הוספתי והועברו", en: "Added and moved here" }
+        : anyCustom ? { he: "הוספתי", en: "Added by me" }
+        : { he: "הועברו לכאן", en: "Moved here" };
+      groups.push({ title: title, sec: "x", items: extra });
+    }
+    return groups;
+  }
+  function findList(id) {
+    var l = rawList(id);
+    if (!l) return null;
+    var u = getUser();
+    return Object.assign({}, l, { resolved: itemsIn(id, u) });
+  }
+  function itemById(id) {
+    if (!current) return null;
+    var items = itemsIn(current, getUser());
+    for (var i = 0; i < items.length; i++) if (items[i].id === id) return items[i];
+    return null;
+  }
+
+  function getChecked(id) { try { var a = JSON.parse(get(CHK_PREFIX + id) || "[]"); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
+  function setChecked(id, arr) { set(CHK_PREFIX + id, JSON.stringify(arr)); }
+  function countChecked(list) {
+    var c = getChecked(list.id);
+    return (list.resolved || []).filter(function (it) { return c.indexOf(it.he) !== -1; }).length;
+  }
 
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
@@ -120,222 +341,499 @@
 
   function renderHome() {
     var box = $("choices"); box.innerHTML = "";
-    D.lists.forEach(function (list, i) {
+    D.lists.forEach(function (raw, i) {
+      var list = findList(raw.id);
       var b = document.createElement("button");
       b.type = "button"; b.className = "choice" + (i === 0 ? " first" : "");
-      var n = countChecked(list), total = itemsOf(list).length;
+      var n = countChecked(list), total = list.resolved.length;
       var meta = total ? t().items(total) + (n ? " · " + t().count(n, total) : "") : t().soon;
       b.innerHTML = '<span class="ic" aria-hidden="true">' + esc(list.icon || "•") + '</span><span class="tx">' + esc(nm(list.title)) + '<span class="meta">' + esc(meta) + '</span></span><span class="ar" aria-hidden="true">›</span>';
       b.onclick = function () { location.hash = "#" + list.id; };
       box.appendChild(b);
     });
+    $("restore-all").textContent = p().restoreAll;
+  }
+
+  function renderCount(list) {
+    var n = countChecked(list), total = (list.resolved || []).length;
+    $("count").textContent = t().count(n, total);
+    $("clear-btn").disabled = !n;
+    $("clear-btn").style.opacity = n ? "1" : ".5";
+  }
+
+  function renderQuestions(list) {
+    var q = list.questions, qb = $("questions");
+    if (!q) { qb.hidden = true; qb.innerHTML = ""; return; }
+    qb.hidden = false;
+    qb.innerHTML = "<h3>" + esc(nm(q.title)) + "</h3><ul>" + q.items.map(function (x) { return "<li>" + esc(nm(x)) + "</li>"; }).join("") + "</ul>";
+  }
+
+  function rowEl(list, it, chk) {
+    var li = document.createElement("li");
+    var title = nm(it);
+    var on = list.style !== "power" && chk.indexOf(it.he) !== -1;
+    var note = noteText(it.note);
+    var open = !!(it.info && openInfo === it.id);
+    var pid = "info-" + String(it.id).replace(/[^a-z0-9_-]/gi, "");
+    li.className = "drow" + (open ? " open" : "");
+    li.setAttribute("data-id", it.id);
+    var detail = it.detail ? '<span class="d">' + esc(nm(it.detail)) + "</span>" : "";
+    var noteHtml = note ? '<span class="d note">' + esc(note) + "</span>" : "";
+    var body = list.style === "power"
+      ? '<div class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</div>"
+      : '<label class="hit"><input type="checkbox"' + (on ? " checked" : "") + ' aria-label="' + esc(title) + '"><span class="box">' + CHECK + '</span><span class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</span></label>";
+    var infoBtn = it.info ? '<button type="button" class="ibtn" aria-expanded="' + (open ? "true" : "false") + '" aria-controls="' + pid + '">' + (open ? "✕" : "i") + "</button>" : "";
+    var links = "";
+    if (it.info && open) {
+      links = (it.links || []).map(function (l) {
+        var href = String(l.href || ""); if (!/^(https?:|tel:)/.test(href)) return "";
+        var ext = /^https?:/.test(href);
+        return '<a class="ilink" href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + esc(nm(l)) + (ext ? " ↗" : "") + "</a>";
+      }).join("");
+    }
+    var panel = it.info ? '<div class="ipanel" id="' + pid + '"' + (open ? "" : " hidden") + "><p>" + esc(nm(it.info) || t().noInfo) + "</p>" + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "";
+    li.innerHTML = '<div class="slidebox"><span class="sw sw-del" aria-hidden="true">' + TRASH + '</span><span class="sw sw-mv" aria-hidden="true">' + MOVE + '</span>' +
+      '<div class="face"><div class="item' + (on ? " on" : "") + '">' + body +
+      '<button type="button" class="nbtn' + (note ? " has" : "") + '" aria-label="' + esc((note ? p().noteEdit : p().noteAdd) + ": " + title) + '">' + PEN + "</button>" +
+      infoBtn + '</div><span class="hdl" role="button" tabindex="0" aria-label="' + esc(p().drag + ": " + title) + '">☰</span></div></div>' + panel;
+    var input = li.querySelector("input");
+    if (input) input.onchange = function () {
+      var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
+      if (input.checked) c.push(it.he);
+      setChecked(list.id, c);
+      li.querySelector(".item").classList.toggle("on", input.checked);
+      renderCount(findList(list.id));
+    };
+    var nb = li.querySelector(".nbtn");
+    nb.onclick = function (e) { e.preventDefault(); e.stopPropagation(); openNote(it); };
+    var ib = li.querySelector(".ibtn");
+    if (ib) ib.onclick = function (e) { e.preventDefault(); e.stopPropagation(); openInfo = openInfo === it.id ? null : it.id; renderList(); };
+    return li;
   }
 
   function renderList() {
-    var list = findList(current); if (!list) return;
+    var list = findList(current);
+    if (!list) return;
+    var u = getUser();
+    var isPower = list.style === "power";
     $("list-title").textContent = nm(list.title);
     var tg = $("list-tag"); tg.hidden = !list.tag; if (list.tag) tg.textContent = nm(list.tag);
-    $("instr").textContent = nm(D.instruction);
+    $("instr").textContent = isPower ? p().hint : nm(D.instruction);
+    var gh = $("ghint"); gh.hidden = isPower; if (!isPower) gh.textContent = p().hint;
     var nt = $("list-note"); nt.hidden = !list.note; if (list.note) nt.textContent = nm(list.note);
-    var ul = $("items"); ul.innerHTML = ""; ul.className = "items";
+    $("add-text").placeholder = p().add;
+    $("add-text").setAttribute("aria-label", p().add);
+    $("add-btn").textContent = p().addBtn;
+    $("restore-btn").textContent = p().restore;
+    var ul = $("items");
+    ul.innerHTML = "";
+    ul.className = "items" + (list.style === "info" ? " info" : "") + (isPower ? " power" : "");
+    ul.setAttribute("data-list", list.id);
     var chk = getChecked(list.id);
-    $("power-box").hidden = list.style !== "power";
-    if (list.style === "power") { renderPower(list, ul); return; }
-    if (list.style === "info") renderInfoList(list, ul, chk);
-    else { enableDrag(ul, list); sorted(list).forEach(function (it) {
-      var li = document.createElement("li"); li.className = "drow"; li.setAttribute("data-he", it.he);
-      var on = chk.indexOf(it.he) !== -1;
-      li.innerHTML = '<label class="item' + (on ? " on" : "") + '"><input type="checkbox"' + (on ? " checked" : "") + '><span class="box">' + CHECK + '</span><span class="tw"><span class="t">' + esc(nm(it)) + "</span>" + (it.detail ? '<span class="d">' + esc(nm(it.detail)) + "</span>" : "") + "</span></label>" + '<span class="hdl" role="button" aria-label="' + (lang === "en" ? "Drag to reorder" : "גרור לשינוי הסדר") + '">☰</span>';
-      li.querySelector("input").onchange = function (e) {
-        var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
-        if (e.target.checked) c.push(it.he);
-        setChecked(list.id, c); li.firstChild.classList.toggle("on", e.target.checked); renderCount(list);
-      };
-      ul.appendChild(li);
-    }); }
-    var mo = $("list-more"); mo.hidden = !list.more; if (list.more) mo.textContent = nm(list.more);
-    var empty = !itemsOf(list).length;
-    $("soon").hidden = !empty; $("soon").textContent = t().soon;
-    $("listfoot").hidden = empty;
-    renderCount(list);
-  }
-  /* list with sections, where each item has an explanation panel (accordion) */
-  var openInfo = null;
-  function renderInfoList(list, ul, chk) {
-    ul.className = "items info";
-    list.sections.forEach(function (sec, si) {
-      var h = document.createElement("li");
-      h.className = "sec"; h.textContent = nm(sec.title);
-      ul.appendChild(h);
-      sec.items.forEach(function (it, ii) {
-        var key = si + "-" + ii, on = chk.indexOf(it.he) !== -1, isOpen = openInfo === key;
-        var li = document.createElement("li");
-        li.className = "irow" + (on ? " on" : "") + (isOpen ? " open" : "");
-        var links = (it.links || []).map(function (l) {
-          var href = String(l.href || ""); if (!/^(https?:|tel:)/.test(href)) return "";
-          var ext = /^https?:/.test(href);
-          return '<a class="ilink" href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : "") + ">" + esc(nm(l)) + (ext ? " ↗" : "") + "</a>";
-        }).join("");
-        var pid = "info-" + list.id + "-" + key;
-        li.innerHTML = '<div class="ihead"><label class="ichk"><input type="checkbox"' + (on ? " checked" : "") + ' aria-label="' + esc(nm(it)) + '"><span class="box">' + CHECK + '</span></label>' +
-          '<button type="button" class="itext" aria-expanded="' + isOpen + '" aria-controls="' + pid + '"><span class="t">' + esc(nm(it)) + '</span><span class="ibtn" aria-hidden="true">' + (isOpen ? "✕" : "i") + "</span></button></div>" +
-          '<div class="ipanel" id="' + pid + '"' + (isOpen ? "" : " hidden") + '><p>' + esc(nm(it.info) || t().noInfo) + "</p>" + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>";
-        li.querySelector("input").onchange = function (e) {
-          var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
-          if (e.target.checked) c.push(it.he);
-          setChecked(list.id, c); li.classList.toggle("on", e.target.checked); renderCount(list);
-        };
-        li.querySelector(".itext").onclick = function () { openInfo = openInfo === key ? null : key; renderList(); };
+    var groups = groupsOf(list, u);
+    var any = false;
+    groups.forEach(function (g) {
+      if (g.title) {
+        var h = document.createElement("li");
+        h.className = "sec";
+        h.textContent = nm(g.title);
+        ul.appendChild(h);
+      }
+      var lastG = "";
+      g.items.forEach(function (it) {
+        any = true;
+        var gk = it.group ? nm(it.group) : "";
+        if (gk && gk !== lastG) {
+          var gh2 = document.createElement("li");
+          gh2.className = "sec";
+          gh2.textContent = gk;
+          ul.appendChild(gh2);
+        }
+        lastG = gk;
+        var li = rowEl(list, it, chk);
+        li.setAttribute("data-sec", g.sec);
         ul.appendChild(li);
       });
     });
+    if (!any) {
+      var e = document.createElement("li");
+      e.className = "pempty";
+      e.textContent = p().empty;
+      ul.appendChild(e);
+    }
+    renderQuestions(list);
+    var mo = $("list-more"); mo.hidden = !list.more; if (list.more) mo.textContent = nm(list.more);
+    $("soon").hidden = true;
+    $("count").hidden = isPower;
+    $("clear-btn").hidden = isPower;
+    $("listfoot").hidden = false;
+    if (!isPower) renderCount(list);
   }
 
-  /* ----- הדמיות עוצמה: swipe right = delete (undo), swipe left = move, ☰ = reorder ----- */
-  var P = {
-    he: { add: "הוספת פריט…", addBtn: "הוספה", del: "נמחק", undo: "ביטול", moved: "הועבר ל", moveTo: "להעביר לאיזו רשימה?", cancel: "ביטול",
-      hint: "החלק ימינה למחיקה, שמאלה להעברה לרשימה אחרת, וגרור את ☰ לשינוי הסדר.", drag: "גרור לשינוי הסדר", empty: "הרשימה ריקה. אפשר להוסיף פריט למטה." },
-    en: { add: "Add an item…", addBtn: "Add", del: "Deleted", undo: "Undo", moved: "Moved to ", moveTo: "Move to which list?", cancel: "Cancel",
-      hint: "Swipe right to delete, swipe left to move to another list, drag ☰ to reorder.", drag: "Drag to reorder", empty: "The list is empty. You can add an item below." }
-  };
-  function p() { return P[lang]; }
-  var toastT = null;
   function toast(msg, undoFn) {
-    var el = $("toast"); el.innerHTML = '<span>' + esc(msg) + '</span>';
-    if (undoFn) { var b = document.createElement("button"); b.type = "button"; b.textContent = p().undo; b.onclick = function () { el.hidden = true; undoFn(); }; el.appendChild(b); }
-    el.hidden = false; clearTimeout(toastT); toastT = setTimeout(function () { el.hidden = true; }, 5000);
+    var el = $("toast");
+    el.innerHTML = "<span>" + esc(msg) + "</span>";
+    if (undoFn) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.textContent = p().undo;
+      b.onclick = function () { el.hidden = true; undoFn(); };
+      el.appendChild(b);
+    }
+    el.hidden = false;
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { el.hidden = true; }, 5000);
   }
-  function renderPower(list, ul) {
-    ul.className = "items power";
-    $("instr").textContent = p().hint;
-    $("listfoot").hidden = true; $("soon").hidden = true; $("list-more").hidden = true;
-    $("p-add").placeholder = p().add; $("p-add-btn").textContent = p().addBtn;
-    var arr = powerItems();
-    arr.forEach(function (it) {
-      var li = document.createElement("li"); li.className = "drow prow"; li.setAttribute("data-id", it.id);
-      li.innerHTML = '<span class="sw sw-del" aria-hidden="true">🗑️</span><span class="sw sw-mv" aria-hidden="true">↪️</span>' +
-        '<div class="item pitem"><span class="tw"><span class="t">' + esc(it.he) + '</span>' + (it.note ? '<span class="d">' + esc(it.note) + '</span>' : "") + '</span></div>' +
-        '<span class="hdl" role="button" aria-label="' + p().drag + '">☰</span>';
-      enableSwipe(li, it);
-      ul.appendChild(li);
-    });
-    if (!arr.length) { var e = document.createElement("li"); e.className = "pempty"; e.textContent = p().empty; ul.appendChild(e); }
-    enableTouchDrag(ul);
-    var q = list.questions, qb = $("questions");
-    qb.innerHTML = q ? "<h3>" + esc(nm(q.title)) + "</h3><ul>" + q.items.map(function (x) { return "<li>" + esc(nm(x)) + "</li>"; }).join("") + "</ul>" : "";
+  function refresh() { if (current) renderList(); else renderHome(); }
+
+  function deleteItem(it) {
+    if (!it) return;
+    var before = snap();
+    var u = getUser();
+    if (it.custom) delete u.custom[it.id];
+    else u.hidden[it.id] = 1;
+    saveUser(u);
+    if (openInfo === it.id) openInfo = null;
+    refresh();
+    toast(p().del + ": " + nm(it), function () { unsnap(before); refresh(); });
   }
-  function deletePower(it) {
-    var arr = powerItems(), i = -1; arr.forEach(function (x, k) { if (x.id === it.id) i = k; });
-    if (i < 0) return; var before = arr.slice(); arr.splice(i, 1); savePower(arr); renderList();
-    toast(p().del + ": " + it.he, function () { savePower(before); renderList(); });
-  }
-  function movePower(it, toId) {
-    var u = getUser(), before = JSON.stringify(u);
-    u.power = powerItems().filter(function (x) { return x.id !== it.id; });
-    u.extra = u.extra || {}; u.extra[toId] = (u.extra[toId] || []).concat([it.note ? { he: it.he, detail: { he: it.note } } : { he: it.he }]);
-    saveUser(u); renderList();
-    toast(p().moved + nm(rawList(toId).title), function () { set(USER_KEY, before); saveUser(JSON.parse(before)); renderList(); });
+  function deleteById(id) { deleteItem(itemById(id)); }
+
+  function moveItem(it, toId) {
+    if (!it || !toId || toId === current) return;
+    var before = snap();
+    var u = getUser();
+    var from = current;
+    if (it.custom) {
+      if (!u.custom[it.id]) return;
+      u.custom[it.id].list = toId;
+    } else if (it.origin === toId) delete u.loc[it.id];
+    else u.loc[it.id] = toId;
+    saveUser(u);
+    var fromC = getChecked(from);
+    if (fromC.indexOf(it.he) !== -1) {
+      setChecked(from, fromC.filter(function (x) { return x !== it.he; }));
+      var toC = getChecked(toId);
+      if (toC.indexOf(it.he) === -1) { toC.push(it.he); setChecked(toId, toC); }
+    }
+    refresh();
+    var dest = rawList(toId);
+    toast(p().moved + nm(dest && dest.title), function () { unsnap(before); refresh(); });
   }
   function pickList(it) {
-    var s = $("mv-sheet"), g = $("mv-grid"); $("mv-title").textContent = p().moveTo; g.innerHTML = "";
+    var s = $("mv-sheet"), grid = $("mv-grid");
+    $("mv-title").textContent = p().moveTo;
+    grid.innerHTML = "";
     D.lists.forEach(function (l) {
-      if (l.id === "power") return;
-      var b = document.createElement("button"); b.type = "button"; b.className = "choice mvopt";
-      b.innerHTML = '<span class="ic" aria-hidden="true">' + esc(l.icon) + '</span><span class="tx">' + esc(nm(l.title)) + "</span>";
-      b.onclick = function () { s.hidden = true; movePower(it, l.id); };
-      g.appendChild(b);
+      if (l.id === current) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "choice mvopt";
+      b.innerHTML = '<span class="ic" aria-hidden="true">' + esc(l.icon || "•") + '</span><span class="tx">' + esc(nm(l.title)) + "</span>";
+      b.onclick = function () { s.hidden = true; moveItem(it, l.id); };
+      grid.appendChild(b);
     });
-    var c = document.createElement("button"); c.type = "button"; c.className = "btn"; c.textContent = p().cancel; c.onclick = function () { s.hidden = true; }; g.appendChild(c);
+    var c = document.createElement("button");
+    c.type = "button";
+    c.className = "btn";
+    c.textContent = p().cancel;
+    c.onclick = function () { s.hidden = true; };
+    grid.appendChild(c);
+    sheetReadyAt = Date.now() + 320;
     s.hidden = false;
   }
-  function enableSwipe(li, it) {
-    var card = li.querySelector(".pitem"), x0 = 0, y0 = 0, dx = 0, on = false, horiz = null, pid = null;
-    card.addEventListener("pointerdown", function (e) { if (e.button > 0) return; on = true; horiz = null; dx = 0; x0 = e.clientX; y0 = e.clientY; pid = e.pointerId; });
-    card.addEventListener("pointermove", function (e) {
-      if (!on || e.pointerId !== pid) return;
-      var mx = e.clientX - x0, my = e.clientY - y0;
-      if (horiz === null && (Math.abs(mx) > 10 || Math.abs(my) > 10)) { horiz = Math.abs(mx) > Math.abs(my); if (horiz) try { card.setPointerCapture(pid); } catch (x) {} }
-      if (!horiz) return;
-      dx = mx; card.style.transform = "translateX(" + dx + "px)";
-      li.classList.toggle("sdel", dx > 30); li.classList.toggle("smv", dx < -30);
-    });
-    function end() {
-      if (!on) return; on = false;
-      var w = card.offsetWidth * 0.3;
-      card.style.transition = "transform .18s"; card.style.transform = "";
-      setTimeout(function () { card.style.transition = ""; }, 200);
-      li.classList.remove("sdel", "smv");
-      if (horiz && dx > w) deletePower(it); else if (horiz && dx < -w) pickList(it);
-    }
-    card.addEventListener("pointerup", end); card.addEventListener("pointercancel", end);
-  }
-  /* ☰ drag: press-and-hold lifts (touch), mouse lifts at once; auto-scroll near screen edges */
-  function enableTouchDrag(ul) {
-    if (ul._td) return; ul._td = true;
-    ul.addEventListener("pointerdown", function (e) {
-      var h = e.target.closest(".hdl"); if (!h || !ul.classList.contains("power")) return;
-      e.preventDefault();
-      var li = h.closest("li"), lifted = false, y = e.clientY, raf = 0, timer = null;
-      try { h.setPointerCapture(e.pointerId); } catch (x) {}
-      function lift() { lifted = true; li.classList.add("lifted"); ul.classList.add("dragging"); if (navigator.vibrate) try { navigator.vibrate(15); } catch (x) {} tick(); }
-      if (e.pointerType === "mouse") lift(); else timer = setTimeout(lift, 180);
-      function place() {
-        var rows = Array.prototype.slice.call(ul.querySelectorAll(".prow"));
-        for (var i = 0; i < rows.length; i++) {
-          var r = rows[i]; if (r === li) continue; var b = r.getBoundingClientRect();
-          if (y > b.top && y < b.bottom) { if (y < b.top + b.height / 2) ul.insertBefore(li, r); else ul.insertBefore(li, r.nextSibling); break; }
-        }
-      }
-      function tick() {
-        if (!lifted) return; var H = window.innerHeight, sp = 0;
-        if (y < 80) sp = -Math.ceil((80 - y) / 6); else if (y > H - 80) sp = Math.ceil((y - (H - 80)) / 6);
-        if (sp) { window.scrollBy(0, sp); place(); }
-        raf = requestAnimationFrame(tick);
-      }
-      function mv(ev) { y = ev.clientY; if (!lifted) { if (Math.abs(ev.clientY - e.clientY) > 8) { clearTimeout(timer); lift(); } return; } place(); }
-      function up() {
-        clearTimeout(timer); cancelAnimationFrame(raf);
-        h.removeEventListener("pointermove", mv); h.removeEventListener("pointerup", up); h.removeEventListener("pointercancel", up);
-        if (!lifted) return; li.classList.remove("lifted"); ul.classList.remove("dragging");
-        var byId = {}; powerItems().forEach(function (x) { byId[x.id] = x; });
-        savePower(Array.prototype.map.call(ul.querySelectorAll(".prow"), function (r) { return byId[r.getAttribute("data-id")]; }).filter(Boolean));
-      }
-      h.addEventListener("pointermove", mv); h.addEventListener("pointerup", up); h.addEventListener("pointercancel", up);
-    });
-  }
-  function addPower() {
-    var v = $("p-add").value.trim(); if (!v) return;
-    var he = v, note = ""; var k = v.indexOf(" - "); if (k > 0) { he = v.slice(0, k).trim(); note = v.slice(k + 3).trim(); }
-    var arr = powerItems().slice(); arr.push({ id: uid(), he: he, note: note }); savePower(arr);
-    $("p-add").value = ""; renderList();
-  }
-  $("p-add-btn").onclick = addPower;
-  $("p-add").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); addPower(); } });
-  $("mv-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
-  window.addEventListener("storage", function (e) { if (e.key === USER_KEY && e.isTrusted && current) renderList(); });
+  function moveById(id) { var it = itemById(id); if (it) pickList(it); }
 
-  function renderCount(list) {
-    var n = countChecked(list);
-    $("count").textContent = t().count(n, itemsOf(list).length);
-    $("clear-btn").disabled = !n; $("clear-btn").style.opacity = n ? "1" : ".5";
+  function openNote(it) {
+    noteItem = it;
+    var has = !!noteText(it.note);
+    $("note-title").textContent = has ? p().noteEdit : p().noteAdd;
+    $("note-for").textContent = nm(it);
+    var area = $("note-text");
+    area.value = noteText(it.note);
+    area.placeholder = p().notePh;
+    $("note-save").textContent = p().noteSave;
+    $("note-clear").hidden = !has;
+    $("note-clear").textContent = p().noteClear;
+    $("note-cancel").textContent = p().cancel;
+    $("note-close").setAttribute("aria-label", t().close);
+    $("note-sheet").hidden = false;
+    setTimeout(function () { area.focus(); }, 30);
+  }
+  function commitNote(text) {
+    var it = noteItem;
+    if (!it) return;
+    text = String(text || "").trim().slice(0, 500);
+    var u = getUser();
+    if (it.custom) {
+      if (!u.custom[it.id]) { $("note-sheet").hidden = true; noteItem = null; return; }
+      u.custom[it.id].note = { he: text, en: text };
+    } else u.notes[it.id] = { he: text, en: text };
+    saveUser(u);
+    $("note-sheet").hidden = true;
+    noteItem = null;
+    refresh();
+  }
+
+  function askConfirm(title, body, yes, fn) {
+    $("cf-title").textContent = title;
+    $("cf-body").textContent = body;
+    $("cf-yes").textContent = yes;
+    $("cf-no").textContent = p().cancel;
+    $("cf-close").setAttribute("aria-label", t().close);
+    confirmAction = fn;
+    $("cf-sheet").hidden = false;
+  }
+  function restoreList(id) {
+    askConfirm(p().restoreTitle, p().restoreBody, p().restoreYes, function () {
+      var before = snap();
+      var u = getUser();
+      Object.keys(u.custom).forEach(function (cid) {
+        var c = u.custom[cid];
+        if (!c) return;
+        if (c.list === id) {
+          if (c.born && c.born !== id && rawList(c.born)) c.list = c.born;
+          else delete u.custom[cid];
+        } else if (c.born === id) delete u.custom[cid];
+      });
+      catalog().forEach(function (b) {
+        if (b.origin === id) { delete u.hidden[b.id]; delete u.loc[b.id]; delete u.notes[b.id]; }
+        else if (u.loc[b.id] === id) delete u.loc[b.id];
+      });
+      delete u.order[id];
+      saveUser(u);
+      refresh();
+      toast(p().restored, function () { unsnap(before); refresh(); });
+    });
+  }
+  function restoreAll() {
+    askConfirm(p().restoreAllTitle, p().restoreAllBody, p().restoreYes, function () {
+      var before = snap();
+      saveUser(emptyUser());
+      refresh();
+      toast(p().restoredAll, function () { unsnap(before); refresh(); });
+    });
+  }
+
+  function addCurrent() {
+    if (!current) return;
+    var input = $("add-text");
+    var v = input.value.trim();
+    if (!v) { input.focus(); return; }
+    var he = v, note = "";
+    var k = v.indexOf(" - ");
+    if (k > 0) { he = v.slice(0, k).trim(); note = v.slice(k + 3).trim(); }
+    if (!he) { input.focus(); return; }
+    he = he.slice(0, 200);
+    note = note.slice(0, 500);
+    var u = getUser();
+    var id = "u:" + uid();
+    u.custom[id] = { id: id, list: current, born: current, he: he, en: he, note: { he: note, en: note }, seq: Date.now() };
+    saveUser(u);
+    input.value = "";
+    renderList();
+    var row = document.querySelector('.drow[data-id="' + id + '"]');
+    if (row) {
+      row.classList.add("flash");
+      if (row.scrollIntoView) row.scrollIntoView({ block: "nearest" });
+    }
+  }
+
+  function saveOrderFromDom(ul) {
+    if (!current) return;
+    var ids = [];
+    ul.querySelectorAll(".drow").forEach(function (r) { var id = r.getAttribute("data-id"); if (id) ids.push(id); });
+    var u = getUser();
+    u.order[current] = ids;
+    saveUser(u);
+  }
+  function siblingsInGroup(li) {
+    var sec = li.getAttribute("data-sec");
+    return Array.prototype.filter.call(li.parentNode.querySelectorAll(".drow"), function (r) { return r.getAttribute("data-sec") === sec; });
+  }
+  function place(li, y) {
+    var rows = siblingsInGroup(li);
+    if (!rows.length) return;
+    var first = rows[0], last = rows[rows.length - 1];
+    var fb = first.getBoundingClientRect(), lb = last.getBoundingClientRect();
+    if (y < fb.top + fb.height / 2) { if (li !== first) li.parentNode.insertBefore(li, first); return; }
+    if (y > lb.top + lb.height / 2) { if (li !== last) li.parentNode.insertBefore(li, last.nextSibling); return; }
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      if (r === li) continue;
+      var b = r.getBoundingClientRect();
+      if (y > b.top && y < b.bottom) {
+        if (y < b.top + b.height / 2) li.parentNode.insertBefore(li, r);
+        else li.parentNode.insertBefore(li, r.nextSibling);
+        return;
+      }
+    }
+  }
+
+  /* pointer swipe matches Listify's threshold (about a third of the row) with Balancify's directions */
+  var g = null;
+  var sheetReadyAt = 0;
+  function bootGestures() {
+    var ul = $("items");
+    function lift() {
+      if (!g || g.lifted) return;
+      if (g.timer) { clearTimeout(g.timer); g.timer = null; }
+      g.lifted = true;
+      g.li.classList.add("lifted");
+      g.ul.classList.add("dragging");
+      if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
+      tick();
+    }
+    function tick() {
+      if (!g || !g.lifted) return;
+      var y = g.y, H = window.innerHeight, sp = 0;
+      if (y < 72) sp = -Math.ceil((72 - y) / 5);
+      else if (y > H - 72) sp = Math.ceil((y - (H - 72)) / 5);
+      if (sp) { window.scrollBy(0, sp); place(g.li, y); }
+      g.raf = requestAnimationFrame(tick);
+    }
+    ul.addEventListener("pointerdown", function (e) {
+      if (e.button > 0) return;
+      var handle = e.target.closest(".hdl");
+      var face = e.target.closest(".face");
+      if (!handle && !face) return;
+      if (!handle && e.target.closest("button, a")) return;
+      var li = (handle || face).closest(".drow");
+      if (!li) return;
+      if (handle) {
+        e.preventDefault();
+        g = { mode: "drag", li: li, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, y0: e.clientY, x0: e.clientX, lifted: false, timer: null, raf: 0 };
+        try { handle.setPointerCapture(e.pointerId); } catch (err) {}
+        if (e.pointerType === "mouse") lift();
+        else g.timer = setTimeout(lift, 180);
+        return;
+      }
+      g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0 };
+    });
+    document.addEventListener("pointermove", function (e) {
+      if (!g || e.pointerId !== g.pid) return;
+      if (g.mode === "drag") {
+        g.y = e.clientY;
+        if (!g.lifted) {
+          if (Math.abs(e.clientY - g.y0) > 8 || Math.abs(e.clientX - g.x0) > 8) lift();
+          return;
+        }
+        e.preventDefault();
+        place(g.li, e.clientY);
+        return;
+      }
+      var dx = e.clientX - g.x, dy = e.clientY - g.y;
+      if (g.mode === "maybe") {
+        if (Math.abs(dx) < 10 && Math.abs(dy) < 10) return;
+        if (Math.abs(dx) > Math.abs(dy) * 1.5) {
+          g.mode = "swipe";
+          g.li.classList.add("swiping");
+          try { g.face.setPointerCapture(e.pointerId); } catch (err) {}
+        } else { g = null; return; }
+      }
+      if (g && g.mode === "swipe") {
+        e.preventDefault();
+        g.dx = dx;
+        g.face.style.transform = "translateX(" + dx + "px)";
+        var go = Math.abs(dx) > (g.face.offsetWidth || 1) * 0.34;
+        g.li.classList.toggle("sdel", dx > 12);
+        g.li.classList.toggle("smv", dx < -12);
+        g.li.classList.toggle("sgo", go);
+      }
+    });
+    function end(e) {
+      if (!g || e.pointerId !== g.pid) return;
+      var cur = g;
+      g = null;
+      if (cur.timer) clearTimeout(cur.timer);
+      if (cur.raf) cancelAnimationFrame(cur.raf);
+      if (cur.mode === "swipe") {
+        swallow = true;
+        setTimeout(function () { swallow = false; }, 450);
+        var w = (cur.face.offsetWidth || 1) * 0.34;
+        var dx = cur.dx || 0;
+        var id = cur.li.getAttribute("data-id");
+        cur.li.classList.remove("sdel", "smv", "sgo", "swiping");
+        if (dx > w) { deleteById(id); return; }
+        if (dx < -w) { cur.face.style.transform = ""; pickList(itemById(id)); return; }
+        cur.face.style.transition = "transform .18s ease";
+        cur.face.style.transform = "";
+        setTimeout(function () { cur.face.style.transition = ""; }, 200);
+        return;
+      }
+      if (cur.mode === "drag" && cur.lifted) {
+        swallow = true;
+        setTimeout(function () { swallow = false; }, 450);
+        cur.li.classList.remove("lifted");
+        cur.ul.classList.remove("dragging");
+        saveOrderFromDom(cur.ul);
+        renderList();
+        var again = ul.querySelector('.drow[data-id="' + cur.li.getAttribute("data-id") + '"] .hdl');
+        if (again) again.focus();
+      }
+    }
+    document.addEventListener("pointerup", end);
+    document.addEventListener("pointercancel", end);
+    document.addEventListener("touchmove", function (e) {
+      if (g && (g.mode === "swipe" || (g.mode === "drag" && g.lifted))) e.preventDefault();
+    }, { passive: false });
+    ul.addEventListener("keydown", function (e) {
+      var handle = e.target.closest && e.target.closest(".hdl");
+      if (!handle) return;
+      var li = handle.closest(".drow");
+      if (!li) return;
+      if (e.key === "Delete") { e.preventDefault(); deleteById(li.getAttribute("data-id")); return; }
+      if (e.key !== "ArrowUp" && e.key !== "ArrowDown") return;
+      e.preventDefault();
+      var rows = siblingsInGroup(li);
+      var i = rows.indexOf(li);
+      var j = e.key === "ArrowUp" ? i - 1 : i + 1;
+      if (j < 0 || j >= rows.length) return;
+      var sib = rows[j];
+      if (e.key === "ArrowUp") li.parentNode.insertBefore(li, sib);
+      else li.parentNode.insertBefore(sib, li);
+      saveOrderFromDom(ul);
+      renderList();
+      var again = ul.querySelector('.drow[data-id="' + li.getAttribute("data-id") + '"] .hdl');
+      if (again) again.focus();
+    });
+    document.addEventListener("click", function (e) {
+      if (!swallow) return;
+      swallow = false;
+      if (e.target.closest && e.target.closest("#toast, .sheet, #add-form, #listfoot, header, .home-restore")) return;
+      e.preventDefault();
+      e.stopPropagation();
+    }, true);
+    $("mv-sheet").addEventListener("click", function (e) {
+      if (Date.now() < sheetReadyAt) { e.preventDefault(); e.stopPropagation(); }
+    }, true);
   }
 
   function renderBgGrid() {
-    var g = $("bg-grid"); g.innerHTML = "";
+    var grid = $("bg-grid"); grid.innerHTML = "";
     D.backgrounds.forEach(function (b) {
       var o = document.createElement("button");
       o.type = "button"; o.className = "bgopt"; o.setAttribute("aria-pressed", b.id === bg ? "true" : "false");
       o.innerHTML = '<img src="bg/' + esc(b.id) + '-t.webp" alt="" loading="lazy" width="180" height="320"><span>' + esc(nm(b)) + "</span>";
       o.onclick = function () { bg = b.id; set(BG_KEY, bg); applyBg(); renderBgGrid(); };
-      g.appendChild(o);
+      grid.appendChild(o);
     });
   }
 
+  function closeMoveNote() {
+    $("mv-sheet").hidden = true;
+    $("note-sheet").hidden = true;
+    $("cf-sheet").hidden = true;
+    noteItem = null;
+    confirmAction = null;
+  }
   function route() {
     var id = (location.hash || "").slice(1);
-    if (current !== (findList(id) ? id : null)) openInfo = null;
-    current = findList(id) ? id : null;
-    $("home").hidden = !!current; $("list").hidden = !current;
+    var next = rawList(id) ? id : null;
+    if (current !== next) openInfo = null;
+    current = next;
+    $("home").hidden = !!current;
+    $("list").hidden = !current;
     if (current) renderList(); else renderHome();
     window.scrollTo(0, 0);
   }
@@ -357,9 +855,17 @@
     $("clear-btn").textContent = t().clear;
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
-    var c = $("crisis"); c.innerHTML = esc(t().crisis).replace(/(\d{3}-\d{7}|1201)/g, "<bdi>$1</bdi>") + " ";
-    var a = document.createElement("a"); a.href = "https://www.eran.org.il/"; a.target = "_blank"; a.rel = "noopener"; a.textContent = "eran.org.il"; c.appendChild(a);
-    applyTheme(); renderBgGrid(); route();
+    var c = $("crisis");
+    c.innerHTML = esc(t().crisis).replace(/(\d{3}-\d{7}|1201)/g, "<bdi>$1</bdi>") + " ";
+    var a = document.createElement("a");
+    a.href = "https://www.eran.org.il/";
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "eran.org.il";
+    c.appendChild(a);
+    applyTheme();
+    renderBgGrid();
+    route();
   }
 
   $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, "he"); renderAll(); };
@@ -367,13 +873,36 @@
   $("theme-btn").onclick = function () { theme = theme === "light" ? "dark" : "light"; set(THEME_KEY, theme); applyTheme(); };
   $("home-btn").onclick = function () { if (history.length > 1 && current) history.back(); else location.hash = ""; };
   $("clear-btn").onclick = function () { if (current) { setChecked(current, []); renderList(); } };
+  $("restore-btn").onclick = function () { if (current) restoreList(current); };
+  $("restore-all").onclick = function () { restoreAll(); };
+  $("add-btn").onclick = addCurrent;
+  $("add-form").addEventListener("submit", function (e) { e.preventDefault(); addCurrent(); });
+  $("add-text").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); addCurrent(); } });
+  $("note-save").onclick = function () { commitNote($("note-text").value); };
+  $("note-clear").onclick = function () { commitNote(""); };
+  $("note-cancel").onclick = function () { $("note-sheet").hidden = true; noteItem = null; };
+  $("note-close").onclick = function () { $("note-sheet").hidden = true; noteItem = null; };
+  $("note-sheet").onclick = function (e) { if (e.target === this) { this.hidden = true; noteItem = null; } };
+  $("note-text").addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); commitNote($("note-text").value); }
+  });
+  $("cf-yes").onclick = function () { $("cf-sheet").hidden = true; var fn = confirmAction; confirmAction = null; if (fn) fn(); };
+  $("cf-no").onclick = function () { $("cf-sheet").hidden = true; confirmAction = null; };
+  $("cf-close").onclick = function () { $("cf-sheet").hidden = true; confirmAction = null; };
+  $("cf-sheet").onclick = function (e) { if (e.target === this) { this.hidden = true; confirmAction = null; } };
   $("bg-btn").onclick = function () { $("bg-sheet").hidden = false; };
   $("bg-close").onclick = function () { $("bg-sheet").hidden = true; };
   $("bg-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { $("bg-sheet").hidden = true; $("mv-sheet").hidden = true; } });
-  window.addEventListener("hashchange", route);
+  $("mv-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { $("bg-sheet").hidden = true; closeMoveNote(); }
+  });
+  window.addEventListener("hashchange", function () { closeMoveNote(); route(); });
+  window.addEventListener("storage", function (e) {
+    if (!e.isTrusted) return;
+    if (e.key === USER_KEY || e.key === ORD_KEY || (e.key && e.key.indexOf(CHK_PREFIX) === 0)) refresh();
+  });
 
-  /* ----- install: visible unless already installed ----- */
   var ua = navigator.userAgent || "";
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   function standalone() { return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; }
@@ -386,7 +915,10 @@
     var h = $("install-hint"); h.textContent = t()[isIOS ? "ios" : "other"]; h.hidden = !h.hidden;
   };
 
-  applyBg(); renderAll(); updateInstall();
+  bootGestures();
+  applyBg();
+  renderAll();
+  updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
   }
