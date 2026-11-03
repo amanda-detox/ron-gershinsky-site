@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T19:54:11+02:00",
+ "updated": "2026-11-03T20:37:00+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "kraken-khype-collateral-nado",
+   "topic": "kraken",
+   "date": "2026-11-03T18:30:01Z",
+   "url": "https://x.com/krakenfx/status/2117685745330602222",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: עכשיו אפשר להשתמש ב־kHYPE כבטוחה ב־Nado",
+    "summary": "קראקן מספרת ש־kHYPE מאפשר להשאיר את ה־HYPE במשמורת של קראקן ועדיין להשתמש בו על השרשרת, ומעכשיו, בזכות Nado, גם כבטוחה למסחר בחוזים עתידיים, בספוט ולהלוואות."
+   },
+   "en": {
+    "title": "Kraken: kHYPE can now be used as collateral on Nado",
+    "summary": "Kraken says kHYPE lets you keep your HYPE in Kraken custody and still use it onchain, and thanks to Nado it can now also serve as collateral for perps, spot trading and borrowing."
+   },
+   "full_he": "עוד דרכים להפעיל את ה־HYPE שלך.\n\nעם kHYPE אתה משאיר את ה־$HYPE שלך במשמורת של קראקן ומשתמש בו על השרשרת. ועכשיו, בזכות Nado, אפשר להשתמש בו גם כבטוחה.\n\nכל הכבוד לצוות של Nado 🤝\n\n(תויג גם Hyperliquid.)\n\nהפוסט שהיא ציטטה (Nado, ‎@nadoHQ):\n\nבטוחה חדשה ורישום ספוט חדש עלו לאוויר.\n\nמעכשיו אפשר להשתמש ב־$kHYPE (‏HYPE עטוף של קראקן) כבטוחה למסחר בחוזים עתידיים (perps), בספוט ולהלוואות ב־Nado.\n\nבפוסט המצוטט יש גם סרטון קצר (8 שניות), ולכן אין עוד טקסט להציג. לקראקן אין המשך שרשור משלה מתחת לפוסט.",
+   "full_en": "More ways to put your HYPE to work.\n\nkHYPE lets you keep your $HYPE in Kraken custody and use it onchain. And thanks to @nadoHQ, you can now use it as collateral.\n\nCongrats to the Nado team 🤝\n\n@HyperliquidX\n\nThe quoted post (Nado, @nadoHQ):\n\nNew collateral & spot listing is live.\n\nYou can now use $kHYPE (Kraken wrapped HYPE) as collateral to trade perps, spot and borrow on Nado.\n\nThe quoted post also has a short 8-second video, so there's no more text to show. Kraken has no thread continuation of its own under the post."
+  },
   {
    "id": "grokbot-musk-doctor-appointment-by-phone",
    "topic": "grokbot",
