@@ -1,7 +1,7 @@
 /* Offline cache for the private "Purchasify" app (my/shopping/). Scope: my/shopping/ only.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-myshop-v14";
-var FILES = ["./", "index.html", "app.js?v=46", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../common.css", "../common.js",
+var CACHE = "rg-myshop-v15";
+var FILES = ["./", "index.html", "app.js?v=47", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../common.css", "../common.js",
   "../../shared/rg-account.js", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {

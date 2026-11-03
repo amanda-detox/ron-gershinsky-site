@@ -877,9 +877,6 @@
         return;
       }
       if (e.target.closest("button,input,select,textarea,summary,a")) return;
-      var sel0 = window.getSelection && window.getSelection();
-      // an existing selection on the title stays a selection (so it can be extended or copied)
-      if (e.pointerType === "mouse" && e.target.closest(".txt,.note") && sel0 && !sel0.isCollapsed && String(sel0).trim()) return;
       reset();
       var sc = scrollOf(li);
       idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
