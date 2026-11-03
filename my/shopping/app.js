@@ -809,8 +809,6 @@
     main.addEventListener("pointerdown", function (e) {
       var li = e.target.closest(".list li"); if (!li || e.target.closest("button,input,.hdl,a") || editing || drag) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
-      var sel0 = window.getSelection && window.getSelection();
-      if (e.pointerType === "mouse" && e.target.closest(".txt,.note") && sel0 && !sel0.isCollapsed && String(sel0).trim()) return;
       reset();
       var sc = scrollOf(li);
       idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
