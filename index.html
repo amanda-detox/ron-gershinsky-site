@@ -11,7 +11,7 @@
 <script>/* directory URL and index.html are the same page; keep one address so the installed app opens on start_url */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^(0|2|3|5|6|8|9|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^(0|6|9)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <script>/* site owner (Ron) signed in on this device: hide the brand block (icon, name, bio) and waitlist / contact / about / recommended game before first paint; the install button stays visible; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=36">
+<link rel="manifest" href="manifest.json?v=37">
 <link rel="icon" href="favicon-32.png?v=33" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.ico?v=33" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=33">
@@ -135,6 +135,8 @@
   .box + .box { margin-top: 1rem; }
   html.rg-owner .owner-hide { display: none !important; }
   html.rg-owner .apps { margin-top: 0.25rem; } /* owner: brand block hidden, the apps start right under the top bar */
+  /* Install stays on screen for visitors, signed-in users, and the owner. Only the standalone display mode sets [hidden]. */
+  #install-wrap.rg-install-wrap:not([hidden]) { display: block !important; }
   h2 { margin: 0; font-size: 1rem; font-weight: 500; }
   .desc { margin: 0.5rem 0 0; color: var(--muted); font-size: 0.875rem; line-height: 1.5; }
   label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -360,13 +362,13 @@
       <button type="button" class="iconbtn" id="bg-btn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.8-.9 1.8-1.9 0-.5-.2-.9-.5-1.3-.3-.3-.5-.8-.5-1.3 0-1 .8-1.8 1.8-1.8H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.2" fill="currentColor"/><circle cx="10" cy="7" r="1.2" fill="currentColor"/><circle cx="14.5" cy="7" r="1.2" fill="currentColor"/><circle cx="17.2" cy="10.6" r="1.2" fill="currentColor"/></svg></button>
     </div>
   </div>
+  <div class="rg-install-wrap" id="install-wrap">
+    <button type="button" class="rg-install" id="install-btn">📲 התקנה למסך הבית</button>
+    <div class="rg-install-hint" id="install-hint">סמל ההתקנה בשורת הכתובת, או תפריט הדפדפן ← „התקן את האפליקציה”.</div>
+  </div>
   <img class="mark owner-hide" id="mark" src="app-icon.svg?v=33" alt="היליפיי בע&quot;מ" width="120" height="120">
   <h1 class="owner-hide"><span id="name">היליפיי בע"מ</span></h1>
   <p class="bio owner-hide" id="bio"></p>
-  <div class="rg-install-wrap" id="install-wrap">
-    <button type="button" class="rg-install" id="install-btn">📲 התקנה למסך הבית</button>
-    <div class="rg-install-hint" id="install-hint" hidden></div>
-  </div>
   <section class="apps" aria-labelledby="apps-title">
     <h2 id="apps-title" class="owner-hide"></h2>
     <ul class="app-grid" id="app-grid"></ul>
@@ -601,8 +603,8 @@ var copy = {
     gameOpen: "לפתוח במסך מלא",
     install: "📲 התקנה למסך הבית",
     installIos: "באייפון או באייפד: כפתור השיתוף (□↑) ב־Safari, ואז „הוסף למסך הבית”.",
-    installOther: "בתפריט הדפדפן (⋮) בוחרים „התקנת אפליקציה” או „הוספה למסך הבית”.",
-    installDesktop: "ב־Chrome או Edge: סמל ההתקנה בשורת הכתובת, או תפריט ⋮ ← „התקנת הדף כאפליקציה”.",
+    installOther: "בתפריט הדפדפן (⋮) בוחרים „התקן את האפליקציה”.",
+    installDesktop: "סמל ההתקנה בשורת הכתובת, או תפריט הדפדפן ← „התקן את האפליקציה”.",
     bgTitle: "בחירת רקע", close: "סגירה", langLabel: "שפה",
     dark: "לילה", light: "בהיר", toLight: "מעבר למצב בהיר", toDark: "מעבר למצב לילה",
     bgs: ["רקע מקורי", "זוהר צפוני", "שקיעה", "ניאון", "לגונה", "ערפילית", "גחלים", "יער בדמדומים", "פירות יער", "פריזמה", "זהב של חצות"],
@@ -638,8 +640,8 @@ var copy = {
     gameOpen: "Open full screen",
     install: "📲 Install to home screen",
     installIos: "On iPhone or iPad: tap Share (□↑) in Safari, then “Add to Home Screen”.",
-    installOther: "Open the browser menu (⋮) and choose “Install app” or “Add to Home screen”.",
-    installDesktop: "In Chrome or Edge: use the install icon in the address bar, or menu ⋮ → “Install page as app”.",
+    installOther: "Open the browser menu (⋮) and choose “Install app”.",
+    installDesktop: "Use the install icon in the address bar, or the browser menu → “Install app”.",
     bgTitle: "Choose background", close: "Close", langLabel: "Language",
     dark: "Night", light: "Light", toLight: "Switch to light mode", toDark: "Switch to night mode",
     bgs: ["Original", "Aurora", "Sunset", "Neon mesh", "Lagoon", "Nebula", "Ember", "Forest dusk", "Berry swirl", "Prism", "Midnight gold"],
@@ -819,12 +821,13 @@ document.getElementById("form").addEventListener("submit", function (event) {
 });
 
 /* ---------- Install to home screen ----------
-   Same gold/blue button as the other apps (.rg-install). Visible unless this page is
-   already running standalone. Chromium: keep beforeinstallprompt and call prompt() on tap.
-   iOS, and any browser that never fires the prompt, get a short hint (Hebrew by default). */
-var instDeferred = null, instDone = false;
+   Same gold/blue button as the other apps (.rg-install). Shown for visitors, signed-in
+   users, and the owner. Hidden only while this page is actually running standalone.
+   Chromium: prompt() when beforeinstallprompt fired. Otherwise (iOS, already installed,
+   or the prompt never arrives) the short hint stays under the button. */
+var instDeferred = null;
 function instStandalone() {
-  return (window.matchMedia && (window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: minimal-ui)").matches)) || navigator.standalone === true;
+  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
 }
 function instKey() {
   var ua = navigator.userAgent || "";
@@ -843,24 +846,25 @@ function instShort(l) {
 function updateInstall() {
   var wrap = document.getElementById("install-wrap");
   var hint = document.getElementById("install-hint");
-  var show = !instStandalone() && !instDone;
-  wrap.hidden = !show;
-  if (!show || instDeferred) { hint.hidden = true; return; }
+  var btn = document.getElementById("install-btn");
+  if (!wrap || !hint || !btn) return;
+  var stand = instStandalone();
+  wrap.hidden = stand;
+  btn.hidden = stand;
+  if (stand) { hint.hidden = true; return; }
+  if (instDeferred) { hint.hidden = true; return; }
   hint.textContent = instShort(lang);
   hint.hidden = false;
 }
 window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
-window.addEventListener("appinstalled", function () { instDeferred = null; instDone = true; updateInstall(); });
+window.addEventListener("appinstalled", function () { instDeferred = null; updateInstall(); });
 if (window.matchMedia) { var instMq = window.matchMedia("(display-mode: standalone)"); if (instMq.addEventListener) instMq.addEventListener("change", updateInstall); else if (instMq.addListener) instMq.addListener(updateInstall); }
 document.getElementById("install-btn").addEventListener("click", function () {
   if (instDeferred) {
     var d = instDeferred; instDeferred = null;
     try {
       d.prompt();
-      (d.userChoice || Promise.resolve()).then(function (choice) {
-        if (choice && choice.outcome === "accepted") instDone = true;
-        updateInstall();
-      }, updateInstall);
+      (d.userChoice || Promise.resolve()).then(updateInstall, updateInstall);
       return;
     } catch (e) {}
   }
@@ -938,7 +942,8 @@ function renderPriv() { // the owner's private apps are merged into the main gri
 }
 function loadPriv() {
   var u = window.RGAccount ? RGAccount.user() : null;
-  document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide brand block + waitlist / contact / about / recommended game
+  document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide brand block + waitlist / contact / about / recommended game; install button stays
+  updateInstall();
   if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} renderPriv(); return; }
   if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
   renderPriv();
@@ -972,7 +977,16 @@ if (window.RGAccount) {
   });
 }
 if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+  // updateViaCache none + ?v= so a deploy is picked up on the next load, not after GitHub's max-age.
+  var rgSwReload = false;
+  try { rgSwReload = sessionStorage.getItem("rg-home-sw-reload") === "1"; if (rgSwReload) sessionStorage.removeItem("rg-home-sw-reload"); } catch (e) {}
+  if (!rgSwReload) {
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      try { sessionStorage.setItem("rg-home-sw-reload", "1"); } catch (e) {}
+      location.reload();
+    });
+  }
+  navigator.serviceWorker.register("sw.js?v=63", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
