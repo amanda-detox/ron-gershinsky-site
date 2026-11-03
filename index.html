@@ -208,9 +208,11 @@
     html.dnd-on #app-grid li[data-href] .app, html.dnd-on #more-list li[data-href] .app { animation: none; }
   }
   html.dnd-on #more-list { min-height: 3.5rem; }
-  html.dnd-on { touch-action: none; }
+  /* Only a touch that starts on a tile is a drag. The rest of the page keeps native scrolling. */
+  html.dnd-on #app-grid li[data-href], html.dnd-on #app-grid li[data-href] .app,
+  html.dnd-on #more-list li[data-href], html.dnd-on #more-list li[data-href] .app { touch-action: none; }
   .dnd-done { position: fixed; z-index: 80; left: 50%; bottom: calc(0.9rem + env(safe-area-inset-bottom)); transform: translateX(-50%);
-    min-height: 2.75rem; padding: 0 1.4rem; border-radius: 999px; cursor: pointer; font: 700 1rem/1 "Heebo", system-ui, sans-serif;
+    min-height: 2.75rem; padding: 0 1.4rem; border-radius: 999px; cursor: pointer; touch-action: manipulation; font: 700 1rem/1 "Heebo", system-ui, sans-serif;
     color: #fff6dc; background: linear-gradient(180deg, #1d4fb8, #143a8c); border: 1px solid #e3bd5b; box-shadow: 0 6px 18px rgba(8, 22, 60, 0.35); }
   .dnd-done[hidden] { display: none !important; }
   .tile-menu { position: fixed; z-index: 10000; min-width: 13.5rem; max-width: calc(100vw - 16px); padding: 2.15rem 0.4rem 0.4rem; margin: 0;
@@ -218,7 +220,8 @@
     border: 1px solid #e3bd5b; border-radius: 14px; box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45); }
   .tile-menu[hidden] { display: none !important; }
   .tile-menu button { display: block; width: 100%; margin: 0; padding: 0.7rem 0.85rem; border: 0; border-radius: 10px; background: transparent;
-    color: #f5d27a; font: 700 0.98rem/1.3 "Heebo", system-ui, sans-serif; text-align: start; cursor: pointer; }
+    color: #f5d27a; font: 700 0.98rem/1.3 "Heebo", system-ui, sans-serif; text-align: start; cursor: pointer; touch-action: manipulation; }
+  .tile-menu button[hidden] { display: none !important; }
   .tile-menu button:hover, .tile-menu button:focus-visible { background: rgba(227, 189, 91, 0.18); outline: none; }
   .tile-menu-x { position: absolute !important; top: 6px; inset-inline-end: 6px; width: 2rem !important; height: 2rem; padding: 0 !important;
     border-radius: 50% !important; border: 1px solid #e3bd5b !important; background: #0b2a6b !important; color: #f5d27a !important;
@@ -233,7 +236,7 @@
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), 0 0 0 2px #f5c542; background: rgba(30, 58, 138, 0.92); opacity: 0.95; transition: none; }
   .dnd-ghost .app { height: 100%; box-sizing: border-box; }
   html.dnd-active, html.dnd-active * { cursor: grabbing !important; -webkit-user-select: none; user-select: none; }
-  html.dnd-active body { touch-action: none; overscroll-behavior: none; }
+  html.dnd-active body { overscroll-behavior: none; }
   html[data-theme="light"] .dnd-ghost { background: rgba(219, 234, 254, 0.95); }
   .app-line { color: var(--muted); font-size: 0.71875rem; line-height: 1.4; text-wrap: pretty; }
   .more-apps { margin-top: 0.75rem; border: 1px solid var(--line); border-radius: 0.75rem; background: var(--surface); }
@@ -402,6 +405,7 @@
       <button type="button" data-act="hide">להסתיר</button>
       <button type="button" data-act="pin">להצמיד למעלה</button>
       <button type="button" data-act="newtab">פתיחה בחלון חדש</button>
+      <button type="button" data-act="show" id="tile-menu-show" hidden>הצג מוסתרות</button>
     </div>
     <details class="more-apps metrics-box" id="metrics"><summary><span aria-hidden="true">📊</span><span id="metrics-title"></span><span class="chev" aria-hidden="true"></span></summary><div class="mgrid" id="mgrid"></div></details>
   </section>
@@ -439,7 +443,7 @@
 </main>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <script src="shared/rg-account.js"></script>
-<script src="home-dnd.js?v=35"></script>
+<script src="home-dnd.js?v=36"></script>
 <script>
 var CONTACT = "detoxify.ai@proton.me";
 // Site owner (Ron) by Appwrite user ID: only this account sees "My private apps" on this page.
@@ -526,19 +530,32 @@ function appName(app, he) {
   return name;
 }
 
-/* ---------- Hide apps (Ron 2026-11-01, menu 2026-11-03): long-press / right-click → להסתיר; restore from "Hidden apps (N)" ---------- */
+/* ---------- Hide apps (Ron 2026-11-01, menu 2026-11-03): long-press / right-click → להסתיר; restore from "הצג מוסתרות" ---------- */
 var HIDE_KEY = "rg-home-hidden";
 function userHidden() { try { var v = JSON.parse(localStorage.getItem(HIDE_KEY) || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } }
-function isUserHidden(href) { return userHidden().indexOf(href) !== -1; }
-function setUserHidden(href, on) { var l = userHidden().filter(function (h) { return h !== href; }); if (on) l.push(href); try { localStorage.setItem(HIDE_KEY, JSON.stringify(l)); } catch (e) {} renderApps(lang === "he"); }
+function isUserHidden(href) { return !!href && userHidden().indexOf(href) !== -1; }
+function hiddenToggleText(he, open, n) {
+  var name = he ? (open ? "אפליקציות מוסתרות" : "הצג מוסתרות") : (open ? "Hidden apps" : "Show hidden");
+  return (open ? "▾ " : "▸ ") + name + " (" + n + ")";
+}
+function setUserHidden(href, on) {
+  if (!href) return;
+  var l = userHidden().filter(function (h) { return h !== href; });
+  if (on) l.push(href);
+  try { localStorage.setItem(HIDE_KEY, JSON.stringify(l)); } catch (e) {}
+  renderApps(lang === "he");
+}
 function renderHiddenApps(he, set) {
   var wrap = document.getElementById("hidden-apps"); if (!wrap) return;
   var all = (set.top || []).concat(set.rest || []).filter(function (a) { return a && !a.sep && !a.hidden; });
   var hid = all.filter(function (a) { return isUserHidden(a.href); });
   wrap.hidden = !hid.length;
   var btn = document.getElementById("hidden-toggle"), list = document.getElementById("hidden-list");
-  btn.textContent = (list.hidden ? "▸ " : "▾ ") + (he ? "אפליקציות מוסתרות" : "Hidden apps") + " (" + hid.length + ")"; btn.setAttribute("aria-expanded", list.hidden ? "false" : "true"); btn.setAttribute("aria-controls", "hidden-list");
+  var open = !list.hidden && hid.length > 0;
   if (!hid.length) list.hidden = true;
+  btn.textContent = hiddenToggleText(he, open, hid.length);
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+  btn.setAttribute("aria-controls", "hidden-list");
   list.innerHTML = "";
   hid.forEach(function (app) {
     var li = document.createElement("li");
@@ -549,7 +566,22 @@ function renderHiddenApps(he, set) {
     li.appendChild(img); li.appendChild(nm); li.appendChild(r); list.appendChild(li);
   });
 }
-document.getElementById("hidden-toggle").addEventListener("click", function () { var l = document.getElementById("hidden-list"), b = this; l.hidden = !l.hidden; b.textContent = (l.hidden ? "▸" : "▾") + b.textContent.slice(1); b.setAttribute("aria-expanded", l.hidden ? "false" : "true"); }); // collapsed by default; tap the header to open/close
+function revealHidden() {
+  var wrap = document.getElementById("hidden-apps"), list = document.getElementById("hidden-list"), btn = document.getElementById("hidden-toggle");
+  if (!wrap || wrap.hidden || !list) return;
+  list.hidden = false;
+  if (btn) {
+    btn.textContent = hiddenToggleText(document.documentElement.lang !== "en", true, list.children.length);
+    btn.setAttribute("aria-expanded", "true");
+  }
+  try { wrap.scrollIntoView({ behavior: "smooth", block: "center" }); } catch (e) { wrap.scrollIntoView(); }
+}
+document.getElementById("hidden-toggle").addEventListener("click", function () {
+  var l = document.getElementById("hidden-list");
+  l.hidden = !l.hidden;
+  this.textContent = hiddenToggleText(document.documentElement.lang !== "en", !l.hidden, l.children.length);
+  this.setAttribute("aria-expanded", l.hidden ? "false" : "true");
+}); // collapsed by default; tap "הצג מוסתרות" to open the restore list
 function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
@@ -605,6 +637,12 @@ function openTileMenu(li, x, y) {
   var a = li.querySelector("a.app");
   tileMenu.dataset.href = li.getAttribute("data-href") || "";
   tileMenu.dataset.url = a ? a.href : "";
+  var show = document.getElementById("tile-menu-show");
+  if (show) {
+    var n = userHidden().length, he = document.documentElement.lang !== "en";
+    show.hidden = n < 1;
+    show.textContent = (he ? "הצג מוסתרות" : "Show hidden") + (n ? " (" + n + ")" : "");
+  }
   tileMenu.hidden = false;
   var r = li.getBoundingClientRect();
   if (x == null) { x = r.left + r.width / 2; y = r.bottom; }
@@ -616,7 +654,13 @@ function openTileMenu(li, x, y) {
 }
 function clearTilePress() { if (tilePress) { clearTimeout(tilePress.timer); tilePress = null; } }
 document.addEventListener("pointerdown", function (e) {
-  if (!tileMenu.hidden && !tileMenu.contains(e.target)) closeTileMenu();
+  var inMenu = !!(tileMenu && tileMenu.contains(e.target));
+  // The long-press that opened the menu often never fires a click (touch). tileBlockClick
+  // would then swallow the NEXT tap — the one that chooses להזיז / להסתיר. A new gesture
+  // on the menu is that choice, so let its click through. The release of the long-press
+  // itself has no pointerdown on the menu, and stays swallowed.
+  if (inMenu) tileBlockClick = false;
+  if (!tileMenu.hidden && !inMenu) closeTileMenu();
   if (e.pointerType === "mouse" && e.button !== 0) return;
   if (window.RGHomeDnd && RGHomeDnd.moving()) return;
   var li = tileOf(e.target);
@@ -632,7 +676,7 @@ document.addEventListener("pointerdown", function (e) {
 document.addEventListener("pointermove", function (e) {
   if (!tilePress || e.pointerId !== tilePress.id) return;
   if (Math.abs(e.clientX - tilePress.x) + Math.abs(e.clientY - tilePress.y) > 12) clearTilePress();
-});
+}, { passive: true });
 document.addEventListener("pointerup", function (e) { if (tilePress && e.pointerId === tilePress.id) clearTilePress(); });
 document.addEventListener("pointercancel", function (e) { if (tilePress && e.pointerId === tilePress.id) clearTilePress(); });
 document.addEventListener("contextmenu", function (e) {
@@ -640,24 +684,26 @@ document.addEventListener("contextmenu", function (e) {
   if (!li) return;
   e.preventDefault();
   clearTilePress();
+  tileBlockClick = true; // the click that follows a right-click / long-press must not activate a menu row
   openTileMenu(li, e.clientX, e.clientY);
 });
 document.addEventListener("click", function (e) {
   if (!tileBlockClick) return;
-  tileBlockClick = false; // the click that ends a long-press or right-click must not open the app or hit the menu
+  tileBlockClick = false; // same-gesture click: do not open the app and do not hit the menu row under the finger
   e.preventDefault();
   e.stopPropagation();
 }, true);
-document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeTileMenu(); });
+document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closeTileMenu(); if (window.RGHomeDnd && RGHomeDnd.moving()) RGHomeDnd.stopMove(); } });
 document.getElementById("tile-menu-x").addEventListener("click", function (e) { e.stopPropagation(); closeTileMenu(); });
 document.getElementById("dnd-done").addEventListener("click", function () { if (window.RGHomeDnd) RGHomeDnd.stopMove(); });
 tileMenu.addEventListener("click", function (e) {
   var b = e.target.closest && e.target.closest("button[data-act]");
   if (!b) return;
   e.preventDefault(); e.stopPropagation();
-  var href = tileMenu.dataset.href, url = tileMenu.dataset.url, act = b.getAttribute("data-act");
+  var href = tileMenu.getAttribute("data-href") || "", url = tileMenu.getAttribute("data-url") || "", act = b.getAttribute("data-act");
   closeTileMenu();
   if (act === "hide") setUserHidden(href, true);
+  else if (act === "show") revealHidden();
   else if (act === "pin" && window.RGHomeDnd) RGHomeDnd.pin(href);
   else if (act === "move" && window.RGHomeDnd) RGHomeDnd.startMove();
   else if (act === "newtab" && url) window.open(url, "_blank", "noopener");
@@ -1059,7 +1105,7 @@ if (window.RGAccount) {
 }
 /* ---------- Account: language + background follow the signed-in user across devices ---------- */
 if (window.RGAccount) {
-  RGAccount.syncPrefs(["rg-lang", THEME_KEY, BG_KEY, LBG_KEY, "rg-home-order"], function (c) {
+  RGAccount.syncPrefs(["rg-lang", THEME_KEY, BG_KEY, LBG_KEY, "rg-home-order", HIDE_KEY], function (c) {
     if ("rg-lang" in c) lang = c["rg-lang"] === "en" ? "en" : "he";
     if (THEME_KEY in c) setTheme(c[THEME_KEY]);
     if (BG_KEY in c) setBg(c[BG_KEY], "dark");
@@ -1077,7 +1123,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=64", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=67", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
