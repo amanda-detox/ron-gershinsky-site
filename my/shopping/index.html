@@ -68,6 +68,8 @@
   .mi.dng { color: var(--muted); }
   .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
   .list li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .list li .txt, .list li .note, .list li input, .list li textarea { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+
   .addform { display: grid; grid-template-columns: minmax(0, 1fr) 76px auto; gap: 8px; margin-top: 16px; }
   .addform input { width: 100%; min-width: 0; box-sizing: border-box; height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
   .addform input:focus { border-color: var(--accent); }
