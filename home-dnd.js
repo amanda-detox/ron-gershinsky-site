@@ -105,7 +105,8 @@
   document.addEventListener("pointermove", onMove, { passive: false });
   document.addEventListener("pointerup", onUp);
   document.addEventListener("pointercancel", onUp);
-  document.addEventListener("touchmove", function (e) { if (st && st.on) e.preventDefault(); }, { passive: false });
+  /* no document touchmove listener: a non-passive one makes every scroll on the page wait for JS.
+     While a tile is actually dragging, html.dnd-active sets touch-action: none, so the page does not scroll. */
   document.addEventListener("dragstart", function (e) { if (e.target.closest && e.target.closest("#app-grid, #more-list")) e.preventDefault(); });
   document.addEventListener("click", function (e) {
     if (mode && e.target.closest && e.target.closest("#app-grid li[data-href], #more-list li[data-href]")) {
