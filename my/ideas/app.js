@@ -812,14 +812,17 @@
       if (toggleMark(id, dy < 0 ? "ok" : "no")) { changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
       return true;
     }
+    function clearSel() { var sl = window.getSelection && window.getSelection(); if (sl && !sl.isCollapsed) sl.removeAllRanges(); }
     function armH() {
       if (idrag.swipe) return;
+      if (idrag.fromText) clearSel();
       idrag.swipe = true; idrag.axis = "h";
       idrag.li.classList.add("swiping");
       try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
     }
     function armV() {
       if (idrag.vswipe) return;
+      if (idrag.fromText) clearSel();
       idrag.vswipe = true; idrag.axis = "v";
       idrag.li.classList.add("swiping", "vswipe");
       try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
@@ -833,8 +836,9 @@
       idrag.li.style.setProperty("--sy", Math.max(-28, Math.min(28, dy * 0.45)) + "px");
       idrag.li.classList.toggle("sw-u", dy < 0); idrag.li.classList.toggle("sw-d", dy > 0); idrag.li.classList.toggle("sw-vgo", Math.abs(dy) >= VGO);
     }
-    /* "" = still deciding or a vertical flick that has not reached 40px yet (the page may scroll).
-       "h" / "v" = the gesture owns the finger. "drop" = give it back (slow scroll, or a diagonal). */
+    /* A mouse drag that starts on the title is a text selection until it is clearly a swipe
+       (about a third of the row sideways, or 40px up/down). Touch, and a mouse drag that
+       starts off the text, still slides as soon as the axis is chosen. */
     function follow(dx, dy) {
       idrag._dx = dx; idrag._dy = dy;
       if (idrag.swipe) { paintH(dx); return "h"; }
@@ -842,17 +846,26 @@
         if (idrag.type !== "mouse" && Date.now() - idrag.t >= FLICK) return "drop";
         paintV(dy); return "v";
       }
-      var adx = Math.abs(dx), ady = Math.abs(dy);
+      var adx = Math.abs(dx), ady = Math.abs(dy), text = idrag.fromText;
       if (!idrag.axis) {
         if (adx < AXIS && ady < AXIS) return "";
-        if (adx > ady * 1.5) { armH(); paintH(dx); return "h"; } // sideways, same as before
-        if (ady > adx * 1.5) idrag.axis = "v"; else return "drop";
+        if (adx > ady * 1.5) {
+          idrag.axis = "h";
+          if (!text) { armH(); paintH(dx); return "h"; }
+        } else if (ady > adx * 1.5) idrag.axis = "v";
+        else return text ? "" : "drop";
       }
       if (idrag.axis === "v") {
         var quick = idrag.type === "mouse" || (Date.now() - idrag.t < FLICK);
-        if (!quick) return "drop"; // a slow drag is a scroll
-        if (adx > ady * 1.5 && adx >= AXIS) { armH(); paintH(dx); return "h"; }
-        if (ady >= VGO && ady > adx * 1.5) { armV(); paintV(dy); return "v"; }
+        if (!quick) return text ? "" : "drop"; // a slow finger drag is a scroll
+        if (adx > ady * 1.5 && adx >= AXIS) {
+          idrag.axis = "h";
+          if (!text) { armH(); paintH(dx); return "h"; }
+        } else if (ady >= VGO && ady > adx * 1.5) { armV(); paintV(dy); return "v"; }
+      }
+      if (idrag.axis === "h" && text) {
+        var w = idrag.li.offsetWidth || 1;
+        if (adx >= w * SWIPE && adx > ady * 1.5) { armH(); paintH(dx); return "h"; }
       }
       return "";
     }
@@ -872,17 +885,17 @@
         return;
       }
       if (e.target.closest("button,input,select,textarea,summary,a")) return;
-      if (e.pointerType === "mouse" && e.target.closest(".txt,.note")) return; // mouse on text = select it
-      var sel = window.getSelection && window.getSelection(); if (sel && !sel.isCollapsed && String(sel).trim()) return; // a selection is active
+      var sel0 = window.getSelection && window.getSelection();
+      // an existing selection on the title stays a selection (so it can be extended or copied)
+      if (e.pointerType === "mouse" && e.target.closest(".txt,.note") && sel0 && !sel0.isCollapsed && String(sel0).trim()) return;
       reset(); holdN++;
       var sc = scrollOf(li);
-      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
+      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
     });
     document.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       var dx = e.clientX - idrag.x, dy = e.clientY - idrag.y;
       if (idrag.lifted) { e.preventDefault(); idrag.sorter.move(e.clientY); return; }
-      if (!idrag.swipe && !idrag.vswipe) { var sl = window.getSelection && window.getSelection(); if (sl && !sl.isCollapsed && String(sl).trim()) { idrag = null; return; } }
       var act = follow(dx, dy);
       if (act === "drop") { reset(); return; }
       if (act === "h") e.preventDefault();
@@ -918,6 +931,9 @@
         reset();
         if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); }), d.f); changed(); }
       } else if (!commitFlick(d, e.type === "pointerup" ? e.clientX - d.x : (d._dx || 0), e.type === "pointerup" ? e.clientY - d.y : (d._dy || 0))) {
+        var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
+        var sl = window.getSelection && window.getSelection();
+        if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
         d.handled = true; reset();
       }
     }
