@@ -250,6 +250,7 @@
 <div class="flash" id="flash"></div>
 <div class="toast" id="toast" role="status" hidden></div>
 
+<script src="mix-sync.js?v=1"></script>
 <script>
 (function () {
   "use strict";
@@ -811,28 +812,25 @@
     p.disabled = !st.on.length;
   }
   function renderTimer() { $("vol-btn").setAttribute("aria-label", L().master); renderMixes(); }
-  /* ---------- saved mixes (templates) ---------- */
-  var MIX_KEY = "rg-snd-mixes";
+  /* ---------- saved mixes (templates). Stored in localStorage "rg-snd-mixes" and merged across devices by sounds/mix-sync.js. ---------- */
   var MT = { he: { btn: "המיקסים שלי", saveH: "שמירת מיקס", listH: "המיקסים שלי", ph: "שם המיקס", save: "שמירה", empty: "עדיין אין מיקסים שמורים",
       saved: function (n) { return "המיקס \"" + n + "\" נשמר"; }, loaded: function (n) { return "המיקס \"" + n + "\" נטען"; },
       del: "מחיקת המיקס", confirm: function (n) { return "למחוק את המיקס \"" + n + "\"?"; }, replace: function (n) { return "כבר יש מיקס בשם \"" + n + "\". להחליף אותו?"; }, none: "קודם מפעילים צליל אחד לפחות", noName: "צריך לתת שם למיקס" },
     en: { btn: "My mixes", saveH: "Save mix", listH: "My mixes", ph: "Mix name", save: "Save", empty: "No saved mixes yet",
       saved: function (n) { return "Mix \"" + n + "\" saved"; }, loaded: function (n) { return "Mix \"" + n + "\" loaded"; },
       del: "Delete mix", confirm: function (n) { return "Delete the mix \"" + n + "\"?"; }, replace: function (n) { return "A mix named \"" + n + "\" already exists. Replace it?"; }, none: "Turn on at least one sound first", noName: "Give the mix a name" } };
-  function getMixes() { try { var a = JSON.parse(localStorage.getItem(MIX_KEY)); return Array.isArray(a) ? a : []; } catch (e) { return []; } }
-  function putMixes(a) { try { localStorage.setItem(MIX_KEY, JSON.stringify(a)); } catch (e) {} }
+  function mixesApi() { return window.RGSoundMixes || null; }
+  function getMixes() { var M = mixesApi(); return M ? M.list() : []; }
   function saveMix() {
-    var t = MT[lang], name = ($("mix-name").value || "").trim();
+    var t = MT[lang], name = ($("mix-name").value || "").trim(), M = mixesApi();
     if (!name) { toast(t.noName); $("mix-name").focus(); return; }
     if (!st.on.length) { toast(t.none); return; }
-    var a = getMixes(), i = -1;
-    a.forEach(function (m, k) { if (m.name === name) i = k; });
-    if (i >= 0 && !confirm(t.replace(name))) return;
+    if (!M) return;
+    if (getMixes().some(function (m) { return m.name === name; }) && !confirm(t.replace(name))) return;
     var vols = {}, freqs = {};
     st.on.forEach(function (id) { vols[id] = vol(id); if (typeof st.freqs[id] === "number") freqs[id] = st.freqs[id]; });
-    var m = { name: name, on: st.on.slice(), vols: vols, freqs: freqs, master: st.master, mode: st.mode, carrier: st.carrier, gender: st.gender, t: Date.now() };
-    if (i >= 0) a[i] = m; else a.unshift(m);
-    putMixes(a); $("mix-name").value = ""; renderMixes(); toast(t.saved(name));
+    M.save({ name: name, on: st.on.slice(), vols: vols, freqs: freqs, master: st.master, mode: st.mode, carrier: st.carrier, gender: st.gender });
+    $("mix-name").value = ""; renderMixes(); toast(t.saved(name));
   }
   function loadMix(m) {
     ensureCtx();
@@ -856,7 +854,7 @@
       var li = document.createElement("li"); li.className = "mix-row";
       var b = document.createElement("button"); b.type = "button"; b.className = "ml"; b.textContent = m.name; b.onclick = function () { loadMix(m); };
       var d = document.createElement("button"); d.type = "button"; d.className = "md"; d.textContent = "✕"; d.setAttribute("aria-label", t.del + " " + m.name);
-      d.onclick = function () { if (!confirm(t.confirm(m.name))) return; putMixes(getMixes().filter(function (x) { return x.name !== m.name; })); renderMixes(); };
+      d.onclick = function () { if (!confirm(t.confirm(m.name))) return; var M = mixesApi(); if (M) M.remove(m.id); renderMixes(); };
       li.appendChild(b); li.appendChild(d); ul.appendChild(li);
     });
   }
@@ -933,12 +931,15 @@
   buildCats(); render(); updateInstall();
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=28", { scope: "./" }).catch(function () {});
+  if (window.RGSoundMixes) RGSoundMixes.onChange(function () { renderMixes(); });
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=29", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
+<!-- rg-snd-mixes is synced by mix-sync.js (merge by id). Do not add it to syncPrefs: that path replaces the whole value. -->
+<script>if (window.RGSoundMixes) RGSoundMixes.start();</script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#acct-row"></script>
 
