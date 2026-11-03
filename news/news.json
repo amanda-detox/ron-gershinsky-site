@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T19:02:39+02:00",
+ "updated": "2026-11-03T19:54:11+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-musk-doctor-appointment-by-phone",
+   "topic": "grokbot",
+   "date": "2026-11-03T17:11:25Z",
+   "url": "https://x.com/elonmusk/status/2117665964862939320",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Grok Bot מוצא רופא, מתקשר וקובע תור",
+    "summary": "אילון מאסק ציטט את מין צ'וי, שסיפר ש־Grok Bot קבע לבתו תור לאורתופד ילדים באותו יום, בזמן שהוא נהג. לדברי מאסק, הבוט יכול לחקור מי הרופאים הטובים באזור, להתקשר אליהם ולקבוע תור."
+   },
+   "en": {
+    "title": "Musk: Grok Bot can find the best doctors, call them and book you in",
+    "summary": "Elon Musk quoted Min Choi, who said Grok Bot booked his daughter a same-day pediatric orthopedist appointment by phone while he was driving. Musk says the bot can research the best local doctors, call them and make the appointment."
+   },
+   "full_he": "Grok Bot יכול לבדוק מי הרופאים הטובים ביותר באזור שלך, להתקשר אליהם בטלפון ולקבוע לך תור!\n\nהפוסט שהוא ציטט (מין צ'וי, ‎@minchoi):\n\nGrok Bot בדיוק קבע לי תור לרופא בזמן שנהגתי...\n\nהבת שלי נפגעה ברגל כשנחתה מקפיצה באימון ריקוד.\n\nסיפרתי ל־Grok Bot מה קרה, איך היא מרגישה ומה ראיתי: אין הרבה נפיחות, שמנו קרח, והכאב נראה נסבל.\n\nהוא נתן לי כמה אפשרויות קרובות, ביניהן אורתופד ילדים עם מכון רנטגן במקום, והציע להתקשר כשייפתחו.\n\nGrok Bot התקשר והשיג לה תור ל־9:30 באותו יום.\n\nכל השיחה תומללה בזמן אמת, וכשהפקידה ביקשה עוד פרטים, הוא שאל אותי תוך כדי.\n\nהוא גם בירר את פרטי הביטוח, אפשרויות התשלום והמחירים, דאג שטופסי הקבלה יישלחו למייל שלי והכניס את התור ליומן.\n\nהפקידה ידעה שהשיחה מוקלטת, ואחר כך יכולתי להאזין להקלטה.\n\nוכל זה בזמן שנהגתי.\n\nGrok Bot הולך לשנות לגמרי את החיים של אנשים.\n\nבצילום המסך שצירף: שיחה עם הבוט \"Mini · Chief of Staff\", בקשת שיחת טלפון למרפאת אורתופדיה לילדים (מאושרת), שיחה שהסתיימה (7:17 דקות) עם תמלול: \"תודה שהתקשרתם ל... אורתופדיה לילדים\" ו\"הקישו אחת אם אתם ממשרד רופא\". שם המרפאה ומספר הטלפון מוסתרים.",
+   "full_en": "Grok Bot can research which doctors are the best in your area, call them by phone and make an appointment!\n\nThe quoted post (Min Choi, @minchoi):\n\nGrok Bot just made a doctor's appointment for me while I was driving...\n\nMy daughter hurt her foot landing a jump at dance practice.\n\nI told Grok Bot what happened, how she was feeling, and what I saw: not much swelling, iced, and her pain seemed manageable.\n\nIt gave me a few nearby options, including a pediatric orthopedist with X-rays on site, and offered to call when they opened.\n\nGrok Bot called and got her in at 9:30 the same day.\n\nThe whole call was transcribed live, and when the receptionist asked for more info, it asked me in real time.\n\nIt also got the insurance, payment options and pricing, had the intake forms sent to my email, and put it on my calendar.\n\nThe receptionist knew the call was recorded, and I could review the recording afterward.\n\nAll while I was driving.\n\nGrok Bot is going to completely change people's lives.\n\nHis attached screenshot shows a chat with the bot \"Mini · Chief of Staff\": an approved phone call request to a pediatric orthopaedics clinic, and an ended call (7:17) with a live transcript: \"Thanks for calling … Pediatric Orthopedics\" and \"Press one if you are from a physician's office.\" The clinic name and phone number are blacked out."
+  },
+  {
+   "id": "grokbot-musk-complex-family-trip-flights",
+   "topic": "grokbot",
+   "date": "2026-11-03T17:06:16Z",
+   "url": "https://x.com/elonmusk/status/2117664671813767516",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Grok Bot מסתדר גם עם טיולים מורכבים",
+    "summary": "מאסק ציטט את פיליפ קפלן, שהזמין בעזרת Grok Bot טיסות לטיול משפחתי מסובך ואמר שכנראה לא ישתמש יותר באתר של חברת תעופה."
+   },
+   "en": {
+    "title": "Musk: Grok Bot can do complex trips",
+    "summary": "Musk quoted Philip Kaplan, who used Grok Bot to book flights for a fairly complex family trip and said he'll likely never use an airline's website again."
+   },
+   "full_he": "Grok Bot יודע לתכנן טיולים מורכבים.\n\nהפוסט שהוא ציטט (פיליפ קפלן, ‎@pud):\n\nהשתמשתי ב־Grok Bot כדי להזמין טיסות לטיול משפחתי די מסובך. חוויה מדהימה. כנראה שלא אשתמש יותר אף פעם באתר של חברת תעופה.",
+   "full_en": "Grok Bot can do complex trips\n\nThe quoted post (Philip Kaplan, @pud):\n\nUsed Grok Bot to book flights for a relatively complex family trip. Incredible experience. I'll likely never use an airline's website again."
+  },
+  {
+   "id": "musk-quest-to-understand-universe-ted",
+   "topic": "musk",
+   "date": "2026-11-03T17:03:04Z",
+   "url": "https://x.com/elonmusk/status/2117663863856377923",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"המסע להבין את היקום\"",
+    "summary": "מאסק שיתף קטע מראיון עם כריס אנדרסון (TED), שבו הסביר שמה שמניע אותו הוא עתיד טוב לאנושות, הבנת טבע היקום ומשמעות החיים, ובעיקר סקרנות."
+   },
+   "en": {
+    "title": "Musk: \"Quest to understand the Universe\"",
+    "summary": "Musk shared a clip from his talk with Chris Anderson (TED) in which he says he's driven by a good future for humanity, understanding the nature of the universe and the meaning of life, and above all curiosity."
+   },
+   "full_he": "המסע להבין את היקום\n\nהפוסט שהוא ציטט (‎@XFreeze):\n\nכשכריס אנדרסון שאל את אילון מאסק מה מניע אותו כל יום לעשות את כל מה שהוא עושה, אילון נתן תשובה עמוקה וחזקה במיוחד:\n\n\"אני באמת רוצה לוודא שיש עתיד טוב לאנושות, ושאנחנו בדרך להבנת טבע היקום, משמעות החיים. למה אנחנו כאן? איך הגענו לכאן?\"\n\nואז הסביר מה מניע אותו יותר מכל דבר אחר:\n\n\"אני מונע מסקרנות יותר מכל דבר אחר, ופשוט מרצון לחשוב על העתיד ולא להיות עצוב.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "Quest to understand the Universe\n\nThe quoted post (@XFreeze):\n\nWhen Chris Anderson asked Elon Musk what drives him every single day to do everything he does, Elon gave an incredibly deep and powerful answer\n\n\"I really want to make sure that there is a good future for humanity, and that we're on a path to understanding the nature of the universe, the meaning of life. Why are we here? How do we get here?\"\n\nAnd then he explained what motivates him more than anything:\n\n\"I'm motivated by curiosity more than anything, and just a desire to think about the future and not be sad\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "tesla-robotaxi-fort-worth-unsupervised",
+   "topic": "tesla",
+   "date": "2026-11-03T17:13:50Z",
+   "url": "https://x.com/i/trending/2117664878924009522",
+   "source": "X",
+   "he": {
+    "title": "טסלה משיקה רובוטקסי בלי נהג בטיחות בפורט וורת'",
+    "summary": "ב־2 בנובמבר התחילה טסלה נסיעות בלי נהג בטיחות בפורט וורת', טקסס, באזור של 143 מייל רבוע. זו העיר השביעית בארה\"ב עם השירות, והשוק השלישי בגודלו שלה בלי פיקוח אחרי אוסטין ויוסטון."
+   },
+   "en": {
+    "title": "Tesla launches unsupervised Robotaxi service in Fort Worth",
+    "summary": "On November 2 Tesla began driverless rides with no safety drivers in Fort Worth, Texas, across a 143-square-mile zone. It's the seventh U.S. city for the service and Tesla's third-largest unsupervised market after Austin and Houston."
+   },
+   "full_he": "ב־2 בנובמבר טסלה התחילה נסיעות בלי נהג בפורט וורת', טקסס, בלי נהגי בטיחות ברכב, ותושבים יכלו לעלות לנסיעות הראשונות בלי פיקוח כבר מ־6 בבוקר.\n\n• השירות מכסה אזור של 143 מייל רבוע סביב מרכז פורט וורת', ומגיע עד אזורים סמוכים כמו סגינאו ווייט סטלמנט.\n• זה השוק השלישי בגודלו של טסלה לנסיעות בלי פיקוח, אחרי אוסטין ויוסטון.\n• זו העיר השביעית בארה\"ב עם השירות, בנוסף לפעילות הקיימת בדאלאס, מיאמי, אורלנדו וטמפה.\n• רוכבים ראשונים שיתפו חוויות של נסיעה חלקה, על רקע מאגר נתוני הנהיגה העצומה של FSD (יותר מ־17 מיליארד מייל), אבל חלק מהאנשים הביעו חשש בנוגע לבטיחות.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
+   "full_en": "On November 2, Tesla kicked off driverless rides in Fort Worth, Texas, with no safety drivers aboard, letting locals hop in for the first unsupervised trips right from 6 a.m.\n\n• The service covers a 143-square-mile zone around downtown Fort Worth, stretching to nearby areas like Saginaw and White Settlement.\n• It's Tesla's third-largest unsupervised market after Austin and Houston.\n• It's the seventh U.S. city for the feature, building on existing operations in Dallas, Miami, Orlando and Tampa.\n• Early riders shared smooth experiences amid the company's massive Full Self-Driving data haul of over 17 billion miles, though some voiced safety concerns.\n\n(This story is a summary of posts on X and may evolve over time.)"
+  },
+  {
+   "id": "tesla-okxice-56-companies-object-tokenized-shares",
+   "topic": "tesla",
+   "date": "2026-11-03T17:41:29Z",
+   "url": "https://x.com/i/trending/2117671717359477049",
+   "source": "X",
+   "he": {
+    "title": "טסלה, ספייסאקס ועוד 54 חברות מתנגדות למניות מטוקנות ב־OKXICE",
+    "summary": "56 חברות אמריקאיות גדולות, בהן טסלה, ספייסאקס, אמזון ונטפליקס, הגישו התנגדות רשמית למסחר במניות מטוקנות שלהן בפלטפורמה המתוכננת של OKX ו־ICE. כך כמעט 80% מהסימולים המוצעים בפלטפורמה חסומים."
+   },
+   "en": {
+    "title": "Tesla, SpaceX and 54 other companies object to tokenized shares on OKXICE",
+    "summary": "56 major U.S. companies, including Tesla, SpaceX, Amazon and Netflix, have formally objected to third-party tokenized versions of their shares on the planned OKX–ICE venue, leaving nearly 80% of its proposed symbols blocked."
+   },
+   "full_he": "טסלה, אמזון ונטפליקס הצטרפו לרשימה הולכת וגדלה של חברות גדולות שאומרות לא לגרסאות מטוקנות של המניות שלהן בפלטפורמת מסחר חדשה הקשורה לקריפטו.\n\n• עשרות חברות אמריקאיות בולטות, 56 נכון לתחילת נובמבר, הגישו התנגדות רשמית למסחר במניות מטוקנות של צד שלישי בפלטפורמת OKXICE המתוכננת של OKX ו־Intercontinental Exchange.\n• המצטרפות האחרונות, כמו טסלה, אמזון, נטפליקס, ספייסאקס ואחרות, מביאות לכך שחמש מתוך \"שבע המופלאות\" נמצאות ברשימה.\n• כך כמעט 80% מהסימולים שהפלטפורמה הציעה חסומים, במסגרת פטור החדשנות של ה־SEC.\n• החברות עדיין יכולות לטקן את המניות שלהן בעצמן במקום אחר, אבל הן העלו חששות לגבי נזילות, תנודתיות ושליטה.\n• לפי הסיכום, זה אתגר גדול לפלטפורמות כאלה גם כשיש להן אישור רגולטורי.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
+   "full_en": "Tesla, Amazon and Netflix just joined a growing list of big names saying no to tokenized versions of their shares on a new crypto-linked trading venue.\n\n• Dozens of prominent U.S. firms, now totaling 56 as of early November, have filed formal objections to third-party tokenized shares trading on the planned OKXICE platform from OKX and Intercontinental Exchange.\n• Recent additions like Tesla, Amazon, Netflix, SpaceX and others bring five of the Magnificent Seven into the fold.\n• That leaves nearly 80 percent of the venue's proposed symbols blocked under the SEC's innovation exemption.\n• Companies can still pursue their own tokenization elsewhere, but they've raised concerns over liquidity, volatility and control.\n• The summary says this highlights a major challenge for such platforms even with regulatory approval.\n\n(This story is a summary of posts on X and may evolve over time.)"
+  },
   {
    "id": "brecka-rethink-senior-living-jen",
    "topic": "brecka",
