@@ -39,7 +39,7 @@
     he: {
       add: "הוספת פריט…", addBtn: "הוספה", del: "נמחק", undo: "ביטול", moved: "הועבר אל ",
       moveTo: "להעביר לאיזו רשימה?", cancel: "ביטול",
-      hint: "החלק ימינה למחיקה, שמאלה להעברה לרשימה אחרת, למעלה לסימון ✓ ולמטה לסימון ✕, וגרור את ☰ לשינוי הסדר.",
+      hint: "החלק ימינה למחיקה ושמאלה להעברה. לחיצה ארוכה בוחרת פריט (מסגרת זהובה), ואז החלקה למעלה מסמנת ✓ ומעבירה לנבחרים, ולמטה מסמנת ✕. גרור את ☰ לשינוי הסדר.",
       drag: "גרור לשינוי הסדר", empty: "הרשימה ריקה. אפשר להוסיף פריט בשדה למעלה.",
       noteAdd: "הוספת הערה", noteEdit: "עריכת הערה", notePh: "הערה אישית…",
       noteSave: "שמירה", noteClear: "מחיקת ההערה",
@@ -52,7 +52,7 @@
     en: {
       add: "Add an item…", addBtn: "Add", del: "Deleted", undo: "Undo", moved: "Moved to ",
       moveTo: "Move to which list?", cancel: "Cancel",
-      hint: "Swipe right to delete, swipe left to move to another list, up to mark ✓ and down to mark ✕. Drag ☰ to reorder.",
+      hint: "Swipe right to delete, swipe left to move. A long-press selects an item (gold outline); then swipe up for ✓ (it moves to Chosen) and down for ✕. Drag ☰ to reorder.",
       drag: "Drag to reorder", empty: "The list is empty. Add an item in the field above.",
       noteAdd: "Add a note", noteEdit: "Edit note", notePh: "A personal note…",
       noteSave: "Save", noteClear: "Delete note",
@@ -294,21 +294,32 @@
   }
   function groupsOf(list, u) {
     var items = list.resolved, ord = (u.order && u.order[list.id]) || [];
-    if (list.style !== "info") return [{ title: null, sec: "all", items: sortGroup(items, ord) }];
-    var groups = [];
-    (list.sections || []).forEach(function (sec, si) {
-      var mem = sortGroup(items.filter(function (it) { return it.section === si; }), ord);
-      if (mem.length) groups.push({ title: sec.title, sec: String(si), items: mem });
-    });
-    var extra = sortGroup(items.filter(function (it) { return it.section == null; }), ord);
-    if (extra.length) {
-      var anyCustom = extra.some(function (it) { return it.custom; });
-      var anyMoved = extra.some(function (it) { return !it.custom; });
-      var title = anyCustom && anyMoved ? { he: "הוספתי והועברו", en: "Added and moved here" }
-        : anyCustom ? { he: "הוספתי", en: "Added by me" }
-        : { he: "הועברו לכאן", en: "Moved here" };
-      groups.push({ title: title, sec: "x", items: extra });
+    var groups;
+    if (list.style !== "info") groups = [{ title: null, sec: "all", items: sortGroup(items, ord) }];
+    else {
+      groups = [];
+      (list.sections || []).forEach(function (sec, si) {
+        var mem = sortGroup(items.filter(function (it) { return it.section === si; }), ord);
+        if (mem.length) groups.push({ title: sec.title, sec: String(si), items: mem });
+      });
+      var extra = sortGroup(items.filter(function (it) { return it.section == null; }), ord);
+      if (extra.length) {
+        var anyCustom = extra.some(function (it) { return it.custom; });
+        var anyMoved = extra.some(function (it) { return !it.custom; });
+        var title = anyCustom && anyMoved ? { he: "הוספתי והועברו", en: "Added and moved here" }
+          : anyCustom ? { he: "הוספתי", en: "Added by me" }
+          : { he: "הועברו לכאן", en: "Moved here" };
+        groups.push({ title: title, sec: "x", items: extra });
+      }
     }
+    var chosen = [];
+    groups.forEach(function (g) {
+      var stay = [];
+      g.items.forEach(function (it) { if (markOf(u, it.id) === "ok") chosen.push(it); else stay.push(it); });
+      g.items = stay;
+    });
+    groups = groups.filter(function (g) { return g.items.length; });
+    if (chosen.length) groups.unshift({ title: { he: "נבחרים", en: "Chosen" }, sec: "chosen", items: chosen });
     return groups;
   }
   function findList(id) {
@@ -497,7 +508,17 @@
     $("clear-btn").hidden = isPower;
     $("listfoot").hidden = false;
     if (!isPower) renderCount(list);
+    paintArmed();
   }
+  function paintArmed() {
+    var nodes = document.querySelectorAll(".drow.armed");
+    for (var i = 0; i < nodes.length; i++) nodes[i].classList.remove("armed");
+    if (!armedId) return;
+    var all = document.querySelectorAll(".drow[data-id]"), found = false;
+    for (var j = 0; j < all.length; j++) if (all[j].getAttribute("data-id") === armedId) { all[j].classList.add("armed"); found = true; }
+    if (!found) armedId = null;
+  }
+  function clearArmed() { if (!armedId) return; armedId = null; paintArmed(); }
 
   function toast(msg, undoFn) {
     var el = $("toast");
@@ -701,9 +722,10 @@
     }
   }
 
-  /* pointer swipe matches Listify: sideways past ~12px and about a third of the row.
-     Up / down is a flick (40px, under 350ms, vertical dominates) so a slow drag still scrolls. */
-  var g = null;
+  /* Sideways swipe is immediate (right delete, left move). Up / down marks only after a
+     long-press selects the row. Until then a vertical drag is native scrolling. ✓ also
+     moves the item into the נבחרים group; clearing ✓ puts it back. */
+  var g = null, armedId = null;
   var sheetReadyAt = 0;
   function bootGestures() {
     var ul = $("items");
@@ -741,7 +763,14 @@
         return;
       }
       var sc = scrollOf(li);
-      g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
+      g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
+      g.hold = setTimeout(function () {
+        if (!g || g.li !== li || g.mode === "swipe" || g.mode === "drag" || g.handled) return;
+        if (Math.abs(g.dx || 0) > 12 || Math.abs(g.dy || 0) > 12) return;
+        armedId = li.getAttribute("data-id"); paintArmed();
+        swallow = true; setTimeout(function () { swallow = false; }, 450);
+        if (navigator.vibrate) try { navigator.vibrate(15); } catch (err) {}
+      }, 500);
     });
     function scrollOf(el) {
       var n = el ? el.parentNode : null;
@@ -754,16 +783,17 @@
     }
     function finishFlick(cur) {
       if (!cur || cur.handled || cur.mode === "swipe" || cur.mode === "drag" || cur.mode === "scroll") return false;
+      var id = cur.li.getAttribute("data-id");
+      if (!armedId || armedId !== id) return false;
       var vdx = cur.dx || 0, vdy = cur.dy || 0, adx = Math.abs(vdx), ady = Math.abs(vdy);
-      var quick = cur.type === "mouse" || (Date.now() - cur.t < 350);
-      var short = cur.type === "mouse" || ady <= 120;
       cur.li.classList.remove("sw-u", "sw-d", "sgo", "swiping", "vswipe");
       if (cur.face) cur.face.style.transform = "";
-      if (!(quick && short && ady >= 40 && ady > adx * 1.5)) return false;
+      if (!(ady >= 40 && ady > adx * 1.5)) return false;
       cur.handled = true;
       swallow = true;
       setTimeout(function () { swallow = false; }, 450);
-      toggleMark(cur.li.getAttribute("data-id"), vdy < 0 ? "ok" : "no");
+      clearArmed();
+      toggleMark(id, vdy < 0 ? "ok" : "no");
       return true;
     }
     document.addEventListener("pointermove", function (e) {
@@ -780,6 +810,7 @@
       }
       var dx = e.clientX - g.x, dy = e.clientY - g.y, adx = Math.abs(dx), ady = Math.abs(dy);
       g.dx = dx; g.dy = dy;
+      if (g.hold && (adx > 12 || ady > 12)) { clearTimeout(g.hold); g.hold = 0; }
       if (g.mode === "maybe" || g.mode === "vert") {
         if (g.mode === "maybe") {
           if (adx < 12 && ady < 12) return;
@@ -795,7 +826,10 @@
             g.mode = "swipe";
             g.li.classList.add("swiping");
             try { g.face.setPointerCapture(e.pointerId); } catch (err2) {}
-          } else return;
+          } else {
+            if (armedId && g.li && armedId === g.li.getAttribute("data-id") && ady >= 12) e.preventDefault();
+            return;
+          }
         }
       }
       if (g && g.mode === "swipe") {
@@ -819,6 +853,7 @@
       var cur = g;
       g = null;
       if (cur.timer) clearTimeout(cur.timer);
+      if (cur.hold) clearTimeout(cur.hold);
       if (cur.raf) cancelAnimationFrame(cur.raf);
       if (cur.mode === "swipe") {
         swallow = true;
@@ -827,8 +862,8 @@
         var dx = cur.dx || 0;
         var id = cur.li.getAttribute("data-id");
         cur.li.classList.remove("sdel", "smv", "sgo", "swiping");
-        if (dx > w) { deleteById(id); return; }
-        if (dx < -w) { cur.face.style.transform = ""; pickList(itemById(id)); return; }
+        if (dx > w) { clearArmed(); deleteById(id); return; }
+        if (dx < -w) { clearArmed(); cur.face.style.transform = ""; pickList(itemById(id)); return; }
         cur.face.style.transition = "transform .18s ease";
         cur.face.style.transform = "";
         setTimeout(function () { cur.face.style.transition = ""; }, 200);
@@ -854,6 +889,7 @@
       g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
       var cur = g; g = null;
       if (cur.timer) clearTimeout(cur.timer);
+      if (cur.hold) clearTimeout(cur.hold);
       finishFlick(cur);
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
@@ -866,6 +902,7 @@
         return;
       }
       if (g.mode !== "maybe" && g.mode !== "vert") return;
+      if (g.hold && (adx > 12 || ady > 12)) { clearTimeout(g.hold); g.hold = 0; }
       if (adx < 12 && ady < 12) return;
       if (adx > ady * 1.5) {
         g.mode = "swipe";
@@ -892,6 +929,14 @@
       var again = ul.querySelector('.drow[data-id="' + li.getAttribute("data-id") + '"] .hdl');
       if (again) again.focus();
     });
+    document.addEventListener("pointerdown", function (e) {
+      if (!armedId) return;
+      var row = e.target.closest && e.target.closest(".drow[data-id]");
+      if (row && row.getAttribute("data-id") === armedId) return;
+      clearArmed();
+    }, true);
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && armedId) clearArmed(); });
+    ul.addEventListener("contextmenu", function (e) { if (armedId || (g && g.hold)) e.preventDefault(); });
     document.addEventListener("click", function (e) {
       if (!swallow) return;
       swallow = false;

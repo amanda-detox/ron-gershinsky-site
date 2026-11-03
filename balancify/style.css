@@ -143,6 +143,9 @@ html[data-theme=light] .item .box.m-no,html[data-theme=light] .item .mkbox.m-no{
 .drow.mk-no .t,.drow.mk-no .d{opacity:.62}
 .face .item{flex:1;min-width:0;position:relative}
 .drow.flash .item{box-shadow:0 0 0 2px #e6c15a}
+.drow.armed .item{box-shadow:0 0 0 2px #e6c15a;border-radius:14px}
+.drow.armed .face{touch-action:none}
+html[data-theme=light] .drow.armed .item{box-shadow:0 0 0 2px #c4a046}
 .item .hit{display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer}
 .item > .tw{flex:1;min-width:0}
 .hdl{flex:none;display:grid;place-items:center;width:44px;min-height:44px;border-radius:12px;font-size:22px;font-weight:800;color:#e6c15a;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
