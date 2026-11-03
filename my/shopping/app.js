@@ -710,7 +710,7 @@
       onDrop: function (ids) { setOrder(ids); changed(); } });
   }
 
-  /* ---------- items: swipe right = selected / back to the list, swipe left = move (or delete) menu ---------- */
+  /* ---------- items: swipe right = delete, swipe left = move to another list ---------- */
   function bootItemDrag() {
     var main = document.querySelector("main"), SLOP = 10, SWIPE = 0.35;
     function reset() { if (idrag && idrag.li) { idrag.li.classList.remove("swiping", "sw-r", "sw-l", "sw-go"); idrag.li.style.removeProperty("--sx"); } idrag = null; if (needRender && !drag) { needRender = false; render(); } }
@@ -746,8 +746,8 @@
       reset();
       if (Math.abs(dx) >= w * SWIPE) {
         var x = items[id];
-        if (dx > 0 && x && !x.deleted) moveMenu(id); // right = move to another list or trash (2026-10-31)
-        else if (dx < 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // left = delete
+        if (dx > 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
+        else if (dx < 0 && x && !x.deleted) moveMenu(id); // left = move to another list
       }
     }
     main.addEventListener("pointerup", up);
