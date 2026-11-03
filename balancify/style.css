@@ -133,6 +133,16 @@ html[data-theme=light] .ichk input:checked + .box{color:#fff}
 .items .drow{display:block;position:relative}
 .slidebox{position:relative;overflow:hidden;border-radius:16px}
 .face{display:flex;align-items:stretch;gap:6px;position:relative;z-index:1;width:100%;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.drow.vswipe .face{touch-action:none}
+.drow.sw-u .item{box-shadow:inset 0 3px 0 #e6c15a}
+.drow.sw-d .item{box-shadow:inset 0 -3px 0 #8eaddb}
+.mk{flex:none;font-weight:900;font-size:18px;line-height:1}
+.mk.ok{color:#e6c15a}
+.mk.no{color:#9eb6dc}
+html[data-theme=light] .mk.ok{color:#8a6a10}
+html[data-theme=light] .mk.no{color:#5c6e90}
+.drow.mk-ok .item{background:color-mix(in srgb,#e6c15a 22%,var(--card2))}
+.drow.mk-no .t,.drow.mk-no .d{opacity:.62}
 .face .item{flex:1;min-width:0;position:relative}
 .drow.flash .item{box-shadow:0 0 0 2px #e6c15a}
 .item .hit{display:flex;align-items:center;gap:12px;flex:1;min-width:0;cursor:pointer}

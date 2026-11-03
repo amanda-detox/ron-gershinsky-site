@@ -127,7 +127,18 @@
   /* swipe: the row slides. Right reveals delete (🗑) on the left; left reveals the move icon on the right. */
   .list li { position: relative; overflow: hidden; touch-action: pan-y; }
   .list li > * { transition: transform .18s ease; }
-  .list li.swiping > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list li.swiping:not(.vswipe) > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list li.vswipe > * { transition: none; transform: translateY(var(--sy, 0)); }
+  .list li.vswipe { touch-action: none; }
+  .list li.vswipe.sw-u { box-shadow: inset 0 3px 0 #e6c15a; }
+  .list li.vswipe.sw-d { box-shadow: inset 0 -3px 0 #8eaddb; }
+  .list li .mk { flex: none; min-width: 1.15em; text-align: center; font-weight: 900; font-size: 18px; line-height: 1; }
+  .list li.mk-ok .mk { color: #e6c15a; }
+  .list li.mk-no .mk { color: #8eaddb; }
+  html[data-theme="light"] .list li.mk-ok .mk { color: #8a6a10; }
+  html[data-theme="light"] .list li.mk-no .mk { color: #5c6e90; }
+  .list li.mk-ok { background: color-mix(in srgb, #e6c15a 16%, transparent); }
+  .list li.mk-no .txt, .list li.mk-no .note { opacity: .62; }
   .list li::before, .list li::after { content: ""; position: absolute; top: 50%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .12s, transform .12s; transform: scale(.8); }
   .list li::before { content: "✓"; left: 10px; color: var(--accent); border: 2px solid var(--accent); font-weight: 900; font-size: 17px; }
   .list li.done::before { content: "↺"; }
@@ -235,7 +246,8 @@ window.RGMY_STRINGS = {
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
         confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
         pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optDelete: "אשפה", moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה",
-        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה.",
+        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה. למעלה: ✓ · למטה: ✕.",
+        markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
@@ -247,14 +259,15 @@ window.RGMY_STRINGS = {
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
         confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
         pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category", optMenu: "Options", optMove: "Reorder", optRename: "Rename", optDelete: "Delete", moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Move up", moveDown: "Move down",
-        catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move or trash.",
+        catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move or trash. Up: ✓ · down: ✕.",
+        markOk: "Marked ✓", markNo: "Marked ✕",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
         pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=42"></script>
+<script src="app.js?v=43"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
