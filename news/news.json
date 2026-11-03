@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T23:50:14+02:00",
+ "updated": "2026-11-04T00:31:03+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-stock-passes-tesla-valuation-ai-datacenters",
+   "topic": "spacex",
+   "date": "2026-11-03T22:22:37Z",
+   "url": "https://x.com/i/trending/2117742339468779786",
+   "source": "X",
+   "he": {
+    "title": "מניית SpaceX עוקפת את שווי טסלה בזכות בום מרכזי הנתונים ל-AI",
+    "summary": "מניית SpaceX עלתה ביותר מ-3% ל-141.71 דולר ביום שלישי, ושווי השוק שלה עבר את 1.9 טריליון דולר, לראשונה מעל טסלה. אנליסטים מצביעים על בנייה מהירה של מרכזי נתונים ל-AI ועל תחזיות הכנסות שהוכפלו."
+   },
+   "en": {
+    "title": "SpaceX stock surges past Tesla's valuation on the AI data center boom",
+    "summary": "SpaceX shares jumped over 3% to $141.71 on Tuesday, lifting its market cap above $1.9 trillion and ahead of Tesla for the first time. Analysts point to a fast AI data center buildout and doubled revenue forecasts."
+   },
+   "full_he": "מניית SpaceX זינקה ביותר מ-3% ל-141.71 דולר ביום שלישי, ושווי השוק שלה עלה מעל 1.9 טריליון דולר, לראשונה מעל טסלה.\n\n• אנליסטים ב-SemiAnalysis הצביעו על תמונות לוויין שמראות 3.6 ג'יגה-וואט של מרכזי נתונים ל-AI בבנייה, יותר מ-9 ג'יגה-וואט בסך הכול, ויעד חדש של 13 ג'יגה-וואט ל-2027, כמו כל מה שגוגל בנתה בהיסטוריה שלה, רק בתוך שנה וחצי.\n• מורגן סטנלי הכפילה את תחזיות ההכנסות ל-175 מיליארד דולר ב-2027 ול-289 מיליארד דולר ב-2028, והדגישה סינרגיות עם טסלה בסוללות ובחומרה.\n• הסינרגיות האלה תרמו לזינוק של 161% בהכנסות ל-14.6 מיליארד דולר ברבעון האחרון.\n• הספקולציות סביב מיזוג אפשרי בין SpaceX לטסלה מתגברות, והמשקיעים עוקבים אחרי הביצוע של הרחבת כוח המחשוב העצומה.\n\nזהו סיכום של פוסטים ב-X, והוא עשוי להשתנות עם הזמן.",
+   "full_en": "SpaceX shares jumped over 3 percent to $141.71 on Tuesday, lifting its market cap above $1.9 trillion and ahead of Tesla for the first time.\n\n• Analysts at SemiAnalysis pointed to satellite images revealing 3.6 gigawatts of AI data center capacity under construction, with over 9 gigawatts total and a new 2027 target of 13 gigawatts, matching Google's entire historical buildout in just 1.5 years.\n• Morgan Stanley doubled revenue forecasts to $175 billion for 2027 and $289 billion for 2028, highlighting synergies with Tesla on batteries and hardware.\n• Those synergies fueled a 161 percent revenue leap to $14.6 billion last quarter.\n• Speculation grows around a potential SpaceX-Tesla merger, while investors eye execution on the massive compute expansion.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
   {
    "id": "grokbot-musk-try-calls-sawyer-calling-feature",
    "topic": "grokbot",
