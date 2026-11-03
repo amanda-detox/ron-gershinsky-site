@@ -269,7 +269,7 @@
   // Cloud: every row of this user in ron/userdata (listed page by page; only rows whose id matches this user's own row id are kept),
   // plus a direct read of every known (app, key) the list didn't return. Device: this site's app keys in localStorage.
   // Never exported: the session (cookieFallback), the pending sign-in (rg-account-pending), the cached news feed (rg-news-cache).
-  var KNOWN_ROWS = [["prefs", "all"], ["news", "read"], ["news", "saved"], ["shopping", "items"], ["myideas", "items"], ["myclock", "alarms"], ["myrehab", "items"], ["mycalm", "items"]];
+  var KNOWN_ROWS = [["prefs", "all"], ["news", "read"], ["news", "saved"], ["shopping", "items"], ["myideas", "items"], ["myclock", "alarms"], ["myrehab", "items"], ["mycalm", "items"], ["sounds", "mixes"]];
   var APP_NAMES = { site: "Site settings", account: "Account", home: "Landing page", news: "Updatify", shopping: "Shopping list", myideas: "Checklist", myclock: "My alarm clock",
     myrehab: "Rehabify", mycalm: "Calmify", my: "My private apps", clockify: "Clockify", healify: "Healify", wealthify: "Wealthify", monthly: "Monthly", pumpify: "Pumpify",
     diagnosify: "Diagnosify", balancify: "Balancify", sounds: "Sounds", relax: "Relax", other: "Other" };
@@ -279,6 +279,7 @@
     if (k === "quietNightMode") return "relax";
     var m = /^rg-([a-z0-9]+)(?:-([a-z0-9]+))?/.exec(k); if (!m) return "other";
     var a = m[1], b = m[2];
+    if (a === "snd") return "sounds"; // rg-snd-mixes, rg-snd-note
     if (a === "my") return b === "shopping" ? "shopping" : "my";
     if (a === "clock") return "myclock";
     if (a === "alarm" || a === "alarms") return "clockify";
