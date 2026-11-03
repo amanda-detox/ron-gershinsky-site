@@ -399,7 +399,7 @@
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' + 
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
-      "</li>"; // move + delete live in the swipe-left menu (no row icons, so the text gets the room)
+      "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
   function panel(sec) {
     showP = hasPrices(sec); showC = isChk(sec);
@@ -756,7 +756,7 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
   }
 
-  /* ---------- items: swipe (on the row body) right = נבחר (and back), left = move/delete menu;
+  /* ---------- items: swipe (on the row body) right = delete, left = move to another list;
      the ☰ handle on an open item = drag it to any place in the list, right away (no long-press) ---------- */
   function bootItemDrag() {
     var main = document.querySelector("main"), SLOP = 10, SWIPE = 0.35;
@@ -814,8 +814,8 @@
         reset();
         if (Math.abs(dx) >= w * SWIPE) {
           var x = items[id];
-          if (dx > 0 && x && !x.deleted) moveMenu(id); // right = move to another list or trash (2026-10-31)
-          else if (dx < 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // left = delete
+          if (dx > 0 && x && !x.deleted) { delWithUndo(id); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
+          else if (dx < 0 && x && !x.deleted) moveMenu(id); // left = move to another list
         }
         return;
       }
