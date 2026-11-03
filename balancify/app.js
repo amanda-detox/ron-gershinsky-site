@@ -390,9 +390,14 @@
     li.setAttribute("data-id", it.id);
     var detail = it.detail ? '<span class="d">' + esc(nm(it.detail)) + "</span>" : "";
     var noteHtml = note ? '<span class="d note">' + esc(note) + "</span>" : "";
+    var glyph = mark === "no" ? "✕" : mark === "ok" ? "✓" : "";
+    var boxCls = "box" + (mark ? " m-" + mark : "");
+    var square = list.style === "power"
+      ? '<button type="button" class="' + boxCls + ' mkbox" data-mark="1" aria-label="' + esc(title) + '">' + glyph + "</button>"
+      : "";
     var body = list.style === "power"
-      ? '<div class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</div>"
-      : '<label class="hit"><input type="checkbox"' + (on ? " checked" : "") + ' aria-label="' + esc(title) + '"><span class="box">' + CHECK + '</span><span class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</span></label>";
+      ? square + '<div class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</div>"
+      : '<label class="hit"><input type="checkbox"' + (on ? " checked" : "") + ' aria-label="' + esc(title) + '"><span class="' + boxCls + '">' + (glyph ? '<b class="mg">' + glyph + "</b>" : CHECK) + '</span><span class="tw"><span class="t">' + esc(title) + "</span>" + detail + noteHtml + "</span></label>";
     var infoBtn = it.info ? '<button type="button" class="ibtn" aria-expanded="' + (open ? "true" : "false") + '" aria-controls="' + pid + '">' + (open ? "✕" : "i") + "</button>" : "";
     var links = "";
     if (it.info && open) {
@@ -403,20 +408,31 @@
       }).join("");
     }
     var panel = it.info ? '<div class="ipanel" id="' + pid + '"' + (open ? "" : " hidden") + "><p>" + esc(nm(it.info) || t().noInfo) + "</p>" + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "";
-    var badgeLab = mark === "ok" ? (lang === "en" ? "Marked done" : "סומן ✓") : (lang === "en" ? "Marked off" : "סומן ✕");
-    var badge = mark ? '<span class="mk ' + mark + '" role="img" aria-label="' + esc(badgeLab) + '">' + (mark === "ok" ? "✓" : "✕") + "</span>" : "";
     li.innerHTML = '<div class="slidebox"><span class="sw sw-del" aria-hidden="true">' + TRASH + '</span><span class="sw sw-mv" aria-hidden="true">' + MOVE + '</span>' +
-      '<div class="face"><div class="item' + (on ? " on" : "") + '">' + badge + body +
+      '<div class="face"><div class="item' + (on ? " on" : "") + '">' + body +
       '<button type="button" class="nbtn' + (note ? " has" : "") + '" aria-label="' + esc((note ? p().noteEdit : p().noteAdd) + ": " + title) + '">' + PEN + "</button>" +
       infoBtn + '</div><span class="hdl" role="button" tabindex="0" aria-label="' + esc(p().drag + ": " + title) + '">☰</span></div></div>' + panel;
     var input = li.querySelector("input");
-    if (input) input.onchange = function () {
-      var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
-      if (input.checked) c.push(it.he);
-      setChecked(list.id, c);
-      li.querySelector(".item").classList.toggle("on", input.checked);
-      renderCount(findList(list.id));
-    };
+    if (input) {
+      input.addEventListener("click", function (e) {
+        if (!mark) return;
+        e.preventDefault();
+        var u = getUser();
+        if (u.marks) delete u.marks[it.id];
+        saveUser(u);
+        refresh();
+      });
+      input.onchange = function () {
+        if (mark) return;
+        var c = getChecked(list.id).filter(function (x) { return x !== it.he; });
+        if (input.checked) c.push(it.he);
+        setChecked(list.id, c);
+        li.querySelector(".item").classList.toggle("on", input.checked);
+        renderCount(findList(list.id));
+      };
+    }
+    var mb = li.querySelector("[data-mark]");
+    if (mb) mb.onclick = function (e) { e.preventDefault(); e.stopPropagation(); toggleMark(it.id, "ok"); };
     var nb = li.querySelector(".nbtn");
     nb.onclick = function (e) { e.preventDefault(); e.stopPropagation(); openNote(it); };
     var ib = li.querySelector(".ibtn");
@@ -724,7 +740,6 @@
         else g.timer = setTimeout(lift, 180);
         return;
       }
-      holdN++;
       var sc = scrollOf(li);
       g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
     });
@@ -737,28 +752,17 @@
       }
       return document.scrollingElement || document.documentElement;
     }
-    var holdN = 0;
-    function holdScroll(d) {
-      if (!d || d.type === "mouse") return;
-      var n = ++holdN, sc = d.scroller, top = d.scrollTop || 0, y = d.winY || 0, until = Date.now() + 700;
-      (function tick() {
-        if (n !== holdN) return;
-        if (sc && sc.scrollTop !== top) sc.scrollTop = top;
-        if (window.scrollY !== y) window.scrollTo(0, y);
-        if (Date.now() < until) requestAnimationFrame(tick);
-      })();
-    }
     function finishFlick(cur) {
       if (!cur || cur.handled || cur.mode === "swipe" || cur.mode === "drag" || cur.mode === "scroll") return false;
+      var vdx = cur.dx || 0, vdy = cur.dy || 0, adx = Math.abs(vdx), ady = Math.abs(vdy);
       var quick = cur.type === "mouse" || (Date.now() - cur.t < 350);
-      var vdx = cur.dx || 0, vdy = cur.dy || 0;
+      var short = cur.type === "mouse" || ady <= 120;
       cur.li.classList.remove("sw-u", "sw-d", "sgo", "swiping", "vswipe");
       if (cur.face) cur.face.style.transform = "";
-      if (!(quick && Math.abs(vdy) >= 40 && Math.abs(vdy) > Math.abs(vdx) * 1.5)) return false;
+      if (!(quick && short && ady >= 40 && ady > adx * 1.5)) return false;
       cur.handled = true;
       swallow = true;
       setTimeout(function () { swallow = false; }, 450);
-      holdScroll(cur);
       toggleMark(cur.li.getAttribute("data-id"), vdy < 0 ? "ok" : "no");
       return true;
     }
@@ -787,15 +791,10 @@
           else { g = null; return; }
         }
         if (g && g.mode === "vert") {
-          var quick = g.type === "mouse" || (Date.now() - g.t < 350);
-          if (!quick) { g = null; return; }
           if (adx > ady * 1.5 && adx >= 12) {
             g.mode = "swipe";
             g.li.classList.add("swiping");
             try { g.face.setPointerCapture(e.pointerId); } catch (err2) {}
-          } else if (ady >= 40 && ady > adx * 1.5) {
-            g.mode = "vswipe";
-            g.li.classList.add("swiping", "vswipe");
           } else return;
         }
       }
@@ -806,18 +805,6 @@
         g.li.classList.toggle("sdel", dx > 12);
         g.li.classList.toggle("smv", dx < -12);
         g.li.classList.toggle("sgo", go);
-      }
-      if (g && g.mode === "vswipe") {
-        if (g.type !== "mouse" && Date.now() - g.t >= 350) {
-          g.li.classList.remove("sw-u", "sw-d", "sgo", "swiping", "vswipe");
-          g.face.style.transform = "";
-          g.mode = "scroll";
-          return;
-        }
-        g.face.style.transform = "translateY(" + Math.max(-28, Math.min(28, dy * 0.45)) + "px)";
-        g.li.classList.toggle("sw-u", dy < 0);
-        g.li.classList.toggle("sw-d", dy > 0);
-        g.li.classList.toggle("sgo", ady >= 40);
       }
     });
     function end(e) {
@@ -870,16 +857,21 @@
       finishFlick(cur);
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
-      if (!g) return;
-      if (g.mode === "drag") { if (g.lifted) e.preventDefault(); return; }
+      if (!g || g.mode === "drag") return;
       var tch = e.touches && e.touches[0]; if (!tch) return;
       g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
       var adx = Math.abs(g.dx), ady = Math.abs(g.dy);
-      var quick = g.type === "mouse" || (Date.now() - g.t < 350);
-      if (g.mode === "swipe") { e.preventDefault(); return; }
-      if (!quick && ady >= 12) { g.mode = "scroll"; return; }
-      if (ady >= 40 && ady > adx * 1.5) g.mode = "vswipe";
-    }, { passive: false });
+      if (g.mode === "swipe" && g.face) {
+        g.face.style.transform = "translateX(" + g.dx + "px)";
+        return;
+      }
+      if (g.mode !== "maybe" && g.mode !== "vert") return;
+      if (adx < 12 && ady < 12) return;
+      if (adx > ady * 1.5) {
+        g.mode = "swipe";
+        g.li.classList.add("swiping");
+      } else g.mode = "vert";
+    }, { passive: true });
     ul.addEventListener("keydown", function (e) {
       var handle = e.target.closest && e.target.closest(".hdl");
       if (!handle) return;

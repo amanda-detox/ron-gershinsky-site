@@ -362,13 +362,19 @@
   /* checklist mode (Ron 1.11, same as Listify): per list, category record field check: 1 (synced). No field = regular list.
      In a checklist each item has its own "ck" (true = checked): ✓, moves to the bottom, no strikethrough, no fading. */
   function isChk(cid) { var c = catOf(cid); return !!(c && c.check); }
-  function toggleCk(id) { var x = items[id]; if (x && !x.deleted) upd(id, { ck: x.ck ? null : true }); }
-  /* vertical flick: "ok" = ✓, "no" = ✕. The same direction again clears it; the other direction replaces it. */
+  /* Checkbox square: ✓ is mark "ok" (and ck in a checklist). ✕ is mark "no". Tap and swipe up toggle ✓. */
+  function showingOk(x) { return !!(x && (x.mark === "ok" || (x.mark !== "no" && isChk(listOf(x)) && x.ck))); }
   function toggleMark(id, dir) {
     var x = items[id]; if (!x || x.deleted || (dir !== "ok" && dir !== "no")) return false;
-    upd(id, { mark: x.mark === dir ? null : dir });
+    var chk = isChk(listOf(x));
+    if (dir === "ok") {
+      if (showingOk(x)) upd(id, { mark: null, ck: null });
+      else upd(id, { mark: "ok", ck: chk ? true : null });
+    } else if (x.mark === "no") upd(id, { mark: null });
+    else upd(id, { mark: "no", ck: null });
     return true;
   }
+  function toggleCk(id) { return toggleMark(id, "ok"); }
   function priceOf(x) { return typeof x.price === "number" && isFinite(x.price) ? x.price : 0; }
   function add(text, cid, price, note) {
     text = clean(text, 200); if (!text) return;
@@ -391,7 +397,7 @@
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function row(x) {
-    var showC = isChk(curTab()), ck = showC && !!x.ck, mk = x.mark === "ok" || x.mark === "no" ? x.mark : "";
+    var showC = isChk(curTab()), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
     var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
       ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
@@ -400,11 +406,10 @@
         (x.note ? '<span class="note">' + esc(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
-    var cls = (x.done ? "done" : ck ? "ckd" : ""); if (mk) cls = (cls ? cls + " " : "") + "mk-" + mk;
-    var badge = mk && editing !== x.id ? '<span class="mk" role="img" aria-label="' + esc(t(mk === "ok" ? "markOk" : "markNo")) + '">' + (mk === "ok" ? "✓" : "✕") + "</span>" : "";
+    var cls = (x.done ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g;
+    var box = editing === x.id ? "" : '<button type="button" class="ckbox' + (g ? " on-" + g : "") + '" data-a="ck" role="checkbox" aria-checked="' + (g === "ok" ? "true" : "false") + '" aria-label="' + esc((g === "no" ? t("markNo") : g === "ok" ? t("markOk") : t("check")) + ": " + x.text) + '">' + (g === "ok" ? "✓" : g === "no" ? "✕" : "") + "</button>";
     return '<li data-id="' + id + '"' + (cls ? ' class="' + cls + '"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
-      (showC && editing !== x.id ? '<button type="button" class="ckbox" data-a="ck" role="checkbox" aria-checked="' + ck + '" aria-label="' + esc(x.text) + '">' + (ck ? "✓" : "") + "</button>" : "") +
-      badge + txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
+      box + txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
   function sumNow() { // the total line; a price being typed counts live, before it is saved
     var cur = curTab(), chk = isChk(cur), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
@@ -640,7 +645,6 @@
     list.addEventListener("pointerup", function (e) { if (drag && drag.list === list && e.pointerId === drag.pid) finish(true); });
     list.addEventListener("pointercancel", function (e) { if (drag && drag.list === list && e.pointerId === drag.pid) finish(!!drag.lifted); });
     list.addEventListener("lostpointercapture", function (e) { if (drag && drag.list === list && drag.lifted && e.pointerId === drag.pid) finish(true); });
-    list.addEventListener("touchmove", function (e) { if (drag && drag.list === list && drag.lifted) e.preventDefault(); }, { passive: false });
     window.addEventListener("blur", function () { if (drag && drag.list === list) finish(false); });
   }
 
@@ -722,7 +726,7 @@
   /* ---------- items: swipe right = delete, swipe left = move to another list;
      swipe up toggles ✓, swipe down toggles ✕ (a quick flick only, so a slow drag still scrolls) ---------- */
   function bootItemDrag() {
-    var main = document.querySelector("main"), AXIS = 12, VGO = 40, FLICK = 350, SWIPE = 0.35;
+    var main = document.querySelector("main"), AXIS = 12, VGO = 40, VMAX = 120, FLICK = 350, SWIPE = 0.35;
     function reset() {
       if (idrag && idrag.li) {
         idrag.li.classList.remove("swiping", "vswipe", "sw-r", "sw-l", "sw-go", "sw-u", "sw-d", "sw-vgo");
@@ -739,24 +743,15 @@
       }
       return document.scrollingElement || document.documentElement;
     }
-    var holdN = 0;
-    function holdScroll(d) {
-      if (!d || d.type === "mouse") return;
-      var n = ++holdN, sc = d.scroller, top = d.scrollTop || 0, y = d.winY || 0, until = Date.now() + 700;
-      (function tick() {
-        if (n !== holdN) return;
-        if (sc && sc.scrollTop !== top) sc.scrollTop = top;
-        if (window.scrollY !== y) window.scrollTo(0, y);
-        if (Date.now() < until) requestAnimationFrame(tick);
-      })();
-    }
     function commitFlick(d, dx, dy) {
       if (!d || d.handled || d.swipe) return false;
+      var adx = Math.abs(dx), ady = Math.abs(dy);
       var quick = d.type === "mouse" || (Date.now() - d.t < FLICK);
-      if (!(quick && Math.abs(dy) >= VGO && Math.abs(dy) > Math.abs(dx) * 1.5)) return false;
+      var short = d.type === "mouse" || ady <= VMAX;
+      if (!(quick && short && ady >= VGO && ady > adx * 1.5)) return false;
       d.handled = true;
       noClick = true; setTimeout(function () { noClick = false; }, 400);
-      var id = d.id; holdScroll(d); reset();
+      var id = d.id; reset();
       if (toggleMark(id, dy < 0 ? "ok" : "no")) { changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
       return true;
     }
@@ -768,50 +763,28 @@
       idrag.li.classList.add("swiping");
       try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
     }
-    function armV() {
-      if (idrag.vswipe) return;
-      if (idrag.fromText) clearSel();
-      idrag.vswipe = true; idrag.axis = "v";
-      idrag.li.classList.add("swiping", "vswipe");
-      try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
-    }
     function paintH(dx) {
       var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
       idrag.li.style.setProperty("--sx", dx + "px");
       idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
     }
-    function paintV(dy) {
-      idrag.li.style.setProperty("--sy", Math.max(-28, Math.min(28, dy * 0.45)) + "px");
-      idrag.li.classList.toggle("sw-u", dy < 0); idrag.li.classList.toggle("sw-d", dy > 0); idrag.li.classList.toggle("sw-vgo", Math.abs(dy) >= VGO);
-    }
-    /* A mouse drag that starts on the title stays a text selection until it is clearly a swipe. */
+    /* Vertical is never captured. A short fast flick is read when the finger lifts. */
     function follow(dx, dy) {
       idrag._dx = dx; idrag._dy = dy;
       if (idrag.swipe) { paintH(dx); return "h"; }
-      if (idrag.vswipe) {
-        if (idrag.type !== "mouse" && Date.now() - idrag.t >= FLICK) return "drop";
-        paintV(dy); return "v";
-      }
       var adx = Math.abs(dx), ady = Math.abs(dy), text = idrag.fromText;
       if (!idrag.axis) {
         if (adx < AXIS && ady < AXIS) return "";
-        if (adx > ady * 1.5) {
-          idrag.axis = "h";
-          if (!text) { armH(); paintH(dx); return "h"; }
-        } else if (ady > adx * 1.5) idrag.axis = "v";
-        else return text ? "" : "drop";
+        if (adx > ady * 1.5) idrag.axis = "h";
+        else { idrag.axis = "v"; return ""; }
       }
       if (idrag.axis === "v") {
-        var quick = idrag.type === "mouse" || (Date.now() - idrag.t < FLICK);
-        if (!quick) return text ? "" : "drop";
-        if (adx > ady * 1.5 && adx >= AXIS) {
-          idrag.axis = "h";
-          if (!text) { armH(); paintH(dx); return "h"; }
-        } else if (ady >= VGO && ady > adx * 1.5) { armV(); paintV(dy); return "v"; }
+        if (adx > ady * 1.5 && adx >= AXIS) idrag.axis = "h";
+        else return "";
       }
-      if (idrag.axis === "h" && text) {
+      if (idrag.axis === "h") {
         var w = idrag.li.offsetWidth || 1;
-        if (adx >= w * SWIPE && adx > ady * 1.5) { armH(); paintH(dx); return "h"; }
+        if ((!text || adx >= w * SWIPE) && adx > ady * 1.5) { armH(); paintH(dx); return "h"; }
       }
       return "";
     }
@@ -820,14 +793,13 @@
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var sel0 = window.getSelection && window.getSelection();
       if (e.pointerType === "mouse" && e.target.closest(".txt,.note") && sel0 && !sel0.isCollapsed && String(sel0).trim()) return;
-      reset(); holdN++;
+      reset();
       var sc = scrollOf(li);
       idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY };
     });
     document.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       var act = follow(e.clientX - idrag.x, e.clientY - idrag.y);
-      if (act === "drop") { reset(); return; }
       if (act === "h") e.preventDefault();
     });
     function up(e) {
@@ -872,10 +844,8 @@
     document.addEventListener("touchmove", function (e) {
       if (!idrag) return;
       var tch = e.touches && e.touches[0]; if (!tch) return;
-      var act = follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
-      if (act === "drop") { reset(); return; }
-      if (act === "h") e.preventDefault();
-    }, { passive: false });
+      follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
+    }, { passive: true });
     main.addEventListener("contextmenu", function (e) { if (e.target.closest(".list li") && !e.target.closest(".txt,.note,input,textarea")) e.preventDefault(); });
   }
 
