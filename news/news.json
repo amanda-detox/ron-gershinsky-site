@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T21:24:00+02:00",
+ "updated": "2026-11-03T22:14:21+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,108 @@
   }
  ],
  "items": [
+  {
+   "id": "kraken-coming-soon-equity-perps-cftc",
+   "topic": "kraken",
+   "date": "2026-11-03T20:11:08Z",
+   "url": "https://x.com/krakenfx/status/2117711194769289584",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן על מניות פרפטואליות בארה\"ב: \"בקרוב 👀\"",
+    "summary": "קראקן ציטטה את הודעת יו\"ר ה־CFTC מייקל סליג, שלפיה חוזים עתידיים פרפטואליים על מניות בודדות יכולים להתחיל להיסחר לראשונה בבורסות מוסדרות בארה\"ב, והוסיפה רק \"בקרוב 👀\". הבורסה לא פירטה מה בדיוק היא מתכננת."
+   },
+   "en": {
+    "title": "Kraken on US equity perps: \"coming soon 👀\"",
+    "summary": "Kraken quoted CFTC Chairman Michael Selig's statement that perpetual futures on individual stocks can now trade on US-regulated exchanges for the first time, adding only \"coming soon 👀\". The exchange didn't say exactly what it plans to launch."
+   },
+   "full_he": "קראקן כתבה: \"בקרוב 👀\"\n\nהפוסט שהיא ציטטה (@CFTC): \"יו\"ר ה־CFTC סליג מפרסם הצהרה על חוזים עתידיים פרפטואליים על מניות\".\n\nמה נאמר בהצהרה של יו\"ר ה־CFTC מייקל סליג (3 בנובמבר 2026):\n• חוזים עתידיים פרפטואליים (ללא תאריך פקיעה) על מניות בודדות יכולים להתחיל להיסחר לראשונה בבורסות שרשומות ב־CFTC וגם רשומות בהודעה ב־SEC למסחר בחוזים עתידיים על ניירות ערך.\n• החוזים נחשבים מאושרים לפי תקנה 40.3, כמוצרי חוזים עתידיים על ניירות ערך לפי חוק CFMA משנת 2000, ולכן הם כפופים לפיקוח משותף של ה־CFTC וה־SEC.\n• זה ממשיך את אישור חוזה הביטקוין הפרפטואלי הראשון בבורסה מוסדרת מוקדם יותר השנה, ומרחיב את הכלי מעבר לנכסים דיגיטליים אל ניירות ערך מסורתיים.\n• לדברי סליג, המטרה היא שמשקיעים אמריקאים יוכלו להשתמש במוצרים האלה תחת ההגנות של הפיקוח האמריקאי, במקום לפנות לזירות זרות ולעתים לא מפוקחות. הוא הזכיר גם את מזכר ההבנות בין ה־CFTC ל־SEC וכתב שהסוכנויות \"פתחו דף חדש\" אחרי שנים של אי־ודאות רגולטורית.\n• ההצהרה לא ציינה איזו בורסה, אילו מניות או מתי המסחר יתחיל (לפי Unchained). לפי Bloomberg Law, תוך שעות הגישה קבוצה מהתעשייה תביעה נגד ההחלטה.\n\nקראקן עצמה לא פירטה מה היא מתכננת להשיק, מעבר ל\"בקרוב\".",
+   "full_en": "Kraken wrote: \"coming soon 👀\"\n\nThe quoted post (@CFTC): \"Chairman Selig Releases Statement on Equity Perpetual Futures\".\n\nWhat CFTC Chairman Michael Selig's statement (Nov 3, 2026) says:\n• Perpetual futures (no expiry date) on individual equity securities can begin trading for the first time on CFTC-registered exchanges that are also notice-registered with the SEC to trade security futures.\n• The contracts were deemed approved under Regulation 40.3 as security futures products under the Commodity Futures Modernization Act of 2000, so they fall under joint CFTC and SEC oversight.\n• It builds on the first true bitcoin perpetual futures contract approved on a CFTC-regulated exchange earlier this year, extending the instrument beyond digital commodities into traditional securities.\n• Selig says the goal is to let American traders use these products within the CFTC's regulatory protections rather than turning to offshore, often unregulated venues. He cited the CFTC–SEC memorandum of understanding and said the agencies have \"turned the page\" on years of regulatory uncertainty.\n• The statement didn't name an exchange, the stocks covered or a start date (per Unchained). Bloomberg Law reports that within hours an industry group sued to challenge the decision.\n\nKraken itself didn't say what it plans to launch beyond \"coming soon\"."
+  },
+  {
+   "id": "tesla-roadster-pov-midair-flip-video",
+   "topic": "tesla",
+   "date": "2026-11-03T20:10:24Z",
+   "url": "https://x.com/i/trending/2117668001944424731",
+   "source": "X",
+   "he": {
+    "title": "טסלה מפרסמת סרטון POV: אב־טיפוס הרודסטר מתהפך באוויר",
+    "summary": "טסלה פרסמה קליפ של 34 שניות מנקודת מבט הנהג, מאירוע החשיפה של הרודסטר באוקטובר, עם מדחפי גז קר של ספייסאקס ונהיגה הפוכה. הייצור, כולל גרסת 'Rocket' עם מדחפים מלאים, מתוכנן ל־2028 בג'יגה טקסס."
+   },
+   "en": {
+    "title": "Tesla posts a POV video of the Roadster prototype flipping mid-air",
+    "summary": "Tesla shared a 34-second driver's-seat clip from the Roadster's October unveiling, showing SpaceX cold-gas thrusters and upside-down driving. Production, including a top 'Rocket' trim with full thrusters, is set for 2028 at Giga Texas."
+   },
+   "full_he": "תדמיין שאתה מאיץ מ־0 ל־60 מייל לשעה בפחות משנייה, ואז עושה קיקפליפ באוויר מעל שורה של טסלות. הקליפ החדש של טסלה, באורך 34 שניות, שם אותך במושב הנהג של אב־הטיפוס המעופף של הרודסטר.\n\n• הסרטון צולם באירוע החשיפה של הרודסטר באוקטובר 2026, באתר ניסויים של ספייסאקס בטקסס, ומציג חומרה אמיתית: מדחפי גז קר של ספייסאקס ומערכת מאווררי יניקה מתחת לרכב שיוצרת כוח הצמדה של 2G, ומאפשרת נהיגה הפוכה, זינוקים באוויר וגלגולים מבוקרים.\n• המעריצים התלהבו מהמדחפים הזוהרים ומהפעלולים, ואחד מהם כתב שהקטע בהילוך איטי של המדחף האחורי הוא הצילום המרשים ביותר עד כה.\n• ייצור הרודסטר מהדור הבא, כולל גרסת העל 'Rocket' עם מדחפים מלאים, מתוכנן ל־2028 בג'יגה טקסס, עם מסלול ייעודי שבו הבעלים יוכלו לנסות את התמרונים.\n\nזה סיכום של סיפור מגמה ב־X שמבוסס על פוסטים, והוא עשוי להשתנות.",
+   "full_en": "Imagine flooring it from 0 to 60 mph in under a second, then pulling a kickflip over a row of Teslas mid-air. Tesla's new 34-second clip puts you right in the driver's seat of its flying Roadster prototype.\n\n• The video, from the Roadster's October 2026 unveiling at a SpaceX test site in Texas, shows real hardware: SpaceX cold-gas thrusters and an underbody suction-fan system enabling 2G of downforce for upside-down driving, aerial launches and controlled rolls.\n• Fans raved about the glowing thrusters and stunts, with one calling the rear-thruster slow-motion the most incredible footage yet.\n• Production of the next-gen Roadster, including a top 'Rocket' trim with full thrusters, is set for 2028 at Giga Texas, with a dedicated track for owners to test the maneuvers.\n\nThis is a summary of a trending X story based on posts, and it may evolve."
+  },
+  {
+   "id": "mercola-fluoxetine-tads-reanalysis",
+   "topic": "mercola",
+   "date": "2026-11-03T20:00:35Z",
+   "url": "https://articles.mercola.com/sites/articles/archive/2026/11/03/fluoxetine-tads-study-reanalysis.aspx",
+   "source": "X · @mercola",
+   "he": {
+    "title": "מרקולה: ניתוח מחדש של מחקר TADS על פרוזק בבני נוער חושף פערי דיווח",
+    "summary": "מרקולה מציג ניתוח מחדש של מחקר TADS משנת 2004, שלפיו פלואוקסטין לבדו לא עלה על פלצבו במדד הדיכאון הראשי ונמצאו 11 אירועים הקשורים לאובדנות שלא דווחו. לדבריו, היתרונות לא עקביים והנזקים הוצגו בחסר; ההנחיות המקובלות עדיין רואות בפלואוקסטין טיפול מאושר לדיכאון בבני נוער, עם אזהרה על סיכון לאובדנות."
+   },
+   "en": {
+    "title": "Mercola: reanalysis of the TADS Prozac-in-teens trial finds reporting flaws",
+    "summary": "Mercola covers a reanalysis of the 2004 TADS trial finding fluoxetine alone didn't beat placebo on the main depression scale and 11 unreported suicide-related events. He says the benefits were inconsistent and harms underreported; mainstream guidelines still treat fluoxetine as an approved option for teen depression, with a suicidality warning."
+   },
+   "full_he": "ד\"ר מרקולה כתב ב־X: \"גלו מה מצא ניתוח מחדש של מחקר נוגדי דיכאון משפיע על השיטות והתוצאות שלו\", עם קישור למאמר שלו. זה סיכום מלא של המאמר, כפי שמרקולה מציג אותו:\n\nעיקרי הדברים:\n• ניתוח מחדש של מחקר TADS (משנת 2004, 439 בני נוער בגילי 12–17 עם דיכאון מג'ורי, בארבע קבוצות: פלואוקסטין, טיפול CBT, שילוב של שניהם, ופלצבו) אישר שפלואוקסטין לבדו לא עלה על פלצבו במדד הדיכאון הראשי (CDRS-R) אחרי 12 שבועות, אבל כן הניב יותר מגיבים לטיפול (64% לעומת 39% במדד CGI-I).\n• החוקרים, שעבדו לפי מודל RIAT על הנתונים הגולמיים, מצאו 11 אירועים נוספים הקשורים לאובדנות שלא דווחו, ותיעדו 10 ניסיונות התאבדות (תשעה מהם אצל בני נוער שקיבלו פלואוקסטין) לעומת שבעה בדיווח המקורי. לא היו התאבדויות.\n• 22 מתוך 32 האירועים החמורים התרחשו אצל מי שקיבל פלואוקסטין, ו־66% מ־369 תופעות הלוואי.\n• לדבריהם, הדיווח החסר והסלקטיבי גרם לפלואוקסטין להיראות בטוח יותר, והיתרון שלו היה תלוי במדד: הוא עלה על פלצבו רק בשניים מ־11 מדדים משניים, ששניהם דורגו על ידי קלינאים שלא היו סמויים. גם השילוב עם CBT לא היה סמוי, ולכן ייתכן שהציפיות השפיעו על התוצאות.\n• הם תיקנו גם להשוואות מרובות; אחרי התיקון פלואוקסטין עדיין לא עלה על פלצבו במדד הראשי.\n• מסקנת החוקרים: היתרונות הלא עקביים \"לא עולים על הנזקים\", ויש לנהוג בזהירות רבה יותר במתן התרופה לבני נוער, ותוצאות של מחקרי נוגדי דיכאון \"לא יכולות להתקבל כפשוטן\".\n\nסקירה נוספת (BMJ Open, 2019):\n• מתוך 48 מאמרים על TADS, רק שמונה כללו נתונים על תופעות לוואי. תופעות מוכרות של SSRI, כמו שינויי משקל ותיאבון ובעיות מיניות, לא הוזכרו, ונדודי שינה נעלמו מהדיווח אחרי 12 השבועות הראשונים.\n• תשעה מקרים של התנהגות אובדנית נספרו בקבוצת הפלצבו, למרות שהנערים כבר קיבלו אז פלואוקסטין.\n• סף הדיווח כלל רק אירועים שפגעו משמעותית בתפקוד או דרשו טיפול, כך שתופעות קלות יותר לא נרשמו, ורוב הפרסומים התמקדו רק ב־12 השבועות הראשונים מתוך 36.\n\nמה מרקולה ממליץ (לדבריו, לצד ליווי של איש מקצוע בבריאות הנפש):\n1. לשפר את בריאות המעיים: מזון פרוביוטי ביתי, ולהימנע ממזון אולטרה־מעובד עשיר בחומצה לינולאית (לדבריו 2–5 גרם ביום).\n2. פעילות גופנית קבועה, כמו הליכה של כשעה ביום, ושינה טובה.\n3. שיטות לא תרופתיות: ייעוץ, טיפול שיחתי, CBT ו־EFT.\n4. רמות תקינות של ויטמין D מחשיפה לשמש, בהדרגה, ולדבריו גם C15:0 ממוצרי חלב מלאים.\n5. שיחה פתוחה ולא שיפוטית עם בני נוער.\n6. אפשרויות נוספות שהוא מזכיר: GABA (לדבריו הראיות מוגבלות) ומתילן בלו (רק בהתאם לרופא, ולעולם לא יחד עם נוגדי דיכאון שפועלים על סרוטונין).\n\nהוא מדגיש שמי שרוצה להפסיק נוגד דיכאון צריך לעשות זאת בהדרגה ובשיתוף הרופא, ומפנה במצוקה לקווי חירום (בארה\"ב 988).\n\nהערה: אלה טענות של מרקולה והמחקרים שהוא מצטט. ההנחיות המקובלות עדיין רואות בפלואוקסטין טיפול מאושר לדיכאון בבני נוער, עם אזהרה רשמית על סיכון מוגבר למחשבות אובדניות.",
+   "full_en": "Dr. Mercola posted on X: \"Discover what a reanalysis of an influential antidepressant study found about its methods and results\", linking his article. This is a full summary of the article as Mercola presents it:\n\nKey points:\n• A reanalysis of the TADS trial (2004; 439 adolescents aged 12–17 with major depression, in four groups: fluoxetine, CBT, both combined, and placebo) confirmed that fluoxetine alone didn't outperform placebo on the main depression scale (CDRS-R) after 12 weeks, though it did produce more treatment responders (64% vs 39% on the CGI-I).\n• Working from the raw data under the RIAT model, the researchers found 11 suicide-related adverse events that hadn't been reported, and documented 10 suicide attempts (nine in teens on fluoxetine) versus seven in the original report. There were no completed suicides.\n• 22 of the 32 serious adverse events occurred in participants on fluoxetine, as did 66% of the 369 adverse events.\n• They say incomplete and selective reporting made fluoxetine look safer, and its advantage depended on the measure: it beat placebo on only two of 11 secondary measures, both rated by unblinded clinicians. The CBT arms weren't blinded either, so expectancy may have influenced results.\n• After correcting for multiple comparisons, fluoxetine alone still didn't beat placebo on the main scale.\n• The researchers concluded its \"inconsistent benefits do not outweigh the harms\", that it warrants more caution in adolescents, and that antidepressant trial results \"cannot be taken at face value\".\n\nA separate review (BMJ Open, 2019):\n• Of 48 TADS papers, only eight gave any adverse-effect data. Known SSRI effects like weight and appetite changes and sexual problems were never mentioned, and insomnia dropped out of reports after the first 12 weeks.\n• Nine cases of suicidal behavior were counted in the placebo group even though those teens were already taking fluoxetine.\n• The reporting threshold only counted events that significantly interfered with functioning or needed treatment, so milder effects went unrecorded, and most papers covered only the first 12 of 36 weeks.\n\nWhat Mercola suggests (in his words, alongside care from a mental health professional):\n1. Improve gut health: homemade probiotic foods, and avoid ultraprocessed foods high in linoleic acid (he says 2–5 g a day).\n2. Regular exercise, such as walking about an hour a day, and good sleep.\n3. Non-drug approaches: counseling, talk therapy, CBT and EFT.\n4. Healthy vitamin D levels from gradual sun exposure, and, he says, C15:0 from full-fat dairy.\n5. Open, non-judgmental conversations with young people.\n6. Other options he mentions: GABA (he notes the evidence is limited) and methylene blue (only as prescribed, and never with serotonergic antidepressants).\n\nHe stresses that anyone wanting to stop an antidepressant should taper gradually with their doctor, and points people in crisis to hotlines (988 in the US).\n\nNote: these are claims by Mercola and the studies he cites. Mainstream guidelines still treat fluoxetine as an approved option for adolescent depression, with an official warning about increased risk of suicidal thoughts."
+  },
+  {
+   "id": "brecka-regentra-senior-living-partnership",
+   "topic": "brecka",
+   "date": "2026-11-03T20:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2117708393163137114",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: The Ultimate Human בשיתוף פעולה עם Regentra לדיור מוגן",
+    "summary": "בראקה מודיע ש־The Ultimate Human מביאה גישה חדשה לדיור לגיל השלישי בשותפות עם Regentra: תזונה, קשר חברתי, טיפול באור אדום, גראונדינג וטכנולוגיות בריאות נוספות. לדבריו, אריכות ימים היא לא רק לחיות יותר, אלא לשפר את איכות השנים."
+   },
+   "en": {
+    "title": "Gary Brecka: The Ultimate Human partners with Regentra on senior living",
+    "summary": "Brecka says The Ultimate Human is bringing a new approach to senior living through a partnership with Regentra: nutrition, social connection, red light therapy, grounding and other wellness tech. Longevity, he says, is about improving the quality of the years, not just living longer."
+   },
+   "full_he": "גארי בראקה כתב:\n\n\"הזדקנות לא צריכה לבוא על חשבון הבריאות או איכות החיים.\n\nThe Ultimate Human מביאה גישה חדשה לדיור לגיל השלישי, דרך השותפות שלה עם Regentra.\n\nמתזונה וקשר חברתי ועד טיפול באור אדום, גראונדינג וטכנולוגיות בריאות נוספות, המטרה היא ליצור סביבות שתומכות טוב יותר בהזדקנות בריאה. כי אריכות ימים היא לא רק לחיות יותר זמן. היא לשפר את איכות השנים שיש לנו.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג. היתרונות של טיפול באור אדום וגראונדינג הם טענות של בראקה, והראיות המדעיות להם עדיין מוגבלות.",
+   "full_en": "Gary Brecka wrote:\n\n\"Getting older shouldn't mean giving up on your health or quality of life.\n\nThe Ultimate Human is bringing a new approach to senior living through its partnership with Regentra.\n\nFrom nutrition and social connection to red light therapy, grounding, and other wellness technologies, the goal is to create environments that better support healthy aging. Because longevity isn't just about living longer. It's about improving the quality of the years we have.\"\n\nThe rest of the post is a video, so there's no more text to show. The benefits of red light therapy and grounding are Brecka's claims; the scientific evidence for them is still limited."
+  },
+  {
+   "id": "tesla-spacex-merger-barclays-musk-56-voting",
+   "topic": "tesla",
+   "date": "2026-11-03T19:38:58Z",
+   "url": "https://x.com/i/trending/2117700658178711690",
+   "source": "X",
+   "he": {
+    "title": "ברקליס: מיזוג ספייסאקס–טסלה עשוי לתת למאסק 56% מכוח ההצבעה",
+    "summary": "לפי אנליסטים של ברקליס, אם ספייסאקס תרכוש את טסלה בגדלים הנוכחיים, מאסק יחזיק 37% מהמניות אבל 56% מהקולות, בזכות מבנה ההצבעה 10 ל־1 של ספייסאקס. אין עדיין עסקה, וועדות עצמאיות בשתי החברות בוחנות אפשרויות."
+   },
+   "en": {
+    "title": "Barclays: a SpaceX–Tesla merger could give Musk 56% of the votes",
+    "summary": "Barclays analysts project that if SpaceX acquired Tesla at current sizes, Musk would hold 37% of shares but 56% of votes thanks to SpaceX's 10-to-1 voting structure. No deal exists yet; independent committees at both boards are reviewing options."
+   },
+   "full_he": "אילון מאסק עשוי לקבל במהירות שליטה באימפריה משולבת של ספייסאקס וטסלה דרך מניות עם זכויות הצבעה מוגברות, ולעקוף את יעדי הביצוע הקשים בחבילת השכר שלו בטסלה.\n\n• אנליסטים של ברקליס מעריכים שאם ספייסאקס תרכוש את טסלה בגדלים הנוכחיים, מאסק יחזיק 37% מהמניות אבל 56% מהקולות, בזכות מבנה ההצבעה של ספייסאקס, 10 קולות למניה.\n• לשם השוואה, לפי תוכנית השכר שלו בטסלה, גם אם יעמוד בכל אבני הדרך, יגיע רק ל־29% מכוח ההצבעה.\n• אין עדיין עסקה. לשני הדירקטוריונים יש ועדות עצמאיות שבוחנות אפשרויות, ובשיחות מוקדמות עם משקיעים דנים ביתרונות האסטרטגיים ובמכשולים, כמו הצבעות בעלי מניות ורגולציה.\n\nזה סיכום של סיפור מגמה ב־X שמבוסס על פוסטים, והוא עשוי להשתנות.",
+   "full_en": "Elon Musk might gain swift control over a combined SpaceX-Tesla empire through super-voting shares, bypassing tough performance goals in his Tesla pay package.\n\n• Barclays analysts project that if SpaceX acquired Tesla at current sizes, Musk would hold 37% of shares but 56% of votes thanks to SpaceX's 10-to-1 voting structure.\n• By contrast, under his Tesla plan, maxing out every milestone yields only 29% voting power.\n• No deal exists yet. Both boards have independent committees reviewing options, amid early investor discussions on strategic benefits and hurdles such as shareholder votes and regulation.\n\nThis is a summary of a trending X story based on posts, and it may evolve."
+  },
+  {
+   "id": "solana-xzec-live-hylo",
+   "topic": "solana",
+   "date": "2026-11-03T19:24:20Z",
+   "url": "https://x.com/solana/status/2117699416698315014",
+   "source": "X · @solana",
+   "he": {
+    "title": "‏xZEC, זיקאש במינוף פי 3, זמין עכשיו בסולאנה דרך Hylo",
+    "summary": "סולאנה הודיעה ש־$xZEC עלה לאוויר ברשת דרך Hylo. לדברי Hylo, זו חשיפה ממונפת פי 3 לזיקאש עם מינוף שעמיד לחיסולים."
+   },
+   "en": {
+    "title": "xZEC, 3x leveraged Zcash, is live on Solana via Hylo",
+    "summary": "Solana announced that $xZEC is live on the network via Hylo. According to Hylo, it gives 3x leveraged Zcash exposure with liquidation-resistant leverage."
+   },
+   "full_he": "סולאנה כתבה: \"$xZEC זמין עכשיו בסולאנה דרך @hylo_so\".\n\nהפוסט שהיא ציטטה (@hylo_so): \"ZEC במינוף פי 3 זמין עכשיו ב־Hylo! $xZEC נותן חשיפה מוגברת לזיקאש עם מינוף שעמיד לחיסולים. לונג על פרטיות, באופן אוטומטי. רק ב־Hylo.\"\n\nשאר הפוסט של Hylo הוא סרטון, ולכן אין עוד טקסט להציג. חשוב לזכור שמוצרים ממונפים מגדילים גם רווחים וגם הפסדים.",
+   "full_en": "Solana wrote: \"$xZEC is live on Solana via @hylo_so\".\n\nThe quoted post (@hylo_so): \"3x leveraged ZEC is now live on Hylo! $xZEC gives amplified Zcash exposure with liquidation-resistant leverage. Long privacy, automatically. Only on Hylo.\"\n\nThe rest of Hylo's post is a video, so there's no more text to show. Keep in mind that leveraged products amplify both gains and losses."
+  },
   {
    "id": "tesla-tabarrok-fsd-2000-miles",
    "topic": "tesla",
