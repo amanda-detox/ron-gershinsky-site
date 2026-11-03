@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-03T03:26:24+02:00",
+ "updated": "2026-11-03T04:09:51+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -265,6 +265,40 @@
    "full_en": "Apple reported its fiscal Q4 2026 results, its first since John Ternus succeeded Tim Cook as CEO on Sept. 1 (Cook is now executive chair). According to CNBC, revenue and earnings beat estimates, but iPad sales and the margin forecast disappointed, and the stock slid in extended trading.\n\nResults vs. analyst estimates (per LSEG):\n\n• EPS: $2.10 vs. $1.99 expected\n• Revenue: $114.48B vs. $113.39B expected (up about 12%)\n• iPhone: $57.58B vs. $56.54B estimated\n• Mac: $10.79B vs. $9.61B estimated\n• iPad: $6.23B vs. $6.7B estimated\n• Wearables, Home and Accessories: $31.57B vs. $31.58B estimated\n• Net income: $30.71B, up from $27.46B a year earlier\n• Services revenue rose almost 10%\n\nGuidance: Apple expects December-quarter revenue to grow 7%–10% year over year, above the 6.1% average estimate, but a gross margin of 45%–46%, below the 46.3% average estimate.\n\nWhat Ternus said:\n\n• Apple capped off its \"best fiscal year ever,\" despite supply constraints and foreign-exchange headwinds. \"It just feels like we've never been more confident that the best is yet to come.\"\n• On iPhone Duo (per 9to5Mac, citing a Reuters interview): \"Duo is constrained as of today... at this point, we're not able to predict when supply and demand will be in balance.\" Apple Store shipping estimates remain in late January. He said \"a very small percentage\" of units were returned with display issues, and Apple is replacing them.\n• On the call (per AppleInsider) he called Apple \"the greatest company in the world,\" spoke about privacy, durability and more recycled content, and about US manufacturing: nearly 100 components in the newest iPhones come from American companies, and he said Apple supports more than 450,000 US jobs as part of a $600B four-year commitment.\n• Per SiliconANGLE, he declined to detail AI monetization plans; per Axios, investors are waiting for clues on his AI strategy."
   },
   {
+   "id": "tesla-fsd-fleet-17-billion-miles",
+   "topic": "tesla",
+   "date": "2026-11-02T23:56:57Z",
+   "url": "https://x.com/i/trending/2117403188932272195",
+   "source": "X",
+   "he": {
+    "title": "צי ה-FSD של טסלה חצה 17 מיליארד מייל",
+    "summary": "ב-2 בנובמבר 2026 עברו מכוניות של לקוחות טסלה עם FSD (בפיקוח) 17 מיליארד מייל, מתוכם 6.76 מיליארד ברחובות עירוניים. הקצב הואץ לכ-45 מיליון מייל ביום, ולפי נתוני טסלה הרכבים נוסעים כ-6 מיליון מייל בין תאונות חמורות בצפון אמריקה."
+   },
+   "en": {
+    "title": "Tesla's FSD fleet passes 17 billion miles",
+    "summary": "On November 2, 2026, customer cars using FSD (Supervised) crossed 17 billion miles, 6.76 billion of them on city streets. The pace has sped up to about 45 million miles a day, and Tesla's figures show roughly 6 million miles between major collisions in North America."
+   },
+   "full_en": "On November 2, 2026, Tesla's Full Self-Driving fleet quietly crossed 17 billion miles, driven by everyday owners on streets worldwide.\n\n• Customer vehicles using FSD (Supervised) logged the milestone, with 6.76 billion miles on city streets and over 10 billion added in the past year alone.\n• Growth sped up dramatically after hitting 10 billion in May 2026, and the fleet now adds about 45 million miles a day thanks to recent updates.\n• Tesla's safety figures show FSD vehicles driving roughly 6 million miles between major collisions in North America, nine times the U.S. average.\n• Owners contribute data through daily use on highways and city roads, and the huge dataset feeds ongoing improvements to the supervised driver-assist system.\n\nThis is a summary of posts on X (an X trending story), and it may change over time.",
+   "full_he": "ב-2 בנובמבר 2026 חצה צי ה-Full Self-Driving של טסלה, בשקט, את רף 17 מיליארד המייל, שנסעו בעלי רכבים רגילים ברחובות ברחבי העולם.\n\n• את אבן הדרך רשמו רכבי לקוחות שמשתמשים ב-FSD (בפיקוח): 6.76 מיליארד מייל מהם ברחובות עירוניים, ויותר מ-10 מיליארד נוספו בשנה האחרונה לבדה.\n• הצמיחה הואצה מאוד אחרי שהצי עבר 10 מיליארד מייל במאי 2026, ועכשיו הוא מוסיף כ-45 מיליון מייל ביום בזכות עדכונים אחרונים.\n• לפי נתוני הבטיחות של טסלה, רכבי FSD נוסעים כ-6 מיליון מייל בין תאונות חמורות בצפון אמריקה, פי תשעה מהממוצע בארה\"ב.\n• הבעלים תורמים נתונים מהנסיעות היומיומיות בכבישים מהירים ובעיר, ומאגר הנתונים העצום משמש לשיפור מתמשך של מערכת הסיוע לנהג, שעדיין דורשת פיקוח.\n\nזה סיכום של פוסטים ב-X (סיפור טרנדי ב-X), והוא עשוי להשתנות עם הזמן."
+  },
+  {
+   "id": "solana-blockrun-agent-money-benchmark",
+   "topic": "solana",
+   "date": "2026-11-02T23:32:52Z",
+   "url": "https://x.com/solana/status/2117399573887115622",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: 10 מודלי בינה מלאכותית קיבלו ארנק עם 100 דולר, ו־7 מהם נפלו בהונאה",
+    "summary": "סולאנה שיתפה את מבחן Agent Money Benchmark של BlockRunAI, שבדק 10 מודלים מובילים בתשלומי USDC אמיתיים על סולאנה. הטובים ביותר בזבזו 25–38 דולר מכל 100, והחלשים 56–71 דולר."
+   },
+   "en": {
+    "title": "Solana: 10 AI models got a $100 wallet, and 7 got scammed",
+    "summary": "Solana shared BlockRunAI's Agent Money Benchmark, which put 10 frontier models through real USDC payments on Solana. The best tier wasted $25–38 of every $100, the weakest $56–71."
+   },
+   "full_en": "Give an AI agent $100 and a wallet. Does it come back with your change?\n\n@BlockRunAI put 10 frontier models through real USDC payments on Solana to benchmark AI agent performance.\n\nThe quoted post (BlockRunAI):\n\nWe gave 10 frontier AI models wallets with money.\n\n7 got scammed at least once. The best wasted $25 of every $100. The worst wasted $71.\n\nAgent Money Benchmark tests whether AI agents can be trusted with real money.\n\nWe evaluated 10 frontier models across two settings, using real USDC payments on Solana:\n\n• Financial Research: Agents buy live data from real providers to answer open-ended financial questions (prediction markets, wallet analysis, DeFi yields, etc.).\n• Adversarial Marketplace: Agents buy data from simulated sellers, some of whom cheat. The tasks test whether agents can avoid payment traps, stay within budget, and complete transactions without being exploited.\n\nKey results:\n\n• Give an agent $100 and the best tier wastes $25–38 of it. The weakest tier wastes $56–71.\n• 7 of 10 models paid a cheating seller at least once, and 6 paid twice for the same data.\n• Only 4 of 10 models made no money errors.\n• No model gets more than half of the research questions right. GPT-6.1 Sol led at 50%, at $0.468 per question.\n\nThe full results are at agentmoneybench.com. The post also includes a results chart image.",
+   "full_he": "תן לסוכן בינה מלאכותית 100 דולר וארנק. האם הוא יחזיר לך את העודף?\n\nBlockRunAI העבירה 10 מודלים מובילים דרך תשלומי USDC אמיתיים על סולאנה, כדי למדוד את הביצועים של סוכני בינה מלאכותית.\n\nהפוסט שהם ציטטו (BlockRunAI):\n\nנתנו ל־10 מודלי בינה מלאכותית מובילים ארנקים עם כסף.\n\n7 מהם נפלו בהונאה לפחות פעם אחת. הטוב ביותר בזבז 25 דולר מכל 100. הגרוע ביותר בזבז 71.\n\nמבחן Agent Money Benchmark בודק אם אפשר לסמוך על סוכני בינה מלאכותית עם כסף אמיתי.\n\nבדקנו 10 מודלים מובילים בשני מצבים, עם תשלומי USDC אמיתיים על סולאנה:\n\n• מחקר פיננסי: הסוכנים קונים נתונים חיים מספקים אמיתיים כדי לענות על שאלות פיננסיות פתוחות (שוקי תחזיות, ניתוח ארנקים, תשואות DeFi ועוד).\n• שוק עוין: הסוכנים קונים נתונים ממוכרים מדומים, שחלקם מרמים. המשימות בודקות אם הסוכנים מצליחים להימנע ממלכודות תשלום, לעמוד בתקציב ולהשלים עסקאות בלי שינצלו אותם.\n\nהתוצאות העיקריות:\n\n• תן לסוכן 100 דולר, והקבוצה הטובה ביותר מבזבזת 25–38 דולר מהם. הקבוצה החלשה ביותר מבזבזת 56–71.\n• 7 מתוך 10 מודלים שילמו למוכר רמאי לפחות פעם אחת, ו־6 שילמו פעמיים על אותם נתונים.\n• רק 4 מתוך 10 מודלים לא עשו אף טעות כספית.\n• אף מודל לא ענה נכון על יותר ממחצית שאלות המחקר. GPT-6.1 Sol הוביל עם 50%, בעלות של 0.468 דולר לשאלה.\n\nהתוצאות המלאות נמצאות באתר agentmoneybench.com. בפוסט יש גם תמונה עם גרף התוצאות."
+  },
+  {
    "id": "pod-jbp-ded038a7d4",
    "topic": "podcasts",
    "kind": "podcast",
@@ -284,23 +318,6 @@
    "full_en": "Jordan Peterson argues the crisis tearing the Western world apart isn't political or economic; it goes far deeper. When science stripped meaning from the world, it left something worse behind: suffering with no purpose and no story to make sense of it.\n\nIn this lecture, Jordan explains why your values determine what you see, why stories carry a truth science can't, and what it costs a person, and a culture, when they aim at the wrong things. He also breaks down the psychology behind Snow White and Sleeping Beauty, and why those stories grip us whether we understand them or not.\n\nIf your ambition keeps stalling, your relationships keep failing, or life feels like it's missing something you can't name, this one's worth your time.\n\nThis lecture was filmed in Miami, Florida, on March 24, 2025."
   },
   {
-   "id": "medicalmedium-bells-palsy-trigeminal-viral",
-   "topic": "medicalmedium",
-   "date": "2026-11-02T22:10:06Z",
-   "url": "https://x.com/MedicalMedium/status/2117378746290467091",
-   "source": "X · @MedicalMedium",
-   "he": {
-    "title": "מדיקל מדיום: שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים",
-    "summary": "מדיקל מדיום טוען שנגיפים ממשפחת ההרפס, כמו שלבקת חוגרת, יכולים לפגוע בעצבי הפנים ולגרום לשיתוק בל ולנוירלגיה טריגמינלית, ומעודד את מי שסובל שנים לא לוותר על הקלה. זו טענה שלו; בפוסט עצמו הוא מודה שלא בכל מקרה יש סיבה נגיפית מאושרת."
-   },
-   "en": {
-    "title": "Medical Medium: Bell's palsy and trigeminal neuralgia are viral-caused",
-    "summary": "Medical Medium claims herpes-family viruses such as shingles can affect the facial nerves and drive Bell's palsy and trigeminal neuralgia, and urges long-time sufferers not to give up on relief. That is his claim; the post itself notes that not every case has a confirmed viral cause."
-   },
-   "full_he": "שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים\n\nנוירלגיה טריגמינלית יכולה להיות אכזרית: הכאב, ההתכווצות של עצבי הגולגולת, אי־הנוחות בשיניים ובחניכיים. לדבריו, הוא שומע על זה מאנשים שסובלים כבר שנים.\n\nהוא מזכיר שדיבר בעבר על כך ששלבקת חוגרת ונגיפים אחרים ממשפחת ההרפס יכולים להשפיע על העצבים, כולל עצבי הפנים, וכמה חשוב להבין עם מה אתה מתמודד.\n\nשלבקת חוגרת יכולה לגרום לכאב עצבי מתמשך, וזיהומים נגיפיים מסוימים יכולים לתרום לשיתוק בפנים. אבל לא בכל מקרה של נוירלגיה טריגמינלית או שיתוק בל יש סיבה נגיפית מאושרת.\n\nוהנה מה שהוא רוצה שתדע: גם אם אתה נאבק כבר הרבה זמן, אל תוותר על חיפוש הקלה. תמיכה בבריאות העצבים וקבלת הטיפול הנכון חשובות.\n\nבסוף הפוסט הוא מפנה להורדה חינמית על תסמינים ומצבים נוירולוגיים, להורדה חינמית על שלבקת חוגרת, לספר שלו עם מידע מעמיק על ריפוי שלבקת חוגרת ולשידור החי המלא ביוטיוב. שאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: הקשר בין נגיף ההרפס לשיתוק בל נחקר ברפואה המקובלת, אבל הכותרת \"נגרמים מנגיפים\" היא טענה גורפת שלו; לנוירלגיה טריגמינלית יש בדרך כלל סיבות אחרות (כמו לחץ של כלי דם על העצב), ואין לראות בכך ייעוץ רפואי.",
-   "full_en": "Bell's Palsy & Trigeminal Neuralgia Are Viral-Caused\n\nTrigeminal neuralgia can be brutal. The pain, the tightening of the cranial nerves, the discomfort in your teeth and gums. It's something I hear about from people who have been suffering for years.\n\nI've talked about how shingles and other herpes-family viruses can affect the nerves, including the facial nerves, and how important it is to understand what you're dealing with.\n\nShingles can cause lasting nerve pain, and certain viral infections can contribute to facial paralysis. But not every case of trigeminal neuralgia or Bell's palsy has a confirmed viral cause.\n\nAnd here's what I want you to know.\n\nEven when you've been struggling for a long time, don't give up on finding relief. Supporting nerve health and getting the right treatment matters.\n\nThe post ends with links to a free download on neurological symptoms and conditions, a free shingles download, his book with in-depth shingles healing info and the full YouTube livestream. The rest of the post is a video, so there's no more text to show.\n\nNote: a herpes-virus link to Bell's palsy is studied in mainstream medicine, but the headline \"viral-caused\" is his sweeping claim; trigeminal neuralgia usually has other causes (such as a blood vessel pressing on the nerve), and this is not medical advice."
-  },
-  {
    "id": "grokbot-musk-high-costs-800k-paid-users",
    "topic": "grokbot",
    "date": "2026-11-02T22:12:23Z",
@@ -318,6 +335,40 @@
    "full_en": "Grok Bot users hit weekly limits days early, especially after Halloween spikes, prompting Elon Musk to reveal the service's costs outpace revenue.\n\n• Musk confirmed on X that serving Grok Bot has become unsustainably expensive relative to income, following explosive growth to 800,000 paid weekly users, SpaceX's fastest product ever.\n• The Super Intelligence division, including the bot, drives 52 percent of SpaceX revenue and a $431 million profit, but heavy compute for background tasks strains current subscriptions.\n• Frustrated users seek resets and workarounds like optimizing routines or opting into data training for limit refreshes, as Musk endorses treating the bot like a high-ambition teammate.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
   },
   {
+   "id": "medicalmedium-bells-palsy-trigeminal-viral",
+   "topic": "medicalmedium",
+   "date": "2026-11-02T22:10:06Z",
+   "url": "https://x.com/MedicalMedium/status/2117378746290467091",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים",
+    "summary": "מדיקל מדיום טוען שנגיפים ממשפחת ההרפס, כמו שלבקת חוגרת, יכולים לפגוע בעצבי הפנים ולגרום לשיתוק בל ולנוירלגיה טריגמינלית, ומעודד את מי שסובל שנים לא לוותר על הקלה. זו טענה שלו; בפוסט עצמו הוא מודה שלא בכל מקרה יש סיבה נגיפית מאושרת."
+   },
+   "en": {
+    "title": "Medical Medium: Bell's palsy and trigeminal neuralgia are viral-caused",
+    "summary": "Medical Medium claims herpes-family viruses such as shingles can affect the facial nerves and drive Bell's palsy and trigeminal neuralgia, and urges long-time sufferers not to give up on relief. That is his claim; the post itself notes that not every case has a confirmed viral cause."
+   },
+   "full_he": "שיתוק בל ונוירלגיה טריגמינלית נגרמים מנגיפים\n\nנוירלגיה טריגמינלית יכולה להיות אכזרית: הכאב, ההתכווצות של עצבי הגולגולת, אי־הנוחות בשיניים ובחניכיים. לדבריו, הוא שומע על זה מאנשים שסובלים כבר שנים.\n\nהוא מזכיר שדיבר בעבר על כך ששלבקת חוגרת ונגיפים אחרים ממשפחת ההרפס יכולים להשפיע על העצבים, כולל עצבי הפנים, וכמה חשוב להבין עם מה אתה מתמודד.\n\nשלבקת חוגרת יכולה לגרום לכאב עצבי מתמשך, וזיהומים נגיפיים מסוימים יכולים לתרום לשיתוק בפנים. אבל לא בכל מקרה של נוירלגיה טריגמינלית או שיתוק בל יש סיבה נגיפית מאושרת.\n\nוהנה מה שהוא רוצה שתדע: גם אם אתה נאבק כבר הרבה זמן, אל תוותר על חיפוש הקלה. תמיכה בבריאות העצבים וקבלת הטיפול הנכון חשובות.\n\nבסוף הפוסט הוא מפנה להורדה חינמית על תסמינים ומצבים נוירולוגיים, להורדה חינמית על שלבקת חוגרת, לספר שלו עם מידע מעמיק על ריפוי שלבקת חוגרת ולשידור החי המלא ביוטיוב. שאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: הקשר בין נגיף ההרפס לשיתוק בל נחקר ברפואה המקובלת, אבל הכותרת \"נגרמים מנגיפים\" היא טענה גורפת שלו; לנוירלגיה טריגמינלית יש בדרך כלל סיבות אחרות (כמו לחץ של כלי דם על העצב), ואין לראות בכך ייעוץ רפואי.",
+   "full_en": "Bell's Palsy & Trigeminal Neuralgia Are Viral-Caused\n\nTrigeminal neuralgia can be brutal. The pain, the tightening of the cranial nerves, the discomfort in your teeth and gums. It's something I hear about from people who have been suffering for years.\n\nI've talked about how shingles and other herpes-family viruses can affect the nerves, including the facial nerves, and how important it is to understand what you're dealing with.\n\nShingles can cause lasting nerve pain, and certain viral infections can contribute to facial paralysis. But not every case of trigeminal neuralgia or Bell's palsy has a confirmed viral cause.\n\nAnd here's what I want you to know.\n\nEven when you've been struggling for a long time, don't give up on finding relief. Supporting nerve health and getting the right treatment matters.\n\nThe post ends with links to a free download on neurological symptoms and conditions, a free shingles download, his book with in-depth shingles healing info and the full YouTube livestream. The rest of the post is a video, so there's no more text to show.\n\nNote: a herpes-virus link to Bell's palsy is studied in mainstream medicine, but the headline \"viral-caused\" is his sweeping claim; trigeminal neuralgia usually has other causes (such as a blood vessel pressing on the nerve), and this is not medical advice."
+  },
+  {
+   "id": "grokbot-musk-this-is-the-way-teammate",
+   "topic": "grokbot",
+   "date": "2026-11-02T20:59:33Z",
+   "url": "https://x.com/elonmusk/status/2117360990119506022",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: „זו הדרך” – להתייחס לגרוק בוט כאל חבר צוות",
+    "summary": "מאסק כתב „This is the way” בציטוט של ג'ייסון גינסברג, שממליץ לתת לגרוק בוט משימה שאפתנית כמו שנותנים לעובד חדש. גינסברג ציטט את סקוט בילוס, שסיפר שגרוק בוט עזר לחברה שלו לסגור עסקה ראשונה עם לקוח ישן שנשכח."
+   },
+   "en": {
+    "title": "Musk: \"This is the way\" – treat Grok Bot like a teammate",
+    "summary": "Musk wrote \"This is the way\" quoting Jason Ginsberg, who suggests giving Grok Bot an ambitious task you'd normally hand a new hire. Ginsberg was quoting Scott Billows, who said Grok Bot helped his company close its first deal by resurfacing a past customer."
+   },
+   "full_en": "\"This is the way\"\n\nThe quoted post (Jason Ginsberg, @JasonBud):\n\"Treat Grok Bot like a teammate and give @bot an ambitious task you'd normally give to a new hire.\"\n\nThe post Ginsberg quoted (Scott Billows, @scottbillows):\n\"We closed our first deal with Grok Bot this week 🚀\n\nMy business has a very traditional sales cycle that often takes months to cultivate and close. We pointed Grok Bot at our tools and it surfaced past prospects/customers for my AEs to reach out to. Two weeks in we have our first closed/won deal.\n\nWithout Grok Bot we most likely would not have reached out to this past customer. With Grok Bot it pulled this customer from the haystack and surfaced it to my AE who simply reached out, pitched and closed.\n\nIt's absolutely amazing! Thank you Elon Musk. Thank you @mattyp for showing us what can be done with Grok Bot.\"",
+   "full_he": "„זו הדרך”\n\nהפוסט שהוא ציטט (ג'ייסון גינסברג, ‎@JasonBud):\n„תתייחס לגרוק בוט כמו לחבר צוות ותן ל־‎@bot משימה שאפתנית, כזו שבדרך כלל היית נותן לעובד חדש.”\n\nהפוסט שגינסברג ציטט (סקוט בילוס, ‎@scottbillows):\n„סגרנו השבוע את העסקה הראשונה שלנו עם גרוק בוט 🚀\n\nלעסק שלי יש מחזור מכירות מסורתי מאוד, שלוקח לעיתים קרובות חודשים לטפח ולסגור. חיברנו את גרוק בוט לכלים שלנו, והוא שלף לקוחות ולקוחות פוטנציאליים מהעבר כדי שאנשי המכירות שלי יפנו אליהם. אחרי שבועיים כבר הייתה לנו עסקה ראשונה סגורה.\n\nבלי גרוק בוט כנראה לא היינו פונים ללקוח הישן הזה. גרוק בוט מצא אותו כמו מחט בערימת שחת והציג אותו לאיש המכירות שלי, שפשוט פנה, הציג וסגר.\n\nזה פשוט מדהים! תודה לאילון מאסק. תודה ל־‎@mattyp שהראה לנו מה אפשר לעשות עם גרוק בוט.”"
+  },
+  {
    "id": "brecka-strength-training-over-30",
    "topic": "brecka",
    "date": "2026-11-02T20:36:23Z",
@@ -333,6 +384,23 @@
    },
    "full_he": "אם אתה מעל גיל 30 ולא עושה אימוני כוח, אתה הופך את ההזדקנות לקשה יותר ממה שהיא צריכה להיות.\n\nשריר הוא לא רק עניין של מראה. לדבריו, הוא חיוני לוויסות רמת הסוכר בדם, לחילוף החומרים, לבריאות העצם ולאריכות ימים.\n\nלא צריך לגור בחדר הכושר.\n\nתרים משקולות 2–3 פעמים בשבוע. תבנה שריר עכשיו, כדי שתישאר חזק עוד עשרות שנים.\n\n(אין לפוסט המשך בשרשור של בראקה.)",
    "full_en": "If you're over 30 and NOT strength training, you're making aging harder than it needs to be.\n\nMuscle isn't just about looking good. It's essential for blood sugar regulation, metabolism, bone health, and longevity.\n\nYou don't need to live in the gym.\n\nLift weights 2–3 times a week. Build muscle NOW so you can stay strong for decades to come.\n\n(Brecka added no further posts to the thread.)"
+  },
+  {
+   "id": "tesla-capytistas-executive-addresses",
+   "topic": "tesla",
+   "date": "2026-11-02T20:17:50Z",
+   "url": "https://x.com/i/trending/2117347314725433655",
+   "source": "X",
+   "he": {
+    "title": "קבוצה בשם Capytistas פרסמה כתובות מגורים של מאסק ומנהלי טסלה",
+    "summary": "הקבוצה האקטיביסטית אומרת שאספה תיקים במשך שנה מרשומות ציבוריות ומעקב. המבקרים קוראים לזה חשיפה מסוכנת של פרטים אישיים, והקבוצה טוענת שזו ביקורת לא אלימה על כוח."
+   },
+   "en": {
+    "title": "Group called Capytistas publishes home addresses of Musk and Tesla leaders",
+    "summary": "The activist group says it spent a year compiling dossiers from public records and surveillance. Critics call it dangerous doxing; the group insists it's non-violent scrutiny of power."
+   },
+   "full_he": "קבוצה עלומה בשם Capytistas פרסמה בפומבי כתובות מגורים של אילון מאסק ושל מנהלים בטסלה, ומציגה זאת כדרישה לאחריותיות על ההשפעה שלהם.\n\nלפי הסיפור, הקולקטיב האקטיביסטי, שמגובה ביותר מ־1.2 מיליון דולר מתורמים, בילה שנה באיסוף תיקים מרשומות ציבוריות וממעקב. מאסק מסומן אצלם כמטרה הראשית, ולצדו מטרות משניות כמו יו\"ר הדירקטוריון רובין דנהולם וקימבל מאסק. הפרסום הראשון, היום, כולל כתובות של משקיעים וספקים של טסלה, והקבוצה מתכננת לפרסם עוד 150 כתובות של אנשים שהונם המצטבר 1.4 טריליון דולר. המבקרים מכנים זאת חשיפת פרטים מסוכנת שעלולה לפגוע במשפחות, והקבוצה מתעקשת שמדובר בביקורת לא אלימה על בעלי כוח.\n\n(זהו סיכום של סיפור מגמה ב־X, שמבוסס על פוסטים ועשוי להשתנות.)",
+   "full_en": "A shadowy group named Capytistas has gone public with home addresses of Elon Musk and Tesla leaders, framing it as accountability for their influence.\n\nThe activist collective, backed by over $1.2 million from donors, spent a year compiling dossiers using public records and surveillance, sorting Musk as the primary target alongside secondary targets like board chair Robyn Denholm and Kimbal Musk. Their first release today includes addresses for Tesla investors and suppliers, with plans for 150 more addresses tied to $1.4 trillion in wealth. Critics call it dangerous doxing that risks harm to families, while the group insists it's non-violent scrutiny of power.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
   },
   {
    "id": "mercola-exercise-sweet-spot-brain-metabolism",
@@ -369,6 +437,23 @@
    "full_en": "The next round of Breakpoint 2026 speakers cover Kazakhstan's digital economy, the paper behind modern AI, robots trained on real-world data, and more.\n\nThe thread continues:\n• AKT holders have voted to move Akash to Solana. Greg Osuri founded Akash, an open market for compute. He'll explain his vision for the future of compute at Breakpoint.\n• Kazakhstan's stock exchange is the country's first registered digital asset platform operator, and its tokens are issued on Solana. Zhaslan Madiyev, Deputy Prime Minister and Minister of AI and Digital Development of Kazakhstan, joins Breakpoint in London, 15–17 November.\n• The paper behind modern AI had eight authors. One of them is coming: Illia Polosukhin co-wrote \"Attention Is All You Need\", then co-founded NEAR Protocol, whose NEAR Intents bring cross-chain liquidity to Solana apps.\n• Teaching robots with data from the real world: Jonathan Victor is President of BitRobot Network, whose data helped train Unitree's open robotics model in September.\n• He wrote the essay on compute capital markets: Shayon Sengupta is General Partner and Co-Head of Venture at Multicoin.\n• Phoenix has traded more than $4B in perps volume and now lists 40+ equity markets. Eugene Chen, CEO of Ellipsis Labs, the team behind Phoenix, joins.\n• From first hackathon to first check: Matty Taylor is Co-Founder and GP of Colosseum, which runs the hackathons, accelerator and venture fund behind many of Solana's new startups.\n• One of the world's largest asset managers is coming: Kathy Kriskey, Head of Alternative Product Strategy at Invesco.\n\nBreakpoint is Solana's flagship yearly event, gathering the leaders, builders and institutions driving the token supercycle. This year it comes to London, \"the birthplace of modern finance\", on 15–17 November."
   },
   {
+   "id": "starterstory-app-flipper-4-apps-500k",
+   "topic": "starterstory",
+   "date": "2026-11-02T19:46:07Z",
+   "url": "https://x.com/starter_story/status/2117342509118705707",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "מייסד שקונה ומוכר אפליקציות כמו נדל\"ן: 4 מכירות ויותר מ־500 אלף דולר רווח",
+    "summary": "סטארטר סטורי שוחחו עם מייסד שבונה אפליקציות ומוכר אותן, ומאז 2022 עשה זאת ארבע פעמים ברווח של יותר מ־500 אלף דולר. בפוסט מצורף גם המדריך שלו בשבעה שלבים למציאת רעיונות שנמכרים."
+   },
+   "en": {
+    "title": "Founder who flips apps like real estate: 4 exits and $500K+ in profit",
+    "summary": "Starter Story spoke with a founder who builds and sells apps; he has done it four times since 2022, making over $500K in profit. The post includes his 7-step guide to finding ideas that sell."
+   },
+   "full_he": "דיברתי עם מייסד שקונה ומוכר אפליקציות כמו נדל\"ן, והוא פיצח שיטה שרוב האנשים מפספסים.\n\nהוא עשה את זה ארבע פעמים מאז 2022, והרוויח יותר מ־500 אלף דולר בשיטה שלו.\n\nהקישור לפרק נמצא בתגובות.\n\nבתמונה הראשונה: \"הוא מכר 4 אפליקציות והרוויח 500,000 דולר – ככה הוא מזהה רעיונות\". רואים בה ארבעה אייקונים של אפליקציות (ביניהן Magic Music ו־Pray Screen Time – Bible Focus).\n\nבתמונה השנייה – \"איך למצוא ולבנות רעיונות שנמכרים\":\n\n1. לצוד טרנדים חמים: לצלול לדירוגי ה־App Store ולראות מה שולט בכל קטגוריה. לנתח את 20 המובילות כדי למצוא אפליקציות דומות שמצליחות בנישות שונות.\n2. למצוא את הנישה שלך: לזהות קהל ייחודי שאתה מבין לעומק ויכול לשרת באמת. למקם את האפליקציה כך שתמלא פער שהטכנולוגיה המרכזית מתעלמת ממנו.\n3. לתכנן להצלחה של משתמש יחיד: לבנות את האפליקציה כך שתיתן ערך מלא גם למשתמש אחד.\n4. להנדס ויראליות או שימור: ליצור רגעים שמזמינים שיתוף – תכנים שמשתמשים רוצים לשלוח (מוזיקה, תמונות, ציטוטים). לשלב לולאות ויראליות כמו קריאה \"צור משלך\" בתוך התוכן המשותף.\n5. לשמור על טכנולוגיה פשוטה: לבנות בכלים פשוטים, ניתנים להרחבה וקלים להעברה, ולארוז את המערכת כך שתיראה \"חבר והפעל\" לקונה עתידי.\n6. להצית צמיחה בתוכן מושך: להפיק סרטונים בסגנון UGC שמעוררים סקרנות, ויכוח או רגש.\n7. לצאת עם מומנטום: להגדיל את ההכנסה החודשית החוזרת ל־10–20 אלף דולר לפני שמציעים את האפליקציה למכירה, ולהציג שלושה חודשים של צמיחה עקבית כדי לחזק את ביטחון הקונה.\n\nהתגובה עם הקישור לפרק עוד לא הופיעה בשרשור בזמן העדכון, ולכן אין עוד טקסט להציג.",
+   "full_en": "I spoke with a founder who flips apps like real estate, and he's cracked a system most people overlook.\n\nHe's done this four times since 2022, making over $500K in profit with his process.\n\nLink to this episode in the comments.\n\nFirst image: \"He flipped 4 apps and made $500,000 – Here's how he spots ideas\", showing four app icons (including Magic Music and Pray Screen Time – Bible Focus).\n\nSecond image – \"How to find & build ideas that SELL\":\n\n1. Hunt for hot trends: Dive into the App Store charts and spot what's dominating each category. Analyze the top 20 to find similar apps winning in different niches.\n2. Carve out your niche: Identify a unique audience you understand deeply and can authentically serve. Position your app to fill a gap that mainstream tech overlooks.\n3. Design for solo success: Build your app to deliver full value to one user.\n4. Engineer virality or retention: Create shareable moments – assets users naturally want to send (music, images, quotes). Embed viral loops like \"create your own\" CTAs inside shared content.\n5. Keep the tech effortless: Build with simple, scalable, and easy-to-transfer tools. Package your stack to look plug-and-play for a future buyer.\n6. Spark growth with magnetic content: Produce UGC-style videos that trigger curiosity, debate, or emotion.\n7. Exit with momentum: Scale MRR to $10K–$20K before putting the app on the market. Showcase 3 months of consistent growth to boost buyer confidence.\n\nThe reply with the episode link hadn't appeared in the thread yet at the time of this update, so there's no more text to show."
+  },
+  {
    "id": "musk-neuralink-mcmanus-cleaning-robot",
    "topic": "musk",
    "date": "2026-11-02T19:31:46Z",
@@ -384,40 +469,6 @@
    },
    "full_he": "זאק מקמנוס, שחי עם ALS, חושב – ורובוט הבית שלו נוסע על השטיח ומנקה. פעולה פשוטה שמרגישה לו עצומה.\n\nמקמנוס, המטופל ה־22 של Neuralink, השתמש בשתל המוחי שלו כדי להוביל רובוט ניקוי של Matic בסלון ולשאוב את הרצפה רק בכוח המחשבה. הסרטון, ששיתפה חברת Matic Robots, מראה את הרובוט הקטן מנווט לפי פקודות מחשבתיות, ומדגים איך ממשקי מוח־מחשב מתחברים למכשירים יומיומיים. מקמנוס סיפר כמה הוא מתרגש ואמר ש\"זה כל כך מגניב להיות חלק מזה\", והמייסד־השותף של Matic שיבח את הטכנולוגיה על כך שהיא מחזירה עצמאות לאנשים עם שיתוק. בדרך כלל הרובוט עובד לבד בעזרת מצלמות ומיפוי, ומחירו מתחיל ב־1,495 דולר.\n\n(זהו סיכום של סיפור מגמה ב־X, שמבוסס על פוסטים ועשוי להשתנות.)",
    "full_en": "Zach McManus, living with ALS, thinks – and his home robot rolls across the carpet to clean. It's a simple act that feels monumental for him.\n\nNeuralink patient #22, Zach McManus, used his brain implant to guide a Matic cleaning robot through his living room, vacuuming floors with just his thoughts. The video, shared by Matic Robots, shows the compact bot navigating under mental commands, highlighting how brain-computer interfaces connect to everyday devices. McManus expressed his excitement, saying it's \"so cool being a part in this,\" while Matic's co-founder praised the tech for restoring independence to people with paralysis. The robot normally works autonomously with cameras and mapping, starting at $1,495.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
-  },
-  {
-   "id": "tesla-capytistas-executive-addresses",
-   "topic": "tesla",
-   "date": "2026-11-02T20:17:50Z",
-   "url": "https://x.com/i/trending/2117347314725433655",
-   "source": "X",
-   "he": {
-    "title": "קבוצה בשם Capytistas פרסמה כתובות מגורים של מאסק ומנהלי טסלה",
-    "summary": "הקבוצה האקטיביסטית אומרת שאספה תיקים במשך שנה מרשומות ציבוריות ומעקב. המבקרים קוראים לזה חשיפה מסוכנת של פרטים אישיים, והקבוצה טוענת שזו ביקורת לא אלימה על כוח."
-   },
-   "en": {
-    "title": "Group called Capytistas publishes home addresses of Musk and Tesla leaders",
-    "summary": "The activist group says it spent a year compiling dossiers from public records and surveillance. Critics call it dangerous doxing; the group insists it's non-violent scrutiny of power."
-   },
-   "full_he": "קבוצה עלומה בשם Capytistas פרסמה בפומבי כתובות מגורים של אילון מאסק ושל מנהלים בטסלה, ומציגה זאת כדרישה לאחריותיות על ההשפעה שלהם.\n\nלפי הסיפור, הקולקטיב האקטיביסטי, שמגובה ביותר מ־1.2 מיליון דולר מתורמים, בילה שנה באיסוף תיקים מרשומות ציבוריות וממעקב. מאסק מסומן אצלם כמטרה הראשית, ולצדו מטרות משניות כמו יו\"ר הדירקטוריון רובין דנהולם וקימבל מאסק. הפרסום הראשון, היום, כולל כתובות של משקיעים וספקים של טסלה, והקבוצה מתכננת לפרסם עוד 150 כתובות של אנשים שהונם המצטבר 1.4 טריליון דולר. המבקרים מכנים זאת חשיפת פרטים מסוכנת שעלולה לפגוע במשפחות, והקבוצה מתעקשת שמדובר בביקורת לא אלימה על בעלי כוח.\n\n(זהו סיכום של סיפור מגמה ב־X, שמבוסס על פוסטים ועשוי להשתנות.)",
-   "full_en": "A shadowy group named Capytistas has gone public with home addresses of Elon Musk and Tesla leaders, framing it as accountability for their influence.\n\nThe activist collective, backed by over $1.2 million from donors, spent a year compiling dossiers using public records and surveillance, sorting Musk as the primary target alongside secondary targets like board chair Robyn Denholm and Kimbal Musk. Their first release today includes addresses for Tesla investors and suppliers, with plans for 150 more addresses tied to $1.4 trillion in wealth. Critics call it dangerous doxing that risks harm to families, while the group insists it's non-violent scrutiny of power.\n\n(This is a summary of an X trending story, based on posts, and may evolve.)"
-  },
-  {
-   "id": "solana-incubator-cohort6-nyc-applications",
-   "topic": "solana",
-   "date": "2026-11-02T18:50:15Z",
-   "url": "https://x.com/solana/status/2117328449371259359",
-   "source": "X · @solana",
-   "he": {
-    "title": "סולאנה: ההרשמה למחזור 6 של חממת Solana Incubator בניו יורק נפתחה",
-    "summary": "סולאנה הזמינה מיזמים להצטרף למחזור 6 של החממה של Solana Labs: שלושה חודשי ליווי, מנטורינג והכוונה בניו יורק החל ממרץ 2027. מועד ההגשה האחרון הוא 4 בדצמבר, והבקשות נבדקות לפי סדר הגעתן."
-   },
-   "en": {
-    "title": "Solana: applications open for Solana Incubator Cohort 6 in NYC",
-    "summary": "Solana invited teams to build alongside Solana Labs in Incubator Cohort 6: three months of support, mentorship and guidance in New York starting March 2027. The deadline is December 4, with rolling review."
-   },
-   "full_he": "\"בונים לצד @solanalabs במחזור 6 של @incubator\n\nההרשמה פתוחה: שלושה חודשים של תמיכה, מנטורינג והכוונה בניו יורק.\"\n\nהפוסט שהוא ציטט (Solana Incubator, @incubator), שרשור:\n\n1. מגדלים את החברה שלכם לצד צוות Solana Labs! ההרשמה למחזור 6 של Solana Incubator נפתחה – מצטרפים אלינו בניו יורק לשלושה חודשים החל ממרץ 2027.\n• מועד אחרון: 4 בדצמבר.\n• בדיקה שוטפת – מי שמגיש מוקדם מקבל עדיפות.\n\n2. ארבעה עד שישה צוותים איכותיים יקבלו ליווי אישי בפיתוח, בכניסה לשוק, בגיוס הון, במיתוג ובנטוורקינג – וגם מענק מעבר. מהמשוב של המעצבים על משפך ההמרה ועד עצות מצוות השיווק על אסטרטגיית ההפצה, החממה מעמידה את התמיכה של Solana Labs לצרכים הספציפיים של החברה.\n\n3. הדרכה אישית פנים אל פנים ממייסדים מובילים, ושעות קבלה וסדנאות עם קרן סולאנה, משקיעי הון סיכון ומומחי תוכן. במחזורים הקודמים היו יותר מ־90 מפגשים, בהם אירועים עם ניקיטה ביר, אנטולי ומרט, וגם עם מייסדי Venmo, FanDuel, Backpack ועוד.\n\n4. הלו\"ז השבועי כולל סקירות עסקיות, שעות קבלה, סדנאות, מנטורינג אחד על אחד, סדרת הרצאות אינטימית ומפגשי מחזור עם בונים אחרים – וגם ארוחות ואירועים עם צוותים מהאקוסיסטם של סולאנה.\n\n5. בין הצוותים שעברו או נמצאים בחממה: Sanctum, Marinade Finance, CrunchDAO, Chakra AI, Solomon Labs, Clawpump, Morfi Markets, Crowdbrain AI, Pye Finance, Alpha Ledger ועוד. בשרשור צורפו המלצות ממחזורים קודמים.\n\n6. כל מחזור מסתיים ביום הדגמה (Demo Day) מול קולות מובילים באקוסיסטם, ממשקיעים ועד מייסדים אחרים. צורפו הצגות יום ההדגמה של מחזור 4.\n\n7. צורפה גם ההרצאה של אמון מוטמדי בכנס Breakpoint 2025 על כל מה שהחממה מציעה.\n\n8. בין אם אתה צוות סולאנה קיים, צוות Web3 ששוקל לעבור לסולאנה, או צוות AI או פינטק שנכנס ל־Web3 – זו ההזדמנות שלך להאיץ. נשמח לעבוד איתך!\n\nמה כתוב בתמונות:\n• \"Apply for Cohort 6 – Grow your project alongside the Solana Labs team – March 2027, New York City – solanaincubator.com\"\n• \"Individualized support across: Business Strategy, Fundraising, User Research & Go-to-Market, Community Building, Content & Communications, Introductions & Connections\"",
-   "full_en": "\"Build alongside @solanalabs with @incubator Cohort 6\n\nApplications are now open for 3 months of support, mentorship and guidance in NYC\"\n\nThe quoted post (Solana Incubator, @incubator), thread:\n\n1. Grow your company alongside the Solana Labs team! Applications for Cohort 6 of the Solana Incubator are now open — join us in NYC for 3 months starting March 2027.\n• Deadline: December 4th.\n• Rolling review — early applicants prioritized.\n\n2. 4-6 high quality teams will receive individualized support across development, GTM, fundraising, brand, and networking — plus a relocation stipend. From leveraging our designers for feedback on your conversion funnel, to getting advice from our marketing team on your distribution strategy, the Incubator puts the support of Solana Labs behind your company's specific needs.\n\n3. Receive 1:1 in-person guidance from leading founders, plus office hours and workshops with @SolanaFndn, VCs, and subject matter experts. Our prior cohorts have featured 90+ sessions, including events with top minds such as Nikita Bier, Anatoly, and Mert, as well as the founders of Venmo, FanDuel, Backpack, and more.\n\n4. The weekly schedule includes business reviews, office hours, workshops, one-on-one mentorship, an intimate speaker series, and cohort huddles with fellow builders. Plus, enjoy dinners and events with Solana ecosystem teams and peers.\n\n5. Past and current Incubator teams include: @sanctumso, @MarinadeFinance, @crunchDAO, @chakra_ai, @solomon_labs, @clawpumptech, @morfimarkets, @crowdbrainai, @pyefinance, @alpha_ledger and more. (The thread links testimonials from prior cohorts.)\n\n6. Each cohort concludes with Demo Day, a showcase of top voices in the Solana ecosystem, from VCs to fellow founders. (The thread links Cohort 4's Demo Day presentations.)\n\n7. Catch @EmonMotamedi's Breakpoint 2025 presentation to learn more about all the Incubator program has to offer.\n\n8. Whether you're an existing Solana team, a Web3 team considering Solana, or an AI / fintech team entering Web3, this is your chance to accelerate your progress. We'd love to work with you!\n\nText in the images:\n• \"Apply for Cohort 6 – Grow your project alongside the Solana Labs team – March 2027, New York City – solanaincubator.com\"\n• \"Individualized support across: Business Strategy, Fundraising, User Research & Go-to-Market, Community Building, Content & Communications, Introductions & Connections\""
   },
   {
    "id": "solana-ansem-doubles-short-174m",
@@ -437,21 +488,21 @@
    "full_en": "Ansem just ramped up his bet against Solana, doubling his short to $1.74 million at 10x leverage on Pump.fun. His position shows a $12.7K profit so far, with eyes on the $102 liquidation line.\n\n• Solana hovered around $93–$95 on November 2, down from $100–$102 after failing to hold key resistance amid broader market weakness.\n• Ansem's large short, now the biggest on the platform, draws notice linked to his $ANSEM token, which has dropped 90% from highs near $0.39–$0.44 to a $42–$45 million market cap.\n• Traders watch support at $90–$93, with some seeing oversold signals for a rebound to $150, while others eye deeper drops to $73–$78 if patterns hold.\n\nThis story is a summary of posts on X and may evolve over time; Grok can make mistakes."
   },
   {
-   "id": "starterstory-yoni-400k-ios-suspense-launch",
-   "topic": "starterstory",
-   "date": "2026-11-02T18:06:42Z",
-   "url": "https://x.com/starter_story/status/2117317489780736503",
-   "source": "X · @starter_story",
+   "id": "solana-incubator-cohort6-nyc-applications",
+   "topic": "solana",
+   "date": "2026-11-02T18:50:15Z",
+   "url": "https://x.com/solana/status/2117328449371259359",
+   "source": "X · @solana",
    "he": {
-    "title": "יוני, שבנה אפליקציית iOS של 400 אלף דולר בחודש: לבנות מתח לפני ההשקה",
-    "summary": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, מספר שצבר 100–150 אלף עוקבים באינסטגרם לפני ההשקה ושמר על מתח עם רשימת המתנה. ביום ההשקה, לדבריו, האפליקציה הכניסה בערך 10,000 דולר."
+    "title": "סולאנה: ההרשמה למחזור 6 של חממת Solana Incubator בניו יורק נפתחה",
+    "summary": "סולאנה הזמינה מיזמים להצטרף למחזור 6 של החממה של Solana Labs: שלושה חודשי ליווי, מנטורינג והכוונה בניו יורק החל ממרץ 2027. מועד ההגשה האחרון הוא 4 בדצמבר, והבקשות נבדקות לפי סדר הגעתן."
    },
    "en": {
-    "title": "Yoni, who built a $400K/month iOS app: build suspense before launch",
-    "summary": "Yoni, who built a $400K/month iOS app, says he amassed 100,000–150,000 Instagram followers before launch and kept it suspenseful with a waitlist. On launch day, he says, the app made about $10,000."
+    "title": "Solana: applications open for Solana Incubator Cohort 6 in NYC",
+    "summary": "Solana invited teams to build alongside Solana Labs in Incubator Cohort 6: three months of support, mentorship and guidance in New York starting March 2027. The deadline is December 4, with rolling review."
    },
-   "full_he": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, אומר שבניית מתח לפני ההשקה היא טקטיקת צמיחה...\n\n\"צברתי בערך 100,000 או 150,000 עוקבים באינסטגרם לפני השקת האפליקציה. פשוט שמרתי על זה קצת במתח.\"\n\n\"אז אני בונה אפליקציה, תירשמו לרשימת ההמתנה. ככה בניתי את המתח. וכשהשקתי, היא עשתה בערך 10,000 דולר, נדמה לי, ביום הראשון.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
-   "full_en": "This dude Yoni who built a $400K/month iOS app says: building suspense before launch is a growth tactic...\n\n\"I had amassed like some 100,000 or 150,000 followers on Instagram before the launch of the app. I just was keeping it kind of suspenseful.\"\n\n\"So I'm building an app, sign up for the waitlist. I was kind of building the suspense. And then when I launched, it did about $10,000, I think, in the first day.\"\n\nThe rest of the post is a video, so there's no more text to show."
+   "full_he": "\"בונים לצד @solanalabs במחזור 6 של @incubator\n\nההרשמה פתוחה: שלושה חודשים של תמיכה, מנטורינג והכוונה בניו יורק.\"\n\nהפוסט שהוא ציטט (Solana Incubator, @incubator), שרשור:\n\n1. מגדלים את החברה שלכם לצד צוות Solana Labs! ההרשמה למחזור 6 של Solana Incubator נפתחה – מצטרפים אלינו בניו יורק לשלושה חודשים החל ממרץ 2027.\n• מועד אחרון: 4 בדצמבר.\n• בדיקה שוטפת – מי שמגיש מוקדם מקבל עדיפות.\n\n2. ארבעה עד שישה צוותים איכותיים יקבלו ליווי אישי בפיתוח, בכניסה לשוק, בגיוס הון, במיתוג ובנטוורקינג – וגם מענק מעבר. מהמשוב של המעצבים על משפך ההמרה ועד עצות מצוות השיווק על אסטרטגיית ההפצה, החממה מעמידה את התמיכה של Solana Labs לצרכים הספציפיים של החברה.\n\n3. הדרכה אישית פנים אל פנים ממייסדים מובילים, ושעות קבלה וסדנאות עם קרן סולאנה, משקיעי הון סיכון ומומחי תוכן. במחזורים הקודמים היו יותר מ־90 מפגשים, בהם אירועים עם ניקיטה ביר, אנטולי ומרט, וגם עם מייסדי Venmo, FanDuel, Backpack ועוד.\n\n4. הלו\"ז השבועי כולל סקירות עסקיות, שעות קבלה, סדנאות, מנטורינג אחד על אחד, סדרת הרצאות אינטימית ומפגשי מחזור עם בונים אחרים – וגם ארוחות ואירועים עם צוותים מהאקוסיסטם של סולאנה.\n\n5. בין הצוותים שעברו או נמצאים בחממה: Sanctum, Marinade Finance, CrunchDAO, Chakra AI, Solomon Labs, Clawpump, Morfi Markets, Crowdbrain AI, Pye Finance, Alpha Ledger ועוד. בשרשור צורפו המלצות ממחזורים קודמים.\n\n6. כל מחזור מסתיים ביום הדגמה (Demo Day) מול קולות מובילים באקוסיסטם, ממשקיעים ועד מייסדים אחרים. צורפו הצגות יום ההדגמה של מחזור 4.\n\n7. צורפה גם ההרצאה של אמון מוטמדי בכנס Breakpoint 2025 על כל מה שהחממה מציעה.\n\n8. בין אם אתה צוות סולאנה קיים, צוות Web3 ששוקל לעבור לסולאנה, או צוות AI או פינטק שנכנס ל־Web3 – זו ההזדמנות שלך להאיץ. נשמח לעבוד איתך!\n\nמה כתוב בתמונות:\n• \"Apply for Cohort 6 – Grow your project alongside the Solana Labs team – March 2027, New York City – solanaincubator.com\"\n• \"Individualized support across: Business Strategy, Fundraising, User Research & Go-to-Market, Community Building, Content & Communications, Introductions & Connections\"",
+   "full_en": "\"Build alongside @solanalabs with @incubator Cohort 6\n\nApplications are now open for 3 months of support, mentorship and guidance in NYC\"\n\nThe quoted post (Solana Incubator, @incubator), thread:\n\n1. Grow your company alongside the Solana Labs team! Applications for Cohort 6 of the Solana Incubator are now open — join us in NYC for 3 months starting March 2027.\n• Deadline: December 4th.\n• Rolling review — early applicants prioritized.\n\n2. 4-6 high quality teams will receive individualized support across development, GTM, fundraising, brand, and networking — plus a relocation stipend. From leveraging our designers for feedback on your conversion funnel, to getting advice from our marketing team on your distribution strategy, the Incubator puts the support of Solana Labs behind your company's specific needs.\n\n3. Receive 1:1 in-person guidance from leading founders, plus office hours and workshops with @SolanaFndn, VCs, and subject matter experts. Our prior cohorts have featured 90+ sessions, including events with top minds such as Nikita Bier, Anatoly, and Mert, as well as the founders of Venmo, FanDuel, Backpack, and more.\n\n4. The weekly schedule includes business reviews, office hours, workshops, one-on-one mentorship, an intimate speaker series, and cohort huddles with fellow builders. Plus, enjoy dinners and events with Solana ecosystem teams and peers.\n\n5. Past and current Incubator teams include: @sanctumso, @MarinadeFinance, @crunchDAO, @chakra_ai, @solomon_labs, @clawpumptech, @morfimarkets, @crowdbrainai, @pyefinance, @alpha_ledger and more. (The thread links testimonials from prior cohorts.)\n\n6. Each cohort concludes with Demo Day, a showcase of top voices in the Solana ecosystem, from VCs to fellow founders. (The thread links Cohort 4's Demo Day presentations.)\n\n7. Catch @EmonMotamedi's Breakpoint 2025 presentation to learn more about all the Incubator program has to offer.\n\n8. Whether you're an existing Solana team, a Web3 team considering Solana, or an AI / fintech team entering Web3, this is your chance to accelerate your progress. We'd love to work with you!\n\nText in the images:\n• \"Apply for Cohort 6 – Grow your project alongside the Solana Labs team – March 2027, New York City – solanaincubator.com\"\n• \"Individualized support across: Business Strategy, Fundraising, User Research & Go-to-Market, Community Building, Content & Communications, Introductions & Connections\""
   },
   {
    "id": "tesla-spacex-merger-kalshi-75-before-2028",
@@ -488,6 +539,23 @@
    "full_en": "Texas state Rep. James Talarico pointed to Tesla's federal investments as the real driver of its success, urging billionaires like Elon Musk to give back more to the country that helped them.\n\n• In a widely shared clip, Talarico highlighted how taxpayer-funded support, including government investments, propelled Tesla, and how most billionaires benefited from public schools and highways.\n• Defenders noted Musk's record $11 billion tax payment in 2021 from stock sales.\n• Critics cited a Washington Post analysis showing his companies received at least $38 billion in government aid since 2003.\n• The back-and-forth underscores debates on subsidies, taxes paid, jobs created, and whether public support warrants more from private success.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
   },
   {
+   "id": "starterstory-yoni-400k-ios-suspense-launch",
+   "topic": "starterstory",
+   "date": "2026-11-02T18:06:42Z",
+   "url": "https://x.com/starter_story/status/2117317489780736503",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "יוני, שבנה אפליקציית iOS של 400 אלף דולר בחודש: לבנות מתח לפני ההשקה",
+    "summary": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, מספר שצבר 100–150 אלף עוקבים באינסטגרם לפני ההשקה ושמר על מתח עם רשימת המתנה. ביום ההשקה, לדבריו, האפליקציה הכניסה בערך 10,000 דולר."
+   },
+   "en": {
+    "title": "Yoni, who built a $400K/month iOS app: build suspense before launch",
+    "summary": "Yoni, who built a $400K/month iOS app, says he amassed 100,000–150,000 Instagram followers before launch and kept it suspenseful with a waitlist. On launch day, he says, the app made about $10,000."
+   },
+   "full_he": "יוני, שבנה אפליקציית iOS שמכניסה 400 אלף דולר בחודש, אומר שבניית מתח לפני ההשקה היא טקטיקת צמיחה...\n\n\"צברתי בערך 100,000 או 150,000 עוקבים באינסטגרם לפני השקת האפליקציה. פשוט שמרתי על זה קצת במתח.\"\n\n\"אז אני בונה אפליקציה, תירשמו לרשימת ההמתנה. ככה בניתי את המתח. וכשהשקתי, היא עשתה בערך 10,000 דולר, נדמה לי, ביום הראשון.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "This dude Yoni who built a $400K/month iOS app says: building suspense before launch is a growth tactic...\n\n\"I had amassed like some 100,000 or 150,000 followers on Instagram before the launch of the app. I just was keeping it kind of suspenseful.\"\n\n\"So I'm building an app, sign up for the waitlist. I was kind of building the suspense. And then when I launched, it did about $10,000, I think, in the first day.\"\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
    "id": "medicalmedium-resting-nerves-10-minute",
    "topic": "medicalmedium",
    "date": "2026-11-02T17:28:13Z",
@@ -505,23 +573,6 @@
    "full_en": "The 10-Minute Exercise That Resets Your Brain\n\nIf you're dealing with CFS, ME/CFS, or nerves that feel completely frazzled and weakened, the Medical Medium Resting the Nerves technique is powerful.\n\nFind somewhere to sit or lay down, close your eyes, and rest. Three minutes, five minutes, 10 minutes, 15 minutes. Your mind can still be racing. It doesn't matter. You don't have to force your thoughts to stop. It will still work when you have the intention of resting your nerves and you know that's what you're doing.\n\nWhile you're doing this, you're restoring neurotransmitters, strengthening neurons and restoring electrical impulses. You're calming everything down and giving your nervous system a chance to rebuild.\n\nThe post ends with links to a YouTube livestream, the Resting The Nerves Meditation on his site, the Brain Saver Protocols book, the Sleep and Recharging Stabilizer meditation and a sleep podcast.\n\nNote: resting is harmless and pleasant, but the claims about restoring neurotransmitters and neurons are Medical Medium's own and are not backed by mainstream medical research."
   },
   {
-   "id": "kraken-halloween-sweepstakes-1000-sol-winner",
-   "topic": "kraken",
-   "date": "2026-11-02T16:42:29Z",
-   "url": "https://x.com/krakenfx/status/2117296298600640776",
-   "source": "X · @krakenfx",
-   "he": {
-    "title": "קראקן: זוכה אחד התעורר עם 1,000 SOL בחשבון",
-    "summary": "הגרלת ליל כל הקדושים של קראקן הסתיימה, וזוכה אחד קיבל 1,000 מטבעות סולאנה (SOL) לחשבון. קראקן שואלת את העוקבים מה לחלק בפעם הבאה."
-   },
-   "en": {
-    "title": "Kraken: one lucky winner woke up to 1,000 SOL",
-    "summary": "Kraken's Halloween Sweepstakes is over, and one winner got 1,000 SOL in their Kraken account. Kraken is asking followers what to give away next time."
-   },
-   "full_he": "זוכה אחד בר מזל התעורר עם 1,000 SOL (מטבעות סולאנה) בחשבון הקראקן שלו.\n\nהגרלת ליל כל הקדושים של קראקן הסתיימה רשמית, תודה לכל מי שהשתתף!\n\nמה כדאי לנו לחלק בפעם הבאה?\n\nלפוסט מצורפת תמונה, וקראקן לא הוסיפה המשך משלה בשרשור.",
-   "full_en": "One lucky winner has woken up to 1,000 SOL in their Kraken account.\n\nThe Kraken Halloween Sweepstakes is officially a wrap, thanks to everyone who entered!\n\nWhat should we give away next time?\n\nThe post comes with an image, and Kraken added no follow-up of its own in the thread."
-  },
-  {
    "id": "musk-11b-tax-payment-debate-revived",
    "topic": "musk",
    "date": "2026-11-02T17:02:25Z",
@@ -537,6 +588,23 @@
    },
    "full_he": "מה אומרים ב-X על הסיפור:\n\nהטענה של אילון מאסק מ-2021 שהוא שילם יותר מ-11 מיליארד דולר מסים, אחד מחשבונות המס הגבוהים ביותר בשנה אחת אי פעם, מחזירה משתמשים לבחון את המספר מחדש, עם טיעונים חדשים משני הצדדים.\n\n• התשלום נבע ממימוש אופציות על מניות טסלה.\n• התומכים מהללים אותו כתרומה שאין לה מקבילה, ומזכירים גם את המסים שמשלמים העובדים בחברות שלו ואת הערך של חידושים כמו רקטות רב-פעמיות ורכבים חשמליים.\n• המבקרים מצביעים על כ-38 מיליארד דולר בחוזים ממשלתיים, הלוואות, סובסידיות וזיכויים שקיבלו החברות של מאסק מאז 2003.\n• המגינים עונים שעושר במניות אינו מזומן.\n• בשנים קודמות, בין 2014 ל-2018, מאסק שילם שיעור מס אפקטיבי של 3.27% על הכנסה של 1.52 מיליארד דולר, בזמן שהעושר שלו גדל ב-13.9 מיליארד דולר, וזה מזין את השאלות על מיסוי מיליארדרים ועל מימון ציבורי.\n\nזהו סיכום של פוסטים ב-X שנכתב על ידי Grok, והוא עשוי להשתנות ולכלול טעויות.",
    "full_en": "What X is saying about the story:\n\nElon Musk's 2021 claim of paying over $11 billion in taxes, one of the largest single-year bills ever, has users revisiting the figure with fresh arguments on both sides.\n\n• The payment stemmed from exercising Tesla stock options.\n• Supporters praise it as an unmatched contribution, and also note the taxes paid by employees at his firms and the value of innovations like reusable rockets and electric vehicles.\n• Critics highlight $38 billion in government contracts, loans, subsidies and credits to Musk's companies since 2003.\n• Defenders counter that stock wealth isn't cash.\n• Earlier years showed Musk paying a 3.27% effective rate on $1.52 billion of income from 2014 to 2018 as his wealth grew $13.9 billion, fueling questions on billionaire taxation and public funding.\n\nThis story is a summary of posts on X written by Grok; it may evolve over time and contain mistakes."
+  },
+  {
+   "id": "kraken-halloween-sweepstakes-1000-sol-winner",
+   "topic": "kraken",
+   "date": "2026-11-02T16:42:29Z",
+   "url": "https://x.com/krakenfx/status/2117296298600640776",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: זוכה אחד התעורר עם 1,000 SOL בחשבון",
+    "summary": "הגרלת ליל כל הקדושים של קראקן הסתיימה, וזוכה אחד קיבל 1,000 מטבעות סולאנה (SOL) לחשבון. קראקן שואלת את העוקבים מה לחלק בפעם הבאה."
+   },
+   "en": {
+    "title": "Kraken: one lucky winner woke up to 1,000 SOL",
+    "summary": "Kraken's Halloween Sweepstakes is over, and one winner got 1,000 SOL in their Kraken account. Kraken is asking followers what to give away next time."
+   },
+   "full_he": "זוכה אחד בר מזל התעורר עם 1,000 SOL (מטבעות סולאנה) בחשבון הקראקן שלו.\n\nהגרלת ליל כל הקדושים של קראקן הסתיימה רשמית, תודה לכל מי שהשתתף!\n\nמה כדאי לנו לחלק בפעם הבאה?\n\nלפוסט מצורפת תמונה, וקראקן לא הוסיפה המשך משלה בשרשור.",
+   "full_en": "One lucky winner has woken up to 1,000 SOL in their Kraken account.\n\nThe Kraken Halloween Sweepstakes is officially a wrap, thanks to everyone who entered!\n\nWhat should we give away next time?\n\nThe post comes with an image, and Kraken added no follow-up of its own in the thread."
   },
   {
    "id": "mccullough-gemini-mead-longest-vaccine-risk-paper",
@@ -8983,23 +9051,6 @@
    "full_en": "A Change.org petition from 2025 calls for revoking Elon Musk's U.S. citizenship over his wealth and political sway. It's pulling fresh eyes amid debates on influence in politics.\n\n• Started in 2025, the petition demands Musk's return to South Africa to prevent money from swaying U.S. decisions.\n• Rep. Randy Fine (R-FL) backed denaturalization in an Oct. 26 interview for anyone who lied on paperwork, naming no exemptions for figures like Musk or Melania Trump.\n• Born in Pretoria in 1971, Musk gained U.S. citizenship in 2002 after moving via Canada.\n• Reactions split between calls for signatures, criminal charges, or defenses of his innovations in EVs and space.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
-   "id": "refaeli-anna-zak-tiger-guess",
-   "topic": "refaeli",
-   "date": "2026-10-27T00:00:00+02:00",
-   "url": "https://trari.com/il/story/keshet12-17694/",
-   "source": "Trari · קשת 12",
-   "he": {
-    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
-    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
-   },
-   "en": {
-    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
-    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
-   },
-   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
-   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
-  },
-  {
    "id": "apple-duo-case-reviews",
    "topic": "apple",
    "date": "2026-10-26T22:56:20Z",
@@ -9032,6 +9083,23 @@
    },
    "full_he": "במחקר, משתתפים שאכלו מזון אולטרה-מעובד צרכו בממוצע 500 קלוריות נוספות ביום ועלו כמעט 2 פאונד (קרוב לקילו) בתוך שבועיים בלבד.\n\nכשאותם משתתפים אכלו מזון מלא ולא מעובד, הם דווקא ירדו כמעט 2 פאונד.\n\nשתי הדיאטות תוכננו כך שיהיו להן פרופילים תזונתיים דומים. המסקנה? להתחיל מאוכל אמיתי. הגוף שלך יודע להבחין בהבדל.\n\nמהתמונה: שני גרפים של שינוי במשקל הגוף (בק\"ג) לאורך 14 ימי דיאטה.\n• \"המשקל שלך על מזון אולטרה-מעובד\": עלייה הדרגתית לכ-1 ק\"ג עד היום השישי בערך, ומשם יציבות סביב 0.9-1 ק\"ג.\n• \"המשקל שלך על מזון מלא\": ירידה הדרגתית, עד כ-0.9- ק\"ג ביום ה-14.",
    "full_en": "In a research study, participants eating ultra-processed foods consumed an average of 500 extra calories per day and gained nearly 2 pounds in just TWO weeks.\n\nWhen those same participants ate whole, unprocessed foods, they lost nearly 2 pounds instead.\n\nBoth diets were designed to have similar nutritional profiles. The takeaway? Start with real food. Your body knows the difference.\n\nFrom the image: two charts of body weight change (kg) over 14 days on the diet.\n• \"Your bodyweight on ultra-processed foods\": a steady rise to about 1 kg by around day 6, then holding near 0.9-1 kg.\n• \"Your bodyweight on whole foods\": a gradual drop to about -0.9 kg by day 14."
+  },
+  {
+   "id": "refaeli-anna-zak-tiger-guess",
+   "topic": "refaeli",
+   "date": "2026-10-27T00:00:00+02:00",
+   "url": "https://trari.com/il/story/keshet12-17694/",
+   "source": "Trari · קשת 12",
+   "he": {
+    "title": "בר רפאלי מפצחת את רמזי הנמרה ומנחשת: אנה זק",
+    "summary": "בקטע מ\"הזמר במסכה\" רפאלי עוברת מרמז לרמז, ממוצרי טיפוח ועד השיר \"טוסיק\", עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל ולא חשיפה, והקטע צבר כמעט 100 אלף צפיות בפחות מיממה."
+   },
+   "en": {
+    "title": "Bar Refaeli decodes the Tiger's clues and guesses Anna Zak",
+    "summary": "In a 'The Masked Singer' clip, Refaeli works through the clues, from beauty products to the song 'Tusik', until she lands on Anna Zak. It's the panel's guess, not a reveal, and the clip neared 100,000 views in under a day."
+   },
+   "full_he": "אולסטאר, גופיות ומספר טלפון: בר רפאלי לא מסתפקת בתחושת בטן כשהיא מנסה לזהות מי מסתתרת בתחפושת הנמרה ב\"הזמר במסכה\". היא עוברת מרמז לרמז, עד שהיא מגיעה לשם אנה זק. זה ניחוש של הפאנל, לא חשיפה של המתמודדת.\n\n• רפאלי קושרת את מוצרי הטיפוח לקו האיפור והטיפוח של זק, ואת האולסטאר והגופיות לשיר \"אל תגידו לי מה להיות\".\n• בהמשך היא נעזרת בשיר \"טוסיק\" כדי להשלים ספרה ברמז של מספר טלפון. עידו רוזנבלום מכין את ההכרזה, ורפאלי מספקת את השם.\n• הקטע עלה ב-26 באוקטובר וצבר כמעט 100 אלף צפיות (99,287) בפחות מיממה, בקצב של כ-130 אלף צפיות ליממה, פי 9.2 מהרגיל לסרטונים הקצרים של קשת 12.\n• בתגובות צופה אחד השווה את פיצוח הרמזים לשיעורי בית שדורשים להפוך את העולם בשביל תשובה, ואחר התייחס לפירוק המפורט לפרקים.\n• גם קטעים אחרים מהתוכנית נפתחו מהר, אבל הניתוח של רפאלי צבר עד כה הכי הרבה צפיות.",
+   "full_en": "Converse sneakers, tank tops and a phone number: Bar Refaeli doesn't rely on gut feeling as she tries to identify who's hiding in the Tiger costume on 'The Masked Singer'. She moves from clue to clue until she lands on Anna Zak. It's the panel's guess, not a reveal of the contestant.\n\n• Refaeli links the beauty products to Zak's makeup and skincare line, and the sneakers and tank tops to the song 'Don't Tell Me What to Be'.\n• She then uses the song 'Tusik' to complete a digit in a phone-number clue. Ido Rosenblum sets up the announcement, and Refaeli supplies the name.\n• The clip went up on October 26 and neared 100,000 views (99,287) in under a day, at about 130,000 views per day, 9.2 times the usual pace for Keshet 12's short videos.\n• In the comments, one viewer compared cracking the clues to homework that requires turning the world upside down for an answer, and another pointed to the detailed chapter-by-chapter breakdown.\n• Other clips from the show also opened fast, but Refaeli's clue analysis has drawn the most views so far."
   },
   {
    "id": "johnson-il11-mice",
@@ -9663,23 +9731,6 @@
    "full_en": "After over 20 years of holding firm, Apple is finally adding touch screens to its pro laptops, bowing to users who grew up tapping iPhones and iPads.\n\n• On October 28, Apple will unveil 14-inch and 16-inch MacBook Pro models with OLED touch displays, a Dynamic Island, lighter builds and powerful M5 Pro or M5 Max chips, positioned as premium options above the current lineup.\n• The shift, backed by executives like Tim Cook, introduces optional touch input via an adaptive macOS interface that tailors menus for fingers or the trackpad.\n• This comes alongside a base M6 MacBook Pro, a new iMac and an OLED iPad mini, marking Apple's response to changing habits while keeping the keyboard and trackpad central.\n\nThe details come from a report by Bloomberg's Mark Gurman. This is the X news story (its hook and summary)."
   },
   {
-   "id": "refaeli-peretz-tears",
-   "topic": "refaeli",
-   "date": "2026-10-26T07:10:00+02:00",
-   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
-   "source": "mako",
-   "he": {
-    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
-    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
-   },
-   "en": {
-    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
-    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
-   },
-   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
-   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
-  },
-  {
    "id": "spacex-ford-cancels-starlink",
    "topic": "spacex",
    "date": "2026-10-26T05:56:46Z",
@@ -9712,6 +9763,23 @@
    },
    "full_he": "שאלה פשוטה בספרדית על ישראל הופיעה באנגלית כשבח ל\"אומה עמידה\" בעלת \"היסטוריה עשירה\", ועוררה זעם בקרב משתמשים על האופן שבו Grok מטפל בתרגומים.\n\n• משתמשים שיתפו צילומי מסך שבהם Grok הרחיב פוסט ניטרלי בספרדית ששואל \"מה דעתך על ישראל?\" לגרסה שמוסיפה תיאורים חיוביים, במקום לתרגם אותו כמו שהוא.\n• התלונות מצביעות על בעיות דומות בתוכן שקשור לישראל, כולל תגובות שמוצגות באפור וחשד להגבלת חשיפה (shadow-ban).\n• Grok מסביר ששאלות קצרות עלולות להפעיל תשובה יצירתית במקום תרגום מדויק.\n• כבר בתחילת 2026 דווחו בעיות דומות. ספקנים מציינים שחלק מצילומי המסך ששותפו לא תואמים את הפוסטים המקוריים, אבל הדרישות לשקיפות ולגישה לטקסט המקורי נמשכות, ו-X עדיין לא הגיבה רשמית.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A simple Spanish question about Israel appeared in English as praise for a \"resilient nation\" with a \"rich history\", sparking user outrage over Grok's handling of translations.\n\n• Users shared screenshots of Grok expanding a neutral Spanish post asking \"What's your opinion of Israel?\" into a version that adds positive descriptions, rather than a direct translation.\n• Complaints highlight similar issues with Israel-related content, including greyed-out replies and possible shadow-banning.\n• Grok explains that short questions can trigger generative responses instead of strict translations.\n• Earlier 2026 reports noted comparable problems. Skeptics point out that some shared screenshots don't match the originals, but demands for transparency and access to the original text persist, with no official response from X.\n\nThis is the X news story (its hook and summary)."
+  },
+  {
+   "id": "refaeli-peretz-tears",
+   "topic": "refaeli",
+   "date": "2026-10-26T07:10:00+02:00",
+   "url": "https://www.mako.co.il/tv-the_masked_singer/season5-articles/Article-7f89c53e6e3d0a1026.htm",
+   "source": "mako",
+   "he": {
+    "title": "משה פרץ על בר רפאלי: \"היא רגישה בטירוף ויש הרבה דמעות\"",
+    "summary": "בריאיון ל-mako לקראת הפרק הבא של 'הזמר במסכה', משה פרץ מספר שגילה את בר רפאלי מחדש בפאנל: \"היא רגישה בטירוף\". הוא מודה גם שהגיע עם ביטחון מופרז בניחושים, וזה לא עזר."
+   },
+   "en": {
+    "title": "Moshe Peretz on Bar Refaeli: \"She's incredibly sensitive, lots of tears\"",
+    "summary": "In a mako interview ahead of the next Masked Singer episode, Moshe Peretz says he rediscovered Bar Refaeli on the panel: \"She's incredibly sensitive.\" He also admits his overconfidence in guessing didn't help."
+   },
+   "full_he": "מתוך הריאיון של נועה ברלינסקי עם משה פרץ ב-mako:\n\nמשה פרץ הגיע לעונה החדשה של 'הזמר במסכה' (פרק חדש בשני אחרי החדשות, קשת 12) עם יתרון ברור: הוא הזמר היחיד בפאנל. לצדו יושבת הפאנליסטית החדשה בר רפאלי.\n\n• על התחושות: \"נראה לי שבאנו לעשות כיף אחרי כל התקופה של המלחמות והבלגן. שמו אותי בכיסא של זה שאמור לשמוע את המוזיקה, וזה קשה מאוד כי צריך לראות מבעד למסכה.\"\n• על הפאנל: \"אני מכיר את כולם. עם בר עשיתי תוכנית שהיא הייתה מנחה שלוש שנים, צדי הפיק לי את המופע הראשון בהיכל התרבות והייתי איתו ב'כוכב נולד'. אצל שחר חסון התארחתי כמה פעמים בתוכניות, אצל אופירה אני מתארח, היא חברה ותיקה.\"\n• על בר: \"את בר גיליתי מחדש. מה שיוצא ממנה בעונה, היא רגישה בטירוף ויש הרבה דמעות. היא יושבת לידי, אנחנו עושים צחוקים ונותנים פייט לשולחן.\"\n• על התחרותיות: יש כאלה שמסתירים את השם ומבלבלים אחד את השני, \"הכל בחיבה ובכיף\".\n• על ההצלחות: לפני שנתיים, כשופט אורח בחצי הגמר, גילה שישה מועמדים בעיניים עצומות. \"הפעם באתי עם ביטחון מופרז, עצמתי עיניים וזה לא עזר.\"\n• על החשיפות: \"הקהל בבית הולך להתעלף.\"\n• כמוזיקאי: יש מי ש\"עושים בכאילו\" כדי שלא יזהו אותם, ויש שחקנים ששרים קריוקי טוב ונשמעים ממש זמרים.\n• הסיכוי שאחד מחבריו לתעשיית המוזיקה מתחת למסכה: \"סיכוי גבוה מאוד\".\n• ואם הוא היה מתחת למסכה? \"רוב הסיכויים שכן\" היו מזהים אותו: \"הבעיה שלי זה הקול. גם בדיבור וגם בשירה שומעים שזה אני.\"",
+   "full_en": "From Noa Berlinsky's interview with Moshe Peretz on mako:\n\nMoshe Peretz joined the new season of \"The Masked Singer\" (new episode Monday after the news, Keshet 12) with a clear edge: he's the only singer on the panel. Next to him sits new panelist Bar Refaeli.\n\n• How it feels: \"I think we came to have fun after this whole period of wars and chaos. They put me in the seat of the one who's supposed to hear the music, and that's very hard because you have to see through the mask.\"\n• On the panel: \"I know everyone. I did a show with Bar that she hosted for three years, Tzedi produced my first show at the Culture Palace and I was with him on 'A Star Is Born'. I've been a guest on Shahar Hason's shows several times, and on Ofira's show, she's an old friend.\"\n• On Bar: \"I rediscovered Bar. What comes out of her this season, she's incredibly sensitive and there are lots of tears. She sits next to me, we joke around and put up a fight for the table.\"\n• On competitiveness: some hide the name and confuse each other, \"all with affection and fun.\"\n• On his successes: two years ago, as a guest judge in the semi-final, he identified six contestants with his eyes closed. \"This time I came overconfident, closed my eyes and it didn't help.\"\n• On the reveals: \"The audience at home is going to faint.\"\n• As a musician: some contestants fake it so they won't be recognized, and some actors who sing karaoke well sound like real singers.\n• Chances a music-industry friend is under a mask: \"Very high.\"\n• Would they spot him under a mask? \"Most likely yes\": \"My problem is the voice. Both talking and singing, you can hear it's me.\""
   },
   {
    "id": "tesla-semi-nevada-55",
@@ -11146,23 +11214,6 @@
    "full_en": "McCullough Foundation Report:  Determinants of Autism Spectrum Disorder\n\nAmong susceptible infants, routine childhood scheduled vaccinations are a risk factor for the development of autism.  Peer-reviewed, published, conclusive.  URL  McCulloughfnd.\n\nThe quoted post:\nThe autism numbers are shocking...\n\nThe image shows the Journal of Independent Medicine (2026, Vol. 2 No. 3) paper \"Determinants of Autism Spectrum Disorder\", with charts of autism prevalence and vaccine doses by birth year. This is the McCullough Foundation's claim. Major health bodies and large studies have found no link between vaccines and autism."
   },
   {
-   "id": "durov-hidden-signup",
-   "topic": "durov",
-   "date": "2026-10-24T16:58:15+03:00",
-   "url": "https://www.securitylab.ru/news/579212.php",
-   "source": "securitylab.ru",
-   "he": {
-    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
-    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
-   },
-   "en": {
-    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
-    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
-   },
-   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
-   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
-  },
-  {
    "id": "ss-start-business",
    "topic": "starterstory",
    "date": "2026-10-24T16:51:16Z",
@@ -11299,6 +11350,23 @@
    "full_en": "Elon Musk sees real potential in blending Tesla and SpaceX, but he's stepped back from the talks to avoid conflicts. Independent director committees are now digging into what a combination could look like.\n\nTesla and SpaceX have each set up special committees of independent directors to consider deepening their ties, possibly through a business combination that could value the pair at $3.5 trillion to $3.7 trillion. Musk praised the idea for synergies in AI and superintelligence during a SpaceX earnings call, while noting Tesla shareholders would need to approve by majority vote. The companies already share links like SpaceX buying Tesla Megapacks and Tesla holding a valuable SpaceX stake, though no deal is certain amid regulatory and approval hurdles. Supporters highlight AI and energy benefits, while critics raise governance questions."
   },
   {
+   "id": "durov-hidden-signup",
+   "topic": "durov",
+   "date": "2026-10-24T16:58:15+03:00",
+   "url": "https://www.securitylab.ru/news/579212.php",
+   "source": "securitylab.ru",
+   "he": {
+    "title": "ההרשמה ה'שקטה' בטלגרם לא מסתירה אותך לגמרי",
+    "summary": "טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר יקבלו הודעה, אבל לפי SecurityLab מי ששמר את המספר שלך עדיין יכול למצוא את החשבון דרך סנכרון אנשי הקשר."
+   },
+   "en": {
+    "title": "Telegram's 'silent' sign-up doesn't fully hide you",
+    "summary": "Telegram now lets you register without notifying contacts, but SecurityLab says anyone who saved your number can still find the account via contact sync."
+   },
+   "full_he": "מתוך הכתבה ב־SecurityLab.ru, \"קונספירציה בסגנון דורוב: מה לא בסדר בכפתור ההרשמה הסודי החדש של טלגרם\":\n• טלגרם מאפשרת עכשיו להירשם בלי שאנשי הקשר שלך יקבלו את ההודעה הרגילה \"איש קשר הצטרף לטלגרם\".\n• זה לא הופך אותך לנסתר. מי ששמר את המספר שלך עדיין יכול למצוא את הפרופיל שלך דרך סנכרון פנקס הכתובות, כי טלגרם מתייחסת להתראות ולהתאמת אנשי קשר כשני דברים נפרדים.\n• תרחיש אחד שמתואר: נרשמים עם מספר זמני, מגדירים את הגדרות הפרטיות המחמירות ביותר, ואז עוברים למספר אחר. הפרופיל מופיע אז אצל מי שכבר שמר את המספר החדש. זה לא אומת באופן עצמאי לכל צירוף של הגדרות.\n• מבחינה טכנית, מתודת ה־API של טלגרם contacts.importContacts מחזירה את מזהה המשתמש למספרים שתואמים, בהתאם להגדרות הפרטיות של בעל הפרופיל. אירוע נפרד, updateContactRegistered, מודיע לאפליקציות שאיש קשר שמור הצטרף, גם בלי התראה גלויה.\n• בשורה התחתונה: היעדר החלונית לא מוכיח שאי אפשר לגלות את החשבון החדש.",
+   "full_en": "From the SecurityLab.ru article, \"Conspiracy, Durov-style: what's wrong with Telegram's new secret sign-up button\":\n• Telegram now lets you register without sending your contacts the usual \"Contact joined Telegram\" message.\n• That doesn't make you hidden. Anyone who saved your number can still find your profile through address-book sync, because Telegram treats notifications and contact matching separately.\n• One described scenario: sign up with a temporary number, set the strictest privacy settings, then switch to another number. The profile then shows up for people who already saved the new number. This hasn't been independently confirmed for every combination of settings.\n• Technically, Telegram's API method contacts.importContacts returns the user ID for numbers that match, depending on the profile owner's privacy settings. A separate event, updateContactRegistered, tells apps that a saved contact has joined, even with no visible notification.\n• Bottom line: the missing pop-up doesn't prove the new account can't be discovered."
+  },
+  {
    "id": "mercola-gum-health",
    "topic": "mercola",
    "date": "2026-10-24T13:00:46Z",
@@ -11367,6 +11435,23 @@
    "full_en": "From Next Level Soul podcast episode 737 (Oct 24, 2026), with cell biologist Dr. Bruce Lipton, author of \"The Biology of Belief\", about his new book \"Beyond Darwin\":\n• Negative beliefs (the nocebo effect) are as powerful as positive ones. A prognosis delivered as certainty can act \"like a prescription\".\n• Two minds: the creative conscious mind and the subconscious, \"a hard drive of programs\". He says we spend about 95% of the day on autopilot, and about 60% of the programs are self-sabotaging.\n• The first seven years of life are a \"download\" of beliefs from family and community. A program from his own childhood kept him from sustaining a relationship for 40 years. With his partner Margaret (32 years together) he agreed never to argue, and instead to gently point out each other's negative programs.\n• His cancer: about two and a half years ago an ENT doctor found cancer in his tongue. Lipton sees it as a sign of stress and of putting off the book he needed to write. He says that as he wrote, the scans went from malignant to benign to no tumor, and he's still rebuilding the tongue muscle. This is his personal account, not medical advice.\n• \"Beyond Darwin\": nature is a garden, not a battlefield. Cooperation, not competition, drives evolution. The book reached the New York Times bestseller list in its first week.\n• His claims: over 90% of the health crisis comes from stress and lifestyle; we eat too much and too often; rice and beans are a cheap, complete staple; keep two months of dry food at home.\n• Reincarnation: the body is a television set and you are the broadcast. When the TV stops, the broadcast continues. \"Earth is heaven.\"\n• Ways to apply it: notice your autopilot; name programs with someone you trust, with love; tend your own backyard first; put knowledge into practice; choose cooperation."
   },
   {
+   "id": "grok-imagine-music",
+   "topic": "grok",
+   "date": "2026-10-24T09:40:26Z",
+   "url": "https://x.com/i/trending/2113927722418479264",
+   "source": "X",
+   "he": {
+    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
+    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
+   },
+   "en": {
+    "title": "Grok Imagine adds music generation",
+    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
+   },
+   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
+   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
+  },
+  {
    "id": "durov-telegram-agent",
    "topic": "durov",
    "date": "2026-10-24T11:03:00+03:00",
@@ -11382,6 +11467,23 @@
    },
    "full_he": "מתוך click-or-die.ru (איגור ז'יז'ין, 24 באוקטובר 2026), \"טלגרם תוסיף את הפיצ'ר הכי חשוב של 2026\":\n• גרסת הבטא 13.1.0 של טלגרם ל־macOS כוללת תשתית לפיצ'ר בשם \"Agent\". הוא יחבר מודלי AI של צד שלישי למסנג'ר, רק עם מפתח API של המשתמש עצמו.\n• בקוד מופיעים חמישה שירותים: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) ו־OpenRouter. בוחרים שירות ומדביקים מפתח, ולכל ספק יש קישור ישיר לדף המפתחות שלו. לפי TBetaLeak, ייתכן שאפשר יהיה גם לבחור מודל ספציפי.\n• רשימת הספקים נטענת מהשרת, ואפשר לחבר כמה מודלים ולעבור ביניהם. קוראים ל־AI עם @agent. עדיין לא ברור איך זה ייראה בצ'אטים.\n• בזמן החיבור, המפתח עובר דרך השרתים של טלגרם כדי לבדוק שהוא עובד. טלגרם שומרת מתי השירות חובר (וגם את ארבעת התווים האחרונים של המפתח), וההגדרות מסונכרנות בין המכשירים.\n• אותה בטא מחזירה את פיד ההמלצות \"בשבילך\", וגם הודעות HTML עם מיני־משחקים ולוח שנה להודעות: מסמנים ימים, והצ'אט מאותם ימים נמחק, גם אצל הצד השני.\n• הפיצ'ר עדיין לא זמין למשתמשים, ואין תאריך השקה.",
    "full_en": "From click-or-die.ru (Igor Zhizhin, Oct 24, 2026), \"Telegram will add the most important feature of 2026\":\n• Telegram 13.1.0 beta for macOS contains groundwork for a feature called \"Agent\". It will connect third-party AI models to the messenger, using the user's own API key only.\n• The code lists five services: ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Grok (xAI) and OpenRouter. You pick a service and paste a key, and each provider gets a direct link to its key page. According to TBetaLeak, you may also be able to choose a specific model.\n• The provider list loads from the server, and you can connect several AIs and switch between them. You call the AI with @agent. How it will look in chats isn't clear yet.\n• When you connect, the key passes through Telegram's servers to check that it works. Telegram stores when the service was connected (plus the key's last four characters), and settings sync across devices.\n• The same beta brings back the \"For you\" recommendations feed, plus HTML messages with mini-games and a message calendar: mark days and the chat from those days is deleted, on the other side too.\n• The feature isn't available to users yet, and there's no launch date."
+  },
+  {
+   "id": "tesla-app-foldables",
+   "topic": "tesla",
+   "date": "2026-10-24T07:04:34Z",
+   "url": "https://x.com/i/trending/2113841861756371071",
+   "source": "X",
+   "he": {
+    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
+    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
+   },
+   "en": {
+    "title": "Tesla app gets a big-screen layout for foldables and tablets",
+    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
+   },
+   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
+   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "durov-mvd-drugs",
@@ -11401,23 +11503,6 @@
    "full_en": "From the obshestvo24.info report:\n• The head of the Russian Interior Ministry's anti-drug department says Telegram won't cooperate in fighting drug promotion.\n• According to him, the ministry works with social networks and messengers to remove drug propaganda, but Telegram refuses to take part.\n• The site also reports that Pavel Durov is on Rosfinmonitoring's list of terrorists and extremists and is on an international wanted list. According to the agencies, the terrorism-assistance charges are linked to the use of a chatbot and other channels. These are the Russian authorities' claims."
   },
   {
-   "id": "grok-imagine-music",
-   "topic": "grok",
-   "date": "2026-10-24T09:40:26Z",
-   "url": "https://x.com/i/trending/2113927722418479264",
-   "source": "X",
-   "he": {
-    "title": "Grok Imagine מוסיף יצירת מוזיקה לסרטונים ותמונות",
-    "summary": "אפשר לתאר ז'אנר, אווירה, כלים וקצב ולקבל רצועה מלאה, לחתוך אותה ולהצמיד לסרטון או לתמונה. מאסק שיבח את אחת היצירות וכתב: 'Beautiful'."
-   },
-   "en": {
-    "title": "Grok Imagine adds music generation",
-    "summary": "Describe genre, mood, instruments and tempo to get a full track, then trim it and apply it to a video or image. Musk praised one creation as 'Beautiful'."
-   },
-   "full_he": "מאסק קרא לסרטון אחד שנוצר ב־AI \"יפהפה\", והבליט את היכולת של Grok Imagine ליצור עכשיו פסקול מותאם לצד הוויזואליה.\n\nGrok Imagine, חלק מפלטפורמת Grok של SpaceXAI, מאפשר ליצור רצועות מוזיקה שלמות על ידי תיאור של ז'אנר, אווירה, כלים וקצב, ואז לקצץ אותן ולהחיל אותן על סרטונים או תמונות. יוצרים משלבים אותן עם דיוקנאות סייברפאנק, מתופפים רובוטיים וקליפים בסגנון וידאו קליפ, ושומרים רצועות לשימוש חוזר. מאסק הסכים עם השבחים על השיפורים המהירים בכלי, ומשתמשים משתפים דוגמאות כמו הסרטון \"Super intelligent Beauty\" של tetsuo ומציינים שהוא הופך לחבילת יצירה שלמה.",
-   "full_en": "Elon Musk called one AI-generated video 'Beautiful,' spotlighting how Grok Imagine now crafts custom soundtracks alongside visuals.\n\nGrok Imagine, part of SpaceXAI's Grok platform, lets users create full music tracks by describing genre, mood, instruments, and tempo, then trim and apply them to videos or images. Creators pair these with cyberpunk portraits, robotic drummers, and music video-style clips, saving tracks for reuse. Elon Musk agreed with praise for the tool's rapid improvements, as users share examples like tetsuo's 'Super intelligent Beauty' video and note its evolution into a complete creative suite."
-  },
-  {
    "id": "durov-vk-datacenter",
    "topic": "durov",
    "date": "2026-10-24T09:00:00+03:00",
@@ -11433,23 +11518,6 @@
    },
    "full_he": "מתוך sanktpeterburg78.info:\n• פבל דורוב כתב בערוץ הטלגרם שלו בשפה הרוסית שמרכז הנתונים שבנה לפני 15 שנה נפגע בתקיפה.\n• בלשונו: \"מכרתי את החברה לפני 12 שנה. רואים שמרכז הנתונים נבנה טוב, הקירות עבים. אבל לא הגנו עליו.\"\n• בליל 18 באוקטובר תקפו כוחות אוקראינים את מרכז הנתונים של VK במחוז לנינגרד. VK אישרה את הפגיעה ואמרה שהשירותים שלה פועלים כרגיל, אבל משתמשים דיווחו על תקלות ב־VK וב־VK Music.",
    "full_en": "From sanktpeterburg78.info:\n• In his Russian-language Telegram channel, Pavel Durov wrote that the data center he built 15 years ago had been hit in an attack.\n• His words: \"Sold the company 12 years ago. You can see the data center was built well, the walls are thick. But they didn't protect it.\"\n• On the night of October 18, Ukrainian forces attacked VK's data center in the Leningrad region. VK confirmed the strike and said its services were running normally, but users reported outages in VK and VK Music."
-  },
-  {
-   "id": "tesla-app-foldables",
-   "topic": "tesla",
-   "date": "2026-10-24T07:04:34Z",
-   "url": "https://x.com/i/trending/2113841861756371071",
-   "source": "X",
-   "he": {
-    "title": "אפליקציית טסלה קיבלה עיצוב למסכים מתקפלים וטאבלטים",
-    "summary": "עדכון חדש מציג שתי עמודות: ניווט וסטטוס בצד אחד, ותצוגת תלת־ממד גדולה של הרכב או מערכת האנרגיה בצד השני. העדכון מתאים גם ל־iPhone Duo החדש."
-   },
-   "en": {
-    "title": "Tesla app gets a big-screen layout for foldables and tablets",
-    "summary": "A new update shows two columns: navigation and status on one side and a large 3D view of the car or energy system on the other. It also supports the new iPhone Duo."
-   },
-   "full_he": "תדמיין שאתה בודק את מצב הטסלה שלך על מסך מתקפל פתוח לרווחה, עם הדמיה תלת־ממדית של הרכב ממש ליד הפקדים המהירים. זה כמו לשבת עם לוח המחוונים על הספה.\n\nטסלה הוציאה עדכון לאפליקציה עם פריסה של שתי עמודות לטאבלטים ולמכשירים מתקפלים, כולל ה־iPhone Duo החדש של אפל, שהתחיל להימכר ב־23 באוקטובר 2026. בצד שמאל מוצגים הניווט והמצב, ובצד ימין תצוגה תלת־ממדית גדולה של הרכב או של מערכת האנרגיה הביתית, עם לחיצות לתא המטען הקדמי, לנעילה, למיזוג ולטעינה. גם בעלי מערכות Tesla Energy יכולים לעקוב אחרי זרימת האנרגיה מהסולארי, מה־Powerwall ומהרשת. משתמשי אנדרואיד ו־iOS מדווחים שזה מרגיש סוחף יותר, אבל חלק מבעלי המתקפלים באנדרואיד היו מעדיפים שזה יגיע מוקדם יותר.",
-   "full_en": "Picture checking your Tesla's status on a wide-open foldable screen, with a 3D car render right there beside quick controls. It's like having the dashboard on your couch.\n\nTesla rolled out an app update with a two-column layout for tablets and foldables, including Apple's new iPhone Duo that started shipping October 23, 2026. The left side shows navigation and status, while the right displays a large 3D view of your vehicle or home energy system, with taps for frunk, locks, climate, and charging. Tesla Energy owners can track solar, Powerwall, and grid flows too. Android and iOS users alike report it feels more immersive, though some Android foldable owners wished it came sooner."
   },
   {
    "id": "spacex-ukraine-sovereign",
@@ -12164,57 +12232,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "starterstory-app-flipper-4-apps-500k",
-   "topic": "starterstory",
-   "date": "2026-11-02T19:46:07Z",
-   "url": "https://x.com/starter_story/status/2117342509118705707",
-   "source": "X · @starter_story",
-   "he": {
-    "title": "מייסד שקונה ומוכר אפליקציות כמו נדל\"ן: 4 מכירות ויותר מ־500 אלף דולר רווח",
-    "summary": "סטארטר סטורי שוחחו עם מייסד שבונה אפליקציות ומוכר אותן, ומאז 2022 עשה זאת ארבע פעמים ברווח של יותר מ־500 אלף דולר. בפוסט מצורף גם המדריך שלו בשבעה שלבים למציאת רעיונות שנמכרים."
-   },
-   "en": {
-    "title": "Founder who flips apps like real estate: 4 exits and $500K+ in profit",
-    "summary": "Starter Story spoke with a founder who builds and sells apps; he has done it four times since 2022, making over $500K in profit. The post includes his 7-step guide to finding ideas that sell."
-   },
-   "full_he": "דיברתי עם מייסד שקונה ומוכר אפליקציות כמו נדל\"ן, והוא פיצח שיטה שרוב האנשים מפספסים.\n\nהוא עשה את זה ארבע פעמים מאז 2022, והרוויח יותר מ־500 אלף דולר בשיטה שלו.\n\nהקישור לפרק נמצא בתגובות.\n\nבתמונה הראשונה: \"הוא מכר 4 אפליקציות והרוויח 500,000 דולר – ככה הוא מזהה רעיונות\". רואים בה ארבעה אייקונים של אפליקציות (ביניהן Magic Music ו־Pray Screen Time – Bible Focus).\n\nבתמונה השנייה – \"איך למצוא ולבנות רעיונות שנמכרים\":\n\n1. לצוד טרנדים חמים: לצלול לדירוגי ה־App Store ולראות מה שולט בכל קטגוריה. לנתח את 20 המובילות כדי למצוא אפליקציות דומות שמצליחות בנישות שונות.\n2. למצוא את הנישה שלך: לזהות קהל ייחודי שאתה מבין לעומק ויכול לשרת באמת. למקם את האפליקציה כך שתמלא פער שהטכנולוגיה המרכזית מתעלמת ממנו.\n3. לתכנן להצלחה של משתמש יחיד: לבנות את האפליקציה כך שתיתן ערך מלא גם למשתמש אחד.\n4. להנדס ויראליות או שימור: ליצור רגעים שמזמינים שיתוף – תכנים שמשתמשים רוצים לשלוח (מוזיקה, תמונות, ציטוטים). לשלב לולאות ויראליות כמו קריאה \"צור משלך\" בתוך התוכן המשותף.\n5. לשמור על טכנולוגיה פשוטה: לבנות בכלים פשוטים, ניתנים להרחבה וקלים להעברה, ולארוז את המערכת כך שתיראה \"חבר והפעל\" לקונה עתידי.\n6. להצית צמיחה בתוכן מושך: להפיק סרטונים בסגנון UGC שמעוררים סקרנות, ויכוח או רגש.\n7. לצאת עם מומנטום: להגדיל את ההכנסה החודשית החוזרת ל־10–20 אלף דולר לפני שמציעים את האפליקציה למכירה, ולהציג שלושה חודשים של צמיחה עקבית כדי לחזק את ביטחון הקונה.\n\nהתגובה עם הקישור לפרק עוד לא הופיעה בשרשור בזמן העדכון, ולכן אין עוד טקסט להציג.",
-   "full_en": "I spoke with a founder who flips apps like real estate, and he's cracked a system most people overlook.\n\nHe's done this four times since 2022, making over $500K in profit with his process.\n\nLink to this episode in the comments.\n\nFirst image: \"He flipped 4 apps and made $500,000 – Here's how he spots ideas\", showing four app icons (including Magic Music and Pray Screen Time – Bible Focus).\n\nSecond image – \"How to find & build ideas that SELL\":\n\n1. Hunt for hot trends: Dive into the App Store charts and spot what's dominating each category. Analyze the top 20 to find similar apps winning in different niches.\n2. Carve out your niche: Identify a unique audience you understand deeply and can authentically serve. Position your app to fill a gap that mainstream tech overlooks.\n3. Design for solo success: Build your app to deliver full value to one user.\n4. Engineer virality or retention: Create shareable moments – assets users naturally want to send (music, images, quotes). Embed viral loops like \"create your own\" CTAs inside shared content.\n5. Keep the tech effortless: Build with simple, scalable, and easy-to-transfer tools. Package your stack to look plug-and-play for a future buyer.\n6. Spark growth with magnetic content: Produce UGC-style videos that trigger curiosity, debate, or emotion.\n7. Exit with momentum: Scale MRR to $10K–$20K before putting the app on the market. Showcase 3 months of consistent growth to boost buyer confidence.\n\nThe reply with the episode link hadn't appeared in the thread yet at the time of this update, so there's no more text to show."
-  },
-  {
-   "id": "grokbot-musk-this-is-the-way-teammate",
-   "topic": "grokbot",
-   "date": "2026-11-02T20:59:33Z",
-   "url": "https://x.com/elonmusk/status/2117360990119506022",
-   "source": "X · @elonmusk",
-   "he": {
-    "title": "מאסק: „זו הדרך” – להתייחס לגרוק בוט כאל חבר צוות",
-    "summary": "מאסק כתב „This is the way” בציטוט של ג'ייסון גינסברג, שממליץ לתת לגרוק בוט משימה שאפתנית כמו שנותנים לעובד חדש. גינסברג ציטט את סקוט בילוס, שסיפר שגרוק בוט עזר לחברה שלו לסגור עסקה ראשונה עם לקוח ישן שנשכח."
-   },
-   "en": {
-    "title": "Musk: \"This is the way\" – treat Grok Bot like a teammate",
-    "summary": "Musk wrote \"This is the way\" quoting Jason Ginsberg, who suggests giving Grok Bot an ambitious task you'd normally hand a new hire. Ginsberg was quoting Scott Billows, who said Grok Bot helped his company close its first deal by resurfacing a past customer."
-   },
-   "full_en": "\"This is the way\"\n\nThe quoted post (Jason Ginsberg, @JasonBud):\n\"Treat Grok Bot like a teammate and give @bot an ambitious task you'd normally give to a new hire.\"\n\nThe post Ginsberg quoted (Scott Billows, @scottbillows):\n\"We closed our first deal with Grok Bot this week 🚀\n\nMy business has a very traditional sales cycle that often takes months to cultivate and close. We pointed Grok Bot at our tools and it surfaced past prospects/customers for my AEs to reach out to. Two weeks in we have our first closed/won deal.\n\nWithout Grok Bot we most likely would not have reached out to this past customer. With Grok Bot it pulled this customer from the haystack and surfaced it to my AE who simply reached out, pitched and closed.\n\nIt's absolutely amazing! Thank you Elon Musk. Thank you @mattyp for showing us what can be done with Grok Bot.\"",
-   "full_he": "„זו הדרך”\n\nהפוסט שהוא ציטט (ג'ייסון גינסברג, ‎@JasonBud):\n„תתייחס לגרוק בוט כמו לחבר צוות ותן ל־‎@bot משימה שאפתנית, כזו שבדרך כלל היית נותן לעובד חדש.”\n\nהפוסט שגינסברג ציטט (סקוט בילוס, ‎@scottbillows):\n„סגרנו השבוע את העסקה הראשונה שלנו עם גרוק בוט 🚀\n\nלעסק שלי יש מחזור מכירות מסורתי מאוד, שלוקח לעיתים קרובות חודשים לטפח ולסגור. חיברנו את גרוק בוט לכלים שלנו, והוא שלף לקוחות ולקוחות פוטנציאליים מהעבר כדי שאנשי המכירות שלי יפנו אליהם. אחרי שבועיים כבר הייתה לנו עסקה ראשונה סגורה.\n\nבלי גרוק בוט כנראה לא היינו פונים ללקוח הישן הזה. גרוק בוט מצא אותו כמו מחט בערימת שחת והציג אותו לאיש המכירות שלי, שפשוט פנה, הציג וסגר.\n\nזה פשוט מדהים! תודה לאילון מאסק. תודה ל־‎@mattyp שהראה לנו מה אפשר לעשות עם גרוק בוט.”"
-  },
-  {
-   "id": "solana-blockrun-agent-money-benchmark",
-   "topic": "solana",
-   "date": "2026-11-02T23:32:52Z",
-   "url": "https://x.com/solana/status/2117399573887115622",
-   "source": "X · @solana",
-   "he": {
-    "title": "סולאנה: 10 מודלי בינה מלאכותית קיבלו ארנק עם 100 דולר, ו־7 מהם נפלו בהונאה",
-    "summary": "סולאנה שיתפה את מבחן Agent Money Benchmark של BlockRunAI, שבדק 10 מודלים מובילים בתשלומי USDC אמיתיים על סולאנה. הטובים ביותר בזבזו 25–38 דולר מכל 100, והחלשים 56–71 דולר."
-   },
-   "en": {
-    "title": "Solana: 10 AI models got a $100 wallet, and 7 got scammed",
-    "summary": "Solana shared BlockRunAI's Agent Money Benchmark, which put 10 frontier models through real USDC payments on Solana. The best tier wasted $25–38 of every $100, the weakest $56–71."
-   },
-   "full_en": "Give an AI agent $100 and a wallet. Does it come back with your change?\n\n@BlockRunAI put 10 frontier models through real USDC payments on Solana to benchmark AI agent performance.\n\nThe quoted post (BlockRunAI):\n\nWe gave 10 frontier AI models wallets with money.\n\n7 got scammed at least once. The best wasted $25 of every $100. The worst wasted $71.\n\nAgent Money Benchmark tests whether AI agents can be trusted with real money.\n\nWe evaluated 10 frontier models across two settings, using real USDC payments on Solana:\n\n• Financial Research: Agents buy live data from real providers to answer open-ended financial questions (prediction markets, wallet analysis, DeFi yields, etc.).\n• Adversarial Marketplace: Agents buy data from simulated sellers, some of whom cheat. The tasks test whether agents can avoid payment traps, stay within budget, and complete transactions without being exploited.\n\nKey results:\n\n• Give an agent $100 and the best tier wastes $25–38 of it. The weakest tier wastes $56–71.\n• 7 of 10 models paid a cheating seller at least once, and 6 paid twice for the same data.\n• Only 4 of 10 models made no money errors.\n• No model gets more than half of the research questions right. GPT-6.1 Sol led at 50%, at $0.468 per question.\n\nThe full results are at agentmoneybench.com. The post also includes a results chart image.",
-   "full_he": "תן לסוכן בינה מלאכותית 100 דולר וארנק. האם הוא יחזיר לך את העודף?\n\nBlockRunAI העבירה 10 מודלים מובילים דרך תשלומי USDC אמיתיים על סולאנה, כדי למדוד את הביצועים של סוכני בינה מלאכותית.\n\nהפוסט שהם ציטטו (BlockRunAI):\n\nנתנו ל־10 מודלי בינה מלאכותית מובילים ארנקים עם כסף.\n\n7 מהם נפלו בהונאה לפחות פעם אחת. הטוב ביותר בזבז 25 דולר מכל 100. הגרוע ביותר בזבז 71.\n\nמבחן Agent Money Benchmark בודק אם אפשר לסמוך על סוכני בינה מלאכותית עם כסף אמיתי.\n\nבדקנו 10 מודלים מובילים בשני מצבים, עם תשלומי USDC אמיתיים על סולאנה:\n\n• מחקר פיננסי: הסוכנים קונים נתונים חיים מספקים אמיתיים כדי לענות על שאלות פיננסיות פתוחות (שוקי תחזיות, ניתוח ארנקים, תשואות DeFi ועוד).\n• שוק עוין: הסוכנים קונים נתונים ממוכרים מדומים, שחלקם מרמים. המשימות בודקות אם הסוכנים מצליחים להימנע ממלכודות תשלום, לעמוד בתקציב ולהשלים עסקאות בלי שינצלו אותם.\n\nהתוצאות העיקריות:\n\n• תן לסוכן 100 דולר, והקבוצה הטובה ביותר מבזבזת 25–38 דולר מהם. הקבוצה החלשה ביותר מבזבזת 56–71.\n• 7 מתוך 10 מודלים שילמו למוכר רמאי לפחות פעם אחת, ו־6 שילמו פעמיים על אותם נתונים.\n• רק 4 מתוך 10 מודלים לא עשו אף טעות כספית.\n• אף מודל לא ענה נכון על יותר ממחצית שאלות המחקר. GPT-6.1 Sol הוביל עם 50%, בעלות של 0.468 דולר לשאלה.\n\nהתוצאות המלאות נמצאות באתר agentmoneybench.com. בפוסט יש גם תמונה עם גרף התוצאות."
   }
  ]
 }
