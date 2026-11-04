@@ -77,7 +77,7 @@
     var l = adds();
     return l.map(counterCard).join("") + (l.length ? "" : '<div class="card sec"><p class="empty">' + esc(t("noAdd")) + "</p></div>") +
       '<form class="card sec" data-form="add" autocomplete="off"><h2>' + esc(t("addTitle")) + '</h2><p class="lead">' + esc(t("addLead")) + "</p>" +
-      '<input type="text" class="inp" name="name" maxlength="60" list="add-sugg" placeholder="' + esc(t("phAdd")) + '" aria-label="' + esc(t("addTitle")) + '">' +
+      '<input type="text" class="inp" name="name" maxlength="80" list="add-sugg" placeholder="' + esc(t("phAdd")) + '" aria-label="' + esc(t("addTitle")) + '">' +
       '<datalist id="add-sugg">' + list("sugg").map(function (s) { return '<option value="' + esc(s) + '">'; }).join("") + "</datalist>" +
       '<label class="fld"><span>' + esc(t("since")) + '</span><input type="datetime-local" class="inp" name="since" value="' + localDT(new Date()) + '" max="' + localDT(new Date()) + '"></label>' +
       '<button type="submit" class="btn pri big">' + esc(t("add")) + "</button></form>";
@@ -219,7 +219,7 @@
       var f = e.target.closest("[data-form]"); if (!f) return; e.preventDefault();
       var k = f.getAttribute("data-form"), v = function (n) { var i = f.querySelector('[name="' + n + '"]'); return i ? i.value : ""; };
       if (k === "add") {
-        var name = clean(v("name"), 60); if (!name) { f.querySelector('[name="name"]').focus(); return; }
+        var name = clean(v("name"), 80); if (!name) { f.querySelector('[name="name"]').focus(); return; }
         var since = v("since") || localDT(new Date()); if (new Date(since).getTime() > Date.now()) since = localDT(new Date());
         f.reset(); S.add({ kind: "add", name: name, since: since });
       } else if (k === "why") {

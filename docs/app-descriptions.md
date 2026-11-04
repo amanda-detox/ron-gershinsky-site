@@ -54,10 +54,6 @@
 - HE: גמילה מפורנו
 - EN: Quitting porn
 
-### ריהאבסטר · Rehabster (`rehabster/`)
-- HE: גמילה מפסיכדלים, מטפלים, פסיכיאטריה וסושיאל מדיה
-- EN: Weaning off psychedelics, therapists, psychiatry and social media
-
 ### Updates (2026-10-31)
 - רוגעלי · Calmify: אפליקציה למתמודדים עם אתגרים נפשיים, כולל איך להתמודד עם פסיכיאטרים, מטפלים, אבחנה, התמכרות ואובדנות / An app for people facing mental health challenges, including psychiatrists, therapists, diagnosis, addiction and suicidality
 - פאמפיפיי · Pumpify idea: מורה מדליקה לאנגלית, חדשות ממיקומים מקבילים עם שדרנים מגניבים / A brilliant English teacher, news from parallel locations with cool presenters
