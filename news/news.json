@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T07:34:40+02:00",
+ "updated": "2026-11-04T08:22:02+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,57 @@
   }
  ],
  "items": [
+  {
+   "id": "musk-space-lasers-election-joke",
+   "topic": "musk",
+   "date": "2026-11-04T06:13:26Z",
+   "url": "https://x.com/elonmusk/status/2117862767831159287",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק צוחק על עצמו: \"כנראה שלייזרי החלל שלי לא עבדו הפעם\"",
+    "summary": "אחרי תוצאות בחירות האמצע, שבהן המועמדים שמאסק תמך בהם לא הצליחו בכל מקום, הוא פרסם בדיחה על הטענות שהוא מתערב בבחירות באמצעות \"לייזרים מהחלל\"."
+   },
+   "en": {
+    "title": "Musk jokes: \"Guess my election-interfering space lasers didn't work this time\"",
+    "summary": "After midterm results in which candidates Musk backed fell short in some races, he posted a self-mocking joke about claims that he interferes in elections with \"space lasers\"."
+   },
+   "full_he": "\"כנראה שלייזרי החלל שלי, אלה שמתערבים בבחירות, לא עבדו הפעם 🤷‍♂️\"\n\nזה כל הפוסט. מאסק לא הוסיף תגובות משלו מתחת לפוסט.",
+   "full_en": "\"Guess my election-interfering space lasers didn't work this time 🤷‍♂️\"\n\nThat is the whole post. Musk did not add any replies of his own under it."
+  },
+  {
+   "id": "musk-data-centers-in-space-appealing",
+   "topic": "musk",
+   "date": "2026-11-04T06:12:13Z",
+   "url": "https://x.com/elonmusk/status/2117862462976594112",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: \"מרכזי נתונים בחלל נראים די מושכים עכשיו\"",
+    "summary": "פוסט קצר של מאסק, שפורסם עם תוצאות בחירות האמצע, ברוח הקידום של SpaceX להקמת מרכזי נתונים ל-AI בחלל."
+   },
+   "en": {
+    "title": "Musk: \"Data centers in space looking pretty appealing right now\"",
+    "summary": "A short post by Musk, published as midterm results came in, in line with SpaceX's push to build AI data centers in space."
+   },
+   "full_he": "\"מרכזי נתונים בחלל נראים די מושכים עכשיו\"\n\nזה כל הפוסט. מאסק לא הוסיף תגובות משלו מתחת לפוסט.",
+   "full_en": "\"Data centers in space looking pretty appealing right now\"\n\nThat is the whole post. Musk did not add any replies of his own under it."
+  },
+  {
+   "id": "musk-ai-electricity-crunch-2026",
+   "topic": "musk",
+   "date": "2026-11-04T05:35:33Z",
+   "url": "https://x.com/i/trending/2117851606050111717",
+   "source": "X",
+   "he": {
+    "title": "מאסק מזהיר: ל-AI יחסר חשמל עד סוף 2026",
+    "summary": "לדברי מאסק, ייצור השבבים מזנק בזמן שייצור החשמל מחוץ לסין כמעט לא גדל, כך שעד סוף 2026 שבבים רבים יעמדו ללא שימוש. SpaceX מתכננת 13 ג'יגה-ואט של כוח מחשוב עד 2027."
+   },
+   "en": {
+    "title": "Musk warns AI faces an electricity crunch by 2026",
+    "summary": "Musk says chip production is surging while electricity generation outside China has barely grown, so by late 2026 many chips could sit idle. SpaceX is aiming for 13 gigawatts of AI compute by 2027."
+   },
+   "full_he": "אילון מאסק רואה את המחסום הגדול הבא של ה-AI: לא השבבים, אלא החיבור שלהם לחשמל. מיליוני שבבים עלולים להצטבר בלי שימוש, כי ייצור החשמל מחוץ לסין נשאר כמעט קבוע.\n\nבפודקאסט של דוורקש פאטל הסביר מאסק שייצור השבבים, שגדל בקצב מהיר, יעקוף את ייצור החשמל וייצור צוואר בקבוק עד סוף 2026. בהמשך הוסיף ב-X שגם ציוד חשמלי, קירור, תקשורת וסוללות הם חלק מהבעיה.\n\n• SpaceX ממהרת לבנות מרכזי נתונים ענקיים, עם יעד של 13 ג'יגה-ואט עד 2027, קיבולת שלגוגל לקח עשרות שנים לבנות, תוך 18 חודשים בלבד.\n• גרף שהופץ בדיון מראה שאין מדינה עשירה שמשגשגת עם צריכת אנרגיה נמוכה.\n• לפי הסיכום, מרוץ החשמל יקבע מי יוביל ב-AI, על רקע טורבינות גז שאזלו מהשוק וביקוש עולמי גובר.\n\nזה סיכום של פוסטים ב-X (Grok), והוא עשוי להשתנות עם הזמן.",
+   "full_en": "Elon Musk sees AI's biggest roadblock ahead: not chips, but plugging them in. Millions could stack up unused as power stays flat outside China.\n\nOn the Dwarkesh Patel podcast, Musk explained that surging chip production will outpace electricity generation, creating a bottleneck by late 2026. He later added on X that electrical gear, cooling, networking, and batteries factor in too.\n\n• SpaceX is racing ahead with massive data center builds, aiming for 13 gigawatts by 2027, rivaling Google's decades-long capacity in just 18 months.\n• A chart in the discussion shows no wealthy country thrives on low energy.\n• The power race decides who leads AI, amid sold-out turbines and rising global demand.\n\nThis story is a summary of posts on X (by Grok) and may evolve over time."
+  },
   {
    "id": "musk-450m-gop-push-mixed-midterm-results",
    "topic": "musk",
