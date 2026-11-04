@@ -46,6 +46,15 @@
   .status:empty { display: none; }
   .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
+  /* suggestion checklist: every option visible, square boxes, page scroll (no nested scroller) */
+  .suggs { display: flex; flex-direction: column; gap: 8px; }
+  .sug { display: flex; align-items: flex-start; gap: 12px; margin: 0; min-height: 48px; padding: 12px; border-radius: 14px; border: 2px solid var(--line); background: var(--card2); color: var(--fg); font-size: 16px; font-weight: 700; line-height: 1.35; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+  .sug:has(input:checked) { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--card2)); }
+  .sug input { appearance: none; -webkit-appearance: none; flex: none; width: 22px; height: 22px; margin: 1px 0 0; padding: 0; border-radius: 3px; border: 2px solid var(--line2); background: var(--card) center / 14px 14px no-repeat; cursor: pointer; }
+  .sug input:checked { border-color: var(--accent); background-color: var(--accent); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.2 6.3 11.4 12.8 4.6' fill='none' stroke='%230b2a6b' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  html[data-theme="light"] .sug input:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.2 6.3 11.4 12.8 4.6' fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+  .sug input:focus-visible { outline: 3px solid rgba(245, 197, 66, 0.6); outline-offset: 2px; }
+  .sug span { flex: 1; min-width: 0; overflow-wrap: break-word; }
 </style>
 <script src="../../shared/rg-bg.js" data-app="myrehab" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -87,7 +96,7 @@ window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
   he: { doc: "ריהאביפיי", title: "ריהאביפיי", sub: "הדרך שלך לחיים נקיים, שמורה בחשבון – רק אתה רואה אותה",
         tabClean: "ספירה", tabCheck: "צ'ק-אין", tabCrave: "חשק עכשיו", tabWhy: "הסיבות", tabHist: "היסטוריה",
-        addTitle: "ממה אתה נגמל?", addLead: "אפשר להוסיף כמה דברים, ולכל אחד יש ספירה משלו.", phAdd: "למשל: עישון, אלכוהול, הימורים", since: "נקי מאז", add: "הוסף",
+        addTitle: "ממה אתה נגמל?", addLead: "אפשר להוסיף כמה דברים, ולכל אחד יש ספירה משלו. אפשר לסמן כמה, או לכתוב משהו אחר.", phAdd: "או כתוב כאן משהו אחר", custom: "משהו אחר", since: "נקי מאז", add: "הוסף",
         sugg: "אלכוהול|עישון|קנאביס|הימורים|סוכר|רשתות חברתיות|פורנוגרפיה|קפאין|קניות|משחקי מחשב|גמילה מפסיכדלים, מטפלים, פסיכיאטריה וסושיאל מדיה",
         noAdd: "עוד לא הוספת ממה אתה נגמל. הוסף למעלה כדי להתחיל לספור.",
         days1: "יום נקי", daysN: "ימים נקיים", hoursN: "שעות", minsN: "דקות", andH: "ועוד {h} שעות ו־{m} דקות", sinceTxt: "מאז {d}",
@@ -120,7 +129,7 @@ window.RGMY_STRINGS = {
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת" },
   en: { doc: "Rehabify", title: "Rehabify", sub: "Your path to a clean life, saved in your account – only you can see it",
         tabClean: "Clean time", tabCheck: "Check-in", tabCrave: "Craving", tabWhy: "Reasons", tabHist: "History",
-        addTitle: "What are you quitting?", addLead: "You can add several things – each one gets its own count.", phAdd: "e.g. smoking, alcohol, gambling", since: "Clean since", add: "Add",
+        addTitle: "What are you quitting?", addLead: "You can add several things – each one gets its own count. Tick any that fit, or write your own.", phAdd: "or type something else here", custom: "Something else", since: "Clean since", add: "Add",
         sugg: "Alcohol|Smoking|Cannabis|Gambling|Sugar|Social media|Pornography|Caffeine|Shopping|Video games|Weaning off psychedelics, therapists, psychiatry and social media",
         noAdd: "You haven't added anything yet. Add one above to start counting.",
         days1: "day clean", daysN: "days clean", hoursN: "hours", minsN: "minutes", andH: "plus {h} hours and {m} minutes", sinceTxt: "since {d}",
