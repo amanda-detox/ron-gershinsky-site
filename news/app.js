@@ -29,6 +29,7 @@
       savedCount: "עדכונים שמורים", savedOne: "עדכון שמור אחד",
       copy: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
       summ: "📝 סכם לי", summSent: "✓ נשלח לסיכום", summDone: "📝 לסיכום", summFail: "אין חיבור, נשלח כשיחזור", summOk: "נשלח לסיכום. הסיכום יופיע בסיכומים", share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
+      summDevTitle: "הפיצ'ר הזה עדיין בפיתוח", summDevText: "בקרוב אפשר יהיה לבקש סיכום מכאן.",
       sumTab: "סיכומים", sumTag: "סיכומים מלאים של פרקים, בעברית", sumLoading: "טוען סיכומים…", sumErr: "לא הצלחנו לטעון את הסיכומים. בדוק את החיבור ונסה שוב.", sumEmpty: "עדיין אין כאן סיכומים.",
       sumRead: "לסיכום המלא", sumToList: "→ כל הסיכומים", sumShareAria: "שיתוף הסיכום", sumGuest: "עם", sumEpisodeDate: "תאריך הפרק:", sumSource: "למקור", sumHeOnly: "",
       sumNotFound: "הסיכום הזה לא נמצא. הנה כל הסיכומים.", sumNew: "נוספו סיכומים חדשים", sumNoNew: "אין סיכומים חדשים כרגע",
@@ -60,6 +61,7 @@
       savedCount: "saved updates", savedOne: "1 saved update",
       copy: "© 2026 Healify Ltd. All rights reserved.",
       summ: "📝 Summarize", summSent: "✓ Sent for summary", summDone: "📝 Summary", summFail: "Offline, will send when back", summOk: "Sent. The summary will appear in Summaries", share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
+      summDevTitle: "This feature is still in development", summDevText: "You'll be able to ask for a summary from here soon.",
       sumTab: "Summaries", sumTag: "Full episode summaries, in Hebrew", sumLoading: "Loading summaries…", sumErr: "Couldn't load the summaries. Check your connection and try again.", sumEmpty: "No summaries here yet.",
       sumRead: "Full summary", sumToList: "← All summaries", sumShareAria: "Share this summary", sumGuest: "with", sumEpisodeDate: "Episode date:", sumSource: "Source", sumHeOnly: "This summary is available in Hebrew.",
       sumNotFound: "That summary wasn't found. Here are all the summaries.", sumNew: "New summaries added", sumNoNew: "No new summaries right now",
@@ -316,6 +318,7 @@
     if (readerId) renderReader();
     $("bg-btn").setAttribute("aria-label", t().bgBtn); $("bg-btn").title = t().bgBtn;
     $("bg-title").textContent = t().bgTitle; $("bg-close").setAttribute("aria-label", t().close);
+    paintSummDev();
     $("chip-prev").setAttribute("aria-label", t().prev); $("chip-next").setAttribute("aria-label", t().next);
     renderSwatches();
     applyTheme();
@@ -408,30 +411,68 @@
   /* ----- "סכם לי": summary requests. A request = {id,url,title,kind,show,at} POSTed to a public ntfy.sh topic
      (free, no account, CORS open; no personal data, only the public item link). A routine polls the topic,
      writes summaries to ../summarify/summaries.json (entry.req = item id). Local state: rg-news-summ {id: time}.
-     The same file feeds the סיכומים tab. Do not change the topic URL or the POST body. */
+     The same file feeds the סיכומים tab. Do not change the topic URL or the POST body.
+     Only Ron's signed-in account (OWNER_ID, the same Appwrite user as OWNER_IDS in ../index.html) may queue or send.
+     Everyone else gets a small "still in development" popup, and any offline queue on this device is dropped. */
+  var OWNER_ID = "6adefcf6c9d7f919e779";
   var SUMM_KEY = "rg-news-summ", SUMM_Q = "rg-news-summ-q", SUMM_TOPIC = "https://ntfy.sh/rg-summ-req-e052dce29652", summDoneSet = {};
+  function isRon() { var u = ACC && ACC.user(); return !!(u && u.id === OWNER_ID); }
   function summMap() { var o = null; try { o = JSON.parse(get(SUMM_KEY) || "{}"); } catch (e) {} return o && typeof o === "object" ? o : {}; }
   function summQueue() { var a = null; try { a = JSON.parse(get(SUMM_Q) || "[]"); } catch (e) {} return Array.isArray(a) ? a : []; }
+  function dropSummQueue() { if (get(SUMM_Q) !== "[]") set(SUMM_Q, "[]"); }
   function summPost(r) { return fetch(SUMM_TOPIC, { method: "POST", body: JSON.stringify(r) }).then(function (x) { if (!x.ok) throw new Error(x.status); }); }
+  var summSending = false;
   function summFlush() {
+    if (!isRon() || summSending) return;
     var q = summQueue(); if (!q.length || !navigator.onLine) return;
+    summSending = true;
     var r = q[0];
-    summPost(r).then(function () { set(SUMM_Q, JSON.stringify(summQueue().filter(function (x) { return x.id !== r.id; }))); summFlush(); }, function () {});
+    summPost(r).then(function () {
+      set(SUMM_Q, JSON.stringify(summQueue().filter(function (x) { return x.id !== r.id; })));
+      summSending = false; summFlush();
+    }, function () { summSending = false; });
+  }
+  function settleSummQueue() { if (isRon()) summFlush(); else dropSummQueue(); }
+  function whenAccount(fn) {
+    var p = (ACC && ACC.ready) || Promise.resolve();
+    Promise.resolve(p).then(fn, fn);
   }
   function requestSummary(id) {
+    if (!isRon()) { dropSummQueue(); openSummDev(); return; }
     var it = findItem(id); if (!it) return;
     var c = pick(it), m = summMap(); m[id] = Date.now(); set(SUMM_KEY, JSON.stringify(m));
     var r = { id: id, url: it.url || "", title: c.title || "", kind: it.kind || "", show: it.show || "", lang: lang, at: new Date().toISOString() };
     var q = summQueue().filter(function (x) { return x.id !== id; }); q.push(r); set(SUMM_Q, JSON.stringify(q));
     summFlush(); if (typeof toast === "function") toast(navigator.onLine ? t().summOk : t().summFail);
   }
+  function paintSummDev() {
+    var box = $("summ-dev"); if (!box) return;
+    $("summ-dev-title").textContent = t().summDevTitle;
+    $("summ-dev-text").textContent = t().summDevText;
+    var b = $("summ-dev-close"); b.textContent = t().close; b.setAttribute("aria-label", t().close);
+  }
+  function openSummDev() {
+    paintSummDev();
+    var box = $("summ-dev"); if (!box) return;
+    box.hidden = false;
+    document.documentElement.classList.add("noscroll");
+    setTimeout(function () { try { $("summ-dev-close").focus(); } catch (e) {} }, 30);
+  }
+  function closeSummDev() {
+    var box = $("summ-dev"); if (!box || box.hidden) return;
+    box.hidden = true;
+    if ($("rd-sheet").hidden) document.documentElement.classList.remove("noscroll");
+  }
+  if ($("summ-dev-close")) $("summ-dev-close").onclick = closeSummDev;
+  if ($("summ-dev")) $("summ-dev").addEventListener("click", function (e) { if (e.target === $("summ-dev")) closeSummDev(); });
   function summBtn(id) {
     if (summDoneSet[id]) return '<a class="sm done" data-act="summopen" href="?tab=summaries&item=' + encodeURIComponent(id) + '">' + esc(t().summDone) + "</a>";
+    if (!isRon()) return '<button type="button" class="sm" data-act="summ">' + esc(t().summ) + "</button>";
     var sent = !!summMap()[id];
     return '<button type="button" class="sm' + (sent ? " sent" : "") + '" data-act="summ"' + (sent ? " disabled" : "") + ">" + esc(sent ? t().summSent : t().summ) + "</button>";
   }
   function loadSummDone() { loadSummaries(); }
-  window.addEventListener("online", summFlush);
+  window.addEventListener("online", settleSummQueue);
   function card(it, inSaved) {
     var id = itemId(it), c = pick(it), r = isRead(id), sv = isSaved(id);
     var tn = inSaved ? (topicName(it.topic) || it._topic) : null, tl = tn ? (tn[lang] || tn.he || tn.en) : "";
@@ -508,7 +549,18 @@
       else if (sumItems) toast(t().sumNotFound);
       return;
     }
-    if (act === "summ" && c) { requestSummary(c.getAttribute("data-id")); el.disabled = true; el.classList.add("sent"); el.textContent = t().summSent; return; }
+    if (act === "summ" && c) {
+      if (el.disabled || el.getAttribute("data-wait") === "1") return;
+      el.setAttribute("data-wait", "1");
+      var btn = el, sid = c.getAttribute("data-id");
+      whenAccount(function () {
+        btn.removeAttribute("data-wait");
+        if (!isRon()) { dropSummQueue(); openSummDev(); return; }
+        requestSummary(sid);
+        btn.disabled = true; btn.classList.add("sent"); btn.textContent = t().summSent;
+      });
+      return;
+    }
     if (act === "share" && c) { shareItem(c.getAttribute("data-id")); return; }
     if (act === "save" && c) { saveItem(findItem(c.getAttribute("data-id"))); renderChips(); renderFeed(); return; }
     if (act === "unsave" && c) {
@@ -525,7 +577,7 @@
     } else if (act === "toggle") { showRead = !showRead; renderChips(); renderFeed(); }
   });
 
-  setTimeout(function () { summFlush(); if (!sumItems && !sumLoading) loadSummaries(); }, 600);
+  setTimeout(function () { whenAccount(settleSummQueue); if (!sumItems && !sumLoading) loadSummaries(); }, 600);
   function renderAll() { renderChrome(); renderStatus(); renderChips(); renderFeed(); }
 
   function load() {
@@ -735,7 +787,11 @@
   $("rd-close").onclick = closeReader;
   $("rd-share").onclick = function () { if (readerId) shareItem(readerId); };
   $("rd-sheet").addEventListener("click", function (e) { if (e.target === $("rd-sheet")) closeReader(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeReader(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if ($("summ-dev") && !$("summ-dev").hidden) { closeSummDev(); return; }
+    closeReader();
+  });
 
   /* ----- background picker: night 0-10 (rg-news-bg, 0 = original, as on the landing page), light 0-10 (rg-news-bg-light, 0 = original) ----- */
   function renderSwatches() {
@@ -1092,8 +1148,12 @@
   updateInstall();
   load();
   if (ACC) {
-    ACC.ready.then(function () { cloudSync(); savedSync(); });
-    ACC.onChange(function (u) { if (u) { cloudSync(); savedSync(); } });
+    ACC.ready.then(function () { settleSummQueue(); cloudSync(); savedSync(); });
+    ACC.onChange(function (u) {
+      settleSummQueue();
+      if (u) { cloudSync(); savedSync(); }
+      if (data) { renderChips(); renderFeed(); }
+    });
     // language, theme, background and topic follow the account across devices
     ACC.syncPrefs([LANG_KEY, THEME_KEY, BG_KEY, LBG_KEY, TOPIC_KEY], function (c) {
       if (LANG_KEY in c) lang = c[LANG_KEY] === "en" ? "en" : "he";
