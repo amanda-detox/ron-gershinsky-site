@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T04:32:07+02:00",
+ "updated": "2026-11-04T05:15:04+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-metadao-scrappy-app-builders-fund",
+   "topic": "solana",
+   "date": "2026-11-04T02:42:39Z",
+   "url": "https://x.com/solana/status/2117809723772649974",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: MetaDAO משקיעה 50–100 אלף דולר בבוני אפליקציות",
+    "summary": "חשבון סולאנה מפרסם ש־MetaDAO תומכת בבוני אפליקציות זריזים: השקעה של 50 עד 100 אלף דולר, תקציב פרסום, מנטורים ותמיכה בעיצוב."
+   },
+   "en": {
+    "title": "Solana: MetaDAO backs scrappy app builders with $50K–$100K",
+    "summary": "Solana highlights MetaDAO's offer to scrappy app builders: $50K–$100K in investment plus ad spend, mentors and design support to help them scale."
+   },
+   "full_he": "„50 עד 100 אלף דולר + תקציב פרסום + מנטורים + תמיכה בעיצוב\n\n‏@MetaDAOProject תומכת בבוני אפליקציות זריזים כדי לעזור להם לגדול”\n\nהפוסט שהוא ציטט (Mitchell, ‏@mitchellsniffle):\n\n„אנחנו משקיעים 50 עד 100 אלף דולר בבוני אפליקציות זריזים.\n\nובנוסף:\n• 5,000 דולר בחודש לתקציב פרסום\n• מנטורינג מ־‎@kyanbuilds, ‏@saidoesthings ו־‎@MaxHirsch13\n• עבודת עיצוב מעולה מ־‎@0xGala (עשר שנים באפליקציות צרכניות)\n\nאם אתה זריז ורוצה להגיע לעשרות אלפי משתמשים, שלח לי הודעה פרטית.”\n\nבשרשור אין תגובות נוספות של חשבון סולאנה.",
+   "full_en": "\"$50k–$100k + ad spend + mentors + design support\n\n@MetaDAOProject is backing scrappy app builders to help scale\"\n\nThe quoted post (Mitchell, @mitchellsniffle):\n\n\"We're investing $50k-$100k into scrappy app builders.\n\nPlus:\n• $5k/mo in ad spend\n• Mentorship from @kyanbuilds, @saidoesthings and @MaxHirsch13\n• Elite design work from @0xGala (10 yrs in consumer apps)\n\nIf you're scrappy and want to get to tens of thousands of users.. DM me\"\n\nThere are no further replies from Solana in the thread."
+  },
   {
    "id": "mccullough-marathon-death-subclinical-myopericarditis",
    "topic": "mccullough",
