@@ -15,10 +15,10 @@ const damp = (k, dt) => 1 - Math.exp(-k * dt);
 const T = {
   he: {
     title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
-    start: 'לטס פליי', install: '📲 התקנה למסך הבית', checkUpd: 'בדיקת עדכון', updBusy: 'מעדכן…', updOk: 'הגרסה מעודכנת', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
+    start: 'לטס פליי', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
     helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. הכפתור העגול במרכז מחליף את השובל. אוספים ניצוצות ועוברים בטבעות הזהובות.',
-    exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה', exhaustNone: 'בלי שובל',
+    exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה',
     helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C: האצה, צילום, יום / לילה. גרירה בעכבר לפנייה (רגישות בתפריט). Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     tools: ['האצה', 'מגן', 'מגנט', 'האטת זמן', 'סלטה', 'נחיתה והליכה', 'שובל אור – נקודות כפולות', 'חבר למסע', 'מצב צילום', 'מוזיקה', 'צבע השובל', 'יום / לילה'],
     rings: ['כוחות', 'תעופה', 'אווירה'], on: 'פועל', off: 'כבוי', day: 'יום', night: 'לילה', saved: 'התמונה נשמרה',
@@ -32,15 +32,15 @@ const T = {
     ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
-    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת', 'אנטארקטיקה', 'למוריה', 'אטלנטיס', 'אזור 51', 'כדור הארץ הפנימי'],
+    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
     cams: ['מאחורי הדמות', 'מבעד לעיניים', 'מהצד']
   },
   en: {
     title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
-    start: 'Take off ✨', install: '📲 Install to home screen', checkUpd: 'Check for update', updBusy: 'Updating…', updOk: 'Already up to date', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
+    start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
     helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. The round button in the center switches the trail. Collect sparks and fly through the golden rings.',
-    exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora', exhaustNone: 'No trail',
+    exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora',
     helpDesk: 'Arrows or WASD: turn, climb and dive. Space up, Shift down, 1/2/3 or F for speed. Z X C: boost, photo, day / night. Drag the mouse to steer (sensitivity in the menu). Esc for the menu. Collect sparks and fly through the golden rings.',
     tools: ['Speed boost', 'Shield', 'Magnet', 'Slow time', 'Roll', 'Land & walk', 'Light trail – double points', 'Companion', 'Photo mode', 'Music', 'Trail color', 'Day / night'],
     rings: ['Powers', 'Flight', 'Atmosphere'], on: 'On', off: 'Off', day: 'Day', night: 'Night', saved: 'Photo saved',
@@ -54,12 +54,12 @@ const T = {
     ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
-    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization', 'Antarctica', 'Lemuria', 'Atlantis', 'Area 51', 'Inner Earth'],
+    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
     cams: ['Behind the character', 'Through its eyes', 'Side view']
   }
 };
 const CHAR_EMOJI = ['🧑', '👩', '👦', '👧', '🐱', '🤖', '🧑‍🚀', '🦸', '🧙', '🐋', '🦅'];
-const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien', 'antarctica', 'lemuria', 'atlantisrise', 'area51', 'hollow'];
+const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien'];
 const CAM_IDS = ['third', 'first', 'side'];
 
 let lang = store.get('rg-lang', 'he') === 'en' ? 'en' : 'he';
@@ -218,7 +218,7 @@ function robot() {
   const pose = new THREE.Group(); pose.rotation.x = -Math.PI / 2 * 0.9; pose.add(st);
   const root = new THREE.Group(); root.add(pose);
   root.userData = {
-    eye: new THREE.Vector3(0, 0.2, -0.8), size: 1, camDist: 4.4, stand: true, exhaust, flames, nozzle: { flame: flameM, core: coreM },
+    eye: new THREE.Vector3(0, 0.2, -0.8), size: 1, camDist: 4.4, stand: true, exhaust, nozzle: { flame: flameM, core: coreM },
     anim(t, s) { const k = 0.88 + Math.sin(t * 20) * 0.06 + s * 0.35; flames.forEach((f, i) => f.scale.set(1, k + (i & 1) * 0.04, 1)); bulb.material.emissiveIntensity = 0.8 + Math.sin(t * 5) * 0.6; pose.position.y = Math.sin(t * 2) * 0.06; }
   };
   return root;
@@ -290,7 +290,7 @@ function astronaut() {
   const pose = new THREE.Group(); pose.rotation.x = -Math.PI / 2 * 0.9; pose.add(st);
   const root = new THREE.Group(); root.add(pose);
   root.userData = {
-    eye: new THREE.Vector3(0, 0.2, -0.85), size: 1, camDist: 4.4, stand: true, exhaust, flames, nozzle: { flame: flameM, core: coreM },
+    eye: new THREE.Vector3(0, 0.2, -0.85), size: 1, camDist: 4.4, stand: true, exhaust, nozzle: { flame: flameM, core: coreM },
     anim(t, s) {
       const k = 0.9 + Math.sin(t * 20) * 0.07 + s * 0.4;
       flames.forEach((f, i) => f.scale.set(1, k + (i & 1) * 0.04, 1));
@@ -858,147 +858,6 @@ const ENVS = {
           u.trail.geometry.attributes.position.needsUpdate = true;
         }
       } };
-  },
-  antarctica() {
-    const g = new THREE.Group();
-    const ice = M(0xe7f4ff), deep = M(0xb7d4ee), rock = M(0x8aa0bc);
-    const shelf = new THREE.Mesh(new THREE.CircleGeometry(1500, 40), ice); shelf.rotation.x = -Math.PI / 2; g.add(shelf);
-    const peaks = [];
-    const berg = new THREE.ConeGeometry(1, 1, 5), bergM = new THREE.InstancedMesh(berg, deep, 42), mm = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
-    for (let i = 0; i < 42; i++) {
-      const a = Math.random() * Math.PI * 2, d = rand(40, 520), h = rand(8, 28), r = h * rand(0.7, 1.3);
-      sc.set(r, h, r); mm.compose(new THREE.Vector3(Math.cos(a) * d, h * 0.35, Math.sin(a) * d), q, sc); bergM.setMatrixAt(i, mm);
-    }
-    g.add(bergM);
-    const front = cone(12, 20, ice, 6); front.position.set(8, 7, -14); g.add(front);
-    for (let i = 0; i < 8; i++) {
-      const a = i / 8 * Math.PI * 2, d = rand(160, 420), h = rand(40, 90), r = h * 0.7;
-      const gl = cone(r, h, i % 2 ? ice : rock, 6); gl.position.set(Math.cos(a) * d, h * 0.35, Math.sin(a) * d); g.add(gl);
-      peaks.push([gl.position.x, gl.position.z, h * 0.7, r]);
-    }
-    const arcM = (c) => new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.34, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
-    const aur = [];
-    [[0x5dffc0, 90, 48], [0x7af0ff, 130, 62], [0xb9a6ff, 70, 78]].forEach(([c, r, y], i) => {
-      const a = new THREE.Mesh(new THREE.TorusGeometry(r, 7, 6, 40, Math.PI * 1.15), arcM(c));
-      a.position.y = y; a.rotation.x = 1.1 + i * 0.15; a.rotation.z = i * 0.8; g.add(a); aur.push(a);
-    });
-    const snowP = localParticles(420, 55, 0.4, 0xffffff, 0.85); g.add(snowP);
-    const heightAt = (x, z) => { let h = 0; for (const p of peaks) { const d = Math.hypot(x - p[0], z - p[1]); if (d < p[3]) h = Math.max(h, p[2] * (1 - d / p[3])); } return h; };
-    return { g, sky: [0x071833, 0x16325c, 0xc5e4f5], fog: [0xd5e8f6, 80, 780], hemi: [0xeaf6ff, 0x6d88a8, 1.15], sun: [0xfff6e0, 1.3, [0.2, 0.7, -0.4]],
-      start: new THREE.Vector3(0, 28, 30), minY: 2, maxY: 260, R: 520, heightAt, spark: 0xffe7a3,
-      update(t, dt, p) { updateLocal(snowP, p, -3, dt, t, 1.2); aur.forEach((a, i) => { a.material.opacity = 0.22 + Math.sin(t * 0.6 + i) * 0.1; }); } };
-  },
-  lemuria() {
-    const g = new THREE.Group();
-    const sea = new THREE.Mesh(new THREE.CircleGeometry(1500, 36), M(0x1a8f96)); sea.rotation.x = -Math.PI / 2; sea.position.y = -1; g.add(sea);
-    const sand = M(0xf0e2b0), leaf = M(0x3d9a62), trunk = M(0xc4a06a), stone = M(0xe7eef8), crystal = E(0x8ef6ff, 1.3), gold = E(0xf3cf6b, 1.1);
-    const isle = (x, z, r) => {
-      const base = cyl(r, r * 1.15, 4, sand, 8); base.position.set(x, 1, z); g.add(base);
-      const top = cyl(r * 0.92, r * 0.92, 1.2, leaf, 8); top.position.set(x, 3.4, z); g.add(top);
-      for (let i = 0; i < 4; i++) {
-        const a = i / 4 * Math.PI * 2 + 0.4, px = x + Math.cos(a) * r * 0.45, pz = z + Math.sin(a) * r * 0.45;
-        const tr = cyl(0.35, 0.5, 6, trunk, 5); tr.position.set(px, 6, pz); g.add(tr);
-        const fr = cone(2.2, 3.2, leaf, 6); fr.position.set(px, 9.2, pz); g.add(fr);
-      }
-    };
-    isle(0, -18, 26);
-    for (let i = 0; i < 5; i++) { const a = i / 5 * Math.PI * 2, d = rand(120, 280); isle(Math.cos(a) * d, Math.sin(a) * d, rand(12, 20)); }
-    const temples = [];
-    for (let i = 0; i < 5; i++) {
-      const a = i / 5 * Math.PI * 2 + 0.5, d = rand(70, 240), t = new THREE.Group();
-      t.position.set(Math.cos(a) * d, 6, Math.sin(a) * d);
-      const plinth = box(10, 2, 10, stone); plinth.position.y = 1; t.add(plinth);
-      const shard = new THREE.Mesh(new THREE.OctahedronGeometry(3.2, 0), crystal); shard.position.y = 6; t.add(shard);
-      const ring = new THREE.Mesh(new THREE.TorusGeometry(4.2, 0.25, 6, 20), gold); ring.rotation.x = Math.PI / 2; ring.position.y = 6; t.add(ring);
-      t.userData = { y: t.position.y, ph: i }; g.add(t); temples.push(t);
-    }
-    const mist = localParticles(280, 48, 0.55, 0xd8fff6, 0.55); g.add(mist);
-    return { g, sky: [0x7ec8e8, 0xfff4d2, 0x1a8f96], fog: [0xc8efe8, 90, 700], hemi: [0xfff6e0, 0x2a7a6a, 1.25], sun: [0xfff6e0, 1.5, [0.4, 1, 0.2]],
-      start: new THREE.Vector3(0, 18, 24), minY: 1, maxY: 220, R: 460, spark: 0xf3cf6b,
-      update(t, dt, p) { updateLocal(mist, p, 0.4, dt, t, 1); temples.forEach((o) => { o.position.y = o.userData.y + Math.sin(t * 0.8 + o.userData.ph) * 1.2; o.rotation.y += dt * 0.2; }); } };
-  },
-  atlantisrise() {
-    const g = new THREE.Group();
-    const bed = new THREE.Mesh(new THREE.CircleGeometry(1400, 36), M(0x0c4f78)); bed.rotation.x = -Math.PI / 2; bed.position.y = -2; g.add(bed);
-    const stone = M(0xd5e4f8), gold = E(0xf3cf6b, 1.15), glow = new THREE.MeshBasicMaterial({ color: 0x6fe3ff, transparent: true, opacity: 0.75 });
-    for (const rad of [36, 78, 128]) {
-      const canal = new THREE.Mesh(new THREE.TorusGeometry(rad, 5.5, 8, 40), M(0x14688f)); canal.rotation.x = Math.PI / 2; canal.position.y = 0.4; g.add(canal);
-      const lip = new THREE.Mesh(new THREE.TorusGeometry(rad, 0.55, 6, 40), glow); lip.rotation.x = Math.PI / 2; lip.position.y = 3.2; g.add(lip);
-    }
-    const domes = [];
-    const addDome = (x, z, s, y0) => {
-      const d = new THREE.Mesh(new THREE.SphereGeometry(8, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), stone); d.scale.setScalar(s); d.position.set(x, y0, z); g.add(d);
-      const band = new THREE.Mesh(new THREE.TorusGeometry(7.2 * s, 0.28 * s, 6, 24), gold); band.rotation.x = Math.PI / 2; band.position.set(x, y0 + 3 * s, z); g.add(band);
-      d.userData = { y0, ph: x * 0.01 }; domes.push(d);
-    };
-    addDome(0, 0, 2.1, 4);
-    for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2; addDome(Math.cos(a) * 78, Math.sin(a) * 78, rand(0.8, 1.3), rand(2, 8)); }
-    for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2 + 0.3; addDome(Math.cos(a) * 128, Math.sin(a) * 128, rand(0.6, 1.1), rand(1, 6)); }
-    const spire = cyl(2.2, 3, 28, stone, 8); spire.position.y = 22; g.add(spire);
-    const cap = ball(3.2, gold, 1); cap.position.y = 38; g.add(cap);
-    const rays = [];
-    const rayM = new THREE.MeshBasicMaterial({ color: 0xbfe8ff, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
-    for (let i = 0; i < 8; i++) { const r = new THREE.Mesh(new THREE.CylinderGeometry(2, 10, 90, 8, 1, true), rayM); r.position.set(Math.cos(i) * 40, 40, Math.sin(i) * 40); g.add(r); rays.push(r); }
-    const bubbles = localParticles(220, 42, 0.65, 0xdff6ff, 0.75); g.add(bubbles);
-    return { g, sky: [0x06345c, 0x0a6ea8, 0x042033], fog: [0x0c5f92, 18, 280], hemi: [0x9fe0ff, 0x0a3050, 1.05], sun: [0xd8f4ff, 0.9, [0.1, 1, 0.2]],
-      start: new THREE.Vector3(0, 22, 48), minY: 1, maxY: 160, R: 420, spark: 0xffe7a3,
-      update(t, dt, p) { updateLocal(bubbles, p, 4, dt, t, 1); domes.forEach((d) => { d.position.y = d.userData.y0 + Math.sin(t * 0.5 + d.userData.ph) * 1.4; }); rayM.opacity = 0.05 + Math.sin(t * 0.8) * 0.02; } };
-  },
-  area51() {
-    const g = new THREE.Group();
-    const sand = new THREE.Mesh(new THREE.CircleGeometry(1500, 36), M(0xd8c48a)); sand.rotation.x = -Math.PI / 2; g.add(sand);
-    const runway = box(18, 0.25, 240, M(0x3c4450)); runway.position.set(0, 0.2, 20); g.add(runway);
-    const stripe = box(1.1, 0.08, 200, M(0xf3cf6b)); stripe.position.set(0, 0.4, 20); g.add(stripe);
-    const wall = M(0x8d97a6), roof = M(0x5c6672), door = M(0x2c3442);
-    const hangar = (x, z, rot) => {
-      const h = new THREE.Group();
-      const body = box(26, 11, 16, wall); body.position.y = 5.5; h.add(body);
-      const rf = box(28, 2.4, 18, roof); rf.position.y = 12; h.add(rf);
-      const dr = box(9, 8, 0.4, door); dr.position.set(0, 4, 8.2); h.add(dr);
-      h.position.set(x, 0, z); h.rotation.y = rot; g.add(h);
-    };
-    hangar(-40, 10, 0); hangar(40, 10, 0); hangar(-40, -40, 0); hangar(40, -40, 0); hangar(-70, 50, 0.4); hangar(70, 70, -0.3);
-    const hillGeo = new THREE.ConeGeometry(1, 1, 6), hills = new THREE.InstancedMesh(hillGeo, M(0xc4b07a), 16), mm = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
-    for (let i = 0; i < 16; i++) {
-      const a = Math.random() * Math.PI * 2, d = rand(220, 520), h = rand(30, 70);
-      sc.set(h * 0.8, h, h * 0.8); mm.compose(new THREE.Vector3(Math.cos(a) * d, h * 0.4, Math.sin(a) * d), q, sc); hills.setMatrixAt(i, mm);
-    }
-    g.add(hills);
-    const ufos = [];
-    const hull = M(0xd5deee, { metalness: 0.55, roughness: 0.35 });
-    for (let i = 0; i < 7; i++) {
-      const u = new THREE.Group();
-      const disc = cyl(5.5, 5.5, 0.7, hull, 16); u.add(disc);
-      const cab = new THREE.Mesh(new THREE.SphereGeometry(1.8, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x9fe8ff, emissive: 0x2a8fbf, emissiveIntensity: 0.5, transparent: true, opacity: 0.8 }));
-      cab.position.y = 0.35; u.add(cab);
-      const lamp = glowSprite(i % 2 ? 0xf3cf6b : 0x7ee8ff, 9, 0.65); lamp.position.y = -1.1; u.add(lamp);
-      u.userData = { a: Math.random() * 6, r: rand(30, 150), h: rand(16, 64), w: rand(0.12, 0.35) * (Math.random() < 0.5 ? -1 : 1), cx: rand(-30, 30), cz: rand(-20, 40) };
-      g.add(u); ufos.push(u);
-    }
-    ufos[0].userData.r = 0; ufos[0].userData.cx = 14; ufos[0].userData.cz = 6; ufos[0].userData.h = 20;
-    return { g, sky: [0x8eb4d8, 0xf2e2b8, 0xc4a86a], fog: [0xe6d3a4, 120, 900], hemi: [0xfff4dd, 0xa89060, 1.3], sun: [0xfff6e0, 1.6, [0.5, 0.9, 0.2]],
-      start: new THREE.Vector3(0, 18, 36), minY: 1, maxY: 220, R: 500, spark: 0xf3cf6b,
-      update(t, dt) { for (const u of ufos) { const d = u.userData; d.a += d.w * dt; u.position.set(d.cx + Math.cos(d.a) * d.r, d.h + Math.sin(t * 0.7 + d.r) * 2, d.cz + Math.sin(d.a) * d.r); u.rotation.y += dt * 0.4; } } };
-  },
-  hollow() {
-    const g = new THREE.Group();
-    const R = 420;
-    const crust = new THREE.Mesh(new THREE.SphereGeometry(R, 28, 18, 0, Math.PI * 2, 0.4, Math.PI - 0.8), M(0x1a4e86, { side: THREE.BackSide, roughness: 0.85 }));
-    g.add(crust);
-    const land = M(0x3c9a62), land2 = M(0x2f7a68);
-    for (let i = 0; i < 16; i++) {
-      const phi = rand(0.7, Math.PI - 0.7), th = rand(0, Math.PI * 2);
-      const p = new THREE.Vector3().setFromSphericalCoords(R - 4, phi, th);
-      const c = new THREE.Mesh(new THREE.SphereGeometry(rand(26, 52), 8, 6), i % 2 ? land : land2);
-      c.position.copy(p); c.lookAt(0, 0, 0); c.scale.z = 0.22; g.add(c);
-    }
-    const sun = ball(16, new THREE.MeshBasicMaterial({ color: 0xffe7a3 }), 2); g.add(sun);
-    const glow = glowSprite(0xffe7a3, 90, 0.85); g.add(glow);
-    const motes = points(500, () => { const v = new THREE.Vector3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).setLength(rand(40, 300)); return [v.x, v.y, v.z]; }, 1.4, { color: 0xfff6d0, opacity: 0.7 });
-    g.add(motes);
-    return { g, sky: [0x071428, 0x123056, 0x071428], fog: [0x123056, 80, 520], hemi: [0xfff0c8, 0x1a4e86, 1.05], sun: [0xffe7a3, 1.4, [0.2, 1, 0.1]],
-      start: new THREE.Vector3(0, 30, 110), minY: -300, maxY: 300, R: 340, spark: 0xffe7a3, avoid: [[0, 0, 0, 22]],
-      update(t) { sun.rotation.y = t * 0.1; glow.material.rotation = t * 0.2; } };
   }
 };
 
@@ -1011,7 +870,7 @@ function disposeTree(o) {
 }
 
 /* ================= player ================= */
-const player = { pos: new THREE.Vector3(), yaw: 0, pitch: 0, pitchRate: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
+const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
 const MULS = [0.1618, 0.2, 0.4, 1, 1.3, 1.7, 1.9, 2.19, 4, 9, 15];
 let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
@@ -1039,8 +898,7 @@ for (let i = 0; i < NR; i++) {
   r.add(new THREE.Mesh(ringInner, new THREE.MeshBasicMaterial({ color: 0xffe7a3, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending })));
   r.userData = { flash: 0 }; scene.add(r); rings.push(r);
 }
-const fwd = new THREE.Vector3(), right = new THREE.Vector3(), flyDir = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
-const PITCH_MAX = Math.PI * 0.5 * 0.96; // ~86°, almost vertical, at any speed
+const fwd = new THREE.Vector3(), right = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
 function heading() { fwd.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw)); right.set(Math.cos(player.yaw), 0, -Math.sin(player.yaw)); }
 function floorAt(x, z) { return env.heightAt ? env.heightAt(x, z) + env.minY : env.minY; }
 function placeAhead(v, near, far, spread, ring) {
@@ -1253,24 +1111,12 @@ function updateFx(t, dt, playing) {
   }
 }
 
-/* v18: continuous exhaust. A strip along the nozzle path, narrow at the jet and fading at the tail. */
-const EXHAUSTS = ['ribbon', 'aurora', 'none'];
-const AURORA_PAL = [[0.15, 0.95, 0.38], [0.12, 0.82, 1], [0.52, 0.32, 1], [0.92, 0.42, 0.9]];
-const RIBBON_COLS = [[0.05, 0.2, 1], [0.12, 0.38, 1], [0.55, 0.72, 0.95], [1, 0.9, 0.18], [1, 0.74, 0.08]];
-const aurTmp = [0, 0, 0];
-let exhaustStyle = EXHAUSTS.indexOf(store.get('rg-fly-exhaust', 'ribbon')) >= 0 ? store.get('rg-fly-exhaust', 'ribbon') : 'ribbon';
-function aurAt(u, out) {
-  const x = ((u % 1) + 1) % 1 * AURORA_PAL.length, i = Math.floor(x) % AURORA_PAL.length, f = x - Math.floor(x);
-  const a = AURORA_PAL[i], b = AURORA_PAL[(i + 1) % AURORA_PAL.length];
-  out[0] = a[0] + (b[0] - a[0]) * f; out[1] = a[1] + (b[1] - a[1]) * f; out[2] = a[2] + (b[2] - a[2]) * f;
-  return out;
-}
+/* v17: continuous exhaust. A strip mesh through recent positions, so the trail stays solid at any speed or frame rate. */
+let exhaustStyle = store.get('rg-fly-exhaust', 'ribbon') === 'aurora' ? 'aurora' : 'ribbon';
 function paintNozzle() {
-  const off = exhaustStyle === 'none';
   for (const obj of [player.model, buddy]) {
-    const u = obj && obj.userData; if (!u) continue;
-    if (u.flames) for (const f of u.flames) f.visible = !off;
-    const n = u.nozzle; if (!n) continue;
+    const n = obj && obj.userData.nozzle;
+    if (!n) continue;
     if (exhaustStyle === 'aurora') {
       n.flame.color.setHex(0x3dffc0); n.flame.emissive.setHex(0x2ee6b0); n.core.color.setHex(0xd8fff6);
     } else {
@@ -1279,23 +1125,21 @@ function paintNozzle() {
   }
 }
 function applyExhaustStyle(style, persist) {
-  exhaustStyle = EXHAUSTS.indexOf(style) >= 0 ? style : 'ribbon';
+  exhaustStyle = style === 'aurora' ? 'aurora' : 'ribbon';
   if (persist) store.set('rg-fly-exhaust', exhaustStyle);
   const b = $('exhaustToggle');
   if (b) {
-    b.classList.remove('ribbon', 'aurora', 'none'); b.classList.add(exhaustStyle);
+    const aurora = exhaustStyle === 'aurora';
+    b.classList.toggle('aurora', aurora); b.classList.toggle('ribbon', !aurora);
     b.dataset.style = exhaustStyle;
-    const key = exhaustStyle === 'aurora' ? 'exhaustAurora' : exhaustStyle === 'none' ? 'exhaustNone' : 'exhaustRibbon';
-    b.setAttribute('aria-label', T[lang][key]);
+    b.setAttribute('aria-label', T[lang][aurora ? 'exhaustAurora' : 'exhaustRibbon']);
   }
-  if (exhaustStyle === 'none') clearRibbon();
   paintNozzle();
 }
 function cycleExhaust() {
-  const next = EXHAUSTS[(EXHAUSTS.indexOf(exhaustStyle) + 1) % EXHAUSTS.length];
+  const next = exhaustStyle === 'aurora' ? 'ribbon' : 'aurora';
   applyExhaustStyle(next, true);
-  const key = next === 'aurora' ? 'exhaustAurora' : next === 'none' ? 'exhaustNone' : 'exhaustRibbon';
-  flash(T[lang][key]);
+  flash((next === 'aurora' ? '∿ ' : '✧ ') + T[lang][next === 'aurora' ? 'exhaustAurora' : 'exhaustRibbon']);
 }
 const RN = 64, RVERTS = 5, ROFF = [-1, -0.5, 0, 0.5, 1];
 const rCenters = new Float32Array(RN * 3);
@@ -1316,7 +1160,7 @@ ribbonGeo.setIndex(new THREE.BufferAttribute(rIdx, 1)); ribbonGeo.setDrawRange(0
 const ribbonMat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false });
 const ribbonMesh = new THREE.Mesh(ribbonGeo, ribbonMat);
 ribbonMesh.frustumCulled = false; ribbonMesh.visible = false; ribbonMesh.renderOrder = 3; scene.add(ribbonMesh);
-const exP = new THREE.Vector3(), exDir = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
+const exP = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
 const rDir = new THREE.Vector3(), rSide = new THREE.Vector3(), rSpan = new THREE.Vector3(), rWave = new THREE.Vector3();
 const rRight = new THREE.Vector3(), rCamUp = new THREE.Vector3(), rCamFwd = new THREE.Vector3(), rUp = new THREE.Vector3(0, 1, 0);
 function ribbonReset(x, y, z) { rCenters[0] = x; rCenters[1] = y; rCenters[2] = z; rHead = 0; rCount = 1; }
@@ -1342,11 +1186,10 @@ function putVert(vi, x, y, z, r, g, b, a) {
 }
 function updateRibbon(t, dt, playing) {
   const m = player.model; if (!m) return;
-  if (exhaustStyle === 'none') { ribbonMesh.visible = false; return; }
   m.updateMatrixWorld(true);
   const u = m.userData, sz = u.size || 1;
-  if (u.exhaust) { u.exhaust.getWorldPosition(exP); exDir.set(0, -1, 0).transformDirection(u.exhaust.matrixWorld); }
-  else { heading(); exP.copy(m.position).addScaledVector(fwd, -1.05 * sz); exDir.copy(fwd).multiplyScalar(-1); }
+  if (u.exhaust) u.exhaust.getWorldPosition(exP);
+  else { heading(); exP.copy(m.position).addScaledVector(fwd, -1.05 * sz); }
   const extend = playing && player.mode === 'fly';
   if (extend) ribbonPush(exP.x, exP.y, exP.z);
   if (extend) ribbonFade = Math.min(1, ribbonFade + dt * 5);
@@ -1374,34 +1217,46 @@ function updateRibbon(t, dt, playing) {
     rA.set(rCenters[op], rCenters[op + 1], rCenters[op + 2]);
     rC.set(rCenters[on], rCenters[on + 1], rCenters[on + 2]);
     rDir.subVectors(rC, rA);
-    if (rDir.lengthSq() < 1e-6) rDir.copy(exDir).negate(); else rDir.normalize();
+    if (rDir.lengthSq() < 1e-8) rDir.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw)); else rDir.normalize();
     const along = k / (rCount - 1);
-    const fromNose = 1 - along;
-    const grow = Math.min(1, fromNose / 0.14); // point at the jet, opens just behind it
-    const fade = Math.pow(along, aurora ? 0.42 : 0.72) * ribbonFade;
+    const fade = Math.pow(along, 0.6) * ribbonFade;
     let axis = rSide;
     if (aurora) {
-      const wob = Math.sin(t * 1.2 + k * 0.55) * 0.07 * sz * Math.sin(along * Math.PI);
-      rWave.crossVectors(rDir, rUp);
-      if (rWave.lengthSq() < 1e-6) rWave.copy(rRight); else rWave.normalize();
-      rB.addScaledVector(rWave, wob);
-      rSpan.copy(rUp);
+      const envAmp = Math.sin(along * Math.PI);
+      rWave.copy(rRight); rWave.y = 0;
+      if (rWave.lengthSq() < 1e-4) rWave.crossVectors(rDir, rUp);
+      if (rWave.lengthSq() > 1e-8) rWave.normalize();
+      const sway = Math.sin(t * 1.05 + k * 0.62) * 0.9 * sz * envAmp;
+      const lift = Math.sin(t * 1.35 + k * 0.75) * 0.55 * sz * envAmp;
+      rB.x += rWave.x * sway; rB.z += rWave.z * sway; rB.y += lift * 0.45;
+      rSpan.copy(rUp).multiplyScalar(0.92 + 0.28 * Math.sin(t * 1.4 + k * 0.8)).addScaledVector(rRight, 0.28);
       const d = rSpan.dot(rDir); rSpan.addScaledVector(rDir, -d);
-      if (rSpan.lengthSq() < 1e-6) rSpan.copy(rCamUp); else rSpan.normalize();
+      if (rSpan.lengthSq() < 1e-6) rSpan.copy(rUp); else rSpan.normalize();
       axis = rSpan;
     } else {
-      rSide.copy(rUp);
-      const rd = rSide.dot(rDir); rSide.addScaledVector(rDir, -rd);
+      rSide.crossVectors(rDir, rCamFwd);
       if (rSide.lengthSq() < 1e-6) rSide.copy(rCamUp); else rSide.normalize();
     }
     if (have && axis.x * psx + axis.y * psy + axis.z * psz < 0) axis.negate();
     psx = axis.x; psy = axis.y; psz = axis.z; have = true;
-    const base = (aurora ? 0.035 + 0.2 * grow : 0.012 + 0.15 * grow) * (1 - fromNose * 0.2) * sz * punch;
-    const colU = fromNose * 3.1 + t * 0.12;
-    const aScale = Math.min(1, (aurora ? 0.38 : 0.78) * (punch > 1 ? 1.1 : 1));
+    const base = (aurora ? 0.55 + 1.15 * Math.sin(along * Math.PI) : 0.16 + 0.3 * along) * sz * punch;
+    const shift = 0.5 + 0.5 * Math.sin(t * 0.55 + k * 0.2);
+    const cols = aurora ? [
+      [0.02, 1, 0.22],
+      [0.04, 1, 0.4 + 0.1 * shift],
+      [0.06, 0.95, 0.72],
+      [0.05, 0.72, 1],
+      [0.03, 0.42, 1]
+    ] : [
+      [0.04, 0.18, 1],
+      [0.08, 0.32, 1],
+      [0.55, 0.7, 0.9],
+      [1, 0.92, 0.12],
+      [1, 0.78, 0.02]
+    ];
+    const aScale = Math.min(1, (aurora ? 0.58 : 0.82) * (punch > 1 ? 1.12 : 1));
     for (let v = 0; v < 5; v++) {
-      const col = aurora ? aurAt(colU + (v - 2) * 0.05, aurTmp) : RIBBON_COLS[v];
-      const w = ROFF[v] * base;
+      const w = ROFF[v] * base, col = cols[v];
       putVert(k * 5 + v, rB.x + axis.x * w, rB.y + axis.y * w, rB.z + axis.z * w, col[0], col[1], col[2], edge[v] * fade * aScale);
     }
   }
@@ -1410,7 +1265,7 @@ function updateRibbon(t, dt, playing) {
 }
 
 /* ---- land & walk ---- */
-const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1, antarctica: 1, lemuria: 1, atlantisrise: 1, area51: 1 }; // worlds with a surface; in open space you stop and hover
+const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1 }; // worlds with a surface; in open space you stop and hover
 function toggleLand() {
   const L = T[lang];
   if (player.mode === 'fly') {
@@ -1465,7 +1320,7 @@ function applyLighting() {
 
 /* ---- music: soft generated tunes per world (Web Audio, no files), off by default ---- */
 let musicOn = false, actx = null, mOut = null, mTimer = 0, mNext = 0, mStep = 0;
-const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68], antarctica: [60, 62, 67, 69, 72], lemuria: [60, 64, 67, 71, 74], atlantisrise: [55, 60, 64, 67, 72], area51: [58, 62, 65, 69, 70], hollow: [60, 64, 67, 72, 76] };
+const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68] };
 const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
 function tone(f, t0, dur, vol, type) {
   const o = actx.createOscillator(), g = actx.createGain();
@@ -1571,7 +1426,7 @@ function setEnv(i) {
   sunLight.position.set(...env.sun[2]);
   applyLighting();
   sparkMat.color.set(env.spark); sparkGlow.material.color.set(env.spark);
-  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
+  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
   resetCollectibles(); if (buddy) buildBuddy(); clearRibbon();
   snapCam = true;
   syncSelects();
@@ -1641,7 +1496,7 @@ function updatePlayer(dt) {
   const k = (a, b) => (keys[a] || keys[b] ? 1 : 0);
   const turn = clamp(input.jx + input.mx + k('ArrowRight', 'KeyD') - k('ArrowLeft', 'KeyA'), -1, 1);
   const climb = clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS') + (input.up || keys.Space ? 1 : 0) - (input.down || keys.ShiftLeft || keys.ShiftRight ? 1 : 0), -1, 1);
-  player.yawRate += (-turn * 2.2 - player.yawRate) * damp(8, dt); // angular rate, not tightened or slowed by speed
+  player.yawRate += (-turn * 1.5 - player.yawRate) * damp(5, dt);
   player.yaw += player.yawRate * dt;
   if (Math.hypot(player.pos.x, player.pos.z) > env.R) {
     let diff = Math.atan2(player.pos.x, player.pos.z) - player.yaw;
@@ -1652,7 +1507,6 @@ function updatePlayer(dt) {
   const fl = floorAt(player.pos.x, player.pos.z);
   if (player.mode === 'walk' || player.mode === 'landing') {
     // on foot: up/down on the joystick walks forward/back, left/right turns
-    player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
     const walk = player.mode === 'walk' ? clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS'), -1, 1) : 0;
     player.speed += ((player.mode === 'landing' ? 5 : walk * 6) - player.speed) * damp(4, dt);
     player.pos.addScaledVector(fwd, player.speed * dt);
@@ -1662,19 +1516,9 @@ function updatePlayer(dt) {
   } else {
     const hov = player.mode === 'hover';
     player.speed += ((hov ? 0 : SPEEDS[player.level] * speedMul * (powerOn('boost') ? 1.9 : 1)) - player.speed) * damp(powerOn('boost') || hov ? 4 : 2, dt);
-    if (hov) {
-      player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
-      player.vy += (climb * 8 - player.vy) * damp(4, dt);
-      player.pos.y += player.vy * dt;
-    } else {
-      // pitch the whole velocity, so climb stays steep even when speed is high
-      player.pitchRate += (climb * 2.6 - player.pitchRate) * damp(9, dt);
-      player.pitch = clamp(player.pitch + player.pitchRate * dt, -PITCH_MAX, PITCH_MAX);
-      const cp = Math.cos(player.pitch), sp = Math.sin(player.pitch);
-      flyDir.set(fwd.x * cp, sp, fwd.z * cp);
-      player.pos.addScaledVector(flyDir, player.speed * dt);
-      player.vy = player.speed * sp;
-    }
+    player.vy += (climb * (hov ? 6 : 11) - player.vy) * damp(4, dt);
+    player.pos.addScaledVector(fwd, player.speed * dt);
+    player.pos.y += player.vy * dt;
     if (player.pos.y < fl + 1.2) { player.pos.y += (fl + 1.2 - player.pos.y) * damp(8, dt); if (player.vy < 0) player.vy *= 0.5; }
   }
   if (player.pos.y > env.maxY) { player.pos.y = env.maxY; player.vy = Math.min(player.vy, 0); }
@@ -1691,7 +1535,7 @@ function placeModel(t, playing) {
   m.rotation.order = 'YXZ';
   m.rotation.y = player.yaw;
   const walking = player.mode === 'walk';
-  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? player.pitch : Math.sin(t * 0.8) * 0.05;
+  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? clamp(player.vy / 11, -1, 1) * 0.45 : Math.sin(t * 0.8) * 0.05;
   m.rotation.z = playing && !walking ? clamp(player.yawRate * 0.45, -0.6, 0.6) : 0;
   const rl = pw[TI.roll].left; // roll: one full barrel roll, eased
   if (rl > 0 && !walking) { const q = 1 - rl / TOOLS[TI.roll].dur; m.rotation.z += Math.PI * 2 * (q * q * (3 - 2 * q)); }
@@ -1701,14 +1545,6 @@ function placeModel(t, playing) {
 /* ================= camera ================= */
 let snapCam = true;
 const camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0), want = new THREE.Vector3(), look = new THREE.Vector3(), fpE = new THREE.Euler(), sideOff = new THREE.Vector3(), sideSm = new THREE.Vector3();
-const camOff = new THREE.Vector3(), lookOff = new THREE.Vector3();
-function chaseCam(off, lookO, dt, rate) {
-  if (snapCam) { camOff.copy(off); lookOff.copy(lookO); snapCam = false; }
-  else { const k = damp(rate, dt); camOff.lerp(off, k); lookOff.lerp(lookO, k); }
-  camera.position.copy(player.pos).add(camOff);
-  camLook.copy(player.pos).add(lookOff);
-  camera.lookAt(camLook); sky.position.copy(camera.position);
-}
 function updateCamera(t, dt, playing) {
   const m = player.model, u = m.userData, cam = CAM_IDS[camIdx];
   heading();
@@ -1725,14 +1561,13 @@ function updateCamera(t, dt, playing) {
     want.set(player.pos.x + Math.sin(a) * r, player.pos.y + r * 0.22, player.pos.z + Math.cos(a) * r);
     look.copy(player.pos); look.y -= 1.0 * u.size;
   } else if (player.mode === 'walk' && cam !== 'first') {
-    want.copy(fwd).multiplyScalar(-u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
-    look.copy(fwd).multiplyScalar(2.5).add(tmp.set(0, u.size * 0.5, 0));
-    chaseCam(want, look, dt, 6); return;
+    // on foot: a calm camera a little behind and above the head, never under the ground
+    want.copy(player.pos).addScaledVector(fwd, -u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
+    want.y = Math.max(want.y, floorAt(want.x, want.z) + 1.2);
+    look.copy(player.pos).addScaledVector(fwd, 2.5).add(tmp.set(0, u.size * 0.5, 0));
   } else if (cam === 'third') {
-    // fixed chase distance — offset follows the player, so speed cannot pull the camera back
-    want.set(-fwd.x * u.camDist, u.camDist * 0.32, -fwd.z * u.camDist);
-    look.set(fwd.x * 2.2, 0.35, fwd.z * 2.2);
-    chaseCam(want, look, dt, 8); return;
+    want.copy(player.pos).addScaledVector(fwd, -u.camDist).add(tmp.set(0, u.camDist * 0.35 - player.vy * 0.06, 0));
+    look.copy(player.pos).addScaledVector(fwd, 4).add(tmp.set(0, 0.6, 0));
   } else if (cam === 'first') {
     m.visible = false;
     m.updateMatrixWorld(); want.copy(u.eye).applyMatrix4(m.matrixWorld);
@@ -1822,7 +1657,7 @@ let resumable = false;
 function start() {
   stats.newGame(); $('pausePanel') && $('pausePanel').classList.add('hidden');
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
-  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
+  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); clearRibbon(); showHud(); resumable = true; if (buddyOn) buildBuddy();
   stats.daily();
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
@@ -1838,11 +1673,11 @@ function toMenu() {
 $('startBtn').addEventListener('click', () => { if (resumable) { state = 'play'; showHud(); } else start(); if (musicOn && !mTimer) setMusic(true); });
 $('pauseBtn').addEventListener('click', openPause);
 /* v16: pause overlay with 6 options */
-const PZ = { he: { t: 'הפסקה', res: '▶️ המשך', spd: '⏩ מהירות', snd: '🔊 קול', on: 'פועל', off: 'כבוי', lb: '🏆 טבלת שיאים', upd: 'בדיקת עדכון', rs: '🔄 התחלה מחדש', home: '🏠 למסך הראשי' },
-  en: { t: 'Paused', res: '▶️ Resume', spd: '⏩ Speed', snd: '🔊 Sound', on: 'on', off: 'off', lb: '🏆 Leaderboard', upd: 'Check for update', rs: '🔄 Restart', home: '🏠 Main menu' } };
+const PZ = { he: { t: 'הפסקה', res: '▶️ המשך', spd: '⏩ מהירות', snd: '🔊 קול', on: 'פועל', off: 'כבוי', lb: '🏆 טבלת שיאים', rs: '🔄 התחלה מחדש', home: '🏠 למסך הראשי' },
+  en: { t: 'Paused', res: '▶️ Resume', spd: '⏩ Speed', snd: '🔊 Sound', on: 'on', off: 'off', lb: '🏆 Leaderboard', rs: '🔄 Restart', home: '🏠 Main menu' } };
 function pzRender() {
   const P = PZ[lang] || PZ.he;
-  $('pzTitle').textContent = P.t; $('pzRes').textContent = P.res; $('pzLb').textContent = P.lb; $('pzUpd').textContent = P.upd; $('pzRs').textContent = P.rs; $('pzHome').textContent = P.home;
+  $('pzTitle').textContent = P.t; $('pzRes').textContent = P.res; $('pzLb').textContent = P.lb; $('pzRs').textContent = P.rs; $('pzHome').textContent = P.home;
   $('pzSpdL').textContent = P.spd;
   $('pzSnd').textContent = (musicOn ? '🔊 ' : '🔇 ') + P.snd.slice(3) + ': ' + (musicOn ? P.on : P.off);
   $('pzSpd').innerHTML = MULS.map((m) => `<button type="button" class="pzm${m === speedMul ? ' on' : ''}" data-v="${m}">x${m}</button>`).join('');
@@ -1864,7 +1699,6 @@ $('pzRes').addEventListener('click', resumePause);
 $('pzSpd').addEventListener('click', (e) => { const b = e.target.closest('.pzm'); if (!b) return; speedMul = parseFloat(b.dataset.v); store.set('rg-fly-mul', String(speedMul)); $('mulSel2').value = String(speedMul); pzRender(); });
 $('pzSnd').addEventListener('click', () => { setMusic(!musicOn); if (actx && musicOn) actx.suspend(); updatePowerBtns(); pzRender(); });
 $('pzLb').addEventListener('click', () => { openLb(); });
-$('pzUpd').addEventListener('click', () => { checkForUpdate(); });
 $('pzRs').addEventListener('click', () => { closePause(); start(); if (musicOn && !mTimer) setMusic(true); else if (actx && musicOn) actx.resume(); });
 $('pzHome').addEventListener('click', () => { closePause(); state = 'play'; toMenu(); });
 document.addEventListener('visibilitychange', () => {
@@ -1875,79 +1709,20 @@ document.addEventListener('visibilitychange', () => {
 
 /* install (same pattern as the other apps: native prompt, otherwise short instructions) */
 const INST = {
-  he: {
-    android: '<ol><li>לחצו על <b>⋮</b> למעלה ב־Chrome.</li><li>בחרו <b>התקנת אפליקציה</b> או <b>הוספה למסך הבית</b>.</li></ol>',
-    ios: '<ol><li>ב־Safari לחצו על שיתוף <b>□↑</b>.</li><li>בחרו <b>הוסף למסך הבית</b>.</li></ol>',
-    desktop: '<ol><li>ב־Chrome או Edge: סמל ההתקנה בשורת הכתובת, או תפריט <b>⋮</b> ← <b>התקנה</b>.</li></ol>'
-  },
-  en: {
-    android: '<ol><li>Tap <b>⋮</b> at the top of Chrome.</li><li>Choose <b>Install app</b> or <b>Add to Home screen</b>.</li></ol>',
-    ios: '<ol><li>In Safari tap Share <b>□↑</b>.</li><li>Choose <b>Add to Home Screen</b>.</li></ol>',
-    desktop: '<ol><li>In Chrome or Edge: use the install icon in the address bar, or menu <b>⋮</b> → <b>Install</b>.</li></ol>'
-  }
+  he: { android: '<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.</li></ol>', ios: '<ol><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>', desktop: '<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>' },
+  en: { android: '<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.</li></ol>', ios: '<ol><li>In Safari tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>', desktop: '<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>' }
 };
-const isIOS = () => { const ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
-function instHint() { const k = isIOS() ? 'ios' : /Android/i.test(navigator.userAgent || '') ? 'android' : 'desktop'; return INST[lang][k]; }
-let instDeferred = window.__flyBip || null;
-const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: minimal-ui)').matches || navigator.standalone === true);
-function syncInstall() {
-  if (standalone()) { $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); }
-}
-syncInstall();
-if (matchMedia) { const mq = matchMedia('(display-mode: standalone)'); const on = () => syncInstall(); if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on); }
-addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; window.__flyBip = e; });
-addEventListener('appinstalled', () => { instDeferred = null; window.__flyBip = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
+function instHint() { const ua = navigator.userAgent; const k = /iPhone|iPad|iPod/.test(ua) ? 'ios' : /Android/i.test(ua) ? 'android' : 'desktop'; return INST[lang][k]; }
+let instDeferred = null;
+const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true);
+if (standalone()) $('installBtn').classList.add('hidden');
+addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; });
+addEventListener('appinstalled', () => { instDeferred = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
 $('installBtn').addEventListener('click', () => {
-  const d = instDeferred || window.__flyBip;
-  if (d) {
-    instDeferred = null; window.__flyBip = null;
-    try { const p = d.prompt(); if (p && p.then) p.then(() => {}, () => {}); return; } catch (e) {}
-  }
-  const h = $('installHint'); h.innerHTML = instHint(); h.classList.remove('hidden');
+  if (instDeferred) { const d = instDeferred; instDeferred = null; try { d.prompt(); return; } catch (e) {} }
+  const h = $('installHint'); h.innerHTML = instHint(); h.classList.toggle('hidden');
 });
-const FLY_VER = 'v25';
-let updTimer = 0;
-function updToast(text) {
-  const el = $('updToast'); if (!el) return;
-  el.textContent = text; el.classList.remove('hidden');
-  clearTimeout(updTimer); updTimer = setTimeout(() => el.classList.add('hidden'), 3000);
-}
-function waitInstalled(reg) {
-  const sw = reg.installing;
-  if (!sw) return Promise.resolve(reg.waiting);
-  return new Promise((resolve) => {
-    const done = () => resolve(reg.waiting || (sw.state === 'installed' ? sw : null));
-    if (sw.state === 'installed' || sw.state === 'activated') done();
-    else sw.addEventListener('statechange', () => { if (sw.state === 'installed' || sw.state === 'activated' || sw.state === 'redundant') done(); });
-    setTimeout(done, 2500);
-  });
-}
-async function checkForUpdate() {
-  const L = T[lang];
-  updToast(L.updBusy + ' · ' + FLY_VER);
-  try {
-    const reg = ('serviceWorker' in navigator) ? (window.__flySW || await navigator.serviceWorker.getRegistration('./')) : null;
-    if (reg) {
-      window.__flySW = reg;
-      await reg.update();
-      let waiting = reg.waiting || await waitInstalled(reg);
-      if (waiting) {
-        waiting.postMessage({ type: 'SKIP_WAITING' });
-        if (window.caches) {
-          const keys = await caches.keys();
-          await Promise.all(keys.filter((k) => k.indexOf('rg-fly-') === 0).map((k) => caches.delete(k)));
-        }
-        const url = new URL(location.href);
-        url.searchParams.set('upd', String(Date.now()));
-        location.replace(url.href);
-        return;
-      }
-    }
-  } catch (e) {}
-  updToast(T[lang].updOk + ' · ' + FLY_VER);
-}
-$('updBtn').addEventListener('click', () => { checkForUpdate(); });
-if ('serviceWorker' in navigator && location.protocol !== 'file:' && !window.__flySW) navigator.serviceWorker.register('sw.js', { scope: './' }).then((r) => { window.__flySW = r; }).catch(() => {});
+if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
 
 /* ================= loop ================= */
 let baseFov = 62, wtime = 0, hudTick = -1;
@@ -2153,7 +1928,7 @@ function frame() {
   stars.position.copy(camera.position); moon.position.copy(camera.position).add(tmp.set(-600, 520, -800));
   if (state !== 'photo') placeModel(time, playing);
   if (state !== 'photo') { updateCollectibles(wtime, wdt, playing); updateFx(time, dt, playing); updateBuddy(time, dt, playing); }
-  if (Math.abs(camera.fov - baseFov) > 0.05) { camera.fov += (baseFov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
+  const fov = baseFov + (playing && powerOn('boost') ? 10 : 0); if (Math.abs(camera.fov - fov) > 0.05) { camera.fov += (fov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
   if (playing && (time * 10 | 0) !== hudTick) { hudTick = time * 10 | 0; updatePowerBtns(); }
   updateCamera(time, dt, playing);
   if (state !== 'photo') updateRibbon(time, dt, playing);
@@ -2174,5 +1949,5 @@ window.__fly = {
   setExhaust(v) { applyExhaustStyle(v, true); },
   get exhaust() { return exhaustStyle; },
   get ribbon() { return { on: ribbonMesh.visible, n: rCount, fade: +ribbonFade.toFixed(2) }; },
-  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, pitch: Math.round(player.pitch * 180 / Math.PI), camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
+  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
 };

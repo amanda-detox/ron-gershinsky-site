@@ -1,13 +1,9 @@
 /* Offline cache for Flyify · פלייפיי (scope: this folder only). */
-var CACHE = "rg-fly-v25";
+var CACHE = "rg-fly-v26";
 var FILES = ["./", "index.html", "game.js", "three.module.min.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
   "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../shared/rg-topbar.js", "../shared/rg-account.js"];
 self.addEventListener("install", function (e) {
-  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }));
-});
-self.addEventListener("message", function (e) {
-  var d = e.data;
-  if (d === "SKIP_WAITING" || (d && d.type === "SKIP_WAITING")) self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
 });
 self.addEventListener("activate", function (e) {
   e.waitUntil(caches.keys().then(function (keys) {
