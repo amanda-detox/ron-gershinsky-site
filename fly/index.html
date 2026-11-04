@@ -123,6 +123,7 @@
     box-shadow:0 0 12px rgba(80,255,210,.8), inset 0 0 0 2px rgba(6,40,48,.28); }
   #exhaustToggle.aurora i { background:linear-gradient(#7af6ff, #3dffc0); border-radius:46% 62% 40% 70%; transform:rotate(-12deg); box-shadow:0 0 6px rgba(120,255,230,.9); }
   #exhaustToggle:active { transform:translate(-50%, -50%) scale(.94); }
+  #exhaustToggle[hidden] { display:none !important; }
   .dots { position:absolute; left:50%; top:50%; transform:translate(-50%, -50%); display:flex; gap:2px; }
   .dot { width:20px; height:20px; padding:0; border:0; background:none; display:flex; align-items:center; justify-content:center; }
   .dot::before { content:""; width:8px; height:8px; border-radius:50%; background:rgba(220,232,255,.45); transition:all .25s; }
@@ -275,7 +276,7 @@
       <button class="pw" id="pw11" data-i="11" style="--ang:120deg"><span class="tm"></span><span class="ic">🌗</span><span class="cd"></span></button>
     </div>
     <div id="pwGone" hidden><button class="pw" id="pw1" data-i="1" hidden></button><button class="pw" id="pw2" data-i="2" hidden></button><button class="pw" id="pw3" data-i="3" hidden></button><button class="pw" id="pw4" data-i="4" hidden></button><button class="pw" id="pw5" data-i="5" hidden></button><button class="pw" id="pw6" data-i="6" hidden></button><button class="pw" id="pw7" data-i="7" hidden></button><button class="pw" id="pw9" data-i="9" hidden></button><button class="pw" id="pw10" data-i="10" hidden></button></div>
-    <button type="button" id="exhaustToggle" class="ribbon" data-style="ribbon" aria-label="Glowing light ribbon"><i></i></button>
+    <button type="button" id="exhaustToggle" class="ribbon" data-style="ribbon" aria-label="Glowing light ribbon" hidden><i></i></button>
   </div>
   <div id="ringLbl"></div>
   <div class="keys hidden" id="keysHint" data-t="keys"></div>
@@ -325,7 +326,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=26"></script>
+<script type="module" src="game.js?v=27"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 
 </body>

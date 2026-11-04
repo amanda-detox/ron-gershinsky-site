@@ -16,7 +16,9 @@ The live worker deletes every cache whose name starts with `rg-fly-`. The sandbo
 
 ## Why live was rolled back (2026-11-04)
 
-Live is the last good flight code — the continuous ribbon from PR #29 (`rg-fly-v22`) — published again as `rg-fly-v26`. The newer code is only in the sandbox.
+Live is the last good flight code — the continuous ribbon from PR #29 (`rg-fly-v22`) — published again as `rg-fly-v26`, then the jetpack ribbon was turned off in `rg-fly-v27`. The newer flight code is only in the sandbox.
+
+The jetpack ribbon and aurora are still in `fly/trail.js`. `TRAIL_ENABLED` is `false`, so nothing is drawn and the center button stays hidden. Set that flag to `true` and bump the live cache to bring the trail back. `fly-sandbox/` does not use this flag.
 
 PR #30 made the current sandbox unplayable on a phone:
 
