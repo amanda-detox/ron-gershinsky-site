@@ -32,7 +32,7 @@ const T = {
     ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
-    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
+    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת', 'אנטארקטיקה', 'למוריה', 'אטלנטיס', 'אזור 51', 'כדור הארץ הפנימי'],
     cams: ['מאחורי הדמות', 'מבעד לעיניים', 'מהצד']
   },
   en: {
@@ -54,12 +54,12 @@ const T = {
     ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
-    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
+    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization', 'Antarctica', 'Lemuria', 'Atlantis', 'Area 51', 'Inner Earth'],
     cams: ['Behind the character', 'Through its eyes', 'Side view']
   }
 };
 const CHAR_EMOJI = ['🧑', '👩', '👦', '👧', '🐱', '🤖', '🧑‍🚀', '🦸', '🧙', '🐋', '🦅'];
-const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien'];
+const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien', 'antarctica', 'lemuria', 'atlantisrise', 'area51', 'hollow'];
 const CAM_IDS = ['third', 'first', 'side'];
 
 let lang = store.get('rg-lang', 'he') === 'en' ? 'en' : 'he';
@@ -858,6 +858,147 @@ const ENVS = {
           u.trail.geometry.attributes.position.needsUpdate = true;
         }
       } };
+  },
+  antarctica() {
+    const g = new THREE.Group();
+    const ice = M(0xe7f4ff), deep = M(0xb7d4ee), rock = M(0x8aa0bc);
+    const shelf = new THREE.Mesh(new THREE.CircleGeometry(1500, 40), ice); shelf.rotation.x = -Math.PI / 2; g.add(shelf);
+    const peaks = [];
+    const berg = new THREE.ConeGeometry(1, 1, 5), bergM = new THREE.InstancedMesh(berg, deep, 42), mm = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+    for (let i = 0; i < 42; i++) {
+      const a = Math.random() * Math.PI * 2, d = rand(40, 520), h = rand(8, 28), r = h * rand(0.7, 1.3);
+      sc.set(r, h, r); mm.compose(new THREE.Vector3(Math.cos(a) * d, h * 0.35, Math.sin(a) * d), q, sc); bergM.setMatrixAt(i, mm);
+    }
+    g.add(bergM);
+    const front = cone(12, 20, ice, 6); front.position.set(8, 7, -14); g.add(front);
+    for (let i = 0; i < 8; i++) {
+      const a = i / 8 * Math.PI * 2, d = rand(160, 420), h = rand(40, 90), r = h * 0.7;
+      const gl = cone(r, h, i % 2 ? ice : rock, 6); gl.position.set(Math.cos(a) * d, h * 0.35, Math.sin(a) * d); g.add(gl);
+      peaks.push([gl.position.x, gl.position.z, h * 0.7, r]);
+    }
+    const arcM = (c) => new THREE.MeshBasicMaterial({ color: c, transparent: true, opacity: 0.34, side: THREE.DoubleSide, blending: THREE.AdditiveBlending, depthWrite: false, fog: false });
+    const aur = [];
+    [[0x5dffc0, 90, 48], [0x7af0ff, 130, 62], [0xb9a6ff, 70, 78]].forEach(([c, r, y], i) => {
+      const a = new THREE.Mesh(new THREE.TorusGeometry(r, 7, 6, 40, Math.PI * 1.15), arcM(c));
+      a.position.y = y; a.rotation.x = 1.1 + i * 0.15; a.rotation.z = i * 0.8; g.add(a); aur.push(a);
+    });
+    const snowP = localParticles(420, 55, 0.4, 0xffffff, 0.85); g.add(snowP);
+    const heightAt = (x, z) => { let h = 0; for (const p of peaks) { const d = Math.hypot(x - p[0], z - p[1]); if (d < p[3]) h = Math.max(h, p[2] * (1 - d / p[3])); } return h; };
+    return { g, sky: [0x071833, 0x16325c, 0xc5e4f5], fog: [0xd5e8f6, 80, 780], hemi: [0xeaf6ff, 0x6d88a8, 1.15], sun: [0xfff6e0, 1.3, [0.2, 0.7, -0.4]],
+      start: new THREE.Vector3(0, 28, 30), minY: 2, maxY: 260, R: 520, heightAt, spark: 0xffe7a3,
+      update(t, dt, p) { updateLocal(snowP, p, -3, dt, t, 1.2); aur.forEach((a, i) => { a.material.opacity = 0.22 + Math.sin(t * 0.6 + i) * 0.1; }); } };
+  },
+  lemuria() {
+    const g = new THREE.Group();
+    const sea = new THREE.Mesh(new THREE.CircleGeometry(1500, 36), M(0x1a8f96)); sea.rotation.x = -Math.PI / 2; sea.position.y = -1; g.add(sea);
+    const sand = M(0xf0e2b0), leaf = M(0x3d9a62), trunk = M(0xc4a06a), stone = M(0xe7eef8), crystal = E(0x8ef6ff, 1.3), gold = E(0xf3cf6b, 1.1);
+    const isle = (x, z, r) => {
+      const base = cyl(r, r * 1.15, 4, sand, 8); base.position.set(x, 1, z); g.add(base);
+      const top = cyl(r * 0.92, r * 0.92, 1.2, leaf, 8); top.position.set(x, 3.4, z); g.add(top);
+      for (let i = 0; i < 4; i++) {
+        const a = i / 4 * Math.PI * 2 + 0.4, px = x + Math.cos(a) * r * 0.45, pz = z + Math.sin(a) * r * 0.45;
+        const tr = cyl(0.35, 0.5, 6, trunk, 5); tr.position.set(px, 6, pz); g.add(tr);
+        const fr = cone(2.2, 3.2, leaf, 6); fr.position.set(px, 9.2, pz); g.add(fr);
+      }
+    };
+    isle(0, -18, 26);
+    for (let i = 0; i < 5; i++) { const a = i / 5 * Math.PI * 2, d = rand(120, 280); isle(Math.cos(a) * d, Math.sin(a) * d, rand(12, 20)); }
+    const temples = [];
+    for (let i = 0; i < 5; i++) {
+      const a = i / 5 * Math.PI * 2 + 0.5, d = rand(70, 240), t = new THREE.Group();
+      t.position.set(Math.cos(a) * d, 6, Math.sin(a) * d);
+      const plinth = box(10, 2, 10, stone); plinth.position.y = 1; t.add(plinth);
+      const shard = new THREE.Mesh(new THREE.OctahedronGeometry(3.2, 0), crystal); shard.position.y = 6; t.add(shard);
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(4.2, 0.25, 6, 20), gold); ring.rotation.x = Math.PI / 2; ring.position.y = 6; t.add(ring);
+      t.userData = { y: t.position.y, ph: i }; g.add(t); temples.push(t);
+    }
+    const mist = localParticles(280, 48, 0.55, 0xd8fff6, 0.55); g.add(mist);
+    return { g, sky: [0x7ec8e8, 0xfff4d2, 0x1a8f96], fog: [0xc8efe8, 90, 700], hemi: [0xfff6e0, 0x2a7a6a, 1.25], sun: [0xfff6e0, 1.5, [0.4, 1, 0.2]],
+      start: new THREE.Vector3(0, 18, 24), minY: 1, maxY: 220, R: 460, spark: 0xf3cf6b,
+      update(t, dt, p) { updateLocal(mist, p, 0.4, dt, t, 1); temples.forEach((o) => { o.position.y = o.userData.y + Math.sin(t * 0.8 + o.userData.ph) * 1.2; o.rotation.y += dt * 0.2; }); } };
+  },
+  atlantisrise() {
+    const g = new THREE.Group();
+    const bed = new THREE.Mesh(new THREE.CircleGeometry(1400, 36), M(0x0c4f78)); bed.rotation.x = -Math.PI / 2; bed.position.y = -2; g.add(bed);
+    const stone = M(0xd5e4f8), gold = E(0xf3cf6b, 1.15), glow = new THREE.MeshBasicMaterial({ color: 0x6fe3ff, transparent: true, opacity: 0.75 });
+    for (const rad of [36, 78, 128]) {
+      const canal = new THREE.Mesh(new THREE.TorusGeometry(rad, 5.5, 8, 40), M(0x14688f)); canal.rotation.x = Math.PI / 2; canal.position.y = 0.4; g.add(canal);
+      const lip = new THREE.Mesh(new THREE.TorusGeometry(rad, 0.55, 6, 40), glow); lip.rotation.x = Math.PI / 2; lip.position.y = 3.2; g.add(lip);
+    }
+    const domes = [];
+    const addDome = (x, z, s, y0) => {
+      const d = new THREE.Mesh(new THREE.SphereGeometry(8, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), stone); d.scale.setScalar(s); d.position.set(x, y0, z); g.add(d);
+      const band = new THREE.Mesh(new THREE.TorusGeometry(7.2 * s, 0.28 * s, 6, 24), gold); band.rotation.x = Math.PI / 2; band.position.set(x, y0 + 3 * s, z); g.add(band);
+      d.userData = { y0, ph: x * 0.01 }; domes.push(d);
+    };
+    addDome(0, 0, 2.1, 4);
+    for (let i = 0; i < 6; i++) { const a = i / 6 * Math.PI * 2; addDome(Math.cos(a) * 78, Math.sin(a) * 78, rand(0.8, 1.3), rand(2, 8)); }
+    for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2 + 0.3; addDome(Math.cos(a) * 128, Math.sin(a) * 128, rand(0.6, 1.1), rand(1, 6)); }
+    const spire = cyl(2.2, 3, 28, stone, 8); spire.position.y = 22; g.add(spire);
+    const cap = ball(3.2, gold, 1); cap.position.y = 38; g.add(cap);
+    const rays = [];
+    const rayM = new THREE.MeshBasicMaterial({ color: 0xbfe8ff, transparent: true, opacity: 0.08, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+    for (let i = 0; i < 8; i++) { const r = new THREE.Mesh(new THREE.CylinderGeometry(2, 10, 90, 8, 1, true), rayM); r.position.set(Math.cos(i) * 40, 40, Math.sin(i) * 40); g.add(r); rays.push(r); }
+    const bubbles = localParticles(220, 42, 0.65, 0xdff6ff, 0.75); g.add(bubbles);
+    return { g, sky: [0x06345c, 0x0a6ea8, 0x042033], fog: [0x0c5f92, 18, 280], hemi: [0x9fe0ff, 0x0a3050, 1.05], sun: [0xd8f4ff, 0.9, [0.1, 1, 0.2]],
+      start: new THREE.Vector3(0, 22, 48), minY: 1, maxY: 160, R: 420, spark: 0xffe7a3,
+      update(t, dt, p) { updateLocal(bubbles, p, 4, dt, t, 1); domes.forEach((d) => { d.position.y = d.userData.y0 + Math.sin(t * 0.5 + d.userData.ph) * 1.4; }); rayM.opacity = 0.05 + Math.sin(t * 0.8) * 0.02; } };
+  },
+  area51() {
+    const g = new THREE.Group();
+    const sand = new THREE.Mesh(new THREE.CircleGeometry(1500, 36), M(0xd8c48a)); sand.rotation.x = -Math.PI / 2; g.add(sand);
+    const runway = box(18, 0.25, 240, M(0x3c4450)); runway.position.set(0, 0.2, 20); g.add(runway);
+    const stripe = box(1.1, 0.08, 200, M(0xf3cf6b)); stripe.position.set(0, 0.4, 20); g.add(stripe);
+    const wall = M(0x8d97a6), roof = M(0x5c6672), door = M(0x2c3442);
+    const hangar = (x, z, rot) => {
+      const h = new THREE.Group();
+      const body = box(26, 11, 16, wall); body.position.y = 5.5; h.add(body);
+      const rf = box(28, 2.4, 18, roof); rf.position.y = 12; h.add(rf);
+      const dr = box(9, 8, 0.4, door); dr.position.set(0, 4, 8.2); h.add(dr);
+      h.position.set(x, 0, z); h.rotation.y = rot; g.add(h);
+    };
+    hangar(-40, 10, 0); hangar(40, 10, 0); hangar(-40, -40, 0); hangar(40, -40, 0); hangar(-70, 50, 0.4); hangar(70, 70, -0.3);
+    const hillGeo = new THREE.ConeGeometry(1, 1, 6), hills = new THREE.InstancedMesh(hillGeo, M(0xc4b07a), 16), mm = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+    for (let i = 0; i < 16; i++) {
+      const a = Math.random() * Math.PI * 2, d = rand(220, 520), h = rand(30, 70);
+      sc.set(h * 0.8, h, h * 0.8); mm.compose(new THREE.Vector3(Math.cos(a) * d, h * 0.4, Math.sin(a) * d), q, sc); hills.setMatrixAt(i, mm);
+    }
+    g.add(hills);
+    const ufos = [];
+    const hull = M(0xd5deee, { metalness: 0.55, roughness: 0.35 });
+    for (let i = 0; i < 7; i++) {
+      const u = new THREE.Group();
+      const disc = cyl(5.5, 5.5, 0.7, hull, 16); u.add(disc);
+      const cab = new THREE.Mesh(new THREE.SphereGeometry(1.8, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x9fe8ff, emissive: 0x2a8fbf, emissiveIntensity: 0.5, transparent: true, opacity: 0.8 }));
+      cab.position.y = 0.35; u.add(cab);
+      const lamp = glowSprite(i % 2 ? 0xf3cf6b : 0x7ee8ff, 9, 0.65); lamp.position.y = -1.1; u.add(lamp);
+      u.userData = { a: Math.random() * 6, r: rand(30, 150), h: rand(16, 64), w: rand(0.12, 0.35) * (Math.random() < 0.5 ? -1 : 1), cx: rand(-30, 30), cz: rand(-20, 40) };
+      g.add(u); ufos.push(u);
+    }
+    ufos[0].userData.r = 0; ufos[0].userData.cx = 14; ufos[0].userData.cz = 6; ufos[0].userData.h = 20;
+    return { g, sky: [0x8eb4d8, 0xf2e2b8, 0xc4a86a], fog: [0xe6d3a4, 120, 900], hemi: [0xfff4dd, 0xa89060, 1.3], sun: [0xfff6e0, 1.6, [0.5, 0.9, 0.2]],
+      start: new THREE.Vector3(0, 18, 36), minY: 1, maxY: 220, R: 500, spark: 0xf3cf6b,
+      update(t, dt) { for (const u of ufos) { const d = u.userData; d.a += d.w * dt; u.position.set(d.cx + Math.cos(d.a) * d.r, d.h + Math.sin(t * 0.7 + d.r) * 2, d.cz + Math.sin(d.a) * d.r); u.rotation.y += dt * 0.4; } } };
+  },
+  hollow() {
+    const g = new THREE.Group();
+    const R = 420;
+    const crust = new THREE.Mesh(new THREE.SphereGeometry(R, 28, 18, 0, Math.PI * 2, 0.4, Math.PI - 0.8), M(0x1a4e86, { side: THREE.BackSide, roughness: 0.85 }));
+    g.add(crust);
+    const land = M(0x3c9a62), land2 = M(0x2f7a68);
+    for (let i = 0; i < 16; i++) {
+      const phi = rand(0.7, Math.PI - 0.7), th = rand(0, Math.PI * 2);
+      const p = new THREE.Vector3().setFromSphericalCoords(R - 4, phi, th);
+      const c = new THREE.Mesh(new THREE.SphereGeometry(rand(26, 52), 8, 6), i % 2 ? land : land2);
+      c.position.copy(p); c.lookAt(0, 0, 0); c.scale.z = 0.22; g.add(c);
+    }
+    const sun = ball(16, new THREE.MeshBasicMaterial({ color: 0xffe7a3 }), 2); g.add(sun);
+    const glow = glowSprite(0xffe7a3, 90, 0.85); g.add(glow);
+    const motes = points(500, () => { const v = new THREE.Vector3(rand(-1, 1), rand(-1, 1), rand(-1, 1)).setLength(rand(40, 300)); return [v.x, v.y, v.z]; }, 1.4, { color: 0xfff6d0, opacity: 0.7 });
+    g.add(motes);
+    return { g, sky: [0x071428, 0x123056, 0x071428], fog: [0x123056, 80, 520], hemi: [0xfff0c8, 0x1a4e86, 1.05], sun: [0xffe7a3, 1.4, [0.2, 1, 0.1]],
+      start: new THREE.Vector3(0, 30, 110), minY: -300, maxY: 300, R: 340, spark: 0xffe7a3, avoid: [[0, 0, 0, 22]],
+      update(t) { sun.rotation.y = t * 0.1; glow.material.rotation = t * 0.2; } };
   }
 };
 
@@ -1269,7 +1410,7 @@ function updateRibbon(t, dt, playing) {
 }
 
 /* ---- land & walk ---- */
-const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1 }; // worlds with a surface; in open space you stop and hover
+const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1, antarctica: 1, lemuria: 1, atlantisrise: 1, area51: 1 }; // worlds with a surface; in open space you stop and hover
 function toggleLand() {
   const L = T[lang];
   if (player.mode === 'fly') {
@@ -1324,7 +1465,7 @@ function applyLighting() {
 
 /* ---- music: soft generated tunes per world (Web Audio, no files), off by default ---- */
 let musicOn = false, actx = null, mOut = null, mTimer = 0, mNext = 0, mStep = 0;
-const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68] };
+const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68], antarctica: [60, 62, 67, 69, 72], lemuria: [60, 64, 67, 71, 74], atlantisrise: [55, 60, 64, 67, 72], area51: [58, 62, 65, 69, 70], hollow: [60, 64, 67, 72, 76] };
 const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
 function tone(f, t0, dur, vol, type) {
   const o = actx.createOscillator(), g = actx.createGain();
