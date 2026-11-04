@@ -2047,14 +2047,8 @@ const stats = (() => {
   }
   function pull() {
     if (!uid()) { s = load(); hudTotal(); return; }
-    const guest = (() => { try { return JSON.parse(store.get('rg-fly-stats:guest', '') || 'null'); } catch (e) { return null; } })();
     A.get('fly', 'stats').then((cloud) => {
       s = merge(load(), cloud || blank());
-      if (guest && guest.lastDay && guest.lastDay > (s.lastDay || '')) { s.streak = guest.streak || 0; s.lastDay = guest.lastDay; }
-      if (guest && guest.total > 0) { // points collected while signed out move into the account once
-        for (const k of ['total', 'earned', 'games', 'bonuses']) s[k] += guest[k] || 0; s.best = Math.max(s.best, guest.best || 0);
-        store.set('rg-fly-stats:guest', '');
-      }
       dirty = true; save(); push(); lbPost(); hudTotal();
     }).catch(() => {});
   }
