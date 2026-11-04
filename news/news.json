@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T02:14:40+02:00",
+ "updated": "2026-11-04T03:40:59+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -197,23 +197,38 @@
  ],
  "items": [
   {
-   "id": "pod-brecka-c66927da49",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Ultimate Human",
-   "date": "2026-11-03T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
-   "source": "Apple Podcasts",
+   "id": "johnson-eat-like-bryan-meals-delivered",
+   "topic": "johnson",
+   "date": "2026-11-04T01:11:07Z",
+   "url": "https://x.com/bryan_johnson/status/2117786688701559277",
+   "source": "X · @bryan_johnson",
    "he": {
-    "title": "למה אובדן זיכרון הוא בעצם אובדן גישה, עם ג'ניפר מולר",
-    "summary": "גארי ברקה משוחח עם ג'ניפר מולר מעולם הדיור המוגן על ההחלטה שעמד בפניה עם הוריו, ועל טענתו שאובדן זיכרון הוא למעשה אובדן גישה לזיכרון. הם מדברים על איך לבחור בין דיור עצמאי, דיור מוגן ומחלקה סיעודית לזיכרון."
+    "title": "בריאן ג'ונסון: עכשיו אפשר לאכול בדיוק את האוכל שלו",
+    "summary": "ג'ונסון משיק שירות ארוחות בשם \"Eat Like Bryan Johnson\": מנות עם רכיבי אריכות ימים שמגיעות טריות הביתה ומחממים בתנור. לדבריו זה קל וזול, והפידבק עד עכשיו מצוין."
    },
    "en": {
-    "title": "Why Memory Loss Is Really Lost Access - Jennifer Mohler",
-    "summary": "Gary Brecka sits down with senior-living expert Jennifer Mohler about the decision he faced with his own parents and his view that memory loss is really lost access to memory, plus how to evaluate independent living, assisted living and memory care."
+    "title": "Bryan Johnson: you can now eat the same foods he does",
+    "summary": "Johnson is launching \"Eat Like Bryan Johnson\": meals with what he calls elite longevity ingredients, delivered fresh and finished in your own oven. He says it's easy, affordable, and feedback has been five stars."
    },
-   "full_en": "Gary Brecka sits down with Jennifer Mohler to talk through the decision he faced with his own parents, and his view that memory loss is really lost access to memory. They cover how to evaluate independent living, assisted living, and memory care, why isolation matters, the daily living skills that signal it's time, and the brain mapping Gary is using to track his mother. Gary also shares the fall that changed his timeline. Don't guess, test.\n\nTimestamps:\n• 00:00 – Introduction: senior living for parents\n• 03:46 – How Jennifer entered senior living\n• 07:16 – When a parent needs assisted care\n• 09:38 – Biohacking inside senior living\n• 11:32 – Red light, PEMF and hydrogen therapy\n• 15:04 – Brain mapping Gary's mother\n• 16:24 – Janet, the nonverbal resident\n• 19:55 – Isolation and broken heart syndrome\n• 20:59 – Memory loss as lost access\n• 21:34 – How to evaluate a community\n• 29:08 – Assisted living versus memory care\n• 32:42 – Five daily living skills\n• 37:53 – Clinical study with 30 participants\n• 42:59 – Medicare, Medicaid and VA coverage\n• 47:34 – Gary's father: humerus and hip\n• 50:45 – What it means to be an Ultimate Human\n\nThe show's own disclaimer: the podcast is for informational purposes only and is not medical advice. The \"memory loss is lost access\" idea is Gary's view, not an established medical position.",
-   "full_he": "גארי ברקה יושב עם ג'ניפר מולר ומדבר על ההחלטה שעמד בפניה עם הוריו שלו, ועל הגישה שלו שלפיה אובדן זיכרון הוא בעצם אובדן גישה לזיכרון. הם מדברים על איך לבחון דיור עצמאי, דיור מוגן ומחלקה לטיפול בזיכרון, למה בדידות משנה כל כך, אילו מיומנויות של חיי היום־יום מסמנות שהגיע הזמן, ועל מיפוי המוח שגארי עושה כדי לעקוב אחרי אמו. גארי מספר גם על הנפילה ששינתה את לוח הזמנים שלו. אל תנחש, תבדוק.\n\nנקודות זמן:\n• 00:00 – פתיחה: דיור לגיל השלישי להורים\n• 03:46 – איך ג'ניפר הגיעה לתחום הדיור המוגן\n• 07:16 – מתי הורה צריך דיור עם סיוע\n• 09:38 – ביוהאקינג בתוך דיור מוגן\n• 11:32 – אור אדום, PEMF וטיפול במימן\n• 15:04 – מיפוי המוח של אמא של גארי\n• 16:24 – ג'נט, הדיירת שאינה מדברת\n• 19:55 – בדידות ותסמונת הלב השבור\n• 20:59 – אובדן זיכרון כאובדן גישה\n• 21:34 – איך לבחון קהילת דיור\n• 29:08 – דיור מוגן לעומת מחלקת זיכרון\n• 32:42 – חמש מיומנויות של חיי היום־יום\n• 37:53 – מחקר קליני עם 30 משתתפים\n• 42:59 – כיסוי של Medicare, Medicaid ומשרד הוותיקים\n• 47:34 – אביו של גארי: עצם הזרוע והירך\n• 50:45 – מה זה אומר להיות Ultimate Human\n\nלפי הצהרת התוכנית עצמה, הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי. הרעיון ש\"אובדן זיכרון הוא אובדן גישה\" הוא עמדתו של גארי, ולא עמדה רפואית מקובלת."
+   "full_he": "\"ביקשתם את זה הרבה.\n\nעכשיו אתם יכולים לאכול את אותו האוכל שאני אוכל.\n\nזה קל ובמחיר סביר.\n\n• רכיבי אריכות ימים מהשורה הראשונה\n• מגיע טרי עד הבית\n• מוכן בתנור שלך\n• הכנה מהירה\n• כל סוגי האוכל\n\nהפידבק עד עכשיו: ⭐️⭐️⭐️⭐️⭐️\"\n\nבתמונה המצורפת: הכותרת \"Eat Like Bryan Johnson\" ומתחתיה שתי מנות בשם \"Super Veggie\" ו\"Nutty Pudding\" (פודינג אגוזים). רואים צלחות עם ברוקולי, כרובית, ירקות צלויים, עוף ובשר, קערת פודינג עם אגוזים, קופסאות משלוח ותנור חכם של Tovala. למטה כתובת האתר blueprint.bryanjohnson.com/meals.\n\nזה פרסום של מוצר שלו, ולא נאמר בפוסט מה המחיר.",
+   "full_en": "\"You've all been asking for this.\n\nYou can now eat the same foods as me.\n\nIt's easy and affordable.\n\n• elite longevity ingredients\n• freshly delivered\n• in your own oven\n• quick prep\n• all food types\n\nFeedback has been ⭐️⭐️⭐️⭐️⭐️\"\n\nThe attached image is headed \"Eat Like Bryan Johnson\" with the dishes \"Super Veggie\" and \"Nutty Pudding\". It shows plates of broccoli, cauliflower, roasted vegetables, chicken and steak, a bowl of pudding topped with nuts, delivery boxes and a Tovala smart oven, with the web address blueprint.bryanjohnson.com/meals at the bottom.\n\nThis is a promotion for his own product; the post doesn't give a price."
+  },
+  {
+   "id": "kraken-anticipated-ipo-way-in-teaser",
+   "topic": "kraken",
+   "date": "2026-11-04T01:00:01Z",
+   "url": "https://x.com/krakenfx/status/2117783892287447171",
+   "source": "X · @krakenfx",
+   "he": {
+    "title": "קראקן: \"אחת ההנפקות המצופות ביותר\", ואולי תהיה לך דרך להיכנס",
+    "summary": "קראקן רומזת שתציע ללקוחות גישה להנפקה גדולה ומצופה במיוחד, בלי לומר איזו. הפרטים, לדבריה, יגיעו בקרוב."
+   },
+   "en": {
+    "title": "Kraken: \"one of the most anticipated IPOs yet\", and you may have a way in",
+    "summary": "Kraken teases that customers may get access to a big, highly anticipated IPO, without naming which one. It says details are coming soon."
+   },
+   "full_he": "\"אחת ההנפקות הכי מצופות שהיו.\n\nואולי תהיה לך דרך להיכנס. 👀\n\nפרטים בקרוב.\"\n\nהפוסט לא אומר על איזו חברה מדובר.",
+   "full_en": "\"One of the most anticipated IPOs yet.\n\nAnd you may have a way in. 👀\n\nDeets soon.\"\n\nThe post doesn't say which company it's about."
   },
   {
    "id": "dispenza-week-long-retreat-qa-blog",
@@ -267,23 +282,6 @@
    "full_he": "רפואה היא בעיית חישוב.\n\nהמודל הזה הצליח לנבא את האירוע הבריאותי הבא שלך.\n\nהוא אומן על 300 מיליון מטופלים ו־16 מיליארד מפגשים רפואיים.\n\nאנחנו מגזימים במסתוריות של הגוף שלנו, ואנחנו צפויים יותר ממה שאנחנו רוצים להאמין.\n\nמגניב לראות את האשליה הזאת נסדקת.\n\nהתמונה בפוסט היא התקציר של המאמר \"Generative Medical Event Models Improve with Scale\" (וקסלר ועמיתים, arXiv:2508.12104):\n• בעזרת Epic Cosmos, מאגר רשומות רפואיות אנונימיות לאורך זמן שכולל 16.3 מיליארד מפגשים של יותר מ־300 מיליון מטופלים ב־310 מערכות בריאות, החוקרים מציגים את מודלי Curiosity: משפחת מודלי טרנספורמר שאומנו מראש על 118 מיליון מטופלים, שהם 115 מיליארד אירועים רפואיים (151 מיליארד טוקנים).\n• לדבריהם זה מחקר חוקי הקנה־מידה (scaling laws) הגדול ביותר על נתוני אירועים רפואיים, והם אימנו מודלים אופטימליים בחישוב של עד מיליארד פרמטרים.\n• בהינתן ההיסטוריה האמיתית של מטופל, Curiosity מנבא את האירוע הרפואי הבא וכך מדמה את ציר הזמן הבריאותי שלו.\n• ב־78 משימות מהעולם האמיתי (ניבוי אבחנות, פרוגנוזה של מחלות ותפעול מערכת הבריאות) Curiosity בדרך כלל עקף או השתווה למודלים שאומנו במיוחד לכל משימה, בלי כוונון ייעודי ובלי דוגמאות.\n• כוח הניבוי שלו ממשיך להשתפר ככל שהמודל ונתוני האימון גדלים. לדברי החוקרים, הוא יכול לתמוך בקבלת החלטות קליניות, לייעל את תפעול מערכת הבריאות ולשפר את התוצאות למטופלים.\n\nהערה: הניסוח \"לנבא את האירוע הבריאותי הבא שלך\" הוא של ג'ונסון; המאמר מדווח על ביצועים במשימות ניבוי, ולא על ודאות ברמת האדם הבודד."
   },
   {
-   "id": "solana-mobile-skr-daily-buy-and-burn",
-   "topic": "solana",
-   "date": "2026-11-03T21:01:02Z",
-   "url": "https://x.com/i/trending/2117721748926087213",
-   "source": "X",
-   "he": {
-    "title": "Solana Mobile משיקה תוכנית יומית של רכישה ושריפה של אסימוני SKR",
-    "summary": "Solana Mobile משתמשת בהכנסות מטלפון ה־Seeker כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום. בחודש הראשון הוקצו 24,573 דולר ונשרפו כבר כ־1.2 מיליון אסימונים."
-   },
-   "en": {
-    "title": "Solana Mobile launches a daily SKR buy-and-burn program",
-    "summary": "Solana Mobile is using revenue from its Seeker phone to buy SKR on the open market and burn it daily; in the first month it allocated $24,573 USDC and has burned about 1.2 million SKR so far."
-   },
-   "full_en": "Solana Mobile is turning everyday revenue from its Seeker phone into a steady stream of SKR token burns, pulling over a million tokens from circulation already.\n\nThe program, which kicked off on October 15, 2026, uses revenue from Seeker phone staking commissions and Seed Vault Wallet fees to buy SKR on the open market and burn it daily onchain. In its first month, it allocated $24,573 USDC to burn 1.2 million SKR so far, with all transactions verifiable through a dedicated wallet address. Community members point to a flywheel effect where more phone usage drives bigger burns and tighter token supply, all while keeping operations transparent and independent of staking rewards.\n\n(This story is a summary of posts on X and may evolve over time.)",
-   "full_he": "Solana Mobile הופכת את ההכנסות השוטפות מטלפון ה־Seeker לזרם קבוע של שריפות של אסימון SKR, וכבר הוציאה יותר ממיליון אסימונים מהמחזור.\n\nהתוכנית, שהתחילה ב־15 באוקטובר 2026, משתמשת בהכנסות מעמלות הסטייקינג של טלפון ה־Seeker ומעמלות הארנק Seed Vault כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום על הבלוקצ'יין. בחודש הראשון הוקצו 24,573 דולר ב־USDC, ועד עכשיו נשרפו 1.2 מיליון SKR, וכל העסקאות ניתנות לבדיקה דרך כתובת ארנק ייעודית. אנשים בקהילה מדברים על אפקט גלגל תנופה: יותר שימוש בטלפון מביא לשריפות גדולות יותר ולהיצע מצומצם יותר של האסימון, והכול בשקיפות ובנפרד מתגמולי הסטייקינג.\n\n(הסיפור הזה הוא סיכום של פוסטים ב־X ועשוי להשתנות.)"
-  },
-  {
    "id": "musk-galloway-traitor-rosenberg-pivot",
    "topic": "musk",
    "date": "2026-11-03T23:41:53Z",
@@ -333,6 +331,40 @@
    },
    "full_he": "מניית SpaceX זינקה ביותר מ-3% ל-141.71 דולר ביום שלישי, ושווי השוק שלה עלה מעל 1.9 טריליון דולר, לראשונה מעל טסלה.\n\n• אנליסטים ב-SemiAnalysis הצביעו על תמונות לוויין שמראות 3.6 ג'יגה-וואט של מרכזי נתונים ל-AI בבנייה, יותר מ-9 ג'יגה-וואט בסך הכול, ויעד חדש של 13 ג'יגה-וואט ל-2027, כמו כל מה שגוגל בנתה בהיסטוריה שלה, רק בתוך שנה וחצי.\n• מורגן סטנלי הכפילה את תחזיות ההכנסות ל-175 מיליארד דולר ב-2027 ול-289 מיליארד דולר ב-2028, והדגישה סינרגיות עם טסלה בסוללות ובחומרה.\n• הסינרגיות האלה תרמו לזינוק של 161% בהכנסות ל-14.6 מיליארד דולר ברבעון האחרון.\n• הספקולציות סביב מיזוג אפשרי בין SpaceX לטסלה מתגברות, והמשקיעים עוקבים אחרי הביצוע של הרחבת כוח המחשוב העצומה.\n\nזהו סיכום של פוסטים ב-X, והוא עשוי להשתנות עם הזמן.",
    "full_en": "SpaceX shares jumped over 3 percent to $141.71 on Tuesday, lifting its market cap above $1.9 trillion and ahead of Tesla for the first time.\n\n• Analysts at SemiAnalysis pointed to satellite images revealing 3.6 gigawatts of AI data center capacity under construction, with over 9 gigawatts total and a new 2027 target of 13 gigawatts, matching Google's entire historical buildout in just 1.5 years.\n• Morgan Stanley doubled revenue forecasts to $175 billion for 2027 and $289 billion for 2028, highlighting synergies with Tesla on batteries and hardware.\n• Those synergies fueled a 161 percent revenue leap to $14.6 billion last quarter.\n• Speculation grows around a potential SpaceX-Tesla merger, while investors eye execution on the massive compute expansion.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "huang-nvidia-stock-pullback-ai-bubble-debate",
+   "topic": "huang",
+   "date": "2026-11-03T21:43:07Z",
+   "url": "https://x.com/i/trending/2117648664692756763",
+   "source": "X",
+   "he": {
+    "title": "הירידה במניית אנבידיה מציתה מחדש את הוויכוח על בועת ה-AI",
+    "summary": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וב-X מתווכחים אם צמיחת ה-AI היא שינוי של ממש או בועה שעומדת להתפוצץ."
+   },
+   "en": {
+    "title": "NVIDIA stock pullback fuels the AI bubble debate",
+    "summary": "NVIDIA shares sit near $208 after dropping from October highs, sparking debate on X over whether AI's growth is a lasting shift or an overhyped bubble."
+   },
+   "full_he": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וברשת מתנהל דיון אם הצמיחה העצומה של ה-AI מסמנת שינוי מתמשך או בועה מנופחת שעומדת להתפוצץ.\n\n• לפי הסיכום, יצרנית השבבים הניבה תשואה של יותר מ-500,000% מאז ימיה הראשונים, בזכות הביקוש ל-AI, אבל גל מכירות אחרון במניות הטכנולוגיה פילג את הדעות.\n• הספקנים קוראים ל-AI מכונת הייפ ששורפת מיליארדים והורסת משרות.\n• המגינים, כמו פול גרהם, מצביעים על הסתירה בטענה שה-AI גם מזויף וגם משבש.\n• האופטימיים משווים לתקופת הדוט-קום וטוענים שחברות איכותיות ישרדו כל תיקון, ולפי הסיכום נתוני השוק מראים הכנסות חזקות לצד שווי סביר.\n• לצד זה יש ממים שמשלבים תסכול והומור שחור, ושאלות על ההוצאות העצומות של ענקיות הענן.\n\nזה סיכום של פוסטים ב-X ועשוי להשתנות; Grok עלול לטעות.",
+   "full_en": "NVIDIA shares sit near $208 after dropping from October highs, prompting online chatter about whether AI's massive growth signals a lasting shift or an overhyped bubble ready to pop.\n\n• The semiconductor leader has delivered over 500,000% returns from its early days, fueled by AI demand, but a recent tech sell-off has sparked divided views.\n• Skeptics call AI a hype machine burning billions and destroying jobs.\n• Defenders like Paul Graham point out contradictions in claims that it's both fake and disruptive.\n• Optimists draw dot-com parallels, arguing quality companies will survive any correction, as market data shows strong revenue amid reasonable valuations.\n• Memes mix frustration with gallows humor amid questions over hyperscalers' huge spending.\n\nThis story is a summary of posts on X and may evolve over time; Grok can make mistakes."
+  },
+  {
+   "id": "solana-mobile-skr-daily-buy-and-burn",
+   "topic": "solana",
+   "date": "2026-11-03T21:01:02Z",
+   "url": "https://x.com/i/trending/2117721748926087213",
+   "source": "X",
+   "he": {
+    "title": "Solana Mobile משיקה תוכנית יומית של רכישה ושריפה של אסימוני SKR",
+    "summary": "Solana Mobile משתמשת בהכנסות מטלפון ה־Seeker כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום. בחודש הראשון הוקצו 24,573 דולר ונשרפו כבר כ־1.2 מיליון אסימונים."
+   },
+   "en": {
+    "title": "Solana Mobile launches a daily SKR buy-and-burn program",
+    "summary": "Solana Mobile is using revenue from its Seeker phone to buy SKR on the open market and burn it daily; in the first month it allocated $24,573 USDC and has burned about 1.2 million SKR so far."
+   },
+   "full_en": "Solana Mobile is turning everyday revenue from its Seeker phone into a steady stream of SKR token burns, pulling over a million tokens from circulation already.\n\nThe program, which kicked off on October 15, 2026, uses revenue from Seeker phone staking commissions and Seed Vault Wallet fees to buy SKR on the open market and burn it daily onchain. In its first month, it allocated $24,573 USDC to burn 1.2 million SKR so far, with all transactions verifiable through a dedicated wallet address. Community members point to a flywheel effect where more phone usage drives bigger burns and tighter token supply, all while keeping operations transparent and independent of staking rewards.\n\n(This story is a summary of posts on X and may evolve over time.)",
+   "full_he": "Solana Mobile הופכת את ההכנסות השוטפות מטלפון ה־Seeker לזרם קבוע של שריפות של אסימון SKR, וכבר הוציאה יותר ממיליון אסימונים מהמחזור.\n\nהתוכנית, שהתחילה ב־15 באוקטובר 2026, משתמשת בהכנסות מעמלות הסטייקינג של טלפון ה־Seeker ומעמלות הארנק Seed Vault כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום על הבלוקצ'יין. בחודש הראשון הוקצו 24,573 דולר ב־USDC, ועד עכשיו נשרפו 1.2 מיליון SKR, וכל העסקאות ניתנות לבדיקה דרך כתובת ארנק ייעודית. אנשים בקהילה מדברים על אפקט גלגל תנופה: יותר שימוש בטלפון מביא לשריפות גדולות יותר ולהיצע מצומצם יותר של האסימון, והכול בשקיפות ובנפרד מתגמולי הסטייקינג.\n\n(הסיפור הזה הוא סיכום של פוסטים ב־X ועשוי להשתנות.)"
   },
   {
    "id": "grokbot-musk-try-calls-sawyer-calling-feature",
@@ -539,6 +571,40 @@
    "full_en": "More ways to put your HYPE to work.\n\nkHYPE lets you keep your $HYPE in Kraken custody and use it onchain. And thanks to @nadoHQ, you can now use it as collateral.\n\nCongrats to the Nado team 🤝\n\n@HyperliquidX\n\nThe quoted post (Nado, @nadoHQ):\n\nNew collateral & spot listing is live.\n\nYou can now use $kHYPE (Kraken wrapped HYPE) as collateral to trade perps, spot and borrow on Nado.\n\nThe quoted post also has a short 8-second video, so there's no more text to show. Kraken has no thread continuation of its own under the post."
   },
   {
+   "id": "tesla-okxice-56-companies-object-tokenized-shares",
+   "topic": "tesla",
+   "date": "2026-11-03T17:41:29Z",
+   "url": "https://x.com/i/trending/2117671717359477049",
+   "source": "X",
+   "he": {
+    "title": "טסלה, ספייסאקס ועוד 54 חברות מתנגדות למניות מטוקנות ב־OKXICE",
+    "summary": "56 חברות אמריקאיות גדולות, בהן טסלה, ספייסאקס, אמזון ונטפליקס, הגישו התנגדות רשמית למסחר במניות מטוקנות שלהן בפלטפורמה המתוכננת של OKX ו־ICE. כך כמעט 80% מהסימולים המוצעים בפלטפורמה חסומים."
+   },
+   "en": {
+    "title": "Tesla, SpaceX and 54 other companies object to tokenized shares on OKXICE",
+    "summary": "56 major U.S. companies, including Tesla, SpaceX, Amazon and Netflix, have formally objected to third-party tokenized versions of their shares on the planned OKX–ICE venue, leaving nearly 80% of its proposed symbols blocked."
+   },
+   "full_he": "טסלה, אמזון ונטפליקס הצטרפו לרשימה הולכת וגדלה של חברות גדולות שאומרות לא לגרסאות מטוקנות של המניות שלהן בפלטפורמת מסחר חדשה הקשורה לקריפטו.\n\n• עשרות חברות אמריקאיות בולטות, 56 נכון לתחילת נובמבר, הגישו התנגדות רשמית למסחר במניות מטוקנות של צד שלישי בפלטפורמת OKXICE המתוכננת של OKX ו־Intercontinental Exchange.\n• המצטרפות האחרונות, כמו טסלה, אמזון, נטפליקס, ספייסאקס ואחרות, מביאות לכך שחמש מתוך \"שבע המופלאות\" נמצאות ברשימה.\n• כך כמעט 80% מהסימולים שהפלטפורמה הציעה חסומים, במסגרת פטור החדשנות של ה־SEC.\n• החברות עדיין יכולות לטקן את המניות שלהן בעצמן במקום אחר, אבל הן העלו חששות לגבי נזילות, תנודתיות ושליטה.\n• לפי הסיכום, זה אתגר גדול לפלטפורמות כאלה גם כשיש להן אישור רגולטורי.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
+   "full_en": "Tesla, Amazon and Netflix just joined a growing list of big names saying no to tokenized versions of their shares on a new crypto-linked trading venue.\n\n• Dozens of prominent U.S. firms, now totaling 56 as of early November, have filed formal objections to third-party tokenized shares trading on the planned OKXICE platform from OKX and Intercontinental Exchange.\n• Recent additions like Tesla, Amazon, Netflix, SpaceX and others bring five of the Magnificent Seven into the fold.\n• That leaves nearly 80 percent of the venue's proposed symbols blocked under the SEC's innovation exemption.\n• Companies can still pursue their own tokenization elsewhere, but they've raised concerns over liquidity, volatility and control.\n• The summary says this highlights a major challenge for such platforms even with regulatory approval.\n\n(This story is a summary of posts on X and may evolve over time.)"
+  },
+  {
+   "id": "tesla-robotaxi-fort-worth-unsupervised",
+   "topic": "tesla",
+   "date": "2026-11-03T17:13:50Z",
+   "url": "https://x.com/i/trending/2117664878924009522",
+   "source": "X",
+   "he": {
+    "title": "טסלה משיקה רובוטקסי בלי נהג בטיחות בפורט וורת'",
+    "summary": "ב־2 בנובמבר התחילה טסלה נסיעות בלי נהג בטיחות בפורט וורת', טקסס, באזור של 143 מייל רבוע. זו העיר השביעית בארה\"ב עם השירות, והשוק השלישי בגודלו שלה בלי פיקוח אחרי אוסטין ויוסטון."
+   },
+   "en": {
+    "title": "Tesla launches unsupervised Robotaxi service in Fort Worth",
+    "summary": "On November 2 Tesla began driverless rides with no safety drivers in Fort Worth, Texas, across a 143-square-mile zone. It's the seventh U.S. city for the service and Tesla's third-largest unsupervised market after Austin and Houston."
+   },
+   "full_he": "ב־2 בנובמבר טסלה התחילה נסיעות בלי נהג בפורט וורת', טקסס, בלי נהגי בטיחות ברכב, ותושבים יכלו לעלות לנסיעות הראשונות בלי פיקוח כבר מ־6 בבוקר.\n\n• השירות מכסה אזור של 143 מייל רבוע סביב מרכז פורט וורת', ומגיע עד אזורים סמוכים כמו סגינאו ווייט סטלמנט.\n• זה השוק השלישי בגודלו של טסלה לנסיעות בלי פיקוח, אחרי אוסטין ויוסטון.\n• זו העיר השביעית בארה\"ב עם השירות, בנוסף לפעילות הקיימת בדאלאס, מיאמי, אורלנדו וטמפה.\n• רוכבים ראשונים שיתפו חוויות של נסיעה חלקה, על רקע מאגר נתוני הנהיגה העצומה של FSD (יותר מ־17 מיליארד מייל), אבל חלק מהאנשים הביעו חשש בנוגע לבטיחות.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
+   "full_en": "On November 2, Tesla kicked off driverless rides in Fort Worth, Texas, with no safety drivers aboard, letting locals hop in for the first unsupervised trips right from 6 a.m.\n\n• The service covers a 143-square-mile zone around downtown Fort Worth, stretching to nearby areas like Saginaw and White Settlement.\n• It's Tesla's third-largest unsupervised market after Austin and Houston.\n• It's the seventh U.S. city for the feature, building on existing operations in Dallas, Miami, Orlando and Tampa.\n• Early riders shared smooth experiences amid the company's massive Full Self-Driving data haul of over 17 billion miles, though some voiced safety concerns.\n\n(This story is a summary of posts on X and may evolve over time.)"
+  },
+  {
    "id": "grokbot-musk-doctor-appointment-by-phone",
    "topic": "grokbot",
    "date": "2026-11-03T17:11:25Z",
@@ -590,40 +656,6 @@
    "full_en": "Quest to understand the Universe\n\nThe quoted post (@XFreeze):\n\nWhen Chris Anderson asked Elon Musk what drives him every single day to do everything he does, Elon gave an incredibly deep and powerful answer\n\n\"I really want to make sure that there is a good future for humanity, and that we're on a path to understanding the nature of the universe, the meaning of life. Why are we here? How do we get here?\"\n\nAnd then he explained what motivates him more than anything:\n\n\"I'm motivated by curiosity more than anything, and just a desire to think about the future and not be sad\"\n\nThe rest of the post is a video, so there's no more text to show."
   },
   {
-   "id": "tesla-robotaxi-fort-worth-unsupervised",
-   "topic": "tesla",
-   "date": "2026-11-03T17:13:50Z",
-   "url": "https://x.com/i/trending/2117664878924009522",
-   "source": "X",
-   "he": {
-    "title": "טסלה משיקה רובוטקסי בלי נהג בטיחות בפורט וורת'",
-    "summary": "ב־2 בנובמבר התחילה טסלה נסיעות בלי נהג בטיחות בפורט וורת', טקסס, באזור של 143 מייל רבוע. זו העיר השביעית בארה\"ב עם השירות, והשוק השלישי בגודלו שלה בלי פיקוח אחרי אוסטין ויוסטון."
-   },
-   "en": {
-    "title": "Tesla launches unsupervised Robotaxi service in Fort Worth",
-    "summary": "On November 2 Tesla began driverless rides with no safety drivers in Fort Worth, Texas, across a 143-square-mile zone. It's the seventh U.S. city for the service and Tesla's third-largest unsupervised market after Austin and Houston."
-   },
-   "full_he": "ב־2 בנובמבר טסלה התחילה נסיעות בלי נהג בפורט וורת', טקסס, בלי נהגי בטיחות ברכב, ותושבים יכלו לעלות לנסיעות הראשונות בלי פיקוח כבר מ־6 בבוקר.\n\n• השירות מכסה אזור של 143 מייל רבוע סביב מרכז פורט וורת', ומגיע עד אזורים סמוכים כמו סגינאו ווייט סטלמנט.\n• זה השוק השלישי בגודלו של טסלה לנסיעות בלי פיקוח, אחרי אוסטין ויוסטון.\n• זו העיר השביעית בארה\"ב עם השירות, בנוסף לפעילות הקיימת בדאלאס, מיאמי, אורלנדו וטמפה.\n• רוכבים ראשונים שיתפו חוויות של נסיעה חלקה, על רקע מאגר נתוני הנהיגה העצומה של FSD (יותר מ־17 מיליארד מייל), אבל חלק מהאנשים הביעו חשש בנוגע לבטיחות.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
-   "full_en": "On November 2, Tesla kicked off driverless rides in Fort Worth, Texas, with no safety drivers aboard, letting locals hop in for the first unsupervised trips right from 6 a.m.\n\n• The service covers a 143-square-mile zone around downtown Fort Worth, stretching to nearby areas like Saginaw and White Settlement.\n• It's Tesla's third-largest unsupervised market after Austin and Houston.\n• It's the seventh U.S. city for the feature, building on existing operations in Dallas, Miami, Orlando and Tampa.\n• Early riders shared smooth experiences amid the company's massive Full Self-Driving data haul of over 17 billion miles, though some voiced safety concerns.\n\n(This story is a summary of posts on X and may evolve over time.)"
-  },
-  {
-   "id": "tesla-okxice-56-companies-object-tokenized-shares",
-   "topic": "tesla",
-   "date": "2026-11-03T17:41:29Z",
-   "url": "https://x.com/i/trending/2117671717359477049",
-   "source": "X",
-   "he": {
-    "title": "טסלה, ספייסאקס ועוד 54 חברות מתנגדות למניות מטוקנות ב־OKXICE",
-    "summary": "56 חברות אמריקאיות גדולות, בהן טסלה, ספייסאקס, אמזון ונטפליקס, הגישו התנגדות רשמית למסחר במניות מטוקנות שלהן בפלטפורמה המתוכננת של OKX ו־ICE. כך כמעט 80% מהסימולים המוצעים בפלטפורמה חסומים."
-   },
-   "en": {
-    "title": "Tesla, SpaceX and 54 other companies object to tokenized shares on OKXICE",
-    "summary": "56 major U.S. companies, including Tesla, SpaceX, Amazon and Netflix, have formally objected to third-party tokenized versions of their shares on the planned OKX–ICE venue, leaving nearly 80% of its proposed symbols blocked."
-   },
-   "full_he": "טסלה, אמזון ונטפליקס הצטרפו לרשימה הולכת וגדלה של חברות גדולות שאומרות לא לגרסאות מטוקנות של המניות שלהן בפלטפורמת מסחר חדשה הקשורה לקריפטו.\n\n• עשרות חברות אמריקאיות בולטות, 56 נכון לתחילת נובמבר, הגישו התנגדות רשמית למסחר במניות מטוקנות של צד שלישי בפלטפורמת OKXICE המתוכננת של OKX ו־Intercontinental Exchange.\n• המצטרפות האחרונות, כמו טסלה, אמזון, נטפליקס, ספייסאקס ואחרות, מביאות לכך שחמש מתוך \"שבע המופלאות\" נמצאות ברשימה.\n• כך כמעט 80% מהסימולים שהפלטפורמה הציעה חסומים, במסגרת פטור החדשנות של ה־SEC.\n• החברות עדיין יכולות לטקן את המניות שלהן בעצמן במקום אחר, אבל הן העלו חששות לגבי נזילות, תנודתיות ושליטה.\n• לפי הסיכום, זה אתגר גדול לפלטפורמות כאלה גם כשיש להן אישור רגולטורי.\n\n(הסיפור הוא סיכום של פוסטים ב־X ועשוי להשתנות.)",
-   "full_en": "Tesla, Amazon and Netflix just joined a growing list of big names saying no to tokenized versions of their shares on a new crypto-linked trading venue.\n\n• Dozens of prominent U.S. firms, now totaling 56 as of early November, have filed formal objections to third-party tokenized shares trading on the planned OKXICE platform from OKX and Intercontinental Exchange.\n• Recent additions like Tesla, Amazon, Netflix, SpaceX and others bring five of the Magnificent Seven into the fold.\n• That leaves nearly 80 percent of the venue's proposed symbols blocked under the SEC's innovation exemption.\n• Companies can still pursue their own tokenization elsewhere, but they've raised concerns over liquidity, volatility and control.\n• The summary says this highlights a major challenge for such platforms even with regulatory approval.\n\n(This story is a summary of posts on X and may evolve over time.)"
-  },
-  {
    "id": "brecka-rethink-senior-living-jen",
    "topic": "brecka",
    "date": "2026-11-03T17:00:01Z",
@@ -658,42 +690,6 @@
    "full_en": "Prophetic\n\nThe quoted post (@AlcuinPress):\nJ.R.R. Tolkien, holy cow this hits\n\nThe passage in the image:\n\"Kings built tombs more splendid than the houses of the living and counted the names of their descent dearer than the names of their sons. Childless lords sat in aged halls musing on heraldry or in high cold towers asking questions of the stars. And so the kingdom of Gondor sank into ruin, the line of kings failed, the white tree withered and the rule of Gondor was given over to lesser men.\"\n\n(The passage is from The Lord of the Rings, The Two Towers. Musk added no further posts to the thread.)"
   },
   {
-   "id": "musk-talarico-spiritual-sickness-wealth",
-   "topic": "musk",
-   "date": "2026-11-03T16:11:45Z",
-   "url": "https://x.com/i/trending/2117648665540018217",
-   "source": "X",
-   "he": {
-    "title": "טלאריקו כינה את העושר של מאסק \"מחלה רוחנית\", ומשתמשים הגיבו בבדיקת עובדות",
-    "summary": "בפודקאסט עם סטיבן ברטלט אמר המועמד הדמוקרטי לסנאט בטקסס, ג'יימס טלאריקו, שהמיליארדים של מאסק הם \"מחלה רוחנית\" הקשורה לסיוע ממשלתי. משתמשים השיבו שטסלה החזירה את ההלוואה הפדרלית תשע שנים מוקדם, ושספייסאקס חסכה למשלמי המסים מיליארדים."
-   },
-   "en": {
-    "title": "Talarico calls Musk's wealth a 'spiritual sickness', drawing fact-check replies",
-    "summary": "On Steven Bartlett's podcast, Texas Democratic Senate candidate James Talarico called Musk's billions a 'spiritual sickness' tied to taxpayer aid. Users replied that Tesla repaid its federal loan nine years early and SpaceX saved taxpayers billions."
-   },
-   "full_he": "המועמד לסנאט בטקסס ג'יימס טלאריקו כינה את המיליארדים של אילון מאסק \"מחלה רוחנית\" הקשורה לסיוע ממשלתי, בשיחה בפודקאסט. התגובות הציפו את הרשת עם פרטים על הלוואות שהוחזרו מוקדם ועל מיליארדים שנחסכו לממשלה.\n\n• בפודקאסט עם סטיבן ברטלט אמר המועמד הדמוקרטי ג'יימס טלאריקו שההצלחה של טסלה נשענה במידה רבה על הלוואה פדרלית של 465 מיליון דולר, וקרא למסים גבוהים על העשירים בסגנון שנות ה־50 כדי לחלוק ברווחים.\n• משתמשים השיבו שטסלה החזירה את ההלוואה תשע שנים מוקדם, כולל ריבית, שספייסאקס חסכה למשלמי המסים 14 עד 40 מיליארד דולר בשיגורים, ושמאסק שילם יותר מ־11 מיליארד דולר מסים בשנה אחת.\n• הוויכוח מבליט את ההתנגשות בין הטענה שכספי ציבור מניעים חדשנות לבין הדרישה ליותר מצד המיליארדרים.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות.",
-   "full_en": "Texas Senate hopeful James Talarico labeled Elon Musk's billions a 'spiritual sickness' tied to taxpayer aid during a podcast chat. Replies poured in with details on loans repaid early and billions saved for the government.\n\n• In a podcast with Steven Bartlett, Democratic candidate James Talarico said Tesla's success relied heavily on a $465 million federal loan and pushed for 1950s-style high taxes on the rich to share the gains.\n• Users countered that Tesla repaid the loan nine years early with interest, SpaceX saved taxpayers $14-40 billion on launches, and Musk paid over $11 billion in taxes one year alone.\n• The back-and-forth highlights clashes over public funds fueling innovation versus calls for more from billionaires.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
-  },
-  {
-   "id": "pod-asprey-78e3a4fbe3",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-11-03T09:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/the-truth-about-vitamins-supplements-prescription/id451295014?i=1000799578313",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "האמת על ויטמינים, תוספי תזונה ותרופות מרשם | פיל קאולי",
-    "summary": "דייב אספרי מארח את הרוקח פיל קאולי, מייסד Cache Valley Pharmacy ו־Phil's My Pharmacist, לשיחה על מולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין, תרופות מרשם והבעיות במערכת הבריאות, לפי דבריהם."
-   },
-   "en": {
-    "title": "The Truth About Vitamins, Supplements & Prescription Drugs | Phil Cowley",
-    "summary": "Dave Asprey hosts pharmacist Phil Cowley, founder of Cache Valley Pharmacy and creator of Phil's My Pharmacist, on multivitamins, MTHFR genetics, methylated B vitamins, creatine, prescription drugs and what they see as hidden problems in modern healthcare."
-   },
-   "full_en": "Multivitamin Mistakes, MTHFR Genetics, B Vitamins, Creatine & Prescription Drug Risks\n\nHost Dave Asprey sits down with Phil Cowley, a pharmacist, founder of Cache Valley Pharmacy, and creator of Phil's My Pharmacist, to explore multivitamins, prescription medications, supplement effectiveness, MTHFR genetics, methylated B vitamins, creatine, and the hidden problems within modern healthcare.\n\nAfter opening his pharmacy in Logan, Utah, in 2001, Phil spent two decades serving patients and dispensing millions of prescriptions. By 2021, declining insurance reimbursements threatened his business despite increasing prescription volume. He turned to social media to share practical, affordable health advice, eventually building an audience of more than six million followers. Now, he explains what his experience behind the pharmacy counter taught him about medication side effects, nutritional deficiencies, supplement quality, and why conventional healthcare often overlooks individual biology.\n\nThe conversation examines common multivitamin mistakes, including the use of synthetic folic acid and pyridoxine (vitamin B6). Phil explains why certain nutrient forms may be less suitable for some individuals, how excessive B6 intake can cause peripheral neuropathy, and why buying more supplements doesn't necessarily improve health. They explore MTHFR genetic variants, methylation, and folate metabolism, including potential implications for cognitive function, inflammation, blood pressure, fertility, and neurological development.\n\nPhil also reveals why creatine is his favorite supplement, discussing its potential benefits for brain health and muscle performance. He and Dave examine creatine dosing, hydration, electrolytes, absorption, and why creatine supplementation can influence kidney-related blood test results.\n\nThe discussion turns to Big Pharma, prescription drug pricing, and pharmacy benefit managers (PBMs). Phil shares how insurance reimbursement practices threatened his independent pharmacy despite increasing prescription volume. They also explore compounding pharmacies, customized hormone formulations, injectable vitamins, GLP-1 medications, and the challenges of providing personalized treatment within the conventional healthcare system.\n\nFinally, Dave and Phil examine personalized medicine, genetic testing, medication interactions, and nutritional deficiencies, including the relationship between statins and CoQ10. They discuss why individual biology should guide supplement choices and how addressing underlying metabolic processes may offer a more comprehensive approach to long-term health.\n\nYou'll Learn:\n• Why common multivitamins contain different forms of B vitamins, and how folic acid, folinic acid, L-methylfolate, and P5P differ\n• How MTHFR genetic variants influence folate metabolism and why individual responses to supplements can vary\n• What Phil recommends considering when using creatine for brain health, muscle performance, hydration, and kidney-related blood testing\n• How pharmacy benefit managers, insurance reimbursement, and drug pricing affect independent pharmacies and patient care\n• Why compounding pharmacies create customized medications, including hormone formulations, injectable vitamins, and certain GLP-1 treatments\n• How personalized supplementation, nutrient testing, medication interactions, and genetics may help inform more individualized healthcare decisions\n\nTimestamps:\n• 00:00 - Trailer\n• 00:40 - Intro\n• 01:45 - Drugs Stolen From Nature\n• 06:05 - Listening to Patients\n• 09:33 - Pharmacy Business & PBMs\n• 14:10 - Compounding Pharmacy Explained\n• 20:42 - Why Creatine Is Amazing\n• 28:23 - MTHFR & Methylation\n• 46:44 - Lab Tracking & Longevity\n• 50:58 - Science Bullies & Urine Therapy\n• 59:19 - Future of Pharmacy\n• 01:03:01 - TriQuetra Health & Closing\n\nThese are the guest's and host's views as described in the show notes, not medical advice.",
-   "full_he": "טעויות במולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B, קריאטין והסיכונים של תרופות מרשם\n\nדייב אספרי משוחח עם פיל קאולי, רוקח, מייסד Cache Valley Pharmacy ויוצר Phil's My Pharmacist, על מולטי־ויטמינים, תרופות מרשם, היעילות של תוספי תזונה, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין והבעיות הנסתרות במערכת הבריאות המודרנית.\n\nפיל פתח את בית המרקחת שלו בלוגן שביוטה ב־2001, ובמשך שני עשורים שירת מטופלים וניפק מיליוני מרשמים. עד 2021, ההחזרים הפוחתים מחברות הביטוח איימו על העסק שלו למרות שמספר המרשמים עלה. הוא פנה לרשתות החברתיות כדי לשתף עצות בריאות מעשיות וזולות, ובנה קהל של יותר משישה מיליון עוקבים. בפרק הוא מספר מה למד מאחורי דלפק בית המרקחת על תופעות לוואי של תרופות, חסרים תזונתיים, איכות של תוספים, ולמה לדבריו הרפואה המקובלת מתעלמת לעיתים קרובות מהביולוגיה האישית.\n\nהשיחה בוחנת טעויות נפוצות במולטי־ויטמינים, כמו שימוש בחומצה פולית סינתטית ובפירידוקסין (ויטמין B6). פיל מסביר למה צורות מסוימות של רכיבים תזונתיים עשויות להתאים פחות לחלק מהאנשים, איך עודף B6 עלול לגרום לנוירופתיה היקפית, ולמה קניית יותר תוספים לא בהכרח משפרת את הבריאות. הם עוסקים בווריאנטים הגנטיים של MTHFR, במתילציה ובחילוף החומרים של פולאט, כולל השלכות אפשריות על תפקוד קוגניטיבי, דלקת, לחץ דם, פוריות והתפתחות נוירולוגית.\n\nפיל מספר גם למה קריאטין הוא התוסף האהוב עליו, ומדבר על התועלת האפשרית שלו לבריאות המוח ולביצועי השרירים. הוא ודייב דנים במינון קריאטין, בשתייה, באלקטרוליטים, בספיגה, ובכך שנטילת קריאטין יכולה להשפיע על תוצאות בדיקות דם הקשורות לכליות.\n\nהשיחה עוברת לחברות התרופות הגדולות, למחירי תרופות המרשם ולמנהלי הטבות התרופות (PBMs). פיל מספר איך שיטות ההחזר של חברות הביטוח איימו על בית המרקחת העצמאי שלו. הם מדברים גם על בתי מרקחת לרקיחה, פורמולות הורמונליות מותאמות, ויטמינים בהזרקה, תרופות GLP-1, והקושי לתת טיפול מותאם אישית בתוך מערכת הבריאות המקובלת.\n\nלבסוף הם דנים ברפואה מותאמת אישית, בבדיקות גנטיות, באינטראקציות בין תרופות ובחסרים תזונתיים, כולל הקשר בין סטטינים ל־CoQ10, ולמה לדבריהם הביולוגיה האישית צריכה להנחות את בחירת התוספים.\n\nמה תלמד בפרק:\n• למה מולטי־ויטמינים נפוצים מכילים צורות שונות של ויטמיני B, ומה ההבדל בין חומצה פולית, חומצה פולינית, L־מתילפולאט ו־P5P\n• איך וריאנטים של MTHFR משפיעים על חילוף החומרים של פולאט, ולמה התגובה לתוספים משתנה מאדם לאדם\n• מה פיל ממליץ לשקול כשמשתמשים בקריאטין לבריאות המוח, לביצועי שרירים, לשתייה ולבדיקות דם של הכליות\n• איך מנהלי הטבות תרופות, החזרי ביטוח ומחירי תרופות משפיעים על בתי מרקחת עצמאיים ועל הטיפול במטופלים\n• למה בתי מרקחת לרקיחה מכינים תרופות מותאמות, כולל פורמולות הורמונליות, ויטמינים בהזרקה וחלק מטיפולי ה־GLP-1\n• איך תוספים מותאמים אישית, בדיקות רכיבים תזונתיים, אינטראקציות בין תרופות וגנטיקה יכולים לעזור בהחלטות בריאות אישיות יותר\n\nחותמות זמן:\n• 00:00 - טריילר\n• 00:40 - פתיחה\n• 01:45 - תרופות שנלקחו מהטבע\n• 06:05 - להקשיב למטופלים\n• 09:33 - העסק של בית המרקחת ומנהלי הטבות התרופות\n• 14:10 - מה זה בית מרקחת לרקיחה\n• 20:42 - למה קריאטין מדהים\n• 28:23 - MTHFR ומתילציה\n• 46:44 - מעקב בדיקות ואריכות ימים\n• 50:58 - \"בריוני מדע\" וטיפול בשתן\n• 59:19 - העתיד של בתי המרקחת\n• 01:03:01 - TriQuetra Health וסיום\n\nאלה דעותיהם של האורח והמנחה כפי שמתוארות בתיאור הפרק, ולא ייעוץ רפואי. (\"טיפול בשתן\" שמוזכר בפרק אינו מקובל ברפואה המרכזית.)"
-  },
-  {
    "id": "grokbot-musk-super-competent-employee",
    "topic": "grokbot",
    "date": "2026-11-03T16:11:58Z",
@@ -709,6 +705,23 @@
    },
    "full_he": "גרוק בוט הוא כמו לגייס עובד מוכשר במיוחד. תתייחס לבוט כמו שהיית מתייחס לעמית לעבודה.\n\nהפוסט שהוא ציטט (פיטר דיאמנדיס, ‎@PeterDiamandis):\n\n\"חייב להגיד את זה. גרוק בוט מדהים. ממש ממכר.\"",
    "full_en": "Grok Bot is like hiring a super competent employee. Treat Bot like you would a colleague.\n\nThe quoted post (Peter H. Diamandis, MD, @PeterDiamandis):\n\n\"Got to say it. GrokBot is AWESOME. Actually addicting.\""
+  },
+  {
+   "id": "musk-talarico-spiritual-sickness-wealth",
+   "topic": "musk",
+   "date": "2026-11-03T16:11:45Z",
+   "url": "https://x.com/i/trending/2117648665540018217",
+   "source": "X",
+   "he": {
+    "title": "טלאריקו כינה את העושר של מאסק \"מחלה רוחנית\", ומשתמשים הגיבו בבדיקת עובדות",
+    "summary": "בפודקאסט עם סטיבן ברטלט אמר המועמד הדמוקרטי לסנאט בטקסס, ג'יימס טלאריקו, שהמיליארדים של מאסק הם \"מחלה רוחנית\" הקשורה לסיוע ממשלתי. משתמשים השיבו שטסלה החזירה את ההלוואה הפדרלית תשע שנים מוקדם, ושספייסאקס חסכה למשלמי המסים מיליארדים."
+   },
+   "en": {
+    "title": "Talarico calls Musk's wealth a 'spiritual sickness', drawing fact-check replies",
+    "summary": "On Steven Bartlett's podcast, Texas Democratic Senate candidate James Talarico called Musk's billions a 'spiritual sickness' tied to taxpayer aid. Users replied that Tesla repaid its federal loan nine years early and SpaceX saved taxpayers billions."
+   },
+   "full_he": "המועמד לסנאט בטקסס ג'יימס טלאריקו כינה את המיליארדים של אילון מאסק \"מחלה רוחנית\" הקשורה לסיוע ממשלתי, בשיחה בפודקאסט. התגובות הציפו את הרשת עם פרטים על הלוואות שהוחזרו מוקדם ועל מיליארדים שנחסכו לממשלה.\n\n• בפודקאסט עם סטיבן ברטלט אמר המועמד הדמוקרטי ג'יימס טלאריקו שההצלחה של טסלה נשענה במידה רבה על הלוואה פדרלית של 465 מיליון דולר, וקרא למסים גבוהים על העשירים בסגנון שנות ה־50 כדי לחלוק ברווחים.\n• משתמשים השיבו שטסלה החזירה את ההלוואה תשע שנים מוקדם, כולל ריבית, שספייסאקס חסכה למשלמי המסים 14 עד 40 מיליארד דולר בשיגורים, ושמאסק שילם יותר מ־11 מיליארד דולר מסים בשנה אחת.\n• הוויכוח מבליט את ההתנגשות בין הטענה שכספי ציבור מניעים חדשנות לבין הדרישה ליותר מצד המיליארדרים.\n\nזה סיכום של פוסטים ב־X (סיפור טרנדי), והוא עשוי להשתנות.",
+   "full_en": "Texas Senate hopeful James Talarico labeled Elon Musk's billions a 'spiritual sickness' tied to taxpayer aid during a podcast chat. Replies poured in with details on loans repaid early and billions saved for the government.\n\n• In a podcast with Steven Bartlett, Democratic candidate James Talarico said Tesla's success relied heavily on a $465 million federal loan and pushed for 1950s-style high taxes on the rich to share the gains.\n• Users countered that Tesla repaid the loan nine years early with interest, SpaceX saved taxpayers $14-40 billion on launches, and Musk paid over $11 billion in taxes one year alone.\n• The back-and-forth highlights clashes over public funds fueling innovation versus calls for more from billionaires.\n\nThis is a summary of posts on X (a trending story) and may evolve over time."
   },
   {
    "id": "spacex-starlink-zipair-airline-revenue",
@@ -745,21 +758,21 @@
    "full_en": "And electrical equipment, cooling, networking and batteries\n\nThe quoted post (@euwyn):\n\nElon Musk says the AI boom will hit a WALL by the end of 2026.\n\nHe says the whole industry is about to learn a hard lesson in hardware.\n\nChip output is exploding, but electricity is nearly flat everywhere outside China.\n\nSo the two lines cross this year.\n\nHe says by the end of the year, we will be making more AI chips than we can actually turn on.\n\nMillions of them pile up with nowhere to plug in.\n\nIn his words, the bottleneck for the next year is not chips, it is raw power.\n\nWhoever can turn on the most chips fastest wins the race.\n\nIn the end, the AI race comes down to one thing: raw electricity.\n\n— Elon Musk on Dwarkesh Patel's podcast\n\nThat post itself quoted an earlier @euwyn clip from the same podcast: Musk says billion-dollar AI companies can't build power plants fast enough, because every major power project needs approvals and equipment, including:\n\n• Switchgear\n• Gas turbines\n• Power plant permits\n• Electrical transformers\n• Utility interconnection studies\n• High-voltage transmission lines\n• Specialized turbine blades and vanes\n\nIf even one component is delayed, the whole project stalls, leaving AI chips without electricity. Musk says gas turbines are sold out through 2030, with specialized blades and vanes the biggest bottleneck. The rest of that post is a video, so there's no more text to show."
   },
   {
-   "id": "mikhaila-halloween-parents-dr-strange-edna",
-   "topic": "mikhaila",
-   "date": "2026-11-03T15:51:41Z",
-   "url": "https://x.com/MikhailaFuller/status/2117645903423218143",
-   "source": "X · @MikhailaFuller",
+   "id": "apple-nvidia-tops-apple-5t-after-earnings",
+   "topic": "apple",
+   "date": "2026-11-03T15:58:21Z",
+   "url": "https://x.com/i/trending/2117645876692947019",
+   "source": "X",
    "he": {
-    "title": "מיכאלה פיטרסון: אמא ואבא הגיעו למסיבת ההאלווין, ג'ורדן בתור דוקטור סטריינג'",
-    "summary": "מיכאלה שיתפה שהיא שמחה מאוד שהוריה, תמי וג'ורדן פיטרסון, הגיעו למסיבת ההאלווין שלה בנושא דמויות מסרטים: ג'ורדן התחפש לדוקטור סטריינג' ותמי לאדנה מ'משפחת סופר־על'."
+    "title": "אנבידיה עוקפת את אפל וחוזרת להיות החברה השווה בעולם, ב־5 טריליון דולר",
+    "summary": "ב־3 בנובמבר אנבידיה הגיעה לשווי של 5 טריליון דולר ועקפה את אפל (4.85 טריליון), אחרי שמניית אפל ירדה בעקבות תחזית רכה לרבעון דצמבר, למרות רבעון שיא."
    },
    "en": {
-    "title": "Mikhaila Peterson: mom and dad at her Halloween party, Jordan as Dr. Strange",
-    "summary": "Mikhaila said she was thrilled to have her parents, Tammy and Jordan Peterson, at her movie-character Halloween party: Jordan came as Dr. Strange and Tammy as Edna from The Incredibles."
+    "title": "Nvidia tops Apple as the world's most valuable company at $5 trillion",
+    "summary": "On November 3 Nvidia hit a $5 trillion market cap, edging past Apple's $4.85 trillion, as Apple shares dipped on softer December guidance despite a record quarter."
    },
-   "full_he": "כל כך כל כך כל כך שמחה שאמא ואבא (תמי פיטרסון וג'ורדן פיטרסון) הגיעו למסיבת ההאלווין שלנו (בנושא דמויות מסרטים!). לא יכולתי לחשוב על תחפושת מתאימה יותר מדוקטור סטריינג'. (אמא היא אדנה מ'משפחת סופר־על'. אני הייתי אל וודס מ'בלונדינית חוקית'). תודה לכל מי שהגיע :)\n\nבתמונה: ג'ורדן פיטרסון בגלימה אדומה ובתחפושת דוקטור סטריינג' עם תליון, ולידו תמי פיטרסון כאדנה, עם פאה שחורה, משקפיים עגולים ומעיל שחור מבריק.",
-   "full_en": "So so so so so so happy to have mom and dad (@Tammy1Peterson and @jordanbpeterson) at our Halloween party (movie character themed!) Couldn't think of an outfit more appropriate than Dr. Strange. (Mom's Edna from The Incredibles. I was Elle Woods from Legally Blonde). Thanks to everyone who came out :)\n\nThe photo shows Jordan Peterson in a red cloak and Dr. Strange costume with an amulet, next to Tammy Peterson as Edna, with a black wig, round glasses and a shiny black coat."
+   "full_he": "אנבידיה עקפה את אפל ב־3 בנובמבר, הגיעה לשווי שוק של 5 טריליון דולר, בזמן שמניית אפל ירדה אחרי הדוחות.\n\n• אפל דיווחה על הכנסות שיא לרבעון ספטמבר: 114.48 מיליארד דולר, עלייה של 12% לעומת השנה שעברה.\n• מכירות האייפון הגיעו לשיא רבעוני של 57.58 מיליארד דולר, והשירותים הגיעו לשיא של כל הזמנים.\n• המנכ\"ל החדש ג'ון טרנוס הוביל את שיחת הדוחות הראשונה שלו, אבל המניה ירדה בכ־4% במסחר המוקדם בגלל תחזית רכה יותר לרבעון דצמבר, כולל שולי רווח גולמי של 45–46% על רקע עליית מחירי שבבי הזיכרון בגלל הביקוש ל־AI.\n• השינוי מראה איך ה־AI מפעיל לחץ גם על ענקיות כמו אפל, ומאפשר לאנבידיה לחזור למקום הראשון עם 5 טריליון דולר מול 4.85 טריליון של אפל.\n\nזה סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
+   "full_en": "Nvidia edged ahead of Apple on November 3, hitting a $5 trillion market cap while Apple's shares dipped after earnings.\n\n• Apple posted record September-quarter revenue of $114.48 billion, up 12% from last year.\n• iPhone sales hit a quarterly high of $57.58 billion, and services reached an all-time peak.\n• New CEO John Ternus led his first earnings call, but shares fell about 4% in premarket on softer December guidance, including gross margins of 45–46% amid rising memory-chip costs from AI demand.\n• The shift highlights how AI pressures even giants like Apple, letting Nvidia reclaim the top spot with $5 trillion versus Apple's $4.85 trillion.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
    "id": "medicalmedium-banana-strawberry-baked-oatmeal-live",
@@ -779,21 +792,21 @@
    "full_en": "Making Banana Strawberry Baked Oatmeal And Answering Your Questions\n\nThe post links to a live broadcast on X (x.com/i/broadcasts/2LPLdYklZObgBB), so there's no more text to show."
   },
   {
-   "id": "apple-nvidia-tops-apple-5t-after-earnings",
-   "topic": "apple",
-   "date": "2026-11-03T15:58:21Z",
-   "url": "https://x.com/i/trending/2117645876692947019",
-   "source": "X",
+   "id": "mikhaila-halloween-parents-dr-strange-edna",
+   "topic": "mikhaila",
+   "date": "2026-11-03T15:51:41Z",
+   "url": "https://x.com/MikhailaFuller/status/2117645903423218143",
+   "source": "X · @MikhailaFuller",
    "he": {
-    "title": "אנבידיה עוקפת את אפל וחוזרת להיות החברה השווה בעולם, ב־5 טריליון דולר",
-    "summary": "ב־3 בנובמבר אנבידיה הגיעה לשווי של 5 טריליון דולר ועקפה את אפל (4.85 טריליון), אחרי שמניית אפל ירדה בעקבות תחזית רכה לרבעון דצמבר, למרות רבעון שיא."
+    "title": "מיכאלה פיטרסון: אמא ואבא הגיעו למסיבת ההאלווין, ג'ורדן בתור דוקטור סטריינג'",
+    "summary": "מיכאלה שיתפה שהיא שמחה מאוד שהוריה, תמי וג'ורדן פיטרסון, הגיעו למסיבת ההאלווין שלה בנושא דמויות מסרטים: ג'ורדן התחפש לדוקטור סטריינג' ותמי לאדנה מ'משפחת סופר־על'."
    },
    "en": {
-    "title": "Nvidia tops Apple as the world's most valuable company at $5 trillion",
-    "summary": "On November 3 Nvidia hit a $5 trillion market cap, edging past Apple's $4.85 trillion, as Apple shares dipped on softer December guidance despite a record quarter."
+    "title": "Mikhaila Peterson: mom and dad at her Halloween party, Jordan as Dr. Strange",
+    "summary": "Mikhaila said she was thrilled to have her parents, Tammy and Jordan Peterson, at her movie-character Halloween party: Jordan came as Dr. Strange and Tammy as Edna from The Incredibles."
    },
-   "full_he": "אנבידיה עקפה את אפל ב־3 בנובמבר, הגיעה לשווי שוק של 5 טריליון דולר, בזמן שמניית אפל ירדה אחרי הדוחות.\n\n• אפל דיווחה על הכנסות שיא לרבעון ספטמבר: 114.48 מיליארד דולר, עלייה של 12% לעומת השנה שעברה.\n• מכירות האייפון הגיעו לשיא רבעוני של 57.58 מיליארד דולר, והשירותים הגיעו לשיא של כל הזמנים.\n• המנכ\"ל החדש ג'ון טרנוס הוביל את שיחת הדוחות הראשונה שלו, אבל המניה ירדה בכ־4% במסחר המוקדם בגלל תחזית רכה יותר לרבעון דצמבר, כולל שולי רווח גולמי של 45–46% על רקע עליית מחירי שבבי הזיכרון בגלל הביקוש ל־AI.\n• השינוי מראה איך ה־AI מפעיל לחץ גם על ענקיות כמו אפל, ומאפשר לאנבידיה לחזור למקום הראשון עם 5 טריליון דולר מול 4.85 טריליון של אפל.\n\nזה סיכום של פוסטים ב־X, והוא עשוי להשתנות.",
-   "full_en": "Nvidia edged ahead of Apple on November 3, hitting a $5 trillion market cap while Apple's shares dipped after earnings.\n\n• Apple posted record September-quarter revenue of $114.48 billion, up 12% from last year.\n• iPhone sales hit a quarterly high of $57.58 billion, and services reached an all-time peak.\n• New CEO John Ternus led his first earnings call, but shares fell about 4% in premarket on softer December guidance, including gross margins of 45–46% amid rising memory-chip costs from AI demand.\n• The shift highlights how AI pressures even giants like Apple, letting Nvidia reclaim the top spot with $5 trillion versus Apple's $4.85 trillion.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "כל כך כל כך כל כך שמחה שאמא ואבא (תמי פיטרסון וג'ורדן פיטרסון) הגיעו למסיבת ההאלווין שלנו (בנושא דמויות מסרטים!). לא יכולתי לחשוב על תחפושת מתאימה יותר מדוקטור סטריינג'. (אמא היא אדנה מ'משפחת סופר־על'. אני הייתי אל וודס מ'בלונדינית חוקית'). תודה לכל מי שהגיע :)\n\nבתמונה: ג'ורדן פיטרסון בגלימה אדומה ובתחפושת דוקטור סטריינג' עם תליון, ולידו תמי פיטרסון כאדנה, עם פאה שחורה, משקפיים עגולים ומעיל שחור מבריק.",
+   "full_en": "So so so so so so happy to have mom and dad (@Tammy1Peterson and @jordanbpeterson) at our Halloween party (movie character themed!) Couldn't think of an outfit more appropriate than Dr. Strange. (Mom's Edna from The Incredibles. I was Elle Woods from Legally Blonde). Thanks to everyone who came out :)\n\nThe photo shows Jordan Peterson in a red cloak and Dr. Strange costume with an amulet, next to Tammy Peterson as Edna, with a black wig, round glasses and a shiny black coat."
   },
   {
    "id": "johnson-make-your-stand-exercise",
@@ -813,21 +826,21 @@
    "full_en": "today, make your stand\ndig your heels in\ngo all in\ndo not yield\ncome hell or high water\non this day\nyou will move your body\non this day\nyou will exercise"
   },
   {
-   "id": "grokbot-musk-yes-give-it-a-job",
-   "topic": "grokbot",
-   "date": "2026-11-03T14:34:14Z",
-   "url": "https://x.com/elonmusk/status/2117626410529689678",
-   "source": "X · @elonmusk",
+   "id": "solana-breakpoint-london-pub-crawl",
+   "topic": "solana",
+   "date": "2026-11-03T14:42:27Z",
+   "url": "https://x.com/solana/status/2117628479503999126",
+   "source": "X · @solana",
    "he": {
-    "title": "מאסק: \"כן\", לתת לגרוק בוט עבודה ולא רק לשאול שאלות",
-    "summary": "מאסק ענה \"כן\" לפוסט של Captain Eli שטוען שצריך להתייחס לגרוק בוט כמו לחבר צוות ולתת לו משימות של עובד חדש, עם דוגמה של עסק שסגר עסקה בזכות לקוח ישן שהבוט מצא."
+    "title": "סולאנה \"משתלטת על רחובות לונדון\": סיור פאבים במסיבת הסיום של Breakpoint",
+    "summary": "סולאנה מזמינה להירשם ל-The Great British Pub Crawl, מסיבת הסיום הלא רשמית של כנס Breakpoint בלונדון, ב-17 בנובמבר."
    },
    "en": {
-    "title": "Musk: \"Yes\" to giving Grok Bot a job, not just questions",
-    "summary": "Musk replied \"Yes\" to a Captain Eli post arguing Grok Bot should be treated like a teammate given new-hire tasks, citing a business that closed a deal after the bot surfaced an old customer."
+    "title": "Solana \"takes over the streets of London\" with a Breakpoint pub crawl",
+    "summary": "Solana invites people to register for The Great British Pub Crawl, the unofficial afterparty of the Breakpoint conference in London on 17 November."
    },
-   "full_he": "הפוסט של מאסק: \"כן\"\n\nהפוסט שהוא ציטט (Captain Eli, @TheCaptainEli):\n\nרוב האנשים עדיין משתמשים בבינה מלאכותית בדרך הלא נכונה.\n\nהם שואלים אותה שאלות.\n\nאילון מאסק הצביע עכשיו על הדרך הנכונה.\n\nאתמול ג'ייסון גינסברג כתב: \"תתייחס לגרוק בוט כמו לחבר צוות ותן ל־@bot משימה שאפתנית שהיית נותן לעובד חדש.\"\n\nהתשובה של אילון: \"זו הדרך.\"\n\nשלוש מילים. שינוי שלם באופן שבו אנחנו עובדים.\n\nככה זה נראה בחיים האמיתיים.\n\nסקוט בילוז מנהל עסק עם מחזור מכירות מסורתי מאוד, עסקאות שלוקח חודשים לטפח.\n\nהוא חיבר את גרוק בוט לכלים של החברה.\n\nהבוט חפר בעבר, שלף לקוחות ולקוחות פוטנציאליים ישנים שאף אחד כבר לא התקשר אליהם, והעביר אותם לאנשי המכירות שלו.\n\nאחרי שבועיים: עסקה סגורה.\n\nבמילים שלו: \"בלי גרוק בוט כנראה לא היינו פונים ללקוח העבר הזה.\"\n\nתחשוב על זה.\n\nלא חיפוש מהיר יותר. לא השלמה אוטומטית חכמה יותר. לא צ'אטבוט.\n\nחבר צוות שמצא כסף שהיה מונח מול העיניים.\n\nכולם חשבו שהבינה המלאכותית תהיה מכונת תשובות טובה יותר.\n\nבפועל היא סוג חדש של עמית לעבודה.\n\nאילון אמר את זה פשוט כבר באוקטובר: \"תניח שאתה מגייס עובד מוכשר במיוחד.\"\n\nלא כלי שפותחים, אלא מישהו שמעבירים אליו את העבודה.\n\nהצוות ממשיך להוסיף יכולות: דפי מוצר, מעקב הזמנות, תשלומים, ובוטים צוותיים שכל החברה יכולה לחלוק.\n\nכל שבוע תיאור התפקיד מתארך.\n\nוהנה החלק שכמעט אף אחד עוד לא רואה.\n\nלאורך כל ההיסטוריה, צוות היה פריבילגיה. רק העשירים, החברות הגדולות ובעלי הקשרים יכלו להאציל משימות.\n\nכל השאר עשו הכול לבד.\n\nהחומה הזאת נופלת.\n\nבעל חנות קטנה, הורה יחידני, מלח בים. כל אחד יכול עכשיו לומר: \"זו המשימה. קדימה.\"\n\nכשלכל אחד יש צוות, כל אחד הופך לבונה.\n\nוציוויליזציה של בונים לא נשארת קטנה לאורך זמן.\n\nתפסיק לשאול את הבינה המלאכותית שאלות.\n\nתן לה עבודה.",
-   "full_en": "Musk's post: \"Yes\"\n\nThe quoted post (Captain Eli, @TheCaptainEli):\n\nMost people are still using AI the wrong way.\n\nThey ask it questions.\n\nElon Musk just pointed at the right way.\n\nYesterday, Jason Ginsberg wrote: \"Treat Grok Bot like a teammate and give @bot an ambitious task you'd normally give to a new hire.\"\n\nElon's answer: \"This is the way.\"\n\nThree words. A whole shift in how we work.\n\nHere's what that looks like in real life.\n\nScott Billows runs a business with a very traditional sales cycle. Deals that take months to cultivate.\n\nHe pointed Grok Bot at his company's tools.\n\nIt dug through the past. Surfaced old prospects and customers nobody was calling anymore. Handed them to his sales reps.\n\nTwo weeks in, a closed deal.\n\nHis words: \"Without Grok Bot we most likely would not have reached out to this past customer.\"\n\nThink about that.\n\nNot a faster search. Not a smarter autocomplete. Not a chatbot.\n\nA teammate that found money hiding in plain sight.\n\nEveryone thought AI would be a better answer machine.\n\nIt's actually a new kind of colleague.\n\nElon put it plainly back in October: \"assume you are hiring a super competent employee.\"\n\nNot a tool you open. Someone you hand the job to.\n\nThe team keeps adding powers. Product pages. Order tracking. Payments. Team Bots your whole company can share.\n\nEvery week the job description gets longer.\n\nHere's the part almost nobody sees yet.\n\nFor all of history, having a team was a privilege. Only the rich, the big companies, the well-connected could delegate.\n\nEveryone else did everything alone.\n\nThat wall is falling.\n\nA small shop owner. A single parent. A sailor at sea. Anyone can now say: \"Here's the mission. Go.\"\n\nWhen everyone gets a team, everyone becomes a builder.\n\nAnd a civilization of builders doesn't stay small for long.\n\nStop asking AI questions.\n\nGive it a job."
+   "full_he": "סולאנה משתלטת על רחובות לונדון.\n\nהירשמו ל-The Great British Pub Crawl 🍻\n\nהפוסט שהיא ציטטה (Cap, @CapinUK):\n\n7,000 איש נמצאים בלונדון בשביל Breakpoint.\n\nבערב האחרון אנחנו לוקחים את כולם לפאב 🍻\n\nהכירו את מסיבת הסיום הלא־רשמית־רשמית: The Great British Pub Crawl 🇬🇧\n\n• פאבים שהמקומיים ממליצים עליהם, מאולימפיה ועד סוהו\n• משפט סודי = פיינטים בחינם על חשבון האקוסיסטם\n• 18:00, יום שלישי 17 בנובמבר\n\nההרשמה בדף luma.com/BP26-After-Party.",
+   "full_en": "Solana takes over the streets of London\n\nRegister for The Great British Pub Crawl 🍻\n\nThe quoted post (Cap, @CapinUK):\n\n7,000 people are in London for Breakpoint.\n\nOn the last night, we're taking them all to the pub 🍻\n\nIntroducing The Unofficial Official Afterparty: The Great British Pub Crawl 🇬🇧\n\n• Local-approved pubs, Olympia to Soho\n• Secret phrase = free pints on the ecosystem\n• 6pm, Tue 17 Nov\n\nRegistration is at luma.com/BP26-After-Party."
   },
   {
    "id": "musk-vote-red-election-day",
@@ -847,38 +860,21 @@
    "full_en": "\"Vote red today!\"\n\nThat's the whole post (red is the Republican Party's color). There's no thread continuation."
   },
   {
-   "id": "solana-breakpoint-london-pub-crawl",
-   "topic": "solana",
-   "date": "2026-11-03T14:42:27Z",
-   "url": "https://x.com/solana/status/2117628479503999126",
-   "source": "X · @solana",
+   "id": "grokbot-musk-yes-give-it-a-job",
+   "topic": "grokbot",
+   "date": "2026-11-03T14:34:14Z",
+   "url": "https://x.com/elonmusk/status/2117626410529689678",
+   "source": "X · @elonmusk",
    "he": {
-    "title": "סולאנה \"משתלטת על רחובות לונדון\": סיור פאבים במסיבת הסיום של Breakpoint",
-    "summary": "סולאנה מזמינה להירשם ל-The Great British Pub Crawl, מסיבת הסיום הלא רשמית של כנס Breakpoint בלונדון, ב-17 בנובמבר."
+    "title": "מאסק: \"כן\", לתת לגרוק בוט עבודה ולא רק לשאול שאלות",
+    "summary": "מאסק ענה \"כן\" לפוסט של Captain Eli שטוען שצריך להתייחס לגרוק בוט כמו לחבר צוות ולתת לו משימות של עובד חדש, עם דוגמה של עסק שסגר עסקה בזכות לקוח ישן שהבוט מצא."
    },
    "en": {
-    "title": "Solana \"takes over the streets of London\" with a Breakpoint pub crawl",
-    "summary": "Solana invites people to register for The Great British Pub Crawl, the unofficial afterparty of the Breakpoint conference in London on 17 November."
+    "title": "Musk: \"Yes\" to giving Grok Bot a job, not just questions",
+    "summary": "Musk replied \"Yes\" to a Captain Eli post arguing Grok Bot should be treated like a teammate given new-hire tasks, citing a business that closed a deal after the bot surfaced an old customer."
    },
-   "full_he": "סולאנה משתלטת על רחובות לונדון.\n\nהירשמו ל-The Great British Pub Crawl 🍻\n\nהפוסט שהיא ציטטה (Cap, @CapinUK):\n\n7,000 איש נמצאים בלונדון בשביל Breakpoint.\n\nבערב האחרון אנחנו לוקחים את כולם לפאב 🍻\n\nהכירו את מסיבת הסיום הלא־רשמית־רשמית: The Great British Pub Crawl 🇬🇧\n\n• פאבים שהמקומיים ממליצים עליהם, מאולימפיה ועד סוהו\n• משפט סודי = פיינטים בחינם על חשבון האקוסיסטם\n• 18:00, יום שלישי 17 בנובמבר\n\nההרשמה בדף luma.com/BP26-After-Party.",
-   "full_en": "Solana takes over the streets of London\n\nRegister for The Great British Pub Crawl 🍻\n\nThe quoted post (Cap, @CapinUK):\n\n7,000 people are in London for Breakpoint.\n\nOn the last night, we're taking them all to the pub 🍻\n\nIntroducing The Unofficial Official Afterparty: The Great British Pub Crawl 🇬🇧\n\n• Local-approved pubs, Olympia to Soho\n• Secret phrase = free pints on the ecosystem\n• 6pm, Tue 17 Nov\n\nRegistration is at luma.com/BP26-After-Party."
-  },
-  {
-   "id": "musk-tesla-spacex-merger-real-merit",
-   "topic": "musk",
-   "date": "2026-11-03T13:53:42Z",
-   "url": "https://x.com/i/trending/2117614473737560253",
-   "source": "X",
-   "he": {
-    "title": "מאסק: למיזוג טסלה-ספייסאקס יש היגיון אמיתי",
-    "summary": "אילון מאסק אמר שמיזוג אפשרי בין טסלה לספייסאקס הוא רעיון טוב עם היגיון אמיתי, אבל הוא נסוג הצידה ומשאיר את הפרטים לוועדות הדירקטורים הבלתי תלויים."
-   },
-   "en": {
-    "title": "Musk sees real merit in a Tesla-SpaceX merger",
-    "summary": "Elon Musk called a potential Tesla-SpaceX merger a good idea with real merit, but has stepped back to let independent committees handle the details."
-   },
-   "full_he": "אילון מאסק אמר שמיזוג אפשרי בין טסלה לספייסאקס הוא רעיון טוב עם היגיון אמיתי, אבל הוא נסוג הצידה ומשאיר את הפרטים לוועדות הבלתי תלויות.\n\n• שתי החברות הקימו ועדות מיוחדות של דירקטורים בלתי תלויים כדי לבחון מיזוג, ומאסק הדגיש סינרגיות בתוכנה של סופר-אינטליגנציה, בשבבים, ברובוטיקה וביכולות שיגור לחלל.\n• החברות כבר משתפות פעולה בפרויקט שבבים ענק בטקסס בשם Terafab, שנועד להאיץ את הייצור מעבר לקצב הצמיחה של התעשייה.\n• אנליסטים העלו את מחירי היעד של ספייסאקס אחרי תוצאות חזקות.\n• המשקיעים מתווכחים על יחס ההמרה, על העיתוי ועל האופן שבו עסקה עשויה להגדיל את השליטה של מאסק דרך מבנה ההצבעה של ספייסאקס, וכל זה דורש אישור רחב של בעלי המניות.\n\nזהו סיכום של פוסטים ב-X שעשוי להשתנות עם הזמן.",
-   "full_en": "Elon Musk called a potential Tesla-SpaceX merger a good idea with real merit, but he's stepped back to let independent committees handle the details.\n\n• Both companies formed special committees of independent directors to study a merger, with Musk highlighting synergies in superintelligence software, chips, robotics, and space launch capabilities.\n• They already collaborate on a massive Texas semiconductor project called Terafab to ramp up production beyond industry growth limits.\n• Analysts raised SpaceX price targets after strong results.\n• Investors debate exchange ratios, timing, and how a deal might boost Musk's control through SpaceX's voting structure, all needing broad shareholder approval.\n\nThis story is a summary of posts on X and may evolve over time."
+   "full_he": "הפוסט של מאסק: \"כן\"\n\nהפוסט שהוא ציטט (Captain Eli, @TheCaptainEli):\n\nרוב האנשים עדיין משתמשים בבינה מלאכותית בדרך הלא נכונה.\n\nהם שואלים אותה שאלות.\n\nאילון מאסק הצביע עכשיו על הדרך הנכונה.\n\nאתמול ג'ייסון גינסברג כתב: \"תתייחס לגרוק בוט כמו לחבר צוות ותן ל־@bot משימה שאפתנית שהיית נותן לעובד חדש.\"\n\nהתשובה של אילון: \"זו הדרך.\"\n\nשלוש מילים. שינוי שלם באופן שבו אנחנו עובדים.\n\nככה זה נראה בחיים האמיתיים.\n\nסקוט בילוז מנהל עסק עם מחזור מכירות מסורתי מאוד, עסקאות שלוקח חודשים לטפח.\n\nהוא חיבר את גרוק בוט לכלים של החברה.\n\nהבוט חפר בעבר, שלף לקוחות ולקוחות פוטנציאליים ישנים שאף אחד כבר לא התקשר אליהם, והעביר אותם לאנשי המכירות שלו.\n\nאחרי שבועיים: עסקה סגורה.\n\nבמילים שלו: \"בלי גרוק בוט כנראה לא היינו פונים ללקוח העבר הזה.\"\n\nתחשוב על זה.\n\nלא חיפוש מהיר יותר. לא השלמה אוטומטית חכמה יותר. לא צ'אטבוט.\n\nחבר צוות שמצא כסף שהיה מונח מול העיניים.\n\nכולם חשבו שהבינה המלאכותית תהיה מכונת תשובות טובה יותר.\n\nבפועל היא סוג חדש של עמית לעבודה.\n\nאילון אמר את זה פשוט כבר באוקטובר: \"תניח שאתה מגייס עובד מוכשר במיוחד.\"\n\nלא כלי שפותחים, אלא מישהו שמעבירים אליו את העבודה.\n\nהצוות ממשיך להוסיף יכולות: דפי מוצר, מעקב הזמנות, תשלומים, ובוטים צוותיים שכל החברה יכולה לחלוק.\n\nכל שבוע תיאור התפקיד מתארך.\n\nוהנה החלק שכמעט אף אחד עוד לא רואה.\n\nלאורך כל ההיסטוריה, צוות היה פריבילגיה. רק העשירים, החברות הגדולות ובעלי הקשרים יכלו להאציל משימות.\n\nכל השאר עשו הכול לבד.\n\nהחומה הזאת נופלת.\n\nבעל חנות קטנה, הורה יחידני, מלח בים. כל אחד יכול עכשיו לומר: \"זו המשימה. קדימה.\"\n\nכשלכל אחד יש צוות, כל אחד הופך לבונה.\n\nוציוויליזציה של בונים לא נשארת קטנה לאורך זמן.\n\nתפסיק לשאול את הבינה המלאכותית שאלות.\n\nתן לה עבודה.",
+   "full_en": "Musk's post: \"Yes\"\n\nThe quoted post (Captain Eli, @TheCaptainEli):\n\nMost people are still using AI the wrong way.\n\nThey ask it questions.\n\nElon Musk just pointed at the right way.\n\nYesterday, Jason Ginsberg wrote: \"Treat Grok Bot like a teammate and give @bot an ambitious task you'd normally give to a new hire.\"\n\nElon's answer: \"This is the way.\"\n\nThree words. A whole shift in how we work.\n\nHere's what that looks like in real life.\n\nScott Billows runs a business with a very traditional sales cycle. Deals that take months to cultivate.\n\nHe pointed Grok Bot at his company's tools.\n\nIt dug through the past. Surfaced old prospects and customers nobody was calling anymore. Handed them to his sales reps.\n\nTwo weeks in, a closed deal.\n\nHis words: \"Without Grok Bot we most likely would not have reached out to this past customer.\"\n\nThink about that.\n\nNot a faster search. Not a smarter autocomplete. Not a chatbot.\n\nA teammate that found money hiding in plain sight.\n\nEveryone thought AI would be a better answer machine.\n\nIt's actually a new kind of colleague.\n\nElon put it plainly back in October: \"assume you are hiring a super competent employee.\"\n\nNot a tool you open. Someone you hand the job to.\n\nThe team keeps adding powers. Product pages. Order tracking. Payments. Team Bots your whole company can share.\n\nEvery week the job description gets longer.\n\nHere's the part almost nobody sees yet.\n\nFor all of history, having a team was a privilege. Only the rich, the big companies, the well-connected could delegate.\n\nEveryone else did everything alone.\n\nThat wall is falling.\n\nA small shop owner. A single parent. A sailor at sea. Anyone can now say: \"Here's the mission. Go.\"\n\nWhen everyone gets a team, everyone becomes a builder.\n\nAnd a civilization of builders doesn't stay small for long.\n\nStop asking AI questions.\n\nGive it a job."
   },
   {
    "id": "medicalmedium-leafy-greens-cats-dogs",
@@ -915,6 +911,23 @@
    "full_en": "Most families wait until a parent falls, breaks a bone, or experiences serious memory loss before realizing they need more support. I know because I've been through this with my own parents.\n\nToday's guest joins me to break down the warning signs families often overlook, how isolation can accelerate decline, and how to know when independent living is no longer the safest option.\n\nThe full episode is out now right here on X...\n\nThe rest of the post is a video, so there's no more text to show. (The full ~55-minute episode is attached to the post as a video; the guest isn't named in the text.)\n\n(Brecka added no further posts to the thread.)"
   },
   {
+   "id": "musk-tesla-spacex-merger-real-merit",
+   "topic": "musk",
+   "date": "2026-11-03T13:53:42Z",
+   "url": "https://x.com/i/trending/2117614473737560253",
+   "source": "X",
+   "he": {
+    "title": "מאסק: למיזוג טסלה-ספייסאקס יש היגיון אמיתי",
+    "summary": "אילון מאסק אמר שמיזוג אפשרי בין טסלה לספייסאקס הוא רעיון טוב עם היגיון אמיתי, אבל הוא נסוג הצידה ומשאיר את הפרטים לוועדות הדירקטורים הבלתי תלויים."
+   },
+   "en": {
+    "title": "Musk sees real merit in a Tesla-SpaceX merger",
+    "summary": "Elon Musk called a potential Tesla-SpaceX merger a good idea with real merit, but has stepped back to let independent committees handle the details."
+   },
+   "full_he": "אילון מאסק אמר שמיזוג אפשרי בין טסלה לספייסאקס הוא רעיון טוב עם היגיון אמיתי, אבל הוא נסוג הצידה ומשאיר את הפרטים לוועדות הבלתי תלויות.\n\n• שתי החברות הקימו ועדות מיוחדות של דירקטורים בלתי תלויים כדי לבחון מיזוג, ומאסק הדגיש סינרגיות בתוכנה של סופר-אינטליגנציה, בשבבים, ברובוטיקה וביכולות שיגור לחלל.\n• החברות כבר משתפות פעולה בפרויקט שבבים ענק בטקסס בשם Terafab, שנועד להאיץ את הייצור מעבר לקצב הצמיחה של התעשייה.\n• אנליסטים העלו את מחירי היעד של ספייסאקס אחרי תוצאות חזקות.\n• המשקיעים מתווכחים על יחס ההמרה, על העיתוי ועל האופן שבו עסקה עשויה להגדיל את השליטה של מאסק דרך מבנה ההצבעה של ספייסאקס, וכל זה דורש אישור רחב של בעלי המניות.\n\nזהו סיכום של פוסטים ב-X שעשוי להשתנות עם הזמן.",
+   "full_en": "Elon Musk called a potential Tesla-SpaceX merger a good idea with real merit, but he's stepped back to let independent committees handle the details.\n\n• Both companies formed special committees of independent directors to study a merger, with Musk highlighting synergies in superintelligence software, chips, robotics, and space launch capabilities.\n• They already collaborate on a massive Texas semiconductor project called Terafab to ramp up production beyond industry growth limits.\n• Analysts raised SpaceX price targets after strong results.\n• Investors debate exchange ratios, timing, and how a deal might boost Musk's control through SpaceX's voting structure, all needing broad shareholder approval.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
    "id": "mccullough-symptoms-not-mri-urquhart",
    "topic": "mccullough",
    "date": "2026-11-03T13:33:36Z",
@@ -949,23 +962,6 @@
    "full_en": "“Tokenization is just a digital receipt. What makes it productive is the ability to borrow against it as collateral.”\n\nCheryl Chan, Head of Strategy and Growth at Kamino, on why institutions are putting tokenized assets to work on Solana.\n\nThe rest of the post is a video, so there's no more text to show.\n\nSolana's follow-up in the thread:\nHear more on tokenized assets at Breakpoint London, Nov 15–17."
   },
   {
-   "id": "huang-nvidia-cloud-china-customers-under-51",
-   "topic": "huang",
-   "date": "2026-11-03T11:06:54Z",
-   "url": "https://x.com/i/trending/2117495120022921294",
-   "source": "X",
-   "he": {
-    "title": "אנבידיה מגבילה ספקי ענן: פחות מ-51% מהשכרת השבבים ללקוחות סיניים",
-    "summary": "לפי הדיווח, אנבידיה הנחתה את אנשי המכירות שלה לדרוש מספקי ענן שלפחות חצי מהשכרת ה-GPU שלהם תלך ללקוחות לא סיניים, כדי לסגור פרצה בכללי הייצוא האמריקאיים. החוזים הקיימים לא מושפעים."
-   },
-   "en": {
-    "title": "Nvidia requires cloud partners to keep Chinese customers under 51%",
-    "summary": "Nvidia reportedly told its sales teams that cloud partners must rent at least half their GPUs to non-Chinese customers, closing a gap in U.S. export rules. Existing leases aren't affected."
-   },
-   "full_he": "אנבידיה מתווה קו ברור לשותפי הענן שלה: לפחות חצי מהשכרת ה-GPU חייבת ללכת ללקוחות שאינם סיניים, וכך נסגר פער משמעותי בכללי הייצוא של ארה\"ב.\n\n• לפי הדיווח, ענקית השבבים הנחתה בעל פה את צוותי המכירות לאכוף את הכלל בחוזים חדשים בכל העולם.\n• המטרה היא מעבדות בינה מלאכותית סיניות ששוכרות שבבי אנבידיה מתקדמים מספקים מעבר לים, במקומות כמו סינגפור ומלזיה.\n• חוזי שכירות קיימים לא מושפעים, אבל ספקי ענן בדרום-מזרח אסיה מתאמצים עכשיו למשוך לקוחות לא סיניים, כשההיצע כבר ממילא דחוק.\n• מבקרים אומרים שהמכסה של 49% עדיין משאירה לסין גישה ליותר מדי כוח חישוב מתקדם, ואנבידיה מדגישה שהיא תומכת בהובלה האמריקאית בבינה מלאכותית.\n\nזהו סיכום של פוסטים ב-X שעשוי להשתנות עם הזמן.",
-   "full_en": "Nvidia just drew a clear line for its cloud partners: at least half your GPU rentals must go to non-Chinese customers, closing a key gap in U.S. export rules.\n\n• The chip giant verbally instructed sales teams to enforce this on new contracts worldwide.\n• It targets Chinese AI labs that rent high-end Nvidia GPUs from overseas providers in places like Singapore and Malaysia.\n• Existing leases remain unaffected, but Southeast Asian cloud operators now scramble to attract non-Chinese clients amid already tight supplies.\n• Critics say the 49% allowance still leaves too much advanced compute accessible to China, while Nvidia emphasizes supporting U.S. AI leadership.\n\nThis story is a summary of posts on X and may evolve over time."
-  },
-  {
    "id": "solana-tokenized-equities-3-8b-record-nyse",
    "topic": "solana",
    "date": "2026-11-03T12:23:30Z",
@@ -983,6 +979,42 @@
    "full_en": "Onchain tokenized stocks have reached a new peak of $3.8 billion, up 590% this year, drawing investors who want trading access around the clock.\n\n• The circulating supply of tokenized equities climbed to $3.8 billion, marking ten straight weeks of records amid surging demand for 24/7 access beyond traditional markets.\n• The New York Stock Exchange announced more transfer agent partners like Securitize and tZERO to enable issuer-sponsored tokenized securities on its upcoming venue, featuring instant settlement and stablecoin funding.\n• Securitize added 13 U.S. stocks including GameStop, Uber, and Disney on Solana, each backed one-for-one by real shares.\n• tZERO plans to go public via a $350 million deal listing on NYSE American in early 2027.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
+   "id": "huang-nvidia-cloud-china-customers-under-51",
+   "topic": "huang",
+   "date": "2026-11-03T11:06:54Z",
+   "url": "https://x.com/i/trending/2117495120022921294",
+   "source": "X",
+   "he": {
+    "title": "אנבידיה מגבילה ספקי ענן: פחות מ-51% מהשכרת השבבים ללקוחות סיניים",
+    "summary": "לפי הדיווח, אנבידיה הנחתה את אנשי המכירות שלה לדרוש מספקי ענן שלפחות חצי מהשכרת ה-GPU שלהם תלך ללקוחות לא סיניים, כדי לסגור פרצה בכללי הייצוא האמריקאיים. החוזים הקיימים לא מושפעים."
+   },
+   "en": {
+    "title": "Nvidia requires cloud partners to keep Chinese customers under 51%",
+    "summary": "Nvidia reportedly told its sales teams that cloud partners must rent at least half their GPUs to non-Chinese customers, closing a gap in U.S. export rules. Existing leases aren't affected."
+   },
+   "full_he": "אנבידיה מתווה קו ברור לשותפי הענן שלה: לפחות חצי מהשכרת ה-GPU חייבת ללכת ללקוחות שאינם סיניים, וכך נסגר פער משמעותי בכללי הייצוא של ארה\"ב.\n\n• לפי הדיווח, ענקית השבבים הנחתה בעל פה את צוותי המכירות לאכוף את הכלל בחוזים חדשים בכל העולם.\n• המטרה היא מעבדות בינה מלאכותית סיניות ששוכרות שבבי אנבידיה מתקדמים מספקים מעבר לים, במקומות כמו סינגפור ומלזיה.\n• חוזי שכירות קיימים לא מושפעים, אבל ספקי ענן בדרום-מזרח אסיה מתאמצים עכשיו למשוך לקוחות לא סיניים, כשההיצע כבר ממילא דחוק.\n• מבקרים אומרים שהמכסה של 49% עדיין משאירה לסין גישה ליותר מדי כוח חישוב מתקדם, ואנבידיה מדגישה שהיא תומכת בהובלה האמריקאית בבינה מלאכותית.\n\nזהו סיכום של פוסטים ב-X שעשוי להשתנות עם הזמן.",
+   "full_en": "Nvidia just drew a clear line for its cloud partners: at least half your GPU rentals must go to non-Chinese customers, closing a key gap in U.S. export rules.\n\n• The chip giant verbally instructed sales teams to enforce this on new contracts worldwide.\n• It targets Chinese AI labs that rent high-end Nvidia GPUs from overseas providers in places like Singapore and Malaysia.\n• Existing leases remain unaffected, but Southeast Asian cloud operators now scramble to attract non-Chinese clients amid already tight supplies.\n• Critics say the 49% allowance still leaves too much advanced compute accessible to China, while Nvidia emphasizes supporting U.S. AI leadership.\n\nThis story is a summary of posts on X and may evolve over time."
+  },
+  {
+   "id": "pod-asprey-78e3a4fbe3",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-03T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/the-truth-about-vitamins-supplements-prescription/id451295014?i=1000799578313",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "האמת על ויטמינים, תוספי תזונה ותרופות מרשם | פיל קאולי",
+    "summary": "דייב אספרי מארח את הרוקח פיל קאולי, מייסד Cache Valley Pharmacy ו־Phil's My Pharmacist, לשיחה על מולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין, תרופות מרשם והבעיות במערכת הבריאות, לפי דבריהם."
+   },
+   "en": {
+    "title": "The Truth About Vitamins, Supplements & Prescription Drugs | Phil Cowley",
+    "summary": "Dave Asprey hosts pharmacist Phil Cowley, founder of Cache Valley Pharmacy and creator of Phil's My Pharmacist, on multivitamins, MTHFR genetics, methylated B vitamins, creatine, prescription drugs and what they see as hidden problems in modern healthcare."
+   },
+   "full_en": "Multivitamin Mistakes, MTHFR Genetics, B Vitamins, Creatine & Prescription Drug Risks\n\nHost Dave Asprey sits down with Phil Cowley, a pharmacist, founder of Cache Valley Pharmacy, and creator of Phil's My Pharmacist, to explore multivitamins, prescription medications, supplement effectiveness, MTHFR genetics, methylated B vitamins, creatine, and the hidden problems within modern healthcare.\n\nAfter opening his pharmacy in Logan, Utah, in 2001, Phil spent two decades serving patients and dispensing millions of prescriptions. By 2021, declining insurance reimbursements threatened his business despite increasing prescription volume. He turned to social media to share practical, affordable health advice, eventually building an audience of more than six million followers. Now, he explains what his experience behind the pharmacy counter taught him about medication side effects, nutritional deficiencies, supplement quality, and why conventional healthcare often overlooks individual biology.\n\nThe conversation examines common multivitamin mistakes, including the use of synthetic folic acid and pyridoxine (vitamin B6). Phil explains why certain nutrient forms may be less suitable for some individuals, how excessive B6 intake can cause peripheral neuropathy, and why buying more supplements doesn't necessarily improve health. They explore MTHFR genetic variants, methylation, and folate metabolism, including potential implications for cognitive function, inflammation, blood pressure, fertility, and neurological development.\n\nPhil also reveals why creatine is his favorite supplement, discussing its potential benefits for brain health and muscle performance. He and Dave examine creatine dosing, hydration, electrolytes, absorption, and why creatine supplementation can influence kidney-related blood test results.\n\nThe discussion turns to Big Pharma, prescription drug pricing, and pharmacy benefit managers (PBMs). Phil shares how insurance reimbursement practices threatened his independent pharmacy despite increasing prescription volume. They also explore compounding pharmacies, customized hormone formulations, injectable vitamins, GLP-1 medications, and the challenges of providing personalized treatment within the conventional healthcare system.\n\nFinally, Dave and Phil examine personalized medicine, genetic testing, medication interactions, and nutritional deficiencies, including the relationship between statins and CoQ10. They discuss why individual biology should guide supplement choices and how addressing underlying metabolic processes may offer a more comprehensive approach to long-term health.\n\nYou'll Learn:\n• Why common multivitamins contain different forms of B vitamins, and how folic acid, folinic acid, L-methylfolate, and P5P differ\n• How MTHFR genetic variants influence folate metabolism and why individual responses to supplements can vary\n• What Phil recommends considering when using creatine for brain health, muscle performance, hydration, and kidney-related blood testing\n• How pharmacy benefit managers, insurance reimbursement, and drug pricing affect independent pharmacies and patient care\n• Why compounding pharmacies create customized medications, including hormone formulations, injectable vitamins, and certain GLP-1 treatments\n• How personalized supplementation, nutrient testing, medication interactions, and genetics may help inform more individualized healthcare decisions\n\nTimestamps:\n• 00:00 - Trailer\n• 00:40 - Intro\n• 01:45 - Drugs Stolen From Nature\n• 06:05 - Listening to Patients\n• 09:33 - Pharmacy Business & PBMs\n• 14:10 - Compounding Pharmacy Explained\n• 20:42 - Why Creatine Is Amazing\n• 28:23 - MTHFR & Methylation\n• 46:44 - Lab Tracking & Longevity\n• 50:58 - Science Bullies & Urine Therapy\n• 59:19 - Future of Pharmacy\n• 01:03:01 - TriQuetra Health & Closing\n\nThese are the guest's and host's views as described in the show notes, not medical advice.",
+   "full_he": "טעויות במולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B, קריאטין והסיכונים של תרופות מרשם\n\nדייב אספרי משוחח עם פיל קאולי, רוקח, מייסד Cache Valley Pharmacy ויוצר Phil's My Pharmacist, על מולטי־ויטמינים, תרופות מרשם, היעילות של תוספי תזונה, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין והבעיות הנסתרות במערכת הבריאות המודרנית.\n\nפיל פתח את בית המרקחת שלו בלוגן שביוטה ב־2001, ובמשך שני עשורים שירת מטופלים וניפק מיליוני מרשמים. עד 2021, ההחזרים הפוחתים מחברות הביטוח איימו על העסק שלו למרות שמספר המרשמים עלה. הוא פנה לרשתות החברתיות כדי לשתף עצות בריאות מעשיות וזולות, ובנה קהל של יותר משישה מיליון עוקבים. בפרק הוא מספר מה למד מאחורי דלפק בית המרקחת על תופעות לוואי של תרופות, חסרים תזונתיים, איכות של תוספים, ולמה לדבריו הרפואה המקובלת מתעלמת לעיתים קרובות מהביולוגיה האישית.\n\nהשיחה בוחנת טעויות נפוצות במולטי־ויטמינים, כמו שימוש בחומצה פולית סינתטית ובפירידוקסין (ויטמין B6). פיל מסביר למה צורות מסוימות של רכיבים תזונתיים עשויות להתאים פחות לחלק מהאנשים, איך עודף B6 עלול לגרום לנוירופתיה היקפית, ולמה קניית יותר תוספים לא בהכרח משפרת את הבריאות. הם עוסקים בווריאנטים הגנטיים של MTHFR, במתילציה ובחילוף החומרים של פולאט, כולל השלכות אפשריות על תפקוד קוגניטיבי, דלקת, לחץ דם, פוריות והתפתחות נוירולוגית.\n\nפיל מספר גם למה קריאטין הוא התוסף האהוב עליו, ומדבר על התועלת האפשרית שלו לבריאות המוח ולביצועי השרירים. הוא ודייב דנים במינון קריאטין, בשתייה, באלקטרוליטים, בספיגה, ובכך שנטילת קריאטין יכולה להשפיע על תוצאות בדיקות דם הקשורות לכליות.\n\nהשיחה עוברת לחברות התרופות הגדולות, למחירי תרופות המרשם ולמנהלי הטבות התרופות (PBMs). פיל מספר איך שיטות ההחזר של חברות הביטוח איימו על בית המרקחת העצמאי שלו. הם מדברים גם על בתי מרקחת לרקיחה, פורמולות הורמונליות מותאמות, ויטמינים בהזרקה, תרופות GLP-1, והקושי לתת טיפול מותאם אישית בתוך מערכת הבריאות המקובלת.\n\nלבסוף הם דנים ברפואה מותאמת אישית, בבדיקות גנטיות, באינטראקציות בין תרופות ובחסרים תזונתיים, כולל הקשר בין סטטינים ל־CoQ10, ולמה לדבריהם הביולוגיה האישית צריכה להנחות את בחירת התוספים.\n\nמה תלמד בפרק:\n• למה מולטי־ויטמינים נפוצים מכילים צורות שונות של ויטמיני B, ומה ההבדל בין חומצה פולית, חומצה פולינית, L־מתילפולאט ו־P5P\n• איך וריאנטים של MTHFR משפיעים על חילוף החומרים של פולאט, ולמה התגובה לתוספים משתנה מאדם לאדם\n• מה פיל ממליץ לשקול כשמשתמשים בקריאטין לבריאות המוח, לביצועי שרירים, לשתייה ולבדיקות דם של הכליות\n• איך מנהלי הטבות תרופות, החזרי ביטוח ומחירי תרופות משפיעים על בתי מרקחת עצמאיים ועל הטיפול במטופלים\n• למה בתי מרקחת לרקיחה מכינים תרופות מותאמות, כולל פורמולות הורמונליות, ויטמינים בהזרקה וחלק מטיפולי ה־GLP-1\n• איך תוספים מותאמים אישית, בדיקות רכיבים תזונתיים, אינטראקציות בין תרופות וגנטיקה יכולים לעזור בהחלטות בריאות אישיות יותר\n\nחותמות זמן:\n• 00:00 - טריילר\n• 00:40 - פתיחה\n• 01:45 - תרופות שנלקחו מהטבע\n• 06:05 - להקשיב למטופלים\n• 09:33 - העסק של בית המרקחת ומנהלי הטבות התרופות\n• 14:10 - מה זה בית מרקחת לרקיחה\n• 20:42 - למה קריאטין מדהים\n• 28:23 - MTHFR ומתילציה\n• 46:44 - מעקב בדיקות ואריכות ימים\n• 50:58 - \"בריוני מדע\" וטיפול בשתן\n• 59:19 - העתיד של בתי המרקחת\n• 01:03:01 - TriQuetra Health וסיום\n\nאלה דעותיהם של האורח והמנחה כפי שמתוארות בתיאור הפרק, ולא ייעוץ רפואי. (\"טיפול בשתן\" שמוזכר בפרק אינו מקובל ברפואה המרכזית.)"
+  },
+  {
    "id": "musk-superintelligence-compute-in-space",
    "topic": "musk",
    "date": "2026-11-03T09:06:20Z",
@@ -998,6 +1030,25 @@
    },
    "full_en": "Elon Musk declared that nearly all super intelligence computing will soon happen in space. The idea sparked instant back-and-forth on cooling challenges in orbit's vacuum.\n\nOn November 2, Musk posted that future super intelligence compute will be overwhelmingly in space, prompting critics like philosophy professor Jan Broersen to question heat dissipation without convection—only radiation works there. Musk fired back bluntly at skeptics while detailing aluminum radiators that could handle 1,300 watts per square meter against solar panels' 250 watts output. Supporters like physicist Shaun Maguire explained passive ammonia-loop systems, backed by real examples such as Starlink satellites and Google's orbital AI haiku from Project Suncatcher, highlighting how Starship could make vast radiators feasible despite hurdles like radiation and maintenance.\n\n(This is X's summary of the story, built from posts on X.)",
    "full_he": "אילון מאסק הכריז שכמעט כל המחשוב של בינת־העל יתבצע בקרוב בחלל. הרעיון עורר מיד ויכוח על אתגרי הקירור בוואקום של המסלול.\n\nב־2 בנובמבר כתב מאסק שהמחשוב של בינת־העל בעתיד יהיה ברובו המכריע בחלל. מבקרים, כמו פרופסור לפילוסופיה יאן ברורסן, שאלו איך אפשר לפזר חום בלי הסעה (קונבקציה), כשבחלל עובדת רק קרינה. מאסק השיב בבוטות לספקנים ופירט רדיאטורים מאלומיניום שיכולים לפלוט כ־1,300 וואט למטר רבוע, לעומת תפוקה של כ־250 וואט למטר רבוע של פאנלים סולאריים. תומכים, כמו הפיזיקאי שון מגווייר, הסבירו מערכות פסיביות של לולאת אמוניה, ונתנו דוגמאות אמיתיות כמו לווייני סטארלינק והייקו שנכתב בידי בינה מלאכותית במסלול במסגרת Project Suncatcher של גוגל. לדבריהם, סטארשיפ יכולה להפוך רדיאטורים ענקיים לאפשריים, למרות מכשולים כמו קרינה ותחזוקה.\n\n(זה הסיכום של X לסיפור, שנבנה מפוסטים ב־X.)"
+  },
+  {
+   "id": "pod-brecka-c66927da49",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-11-03T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה אובדן זיכרון הוא בעצם אובדן גישה, עם ג'ניפר מולר",
+    "summary": "גארי ברקה משוחח עם ג'ניפר מולר מעולם הדיור המוגן על ההחלטה שעמד בפניה עם הוריו, ועל טענתו שאובדן זיכרון הוא למעשה אובדן גישה לזיכרון. הם מדברים על איך לבחור בין דיור עצמאי, דיור מוגן ומחלקה סיעודית לזיכרון."
+   },
+   "en": {
+    "title": "Why Memory Loss Is Really Lost Access - Jennifer Mohler",
+    "summary": "Gary Brecka sits down with senior-living expert Jennifer Mohler about the decision he faced with his own parents and his view that memory loss is really lost access to memory, plus how to evaluate independent living, assisted living and memory care."
+   },
+   "full_en": "Gary Brecka sits down with Jennifer Mohler to talk through the decision he faced with his own parents, and his view that memory loss is really lost access to memory. They cover how to evaluate independent living, assisted living, and memory care, why isolation matters, the daily living skills that signal it's time, and the brain mapping Gary is using to track his mother. Gary also shares the fall that changed his timeline. Don't guess, test.\n\nTimestamps:\n• 00:00 – Introduction: senior living for parents\n• 03:46 – How Jennifer entered senior living\n• 07:16 – When a parent needs assisted care\n• 09:38 – Biohacking inside senior living\n• 11:32 – Red light, PEMF and hydrogen therapy\n• 15:04 – Brain mapping Gary's mother\n• 16:24 – Janet, the nonverbal resident\n• 19:55 – Isolation and broken heart syndrome\n• 20:59 – Memory loss as lost access\n• 21:34 – How to evaluate a community\n• 29:08 – Assisted living versus memory care\n• 32:42 – Five daily living skills\n• 37:53 – Clinical study with 30 participants\n• 42:59 – Medicare, Medicaid and VA coverage\n• 47:34 – Gary's father: humerus and hip\n• 50:45 – What it means to be an Ultimate Human\n\nThe show's own disclaimer: the podcast is for informational purposes only and is not medical advice. The \"memory loss is lost access\" idea is Gary's view, not an established medical position.",
+   "full_he": "גארי ברקה יושב עם ג'ניפר מולר ומדבר על ההחלטה שעמד בפניה עם הוריו שלו, ועל הגישה שלו שלפיה אובדן זיכרון הוא בעצם אובדן גישה לזיכרון. הם מדברים על איך לבחון דיור עצמאי, דיור מוגן ומחלקה לטיפול בזיכרון, למה בדידות משנה כל כך, אילו מיומנויות של חיי היום־יום מסמנות שהגיע הזמן, ועל מיפוי המוח שגארי עושה כדי לעקוב אחרי אמו. גארי מספר גם על הנפילה ששינתה את לוח הזמנים שלו. אל תנחש, תבדוק.\n\nנקודות זמן:\n• 00:00 – פתיחה: דיור לגיל השלישי להורים\n• 03:46 – איך ג'ניפר הגיעה לתחום הדיור המוגן\n• 07:16 – מתי הורה צריך דיור עם סיוע\n• 09:38 – ביוהאקינג בתוך דיור מוגן\n• 11:32 – אור אדום, PEMF וטיפול במימן\n• 15:04 – מיפוי המוח של אמא של גארי\n• 16:24 – ג'נט, הדיירת שאינה מדברת\n• 19:55 – בדידות ותסמונת הלב השבור\n• 20:59 – אובדן זיכרון כאובדן גישה\n• 21:34 – איך לבחון קהילת דיור\n• 29:08 – דיור מוגן לעומת מחלקת זיכרון\n• 32:42 – חמש מיומנויות של חיי היום־יום\n• 37:53 – מחקר קליני עם 30 משתתפים\n• 42:59 – כיסוי של Medicare, Medicaid ומשרד הוותיקים\n• 47:34 – אביו של גארי: עצם הזרוע והירך\n• 50:45 – מה זה אומר להיות Ultimate Human\n\nלפי הצהרת התוכנית עצמה, הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי. הרעיון ש\"אובדן זיכרון הוא אובדן גישה\" הוא עמדתו של גארי, ולא עמדה רפואית מקובלת."
   },
   {
    "id": "solana-price-92-fee-model-debate",
@@ -1117,6 +1168,23 @@
    },
    "full_he": "ד\"ר פיטר מקולה כתב:\n\n\"לפני המגפה, פחות מ־5% ממקרי המוות היו באמת תעלומה, כלומר יוחסו לסיבה לא ידועה. מאז הפצת חיסוני הקורונה, מקרי מוות שנגרמו מטיפול רפואי (יאטרוגניים) מוסתרים במרמה כ'סיבה לא ידועה' או כ'מוות מסיבות טבעיות'. באדיבות הפודקאסט של סטינצ'פילד.\"\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nהערה: זו טענתו של מקולה. רשויות הבריאות המרכזיות והמחקרים הגדולים לא מצאו הסתרה שיטתית של מקרי מוות מחיסוני הקורונה, והם רואים בחיסונים בטוחים לרוב האנשים.",
    "full_en": "Dr. Peter McCullough wrote:\n\n\"Less than 5% of deaths before the pandemic were truly a mystery—attributed to unknown cause. Since the rollout of the COVID-19 vaccines, iatrogenic death has been fraudulently concealed as 'cause unknown' or 'death due to natural causes.' Courtesy Stinchfield the Podcast.\"\n\nThe rest of the post is a video, so there's no more text to show.\n\nNote: this is McCullough's claim. Major health authorities and large studies have not found systematic concealment of COVID-19 vaccine deaths, and consider the vaccines safe for most people."
+  },
+  {
+   "id": "huang-blessing-marvell-lumentum-megadeal",
+   "topic": "huang",
+   "date": "2026-11-03T03:11:00Z",
+   "url": "https://www.bloomberg.com/news/articles/2026-11-03/nvidia-s-huang-gave-blessing-to-marvell-lumentum-megadeal",
+   "source": "Bloomberg",
+   "he": {
+    "title": "ג'נסון הואנג נתן את ברכתו לעסקת הענק בין Marvell ל־Lumentum",
+    "summary": "לפי בלומברג, מנכ\"לי Marvell ו־Lumentum התקשרו להואנג לשמוע את דעתו לפני שהכריזו על המיזוג בשווי כ־103 מיליארד דולר, והוא תמך. לפי הדיווח, זה מראה שאנבידיה מעודדת איחודים בין הספקים שלה, כשהחיבורים האופטיים המהירים הפכו לצוואר בקבוק במרכזי הנתונים."
+   },
+   "en": {
+    "title": "Jensen Huang gave his blessing to the Marvell–Lumentum megadeal",
+    "summary": "According to Bloomberg, the CEOs of Marvell and Lumentum called Huang for his views before announcing their roughly $103 billion merger, and he backed it. The report says this shows Nvidia encouraging consolidation among its suppliers as fast optical connections become a data-center bottleneck."
+   },
+   "full_he": "מנכ\"לי Marvell Technology ו־Lumentum Holdings קיבלו את ברכתו של ג'נסון הואנג, מנכ\"ל אנבידיה, לפני שסגרו את המיזוג ביניהן בשווי של כמעט 103 מיליארד דולר.\n\n• מנכ\"ל Marvell מתיו מרפי ומנכ\"ל Lumentum מייקל הרלסטון ביקשו לשמוע את דעתו של הואנג בשיחת טלפון לפני ההכרזה על העסקה, לפי אנשים שמכירים את הפרטים וביקשו לא להזדהות כי הפרטים אינם פומביים.\n• לפי הדיווח, התמיכה של הואנג מראה שאנבידיה, המובילה בתחום הבינה המלאכותית, מעודדת איחודים בין הספקים המרכזיים שלה, כשהביקוש לחיבורים אופטיים מהירים יותר הופך לצוואר בקבוק בבניית מרכזי נתונים גדולים יותר ויותר.\n• בראיון ל־Fox Business ביום שני תיאר הרלסטון את התגובה של אנבידיה כ„חיובית מאוד”, ואמר: „אנחנו מאמינים שבזכות המיזוג נוכל לספק לאנבידיה יותר מוצרים ובקצב מהיר יותר.”\n• מרפי אמר בשיחת משקיעים שלו ולהרלסטון יש „השקפות דומות מאוד” על כיוון התעשייה, ושהם מכירים זה את זה זמן רב, מקצועית ואישית; Lumentum היא לקוחה חשובה של Marvell.\n• לפי הדיווח, החברות התחילו לדבר על מיזוג בקיץ, והשיחות נשארו ביניהן בלבד. הן תכננו להכריז יחד עם הדוחות של Lumentum ביום חמישי, אבל הקדימו את ההודעה אחרי שהתוכנית דלפה לתקשורת.\n• העסקה כולה במניות: על כל מניית Lumentum יקבלו בעליה 4.5 מניות Marvell. כולל חוב, שווי העסקה כ־115 מיליארד דולר, והיא אמורה להיסגר במחצית הראשונה של 2028.\n• החברה המאוחדת תשלב את השבבים המותאמים של Marvell עם הרכיבים האופטיים של Lumentum (כמו לייזרים) להעברת נתונים בין שבבים לשרתים, ותהפוך לספקית משולבת יותר של חיבורים מהירים.\n\nהכתבה המלאה של בלומברג נעולה למנויים; הפרטים כאן מהחלק הפתוח שלה ומדיווחים שמצטטים אותה (Longbridge).",
+   "full_en": "The heads of Marvell Technology and Lumentum Holdings got the blessing of Nvidia CEO Jensen Huang before striking their nearly $103 billion tie-up.\n\n• Marvell CEO Matthew Murphy and Lumentum CEO Michael Hurlston sought Huang's views during a phone call before the deal was announced, according to people familiar with the matter, who asked not to be identified because the details aren't public.\n• Huang's support underscores how AI leader Nvidia is encouraging consolidation among key suppliers as demand for faster optical connections becomes a bottleneck in the build-out of increasingly large data centers.\n• In a Fox Business interview on Monday, Hurlston described Nvidia's reaction as \"very positive\": \"We believe that through this merger, we can actually provide more products to Nvidia at a faster pace.\"\n• Murphy told investors on a conference call that he and Hurlston have \"very similar views\" on the industry's direction, and that they have known each other a long time, professionally and personally; Lumentum is an important Marvell customer.\n• According to the report, the companies began discussing a merger this summer, with talks limited to the two of them. They had planned to announce alongside Lumentum's earnings this Thursday, but went early after the plan leaked to the media.\n• It's an all-stock deal: Lumentum shareholders get 4.5 Marvell shares per Lumentum share. Including debt, the deal is valued at about $115 billion, and it's expected to close in the first half of 2028.\n• The combined company will pair Marvell's custom chips with Lumentum's optical components (such as lasers) for chip-to-server data transmission, forming a more vertically integrated supplier of high-speed interconnects.\n\nBloomberg's full article is behind a paywall; these details come from its open portion and from reports citing it (Longbridge)."
   },
   {
    "id": "musk-wow-eu-budget-farm-subsidies",
@@ -13222,40 +13290,6 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
-  },
-  {
-   "id": "huang-blessing-marvell-lumentum-megadeal",
-   "topic": "huang",
-   "date": "2026-11-03T03:11:00Z",
-   "url": "https://www.bloomberg.com/news/articles/2026-11-03/nvidia-s-huang-gave-blessing-to-marvell-lumentum-megadeal",
-   "source": "Bloomberg",
-   "he": {
-    "title": "ג'נסון הואנג נתן את ברכתו לעסקת הענק בין Marvell ל־Lumentum",
-    "summary": "לפי בלומברג, מנכ\"לי Marvell ו־Lumentum התקשרו להואנג לשמוע את דעתו לפני שהכריזו על המיזוג בשווי כ־103 מיליארד דולר, והוא תמך. לפי הדיווח, זה מראה שאנבידיה מעודדת איחודים בין הספקים שלה, כשהחיבורים האופטיים המהירים הפכו לצוואר בקבוק במרכזי הנתונים."
-   },
-   "en": {
-    "title": "Jensen Huang gave his blessing to the Marvell–Lumentum megadeal",
-    "summary": "According to Bloomberg, the CEOs of Marvell and Lumentum called Huang for his views before announcing their roughly $103 billion merger, and he backed it. The report says this shows Nvidia encouraging consolidation among its suppliers as fast optical connections become a data-center bottleneck."
-   },
-   "full_he": "מנכ\"לי Marvell Technology ו־Lumentum Holdings קיבלו את ברכתו של ג'נסון הואנג, מנכ\"ל אנבידיה, לפני שסגרו את המיזוג ביניהן בשווי של כמעט 103 מיליארד דולר.\n\n• מנכ\"ל Marvell מתיו מרפי ומנכ\"ל Lumentum מייקל הרלסטון ביקשו לשמוע את דעתו של הואנג בשיחת טלפון לפני ההכרזה על העסקה, לפי אנשים שמכירים את הפרטים וביקשו לא להזדהות כי הפרטים אינם פומביים.\n• לפי הדיווח, התמיכה של הואנג מראה שאנבידיה, המובילה בתחום הבינה המלאכותית, מעודדת איחודים בין הספקים המרכזיים שלה, כשהביקוש לחיבורים אופטיים מהירים יותר הופך לצוואר בקבוק בבניית מרכזי נתונים גדולים יותר ויותר.\n• בראיון ל־Fox Business ביום שני תיאר הרלסטון את התגובה של אנבידיה כ„חיובית מאוד”, ואמר: „אנחנו מאמינים שבזכות המיזוג נוכל לספק לאנבידיה יותר מוצרים ובקצב מהיר יותר.”\n• מרפי אמר בשיחת משקיעים שלו ולהרלסטון יש „השקפות דומות מאוד” על כיוון התעשייה, ושהם מכירים זה את זה זמן רב, מקצועית ואישית; Lumentum היא לקוחה חשובה של Marvell.\n• לפי הדיווח, החברות התחילו לדבר על מיזוג בקיץ, והשיחות נשארו ביניהן בלבד. הן תכננו להכריז יחד עם הדוחות של Lumentum ביום חמישי, אבל הקדימו את ההודעה אחרי שהתוכנית דלפה לתקשורת.\n• העסקה כולה במניות: על כל מניית Lumentum יקבלו בעליה 4.5 מניות Marvell. כולל חוב, שווי העסקה כ־115 מיליארד דולר, והיא אמורה להיסגר במחצית הראשונה של 2028.\n• החברה המאוחדת תשלב את השבבים המותאמים של Marvell עם הרכיבים האופטיים של Lumentum (כמו לייזרים) להעברת נתונים בין שבבים לשרתים, ותהפוך לספקית משולבת יותר של חיבורים מהירים.\n\nהכתבה המלאה של בלומברג נעולה למנויים; הפרטים כאן מהחלק הפתוח שלה ומדיווחים שמצטטים אותה (Longbridge).",
-   "full_en": "The heads of Marvell Technology and Lumentum Holdings got the blessing of Nvidia CEO Jensen Huang before striking their nearly $103 billion tie-up.\n\n• Marvell CEO Matthew Murphy and Lumentum CEO Michael Hurlston sought Huang's views during a phone call before the deal was announced, according to people familiar with the matter, who asked not to be identified because the details aren't public.\n• Huang's support underscores how AI leader Nvidia is encouraging consolidation among key suppliers as demand for faster optical connections becomes a bottleneck in the build-out of increasingly large data centers.\n• In a Fox Business interview on Monday, Hurlston described Nvidia's reaction as \"very positive\": \"We believe that through this merger, we can actually provide more products to Nvidia at a faster pace.\"\n• Murphy told investors on a conference call that he and Hurlston have \"very similar views\" on the industry's direction, and that they have known each other a long time, professionally and personally; Lumentum is an important Marvell customer.\n• According to the report, the companies began discussing a merger this summer, with talks limited to the two of them. They had planned to announce alongside Lumentum's earnings this Thursday, but went early after the plan leaked to the media.\n• It's an all-stock deal: Lumentum shareholders get 4.5 Marvell shares per Lumentum share. Including debt, the deal is valued at about $115 billion, and it's expected to close in the first half of 2028.\n• The combined company will pair Marvell's custom chips with Lumentum's optical components (such as lasers) for chip-to-server data transmission, forming a more vertically integrated supplier of high-speed interconnects.\n\nBloomberg's full article is behind a paywall; these details come from its open portion and from reports citing it (Longbridge)."
-  },
-  {
-   "id": "huang-nvidia-stock-pullback-ai-bubble-debate",
-   "topic": "huang",
-   "date": "2026-11-03T21:43:07Z",
-   "url": "https://x.com/i/trending/2117648664692756763",
-   "source": "X",
-   "he": {
-    "title": "הירידה במניית אנבידיה מציתה מחדש את הוויכוח על בועת ה-AI",
-    "summary": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וב-X מתווכחים אם צמיחת ה-AI היא שינוי של ממש או בועה שעומדת להתפוצץ."
-   },
-   "en": {
-    "title": "NVIDIA stock pullback fuels the AI bubble debate",
-    "summary": "NVIDIA shares sit near $208 after dropping from October highs, sparking debate on X over whether AI's growth is a lasting shift or an overhyped bubble."
-   },
-   "full_he": "מניית אנבידיה עומדת סביב 208 דולר אחרי ירידה משיאי אוקטובר, וברשת מתנהל דיון אם הצמיחה העצומה של ה-AI מסמנת שינוי מתמשך או בועה מנופחת שעומדת להתפוצץ.\n\n• לפי הסיכום, יצרנית השבבים הניבה תשואה של יותר מ-500,000% מאז ימיה הראשונים, בזכות הביקוש ל-AI, אבל גל מכירות אחרון במניות הטכנולוגיה פילג את הדעות.\n• הספקנים קוראים ל-AI מכונת הייפ ששורפת מיליארדים והורסת משרות.\n• המגינים, כמו פול גרהם, מצביעים על הסתירה בטענה שה-AI גם מזויף וגם משבש.\n• האופטימיים משווים לתקופת הדוט-קום וטוענים שחברות איכותיות ישרדו כל תיקון, ולפי הסיכום נתוני השוק מראים הכנסות חזקות לצד שווי סביר.\n• לצד זה יש ממים שמשלבים תסכול והומור שחור, ושאלות על ההוצאות העצומות של ענקיות הענן.\n\nזה סיכום של פוסטים ב-X ועשוי להשתנות; Grok עלול לטעות.",
-   "full_en": "NVIDIA shares sit near $208 after dropping from October highs, prompting online chatter about whether AI's massive growth signals a lasting shift or an overhyped bubble ready to pop.\n\n• The semiconductor leader has delivered over 500,000% returns from its early days, fueled by AI demand, but a recent tech sell-off has sparked divided views.\n• Skeptics call AI a hype machine burning billions and destroying jobs.\n• Defenders like Paul Graham point out contradictions in claims that it's both fake and disruptive.\n• Optimists draw dot-com parallels, arguing quality companies will survive any correction, as market data shows strong revenue amid reasonable valuations.\n• Memes mix frustration with gallows humor amid questions over hyperscalers' huge spending.\n\nThis story is a summary of posts on X and may evolve over time; Grok can make mistakes."
   }
  ]
 }
