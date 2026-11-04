@@ -15,7 +15,7 @@ const damp = (k, dt) => 1 - Math.exp(-k * dt);
 const T = {
   he: {
     title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
-    start: 'לטס פליי', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
+    start: 'לטס פליי', install: '📲 התקנה למסך הבית', checkUpd: 'בדיקת עדכון', updBusy: 'מעדכן…', updOk: 'הגרסה מעודכנת', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
     helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. הכפתור העגול במרכז מחליף את השובל. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה', exhaustNone: 'בלי שובל',
@@ -37,7 +37,7 @@ const T = {
   },
   en: {
     title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
-    start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
+    start: 'Take off ✨', install: '📲 Install to home screen', checkUpd: 'Check for update', updBusy: 'Updating…', updOk: 'Already up to date', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
     helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. The round button in the center switches the trail. Collect sparks and fly through the golden rings.',
     exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora', exhaustNone: 'No trail',
@@ -1838,11 +1838,11 @@ function toMenu() {
 $('startBtn').addEventListener('click', () => { if (resumable) { state = 'play'; showHud(); } else start(); if (musicOn && !mTimer) setMusic(true); });
 $('pauseBtn').addEventListener('click', openPause);
 /* v16: pause overlay with 6 options */
-const PZ = { he: { t: 'הפסקה', res: '▶️ המשך', spd: '⏩ מהירות', snd: '🔊 קול', on: 'פועל', off: 'כבוי', lb: '🏆 טבלת שיאים', rs: '🔄 התחלה מחדש', home: '🏠 למסך הראשי' },
-  en: { t: 'Paused', res: '▶️ Resume', spd: '⏩ Speed', snd: '🔊 Sound', on: 'on', off: 'off', lb: '🏆 Leaderboard', rs: '🔄 Restart', home: '🏠 Main menu' } };
+const PZ = { he: { t: 'הפסקה', res: '▶️ המשך', spd: '⏩ מהירות', snd: '🔊 קול', on: 'פועל', off: 'כבוי', lb: '🏆 טבלת שיאים', upd: 'בדיקת עדכון', rs: '🔄 התחלה מחדש', home: '🏠 למסך הראשי' },
+  en: { t: 'Paused', res: '▶️ Resume', spd: '⏩ Speed', snd: '🔊 Sound', on: 'on', off: 'off', lb: '🏆 Leaderboard', upd: 'Check for update', rs: '🔄 Restart', home: '🏠 Main menu' } };
 function pzRender() {
   const P = PZ[lang] || PZ.he;
-  $('pzTitle').textContent = P.t; $('pzRes').textContent = P.res; $('pzLb').textContent = P.lb; $('pzRs').textContent = P.rs; $('pzHome').textContent = P.home;
+  $('pzTitle').textContent = P.t; $('pzRes').textContent = P.res; $('pzLb').textContent = P.lb; $('pzUpd').textContent = P.upd; $('pzRs').textContent = P.rs; $('pzHome').textContent = P.home;
   $('pzSpdL').textContent = P.spd;
   $('pzSnd').textContent = (musicOn ? '🔊 ' : '🔇 ') + P.snd.slice(3) + ': ' + (musicOn ? P.on : P.off);
   $('pzSpd').innerHTML = MULS.map((m) => `<button type="button" class="pzm${m === speedMul ? ' on' : ''}" data-v="${m}">x${m}</button>`).join('');
@@ -1864,6 +1864,7 @@ $('pzRes').addEventListener('click', resumePause);
 $('pzSpd').addEventListener('click', (e) => { const b = e.target.closest('.pzm'); if (!b) return; speedMul = parseFloat(b.dataset.v); store.set('rg-fly-mul', String(speedMul)); $('mulSel2').value = String(speedMul); pzRender(); });
 $('pzSnd').addEventListener('click', () => { setMusic(!musicOn); if (actx && musicOn) actx.suspend(); updatePowerBtns(); pzRender(); });
 $('pzLb').addEventListener('click', () => { openLb(); });
+$('pzUpd').addEventListener('click', () => { checkForUpdate(); });
 $('pzRs').addEventListener('click', () => { closePause(); start(); if (musicOn && !mTimer) setMusic(true); else if (actx && musicOn) actx.resume(); });
 $('pzHome').addEventListener('click', () => { closePause(); state = 'play'; toMenu(); });
 document.addEventListener('visibilitychange', () => {
@@ -1874,20 +1875,79 @@ document.addEventListener('visibilitychange', () => {
 
 /* install (same pattern as the other apps: native prompt, otherwise short instructions) */
 const INST = {
-  he: { android: '<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.</li></ol>', ios: '<ol><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>', desktop: '<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>' },
-  en: { android: '<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.</li></ol>', ios: '<ol><li>In Safari tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>', desktop: '<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>' }
+  he: {
+    android: '<ol><li>לחצו על <b>⋮</b> למעלה ב־Chrome.</li><li>בחרו <b>התקנת אפליקציה</b> או <b>הוספה למסך הבית</b>.</li></ol>',
+    ios: '<ol><li>ב־Safari לחצו על שיתוף <b>□↑</b>.</li><li>בחרו <b>הוסף למסך הבית</b>.</li></ol>',
+    desktop: '<ol><li>ב־Chrome או Edge: סמל ההתקנה בשורת הכתובת, או תפריט <b>⋮</b> ← <b>התקנה</b>.</li></ol>'
+  },
+  en: {
+    android: '<ol><li>Tap <b>⋮</b> at the top of Chrome.</li><li>Choose <b>Install app</b> or <b>Add to Home screen</b>.</li></ol>',
+    ios: '<ol><li>In Safari tap Share <b>□↑</b>.</li><li>Choose <b>Add to Home Screen</b>.</li></ol>',
+    desktop: '<ol><li>In Chrome or Edge: use the install icon in the address bar, or menu <b>⋮</b> → <b>Install</b>.</li></ol>'
+  }
 };
-function instHint() { const ua = navigator.userAgent; const k = /iPhone|iPad|iPod/.test(ua) ? 'ios' : /Android/i.test(ua) ? 'android' : 'desktop'; return INST[lang][k]; }
-let instDeferred = null;
-const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true);
-if (standalone()) $('installBtn').classList.add('hidden');
-addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; });
-addEventListener('appinstalled', () => { instDeferred = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
+const isIOS = () => { const ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
+function instHint() { const k = isIOS() ? 'ios' : /Android/i.test(navigator.userAgent || '') ? 'android' : 'desktop'; return INST[lang][k]; }
+let instDeferred = window.__flyBip || null;
+const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: minimal-ui)').matches || navigator.standalone === true);
+function syncInstall() {
+  if (standalone()) { $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); }
+}
+syncInstall();
+if (matchMedia) { const mq = matchMedia('(display-mode: standalone)'); const on = () => syncInstall(); if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on); }
+addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; window.__flyBip = e; });
+addEventListener('appinstalled', () => { instDeferred = null; window.__flyBip = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
 $('installBtn').addEventListener('click', () => {
-  if (instDeferred) { const d = instDeferred; instDeferred = null; try { d.prompt(); return; } catch (e) {} }
-  const h = $('installHint'); h.innerHTML = instHint(); h.classList.toggle('hidden');
+  const d = instDeferred || window.__flyBip;
+  if (d) {
+    instDeferred = null; window.__flyBip = null;
+    try { const p = d.prompt(); if (p && p.then) p.then(() => {}, () => {}); return; } catch (e) {}
+  }
+  const h = $('installHint'); h.innerHTML = instHint(); h.classList.remove('hidden');
 });
-if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
+const FLY_VER = 'v25';
+let updTimer = 0;
+function updToast(text) {
+  const el = $('updToast'); if (!el) return;
+  el.textContent = text; el.classList.remove('hidden');
+  clearTimeout(updTimer); updTimer = setTimeout(() => el.classList.add('hidden'), 3000);
+}
+function waitInstalled(reg) {
+  const sw = reg.installing;
+  if (!sw) return Promise.resolve(reg.waiting);
+  return new Promise((resolve) => {
+    const done = () => resolve(reg.waiting || (sw.state === 'installed' ? sw : null));
+    if (sw.state === 'installed' || sw.state === 'activated') done();
+    else sw.addEventListener('statechange', () => { if (sw.state === 'installed' || sw.state === 'activated' || sw.state === 'redundant') done(); });
+    setTimeout(done, 2500);
+  });
+}
+async function checkForUpdate() {
+  const L = T[lang];
+  updToast(L.updBusy + ' · ' + FLY_VER);
+  try {
+    const reg = ('serviceWorker' in navigator) ? (window.__flySW || await navigator.serviceWorker.getRegistration('./')) : null;
+    if (reg) {
+      window.__flySW = reg;
+      await reg.update();
+      let waiting = reg.waiting || await waitInstalled(reg);
+      if (waiting) {
+        waiting.postMessage({ type: 'SKIP_WAITING' });
+        if (window.caches) {
+          const keys = await caches.keys();
+          await Promise.all(keys.filter((k) => k.indexOf('rg-fly-') === 0).map((k) => caches.delete(k)));
+        }
+        const url = new URL(location.href);
+        url.searchParams.set('upd', String(Date.now()));
+        location.replace(url.href);
+        return;
+      }
+    }
+  } catch (e) {}
+  updToast(T[lang].updOk + ' · ' + FLY_VER);
+}
+$('updBtn').addEventListener('click', () => { checkForUpdate(); });
+if ('serviceWorker' in navigator && location.protocol !== 'file:' && !window.__flySW) navigator.serviceWorker.register('sw.js', { scope: './' }).then((r) => { window.__flySW = r; }).catch(() => {});
 
 /* ================= loop ================= */
 let baseFov = 62, wtime = 0, hudTick = -1;
