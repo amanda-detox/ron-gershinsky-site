@@ -21,12 +21,12 @@
 | לייטיפיי | Lightify | game/index.html | משחק תלת מימד של אור וחסד | A 3D game of light and kindness | ציבורי / public |
 | חישובלי | Calcify | calc/index.html | מחשבון פשוט: מקלידים תרגיל ומקבלים תשובה | A simple calculator: type a sum, get the answer | ציבורי / public |
 | יאנגיפיי | Youngify | young/index.html | המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא) | Tips for young people for a good, healthy, thriving life (beta) | ציבורי / public |
-| ליסטיפיי | Listify | my/ideas/ | רשימות לפי קטגוריות | Lists by category | פרטי / private (owner) |
+| ליסטיפיי | Listify | listify/ (public) and my/ideas/ (owner) | רשימות לפי קטגוריות | Lists by category | ציבורי / public, plus the owner's private copy |
+| יומןלי | Yomanli | yomanli/ (public) and my/journal/ (owner) | יומן אישי: פסקה ונושא, לפי יום או נושא | A personal journal: a paragraph and a topic, by day or topic | ציבורי / public, plus the owner's private copy |
+| ריהאביפיי | Rehabify | rehabify/ (public) and my/rehabify/ (owner) | ספירת ימים נקיים וכלים לרגעי חשק | Clean-day counter and tools for cravings | ציבורי / public, plus the owner's private copy |
+| רוגעלי | Rogali | rogali/ (public) and my/calmify/ (owner) | צ'ק-אין רגשי, נשימה וקרקוע | Mood check-ins, breathing and grounding | ציבורי / public, plus the owner's private copy |
+| קניותיפיי | Purchasify | purchasify/ (public) and my/shopping/ (owner) | רשימת קניות שנשמרת אצלך | A shopping list that stays yours | ציבורי / public, plus the owner's private copy |
 | סמוקיפיי | Smokify | smokify/ | יומן עדין לרגעים ואלטרנטיבות | A gentle log of moments and alternatives | ציבורי / public |
-| יומןלי | Journalify | my/journal/ | יומן אישי: פסקה ונושא, לפי יום או נושא | A personal journal: a paragraph and a topic, by day or topic | פרטי / private (owner) |
-| ריהאביפיי | Rehabify | my/rehabify/ | ספירת ימים נקיים וכלים לרגעי חשק | Clean-day counter and tools for cravings | פרטי / private (owner) |
-| רוגעלי | Calmify | my/calmify/ | צ'ק-אין רגשי, נשימה וקרקוע | Mood check-ins, breathing and grounding | פרטי / private (owner) |
-| קניותיפיי | Purchasify | my/shopping/ | מתעדכנת בזמן אמת בנייד ובלפטופ | Updates live on phone and laptop | פרטי / private (owner) |
 | קלוקיפיי | Clockify | my/clock/ | שעונים מעוררים עם רשימות משימות | Alarms with task lists | פרטי / private (owner) — מוסתר / hidden |
 
 ## New templates (2026-10-31)

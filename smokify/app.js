@@ -1,14 +1,13 @@
 /* Smokify — a gentle public log for cigarette moments and alternatives.
-   Guests: this device only (localStorage "rg-smokify-guest"). Nothing is sent.
-   Signed in: RGStore app "smokify". RGAccount.set writes the row with read/update/delete
-   for that user only, so one account cannot read another's log.
+   Guests stay in rg-pub-smokify:guest and are never uploaded.
+   Signed in: app "pubsmokify". The account row is readable and writable by that user only.
    Signing in does not copy the guest log into the account.
    Lists use Listify's physical gestures: swipe right removes, swipe left edits, ☰ drag reorders.
    A vertical move scrolls. It never reorders, except a vertical drag that starts on ☰.
    The week chart counts cigarettes only (the role saved on each log entry). */
 (function () {
   "use strict";
-  var APP = "smokify";
+  var APP = "pubsmokify";
   var HE_DAYS = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
   var EN_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   var SEED_TYPES = [
@@ -45,81 +44,44 @@
     return focusedInPanels();
   }
   var S = window.RGStore(APP, { onChange: onStoreChange, onStatus: onStatus, busy: userBusy });
-  var GKEY = "rg-smokify-guest", guestItems = {};
 
-  function usingCloud() { return !!(S && S.uid()); }
-  function loadGuest() {
-    var c = null;
-    try { c = JSON.parse(lsGet(GKEY) || "null"); } catch (e) { c = null; }
-    guestItems = (c && c.items && typeof c.items === "object") ? c.items : {};
+  function cloud() { return !!(window.RGIsolate && RGIsolate.maySync(S.uid())); }
+  function list(kind) { return S.list(kind); }
+  function get(id) { return S.get(id); }
+  function add(obj) { S.add(obj); }
+  function upd(id, patch) { S.upd(id, patch); }
+  function del(id) { S.del(id); }
+  function seedFlag() { return "rg-pub-smokify-seeded:" + (S.uid() || "guest"); }
+  function writeSeed() {
+    if (!list("type").length) SEED_TYPES.forEach(function (item) { add({ id: item.id, kind: "type", seed: item.seed, role: item.role, order: item.order, he: item.he, en: item.en }); });
+    if (!list("alt").length) SEED_ALTS.forEach(function (item) { add({ id: item.id, kind: "alt", seed: item.seed, order: item.order, he: item.he, en: item.en }); });
+    if (!get("m-seed")) add({ id: "m-seed", kind: "meta", seed: "v1" });
   }
-  function saveGuest() { lsSet(GKEY, JSON.stringify({ v: 1, items: guestItems })); }
-  function gList(kind) {
-    var r = [], k, x;
-    for (k in guestItems) { x = guestItems[k]; if (x && !x.deleted && x.kind === kind) r.push(x); }
-    return r;
+  function seedGuest() {
+    if (seedDone || seedLock || cloud()) return;
+    if (lsGet(seedFlag()) === "1" || get("m-seed")) { seedDone = true; return; }
+    seedLock = true;
+    writeSeed();
+    lsSet(seedFlag(), "1");
+    seedDone = true;
+    seedLock = false;
   }
-  function gGet(id) { var x = guestItems[id]; return x && !x.deleted ? x : null; }
-  function gStamp(obj, id) {
-    var at = Date.now(), x = { id: id, created: at, at: at }, k;
-    for (k in obj) if (obj[k] !== "" && obj[k] != null) x[k] = obj[k];
-    x.id = id;
-    if (!x.created) x.created = at;
-    guestItems[id] = x;
-    saveGuest();
-  }
-  function list(kind) { return usingCloud() ? S.list(kind) : gList(kind); }
-  function get(id) { return usingCloud() ? S.get(id) : gGet(id); }
-  function add(obj) {
-    if (usingCloud()) { S.add(obj); return; }
-    var id = obj && obj.id ? obj.id : (Date.now().toString(36) + Math.random().toString(36).slice(2, 8));
-    gStamp(obj || {}, id);
-    render(true);
-  }
-  function upd(id, patch) {
-    if (usingCloud()) { S.upd(id, patch); return; }
-    var x = guestItems[id]; if (!x || x.deleted) return;
-    var y = {}, k;
-    for (k in x) y[k] = x[k];
-    for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
-    y.at = Date.now();
-    guestItems[id] = y;
-    saveGuest();
-    render(true);
-  }
-  function del(id) {
-    if (usingCloud()) { S.del(id); return; }
-    if (!guestItems[id]) return;
-    guestItems[id] = { id: id, deleted: true, at: Date.now() };
-    saveGuest();
-    render(true);
-  }
-  function ensureGuest() {
-    if (usingCloud()) return;
-    loadGuest();
-    if (lsGet("rg-smokify-seeded:guest") === "1" || gGet("m-seed")) return;
-    if (!gList("type").length) SEED_TYPES.forEach(function (item) { gStamp({ id: item.id, kind: "type", seed: item.seed, role: item.role, order: item.order, he: item.he, en: item.en }, item.id); });
-    if (!gList("alt").length) SEED_ALTS.forEach(function (item) { gStamp({ id: item.id, kind: "alt", seed: item.seed, order: item.order, he: item.he, en: item.en }, item.id); });
-    if (!gGet("m-seed")) gStamp({ id: "m-seed", kind: "meta", seed: "v1" }, "m-seed");
-    lsSet("rg-smokify-seeded:guest", "1");
-  }
-
-  function seedFlag() { return "rg-smokify-seeded:" + (S.uid() || ""); }
   function onStoreChange() {
     if (S.uid() !== uidSeen) { uidSeen = S.uid(); seedDone = false; seedLock = false; sawBusy = false; editing = null; }
-    if (!S.uid()) ensureGuest();
+    if (!cloud()) seedGuest();
     render();
   }
   function onStatus() {
     var st = S.state();
     if (st === "saving") sawBusy = true;
-    if (sawBusy && (st === "synced" || st === "offline")) maybeSeed();
+    if (!cloud()) seedGuest();
+    else if (sawBusy && (st === "synced" || st === "offline")) maybeSeed();
     paintStatus();
   }
   function paintStatus() {
     var el = $("status"); if (!el) return;
     var note = $("store-note");
-    if (!S.uid()) {
+    if (!cloud()) {
       el.textContent = t("localOnly");
       el.classList.remove("off");
       if (note) note.textContent = t("localNote");
@@ -132,7 +94,7 @@
   }
   function maybeSeed() {
     var uid = S.uid();
-    if (!uid || seedLock || seedDone) return;
+    if (!cloud() || seedLock || seedDone) return;
     if (lsGet(seedFlag()) === "1" || get("m-seed")) { seedDone = true; render(); return; }
     var st = S.state();
     if (st !== "synced" && st !== "offline") return;
@@ -188,7 +150,7 @@
     return m === null ? 1 : m - 1;
   }
   function waiting() {
-    return !!(S.uid() && !seedDone && !list("type").length && !list("alt").length && !list("log").length);
+    return !!(cloud() && !seedDone && !list("type").length && !list("alt").length && !list("log").length);
   }
   function cigsOn(key) {
     var n = 0;
@@ -634,11 +596,6 @@
       setTimeout(function () { if (held && !focusedInPanels()) render(); }, 220);
     });
     if (window.RGMy) RGMy.onLang(function () { render(); });
-    // A signed-in session is applied by the store on the next turn. Guests can log immediately, on this device only.
-    if (!(window.RGAccount && RGAccount.user())) { ensureGuest(); render(); }
-    window.addEventListener("storage", function (e) {
-      if (e.key === GKEY && !usingCloud()) { loadGuest(); render(true); }
-    });
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();

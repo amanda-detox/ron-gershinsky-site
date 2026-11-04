@@ -464,6 +464,12 @@ var topics = [];
 // hidden: true keeps an app off the grid (files untouched); remove the flag to show it again. Clockify hidden at Ron's request (2026-10-28).
 var apps = [
   { hidden: true, href: "clockify/index.html",  icon: "clockify/icon-192.png",     he: "קלוקיפיי",      en: "Clockify",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
+  { href: "listify/index.html",   icon: "listify/icon-192.png",   he: "ליסטיפיי",      en: "Listify",    heLine: "רשימות לפי קטגוריות", enLine: "Lists by category" },
+  { href: "yomanli/index.html",   icon: "yomanli/icon-192.png?v=6", he: "יומןלי",      en: "Yomanli",    heLine: "יומן אישי: פסקה ונושא, לפי יום או נושא", enLine: "A personal journal: a paragraph and a topic, by day or topic" },
+  { href: "rehabify/index.html",  icon: "rehabify/icon-192.png",  he: "ריהאביפיי",     en: "Rehabify",   heLine: "ספירת ימים נקיים וכלים לרגעי חשק", enLine: "Clean-day counter and tools for cravings" },
+  { href: "rogali/index.html",    icon: "rogali/icon-192.png",    he: "רוגעלי",        en: "Rogali",     heLine: "צ'ק-אין רגשי, נשימה וקרקוע", enLine: "Mood check-ins, breathing and grounding" },
+  { href: "purchasify/index.html", icon: "purchasify/icon-192.png?v=6", he: "קניותיפיי", en: "Purchasify", heLine: "רשימת קניות שנשמרת אצלך", enLine: "A shopping list that stays yours" },
+  { href: "smokify/index.html",   icon: "smokify/icon-192.png",   he: "סמוקיפיי",      en: "Smokify",   heLine: "יומן עדין לרגעים ואלטרנטיבות", enLine: "A gentle log of moments and alternatives" },
   { href: "news/index.html",      icon: "news/icon-192.png",      he: "עדכוניפיי",     en: "Updatify",   heLine: "חדשות יומיות על אנשים וחברות שאני עוקב אחריהם", enLine: "Daily news on the people and companies I follow" },
   { href: "relax/index.html",     icon: "relax/icon-192.png",     he: "רילקסיפיי",   en: "Relaxify", heLine: "משחקי רגיעה: שבעה משחקים שקטים, בלי ניקוד ובלי טיימר", enLine: "Relaxing games: seven quiet games, no scores, no timers" },
   { href: "healify/index.html",   icon: "healify/icon-192.png",   he: "היליפיי",       en: "Healify",   heLine: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר בריאות מלאה, כושר ושגשוג.", enLine: "An app for a complete understanding of your condition and matching solutions, toward full health, fitness and flourishing." },
@@ -484,8 +490,7 @@ var apps = [
   { href: "workify/index.html", icon: "workify/icon-192.png", he: "וורקיפיי", en: "Workify", heLine: "המלצות לשכירים, מג׳וניורים ועד בכירים", enLine: "Recommendations for employees, from juniors to seniors" },
   { href: "activist/index.html", icon: "activist/icon-192.png?v=2", he: "אקטיביפיי", en: "Activify", heLine: "למצוא את דרכי הפעולה שמתאימות לך, למה שאכפת לך, לתשוקות ולחוזקות שלך, כדי להיות אקטיבי ולהשפיע ולשנות תחום בעולם", enLine: "Find the ways to act that fit you, what you care about, your passions and strengths, to be active and change a field in the world" },
   { href: "depornify/index.html", icon: "depornify/icon-192.png?v=2", he: "דיפורניפיי", en: "Depornify", heLine: "גמילה מפורנו", enLine: "Quitting porn" },
-  { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" },
-  { href: "smokify/index.html",   icon: "smokify/icon-192.png",   he: "סמוקיפיי",      en: "Smokify",   heLine: "יומן עדין לרגעים ואלטרנטיבות", enLine: "A gentle log of moments and alternatives" }
+  { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" }
 ];
 
 // Site owner signed in: ONE merged grid (public + private apps from my/apps.js), these first, private ones marked with a lock.
@@ -1122,7 +1127,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=68", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=70", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */

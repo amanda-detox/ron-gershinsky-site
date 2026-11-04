@@ -1,0 +1,28 @@
+{
+  "id": "/purchasify/",
+  "name": "קניותיפיי · Purchasify",
+  "short_name": "קניותיפיי",
+  "description": "רשימת קניות. בלי חשבון נשמרת במכשיר, עם חשבון רק אצלך. · A shopping list. On this device until you sign in, then only in your account.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

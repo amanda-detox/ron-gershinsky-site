@@ -2,8 +2,8 @@
    The shell is cached. A guest log stays in localStorage. A signed-in log lives in the account
    (Appwrite, cross-origin, never cached here) and is readable only by that user. */
 var CACHE = "rg-smokify-v1";
-var FILES = ["./", "index.html", "app.js?v=1", "manifest.json", "icon-192.png", "icon-512.png", "apple-touch-icon.png", "../my/common.css", "../my/common.js", "../my/store.js",
-  "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
+var FILES = ["./", "index.html", "app.js?v=1", "manifest.json", "icon-192.png", "icon-512.png", "apple-touch-icon.png", "../my/common.css", "../my/common.js",
+  "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/rg-isolate.js", "../shared/rg-public-store.js", "../shared/rg-public.css", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
