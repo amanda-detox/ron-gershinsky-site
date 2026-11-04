@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T05:15:04+02:00",
+ "updated": "2026-11-04T05:58:17+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,40 @@
   }
  ],
  "items": [
+  {
+   "id": "johnson-motivating-music-walking-15-percent",
+   "topic": "johnson",
+   "date": "2026-11-04T03:27:00Z",
+   "url": "https://x.com/bryan_johnson/status/2117820882433278457",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: הליכה עם מוזיקה מניעה הגדילה את כמות האימון ב-15%",
+    "summary": "בריאן ג'ונסון שיתף מחקר מבוקר משנת 2009 שלפיו הליכה על הליכון לצלילי מוזיקה מניעה הגדילה את כמות הפעילות ב-15%. הפוסט ממשיך את הפוסט שלו מלפני כמה ימים על כך שמוזיקה באימון היא מהשמחות הגדולות בחיים."
+   },
+   "en": {
+    "title": "Bryan Johnson: walking to motivating music increased exercise by 15%",
+    "summary": "Bryan Johnson shared a 2009 randomized controlled trial finding that treadmill walking to motivating music increased exercise by 15%. It follows up his post from a few days ago that music while exercising is one of life's greatest joys."
+   },
+   "full_en": "Walking to motivating music increased exercise by 15%\n\nThe image in the post shows the study he cites:\n• Randomized Controlled Trial, J Sport Exerc Psychol. 2009 Feb;31(1):18-36, doi: 10.1123/jsep.31.1.18\n• Title: \"Psychophysical and ergogenic effects of synchronous music during treadmill walking\"\n• Authors: Costas I Karageorghis, Denis A Mouzourides, David-Lee Priest, Tariq A Sasso, Daley J Morrish, Carolyn J Walley\n\nThe quoted post:\nlistening to music while exercising is one of life's greatest joys\n\nThere are no further replies from him in the thread.",
+   "full_he": "הליכה לצלילי מוזיקה מניעה הגדילה את כמות האימון ב-15%.\n\nבתמונה שבפוסט מופיע המחקר שהוא מצטט:\n• ניסוי מבוקר אקראי, כתב העת J Sport Exerc Psychol, פברואר 2009, כרך 31(1), עמודים 18–36, doi: 10.1123/jsep.31.1.18\n• כותרת: \"ההשפעות הפסיכופיזיות והמשפרות-ביצועים של מוזיקה מסונכרנת בזמן הליכה על הליכון\"\n• מחברים: קוסטאס קראגיורגיס, דניס מוזורידס, דייוויד-לי פריסט, טאריק סאסו, דיילי מוריש, קרולין וולי\n\nהפוסט שהוא ציטט:\nלהאזין למוזיקה בזמן אימון זו אחת השמחות הגדולות בחיים.\n\nאין בשרשור תגובות נוספות שלו."
+  },
+  {
+   "id": "spacex-starlink-dominate-mobile-grinkorn",
+   "topic": "spacex",
+   "date": "2026-11-04T03:56:02Z",
+   "url": "https://x.com/i/trending/2117826827376865655",
+   "source": "X",
+   "he": {
+    "title": "מנכ\"ל Morris Group: סטארלינק תשלוט בשוק הסלולר והאינטרנט העולמי תוך שלוש שנים",
+    "summary": "ג'וזף גרינקורן, מנכ\"ל Morris Group, צופה שסטארלינק של אילון מאסק תשלוט בתעשיית הסלולר והאינטרנט העולמית בתוך שלוש שנים, בזכות הכיסוי הלווייני הגלובלי, החיבור הישיר לטלפונים והשותפויות שלה."
+   },
+   "en": {
+    "title": "Morris Group CEO predicts Starlink will dominate global mobile and internet within three years",
+    "summary": "Morris Group CEO Joseph Grinkorn predicts Elon Musk's Starlink will dominate the global mobile and internet industry within three years, thanks to its global satellite reach, direct-to-cell capability and partnerships."
+   },
+   "full_en": "Morris Group CEO Joseph Grinkorn predicts Elon Musk's Starlink will dominate the global mobile and internet sectors within three years.\n\n• His reasons: Starlink's global satellite reach, its direct-to-cell capabilities, and its partnerships, including the expanded $20 billion deal with EchoStar for wireless frequencies and Boost Mobile access.\n• Starlink currently serves over 12 million users in more than 160 countries.\n• It has more than 11,000 satellites in orbit, and over 650 Direct to Cell satellites have been launched.\n\nThis is an X trending story, a summary of posts on X that may change over time.",
+   "full_he": "ג'וזף גרינקורן, מנכ\"ל Morris Group, צופה שסטארלינק של אילון מאסק תשלוט בתחומי הסלולר והאינטרנט בעולם בתוך שלוש שנים.\n\n• הנימוקים שלו: הכיסוי הלווייני הגלובלי של סטארלינק, היכולת להתחבר ישירות לטלפונים סלולריים, והשותפויות שלה, ובהן העסקה המורחבת בהיקף 20 מיליארד דולר עם EchoStar על תדרים אלחוטיים וגישה ל-Boost Mobile.\n• כיום לסטארלינק יותר מ-12 מיליון משתמשים ביותר מ-160 מדינות.\n• יש לה יותר מ-11,000 לוויינים במסלול, ושוגרו יותר מ-650 לווייני Direct to Cell.\n\nזה סיפור טרנדי של X, סיכום של פוסטים ב-X שעשוי להשתנות עם הזמן."
+  },
   {
    "id": "solana-metadao-scrappy-app-builders-fund",
    "topic": "solana",
