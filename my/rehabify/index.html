@@ -46,6 +46,8 @@
   .status:empty { display: none; }
   .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
+  .help-link + .disclaim { margin-top: 0; }
+  .disclaim a, .disclaim a:visited, .disclaim a:hover { color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 2px; }
   /* suggestion checklist: every option visible, square boxes, page scroll (no nested scroller) */
   .suggs { display: flex; flex-direction: column; gap: 8px; }
   .sug { display: flex; align-items: flex-start; gap: 12px; margin: 0; min-height: 48px; padding: 12px; border-radius: 14px; border: 2px solid var(--line); background: var(--card2); color: var(--fg); font-size: 16px; font-weight: 700; line-height: 1.35; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
@@ -72,8 +74,6 @@
     <img src="icon-192.png" alt="" width="56" height="56">
     <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
   </div>
-  <div class="helpwrap" id="help-now" data-extra="addiction"></div>
-
   <section class="card gate" data-when="out" hidden>
     <div class="lock" aria-hidden="true">🔒</div>
     <h2 data-i18n="gateTitle"></h2>
@@ -84,6 +84,7 @@
   <main data-when="in" hidden>
     <nav class="tabs" id="tabs" role="tablist"></nav>
     <div id="panels"></div>
+    <p class="disclaim help-link"><a href="help.html" data-i18n="helpLink">קבל סיוע מיידי</a></p>
     <p class="disclaim" data-i18n="disclaim"></p>
   </main>
   <div class="status" id="status" role="status" aria-live="polite"></div>
@@ -125,6 +126,7 @@ window.RGMY_STRINGS = {
         histTitle: "החשק ב־14 הימים האחרונים", histLead: "העמודה מראה את החשק החזק ביותר שדיווחת עליו בכל יום.", noHist: "עוד אין היסטוריה. צ'ק-אין, טיימר חשק ומעידות יופיעו כאן.",
         hChk: "צ'ק-אין", hCrv: "טיימר חשק", hSlip: "מעידה – ספירה מחדש", hCrave: "חשק {n}/10", hPassed: "החשק נחלש", hStill: "עדיין היה חזק", hSlipD: "{n} ימים נקיים לפני כן", hMins: "{n} דקות", today: "היום", yesterday: "אתמול",
         confirmDelH: "למחוק את הרשומה הזו מההיסטוריה?",
+        helpLink: "קבל סיוע מיידי",
         disclaim: "ריהאביפיי היא כלי אישי למעקב ולתמיכה, ואינה תחליף לייעוץ או לטיפול מקצועי. אם הגמילה מלווה בתסמינים גופניים, מומלץ להתייעץ עם רופא.",
         synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת" },
   en: { doc: "Rehabify", title: "Rehabify", sub: "Your path to a clean life, saved in your account – only you can see it",
@@ -158,15 +160,15 @@ window.RGMY_STRINGS = {
         histTitle: "Cravings in the last 14 days", histLead: "Each bar shows the strongest craving you reported that day.", noHist: "No history yet. Check-ins, craving timers and slips will show up here.",
         hChk: "Check-in", hCrv: "Craving timer", hSlip: "Slip – count restarted", hCrave: "craving {n}/10", hPassed: "It eased", hStill: "It was still strong", hSlipD: "{n} clean days before", hMins: "{n} minutes", today: "Today", yesterday: "Yesterday",
         confirmDelH: "Delete this entry from your history?",
+        helpLink: "Get immediate help",
         disclaim: "Rehabify is a personal tracking and support tool, not a substitute for professional advice or treatment. If quitting comes with physical symptoms, it's a good idea to consult a doctor.",
         synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online" }
 };
 </script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="../help-now.js"></script>
 <script src="../store.js?v=3"></script>
-<script src="app.js?v=17"></script>
+<script src="app.js?v=18"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->

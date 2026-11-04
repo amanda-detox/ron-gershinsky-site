@@ -1,6 +1,8 @@
-/* help-now.js: the always-visible "need help now" button + sheet with Israeli support lines, for the private apps
-   that deal with addiction and emotional wellbeing (my/rehabify/, my/calmify/). Public information only, no personal data.
-   Usage: <div id="help-now" data-extra="addiction"></div> ... <script src="../help-now.js"></script> (after common.js).
+/* help-now.js: Israeli support lines for the private apps that deal with addiction and emotional wellbeing
+   (my/calmify/ button + sheet, my/rehabify/help.html full page). Public information only, no personal data.
+   Button: <div id="help-now" data-extra="addiction"></div>
+   Page:   <div id="help-now" class="helpdlg helppage" data-extra="addiction" data-mode="page"></div>
+   <script src="../help-now.js"></script> after common.js.
    Numbers were checked on each organisation's own site in October 2026 (see SOURCES). Re-check before changing. */
 (function () {
   "use strict";
@@ -33,14 +35,13 @@
   ];
   var host = document.getElementById("help-now"); if (!host) return;
   var extra = host.getAttribute("data-extra") || "";
+  var page = host.getAttribute("data-mode") === "page";
   function L() { return window.RGMy && RGMy.lang() === "en" ? "en" : "he"; }
   function t(k) { return S[L()][k]; }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
-  var dlg = document.createElement("dialog"); dlg.className = "helpdlg"; dlg.setAttribute("aria-labelledby", "help-title");
-  document.body.appendChild(dlg);
-  function draw() {
-    host.innerHTML = '<button type="button" class="helpbtn" aria-haspopup="dialog">' + esc(t("btn")) + "</button>";
-    var h = '<button type="button" class="helpx" data-close aria-label="' + esc(t("close")) + '">×</button><h2 id="help-title">' + esc(t("title")) + "</h2><p class=\"helpintro\">" + esc(t("intro")) + "</p>";
+  function sheet(withClose) {
+    var h = withClose ? '<button type="button" class="helpx" data-close aria-label="' + esc(t("close")) + '">×</button>' : "";
+    h += '<h2 id="help-title">' + esc(t("title")) + "</h2><p class=\"helpintro\">" + esc(t("intro")) + "</p>";
     GROUPS.forEach(function (g) {
       if (g[2] && g[2] !== extra) return;
       h += "<h3>" + esc(t(g[0])) + '</h3><ul class="helplist">' + g[1].map(function (x) {
@@ -48,11 +49,21 @@
         return '<li><a href="' + x[2] + '"' + (web ? ' target="_blank" rel="noopener"' : "") + '><span class="hl-n">' + esc(t(x[0])) + '</span><span class="hl-h">' + esc(t(x[3])).replace(/(\d\d:\d\d–\d\d:\d\d)/g, '<span dir="ltr">$1</span>') + '</span><b class="hl-num" dir="ltr">' + esc(x[1] === "chat" ? t("chat") : x[1]) + "</b></a></li>";
       }).join("") + "</ul>";
     });
-    dlg.innerHTML = h + '<p class="helpnote">' + esc(t("note")) + "</p>";
+    return h + '<p class="helpnote">' + esc(t("note")) + "</p>";
   }
-  host.addEventListener("click", function (e) { if (e.target.closest(".helpbtn")) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); } });
-  dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("[data-close]")) { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); } });
-  window.RGHelp = { open: function () { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); } };
+  var dlg = null;
+  function draw() {
+    if (page) { host.innerHTML = sheet(false); return; }
+    host.innerHTML = '<button type="button" class="helpbtn" aria-haspopup="dialog">' + esc(t("btn")) + "</button>";
+    dlg.innerHTML = sheet(true);
+  }
+  if (!page) {
+    dlg = document.createElement("dialog"); dlg.className = "helpdlg"; dlg.setAttribute("aria-labelledby", "help-title");
+    document.body.appendChild(dlg);
+    host.addEventListener("click", function (e) { if (e.target.closest(".helpbtn")) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); } });
+    dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("[data-close]")) { if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); } });
+    window.RGHelp = { open: function () { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); } };
+  }
   draw();
   if (window.RGMy) RGMy.onLang(draw);
 })();

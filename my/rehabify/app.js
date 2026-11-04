@@ -134,7 +134,7 @@
       "<li><b>" + esc(t("st2")) + "</b>" + esc(t("st2t")) + "</li>" +
       "<li><b>" + esc(t("st3")) + "</b>" + esc(t("st3t")) + "<div>" + (ppl.length ? ppl.map(function (p) {
         return p.phone ? '<a class="btn sm call" href="' + esc(phoneHref(p.phone)) + '">📞 ' + esc(p.name) + "</a>" : '<span class="btn sm call">' + esc(p.name) + "</span>"; }).join("") : '<p class="empty">' + esc(t("noPpl")) + "</p>") +
-      '<button type="button" class="btn sm call" data-a="help">🆘 ' + esc(t("helpLines")) + "</button></div></li>" +
+      '<a class="btn sm call" href="help.html">🆘 ' + esc(t("helpLines")) + "</a></div></li>" +
       "<li><b>" + esc(t("st4")) + "</b>" + (why.length ? '<div class="reasonsbox">' + why.map(function (w) { return "<p>💙 " + esc(w.text) + "</p>"; }).join("") + "</div>" : esc(t("noWhy"))) + "</li>" +
       "<li><b>" + esc(t("st5")) + "</b>" + esc(t("st5t")) + "</li></ol></div>";
   }
@@ -249,7 +249,6 @@
     panels.addEventListener("click", function (e) {
       var b = e.target.closest("[data-a]"); if (!b) return;
       var a = b.getAttribute("data-a"), host = b.closest("[data-id]"), id = host && host.getAttribute("data-id"), x = id && S.get(id);
-      if (a === "help") { if (window.RGHelp) RGHelp.open(); return; }
       if (a === "mood") { ck.mood = +b.getAttribute("data-v"); ckSaved = false; render(); return; }
       if (a === "trig") { var tv = b.getAttribute("data-v"), i = ck.trig.indexOf(tv); if (i >= 0) ck.trig.splice(i, 1); else ck.trig.push(tv); render(); return; }
       if (a === "saveChk") {
