@@ -18,7 +18,7 @@ const T = {
     start: 'לטס פליי', install: '📲 התקנה למסך הבית', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
     helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. הכפתור העגול במרכז מחליף את השובל. אוספים ניצוצות ועוברים בטבעות הזהובות.',
-    exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה',
+    exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה', exhaustNone: 'בלי שובל',
     helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C: האצה, צילום, יום / לילה. גרירה בעכבר לפנייה (רגישות בתפריט). Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     tools: ['האצה', 'מגן', 'מגנט', 'האטת זמן', 'סלטה', 'נחיתה והליכה', 'שובל אור – נקודות כפולות', 'חבר למסע', 'מצב צילום', 'מוזיקה', 'צבע השובל', 'יום / לילה'],
     rings: ['כוחות', 'תעופה', 'אווירה'], on: 'פועל', off: 'כבוי', day: 'יום', night: 'לילה', saved: 'התמונה נשמרה',
@@ -40,7 +40,7 @@ const T = {
     start: 'Take off ✨', install: '📲 Install to home screen', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
     helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. The round button in the center switches the trail. Collect sparks and fly through the golden rings.',
-    exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora',
+    exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora', exhaustNone: 'No trail',
     helpDesk: 'Arrows or WASD: turn, climb and dive. Space up, Shift down, 1/2/3 or F for speed. Z X C: boost, photo, day / night. Drag the mouse to steer (sensitivity in the menu). Esc for the menu. Collect sparks and fly through the golden rings.',
     tools: ['Speed boost', 'Shield', 'Magnet', 'Slow time', 'Roll', 'Land & walk', 'Light trail – double points', 'Companion', 'Photo mode', 'Music', 'Trail color', 'Day / night'],
     rings: ['Powers', 'Flight', 'Atmosphere'], on: 'On', off: 'Off', day: 'Day', night: 'Night', saved: 'Photo saved',
@@ -218,7 +218,7 @@ function robot() {
   const pose = new THREE.Group(); pose.rotation.x = -Math.PI / 2 * 0.9; pose.add(st);
   const root = new THREE.Group(); root.add(pose);
   root.userData = {
-    eye: new THREE.Vector3(0, 0.2, -0.8), size: 1, camDist: 4.4, stand: true, exhaust, nozzle: { flame: flameM, core: coreM },
+    eye: new THREE.Vector3(0, 0.2, -0.8), size: 1, camDist: 4.4, stand: true, exhaust, flames, nozzle: { flame: flameM, core: coreM },
     anim(t, s) { const k = 0.88 + Math.sin(t * 20) * 0.06 + s * 0.35; flames.forEach((f, i) => f.scale.set(1, k + (i & 1) * 0.04, 1)); bulb.material.emissiveIntensity = 0.8 + Math.sin(t * 5) * 0.6; pose.position.y = Math.sin(t * 2) * 0.06; }
   };
   return root;
@@ -290,7 +290,7 @@ function astronaut() {
   const pose = new THREE.Group(); pose.rotation.x = -Math.PI / 2 * 0.9; pose.add(st);
   const root = new THREE.Group(); root.add(pose);
   root.userData = {
-    eye: new THREE.Vector3(0, 0.2, -0.85), size: 1, camDist: 4.4, stand: true, exhaust, nozzle: { flame: flameM, core: coreM },
+    eye: new THREE.Vector3(0, 0.2, -0.85), size: 1, camDist: 4.4, stand: true, exhaust, flames, nozzle: { flame: flameM, core: coreM },
     anim(t, s) {
       const k = 0.9 + Math.sin(t * 20) * 0.07 + s * 0.4;
       flames.forEach((f, i) => f.scale.set(1, k + (i & 1) * 0.04, 1));
@@ -870,7 +870,7 @@ function disposeTree(o) {
 }
 
 /* ================= player ================= */
-const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
+const player = { pos: new THREE.Vector3(), yaw: 0, pitch: 0, pitchRate: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
 const MULS = [0.1618, 0.2, 0.4, 1, 1.3, 1.7, 1.9, 2.19, 4, 9, 15];
 let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
@@ -898,7 +898,8 @@ for (let i = 0; i < NR; i++) {
   r.add(new THREE.Mesh(ringInner, new THREE.MeshBasicMaterial({ color: 0xffe7a3, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending })));
   r.userData = { flash: 0 }; scene.add(r); rings.push(r);
 }
-const fwd = new THREE.Vector3(), right = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
+const fwd = new THREE.Vector3(), right = new THREE.Vector3(), flyDir = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
+const PITCH_MAX = Math.PI * 0.5 * 0.96; // ~86°, almost vertical, at any speed
 function heading() { fwd.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw)); right.set(Math.cos(player.yaw), 0, -Math.sin(player.yaw)); }
 function floorAt(x, z) { return env.heightAt ? env.heightAt(x, z) + env.minY : env.minY; }
 function placeAhead(v, near, far, spread, ring) {
@@ -1111,12 +1112,24 @@ function updateFx(t, dt, playing) {
   }
 }
 
-/* v17: continuous exhaust. A strip mesh through recent positions, so the trail stays solid at any speed or frame rate. */
-let exhaustStyle = store.get('rg-fly-exhaust', 'ribbon') === 'aurora' ? 'aurora' : 'ribbon';
+/* v18: continuous exhaust. A strip along the nozzle path, narrow at the jet and fading at the tail. */
+const EXHAUSTS = ['ribbon', 'aurora', 'none'];
+const AURORA_PAL = [[0.15, 0.95, 0.38], [0.12, 0.82, 1], [0.52, 0.32, 1], [0.92, 0.42, 0.9]];
+const RIBBON_COLS = [[0.05, 0.2, 1], [0.12, 0.38, 1], [0.55, 0.72, 0.95], [1, 0.9, 0.18], [1, 0.74, 0.08]];
+const aurTmp = [0, 0, 0];
+let exhaustStyle = EXHAUSTS.indexOf(store.get('rg-fly-exhaust', 'ribbon')) >= 0 ? store.get('rg-fly-exhaust', 'ribbon') : 'ribbon';
+function aurAt(u, out) {
+  const x = ((u % 1) + 1) % 1 * AURORA_PAL.length, i = Math.floor(x) % AURORA_PAL.length, f = x - Math.floor(x);
+  const a = AURORA_PAL[i], b = AURORA_PAL[(i + 1) % AURORA_PAL.length];
+  out[0] = a[0] + (b[0] - a[0]) * f; out[1] = a[1] + (b[1] - a[1]) * f; out[2] = a[2] + (b[2] - a[2]) * f;
+  return out;
+}
 function paintNozzle() {
+  const off = exhaustStyle === 'none';
   for (const obj of [player.model, buddy]) {
-    const n = obj && obj.userData.nozzle;
-    if (!n) continue;
+    const u = obj && obj.userData; if (!u) continue;
+    if (u.flames) for (const f of u.flames) f.visible = !off;
+    const n = u.nozzle; if (!n) continue;
     if (exhaustStyle === 'aurora') {
       n.flame.color.setHex(0x3dffc0); n.flame.emissive.setHex(0x2ee6b0); n.core.color.setHex(0xd8fff6);
     } else {
@@ -1125,21 +1138,23 @@ function paintNozzle() {
   }
 }
 function applyExhaustStyle(style, persist) {
-  exhaustStyle = style === 'aurora' ? 'aurora' : 'ribbon';
+  exhaustStyle = EXHAUSTS.indexOf(style) >= 0 ? style : 'ribbon';
   if (persist) store.set('rg-fly-exhaust', exhaustStyle);
   const b = $('exhaustToggle');
   if (b) {
-    const aurora = exhaustStyle === 'aurora';
-    b.classList.toggle('aurora', aurora); b.classList.toggle('ribbon', !aurora);
+    b.classList.remove('ribbon', 'aurora', 'none'); b.classList.add(exhaustStyle);
     b.dataset.style = exhaustStyle;
-    b.setAttribute('aria-label', T[lang][aurora ? 'exhaustAurora' : 'exhaustRibbon']);
+    const key = exhaustStyle === 'aurora' ? 'exhaustAurora' : exhaustStyle === 'none' ? 'exhaustNone' : 'exhaustRibbon';
+    b.setAttribute('aria-label', T[lang][key]);
   }
+  if (exhaustStyle === 'none') clearRibbon();
   paintNozzle();
 }
 function cycleExhaust() {
-  const next = exhaustStyle === 'aurora' ? 'ribbon' : 'aurora';
+  const next = EXHAUSTS[(EXHAUSTS.indexOf(exhaustStyle) + 1) % EXHAUSTS.length];
   applyExhaustStyle(next, true);
-  flash((next === 'aurora' ? '∿ ' : '✧ ') + T[lang][next === 'aurora' ? 'exhaustAurora' : 'exhaustRibbon']);
+  const key = next === 'aurora' ? 'exhaustAurora' : next === 'none' ? 'exhaustNone' : 'exhaustRibbon';
+  flash(T[lang][key]);
 }
 const RN = 64, RVERTS = 5, ROFF = [-1, -0.5, 0, 0.5, 1];
 const rCenters = new Float32Array(RN * 3);
@@ -1160,7 +1175,7 @@ ribbonGeo.setIndex(new THREE.BufferAttribute(rIdx, 1)); ribbonGeo.setDrawRange(0
 const ribbonMat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false });
 const ribbonMesh = new THREE.Mesh(ribbonGeo, ribbonMat);
 ribbonMesh.frustumCulled = false; ribbonMesh.visible = false; ribbonMesh.renderOrder = 3; scene.add(ribbonMesh);
-const exP = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
+const exP = new THREE.Vector3(), exDir = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
 const rDir = new THREE.Vector3(), rSide = new THREE.Vector3(), rSpan = new THREE.Vector3(), rWave = new THREE.Vector3();
 const rRight = new THREE.Vector3(), rCamUp = new THREE.Vector3(), rCamFwd = new THREE.Vector3(), rUp = new THREE.Vector3(0, 1, 0);
 function ribbonReset(x, y, z) { rCenters[0] = x; rCenters[1] = y; rCenters[2] = z; rHead = 0; rCount = 1; }
@@ -1186,10 +1201,11 @@ function putVert(vi, x, y, z, r, g, b, a) {
 }
 function updateRibbon(t, dt, playing) {
   const m = player.model; if (!m) return;
+  if (exhaustStyle === 'none') { ribbonMesh.visible = false; return; }
   m.updateMatrixWorld(true);
   const u = m.userData, sz = u.size || 1;
-  if (u.exhaust) u.exhaust.getWorldPosition(exP);
-  else { heading(); exP.copy(m.position).addScaledVector(fwd, -1.05 * sz); }
+  if (u.exhaust) { u.exhaust.getWorldPosition(exP); exDir.set(0, -1, 0).transformDirection(u.exhaust.matrixWorld); }
+  else { heading(); exP.copy(m.position).addScaledVector(fwd, -1.05 * sz); exDir.copy(fwd).multiplyScalar(-1); }
   const extend = playing && player.mode === 'fly';
   if (extend) ribbonPush(exP.x, exP.y, exP.z);
   if (extend) ribbonFade = Math.min(1, ribbonFade + dt * 5);
@@ -1217,46 +1233,34 @@ function updateRibbon(t, dt, playing) {
     rA.set(rCenters[op], rCenters[op + 1], rCenters[op + 2]);
     rC.set(rCenters[on], rCenters[on + 1], rCenters[on + 2]);
     rDir.subVectors(rC, rA);
-    if (rDir.lengthSq() < 1e-8) rDir.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw)); else rDir.normalize();
+    if (rDir.lengthSq() < 1e-6) rDir.copy(exDir).negate(); else rDir.normalize();
     const along = k / (rCount - 1);
-    const fade = Math.pow(along, 0.6) * ribbonFade;
+    const fromNose = 1 - along;
+    const grow = Math.min(1, fromNose / 0.14); // point at the jet, opens just behind it
+    const fade = Math.pow(along, aurora ? 0.42 : 0.72) * ribbonFade;
     let axis = rSide;
     if (aurora) {
-      const envAmp = Math.sin(along * Math.PI);
-      rWave.copy(rRight); rWave.y = 0;
-      if (rWave.lengthSq() < 1e-4) rWave.crossVectors(rDir, rUp);
-      if (rWave.lengthSq() > 1e-8) rWave.normalize();
-      const sway = Math.sin(t * 1.05 + k * 0.62) * 0.9 * sz * envAmp;
-      const lift = Math.sin(t * 1.35 + k * 0.75) * 0.55 * sz * envAmp;
-      rB.x += rWave.x * sway; rB.z += rWave.z * sway; rB.y += lift * 0.45;
-      rSpan.copy(rUp).multiplyScalar(0.92 + 0.28 * Math.sin(t * 1.4 + k * 0.8)).addScaledVector(rRight, 0.28);
+      const wob = Math.sin(t * 1.2 + k * 0.55) * 0.07 * sz * Math.sin(along * Math.PI);
+      rWave.crossVectors(rDir, rUp);
+      if (rWave.lengthSq() < 1e-6) rWave.copy(rRight); else rWave.normalize();
+      rB.addScaledVector(rWave, wob);
+      rSpan.copy(rUp);
       const d = rSpan.dot(rDir); rSpan.addScaledVector(rDir, -d);
-      if (rSpan.lengthSq() < 1e-6) rSpan.copy(rUp); else rSpan.normalize();
+      if (rSpan.lengthSq() < 1e-6) rSpan.copy(rCamUp); else rSpan.normalize();
       axis = rSpan;
     } else {
-      rSide.crossVectors(rDir, rCamFwd);
+      rSide.copy(rUp);
+      const rd = rSide.dot(rDir); rSide.addScaledVector(rDir, -rd);
       if (rSide.lengthSq() < 1e-6) rSide.copy(rCamUp); else rSide.normalize();
     }
     if (have && axis.x * psx + axis.y * psy + axis.z * psz < 0) axis.negate();
     psx = axis.x; psy = axis.y; psz = axis.z; have = true;
-    const base = (aurora ? 0.55 + 1.15 * Math.sin(along * Math.PI) : 0.16 + 0.3 * along) * sz * punch;
-    const shift = 0.5 + 0.5 * Math.sin(t * 0.55 + k * 0.2);
-    const cols = aurora ? [
-      [0.02, 1, 0.22],
-      [0.04, 1, 0.4 + 0.1 * shift],
-      [0.06, 0.95, 0.72],
-      [0.05, 0.72, 1],
-      [0.03, 0.42, 1]
-    ] : [
-      [0.04, 0.18, 1],
-      [0.08, 0.32, 1],
-      [0.55, 0.7, 0.9],
-      [1, 0.92, 0.12],
-      [1, 0.78, 0.02]
-    ];
-    const aScale = Math.min(1, (aurora ? 0.58 : 0.82) * (punch > 1 ? 1.12 : 1));
+    const base = (aurora ? 0.035 + 0.2 * grow : 0.012 + 0.15 * grow) * (1 - fromNose * 0.2) * sz * punch;
+    const colU = fromNose * 3.1 + t * 0.12;
+    const aScale = Math.min(1, (aurora ? 0.38 : 0.78) * (punch > 1 ? 1.1 : 1));
     for (let v = 0; v < 5; v++) {
-      const w = ROFF[v] * base, col = cols[v];
+      const col = aurora ? aurAt(colU + (v - 2) * 0.05, aurTmp) : RIBBON_COLS[v];
+      const w = ROFF[v] * base;
       putVert(k * 5 + v, rB.x + axis.x * w, rB.y + axis.y * w, rB.z + axis.z * w, col[0], col[1], col[2], edge[v] * fade * aScale);
     }
   }
@@ -1426,7 +1430,7 @@ function setEnv(i) {
   sunLight.position.set(...env.sun[2]);
   applyLighting();
   sparkMat.color.set(env.spark); sparkGlow.material.color.set(env.spark);
-  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
+  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
   resetCollectibles(); if (buddy) buildBuddy(); clearRibbon();
   snapCam = true;
   syncSelects();
@@ -1496,7 +1500,7 @@ function updatePlayer(dt) {
   const k = (a, b) => (keys[a] || keys[b] ? 1 : 0);
   const turn = clamp(input.jx + input.mx + k('ArrowRight', 'KeyD') - k('ArrowLeft', 'KeyA'), -1, 1);
   const climb = clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS') + (input.up || keys.Space ? 1 : 0) - (input.down || keys.ShiftLeft || keys.ShiftRight ? 1 : 0), -1, 1);
-  player.yawRate += (-turn * 1.5 - player.yawRate) * damp(5, dt);
+  player.yawRate += (-turn * 2.2 - player.yawRate) * damp(8, dt); // angular rate, not tightened or slowed by speed
   player.yaw += player.yawRate * dt;
   if (Math.hypot(player.pos.x, player.pos.z) > env.R) {
     let diff = Math.atan2(player.pos.x, player.pos.z) - player.yaw;
@@ -1507,6 +1511,7 @@ function updatePlayer(dt) {
   const fl = floorAt(player.pos.x, player.pos.z);
   if (player.mode === 'walk' || player.mode === 'landing') {
     // on foot: up/down on the joystick walks forward/back, left/right turns
+    player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
     const walk = player.mode === 'walk' ? clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS'), -1, 1) : 0;
     player.speed += ((player.mode === 'landing' ? 5 : walk * 6) - player.speed) * damp(4, dt);
     player.pos.addScaledVector(fwd, player.speed * dt);
@@ -1516,9 +1521,19 @@ function updatePlayer(dt) {
   } else {
     const hov = player.mode === 'hover';
     player.speed += ((hov ? 0 : SPEEDS[player.level] * speedMul * (powerOn('boost') ? 1.9 : 1)) - player.speed) * damp(powerOn('boost') || hov ? 4 : 2, dt);
-    player.vy += (climb * (hov ? 6 : 11) - player.vy) * damp(4, dt);
-    player.pos.addScaledVector(fwd, player.speed * dt);
-    player.pos.y += player.vy * dt;
+    if (hov) {
+      player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
+      player.vy += (climb * 8 - player.vy) * damp(4, dt);
+      player.pos.y += player.vy * dt;
+    } else {
+      // pitch the whole velocity, so climb stays steep even when speed is high
+      player.pitchRate += (climb * 2.6 - player.pitchRate) * damp(9, dt);
+      player.pitch = clamp(player.pitch + player.pitchRate * dt, -PITCH_MAX, PITCH_MAX);
+      const cp = Math.cos(player.pitch), sp = Math.sin(player.pitch);
+      flyDir.set(fwd.x * cp, sp, fwd.z * cp);
+      player.pos.addScaledVector(flyDir, player.speed * dt);
+      player.vy = player.speed * sp;
+    }
     if (player.pos.y < fl + 1.2) { player.pos.y += (fl + 1.2 - player.pos.y) * damp(8, dt); if (player.vy < 0) player.vy *= 0.5; }
   }
   if (player.pos.y > env.maxY) { player.pos.y = env.maxY; player.vy = Math.min(player.vy, 0); }
@@ -1535,7 +1550,7 @@ function placeModel(t, playing) {
   m.rotation.order = 'YXZ';
   m.rotation.y = player.yaw;
   const walking = player.mode === 'walk';
-  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? clamp(player.vy / 11, -1, 1) * 0.45 : Math.sin(t * 0.8) * 0.05;
+  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? player.pitch : Math.sin(t * 0.8) * 0.05;
   m.rotation.z = playing && !walking ? clamp(player.yawRate * 0.45, -0.6, 0.6) : 0;
   const rl = pw[TI.roll].left; // roll: one full barrel roll, eased
   if (rl > 0 && !walking) { const q = 1 - rl / TOOLS[TI.roll].dur; m.rotation.z += Math.PI * 2 * (q * q * (3 - 2 * q)); }
@@ -1545,6 +1560,14 @@ function placeModel(t, playing) {
 /* ================= camera ================= */
 let snapCam = true;
 const camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0), want = new THREE.Vector3(), look = new THREE.Vector3(), fpE = new THREE.Euler(), sideOff = new THREE.Vector3(), sideSm = new THREE.Vector3();
+const camOff = new THREE.Vector3(), lookOff = new THREE.Vector3();
+function chaseCam(off, lookO, dt, rate) {
+  if (snapCam) { camOff.copy(off); lookOff.copy(lookO); snapCam = false; }
+  else { const k = damp(rate, dt); camOff.lerp(off, k); lookOff.lerp(lookO, k); }
+  camera.position.copy(player.pos).add(camOff);
+  camLook.copy(player.pos).add(lookOff);
+  camera.lookAt(camLook); sky.position.copy(camera.position);
+}
 function updateCamera(t, dt, playing) {
   const m = player.model, u = m.userData, cam = CAM_IDS[camIdx];
   heading();
@@ -1561,13 +1584,14 @@ function updateCamera(t, dt, playing) {
     want.set(player.pos.x + Math.sin(a) * r, player.pos.y + r * 0.22, player.pos.z + Math.cos(a) * r);
     look.copy(player.pos); look.y -= 1.0 * u.size;
   } else if (player.mode === 'walk' && cam !== 'first') {
-    // on foot: a calm camera a little behind and above the head, never under the ground
-    want.copy(player.pos).addScaledVector(fwd, -u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
-    want.y = Math.max(want.y, floorAt(want.x, want.z) + 1.2);
-    look.copy(player.pos).addScaledVector(fwd, 2.5).add(tmp.set(0, u.size * 0.5, 0));
+    want.copy(fwd).multiplyScalar(-u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
+    look.copy(fwd).multiplyScalar(2.5).add(tmp.set(0, u.size * 0.5, 0));
+    chaseCam(want, look, dt, 6); return;
   } else if (cam === 'third') {
-    want.copy(player.pos).addScaledVector(fwd, -u.camDist).add(tmp.set(0, u.camDist * 0.35 - player.vy * 0.06, 0));
-    look.copy(player.pos).addScaledVector(fwd, 4).add(tmp.set(0, 0.6, 0));
+    // fixed chase distance — offset follows the player, so speed cannot pull the camera back
+    want.set(-fwd.x * u.camDist, u.camDist * 0.32, -fwd.z * u.camDist);
+    look.set(fwd.x * 2.2, 0.35, fwd.z * 2.2);
+    chaseCam(want, look, dt, 8); return;
   } else if (cam === 'first') {
     m.visible = false;
     m.updateMatrixWorld(); want.copy(u.eye).applyMatrix4(m.matrixWorld);
@@ -1657,7 +1681,7 @@ let resumable = false;
 function start() {
   stats.newGame(); $('pausePanel') && $('pausePanel').classList.add('hidden');
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
-  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
+  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); clearRibbon(); showHud(); resumable = true; if (buddyOn) buildBuddy();
   stats.daily();
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
@@ -1928,7 +1952,7 @@ function frame() {
   stars.position.copy(camera.position); moon.position.copy(camera.position).add(tmp.set(-600, 520, -800));
   if (state !== 'photo') placeModel(time, playing);
   if (state !== 'photo') { updateCollectibles(wtime, wdt, playing); updateFx(time, dt, playing); updateBuddy(time, dt, playing); }
-  const fov = baseFov + (playing && powerOn('boost') ? 10 : 0); if (Math.abs(camera.fov - fov) > 0.05) { camera.fov += (fov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
+  if (Math.abs(camera.fov - baseFov) > 0.05) { camera.fov += (baseFov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
   if (playing && (time * 10 | 0) !== hudTick) { hudTick = time * 10 | 0; updatePowerBtns(); }
   updateCamera(time, dt, playing);
   if (state !== 'photo') updateRibbon(time, dt, playing);
@@ -1949,5 +1973,5 @@ window.__fly = {
   setExhaust(v) { applyExhaustStyle(v, true); },
   get exhaust() { return exhaustStyle; },
   get ribbon() { return { on: ribbonMesh.visible, n: rCount, fade: +ribbonFade.toFixed(2) }; },
-  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
+  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, pitch: Math.round(player.pitch * 180 / Math.PI), camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
 };
