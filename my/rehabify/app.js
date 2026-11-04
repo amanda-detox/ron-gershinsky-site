@@ -33,6 +33,7 @@
   var tab = lsGet("rg-myrehab-tab") || "clean"; if (!TABS.some(function (x) { return x[0] === tab; })) tab = "clean";
   var ck = { add: "", crave: 0, mood: 0, trig: [], note: "" }, ckSaved = false, editDate = null, crMsg = "", deferred = false;
   var timer = jparse(lsGet("rg-myrehab-timer"), null), crSel = { add: "", mins: 15 };
+  var addPick = {};
 
   var S = RGStore("myrehab", { onChange: function () { render(); }, onStatus: setStatus, busy: typing });
   function typing() { var a = document.activeElement; return !!(a && a.closest && a.closest("#panels") && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName) && a.type !== "range"); }
@@ -73,12 +74,22 @@
       '</button><button type="button" class="btn sm dng" data-a="delAdd">' + esc(t("del")) + "</button></div>";
     return h1 + "</div>";
   }
+  function composeAddName(picked, custom) {
+    var parts = [];
+    picked.forEach(function (s) { s = clean(s, 300); if (s && parts.indexOf(s) < 0) parts.push(s); });
+    custom = clean(custom, 300);
+    if (custom && parts.indexOf(custom) < 0) parts.push(custom);
+    return clean(parts.join(", "), 300);
+  }
   function panelClean() {
-    var l = adds();
+    var l = adds(), sugg = list("sugg");
+    var checks = '<div class="suggs" role="group" aria-label="' + esc(t("addTitle")) + '">' + sugg.map(function (s, i) {
+      return '<label class="sug"><input type="checkbox" class="sug-ck" data-i="' + i + '"' + (addPick[i] ? " checked" : "") + "><span>" + esc(s) + "</span></label>";
+    }).join("") + "</div>";
     return l.map(counterCard).join("") + (l.length ? "" : '<div class="card sec"><p class="empty">' + esc(t("noAdd")) + "</p></div>") +
       '<form class="card sec" data-form="add" autocomplete="off"><h2>' + esc(t("addTitle")) + '</h2><p class="lead">' + esc(t("addLead")) + "</p>" +
-      '<input type="text" class="inp" name="name" maxlength="80" list="add-sugg" placeholder="' + esc(t("phAdd")) + '" aria-label="' + esc(t("addTitle")) + '">' +
-      '<datalist id="add-sugg">' + list("sugg").map(function (s) { return '<option value="' + esc(s) + '">'; }).join("") + "</datalist>" +
+      checks +
+      '<label class="fld"><span>' + esc(t("custom")) + '</span><input type="text" class="inp" name="name" maxlength="300" placeholder="' + esc(t("phAdd")) + '"></label>' +
       '<label class="fld"><span>' + esc(t("since")) + '</span><input type="datetime-local" class="inp" name="since" value="' + localDT(new Date()) + '" max="' + localDT(new Date()) + '"></label>' +
       '<button type="submit" class="btn pri big">' + esc(t("add")) + "</button></form>";
   }
@@ -172,10 +183,12 @@
     if (!S.uid()) { tabs.innerHTML = ""; panels.innerHTML = ""; setStatus(); return; }
     if (typing()) { deferred = true; return; } // don't wipe what the user is typing; render on blur
     deferred = false;
-    var drafts = {}; panels.querySelectorAll("form [name]").forEach(function (i) { drafts[i.closest("form").getAttribute("data-form") + "/" + i.name] = i.value; });
+    var y = window.scrollY;
+    var drafts = {}; panels.querySelectorAll("form [name]").forEach(function (i) { if (i.type === "checkbox" || i.type === "radio") return; drafts[i.closest("form").getAttribute("data-form") + "/" + i.name] = i.value; });
     tabs.innerHTML = TABS.map(function (x) { return '<button type="button" class="tab" role="tab" data-tab="' + x[0] + '" aria-selected="' + (tab === x[0]) + '">' + esc(t(x[1])) + "</button>"; }).join("");
     panels.innerHTML = '<section role="tabpanel">' + (tab === "clean" ? panelClean() : tab === "check" ? panelCheck() : tab === "crave" ? panelCrave() : tab === "why" ? panelWhy() : panelHist()) + "</section>";
-    panels.querySelectorAll("form [name]").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-form") + "/" + i.name]; if (v && i.name !== "since") i.value = v; });
+    panels.querySelectorAll("form [name]").forEach(function (i) { if (i.type === "checkbox" || i.type === "radio") return; var v = drafts[i.closest("form").getAttribute("data-form") + "/" + i.name]; if (v && i.name !== "since") i.value = v; });
+    if (y && Math.abs(window.scrollY - y) > 1) window.scrollTo(0, y);
     setStatus();
   }
   function tick() {
@@ -214,14 +227,17 @@
       var c = e.target.classList;
       if (c.contains("c-add")) ck.add = e.target.value;
       else if (c.contains("r-add")) crSel.add = e.target.value;
+      else if (c.contains("sug-ck")) { var ix = e.target.getAttribute("data-i"); if (e.target.checked) addPick[ix] = 1; else delete addPick[ix]; }
     });
     panels.addEventListener("submit", function (e) {
       var f = e.target.closest("[data-form]"); if (!f) return; e.preventDefault();
       var k = f.getAttribute("data-form"), v = function (n) { var i = f.querySelector('[name="' + n + '"]'); return i ? i.value : ""; };
       if (k === "add") {
-        var name = clean(v("name"), 80); if (!name) { f.querySelector('[name="name"]').focus(); return; }
+        var picked = [];
+        f.querySelectorAll(".sug-ck:checked").forEach(function (i) { var s = list("sugg")[+i.getAttribute("data-i")]; if (s) picked.push(s); });
+        var name = composeAddName(picked, v("name")); if (!name) { f.querySelector('[name="name"]').focus(); return; }
         var since = v("since") || localDT(new Date()); if (new Date(since).getTime() > Date.now()) since = localDT(new Date());
-        f.reset(); S.add({ kind: "add", name: name, since: since });
+        addPick = {}; f.reset(); S.add({ kind: "add", name: name, since: since });
       } else if (k === "why") {
         var tx = clean(v("text"), 200); if (!tx) return; f.reset(); S.add({ kind: "why", text: tx });
       } else if (k === "ppl") {
