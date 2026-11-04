@@ -26,6 +26,7 @@
 | ריהאביפיי | Rehabify | rehabify/ (public) and my/rehabify/ (owner) | ספירת ימים נקיים וכלים לרגעי חשק | Clean-day counter and tools for cravings | ציבורי / public, plus the owner's private copy |
 | רוגעלי | Rogali | rogali/ (public) and my/calmify/ (owner) | צ'ק-אין רגשי, נשימה וקרקוע | Mood check-ins, breathing and grounding | ציבורי / public, plus the owner's private copy |
 | קניותיפיי | Purchasify | purchasify/ (public) and my/shopping/ (owner) | רשימת קניות שנשמרת אצלך | A shopping list that stays yours | ציבורי / public, plus the owner's private copy |
+| סמוקיפיי | Smokify | smokify/ | יומן עדין לרגעים ואלטרנטיבות | A gentle log of moments and alternatives | ציבורי / public |
 | קלוקיפיי | Clockify | my/clock/ | שעונים מעוררים עם רשימות משימות | Alarms with task lists | פרטי / private (owner) — מוסתר / hidden |
 
 ## New templates (2026-10-31)

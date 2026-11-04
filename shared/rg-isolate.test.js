@@ -46,6 +46,13 @@ Object.keys(PRIVATE).forEach(function (app) {
   assert(iso.rowId(RON, app, "items") !== iso.rowId(RON, PRIVATE[app], "items"), app + " does not use Ron's private row");
   assert(iso.rowId(RON, app, "items") !== iso.rowId(A, app, "items"), app + " Ron and user A do not share a row");
 });
+["pubsmokify"].forEach(function (app) {
+  iso.assertPublicApp(app);
+  var perms = iso.perms(A);
+  assert(iso.permsAreUserOnly(perms, A), app + " document permissions are user A only");
+  assert(iso.rowId(A, app, "items") !== iso.rowId(B, app, "items"), app + " row ids differ between users");
+  assert(iso.cacheKey(app, A) === "rg-pub-smokify:" + A, app + " stays in its own namespace");
+});
 var refused = false;
 try { iso.assertPublicApp("myideas"); } catch (e) { refused = true; }
 assert(refused, "a private app id is refused");
@@ -66,7 +73,7 @@ assert(store.indexOf("lsSet(cacheKey(uid), null)") === -1, "public store does no
 assert(store.indexOf("RGIsolate.maySync(uid)") !== -1, "public store syncs only a real account");
 
 var root = path.join(__dirname, "..");
-var dirs = ["listify", "yomanli", "rehabify", "rogali", "purchasify"];
+var dirs = ["listify", "yomanli", "rehabify", "rogali", "purchasify", "smokify"];
 var banned = ["מאיה", "Moshe", "nattokinase", "lorivan", "seraquel", "trazodil", "אמנדה", "לבקר במרקטפלייס", "הרגלים שלי", "ניקויים", "נוטלה", "m:shopimport", "myideas", "myjournal", "myrehab", "mycalm", "rg-myideas", "rg-my-shopping", "rg-myjournal", "rg-myrehab", "rg-mycalm", "rg-myshop"];
 function walk(dir, out) {
   fs.readdirSync(dir).forEach(function (name) {
@@ -90,7 +97,7 @@ dirs.forEach(function (d) {
 });
 
 var home = fs.readFileSync(path.join(root, "index.html"), "utf8");
-["listify/index.html", "yomanli/index.html", "rehabify/index.html", "rogali/index.html", "purchasify/index.html"].forEach(function (href) {
+["listify/index.html", "yomanli/index.html", "rehabify/index.html", "rogali/index.html", "purchasify/index.html", "smokify/index.html"].forEach(function (href) {
   assert(home.indexOf('href: "' + href + '"') !== -1, "homepage lists " + href);
 });
 assert(/\{\s*hidden:\s*true,\s*href:\s*"clockify\/index.html"/.test(home), "the public Clockify tile stays hidden");
