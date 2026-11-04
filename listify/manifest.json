@@ -1,0 +1,33 @@
+{
+  "id": "/listify/",
+  "name": "ליסטיפיי · Listify",
+  "short_name": "ליסטיפיי",
+  "description": "רשימות לפי קטגוריות. בלי חשבון נשמרות במכשיר, עם חשבון רק אצלך. · Lists by category. On this device until you sign in, then only in your account.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
