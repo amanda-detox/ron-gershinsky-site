@@ -1,7 +1,7 @@
 /* Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount (Appwrite row app="myideas", key="items",
    readable/writable by the signed-in user only). Nothing personal is stored in the site's files.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
-     mark is "ok" (✓, swipe up) or "no" (✕, swipe down). One field, so the two marks replace each other; the same swipe again clears it.
+     mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
      Since v8 every list is the same kind (title, short note, נבחר, free drag order). Records from older versions may still carry
      status / progress / prev / due / kind: they are kept untouched and only read to work out "selected" (see isSel).
      sec = which category the item belongs to: one of the built-in ids ("ideas" | "tasks" | "goals") or a custom category id.
@@ -34,7 +34,7 @@
   var GROUPS = [1], menuG = 1;
   function gOf(c) { return 1; }
   function gTabKey(g) { return g === 1 ? "rg-myideas-tab" : "rg-myideas-tab-g" + g; }
-  var drag = null, idrag = null, needRender = false, noClick = false, armedId = null;
+  var drag = null, idrag = null, needRender = false, noClick = false;
 
   function $(id) { return document.getElementById(id); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -306,7 +306,7 @@
      so old data needs no migration. In a checklist each item has its own "ck" (true = checked); "done" / נבחר is never touched. */
   function isChk(sec) { var r = catRec(sec); return !!(r && r.check); }
   /* The checkbox square shows ✓ (mark "ok", and in a checklist also ck) or ✕ (mark "no").
-     Swipe up and a tap both toggle ✓. Swipe down toggles ✕. One mark at a time. */
+     A tap toggles ✓. One mark at a time. */
   function showingOk(x) { return !!(x && (x.mark === "ok" || (x.mark !== "no" && isChk(x.sec) && x.ck))); }
   function toggleMark(id, dir) {
     var x = items[id]; if (!x || x.deleted || (dir !== "ok" && dir !== "no")) return false;
@@ -471,17 +471,7 @@
     sumNow();
     rendering = false;
     setStatus();
-    paintArmed();
   }
-  function paintArmed() {
-    var nodes = document.querySelectorAll(".list > li.armed");
-    for (var i = 0; i < nodes.length; i++) nodes[i].classList.remove("armed");
-    if (!armedId) return;
-    var all = document.querySelectorAll(".list > li[data-id]"), found = false;
-    for (var j = 0; j < all.length; j++) if (all[j].getAttribute("data-id") === armedId) { all[j].classList.add("armed"); found = true; }
-    if (!found) armedId = null;
-  }
-  function clearArmed() { if (!armedId) return; armedId = null; paintArmed(); }
 
   function saveEdit(id) {
     var ed = document.querySelector('[data-ed="' + id + '"]'), x = items[id]; editing = null;
@@ -786,22 +776,20 @@
 
   /* ---------- items: swipe right = delete, swipe left = move. The gesture starts on any part of the row
      (title, note, checkbox, padding, ☰, price). Direction locks on the first clear axis: horizontal slides the
-     row, vertical is native page scroll (touch-action: pan-y) unless the row was long-pressed first.
-     ✓ / ✕ only after that long-press (gold outline): up = ✓ (נבחרים), down = ✕, drawn in the checkbox.
-     A vertical drag on ☰ reorders (no long-press). A mouse drag on the title can still select text until it is clearly sideways. ---------- */
+     row, vertical is native page scroll (touch-action: pan-y) and never marks the item.
+     A vertical drag on ☰ reorders. A mouse drag on the title can still select text until it is clearly sideways. ---------- */
   function bootItemDrag() {
-    var main = document.querySelector("main"), AXIS = 12, VGO = 40, HOLD = 500, SWIPE = 0.35;
+    var main = document.querySelector("main"), AXIS = 12, SWIPE = 0.35;
     function reset() {
-      if (idrag) { if (idrag.hold) clearTimeout(idrag.hold); unswipe(); if (idrag.sorter) idrag.sorter.end(); }
+      if (idrag) { unswipe(); if (idrag.sorter) idrag.sorter.end(); }
       var tip = $("drophint"); if (tip) tip.hidden = true;
       document.body.classList.remove("idragging"); idrag = null;
       if (needRender && !drag) { needRender = false; render(); }
     }
     function unswipe() {
       if (idrag && idrag.li) {
-        idrag.li.classList.remove("swiping", "vswipe", "sw-r", "sw-l", "sw-go", "sw-u", "sw-d", "sw-vgo");
-        idrag.li.style.removeProperty("--sx"); idrag.li.style.removeProperty("--sy");
-        var box = idrag.boxEl; if (box && idrag.boxText != null) box.textContent = idrag.boxText;
+        idrag.li.classList.remove("swiping", "sw-r", "sw-l", "sw-go");
+        idrag.li.style.removeProperty("--sx");
       }
     }
     function scrollOf(el) {
@@ -813,21 +801,6 @@
       }
       return document.scrollingElement || document.documentElement;
     }
-    function armRow(id) {
-      armedId = id; paintArmed();
-      noClick = true; setTimeout(function () { noClick = false; }, 450);
-      if (navigator.vibrate) try { navigator.vibrate(15); } catch (e) {}
-    }
-    function commitFlick(d, dx, dy) {
-      if (!d || d.handled || d.swipe || d.lifted || !armedId || armedId !== d.id) return false;
-      var adx = Math.abs(dx), ady = Math.abs(dy);
-      if (!(ady >= VGO && ady > adx * 1.5)) return false;
-      d.handled = true;
-      noClick = true; setTimeout(function () { noClick = false; }, 400);
-      var id = d.id; reset(); clearArmed();
-      if (toggleMark(id, dy < 0 ? "ok" : "no")) { changed(); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} }
-      return true;
-    }
     function clearSel() { var sl = window.getSelection && window.getSelection(); if (sl && !sl.isCollapsed) sl.removeAllRanges(); }
     function capturePtr() {
       var el = idrag.cap && idrag.cap.setPointerCapture ? idrag.cap : idrag.li;
@@ -835,7 +808,6 @@
     }
     function armH() {
       if (!idrag || idrag.swipe || idrag.lifted) return;
-      if (idrag.hold) { clearTimeout(idrag.hold); idrag.hold = 0; }
       if (idrag.fromText) clearSel();
       idrag.swipe = true; idrag.axis = "h";
       idrag.li.classList.add("swiping");
@@ -846,21 +818,10 @@
       idrag.li.style.setProperty("--sx", dx + "px");
       idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
     }
-    /* While a selected row is dragged up or down, the pending ✓ / ✕ sits in the checkbox square. */
-    function paintV(dy) {
-      if (!idrag || armedId !== idrag.id) return;
-      var ady = Math.abs(dy), go = ady >= VGO;
-      idrag.li.classList.add("vswipe");
-      idrag.li.classList.toggle("sw-u", dy < 0); idrag.li.classList.toggle("sw-d", dy > 0); idrag.li.classList.toggle("sw-vgo", go);
-      var box = idrag.li.querySelector(".ckbox"); if (!box) return;
-      if (idrag.boxText == null) { idrag.boxEl = box; idrag.boxText = box.textContent; }
-      box.textContent = ady < 8 ? idrag.boxText : (dy < 0 ? "✓" : "✕");
-    }
     function beginLift() {
       if (!idrag || idrag.lifted || idrag.swipe) return;
       var li = idrag.li, ul = li.parentNode;
       if (!ul || (ul.id !== "list-active" && ul.id !== "list-done" && ul.id !== "list-ck")) return;
-      if (idrag.hold) { clearTimeout(idrag.hold); idrag.hold = 0; }
       idrag.lifted = true; idrag.axis = "v";
       idrag.f = ul.id === "list-done" ? "dord" : "order";
       idrag.sorter = makeSorter([].slice.call(ul.children), li, idrag.y, null);
@@ -869,12 +830,12 @@
       if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
       var tip = $("drophint"); if (tip) { tip.textContent = t("dropHint"); tip.hidden = false; }
     }
-    /* First clear axis wins (direction lock). Vertical does not call preventDefault unless the row is selected or this is the ☰ reorder. */
+    /* First clear axis wins (direction lock). A vertical drag scrolls the page and is never prevented,
+       except a vertical drag on ☰, which reorders. Once vertical, it stays vertical so a scroll cannot become a swipe. */
     function follow(dx, dy) {
       if (!idrag || idrag.handled) return "";
       idrag._dx = dx; idrag._dy = dy;
       if (idrag.lifted) return "v";
-      if (idrag.hold && (Math.abs(dx) > AXIS || Math.abs(dy) > AXIS)) { clearTimeout(idrag.hold); idrag.hold = 0; }
       if (idrag.swipe) { paintH(dx); return "h"; }
       var adx = Math.abs(dx), ady = Math.abs(dy);
       if (!idrag.axis) {
@@ -884,7 +845,6 @@
         else return "";
       }
       if (idrag.axis === "v") {
-        if (armedId === idrag.id && ady >= AXIS) { paintV(dy); return "v"; }
         if (idrag.fromHandle && !idrag.sawCancel) { beginLift(); return idrag.lifted ? "v" : ""; }
         return "";
       }
@@ -894,29 +854,18 @@
       reset();
       var li = e.target.closest(".list > li[data-id]");
       var sc = scrollOf(li);
-      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromHandle: !!fromHandle, fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note,input,textarea"), cap: e.target && e.target.setPointerCapture ? e.target : li, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0, _dx: 0, _dy: 0 };
-      idrag.hold = setTimeout(function () {
-        if (!idrag || idrag.li !== li || idrag.swipe || idrag.lifted || idrag.handled) return;
-        if (Math.abs(idrag._dx || 0) > AXIS || Math.abs(idrag._dy || 0) > AXIS) return;
-        armRow(idrag.id);
-      }, HOLD);
+      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromHandle: !!fromHandle, fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note,input,textarea"), cap: e.target && e.target.setPointerCapture ? e.target : li, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, _dx: 0, _dy: 0 };
     }
     main.addEventListener("pointerdown", function (e) {
       var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var h = e.target.closest(".ihandle");
-      if (h) { // ☰: horizontal = swipe, vertical = reorder. Neither waits for a long-press.
+      if (h) { // ☰: horizontal = swipe, vertical = reorder.
         if (!li.parentNode || (li.parentNode.id !== "list-active" && li.parentNode.id !== "list-done" && li.parentNode.id !== "list-ck")) return;
         e.preventDefault(); hideHint(); track(e, true); return;
       }
       track(e, false);
     });
-    document.addEventListener("pointerdown", function (e) {
-      if (!armedId) return;
-      var row = e.target.closest && e.target.closest(".list > li[data-id]");
-      if (row && row.getAttribute("data-id") === armedId) return;
-      clearArmed();
-    }, true);
     document.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
       if (idrag.sawCancel && !idrag.swipe && !idrag.lifted) return;
@@ -932,7 +881,6 @@
       var w = (d.li && d.li.offsetWidth) || 1, sid = d.id;
       reset();
       if (Math.abs(sdx) >= w * SWIPE) {
-        clearArmed();
         var x = items[sid];
         if (sdx > 0 && x && !x.deleted) { delWithUndo(sid); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
         else if (sdx < 0 && x && !x.deleted) moveMenu(sid); // left = move to another list
@@ -957,27 +905,16 @@
         if (!d.swipe && !d.lifted) d.axis = "v";
         return;
       }
-      if (d.type === "touch" && !d.swipe && !d.lifted && e.type === "pointerup") {
-        if (typeof e.clientX === "number") { d._dx = e.clientX - d.x; d._dy = e.clientY - d.y; }
-        var cur = d;
-        setTimeout(function () {
-          if (idrag !== cur || cur.handled) return;
-          if (!commitFlick(cur, cur._dx || 0, cur._dy || 0)) { cur.handled = true; reset(); }
-        }, 40);
-        return;
-      }
       if (d.swipe || d.axis === "h") {
         var sdx = (e.type === "pointerup" && typeof e.clientX === "number") ? e.clientX - d.x : (d._dx || 0);
         endSwipe(d, sdx);
         return;
       }
       if (d.lifted) { endLift(d); return; }
-      if (!commitFlick(d, e.type === "pointerup" ? e.clientX - d.x : (d._dx || 0), e.type === "pointerup" ? e.clientY - d.y : (d._dy || 0))) {
-        var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
-        var sl = window.getSelection && window.getSelection();
-        if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
-        d.handled = true; reset();
-      }
+      var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
+      var sl = window.getSelection && window.getSelection();
+      if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+      d.handled = true; reset();
     }
     document.addEventListener("pointerup", up);
     document.addEventListener("pointercancel", up);
@@ -991,7 +928,7 @@
       if (d.type !== "touch" && !d.sawCancel) return;
       if (d.lifted) { if (d.sawCancel) endLift(d); return; }
       if (d.swipe || d.axis === "h") { if (d.sawCancel) endSwipe(d, dx); return; }
-      if (!commitFlick(d, dx, dy)) { d.handled = true; reset(); }
+      d.handled = true; reset();
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
       if (!idrag || idrag.handled || idrag.sawCancel) return;
@@ -1008,9 +945,8 @@
       if (idrag && e.target.closest && e.target.closest(".list > li")) e.preventDefault();
     });
     main.addEventListener("contextmenu", function (e) {
-      if ((armedId || (idrag && (idrag.hold || idrag.swipe || idrag.lifted))) && e.target.closest(".list > li")) e.preventDefault();
+      if (idrag && (idrag.swipe || idrag.lifted) && e.target.closest(".list > li")) e.preventDefault();
     });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && armedId && !$("sheet")) clearArmed(); });
   }
 
   function boot() {
