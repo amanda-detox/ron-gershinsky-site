@@ -22,6 +22,7 @@
 | חישובלי | Calcify | calc/index.html | מחשבון פשוט: מקלידים תרגיל ומקבלים תשובה | A simple calculator: type a sum, get the answer | ציבורי / public |
 | יאנגיפיי | Youngify | young/index.html | המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא) | Tips for young people for a good, healthy, thriving life (beta) | ציבורי / public |
 | ליסטיפיי | Listify | my/ideas/ | רשימות לפי קטגוריות | Lists by category | פרטי / private (owner) |
+| סמוקיפיי | Smokify | smokify/ | יומן עדין לרגעים ואלטרנטיבות | A gentle log of moments and alternatives | ציבורי / public |
 | יומןלי | Journalify | my/journal/ | יומן אישי: פסקה ונושא, לפי יום או נושא | A personal journal: a paragraph and a topic, by day or topic | פרטי / private (owner) |
 | ריהאביפיי | Rehabify | my/rehabify/ | ספירת ימים נקיים וכלים לרגעי חשק | Clean-day counter and tools for cravings | פרטי / private (owner) |
 | רוגעלי | Calmify | my/calmify/ | צ'ק-אין רגשי, נשימה וקרקוע | Mood check-ins, breathing and grounding | פרטי / private (owner) |
