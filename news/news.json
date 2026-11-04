@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T06:45:58+02:00",
+ "updated": "2026-11-04T07:34:40+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -13392,6 +13392,40 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "grokbot-calls-ai-teams-praise-rising-costs",
+   "topic": "grokbot",
+   "date": "2026-11-04T05:16:35Z",
+   "url": "https://x.com/i/trending/2117846710978531565",
+   "source": "X",
+   "he": {
+    "title": "Grok Bot זוכה לשבחים על שיחות טלפון וצוותי סוכנים, לצד תלונות על עלויות",
+    "summary": "משתמשים משבחים את Grok Bot שמתקשר בשמם ובונה צוותי סוכני AI, ומאסק משווה אותו לראש מטה מוכשר. מנגד, משתמשים משלמים מדווחים על חשבונות לא צפויים, ומאסק הודה שהעלויות היו גבוהות מדי."
+   },
+   "en": {
+    "title": "Grok Bot wins praise for calls and AI teams amid rising costs",
+    "summary": "Users praise Grok Bot for making phone calls and running teams of AI agents, and Musk likens it to a competent chief of staff. But some paying users report unpredictable bills, and Musk said costs were unsustainably high."
+   },
+   "full_en": "One user watched in amazement as her Grok Bot called her husband to pitch a Cybertruck purchase, chatting naturally and relaying every response in real time.\n\n• Grok Bot handles phone calls like booking appointments or rescheduling dental visits.\n• Users build teams of AI agents for research, emails and tasks; Elon Musk calls it like having a competent chief of staff.\n• Over 80% of SpaceXAI engineers already use these agent hierarchies for overnight workflows.\n• But paying users like business coach Michael Hyatt report unpredictable bills: one hit $272 in extra credits on top of a $200 monthly plan, because every message wakes multiple bots.\n• Musk noted the costs were unsustainably high, prompting changes, without detailed fixes.\n\n(This is a summary of posts on X, compiled by Grok, and may change over time.)",
+   "full_he": "משתמשת אחת צפתה בהשתאות כשה-Grok Bot שלה התקשר לבעלה כדי לשכנע אותו לקנות סייברטראק, ניהל איתו שיחה טבעית ומסר לה כל תשובה בזמן אמת.\n\n• Grok Bot מטפל בשיחות טלפון, כמו קביעת תורים או הזזת תור לרופא שיניים.\n• משתמשים בונים צוותים של סוכני AI למחקר, למיילים ולמשימות; אילון מאסק אומר שזה כמו להחזיק ראש מטה מוכשר.\n• יותר מ-80% מהמהנדסים של SpaceXAI כבר משתמשים בהיררכיות כאלה של סוכנים לעבודה שרצה במשך הלילה.\n• אבל משתמשים משלמים, כמו מאמן העסקים מייקל הייאט, מדווחים על חשבונות לא צפויים: אחד מהם הגיע ל-272 דולר בקרדיטים נוספים מעבר למנוי של 200 דולר בחודש, כי כל הודעה מעירה כמה בוטים.\n• מאסק ציין שהעלויות היו גבוהות באופן שאינו בר-קיימא, ושינויים בדרך, בלי לפרט את התיקונים.\n\n(זהו סיכום של פוסטים ב-X שחיבר Grok, והוא עשוי להשתנות עם הזמן.)"
+  },
+  {
+   "id": "spacex-space-data-centers-traction-merritt",
+   "topic": "spacex",
+   "date": "2026-11-04T04:46:40Z",
+   "url": "https://x.com/i/trending/2117839372485796096",
+   "source": "X",
+   "he": {
+    "title": "מרכזי נתונים בחלל צוברים תאוצה מול המגבלות על כדור הארץ",
+    "summary": "המשקיע סוייר מריט כתב שהוא \"בוליש על מרכזי נתונים בחלל\", כשמרכזי נתונים על הקרקע נתקלים במחסור בחשמל ובעיכובי רישוי. SpaceX מתכננת עד מיליון לווייני AI, ו-Google כבר בודקת עיבוד במסלול עם שבבים ששוגרו על ידי SpaceX."
+   },
+   "en": {
+    "title": "Space data centers gain traction amid Earthly AI hurdles",
+    "summary": "Investor Sawyer Merritt said he's 'bullish on data centers in space' as ground data centers hit power shortages and permitting delays. SpaceX plans up to one million AI satellites, and Google is already testing orbital compute on chips SpaceX launched."
+   },
+   "full_en": "Investor Sawyer Merritt declared he's \"bullish on data centers in space,\" capturing a growing buzz as AI's power needs clash with ground limits.\n\n• Ground-based data centers face power shortages, grid delays, permitting issues and local opposition across the U.S., slowing AI expansion.\n• Tech firms like Google are testing orbital options: Project Suncatcher sent AI chips to space via SpaceX in October 2026, and the satellite already processes prompts using constant solar power.\n• SpaceX plans up to one million AI satellites, drawing investor interest in its expertise.\n• Advocates tout endless energy and no land fights, though radiation and launch costs pose challenges.\n\n(This is a summary of posts on X, compiled by Grok, and may change over time.)",
+   "full_he": "המשקיע סוייר מריט הכריז שהוא \"בוליש על מרכזי נתונים בחלל\", וכך ביטא את ההתלהבות הגוברת בזמן שצורכי החשמל של ה-AI מתנגשים במגבלות על הקרקע.\n\n• מרכזי נתונים על הקרקע ברחבי ארה\"ב מתמודדים עם מחסור בחשמל, עיכובים בחיבור לרשת, בעיות רישוי והתנגדות מקומית, וזה מאט את התרחבות ה-AI.\n• חברות כמו Google בודקות חלופות במסלול: פרויקט Suncatcher שיגר שבבי AI לחלל באמצעות SpaceX באוקטובר 2026, והלוויין כבר מעבד בקשות בעזרת אנרגיה סולארית רציפה.\n• SpaceX מתכננת עד מיליון לווייני AI, והניסיון שלה מושך עניין של משקיעים.\n• התומכים מדגישים אנרגיה בלתי מוגבלת ובלי מאבקים על קרקע, אבל קרינה ועלויות שיגור הם עדיין אתגרים.\n\n(זהו סיכום של פוסטים ב-X שחיבר Grok, והוא עשוי להשתנות עם הזמן.)"
   }
  ]
 }
