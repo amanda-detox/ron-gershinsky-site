@@ -284,7 +284,15 @@
   article.story { max-width: 36rem; margin: 1.5rem auto 0; padding: 1.5rem 1.35rem 1.35rem; text-align: start; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); }
   article.story p { margin: 0 0 1.15em; font-size: 1.075rem; line-height: 1.9; color: var(--fg); text-wrap: pretty; }
   html[lang="en"] article.story p { line-height: 1.75; }
-  article.story p.sign { margin: 1.5rem 0 0; font-weight: 700; font-size: 1.05rem; color: var(--fg); text-align: end; }
+  article.story p.sign { margin: 1.5rem 0 0; font-weight: 700; font-size: 1.05rem; color: var(--fg); text-align: end; text-wrap: balance; }
+  .principles { margin-top: 1.35rem; padding-top: 1.15rem; border-top: 1px solid var(--line); text-align: start; }
+  .principles h2 { margin: 0 0 0.7rem; font-size: 1.05rem; font-weight: 700; line-height: 1.45; color: var(--fg); text-align: start; text-wrap: balance; }
+  .principles ol { list-style: none; margin: 0; padding: 0; counter-reset: principle; }
+  .principles li { position: relative; margin: 0.55rem 0 0; padding-inline-start: 1.65rem; font-size: 1.02rem; line-height: 1.7; color: var(--fg); text-wrap: pretty; counter-increment: principle; }
+  .principles li:first-child { margin-top: 0; }
+  .principles li::before { content: counter(principle) "."; position: absolute; top: 0; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
+  html[dir="rtl"] .principles li::before { right: 0; left: auto; }
+  html[dir="ltr"] .principles li::before { left: 0; right: auto; }
   .crisis-box { max-width: 36rem; margin: 1.25rem auto 0; padding: 0.9rem 1.1rem; text-align: start; border-radius: 0.875rem; border: 1px solid rgba(245, 197, 66, 0.35); background: rgba(11, 42, 107, 0.55); color: #e8eefc; font-size: 0.9rem; line-height: 1.65; }
   .crisis-box b { display: block; margin-bottom: 0.2rem; color: #f5c542; font-size: 0.95rem; }
   .crisis-box a { color: #ffd98a; font-weight: 700; }
@@ -293,7 +301,7 @@
   html[data-theme="light"] .crisis-box a { color: #1a47a0; }
   html[data-theme="dark"]:not([data-bg="0"]) article.story, html[data-theme="dark"]:not([data-bg="0"]) .crisis-box { -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); }
   html[data-theme="dark"]:not([data-bg="0"]) .back, html[data-theme="dark"]:not([data-bg="0"]) .about-head .who { text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55); }
-  @media (max-width: 420px) { article.story { padding: 1.2rem 1rem 1.1rem; } article.story p { font-size: 1.03rem; } }
+  @media (max-width: 420px) { article.story { padding: 1.2rem 1rem 1.1rem; } article.story p { font-size: 1.03rem; } .principles li { font-size: 1rem; line-height: 1.65; } }
   /* ---- light-mode backgrounds (picker in light mode; 0 = original cream) — soft blue/gold/cream/sky/lavender/peach, no green ---- */
   :root {--lbgi-1: linear-gradient(180deg,#eef5ff 0%,#d6e6ff 55%,#c2d8fb 100%); --lbgc-1: #c2d8fb; --lbgi-2: radial-gradient(70% 50% at 85% 0%,rgba(245,197,66,.42),transparent 70%),linear-gradient(180deg,#fffaee 0%,#f6ecd6 100%); --lbgc-2: #f6ecd6; --lbgi-3: linear-gradient(165deg,#f4f0ff 0%,#e6defd 55%,#d9cff7 100%); --lbgc-3: #d9cff7; --lbgi-4: linear-gradient(170deg,#fff4ec 0%,#ffe1cf 60%,#fdd2bc 100%); --lbgc-4: #fdd2bc; --lbgi-5: radial-gradient(60% 45% at 15% 10%,rgba(255,214,231,.85),transparent 70%),radial-gradient(55% 40% at 85% 35%,rgba(204,226,255,.9),transparent 70%),radial-gradient(50% 40% at 40% 90%,rgba(232,220,255,.85),transparent 70%),linear-gradient(180deg,#fbfaff 0%,#f1f0f8 100%); --lbgc-5: #f1f0f8; --lbgi-6: linear-gradient(180deg,#fff5d9 0%,#ffe3c6 45%,#f9d6e2 100%); --lbgc-6: #f9d6e2; --lbgi-7: linear-gradient(160deg,#eef8ff 0%,#d3ecfc 50%,#c1dbf7 100%); --lbgc-7: #c1dbf7; --lbgi-8: linear-gradient(170deg,#fff2f6 0%,#fbdfe9 55%,#f0d3e8 100%); --lbgc-8: #f0d3e8; --lbgi-9: radial-gradient(60% 45% at 80% 5%,rgba(255,200,90,.5),transparent 70%),radial-gradient(55% 40% at 10% 70%,rgba(176,198,255,.45),transparent 70%),linear-gradient(180deg,#fff9ec 0%,#f3ead8 100%); --lbgc-9: #f3ead8; --lbgi-10: radial-gradient(50% 32% at 20% 14%,#ffffff 0%,transparent 70%),radial-gradient(55% 34% at 82% 46%,rgba(255,255,255,.95) 0%,transparent 70%),radial-gradient(45% 30% at 30% 82%,rgba(255,255,255,.85) 0%,transparent 70%),linear-gradient(180deg,#e7eef8 0%,#d5dfee 100%); --lbgc-10: #d5dfee; }
   html[data-theme="light"][data-lbg="1"] body { background: var(--lbgi-1), var(--lbgc-1); background-attachment: fixed; }
@@ -357,7 +365,13 @@ var COPY = {
    "תפילתי היא שאותם בני האדם שנמצאים במצב של סבל עז ומתמשך יקבלו מזור, ריפוי אמיתי ומקיף, ימצאו תקווה, משמעות, אמונה, חכמה, חמלה ורצון לפעול ולעזור לאחרים שנמצאים אולי במצב דומה לזה שבו התחילו.",
    "אם האפליקציות שבניתי יוכלו להוות אבן דרך טובה בשיפור והטבת מצבם הכולל של המתמודדים עם סבל עז, קושי רב ומתמשך... אז עשיתי משהו חשוב ומשמעותי בעולם, מהלב, מהמיינד, מהגוף ומהתודעה שלי."
   ],
-  "sign": "— רון גרשינסקי",
+  "sign": "דברי המייסד, רון גרשינסקי:",
+  "principlesTitle": "עקרונות פיתוח:",
+  "principles": [
+   "0 מודעות ופרסומות לתמיד",
+   "גרסה חינמית נגישה לתמיד",
+   "אופטימיזציה לחוויית לקוח החיובית ביותר, ולא לרווחים ולמדדי שווא למיניהם"
+  ],
   "footer": "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
   "crisis": "אם יש מצוקה עכשיו, לא צריך לחכות למדריך. ער״ן זמינים כל השעה: חייגו 1201, או וואטסאפ 052-8451201.",
   "crisisLink": "eran.org.il",
@@ -390,7 +404,13 @@ var COPY = {
  },
  "en": {
   "dated": "As of 2026:",
-  "sign": "— Ron Gershinsky",
+  "sign": "Words from the founder, Ron Gershinsky:",
+  "principlesTitle": "Development principles:",
+  "principles": [
+   "Zero ads, forever.",
+   "A free, accessible version, forever.",
+   "Optimized for the most positive user experience, not for profits or vanity metrics."
+  ],
   "body": [
    "After 5 long psychiatric hospitalizations (2 to 7 months each), 3 suicide attempts, and a level of suffering that is blatantly unreasonable and daily (8 or 9 out of 10)... I realized that the “experts” have no solution, and not even a basic understanding of my condition, which has received quite a few diagnoses and has now lasted 7 consecutive years.",
    "So I decided to create accessible, easy-to-use forms of help in the shape of web and mobile apps, which hold the wealth of information I have gathered over the years about coping with a severe medical condition, suitable treatments, and even options that can lead to full healing, fitness, flourishing, and complete fulfillment for the person facing it, in their own life.",
@@ -484,7 +504,11 @@ var COPY = {
     $("back").textContent = t.back;
     $("h1").textContent = t.h1; $("who").textContent = t.name; $("mark").alt = t.name;
     $("dated").textContent = t.dated.replace(/:\s*$/, "");
-    $("story").innerHTML = t.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") + '<p class="sign">' + esc(t.sign) + "</p>";
+    $("story").innerHTML = t.body.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("")
+      + '<p class="sign">' + esc(t.sign) + "</p>"
+      + '<section class="principles"><h2>' + esc(t.principlesTitle) + "</h2><ol>"
+      + (t.principles || []).map(function (item) { return "<li>" + esc(item) + "</li>"; }).join("")
+      + "</ol></section>";
     $("crisis").innerHTML = "<b>" + esc(t.crisisTitle) + "</b>" + esc(t.crisis) + ' <a href="https://www.eran.org.il/" target="_blank" rel="noopener">' + esc(t.crisisLink) + "</a>";
     $("foot").textContent = t.footer;
     $("bg-btn").setAttribute("aria-label", t.bgTitle); $("bg-btn").title = t.bgTitle;
@@ -510,7 +534,7 @@ var COPY = {
     if (LBG_KEY in c) setBg(c[LBG_KEY], "light");
     render(); return true;
   });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("../sw.js", { scope: "../" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("../sw.js?v=70", { scope: "../", updateViaCache: "none" }).catch(function () {});
 })();
 </script>
 <script src="../shared/rg-topbar.js?v=3" data-slot=".topbar"></script>
