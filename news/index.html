@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="עדכוניפיי">
 <meta name="description" content="עדכוניפיי · חדשות כל שעה על האנשים והחברות שאתה עוקב אחריהם. Updatify, news every hour on the people and companies you follow.">
-<script>/* theme + background before first paint: dark (default) / light; night bg 0 = original (same as the landing page), 1-10 (default 2); light bg 0 = original (default), 1-10 = the landing page light backgrounds */(function(){var d=document.documentElement,t="dark",b="2",lb="0";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-news-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<script>/* theme + background before first paint: dark (default) / light; night bg 0 = original (same as the landing page), 1-10 (default 2); light bg 0 = original (default), 1-10 = the landing page light backgrounds */(function(){var d=document.documentElement,t="dark",b="2",lb="0";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-news-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);try{if(/[?&]tab=summaries(?:&|$)/.test(location.search))d.setAttribute("data-summ","1");}catch(e2){}var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",d.getAttribute("data-summ")==="1"?(t==="light"?"#f3efe6":"#0a1a3f"):(t==="light"?LC[lb]:C[b]));try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <title>עדכוניפיי</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -38,6 +38,7 @@ html[data-theme=light]{
   color-scheme:light;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 html,body{margin:0;background:var(--bg2)}
 body{color:var(--ink);background:var(--pagebg) fixed,var(--bg2);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh;min-height:100dvh;overflow-x:hidden}
 .wrap{max-width:680px;margin:0 auto;padding:calc(12px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom))}
@@ -271,7 +272,54 @@ html[data-theme=dark] .card .sh svg{color:#f5c542}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,12px);z-index:40;max-width:calc(100% - 32px);background:var(--rd-bg);color:var(--rd-ink);border:1px solid var(--rd-gold);border-radius:999px;padding:9px 18px;font:700 14.5px var(--sans);box-shadow:0 8px 28px rgba(0,0,0,.35);opacity:0;transition:opacity .2s,transform .2s;text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast[hidden]{display:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+/* summaries tab uses Summarify's navy / cream page, so the red sunset background stays on the news tabs only */
+html[data-theme=dark][data-summ="1"]{--pagebg:radial-gradient(120% 60% at 50% -10%,#173a85 0%,#0f2760 38%,#0a1a3f 65%,#06112b 100%);--bg2:#06112b;--card:rgba(15,35,80,.78);--ink:#fff;--ink2:#dbe5fb;--mute:#a9bbdf;--dim:#8a9dc4}
+html[data-theme=light][data-summ="1"]{--pagebg:linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%);--bg2:#ebe5d8;--card:#fffdf8}
+html[data-theme=dark][data-summ="1"] .chipbar{background:rgba(6,17,43,.78)}
+html[data-theme=light][data-summ="1"] .chipbar{background:rgba(243,239,230,.94)}
+/* ---- summaries tab (former Summarify): gold + blue cards, Hebrew markdown, no red ---- */
+.sumview[hidden],.slist[hidden],.sfull[hidden]{display:none}
+.sumlead{margin:14px 2px 2px;color:var(--mute);font-size:15.5px}
+.sumview .scard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);margin:14px 0;scroll-margin-top:84px}
+.sumview .scard.deep{outline:2px solid var(--rd-gold);outline-offset:2px}
+html[data-theme=dark] .sumview .scard,html[data-theme=dark] .sumview .sdoc{-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%)}
+.sumview .src{font-size:13.5px;font-weight:700;color:var(--rd-gold2);margin:0 0 6px}
+html[data-theme=dark] .sumview .src{color:var(--rd-gold)}
+.sumview .scard h2{margin:0 0 8px;padding:0;font-size:19px;line-height:1.35;font-weight:800;color:var(--ink)}
+.sumview .ex{margin:0;color:var(--ink2);font-size:15.5px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.sumview .smeta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px;margin-top:12px;font-size:13.5px;color:var(--dim)}
+.sumview .sacts{display:inline-flex;flex-wrap:wrap;align-items:center;gap:8px}
+.sumview .smore{display:inline-flex;align-items:center;gap:5px;font:800 14px var(--sans);color:var(--rd-btnink);background:var(--rd-btn);border:1px solid var(--rd-gold);border-radius:999px;padding:6px 14px;cursor:pointer;white-space:nowrap;box-shadow:0 2px 8px rgba(8,22,60,.18)}
+.sumview .smore svg{width:14px;height:14px}
+html[dir=rtl] .sumview .smore svg{transform:scaleX(-1)}
+.sumview .smore:hover{filter:brightness(1.08)}
+.sumview .ssh{display:inline-flex;align-items:center;gap:5px;font:700 13.5px var(--sans);color:var(--ink2);background:var(--chip);border:1px solid var(--rd-line);border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.sumview .ssh svg{width:14px;height:14px;color:var(--rd-gold);flex:none}
+html[data-theme=dark] .sumview .ssh svg{color:#f5c542}
+.sumview .ssh:hover{border-color:var(--rd-gold)}
+.sumview .ssh:active,.sumview .smore:active{transform:scale(.96)}
+.sumview .sheonly{font-size:13px;color:var(--dim);margin:8px 0 0}
+.sumview .sheonly[hidden]{display:none}
+.sumview .sfbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 4px}
+.sumview .sdoc{background:var(--card);border:1px solid var(--rd-line);border-top:3px solid var(--rd-gold);border-radius:18px;padding:18px 18px 20px;box-shadow:var(--shadow);margin:10px 0;scroll-margin-top:84px}
+.sumview .sdoc h1.t{font-family:var(--sans);font-size:23px;line-height:1.35;font-weight:800;margin:0 0 12px;letter-spacing:0}
+.sumview .smd{font-size:16.5px;line-height:1.75;color:var(--ink2);overflow-wrap:anywhere}
+.sumview .smd h2{font-size:19px;line-height:1.35;color:var(--ink);font-weight:800;margin:24px 0 10px;padding:0 0 6px;border-bottom:1px solid var(--rd-line);text-transform:none;letter-spacing:0}
+.sumview .smd h2::after{content:none}
+.sumview .smd h3{font-size:17px;color:var(--ink);font-weight:800;margin:18px 0 8px}
+.sumview .smd p{margin:0 0 12px}
+.sumview .smd ul,.sumview .smd ol{margin:0 0 14px;padding-inline-start:22px}
+.sumview .smd li{margin:0 0 8px}
+.sumview .smd li::marker{color:var(--rd-gold)}
+.sumview .smd strong{color:var(--ink);font-weight:800}
+.sumview .smd hr{border:0;border-top:1px solid var(--rd-line);margin:20px 0 14px}
+.sumview .smd a{color:var(--em)}
+.sumview .sfoot{margin-top:10px;padding-top:12px;border-top:1px solid var(--rd-line);display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;font-size:13.5px;color:var(--dim)}
+.sumview .sfoot a{color:var(--dim);font-weight:700;text-decoration:none}
+.sumview .sfoot a:hover{color:var(--rd-gold2);text-decoration:underline}
+.sumview .sempty,.sumview .serr{text-align:center;color:var(--mute);padding:30px 10px;font-size:15px}
+@media (max-width:380px){.sumview .sdoc{padding:16px 14px}.sumview .smd{font-size:16px}.sumview .sdoc h1.t{font-size:21px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
@@ -304,6 +352,15 @@ html[data-theme=dark] .card .sh svg{color:#f5c542}
 
   <div class="chipbar"><button type="button" class="arrow prev" id="chip-prev" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span></button><nav class="chips" id="chips" aria-label="Topics"></nav><button type="button" class="arrow next" id="chip-next" hidden><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></button></div>
   <main id="feed" aria-live="polite"></main>
+  <section class="sumview" id="summ" hidden>
+    <p class="sumlead" id="sumlead"></p>
+    <section class="slist" id="slist" aria-live="polite"></section>
+    <section class="sfull" id="sfull" hidden>
+      <div class="sfbar"><button type="button" class="lnk" id="sum-back"></button><button type="button" class="ssh" id="sum-share"></button></div>
+      <p class="sheonly" id="sum-heonly" hidden></p>
+      <article class="sdoc" id="sdoc" lang="he" dir="rtl"></article>
+    </section>
+  </section>
   <p class="note" id="note"></p>
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer id="copyright">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</footer>
@@ -312,7 +369,7 @@ html[data-theme=dark] .card .sh svg{color:#f5c542}
 <div class="sheet-back" id="rd-sheet" hidden><div class="rdr" role="dialog" aria-modal="true" aria-labelledby="rd-title"><div class="grab"></div><div class="rhd"><div class="tt"><h2 id="rd-title"></h2><div class="rmeta" id="rd-meta"></div></div><button type="button" class="rsh" id="rd-share"></button><button type="button" class="x" id="rd-close">×</button></div><div class="rdr-scroll"><div class="body" id="rd-body"></div><div class="rft"><a id="rd-src" class="src" href="#" target="_blank" rel="noopener noreferrer"></a></div></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <script src="../shared/rg-account.js"></script>
-<script src="app.js?v=24"></script>
+<script src="app.js?v=25"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
