@@ -1,5 +1,5 @@
 /* Balancify (באלאנסיפיי). Content lives in data.js.
-   Every list: add items, notes, reorder, swipe right = delete (undo), swipe left = move.
+   Every list: add items, edit the title and the note, reorder, swipe right = delete (undo), swipe left = move.
    Swipe up toggles ✓ and swipe down toggles ✕ (a quick flick only). The mark is stored on the
    synced user record (marks[id] = "ok" | "no"); the same direction again clears it.
    Listify keeps its own swipe code in my/ideas (no shared module); directions here are physical:
@@ -41,12 +41,12 @@
       moveTo: "להעביר לאיזו רשימה?", cancel: "ביטול",
       hint: "החלק ימינה למחיקה ושמאלה להעברה. לחיצה ארוכה בוחרת פריט (מסגרת זהובה), ואז החלקה למעלה מסמנת ✓ ומעבירה לנבחרים, ולמטה מסמנת ✕. גרור את ☰ לשינוי הסדר.",
       drag: "גרור לשינוי הסדר", empty: "הרשימה ריקה. אפשר להוסיף פריט בשדה למעלה.",
-      noteAdd: "הוספת הערה", noteEdit: "עריכת הערה", notePh: "הערה אישית…",
+      itemEdit: "עריכת פריט", titlePh: "כותרת פריט", notePh: "הערה אישית…",
       noteSave: "שמירה", noteClear: "מחיקת ההערה",
       restore: "שחזור ברירת מחדל", restoreTitle: "לשחזר את הרשימה המקורית?",
-      restoreBody: "פריטים שהוספת, הערות, מחיקות ושינויי סדר ברשימה הזו יימחקו. פריטים שהועברו יחזרו למקומם.",
+      restoreBody: "פריטים שהוספת, שינויי כותרת, הערות, מחיקות ושינויי סדר ברשימה הזו יימחקו. פריטים שהועברו יחזרו למקומם.",
       restoreAll: "שחזור כל הרשימות", restoreAllTitle: "לשחזר את כל ברירות המחדל?",
-      restoreAllBody: "כל הפריטים, ההערות והסדר ששינית בבאלאנסיפיי יחזרו למצב המקורי.",
+      restoreAllBody: "כל הפריטים, הכותרות, ההערות והסדר ששינית בבאלאנסיפיי יחזרו למצב המקורי.",
       restoreYes: "שחזור", restored: "הרשימה שוחזרה", restoredAll: "כל הרשימות שוחזרו"
     },
     en: {
@@ -54,12 +54,12 @@
       moveTo: "Move to which list?", cancel: "Cancel",
       hint: "Swipe right to delete, swipe left to move. A long-press selects an item (gold outline); then swipe up for ✓ (it moves to Chosen) and down for ✕. Drag ☰ to reorder.",
       drag: "Drag to reorder", empty: "The list is empty. Add an item in the field above.",
-      noteAdd: "Add a note", noteEdit: "Edit note", notePh: "A personal note…",
+      itemEdit: "Edit item", titlePh: "Item title", notePh: "A personal note…",
       noteSave: "Save", noteClear: "Delete note",
       restore: "Restore defaults", restoreTitle: "Restore this list?",
-      restoreBody: "Items you added, notes, deletions and the order in this list will be cleared. Moved items go back where they belong.",
+      restoreBody: "Items you added, title edits, notes, deletions and the order in this list will be cleared. Moved items go back where they belong.",
       restoreAll: "Restore all lists", restoreAllTitle: "Restore every list?",
-      restoreAllBody: "Every item, note and order you changed in Balancify will return to the original.",
+      restoreAllBody: "Every item, title, note and order you changed in Balancify will return to the original.",
       restoreYes: "Restore", restored: "List restored", restoredAll: "All lists restored"
     }
   };
@@ -102,10 +102,11 @@
     return String(n[lang] || n.he || n.en || "").trim();
   }
 
-  function emptyUser() { return { v: 2, notes: {}, custom: {}, hidden: {}, loc: {}, order: {}, marks: {} }; }
+  function emptyUser() { return { v: 2, notes: {}, titles: {}, custom: {}, hidden: {}, loc: {}, order: {}, marks: {} }; }
   function normalize(u) {
     if (!u || typeof u !== "object") u = emptyUser();
     if (!u.notes || typeof u.notes !== "object") u.notes = {};
+    if (!u.titles || typeof u.titles !== "object" || Array.isArray(u.titles)) u.titles = {};
     if (!u.custom || typeof u.custom !== "object") u.custom = {};
     if (!u.hidden || typeof u.hidden !== "object") u.hidden = {};
     if (!u.loc || typeof u.loc !== "object") u.loc = {};
@@ -142,6 +143,11 @@
     });
     CATALOG = out;
     return out;
+  }
+  function builtinById(id) {
+    var all = catalog();
+    for (var i = 0; i < all.length; i++) if (all[i].id === id) return all[i];
+    return null;
   }
   function builtinsOf(listId) { return catalog().filter(function (b) { return b.origin === listId; }); }
 
@@ -235,7 +241,7 @@
   }
   function saveUser(u) {
     var o = normalize(u);
-    set(USER_KEY, JSON.stringify({ v: 2, notes: o.notes, custom: o.custom, hidden: o.hidden, loc: o.loc, order: o.order, marks: o.marks }));
+    set(USER_KEY, JSON.stringify({ v: 2, notes: o.notes, titles: o.titles, custom: o.custom, hidden: o.hidden, loc: o.loc, order: o.order, marks: o.marks }));
     try { window.dispatchEvent(new StorageEvent("storage", { key: USER_KEY })); } catch (e) {}
   }
   function snap() {
@@ -265,10 +271,16 @@
       if (where !== listId) return;
       var moved = !!dest && dest !== b.origin;
       var ov = u.notes[b.id];
+      var tv = u.titles && u.titles[b.id];
+      var he = b.he, en = b.en || "";
+      if (tv && typeof tv === "object") {
+        if (typeof tv.he === "string" && tv.he) he = tv.he;
+        if (typeof tv.en === "string" && tv.en) en = tv.en;
+      }
       arr.push({
         id: b.id, origin: b.origin, custom: false, list: listId,
         section: moved ? null : b.section, seq: moved ? 500000 + b.seq : b.seq,
-        he: b.he, en: b.en, detail: b.detail, info: b.info, links: b.links,
+        he: he, en: en, detail: b.detail, info: b.info, links: b.links,
         group: moved ? null : b.group, note: ov ? cloneNote(ov) : cloneNote(b.defaultNote)
       });
     });
@@ -421,7 +433,7 @@
     var panel = it.info ? '<div class="ipanel" id="' + pid + '"' + (open ? "" : " hidden") + "><p>" + esc(nm(it.info) || t().noInfo) + "</p>" + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "";
     li.innerHTML = '<div class="slidebox"><span class="sw sw-del" aria-hidden="true">' + TRASH + '</span><span class="sw sw-mv" aria-hidden="true">' + MOVE + '</span>' +
       '<div class="face"><div class="item' + (on ? " on" : "") + '">' + body +
-      '<button type="button" class="nbtn' + (note ? " has" : "") + '" aria-label="' + esc((note ? p().noteEdit : p().noteAdd) + ": " + title) + '">' + PEN + "</button>" +
+      '<button type="button" class="nbtn' + (note ? " has" : "") + '" aria-label="' + esc(p().itemEdit + ": " + title) + '">' + PEN + "</button>" +
       infoBtn + '</div><span class="hdl" role="button" tabindex="0" aria-label="' + esc(p().drag + ": " + title) + '">☰</span></div></div>' + panel;
     var input = li.querySelector("input");
     if (input) {
@@ -594,34 +606,83 @@
   }
   function moveById(id) { var it = itemById(id); if (it) pickList(it); }
 
+  /* The title shown in the current language. If the other language is empty or a copy of
+     this one (user-added items store the same string twice), a rename updates both. */
+  function nextTitles(it, text) {
+    var shown = nm(it);
+    var he = it.he || "", en = it.en || "";
+    if (lang === "he") {
+      if (!en || en === shown) en = text;
+      he = text;
+    } else {
+      if (!he || he === shown) he = text;
+      en = text;
+    }
+    return { he: he, en: en };
+  }
+  function renameChecked(oldHe, newHe) {
+    if (!current || !oldHe || oldHe === newHe) return;
+    var c = getChecked(current);
+    var i = c.indexOf(oldHe);
+    if (i === -1) return;
+    c[i] = newHe;
+    setChecked(current, c);
+  }
   function openNote(it) {
     noteItem = it;
     var has = !!noteText(it.note);
-    $("note-title").textContent = has ? p().noteEdit : p().noteAdd;
-    $("note-for").textContent = nm(it);
+    $("note-title").textContent = p().itemEdit;
+    var title = $("item-title");
+    title.value = nm(it);
+    title.placeholder = p().titlePh;
+    title.setAttribute("aria-label", p().titlePh);
+    title.classList.remove("bad");
+    $("title-label").textContent = p().titlePh;
     var area = $("note-text");
     area.value = noteText(it.note);
     area.placeholder = p().notePh;
+    area.setAttribute("aria-label", p().notePh);
+    $("note-label").textContent = p().notePh;
     $("note-save").textContent = p().noteSave;
     $("note-clear").hidden = !has;
     $("note-clear").textContent = p().noteClear;
     $("note-cancel").textContent = p().cancel;
     $("note-close").setAttribute("aria-label", t().close);
     $("note-sheet").hidden = false;
-    setTimeout(function () { area.focus(); }, 30);
+    setTimeout(function () {
+      title.focus();
+      var n = title.value.length;
+      try { title.setSelectionRange(n, n); } catch (e) {}
+    }, 30);
   }
-  function commitNote(text) {
+  function closeNote() { $("note-sheet").hidden = true; noteItem = null; }
+  function commitItem(opts) {
     var it = noteItem;
     if (!it) return;
-    text = String(text || "").trim().slice(0, 500);
+    opts = opts || {};
+    var titleEl = $("item-title");
+    var title = String(titleEl.value || "").replace(/\s+/g, " ").trim().slice(0, 200);
+    if (!title) { titleEl.classList.add("bad"); titleEl.focus(); return; }
+    titleEl.classList.remove("bad");
+    var text = opts.clearNote ? "" : String($("note-text").value || "").trim().slice(0, 500);
     var u = getUser();
+    var next = nextTitles(it, title);
     if (it.custom) {
-      if (!u.custom[it.id]) { $("note-sheet").hidden = true; noteItem = null; return; }
+      if (!u.custom[it.id]) { closeNote(); return; }
+      if (next.he !== (it.he || "")) renameChecked(it.he, next.he);
+      u.custom[it.id].he = next.he;
+      u.custom[it.id].en = next.en || next.he;
       u.custom[it.id].note = { he: text, en: text };
-    } else u.notes[it.id] = { he: text, en: text };
+    } else {
+      if (next.he !== (it.he || "")) renameChecked(it.he, next.he);
+      var b = builtinById(it.id);
+      var same = b && next.he === (b.he || "") && (next.en || "") === (b.en || "");
+      if (same) delete u.titles[it.id];
+      else u.titles[it.id] = { he: next.he, en: next.en };
+      u.notes[it.id] = { he: text, en: text };
+    }
     saveUser(u);
-    $("note-sheet").hidden = true;
-    noteItem = null;
+    closeNote();
     refresh();
   }
 
@@ -648,7 +709,7 @@
         } else if (c.born === id) { delete u.custom[cid]; gone[cid] = 1; }
       });
       catalog().forEach(function (b) {
-        if (b.origin === id) { delete u.hidden[b.id]; delete u.loc[b.id]; delete u.notes[b.id]; gone[b.id] = 1; }
+        if (b.origin === id) { delete u.hidden[b.id]; delete u.loc[b.id]; delete u.notes[b.id]; delete u.titles[b.id]; gone[b.id] = 1; }
         else if (u.loc[b.id] === id) delete u.loc[b.id];
       });
       delete u.order[id];
@@ -1018,13 +1079,18 @@
   $("add-btn").onclick = addCurrent;
   $("add-form").addEventListener("submit", function (e) { e.preventDefault(); addCurrent(); });
   $("add-text").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); addCurrent(); } });
-  $("note-save").onclick = function () { commitNote($("note-text").value); };
-  $("note-clear").onclick = function () { commitNote(""); };
-  $("note-cancel").onclick = function () { $("note-sheet").hidden = true; noteItem = null; };
-  $("note-close").onclick = function () { $("note-sheet").hidden = true; noteItem = null; };
-  $("note-sheet").onclick = function (e) { if (e.target === this) { this.hidden = true; noteItem = null; } };
+  $("note-save").onclick = function () { commitItem(); };
+  $("note-clear").onclick = function () { commitItem({ clearNote: true }); };
+  $("note-cancel").onclick = closeNote;
+  $("note-close").onclick = closeNote;
+  $("note-sheet").onclick = function (e) { if (e.target === this) closeNote(); };
+  $("item-title").addEventListener("input", function () { this.classList.remove("bad"); });
+  $("item-title").addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); commitItem(); return; }
+    if (e.key === "Enter") { e.preventDefault(); $("note-text").focus(); }
+  });
   $("note-text").addEventListener("keydown", function (e) {
-    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); commitNote($("note-text").value); }
+    if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) { e.preventDefault(); commitItem(); }
   });
   $("cf-yes").onclick = function () { $("cf-sheet").hidden = true; var fn = confirmAction; confirmAction = null; if (fn) fn(); };
   $("cf-no").onclick = function () { $("cf-sheet").hidden = true; confirmAction = null; };
