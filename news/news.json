@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T01:20:09+02:00",
+ "updated": "2026-11-04T02:14:40+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,110 @@
   }
  ],
  "items": [
+  {
+   "id": "pod-brecka-c66927da49",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-11-03T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה אובדן זיכרון הוא בעצם אובדן גישה, עם ג'ניפר מולר",
+    "summary": "גארי ברקה משוחח עם ג'ניפר מולר מעולם הדיור המוגן על ההחלטה שעמד בפניה עם הוריו, ועל טענתו שאובדן זיכרון הוא למעשה אובדן גישה לזיכרון. הם מדברים על איך לבחור בין דיור עצמאי, דיור מוגן ומחלקה סיעודית לזיכרון."
+   },
+   "en": {
+    "title": "Why Memory Loss Is Really Lost Access - Jennifer Mohler",
+    "summary": "Gary Brecka sits down with senior-living expert Jennifer Mohler about the decision he faced with his own parents and his view that memory loss is really lost access to memory, plus how to evaluate independent living, assisted living and memory care."
+   },
+   "full_en": "Gary Brecka sits down with Jennifer Mohler to talk through the decision he faced with his own parents, and his view that memory loss is really lost access to memory. They cover how to evaluate independent living, assisted living, and memory care, why isolation matters, the daily living skills that signal it's time, and the brain mapping Gary is using to track his mother. Gary also shares the fall that changed his timeline. Don't guess, test.\n\nTimestamps:\n• 00:00 – Introduction: senior living for parents\n• 03:46 – How Jennifer entered senior living\n• 07:16 – When a parent needs assisted care\n• 09:38 – Biohacking inside senior living\n• 11:32 – Red light, PEMF and hydrogen therapy\n• 15:04 – Brain mapping Gary's mother\n• 16:24 – Janet, the nonverbal resident\n• 19:55 – Isolation and broken heart syndrome\n• 20:59 – Memory loss as lost access\n• 21:34 – How to evaluate a community\n• 29:08 – Assisted living versus memory care\n• 32:42 – Five daily living skills\n• 37:53 – Clinical study with 30 participants\n• 42:59 – Medicare, Medicaid and VA coverage\n• 47:34 – Gary's father: humerus and hip\n• 50:45 – What it means to be an Ultimate Human\n\nThe show's own disclaimer: the podcast is for informational purposes only and is not medical advice. The \"memory loss is lost access\" idea is Gary's view, not an established medical position.",
+   "full_he": "גארי ברקה יושב עם ג'ניפר מולר ומדבר על ההחלטה שעמד בפניה עם הוריו שלו, ועל הגישה שלו שלפיה אובדן זיכרון הוא בעצם אובדן גישה לזיכרון. הם מדברים על איך לבחון דיור עצמאי, דיור מוגן ומחלקה לטיפול בזיכרון, למה בדידות משנה כל כך, אילו מיומנויות של חיי היום־יום מסמנות שהגיע הזמן, ועל מיפוי המוח שגארי עושה כדי לעקוב אחרי אמו. גארי מספר גם על הנפילה ששינתה את לוח הזמנים שלו. אל תנחש, תבדוק.\n\nנקודות זמן:\n• 00:00 – פתיחה: דיור לגיל השלישי להורים\n• 03:46 – איך ג'ניפר הגיעה לתחום הדיור המוגן\n• 07:16 – מתי הורה צריך דיור עם סיוע\n• 09:38 – ביוהאקינג בתוך דיור מוגן\n• 11:32 – אור אדום, PEMF וטיפול במימן\n• 15:04 – מיפוי המוח של אמא של גארי\n• 16:24 – ג'נט, הדיירת שאינה מדברת\n• 19:55 – בדידות ותסמונת הלב השבור\n• 20:59 – אובדן זיכרון כאובדן גישה\n• 21:34 – איך לבחון קהילת דיור\n• 29:08 – דיור מוגן לעומת מחלקת זיכרון\n• 32:42 – חמש מיומנויות של חיי היום־יום\n• 37:53 – מחקר קליני עם 30 משתתפים\n• 42:59 – כיסוי של Medicare, Medicaid ומשרד הוותיקים\n• 47:34 – אביו של גארי: עצם הזרוע והירך\n• 50:45 – מה זה אומר להיות Ultimate Human\n\nלפי הצהרת התוכנית עצמה, הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי. הרעיון ש\"אובדן זיכרון הוא אובדן גישה\" הוא עמדתו של גארי, ולא עמדה רפואית מקובלת."
+  },
+  {
+   "id": "dispenza-week-long-retreat-qa-blog",
+   "topic": "dispenza",
+   "date": "2026-11-04T00:09:20Z",
+   "url": "https://x.com/DrJoeDispenza/status/2117771139061526902",
+   "source": "X · @DrJoeDispenza",
+   "he": {
+    "title": "ד\"ר ג'ו דיספנזה: מה הופך ריטריט חי לכל כך משנה חיים?",
+    "summary": "בבלוג החדש שלו ד\"ר ג'ו עונה על שאלות נפוצות על הריטריט בן השבוע: שבעה ימים של מדיטציה, למידה וקהילה, ואיך החוויה ממשיכה לשנות את החיים גם אחרי החזרה הביתה."
+   },
+   "en": {
+    "title": "Dr Joe Dispenza: what makes a live retreat so transformative?",
+    "summary": "In a new blog Q&A, Dr Joe answers common questions about his Week Long Retreat: seven days of meditation, learning and community, and how the experience keeps changing your life after you return home."
+   },
+   "full_en": "What makes a live retreat so transformative?\n\nIn his newest blog, Dr Joe explores the power of seven days of meditation, learning, and community – and how the experience can continue changing your life long after you return home.\n\nThe linked blog post, \"A Retreat Q&A With Dr Joe\":\n• Dr Joe answers some of the most common questions about attending the Week Long Retreat, from preparing for your first event to understanding what makes practicing together in person so powerful.\n• Spending seven days in immersive learning, meditation and community connection, the post says, can help you move beyond your familiar limitations, deepen your practice and discover new possibilities.\n• \"If you arrive with an open mind, a willingness to learn, and the courage to step into the unknown … you'll never be the same.\"\n• As Dr Joe explains, the journey goes from curiosity to challenge, connection and ultimately transformation, and the experience doesn't end when the retreat does: you return home with the tools, knowledge and inspiration to continue.\n• \"If you can show up and give your absolute best and make it about effort, you'll experience the fruits of your efforts.\"\n• The post ends with an invitation to sign up and a link to the retreat eligibility rules.\n\nMost of the Q&A itself is in a video (on the post and the blog), so there's no more text to show.",
+   "full_he": "מה הופך ריטריט חי לכל כך משנה חיים?\n\nבבלוג החדש שלו ד\"ר ג'ו בוחן את הכוח של שבעה ימים של מדיטציה, למידה וקהילה, ואיך החוויה יכולה להמשיך לשנות את החיים שלך הרבה אחרי שאתה חוזר הביתה.\n\nהפוסט בבלוג, \"שאלות ותשובות על הריטריט עם ד\"ר ג'ו\":\n• ד\"ר ג'ו עונה על כמה מהשאלות הנפוצות ביותר על השתתפות בריטריט בן השבוע, מההכנה לאירוע הראשון ועד ההבנה מה הופך תרגול משותף פנים אל פנים לכל כך עוצמתי.\n• לפי הפוסט, שבעה ימים של למידה אינטנסיבית, מדיטציה וחיבור לקהילה יכולים לעזור לך לצאת מהמגבלות המוכרות, להעמיק את התרגול ולגלות אפשרויות חדשות.\n• \"אם תגיע עם ראש פתוח, נכונות ללמוד ואומץ לצעוד אל הלא נודע… לעולם לא תהיה אותו אדם.\"\n• כפי שד\"ר ג'ו מסביר, המסע עובר מסקרנות לאתגר, לחיבור ובסוף לשינוי עמוק, והחוויה לא נגמרת כשהריטריט נגמר: אתה חוזר הביתה עם הכלים, הידע וההשראה להמשיך.\n• \"אם תופיע, תיתן את המיטב שלך ותשים את הדגש על המאמץ, תראה את פירות המאמץ שלך.\"\n• הפוסט נגמר בהזמנה להירשם ובקישור לתנאי הזכאות להשתתפות בריטריט.\n\nרוב השאלות והתשובות עצמן נמצאות בסרטון (בפוסט ובבלוג), ולכן אין עוד טקסט להציג."
+  },
+  {
+   "id": "starterstory-brainrot-screen-time-app-400k",
+   "topic": "starterstory",
+   "date": "2026-11-03T23:59:32Z",
+   "url": "https://x.com/starter_story/status/2117768673293435118",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "אפליקציה ש\"מתקשרת אליך בפייסטיים\" כשאתה פותח אינסטגרם מכניסה 400 אלף דולר בחודש",
+    "summary": "יוני בנה את Brainrot, אפליקציית זמן מסך שעובדת כמו משחק: מוח דיגיטלי חמוד שנרקב ככל שאתה מבלה יותר באפליקציות ממכרות. מאז ההשקה בקיץ 2025 היא גדלה מכ־10 אלף לכ־400 אלף דולר בחודש."
+   },
+   "en": {
+    "title": "A screen-time app that \"FaceTimes\" you when you open Instagram makes ~$400K/month",
+    "summary": "Yoni built Brainrot, a game-like screen-time app with a cute digital pet brain that rots the more you use \"brainrot\" apps. Launched in summer 2025, it grew from about $10K to about $400K a month."
+   },
+   "full_en": "Bro built an app that FaceTimes him every time he opens Instagram.\n\nMeet Yoni. He built Brainrot, a screen time app that works like a game. You get a cute digital pet brain that rots the more time you spend on your \"brainrot\" apps.\n\nHe launched it in summer 2025 and grew it from about $10K/month to about $400K/month.\n\nHow it works:\n• Try to open a brainrot app like Instagram\n• A little message pops up and you have to go through a short flow\n• In his demo: \"I'm getting a FaceTime from my brain\"\n\nWhy it works: \"It just adds a little bit of friction into using the app that is enough to get you to change your habits.\"\n\nIt doesn't fully block you. It just adds enough friction to stop you opening the app on autopilot.\n\nThe rest of the post is a video, so there's no more text to show.",
+   "full_he": "הבחור בנה אפליקציה שעושה לו פייסטיים בכל פעם שהוא פותח אינסטגרם.\n\nתכירו את יוני. הוא בנה את Brainrot, אפליקציה לניהול זמן מסך שעובדת כמו משחק. אתה מקבל מוח דיגיטלי חמוד, מעין חיית מחמד, שנרקב ככל שאתה מבלה יותר זמן באפליקציות ה\"ממיסות מוח\" שלך.\n\nהוא השיק אותה בקיץ 2025 והגדיל אותה מכ־10 אלף דולר בחודש לכ־400 אלף דולר בחודש.\n\nאיך זה עובד:\n• אתה מנסה לפתוח אפליקציה ממכרת כמו אינסטגרם\n• קופצת הודעה קטנה ואתה צריך לעבור תהליך קצר\n• בהדגמה שלו: \"אני מקבל שיחת פייסטיים מהמוח שלי\"\n\nלמה זה עובד: \"זה פשוט מוסיף קצת חיכוך לשימוש באפליקציה, מספיק כדי לגרום לך לשנות הרגלים.\"\n\nזה לא חוסם אותך לגמרי. זה רק מוסיף מספיק חיכוך כדי שלא תפתח את האפליקציה על טייס אוטומטי.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג."
+  },
+  {
+   "id": "johnson-medicine-compute-problem-curiosity-model",
+   "topic": "johnson",
+   "date": "2026-11-03T23:47:58Z",
+   "url": "https://x.com/bryan_johnson/status/2117765761179775112",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: \"רפואה היא בעיית חישוב\"",
+    "summary": "ג'ונסון משתף מחקר על מודל בינה מלאכותית שאומן על רשומות של כ־300 מיליון מטופלים ו־16 מיליארד מפגשים רפואיים ומנבא את האירוע הרפואי הבא. לדבריו, אנחנו צפויים יותר ממה שנוח לנו להאמין."
+   },
+   "en": {
+    "title": "Bryan Johnson: \"Medicine is a compute problem\"",
+    "summary": "Johnson shares a study of an AI model trained on records of 300M patients and 16B health encounters that predicts a patient's next medical event, saying our bodies are more predictable than we want to believe."
+   },
+   "full_en": "Medicine is a compute problem.\n\nThis model was able to predict your next health event.\n\nTrained on 300M patients and 16B health encounters.\n\nWe overestimate the mystery of our bodies and are more predictable than we want to believe.\n\nCool seeing that illusion chipped away.\n\nThe image in the post is the abstract of the paper \"Generative Medical Event Models Improve with Scale\" (Waxler et al., arXiv:2508.12104):\n• Using Epic Cosmos, a dataset of de-identified longitudinal health records covering 16.3 billion encounters from over 300 million unique patients at 310 health systems, the authors introduce the Curiosity models, a family of decoder-only transformers pretrained on 118 million patients representing 115 billion discrete medical events (151 billion tokens).\n• They present what they call the largest scaling-law study of medical event data, and pretrain compute-optimal models of up to 1 billion parameters.\n• Given a patient's real-world history, Curiosity predicts the next medical event to simulate patient health timelines.\n• On 78 real-world tasks (diagnosis prediction, disease prognosis, healthcare operations), Curiosity generally outperformed or matched task-specific supervised models without task-specific fine-tuning or few-shot examples.\n• Its predictive power keeps improving with model and pretraining scale. The authors say it could support clinical decision-making, streamline healthcare operations and improve patient outcomes.\n\nNote: the \"predict your next health event\" framing is Johnson's; the paper reports benchmark performance on prediction tasks, not individual-level certainty.",
+   "full_he": "רפואה היא בעיית חישוב.\n\nהמודל הזה הצליח לנבא את האירוע הבריאותי הבא שלך.\n\nהוא אומן על 300 מיליון מטופלים ו־16 מיליארד מפגשים רפואיים.\n\nאנחנו מגזימים במסתוריות של הגוף שלנו, ואנחנו צפויים יותר ממה שאנחנו רוצים להאמין.\n\nמגניב לראות את האשליה הזאת נסדקת.\n\nהתמונה בפוסט היא התקציר של המאמר \"Generative Medical Event Models Improve with Scale\" (וקסלר ועמיתים, arXiv:2508.12104):\n• בעזרת Epic Cosmos, מאגר רשומות רפואיות אנונימיות לאורך זמן שכולל 16.3 מיליארד מפגשים של יותר מ־300 מיליון מטופלים ב־310 מערכות בריאות, החוקרים מציגים את מודלי Curiosity: משפחת מודלי טרנספורמר שאומנו מראש על 118 מיליון מטופלים, שהם 115 מיליארד אירועים רפואיים (151 מיליארד טוקנים).\n• לדבריהם זה מחקר חוקי הקנה־מידה (scaling laws) הגדול ביותר על נתוני אירועים רפואיים, והם אימנו מודלים אופטימליים בחישוב של עד מיליארד פרמטרים.\n• בהינתן ההיסטוריה האמיתית של מטופל, Curiosity מנבא את האירוע הרפואי הבא וכך מדמה את ציר הזמן הבריאותי שלו.\n• ב־78 משימות מהעולם האמיתי (ניבוי אבחנות, פרוגנוזה של מחלות ותפעול מערכת הבריאות) Curiosity בדרך כלל עקף או השתווה למודלים שאומנו במיוחד לכל משימה, בלי כוונון ייעודי ובלי דוגמאות.\n• כוח הניבוי שלו ממשיך להשתפר ככל שהמודל ונתוני האימון גדלים. לדברי החוקרים, הוא יכול לתמוך בקבלת החלטות קליניות, לייעל את תפעול מערכת הבריאות ולשפר את התוצאות למטופלים.\n\nהערה: הניסוח \"לנבא את האירוע הבריאותי הבא שלך\" הוא של ג'ונסון; המאמר מדווח על ביצועים במשימות ניבוי, ולא על ודאות ברמת האדם הבודד."
+  },
+  {
+   "id": "solana-mobile-skr-daily-buy-and-burn",
+   "topic": "solana",
+   "date": "2026-11-03T21:01:02Z",
+   "url": "https://x.com/i/trending/2117721748926087213",
+   "source": "X",
+   "he": {
+    "title": "Solana Mobile משיקה תוכנית יומית של רכישה ושריפה של אסימוני SKR",
+    "summary": "Solana Mobile משתמשת בהכנסות מטלפון ה־Seeker כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום. בחודש הראשון הוקצו 24,573 דולר ונשרפו כבר כ־1.2 מיליון אסימונים."
+   },
+   "en": {
+    "title": "Solana Mobile launches a daily SKR buy-and-burn program",
+    "summary": "Solana Mobile is using revenue from its Seeker phone to buy SKR on the open market and burn it daily; in the first month it allocated $24,573 USDC and has burned about 1.2 million SKR so far."
+   },
+   "full_en": "Solana Mobile is turning everyday revenue from its Seeker phone into a steady stream of SKR token burns, pulling over a million tokens from circulation already.\n\nThe program, which kicked off on October 15, 2026, uses revenue from Seeker phone staking commissions and Seed Vault Wallet fees to buy SKR on the open market and burn it daily onchain. In its first month, it allocated $24,573 USDC to burn 1.2 million SKR so far, with all transactions verifiable through a dedicated wallet address. Community members point to a flywheel effect where more phone usage drives bigger burns and tighter token supply, all while keeping operations transparent and independent of staking rewards.\n\n(This story is a summary of posts on X and may evolve over time.)",
+   "full_he": "Solana Mobile הופכת את ההכנסות השוטפות מטלפון ה־Seeker לזרם קבוע של שריפות של אסימון SKR, וכבר הוציאה יותר ממיליון אסימונים מהמחזור.\n\nהתוכנית, שהתחילה ב־15 באוקטובר 2026, משתמשת בהכנסות מעמלות הסטייקינג של טלפון ה־Seeker ומעמלות הארנק Seed Vault כדי לקנות SKR בשוק הפתוח ולשרוף אותם מדי יום על הבלוקצ'יין. בחודש הראשון הוקצו 24,573 דולר ב־USDC, ועד עכשיו נשרפו 1.2 מיליון SKR, וכל העסקאות ניתנות לבדיקה דרך כתובת ארנק ייעודית. אנשים בקהילה מדברים על אפקט גלגל תנופה: יותר שימוש בטלפון מביא לשריפות גדולות יותר ולהיצע מצומצם יותר של האסימון, והכול בשקיפות ובנפרד מתגמולי הסטייקינג.\n\n(הסיפור הזה הוא סיכום של פוסטים ב־X ועשוי להשתנות.)"
+  },
+  {
+   "id": "musk-galloway-traitor-rosenberg-pivot",
+   "topic": "musk",
+   "date": "2026-11-03T23:41:53Z",
+   "url": "https://x.com/i/trending/2117761963463749637",
+   "source": "X",
+   "he": {
+    "title": "פרופ' סקוט גאלוויי קורא למאסק \"בוגד במערב\" ומזכיר את הוצאת בני הזוג רוזנברג להורג",
+    "summary": "בפודקאסט Pivot עם קארה סווישר אמר גאלוויי שמאסק \"בוגד במערב\" ושאמריקה \"העמידה את בני הזוג רוזנברג אל הקיר\". הקטע התפשט ברשת ועורר תגובות חריפות שכינו את הרטוריקה מסוכנת."
+   },
+   "en": {
+    "title": "Scott Galloway calls Musk a 'traitor to the West', invoking the Rosenberg executions",
+    "summary": "On the Pivot podcast with Kara Swisher, NYU professor Scott Galloway called Musk a 'traitor to the West' and said 'We lined up the Rosenbergs against a wall', a clip that spread widely and drew backlash for dangerous rhetoric."
+   },
+   "full_en": "In a heated podcast moment, NYU professor Scott Galloway compared Elon Musk to Cold War spies executed for treason, saying he should face the same fate as the Rosenbergs.\n\nOn a recent Pivot podcast episode with Kara Swisher, Galloway declared Musk a 'traitor to the West' and stated, 'We lined up the Rosenbergs against a wall,' drawing applause from the audience. The clip spread widely online, prompting backlash from critics who called the rhetoric dangerous and unhinged, while Musk's defenders praised him as a champion advancing electric vehicles, reusable rockets, and global internet. Galloway, a marketing professor at NYU Stern and tech commentator, has previously criticized Musk, including labeling him racist and anti-Semitic in 2025. The remarks reference Julius and Ethel Rosenberg, executed in 1953 for passing atomic secrets to the Soviet Union.\n\n(This story is a summary of posts on X and may evolve over time.)",
+   "full_he": "ברגע סוער בפודקאסט, פרופסור סקוט גאלוויי מאוניברסיטת ניו יורק השווה את אילון מאסק למרגלים מתקופת המלחמה הקרה שהוצאו להורג על בגידה, ורמז שמגיע לו אותו גורל כמו לבני הזוג רוזנברג.\n\nבפרק של הפודקאסט Pivot עם קארה סווישר הכריז גאלוויי שמאסק הוא \"בוגד במערב\" ואמר: \"העמדנו את בני הזוג רוזנברג אל הקיר\", והקהל מחא כפיים. הקטע התפשט מאוד ברשת ועורר תגובות חריפות של מבקרים שכינו את הרטוריקה מסוכנת ומטורפת, בעוד תומכיו של מאסק שיבחו אותו כמי שמקדם רכבים חשמליים, טילים רב־פעמיים ואינטרנט גלובלי. גאלוויי, פרופסור לשיווק ב־NYU Stern ופרשן טכנולוגיה, כבר מתח ביקורת על מאסק בעבר, ובשנת 2025 אף כינה אותו גזען ואנטישמי. הדברים מתייחסים ליוליוס ואתל רוזנברג, שהוצאו להורג ב־1953 על העברת סודות אטומיים לברית המועצות.\n\n(הסיפור הזה הוא סיכום של פוסטים ב־X ועשוי להשתנות.)"
+  },
   {
    "id": "brecka-lessons-from-incredible-people",
    "topic": "brecka",
