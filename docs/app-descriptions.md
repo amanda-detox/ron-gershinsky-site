@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|
 | קלוקיפיי | Clockify | clockify/index.html | שעון מעורר פרטי עם רשימות משימות | My private alarm clock with task lists | ציבורי / public — מוסתר / hidden |
 | עדכוניפיי | Updatify | news/index.html | חדשות יומיות על אנשים וחברות שאני עוקב אחריהם | Daily news on the people and companies I follow | ציבורי / public |
-| סיכומיפיי | Summarify | summarify/index.html | סיכומים מלאים של פרקים, בעברית | Full episode summaries, in Hebrew | ציבורי / public |
+| סיכומיפיי | Summarify | news/?tab=summaries (data still summarify/summaries.json) | סיכומים מלאים של פרקים, בעברית. אוחד ללשונית סיכומים בעדכוניפיי | Full episode summaries, in Hebrew. Merged into the Updatify Summaries tab | ציבורי / public — בתוך עדכוניפיי / inside Updatify |
 | רילקסיפיי | Relaxify | relax/index.html | משחקי רגיעה: שבעה משחקים שקטים, בלי ניקוד ובלי טיימר | Relaxing games: seven quiet games, no scores, no timers | ציבורי / public |
 | היליפיי | Healify | healify/index.html | אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר בריאות מלאה, כושר ושגשוג. | An app for a complete understanding of your condition and matching solutions, toward full health, fitness and flourishing. | ציבורי / public |
 | שפעלי | Wealthify | wealthify/index.html | שגשוג וחופש כלכלי | Prosperity and financial freedom | ציבורי / public |

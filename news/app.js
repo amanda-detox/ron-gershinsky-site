@@ -28,7 +28,10 @@
       savedEmpty: "עוד לא שמרת עדכונים", savedEmptySub: "לחץ על סימן השמירה שליד עדכון, והוא יחכה לך כאן גם אחרי שייעלם מהפיד.",
       savedCount: "עדכונים שמורים", savedOne: "עדכון שמור אחד",
       copy: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
-      summ: "📝 סכם לי", summSent: "✓ נשלח לסיכום", summDone: "📝 לסיכום", summFail: "אין חיבור, נשלח כשיחזור", summOk: "נשלח לסיכום. הסיכום יופיע בסיכומיפיי", share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
+      summ: "📝 סכם לי", summSent: "✓ נשלח לסיכום", summDone: "📝 לסיכום", summFail: "אין חיבור, נשלח כשיחזור", summOk: "נשלח לסיכום. הסיכום יופיע בסיכומים", share: "שיתוף", shareAria: "שיתוף העדכון", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
+      sumTab: "סיכומים", sumTag: "סיכומים מלאים של פרקים, בעברית", sumLoading: "טוען סיכומים…", sumErr: "לא הצלחנו לטעון את הסיכומים. בדוק את החיבור ונסה שוב.", sumEmpty: "עדיין אין כאן סיכומים.",
+      sumRead: "לסיכום המלא", sumToList: "→ כל הסיכומים", sumShareAria: "שיתוף הסיכום", sumGuest: "עם", sumEpisodeDate: "תאריך הפרק:", sumSource: "למקור", sumHeOnly: "",
+      sumNotFound: "הסיכום הזה לא נמצא. הנה כל הסיכומים.", sumNew: "נוספו סיכומים חדשים", sumNoNew: "אין סיכומים חדשים כרגע",
       gone: "העדכון שביקשת כבר לא זמין. הנה כל העדכונים.",
       refresh: "רענון", refreshing: "מרענן…", newItems: "נוספו עדכונים חדשים", noNew: "אין עדכונים חדשים כרגע", noNet: "אין חיבור לאינטרנט", refreshFail: "הרענון לא הצליח, נסה שוב",
       locale: "he-IL"
@@ -56,7 +59,10 @@
       savedEmpty: "No saved updates yet", savedEmptySub: "Tap the bookmark next to any update and it will wait for you here, even after it leaves the feed.",
       savedCount: "saved updates", savedOne: "1 saved update",
       copy: "© 2026 Healify Ltd. All rights reserved.",
-      summ: "📝 Summarize", summSent: "✓ Sent for summary", summDone: "📝 Summary", summFail: "Offline, will send when back", summOk: "Sent. The summary will appear in Summarify", share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
+      summ: "📝 Summarize", summSent: "✓ Sent for summary", summDone: "📝 Summary", summFail: "Offline, will send when back", summOk: "Sent. The summary will appear in Summaries", share: "Share", shareAria: "Share this update", copied: "Link copied", copyFail: "Couldn't copy the link",
+      sumTab: "Summaries", sumTag: "Full episode summaries, in Hebrew", sumLoading: "Loading summaries…", sumErr: "Couldn't load the summaries. Check your connection and try again.", sumEmpty: "No summaries here yet.",
+      sumRead: "Full summary", sumToList: "← All summaries", sumShareAria: "Share this summary", sumGuest: "with", sumEpisodeDate: "Episode date:", sumSource: "Source", sumHeOnly: "This summary is available in Hebrew.",
+      sumNotFound: "That summary wasn't found. Here are all the summaries.", sumNew: "New summaries added", sumNoNew: "No new summaries right now",
       gone: "That update is no longer available. Here are all the updates.",
       refresh: "Refresh", refreshing: "Refreshing…", newItems: "New updates added", noNew: "No new updates right now", noNet: "No internet connection", refreshFail: "Refresh failed, please try again",
       locale: "en-GB"
@@ -70,6 +76,9 @@
   var SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5.5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="18.5" r="2.6"/><path d="M8.3 10.8l7.4-4M8.3 13.2l7.4 4"/></svg>';
   var REFRESH = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5A8 8 0 1 0 17.7 17"/><path d="M20.5 4.5v7h-7"/></svg>';
   var EXT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>';
+  var SUMI = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h6.5L19 9v11a1.2 1.2 0 0 1-1.2 1.2H7.2A1.2 1.2 0 0 1 6 20V4.7A1.2 1.2 0 0 1 7.2 3.5z"/><path d="M13.5 3.6V9H19"/><path d="M9 13h6M9 17h6"/></svg>';
+  var SUMARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var SUMMARIES_VIEW = "__summaries";
 
   function $(id) { return document.getElementById(id); }
   function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -280,7 +289,8 @@
   function applyTheme() {
     document.documentElement.setAttribute("data-theme", theme);
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute("content", theme === "light" ? (LTC[lbg] || "#f3efe6") : (TC[bg] || "#e9506a"));
+    if (m) m.setAttribute("content", topic === SUMMARIES_VIEW ? (theme === "light" ? "#f3efe6" : "#0a1a3f") : (theme === "light" ? (LTC[lbg] || "#f3efe6") : (TC[bg] || "#e9506a")));
+    document.documentElement.setAttribute("data-summ", topic === SUMMARIES_VIEW ? "1" : "0");
     if (!$("bg-sheet").hidden) renderSwatches(); // each mode shows its own backgrounds
     var b = $("theme-btn");
     b.querySelector(".ti").innerHTML = theme === "light" ? MOON : SUN;
@@ -292,12 +302,12 @@
     var he = lang === "he";
     document.documentElement.lang = lang;
     document.documentElement.dir = he ? "rtl" : "ltr";
-    document.title = t().doc;
     $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
     $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     $("back").textContent = t().back;
     $("title").textContent = t().title;
-    $("tagline").textContent = t().tagline;
+    $("tagline").textContent = topic === SUMMARIES_VIEW ? t().sumTag : t().tagline;
+    document.title = (topic === SUMMARIES_VIEW && summCurrent) ? summCurrent.title + " · " + t().doc : t().doc;
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
@@ -313,6 +323,14 @@
 
   function renderStatus() {
     var el = $("updated");
+    if (topic === SUMMARIES_VIEW) {
+      if (!sumItems && !sumErr) { el.textContent = t().sumLoading; return; }
+      if (sumErr && !sumUpdated) { el.textContent = ""; return; }
+      var sage = sumUpdated ? (Date.now() - new Date(sumUpdated)) / 3600000 : 0;
+      var scls = navigator.onLine === false ? "off" : sage > 36 ? "stale" : "";
+      el.innerHTML = '<span class="dot ' + scls + '"></span>' + esc(t().updated) + (sumUpdated ? " <b>" + esc(fmtDate(sumUpdated, true)) + "</b>" : "");
+      return;
+    }
     if (!data) { el.textContent = loading ? t().loading : ""; return; }
     var age = (Date.now() - new Date(data.updated)) / 3600000;
     var cls = offline ? "off" : age > 36 ? "stale" : "";
@@ -334,27 +352,50 @@
 
   function renderChips() {
     var nav = $("chips"); nav.innerHTML = "";
-    if (!data) return;
-    var tw = topicsWithItems();
-    if (topic !== "all" && topic !== SAVED_VIEW && !(showRead ? tw.total[topic] : tw.count[topic])) topic = "all";
+    if (!data && topic !== SUMMARIES_VIEW) return;
+    var tw = data ? topicsWithItems() : { list: [], count: {}, total: {}, unread: 0, read: 0 };
+    if (data && topic !== "all" && topic !== SAVED_VIEW && topic !== SUMMARIES_VIEW && !(showRead ? tw.total[topic] : tw.count[topic])) topic = "all";
     function chip(id, label, n, cls, icon) {
       var b = document.createElement("button");
       b.type = "button"; b.className = "chip" + (cls ? " " + cls : "");
       b.setAttribute("aria-pressed", topic === id ? "true" : "false");
       b.innerHTML = (icon || "") + esc(label) + (n ? '<span class="n">' + n + "</span>" : "");
-      b.onclick = function () { pinned = false; topic = id; if (id !== SAVED_VIEW) set(TOPIC_KEY, id); renderChips(); renderFeed(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+      b.onclick = function () {
+        if (topic === id) {
+          if (id === SUMMARIES_VIEW && summCurrent) closeSummary(true);
+          else window.scrollTo({ top: 0, behavior: smoothBehavior() });
+          return;
+        }
+        var leaving = topic === SUMMARIES_VIEW;
+        var prevTopic = topic;
+        topic = id;
+        if (id === SUMMARIES_VIEW) topicBeforeSumm = prevTopic;
+        if (id !== SUMMARIES_VIEW) summCurrent = null;
+        pinned = id === SUMMARIES_VIEW;
+        if (id !== SAVED_VIEW && id !== SUMMARIES_VIEW) set(TOPIC_KEY, id);
+        try {
+          if (id === SUMMARIES_VIEW) history.pushState({ summ: 1 }, "", summPath(null));
+          else if (leaving) history.pushState({ topic: id }, "", location.pathname);
+        } catch (e) {}
+        renderChips(); renderStatus(); renderFeed();
+        if (id === SUMMARIES_VIEW && !sumItems && !sumLoading) loadSummaries();
+        window.scrollTo({ top: 0, behavior: smoothBehavior() });
+      };
       nav.appendChild(b);
-      if (topic === id && b.scrollIntoView) setTimeout(function () { b.scrollIntoView({ block: "nearest", inline: "center" }); }, 0);
+      if (topic === id && b.scrollIntoView) setTimeout(function () { try { b.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); } catch (e) { b.scrollIntoView(); } }, 0);
     }
     chip("all", t().all, tw.unread);
+    chip(SUMMARIES_VIEW, t().sumTab, sumItems ? sumItems.length : 0, "sumchip", '<span class="bi" aria-hidden="true">' + SUMI + "</span>");
     chip(SAVED_VIEW, t().saved, Object.keys(saved.items).length, "savedchip", '<span class="bi" aria-hidden="true">' + BMKF + "</span>");
-    var s0 = document.createElement("span"); s0.className = "sep"; nav.appendChild(s0);
-    var lastGroup = null;
-    tw.list.forEach(function (tp) {
-      if (lastGroup && tp.group !== lastGroup) { var s = document.createElement("span"); s.className = "sep"; nav.appendChild(s); }
-      lastGroup = tp.group;
-      chip(tp.id, tp[lang] || tp.he, tw.count[tp.id]);
-    });
+    if (data) {
+      var s0 = document.createElement("span"); s0.className = "sep"; nav.appendChild(s0);
+      var lastGroup = null;
+      tw.list.forEach(function (tp) {
+        if (lastGroup && tp.group !== lastGroup) { var s = document.createElement("span"); s.className = "sep"; nav.appendChild(s); }
+        lastGroup = tp.group;
+        chip(tp.id, tp[lang] || tp.he, tw.count[tp.id]);
+      });
+    }
     setTimeout(updateArrows, 0);
   }
 
@@ -366,7 +407,8 @@
 
   /* ----- "סכם לי": summary requests. A request = {id,url,title,kind,show,at} POSTed to a public ntfy.sh topic
      (free, no account, CORS open; no personal data, only the public item link). A routine polls the topic,
-     writes summaries to ../summarify/summaries.json (entry.req = item id). Local state: rg-news-summ {id: time}. */
+     writes summaries to ../summarify/summaries.json (entry.req = item id). Local state: rg-news-summ {id: time}.
+     The same file feeds the סיכומים tab. Do not change the topic URL or the POST body. */
   var SUMM_KEY = "rg-news-summ", SUMM_Q = "rg-news-summ-q", SUMM_TOPIC = "https://ntfy.sh/rg-summ-req-e052dce29652", summDoneSet = {};
   function summMap() { var o = null; try { o = JSON.parse(get(SUMM_KEY) || "{}"); } catch (e) {} return o && typeof o === "object" ? o : {}; }
   function summQueue() { var a = null; try { a = JSON.parse(get(SUMM_Q) || "[]"); } catch (e) {} return Array.isArray(a) ? a : []; }
@@ -384,17 +426,11 @@
     summFlush(); if (typeof toast === "function") toast(navigator.onLine ? t().summOk : t().summFail);
   }
   function summBtn(id) {
-    if (summDoneSet[id]) return '<a class="sm done" href="../summarify/?item=' + encodeURIComponent(id) + '">' + esc(t().summDone) + "</a>";
+    if (summDoneSet[id]) return '<a class="sm done" data-act="summopen" href="?tab=summaries&item=' + encodeURIComponent(id) + '">' + esc(t().summDone) + "</a>";
     var sent = !!summMap()[id];
     return '<button type="button" class="sm' + (sent ? " sent" : "") + '" data-act="summ"' + (sent ? " disabled" : "") + ">" + esc(sent ? t().summSent : t().summ) + "</button>";
   }
-  function loadSummDone() {
-    fetch("../summarify/summaries.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
-      if (!j || !Array.isArray(j.items)) return; var ch = false;
-      j.items.forEach(function (x) { var k = x && (x.req || x.id); if (k && !summDoneSet[k]) { summDoneSet[k] = 1; ch = true; } });
-      if (ch && data) renderFeed();
-    }).catch(function () {});
-  }
+  function loadSummDone() { loadSummaries(); }
   window.addEventListener("online", summFlush);
   function card(it, inSaved) {
     var id = itemId(it), c = pick(it), r = isRead(id), sv = isSaved(id);
@@ -419,7 +455,11 @@
   }
 
   function renderFeed() {
-    var feed = $("feed");
+    var feed = $("feed"), summBox = $("summ"), onSum = topic === SUMMARIES_VIEW;
+    if (feed) feed.hidden = onSum;
+    if (summBox) summBox.hidden = !onSum;
+    syncSummChrome();
+    if (onSum) { renderSummaries(); return; }
     if (topic === SAVED_VIEW) { renderSaved(); return; }
     if (!data) { feed.innerHTML = loading ? '<div class="empty">' + esc(t().loading) + "</div>" : '<div class="err">' + esc(t().error) + "</div>"; return; }
     var tw = topicsWithItems(), html = "", unreadShown = 0, readShown = 0;
@@ -457,6 +497,17 @@
     var c = el.closest(".card"), act = el.getAttribute("data-act");
     if (el.classList.contains("src")) return; // opening the source doesn't mark it read; only the read button does
     if (act === "more" && c) { openReader(c.getAttribute("data-id")); return; }
+    if (act === "summopen") {
+      e.preventDefault();
+      var sid = c ? c.getAttribute("data-id") : "";
+      if (openSummary(sid, true)) return;
+      topic = SUMMARIES_VIEW; pinned = true; summCurrent = null; summDeepId = sid;
+      try { history.pushState({ summ: 1, summItem: sid }, "", summPath(sid)); } catch (err) {}
+      renderChips(); renderStatus(); renderFeed();
+      if (!sumItems && !sumLoading) loadSummaries();
+      else if (sumItems) toast(t().sumNotFound);
+      return;
+    }
     if (act === "summ" && c) { requestSummary(c.getAttribute("data-id")); el.disabled = true; el.classList.add("sent"); el.textContent = t().summSent; return; }
     if (act === "share" && c) { shareItem(c.getAttribute("data-id")); return; }
     if (act === "save" && c) { saveItem(findItem(c.getAttribute("data-id"))); renderChips(); renderFeed(); return; }
@@ -474,7 +525,7 @@
     } else if (act === "toggle") { showRead = !showRead; renderChips(); renderFeed(); }
   });
 
-  setTimeout(function () { summFlush(); loadSummDone(); }, 600);
+  setTimeout(function () { summFlush(); if (!sumItems && !sumLoading) loadSummaries(); }, 600);
   function renderAll() { renderChrome(); renderStatus(); renderChips(); renderFeed(); }
 
   function load() {
@@ -517,6 +568,7 @@
   }
   window.RGNewsRefresh = { merge: mergeData }; // for tests
   function refreshNow() {
+    if (topic === SUMMARIES_VIEW) { refreshSummaries(); return; }
     if (refreshing) return;
     if (navigator.onLine === false) { toast(t().noNet); return; }
     refreshing = true; renderRefreshBtn();
@@ -577,14 +629,26 @@
   }
   window.RGNewsShare = { link: itemLink }; // for tests
 
-  /* ----- deep link: ?item=<id> (or #item=<id>) opens that item, in the right tab, expanded ----- */
-  var deepId = (function () {
-    var v = null;
-    try { v = new URLSearchParams(location.search).get("item"); } catch (e) {}
-    if (!v) { var m = /(?:^#|&)item=([^&]+)/.exec(location.hash || ""); if (m) { try { v = decodeURIComponent(m[1]); } catch (e) { v = m[1]; } } }
-    return v ? String(v).slice(0, 200) : null;
-  })();
-  var pinned = false; // while true, a synced topic preference doesn't switch away from the deep-linked item
+  /* ----- deep link: ?item=<id> opens a news item. ?tab=summaries (&item=) opens the summaries tab. ----- */
+  function readLocationQ() {
+    var tab = null, item = null;
+    try {
+      var p = new URLSearchParams(location.search);
+      tab = p.get("tab");
+      item = p.get("item");
+    } catch (e) {}
+    if (!item) {
+      var m = /(?:^#|&)item=([^&]+)/.exec(location.hash || "");
+      if (m) { try { item = decodeURIComponent(m[1]); } catch (e2) { item = m[1]; } }
+    }
+    return { tab: tab, item: item ? String(item).slice(0, 200) : null };
+  }
+  var bootQ = readLocationQ();
+  var deepId = bootQ.tab === "summaries" ? null : bootQ.item;
+  var summDeepId = bootQ.tab === "summaries" ? bootQ.item : null;
+  var pinned = false; // while true, a synced topic preference doesn't switch away from the deep-linked item or the summaries tab
+  var topicBeforeSumm = null;
+  if (bootQ.tab === "summaries") { topic = SUMMARIES_VIEW; pinned = true; }
   function cleanUrl() {
     try {
       var u = new URL(location.href); u.searchParams.delete("item");
@@ -762,6 +826,267 @@
     var h = $("install-hint"); h.textContent = t()[isIOS ? "ios" : "other"]; h.hidden = !h.hidden;
   };
 
+  /* ----- summaries tab: same reader Summarify had, data stays at ../summarify/summaries.json ----- */
+  var sumItems = null, sumErr = false, sumUpdated = "", sumLoading = false, summCurrent = null;
+  function smoothBehavior() {
+    try { if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return "auto"; } catch (e) {}
+    return "smooth";
+  }
+  function syncSummChrome() {
+    var on = topic === SUMMARIES_VIEW;
+    document.documentElement.setAttribute("data-summ", on ? "1" : "0");
+    if ($("tagline")) $("tagline").textContent = on ? t().sumTag : t().tagline;
+    if (!(on && summCurrent)) document.title = t().doc;
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (!m) return;
+    if (on) m.setAttribute("content", theme === "light" ? "#f3efe6" : "#0a1a3f");
+    else m.setAttribute("content", theme === "light" ? (LTC[lbg] || "#f3efe6") : (TC[bg] || "#0a1a3f"));
+  }
+  function summPath(id) {
+    var u = new URL("./", location.href);
+    u.searchParams.set("tab", "summaries");
+    if (id) u.searchParams.set("item", id);
+    return u.pathname + u.search;
+  }
+  function summAbs(id) {
+    var u = new URL("./", location.href);
+    u.searchParams.set("tab", "summaries");
+    if (id) u.searchParams.set("item", id);
+    return u.origin + u.pathname + u.search;
+  }
+  function summLoc(v) { return v && typeof v === "object" ? (v[lang] || v.he || "") : (v || ""); }
+  function summInline(s) {
+    s = esc(s);
+    s = s.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>");
+    s = s.replace(/(^|[\s(])\*([^*\s][^*]*?)\*(?=[\s).,:;!?]|$)/g, "$1<em>$2</em>");
+    s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    return s;
+  }
+  function summMd(src, skipTitle) {
+    var lines = String(src || "").replace(/\r\n?/g, "\n").split("\n"), out = [], para = [], list = null;
+    function flushP() { if (para.length) { out.push("<p>" + summInline(para.join(" ")) + "</p>"); para = []; } }
+    function flushL() { if (list) { out.push("<" + list.tag + ">" + list.items.map(function (x) { return "<li>" + summInline(x) + "</li>"; }).join("") + "</" + list.tag + ">"); list = null; } }
+    var first = true;
+    lines.forEach(function (ln) {
+      var m;
+      if (/^\s*$/.test(ln)) { flushP(); flushL(); return; }
+      if ((m = /^(#{1,3})\s+(.*)$/.exec(ln))) {
+        flushP(); flushL();
+        if (first && m[1].length === 1 && skipTitle) { first = false; return; }
+        var lv = Math.max(2, m[1].length); out.push("<h" + lv + ">" + summInline(m[2]) + "</h" + lv + ">"); first = false; return;
+      }
+      first = false;
+      if (/^\s*(-{3,}|\*{3,}|_{3,})\s*$/.test(ln)) { flushP(); flushL(); out.push("<hr>"); return; }
+      if ((m = /^\s*[-*•]\s+(.*)$/.exec(ln))) { flushP(); if (!list || list.tag !== "ul") { flushL(); list = { tag: "ul", items: [] }; } list.items.push(m[1]); return; }
+      if ((m = /^\s*\d+[.)]\s+(.*)$/.exec(ln))) { flushP(); if (!list || list.tag !== "ol") { flushL(); list = { tag: "ol", items: [] }; } list.items.push(m[1]); return; }
+      if (list && /^\s{2,}\S/.test(ln)) { list.items[list.items.length - 1] += " " + ln.trim(); return; }
+      flushL(); para.push(ln.trim());
+    });
+    flushP(); flushL();
+    return out.join("\n");
+  }
+  function summExcerpt(it) {
+    var lines = String(it.body || "").split("\n");
+    for (var i = 0; i < lines.length; i++) { var l = lines[i].trim(); if (l && !/^#/.test(l) && !/^[-*]\s/.test(l)) return l.replace(/\*\*/g, ""); }
+    return "";
+  }
+  function summFmtDate(s) {
+    if (!s) return "";
+    var d = new Date(s + (String(s).length === 10 ? "T12:00:00" : ""));
+    if (isNaN(d)) return s;
+    try { return d.toLocaleDateString(lang === "he" ? "he-IL" : "en-GB", { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return s; }
+  }
+  function findSummary(key) {
+    if (!sumItems || !key) return null;
+    var i, it;
+    for (i = 0; i < sumItems.length; i++) { it = sumItems[i]; if (it.id === key) return it; }
+    for (i = 0; i < sumItems.length; i++) { it = sumItems[i]; if (it.req === key) return it; }
+    return null;
+  }
+  function summSrc(it) {
+    var g = summLoc(it.guest), sh = summLoc(it.show);
+    return esc(sh) + (g ? " · " + esc(t().sumGuest) + " " + esc(g) : "");
+  }
+  function summCardHtml(it) {
+    var heOnly = (it.lang || "he") === "he";
+    return '<article class="scard" id="sc-' + esc(it.id) + '" data-id="' + esc(it.id) + '">' +
+      '<p class="src">' + summSrc(it) + "</p>" +
+      '<h2 lang="he" dir="rtl">' + esc(it.title) + "</h2>" +
+      '<p class="ex" lang="he" dir="rtl">' + esc(summExcerpt(it)) + "</p>" +
+      (lang !== "he" && heOnly && t().sumHeOnly ? '<p class="sheonly">' + esc(t().sumHeOnly) + "</p>" : "") +
+      '<div class="smeta"><span>' + esc(t().sumEpisodeDate) + " " + esc(summFmtDate(it.date)) + "</span>" +
+      '<span class="sacts"><button type="button" class="ssh" data-act="share" aria-label="' + esc(t().sumShareAria) + '" title="' + esc(t().sumShareAria) + '">' + SHARE + "<span>" + esc(t().share) + "</span></button>" +
+      '<button type="button" class="smore" data-act="open">' + esc(t().sumRead) + SUMARROW + "</button></span></div></article>";
+  }
+  function renderFullSummary() {
+    var it = summCurrent; if (!it || !$("sdoc")) return;
+    $("sum-back").textContent = t().sumToList;
+    var sb = $("sum-share");
+    sb.innerHTML = SHARE + "<span>" + esc(t().share) + "</span>";
+    sb.setAttribute("aria-label", t().sumShareAria);
+    sb.title = t().sumShareAria;
+    var ho = $("sum-heonly");
+    ho.textContent = t().sumHeOnly;
+    ho.hidden = !(lang !== "he" && (it.lang || "he") === "he" && t().sumHeOnly);
+    $("sdoc").innerHTML = '<p class="src">' + summSrc(it) + "</p>" +
+      '<h1 class="t">' + esc(it.title) + "</h1>" +
+      '<div class="smd">' + summMd(it.body, true) + "</div>" +
+      '<div class="sfoot" dir="' + (lang === "he" ? "rtl" : "ltr") + '" lang="' + lang + '"><span>' + esc(t().sumEpisodeDate) + " " + esc(summFmtDate(it.date)) + "</span>" +
+      (it.url ? '<a href="' + esc(it.url) + '" target="_blank" rel="noopener noreferrer">' + esc(t().sumSource) + " ↗</a>" : "") + "</div>";
+  }
+  function renderSummaries() {
+    syncSummChrome();
+    if (!$("slist")) return;
+    if (summCurrent) {
+      var fresh = findSummary(summCurrent.id) || (summCurrent.req && findSummary(summCurrent.req));
+      if (fresh) summCurrent = fresh;
+      else if (sumItems) summCurrent = null;
+    }
+    if (summCurrent) {
+      renderFullSummary();
+      $("slist").hidden = true;
+      $("sfull").hidden = false;
+      if ($("sumlead")) $("sumlead").hidden = true;
+      document.title = summCurrent.title + " · " + t().doc;
+      return;
+    }
+    $("sfull").hidden = true;
+    $("slist").hidden = false;
+    if ($("sumlead")) $("sumlead").hidden = true;
+    document.title = t().doc;
+    var box = $("slist");
+    if (sumErr && !sumItems) { box.innerHTML = '<p class="serr">' + esc(t().sumErr) + "</p>"; return; }
+    if (!sumItems) { box.innerHTML = '<p class="sempty">' + esc(t().sumLoading) + "</p>"; return; }
+    if (!sumItems.length) { box.innerHTML = '<p class="sempty">' + esc(t().sumEmpty) + "</p>"; return; }
+    box.innerHTML = sumItems.map(summCardHtml).join("");
+  }
+  function scrollToSummCard(it) {
+    if (!it) return;
+    var el = document.getElementById("sc-" + it.id);
+    if (!el || !el.scrollIntoView) return;
+    try { el.scrollIntoView({ block: "center", behavior: smoothBehavior() }); } catch (e) { el.scrollIntoView(); }
+    el.classList.add("deep");
+    setTimeout(function () { el.classList.remove("deep"); }, 4000);
+  }
+  function openSummary(id, push) {
+    var it = findSummary(id); if (!it) return false;
+    if (topic !== SUMMARIES_VIEW) topicBeforeSumm = topic;
+    summCurrent = it;
+    topic = SUMMARIES_VIEW;
+    pinned = true;
+    renderChips(); renderStatus(); renderFeed();
+    try { window.scrollTo({ top: 0, behavior: smoothBehavior() }); } catch (e) { window.scrollTo(0, 0); }
+    if (push) { try { history.pushState({ summ: 1, summItem: it.id }, "", summPath(it.id)); } catch (e2) {} }
+    return true;
+  }
+  function closeSummary(fromBtn) {
+    var was = summCurrent;
+    if (fromBtn && history.state && history.state.summItem) { history.back(); return; }
+    summCurrent = null;
+    renderStatus(); renderFeed();
+    if (fromBtn) { try { history.replaceState({ summ: 1 }, "", summPath(null)); } catch (e) {} }
+    setTimeout(function () { scrollToSummCard(was); }, 40);
+  }
+  function shareSummary(it) {
+    if (!it) return;
+    var url = summAbs(it.id), title = it.title;
+    function fallback() { copyText(url).then(function () { toast(t().copied); }, function () { toast(t().copyFail); }); }
+    if (navigator.share) navigator.share({ title: title, text: title, url: url }).catch(function (e) { if (!e || e.name !== "AbortError") fallback(); });
+    else fallback();
+  }
+  function applySummJson(j) {
+    var items = ((j && j.items) || []).filter(function (x) { return x && x.id && x.title; });
+    items.sort(function (a, b) { return String(b.date || "").localeCompare(String(a.date || "")); });
+    sumItems = items;
+    sumUpdated = (j && j.updated) || "";
+    sumErr = false;
+    var ch = false;
+    items.forEach(function (x) {
+      [x.req, x.id].forEach(function (k) { if (k && !summDoneSet[k]) { summDoneSet[k] = 1; ch = true; } });
+    });
+    return ch;
+  }
+  function consumeSummDeep() {
+    if (!summDeepId || !sumItems) return;
+    var id = summDeepId; summDeepId = null;
+    if (!openSummary(id, false)) toast(t().sumNotFound);
+  }
+  function loadSummaries() {
+    if (sumLoading) return;
+    sumLoading = true;
+    sumErr = false;
+    if (topic === SUMMARIES_VIEW && !sumItems) { renderStatus(); renderSummaries(); }
+    fetch("../summarify/summaries.json", { cache: "no-cache" }).then(function (r) {
+      if (!r.ok) throw new Error(r.status); return r.json();
+    }).then(function (j) {
+      var ch = applySummJson(j);
+      sumLoading = false;
+      if (topic === SUMMARIES_VIEW) { renderChips(); renderStatus(); renderSummaries(); }
+      else if (ch && data) renderFeed();
+      consumeSummDeep();
+    }).catch(function () {
+      sumLoading = false;
+      if (!sumItems) sumErr = true;
+      if (topic === SUMMARIES_VIEW) { renderStatus(); renderSummaries(); }
+      if (summDeepId && !sumItems) toast(t().sumErr);
+    });
+  }
+  function refreshSummaries() {
+    if (refreshing) return;
+    if (navigator.onLine === false) { toast(t().noNet); return; }
+    refreshing = true; renderRefreshBtn();
+    var before = {}, added = false, failMsg = null, y = window.scrollY;
+    (sumItems || []).forEach(function (it) { before[it.id] = 1; });
+    fetch("../summarify/summaries.json?r=" + Date.now(), { cache: "no-store" }).then(function (r) {
+      if (!r.ok) { failMsg = t().refreshFail; throw new Error(r.status); } return r.json();
+    }).then(function (j) {
+      if (!j || !Array.isArray(j.items)) { failMsg = t().refreshFail; throw new Error("bad"); }
+      j.items.forEach(function (it) { if (it && it.id && !before[it.id]) added = true; });
+      applySummJson(j);
+      renderChips(); renderStatus(); renderSummaries();
+      if (!summCurrent) { window.scrollTo(0, y); setTimeout(function () { window.scrollTo(0, y); }, 0); }
+      toast(added ? t().sumNew : t().sumNoNew);
+    }).catch(function () { toast(failMsg || t().noNet); })
+      .then(function () { refreshing = false; renderRefreshBtn(); });
+  }
+  function onSummPop() {
+    var q = readLocationQ();
+    var prev = summCurrent;
+    if (q.tab === "summaries") {
+      topic = SUMMARIES_VIEW;
+      pinned = true;
+      if (q.item) {
+        var it = findSummary(q.item);
+        summCurrent = it || null;
+        if (!it && sumItems) toast(t().sumNotFound);
+        if (!it && !sumItems) summDeepId = q.item;
+      } else summCurrent = null;
+      renderChips(); renderStatus(); renderFeed();
+      if (!q.item && prev) setTimeout(function () { scrollToSummCard(prev); }, 40);
+      return;
+    }
+    summCurrent = null;
+    pinned = false;
+    var next = topicBeforeSumm || get(TOPIC_KEY) || "all";
+    topicBeforeSumm = null;
+    if (!next || next === SUMMARIES_VIEW) next = "all";
+    topic = next;
+    renderChips(); renderStatus(); renderFeed();
+  }
+  window.addEventListener("popstate", onSummPop);
+  if ($("sum-back")) $("sum-back").onclick = function () { closeSummary(true); };
+  if ($("sum-share")) $("sum-share").onclick = function () { if (summCurrent) shareSummary(summCurrent); };
+  if ($("slist")) $("slist").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-act]");
+    var c = e.target.closest && e.target.closest(".scard");
+    if (!c) return;
+    var id = c.getAttribute("data-id");
+    if (b && b.getAttribute("data-act") === "share") { var it = findSummary(id); if (it) shareSummary(it); return; }
+    if (b && b.getAttribute("data-act") === "open") { openSummary(id, true); return; }
+    if (!e.target.closest("a,button")) openSummary(id, true);
+  });
+  loadSummaries();
+
   /* ----- boot ----- */
   renderAll();
   updateInstall();
@@ -775,7 +1100,7 @@
       if (THEME_KEY in c) theme = c[THEME_KEY] === "light" ? "light" : "dark";
       if (BG_KEY in c && /^([0-9]|10)$/.test(c[BG_KEY] || "")) { bg = c[BG_KEY]; document.documentElement.setAttribute("data-bg", bg); }
       if (LBG_KEY in c && /^([0-9]|10)$/.test(c[LBG_KEY] || "")) { lbg = c[LBG_KEY]; document.documentElement.setAttribute("data-lbg", lbg); }
-      if (TOPIC_KEY in c && c[TOPIC_KEY] && !pinned && deepId === null) topic = c[TOPIC_KEY];
+      if (TOPIC_KEY in c && c[TOPIC_KEY] && c[TOPIC_KEY] !== SUMMARIES_VIEW && c[TOPIC_KEY] !== SAVED_VIEW && !pinned && deepId === null && topic !== SUMMARIES_VIEW) topic = c[TOPIC_KEY];
       renderAll(); return true;
     });
   }
