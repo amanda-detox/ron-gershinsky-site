@@ -485,7 +485,6 @@ var apps = [
   { href: "workify/index.html", icon: "workify/icon-192.png", he: "וורקיפיי", en: "Workify", heLine: "המלצות לשכירים, מג׳וניורים ועד בכירים", enLine: "Recommendations for employees, from juniors to seniors" },
   { href: "activist/index.html", icon: "activist/icon-192.png?v=2", he: "אקטיביפיי", en: "Activify", heLine: "למצוא את דרכי הפעולה שמתאימות לך, למה שאכפת לך, לתשוקות ולחוזקות שלך, כדי להיות אקטיבי ולהשפיע ולשנות תחום בעולם", enLine: "Find the ways to act that fit you, what you care about, your passions and strengths, to be active and change a field in the world" },
   { href: "depornify/index.html", icon: "depornify/icon-192.png?v=2", he: "דיפורניפיי", en: "Depornify", heLine: "גמילה מפורנו", enLine: "Quitting porn" },
-  { href: "rehabster/index.html", icon: "rehabster/icon-192.png", he: "ריהאבסטר", en: "Rehabster", heLine: "גמילה מפסיכדלים, מטפלים, פסיכיאטריה וסושיאל מדיה", enLine: "Weaning off psychedelics, therapists, psychiatry and social media" },
   { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" }
 ];
 
@@ -1123,7 +1122,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=67", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=68", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
