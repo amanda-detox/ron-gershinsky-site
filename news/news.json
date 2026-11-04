@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T03:40:59+02:00",
+ "updated": "2026-11-04T04:32:07+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "mccullough-marathon-death-subclinical-myopericarditis",
+   "topic": "mccullough",
+   "date": "2026-11-04T01:58:33Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117798623635255723",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה על מות המרתוניסטית בניו יורק: חשש לדלקת שריר לב סמויה",
+    "summary": "בתגובה לידיעה על מותה של רצה בת 24 אחרי מרתון ניו יורק, ד\"ר פיטר מקולה כותב שהוא חושש שדלקת שריר לב וקרום הלב תת־קלינית יכולה להתבטא לראשונה כדום לב ברגע של הצפת אדרנלין. לפי הדיווח עצמו, אביה אמר שהיא מתה מרבדומיוליזיס (פירוק שרירים)."
+   },
+   "en": {
+    "title": "McCullough on the NYC marathoner's death: concern about hidden myopericarditis",
+    "summary": "Quoting a report on a 24-year-old who died after the NYC Marathon, Dr. Peter McCullough says he's concerned that subclinical myopericarditis can first show up as cardiac arrest during an adrenaline surge. The report itself says her father attributed the death to rhabdomyolysis."
+   },
+   "full_en": "\"Concerned that subclinical myopericarditis can have its initial presentation as cardiac arrest in the setting of a surge of adrenaline.\" @McCulloughFund\n\nThe image in the post is the first page of a preprint by Peter A. McCullough and Nicolas Hulscher (McCullough Foundation), \"Risk Stratification for Future Cardiac Arrest after COVID-19 Vaccination\" (Preprints 2024, doi 10.20944/preprints202408.0821.v1). It shows two figures:\n\n• Figure 1, \"COVID-19 Vaccine-Induced Cardiac Arrest\": the authors' model in which circulating Spike protein, with antibodies that fail to neutralize it, affects the heart; a surge of catecholamines (dopamine, norepinephrine, epinephrine) during sports or on waking (3–6 AM) may trigger re-entrant ventricular tachycardia or ventricular fibrillation leading to cardiac arrest in patients with vaccine-related subclinical myocarditis.\n• Figure 2, \"Risk Stratification Approach for Future Cardiac Arrest after COVID-19 Vaccination\": an initial evaluation of COVID infection history and vaccination history (brands, doses, dates); total Spike antibody levels (under 1,000 AU/ml = low exposure, above 1,000 AU/ml = high exposure); a cardiac evaluation with labs (troponin, BNP/NT-proBNP, galectin-3, D-dimer), echocardiography and cardiac MRI; low-risk patients need no further evaluation and are advised to avoid future boosters, while high-risk features (elevated troponin, LVEF under 55%, pericardial effusion, MRI late gadolinium enhancement) lead to referral to cardiology/electrophysiology.\n\nThe quoted post (New York Post): \"The sudden health complication you can develop from exercise - as healthy NYC marathoner, 24, dies following race.\"\n\nThe linked New York Post article (Nov. 3, 2026) reports:\n• Rachel Apa, 24, running her first marathon, collapsed in Central Park about 2 miles from the finish and died that evening at Mount Sinai.\n• Her father told the New York Times she died of rhabdomyolysis, a rapid breakdown of skeletal muscle that floods the blood with myoglobin and potassium, which can cause kidney failure and fatal heart arrhythmias.\n• Endurance athletes, intense spin or CrossFit classes, military training and hot physical work raise the risk; dehydration makes it worse.\n• Symptoms include muscle pain, weakness and dark urine; treatment is IV fluids, sometimes dialysis.\n\nNote: this is McCullough's own concern; the report attributes the death to rhabdomyolysis, not to the heart. Mainstream medical bodies consider vaccine-related myocarditis rare and usually mild, and the cited paper is a preprint that was not peer reviewed at the time.",
+   "full_he": "\"אני חושש שדלקת תת־קלינית של שריר הלב וקרום הלב יכולה להופיע לראשונה כדום לב, בעת הצפה של אדרנלין.\" @McCulloughFund\n\nהתמונה בפוסט היא העמוד הראשון של מאמר טרום־פרסום (preprint) של פיטר א. מקולה וניקולס הולשר (קרן מקולה), \"ריבוד סיכון לדום לב עתידי אחרי חיסון לקורונה\" (Preprints 2024). מופיעים בו שני תרשימים:\n\n• תרשים 1, \"דום לב שנגרם מחיסון לקורונה\": המודל של הכותבים, שלפיו חלבון הספייק במחזור הדם, עם נוגדנים שלא מנטרלים אותו, פוגע בלב; הצפה של קטכולאמינים (דופמין, נוראפינפרין, אדרנלין) בזמן ספורט או ביקיצה (3–6 לפנות בוקר) עלולה לעורר טכיקרדיה חדרית או פרפור חדרים ולהוביל לדום לב אצל מי שיש לו דלקת שריר לב תת־קלינית הקשורה לחיסון.\n• תרשים 2, \"גישה לריבוד סיכון לדום לב עתידי אחרי חיסון\": בירור ראשוני של היסטוריית הדבקה וחיסונים (סוג, מנות, תאריכים); רמת נוגדני ספייק כוללת (מתחת ל־1,000 AU/ml חשיפה נמוכה, מעל 1,000 חשיפה גבוהה); בירור לבבי עם בדיקות דם (טרופונין, BNP/NT-proBNP, גלקטין־3, D-dimer), אקו לב ו־MRI לבבי; למי שבסיכון נמוך אין צורך בבירור נוסף והמלצתם היא להימנע ממנות דחף, ומי שיש לו סימני סיכון גבוה (טרופונין מוגבר, מקטע פליטה מתחת ל־55%, נוזל בקרום הלב, האדרה מאוחרת ב־MRI) מופנה לקרדיולוגיה ואלקטרופיזיולוגיה.\n\nהפוסט שהוא ציטט (ניו יורק פוסט): \"הסיבוך הבריאותי הפתאומי שיכול להתפתח מפעילות גופנית – רצת מרתון בריאה בת 24 מניו יורק מתה אחרי המרוץ.\"\n\nהכתבה המקושרת בניו יורק פוסט (3 בנובמבר 2026) מדווחת:\n• רייצ'ל אפה, בת 24, שרצה את המרתון הראשון שלה, קרסה בסנטרל פארק כ־3 ק\"מ לפני קו הסיום ומתה באותו ערב בבית החולים מאונט סיני.\n• אביה סיפר לניו יורק טיימס שהיא מתה מרבדומיוליזיס, פירוק מהיר של שרירי השלד שמציף את הדם במיוגלובין ובאשלגן, ועלול לגרום לכשל כליות ולהפרעות קצב קטלניות.\n• ספורטאי סבולת, שיעורי ספינינג או קרוספיט אינטנסיביים, אימונים צבאיים ועבודה פיזית בחום מעלים את הסיכון; התייבשות מחמירה את המצב.\n• התסמינים: כאבי שרירים, חולשה ושתן כהה; הטיפול הוא נוזלים לווריד, ולפעמים דיאליזה.\n\nהערה: זה החשש של מקולה עצמו; הכתבה מייחסת את המוות לרבדומיוליזיס ולא ללב. גופי הרפואה המרכזיים רואים בדלקת שריר לב הקשורה לחיסון תופעה נדירה ובדרך כלל קלה, והמאמר שהוא מצטט הוא טרום־פרסום שלא עבר ביקורת עמיתים בזמנו."
+  },
   {
    "id": "johnson-eat-like-bryan-meals-delivered",
    "topic": "johnson",
