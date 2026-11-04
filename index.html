@@ -258,6 +258,7 @@
   .more-metrics .mgrid { padding: 0.25rem 0 0.5rem; }
   .metrics-box .mgrid { padding: 0.5rem; border-top: 1px solid var(--line); }
   .priv-apps[hidden] { display: none; }
+  #metrics[hidden] { display: none !important; } /* hidden until the session check confirms the site owner */
   .app-lock { display: inline-flex; vertical-align: 0.05em; margin-inline-start: 0.25rem; color: #f5c542; opacity: 0.85; }
   html[data-theme="light"] .app-lock { color: #b8901c; }
   .priv-apps h2 .lock { font-size: 0.95em; margin-inline-end: 0.3rem; }
@@ -407,7 +408,7 @@
       <button type="button" data-act="newtab">פתיחה בחלון חדש</button>
       <button type="button" data-act="show" id="tile-menu-show" hidden>הצג מוסתרות</button>
     </div>
-    <details class="more-apps metrics-box" id="metrics"><summary><span aria-hidden="true">📊</span><span id="metrics-title"></span><span class="chev" aria-hidden="true"></span></summary><div class="mgrid" id="mgrid"></div></details>
+    <details class="more-apps metrics-box" id="metrics" hidden><summary><span aria-hidden="true">📊</span><span id="metrics-title"></span><span class="chev" aria-hidden="true"></span></summary><div class="mgrid" id="mgrid"></div></details>
   </section>
   <section class="apps priv-apps" id="priv-apps" aria-labelledby="priv-title" hidden>
     <h2 id="priv-title"></h2>
@@ -464,6 +465,12 @@ var topics = [];
 // hidden: true keeps an app off the grid (files untouched); remove the flag to show it again. Clockify hidden at Ron's request (2026-10-28).
 var apps = [
   { hidden: true, href: "clockify/index.html",  icon: "clockify/icon-192.png",     he: "קלוקיפיי",      en: "Clockify",  heLine: "שעון מעורר פרטי עם רשימות משימות",   enLine: "My private alarm clock with task lists" },
+  { href: "listify/index.html",   icon: "listify/icon-192.png",   he: "ליסטיפיי",      en: "Listify",    heLine: "רשימות לפי קטגוריות", enLine: "Lists by category" },
+  { href: "yomanli/index.html",   icon: "yomanli/icon-192.png?v=6", he: "יומןלי",      en: "Yomanli",    heLine: "יומן אישי: פסקה ונושא, לפי יום או נושא", enLine: "A personal journal: a paragraph and a topic, by day or topic" },
+  { href: "rehabify/index.html",  icon: "rehabify/icon-192.png",  he: "ריהאביפיי",     en: "Rehabify",   heLine: "ספירת ימים נקיים וכלים לרגעי חשק", enLine: "Clean-day counter and tools for cravings" },
+  { href: "rogali/index.html",    icon: "rogali/icon-192.png",    he: "רוגעלי",        en: "Rogali",     heLine: "צ'ק-אין רגשי, נשימה וקרקוע", enLine: "Mood check-ins, breathing and grounding" },
+  { href: "purchasify/index.html", icon: "purchasify/icon-192.png?v=6", he: "קניותיפיי", en: "Purchasify", heLine: "רשימת קניות שנשמרת אצלך", enLine: "A shopping list that stays yours" },
+  { href: "smokify/index.html",   icon: "smokify/icon-192.png",   he: "סמוקיפיי",      en: "Smokify",   heLine: "יומן עדין לרגעים ואלטרנטיבות", enLine: "A gentle log of moments and alternatives" },
   { href: "news/index.html",      icon: "news/icon-192.png",      he: "עדכוניפיי",     en: "Updatify",   heLine: "חדשות יומיות על אנשים וחברות שאני עוקב אחריהם", enLine: "Daily news on the people and companies I follow" },
   { href: "relax/index.html",     icon: "relax/icon-192.png",     he: "רילקסיפיי",   en: "Relaxify", heLine: "משחקי רגיעה: שבעה משחקים שקטים, בלי ניקוד ובלי טיימר", enLine: "Relaxing games: seven quiet games, no scores, no timers" },
   { href: "healify/index.html",   icon: "healify/icon-192.png",   he: "היליפיי",       en: "Healify",   heLine: "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר בריאות מלאה, כושר ושגשוג.", enLine: "An app for a complete understanding of your condition and matching solutions, toward full health, fitness and flourishing." },
@@ -1067,6 +1074,12 @@ if (window.RGHomeDnd) {
    it is loaded from my/apps.js only after the signed-in user is the owner, and a signed-out visitor or anyone else
    never requests it. The session is re-checked with Appwrite on load (RGAccount.ready); a 401 hides the section. */
 function isOwner(u) { return !!(u && u.id && OWNER_IDS.indexOf(u.id) !== -1); }
+var metricsConfirmed = false; // stay hidden until RGAccount.ready confirms the session; the cached user is not enough
+function syncMetrics() {
+  var el = document.getElementById("metrics");
+  if (!el) return;
+  el.hidden = !(metricsConfirmed && isOwner(window.RGAccount && RGAccount.user()));
+}
 function privHide() {
   document.getElementById("priv-apps").hidden = true;
   document.getElementById("priv-grid").innerHTML = "";
@@ -1079,6 +1092,7 @@ function loadPriv() {
   var u = window.RGAccount ? RGAccount.user() : null;
   document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide brand block + waitlist / contact / about / recommended game; install button stays
   updateInstall();
+  syncMetrics(); // metrics panel: owner only, and only after the session check below confirms them
   if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} renderPriv(); return; }
   if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
   renderPriv();
@@ -1099,7 +1113,7 @@ function loadPriv() {
 if (window.RGAccount) {
   loadPriv();
   RGAccount.onChange(loadPriv);
-  RGAccount.ready.then(loadPriv);
+  RGAccount.ready.then(function () { metricsConfirmed = true; loadPriv(); });
 }
 /* ---------- Account: language + background follow the signed-in user across devices ---------- */
 if (window.RGAccount) {
@@ -1121,7 +1135,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=70", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=72", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */

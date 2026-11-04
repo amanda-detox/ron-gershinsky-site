@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<title>סמוקיפיי</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="סמוקיפיי">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<link rel="stylesheet" href="../my/common.css">
+<link rel="stylesheet" href="../shared/rg-public.css">
+<style>
+  .hero { margin: 10px 0 0; }
+  .hero img { width: 44px; height: 44px; border-radius: 12px; }
+  .hero h1 { font-size: 24px; }
+  .tabs { display: flex; gap: 6px; margin-top: 12px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .tab { flex: 1; min-height: 44px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 16px; font-weight: 800; }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .logbtn { display: block; width: 100%; min-height: 60px; margin-top: 12px; border: 0; border-radius: 18px; background: var(--accent); color: var(--accentink); font-size: 20px; font-weight: 800; box-shadow: var(--shadow); }
+  .summary { margin-top: 12px; padding: 14px 12px 12px; }
+  .summary h2, .week h3, .sech { margin: 0; font-size: 16px; font-weight: 800; }
+  .sum { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 8px; margin: 6px 0 0; font-size: 18px; font-weight: 800; }
+  .sum .n-cig { color: var(--blue); }
+  .sum .n-alt { color: #e6c15a; }
+  html[data-theme="light"] .sum .n-alt { color: #8a6a10; }
+  .sum .dot { color: var(--faint); font-weight: 700; }
+  .week { margin-top: 14px; }
+  .weekhead { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .weektot { color: var(--muted); font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .cap, .hintline { margin: 4px 0 0; color: var(--faint); font-size: 13px; line-height: 1.4; }
+  .bars { display: flex; align-items: stretch; gap: 4px; margin-top: 10px; }
+  .bcol { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .bval { height: 18px; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--blue); }
+  .bcol[data-cig="0"] .bval { color: var(--faint); font-weight: 700; }
+  .btrack { width: 100%; max-width: 26px; height: 92px; border-radius: 10px; background: var(--line); display: flex; align-items: flex-end; overflow: hidden; }
+  .btrack i { display: block; width: 100%; border-radius: 8px 8px 3px 3px; background: linear-gradient(180deg, #ffe7a3, #e0a92a); }
+  html[data-theme="light"] .btrack i { background: linear-gradient(180deg, #e0a92a, #b8860b); }
+  .bcol.is-today .btrack { box-shadow: 0 0 0 2px var(--accent); }
+  .blab { min-height: 2.2em; display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; line-height: 1.15; font-weight: 800; color: var(--muted); }
+  .bcol.is-today .blab { color: var(--accent); }
+  html[data-theme="light"] .bcol.is-today .blab { color: var(--blue); }
+  .bdate { font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .sech { margin: 16px 4px 8px; }
+  .empty { margin: 8px 0; padding: 16px 14px; text-align: center; color: var(--muted); }
+  .empty p { margin: 0; }
+  .listcard { padding: 2px 8px; }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list > li { position: relative; display: flex; align-items: center; gap: 4px; min-height: 54px; padding: 6px 4px; border-bottom: 1px solid var(--line); overflow: hidden; touch-action: pan-y; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .list > li:last-child { border-bottom: 0; }
+  .list > li .body, .list > li .txt, .list > li .note { touch-action: pan-y; }
+  .list > li > * { transition: transform .18s ease; }
+  .list > li.swiping > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list > li.swiping, .list > li.swiping * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .list > li::before, .list > li::after { position: absolute; top: 50%; width: 28px; height: 28px; margin-top: -14px; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; font-size: 20px; }
+  .list > li::before { content: "🗑"; left: 12px; }
+  .list > li::after { content: "✏️"; right: 12px; }
+  .list > li.sw-r::before, .list > li.sw-l::after { opacity: .55; }
+  .list > li.sw-r.sw-go::before, .list > li.sw-l.sw-go::after { opacity: 1; }
+  .list > li .txt, .list > li .note, .list > li input, .list > li select { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+  @media (pointer: coarse) {
+    .list > li .txt, .list > li .note, .list > li input, .list > li select { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  }
+  .list .ihandle { flex: none; align-self: stretch; width: 44px; min-height: 44px; margin-inline-start: -4px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; touch-action: none; cursor: grab; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
+  .list .ihandle:active { transform: scale(1.12); }
+  .list > li.sorting { z-index: 3; background: var(--card); box-shadow: 0 0 0 2px var(--accent), 0 10px 24px rgba(0,0,0,.45); border-radius: 14px; }
+  body.idragging .list > li:not(.sorting) { pointer-events: none; }
+  .body { flex: 1; min-width: 0; padding: 8px 4px; border: 0; background: none; color: inherit; text-align: start; border-radius: 8px; cursor: pointer; }
+  .txt { display: block; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; }
+  .note { display: block; margin-top: 2px; color: var(--muted); font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; }
+  .when { color: var(--accent); font-weight: 800; font-variant-numeric: tabular-nums; margin-inline-end: 6px; }
+  .addform { margin-top: 8px; }
+  .addrow { display: flex; gap: 8px; }
+  .addform input, .ed input, .ed select, .sheet .s-note { min-width: 0; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 16.5px; outline: none; }
+  .addform input[type=text] { flex: 1; height: 50px; padding: 0 14px; }
+  .addform input:focus, .ed input:focus, .ed select:focus, .sheet .s-note:focus { border-color: var(--accent); }
+  .addform ::placeholder, .ed ::placeholder, .sheet .s-note::placeholder { color: var(--faint); }
+  .addform button[type=submit] { flex: none; height: 50px; padding: 0 16px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  .addextra { margin-top: 8px; }
+  .addextra input { width: 100%; height: 44px; padding: 0 14px; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .kind { min-height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--muted); font-size: 14px; font-weight: 700; }
+  .kind[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: var(--accentink); }
+  .ed { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 6px 2px 8px; }
+  .ed input[type=text], .ed select { height: 44px; padding: 0 12px; }
+  .ed .row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 14.5px; font-weight: 700; }
+  .btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .btn.quiet { color: var(--muted); }
+  .btn.quiet:hover { color: var(--fg); border-color: var(--accent); }
+  details.day { margin: 8px 0; padding: 0 12px; }
+  details.day > summary { display: flex; justify-content: space-between; align-items: center; gap: 8px; min-height: 48px; cursor: pointer; list-style: none; font-weight: 800; }
+  details.day > summary::-webkit-details-marker { display: none; }
+  .daycount { color: var(--muted); font-size: 13px; font-weight: 700; text-align: end; }
+  .drophint { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 30; margin: 0; max-width: 90vw; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--accent); box-shadow: 0 6px 18px rgba(0,0,0,.35); text-align: center; pointer-events: none; font-size: 12.5px; color: var(--accent); font-weight: 700; }
+  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheet { width: 100%; max-width: 460px; max-height: 85vh; overflow-y: auto; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
+  .sheet h3 { margin: 0 4px; font-size: 18px; }
+  .sheet .s-note { height: 48px; padding: 0 14px; }
+  .mlist { display: flex; flex-direction: column; gap: 6px; }
+  .mi { min-height: 52px; padding: 8px 14px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16.5px; font-weight: 700; text-align: start; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .mi .mn { min-width: 0; overflow-wrap: anywhere; }
+  .mi .mc { flex: none; color: var(--faint); font-size: 13px; font-weight: 700; }
+  .mnote { margin: 0 4px; color: var(--muted); font-size: 14px; }
+  .toast { position: fixed; left: 50%; top: calc(14px + env(safe-area-inset-top)); z-index: 70; transform: translate(-50%, -20px); max-width: 90vw; padding: 10px 16px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+  .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; }
+  .toast .tmsg { overflow: hidden; text-overflow: ellipsis; }
+  .tundo { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--accentink); color: var(--accent); font-weight: 800; font-size: 14px; }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; }
+  .status:empty { display: none; }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+</style>
+<script src="../shared/rg-bg.js" data-app="pubsmokify" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <div class="hero">
+    <img src="icon-192.png" alt="" width="44" height="44">
+    <div><h1 data-i18n="title"></h1><p class="sub" data-i18n="sub"></p></div>
+  </div>
+  <p class="hintline" id="store-note"></p>
+  <main>
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab" id="tab-log" data-tab="log" role="tab" aria-selected="true"></button>
+      <button type="button" class="tab" id="tab-alt" data-tab="alt" role="tab" aria-selected="false"></button>
+    </div>
+    <p class="drophint" id="drophint" hidden></p>
+    <div id="panels"></div>
+  </main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "./sw.js";
+window.RGMY_STRINGS = {
+  he: {
+    doc: "סמוקיפיי", title: "סמוקיפיי", sub: "יומן עדין לרגעים. בלי שיפוט, רק בחירה מודעת.",
+    tabLog: "יומן", tabAlt: "אלטרנטיבות", logBtn: "לרשום רגע", pickTitle: "מה בחרת עכשיו?",
+    notePh: "הערה קצרה (לא חובה)", today: "היום", todayEntries: "הרשומות של היום",
+    cigOne: "סיגריה", cigMany: "סיגריות", altOne: "אלטרנטיבה", altMany: "אלטרנטיבות",
+    week: "סיגריות השבוע", weekCap: "כמה סיגריות ביום. אלטרנטיבות נשארות ביומן ולא בעמודות.", weekTotal: "סה״כ {n}",
+    weekAria: "עמודות של מספר הסיגריות בכל יום בשבוע האחרון",
+    emptyToday: "עוד אין רשומות היום. כשעולה חשק, לחיצה אחת מספיקה.",
+    history: "ימים קודמים", noHistory: "ימים קודמים יופיעו כאן.",
+    types: "סוגי הרגעים", typesHint: "הסדר כאן הוא סדר הבחירה. החלקה ימינה מוחקת, שמאלה עורכת. גרירה ב־☰ מסדרת. תנועה למעלה ולמטה נשארת גלילה.",
+    addType: "סוג חדש", add: "הוסף", roleCig: "סיגריה", roleAlt: "אלטרנטיבה", asCig: "נספר כסיגריה", asAlt: "אלטרנטיבה",
+    altIntro: "רעיונות רכים לצד הסיגריה. אפשר להוסיף, לערוך, להסיר ולסדר.",
+    altHint: "החלקה ימינה מוחקת, שמאלה עורכת. גרירה ב־☰ מסדרת. תנועה למעלה ולמטה נשארת גלילה.",
+    altEmpty: "הרשימה ריקה. הוסף למעלה משהו שמתאים לך.", altPh: "אלטרנטיבה חדשה",
+    noTypes: "אין סוגים עדיין. הוסף סוג למטה, ואז אפשר לרשום רגע.",
+    savedCig: "נרשם בעדינות. לשים לב זה כבר צעד.", savedAlt: "נרשם. בחרת רגע אחר, וזה יפה.",
+    deleted: "„{x}” הוסר", undo: "ביטול", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "הסרה",
+    dragItem: "גרירה לסידור", dropHint: "גרור למעלה או למטה ושחרר במקום הרצוי",
+    loading: "רגע אחד…", summary: "סיכום היום והשבוע", typePh: "שם הסוג",
+    localOnly: "נשמר במכשיר הזה", localNote: "בלי חשבון, היומן נשמר רק במכשיר הזה.",
+    accountNote: "היומן שמור בחשבון שלך, ורק אתה יכול לראות אותו.",
+    synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור. השינויים נשמרו במכשיר ויסונכרנו כשהרשת תחזור"
+  },
+  en: {
+    doc: "Smokify", title: "Smokify", sub: "A gentle log for moments. No judgment, only a conscious choice.",
+    tabLog: "Log", tabAlt: "Alternatives", logBtn: "Log a moment", pickTitle: "What did you choose just now?",
+    notePh: "Short note (optional)", today: "Today", todayEntries: "Today's entries",
+    cigOne: "cigarette", cigMany: "cigarettes", altOne: "alternative", altMany: "alternatives",
+    week: "Cigarettes this week", weekCap: "Cigarettes per day. Alternatives stay in the log and out of the bars.", weekTotal: "Total {n}",
+    weekAria: "Bars for how many cigarettes on each day of the last week",
+    emptyToday: "Nothing logged today yet. When a craving shows up, one tap is enough.",
+    history: "Earlier days", noHistory: "Earlier days will show up here.",
+    types: "Interval types", typesHint: "This order is the order in the picker. Swipe right to remove, swipe left to edit. Drag ☰ to reorder. Moving up or down stays a scroll.",
+    addType: "New type", add: "Add", roleCig: "Cigarette", roleAlt: "Alternative", asCig: "Counts as a cigarette", asAlt: "Alternative",
+    altIntro: "Soft ideas to stand beside a cigarette. Add, edit, remove and reorder.",
+    altHint: "Swipe right to remove, swipe left to edit. Drag ☰ to reorder. Moving up or down stays a scroll.",
+    altEmpty: "The list is empty. Add something that fits you.", altPh: "New alternative",
+    noTypes: "No types yet. Add one below, then you can log a moment.",
+    savedCig: "Saved, gently. Noticing is already a step.", savedAlt: "Saved. You chose a different moment, and that is a kind choice.",
+    deleted: "“{x}” removed", undo: "Undo", edit: "Edit", save: "Save", cancel: "Cancel", del: "Remove",
+    dragItem: "Drag to reorder", dropHint: "Drag up or down and release where you want it",
+    loading: "One moment…", summary: "Today and this week", typePh: "Type name",
+    localOnly: "Saved on this device", localNote: "Without an account, the log stays on this device.",
+    accountNote: "Your log is saved in your account, and only you can see it.",
+    synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline. Changes are saved on this device and will sync when you're back online"
+  }
+};
+</script>
+<script src="../shared/rg-account.js"></script>
+<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
+<script src="../my/common.js"></script>
+<script src="../shared/rg-isolate.js"></script>
+<script src="../shared/rg-public-store.js"></script>
+<script src="app.js?v=1"></script>
+
+<!-- rg-install v3: button only when the browser offers a real install prompt -->
+<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
+<div id="rg-inst-w" hidden><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
+<script>(function(){
+if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}
+var K="rg-inst-off",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),x=document.getElementById("rg-inst-x"),dp=null;
+var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה"},en:{b:"📲 Install app",x:"Close"}};
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
+function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);}
+function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
+function off(){try{return localStorage.getItem(K)==="1";}catch(e){return false;}}
+function U(){w.hidden=!(dp&&!sa()&&!off());}
+R();U();
+addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;U();});
+addEventListener("appinstalled",function(){dp=null;U();});
+b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
+x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
+})();</script>
+</body>
+</html>
