@@ -272,6 +272,19 @@ html[data-theme=dark] .card .sh svg{color:#f5c542}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translate(-50%,12px);z-index:40;max-width:calc(100% - 32px);background:var(--rd-bg);color:var(--rd-ink);border:1px solid var(--rd-gold);border-radius:999px;padding:9px 18px;font:700 14.5px var(--sans);box-shadow:0 8px 28px rgba(0,0,0,.35);opacity:0;transition:opacity .2s,transform .2s;text-align:center;pointer-events:none}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 .toast[hidden]{display:none}
+/* "still in development" for סכם לי: small centered card, navy/cream and gold, no red */
+.pop-back{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:22px;background:rgba(6,17,43,.46)}
+.pop-back[hidden]{display:none}
+.pop{width:min(100%,340px);background:#0f2350;color:#fff;border:1px solid rgba(245,197,66,.7);border-radius:18px;padding:20px 18px 16px;box-shadow:0 16px 44px rgba(6,17,43,.4);text-align:center}
+.pop h2{margin:0 0 8px;font-size:18px;line-height:1.35;font-weight:800;color:#fff}
+.pop p{margin:0 0 16px;font-size:15px;line-height:1.5;color:#d6e2fb}
+.pop-ok{font:700 15px var(--sans);color:#0a1a3f;background:#f5c542;border:0;border-radius:999px;padding:8px 22px;cursor:pointer}
+.pop-ok:hover{filter:brightness(1.05)}
+.pop-ok:active{transform:scale(.97)}
+html[data-theme=light] .pop{background:#fffdf8;color:#0b1f4d;border-color:#c99a1e;box-shadow:0 16px 40px rgba(11,31,77,.16)}
+html[data-theme=light] .pop h2{color:#0b1f4d}
+html[data-theme=light] .pop p{color:#22396b}
+html[data-theme=light] .pop-ok{color:#0a1a3f;background:#f5c542}
 /* summaries tab uses Summarify's navy / cream page, so the red sunset background stays on the news tabs only */
 html[data-theme=dark][data-summ="1"]{--pagebg:radial-gradient(120% 60% at 50% -10%,#173a85 0%,#0f2760 38%,#0a1a3f 65%,#06112b 100%);--bg2:#06112b;--card:rgba(15,35,80,.78);--ink:#fff;--ink2:#dbe5fb;--mute:#a9bbdf;--dim:#8a9dc4}
 html[data-theme=light][data-summ="1"]{--pagebg:linear-gradient(180deg,#f6f2ea 0%,#f3efe6 50%,#ebe5d8 100%);--bg2:#ebe5d8;--card:#fffdf8}
@@ -368,8 +381,9 @@ html[data-theme=dark] .sumview .ssh svg{color:#f5c542}
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <div class="sheet-back" id="rd-sheet" hidden><div class="rdr" role="dialog" aria-modal="true" aria-labelledby="rd-title"><div class="grab"></div><div class="rhd"><div class="tt"><h2 id="rd-title"></h2><div class="rmeta" id="rd-meta"></div></div><button type="button" class="rsh" id="rd-share"></button><button type="button" class="x" id="rd-close">×</button></div><div class="rdr-scroll"><div class="body" id="rd-body"></div><div class="rft"><a id="rd-src" class="src" href="#" target="_blank" rel="noopener noreferrer"></a></div></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="pop-back" id="summ-dev" hidden><div class="pop" role="dialog" aria-modal="true" aria-labelledby="summ-dev-title"><h2 id="summ-dev-title"></h2><p id="summ-dev-text"></p><button type="button" class="pop-ok" id="summ-dev-close"></button></div></div>
 <script src="../shared/rg-account.js"></script>
-<script src="app.js?v=25"></script>
+<script src="app.js?v=27"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
