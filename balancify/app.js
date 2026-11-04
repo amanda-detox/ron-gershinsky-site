@@ -1,9 +1,8 @@
 /* Balancify (באלאנסיפיי). Content lives in data.js.
    Every list: add items, edit the title and the note, reorder, swipe right = delete (undo), swipe left = move.
-   Swipe up toggles ✓ and swipe down toggles ✕ (a quick flick only). The mark is stored on the
-   synced user record (marks[id] = "ok" | "no"); the same direction again clears it.
+   The mark is stored on the synced user record (marks[id] = "ok" | "no"); tapping the same mark again clears it.
    Listify keeps its own swipe code in my/ideas (no shared module); directions here are physical:
-   clientX right = delete, clientX left = move to another list. clientY up = ✓, clientY down = ✕. */
+   clientX right = delete, clientX left = move to another list. A vertical drag scrolls the page. */
 (function () {
   "use strict";
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-balancify-theme", BG_KEY = "rg-balancify-bg", CHK_PREFIX = "rg-balancify-checked-";
@@ -39,7 +38,7 @@
     he: {
       add: "הוספת פריט…", addBtn: "הוספה", del: "נמחק", undo: "ביטול", moved: "הועבר אל ",
       moveTo: "להעביר לאיזו רשימה?", cancel: "ביטול",
-      hint: "החלק ימינה למחיקה ושמאלה להעברה. לחיצה ארוכה בוחרת פריט (מסגרת זהובה), ואז החלקה למעלה מסמנת ✓ ומעבירה לנבחרים, ולמטה מסמנת ✕. גרור את ☰ לשינוי הסדר.",
+      hint: "החלק ימינה למחיקה ושמאלה להעברה. גרור את ☰ לשינוי הסדר.",
       drag: "גרור לשינוי הסדר", empty: "הרשימה ריקה. אפשר להוסיף פריט בשדה למעלה.",
       itemEdit: "עריכת פריט", titlePh: "כותרת פריט", notePh: "הערה אישית…",
       noteSave: "שמירה", noteClear: "מחיקת ההערה",
@@ -52,7 +51,7 @@
     en: {
       add: "Add an item…", addBtn: "Add", del: "Deleted", undo: "Undo", moved: "Moved to ",
       moveTo: "Move to which list?", cancel: "Cancel",
-      hint: "Swipe right to delete, swipe left to move. A long-press selects an item (gold outline); then swipe up for ✓ (it moves to Chosen) and down for ✕. Drag ☰ to reorder.",
+      hint: "Swipe right to delete, swipe left to move. Drag ☰ to reorder.",
       drag: "Drag to reorder", empty: "The list is empty. Add an item in the field above.",
       itemEdit: "Edit item", titlePh: "Item title", notePh: "A personal note…",
       noteSave: "Save", noteClear: "Delete note",
@@ -520,17 +519,7 @@
     $("clear-btn").hidden = isPower;
     $("listfoot").hidden = false;
     if (!isPower) renderCount(list);
-    paintArmed();
   }
-  function paintArmed() {
-    var nodes = document.querySelectorAll(".drow.armed");
-    for (var i = 0; i < nodes.length; i++) nodes[i].classList.remove("armed");
-    if (!armedId) return;
-    var all = document.querySelectorAll(".drow[data-id]"), found = false;
-    for (var j = 0; j < all.length; j++) if (all[j].getAttribute("data-id") === armedId) { all[j].classList.add("armed"); found = true; }
-    if (!found) armedId = null;
-  }
-  function clearArmed() { if (!armedId) return; armedId = null; paintArmed(); }
 
   function toast(msg, undoFn) {
     var el = $("toast");
@@ -783,10 +772,10 @@
     }
   }
 
-  /* Sideways swipe is immediate (right delete, left move). Up / down marks only after a
-     long-press selects the row. Until then a vertical drag is native scrolling. ✓ also
-     moves the item into the נבחרים group; clearing ✓ puts it back. */
-  var g = null, armedId = null;
+  /* Sideways swipe is immediate (right delete, left move). A vertical drag is native
+     page scrolling and never marks the item. Tapping the mark square still toggles ✓,
+     which moves the item into נבחרים; clearing ✓ puts it back. */
+  var g = null;
   var sheetReadyAt = 0;
   function bootGestures() {
     var ul = $("items");
@@ -823,40 +812,8 @@
         else g.timer = setTimeout(lift, 180);
         return;
       }
-      var sc = scrollOf(li);
-      g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
-      g.hold = setTimeout(function () {
-        if (!g || g.li !== li || g.mode === "swipe" || g.mode === "drag" || g.handled) return;
-        if (Math.abs(g.dx || 0) > 12 || Math.abs(g.dy || 0) > 12) return;
-        armedId = li.getAttribute("data-id"); paintArmed();
-        swallow = true; setTimeout(function () { swallow = false; }, 450);
-        if (navigator.vibrate) try { navigator.vibrate(15); } catch (err) {}
-      }, 500);
+      g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType };
     });
-    function scrollOf(el) {
-      var n = el ? el.parentNode : null;
-      while (n && n !== document.body && n !== document.documentElement) {
-        var st = window.getComputedStyle(n);
-        if (/(auto|scroll|overlay)/.test(st.overflowY) && n.scrollHeight > n.clientHeight + 2) return n;
-        n = n.parentNode;
-      }
-      return document.scrollingElement || document.documentElement;
-    }
-    function finishFlick(cur) {
-      if (!cur || cur.handled || cur.mode === "swipe" || cur.mode === "drag" || cur.mode === "scroll") return false;
-      var id = cur.li.getAttribute("data-id");
-      if (!armedId || armedId !== id) return false;
-      var vdx = cur.dx || 0, vdy = cur.dy || 0, adx = Math.abs(vdx), ady = Math.abs(vdy);
-      cur.li.classList.remove("sw-u", "sw-d", "sgo", "swiping", "vswipe");
-      if (cur.face) cur.face.style.transform = "";
-      if (!(ady >= 40 && ady > adx * 1.5)) return false;
-      cur.handled = true;
-      swallow = true;
-      setTimeout(function () { swallow = false; }, 450);
-      clearArmed();
-      toggleMark(id, vdy < 0 ? "ok" : "no");
-      return true;
-    }
     document.addEventListener("pointermove", function (e) {
       if (!g || e.pointerId !== g.pid) return;
       if (g.mode === "drag") {
@@ -871,27 +828,15 @@
       }
       var dx = e.clientX - g.x, dy = e.clientY - g.y, adx = Math.abs(dx), ady = Math.abs(dy);
       g.dx = dx; g.dy = dy;
-      if (g.hold && (adx > 12 || ady > 12)) { clearTimeout(g.hold); g.hold = 0; }
-      if (g.mode === "maybe" || g.mode === "vert") {
-        if (g.mode === "maybe") {
-          if (adx < 12 && ady < 12) return;
-          if (adx > ady * 1.5) {
-            g.mode = "swipe";
-            g.li.classList.add("swiping");
-            try { g.face.setPointerCapture(e.pointerId); } catch (err) {}
-          } else if (ady > adx * 1.5) g.mode = "vert";
-          else { g = null; return; }
-        }
-        if (g && g.mode === "vert") {
-          if (adx > ady * 1.5 && adx >= 12) {
-            g.mode = "swipe";
-            g.li.classList.add("swiping");
-            try { g.face.setPointerCapture(e.pointerId); } catch (err2) {}
-          } else {
-            if (armedId && g.li && armedId === g.li.getAttribute("data-id") && ady >= 12) e.preventDefault();
-            return;
-          }
-        }
+      if (g.mode === "vert") return; // page scroll: never preventDefault, never turn it into a swipe or a mark
+      if (g.mode === "maybe") {
+        if (adx < 12 && ady < 12) return;
+        if (adx > ady * 1.5) {
+          g.mode = "swipe";
+          g.li.classList.add("swiping");
+          try { g.face.setPointerCapture(e.pointerId); } catch (err) {}
+        } else if (ady > adx * 1.5) { g.mode = "vert"; return; }
+        else { g = null; return; }
       }
       if (g && g.mode === "swipe") {
         e.preventDefault();
@@ -904,17 +849,14 @@
     });
     function end(e) {
       if (!g || e.pointerId !== g.pid) return;
-      if (g.type === "touch" && g.mode !== "swipe" && g.mode !== "drag" && (e.type === "pointerup" || e.type === "pointercancel")) {
-        if (e.type === "pointerup" && typeof e.clientX === "number") { g.dx = e.clientX - g.x; g.dy = e.clientY - g.y; }
-        if (e.type === "pointercancel") return;
-        var cur = g;
-        setTimeout(function () { if (g === cur && !cur.handled) { g = null; finishFlick(cur); } }, 40);
+      if (g.type === "touch" && g.mode !== "swipe" && g.mode !== "drag" && e.type === "pointercancel") {
+        g.sawCancel = true;
+        g.mode = "vert";
         return;
       }
       var cur = g;
       g = null;
       if (cur.timer) clearTimeout(cur.timer);
-      if (cur.hold) clearTimeout(cur.hold);
       if (cur.raf) cancelAnimationFrame(cur.raf);
       if (cur.mode === "swipe") {
         swallow = true;
@@ -923,14 +865,14 @@
         var dx = cur.dx || 0;
         var id = cur.li.getAttribute("data-id");
         cur.li.classList.remove("sdel", "smv", "sgo", "swiping");
-        if (dx > w) { clearArmed(); deleteById(id); return; }
-        if (dx < -w) { clearArmed(); cur.face.style.transform = ""; pickList(itemById(id)); return; }
+        if (dx > w) { deleteById(id); return; }
+        if (dx < -w) { cur.face.style.transform = ""; pickList(itemById(id)); return; }
         cur.face.style.transition = "transform .18s ease";
         cur.face.style.transform = "";
         setTimeout(function () { cur.face.style.transition = ""; }, 200);
         return;
       }
-      if (cur.mode !== "drag") { finishFlick(cur); return; }
+      if (cur.mode !== "drag") return;
       if (cur.mode === "drag" && cur.lifted) {
         swallow = true;
         setTimeout(function () { swallow = false; }, 450);
@@ -945,16 +887,18 @@
     document.addEventListener("pointerup", end);
     document.addEventListener("pointercancel", end);
     document.addEventListener("touchend", function (e) {
-      if (!g || g.handled || g.mode === "swipe" || g.mode === "drag") return;
+      if (!g || g.handled || g.mode === "drag") return;
       var tch = e.changedTouches && e.changedTouches[0]; if (!tch) return;
-      g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
-      var cur = g; g = null;
-      if (cur.timer) clearTimeout(cur.timer);
-      if (cur.hold) clearTimeout(cur.hold);
-      finishFlick(cur);
+      if (g.mode === "swipe" && g.sawCancel) {
+        g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
+        end({ pointerId: g.pid, type: "touchend" });
+        return;
+      }
+      if (g.mode === "swipe") return;
+      g = null;
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
-      if (!g || g.mode === "drag") return;
+      if (!g || g.mode === "drag" || g.mode === "vert") return;
       var tch = e.touches && e.touches[0]; if (!tch) return;
       g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
       var adx = Math.abs(g.dx), ady = Math.abs(g.dy);
@@ -962,13 +906,12 @@
         g.face.style.transform = "translateX(" + g.dx + "px)";
         return;
       }
-      if (g.mode !== "maybe" && g.mode !== "vert") return;
-      if (g.hold && (adx > 12 || ady > 12)) { clearTimeout(g.hold); g.hold = 0; }
+      if (g.mode !== "maybe") return;
       if (adx < 12 && ady < 12) return;
       if (adx > ady * 1.5) {
         g.mode = "swipe";
         g.li.classList.add("swiping");
-      } else g.mode = "vert";
+      } else if (ady > adx * 1.5) g.mode = "vert";
     }, { passive: true });
     ul.addEventListener("keydown", function (e) {
       var handle = e.target.closest && e.target.closest(".hdl");
@@ -990,14 +933,7 @@
       var again = ul.querySelector('.drow[data-id="' + li.getAttribute("data-id") + '"] .hdl');
       if (again) again.focus();
     });
-    document.addEventListener("pointerdown", function (e) {
-      if (!armedId) return;
-      var row = e.target.closest && e.target.closest(".drow[data-id]");
-      if (row && row.getAttribute("data-id") === armedId) return;
-      clearArmed();
-    }, true);
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && armedId) clearArmed(); });
-    ul.addEventListener("contextmenu", function (e) { if (armedId || (g && g.hold)) e.preventDefault(); });
+    ul.addEventListener("contextmenu", function (e) { if (g && (g.mode === "swipe" || g.mode === "drag")) e.preventDefault(); });
     document.addEventListener("click", function (e) {
       if (!swallow) return;
       swallow = false;
