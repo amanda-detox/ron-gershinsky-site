@@ -558,7 +558,65 @@ const ENVS = {
     const defs = [[75, 2.6, 0xb5a596], [105, 4.5, 0xe8c47a], [140, 5, 0x3d7fe0, 'earth'], [175, 3.6, 0xd2603b], [240, 13, 0xd9b08c], [310, 11, 0xe6d29c, 'ring'], [375, 8, 0x9fe0f0], [430, 7.5, 0x4a6df0]];
     if (GV.pc) defs.forEach((d, i) => { d[2] = GV.pc[i]; d[1] *= rand(0.7, 1.5); if (d[3] === 'earth') d[3] = ''; });
     const planets = [];
-    for (const [r, s, c, k] of defs) {
+    /* shared low-poly parts for satellites and data centers — scenery only, not added to avoid */
+    const hullM = M(0xd7e4ff, { metalness: 0.48, roughness: 0.32, emissive: 0x9ec0ff, emissiveIntensity: 0.42, flatShading: false });
+    const panelM = M(0x1a3d8f, { metalness: 0.22, roughness: 0.4, emissive: 0x3d6fe8, emissiveIntensity: 0.5, flatShading: false });
+    const goldM = E(0xf3cf6b, 0.9, { metalness: 0.48, roughness: 0.28, flatShading: false });
+    const glowM = E(0x9fd4ff, 1.35, { flatShading: false });
+    const boxAt = (w, h, d, x, y, z) => { const geo = new THREE.BoxGeometry(w, h, d); geo.translate(x, y, z); return geo; };
+    const cylAt = (rt, rb, h, y) => { const geo = new THREE.CylinderGeometry(rt, rb, h, 8); if (y) geo.translate(0, y, 0); return geo; };
+    const mergeGeos = (list) => {
+      let nv = 0, ni = 0;
+      for (const geo of list) { nv += geo.attributes.position.count; ni += geo.index.count; }
+      const pos = new Float32Array(nv * 3), nrm = new Float32Array(nv * 3), idx = new Uint16Array(ni);
+      let vo = 0, io = 0;
+      for (const geo of list) {
+        pos.set(geo.attributes.position.array, vo * 3); nrm.set(geo.attributes.normal.array, vo * 3);
+        const id = geo.index.array;
+        for (let i = 0; i < id.length; i++) idx[io + i] = id[i] + vo;
+        vo += geo.attributes.position.count; io += id.length; geo.dispose();
+      }
+      const out = new THREE.BufferGeometry();
+      out.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+      out.setAttribute('normal', new THREE.BufferAttribute(nrm, 3));
+      out.setIndex(new THREE.BufferAttribute(idx, 1));
+      return out;
+    };
+    const satHull = mergeGeos([boxAt(0.78, 0.5, 1.25, 0, 0, 0), boxAt(0.34, 0.16, 0.34, 0, 0.32, -0.55)]);
+    const satPanels = mergeGeos([boxAt(1.7, 0.05, 0.82, -1.05, 0.02, 0), boxAt(1.7, 0.05, 0.82, 1.05, 0.02, 0)]);
+    const satGold = mergeGeos([boxAt(1.82, 0.035, 0.94, -1.05, -0.02, 0), boxAt(1.82, 0.035, 0.94, 1.05, -0.02, 0), boxAt(0.22, 0.08, 0.22, 0, 0.4, -0.55)]);
+    const satTip = new THREE.IcosahedronGeometry(0.1, 0); satTip.translate(0, 0.62, 0.2);
+    const dcHull = mergeGeos([cylAt(0.95, 0.95, 3.8, 0), boxAt(0.55, 0.42, 0.72, 0, 0.15, 1.15), boxAt(0.55, 0.42, 0.72, 0, 0.15, -1.15), cylAt(0.05, 0.07, 1.15, 2.45)]);
+    const dcGold = mergeGeos([
+      cylAt(0.62, 0.98, 0.5, 2.05), cylAt(0.98, 0.62, 0.5, -2.05),
+      boxAt(3.75, 0.045, 1.86, 2.75, 0.22, 0), boxAt(3.75, 0.045, 1.86, -2.75, 0.22, 0),
+      boxAt(3.3, 0.045, 1.5, 2.55, -0.98, 0), boxAt(3.3, 0.045, 1.5, -2.55, -0.98, 0)
+    ]);
+    const dcGlow = mergeGeos([cylAt(1.04, 1.04, 0.14, 1.15), cylAt(1.04, 1.04, 0.14, 0), cylAt(1.04, 1.04, 0.14, -1.15), boxAt(0.16, 1.7, 0.42, 0, 0.15, 1.0)]);
+    const dcTip = new THREE.IcosahedronGeometry(0.16, 0); dcTip.translate(0, 3.15, 0);
+    const dcPanels = mergeGeos([boxAt(3.55, 0.055, 1.7, 2.75, 0.3, 0), boxAt(3.55, 0.055, 1.7, -2.75, 0.3, 0), boxAt(3.1, 0.055, 1.35, 2.55, -0.9, 0), boxAt(3.1, 0.055, 1.35, -2.55, -0.9, 0)]);
+    const dcRing = new THREE.TorusGeometry(1.72, 0.07, 6, 28); dcRing.rotateX(Math.PI / 2);
+    const orbiters = [], rings = [], motes = [];
+    const addSat = (piv, origin, dist, phase, tilt, speed, sc) => {
+      const tiltG = new THREE.Group(); tiltG.position.x = origin; tiltG.rotation.z = tilt; piv.add(tiltG);
+      const spin = new THREE.Group(); spin.rotation.y = phase; tiltG.add(spin);
+      const sat = new THREE.Group(); sat.position.x = dist; sat.scale.setScalar(sc); spin.add(sat);
+      sat.add(new THREE.Mesh(satHull, hullM), new THREE.Mesh(satPanels, panelM), new THREE.Mesh(satGold, goldM), new THREE.Mesh(satTip, glowM));
+      orbiters.push([spin, speed]);
+    };
+    const addStation = (parent, origin, dist, phase, tilt, speed, sc, lift) => {
+      const tiltG = new THREE.Group(); tiltG.position.x = origin; tiltG.rotation.z = tilt; parent.add(tiltG);
+      const spin = new THREE.Group(); spin.rotation.y = phase; tiltG.add(spin);
+      const st = new THREE.Group(); st.position.set(dist, lift, 0); st.scale.setScalar(sc); spin.add(st);
+      st.add(new THREE.Mesh(dcHull, hullM), new THREE.Mesh(dcGold, goldM), new THREE.Mesh(dcGlow, glowM), new THREE.Mesh(dcPanels, panelM), new THREE.Mesh(dcTip, glowM));
+      const ring = new THREE.Mesh(dcRing, goldM); st.add(ring); rings.push(ring);
+      const halo = glowSprite(0xc5dcff, 15, 0.48); st.add(halo);
+      const dust = points(16, () => sphereShell(rand(2.4, 3.6)), 0.42, { colors: () => pick([0xf3cf6b, 0xbfe4ff, 0xffffff]), opacity: 0.85 });
+      st.add(dust); motes.push(dust);
+      orbiters.push([spin, speed]);
+    };
+    defs.forEach((def, index) => {
+      const [r, s, c, k] = def;
       const piv = new THREE.Group(); piv.rotation.y = Math.random() * Math.PI * 2; g.add(piv);
       const p = ball(s, M(c, { flatShading: false, roughness: 0.9 }), 2); p.position.x = r; piv.add(p);
       if (k === 'ring') { const ring = new THREE.Mesh(new THREE.RingGeometry(s * 1.4, s * 2.3, 40), M(0xe9d7a8, { side: THREE.DoubleSide, transparent: true, opacity: 0.8 })); ring.rotation.x = -Math.PI / 2 + 0.4; p.add(ring); }
@@ -566,7 +624,21 @@ const ENVS = {
       const orbit = new THREE.Mesh(new THREE.RingGeometry(r - 0.25, r + 0.25, 128), new THREE.MeshBasicMaterial({ color: 0x8fb0ff, transparent: true, opacity: 0.18, side: THREE.DoubleSide, depthWrite: false }));
       orbit.rotation.x = -Math.PI / 2; g.add(orbit);
       planets.push([piv, 1.2 / Math.sqrt(r), p]);
-    }
+      const home = index === 2;
+      const nSat = home ? 5 : (index === 4 || index === 5 ? 2 : 1);
+      const sc = clamp(s * 0.16, 0.48, 1.45);
+      for (let i = 0; i < nSat; i++) {
+        const dist = k === 'ring' ? s * 2.9 + i * s * 0.22 : home ? s * [1.48, 1.72, 2.36, 2.62, 2.94][i] : (s + sc * 2.15 + 0.7) + i * Math.max(1.2, sc * 1.7);
+        addSat(piv, r, dist, home ? i * 1.25 + 0.35 : rand(0, Math.PI * 2), (i % 2 ? 1 : -1) * (0.28 + i * 0.16), (i % 2 ? 1 : -1) * (home ? 0.42 + i * 0.06 : 0.5), sc);
+      }
+      if (home || index === 4 || index === 5) {
+        const stSc = home ? 1.22 : clamp(s * 0.1, 1.05, 1.55);
+        const dist = home ? s + 13 : k === 'ring' ? s * 3.9 : s * 2.35;
+        addStation(piv, r, dist, home ? 0.85 : rand(0, 6), home ? 0.4 : (index === 4 ? 0.22 : -0.32), home ? 0.15 : (index === 4 ? 0.08 : -0.07), stSc, home ? 1.6 : 0);
+      }
+    });
+    /* one station on its own solar orbit, in view above the lane toward Earth */
+    addStation(g, 0, 170, -1.325, 0.55, 0.04, 1.5, 28);
     /* put the earth near the start so there is something to see right away */
     planets[2][0].rotation.y = -Math.PI / 2 + 0.25;
     /* black holes: fly into one for bonus points (+50 and a swirl) */
@@ -584,7 +656,17 @@ const ENVS = {
     }
     return { g, gv, sky: GV.sky, fog: null, hemi: [0x8899cc, 0x111122, 0.35], sun: [0xffffff, 0.0, [0, 1, 0]],
       start: new THREE.Vector3(0, 25, 200), minY: -160, maxY: 160, R: 480, spark: 0xfff0b0,
-      avoid: [[0, 0, 0, 52]], holes, update(t, dt) { for (const h of holes) { h.disk.rotation.z += dt * 1.6; h.disk2.rotation.z -= dt * 0.9; h.cd = Math.max(0, h.cd - dt); } for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; } sun.rotation.y += dt * 0.05; } };
+      /* sun only — planets, satellites and data centers stay non-solid so you can fly through them */
+      avoid: [[0, 0, 0, 52]], holes,
+      update(t, dt) {
+        for (const h of holes) { h.disk.rotation.z += dt * 1.6; h.disk2.rotation.z -= dt * 0.9; h.cd = Math.max(0, h.cd - dt); }
+        for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; }
+        for (const [spin, w] of orbiters) spin.rotation.y += w * dt;
+        for (const ring of rings) ring.rotation.y += dt * 0.55;
+        for (const m of motes) m.rotation.y -= dt * 0.3;
+        sun.rotation.y += dt * 0.05;
+        glowM.emissiveIntensity = 1.15 + Math.sin(t * 2.2) * 0.4;
+      } };
   },
   galaxy() {
     const g = new THREE.Group();
