@@ -784,10 +784,11 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
   }
 
-  /* ---------- items: swipe right = delete, swipe left = move (immediate, same as before).
-     ✓ / ✕ only after a long-press selects the row (gold outline). Until then a vertical
-     drag is native scrolling. Tap outside the row, or finishing the mark, clears the selection.
-     The ☰ handle lifts the row at once (no long-press). ---------- */
+  /* ---------- items: swipe right = delete, swipe left = move. The gesture starts on any part of the row
+     (title, note, checkbox, padding, ☰, price). Direction locks on the first clear axis: horizontal slides the
+     row, vertical is native page scroll (touch-action: pan-y) unless the row was long-pressed first.
+     ✓ / ✕ only after that long-press (gold outline): up = ✓ (נבחרים), down = ✕, drawn in the checkbox.
+     A vertical drag on ☰ reorders (no long-press). A mouse drag on the title can still select text until it is clearly sideways. ---------- */
   function bootItemDrag() {
     var main = document.querySelector("main"), AXIS = 12, VGO = 40, HOLD = 500, SWIPE = 0.35;
     function reset() {
@@ -800,6 +801,7 @@
       if (idrag && idrag.li) {
         idrag.li.classList.remove("swiping", "vswipe", "sw-r", "sw-l", "sw-go", "sw-u", "sw-d", "sw-vgo");
         idrag.li.style.removeProperty("--sx"); idrag.li.style.removeProperty("--sy");
+        var box = idrag.boxEl; if (box && idrag.boxText != null) box.textContent = idrag.boxText;
       }
     }
     function scrollOf(el) {
@@ -827,64 +829,87 @@
       return true;
     }
     function clearSel() { var sl = window.getSelection && window.getSelection(); if (sl && !sl.isCollapsed) sl.removeAllRanges(); }
+    function capturePtr() {
+      var el = idrag.cap && idrag.cap.setPointerCapture ? idrag.cap : idrag.li;
+      try { el.setPointerCapture(idrag.pid); } catch (e2) { try { idrag.li.setPointerCapture(idrag.pid); } catch (e3) {} }
+    }
     function armH() {
-      if (idrag.swipe) return;
+      if (!idrag || idrag.swipe || idrag.lifted) return;
+      if (idrag.hold) { clearTimeout(idrag.hold); idrag.hold = 0; }
       if (idrag.fromText) clearSel();
       idrag.swipe = true; idrag.axis = "h";
       idrag.li.classList.add("swiping");
-      try { idrag.li.setPointerCapture(idrag.pid); } catch (e2) {}
+      capturePtr();
     }
     function paintH(dx) {
       var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
       idrag.li.style.setProperty("--sx", dx + "px");
       idrag.li.classList.toggle("sw-r", dx > 0); idrag.li.classList.toggle("sw-l", dx < 0); idrag.li.classList.toggle("sw-go", go);
     }
-    /* A mouse drag that starts on the title is a text selection until it is clearly a sideways swipe.
-       Vertical never calls preventDefault unless this row is already selected. */
+    /* While a selected row is dragged up or down, the pending ✓ / ✕ sits in the checkbox square. */
+    function paintV(dy) {
+      if (!idrag || armedId !== idrag.id) return;
+      var ady = Math.abs(dy), go = ady >= VGO;
+      idrag.li.classList.add("vswipe");
+      idrag.li.classList.toggle("sw-u", dy < 0); idrag.li.classList.toggle("sw-d", dy > 0); idrag.li.classList.toggle("sw-vgo", go);
+      var box = idrag.li.querySelector(".ckbox"); if (!box) return;
+      if (idrag.boxText == null) { idrag.boxEl = box; idrag.boxText = box.textContent; }
+      box.textContent = ady < 8 ? idrag.boxText : (dy < 0 ? "✓" : "✕");
+    }
+    function beginLift() {
+      if (!idrag || idrag.lifted || idrag.swipe) return;
+      var li = idrag.li, ul = li.parentNode;
+      if (!ul || (ul.id !== "list-active" && ul.id !== "list-done" && ul.id !== "list-ck")) return;
+      if (idrag.hold) { clearTimeout(idrag.hold); idrag.hold = 0; }
+      idrag.lifted = true; idrag.axis = "v";
+      idrag.f = ul.id === "list-done" ? "dord" : "order";
+      idrag.sorter = makeSorter([].slice.call(ul.children), li, idrag.y, null);
+      document.body.classList.add("idragging");
+      capturePtr();
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+      var tip = $("drophint"); if (tip) { tip.textContent = t("dropHint"); tip.hidden = false; }
+    }
+    /* First clear axis wins (direction lock). Vertical does not call preventDefault unless the row is selected or this is the ☰ reorder. */
     function follow(dx, dy) {
+      if (!idrag || idrag.handled) return "";
       idrag._dx = dx; idrag._dy = dy;
+      if (idrag.lifted) return "v";
       if (idrag.hold && (Math.abs(dx) > AXIS || Math.abs(dy) > AXIS)) { clearTimeout(idrag.hold); idrag.hold = 0; }
       if (idrag.swipe) { paintH(dx); return "h"; }
-      var adx = Math.abs(dx), ady = Math.abs(dy), text = idrag.fromText;
+      var adx = Math.abs(dx), ady = Math.abs(dy);
       if (!idrag.axis) {
         if (adx < AXIS && ady < AXIS) return "";
         if (adx > ady * 1.5) idrag.axis = "h";
-        else { idrag.axis = "v"; return armedId === idrag.id ? "v" : ""; }
+        else if (ady > adx * 1.5) idrag.axis = "v";
+        else return "";
       }
       if (idrag.axis === "v") {
-        if (adx > ady * 1.5 && adx >= AXIS) idrag.axis = "h";
-        else return armedId === idrag.id && ady >= AXIS ? "v" : "";
+        if (armedId === idrag.id && ady >= AXIS) { paintV(dy); return "v"; }
+        if (idrag.fromHandle && !idrag.sawCancel) { beginLift(); return idrag.lifted ? "v" : ""; }
+        return "";
       }
-      if (idrag.axis === "h") {
-        var w = idrag.li.offsetWidth || 1;
-        if ((!text || adx >= w * SWIPE) && adx > ady * 1.5) { armH(); paintH(dx); return "h"; }
-      }
-      return "";
+      armH(); paintH(dx); return "h";
     }
-    main.addEventListener("pointerdown", function (e) {
-      var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
-      if (e.pointerType === "mouse" && e.button !== 0) return;
-      var h = e.target.closest(".ihandle");
-      if (h) { // drag handle: lift now
-        var ul = li.parentNode; if (!ul || (ul.id !== "list-active" && ul.id !== "list-done" && ul.id !== "list-ck")) return;
-        e.preventDefault(); reset(); hideHint();
-        idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: true, f: ul.id === "list-done" ? "dord" : "order" };
-        idrag.sorter = makeSorter([].slice.call(ul.children), li, e.clientY, null);
-        document.body.classList.add("idragging");
-        try { h.setPointerCapture(e.pointerId); } catch (e2) {}
-        if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
-        var tip = $("drophint"); if (tip) { tip.textContent = t("dropHint"); tip.hidden = false; }
-        return;
-      }
-      if (e.target.closest("button,input,select,textarea,summary,a")) return;
+    function track(e, fromHandle) {
       reset();
+      var li = e.target.closest(".list > li[data-id]");
       var sc = scrollOf(li);
-      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note"), scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0 };
+      idrag = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, type: e.pointerType, lifted: false, t: Date.now(), axis: "", fromHandle: !!fromHandle, fromText: e.pointerType === "mouse" && !!e.target.closest(".txt,.note,input,textarea"), cap: e.target && e.target.setPointerCapture ? e.target : li, scroller: sc, scrollTop: sc.scrollTop, winY: window.scrollY, hold: 0, _dx: 0, _dy: 0 };
       idrag.hold = setTimeout(function () {
         if (!idrag || idrag.li !== li || idrag.swipe || idrag.lifted || idrag.handled) return;
         if (Math.abs(idrag._dx || 0) > AXIS || Math.abs(idrag._dy || 0) > AXIS) return;
         armRow(idrag.id);
       }, HOLD);
+    }
+    main.addEventListener("pointerdown", function (e) {
+      var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      var h = e.target.closest(".ihandle");
+      if (h) { // ☰: horizontal = swipe, vertical = reorder. Neither waits for a long-press.
+        if (!li.parentNode || (li.parentNode.id !== "list-active" && li.parentNode.id !== "list-done" && li.parentNode.id !== "list-ck")) return;
+        e.preventDefault(); hideHint(); track(e, true); return;
+      }
+      track(e, false);
     });
     document.addEventListener("pointerdown", function (e) {
       if (!armedId) return;
@@ -894,18 +919,46 @@
     }, true);
     document.addEventListener("pointermove", function (e) {
       if (!idrag || e.pointerId !== idrag.pid) return;
-      var dx = e.clientX - idrag.x, dy = e.clientY - idrag.y;
-      if (idrag.lifted) { e.preventDefault(); idrag.sorter.move(e.clientY); return; }
-      var act = follow(dx, dy);
+      if (idrag.sawCancel && !idrag.swipe && !idrag.lifted) return;
+      if (idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
+      var act = follow(e.clientX - idrag.x, e.clientY - idrag.y);
+      if (idrag && idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
       if (act === "h" || act === "v") e.preventDefault();
     });
+    function endSwipe(d, sdx) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true; setTimeout(function () { noClick = false; }, 400);
+      var w = (d.li && d.li.offsetWidth) || 1, sid = d.id;
+      reset();
+      if (Math.abs(sdx) >= w * SWIPE) {
+        clearArmed();
+        var x = items[sid];
+        if (sdx > 0 && x && !x.deleted) { delWithUndo(sid); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
+        else if (sdx < 0 && x && !x.deleted) moveMenu(sid); // left = move to another list
+      }
+    }
+    function endLift(d) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true; setTimeout(function () { noClick = false; }, 400);
+      var r = d.sorter ? d.sorter.end() : { moved: false, order: [] };
+      d.sorter = null;
+      var f = d.f;
+      reset();
+      if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); }), f); changed(); }
+    }
     function up(e) {
-      if (!idrag || e.pointerId !== idrag.pid) return;
+      if (!idrag || e.pointerId !== idrag.pid || idrag.handled) return;
       var d = idrag;
-      // the browser cancels the pointer once a vertical pan starts; touchend still has the distance
-      if (d.type === "touch" && !d.swipe && !d.lifted && (e.type === "pointerup" || e.type === "pointercancel")) {
-        if (e.type === "pointerup" && typeof e.clientX === "number") { d._dx = e.clientX - d.x; d._dy = e.clientY - d.y; }
-        if (e.type === "pointercancel") return;
+      // A vertical pan cancels the pointer; touchend still has the distance. Once cancelled, stay vertical so the page scroll is not also a swipe.
+      if (d.type === "touch" && e.type === "pointercancel") {
+        d.sawCancel = true;
+        if (!d.swipe && !d.lifted) d.axis = "v";
+        return;
+      }
+      if (d.type === "touch" && !d.swipe && !d.lifted && e.type === "pointerup") {
+        if (typeof e.clientX === "number") { d._dx = e.clientX - d.x; d._dy = e.clientY - d.y; }
         var cur = d;
         setTimeout(function () {
           if (idrag !== cur || cur.handled) return;
@@ -913,24 +966,13 @@
         }, 40);
         return;
       }
-      if (d.swipe) {
-        noClick = true; setTimeout(function () { noClick = false; }, 400);
-        var w = d.li.offsetWidth || 1, sdx = e.type === "pointerup" ? e.clientX - d.x : 0, sid = d.id;
-        reset();
-        if (Math.abs(sdx) >= w * SWIPE) {
-          clearArmed();
-          var x = items[sid];
-          if (sdx > 0 && x && !x.deleted) { delWithUndo(sid); if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {} } // right = delete
-          else if (sdx < 0 && x && !x.deleted) moveMenu(sid); // left = move to another list
-        }
+      if (d.swipe || d.axis === "h") {
+        var sdx = (e.type === "pointerup" && typeof e.clientX === "number") ? e.clientX - d.x : (d._dx || 0);
+        endSwipe(d, sdx);
         return;
       }
-      if (d.lifted) {
-        noClick = true; setTimeout(function () { noClick = false; }, 400);
-        var r = d.sorter.end(); d.sorter = null;
-        reset();
-        if (r.moved) { setItemOrder(r.order.map(function (li) { return li.getAttribute("data-id"); }), d.f); changed(); }
-      } else if (!commitFlick(d, e.type === "pointerup" ? e.clientX - d.x : (d._dx || 0), e.type === "pointerup" ? e.clientY - d.y : (d._dy || 0))) {
+      if (d.lifted) { endLift(d); return; }
+      if (!commitFlick(d, e.type === "pointerup" ? e.clientX - d.x : (d._dx || 0), e.type === "pointerup" ? e.clientY - d.y : (d._dy || 0))) {
         var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
         var sl = window.getSelection && window.getSelection();
         if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
@@ -940,18 +982,33 @@
     document.addEventListener("pointerup", up);
     document.addEventListener("pointercancel", up);
     document.addEventListener("touchend", function (e) {
-      if (!idrag || idrag.handled || idrag.swipe || idrag.lifted) return;
+      if (!idrag || idrag.handled) return;
       var tch = e.changedTouches && e.changedTouches[0]; if (!tch) return;
       var dx = tch.clientX - idrag.x, dy = tch.clientY - idrag.y, d = idrag;
+      d._dx = dx; d._dy = dy;
+      // Mouse drags commit on pointerup. A touchend that belongs to a mouse (or a touch the pointer still owns)
+      // must not finish the swipe early with a stale touch point. After the browser cancels the pointer, touchend is the one with the distance.
+      if (d.type !== "touch" && !d.sawCancel) return;
+      if (d.lifted) { if (d.sawCancel) endLift(d); return; }
+      if (d.swipe || d.axis === "h") { if (d.sawCancel) endSwipe(d, dx); return; }
       if (!commitFlick(d, dx, dy)) { d.handled = true; reset(); }
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
-      if (!idrag || idrag.lifted) return;
+      if (!idrag || idrag.handled || idrag.sawCancel) return;
       var tch = e.touches && e.touches[0]; if (!tch) return;
+      if (idrag.lifted && idrag.sorter) { idrag.sorter.move(tch.clientY); return; }
       follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
+      if (idrag && idrag.lifted && idrag.sorter) idrag.sorter.move(tch.clientY);
     }, { passive: true });
+    document.addEventListener("selectstart", function (e) {
+      if (!idrag || idrag.handled) return;
+      if (idrag.swipe || idrag.axis === "h" || idrag.lifted || idrag.fromHandle) e.preventDefault();
+    }, true);
+    main.addEventListener("dragstart", function (e) {
+      if (idrag && e.target.closest && e.target.closest(".list > li")) e.preventDefault();
+    });
     main.addEventListener("contextmenu", function (e) {
-      if ((armedId || (idrag && idrag.hold)) && e.target.closest(".list > li")) e.preventDefault();
+      if ((armedId || (idrag && (idrag.hold || idrag.swipe || idrag.lifted))) && e.target.closest(".list > li")) e.preventDefault();
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && armedId && !$("sheet")) clearArmed(); });
   }
