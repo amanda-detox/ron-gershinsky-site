@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T08:22:02+02:00",
+ "updated": "2026-11-04T09:10:41+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,23 @@
   }
  ],
  "items": [
+  {
+   "id": "solana-657m-tokenized-stocks-monday-backpack",
+   "topic": "solana",
+   "date": "2026-11-04T06:34:10Z",
+   "url": "https://x.com/solana/status/2117867985763434940",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: מניות מטוקנות בהיקף 657 מיליון דולר נסחרו ביום שני",
+    "summary": "לפי סולאנה, זה יותר מכפול מכל יום אחר מאז ספטמבר, ו־598 מיליון דולר מתוכם הגיעו מ־Backpack Securities."
+   },
+   "en": {
+    "title": "Solana: $657M in tokenized stocks traded on Monday",
+    "summary": "Solana says it was more than double any other day since September, with Backpack Securities accounting for $598M of it."
+   },
+   "full_he": "חדשות: מניות מטוקנות בהיקף 657 מיליון דולר נסחרו על סולאנה ביום שני.\n\nזה יותר מכפול מכל יום אחר מאז ספטמבר. Backpack Securities אחראית ל־598 מיליון דולר מתוך הסכום.\n\nמה שמופיע בגרף שצורף (\"Solana: נפח המסחר במניות מטוקנות לפי מנפיק הטוקן\", מקור: Blockworks, נפח מסחר יומי במיליוני דולרים, מתחילת ספטמבר 2026):\n• ברוב הימים הנפח היה בין כ־50 ל־250 מיליון דולר, עם שיא קודם של כ־320 מיליון בסביבות 22 בספטמבר.\n• ב־2 בנובמבר 2026 הנפח קפץ לכ־657 מיליון דולר.\n• הפירוט לאותו יום: Backpack ‏597,661,662 דולר, xStocks ‏55,926,829 דולר, PreStocks ‏1,651,300 דולר, Ondo ‏1,291,224 דולר, Tessera Labs ‏82,685 דולר, Remora ‏1.59 דולר.\n• סך הכול: 656,613,703 דולר.",
+   "full_en": "BREAKING: $657M in tokenized stocks traded on Solana on Monday.\n\nMore than double any other day since September. Backpack Securities made up $598M of it.\n\nWhat the attached chart shows (\"Solana: Tokenized Equities Volume by Token Issuer\", source: Blockworks, daily trading volume in USD millions, from early September 2026):\n• Most days were between roughly $50M and $250M, with a previous peak of about $320M around September 22.\n• On November 2, 2026, volume jumped to about $657M.\n• The breakdown for that day: Backpack $597,661,662, xStocks $55,926,829, PreStocks $1,651,300, Ondo $1,291,224, Tessera Labs $82,685, Remora $1.59.\n• Total: $656,613,703."
+  },
   {
    "id": "musk-space-lasers-election-joke",
    "topic": "musk",
