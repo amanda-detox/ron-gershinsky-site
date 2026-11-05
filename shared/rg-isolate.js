@@ -11,7 +11,8 @@
     pubrehabify: "rg-pub-rehabify",
     pubrogali: "rg-pub-rogali",
     pubpurchasify: "rg-pub-purchasify",
-    pubsmokify: "rg-pub-smokify"
+    pubsmokify: "rg-pub-smokify",
+    pubhealify: "rg-pub-healify"
   };
 
   function scopeId(user) {
