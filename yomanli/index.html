@@ -34,6 +34,22 @@
   .status:empty { display: none; }
   .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
+  /* Bookmark: same glyph, gold, and states as Updatify (news/index.html .card .bm). 44px so a thumb can hit it. */
+  .jentry { position: relative; }
+  .jentry .bm { position: absolute; top: 0; inset-inline-end: -6px; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 1px solid transparent; border-radius: 50%; background: none; color: var(--faint); cursor: pointer; transition: color .15s, background .15s, transform .15s; }
+  .jentry .bm svg { width: 19px; height: 19px; }
+  .jentry .bm:hover { color: #b8892b; background: rgba(11, 42, 107, .06); }
+  .jentry .bm[aria-pressed="true"] { color: #b8892b; }
+  html[data-theme="dark"] .jentry .bm:hover { color: #e3bd5b; background: rgba(127, 182, 255, .1); }
+  html[data-theme="dark"] .jentry .bm[aria-pressed="true"] { color: #f5c542; }
+  .jentry .bm:active { transform: scale(.9); }
+  .jentry .meta, .jentry .jtext { padding-inline-end: 36px; }
+  .jentry form.grow textarea.inp { padding-inline-end: 44px; }
+  .chips .impchip { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; }
+  .chips .bi { display: inline-flex; color: #b8892b; }
+  html[data-theme="dark"] .chips .bi { color: #f5c542; }
+  .chips .bi svg { width: 14px; height: 14px; }
+  .chips button[aria-pressed="true"] .bi { color: inherit; }
 </style>
 <script src="../shared/rg-bg.js" data-app="pubyomanli" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -55,12 +71,12 @@
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
 </div>
-<script src="strings.js?v=3"></script>
+<script src="strings.js?v=4"></script>
 <script src="../shared/rg-account.js"></script>
 <script src="../my/common.js"></script>
 <script src="../shared/rg-isolate.js"></script>
 <script src="../shared/rg-public-store.js?v=1"></script>
-<script src="app.js?v=3"></script>
+<script src="app.js?v=4"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
