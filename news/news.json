@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-04T09:10:41+02:00",
+ "updated": "2026-11-05T05:35:29+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,482 @@
   }
  ],
  "items": [
+  {
+   "id": "spacex-aave-tokenized-stock-base",
+   "topic": "spacex",
+   "date": "2026-11-04T19:46:16Z",
+   "url": "https://x.com/i/trending/2118065130542190777",
+   "source": "X",
+   "he": {
+    "title": "Aave מאפשרת הלוואות USDC מול מניות SpaceX מטוקנות",
+    "summary": "Aave הוסיפה את מניית SpaceX המטוקנת של Coinbase ($SPCXc) לשוק V4 ב-Base. משתמשים שאינם מארה\"ב יכולים ללוות USDC מולה בלי למכור את המניות."
+   },
+   "en": {
+    "title": "Aave lists Coinbase's tokenized SpaceX stock for USDC borrowing on Base",
+    "summary": "Aave added Coinbase's tokenized SpaceX stock ($SPCXc) to its V4 market on Base, letting eligible non-U.S. users borrow USDC against it without selling the shares."
+   },
+   "full_he": "Aave הוסיפה את מניית SpaceX המטוקנת של Coinbase, $SPCXc, לשוק V4 שלה ב-Base, ומאפשרת למשתמשים זכאים מחוץ לארה\"ב ללוות USDC מולה.\n\n• זה ממשיך את השקת Equities Hub מספטמבר עם שבע מניות מטוקנות נוספות של Magnificent Seven מבית Coinbase, עם הזנות מחיר של Chainlink.\n• פעילות מוקדמת: כ-4,200 אסימונים בשווי כ-570 אלף דולר סופקו על ידי כ-30 ארנקים, עם מקדם בטוחה שמרני של 55%.\n• Base חגגה בפוסט: \"התחנה הבאה: מאדים.\"\n• סיפור קשור ב-X ציין גם ש-Dialectic Group's Starloop Machine מאפשרת הפקדות ליצירת תשואה ולהזנת הלוואות ב-Base דרך Makina, ומנכ\"ל Aave סטאני קולצ'וב הדגיש שמדובר בהלוואות מגובות מניות בפעולה.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Aave added Coinbase's tokenized SpaceX stock, $SPCXc, to its V4 market on Base, allowing eligible non-U.S. users to borrow USDC against it.\n\n• This follows the September launch of an Equities Hub with seven other Coinbase-tokenized stocks from the Magnificent Seven, backed by Chainlink price feeds.\n• Early activity includes about 4,200 tokens worth $570,000 supplied by 30 wallets, with a conservative 55% collateral factor.\n• Base celebrated with a post: \"Next stop: Mars.\"\n• A related X story also noted Dialectic Group's Starloop Machine enabling deposits for yield while powering loans on Base via Makina, and Aave CEO Stani Kulechov highlighted it as stock-backed lending in action.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "tesla-spacex-shares-drop-midterms",
+   "topic": "tesla",
+   "date": "2026-11-05T03:13:04Z",
+   "url": "https://x.com/i/trending/2117993236530942419",
+   "source": "X",
+   "he": {
+    "title": "מניות טסלה ו-SpaceX ירדו אחרי ניצחונות הדמוקרטים בבחירות האמצע",
+    "summary": "משקיעים מכרו מניות על רקע חשש לפיקוח רגולטורי חזק יותר על החברות של מאסק. טסלה ירדה בכ-5–6% ו-SpaceX בכ-5–7% או יותר."
+   },
+   "en": {
+    "title": "Tesla and SpaceX shares drop after Democratic midterm wins",
+    "summary": "Investors sold off amid fears of tougher regulatory scrutiny on Elon Musk's companies, with Tesla down about 5–6% and SpaceX falling 5–7% or more."
+   },
+   "full_he": "מניות טסלה ו-SpaceX ירדו במסחר שלפני הפתיחה אחרי שהדמוקרטים לקחו את שני בתי הקונגרס והפכו מרוצים מרכזיים בטקסס.\n\n• משקיעים מכרו מתוך חשש לפיקוח רגולטורי חזק יותר על החברות של אילון מאסק: טסלה ירדה בכ-5–6% ו-SpaceX בכ-5–7% או יותר, ומחקו עשרות מיליארדים משווי השוק.\n• החששות התמקדו בבדיקות אפשריות של חוזי SpaceX, בפיקוח על בינה מלאכותית ונהיגה אוטונומית, ובפעילות בטקסס שהפכה לדמוקרטית יותר, למרות ההשקעה הגדולה של מאסק ברפובליקנים.\n• חלק הזהירו משימועים בקונגרס, בעוד אנליסטים כמו מורגן סטנלי נשארו אופטימיים לגבי SpaceX עם יעדים מועלים, וסיכויי המיזוג נשארו סביב 75% לפני 2028.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Tesla and SpaceX stocks plunged in pre-market trading as Democrats took both chambers of Congress and flipped key Texas races.\n\n• Investors sold off amid fears of tougher regulatory scrutiny on Elon Musk's companies, with Tesla down 5–6% and SpaceX falling 5–7% or more, erasing tens of billions in market value.\n• Concerns centered on potential probes into SpaceX contracts, AI and autonomous driving oversight, and operations in now-Democratic Texas, despite Musk's heavy spending on Republicans.\n• While some warned of congressional hearings, analysts like Morgan Stanley stayed bullish on SpaceX with raised targets, and merger odds held at 75% before 2028.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "spacex-goldman-apollo-ai-chip-debt",
+   "topic": "spacex",
+   "date": "2026-11-05T02:22:00Z",
+   "url": "https://x.com/i/trending/2118164369401925725",
+   "source": "X",
+   "he": {
+    "title": "גולדמן זאקס ואפולו מוכרים פרוסות מחוב שבבי הבינה של SpaceX",
+    "summary": "גולדמן זאקס ואפולו משווקים חלקים של עד 500 מיליון דולר מעסקת המימון של כ-40 מיליארד דולר לרכישת שבבי Nvidia עבור SpaceX."
+   },
+   "en": {
+    "title": "Goldman Sachs and Apollo sell slices of SpaceX's $40B AI chip debt",
+    "summary": "Goldman Sachs and Apollo are marketing up to $500 million portions of SpaceX's roughly $40 billion GPU financing deal to investors ahead of full syndication."
+   },
+   "full_he": "גולדמן זאקס ואפולו גלובל מנג'מנט משווקים חלקים של עד 500 מיליון דולר מעסקת המימון השיא של SpaceX לשבבי בינה מלאכותית, לפני הסינדיקציה המלאה.\n\n• המבנה משתמש בחברה ייעודית של אפולו שרוכשת שבבי Nvidia Rubin וציוד, במימון חוב ובתשלום מראש של 7 מיליארד דולר על שכירות מ-SpaceX, ששוכרת את החומרה לחמש שנים ומשאירה את ההתחייבויות מחוץ למאזן.\n• השכבות כוללות הלוואה בכירה של 8.3 מיליארד דולר בתוספת 215 נקודות בסיס מעל אג\"ח ממשלתיות, ואג\"ח שונות עד תוספת של 395 נקודות בסיס.\n• המסירות אמורות להתחיל בתחילת 2027 כדי להזין את צורכי המחשוב של SpaceX לצד Starlink ושיגורים.\n• משקיעים מראים עניין חזק למרות חששות בשוק חוב הבינה המלאכותית, בעוד מניות SpaceX ירדו בכ-3.8% על רקע תגובות לבחירות.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Goldman Sachs and Apollo Global Management are marketing up to $500 million portions of SpaceX's record roughly $40 billion GPU financing deal to investors ahead of full syndication.\n\n• The structure uses an Apollo special purpose vehicle to buy Nvidia Rubin chips and equipment, funded by debt and a $7 billion lease prepayment from SpaceX, which will rent the hardware for five years while keeping obligations off its balance sheet.\n• Tranches include an $8.3 billion senior loan at 215 basis points over Treasuries and various bonds up to 395 basis points, with deliveries starting in early 2027 to fuel SpaceX's AI compute needs alongside Starlink and launches.\n• Observers note strong investor interest despite AI debt market jitters, though SpaceX shares dipped about 3.8% amid election reactions.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "musk-binder-arrest-nationalize",
+   "topic": "musk",
+   "date": "2026-11-05T03:12:47Z",
+   "url": "https://x.com/i/trending/2118097467287957985",
+   "source": "X",
+   "he": {
+    "title": "קריאות לעצור את מאסק ולהלאים את SpaceX נתקלו בזעם ברשת",
+    "summary": "אחרי הבחירות, פרשן בשם מאט בינדר הציע לעצור את אילון מאסק ולהלאים את SpaceX ו-Starlink. אלפי תגובות גינו את הרעיון."
+   },
+   "en": {
+    "title": "Calls to arrest Musk and nationalize SpaceX draw fierce backlash",
+    "summary": "After the midterms, commentator Matt Binder urged arresting Elon Musk and seizing SpaceX and Starlink. Thousands of replies condemned the idea."
+   },
+   "full_he": "ימים אחרי שהדמוקרטים התחזקו בבחירות האמצע של 2026, הפרשן מאט בינדר פרסם קריאה לעצור את אילון מאסק ולהלאים את SpaceX ו-Starlink, והפוסט משך אלפי תגובות זועמות.\n\n• רבים כינו את הרעיון חריגה דמוית פשיזם שפוגעת ביריבים פוליטיים ובקניין פרטי.\n• האסטרונאוט לשעבר טרי וירטס ציין בבדיחותא להפוך את מאסק שוב לדרום־אפריקאי, אבל דרום־אפריקאים כמו פומזילה ואן דאמה דחו ואמרו שהמדינה מלאה והם לא רוצים אותו.\n• הדיון מזכיר קריאות קודמות של רוברט רייך להלאים את Starlink ו-SpaceX, וגם עצומה לגרש את מאסק.\n• מאסק, אזרח אמריקאי מ־2002, כינה רעיונות כאלה פשע. פוסט נפרד של בינדר בנושא צבר יותר משני מיליון צפיות.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Just days after Democrats gained ground in the 2026 midterms, commentator Matt Binder posted a call to arrest Elon Musk and seize SpaceX and Starlink, igniting thousands of condemning replies.\n\n• Many labeled it fascist-like overreach that targets political foes and private property.\n• Former astronaut Terry Virts quipped about making Musk \"South African again,\" but South Africans like Phumzile Van Damme pushed back, saying their country is full and they don't want him.\n• The exchanges echo prior pushes from Robert Reich to nationalize Starlink and SpaceX, plus a petition to deport Musk.\n• Musk, a naturalized U.S. citizen since 2002, has called such ideas criminal. A separate Binder post on the theme drew over 2 million views.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "musk-crassus-comparison-election",
+   "topic": "musk",
+   "date": "2026-11-04T18:36:35Z",
+   "url": "https://x.com/i/trending/2118046930819584187",
+   "source": "X",
+   "he": {
+    "title": "מאסק הושווה לקראסוס אחרי ההפסד בהשקעה בבחירות",
+    "summary": "אחרי שהשקיע כמעט חצי מיליארד דולר ברפובליקנים וראה את הדמוקרטים מתחזקים, מאסק הפך לכוכב של מם היסטורי שמשווה אותו לקראסוס הרומי."
+   },
+   "en": {
+    "title": "Musk draws Crassus comparison after midterm spending setback",
+    "summary": "After pouring nearly half a billion into Republicans only to see Democrats surge, Elon Musk became the star of a historical meme likening him to Rome's Crassus."
+   },
+   "full_he": "אחרי שהשקיע כמעט חצי מיליארד דולר ברפובליקנים וראה את הדמוקרטים מתחזקים, אילון מאסק הפך לכוכב של מם היסטורי ב-X.\n\n• המם משווה אותו למרקוס ליקיניוס קראסוס, האיש העשיר ביותר ברומא, שצבאו נמחץ בפלישה לפרתיה ב־53 לפנה\"ס בקרב חרן.\n• היסטוריון עתיק פתח בחיזוי שמאסק אולי ירדוף עכשיו אחרי תהילה צבאית בחו\"ל, ואחריו הגיעו בדיחות על מלחמות לא פופולריות ועל סוף טרגי כמו זהב מותך.\n• מאסק ענה בסרקזם על \"לייזרי החלל שמשבשים בחירות\" שלא עבדו הפעם, ואוהבי קלאסיקה הפכו את המפלה הפוליטית לבדיחה קלילה על עושר ושאפתנות.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "After pouring nearly half a billion into Republicans only to see Democrats surge ahead, Elon Musk became the star of a clever historical meme on X.\n\n• The meme likens Musk to Marcus Licinius Crassus, Rome's richest man whose army was crushed invading Parthia in 53 B.C. at Carrhae.\n• An ancient historian kicked it off by predicting Musk might now chase military glory abroad, sparking quips about unpopular wars and tragic ends like molten gold.\n• Musk fired back with sarcasm about \"election-interfering space lasers\" that failed, as classics fans turned his political setback into lighthearted banter on wealth and ambition.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "grokbot-shopping-tools-order-tracking",
+   "topic": "grokbot",
+   "date": "2026-11-04T19:45:58Z",
+   "url": "https://x.com/i/trending/2117985850856219024",
+   "source": "X",
+   "he": {
+    "title": "Grok Bot משיק כלי קניות פשוטים עם מעקב הזמנות",
+    "summary": "Grok Bot מציג מוצרים בכרטיסים קומפקטיים עם תמונות, דירוגים ומחירים, ומאפשר להשוות, להזמין ולעקוב אחרי משלוחים. מאסק שיבח את היכולת."
+   },
+   "en": {
+    "title": "Grok Bot launches simplified shopping tools with order tracking",
+    "summary": "Grok Bot now shows products in compact cards with photos, ratings and prices, and can compare, order and track deliveries. Musk praised the flow."
+   },
+   "full_he": "Grok Bot השיק ב-3 בנובמבר כלי קניות שמציגים מוצרים בכרטיסים קומפקטיים עם תמונות, דירוגים, מחירים ופרטי חנות, עם עדיפות לפריטים במלאי והשוואות זו לצד זו.\n\n• אילון מאסק שיבח את המערכת על כך שהיא חוקרת רעיונות לרכישה, מבצעת קניות באישור המשתמש דרך Shop Pay, עוקבת אחרי משלוחים ואפילו מטפלת בהחזרות.\n• משתמשים בודקים אותה לדילים של בלאק פריידי, למעקב אחרי הזמנות מראש ולמנויים, ויש מי שבונים צוותים של בוטים ייעודיים למשימות כמו מעקב הוצאות.\n• העדכון מזיז את Grok Bot לכיוון סוכנים מתמשכים לעבודה מרובת שלבים, אף שאתרים כמו אמזון עלולים לחסום צ'ק־אאוט אוטומטי.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
+   "full_en": "Grok Bot rolled out shopping features on November 3 that display products in compact cards with photos, ratings, prices, and store details, prioritizing in-stock items and enabling side-by-side comparisons.\n\n• Elon Musk praised the system for researching ideas, handling purchases with user approval via Shop Pay, tracking deliveries, and even managing returns.\n• Users are testing it for Black Friday deals, preorder monitoring, and subscriptions, while some build teams of specialized bots for tasks like expense tracking.\n• The update shifts Grok Bot toward persistent agents for multi-step work, though sites like Amazon may block automated checkouts.\n\nThis is a summary of the X news story (its opening hook and summary)."
+  },
+  {
+   "id": "grokbot-try-amazing-assistant",
+   "topic": "grokbot",
+   "date": "2026-11-04T17:44:45Z",
+   "url": "https://x.com/elonmusk/status/2118036744662880439",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: נסו את Grok Bot — כמו להעסיק עוזר מדהים",
+    "summary": "מאסק ציטט משתמש שתיאר איך הבוט התקשר לחברת הביטוח שלו, קיבל שאלות באמצע השיחה וענה דרך כרטיס בצ'אט בלי לנתק."
+   },
+   "en": {
+    "title": "Musk: try Grok Bot — it's like hiring an amazing assistant",
+    "summary": "Musk quoted a user who described the bot calling his car insurer, taking mid-call questions via a chat card, and staying on the line."
+   },
+   "full_he": "נסו את Grok Bot. זה כמו להעסיק עוזר מדהים!\n\nהפוסט שהוא ציטט (Texas Twins Dad):\n\nפיצ'ר חדש ב-Grok Bot שגיליתי בשיחה. הבוט שלי התקשר היום לחברת הביטוח של הרכב כדי לשאול למה החידוש עלה ב-14% בלי אף תאונה. באמצע השיחה הנציג שאל שאלה.\n\nהבוט לא ניתק. הוא לא ביקש ממני לקחת את השיחה. כרטיס שאלה קפץ בצ'אט. הקלדתי את התשובה, והבוט המשיך את השיחה לבד.\n\nזה כמו להעביר פתק לעוזר בזמן שהוא עדיין בטלפון.\n\nGrok Bot זה כמו להעסיק עוזר אישי!",
+   "full_en": "Try Grok Bot. It's like hiring an amazing assistant!\n\nThe quoted post (Texas Twins Dad):\n\nNew Grok Bot feature I just discovered on a call. My bot called my car insurance today to ask why my renewal went up 14% with zero accidents. Mid-call, the rep asked a question.\n\nThe bot didn't hang up. It didn't make me take over the call. A question card popped up in my chat. I typed the answer, and the bot kept the call going on its own.\n\nIt's like passing a note to my assistant while they're still on the phone.\n\nGrok Bot is like hiring my personal assistant!"
+  },
+  {
+   "id": "spacex-starlink-one-network",
+   "topic": "spacex",
+   "date": "2026-11-04T15:04:01Z",
+   "url": "https://x.com/elonmusk/status/2117996293188718856",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: סוף סוף רשת אחת עם קליטה טובה בכל מקום",
+    "summary": "מאסק הגיב להודעת Starlink Mobile על רשת לוויינית וקרקעית משולבת בארה\"ב, עם שבבי Qualcomm לפריסת 5G מ־2027."
+   },
+   "en": {
+    "title": "Musk: at last one network with good signal everywhere",
+    "summary": "Musk replied to Starlink Mobile's plan for a fully integrated U.S. satellite and terrestrial network, using Qualcomm chips for 5G from 2027."
+   },
+   "full_he": "סוף סוף תהיה רשת אחת עם קליטה טובה בכל מקום!\n\nהפוסט שהוא ציטט (Starlink):\n\nStarlink Mobile בונה את הרשת הלוויינית והקרקעית המשולבת הראשונה בכל ארה\"ב, שתשמור על אנשים מחוברים בטלפון בכל מקום. תחנות הבסיס ב-5G ישתמשו בשבבי Qualcomm כדי להאיץ את הפריסה, החל מ־2027.",
+   "full_en": "At last there will be one network with good signal everywhere!\n\nThe quoted post (Starlink):\n\nStarlink Mobile is building the first fully-integrated US nationwide satellite and terrestrial network that will keep people connected on their phones no matter where they are. Our 5G base stations will leverage Qualcomm chips to accelerate deployment, starting in 2027."
+  },
+  {
+   "id": "spacex-starlink-free-dish-early",
+   "topic": "spacex",
+   "date": "2026-11-04T15:02:28Z",
+   "url": "https://x.com/elonmusk/status/2117995905525907769",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: צלחת חדשה בחינם ללקוחות Starlink הראשונים",
+    "summary": "מאסק אישר שמי שהתחברו ראשונים ל-Starlink ועדיין עם ערכת דור ראשון יכולים לקבל ערכת Standard חדשה בחינם, כולל תושבת והתקנה."
+   },
+   "en": {
+    "title": "Musk: free new dish for all early Starlink customers",
+    "summary": "Musk confirmed that earliest Starlink customers still on a first-generation kit can get a new Standard kit free, with a free mount and optional free install."
+   },
+   "full_he": "צלחת חדשה בחינם לכל לקוחות Starlink המוקדמים\n\nהפוסט שהוא ציטט (Sawyer Merritt):\n\nStarlink משיקה באופן רשמי שדרוג צלחת בחינם ללקוחותיה הראשונים.\n\n\"לקוחות זכאים שהיו בין הראשונים להתחבר ל-Starlink, ועדיין משתמשים בערכת דור ראשון, יכולים לקבל ערכת Standard חדשה ללא עלות. הלקוחות יקבלו תושבת בחינם, ויכולים לבחור התקנה בחינם. אם אתם זכאים לשדרוג, תקבלו הזמנה במייל.\"",
+   "full_en": "Free new dish for all early Starlink customers\n\nThe quoted post (Sawyer Merritt):\n\nStarlink is formally rolling out free dish upgrades for its earliest customers.\n\n\"Eligible customers who were among the first to connect with Starlink, and who are still using a first-generation kit can receive a new Standard kit at no cost. Customers will be provided with a free mount, and they can opt in for free installation. If you are eligible for this upgrade, you will receive an invitation by email.\""
+  },
+  {
+   "id": "grokbot-research-order-track-return",
+   "topic": "grokbot",
+   "date": "2026-11-04T15:00:14Z",
+   "url": "https://x.com/elonmusk/status/2117995339320070525",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Grok Bot יחקור, יזמין, יעקוב ויחזיר",
+    "summary": "מאסק תיאר את זרימת הקניות החדשה: הבוט חוקר רעיונות לרכישה, מביא מבחר, מזמין, עוקב אחרי הרכישות ומחזיר מה שלא רוצים."
+   },
+   "en": {
+    "title": "Musk: Grok Bot will research, order, track and return",
+    "summary": "Musk described the new shopping flow: the bot researches purchase ideas, brings a selection, orders them, tracks the purchases and returns what you don't want."
+   },
+   "full_he": "Grok Bot יחקור רעיונות לרכישה, יביא מבחר, יזמין אותם, יעקוב אחרי הרכישות ויחזיר כל דבר שאתם לא רוצים.\n\nהפוסט שהוא ציטט (Andrew Milich):\n\nלקנות דברים עם Bot נהיה טוב יותר.",
+   "full_en": "Grok Bot will research purchase ideas, bring back a selection, order them, track the purchases and return anything you don't want.\n\nThe quoted post (Andrew Milich):\n\nBuying things with Bot just got better."
+  },
+  {
+   "id": "spacex-qualcomm-starlink-mobile",
+   "topic": "spacex",
+   "date": "2026-11-04T14:36:12Z",
+   "url": "https://x.com/elonmusk/status/2117989292144525474",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: הטכנולוגיה של Qualcomm מצוינת",
+    "summary": "מאסק הגיב להודעת מנכ\"ל Qualcomm ש-SpaceX בחרה ב-Dragonwing להאיץ את רשת ה-5G הקרקעית של Starlink Mobile."
+   },
+   "en": {
+    "title": "Musk: Qualcomm's technology is excellent",
+    "summary": "Musk replied to Qualcomm's CEO saying SpaceX chose Dragonwing to accelerate Starlink Mobile's nationwide terrestrial 5G network."
+   },
+   "full_he": "הטכנולוגיה של Qualcomm מצוינת\n\nהפוסט שהוא ציטט (Cristiano Amon, מנכ\"ל Qualcomm):\n\nSpaceX בחרה ב-Qualcomm Dragonwing כדי להאיץ את רשת ה-5G הקרקעית הארצית של Starlink Mobile. יחד עם אילון מאסק וצוות SpaceX, אנחנו נרגשים לבנות תשתית סלולרית מובילה ונתיב ל-6G מבוסס בינה מלאכותית.",
+   "full_en": "Qualcomm's technology is excellent\n\nThe quoted post (Cristiano Amon, Qualcomm CEO):\n\nSpaceX selected Qualcomm Dragonwing to accelerate Starlink Mobile's nationwide terrestrial 5G network. Together with Elon Musk and the SpaceX team, we're excited to build world-leading cellular infrastructure and a path to AI-native 6G."
+  },
+  {
+   "id": "solana-metadao-apps-program",
+   "topic": "solana",
+   "date": "2026-11-04T21:22:25Z",
+   "url": "https://x.com/solana/status/2118091519030923751",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: בנו אפליקציית צרכן וגייסו דרך MetaDAO",
+    "summary": "סולאנה קידמה את תוכנית האפליקציות החדשה של MetaDAO למייסדי אפליקציות צרכניות, עם גיוסים קטנים יותר ומכירת אסימונים מוקדמת יותר לפי אבני דרך."
+   },
+   "en": {
+    "title": "Solana: build a consumer app, raise through MetaDAO",
+    "summary": "Solana amplified MetaDAO's new Apps Program for consumer-app founders, with smaller raises and earlier token sales tied to milestones."
+   },
+   "full_he": "1. בנו אפליקציית צרכן\n2. גיסו בסולאנה דרך MetaDAO\n\nהאבולוציה הבאה של מייסדים מגיעה באופן בלעדי לסולאנה.\n\nהפוסט שהוא ציטט (MetaDAO):\n\nתוכנית האפליקציות של MetaDAO\n\nאנחנו משיקים תוכנית גיוס חדשה שנבנתה למייסדי אפליקציות צרכניות.\n\nבהשוואה לגיוסים הרגילים שלנו, אפליקציות מגייסות סכומים קטנים יותר ומקצות חלק קטן יותר מהיצע האסימונים לתומכים.\n\nמייסדים יכולים גם להתחיל למכור אסימונים שנצברו מוקדם יותר, בכפוף לאבני דרך ביצועים ומגבלות מכירה.\n\nהצוות הראשון הוא 1609SAT, אפליקציית הכנה ל-SAT עם יותר מ-400 תלמידים משלמים וכ-5,000 דולר הכנסה חודשית בשלושת החודשים הראשונים.\n\nהגיוס של 100 אלף דולר של 1609SAT נפתח מחר ב-11 בבוקר לפי שעון החוף המערבי. MetaDAO תתרום 50 אלף דולר.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.",
+   "full_en": "1. Build a consumer app\n2. Raise on Solana through MetaDAO\n\nThe next evolution of founders is coming exclusively to Solana.\n\nThe quoted post (MetaDAO):\n\nMetaDAO Apps Program\n\nWe're launching a new fundraising program built for consumer app founders.\n\nCompared with our usual raises, apps raise smaller amounts and allocate a smaller share of their token supply to backers.\n\nFounders can also begin selling earned tokens sooner, subject to performance milestones and sales limits.\n\nOur first team is 1609SAT, an SAT prep app with 400+ paying students and ~$5k in monthly revenue in its first three months.\n\n1609SAT's $100k raise opens tomorrow at 11am PT. MetaDAO will be contributing $50k.\n\nThe rest of the post is a video, so there's no more text to show."
+  },
+  {
+   "id": "johnson-dunk-gdf15-mitochondria",
+   "topic": "johnson",
+   "date": "2026-11-04T19:21:00Z",
+   "url": "https://x.com/bryan_johnson/status/2118060964222488871",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: האימונים לסל בסל מתחברים ללחץ מיטוכונדריאלי",
+    "summary": "ג'ונסון מדווח שהדד־ליפט שלו עלה ב־74% (245→425 ליברות) בזמן אימון לסל, ושמדד GDF15 עלה וירד לפי עומס האימון."
+   },
+   "en": {
+    "title": "Bryan Johnson: dunk training ties to mitochondrial stress marker",
+    "summary": "Johnson says his deadlift is up 74% (245→425 lb) while training to dunk, and GDF15 rose and fell with workout difficulty."
+   },
+   "full_he": "אני מתאמן ממש קשה כדי לעשות סל בסל.\n\nהדד־ליפט עלה ב־74% (245 → 425 ליברות)\n\nככל הנראה המיטוכונדריות שלי לחוצות מזה.\n\nמדדנו GDF15 אחרי אימונים, והוא עולה ויורד לפי רמת הקושי של האימון.\n\nמה שמופיע בתרשים שצירף (שלוש דגימות דם — מה הזיז את מדד הלחץ המיטוכונדריאלי):\n\n• GDF15 (pg/mL, גבול 750): 1 בספטמבר 758 (מעל), 8 באוקטובר 820 (+8%), 29 באוקטובר 690 (בטווח).\n• עומס אימון (קק\"ל, 72 שעות לפני הדגימה): 929, אחר כך 1,190 (+28%), אחר כך 433 (−64%).\n• HRV בבוקר הדגימה (ms): 70.0, 64.2, 77.9.\n• HRV ביום שלפני (ms): 67.6, 61.6, 70.7.\n• מצב אימון: עומס רגיל → העומס הכבד ביותר → העומס הקל ביותר.\n\nזו טענה ומדידה שלו, לא המלצה רפואית.",
+   "full_en": "I've been training really hard to dunk a basketball.\n\nDeadlift up 74% (245 → 425 lb)\n\nApparently my mitochondria are stressed by this.\n\nWe've been measuring GDF15 after workouts and it rises and falls according to the difficulty level of the workout.\n\nFrom the chart he shared (three blood draws — what moved his mitochondrial stress marker):\n\n• GDF15 (pg/mL, limit 750): Sep 1 758 (over), Oct 8 820 (+8%), Oct 29 690 (in range).\n• Training load (kcal, 72 h before draw): 929, then 1,190 (+28%), then 433 (−64%).\n• HRV, morning of draw (ms): 70.0, 64.2, 77.9.\n• HRV, day before (ms): 67.6, 61.6, 70.7.\n• Training state: normal load → heaviest load → lightest load.\n\nThis is his own claim and measurement, not medical advice."
+  },
+  {
+   "id": "johnson-zombie-cells-dgla",
+   "topic": "johnson",
+   "date": "2026-11-04T17:46:00Z",
+   "url": "https://x.com/bryan_johnson/status/2118037057008456135",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג'ונסון: לתאי זומבי אולי יש מתג כיבוי",
+    "summary": "לדבריו, מחקר בעכברים מצא שתאים מזדקנים (senescent) דלים בחומצת השומן DGLA, והחזרתה גרמה למותם בפרפטוזיס בלי לפגוע בתאים בריאים."
+   },
+   "en": {
+    "title": "Johnson: zombie cells may have a kill switch",
+    "summary": "He says mouse research found senescent cells run low on the fatty acid DGLA, and restoring it killed many of them by ferroptosis while healthy cells survived."
+   },
+   "full_he": "לתאי זומבי אולי יש מתג כיבוי.\n\nככל שאנחנו מזדקנים, חלק מהתאים מפסיקים להתחלק אבל מסרבים למות.\n\nקוראים להם תאי \"זומבי\" (senescent). הם מצטברים ומדליקים דלקת ברקמה סביבם, וזה רע לגוף.\n\nקבוצת המחקר הזו מצאה איך להרוג אותם בעכברים.\n\nהם גילו שתאי הזומבי האלה דלים בחומצת שומן אחת: DGLA. אז הם החזירו אותה, ורבים מתאי הזומבי מתו בזמן שהתאים הבריאים שרדו.\n\nהם מתו בפרפטוזיס (ferroptosis), שבו הקרום החיצוני של התא מתחמצן ונשבר.\n\nיהיה מעניין אם זה ישוחזר בבני אדם.\n\nבתמונה שצירף: מאמר ב-Cell בשם \"Fatty acid desaturation controls cellular fate decisions between senescence and ferroptosis\", עם תקציר שאומר שמטבוליזם של חומצות שומן רב־בלתי־רוויות מעצב את גורל התא: חוסר ב-DGLA מעדיף הזדקנות תאית, והשלמה של DGLA מפעילה פרפטוזיס.\n\nזו דיווח שלו על מחקר בעכברים, לא המלצה רפואית.",
+   "full_en": "Zombie cells may have a kill switch\n\nAs we age, some cells stop dividing but refuse to die.\n\nThey're called \"zombie\" (senescent) cells. They pile up and inflame the tissue around them which is bad for your body.\n\nThis research group figured out how to kill them in mice.\n\nThey found that these zombie cells run low on one fatty acid: DGLA. So they added it back causing many of the zombie cells to die while the healthy cells survived.\n\nThey died by ferroptosis where the cell's outer membrane oxidizes and breaks.\n\nWould be interesting if replicated in humans.\n\nFrom the image he shared: a Cell paper titled \"Fatty acid desaturation controls cellular fate decisions between senescence and ferroptosis,\" with an in-brief that polyunsaturated fatty acid metabolism shapes cell fate — loss of DGLA favors senescence, whereas DGLA repletion triggers ferroptosis.\n\nThis is his report of mouse research, not medical advice."
+  },
+  {
+   "id": "johnson-menopause-cliff-study",
+   "topic": "johnson",
+   "date": "2026-11-04T17:04:21Z",
+   "url": "https://x.com/bryan_johnson/status/2118026578190033207",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג'ונסון: מחקר על 300 מיליון בדיקות מצביע על \"צוק\" במנופאוזה",
+    "summary": "לדבריו, מנופאוזה נחשבה לירידה הדרגתית, אבל מחקר חדש ב-Nature Medicine על כ-300 מיליון תוצאות מעבדה מרמז שהיא קרובה יותר לצוק במועד הווסת האחרונה."
+   },
+   "en": {
+    "title": "Johnson: 300M lab results suggest menopause may be a cliff",
+    "summary": "He says menopause was thought to be a gradual decline, but a new Nature Medicine study of ~300M lab results points to a physiological cliff at the final menstrual period."
+   },
+   "full_he": "מנופאוזה נחשבה לירידה הדרגתית. המחקר החדש הזה על כ-300 מיליון תוצאות מעבדה מרמז שהיא קרובה יותר לצוק.\n\nבתמונה שצירף: מאמר ב-Nature Medicine (פורסם 12 באוקטובר 2026), כרך 32, עמודים 3823–3831, בשם \"Population-scale reconstruction of menopause dynamics reveals a physiological cliff at the final menstrual period\", מאת גלן פרידהם, יואב חיות, נועה לביא־שוסשוב, מיכל נימן, נועה חובב, יואל טולדנו ואורי אלון.\n\nזו דיווח שלו על המחקר, לא המלצה רפואית.",
+   "full_en": "Menopause was thought to be a gradual decline. This new study of 300M lab results suggests it may be closer to a cliff.\n\nFrom the image he shared: a Nature Medicine article (Published: 12 October 2026), volume 32, pages 3823–3831, titled \"Population-scale reconstruction of menopause dynamics reveals a physiological cliff at the final menstrual period,\" by Glen Pridham, Yoav Hayut, Noa Lavi-Shoseyov, Michal Neeman, Noa Hovav, Yoel Toledano and Uri Alon.\n\nThis is his report of the study, not medical advice."
+  },
+  {
+   "id": "brecka-workout-endorphins",
+   "topic": "brecka",
+   "date": "2026-11-04T20:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2118070780156141692",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה: למה מרגישים טוב אחרי אימון — אנדורפינים",
+    "summary": "גארי ברקה מצטט את TJ Power על תפקיד האנדורפינים בניהול לחץ ואי־נוחות גופנית, ומציע הליכה, משקולות או יציאה החוצה כשמרגישים מוצפים."
+   },
+   "en": {
+    "title": "Brecka: why you feel better after a workout — endorphins",
+    "summary": "Gary Brecka cites TJ Power on how endorphins help the body manage stress and physical discomfort, and suggests a walk, lifting or getting outside when overwhelmed."
+   },
+   "full_he": "שמתם לב כמה יותר טוב מרגישים אחרי אימון טוב? יש לזה סיבה ביולוגית.\n\nTJ Power מסביר איך אנדורפינים עוזרים לגוף לנהל לחץ ואי־נוחות גופנית. הבעיה? חלק גדול מהלחץ היומי מגיע ממיילים, דדליינים וישיבה ליד שולחן, בלי התנועה שהגוף בנוי אליה.\n\nבפעם הבאה שאתם מרגישים מוצפים, נסו לצאת להליכה, להרים משקולות או לצאת החוצה. לפעמים תנועה היא בדיוק מה שהגוף צריך.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של ברקה ולא המלצה רפואית.",
+   "full_en": "Ever notice how much better you feel after a good workout? There's a biological reason for that.\n\nTJ Power explains how endorphins play a role in helping our bodies manage stress and physical discomfort. The problem? So much of our daily stress comes from emails, deadlines, and sitting at a desk, without the physical movement our bodies are built for.\n\nNext time you're feeling overwhelmed, try going for a walk, lifting some weights, or getting outside. Sometimes movement is exactly what your body needs.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Brecka's own claim, not medical advice."
+  },
+  {
+   "id": "brecka-iron-foods-vitamin-c",
+   "topic": "brecka",
+   "date": "2026-11-04T17:00:03Z",
+   "url": "https://x.com/thegarybrecka/status/2118025493144392187",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה: ברזל במזון — ולשלב עם ויטמין C",
+    "summary": "ברקה מציע לבדוק רמות ברזל כשמרגישים עייפים או לא מרוכזים, וממליץ לשלב מזונות עשירי ברזל עם ויטמין C לספיגה טובה יותר."
+   },
+   "en": {
+    "title": "Brecka: check iron — and pair iron foods with vitamin C",
+    "summary": "Brecka says iron levels may be worth checking if you feel tired or unfocused, and suggests pairing iron-rich foods with vitamin C to help absorption."
+   },
+   "full_he": "מרגישים עייפים, כבדים או מתקשים להתרכז? יכול להיות ששווה לבדוק את רמות הברזל.\n\nברזל עוזר לגוף לשאת חמצן, לייצר אנרגיה ולתמוך בתפקוד המוח.\n\nדרך פשוטה להפיק יותר מהמזון: לשלב מזונות עשירי ברזל כמו עדשים ותרד עם ויטמין C מפלפלים או הדרים, כדי לעזור לגוף לספוג יותר ברזל.\n\nשמרו את זה לקנייה הבאה בסופר!\n\nמה שמופיע באינפוגרפיקה שצירף (\"FOODS HIGH IN... IRON\"):\n\n• כבד בקר\n• צדפות\n• בשר אדום\n• גרעיני דלעת\n• עדשים\n• תרד\n\nזו טענה של ברקה ולא המלצה רפואית.",
+   "full_en": "Feeling tired, sluggish, or having trouble focusing? Your iron levels could be worth checking.\n\nIron helps your body carry oxygen, produce energy, and support brain function.\n\nHere's a simple way to get more from your food: pair iron-rich foods like lentils and spinach with vitamin C from bell peppers or citrus to help your body absorb more iron.\n\nSave this for your next grocery run!\n\nFrom the infographic he shared (\"FOODS HIGH IN... IRON\"):\n\n• Beef liver\n• Oysters\n• Red meat\n• Pumpkin seeds\n• Lentils\n• Spinach\n\nThis is Brecka's own claim, not medical advice."
+  },
+  {
+   "id": "brecka-getting-hot-heat",
+   "topic": "brecka",
+   "date": "2026-11-04T15:33:47Z",
+   "url": "https://x.com/thegarybrecka/status/2118003784387604895",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה: אחד מהטריקים הכי מוזנחים — להתחמם",
+    "summary": "ברקה טוען שחשיפה קבועה לחום יכולה לעזור למחזור הדם, ללב, להתאוששות שרירים, להפחתת לחץ, לשינה ולהוצאת עקבות מתכות בזיעה."
+   },
+   "en": {
+    "title": "Brecka: one of the most underrated health hacks — getting hot",
+    "summary": "Brecka claims regular heat exposure can help circulation, cardiovascular health, muscle recovery, stress, sleep, and eliminating trace metals through sweat."
+   },
+   "full_he": "אחד מהטריקים הכי מוזנחים לבריאות? להתחמם.\n\nחשיפה קבועה לחום יכולה לעזור:\n• לשפר את מחזור הדם\n• לתמוך בבריאות הלב וכלי הדם\n• לקדם התאוששות שרירים\n• להפחית לחץ\n• לתמוך בשינה טובה יותר\n• להוציא כמויות זעירות של מתכות מסוימות דרך הזיעה\n\nזו טענה של ברקה ולא המלצה רפואית.",
+   "full_en": "One of the most underrated health hacks? GETTING HOT.\n\nRegular heat exposure can help:\n• Improve circulation\n• Support cardiovascular health\n• Promote muscle recovery\n• Reduce stress\n• Support better sleep\n• Eliminate trace amounts of certain metals through sweat\n\nThis is Brecka's own claim, not medical advice."
+  },
+  {
+   "id": "brecka-comt-anxiety-gene",
+   "topic": "brecka",
+   "date": "2026-11-04T14:00:00Z",
+   "url": "https://x.com/thegarybrecka/status/2117980184158581096",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "ברקה על חרדה \"בלי סיבה\" וגן COMT",
+    "summary": "ברקה מקשר חרדה פתאומית לגן COMT שמשפיע על פירוק נוירוטרנסמיטרים, ומזכיר מתיל־פולאט וויטמיני B כתמיכה במסלולים האלה."
+   },
+   "en": {
+    "title": "Brecka on \"no reason\" anxiety and the COMT gene",
+    "summary": "Brecka links sudden anxiety to the COMT gene's role in breaking down stress-related neurotransmitters, and mentions methylfolate and B vitamins as pathway support."
+   },
+   "full_he": "מרגישים חרדה בלי שום סיבה? הלב דופק, הראש לא נרגע, ואי אפשר להבין למה.\n\nייתכן שיש עוד משהו מתחת לפני השטח. יש גן בשם COMT שעוזר לגוף לפרק נוירוטרנסמיטרים מסוימים שמעורבים בתגובת הלחץ. וריאציות בגן הזה יכולות להשפיע על איך התהליך עובד.\n\nרכיבים כמו מתיל־פולאט, ויטמיני B ומתילקובלמין תומכים במסלולים חשובים במטבוליזם של נוירוטרנסמיטרים. חרדה היא מורכבת, אבל להבין את הביולוגיה שלכם יכול להיות מקום חזק להתחיל ממנו.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של ברקה ולא המלצה רפואית. ההסכמה הרפואית המקובלת רואה בחרדה מצב רב־גורמי, ויש לפנות לרופא לאבחון וטיפול.",
+   "full_en": "Ever feel anxious for absolutely no reason? Your heart is racing, your mind won't slow down, and you can't figure out why.\n\nThere may be more going on beneath the surface. There's a gene called COMT that helps your body break down certain neurotransmitters involved in your stress response. Variations in this gene can influence how that process works.\n\nNutrients like methylfolate, B vitamins, and methylcobalamin support important pathways involved in neurotransmitter metabolism. Anxiety is complex, but understanding your biology can be a powerful place to start.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Brecka's own claim, not medical advice. Mainstream medicine treats anxiety as multi-factorial; see a clinician for diagnosis and care."
+  },
+  {
+   "id": "starterstory-abmaxx-50k-no-code",
+   "topic": "starterstory",
+   "date": "2026-11-04T18:26:36Z",
+   "url": "https://x.com/starter_story/status/2118047276706996441",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "Starter Story: פלייבוק של 50 אלף דולר בחודש בלי קוד בגיל 18",
+    "summary": "Starter Story משתף את הפלייבוק של Lino Leighton לאפליקציית סריקת שרירים AbMaxx — בלי ניסיון עסקי או קוד — עם הכנסות של כ-50 אלף דולר."
+   },
+   "en": {
+    "title": "Starter Story: an 18-year-old's $50K/month no-code abs app playbook",
+    "summary": "Starter Story shared Lino Leighton's playbook for AbMaxx, an abs-scanning app built with no business or coding experience, hitting about $50K in revenue."
+   },
+   "full_he": "חובה לשמור למייסדים שרוצים לבנות אפליקציות בלי שום ניסיון בקוד.\n\nהפלייבוק המדויק של Lino Leighton על איך בנה בגיל 18 אפליקציית סריקת שרירים של 50 אלף דולר בחודש, בלי ניסיון עסקי או קוד.\n\nמה שמופיע בתמונות שצירפו:\n\nהכותרת: \"My $50K/month playbook for building an app with no coding experience.\"\n\nהגישה:\n• למצוא נישה שבה אפליקציות מרוויחות באופן עקבי 10 אלף דולר בחודש\n• למצוא סגנון תוכן מנצח לפני ששמים כסף רציני מאחוריו\n• להכפיל את מה שעובד\n\nמה שהוא עשה:\n• שמע חברים בחדר כושר משווים שרירים ובנה אפליקציה סביב זה\n• בנה את AbMaxx ב-Rork בלי ניסיון בקוד\n• שיתף פעולה עם משפיען כושר כדי להתרומם\n• צמצם עסקאות UGC יקרות והכפיל מודעות Meta רווחיות\n• הריץ את אותם קריאייטיבים בטיקטוק והתחיל בדיקות A/B למחירים\n\nתוצאות (דשבורד ~28 יום אחרונים):\n• כ-50,364 דולר הכנסות\n• יותר מ-15,000 הורדות / לקוחות חדשים\n• כ-3,000+ מנויים פעילים\n• כ-1.25 דולר נוספים ב-LTV הממוצע מבדיקות מחיר\n\nאיך לשחזר:\n1. לעקוב אחרי מייסדי אפליקציות מובילים ב-X; למצוא נישות עם כמה אפליקציות של 10 אלף דולר בחודש ב-Sensor Tower\n2. לפרסם 3–4 סליידשואו בטיקטוק ביום לפני שבונים; להשתמש ב־\"comment app\" לבדיקת ביקוש\n3. לבנות עם Rork או כלי מועדף; לשחרר תוך 7 ימים או פחות\n4. להציע ליוצרים עם 500–1,000 עוקבים 100 דולר על 10 סרטונים; לבדוק הוקים, פורמטים ו-CTA\n5. להשיג 10–15 יוצרים שמפרסמים; להריץ מודעות על תוכן מנצח; אחרי שהשיווק רווחי — לרענן את המוצר",
+   "full_en": "A must-bookmark for founders who want to build apps with zero coding experience.\n\nLino Leighton's exact playbook on how he built a $50K/month abs-scanning app at 18 with no business or coding experience.\n\nFrom the images they shared:\n\nTitle: \"My $50K/month playbook for building an app with no coding experience.\"\n\nThe mindset:\n• Find a niche where apps consistently make $10K/month\n• Find your winning content style before putting serious money behind it\n• Double down on what works\n\nWhat I did:\n• Heard my gym friends comparing abs and built an app around it\n• Built AbMaxx in Rork with no coding experience\n• Partnered with a fitness influencer to get off the ground\n• Cut expensive UGC deals and doubled down on profitable Meta ads\n• Ran the same creatives on TikTok and started A/B testing prices\n\nResults (~last 28 days dashboard):\n• About $50,364 in revenue\n• 15,000+ downloads / new customers\n• 3,000+ active subscriptions\n• An extra ~$1.25 in average customer LTV from pricing tests\n\nHow to replicate:\n1. Follow top app founders on X; find niches with multiple $10K/month apps on Sensor Tower\n2. Post 3–4 TikTok slideshows daily before building; use \"comment app\" to test demand\n3. Build with Rork or your preferred tool; ship in 7 days or less\n4. Offer creators with 500–1,000 followers $100 for 10 videos; test hooks, formats and CTAs\n5. Get 10–15 creators posting; run ads on winning content; once marketing is profitable, revamp the product"
+  },
+  {
+   "id": "medicalmedium-triggered-easily",
+   "topic": "medicalmedium",
+   "date": "2026-11-04T20:43:55Z",
+   "url": "https://x.com/MedicalMedium/status/2118081831124025378",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: למה מתעצבנים בקלות עכשיו",
+    "summary": "לדבריו, אחרי מספיק טריגרים רגשיים, טראומות והפסדים, מערכת העצבים נשחקת מאדרנלין והנוירוטרנסמיטרים נחלשים — ולכן טריגרים קטנים מרגישים גדולים."
+   },
+   "en": {
+    "title": "Medical Medium: why you get triggered so easily now",
+    "summary": "He claims that after enough emotional triggers, trauma and losses, adrenaline wears down neurotransmitters — so small triggers feel bigger."
+   },
+   "full_he": "למה מתעצבנים בקלות עכשיו\n\nלא תמיד הייתם רגישים לכל דבר. אבל אחרי מספיק טריגרים רגשיים, טראומות, קשיים והפסדים, מערכת העצבים יכולה להישחק.\n\nכל אחת מהחוויות האלה יכולה ליצור גל של אדרנלין. המוח קולט את האדרנלין הזה, ועם הזמן זה שוחק את הנוירוטרנסמיטרים. התפקוד שלהם מתחיל להיחלש, ופתאום דברים שמעולם לא השפיעו עליכם יכולים להכניס אתכם למצב מוגבר.\n\nזה החלק שאנשים לא מבינים. אפשר להתמודד עם נוירוטרנסמיטרים מוחלשים אחרי שנים של ריצה על אדרנלין, וכתוצאה מכך להיות רגישים יותר לכל מיני טריגרים, רגשות ולחצים. זה לא אומר שאתם לא חזקים או גמישים — זה אומר שהמוח ומערכת העצבים צריכים עזרה ותמיכה נוספת עם הכלים והמידע הנכונים.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של מדיקל מדיום (אנתוני ויליאם) ולא המלצה רפואית. ההסכמה הרפואית המקובלת אינה מאמצת את המודל שלו לנוירוטרנסמיטרים ולאדרנלין.",
+   "full_en": "Why You Get Triggered So Easily Now\n\nYou weren't always this sensitive to everything. But after enough emotional triggers, trauma, hardships and losses, your nervous system can get beaten down.\n\nEvery one of those experiences can create an adrenaline surge. Your brain takes that adrenaline on, and over time it wears on your neurotransmitters. Their function starts to diminish, and suddenly things that never used to affect you can send you into a heightened state.\n\nThat's the part people don't realize. You can be dealing with weakened neurotransmitters after years of running on adrenaline and as a result, you can become more sensitive to all kinds of triggers, emotions, and stressors. This doesn't mean you aren't a strong or resilient person — it means your brain and nervous system need some extra help and support with the right tools and information.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Medical Medium (Anthony William)'s own claim, not medical advice. Mainstream medicine does not adopt his model of neurotransmitters and adrenaline."
+  },
+  {
+   "id": "medicalmedium-copper-eczema",
+   "topic": "medicalmedium",
+   "date": "2026-11-04T19:29:42Z",
+   "url": "https://x.com/MedicalMedium/status/2118063153087176896",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: הקשר שלבקבוקי נחושת לאקזמה",
+    "summary": "לדבריו, נחושת תעשייתית יכולה להצטבר בכבד, ואם אפשטיין־בר יושב שם הוא עלול להזין ממנה דרמטוקסינים שמגיעים לעור — ולכן הוא נמנע מבקבוקי נחושת ותכשיטים."
+   },
+   "en": {
+    "title": "Medical Medium: the copper bottle–eczema link he claims",
+    "summary": "He claims industrial copper can accumulate in the liver and that Epstein-Barr may feed on it to create dermatoxins that reach the skin — so he avoids copper bottles and jewelry."
+   },
+   "full_he": "הקשר בין בקבוק מים מנחושת לאקזמה שרוב האנשים לא מכירים\n\nבקבוקי נחושת, תרמוסים, ספלים, צמידים, תכשיטים — אני נשאר רחוק מכולם.\n\nלדברי מדיקל מדיום, נחושת תעשייתית יכולה להצטבר בתוך הכבד. כשאפשטיין־בר יושב שם גם כן, הנגיף יכול להזין את עצמו מהמתכת הזו וליצור דרמטוקסינים שבסוף מגיעים לעור.\n\nלכן, לדבריו, לחשוף את עצמכם ליותר נחושת תעשייתית הוא הדבר האחרון שתרצו לעשות כשאתם מנסים להחלים מאקזמה.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של מדיקל מדיום ולא המלצה רפואית. ההסכמה הרפואית המקובלת אינה מקשרת בקבוקי נחושת לאקזמה דרך אפשטיין־בר כפי שהוא מתאר.",
+   "full_en": "The Copper Water Bottle–Eczema Connection Most People Don't Know\n\nCopper bottles, thermoses, mugs, bracelets, jewelry — I stay away from all of it.\n\nMedical Medium information shares that industrialized copper can accumulate inside the liver. When Epstein-Barr is sitting there too, the virus can feed on that metal and create dermatoxins that eventually make their way to the skin.\n\nThat's why exposing yourself to more industrialized copper is the last thing you want to be doing when you're trying to heal from eczema.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is Medical Medium's own claim, not medical advice. Mainstream medicine does not link copper bottles to eczema via Epstein-Barr the way he describes."
+  },
+  {
+   "id": "mercola-vitamin-d2-vs-d3",
+   "topic": "mercola",
+   "date": "2026-11-04T20:00:52Z",
+   "url": "https://x.com/mercola/status/2118070997236806058",
+   "source": "X · @mercola",
+   "he": {
+    "title": "מרקולה: האם תוסף ויטמין D באמת עובד — D2 מול D3",
+    "summary": "מרקולה שואל אם תוסף הוויטמין D שלכם עובד כמו שאתם חושבים, ומפנה למאמר על למה הצורה שאתם לוקחים עשויה להשפיע על הרמות."
+   },
+   "en": {
+    "title": "Mercola: is your vitamin D supplement working — D2 vs D3",
+    "summary": "Mercola asks whether your vitamin D supplement is working as hard as you think, pointing to an article on why the form you take may affect your levels."
+   },
+   "full_he": "האם תוסף הוויטמין D שלכם עובד קשה כמו שאתם חושבים? גלו למה הצורה שאתם לוקחים עשויה להשפיע על הרמות.\n\nהקישור שצירף מוביל למאמר באתר שלו: \"vitamin-d2-vs-d3-supplement\" (4 בנובמבר 2026). תוכן המאמר המלא לא נטען כאן (האתר חסם גישה אוטומטית), ולכן מוצג רק מה שכתוב בפוסט עצמו.\n\nזו טענה/קידום שלו ולא המלצה רפואית.",
+   "full_en": "Is your vitamin D supplement working as hard as you think? Find out why the form you take may affect your levels.\n\nThe linked article on his site is titled along the lines of vitamin D2 vs D3 supplement (dated November 4, 2026). The full article body could not be retrieved here (the site blocked automated access), so only the post text is shown.\n\nThis is his claim/promotion, not medical advice."
+  },
+  {
+   "id": "mercola-microplastics-heart",
+   "topic": "mercola",
+   "date": "2026-11-04T14:00:57Z",
+   "url": "https://x.com/mercola/status/2117980420558262507",
+   "source": "X · @mercola",
+   "he": {
+    "title": "מרקולה: מיקרו־פלסטיק בדם וסיכון ללב",
+    "summary": "מרקולה כותב שמחקרים מצביעים על קשר אפשרי בין מיקרו־ וננו־פלסטיק בדם לסיכונים לבריאות הלב, ומציע דרכים מעשיות להפחית חשיפה."
+   },
+   "en": {
+    "title": "Mercola: microplastics in blood and heart health risks",
+    "summary": "Mercola says research suggests micro- and nanoplastics in the blood may be linked to heart health risks, and points to practical ways to reduce exposure."
+   },
+   "full_he": "מחקרים מצביעים על כך שמיקרו־ וננו־פלסטיק בדם עשויים להיות קשורים לסיכונים לבריאות הלב. הנה דרכים מעשיות להפחית את החשיפה.\n\nהקישור שצירף מוביל למאמר באתר שלו: \"microplastics-heart-attack-risk\" (4 בנובמבר 2026). תוכן המאמר המלא לא נטען כאן (האתר חסם גישה אוטומטית), ולכן מוצג רק מה שכתוב בפוסט עצמו.\n\nזו טענה/קידום שלו ולא המלצה רפואית.",
+   "full_en": "Research suggests micro- and nanoplastics in the blood may be linked to heart health risks. Here are practical ways to reduce your exposure.\n\nThe linked article on his site is titled along the lines of microplastics heart attack risk (dated November 4, 2026). The full article body could not be retrieved here (the site blocked automated access), so only the post text is shown.\n\nThis is his claim/promotion, not medical advice."
+  },
+  {
+   "id": "mccullough-returns-jre",
+   "topic": "mccullough",
+   "date": "2026-11-05T01:32:45Z",
+   "url": "https://x.com/P_McCulloughMD/status/2118154520186204440",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה חוזר לאולפן של ג'ו רוגן",
+    "summary": "ד\"ר פיטר מקולה מודיע על חזרה לאולפן JRE למבט מקיף על עידן המגפה — נתונים, פרוטוקולי טיפול מוקדם, ומקורות מה שהוא מכנה \"טירוף החיסונים\"."
+   },
+   "en": {
+    "title": "McCullough returns to the Joe Rogan studio",
+    "summary": "Dr. Peter McCullough announces a return to the JRE studio for a look back at the pandemic era — data, early treatment protocols, and what he calls the origins of \"vaccine madness.\""
+   },
+   "full_he": "ד\"ר פיטר מקולה חוזר לאולפן של JRE למבט מקיף אחורה על עידן המגפה — פירוק הנתונים, פרוטוקולי טיפול מוקדם, מקורות מה שהוא מכנה \"טירוף החיסונים\", והלקחים העמוקים מחמש השנים האחרונות.\n\nזו עמדה/טענה שלו. ההסכמה הרפואית המקובלת חולקת על חלקים גדולים מהנרטיב שלו לגבי חיסוני COVID-19.",
+   "full_en": "Dr. Peter McCullough returns to the JRE studio for a comprehensive look back at the pandemic era — breaking down the data, early treatment protocols, origins of vaccine madness, and the profound lessons of the last half-decade.\n\nThis is his framing and claim. Mainstream medical consensus disagrees with large parts of his COVID-19 vaccine narrative."
+  },
+  {
+   "id": "mccullough-midterm-health-freedom",
+   "topic": "mccullough",
+   "date": "2026-11-04T20:18:05Z",
+   "url": "https://x.com/P_McCulloughMD/status/2118075330673991711",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה וד\"ר בודן על השלכות הבחירות על חופש הבריאות",
+    "summary": "מקולה משתף דיון עם ד\"ר בודן על השלכות תוצאות בחירות האמצע על חופש הבריאות."
+   },
+   "en": {
+    "title": "McCullough and Dr. Bowden on midterms and health freedom",
+    "summary": "McCullough shares a discussion with Dr. Bowden on the health-freedom implications of the midterm election results."
+   },
+   "full_he": "השלכות על חופש הבריאות של תוצאות בחירות האמצע: ד\"ר בודן וד\"ר מקולה.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו עמדה שלהם, לא המלצה רפואית או פוליטית.",
+   "full_en": "Health Freedom Implications of Mid-Term Election Results: Dr Bowden and Dr McCullough.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is their framing, not medical or political advice."
+  },
+  {
+   "id": "mccullough-early-onset-stroke-claim",
+   "topic": "mccullough",
+   "date": "2026-11-04T13:39:01Z",
+   "url": "https://x.com/P_McCulloughMD/status/2117974904566112455",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: חשש משבץ מוקדם אחרי חיסון COVID עם שפעת",
+    "summary": "מקולה טוען שכל רופא סביר היה מודאג מקשר אפשרי בין שבץ מוקדם לחיסון COVID-19, במיוחד אם ניתן יחד עם חיסון השפעת. הוא מצטט קטע מ-NewsMax."
+   },
+   "en": {
+    "title": "McCullough: concern about early-onset stroke after COVID shot with flu",
+    "summary": "McCullough claims any reasonable doctor would worry that early-onset stroke could be linked to COVID-19 vaccination, especially if coadministered with the flu shot. He cites a NewsMax segment."
+   },
+   "full_he": "לדבריו, כל רופא סביר היה מודאג ששבץ מוקדם יכול להיות קשור לחיסון COVID-19, במיוחד אם ניתן יחד עם חיסון השפעת. באדיבות NewsMax.\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nזו טענה של מקולה ולא המלצה רפואית. ההסכמה הרפואית המקובלת אינה קובעת קשר סיבתי כללי כזה בין חיסוני COVID-19 לשבץ מוקדם כפי שהוא מציג.",
+   "full_en": "Any reasonable doctor would be concerned that early onset stroke could be linked to COVID-19 vaccination, specially if it was coadministered with the flu shot. Courtesy NewsMax.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThis is McCullough's own claim, not medical advice. Mainstream medical consensus does not establish a general causal link of that kind between COVID-19 vaccines and early-onset stroke as he frames it."
+  },
+  {
+   "id": "refaeli-femina-blue-lace",
+   "topic": "refaeli",
+   "date": "2026-11-04T03:54:00Z",
+   "url": "https://www.hellomagazine.com/us/932927/leonardo-dicaprios-ex-bar-refaeli-wows-fans-as-she-sizzles-in-blue-lace-lingerie/",
+   "source": "HELLO!",
+   "he": {
+    "title": "בר רפאלי בסט תחרה כחול של Femina עם חולצת ג'ינס",
+    "summary": "בר רפאלי בת 41 שיתפה באינסטגרם סדרת תמונות בסט תחרה כחול של Femina עם חולצת ג'ינס גדולה מעליו, והעוקבים הגיבו בהתלהבות."
+   },
+   "en": {
+    "title": "Bar Refaeli in blue Femina lace with an oversized denim shirt",
+    "summary": "Bar Refaeli, 41, shared Instagram photos in a matching blue Femina lace set under an unbuttoned oversized denim shirt, and followers responded warmly."
+   },
+   "full_he": "בר רפאלי הביאה טוויסט משחקי לצילומי הביגוד התחתון האחרונים שלה: תחרה כחולה עדינה עם חולצת ג'ינס גדולה מעל, והעוקבים מיהרו להביע הערכה.\n\n• הדוגמנית הישראלית, בת 41, שיתפה סדרת תמונות באינסטגרם עם סט תואם של Femina — ברלט ארוך עם צווארון עמוק וקצוות משוננים, ותחתונים תואמים.\n• חולצת ג'ינס פתוחה נתנה ללוק סיום רגוע; השיער הבלונד היה פזור ומוסט לצד אחד, עם עגילים קטנים ואיפור רך עם שפתיים ורודות מבריקות.\n• בתמונה אחת היא חייכה עם הידיים מאחורי הראש; באחרת הרימה את השיער והראתה את התחרה הפרחונית ואת הפרטים המתכתיים על הכתפיות.\n• הכיתוב היה קצר: תיוג המותג והמילה \"crush\". חשבון Femina הרשמי ענה בשני לבבות אדומים.\n• HELLO! מזכיר שהיא נשואה לאדי עזרא מאז 2015 ומגדלת שלושה ילדים.",
+   "full_en": "Bar Refaeli brought a playful twist to her latest lingerie shoot, pairing delicate blue lace with an oversized denim shirt, and her followers were quick to show their appreciation.\n\n• The Israeli model, 41, shared a series of Instagram photographs wearing a matching set from Femina, featuring a plunging longline bralette with scalloped edging and coordinating briefs.\n• An unbuttoned denim shirt gave the look a relaxed finish, while Bar wore her blonde hair loose and swept to one side, with tiny earrings and soft makeup with a glossy pink lip.\n• In one image she smiled with her hands behind her head; another captured her lifting her hair, showing floral lace and metallic strap details.\n• She kept the caption short, tagging the brand alongside the word \"crush.\" Femina's official account responded with two red heart emojis.\n• HELLO! notes she is married to Adi Ezra since 2015 and shares three children with him."
+  },
   {
    "id": "solana-657m-tokenized-stocks-monday-backpack",
    "topic": "solana",
@@ -1166,25 +1642,6 @@
    "full_en": "Nvidia just drew a clear line for its cloud partners: at least half your GPU rentals must go to non-Chinese customers, closing a key gap in U.S. export rules.\n\n• The chip giant verbally instructed sales teams to enforce this on new contracts worldwide.\n• It targets Chinese AI labs that rent high-end Nvidia GPUs from overseas providers in places like Singapore and Malaysia.\n• Existing leases remain unaffected, but Southeast Asian cloud operators now scramble to attract non-Chinese clients amid already tight supplies.\n• Critics say the 49% allowance still leaves too much advanced compute accessible to China, while Nvidia emphasizes supporting U.S. AI leadership.\n\nThis story is a summary of posts on X and may evolve over time."
   },
   {
-   "id": "pod-asprey-78e3a4fbe3",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-11-03T09:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/the-truth-about-vitamins-supplements-prescription/id451295014?i=1000799578313",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "האמת על ויטמינים, תוספי תזונה ותרופות מרשם | פיל קאולי",
-    "summary": "דייב אספרי מארח את הרוקח פיל קאולי, מייסד Cache Valley Pharmacy ו־Phil's My Pharmacist, לשיחה על מולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין, תרופות מרשם והבעיות במערכת הבריאות, לפי דבריהם."
-   },
-   "en": {
-    "title": "The Truth About Vitamins, Supplements & Prescription Drugs | Phil Cowley",
-    "summary": "Dave Asprey hosts pharmacist Phil Cowley, founder of Cache Valley Pharmacy and creator of Phil's My Pharmacist, on multivitamins, MTHFR genetics, methylated B vitamins, creatine, prescription drugs and what they see as hidden problems in modern healthcare."
-   },
-   "full_en": "Multivitamin Mistakes, MTHFR Genetics, B Vitamins, Creatine & Prescription Drug Risks\n\nHost Dave Asprey sits down with Phil Cowley, a pharmacist, founder of Cache Valley Pharmacy, and creator of Phil's My Pharmacist, to explore multivitamins, prescription medications, supplement effectiveness, MTHFR genetics, methylated B vitamins, creatine, and the hidden problems within modern healthcare.\n\nAfter opening his pharmacy in Logan, Utah, in 2001, Phil spent two decades serving patients and dispensing millions of prescriptions. By 2021, declining insurance reimbursements threatened his business despite increasing prescription volume. He turned to social media to share practical, affordable health advice, eventually building an audience of more than six million followers. Now, he explains what his experience behind the pharmacy counter taught him about medication side effects, nutritional deficiencies, supplement quality, and why conventional healthcare often overlooks individual biology.\n\nThe conversation examines common multivitamin mistakes, including the use of synthetic folic acid and pyridoxine (vitamin B6). Phil explains why certain nutrient forms may be less suitable for some individuals, how excessive B6 intake can cause peripheral neuropathy, and why buying more supplements doesn't necessarily improve health. They explore MTHFR genetic variants, methylation, and folate metabolism, including potential implications for cognitive function, inflammation, blood pressure, fertility, and neurological development.\n\nPhil also reveals why creatine is his favorite supplement, discussing its potential benefits for brain health and muscle performance. He and Dave examine creatine dosing, hydration, electrolytes, absorption, and why creatine supplementation can influence kidney-related blood test results.\n\nThe discussion turns to Big Pharma, prescription drug pricing, and pharmacy benefit managers (PBMs). Phil shares how insurance reimbursement practices threatened his independent pharmacy despite increasing prescription volume. They also explore compounding pharmacies, customized hormone formulations, injectable vitamins, GLP-1 medications, and the challenges of providing personalized treatment within the conventional healthcare system.\n\nFinally, Dave and Phil examine personalized medicine, genetic testing, medication interactions, and nutritional deficiencies, including the relationship between statins and CoQ10. They discuss why individual biology should guide supplement choices and how addressing underlying metabolic processes may offer a more comprehensive approach to long-term health.\n\nYou'll Learn:\n• Why common multivitamins contain different forms of B vitamins, and how folic acid, folinic acid, L-methylfolate, and P5P differ\n• How MTHFR genetic variants influence folate metabolism and why individual responses to supplements can vary\n• What Phil recommends considering when using creatine for brain health, muscle performance, hydration, and kidney-related blood testing\n• How pharmacy benefit managers, insurance reimbursement, and drug pricing affect independent pharmacies and patient care\n• Why compounding pharmacies create customized medications, including hormone formulations, injectable vitamins, and certain GLP-1 treatments\n• How personalized supplementation, nutrient testing, medication interactions, and genetics may help inform more individualized healthcare decisions\n\nTimestamps:\n• 00:00 - Trailer\n• 00:40 - Intro\n• 01:45 - Drugs Stolen From Nature\n• 06:05 - Listening to Patients\n• 09:33 - Pharmacy Business & PBMs\n• 14:10 - Compounding Pharmacy Explained\n• 20:42 - Why Creatine Is Amazing\n• 28:23 - MTHFR & Methylation\n• 46:44 - Lab Tracking & Longevity\n• 50:58 - Science Bullies & Urine Therapy\n• 59:19 - Future of Pharmacy\n• 01:03:01 - TriQuetra Health & Closing\n\nThese are the guest's and host's views as described in the show notes, not medical advice.",
-   "full_he": "טעויות במולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B, קריאטין והסיכונים של תרופות מרשם\n\nדייב אספרי משוחח עם פיל קאולי, רוקח, מייסד Cache Valley Pharmacy ויוצר Phil's My Pharmacist, על מולטי־ויטמינים, תרופות מרשם, היעילות של תוספי תזונה, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין והבעיות הנסתרות במערכת הבריאות המודרנית.\n\nפיל פתח את בית המרקחת שלו בלוגן שביוטה ב־2001, ובמשך שני עשורים שירת מטופלים וניפק מיליוני מרשמים. עד 2021, ההחזרים הפוחתים מחברות הביטוח איימו על העסק שלו למרות שמספר המרשמים עלה. הוא פנה לרשתות החברתיות כדי לשתף עצות בריאות מעשיות וזולות, ובנה קהל של יותר משישה מיליון עוקבים. בפרק הוא מספר מה למד מאחורי דלפק בית המרקחת על תופעות לוואי של תרופות, חסרים תזונתיים, איכות של תוספים, ולמה לדבריו הרפואה המקובלת מתעלמת לעיתים קרובות מהביולוגיה האישית.\n\nהשיחה בוחנת טעויות נפוצות במולטי־ויטמינים, כמו שימוש בחומצה פולית סינתטית ובפירידוקסין (ויטמין B6). פיל מסביר למה צורות מסוימות של רכיבים תזונתיים עשויות להתאים פחות לחלק מהאנשים, איך עודף B6 עלול לגרום לנוירופתיה היקפית, ולמה קניית יותר תוספים לא בהכרח משפרת את הבריאות. הם עוסקים בווריאנטים הגנטיים של MTHFR, במתילציה ובחילוף החומרים של פולאט, כולל השלכות אפשריות על תפקוד קוגניטיבי, דלקת, לחץ דם, פוריות והתפתחות נוירולוגית.\n\nפיל מספר גם למה קריאטין הוא התוסף האהוב עליו, ומדבר על התועלת האפשרית שלו לבריאות המוח ולביצועי השרירים. הוא ודייב דנים במינון קריאטין, בשתייה, באלקטרוליטים, בספיגה, ובכך שנטילת קריאטין יכולה להשפיע על תוצאות בדיקות דם הקשורות לכליות.\n\nהשיחה עוברת לחברות התרופות הגדולות, למחירי תרופות המרשם ולמנהלי הטבות התרופות (PBMs). פיל מספר איך שיטות ההחזר של חברות הביטוח איימו על בית המרקחת העצמאי שלו. הם מדברים גם על בתי מרקחת לרקיחה, פורמולות הורמונליות מותאמות, ויטמינים בהזרקה, תרופות GLP-1, והקושי לתת טיפול מותאם אישית בתוך מערכת הבריאות המקובלת.\n\nלבסוף הם דנים ברפואה מותאמת אישית, בבדיקות גנטיות, באינטראקציות בין תרופות ובחסרים תזונתיים, כולל הקשר בין סטטינים ל־CoQ10, ולמה לדבריהם הביולוגיה האישית צריכה להנחות את בחירת התוספים.\n\nמה תלמד בפרק:\n• למה מולטי־ויטמינים נפוצים מכילים צורות שונות של ויטמיני B, ומה ההבדל בין חומצה פולית, חומצה פולינית, L־מתילפולאט ו־P5P\n• איך וריאנטים של MTHFR משפיעים על חילוף החומרים של פולאט, ולמה התגובה לתוספים משתנה מאדם לאדם\n• מה פיל ממליץ לשקול כשמשתמשים בקריאטין לבריאות המוח, לביצועי שרירים, לשתייה ולבדיקות דם של הכליות\n• איך מנהלי הטבות תרופות, החזרי ביטוח ומחירי תרופות משפיעים על בתי מרקחת עצמאיים ועל הטיפול במטופלים\n• למה בתי מרקחת לרקיחה מכינים תרופות מותאמות, כולל פורמולות הורמונליות, ויטמינים בהזרקה וחלק מטיפולי ה־GLP-1\n• איך תוספים מותאמים אישית, בדיקות רכיבים תזונתיים, אינטראקציות בין תרופות וגנטיקה יכולים לעזור בהחלטות בריאות אישיות יותר\n\nחותמות זמן:\n• 00:00 - טריילר\n• 00:40 - פתיחה\n• 01:45 - תרופות שנלקחו מהטבע\n• 06:05 - להקשיב למטופלים\n• 09:33 - העסק של בית המרקחת ומנהלי הטבות התרופות\n• 14:10 - מה זה בית מרקחת לרקיחה\n• 20:42 - למה קריאטין מדהים\n• 28:23 - MTHFR ומתילציה\n• 46:44 - מעקב בדיקות ואריכות ימים\n• 50:58 - \"בריוני מדע\" וטיפול בשתן\n• 59:19 - העתיד של בתי המרקחת\n• 01:03:01 - TriQuetra Health וסיום\n\nאלה דעותיהם של האורח והמנחה כפי שמתוארות בתיאור הפרק, ולא ייעוץ רפואי. (\"טיפול בשתן\" שמוזכר בפרק אינו מקובל ברפואה המרכזית.)"
-  },
-  {
    "id": "musk-superintelligence-compute-in-space",
    "topic": "musk",
    "date": "2026-11-03T09:06:20Z",
@@ -1200,25 +1657,6 @@
    },
    "full_en": "Elon Musk declared that nearly all super intelligence computing will soon happen in space. The idea sparked instant back-and-forth on cooling challenges in orbit's vacuum.\n\nOn November 2, Musk posted that future super intelligence compute will be overwhelmingly in space, prompting critics like philosophy professor Jan Broersen to question heat dissipation without convection—only radiation works there. Musk fired back bluntly at skeptics while detailing aluminum radiators that could handle 1,300 watts per square meter against solar panels' 250 watts output. Supporters like physicist Shaun Maguire explained passive ammonia-loop systems, backed by real examples such as Starlink satellites and Google's orbital AI haiku from Project Suncatcher, highlighting how Starship could make vast radiators feasible despite hurdles like radiation and maintenance.\n\n(This is X's summary of the story, built from posts on X.)",
    "full_he": "אילון מאסק הכריז שכמעט כל המחשוב של בינת־העל יתבצע בקרוב בחלל. הרעיון עורר מיד ויכוח על אתגרי הקירור בוואקום של המסלול.\n\nב־2 בנובמבר כתב מאסק שהמחשוב של בינת־העל בעתיד יהיה ברובו המכריע בחלל. מבקרים, כמו פרופסור לפילוסופיה יאן ברורסן, שאלו איך אפשר לפזר חום בלי הסעה (קונבקציה), כשבחלל עובדת רק קרינה. מאסק השיב בבוטות לספקנים ופירט רדיאטורים מאלומיניום שיכולים לפלוט כ־1,300 וואט למטר רבוע, לעומת תפוקה של כ־250 וואט למטר רבוע של פאנלים סולאריים. תומכים, כמו הפיזיקאי שון מגווייר, הסבירו מערכות פסיביות של לולאת אמוניה, ונתנו דוגמאות אמיתיות כמו לווייני סטארלינק והייקו שנכתב בידי בינה מלאכותית במסלול במסגרת Project Suncatcher של גוגל. לדבריהם, סטארשיפ יכולה להפוך רדיאטורים ענקיים לאפשריים, למרות מכשולים כמו קרינה ותחזוקה.\n\n(זה הסיכום של X לסיפור, שנבנה מפוסטים ב־X.)"
-  },
-  {
-   "id": "pod-brecka-c66927da49",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Ultimate Human",
-   "date": "2026-11-03T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "למה אובדן זיכרון הוא בעצם אובדן גישה, עם ג'ניפר מולר",
-    "summary": "גארי ברקה משוחח עם ג'ניפר מולר מעולם הדיור המוגן על ההחלטה שעמד בפניה עם הוריו, ועל טענתו שאובדן זיכרון הוא למעשה אובדן גישה לזיכרון. הם מדברים על איך לבחור בין דיור עצמאי, דיור מוגן ומחלקה סיעודית לזיכרון."
-   },
-   "en": {
-    "title": "Why Memory Loss Is Really Lost Access - Jennifer Mohler",
-    "summary": "Gary Brecka sits down with senior-living expert Jennifer Mohler about the decision he faced with his own parents and his view that memory loss is really lost access to memory, plus how to evaluate independent living, assisted living and memory care."
-   },
-   "full_en": "Gary Brecka sits down with Jennifer Mohler to talk through the decision he faced with his own parents, and his view that memory loss is really lost access to memory. They cover how to evaluate independent living, assisted living, and memory care, why isolation matters, the daily living skills that signal it's time, and the brain mapping Gary is using to track his mother. Gary also shares the fall that changed his timeline. Don't guess, test.\n\nTimestamps:\n• 00:00 – Introduction: senior living for parents\n• 03:46 – How Jennifer entered senior living\n• 07:16 – When a parent needs assisted care\n• 09:38 – Biohacking inside senior living\n• 11:32 – Red light, PEMF and hydrogen therapy\n• 15:04 – Brain mapping Gary's mother\n• 16:24 – Janet, the nonverbal resident\n• 19:55 – Isolation and broken heart syndrome\n• 20:59 – Memory loss as lost access\n• 21:34 – How to evaluate a community\n• 29:08 – Assisted living versus memory care\n• 32:42 – Five daily living skills\n• 37:53 – Clinical study with 30 participants\n• 42:59 – Medicare, Medicaid and VA coverage\n• 47:34 – Gary's father: humerus and hip\n• 50:45 – What it means to be an Ultimate Human\n\nThe show's own disclaimer: the podcast is for informational purposes only and is not medical advice. The \"memory loss is lost access\" idea is Gary's view, not an established medical position.",
-   "full_he": "גארי ברקה יושב עם ג'ניפר מולר ומדבר על ההחלטה שעמד בפניה עם הוריו שלו, ועל הגישה שלו שלפיה אובדן זיכרון הוא בעצם אובדן גישה לזיכרון. הם מדברים על איך לבחון דיור עצמאי, דיור מוגן ומחלקה לטיפול בזיכרון, למה בדידות משנה כל כך, אילו מיומנויות של חיי היום־יום מסמנות שהגיע הזמן, ועל מיפוי המוח שגארי עושה כדי לעקוב אחרי אמו. גארי מספר גם על הנפילה ששינתה את לוח הזמנים שלו. אל תנחש, תבדוק.\n\nנקודות זמן:\n• 00:00 – פתיחה: דיור לגיל השלישי להורים\n• 03:46 – איך ג'ניפר הגיעה לתחום הדיור המוגן\n• 07:16 – מתי הורה צריך דיור עם סיוע\n• 09:38 – ביוהאקינג בתוך דיור מוגן\n• 11:32 – אור אדום, PEMF וטיפול במימן\n• 15:04 – מיפוי המוח של אמא של גארי\n• 16:24 – ג'נט, הדיירת שאינה מדברת\n• 19:55 – בדידות ותסמונת הלב השבור\n• 20:59 – אובדן זיכרון כאובדן גישה\n• 21:34 – איך לבחון קהילת דיור\n• 29:08 – דיור מוגן לעומת מחלקת זיכרון\n• 32:42 – חמש מיומנויות של חיי היום־יום\n• 37:53 – מחקר קליני עם 30 משתתפים\n• 42:59 – כיסוי של Medicare, Medicaid ומשרד הוותיקים\n• 47:34 – אביו של גארי: עצם הזרוע והירך\n• 50:45 – מה זה אומר להיות Ultimate Human\n\nלפי הצהרת התוכנית עצמה, הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי. הרעיון ש\"אובדן זיכרון הוא אובדן גישה\" הוא עמדתו של גארי, ולא עמדה רפואית מקובלת."
   },
   {
    "id": "solana-price-92-fee-model-debate",
@@ -1508,25 +1946,6 @@
    },
    "full_en": "Give an AI agent $100 and a wallet. Does it come back with your change?\n\n@BlockRunAI put 10 frontier models through real USDC payments on Solana to benchmark AI agent performance.\n\nThe quoted post (BlockRunAI):\n\nWe gave 10 frontier AI models wallets with money.\n\n7 got scammed at least once. The best wasted $25 of every $100. The worst wasted $71.\n\nAgent Money Benchmark tests whether AI agents can be trusted with real money.\n\nWe evaluated 10 frontier models across two settings, using real USDC payments on Solana:\n\n• Financial Research: Agents buy live data from real providers to answer open-ended financial questions (prediction markets, wallet analysis, DeFi yields, etc.).\n• Adversarial Marketplace: Agents buy data from simulated sellers, some of whom cheat. The tasks test whether agents can avoid payment traps, stay within budget, and complete transactions without being exploited.\n\nKey results:\n\n• Give an agent $100 and the best tier wastes $25–38 of it. The weakest tier wastes $56–71.\n• 7 of 10 models paid a cheating seller at least once, and 6 paid twice for the same data.\n• Only 4 of 10 models made no money errors.\n• No model gets more than half of the research questions right. GPT-6.1 Sol led at 50%, at $0.468 per question.\n\nThe full results are at agentmoneybench.com. The post also includes a results chart image.",
    "full_he": "תן לסוכן בינה מלאכותית 100 דולר וארנק. האם הוא יחזיר לך את העודף?\n\nBlockRunAI העבירה 10 מודלים מובילים דרך תשלומי USDC אמיתיים על סולאנה, כדי למדוד את הביצועים של סוכני בינה מלאכותית.\n\nהפוסט שהם ציטטו (BlockRunAI):\n\nנתנו ל־10 מודלי בינה מלאכותית מובילים ארנקים עם כסף.\n\n7 מהם נפלו בהונאה לפחות פעם אחת. הטוב ביותר בזבז 25 דולר מכל 100. הגרוע ביותר בזבז 71.\n\nמבחן Agent Money Benchmark בודק אם אפשר לסמוך על סוכני בינה מלאכותית עם כסף אמיתי.\n\nבדקנו 10 מודלים מובילים בשני מצבים, עם תשלומי USDC אמיתיים על סולאנה:\n\n• מחקר פיננסי: הסוכנים קונים נתונים חיים מספקים אמיתיים כדי לענות על שאלות פיננסיות פתוחות (שוקי תחזיות, ניתוח ארנקים, תשואות DeFi ועוד).\n• שוק עוין: הסוכנים קונים נתונים ממוכרים מדומים, שחלקם מרמים. המשימות בודקות אם הסוכנים מצליחים להימנע ממלכודות תשלום, לעמוד בתקציב ולהשלים עסקאות בלי שינצלו אותם.\n\nהתוצאות העיקריות:\n\n• תן לסוכן 100 דולר, והקבוצה הטובה ביותר מבזבזת 25–38 דולר מהם. הקבוצה החלשה ביותר מבזבזת 56–71.\n• 7 מתוך 10 מודלים שילמו למוכר רמאי לפחות פעם אחת, ו־6 שילמו פעמיים על אותם נתונים.\n• רק 4 מתוך 10 מודלים לא עשו אף טעות כספית.\n• אף מודל לא ענה נכון על יותר ממחצית שאלות המחקר. GPT-6.1 Sol הוביל עם 50%, בעלות של 0.468 דולר לשאלה.\n\nהתוצאות המלאות נמצאות באתר agentmoneybench.com. בפוסט יש גם תמונה עם גרף התוצאות."
-  },
-  {
-   "id": "pod-jbp-ded038a7d4",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Jordan B. Peterson Podcast",
-   "date": "2026-11-02T23:04:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id1184022695",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "למה צעירות היום אומללות יותר מאי פעם",
-    "summary": "בהרצאה שצולמה במיאמי במרץ 2025, ג'ורדן פטרסון טוען שהמשבר של המערב הוא משבר של משמעות, ומסביר למה ערכים קובעים מה אנחנו רואים ולמה סיפורים כמו שלגייה והיפהפייה הנרדמת נושאים אמת שהמדע לא יכול לשאת."
-   },
-   "en": {
-    "title": "Why Young Women Are The Most Miserable They've Ever Been",
-    "summary": "In a lecture filmed in Miami in March 2025, Jordan Peterson argues the West's crisis is one of meaning, explaining why values shape what we see and why stories like Snow White and Sleeping Beauty carry a truth science can't."
-   },
-   "full_he": "ג'ורדן פטרסון טוען שהמשבר שמפרק את העולם המערבי אינו פוליטי או כלכלי, אלא עמוק הרבה יותר. כשהמדע רוקן את העולם ממשמעות, הוא השאיר אחריו משהו גרוע יותר: סבל בלי תכלית ובלי סיפור שיעזור להבין אותו.\n\nבהרצאה הזו פטרסון מסביר למה הערכים שלך קובעים מה אתה רואה, למה סיפורים נושאים אמת שהמדע לא יכול לשאת, ומה זה עולה לאדם, ולתרבות שלמה, כשהם מכוונים אל הדברים הלא נכונים. הוא גם מפרק את הפסיכולוגיה שמאחורי שלגייה והיפהפייה הנרדמת, ומסביר למה הסיפורים האלה תופסים אותנו בין שאנחנו מבינים אותם ובין שלא.\n\nאם השאיפות שלך נתקעות שוב ושוב, אם מערכות היחסים שלך לא מחזיקות, או אם אתה מרגיש שחסר בחיים משהו שאתה לא מצליח לקרוא לו בשם, לדברי התוכנית הפרק הזה שווה את הזמן שלך.\n\nההרצאה צולמה במיאמי, פלורידה, ב-24 במרץ 2025.",
-   "full_en": "Jordan Peterson argues the crisis tearing the Western world apart isn't political or economic; it goes far deeper. When science stripped meaning from the world, it left something worse behind: suffering with no purpose and no story to make sense of it.\n\nIn this lecture, Jordan explains why your values determine what you see, why stories carry a truth science can't, and what it costs a person, and a culture, when they aim at the wrong things. He also breaks down the psychology behind Snow White and Sleeping Beauty, and why those stories grip us whether we understand them or not.\n\nIf your ambition keeps stalling, your relationships keep failing, or life feels like it's missing something you can't name, this one's worth your time.\n\nThis lecture was filmed in Miami, Florida, on March 24, 2025."
   },
   {
    "id": "grokbot-musk-high-costs-800k-paid-users",
@@ -3312,25 +3731,6 @@
    },
    "full_he": "תמונה ערוכה מציגה את אילון מאסק כאילו הוא מאיים לקנות את מיקרוסופט רק כדי לפטר את ביל גייטס. זו המצאה מוחלטת, אבל היא נוגעת במתיחות הידועה בין השניים סביב טסלה.\n\n• המם מציג ציוצים מזויפים שבהם מאסק עונה בחריפות לגייטס, שמטיל ספק בהישגים שלו, ובאחד מהם נכתב: „אל תכריחו אותי לקנות את מיקרוסופט רק כדי לפטר אותו”.\n• גרוק, הבוט של SpaceXAI, זיהה מהר שהתמונה מפוברקת, והפנה במקום זה להיסטוריה האמיתית: גייטס החזיק בעבר פוזיציית שורט ענקית על טסלה, ובמקביל תמך במאבק במשבר האקלים.\n• מאסק מתח ביקורת פומבית על הצעד הזה, והעקיצות נמשכו גם בסוף אוקטובר. משתמשים התבדחו שמאסק ישנה את השם של מיקרוסופט למשהו כמו Macrohard.\n\n(זהו סיכום של X לפוסטים בנושא, שעשוי להשתנות ועלול להכיל טעויות.)",
    "full_en": "A doctored image shows Elon Musk threatening to buy Microsoft just to fire Bill Gates. It's pure fiction, but it taps into their well-known tension over Tesla.\n\n• The meme features fake tweets where Musk snaps back at Gates questioning his achievements, with one line reading, \"Don't make me buy Microsoft just to fire him.\"\n• Grok, the SpaceXAI bot, quickly called it out as fabricated, pointing instead to the real history: Gates once held a massive short position on Tesla while backing climate efforts.\n• Musk has publicly criticized that move, with jabs continuing into late October, as users joke about Musk renaming Microsoft to something like Macrohard.\n\n(This is X's summary of posts on the topic; it may evolve and can contain mistakes.)"
-  },
-  {
-   "id": "pod-asprey-14380d6805",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-11-01T09:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id451295014",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "ניסיתי כל תרופת ריכוז שנויה במחלוקת",
-    "summary": "פרק סולו שבו דייב אספרי מספר על 20 שנות ניסויים בתרופות ריכוז ובחומרים פסיכואקטיביים, ממודפיניל ואדרל ועד רצטמים וחומרים רוסיים, ועל זה שלדבריו המנצח הוא דווקא חומר חוקי וזול, ניקוטין פרמצבטי, וגם ארבעת הכללים שלו לצמצום הסיכונים."
-   },
-   "en": {
-    "title": "I Tried EVERY Controversial Focus Drug",
-    "summary": "A solo episode in which Dave Asprey reviews 20 years of self-experimenting with focus drugs and psychoactive compounds, from modafinil and Adderall to racetams and Russian compounds, and argues that the one he ranks highest, pharmaceutical nicotine, is legal and cheap, plus his four rules for reducing its risks."
-   },
-   "full_en": "I've tried every controversial focus drug I could get my hands on. Modafinil, LSD, psilocybin, mescaline, DMT, ketamine, MDMA, amphetamine, ephedrine, the racetams, and a shelf of Russian compounds most people have never heard of. I've spent 20 years and millions of dollars testing this on my own brain, and here's what I found: some of them work, most don't do what you've been told, and none of them are free.\n\nBut the one I'd crown above all of them is legal, costs almost nothing, and you can buy it this afternoon. You've just been lied to about it for 60 years by the people who made a fortune doing it. In this video I'll show you what each compound actually does inside your brain, what it takes from you on the other side, and the four rules I follow so the best one doesn't turn into the worst one.\n\nYou'll Learn:\n• Why modafinil is considered the closest thing to a \"Limitless pill\" and how it affects sleep\n• How LSD, psilocybin, MDMA, and ketamine affect the brain differently from focus drugs\n• Why Adderall and amphetamines can make you hyper-focused on the wrong things\n• How racetams became the original nootropics for cognitive enhancement\n• What Russian scientists developed for cosmonauts and soldiers, including bromantane, Semax, and Selank\n• Why pharmaceutical nicotine ranks among the most controversial focus enhancers\n• How nicotine affects acetylcholine, attention, memory, and potentially brain aging\n• Why nicotine and smoking have very different health risks\n• How delivery speed influences addiction risk, from cigarettes to patches and lozenges\n• Dave's four rules for reducing nicotine risks and who should avoid it\n• What Dave learned from spending $2.5 million experimenting with cognitive enhancement\n\nTimestamps:\n• 00:00 - Trailer\n• 01:07 - Modafinil: The Limitless Pill\n• 03:45 - Psychedelics vs. Focus Drugs\n• 05:31 - Microdosing & The Placebo Effect\n• 07:43 - Cocaine & Drug Tolerance\n• 08:33 - Amphetamines & Adderall\n• 17:09 - Racetams: The Original Nootropics\n• 21:12 - Russian Smart Drugs\n• 29:17 - Nicotine for Focus & Cognition\n• 33:53 - Nicotine Risks & Safety Rules\n\nNote: these are Dave Asprey's own experiences and claims, not medical advice. Nicotine is addictive, and many of the substances mentioned are prescription-only or illegal in many countries.",
-   "full_he": "לדברי דייב אספרי, הוא ניסה כל תרופת ריכוז שנויה במחלוקת שהצליח להשיג: מודפיניל, LSD, פסילוסיבין, מסקלין, DMT, קטמין, MDMA, אמפטמין, אפדרין, הרצטמים ומדף שלם של חומרים רוסיים שרוב האנשים לא שמעו עליהם. הוא אומר שהשקיע 20 שנה ומיליוני דולרים בניסויים על המוח שלו, ושהמסקנה שלו היא שחלק מהחומרים עובדים, רובם לא עושים את מה שסיפרו לך, ואף אחד מהם לא בא בלי מחיר.\n\nאבל את החומר שהוא מכתיר מעל כולם, לדבריו, אפשר לקנות כבר היום אחר הצהריים: הוא חוקי וכמעט לא עולה כלום, ולטענתו שיקרו לך עליו 60 שנה אנשים שעשו מזה הון. בפרק הוא מסביר מה כל חומר עושה בפועל במוח, מה הוא גובה ממך בצד השני, ואת ארבעת הכללים שהוא מקפיד עליהם כדי שהטוב ביותר לא יהפוך לגרוע ביותר.\n\nמה תלמד בפרק:\n• למה מודפיניל נחשב לדבר הקרוב ביותר ל\"כדור של לימיטלס\", ואיך הוא משפיע על השינה\n• איך LSD, פסילוסיבין, MDMA וקטמין משפיעים על המוח אחרת מתרופות ריכוז\n• למה אדרל ואמפטמינים יכולים לגרום לך להתרכז יותר מדי בדברים הלא נכונים\n• איך הרצטמים הפכו לנוטרופיקה המקורית לשיפור קוגניטיבי\n• מה פיתחו מדענים רוסים לקוסמונאוטים ולחיילים, כולל ברומנטן, סמקס וסלנק\n• למה ניקוטין פרמצבטי הוא אחד ממשפרי הריכוז השנויים ביותר במחלוקת\n• איך ניקוטין משפיע על אצטילכולין, קשב, זיכרון ואולי גם על הזדקנות המוח\n• למה לניקוטין ולעישון יש סיכונים בריאותיים שונים מאוד\n• איך מהירות המתן משפיעה על סיכון ההתמכרות, מסיגריות ועד מדבקות וסוכריות מציצה\n• ארבעת הכללים של דייב לצמצום הסיכונים של ניקוטין, ומי צריך להימנע ממנו\n• מה דייב למד מהוצאה של 2.5 מיליון דולר על ניסויים בשיפור קוגניטיבי\n\nחותמות זמן:\n• 00:00 - טריילר\n• 01:07 - מודפיניל: כדור הלימיטלס\n• 03:45 - פסיכדליים מול תרופות ריכוז\n• 05:31 - מיקרודוזינג ואפקט הפלסבו\n• 07:43 - קוקאין וסבילות לסמים\n• 08:33 - אמפטמינים ואדרל\n• 17:09 - רצטמים: הנוטרופיקה המקורית\n• 21:12 - תרופות חכמות רוסיות\n• 29:17 - ניקוטין לריכוז וליכולת קוגניטיבית\n• 33:53 - הסיכונים של ניקוטין וכללי בטיחות\n\nהערה: אלה החוויות והטענות של דייב אספרי עצמו, לא ייעוץ רפואי. ניקוטין ממכר, ורבים מהחומרים שמוזכרים בפרק דורשים מרשם או אסורים במדינות רבות."
   },
   {
    "id": "musk-x-profile-verified-3000-bce",
@@ -5764,25 +6164,6 @@
    "full_en": "Elon Musk's simple reply, \"Tesla will be very high too\", lit up investor hopes after SpaceX's eye-popping 7,923% net income growth forecast.\n\n• Musk responded to analyst projections showing SpaceX outpacing Nvidia, AMD and Microsoft in growth, sparking talk of deeper Tesla-SpaceX ties.\n• Both companies formed special committees of independent directors to explore a merger, which Musk called complex and needing majority shareholder approval.\n• SpaceX's Super Intelligence AI segment drove 161% revenue growth and first-time profitability.\n• Tesla investors see natural overlaps in EVs, robotics, AI, satellites and space tech.\n• Skeptics note the figures are estimates, not guarantees, with procedural hurdles ahead.\n\nThis is a summary of an X trending story, based on posts, and may evolve over time."
   },
   {
-   "id": "pod-asprey-008b38f137",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-10-30T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id451295014",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "פלסבו, קנאביס, סקוואט צמוד לקיר ללחץ דם, צפרות והמוח על פורנוגרפיה",
-    "summary": "פרק סקירת מחקרים שבו דייב אספרי עובר על חמישה מחקרים עדכניים: פלסבו גלוי במעי רגיז, סקוואט צמוד לקיר ולחץ דם, צפרות והמוח, THC וסרוטונין בעכברים, ופורנוגרפיה והמוח, ומפריד בין מה שהם מראים למה שלא."
-   },
-   "en": {
-    "title": "Placebo Pills, Cannabis, Wall Squats for Blood Pressure, Birdwatching, and the Porn Brain",
-    "summary": "A research-roundup episode in which Dave Asprey covers five recent studies: open-label placebo for IBS, wall squats and blood pressure, birdwatching and the brain, THC and serotonin in mice, and pornography and the brain, separating what they show from what they don't."
-   },
-   "full_he": "פלסבו, סקוואט צמוד לקיר, צפרות, THC ופורנוגרפיה: סקירת מחקרים שבה דייב אספרי עובר על חמישה מחקרים עדכניים ועל מה שכל אחד מהם יכול ולא יכול להראות.\n\nפלסבו שיפר תסמינים של מעי רגיז גם כשהמטופלים ידעו שהכדורים ריקים\n• בניסוי אקראי עם 80 מבוגרים עם תסמונת המעי הרגיז, מי שלקחו ביודעין כדורי פלסבו דיווחו על שיפור גדול יותר בתסמינים לעומת מי שלא קיבלו טיפול. אחרי שלושה שבועות 59% מקבוצת הפלסבו דיווחו על הקלה מספקת, לעומת 35% בקבוצת הביקורת. גם מחקר המשך גדול יותר מצא שפלסבו גלוי שיפר את התסמינים המדווחים יותר מהיעדר כדור.\n• אספרי בוחן איך התניה, ציפיות וטקס נטילת הטיפול עשויים להשפיע על תסמינים בלי הטעיה, ומסביר למה זה לא אומר שהתסמינים מדומיינים או שחשיבה חיובית מרפאת מחלות.\n• מקורות: PLOS ONE (פלסבו בלי הטעיה, ניסוי במעי רגיז); Pain (פלסבו גלוי מול סמוי כפול); Harvard Health.\n\nסקוואט צמוד לקיר פעם בשבוע שימר חלק מהשיפור בלחץ הדם אחרי אימון תכוף יותר\n• ניסוי אקראי עם 100 מבוגרים מצא שאימון איזומטרי של סקוואט צמוד לקיר הוריד את לחץ הדם, וחלק מהשיפור נשמר גם אחרי שהמשתתפים ירדו לאימון אחד או שניים בשבוע. המשתתפים התאמנו קודם שלוש פעמים בשבוע במשך ארבעה שבועות; מי שירדו אחר כך לאימון אחד בשבוע סיימו את המחקר בן שמונת השבועות עם לחץ דם סיסטולי נמוך בכ־6.6 מ\"מ כספית מנקודת ההתחלה, ומי שהמשיכו שלוש פעמים בשבוע השתפרו הכי הרבה.\n• אספרי מסביר איך כיווץ שריר ממושך עשוי להשפיע על התנגדות כלי הדם ועל הוויסות האוטונומי, למה המינון שנדרש כדי לשמר שיפור שונה מהמינון שנדרש כדי להשיג אותו, ולמה המחקר לא מראה שמתחילים יקבלו אותה תוצאה מאימון שבועי אחד או שסקוואט צמוד לקיר מחליף תרופות.\n• מקור: BMJ Open Sport & Exercise Medicine.\n\nלצפרים מומחים נמצאו הבדלים במוח שקשורים לקשב ולתפיסה\n• מחקר שהשווה 29 צפרים מומחים ל־29 מתחילים מצא הבדלים במבנה ובפעילות המוח שקשורים למומחיות בזיהוי ציפורים, כולל דיפוזיביות ממוצעת נמוכה יותר באזורי קשב ותפיסה, שהחוקרים פירשו כארגון רקמה דחוס יותר. חלק מההבדלים נמצאו גם אצל מומחים מבוגרים.\n• אספרי מסביר שזיהוי מינים דורש קשב, הבחנה חזותית, זיכרון ולמידה מתמשכת, ולמה הממצאים לא מוכיחים שצפרות מונעת דמנציה, כי המחקר לא יכול לקבוע אם התחביב הוא שגרם להבדלים.\n• מקורות: The Journal of Neuroscience; Society for Neuroscience; BBC Future.\n\nחשיפה מוקדמת ל־THC שינתה את איתות הסרוטונין בעכברים דרך מסלול שקשור ל־mTOR\n• במחקר בעכברים, חשיפה כרונית ל־THC מגיל צעיר שינתה את האיתות דרך קולטני הסרוטונין 5-HT2A והגבירה את הרגישות לתרופה סרוטונרגית שניתנה אחר כך. מתן רפמיצין בזמן החשיפה ל־THC מנע חלק מהשינויים, מה שמצביע על מסלול Akt/mTOR.\n• אספרי מדגיש שזה מחקר מנגנון בבעלי חיים, ולא הוכחה שכל שימוש בקנאביס גורם לפסיכוזה או שרפמיצין יכול למנוע השפעות פסיכיאטריות של קנאביס בבני אדם.\n• מקורות: PubMed; Neuropsychopharmacology.\n\nצריכת פורנוגרפיה נקשרה להבדלים במוח, אבל סיבה ותוצאה עדיין לא ברורות\n• מחקר הדמיה של 64 גברים בריאים קישר צריכה מדווחת גבוהה יותר של פורנוגרפיה לנפח חומר אפור נמוך יותר בחלק מהגרעין הזנבי הימני, להפעלה נמוכה יותר של הפוטמן השמאלי במשימת תמונות מיניות ולקישוריות נמוכה יותר בין הגרעין הזנבי הימני לאזור קדם־מצחי של שליטה קוגניטיבית.\n• אספרי דן בקשר אפשרי לעיבוד תגמול ולהתרגלות, ומציין שהחוקרים לא מדדו דלדול דופמין, לא הראו נזק מוחי ולא הראו שהפורנוגרפיה גרמה להבדלים; ייתכן שמאפייני מוח קודמים מסבירים אותם.\n• מקורות: JAMA Psychiatry; National Center on Sexual Exploitation.\n\nהלקח הרחב של הפרק, לפי התיאור: להבחין בין הקלה בתסמינים לטיפול במחלה, בין שימור לשיפור, בין הבדלים במוח לנזק מוחי, ובין מנגנון מרשים בבעלי חיים להתערבות מוכחת בבני אדם.",
-   "full_en": "Placebos, wall squats, birdwatching, THC and pornography: a research roundup in which host Dave Asprey looks at five recent studies and what each one can and can't show.\n\nPlacebos Improved IBS Symptoms Even When Patients Knew the Pills Were Inactive\n• In a randomized trial of 80 adults with irritable bowel syndrome, participants who knowingly took placebo pills reported greater symptom improvement than those receiving no treatment. After three weeks, 59% of the placebo group reported adequate relief compared with 35% of controls. A larger follow-up study also found that openly prescribed placebos improved reported IBS symptoms more than a no-pill control.\n• Asprey explores how conditioning, expectations and the ritual of taking a treatment may influence symptoms without deception, and explains why this does not mean symptoms are imaginary or that positive thinking can cure disease.\n• Sources: PLOS ONE (Placebos Without Deception, RCT in IBS); Pain (Open-Label vs. Double-Blind Placebo for IBS); Harvard Health.\n\nOnce-Weekly Wall Squats Preserved Some Blood-Pressure Benefits After More Frequent Training\n• A randomized trial of 100 adults found that isometric wall-squat training reduced blood pressure, with some benefits maintained after participants cut back to one or two sessions per week. Participants first trained three times weekly for four weeks; those who then dropped to one weekly session finished the eight-week study with systolic pressure about 6.6 mmHg below baseline, while those who kept three sessions improved the most.\n• Asprey discusses how sustained muscle contractions may affect vascular resistance and autonomic regulation, why the dose to maintain a benefit can differ from the dose to build it, and why the study does not show beginners get the same results from one session a week or that wall squats replace medication.\n• Sources: BMJ Open Sport & Exercise Medicine.\n\nExpert Birdwatchers Showed Brain Differences Linked to Attention and Perception\n• A study comparing 29 expert birdwatchers with 29 beginners found differences in brain structure and activity linked to bird-identification expertise, including lower mean diffusivity in attention and perception regions, which researchers read as more compact tissue organization. Some differences were also present in older experts.\n• Asprey explains why identifying species demands attention, visual discrimination, memory and continued learning, and why the findings don't prove birdwatching prevents dementia, since the study can't tell whether the hobby caused the differences.\n• Sources: The Journal of Neuroscience; Society for Neuroscience; BBC Future.\n\nEarly THC Exposure Changed Serotonin Signaling in Mice Through an mTOR-Related Pathway\n• In a mouse study, chronic THC exposure starting early in life altered serotonin 5-HT2A receptor signaling and increased sensitivity to a later serotonergic drug. Giving rapamycin during THC exposure prevented several of these changes, implicating the Akt/mTOR pathway.\n• Asprey stresses this was a mechanistic animal study, not proof that all cannabis use causes psychosis or that rapamycin can prevent cannabis-related psychiatric effects in humans.\n• Sources: PubMed; Neuropsychopharmacology.\n\nPornography Consumption Was Linked to Brain Differences, but Cause and Effect Remain Unclear\n• A brain-imaging study of 64 healthy men linked greater reported pornography use with lower gray-matter volume in part of the right caudate, lower left-putamen activation during a sexual-image task, and lower connectivity between the right caudate and a prefrontal control region.\n• Asprey discusses possible links to reward processing and habituation, while noting the researchers did not measure dopamine depletion, show brain damage, or show that pornography caused the differences; preexisting brain traits could also explain them.\n• Sources: JAMA Psychiatry; National Center on Sexual Exploitation.\n\nThe episode's larger lesson, per the notes: distinguish symptom relief from disease treatment, maintenance from improvement, brain differences from brain damage, and a compelling animal mechanism from a proven human intervention."
-  },
-  {
    "id": "musk-vote-republican-sun-city",
    "topic": "musk",
    "date": "2026-10-30T07:54:35Z",
@@ -7449,25 +7830,6 @@
    "full_en": "Italy's transport minister shared a positive chat with Elon Musk, throwing his weight behind faster EU green lights for Tesla's assisted driving tech.\n\n• Deputy Prime Minister Matteo Salvini posted that Italy supports quick EU approval of Tesla Assisted Driving, emphasizing innovation and road safety after a constructive talk with Musk.\n• This boosts momentum for a potential December vote in the EU's Technical Committee on Motor Vehicles, where Italy's 13.1% share of the population could help meet the qualified majority threshold.\n• Ten countries already recognize it nationally, and Germany has signaled support.\n• Italy's own approval process is ongoing, and full autonomous rules may add challenges.\n\nThe source is an X trending-story summary (written by Grok from posts), so this is all the text available."
   },
   {
-   "id": "pod-asprey-e36010165f",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-10-29T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id451295014",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "הפתרון הפשוט להפסיק לאכול יותר מדי",
-    "summary": "דייב אספרי משוחח עם שרה קנדי, מנכ\"לית Calocurb, על תמצית כשות (Amarasate) שלדבריהם מפעילה קולטני מרירות במעי ומעודדת הורמוני שובע כמו GLP-1, ועל השפעתה על רעב, צום לסירוגין וירידה במשקל."
-   },
-   "en": {
-    "title": "The No-Brainer Solution To Stop Overeating",
-    "summary": "Dave Asprey talks with Sarah Kennedy, CEO of Calocurb, about a patented hops extract (Amarasate) that they say activates bitter receptors in the gut to trigger satiety hormones like GLP-1, and how it may affect hunger, fasting and weight loss."
-   },
-   "full_en": "How Hops Extract Suppresses Hunger, Reduces Cravings, Supports Weight Loss, and Makes Intermittent Fasting Easier\n\nHost Dave Asprey sits down with Sarah Kennedy, CEO of Calocurb, to explore the science of hunger suppression, natural GLP-1 activation, intermittent fasting, weight loss, visceral fat reduction, and a patented hops extract that may help people eat less without relying on willpower.\n\nThe conversation centers on Amarasate, a natural compound derived from New Zealand hops, the same plant used to make beer. Originally investigated through a multimillion-dollar research program, this bitter plant extract activates specialized receptors in the digestive tract that stimulate the body's natural appetite-regulating hormones. Sarah explains how this discovery led to Calocurb, a supplement designed to reduce hunger, control cravings, and make fasting and calorie restriction easier.\n\nDave and Sarah break down the biology of GLP-1, CCK, PYY, ghrelin, and leptin and how these hormones influence hunger, fullness, cravings and metabolic health. Unlike injectable GLP-1 medications such as Ozempic and Wegovy, Amarasate works through bitter taste receptors in the gut to stimulate the body's own satiety signaling. They examine why the timing and location of these signals matter, how quickly the extract begins working, and how it differs from conventional appetite suppressants.\n\nSarah shares findings from four human clinical trials, including research reporting an average 18% reduction in calorie intake after taking the extract. The discussion also covers a six-month randomized, placebo-controlled study of about 150 participants that reported an average 5.5% reduction in body weight, with estimated fat loss and no detected average muscle loss, and about 3.5 times greater visceral fat reduction than placebo.\n\nThey also discuss how the extract may make intermittent and extended fasting easier by reducing hunger and cravings, and challenge the idea that overeating is simply a failure of willpower, looking at gut-brain signaling and metabolic hormones.\n\nYou'll learn:\n• How a patented compound from hops activates bitter receptors in the gut to stimulate GLP-1, CCK and PYY\n• Why clinical research found the extract reduced calorie intake by about 18%\n• How a six-month trial reported 5.5% body-weight loss, reduced visceral fat and no detected average muscle loss\n• Why hunger, cravings and overeating involve hormonal signaling rather than just a lack of willpower\n• How natural appetite regulation may make intermittent fasting, extended fasting and calorie restriction easier\n• How hops-derived compounds differ from injectable GLP-1 medications\n\nTimestamps:\n• 00:00 Trailer\n• 01:32 Intro\n• 03:06 Discovering Hops Extract\n• 07:58 Finding the Right Hop\n• 10:15 Clinical Trial Results\n• 15:34 No Rebound Weight Gain\n• 19:47 Personal Story & Fasting\n• 23:05 Women's Fasting Study\n• 29:32 Willpower & Hunger\n• 38:42 Combining With GLP-1s\n\nNote: these are the host's and guest's claims, and the guest is the CEO of the company that sells the supplement; the studies mentioned are as described in the episode notes. This isn't medical advice.",
-   "full_he": "איך תמצית כשות מדכאת רעב, מפחיתה חשקים, תומכת בירידה במשקל ומקלה על צום לסירוגין\n\nדייב אספרי מארח את שרה קנדי, מנכ\"לית Calocurb, לשיחה על המדע של דיכוי רעב, הפעלה טבעית של GLP-1, צום לסירוגין, ירידה במשקל, הפחתת שומן ויסרלי (בטני), ותמצית כשות בפטנט שלדבריהם עשויה לעזור לאכול פחות בלי להסתמך על כוח רצון.\n\nהשיחה מתמקדת ב-Amarasate, תרכובת טבעית שמופקת מכשות ניו זילנדית, אותו צמח שממנו מכינים בירה. לדבריהם, התמצית המרירה הזו נחקרה בתוכנית מחקר של מיליוני דולרים, והיא מפעילה קולטנים מיוחדים במערכת העיכול שמעודדים את ההורמונים הטבעיים של הגוף לוויסות התיאבון. שרה מספרת איך התגלית הובילה ל-Calocurb, תוסף שנועד להפחית רעב, לשלוט בחשקים ולהקל על צום והגבלת קלוריות.\n\nדייב ושרה מסבירים את הביולוגיה של GLP-1, CCK, PYY, גרלין ולפטין, ואיך ההורמונים האלה משפיעים על רעב, שובע, חשקים ובריאות מטבולית. בניגוד לתרופות GLP-1 בזריקה כמו אוזמפיק ו-וגובי, לדבריהם Amarasate פועלת דרך קולטני טעם מר במעי כדי לעורר את אותות השובע של הגוף עצמו. הם דנים בחשיבות התזמון והמיקום של האותות, בכמה מהר התמצית מתחילה לפעול ובמה היא שונה ממדכאי תיאבון רגילים.\n\nשרה מציגה ממצאים מארבעה ניסויים קליניים בבני אדם, כולל מחקר שדיווח על ירידה ממוצעת של 18% בצריכת הקלוריות אחרי נטילת התמצית. הם מדברים גם על מחקר אקראי מבוקר פלצבו של חצי שנה עם כ-150 משתתפים, שדיווח על ירידה ממוצעת של 5.5% במשקל הגוף, עם ירידה משוערת בשומן ובלי ירידה ממוצעת שזוהתה במסת השריר, ועל הפחתה של שומן ויסרלי שגדולה פי 3.5 בערך מאשר בפלצבו.\n\nעוד הם מדברים על כך שהתמצית עשויה להקל על צום לסירוגין וצום ממושך בזכות פחות רעב וחשקים, ומערערים על הרעיון שאכילת יתר היא פשוט כישלון של משמעת עצמית, דרך התקשורת בין המעי למוח וההורמונים המטבוליים.\n\nמה תלמד בפרק:\n• איך תרכובת בפטנט מכשות מפעילה קולטני מרירות במעי ומעודדת GLP-1, CCK ו-PYY\n• למה מחקר קליני מצא שהתמצית הפחיתה את צריכת הקלוריות בכ-18%\n• איך ניסוי של חצי שנה דיווח על ירידה של 5.5% במשקל, פחות שומן ויסרלי ובלי ירידה ממוצעת שזוהתה בשריר\n• למה רעב, חשקים ואכילת יתר קשורים לאיתות הורמונלי ולא רק לחוסר כוח רצון\n• איך ויסות תיאבון טבעי עשוי להקל על צום לסירוגין, צום ממושך והגבלת קלוריות\n• במה תרכובות מכשות שונות מתרופות GLP-1 בזריקה\n\nחותמות זמן:\n• 00:00 טריילר\n• 01:32 פתיחה\n• 03:06 הגילוי של תמצית הכשות\n• 07:58 מציאת הכשות הנכונה\n• 10:15 תוצאות הניסויים הקליניים\n• 15:34 בלי עלייה חוזרת במשקל\n• 19:47 סיפור אישי וצום\n• 23:05 מחקר צום אצל נשים\n• 29:32 כוח רצון ורעב\n• 38:42 שילוב עם תרופות GLP-1\n\nהערה: אלה טענות המנחה והאורחת, והאורחת היא מנכ\"לית החברה שמוכרת את התוסף; המחקרים מתוארים כפי שהם מופיעים בתיאור הפרק. זו לא עצה רפואית."
-  },
-  {
    "id": "emmawatson-instagram-wicker-hacked-fears",
    "topic": "emmawatson",
    "date": "2026-10-29T08:13:21Z",
@@ -7517,25 +7879,6 @@
    },
    "full_en": "In 2008, Elon Musk faced a heartbreaking choice: pour his last $30–40 million into one struggling company and let the other die, or risk it all on both.\n\nAmid the financial crisis, with SpaceX reeling from three failed launches and Tesla burning through cash, Musk split his remaining funds, likening it to refusing to let one 'child' starve. Both companies barely survived: SpaceX landed a $1.6 billion NASA contract on December 23, and Tesla closed funding the next evening, just before payroll would have failed. Musk later called 2008 the worst year of his life, a raw moment still visible in an old interview where he paused emotionally.\n\n(This is X's summary of posts about the story, which may change over time.)",
    "full_he": "ב-2008 עמד אילון מאסק בפני בחירה קורעת לב: להשקיע את 30–40 מיליון הדולר האחרונים שלו בחברה אחת מתקשה ולתת לשנייה למות, או לסכן הכול על שתיהן.\n\nבאמצע המשבר הפיננסי, כש-SpaceX התאוששה משלושה שיגורים כושלים וטסלה שרפה מזומנים, מאסק חילק את הכסף שנשאר לו בין שתיהן, ודימה את זה לסירוב לתת ל'ילד' אחד לרעוב. שתי החברות שרדו בקושי: SpaceX זכתה בחוזה של 1.6 מיליארד דולר מנאס\"א ב-23 בדצמבר, וטסלה סגרה סבב מימון למחרת בערב, רגע לפני שלא היה במה לשלם משכורות. מאסק כינה מאוחר יותר את 2008 השנה הגרועה בחייו, ובראיון ישן אפשר עדיין לראות אותו עוצר בהתרגשות כשהוא מדבר על זה.\n\n(זה הסיכום של X לפוסטים על הסיפור, והוא עשוי להשתנות.)"
-  },
-  {
-   "id": "pod-brecka-97ecc4b8da",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Ultimate Human",
-   "date": "2026-10-29T07:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "תסמיני גיל המעבר המוקדם מעבר לגלי חום, עם שהאב ודוראנה אלמי",
-    "summary": "גארי ברקה וסייג' וורקינגר משוחחים עם בני הזוג שהאב ודוראנה אלמי על פרימנופאוזה (התקופה שלפני גיל המעבר): הזעות לילה, עייפות בבוקר, ערפל מוחי ושינויי מצב רוח, וגם על בניית עסק משותף עם בן או בת הזוג."
-   },
-   "en": {
-    "title": "Perimenopause Symptoms Beyond Hot Flashes - Shahab & Durana Elmi",
-    "summary": "Gary Brecka and Sage Workinger talk with Shahab and Durana Elmi about perimenopause, from night sweats and morning exhaustion to brain fog and mood shifts, and about building a business with your spouse."
-   },
-   "full_en": "Perimenopause is more than hot flashes, and Gary says it can start as early as your 30s. Gary Brecka and Sage Workinger sit down with Shahab and Durana Elmi to talk night sweats, crushing morning exhaustion, brain fog, bloating and mood shifts, what husbands often miss, and how the DUTCH hormone test helped Gary and Sage figure out what was going on. Plus, what it takes to build a business with your spouse. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: Perimenopause and Building a Business Together\n• 02:37 — Night Sweats and the First Perimenopause Signs\n• 04:49 — Starting a Business During Menopause\n• 08:49 — DUTCH Test and Perimenopause Symptoms\n• 09:23 — Early Onset and the Rocket Fuel Book\n• 11:26 — Why Spouse Business Partners Can't Unplug\n• 14:24 — Helping People as the Company's Why\n• 23:41 — Hot Flashes and Broken Sleep\n• 27:41 — Altitude Control Rooms and Intermittent Hypoxia\n• 32:24 — Stepping Away Instead of Acting on Emotion\n• 34:21 — Gummies vs Liposomal Supplements\n• 36:46 — Single-Use Packets and Oxygen Degradation\n• 39:30 — Why Vitamin C Needs Cofactors\n• 41:20 — Underdosed All-in-One Multivitamins\n• 43:34 — What It Means to Be an Ultimate Human\n\nDisclaimer from the episode: This podcast is for informational purposes only and does not provide medical advice, diagnosis or treatment; always consult a licensed healthcare professional before making health decisions. Gary Brecka owns Ultimate Human, LLC, which promotes third-party products in which he holds an economic interest, so statements on the podcast may be considered promotional.\n\nNote: these are the hosts' and guests' views. Hormone testing such as the DUTCH test is not part of standard perimenopause diagnosis, which mainstream medicine bases mainly on symptoms and age.",
-   "full_he": "פרימנופאוזה (התקופה שלפני גיל המעבר) היא הרבה יותר מגלי חום, ולדברי גארי היא יכולה להתחיל כבר בשנות ה-30. גארי ברקה וסייג' וורקינגר יושבים עם שהאב ודוראנה אלמי ומדברים על הזעות לילה, עייפות מכריעה בבוקר, ערפל מוחי, נפיחות ושינויי מצב רוח, על מה שבעלים נוטים לפספס, ועל האופן שבו בדיקת ההורמונים DUTCH עזרה לגארי ולסייג' להבין מה קורה. בנוסף: מה נדרש כדי לבנות עסק יחד עם בן או בת הזוג. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: פרימנופאוזה ובניית עסק משותף\n• 02:37 — הזעות לילה והסימנים הראשונים של פרימנופאוזה\n• 04:49 — להקים עסק בתקופת גיל המעבר\n• 08:49 — בדיקת DUTCH ותסמיני פרימנופאוזה\n• 09:23 — הופעה מוקדמת והספר Rocket Fuel\n• 11:26 — למה בני זוג ששותפים לעסק לא מצליחים להתנתק\n• 14:24 — לעזור לאנשים כ\"למה\" של החברה\n• 23:41 — גלי חום ושינה שבורה\n• 27:41 — חדרי בקרת גובה והיפוקסיה לסירוגין\n• 32:24 — לקחת צעד אחורה במקום לפעול מתוך רגש\n• 34:21 — סוכריות גומי לעומת תוספים ליפוזומליים\n• 36:46 — שקיקים חד-פעמיים ופירוק בחמצן\n• 39:30 — למה ויטמין C צריך קו-פקטורים\n• 41:20 — מולטי-ויטמינים \"הכול באחד\" במינון חסר\n• 43:34 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה דעות המגישים והאורחים. בדיקות הורמונים כמו DUTCH אינן חלק מהאבחון המקובל של פרימנופאוזה, שברפואה המקובלת מתבסס בעיקר על תסמינים וגיל."
   },
   {
    "id": "spacex-flight15-double-catch-nov8",
@@ -9816,25 +10159,6 @@
    "full_en": "Elon Musk saw charts showing his political donations topping George Soros's lifetime total and replied simply, 'I'm trying.' That line captured the buzz around his massive contributions.\n\n• Charts from FEC and IRS data reveal Musk spent about $759 million on American elections over the last two years, crossing Soros's $624 million lifetime total by 2026.\n• In the 2026 midterm cycle alone, Musk donated roughly $446 million, mostly through America PAC and groups supporting Republicans, with daily millions in the final stretch.\n• Supporters call it a defense of America, while critics like Sen. Elizabeth Warren say it's to back races where Democrats won't rubber-stamp agendas.\n• The debate highlights billionaire sway in politics as voters near early November polls.\n\nThis is X's news story summary (its opening hook and summary)."
   },
   {
-   "id": "pod-asprey-8edbbd70bf",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-10-27T08:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/the-easiest-treatment-that-made-me-15-years-younger/id451295014?i=1000798318530",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "דייב אספרי: הטיפול הכי קל שלדבריו הצעיר אותו ב-15 שנה",
-    "summary": "דייב אספרי משוחח עם ד\"ר טים קוק, רופא לרפואת אריכות ימים (לא מנכ\"ל אפל), על טיפולים ניסיוניים: \"חינוך מחדש\" של תאי גזע, טיפול גנטי בפוליסטטין ובקלותו. לדבריהם התוצאות ראשוניות ועדיין לא מוכחות קלינית."
-   },
-   "en": {
-    "title": "The Easiest Treatment That Made Me 15 Years Younger",
-    "summary": "Dave Asprey talks with Dr. Tim Cook, a longevity physician (not Apple's CEO), about experimental treatments: stem cell re-education and follistatin and klotho gene therapy. They stress the results are preliminary, not clinically established."
-   },
-   "full_he": "דייב אספרי מארח את ד\"ר טים קוק, רופא ומומחה לרפואת אריכות ימים ששימש בעבר רופא אישי של שני מושלים כלליים של קנדה (לא מנכ\"ל אפל), לשיחה על טיפול גנטי ניסיוני, היפוך הגיל הביולוגי, \"חינוך מחדש\" של תאי גזע, התחדשות מערכת החיסון, בניית שריר והמדע המתפתח של הארכת חיי האדם.\n\nהשיחה הוקלטה ביער הגשם באקוודור, ועוסקת בשלושה טיפולי אריכות ימים מתקדמים שדייב וטים עובדים איתם דרך House of Evolution, המיזם שלהם להרחבת הגישה לטיפולים ניסיוניים. הם מסבירים איך הטכנולוגיות עובדות, מה התוצאות המוקדמות שהם רואים, ולמה חלק מהטיפולים זמינים כרגע רק מחוץ לארה\"ב.\n\nדייב מספר שאחרי טיפול של יומיים ב\"חינוך מחדש\" של תאי גזע, בדיקות דם כחודשיים אחר כך הראו שמערכת החיסון שלו צעירה ב-15.2 שנים. טים מסביר שהתהליך משתמש במולקולות איתות מתאי גזע מדם חבל הטבור כדי להשפיע על תאי החיסון של המטופל עצמו לפני שהם מוחזרים לגוף. הם דנים במשמעות האפשרית לדלקת כרונית, למצבים אוטואימוניים ולתפקוד חיסוני שנפגע עם הגיל.\n\nאחר כך הם עוברים לטיפול גנטי בפוליסטטין, טיפול ניסיוני שנועד להגביר חלבון שקשור לבנייה ושימור של שריר. הם משתפים תוצאות ראשוניות, כולל ירידה ממוצעת מדווחת של תשע שנים במדדי הגיל הביולוגי, עלייה במסת שריר רזה וירידה בשומן. הם מסבירים למה שימור שריר והפחתת שומן קרבי עשויים להיות קריטיים לאריכות ימים, במיוחד כשתנגודת אנבולית וסרקופניה (אובדן שריר) נעשות נפוצות עם הגיל.\n\nהם דנים גם בטיפול גנטי בקלותו, שמכוון לחלבון שקשור לאריכות ימים, לתפקוד הכליות, לבריאות קוגניטיבית ולהזדקנות. טים מתאר תצפיות מוקדמות על עלייה משמעותית ברמות הקלותו אחרי הטיפול, ודייב מסביר למה החלבון הזה הפך למוקד מרכזי במחקר שלו. הם בוחנים גם העברת גנים מבוססת פלסמידים, במה היא שונה מעריכה ישירה של ה-DNA, ואת השאלות הפתוחות לגבי בטיחות ויעילות לטווח ארוך.\n\nהם מערערים על החשיבה המקובלת לגבי תוחלת חיים בריאה, אורך חיים ו\"מהירות מילוט מהזדקנות\", ושואלים אם טיפולים חדשים יוכלו בעתיד לעזור לשמור על תפקוד גופני וקוגניטיבי צעיר לעוד עשרות שנים. הם מתארים איך בדיקות סמנים ביולוגיים מתקדמות ומודלים חזויים משמשים למעקב אחרי הגיל הביולוגי ולהערכת שינויים בתוחלת החיים.\n\nלבסוף הם מסתכלים קדימה על בנקאות תאי גזע, תכנות גנטי מחדש ורפואה רגנרטיבית, כולל האפשרות לחדש את התאים של האדם עצמו ולגדל רקמות חלופיות. הם מתייחסים גם לעלויות הגבוהות, לזמינות המוגבלת ולאתגרי הרגולציה, ומדגישים שרבות מהתוצאות שעלו בפרק הן ראשוניות ואינן ראיה קלינית מבוססת להיפוך הזדקנות.\n\nמה תלמד בפרק:\n• איך אחרי טיפול של יומיים ב\"חינוך מחדש\" של תאי גזע דווח על ירידה של 15.2 שנים בגיל החיסוני שנמדד אצל דייב, ואיך התהליך עובד\n• למה חוקרים טיפול גנטי בפוליסטטין לבניית שריר, סרקופניה, הרכב גוף והזדקנות ביולוגית\n• איך טיפולים גנטיים ניסיוניים מבוססי פלסמידים מגבירים ייצור חלבון בלי לערוך בכוונה את הגנום\n• מה מרמזות התוצאות המוקדמות של טיפול גנטי בקלותו על רמות החלבון, ביצועים קוגניטיביים, בריאות הכליות ואריכות ימים\n• למה הזדקנות מערכת החיסון, דלקת כרונית ושומן קרבי עשויים לתרום למחלות ולירידה גופנית עם הגיל\n• איך בנקאות תאי גזע, תכנות תאים מחדש ורפואה רגנרטיבית עשויים לעצב את טיפולי אריכות הימים בעתיד\n\nפרקי זמן:\n• 00:00 — טריילר\n• 00:59 — טיפול גנטי בפוליסטטין\n• 05:25 — איך פלסמידים עובדים\n• 09:30 — מהירות מילוט מהזדקנות\n• 16:30 — תוצאות ונתונים של פוליסטטין\n• 21:30 — קלותו: החלבון הקוגניטיבי\n• 24:30 — House of Evolution\n• 30:30 — חינוך מחדש של תאי גזע\n• 39:00 — בנקאות תאי גזע\n• 41:30 — העתיד של אריכות הימים\n\nהערה: אלה טיפולים ניסיוניים, והתוצאות הן דיווחים של המשתתפים ושל המיזם שלהם (House of Evolution), שיש להם בו אינטרס. כפי שנאמר בפרק עצמו, הן ראשוניות ואינן ראיה קלינית מבוססת.",
-   "full_en": "Host Dave Asprey sits down with Dr. Tim Cook, a physician and longevity medicine expert who previously served as personal physician to two Governors General of Canada (not Apple's CEO), to explore experimental gene therapy, biological age reversal, stem cell re-education, immune rejuvenation, muscle growth, and the emerging science of extending human lifespan.\n\nRecorded in the Amazon rainforest in Ecuador, the conversation explores three advanced longevity treatments Dave and Tim are working with through House of Evolution, their venture focused on expanding access to experimental therapies. They discuss how these technologies work, the early results they're observing, and why some treatments are currently available outside the United States.\n\nDave reveals that after undergoing a two-day stem cell re-education treatment, blood testing approximately two months later indicated his immune system was 15.2 years younger. Tim explains how the procedure uses signaling molecules from umbilical cord blood stem cells to influence a patient's own immune cells before returning them to the body. They explore the potential implications for chronic inflammation, autoimmune conditions, and age-related immune dysfunction.\n\nThe discussion turns to follistatin gene therapy, an experimental treatment designed to increase a protein involved in muscle growth and maintenance. Dave and Tim share preliminary results, including a reported average nine-year reduction in biological-age measurements, increased lean muscle mass, and reductions in body fat. They examine why preserving muscle and reducing visceral fat may be critical for longevity, particularly as anabolic resistance and sarcopenia become more common with age.\n\nThey also explore klotho gene therapy, which targets a longevity-associated protein involved in kidney function, cognitive health, and aging. Tim describes early observations of substantially increased klotho levels following treatment, while Dave explains why this protein has become a major focus of his longevity research. The conversation also examines plasmid-based gene delivery, how it differs from directly editing human DNA, and the unanswered questions surrounding long-term safety and effectiveness.\n\nDave and Tim challenge conventional thinking about healthspan, lifespan, and longevity escape velocity, discussing whether emerging treatments could eventually help people maintain youthful physical and cognitive function for decades longer. They examine how advanced biomarker testing and predictive models are being used to track biological aging and estimate changes in life expectancy.\n\nFinally, they look ahead to stem cell banking, genetic reprogramming, and regenerative medicine, including the possibility of rejuvenating a person's own cells and growing replacement tissues. They also address the high costs, limited availability, and regulatory challenges surrounding these technologies, emphasizing that many of the results discussed remain preliminary rather than clinically established evidence of age reversal.\n\nYou'll learn:\n• How Dave's two-day stem cell re-education treatment was followed by a reported 15.2-year reduction in his measured immune age, and how the procedure works\n• Why follistatin gene therapy is being investigated for muscle growth, sarcopenia, body composition, and biological aging\n• How experimental plasmid-based gene therapies increase protein production without intentionally editing the human genome\n• What early klotho gene therapy results suggest about protein levels, cognitive performance, kidney health, and longevity\n• Why immune system aging, chronic inflammation, and visceral fat may contribute to age-related disease and physical decline\n• How stem cell banking, cellular reprogramming, and regenerative medicine could shape the future of longevity treatments\n\nTimestamps:\n• 00:00 — Trailer\n• 00:59 — Follistatin Gene Therapy\n• 05:25 — How Plasmids Work\n• 09:30 — Longevity Escape Velocity\n• 16:30 — Follistatin Results & Data\n• 21:30 — Klotho: The Cognitive Protein\n• 24:30 — House of Evolution\n• 30:30 — Stem Cell Re-Education\n• 39:00 — Stem Cell Banking\n• 41:30 — The Future of Longevity\n\nNote: these are experimental treatments, and the results are reports from the hosts and their own venture (House of Evolution), in which they have an interest. As the episode itself says, they are preliminary, not clinically established evidence."
-  },
-  {
    "id": "grokbot-bot-teams",
    "topic": "grokbot",
    "date": "2026-10-27T08:27:38Z",
@@ -9918,25 +10242,6 @@
    },
    "full_he": "פלקון 9 חצתה את שמי הלילה מוונדנברג, והפלומה הבוהקת שלה האירה את החושך כש-27 לווייני סטארלינק נוספים עשו את דרכם למסלול.\n\n• ספייס אקס שיגרה את הטיל מוקדם ביום שלישי מבסיס חיל החלל ונדנברג בקליפורניה, בדיוק בזמן, ב-00:25 לפי שעון החוף המערבי (09:25 שעון ישראל), ממתחם השיגור SLC-4E.\n• המשימה נשאה 27 לווייני סטארלינק למסלול נמוך סביב כדור הארץ.\n• המאיץ של השלב הראשון, בטיסתו ה-26, נחת על ספינת הרחפנים Of Course I Still Love You באוקיינוס השקט.\n• השיגורים הליליים האלה הפכו לשגרה כזו שצופים קוראים להם \"סתם עוד יום שלישי\", רחוק מאוד מחלומות המדע הבדיוני של לפני 15 שנה.\n• קליפורניה בדרך לשיא שנתי חדש, עם 72 שיגורים ב-2026.\n\nזה סיכום של סיפור החדשות ב-X (תקציר הפתיחה והסיכום שלו).",
    "full_en": "A Falcon 9 streaked into the night sky from Vandenberg, its bright plume lighting up the dark as 27 more Starlink satellites headed to orbit.\n\n• SpaceX sent up a Falcon 9 rocket early Tuesday from Vandenberg Space Force Base in California, right on schedule at 12:25 a.m. PDT from Space Launch Complex 4E.\n• The mission carried 27 Starlink satellites to low Earth orbit.\n• The first-stage booster, on its 26th flight, landed on the drone ship Of Course I Still Love You in the Pacific.\n• These frequent overnight launches have become so routine that observers call them a casual Tuesday, a far cry from sci-fi dreams 15 years ago.\n• California is heading toward a new annual launch record, at 72 missions in 2026.\n\nThis is X's news story summary (its opening hook and summary)."
-  },
-  {
-   "id": "pod-brecka-0e7f6b3ee2",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Ultimate Human",
-   "date": "2026-10-27T07:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/dr-alejandro-junger-why-leaky-gut-is-behind-autoimmune/id1709740887?i=1000798313277",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "ד\"ר אלחנדרו ג'ונגר: למה \"מעי דולף\" עומד מאחורי מחלות אוטואימוניות",
-    "summary": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מסביר לגארי ברקה איך לדבריו מעי דולף מבלבל את מערכת החיסון, למה הוא מאמין שחוסר איזון בחיידקי המעי עומד מאחורי רוב המחלות הכרוניות, ומה הכבד עושה בניקוי רעלים. אלה טענותיו."
-   },
-   "en": {
-    "title": "Dr. Alejandro Junger: Why Leaky Gut Is Behind Autoimmune Disease",
-    "summary": "Cardiologist Dr. Alejandro Junger tells Gary Brecka how, in his view, a leaky gut confuses the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver does during detox."
-   },
-   "full_he": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מצטרף לגארי ברקה ומסביר איך לדבריו מעי דולף יכול לבלבל את מערכת החיסון, למה הוא מאמין שדיסביוזיס (חוסר איזון בחיידקי המעי) עומד מאחורי רוב המצבים הכרוניים, ומה הכבד עושה בפועל בזמן ניקוי רעלים. הוא מדבר גם על השימוש שלו ב-L-גלוטמין, על המזונות והמשקאות שהוא מוציא ראשונים מהתפריט, ועל החוויה האישית שלו עם איבוגאין ותאי גזע. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: בריאות המעי וניקוי רעלים\n• 05:21 — שלוש אבחנות, שבעה מרשמים\n• 06:53 — החוויה באשרם ותודעה קוסמית\n• 13:41 — תוכנית הניקוי הראשונה שלו\n• 20:07 — עצירות, קונסטלציות משפחתיות וחוקן קפה\n• 28:00 — מה זה בעצם ניקוי רעלים\n• 29:15 — ניקוי הכבד בשני שלבים\n• 31:21 — אוכל אמיתי ודיאטת אלימינציה\n• 34:22 — איך איבוגאין פועל במוח\n• 37:48 — נקודת השפל ו\"פורטל הלב\"\n• 43:29 — הסיכון הלבבי של איבוגאין ומעקב\n• 45:44 — תאי גזע לכאבי גב\n• 46:53 — שלושת המוחות: ראש, לב, מעי\n• 48:35 — דיסביוזיס ומעי דולף\n• 56:27 — מחלות אוטואימוניות והמעי\n• 01:01:48 — לקנות בהיקף הסופרמרקט\n• 01:03:46 — L-גלוטמין ותוספים למעי\n• 01:11:46 — איך ליישר את שלושת המוחות\n• 01:13:10 — תרגיל מודעות לכפות הרגליים לנוכחות\n• 01:22:07 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה טענות של האורח. הקשר בין \"מעי דולף\" למחלות אוטואימוניות עדיין נחקר ואינו מוכח ברפואה המקובלת, ואיבוגאין הוא חומר לא מאושר עם סיכון לבבי מוכר (כפי שעולה גם מפרקי הזמן של הפרק).",
-   "full_en": "Cardiologist Dr. Alejandro Junger joins Gary Brecka to explain how a leaky gut can confuse the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver actually does during detox. He also covers how he uses L-glutamine, the foods and drinks he removes first, and his own experience with ibogaine and stem cells. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: Gut Health and Detox\n• 05:21 — Three Diagnoses, Seven Prescriptions\n• 06:53 — The Ashram Experience and Cosmic Consciousness\n• 13:41 — His First Detox Program\n• 20:07 — Constipation, Family Constellations and Coffee Enema\n• 28:00 — What Detox Actually Means\n• 29:15 — Liver Detox in Two Steps\n• 31:21 — Real Food and the Elimination Diet\n• 34:22 — How Ibogaine Works in the Brain\n• 37:48 — Lowest Point and the Heart Portal\n• 43:29 — Ibogaine Heart Risk and Monitoring\n• 45:44 — Stem Cells for Back Pain\n• 46:53 — The Three Brains: Head, Heart, Gut\n• 48:35 — Gut Dysbiosis and Leaky Gut\n• 56:27 — Autoimmune Disease and the Gut\n• 01:01:48 — Shopping the Grocery Perimeter\n• 01:03:46 — L-Glutamine and Gut Supplements\n• 01:11:46 — How to Align the Three Brains\n• 01:13:10 — Feet Awareness Exercise for Presence\n• 01:22:07 — What It Means to Be an Ultimate Human\n\nThe episode's disclaimer: the podcast is for informational purposes only and is not medical advice, diagnosis or treatment; consult a licensed healthcare professional before health decisions. Gary Brecka owns Ultimate Human LLC, which promotes third-party products in which he has an economic interest, so statements on the podcast may be considered promotional.\n\nNote: these are the guest's claims. The link between \"leaky gut\" and autoimmune disease is still being researched and is not established in mainstream medicine, and ibogaine is an unapproved substance with known heart risks (as the episode's own timestamps acknowledge)."
   },
   {
    "id": "musk-newsom-dsa",
@@ -11248,25 +11553,6 @@
    "full_en": "Why You Sweat For No Reason\n\nYour hands are sweating. Your feet are sweating. Your heart rate is going up. You feel nervous, and there doesn’t even seem to be a reason for it.\n\nToxic heavy metals inside the brain can put pressure on the central nervous system, forcing the adrenals to react over and over again. Now the adrenals are cranked up, adrenaline is pouring out, and you can end up dealing with profuse sweating or hyperhidrosis."
   },
   {
-   "id": "pod-jbp-79e8060f90",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Jordan B. Peterson Podcast",
-   "date": "2026-10-25T19:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/why-your-marriage-feels-like-a-prison-instead/id1184022695?i=1000798058252",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "למה הנישואים שלך מרגישים כמו כלא ולא כמו הרפתקה",
-    "summary": "בהרצאה שצולמה בבוסטון ביוני 2024, ג'ורדן פטרסון עוסק בסיפור אברהם ובמה שהוא מלמד על זהות, הקרבה והקריאה להרפתקה, ובמה שנישואים והורות באמת דורשים."
-   },
-   "en": {
-    "title": "Why Your Marriage Feels Like A Prison Instead Of An Adventure",
-    "summary": "In a lecture filmed in Boston in June 2024, Jordan Peterson explores the story of Abraham and what it says about identity, sacrifice and the call to adventure, and what marriage and parenthood really demand."
-   },
-   "full_he": "מה זה באמת לחיות את החיים שלך, ולא רק לשרוד אותם? בהרצאה הזו ד\"ר ג'ורדן ב. פטרסון חוקר את סיפור אברהם ומה שהוא מגלה על זהות, הקרבה והקריאה להרפתקה. למה אנשים שיש להם הכול עדיין מרגישים ריקים? למה נוחות בלי תכלית משחיתה במקום לספק? ומה זה באמת עולה לך להמשיך לשחק על בטוח?\n\nפטרסון עוסק גם במה שנישואים והורות באמת דורשים. מחויבות היא לא כלוב, היא התנאי להפוך למישהו ששווה להיות, ולכן מי שלוקח אותה ברצינות מקבל בסוף יותר, לא פחות.\n\nזו הרצאה על מה שנדרש כדי להפוך למי שאתה אמור להיות, ולמה רוב האנשים לא מגיעים לשם.\n\nההרצאה צולמה בבוסטון, מסצ'וסטס, ב-5 ביוני 2024.",
-   "full_en": "What does it mean to actually live your life, not just survive it? In this lecture, Dr. Jordan B. Peterson explores the story of Abraham and what it reveals about identity, sacrifice, and the call to adventure. Why do people with everything still feel empty? Why does comfort, without purpose, corrupt rather than satisfy? And what does it actually cost you to keep playing it safe?\n\nPeterson also digs into what marriage and parenthood really demand. Commitment isn't a cage. It's the condition for becoming someone worth being, and why the people who take it seriously end up with more, not less.\n\nThis is a lecture about what it takes to become who you're supposed to be, and why most people never do.\n\nThis lecture was filmed in Boston, Massachusetts, on June 5, 2024."
-  },
-  {
    "id": "mm-dog-whole-banana",
    "topic": "medicalmedium",
    "date": "2026-10-25T19:16:35Z",
@@ -11962,25 +12248,6 @@
    },
    "full_he": "מאסק: \"אנחנו מוסיפים אפשרות ללחוץ לחיצה ארוכה על לייק כדי לשלוח למישהו דולר אחד דרך X Money.\"",
    "full_en": "We’re adding long press on like to send someone $1 via 𝕏 Money"
-  },
-  {
-   "id": "pod-asprey-422042f622",
-   "topic": "podcasts",
-   "kind": "podcast",
-   "show": "The Human Upgrade",
-   "date": "2026-10-25T02:30:00Z",
-   "url": "https://podcasts.apple.com/us/podcast/how-to-reverse-your-age-for-%245-day-budget-biohacking/id451295014?i=1000797978351",
-   "source": "Apple Podcasts",
-   "he": {
-    "title": "איך להפוך את הגיל ב-5 דולר ליום (ביוהאקינג בתקציב)",
-    "summary": "דייב אספרי, שלדבריו הוציא 2.5 מיליון דולר על הגוף שלו, בונה פרוטוקול אנטי-אייג'ינג ב-5 דולר ליום שכל רכיב בו נבדק בבני אדם: אומגה 3, GlyNAC, מגנזיום, קריאטין, ויטמין D ועוד, ושני הדברים החזקים ביותר לדבריו הם בחינם."
-   },
-   "en": {
-    "title": "How To Reverse Your Age For $5 a Day (Budget Biohacking)",
-    "summary": "Dave Asprey, who says he has spent $2.5 million on his body, builds a $5/day anti-aging protocol where everything is validated in humans: omega-3s, GlyNAC, magnesium, creatine, vitamin D and more, and says the two most powerful things are free."
-   },
-   "full_he": "\"הוצאתי 2.5 מיליון דולר על הגוף הזה, ובריאן ג'ונסון מוציא כ-5,400 דולר ביום על שלו. אבל האם ביוהאקינג חייב להיות כל כך יקר? אז נתתי לעצמי אתגר: לבנות פרוטוקול אנטי-אייג'ינג שלם ב-5 דולר ליום, שבו כל רכיב חייב להיות מאומת בבני אדם, לא בעכברים. לא הצלחתי אפילו להוציא את חמשת הדולרים. בסרטון הזה אראה לכם את כל הרשימה ואת שני הדברים החזקים ביותר שמצאתי, שלא עולים כלום.\"\n\nמה תלמד בפרק:\n• איך לבנות שגרת אריכות ימים מבוססת מדע בפחות מ-5 דולר ליום\n• למה אומגה 3, GlyNAC ומגנזיום עשויים לעזור להאט הזדקנות ולתמוך בתיקון תאי\n• איך קריאטין, ויטמין D ו-L-תיאנין תומכים בבריאות המוח, בתפקוד השריר ובריכוז\n• למה וילונות האפלה, אור אדום ומשקפיים שחוסמים אור כחול יכולים לשפר שינה ובריאות השעון הביולוגי\n• איך הליכה, אור שמש בבוקר, סיבים ושינה טובה יכולים לשפר אריכות ימים בלי תוספים יקרים\n• מה דייב למד מהוצאה של 2.5 מיליון דולר על ביוהאקינג, ולמה מניעת נזק זולה יותר מתיקונו\n\nפרקי זמן:\n• 00:00 — אתגר 5 הדולר ליום\n• 02:50 — אומגה 3: שעון ההזדקנות\n• 04:24 — GlyNAC: נוגד החמצון המרכזי\n• 06:06 — מגנזיום לשינה\n• 07:50 — קריאטין: מוח ושריר\n• 09:39 — ויטמין D ותיאנין\n• 12:09 — אור: וילונות ונורות\n• 15:52 — בחינם: הליכה, שמש, סיבים\n• 19:00 — סיכום העלויות\n• 20:09 — למה הוצאתי מיליונים\n\nהערה: אלה טענות והמלצות של אספרי, לא ייעוץ רפואי. לפני נטילת תוספים כדאי להתייעץ עם רופא.",
-   "full_en": "\"I have spent $2.5 million on this body, and Bryan Johnson spends about $5,400 a day on his. But does it need to be that expensive to biohack? So I gave myself a challenge: build a complete anti-aging protocol for $5/day, where every single thing on it has to be validated in humans, not mice. I could not spend the five dollars. In this video I'll show you the entire list and the two most powerful things I found… which cost nothing at all.\"\n\nYou'll learn:\n• How to build a science-backed longevity routine for less than $5 a day\n• Why omega-3s, GlyNAC, and magnesium may help slow aging and support cellular repair\n• How creatine, vitamin D, and L-theanine support brain health, muscle function, and focus\n• Why blackout curtains, red light, and blue-light-blocking glasses can improve sleep and circadian health\n• How walking, morning sunlight, fiber, and quality sleep can improve longevity without expensive supplements\n• What Dave learned from spending $2.5 million on biohacking and why preventing damage is cheaper than repairing it\n\nTimestamps:\n• 00:00 — The $5/Day Challenge\n• 02:50 — Omega-3s: Aging Clock\n• 04:24 — GlyNAC: Master Antioxidant\n• 06:06 — Magnesium for Sleep\n• 07:50 — Creatine: Brain and Muscle\n• 09:39 — Vitamin D and Theanine\n• 12:09 — Light: Curtains and Bulbs\n• 15:52 — Free: Walking, Sun, Fiber\n• 19:00 — The Full Cost Summary\n• 20:09 — Why I Spent Millions\n\nNote: these are Asprey's claims and suggestions, not medical advice. Check with a doctor before taking supplements."
   },
   {
    "id": "musk-sikorski",
@@ -13494,6 +13761,158 @@
    },
    "full_en": "Investor Sawyer Merritt declared he's \"bullish on data centers in space,\" capturing a growing buzz as AI's power needs clash with ground limits.\n\n• Ground-based data centers face power shortages, grid delays, permitting issues and local opposition across the U.S., slowing AI expansion.\n• Tech firms like Google are testing orbital options: Project Suncatcher sent AI chips to space via SpaceX in October 2026, and the satellite already processes prompts using constant solar power.\n• SpaceX plans up to one million AI satellites, drawing investor interest in its expertise.\n• Advocates tout endless energy and no land fights, though radiation and launch costs pose challenges.\n\n(This is a summary of posts on X, compiled by Grok, and may change over time.)",
    "full_he": "המשקיע סוייר מריט הכריז שהוא \"בוליש על מרכזי נתונים בחלל\", וכך ביטא את ההתלהבות הגוברת בזמן שצורכי החשמל של ה-AI מתנגשים במגבלות על הקרקע.\n\n• מרכזי נתונים על הקרקע ברחבי ארה\"ב מתמודדים עם מחסור בחשמל, עיכובים בחיבור לרשת, בעיות רישוי והתנגדות מקומית, וזה מאט את התרחבות ה-AI.\n• חברות כמו Google בודקות חלופות במסלול: פרויקט Suncatcher שיגר שבבי AI לחלל באמצעות SpaceX באוקטובר 2026, והלוויין כבר מעבד בקשות בעזרת אנרגיה סולארית רציפה.\n• SpaceX מתכננת עד מיליון לווייני AI, והניסיון שלה מושך עניין של משקיעים.\n• התומכים מדגישים אנרגיה בלתי מוגבלת ובלי מאבקים על קרקע, אבל קרינה ועלויות שיגור הם עדיין אתגרים.\n\n(זהו סיכום של פוסטים ב-X שחיבר Grok, והוא עשוי להשתנות עם הזמן.)"
+  },
+  {
+   "id": "pod-asprey-78e3a4fbe3",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-03T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/the-truth-about-vitamins-supplements-prescription/id451295014?i=1000799578313",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "האמת על ויטמינים, תוספי תזונה ותרופות מרשם | פיל קאולי",
+    "summary": "דייב אספרי מארח את הרוקח פיל קאולי, מייסד Cache Valley Pharmacy ו־Phil's My Pharmacist, לשיחה על מולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין, תרופות מרשם והבעיות במערכת הבריאות, לפי דבריהם."
+   },
+   "en": {
+    "title": "The Truth About Vitamins, Supplements & Prescription Drugs | Phil Cowley",
+    "summary": "Dave Asprey hosts pharmacist Phil Cowley, founder of Cache Valley Pharmacy and creator of Phil's My Pharmacist, on multivitamins, MTHFR genetics, methylated B vitamins, creatine, prescription drugs and what they see as hidden problems in modern healthcare."
+   },
+   "full_en": "Multivitamin Mistakes, MTHFR Genetics, B Vitamins, Creatine & Prescription Drug Risks\n\nHost Dave Asprey sits down with Phil Cowley, a pharmacist, founder of Cache Valley Pharmacy, and creator of Phil's My Pharmacist, to explore multivitamins, prescription medications, supplement effectiveness, MTHFR genetics, methylated B vitamins, creatine, and the hidden problems within modern healthcare.\n\nAfter opening his pharmacy in Logan, Utah, in 2001, Phil spent two decades serving patients and dispensing millions of prescriptions. By 2021, declining insurance reimbursements threatened his business despite increasing prescription volume. He turned to social media to share practical, affordable health advice, eventually building an audience of more than six million followers. Now, he explains what his experience behind the pharmacy counter taught him about medication side effects, nutritional deficiencies, supplement quality, and why conventional healthcare often overlooks individual biology.\n\nThe conversation examines common multivitamin mistakes, including the use of synthetic folic acid and pyridoxine (vitamin B6). Phil explains why certain nutrient forms may be less suitable for some individuals, how excessive B6 intake can cause peripheral neuropathy, and why buying more supplements doesn't necessarily improve health. They explore MTHFR genetic variants, methylation, and folate metabolism, including potential implications for cognitive function, inflammation, blood pressure, fertility, and neurological development.\n\nPhil also reveals why creatine is his favorite supplement, discussing its potential benefits for brain health and muscle performance. He and Dave examine creatine dosing, hydration, electrolytes, absorption, and why creatine supplementation can influence kidney-related blood test results.\n\nThe discussion turns to Big Pharma, prescription drug pricing, and pharmacy benefit managers (PBMs). Phil shares how insurance reimbursement practices threatened his independent pharmacy despite increasing prescription volume. They also explore compounding pharmacies, customized hormone formulations, injectable vitamins, GLP-1 medications, and the challenges of providing personalized treatment within the conventional healthcare system.\n\nFinally, Dave and Phil examine personalized medicine, genetic testing, medication interactions, and nutritional deficiencies, including the relationship between statins and CoQ10. They discuss why individual biology should guide supplement choices and how addressing underlying metabolic processes may offer a more comprehensive approach to long-term health.\n\nYou'll Learn:\n• Why common multivitamins contain different forms of B vitamins, and how folic acid, folinic acid, L-methylfolate, and P5P differ\n• How MTHFR genetic variants influence folate metabolism and why individual responses to supplements can vary\n• What Phil recommends considering when using creatine for brain health, muscle performance, hydration, and kidney-related blood testing\n• How pharmacy benefit managers, insurance reimbursement, and drug pricing affect independent pharmacies and patient care\n• Why compounding pharmacies create customized medications, including hormone formulations, injectable vitamins, and certain GLP-1 treatments\n• How personalized supplementation, nutrient testing, medication interactions, and genetics may help inform more individualized healthcare decisions\n\nTimestamps:\n• 00:00 - Trailer\n• 00:40 - Intro\n• 01:45 - Drugs Stolen From Nature\n• 06:05 - Listening to Patients\n• 09:33 - Pharmacy Business & PBMs\n• 14:10 - Compounding Pharmacy Explained\n• 20:42 - Why Creatine Is Amazing\n• 28:23 - MTHFR & Methylation\n• 46:44 - Lab Tracking & Longevity\n• 50:58 - Science Bullies & Urine Therapy\n• 59:19 - Future of Pharmacy\n• 01:03:01 - TriQuetra Health & Closing\n\nThese are the guest's and host's views as described in the show notes, not medical advice.",
+   "full_he": "טעויות במולטי־ויטמינים, גנטיקת MTHFR, ויטמיני B, קריאטין והסיכונים של תרופות מרשם\n\nדייב אספרי משוחח עם פיל קאולי, רוקח, מייסד Cache Valley Pharmacy ויוצר Phil's My Pharmacist, על מולטי־ויטמינים, תרופות מרשם, היעילות של תוספי תזונה, גנטיקת MTHFR, ויטמיני B מתוללים, קריאטין והבעיות הנסתרות במערכת הבריאות המודרנית.\n\nפיל פתח את בית המרקחת שלו בלוגן שביוטה ב־2001, ובמשך שני עשורים שירת מטופלים וניפק מיליוני מרשמים. עד 2021, ההחזרים הפוחתים מחברות הביטוח איימו על העסק שלו למרות שמספר המרשמים עלה. הוא פנה לרשתות החברתיות כדי לשתף עצות בריאות מעשיות וזולות, ובנה קהל של יותר משישה מיליון עוקבים. בפרק הוא מספר מה למד מאחורי דלפק בית המרקחת על תופעות לוואי של תרופות, חסרים תזונתיים, איכות של תוספים, ולמה לדבריו הרפואה המקובלת מתעלמת לעיתים קרובות מהביולוגיה האישית.\n\nהשיחה בוחנת טעויות נפוצות במולטי־ויטמינים, כמו שימוש בחומצה פולית סינתטית ובפירידוקסין (ויטמין B6). פיל מסביר למה צורות מסוימות של רכיבים תזונתיים עשויות להתאים פחות לחלק מהאנשים, איך עודף B6 עלול לגרום לנוירופתיה היקפית, ולמה קניית יותר תוספים לא בהכרח משפרת את הבריאות. הם עוסקים בווריאנטים הגנטיים של MTHFR, במתילציה ובחילוף החומרים של פולאט, כולל השלכות אפשריות על תפקוד קוגניטיבי, דלקת, לחץ דם, פוריות והתפתחות נוירולוגית.\n\nפיל מספר גם למה קריאטין הוא התוסף האהוב עליו, ומדבר על התועלת האפשרית שלו לבריאות המוח ולביצועי השרירים. הוא ודייב דנים במינון קריאטין, בשתייה, באלקטרוליטים, בספיגה, ובכך שנטילת קריאטין יכולה להשפיע על תוצאות בדיקות דם הקשורות לכליות.\n\nהשיחה עוברת לחברות התרופות הגדולות, למחירי תרופות המרשם ולמנהלי הטבות התרופות (PBMs). פיל מספר איך שיטות ההחזר של חברות הביטוח איימו על בית המרקחת העצמאי שלו. הם מדברים גם על בתי מרקחת לרקיחה, פורמולות הורמונליות מותאמות, ויטמינים בהזרקה, תרופות GLP-1, והקושי לתת טיפול מותאם אישית בתוך מערכת הבריאות המקובלת.\n\nלבסוף הם דנים ברפואה מותאמת אישית, בבדיקות גנטיות, באינטראקציות בין תרופות ובחסרים תזונתיים, כולל הקשר בין סטטינים ל־CoQ10, ולמה לדבריהם הביולוגיה האישית צריכה להנחות את בחירת התוספים.\n\nמה תלמד בפרק:\n• למה מולטי־ויטמינים נפוצים מכילים צורות שונות של ויטמיני B, ומה ההבדל בין חומצה פולית, חומצה פולינית, L־מתילפולאט ו־P5P\n• איך וריאנטים של MTHFR משפיעים על חילוף החומרים של פולאט, ולמה התגובה לתוספים משתנה מאדם לאדם\n• מה פיל ממליץ לשקול כשמשתמשים בקריאטין לבריאות המוח, לביצועי שרירים, לשתייה ולבדיקות דם של הכליות\n• איך מנהלי הטבות תרופות, החזרי ביטוח ומחירי תרופות משפיעים על בתי מרקחת עצמאיים ועל הטיפול במטופלים\n• למה בתי מרקחת לרקיחה מכינים תרופות מותאמות, כולל פורמולות הורמונליות, ויטמינים בהזרקה וחלק מטיפולי ה־GLP-1\n• איך תוספים מותאמים אישית, בדיקות רכיבים תזונתיים, אינטראקציות בין תרופות וגנטיקה יכולים לעזור בהחלטות בריאות אישיות יותר\n\nחותמות זמן:\n• 00:00 - טריילר\n• 00:40 - פתיחה\n• 01:45 - תרופות שנלקחו מהטבע\n• 06:05 - להקשיב למטופלים\n• 09:33 - העסק של בית המרקחת ומנהלי הטבות התרופות\n• 14:10 - מה זה בית מרקחת לרקיחה\n• 20:42 - למה קריאטין מדהים\n• 28:23 - MTHFR ומתילציה\n• 46:44 - מעקב בדיקות ואריכות ימים\n• 50:58 - \"בריוני מדע\" וטיפול בשתן\n• 59:19 - העתיד של בתי המרקחת\n• 01:03:01 - TriQuetra Health וסיום\n\nאלה דעותיהם של האורח והמנחה כפי שמתוארות בתיאור הפרק, ולא ייעוץ רפואי. (\"טיפול בשתן\" שמוזכר בפרק אינו מקובל ברפואה המרכזית.)"
+  },
+  {
+   "id": "pod-asprey-14380d6805",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-01T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id451295014",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "ניסיתי כל תרופת ריכוז שנויה במחלוקת",
+    "summary": "פרק סולו שבו דייב אספרי מספר על 20 שנות ניסויים בתרופות ריכוז ובחומרים פסיכואקטיביים, ממודפיניל ואדרל ועד רצטמים וחומרים רוסיים, ועל זה שלדבריו המנצח הוא דווקא חומר חוקי וזול, ניקוטין פרמצבטי, וגם ארבעת הכללים שלו לצמצום הסיכונים."
+   },
+   "en": {
+    "title": "I Tried EVERY Controversial Focus Drug",
+    "summary": "A solo episode in which Dave Asprey reviews 20 years of self-experimenting with focus drugs and psychoactive compounds, from modafinil and Adderall to racetams and Russian compounds, and argues that the one he ranks highest, pharmaceutical nicotine, is legal and cheap, plus his four rules for reducing its risks."
+   },
+   "full_en": "I've tried every controversial focus drug I could get my hands on. Modafinil, LSD, psilocybin, mescaline, DMT, ketamine, MDMA, amphetamine, ephedrine, the racetams, and a shelf of Russian compounds most people have never heard of. I've spent 20 years and millions of dollars testing this on my own brain, and here's what I found: some of them work, most don't do what you've been told, and none of them are free.\n\nBut the one I'd crown above all of them is legal, costs almost nothing, and you can buy it this afternoon. You've just been lied to about it for 60 years by the people who made a fortune doing it. In this video I'll show you what each compound actually does inside your brain, what it takes from you on the other side, and the four rules I follow so the best one doesn't turn into the worst one.\n\nYou'll Learn:\n• Why modafinil is considered the closest thing to a \"Limitless pill\" and how it affects sleep\n• How LSD, psilocybin, MDMA, and ketamine affect the brain differently from focus drugs\n• Why Adderall and amphetamines can make you hyper-focused on the wrong things\n• How racetams became the original nootropics for cognitive enhancement\n• What Russian scientists developed for cosmonauts and soldiers, including bromantane, Semax, and Selank\n• Why pharmaceutical nicotine ranks among the most controversial focus enhancers\n• How nicotine affects acetylcholine, attention, memory, and potentially brain aging\n• Why nicotine and smoking have very different health risks\n• How delivery speed influences addiction risk, from cigarettes to patches and lozenges\n• Dave's four rules for reducing nicotine risks and who should avoid it\n• What Dave learned from spending $2.5 million experimenting with cognitive enhancement\n\nTimestamps:\n• 00:00 - Trailer\n• 01:07 - Modafinil: The Limitless Pill\n• 03:45 - Psychedelics vs. Focus Drugs\n• 05:31 - Microdosing & The Placebo Effect\n• 07:43 - Cocaine & Drug Tolerance\n• 08:33 - Amphetamines & Adderall\n• 17:09 - Racetams: The Original Nootropics\n• 21:12 - Russian Smart Drugs\n• 29:17 - Nicotine for Focus & Cognition\n• 33:53 - Nicotine Risks & Safety Rules\n\nNote: these are Dave Asprey's own experiences and claims, not medical advice. Nicotine is addictive, and many of the substances mentioned are prescription-only or illegal in many countries.",
+   "full_he": "לדברי דייב אספרי, הוא ניסה כל תרופת ריכוז שנויה במחלוקת שהצליח להשיג: מודפיניל, LSD, פסילוסיבין, מסקלין, DMT, קטמין, MDMA, אמפטמין, אפדרין, הרצטמים ומדף שלם של חומרים רוסיים שרוב האנשים לא שמעו עליהם. הוא אומר שהשקיע 20 שנה ומיליוני דולרים בניסויים על המוח שלו, ושהמסקנה שלו היא שחלק מהחומרים עובדים, רובם לא עושים את מה שסיפרו לך, ואף אחד מהם לא בא בלי מחיר.\n\nאבל את החומר שהוא מכתיר מעל כולם, לדבריו, אפשר לקנות כבר היום אחר הצהריים: הוא חוקי וכמעט לא עולה כלום, ולטענתו שיקרו לך עליו 60 שנה אנשים שעשו מזה הון. בפרק הוא מסביר מה כל חומר עושה בפועל במוח, מה הוא גובה ממך בצד השני, ואת ארבעת הכללים שהוא מקפיד עליהם כדי שהטוב ביותר לא יהפוך לגרוע ביותר.\n\nמה תלמד בפרק:\n• למה מודפיניל נחשב לדבר הקרוב ביותר ל\"כדור של לימיטלס\", ואיך הוא משפיע על השינה\n• איך LSD, פסילוסיבין, MDMA וקטמין משפיעים על המוח אחרת מתרופות ריכוז\n• למה אדרל ואמפטמינים יכולים לגרום לך להתרכז יותר מדי בדברים הלא נכונים\n• איך הרצטמים הפכו לנוטרופיקה המקורית לשיפור קוגניטיבי\n• מה פיתחו מדענים רוסים לקוסמונאוטים ולחיילים, כולל ברומנטן, סמקס וסלנק\n• למה ניקוטין פרמצבטי הוא אחד ממשפרי הריכוז השנויים ביותר במחלוקת\n• איך ניקוטין משפיע על אצטילכולין, קשב, זיכרון ואולי גם על הזדקנות המוח\n• למה לניקוטין ולעישון יש סיכונים בריאותיים שונים מאוד\n• איך מהירות המתן משפיעה על סיכון ההתמכרות, מסיגריות ועד מדבקות וסוכריות מציצה\n• ארבעת הכללים של דייב לצמצום הסיכונים של ניקוטין, ומי צריך להימנע ממנו\n• מה דייב למד מהוצאה של 2.5 מיליון דולר על ניסויים בשיפור קוגניטיבי\n\nחותמות זמן:\n• 00:00 - טריילר\n• 01:07 - מודפיניל: כדור הלימיטלס\n• 03:45 - פסיכדליים מול תרופות ריכוז\n• 05:31 - מיקרודוזינג ואפקט הפלסבו\n• 07:43 - קוקאין וסבילות לסמים\n• 08:33 - אמפטמינים ואדרל\n• 17:09 - רצטמים: הנוטרופיקה המקורית\n• 21:12 - תרופות חכמות רוסיות\n• 29:17 - ניקוטין לריכוז וליכולת קוגניטיבית\n• 33:53 - הסיכונים של ניקוטין וכללי בטיחות\n\nהערה: אלה החוויות והטענות של דייב אספרי עצמו, לא ייעוץ רפואי. ניקוטין ממכר, ורבים מהחומרים שמוזכרים בפרק דורשים מרשם או אסורים במדינות רבות."
+  },
+  {
+   "id": "pod-asprey-008b38f137",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-10-30T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id451295014",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "פלסבו, קנאביס, סקוואט צמוד לקיר ללחץ דם, צפרות והמוח על פורנוגרפיה",
+    "summary": "פרק סקירת מחקרים שבו דייב אספרי עובר על חמישה מחקרים עדכניים: פלסבו גלוי במעי רגיז, סקוואט צמוד לקיר ולחץ דם, צפרות והמוח, THC וסרוטונין בעכברים, ופורנוגרפיה והמוח, ומפריד בין מה שהם מראים למה שלא."
+   },
+   "en": {
+    "title": "Placebo Pills, Cannabis, Wall Squats for Blood Pressure, Birdwatching, and the Porn Brain",
+    "summary": "A research-roundup episode in which Dave Asprey covers five recent studies: open-label placebo for IBS, wall squats and blood pressure, birdwatching and the brain, THC and serotonin in mice, and pornography and the brain, separating what they show from what they don't."
+   },
+   "full_he": "פלסבו, סקוואט צמוד לקיר, צפרות, THC ופורנוגרפיה: סקירת מחקרים שבה דייב אספרי עובר על חמישה מחקרים עדכניים ועל מה שכל אחד מהם יכול ולא יכול להראות.\n\nפלסבו שיפר תסמינים של מעי רגיז גם כשהמטופלים ידעו שהכדורים ריקים\n• בניסוי אקראי עם 80 מבוגרים עם תסמונת המעי הרגיז, מי שלקחו ביודעין כדורי פלסבו דיווחו על שיפור גדול יותר בתסמינים לעומת מי שלא קיבלו טיפול. אחרי שלושה שבועות 59% מקבוצת הפלסבו דיווחו על הקלה מספקת, לעומת 35% בקבוצת הביקורת. גם מחקר המשך גדול יותר מצא שפלסבו גלוי שיפר את התסמינים המדווחים יותר מהיעדר כדור.\n• אספרי בוחן איך התניה, ציפיות וטקס נטילת הטיפול עשויים להשפיע על תסמינים בלי הטעיה, ומסביר למה זה לא אומר שהתסמינים מדומיינים או שחשיבה חיובית מרפאת מחלות.\n• מקורות: PLOS ONE (פלסבו בלי הטעיה, ניסוי במעי רגיז); Pain (פלסבו גלוי מול סמוי כפול); Harvard Health.\n\nסקוואט צמוד לקיר פעם בשבוע שימר חלק מהשיפור בלחץ הדם אחרי אימון תכוף יותר\n• ניסוי אקראי עם 100 מבוגרים מצא שאימון איזומטרי של סקוואט צמוד לקיר הוריד את לחץ הדם, וחלק מהשיפור נשמר גם אחרי שהמשתתפים ירדו לאימון אחד או שניים בשבוע. המשתתפים התאמנו קודם שלוש פעמים בשבוע במשך ארבעה שבועות; מי שירדו אחר כך לאימון אחד בשבוע סיימו את המחקר בן שמונת השבועות עם לחץ דם סיסטולי נמוך בכ־6.6 מ\"מ כספית מנקודת ההתחלה, ומי שהמשיכו שלוש פעמים בשבוע השתפרו הכי הרבה.\n• אספרי מסביר איך כיווץ שריר ממושך עשוי להשפיע על התנגדות כלי הדם ועל הוויסות האוטונומי, למה המינון שנדרש כדי לשמר שיפור שונה מהמינון שנדרש כדי להשיג אותו, ולמה המחקר לא מראה שמתחילים יקבלו אותה תוצאה מאימון שבועי אחד או שסקוואט צמוד לקיר מחליף תרופות.\n• מקור: BMJ Open Sport & Exercise Medicine.\n\nלצפרים מומחים נמצאו הבדלים במוח שקשורים לקשב ולתפיסה\n• מחקר שהשווה 29 צפרים מומחים ל־29 מתחילים מצא הבדלים במבנה ובפעילות המוח שקשורים למומחיות בזיהוי ציפורים, כולל דיפוזיביות ממוצעת נמוכה יותר באזורי קשב ותפיסה, שהחוקרים פירשו כארגון רקמה דחוס יותר. חלק מההבדלים נמצאו גם אצל מומחים מבוגרים.\n• אספרי מסביר שזיהוי מינים דורש קשב, הבחנה חזותית, זיכרון ולמידה מתמשכת, ולמה הממצאים לא מוכיחים שצפרות מונעת דמנציה, כי המחקר לא יכול לקבוע אם התחביב הוא שגרם להבדלים.\n• מקורות: The Journal of Neuroscience; Society for Neuroscience; BBC Future.\n\nחשיפה מוקדמת ל־THC שינתה את איתות הסרוטונין בעכברים דרך מסלול שקשור ל־mTOR\n• במחקר בעכברים, חשיפה כרונית ל־THC מגיל צעיר שינתה את האיתות דרך קולטני הסרוטונין 5-HT2A והגבירה את הרגישות לתרופה סרוטונרגית שניתנה אחר כך. מתן רפמיצין בזמן החשיפה ל־THC מנע חלק מהשינויים, מה שמצביע על מסלול Akt/mTOR.\n• אספרי מדגיש שזה מחקר מנגנון בבעלי חיים, ולא הוכחה שכל שימוש בקנאביס גורם לפסיכוזה או שרפמיצין יכול למנוע השפעות פסיכיאטריות של קנאביס בבני אדם.\n• מקורות: PubMed; Neuropsychopharmacology.\n\nצריכת פורנוגרפיה נקשרה להבדלים במוח, אבל סיבה ותוצאה עדיין לא ברורות\n• מחקר הדמיה של 64 גברים בריאים קישר צריכה מדווחת גבוהה יותר של פורנוגרפיה לנפח חומר אפור נמוך יותר בחלק מהגרעין הזנבי הימני, להפעלה נמוכה יותר של הפוטמן השמאלי במשימת תמונות מיניות ולקישוריות נמוכה יותר בין הגרעין הזנבי הימני לאזור קדם־מצחי של שליטה קוגניטיבית.\n• אספרי דן בקשר אפשרי לעיבוד תגמול ולהתרגלות, ומציין שהחוקרים לא מדדו דלדול דופמין, לא הראו נזק מוחי ולא הראו שהפורנוגרפיה גרמה להבדלים; ייתכן שמאפייני מוח קודמים מסבירים אותם.\n• מקורות: JAMA Psychiatry; National Center on Sexual Exploitation.\n\nהלקח הרחב של הפרק, לפי התיאור: להבחין בין הקלה בתסמינים לטיפול במחלה, בין שימור לשיפור, בין הבדלים במוח לנזק מוחי, ובין מנגנון מרשים בבעלי חיים להתערבות מוכחת בבני אדם.",
+   "full_en": "Placebos, wall squats, birdwatching, THC and pornography: a research roundup in which host Dave Asprey looks at five recent studies and what each one can and can't show.\n\nPlacebos Improved IBS Symptoms Even When Patients Knew the Pills Were Inactive\n• In a randomized trial of 80 adults with irritable bowel syndrome, participants who knowingly took placebo pills reported greater symptom improvement than those receiving no treatment. After three weeks, 59% of the placebo group reported adequate relief compared with 35% of controls. A larger follow-up study also found that openly prescribed placebos improved reported IBS symptoms more than a no-pill control.\n• Asprey explores how conditioning, expectations and the ritual of taking a treatment may influence symptoms without deception, and explains why this does not mean symptoms are imaginary or that positive thinking can cure disease.\n• Sources: PLOS ONE (Placebos Without Deception, RCT in IBS); Pain (Open-Label vs. Double-Blind Placebo for IBS); Harvard Health.\n\nOnce-Weekly Wall Squats Preserved Some Blood-Pressure Benefits After More Frequent Training\n• A randomized trial of 100 adults found that isometric wall-squat training reduced blood pressure, with some benefits maintained after participants cut back to one or two sessions per week. Participants first trained three times weekly for four weeks; those who then dropped to one weekly session finished the eight-week study with systolic pressure about 6.6 mmHg below baseline, while those who kept three sessions improved the most.\n• Asprey discusses how sustained muscle contractions may affect vascular resistance and autonomic regulation, why the dose to maintain a benefit can differ from the dose to build it, and why the study does not show beginners get the same results from one session a week or that wall squats replace medication.\n• Sources: BMJ Open Sport & Exercise Medicine.\n\nExpert Birdwatchers Showed Brain Differences Linked to Attention and Perception\n• A study comparing 29 expert birdwatchers with 29 beginners found differences in brain structure and activity linked to bird-identification expertise, including lower mean diffusivity in attention and perception regions, which researchers read as more compact tissue organization. Some differences were also present in older experts.\n• Asprey explains why identifying species demands attention, visual discrimination, memory and continued learning, and why the findings don't prove birdwatching prevents dementia, since the study can't tell whether the hobby caused the differences.\n• Sources: The Journal of Neuroscience; Society for Neuroscience; BBC Future.\n\nEarly THC Exposure Changed Serotonin Signaling in Mice Through an mTOR-Related Pathway\n• In a mouse study, chronic THC exposure starting early in life altered serotonin 5-HT2A receptor signaling and increased sensitivity to a later serotonergic drug. Giving rapamycin during THC exposure prevented several of these changes, implicating the Akt/mTOR pathway.\n• Asprey stresses this was a mechanistic animal study, not proof that all cannabis use causes psychosis or that rapamycin can prevent cannabis-related psychiatric effects in humans.\n• Sources: PubMed; Neuropsychopharmacology.\n\nPornography Consumption Was Linked to Brain Differences, but Cause and Effect Remain Unclear\n• A brain-imaging study of 64 healthy men linked greater reported pornography use with lower gray-matter volume in part of the right caudate, lower left-putamen activation during a sexual-image task, and lower connectivity between the right caudate and a prefrontal control region.\n• Asprey discusses possible links to reward processing and habituation, while noting the researchers did not measure dopamine depletion, show brain damage, or show that pornography caused the differences; preexisting brain traits could also explain them.\n• Sources: JAMA Psychiatry; National Center on Sexual Exploitation.\n\nThe episode's larger lesson, per the notes: distinguish symptom relief from disease treatment, maintenance from improvement, brain differences from brain damage, and a compelling animal mechanism from a proven human intervention."
+  },
+  {
+   "id": "pod-brecka-c66927da49",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-11-03T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה אובדן זיכרון הוא בעצם אובדן גישה, עם ג'ניפר מולר",
+    "summary": "גארי ברקה משוחח עם ג'ניפר מולר מעולם הדיור המוגן על ההחלטה שעמד בפניה עם הוריו, ועל טענתו שאובדן זיכרון הוא למעשה אובדן גישה לזיכרון. הם מדברים על איך לבחור בין דיור עצמאי, דיור מוגן ומחלקה סיעודית לזיכרון."
+   },
+   "en": {
+    "title": "Why Memory Loss Is Really Lost Access - Jennifer Mohler",
+    "summary": "Gary Brecka sits down with senior-living expert Jennifer Mohler about the decision he faced with his own parents and his view that memory loss is really lost access to memory, plus how to evaluate independent living, assisted living and memory care."
+   },
+   "full_en": "Gary Brecka sits down with Jennifer Mohler to talk through the decision he faced with his own parents, and his view that memory loss is really lost access to memory. They cover how to evaluate independent living, assisted living, and memory care, why isolation matters, the daily living skills that signal it's time, and the brain mapping Gary is using to track his mother. Gary also shares the fall that changed his timeline. Don't guess, test.\n\nTimestamps:\n• 00:00 – Introduction: senior living for parents\n• 03:46 – How Jennifer entered senior living\n• 07:16 – When a parent needs assisted care\n• 09:38 – Biohacking inside senior living\n• 11:32 – Red light, PEMF and hydrogen therapy\n• 15:04 – Brain mapping Gary's mother\n• 16:24 – Janet, the nonverbal resident\n• 19:55 – Isolation and broken heart syndrome\n• 20:59 – Memory loss as lost access\n• 21:34 – How to evaluate a community\n• 29:08 – Assisted living versus memory care\n• 32:42 – Five daily living skills\n• 37:53 – Clinical study with 30 participants\n• 42:59 – Medicare, Medicaid and VA coverage\n• 47:34 – Gary's father: humerus and hip\n• 50:45 – What it means to be an Ultimate Human\n\nThe show's own disclaimer: the podcast is for informational purposes only and is not medical advice. The \"memory loss is lost access\" idea is Gary's view, not an established medical position.",
+   "full_he": "גארי ברקה יושב עם ג'ניפר מולר ומדבר על ההחלטה שעמד בפניה עם הוריו שלו, ועל הגישה שלו שלפיה אובדן זיכרון הוא בעצם אובדן גישה לזיכרון. הם מדברים על איך לבחון דיור עצמאי, דיור מוגן ומחלקה לטיפול בזיכרון, למה בדידות משנה כל כך, אילו מיומנויות של חיי היום־יום מסמנות שהגיע הזמן, ועל מיפוי המוח שגארי עושה כדי לעקוב אחרי אמו. גארי מספר גם על הנפילה ששינתה את לוח הזמנים שלו. אל תנחש, תבדוק.\n\nנקודות זמן:\n• 00:00 – פתיחה: דיור לגיל השלישי להורים\n• 03:46 – איך ג'ניפר הגיעה לתחום הדיור המוגן\n• 07:16 – מתי הורה צריך דיור עם סיוע\n• 09:38 – ביוהאקינג בתוך דיור מוגן\n• 11:32 – אור אדום, PEMF וטיפול במימן\n• 15:04 – מיפוי המוח של אמא של גארי\n• 16:24 – ג'נט, הדיירת שאינה מדברת\n• 19:55 – בדידות ותסמונת הלב השבור\n• 20:59 – אובדן זיכרון כאובדן גישה\n• 21:34 – איך לבחון קהילת דיור\n• 29:08 – דיור מוגן לעומת מחלקת זיכרון\n• 32:42 – חמש מיומנויות של חיי היום־יום\n• 37:53 – מחקר קליני עם 30 משתתפים\n• 42:59 – כיסוי של Medicare, Medicaid ומשרד הוותיקים\n• 47:34 – אביו של גארי: עצם הזרוע והירך\n• 50:45 – מה זה אומר להיות Ultimate Human\n\nלפי הצהרת התוכנית עצמה, הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי. הרעיון ש\"אובדן זיכרון הוא אובדן גישה\" הוא עמדתו של גארי, ולא עמדה רפואית מקובלת."
+  },
+  {
+   "id": "pod-brecka-97ecc4b8da",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-10-29T07:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id1709740887",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "תסמיני גיל המעבר המוקדם מעבר לגלי חום, עם שהאב ודוראנה אלמי",
+    "summary": "גארי ברקה וסייג' וורקינגר משוחחים עם בני הזוג שהאב ודוראנה אלמי על פרימנופאוזה (התקופה שלפני גיל המעבר): הזעות לילה, עייפות בבוקר, ערפל מוחי ושינויי מצב רוח, וגם על בניית עסק משותף עם בן או בת הזוג."
+   },
+   "en": {
+    "title": "Perimenopause Symptoms Beyond Hot Flashes - Shahab & Durana Elmi",
+    "summary": "Gary Brecka and Sage Workinger talk with Shahab and Durana Elmi about perimenopause, from night sweats and morning exhaustion to brain fog and mood shifts, and about building a business with your spouse."
+   },
+   "full_en": "Perimenopause is more than hot flashes, and Gary says it can start as early as your 30s. Gary Brecka and Sage Workinger sit down with Shahab and Durana Elmi to talk night sweats, crushing morning exhaustion, brain fog, bloating and mood shifts, what husbands often miss, and how the DUTCH hormone test helped Gary and Sage figure out what was going on. Plus, what it takes to build a business with your spouse. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: Perimenopause and Building a Business Together\n• 02:37 — Night Sweats and the First Perimenopause Signs\n• 04:49 — Starting a Business During Menopause\n• 08:49 — DUTCH Test and Perimenopause Symptoms\n• 09:23 — Early Onset and the Rocket Fuel Book\n• 11:26 — Why Spouse Business Partners Can't Unplug\n• 14:24 — Helping People as the Company's Why\n• 23:41 — Hot Flashes and Broken Sleep\n• 27:41 — Altitude Control Rooms and Intermittent Hypoxia\n• 32:24 — Stepping Away Instead of Acting on Emotion\n• 34:21 — Gummies vs Liposomal Supplements\n• 36:46 — Single-Use Packets and Oxygen Degradation\n• 39:30 — Why Vitamin C Needs Cofactors\n• 41:20 — Underdosed All-in-One Multivitamins\n• 43:34 — What It Means to Be an Ultimate Human\n\nDisclaimer from the episode: This podcast is for informational purposes only and does not provide medical advice, diagnosis or treatment; always consult a licensed healthcare professional before making health decisions. Gary Brecka owns Ultimate Human, LLC, which promotes third-party products in which he holds an economic interest, so statements on the podcast may be considered promotional.\n\nNote: these are the hosts' and guests' views. Hormone testing such as the DUTCH test is not part of standard perimenopause diagnosis, which mainstream medicine bases mainly on symptoms and age.",
+   "full_he": "פרימנופאוזה (התקופה שלפני גיל המעבר) היא הרבה יותר מגלי חום, ולדברי גארי היא יכולה להתחיל כבר בשנות ה-30. גארי ברקה וסייג' וורקינגר יושבים עם שהאב ודוראנה אלמי ומדברים על הזעות לילה, עייפות מכריעה בבוקר, ערפל מוחי, נפיחות ושינויי מצב רוח, על מה שבעלים נוטים לפספס, ועל האופן שבו בדיקת ההורמונים DUTCH עזרה לגארי ולסייג' להבין מה קורה. בנוסף: מה נדרש כדי לבנות עסק יחד עם בן או בת הזוג. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: פרימנופאוזה ובניית עסק משותף\n• 02:37 — הזעות לילה והסימנים הראשונים של פרימנופאוזה\n• 04:49 — להקים עסק בתקופת גיל המעבר\n• 08:49 — בדיקת DUTCH ותסמיני פרימנופאוזה\n• 09:23 — הופעה מוקדמת והספר Rocket Fuel\n• 11:26 — למה בני זוג ששותפים לעסק לא מצליחים להתנתק\n• 14:24 — לעזור לאנשים כ\"למה\" של החברה\n• 23:41 — גלי חום ושינה שבורה\n• 27:41 — חדרי בקרת גובה והיפוקסיה לסירוגין\n• 32:24 — לקחת צעד אחורה במקום לפעול מתוך רגש\n• 34:21 — סוכריות גומי לעומת תוספים ליפוזומליים\n• 36:46 — שקיקים חד-פעמיים ופירוק בחמצן\n• 39:30 — למה ויטמין C צריך קו-פקטורים\n• 41:20 — מולטי-ויטמינים \"הכול באחד\" במינון חסר\n• 43:34 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה דעות המגישים והאורחים. בדיקות הורמונים כמו DUTCH אינן חלק מהאבחון המקובל של פרימנופאוזה, שברפואה המקובלת מתבסס בעיקר על תסמינים וגיל."
+  },
+  {
+   "id": "pod-brecka-0e7f6b3ee2",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-10-27T07:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/dr-alejandro-junger-why-leaky-gut-is-behind-autoimmune/id1709740887?i=1000798313277",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "ד\"ר אלחנדרו ג'ונגר: למה \"מעי דולף\" עומד מאחורי מחלות אוטואימוניות",
+    "summary": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מסביר לגארי ברקה איך לדבריו מעי דולף מבלבל את מערכת החיסון, למה הוא מאמין שחוסר איזון בחיידקי המעי עומד מאחורי רוב המחלות הכרוניות, ומה הכבד עושה בניקוי רעלים. אלה טענותיו."
+   },
+   "en": {
+    "title": "Dr. Alejandro Junger: Why Leaky Gut Is Behind Autoimmune Disease",
+    "summary": "Cardiologist Dr. Alejandro Junger tells Gary Brecka how, in his view, a leaky gut confuses the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver does during detox."
+   },
+   "full_he": "הקרדיולוג ד\"ר אלחנדרו ג'ונגר מצטרף לגארי ברקה ומסביר איך לדבריו מעי דולף יכול לבלבל את מערכת החיסון, למה הוא מאמין שדיסביוזיס (חוסר איזון בחיידקי המעי) עומד מאחורי רוב המצבים הכרוניים, ומה הכבד עושה בפועל בזמן ניקוי רעלים. הוא מדבר גם על השימוש שלו ב-L-גלוטמין, על המזונות והמשקאות שהוא מוציא ראשונים מהתפריט, ועל החוויה האישית שלו עם איבוגאין ותאי גזע. \"אל תנחש, תיבדק.\"\n\nפרקי זמן:\n• 00:00 — פתיחה: בריאות המעי וניקוי רעלים\n• 05:21 — שלוש אבחנות, שבעה מרשמים\n• 06:53 — החוויה באשרם ותודעה קוסמית\n• 13:41 — תוכנית הניקוי הראשונה שלו\n• 20:07 — עצירות, קונסטלציות משפחתיות וחוקן קפה\n• 28:00 — מה זה בעצם ניקוי רעלים\n• 29:15 — ניקוי הכבד בשני שלבים\n• 31:21 — אוכל אמיתי ודיאטת אלימינציה\n• 34:22 — איך איבוגאין פועל במוח\n• 37:48 — נקודת השפל ו\"פורטל הלב\"\n• 43:29 — הסיכון הלבבי של איבוגאין ומעקב\n• 45:44 — תאי גזע לכאבי גב\n• 46:53 — שלושת המוחות: ראש, לב, מעי\n• 48:35 — דיסביוזיס ומעי דולף\n• 56:27 — מחלות אוטואימוניות והמעי\n• 01:01:48 — לקנות בהיקף הסופרמרקט\n• 01:03:46 — L-גלוטמין ותוספים למעי\n• 01:11:46 — איך ליישר את שלושת המוחות\n• 01:13:10 — תרגיל מודעות לכפות הרגליים לנוכחות\n• 01:22:07 — מה זה להיות Ultimate Human\n\nהבהרה מתוך הפרק: הפודקאסט נועד למידע בלבד ואינו ייעוץ רפואי, אבחון או טיפול; יש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. גארי ברקה הוא הבעלים של Ultimate Human LLC, שמקדמת מוצרים של צד שלישי שיש לו בהם אינטרס כלכלי, ולכן דברים שנאמרים בפודקאסט עשויים להיחשב שיווקיים.\n\nהערה: אלה טענות של האורח. הקשר בין \"מעי דולף\" למחלות אוטואימוניות עדיין נחקר ואינו מוכח ברפואה המקובלת, ואיבוגאין הוא חומר לא מאושר עם סיכון לבבי מוכר (כפי שעולה גם מפרקי הזמן של הפרק).",
+   "full_en": "Cardiologist Dr. Alejandro Junger joins Gary Brecka to explain how a leaky gut can confuse the immune system, why he believes dysbiosis sits behind most chronic conditions, and what the liver actually does during detox. He also covers how he uses L-glutamine, the foods and drinks he removes first, and his own experience with ibogaine and stem cells. Don't guess, test.\n\nTimestamps:\n• 00:00 — Introduction: Gut Health and Detox\n• 05:21 — Three Diagnoses, Seven Prescriptions\n• 06:53 — The Ashram Experience and Cosmic Consciousness\n• 13:41 — His First Detox Program\n• 20:07 — Constipation, Family Constellations and Coffee Enema\n• 28:00 — What Detox Actually Means\n• 29:15 — Liver Detox in Two Steps\n• 31:21 — Real Food and the Elimination Diet\n• 34:22 — How Ibogaine Works in the Brain\n• 37:48 — Lowest Point and the Heart Portal\n• 43:29 — Ibogaine Heart Risk and Monitoring\n• 45:44 — Stem Cells for Back Pain\n• 46:53 — The Three Brains: Head, Heart, Gut\n• 48:35 — Gut Dysbiosis and Leaky Gut\n• 56:27 — Autoimmune Disease and the Gut\n• 01:01:48 — Shopping the Grocery Perimeter\n• 01:03:46 — L-Glutamine and Gut Supplements\n• 01:11:46 — How to Align the Three Brains\n• 01:13:10 — Feet Awareness Exercise for Presence\n• 01:22:07 — What It Means to Be an Ultimate Human\n\nThe episode's disclaimer: the podcast is for informational purposes only and is not medical advice, diagnosis or treatment; consult a licensed healthcare professional before health decisions. Gary Brecka owns Ultimate Human LLC, which promotes third-party products in which he has an economic interest, so statements on the podcast may be considered promotional.\n\nNote: these are the guest's claims. The link between \"leaky gut\" and autoimmune disease is still being researched and is not established in mainstream medicine, and ibogaine is an unapproved substance with known heart risks (as the episode's own timestamps acknowledge)."
+  },
+  {
+   "id": "pod-jbp-ded038a7d4",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Jordan B. Peterson Podcast",
+   "date": "2026-11-02T23:04:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/id1184022695",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה צעירות היום אומללות יותר מאי פעם",
+    "summary": "בהרצאה שצולמה במיאמי במרץ 2025, ג'ורדן פטרסון טוען שהמשבר של המערב הוא משבר של משמעות, ומסביר למה ערכים קובעים מה אנחנו רואים ולמה סיפורים כמו שלגייה והיפהפייה הנרדמת נושאים אמת שהמדע לא יכול לשאת."
+   },
+   "en": {
+    "title": "Why Young Women Are The Most Miserable They've Ever Been",
+    "summary": "In a lecture filmed in Miami in March 2025, Jordan Peterson argues the West's crisis is one of meaning, explaining why values shape what we see and why stories like Snow White and Sleeping Beauty carry a truth science can't."
+   },
+   "full_he": "ג'ורדן פטרסון טוען שהמשבר שמפרק את העולם המערבי אינו פוליטי או כלכלי, אלא עמוק הרבה יותר. כשהמדע רוקן את העולם ממשמעות, הוא השאיר אחריו משהו גרוע יותר: סבל בלי תכלית ובלי סיפור שיעזור להבין אותו.\n\nבהרצאה הזו פטרסון מסביר למה הערכים שלך קובעים מה אתה רואה, למה סיפורים נושאים אמת שהמדע לא יכול לשאת, ומה זה עולה לאדם, ולתרבות שלמה, כשהם מכוונים אל הדברים הלא נכונים. הוא גם מפרק את הפסיכולוגיה שמאחורי שלגייה והיפהפייה הנרדמת, ומסביר למה הסיפורים האלה תופסים אותנו בין שאנחנו מבינים אותם ובין שלא.\n\nאם השאיפות שלך נתקעות שוב ושוב, אם מערכות היחסים שלך לא מחזיקות, או אם אתה מרגיש שחסר בחיים משהו שאתה לא מצליח לקרוא לו בשם, לדברי התוכנית הפרק הזה שווה את הזמן שלך.\n\nההרצאה צולמה במיאמי, פלורידה, ב-24 במרץ 2025.",
+   "full_en": "Jordan Peterson argues the crisis tearing the Western world apart isn't political or economic; it goes far deeper. When science stripped meaning from the world, it left something worse behind: suffering with no purpose and no story to make sense of it.\n\nIn this lecture, Jordan explains why your values determine what you see, why stories carry a truth science can't, and what it costs a person, and a culture, when they aim at the wrong things. He also breaks down the psychology behind Snow White and Sleeping Beauty, and why those stories grip us whether we understand them or not.\n\nIf your ambition keeps stalling, your relationships keep failing, or life feels like it's missing something you can't name, this one's worth your time.\n\nThis lecture was filmed in Miami, Florida, on March 24, 2025."
+  },
+  {
+   "id": "pod-jbp-79e8060f90",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Jordan B. Peterson Podcast",
+   "date": "2026-10-25T19:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/why-your-marriage-feels-like-a-prison-instead/id1184022695?i=1000798058252",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה הנישואים שלך מרגישים כמו כלא ולא כמו הרפתקה",
+    "summary": "בהרצאה שצולמה בבוסטון ביוני 2024, ג'ורדן פטרסון עוסק בסיפור אברהם ובמה שהוא מלמד על זהות, הקרבה והקריאה להרפתקה, ובמה שנישואים והורות באמת דורשים."
+   },
+   "en": {
+    "title": "Why Your Marriage Feels Like A Prison Instead Of An Adventure",
+    "summary": "In a lecture filmed in Boston in June 2024, Jordan Peterson explores the story of Abraham and what it says about identity, sacrifice and the call to adventure, and what marriage and parenthood really demand."
+   },
+   "full_he": "מה זה באמת לחיות את החיים שלך, ולא רק לשרוד אותם? בהרצאה הזו ד\"ר ג'ורדן ב. פטרסון חוקר את סיפור אברהם ומה שהוא מגלה על זהות, הקרבה והקריאה להרפתקה. למה אנשים שיש להם הכול עדיין מרגישים ריקים? למה נוחות בלי תכלית משחיתה במקום לספק? ומה זה באמת עולה לך להמשיך לשחק על בטוח?\n\nפטרסון עוסק גם במה שנישואים והורות באמת דורשים. מחויבות היא לא כלוב, היא התנאי להפוך למישהו ששווה להיות, ולכן מי שלוקח אותה ברצינות מקבל בסוף יותר, לא פחות.\n\nזו הרצאה על מה שנדרש כדי להפוך למי שאתה אמור להיות, ולמה רוב האנשים לא מגיעים לשם.\n\nההרצאה צולמה בבוסטון, מסצ'וסטס, ב-5 ביוני 2024.",
+   "full_en": "What does it mean to actually live your life, not just survive it? In this lecture, Dr. Jordan B. Peterson explores the story of Abraham and what it reveals about identity, sacrifice, and the call to adventure. Why do people with everything still feel empty? Why does comfort, without purpose, corrupt rather than satisfy? And what does it actually cost you to keep playing it safe?\n\nPeterson also digs into what marriage and parenthood really demand. Commitment isn't a cage. It's the condition for becoming someone worth being, and why the people who take it seriously end up with more, not less.\n\nThis is a lecture about what it takes to become who you're supposed to be, and why most people never do.\n\nThis lecture was filmed in Boston, Massachusetts, on June 5, 2024."
   }
  ]
 }
