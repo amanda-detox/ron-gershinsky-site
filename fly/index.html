@@ -79,6 +79,9 @@
   #hud .r1 .tbtn { pointer-events:auto; width:42px; height:42px; padding:0; font-size:17px; }
   #msg { position:absolute; top:26%; left:0; right:0; text-align:center; font-size:clamp(24px, 6.5vw, 40px); font-weight:800; color:#fff;
     text-shadow:0 0 20px rgba(255,231,163,.95), 0 2px 6px rgba(0,0,0,.4); opacity:0; transition:opacity .5s; }
+  .gcomet { display:inline-block; width:1.35em; height:0.68em; vertical-align:-0.08em; margin-inline-end:0.22em; overflow:visible; }
+  #celebrate .gcomet { width:1.9em; height:0.95em; vertical-align:-0.18em; }
+  #msg .gcomet, #celebrate .gcomet { filter:drop-shadow(0 0 6px #f5d27a); }
   #touch { position:absolute; inset:0; pointer-events:auto; }
   /* joystick: a fixed circle at the bottom RIGHT; drag the knob any way (all directions) */
   #hud { --joy:clamp(118px, 35vw, 150px); --pad:clamp(150px, 44vw, 178px); --pb:calc(var(--pad) * 0.31); }
@@ -326,7 +329,7 @@
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=28"></script>
+<script type="module" src="game.js?v=29"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 
 </body>
