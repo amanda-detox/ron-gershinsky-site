@@ -1,8 +1,12 @@
-/* Healify (היליפיי) v1 · all data stays in localStorage on this device. Content lives in content.js. */
+/* Healify (היליפיי).
+   Guest answers stay in localStorage "rg-pub-healify:guest" and are never uploaded.
+   A signed-in user's answers are Appwrite app "pubhealify", one row, readable only by that user.
+   Signing in does not copy guest answers into the account, and never reads another user or a private app.
+   Content lives in content.js. */
 (function () {
   "use strict";
   var C = window.HEALIFY_CONTENT || {};
-  var KEY = "rg-healify-v1", LANG_KEY = "rg-lang";
+  var LANG_KEY = "rg-lang";
   var $ = function (id) { return document.getElementById(id); };
   var lang = "he";
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
@@ -60,6 +64,21 @@
       soon: "יצורף בקרוב",
       link: "לפרטים ←",
       sumTitle: "ד · סיכום", sumLead: "כל מה שמילאת, במקום אחד.",
+      sumHome: "הסיכום שלך", sumHomeLead: "אלה התשובות שנשמרו. אפשר לערוך אותן, או לרענן את ההמלצות.",
+      editAnswers: "עריכת התשובות", refreshRecs: "רענון המלצות", refreshed: "ההמלצות עודכנו לפי התשובות",
+      confirmRefresh: "לרענן את ההמלצות לפי התשובות? פריטים שהוספת או ערכת יישארו.",
+      backSum: "→ לסיכום",
+      savedAccount: "✓ נשמר בחשבון", savedOffline: "נשמר במכשיר. יסתנכרן כשהחיבור יחזור",
+      metaAccount: "הכול נשמר בחשבון שלך",
+      privacyAccount: "התשובות נשמרות בחשבון שלך, ורק אתה יכול לראות אותן.",
+      recsHint: "לחיצה ארוכה בוחרת פריט ומסמנת אותו במסגרת זהובה. אחרי הבחירה, החלקה לצד מוחקת והחלקה למעלה או למטה משנה את הסדר.",
+      recsSel: "הפריט נבחר. החלקה לצד מוחקת, החלקה למעלה או למטה מזיזה.",
+      addRec: "הוספה", phRec: "המלצה או שיטת טיפול", phNote: "הערה (אופציונלי)", phLink: "קישור (אופציונלי)", phPrice: "מחיר (אופציונלי)",
+      editItem: "עריכה", saveItem: "שמירה", cancelItem: "ביטול", delItem: "מחיקה", moveUp: "למעלה", moveDown: "למטה",
+      deletedItem: "הפריט נמחק", undo: "ביטול", emptyRecs: "עוד אין כאן פריטים. אפשר להוסיף, או לרענן לפי התשובות.",
+      badLink: "הקישור צריך להתחיל ב-http", badPrice: "המחיר לא נראה תקין", price: "מחיר",
+      mantrasTitle: "מנטרות", mantrasLead: "אפשר להציג כל מנטרה גם ברוסית ובאנגלית.",
+      langRu: "רוסית", langEn: "EN", showRu: "הצגת התרגום לרוסית", hideRu: "הסתרת התרגום לרוסית", showEn: "הצגת התרגום לאנגלית", hideEn: "הסתרת התרגום לאנגלית",
       sumScores: "מדדי סבל", sumCases: "סוג המקרה", sumDesc: "התיאור שלך", sumData: "הנתונים שלך",
       noCases: "לא נבחר", empty: "לא מולא",
       expTxt: "⬇ הורדה כקובץ טקסט", expJson: "⬇ הורדה כ-JSON", clear: "🗑 מחיקת הנתונים שלי",
@@ -118,6 +137,21 @@
       soon: "Coming soon",
       link: "Details →",
       sumTitle: "D · Summary", sumLead: "Everything you filled in, in one place.",
+      sumHome: "Your summary", sumHomeLead: "These are your saved answers. You can edit them, or refresh the recommendations.",
+      editAnswers: "Edit answers", refreshRecs: "Refresh recommendations", refreshed: "Recommendations were refreshed from your answers",
+      confirmRefresh: "Refresh the recommendations from your answers? Items you added or edited will stay.",
+      backSum: "← Summary",
+      savedAccount: "✓ Saved in your account", savedOffline: "Saved on this device. It will sync when the connection is back",
+      metaAccount: "Everything is saved in your account",
+      privacyAccount: "Your answers are saved in your account, and only you can see them.",
+      recsHint: "A long press selects an item and outlines it in gold. After that, a sideways swipe deletes it and an up or down swipe changes the order.",
+      recsSel: "Item selected. A sideways swipe deletes it, an up or down swipe moves it.",
+      addRec: "Add", phRec: "A recommendation or treatment", phNote: "Note (optional)", phLink: "Link (optional)", phPrice: "Price (optional)",
+      editItem: "Edit", saveItem: "Save", cancelItem: "Cancel", delItem: "Delete", moveUp: "Up", moveDown: "Down",
+      deletedItem: "Item deleted", undo: "Undo", emptyRecs: "Nothing here yet. Add one, or refresh from your answers.",
+      badLink: "The link needs to start with http", badPrice: "That price does not look right", price: "Price",
+      mantrasTitle: "Mantras", mantrasLead: "Each mantra can also be shown in Russian and in English.",
+      langRu: "RU", langEn: "EN", showRu: "Show the Russian translation", hideRu: "Hide the Russian translation", showEn: "Show the English translation", hideEn: "Hide the English translation",
       sumScores: "Suffering scales", sumCases: "Type of case", sumDesc: "Your description", sumData: "Your data",
       noCases: "None chosen", empty: "Not filled in",
       expTxt: "⬇ Download as text", expJson: "⬇ Download as JSON", clear: "🗑 Clear my data",
@@ -137,41 +171,79 @@
 
   var ICON_SOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
 
-  /* ----- state ----- */
-  function blank() { return { v: 2, view: "welcome", cases: [], otherText: "", text: {}, scores: {}, updated: null }; }
+  /* ----- state (guest: this device only; signed in: that user's pubhealify row) ----- */
+  var APP = "pubhealify", LEGACY_KEY = "rg-healify-v1";
+  function blank() { return { v: 2, view: "welcome", cases: [], otherText: "", text: {}, scores: {}, updated: null, completed: false, seeded: false }; }
   var S = blank();
-  function load() {
-    try {
-      var s = JSON.parse(localStorage.getItem(KEY) || "null");
-      if (s && typeof s === "object") {
-        var v = s.view === "d" ? "c" : s.view; // old 5-step layout: D (by case) is now part of C
-        S.view = (VIEWS.indexOf(v) >= 0 || v === "welcome") ? v : "welcome";
-        S.cases = Array.isArray(s.cases) ? s.cases.filter(function (c) { return CASES.indexOf(c) >= 0; }) : [];
-        if (Array.isArray(s.recs)) s.recs.forEach(function (c) { if (CASES.indexOf(c) >= 0 && S.cases.indexOf(c) < 0) S.cases.push(c); }); // old "what are you dealing with?" picks become step A choices
-        S.cases.sort(function (x, y) { return CASES.indexOf(x) - CASES.indexOf(y); });
-        S.otherText = typeof s.otherText === "string" ? s.otherText : "";
-        S.text = {}; FIELDS.forEach(function (f) { if (s.text && typeof s.text[f] === "string") S.text[f] = s.text[f]; });
-        S.scores = {}; SCORES.forEach(function (k) { var n = s.scores && +s.scores[k]; if (n >= 1 && n <= 10) S.scores[k] = Math.round(n); });
-        S.updated = s.updated || null;
-      }
-    } catch (e) {}
+  var store = null, uidSeen = null, booted = false, selfWrite = false, saveTimer = null;
+  var activeRec = null, editingRec = null, gesture = null, suppressClick = false, needRender = false, mantraOn = {};
+  function cloud() { return !!(window.RGIsolate && store && RGIsolate.maySync(store.uid())); }
+  function applyProfile(p) {
+    S = blank();
+    if (!p || typeof p !== "object") return;
+    var v = p.view === "d" ? "c" : p.view;
+    S.view = (VIEWS.indexOf(v) >= 0 || v === "welcome") ? v : "welcome";
+    S.cases = Array.isArray(p.cases) ? p.cases.filter(function (c) { return CASES.indexOf(c) >= 0; }) : [];
+    if (Array.isArray(p.recs)) p.recs.forEach(function (c) { if (typeof c === "string" && CASES.indexOf(c) >= 0 && S.cases.indexOf(c) < 0) S.cases.push(c); });
+    S.cases.sort(function (x, y) { return CASES.indexOf(x) - CASES.indexOf(y); });
+    S.otherText = typeof p.otherText === "string" ? p.otherText : "";
+    S.text = {}; FIELDS.forEach(function (f) { if (p.text && typeof p.text[f] === "string") S.text[f] = p.text[f]; });
+    S.scores = {}; SCORES.forEach(function (k) { var n = p.scores && +p.scores[k]; if (n >= 1 && n <= 10) S.scores[k] = Math.round(n); });
+    S.updated = p.updated || null;
+    S.completed = !!p.completed || S.view === "sum";
+    S.seeded = !!p.seeded;
   }
-  var saveTimer = null;
-  function save(now) {
-    clearTimeout(saveTimer);
-    var doit = function () {
-      S.updated = new Date().toISOString();
-      try { localStorage.setItem(KEY, JSON.stringify(S)); flashSaved(); } catch (e) {}
+  function loadProfileFromStore() { applyProfile(store && store.get("profile")); }
+  function snapshot() {
+    return {
+      kind: "profile", v: 2, view: S.view, completed: !!S.completed, seeded: !!S.seeded,
+      cases: S.cases.slice(), otherText: S.otherText || "",
+      text: JSON.parse(JSON.stringify(S.text || {})), scores: JSON.parse(JSON.stringify(S.scores || {}))
     };
-    if (now) doit(); else { $("saved").textContent = t().saving; $("saved").className = "saved"; saveTimer = setTimeout(doit, 350); }
   }
-  function flush() { if (saveTimer) save(true); }
-  function flashSaved() { $("saved").textContent = t().saved; $("saved").className = "saved on"; }
+  function mutate(fn) { selfWrite = true; try { fn(); } finally { selfWrite = false; } }
+  function writeSnapshot(data) {
+    if (!store || !store.uid()) return;
+    mutate(function () {
+      if (store.get("profile")) store.upd("profile", data);
+      else store.add(Object.assign({ id: "profile" }, data));
+    });
+    paintSaved();
+  }
+  function writeProfile() { S.updated = new Date().toISOString(); writeSnapshot(snapshot()); }
+  function save() { writeProfile(); }
+  function flush() { clearTimeout(saveTimer); saveTimer = null; }
+  function paintSaved(pending) {
+    var el = $("saved"); if (!el) return;
+    var L = t();
+    if (pending) { el.textContent = L.saving; el.className = "saved"; return; }
+    if (!store || !store.uid() || (!S.updated && !(store.get && store.get("profile")))) { el.textContent = ""; el.className = "saved"; return; }
+    if (!cloud()) { el.textContent = L.saved; el.className = "saved on"; return; }
+    var st = store.state();
+    el.textContent = st === "offline" ? L.savedOffline : st === "saving" ? L.saving : L.savedAccount;
+    el.className = "saved" + (st === "saving" ? "" : " on");
+  }
+  function flashSaved() { paintSaved(false); }
   function hasData() { return S.cases.length || S.otherText || Object.keys(S.text).some(function (k) { return S.text[k]; }) || Object.keys(S.scores).length; }
+  function importLegacyGuest() {
+    if (!store || store.uid() !== "guest" || store.get("profile")) return;
+    var raw = null;
+    try { raw = localStorage.getItem(LEGACY_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var s = null;
+    try { s = JSON.parse(raw); } catch (e) { return; }
+    applyProfile(s);
+    writeProfile();
+    if (store.get("profile")) { try { localStorage.removeItem(LEGACY_KEY); } catch (e) {} }
+  }
+  function typing() {
+    var a = document.activeElement;
+    return !!(a && a.closest && a.closest("#fields, #other-wrap, .recform, .rec-edit"));
+  }
 
   /* ----- helpers ----- */
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
-  function scoreColor(n) { var h = 200 - (n - 1) * (200 / 9); return "hsl(" + h.toFixed(0) + ",88%,66%)"; } // 1 = calm blue … 10 = red
+  function scoreColor(n) { var h = 205 - (n - 1) * ((205 - 40) / 9); return "hsl(" + Math.round(h) + ",72%,58%)"; } // 1 = blue … 10 = gold
   function toast(msg) { var el = $("toast"); el.textContent = msg; el.hidden = false; clearTimeout(toast.tm); toast.tm = setTimeout(function () { el.hidden = true; }, 2200); }
   function pick(item) {
     var a = item && item[lang], b = item && item[lang === "he" ? "en" : "he"];
@@ -261,7 +333,6 @@
   function fillC() {
     var L = t(), tech = C.tech || {};
     $("c-title").textContent = L.cTitle; $("c-tech-title").textContent = L.cTechTitle; $("c-lead").textContent = L.cLead;
-    $("c-recs").innerHTML = recsHTML();
     $("c-groups").innerHTML = ["free", "low", "premium"].map(function (g) {
       return group(L.cGroups[g][0], L.cGroups[g][1], list(tech[g]), g === "premium" ? "premium" : "", '<span class="tier ' + g + '">' + esc(L.tiers[g]) + "</span>");
     }).join("");
@@ -298,10 +369,214 @@
       '<p class="recdisc">' + esc(L.recsDisc) + "</p></div>";
   }
 
+  /* ----- editable recommendations (add, edit, delete, reorder). Swipes arm only after a long-press. ----- */
+  function recItems() {
+    if (!store) return [];
+    return store.list("rec").sort(function (a, b) { return (a.order || 0) - (b.order || 0) || ((a.at || 0) - (b.at || 0)); });
+  }
+  function userOwned(x) { return !!(x && (x.origin === "user" || x.edited)); }
+  function safeUrl(u) { return /^https?:\/\//i.test(u || "") ? u : ""; }
+  function textOf(item, l) { var a = item && item[l]; return { title: (a && a.title) || "", text: (a && a.text) || "" }; }
+  function recTitle(x) {
+    if (x.origin === "user" || x.edited || x.title) return x.title || x.heTitle || x.enTitle || "";
+    return lang === "en" ? (x.enTitle || x.heTitle || "") : (x.heTitle || x.enTitle || "");
+  }
+  function recNote(x) {
+    if (x.origin === "user" || x.edited) return x.note || "";
+    return lang === "en" ? (x.enNote || x.heNote || "") : (x.heNote || x.enNote || "");
+  }
+  function recLinks(x) {
+    var out = [];
+    if (safeUrl(x.link)) out.push({ url: x.link, label: x.link });
+    (Array.isArray(x.links) ? x.links : []).forEach(function (k) {
+      if (!k || !safeUrl(k.url) || out.some(function (o) { return o.url === k.url; })) return;
+      out.push({ url: k.url, label: (lang === "en" ? (k.en || k.he) : (k.he || k.en)) || k.url });
+    });
+    return out;
+  }
+  function parsePrice(v) {
+    var s = String(v || "").replace(/[₪$\s]/g, "").replace(",", ".");
+    if (!s) return null;
+    if (!/^\d+(\.\d{1,2})?$/.test(s)) return NaN;
+    return Math.round(parseFloat(s) * 100) / 100;
+  }
+  function nextOrder() {
+    var m = 0;
+    recItems().forEach(function (x) { if ((x.order || 0) > m) m = x.order; });
+    return m + 1;
+  }
+  function generatedWanted() {
+    return recsFor().map(function (r) {
+      var he = textOf(r, "he"), en = textOf(r, "en");
+      var links = (Array.isArray(r.links) ? r.links : []).filter(function (k) { return k && safeUrl(k.url); }).map(function (k) {
+        return { he: k.he || "", en: k.en || "", url: k.url };
+      });
+      return { genId: r.id, heTitle: he.title, enTitle: en.title, heNote: he.text, enNote: en.text, links: links };
+    });
+  }
+  function seedFromAnswers() {
+    var order = 1;
+    mutate(function () {
+      generatedWanted().forEach(function (w) {
+        store.add({ kind: "rec", origin: "gen", genId: w.genId, heTitle: w.heTitle, enTitle: w.enTitle, heNote: w.heNote, enNote: w.enNote, links: w.links, order: order++ });
+      });
+    });
+  }
+  function ensureSeed() {
+    if (!store || !store.uid() || S.seeded) return;
+    if (!recItems().length) seedFromAnswers();
+    S.seeded = true;
+    writeProfile();
+  }
+  function refreshRecs() {
+    var owned = recItems().filter(userOwned);
+    if (owned.length && !window.confirm(t().confirmRefresh)) return;
+    var have = {}, want = {}, wanted = generatedWanted(), order = nextOrder();
+    recItems().forEach(function (x) { if (x.genId) have[x.genId] = x; });
+    wanted.forEach(function (w) { want[w.genId] = w; });
+    mutate(function () {
+      recItems().forEach(function (x) {
+        if (x.genId && !userOwned(x) && !want[x.genId]) store.del(x.id);
+      });
+      wanted.forEach(function (w) {
+        var cur = have[w.genId];
+        if (cur && userOwned(cur)) return;
+        if (cur) store.upd(cur.id, { heTitle: w.heTitle, enTitle: w.enTitle, heNote: w.heNote, enNote: w.enNote, links: w.links, origin: "gen" });
+        else store.add({ kind: "rec", origin: "gen", genId: w.genId, heTitle: w.heTitle, enTitle: w.enTitle, heNote: w.heNote, enNote: w.enNote, links: w.links, order: order++ });
+      });
+    });
+    S.seeded = true;
+    writeProfile();
+    render();
+    toast(t().refreshed);
+  }
+  function copyRec(x) {
+    return { kind: "rec", origin: x.origin || "user", title: x.title, note: x.note, link: x.link, heTitle: x.heTitle, enTitle: x.enTitle, heNote: x.heNote, enNote: x.enNote, links: x.links, price: x.price, order: x.order, edited: x.edited, genId: x.genId };
+  }
+  function deleteRec(id) {
+    var x = store && store.get(id);
+    if (!x) return;
+    var copy = copyRec(x);
+    mutate(function () { store.del(id); });
+    if (activeRec === id) activeRec = null;
+    if (editingRec === id) editingRec = null;
+    render();
+    var el = $("toast");
+    el.textContent = "";
+    el.appendChild(document.createTextNode(t().deletedItem + " "));
+    var b = document.createElement("button");
+    b.type = "button";
+    b.textContent = t().undo;
+    b.onclick = function () { mutate(function () { store.add(copy); }); el.hidden = true; render(); };
+    el.appendChild(b);
+    el.hidden = false;
+    clearTimeout(toast.tm);
+    toast.tm = setTimeout(function () { el.hidden = true; }, 5000);
+  }
+  function moveRec(id, dir) {
+    var list = recItems(), i = -1, n;
+    for (n = 0; n < list.length; n++) if (list[n].id === id) i = n;
+    var j = i + dir;
+    if (i < 0 || j < 0 || j >= list.length) return;
+    var tmp = list[i]; list[i] = list[j]; list[j] = tmp;
+    mutate(function () { list.forEach(function (x, idx) { store.upd(x.id, { order: idx + 1 }); }); });
+    activeRec = id;
+    render();
+    focusRec(id);
+  }
+  function focusRec(id) {
+    var list = document.querySelector(".reclist");
+    if (!list) return;
+    Array.prototype.forEach.call(list.children, function (li) { if (li.getAttribute("data-id") === id) li.focus(); });
+  }
+  function readRecForm(form) {
+    var titleEl = form.querySelector("[name=title], .e-title");
+    var noteEl = form.querySelector("[name=note], .e-note");
+    var linkEl = form.querySelector("[name=link], .e-link");
+    var priceEl = form.querySelector("[name=price], .e-price");
+    var title = (titleEl.value || "").replace(/\s+/g, " ").trim();
+    var note = (noteEl.value || "").trim();
+    var link = (linkEl.value || "").trim();
+    var price = parsePrice(priceEl.value);
+    linkEl.classList.remove("bad"); priceEl.classList.remove("bad");
+    if (!title) { titleEl.focus(); return null; }
+    if (link && !safeUrl(link)) { linkEl.classList.add("bad"); linkEl.focus(); toast(t().badLink); return null; }
+    if (typeof price === "number" && isNaN(price)) { priceEl.classList.add("bad"); priceEl.focus(); toast(t().badPrice); return null; }
+    return { title: title.slice(0, 200), note: note.slice(0, 4000), link: link, price: price };
+  }
+  function addRec(data) {
+    mutate(function () { store.add({ kind: "rec", origin: "user", title: data.title, note: data.note, link: data.link, price: data.price, order: nextOrder() }); });
+    S.seeded = true;
+    writeProfile();
+    render();
+  }
+  function saveRecEdit(id, data) {
+    mutate(function () { store.upd(id, { title: data.title, note: data.note || "", link: data.link || "", price: data.price, edited: true }); });
+    editingRec = null;
+    render();
+  }
+  function recEditor(x) {
+    var link = x.link || "";
+    if (!link && Array.isArray(x.links) && x.links[0] && x.links[0].url) link = x.links[0].url;
+    var L = t();
+    return '<li data-id="' + esc(x.id) + '" class="editing"><form class="rec-edit" data-edit="' + esc(x.id) + '">' +
+      '<input class="e-title" maxlength="200" value="' + esc(recTitle(x)) + '" aria-label="' + esc(L.phRec) + '">' +
+      '<textarea class="e-note" maxlength="4000" aria-label="' + esc(L.phNote) + '">' + esc(recNote(x)) + "</textarea>" +
+      '<div class="split"><input class="e-link" type="url" maxlength="500" value="' + esc(link) + '" placeholder="' + esc(L.phLink) + '" aria-label="' + esc(L.phLink) + '">' +
+      '<input class="e-price" inputmode="decimal" maxlength="12" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" placeholder="' + esc(L.phPrice) + '" aria-label="' + esc(L.phPrice) + '"></div>' +
+      '<div class="row"><button type="submit" class="btn small">' + esc(L.saveItem) + '</button><button type="button" class="btn ghost small" data-a="cancel">' + esc(L.cancelItem) + '</button><button type="button" class="btn ghost small" data-a="del">' + esc(L.delItem) + "</button></div></form></li>";
+  }
+  function recRow(x) {
+    if (editingRec === x.id) return recEditor(x);
+    var L = t(), title = recTitle(x), note = recNote(x), links = recLinks(x), on = activeRec === x.id;
+    var price = typeof x.price === "number" ? '<div class="rprice">' + esc(L.price) + " " + esc(String(x.price)) + "</div>" : "";
+    var linkHtml = links.length ? '<div class="rlinks">' + links.map(function (k) {
+      return '<a href="' + esc(k.url) + '" target="_blank" rel="noopener">' + esc(k.label) + "</a>";
+    }).join("") + "</div>" : "";
+    return '<li data-id="' + esc(x.id) + '"' + (on ? ' class="active"' : "") + ' tabindex="0" aria-selected="' + (on ? "true" : "false") + '">' +
+      '<div class="rt">' + esc(title || L.empty) + "</div>" +
+      (note ? '<div class="rd">' + esc(note) + "</div>" : "") + price + linkHtml +
+      '<button type="button" class="rec-edit-btn" data-a="edit">' + esc(L.editItem) + "</button>" +
+      '<div class="rec-actions"><button type="button" data-a="up">' + esc(L.moveUp) + '</button><button type="button" data-a="down">' + esc(L.moveDown) + '</button><button type="button" data-a="del">' + esc(L.delItem) + "</button></div></li>";
+  }
+  function recListHTML() {
+    var L = t(), rows = recItems();
+    return '<div class="card recs"><h3>' + esc(L.recsTitle) + '</h3><p class="help">' + esc(L.recsHint) + "</p>" +
+      '<form class="recform" id="rec-add" autocomplete="off"><input name="title" maxlength="200" placeholder="' + esc(L.phRec) + '" aria-label="' + esc(L.phRec) + '">' +
+      '<textarea name="note" maxlength="4000" placeholder="' + esc(L.phNote) + '" aria-label="' + esc(L.phNote) + '"></textarea>' +
+      '<div class="split"><input name="link" type="url" maxlength="500" placeholder="' + esc(L.phLink) + '" aria-label="' + esc(L.phLink) + '">' +
+      '<input name="price" inputmode="decimal" maxlength="12" placeholder="' + esc(L.phPrice) + '" aria-label="' + esc(L.phPrice) + '"></div>' +
+      '<button type="submit" class="btn">' + esc(L.addRec) + "</button></form>" +
+      '<p class="note" id="rec-sel-hint"' + (activeRec ? "" : " hidden") + ">" + esc(L.recsSel) + "</p>" +
+      (rows.length ? '<ul class="reclist">' + rows.map(recRow).join("") + "</ul>" : '<p class="note">' + esc(L.emptyRecs) + "</p>") + "</div>";
+  }
+  function paintRecs() {
+    if (gesture) { needRender = true; return; }
+    var editor = S.view === "sum" || (S.view === "c" && (S.completed || S.seeded || recItems().length));
+    if (S.view === "sum") { $("sum-recs").innerHTML = recListHTML(); $("c-recs").innerHTML = ""; }
+    else if (S.view === "c" && editor) { $("c-recs").innerHTML = recListHTML(); $("sum-recs").innerHTML = ""; }
+    else if (S.view === "c") { $("c-recs").innerHTML = recsHTML(); $("sum-recs").innerHTML = ""; }
+    else { $("c-recs").innerHTML = ""; $("sum-recs").innerHTML = ""; }
+    if (editingRec) { var ti = document.querySelector(".rec-edit .e-title"); if (ti) { ti.focus(); try { ti.setSelectionRange(ti.value.length, ti.value.length); } catch (e) {} } }
+  }
+  function setActive(id) {
+    activeRec = id;
+    var list = document.querySelector(".reclist");
+    if (list) Array.prototype.forEach.call(list.children, function (li) {
+      var on = !!id && li.getAttribute("data-id") === id;
+      li.classList.toggle("active", on);
+      li.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    var hint = $("rec-sel-hint");
+    if (hint) hint.hidden = !id;
+  }
+
   /* ----- summary ----- */
   function fillSum() {
     var L = t();
-    $("sum-title").textContent = L.sumTitle; $("sum-lead").textContent = L.sumLead;
+    var homeSum = S.completed && S.view === "sum";
+    $("sum-title").textContent = homeSum ? L.sumHome : L.sumTitle;
+    $("sum-lead").textContent = homeSum ? L.sumHomeLead : L.sumLead;
     $("sum-scores-title").textContent = L.sumScores; $("sum-cases-title").textContent = L.sumCases;
     $("sum-desc-title").textContent = L.sumDesc; $("sum-data-title").textContent = L.sumData;
     $("sum-scores").innerHTML = SCORES.map(function (k) {
@@ -315,9 +590,9 @@
       var v = (S.text[f] || "").trim();
       return '<div class="sumrow"><div class="k">' + esc(L.fields[f][0]) + '</div><div class="v' + (v ? "" : " empty") + '">' + esc(v || L.empty) + "</div></div>";
     }).join("");
-    var shown = recsFor().map(function (r) { return pick(r).title; }).filter(Boolean);
-    $("sum-recs").innerHTML = '<div class="card"><h3>' + esc(L.sumRecs) + "</h3>" + (shown.length ? '<ul class="sumrecs">' + shown.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : '<div class="sumrow"><div class="v empty">' + esc(L.sumRecsNone) + "</div></div>") + "</div>";
-    $("exp-txt").textContent = L.expTxt; $("exp-json").textContent = L.expJson; $("clear").textContent = L.clear; $("privacy").textContent = L.privacy;
+    $("edit-answers").textContent = L.editAnswers; $("refresh-recs").textContent = L.refreshRecs;
+    $("exp-txt").textContent = L.expTxt; $("exp-json").textContent = L.expJson; $("clear").textContent = L.clear;
+    $("privacy").textContent = cloud() ? L.privacyAccount : L.privacy;
   }
   function asText() {
     var L = t(), out = [L.fileTitle, L.fileDate + ": " + new Date().toLocaleString(lang === "he" ? "he-IL" : "en-GB"), ""];
@@ -338,14 +613,26 @@
     out.push("", "== " + L.steps[1] + " ==");
     ["free", "home"].forEach(function (g) { out.push("", L.bGroups[g][0] + ":"); items(tests[g]); });
     /* C · recommendations, then technologies */
-    out.push("", "== " + L.steps[2] + " ==", "", L.recsTitle + " (" + (S.cases.length ? L.recsLead : L.recsAll).replace(/\.$/, "") + ")");
-    var rs = recsFor();
-    if (!rs.length) out.push(L.recsNoMatch);
-    rs.forEach(function (r) {
-      var p = pick(r);
-      out.push("", "* " + p.title, p.text || L.soon);
-      (Array.isArray(r.links) ? r.links : []).forEach(function (k) { if (k && /^https?:\/\//.test(k.url)) out.push((k[lang] || k.he || k.en) + ": " + k.url); });
-    });
+    out.push("", "== " + L.steps[2] + " ==", "", L.recsTitle);
+    var savedRecs = recItems();
+    if (savedRecs.length) {
+      savedRecs.forEach(function (x) {
+        out.push("", "* " + (recTitle(x) || L.empty));
+        var note = recNote(x);
+        if (note) out.push(note);
+        recLinks(x).forEach(function (k) { out.push(k.label + ": " + k.url); });
+        if (typeof x.price === "number") out.push(L.price + ": " + x.price);
+      });
+    } else {
+      out.push("(" + (S.cases.length ? L.recsLead : L.recsAll).replace(/\.$/, "") + ")");
+      var rs = recsFor();
+      if (!rs.length) out.push(L.recsNoMatch);
+      rs.forEach(function (r) {
+        var p = pick(r);
+        out.push("", "* " + p.title, p.text || L.soon);
+        (Array.isArray(r.links) ? r.links : []).forEach(function (k) { if (k && /^https?:\/\//.test(k.url)) out.push((k[lang] || k.he || k.en) + ": " + k.url); });
+      });
+    }
     var cs = C.cases || {};
     ["autoimmune", "cancer", "mental"].forEach(function (id) {
       var arr = (S.cases.indexOf(id) >= 0 || !S.cases.length) && Array.isArray(cs[id]) ? cs[id].filter(function (x) { var p = pick(x); return p.title || p.text; }) : [];
@@ -365,11 +652,17 @@
   }
   function stamp() { var d = new Date(), p = function (n) { return String(n).padStart(2, "0"); }; return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
   $("exp-txt").onclick = function () { flush(); download("healify-" + stamp() + ".txt", "\ufeff" + asText(), "text/plain;charset=utf-8"); };
-  $("exp-json").onclick = function () { flush(); download("healify-" + stamp() + ".json", JSON.stringify({ app: "healify", version: 2, exported: new Date().toISOString(), data: S }, null, 2), "application/json"); };
+  $("exp-json").onclick = function () { flush(); download("healify-" + stamp() + ".json", JSON.stringify({ app: "healify", version: 3, exported: new Date().toISOString(), data: snapshot(), recs: recItems().map(copyRec) }, null, 2), "application/json"); };
+  $("edit-answers").onclick = function () { go("a"); };
+  $("refresh-recs").onclick = function () { refreshRecs(); };
   $("clear").onclick = function () {
     if (!window.confirm(t().confirm)) return;
     clearTimeout(saveTimer); saveTimer = null;
-    try { localStorage.removeItem(KEY); } catch (e) {}
+    activeRec = null; editingRec = null;
+    if (store) mutate(function () {
+      ["rec", "profile"].forEach(function (k) { store.list(k).slice().forEach(function (x) { store.del(x.id); }); });
+    });
+    if (store && store.uid() === "guest") { try { localStorage.removeItem(LEGACY_KEY); } catch (e) {} }
     S = blank(); fillA(); toast(t().cleared); go("welcome", true);
   };
 
@@ -377,30 +670,33 @@
   /* in-app history: the welcome screen is the base entry, the whole flow (stages A-D + summary) is ONE entry above it,
      so the browser / phone back button and the Android back gesture return to Healify's main screen instead of leaving */
   var HIST = !!(window.history && history.pushState);
+  function baseView() { return S.completed ? "sum" : "welcome"; }
   function syncHistory(v) {
     if (!HIST) return;
     var st = history.state || {};
     try {
-      if (v === "welcome") { if (st.hv) history.replaceState({ hv: null, base: 1 }, ""); }
+      if (v === baseView()) { if (st.hv || !st.base) history.replaceState({ hv: null, base: 1 }, ""); }
       else if (st.hv) history.replaceState({ hv: v }, "");
       else { if (!st.base) history.replaceState({ hv: null, base: 1 }, ""); history.pushState({ hv: v }, ""); }
     } catch (e) {}
   }
   function goHome() { // leave the flow: step back over our own history entry when there is one
     var st = (HIST && history.state) || {};
-    if (st.hv) history.back(); else go("welcome");
+    if (st.hv) history.back(); else go(baseView());
   }
   window.addEventListener("popstate", function (e) {
-    var st = e.state || {}, v = st.hv && (VIEWS.indexOf(st.hv) >= 0) ? st.hv : "welcome";
+    var st = e.state || {}, v = st.hv && (VIEWS.indexOf(st.hv) >= 0) ? st.hv : baseView();
     if (v !== S.view) go(v, false, true);
   });
   function go(v, noSave, fromPop) {
     flush();
+    if (v === "sum") S.completed = true;
     if (!fromPop) syncHistory(v);
     S.view = v;
     $("s-welcome").hidden = v !== "welcome";
     $("flow").hidden = v === "welcome";
     VIEWS.forEach(function (x) { $("s-" + x).hidden = x !== v; });
+    if (v === "sum") ensureSeed();
     render();
     if (!noSave) save(true);
     window.scrollTo(0, 0);
@@ -418,8 +714,10 @@
       return '<li class="' + (i < cur ? "done" : i === cur ? "cur" : "") + '"><button type="button" data-v="' + v + '"' + (i === cur ? ' aria-current="step"' : "") + '><span class="bar"></span>' + esc(L.steps[i]) + "</button></li>";
     }).join("");
     $("stepnum").textContent = cur >= 0 ? L.stepnum(cur + 1) : "";
-    $("prev").textContent = cur === 0 ? L.home : L.prev;
+    $("prev").textContent = cur === 0 ? (S.completed ? L.backSum : L.home) : L.prev;
     $("next").textContent = cur === VIEWS.length - 1 ? L.edit : cur === VIEWS.length - 2 ? L.toSum : L.next;
+    var homeSum = S.completed && S.view === "sum";
+    $("steps").hidden = homeSum; $("stepnum").hidden = homeSum; $("flowtop").hidden = homeSum; $("flow-nav").hidden = homeSum;
   }
 
   function render() {
@@ -428,16 +726,39 @@
     document.title = L.doc;
     $("lang-he").setAttribute("aria-pressed", lang === "he"); $("lang-en").setAttribute("aria-pressed", lang === "en");
     $("back").textContent = L.back;
-    $("flow-home").textContent = L.homeBack; $("flow-home").setAttribute("aria-label", L.homeBackLabel); $("flow-home").title = L.homeBackLabel;
+    $("flow-home").textContent = S.completed ? L.backSum : L.homeBack; $("flow-home").setAttribute("aria-label", S.completed ? L.sumHome : L.homeBackLabel); $("flow-home").title = $("flow-home").getAttribute("aria-label");
     $("w-eyebrow").textContent = L.eyebrow; $("w-title").textContent = L.title; $("w-tagline").textContent = L.tagline; $("w-sub").textContent = L.sub;
-    $("start").textContent = hasData() ? L.resume : L.start; $("w-meta").textContent = L.meta;
+    $("start").textContent = hasData() ? L.resume : L.start; $("w-meta").textContent = cloud() ? L.metaAccount : L.meta;
     $("install-btn").textContent = L.install;
     if (!$("install-hint").hidden) $("install-hint").innerHTML = L[isIOS ? "ios" : "other"];
     $("disc-w").innerHTML = L.disc; $("disc-f").innerHTML = L.disc;
     $("foot").textContent = L.foot;
     if (S.view !== "welcome") lastView = S.view;
-    fillA(); fillB(); fillC(); fillSum(); renderSteps();
-    if (S.updated && $("saved").textContent) flashSaved();
+    fillA(); fillB(); fillC(); fillSum(); paintRecs(); placeMantras(); renderMantras(); renderSteps();
+    paintSaved(false);
+  }
+  function renderMantras() {
+    var el = $("mantras"); if (!el) return;
+    var L = t();
+    $("mantras-title").textContent = L.mantrasTitle; $("mantras-lead").textContent = L.mantrasLead;
+    Array.prototype.forEach.call(el.querySelectorAll("button[data-m]"), function (b) {
+      var l = b.getAttribute("data-l"), on = !!mantraOn[b.getAttribute("data-m") + ":" + l];
+      b.textContent = l === "ru" ? L.langRu : L.langEn;
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.setAttribute("aria-label", on ? (l === "ru" ? L.hideRu : L.hideEn) : (l === "ru" ? L.showRu : L.showEn));
+    });
+    Array.prototype.forEach.call(el.querySelectorAll(".mantra-tr"), function (p) {
+      p.hidden = !mantraOn[p.getAttribute("data-for") + ":" + p.getAttribute("data-show")];
+    });
+  }
+  function placeMantras() {
+    var el = $("mantras"); if (!el) return;
+    if (S.view === "welcome") { $("s-welcome").appendChild(el); el.hidden = false; }
+    else if (S.view === "sum") {
+      var anchor = $("sum-data-title"), card = anchor && anchor.closest(".card");
+      if (card && card.parentNode) card.parentNode.insertBefore(el, card); else $("s-sum").appendChild(el);
+      el.hidden = false;
+    } else el.hidden = true;
   }
   function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
   $("lang-he").onclick = function () { setLang("he"); };
@@ -459,13 +780,120 @@
     var h = $("install-hint"); h.innerHTML = t()[isIOS ? "ios" : "other"]; h.hidden = !h.hidden;
   };
 
+  /* ----- recommendation gestures: long-press selects (gold outline); only then does a swipe delete or move ----- */
+  var HOLD_MS = 460, SLOP = 14, SWIPE_X = 64, SWIPE_Y = 52;
+  function finishGesture() {
+    var g = gesture;
+    if (!g) return;
+    clearTimeout(g.holdT);
+    gesture = null;
+    if (g.li) g.li.style.transform = "";
+    if (g.abandoned || !g.held) { if (needRender) { needRender = false; render(); } return; }
+    var ax = Math.abs(g.dx), ay = Math.abs(g.dy);
+    suppressClick = true;
+    if (g.moved && ax >= SWIPE_X && ax > ay) { deleteRec(g.id); return; }
+    if (g.moved && ay >= SWIPE_Y && ay > ax) { moveRec(g.id, g.dy < 0 ? -1 : 1); return; }
+    setActive(g.id);
+    if (needRender) { needRender = false; render(); }
+  }
+  document.addEventListener("pointerdown", function (e) {
+    var li = e.target.closest && e.target.closest(".reclist > li");
+    if (!li || (e.button != null && e.button !== 0)) return;
+    if (e.target.closest("a,button,input,textarea,form")) return;
+    if (gesture) finishGesture();
+    gesture = { li: li, id: li.getAttribute("data-id"), x: e.clientX, y: e.clientY, pid: e.pointerId, dx: 0, dy: 0, held: li.classList.contains("active"), moved: false, abandoned: false };
+    if (gesture.held) e.preventDefault();
+    gesture.holdT = setTimeout(function () {
+      if (!gesture || gesture.moved || gesture.abandoned) return;
+      gesture.held = true;
+      setActive(gesture.id);
+      try { if (navigator.vibrate) navigator.vibrate(12); } catch (err) {}
+    }, HOLD_MS);
+    try { li.setPointerCapture(e.pointerId); } catch (err) {}
+  }, true);
+  document.addEventListener("pointermove", function (e) {
+    if (!gesture || e.pointerId !== gesture.pid) return;
+    gesture.dx = e.clientX - gesture.x; gesture.dy = e.clientY - gesture.y;
+    if (!gesture.moved && Math.hypot(gesture.dx, gesture.dy) > SLOP) {
+      gesture.moved = true;
+      if (!gesture.held) { clearTimeout(gesture.holdT); gesture.abandoned = true; return; }
+    }
+    if (gesture.held && gesture.moved) {
+      e.preventDefault();
+      gesture.li.style.transform = Math.abs(gesture.dx) > Math.abs(gesture.dy) ? "translateX(" + gesture.dx + "px)" : "translateY(" + Math.max(-32, Math.min(32, gesture.dy)) + "px)";
+    }
+  }, { passive: false });
+  document.addEventListener("pointerup", function (e) { if (gesture && e.pointerId === gesture.pid) finishGesture(); });
+  document.addEventListener("pointercancel", function (e) { if (gesture && e.pointerId === gesture.pid) { gesture.abandoned = true; finishGesture(); } });
+  document.addEventListener("click", function (e) {
+    if (suppressClick) { suppressClick = false; e.preventDefault(); e.stopPropagation(); return; }
+    var mbtn = e.target.closest && e.target.closest("#mantras [data-m]");
+    if (mbtn) {
+      var key = mbtn.getAttribute("data-m") + ":" + mbtn.getAttribute("data-l");
+      mantraOn[key] = !mantraOn[key];
+      renderMantras();
+      return;
+    }
+    var act = e.target.closest && e.target.closest(".reclist [data-a], .rec-edit [data-a]");
+    if (act) {
+      var li = act.closest("li"), id = li && li.getAttribute("data-id"), a = act.getAttribute("data-a");
+      if (a === "edit") { editingRec = id; activeRec = id; render(); }
+      else if (a === "cancel") { editingRec = null; render(); }
+      else if (a === "del" && id) deleteRec(id);
+      else if (a === "up" && id) moveRec(id, -1);
+      else if (a === "down" && id) moveRec(id, 1);
+      return;
+    }
+    if (!e.target.closest(".reclist")) setActive(null);
+  });
+  document.addEventListener("submit", function (e) {
+    var form = e.target;
+    if (!form || (form.id !== "rec-add" && !form.classList.contains("rec-edit"))) return;
+    e.preventDefault();
+    var data = readRecForm(form);
+    if (!data) return;
+    if (form.id === "rec-add") addRec(data); else saveRecEdit(form.getAttribute("data-edit"), data);
+  });
+  document.addEventListener("keydown", function (e) {
+    var li = e.target.closest && e.target.closest(".reclist > li");
+    if (!li || e.target.closest("button,a,input,textarea")) return;
+    var id = li.getAttribute("data-id");
+    if (e.key === "Enter" || e.key === " ") { setActive(id); e.preventDefault(); return; }
+    if (activeRec !== id) return;
+    if (e.key === "Delete" || e.key === "Backspace") { deleteRec(id); e.preventDefault(); }
+    else if (e.key === "ArrowUp") { moveRec(id, -1); e.preventDefault(); }
+    else if (e.key === "ArrowDown") { moveRec(id, 1); e.preventDefault(); }
+  });
+
   /* ----- boot ----- */
+  function landingView() {
+    if (S.completed) return "sum";
+    var v = S.view === "d" ? "c" : S.view;
+    return (VIEWS.indexOf(v) >= 0 || v === "welcome") ? v : "welcome";
+  }
+  function onStoreChange() {
+    if (selfWrite) { paintSaved(); return; }
+    var id = store && store.uid();
+    if (!id) return;
+    if (id !== uidSeen) {
+      clearTimeout(saveTimer); saveTimer = null;
+      uidSeen = id; activeRec = null; editingRec = null; gesture = null;
+      if (id === "guest") importLegacyGuest();
+      loadProfileFromStore();
+      var start = landingView();
+      booted = true;
+      if (start !== "welcome") lastView = start;
+      go(start, true);
+      return;
+    }
+    if (typing() || gesture) { if (gesture) needRender = true; return; }
+    loadProfileFromStore();
+    render();
+  }
   buildA();
-  load();
-  var startView = S.view;
-  if (startView !== "welcome") lastView = startView;
-  go(startView, true);
   updateInstall();
+  if (window.RGStore) store = window.RGStore(APP, { onChange: onStoreChange, onStatus: function () { paintSaved(); }, busy: typing });
+  setTimeout(function () { if (!booted) { booted = true; go(landingView(), true); } }, 1200);
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
   }

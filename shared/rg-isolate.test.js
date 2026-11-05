@@ -46,12 +46,15 @@ Object.keys(PRIVATE).forEach(function (app) {
   assert(iso.rowId(RON, app, "items") !== iso.rowId(RON, PRIVATE[app], "items"), app + " does not use Ron's private row");
   assert(iso.rowId(RON, app, "items") !== iso.rowId(A, app, "items"), app + " Ron and user A do not share a row");
 });
-["pubsmokify"].forEach(function (app) {
+["pubsmokify", "pubhealify"].forEach(function (app) {
   iso.assertPublicApp(app);
   var perms = iso.perms(A);
   assert(iso.permsAreUserOnly(perms, A), app + " document permissions are user A only");
   assert(iso.rowId(A, app, "items") !== iso.rowId(B, app, "items"), app + " row ids differ between users");
-  assert(iso.cacheKey(app, A) === "rg-pub-smokify:" + A, app + " stays in its own namespace");
+  assert(iso.rowId(RON, app, "items") !== iso.rowId(RON, "myideas", "items"), app + " does not use Ron's private checklist row");
+  assert(iso.rowId(RON, app, "items") !== iso.rowId(A, app, "items"), app + " Ron and user A do not share a row");
+  assert(iso.cacheKey(app, "guest") === "rg-pub-" + app.slice(3) + ":guest", app + " guest key is device-only");
+  assert(iso.cacheKey(app, A) !== iso.cacheKey(app, "guest"), app + " user key is not the guest key");
 });
 var refused = false;
 try { iso.assertPublicApp("myideas"); } catch (e) { refused = true; }
@@ -73,7 +76,7 @@ assert(store.indexOf("lsSet(cacheKey(uid), null)") === -1, "public store does no
 assert(store.indexOf("RGIsolate.maySync(uid)") !== -1, "public store syncs only a real account");
 
 var root = path.join(__dirname, "..");
-var dirs = ["listify", "yomanli", "rehabify", "rogali", "purchasify", "smokify"];
+var dirs = ["listify", "yomanli", "rehabify", "rogali", "purchasify", "smokify", "healify"];
 var banned = ["מאיה", "Moshe", "nattokinase", "lorivan", "seraquel", "trazodil", "אמנדה", "לבקר במרקטפלייס", "הרגלים שלי", "ניקויים", "נוטלה", "m:shopimport", "myideas", "myjournal", "myrehab", "mycalm", "rg-myideas", "rg-my-shopping", "rg-myjournal", "rg-myrehab", "rg-mycalm", "rg-myshop"];
 function walk(dir, out) {
   fs.readdirSync(dir).forEach(function (name) {

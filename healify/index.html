@@ -211,7 +211,45 @@ details.more summary{cursor:pointer;color:var(--em);font-weight:600;padding:8px 
 .score .meter{height:5px;border-radius:9px;background:var(--mint2);margin:6px 8px 0;overflow:hidden}
 .score .meter i{display:block;height:100%;border-radius:9px}
 .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sum-actions{display:flex;flex-direction:column;gap:8px;margin:4px 0 14px}
+.sum-actions .btn{width:100%}
 .privacy{font-size:13.5px;color:var(--mute);margin-top:10px}
+
+/* editable recommendations */
+.recform{display:flex;flex-direction:column;gap:8px;margin:0 0 8px}
+.recform input,.recform textarea,.rec-edit input,.rec-edit textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);padding:10px 12px;font:16px/1.45 var(--sans)}
+.recform textarea,.rec-edit textarea{min-height:72px;resize:vertical}
+.recform input:focus,.recform textarea:focus,.rec-edit input:focus,.rec-edit textarea:focus{outline:none;border-color:#e3bd5b;box-shadow:0 0 0 3px rgba(227,189,91,.25)}
+.recform input.bad,.rec-edit input.bad{border-color:#e3bd5b;box-shadow:0 0 0 2px rgba(227,189,91,.45)}
+.recform .split{display:flex;flex-direction:column;gap:8px}
+.reclist{list-style:none;margin:8px 0 0;padding:0}
+.reclist > li{position:relative;border-top:1px solid var(--line);padding:12px 2px;touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.reclist > li:first-child{border-top:0}
+.reclist > li.active{touch-action:none;outline:2px solid #e3bd5b;outline-offset:2px;border-radius:12px;background:rgba(227,189,91,.1)}
+html[data-theme=light] .reclist > li.active{outline-color:#a97812;background:rgba(169,120,18,.08)}
+.reclist .rt{font-weight:800;font-size:17px;color:var(--ink)}
+.reclist .rd{white-space:pre-line;color:var(--ink2);font-size:15.5px;line-height:1.55;margin-top:4px}
+.reclist .rprice{display:inline-block;margin-top:6px;font-weight:800;color:var(--warmink);background:var(--warm2);border-radius:999px;padding:2px 10px}
+.reclist .rlinks{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:8px}
+.reclist .rlinks a{color:var(--em);font-weight:700;word-break:break-word}
+.reclist a,.reclist input,.reclist textarea{user-select:text;-webkit-user-select:text;-webkit-touch-callout:default}
+.rec-actions{display:none;flex-wrap:wrap;gap:6px;margin-top:10px}
+.reclist > li.active .rec-actions{display:flex}
+.rec-actions button,.rec-edit-btn{font:700 14px var(--sans);border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--ink);padding:8px 12px;min-height:40px;cursor:pointer}
+.rec-actions button.pri{background:var(--accent);color:var(--accentink);border-color:transparent}
+.rec-edit-btn{margin-top:8px}
+.rec-edit .row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.toast button{margin-inline-start:10px;font:700 14px var(--sans);border:0;background:transparent;color:inherit;text-decoration:underline;cursor:pointer;padding:0}
+
+/* mantras */
+.mantras{margin:8px 0 4px}
+.mantra{background:var(--card);border:1px solid rgba(227,189,91,.42);border-radius:18px;padding:18px 16px 14px;margin:10px 0;text-align:center;box-shadow:var(--shadow)}
+.mantra-he{font-family:var(--serif);font-weight:800;font-size:26px;line-height:1.35;margin:0 0 12px;color:var(--warmink)}
+.mantra-langs{display:flex;justify-content:center;gap:8px}
+.mantra-langs button{min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid rgba(227,189,91,.55);background:transparent;color:var(--warmink);font:700 15px var(--sans);cursor:pointer}
+.mantra-langs button[aria-pressed=true]{background:#e3bd5b;color:#1a1206;border-color:transparent}
+html[data-theme=light] .mantra-langs button[aria-pressed=true]{background:#0b2a6b;color:#fff6dc}
+.mantra-tr{margin:10px 0 0;font-size:16.5px;line-height:1.5;color:var(--ink2)}
 footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
 .toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--accent);color:var(--accentink);padding:10px 18px;border-radius:999px;font-size:14.5px;z-index:9;box-shadow:var(--shadow)}
 .toast[hidden]{display:none}
@@ -227,6 +265,12 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
   .lang button{padding:6px 10px}
   .themebtn .tl{display:none}
   .btn{padding:12px 18px}
+  .mantra-he{font-size:22px}
+}
+@media (min-width:560px){
+  .sum-actions{flex-direction:row}
+  .sum-actions .btn{width:auto;flex:1}
+  .recform .split{display:grid;grid-template-columns:1fr 128px;gap:8px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
@@ -250,7 +294,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
   </header>
 
   <!-- Welcome -->
-  <section class="screen" id="s-welcome">
+  <section class="screen" id="s-welcome" hidden>
     <div class="hero">
       <div class="crest" aria-hidden="true">
         <svg viewBox="0 0 512 512" class="breath"><defs><linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b2a6b"/><stop offset="1" stop-color="#1a47a0"/></linearGradient>
@@ -272,7 +316,7 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
 
   <!-- Flow -->
   <div id="flow" hidden>
-    <div class="flowtop"><button type="button" class="homeback" id="flow-home"></button></div>
+    <div class="flowtop" id="flowtop"><button type="button" class="homeback" id="flow-home"></button></div>
     <ol class="steps" id="steps"></ol>
     <div class="stepnum" id="stepnum"></div>
 
@@ -323,6 +367,10 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
     <section class="screen" id="s-sum" hidden>
       <h2 id="sum-title"></h2>
       <p class="lead" id="sum-lead"></p>
+      <div class="sum-actions" id="sum-actions">
+        <button type="button" class="btn" id="edit-answers"></button>
+        <button type="button" class="btn ghost" id="refresh-recs"></button>
+      </div>
       <div class="card">
         <h3 id="sum-scores-title"></h3>
         <div class="scores" id="sum-scores"></div>
@@ -341,13 +389,13 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
         <div class="actions">
           <button type="button" class="btn ghost small" id="exp-txt"></button>
           <button type="button" class="btn ghost small" id="exp-json"></button>
-          <button type="button" class="btn danger small" id="clear"></button>
+          <button type="button" class="btn ghost small" id="clear"></button>
         </div>
         <p class="privacy" id="privacy"></p>
       </div>
     </section>
 
-    <div class="nav">
+    <div class="nav" id="flow-nav">
       <button type="button" class="btn ghost" id="prev"></button>
       <button type="button" class="btn" id="next"></button>
     </div>
@@ -355,11 +403,45 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
     <div class="disc" id="disc-f"></div>
   </div>
 
+  <section class="mantras" id="mantras" hidden aria-labelledby="mantras-title">
+    <h2 id="mantras-title"></h2>
+    <p class="lead" id="mantras-lead"></p>
+    <article class="mantra">
+      <p class="mantra-he" lang="he" dir="rtl">כבר הכל מצוין</p>
+      <div class="mantra-langs">
+        <button type="button" data-m="0" data-l="ru" aria-pressed="false"></button>
+        <button type="button" data-m="0" data-l="en" aria-pressed="false"></button>
+      </div>
+      <p class="mantra-tr" lang="ru" dir="ltr" data-for="0" data-show="ru" hidden>Всё уже отлично</p>
+      <p class="mantra-tr" lang="en" dir="ltr" data-for="0" data-show="en" hidden>Everything is already excellent</p>
+    </article>
+    <article class="mantra">
+      <p class="mantra-he" lang="he" dir="rtl">כבר הכל מדהים</p>
+      <div class="mantra-langs">
+        <button type="button" data-m="1" data-l="ru" aria-pressed="false"></button>
+        <button type="button" data-m="1" data-l="en" aria-pressed="false"></button>
+      </div>
+      <p class="mantra-tr" lang="ru" dir="ltr" data-for="1" data-show="ru" hidden>Всё уже потрясающе</p>
+      <p class="mantra-tr" lang="en" dir="ltr" data-for="1" data-show="en" hidden>Everything is already amazing</p>
+    </article>
+    <article class="mantra">
+      <p class="mantra-he" lang="he" dir="rtl">כבר הכל כפי שצריך</p>
+      <div class="mantra-langs">
+        <button type="button" data-m="2" data-l="ru" aria-pressed="false"></button>
+        <button type="button" data-m="2" data-l="en" aria-pressed="false"></button>
+      </div>
+      <p class="mantra-tr" lang="ru" dir="ltr" data-for="2" data-show="ru" hidden>Всё уже так, как должно быть</p>
+      <p class="mantra-tr" lang="en" dir="ltr" data-for="2" data-show="en" hidden>Everything is already as it should be</p>
+    </article>
+  </section>
   <div class="rg-install-wrap" id="install-wrap" hidden><button type="button" class="rg-install" id="install-btn"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer id="foot"></footer>
   <footer class="rg-copy" style="margin-top:4px"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></footer>
 </div>
 <div class="toast" id="toast" role="status" hidden></div>
+<script src="../shared/rg-account.js"></script>
+<script src="../shared/rg-isolate.js"></script>
+<script src="../shared/rg-public-store.js"></script>
 <script src="content.js"></script>
 <script src="app.js"></script>
 <script>/* theme toggle (night default / light), label follows rg-lang via <html lang> */
@@ -385,7 +467,6 @@ footer{text-align:center;font-size:12.5px;color:var(--dim);margin-top:22px}
   new MutationObserver(label).observe(root,{attributes:true,attributeFilter:["lang"]});
   label();
 })();</script>
-<script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-healify-theme"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",function(){navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(function(){});});</script>
