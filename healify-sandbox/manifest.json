@@ -1,0 +1,33 @@
+{
+  "id": "/ron-gershinsky-site/healify-sandbox/",
+  "name": "היליפיי · Healify Sandbox",
+  "short_name": "היליפיי SB",
+  "description": "אפליקציה להבנה כוללת של מצבך והצעת פתרונות בהתאם, אל עבר ריפוי מלא, כושר ושגשוג. · An app for a complete understanding of your condition and matching solutions, toward full healing, fitness and flourishing.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b2a6b",
+  "theme_color": "#0b2a6b",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

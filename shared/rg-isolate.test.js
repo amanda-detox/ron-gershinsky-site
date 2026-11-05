@@ -107,6 +107,31 @@ var sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 assert(sw.indexOf("rg-home-v72") !== -1, "home service worker cache is bumped");
 assert(home.indexOf("sw.js?v=72") !== -1, "home page registers the bumped service worker");
 
+assert(home.indexOf("healify-sandbox") === -1 && home.indexOf("yomanli-sandbox") === -1, "homepage does not link the sandboxes");
+var hIso = require(path.join(root, "healify-sandbox/rg-isolate.js"));
+var yIso = require(path.join(root, "yomanli-sandbox/rg-isolate.js"));
+assert(hIso.cacheKey("sbxhealify", "guest") === "rg-sbx-healify:guest", "healify sandbox guest key is its own");
+assert(yIso.cacheKey("sbxyomanli", "guest") === "rg-sbx-yomanli:guest", "yomanli sandbox guest key is its own");
+assert(!hIso.PUBLIC.pubhealify && !hIso.PUBLIC.pubyomanli, "healify sandbox isolate does not register the live apps");
+var yLiveRefused = false;
+try { yIso.assertPublicApp("pubyomanli"); } catch (e) { yLiveRefused = true; }
+assert(yLiveRefused, "yomanli sandbox refuses the live journal id");
+var hApp = fs.readFileSync(path.join(root, "healify-sandbox/app.js"), "utf8");
+var yApp = fs.readFileSync(path.join(root, "yomanli-sandbox/app.js"), "utf8");
+assert(hApp.indexOf('APP = "sbxhealify"') !== -1, "healify sandbox uses its own app id");
+assert(hApp.indexOf("importLegacyGuest") === -1, "healify sandbox does not import live answers");
+assert(!/localStorage\.(get|set|remove)Item\([^)]*rg-healify/.test(hApp), "healify sandbox does not touch live healify storage");
+assert(hApp.indexOf("200 - (n - 1) * (200 / 9)") !== -1, "healify sandbox keeps the original score colors");
+assert(hApp.indexOf("(205 - 40)") === -1, "healify sandbox does not use the orange score scale");
+assert(yApp.indexOf('RGStore("sbxyomanli"') !== -1, "yomanli sandbox uses its own store");
+assert(yApp.indexOf('RGStore("pubyomanli"') === -1 && yApp.indexOf("rg-pub-yomanli-") === -1, "yomanli sandbox does not use live journal keys");
+assert(yApp.indexOf('data-a="mark"') !== -1 && yApp.indexOf('data-a="imp"') !== -1, "yomanli sandbox still has the bookmark");
+assert(hApp.indexOf("mantrasTitle") !== -1 && hApp.indexOf("refreshRecs") !== -1, "healify sandbox still has the summary");
+var hSw = fs.readFileSync(path.join(root, "healify-sandbox/sw.js"), "utf8");
+var ySw = fs.readFileSync(path.join(root, "yomanli-sandbox/sw.js"), "utf8");
+assert(hSw.indexOf('indexOf("rg-sbx-healify-")') !== -1 && hSw.indexOf('indexOf("rg-healify-")') === -1, "healify sandbox cache does not delete the live cache");
+assert(ySw.indexOf('indexOf("rg-sbx-yomanli-")') !== -1 && ySw.indexOf('indexOf("rg-pub-yomanli-")') === -1, "yomanli sandbox cache does not delete the live cache");
+
 if (failed) {
   console.error(failed + " failed");
   process.exit(1);
