@@ -2,7 +2,9 @@
    Appwrite app "pubyomanli", readable and writable by that user only. Starts empty.
    Item kinds:
      topic { name }                                   a topic the user created
-     entry { text, topic?: <topic id>, day }          one paragraph; created = date/time it was written */
+     entry { text, topic?: <topic id>, day, important?: true }
+       one paragraph; created = date/time it was written.
+       important is the bookmark. Absent means not important, so older entries stay as they were. */
 (function () {
   "use strict";
   var M = window.RGMy, t = M.t;
@@ -16,7 +18,11 @@
   function loc() { return M.lang() === "he" ? "he-IL" : "en-GB"; }
 
   var view = lsGet("rg-pub-yomanli-view") === "topic" ? "topic" : "day";
+  var onlyImp = lsGet("rg-pub-yomanli-imp") === "1";
   var filt = "", q = "", editId = null, msg = "", deferred = false, pickTopic = lsGet("rg-pub-yomanli-topic") || "";
+  /* Same bookmark glyph as Updatify (news/app.js): outline when off, filled when on. */
+  var BMK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
+  var BMKF = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
   var S = RGStore("pubyomanli", { onChange: function () { render(); }, onStatus: setStatus, busy: typing });
   function typing() { var a = document.activeElement; return !!(a && a.closest && a.closest("#panels") && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)); }
   function setStatus() { var s = $("status"); if (!s) return; var st = S.state(); s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
@@ -46,28 +52,39 @@
       '<button class="btn pri big" type="submit">' + esc(t("save")) + "</button></form>" +
       (msg ? '<div class="saved">' + esc(msg) + "</div>" : "") + "</section>";
   }
+  function markBtn(x) {
+    var on = !!x.important;
+    return '<button type="button" class="bm" data-a="mark" data-id="' + esc(x.id) + '" aria-pressed="' + on + '" aria-label="' + esc(on ? t("unmark") : t("mark")) + '" title="' + esc(on ? t("unmark") : t("mark")) + '">' + (on ? BMKF : BMK) + "</button>";
+  }
   function entryLi(x, showTopic) {
     if (editId === x.id) {
-      return '<li class="jentry"><form data-form="e" data-id="' + esc(x.id) + '" class="grow">' +
+      return '<li class="jentry">' + markBtn(x) + '<form data-form="e" data-id="' + esc(x.id) + '" class="grow">' +
         '<textarea class="inp" name="text" rows="5" maxlength="5000">' + esc(x.text) + "</textarea>" +
         '<label class="fld"><span>' + esc(t("topic")) + '</span><select class="inp sel" name="topic">' + topicOptions(x.topic || "", false) + "</select></label>" +
         '<div class="btns"><button class="btn pri sm" type="submit">' + esc(t("saveEdit")) + '</button><button class="btn sm" type="button" data-a="cancel">' + esc(t("cancel")) + "</button></div></form></li>";
     }
     var meta = timeOf(x.created) + (showTopic ? " · " + esc(topicName(x.topic)) : " · " + esc(dayLabel(x.day || dayKey(new Date(x.created)))));
     if (x.edited) meta += " · " + esc(t("edited"));
-    return '<li class="jentry"><div class="grow"><span class="meta">' + meta + '</span><p class="jtext">' + esc(x.text) + "</p>" +
+    return '<li class="jentry">' + markBtn(x) + '<div class="grow"><span class="meta">' + meta + '</span><p class="jtext">' + esc(x.text) + "</p>" +
       '<div class="btns"><button class="btn sm" type="button" data-a="edit" data-id="' + esc(x.id) + '">✎ ' + esc(t("edit")) + '</button><button class="btn sm dng" type="button" data-a="del" data-id="' + esc(x.id) + '">🗑 ' + esc(t("del")) + "</button></div></div></li>";
   }
   function panelList() {
-    var all = entries(), ql = q.trim().toLowerCase();
-    var list = all.filter(function (x) { return (!filt || (filt === "__none" ? !x.topic || !S.get(x.topic) : x.topic === filt)) && (!ql || String(x.text).toLowerCase().indexOf(ql) > -1); });
+    var all = entries(), ql = q.trim().toLowerCase(), nImp = 0;
+    all.forEach(function (x) { if (x.important) nImp++; });
+    var list = all.filter(function (x) {
+      if (onlyImp && !x.important) return false;
+      return (!filt || (filt === "__none" ? !x.topic || !S.get(x.topic) : x.topic === filt)) && (!ql || String(x.text).toLowerCase().indexOf(ql) > -1);
+    });
+    var impLabel = onlyImp ? t("showAll") : t("showImportant");
     var h = '<section class="card sec"><h2>' + esc(t("myLog")) + " <small>(" + all.length + ")</small></h2>" +
-      '<div class="chips" role="group"><button type="button" data-a="view" data-v="day" aria-pressed="' + (view === "day") + '">📅 ' + esc(t("byDay")) + '</button><button type="button" data-a="view" data-v="topic" aria-pressed="' + (view === "topic") + '">🏷 ' + esc(t("byTopic")) + "</button></div>" +
+      '<div class="chips" role="group"><button type="button" data-a="view" data-v="day" aria-pressed="' + (view === "day") + '">📅 ' + esc(t("byDay")) + '</button><button type="button" data-a="view" data-v="topic" aria-pressed="' + (view === "topic") + '">🏷 ' + esc(t("byTopic")) + "</button>" +
+      '<button type="button" class="impchip" data-a="imp" aria-pressed="' + onlyImp + '" aria-label="' + esc(impLabel) + '" title="' + esc(impLabel) + '"><span class="bi" aria-hidden="true">' + BMKF + "</span>" + esc(onlyImp ? t("showAllShort") : t("importantOnly")) + (nImp ? " (" + nImp + ")" : "") + "</button></div>" +
       '<div class="row2 jfilters"><select class="inp sel" data-a="filt"><option value="">' + esc(t("allTopics")) + "</option>";
     topics().forEach(function (x) { h += '<option value="' + esc(x.id) + '"' + (filt === x.id ? " selected" : "") + ">" + esc(x.name) + "</option>"; });
     h += '<option value="__none"' + (filt === "__none" ? " selected" : "") + ">" + esc(t("noTopic")) + "</option></select>" +
       '<input class="inp" type="search" data-a="q" value="' + esc(q) + '" placeholder="' + esc(t("search")) + '"></div>';
     if (!all.length) return h + '<p class="empty">' + esc(t("noEntries")) + "</p></section>";
+    if (onlyImp && !nImp) return h + '<p class="empty">' + esc(t("noImportant")) + "</p></section>";
     if (!list.length) return h + '<p class="empty">' + esc(t("noMatch")) + "</p></section>";
     var groups = [], idx = {};
     list.forEach(function (x) {
@@ -112,7 +129,11 @@
 
   function exportJson() {
     var data = { app: "Yomanli", exported: new Date().toISOString(), topics: topics().map(function (x) { return { id: x.id, name: x.name }; }),
-      entries: entries().map(function (x) { return { date: new Date(x.created).toISOString(), topic: x.topic ? topicName(x.topic) : "", text: x.text }; }) };
+      entries: entries().map(function (x) {
+        var row = { date: new Date(x.created).toISOString(), topic: x.topic ? topicName(x.topic) : "", text: x.text };
+        if (x.important) row.important = true;
+        return row;
+      }) };
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 2)], { type: "application/json" }));
     a.download = "journalify-" + dayKey() + ".json"; document.body.appendChild(a); a.click();
@@ -155,6 +176,15 @@
       var b = e.target.closest("[data-a]"); if (!b || b.tagName === "SELECT" || b.tagName === "INPUT") return;
       var a = b.getAttribute("data-a"), id = b.getAttribute("data-id");
       if (a === "view") { view = b.getAttribute("data-v"); lsSet("rg-pub-yomanli-view", view); render(true); }
+      else if (a === "imp") { onlyImp = !onlyImp; lsSet("rg-pub-yomanli-imp", onlyImp ? "1" : null); render(true); var fb = panels.querySelector('[data-a="imp"]'); if (fb) fb.focus(); }
+      else if (a === "mark") {
+        var it = S.get(id); if (!it || it.kind !== "entry") return;
+        S.upd(id, { important: it.important ? null : true });
+        render(true);
+        var found = null;
+        panels.querySelectorAll('[data-a="mark"]').forEach(function (el) { if (el.getAttribute("data-id") === id) found = el; });
+        if (found) found.focus(); else { var back = panels.querySelector('[data-a="imp"]'); if (back) back.focus(); }
+      }
       else if (a === "edit") { editId = id; render(true); var ta = panels.querySelector('form[data-form="e"] textarea'); if (ta) ta.focus(); }
       else if (a === "cancel") { editId = null; render(true); }
       else if (a === "del") { if (confirm(t("confirmDel"))) { S.del(id); if (editId === id) editId = null; render(true); } }
