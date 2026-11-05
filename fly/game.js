@@ -13,6 +13,9 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const damp = (k, dt) => 1 - Math.exp(-k * dt);
 
 /* ================= texts ================= */
+/* Token swapped for a gold comet SVG. The comet emoji renders red on phone fonts. */
+const GCOMET = '[[gcomet]]';
+const GCOMET_SVG = '<svg class="gcomet" viewBox="0 0 64 32" aria-hidden="true" focusable="false"><path fill="#d4af37" d="M1.5 16.2c7.2-.3 16.4-1.8 26.2-4.2.4 1.1.6 2.4.6 2.6s-.2 1.5-.6 2.6C17.9 20.6 8.7 22 1.5 22.2 3.2 20.2 3.6 18 1.5 16.2z"/><path fill="#f5d27a" d="M6 16.4c6.4-.2 14.6-1.2 23.2-3 .2.7.3 1.5.3 1.6s-.1 1-.3 1.6C20.6 19 12.4 20 6 20.2 7.2 18.8 7.4 17.4 6 16.4z"/><path fill="#f5d27a" stroke="#d4af37" stroke-width="1.1" stroke-linejoin="round" d="M44.2 16.2 50.2 13.4 47.6 18.6 54.6 20 47.2 22.8 48.4 28.6 42.6 23.8 37.2 27.6 39.2 21.4 32.4 19 39.4 16.8 37.6 10.8 43.2 14.6z"/><circle cx="44.6" cy="18.6" r="2.05" fill="#fff6d4"/></svg>';
 const T = {
   he: {
     title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
@@ -30,7 +33,7 @@ const T = {
     keys: 'חיצים / WASD · רווח ↑ · Shift ↓ · Z X C כלים · Esc תפריט',
     copy: '© כל הזכויות שמורות לחברת היליפיי בע"מ 2026',
     nogl: 'הדפדפן הזה לא תומך בתלת־ממד (WebGL). כדאי לנסות ב־Chrome או ב־Safari מעודכנים.',
-    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: '☄️ שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: '☄️ שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
+    ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: GCOMET + ' שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: GCOMET + ' שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
     envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת'],
@@ -52,7 +55,7 @@ const T = {
     keys: 'Arrows / WASD · Space ↑ · Shift ↓ · Z X C tools · Esc menu',
     copy: '© 2026 Healify Ltd. All rights reserved.',
     nogl: 'This browser does not support 3D (WebGL). Please try an up-to-date Chrome or Safari.',
-    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: '☄️ Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: '☄️ Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
+    ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: GCOMET + ' Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: GCOMET + ' Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
     envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization'],
@@ -928,12 +931,14 @@ function comboHit() { comboN = time - comboT <= COMBO_GAP ? comboN + 1 : 1; comb
 function comboTick() { if (comboMul > 1 && time - comboT > COMBO_GAP) { comboN = 0; comboMul = 1; comboHud(); } }
 function comboHud() { const el = $('combo'); if (!el) return; el.textContent = comboMul > 1 ? T[lang].combo + ' x' + comboMul : ''; el.classList.toggle('on', comboMul > 1); }
 function resetCombo() { comboN = 0; comboT = -99; comboMul = 1; comboHud(); }
-/* rare golden comet: crosses near the player for 10 s; catching it gives +200 */
+/* rare golden comet: crosses near the player for 10 s; catching it gives +200. Gold only (#f5d27a / #d4af37) — no red. */
 const COMET_PTS = 200, COMET_LIFE = 10;
+const COMET_GOLD = 0xd4af37, COMET_GOLD_LT = 0xf5d27a;
 const comet = new THREE.Group();
-comet.add(new THREE.Mesh(new THREE.SphereGeometry(1.3, 16, 12), new THREE.MeshBasicMaterial({ color: 0xffe08a })));
-const cometGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: 0xffd76a, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); cometGlow.scale.setScalar(9); comet.add(cometGlow);
-const cometTail = new THREE.Mesh(new THREE.ConeGeometry(1.2, 14, 12, 1, true), new THREE.MeshBasicMaterial({ color: 0xffc94a, transparent: true, opacity: 0.45, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
+comet.add(new THREE.Mesh(new THREE.SphereGeometry(1.3, 16, 12), new THREE.MeshBasicMaterial({ color: COMET_GOLD_LT })));
+comet.add(new THREE.Mesh(new THREE.SphereGeometry(0.62, 12, 10), new THREE.MeshBasicMaterial({ color: 0xfff6d4 })));
+const cometGlow = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTex(), color: COMET_GOLD_LT, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); cometGlow.scale.setScalar(9); comet.add(cometGlow);
+const cometTail = new THREE.Mesh(new THREE.ConeGeometry(1.2, 14, 12, 1, true), new THREE.MeshBasicMaterial({ color: COMET_GOLD, transparent: true, opacity: 0.55, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
 cometTail.rotation.x = -Math.PI / 2; cometTail.position.z = 7.5; comet.add(cometTail);
 comet.visible = false; scene.add(comet);
 const cometVel = new THREE.Vector3(); let cometLeft = 0, cometWait = rand(30, 50);
@@ -957,7 +962,13 @@ function addScore(n, bonus) {
   if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
 }
 let msgTimer = 0;
-function flash(text) { const m = $('msg'); m.textContent = text; m.style.opacity = 1; clearTimeout(msgTimer); msgTimer = setTimeout(() => (m.style.opacity = 0), 1100); }
+function paintRich(el, text) {
+  const s = String(text);
+  if (s.indexOf(GCOMET) < 0) { el.textContent = s; return; }
+  const e = (x) => x.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  el.innerHTML = s.split(GCOMET).map(e).join(GCOMET_SVG);
+}
+function flash(text) { const m = $('msg'); paintRich(m, text); m.style.opacity = 1; clearTimeout(msgTimer); msgTimer = setTimeout(() => (m.style.opacity = 0), 1100); }
 const mtx = new THREE.Matrix4(), qq = new THREE.Quaternion(), one = new THREE.Vector3(1, 1, 1), eul = new THREE.Euler();
 function updateCollectibles(t, dt, playing) {
   const size = player.model.userData.size, ga = sparkGlow.geometry.attributes.position;
@@ -1709,9 +1720,10 @@ const stats = (() => {
 })();
 function celebrate() { showCel(T[lang].bonus, T[lang].bonusSub); }
 function showCel(title, sub) {
-  const c = $('celebrate'); c.querySelector('b').textContent = title; c.querySelector('span').textContent = sub;
+  const c = $('celebrate'); paintRich(c.querySelector('b'), title); c.querySelector('span').textContent = sub;
   c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
-  for (let i = 0; i < 4; i++) setTimeout(() => { burst(30, 0xffd76a); burst(20, 0x6f9bff); }, i * 220);
+  const cometCel = String(title).indexOf(GCOMET) >= 0;
+  for (let i = 0; i < 4; i++) setTimeout(() => { burst(30, cometCel ? COMET_GOLD_LT : 0xffd76a); burst(20, cometCel ? COMET_GOLD : 0x6f9bff); }, i * 220);
   if (navigator.vibrate) try { navigator.vibrate([60, 40, 120]); } catch (e) {}
 }
 
