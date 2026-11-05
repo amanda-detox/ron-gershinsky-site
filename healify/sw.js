@@ -1,8 +1,6 @@
-/* Offline cache for Healify (היליפיי).
-   The shell is cached. A guest's answers stay in localStorage. A signed-in user's answers live in the account
-   (Appwrite, cross-origin, never cached here) and are readable only by that user. */
-var CACHE = "rg-healify-v22";
-var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-isolate.js", "../shared/rg-public-store.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+/* Offline cache for Healify (היליפיי). */
+var CACHE = "rg-healify-v23";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
