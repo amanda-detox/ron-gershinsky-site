@@ -20,8 +20,8 @@ const T = {
     title: 'פלייפיי', tag: 'עפים בחופשיות בעולמות של אור', choose: 'בחרו דמות', world: 'בחרו עולם', view: 'בחרו זווית צפיה',
     start: 'לטס פליי', install: '📲 התקנה למסך הבית', checkUpd: 'בדיקת עדכון', updBusy: 'מעדכן…', updOk: 'הגרסה מעודכנת', score: 'ניצוצות', up: 'למעלה', down: 'למטה', speed: 'מהירות',
     lang: 'English', themeDark: '☀️ מצב יום', themeLight: '🌙 מצב לילה',
-    helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. הכפתור העגול במרכז מחליף את השובל. אוספים ניצוצות ועוברים בטבעות הזהובות.',
-    exhaustRibbon: 'סרט אור זוהר', exhaustAurora: 'אורורה', exhaustNone: 'בלי שובל',
+    helpTouch: 'מימין למטה: ג׳ויסטיק – גוררים לכל כיוון. משמאל למטה: עיגול כלים – נגיעה מפעילה, לחיצה ארוכה מראה את השם. הכפתור העגול במרכז מחליף את פליטת התרמיל. אוספים ניצוצות ועוברים בטבעות הזהובות.',
+    exhaustNone: 'כלום', exhaustSmoke: 'עשן רציף', exhaustDust: 'אבק כוכבים צבעוני', exhaustGold: 'זהב מעושן', exhaustPlasma: 'זרם פלזמה כחול',
     helpDesk: 'חיצים או WASD: פנייה, עלייה וירידה. רווח למעלה, Shift למטה, 1/2/3 או F למהירות. Z X C: האצה, צילום, יום / לילה. גרירה בעכבר לפנייה (רגישות בתפריט). Esc לתפריט. אוספים ניצוצות ועוברים בטבעות הזהובות.',
     tools: ['האצה', 'מגן', 'מגנט', 'האטת זמן', 'סלטה', 'נחיתה והליכה', 'שובל אור – נקודות כפולות', 'חבר למסע', 'מצב צילום', 'מוזיקה', 'צבע השובל', 'יום / לילה'],
     rings: ['כוחות', 'תעופה', 'אווירה'], on: 'פועל', off: 'כבוי', day: 'יום', night: 'לילה', saved: 'התמונה נשמרה',
@@ -42,8 +42,8 @@ const T = {
     title: 'Flyify', tag: 'Fly freely through worlds of light', choose: 'Choose a character', world: 'World', view: 'Camera view',
     start: 'Take off ✨', install: '📲 Install to home screen', checkUpd: 'Check for update', updBusy: 'Updating…', updOk: 'Already up to date', score: 'Sparks', up: 'Up', down: 'Down', speed: 'Speed',
     lang: 'עברית', themeDark: '☀️ Day mode', themeLight: '🌙 Night mode',
-    helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. The round button in the center switches the trail. Collect sparks and fly through the golden rings.',
-    exhaustRibbon: 'Glowing light ribbon', exhaustAurora: 'Aurora', exhaustNone: 'No trail',
+    helpTouch: 'Bottom right: joystick – drag any way. Bottom left: tools circle – tap to use, long-press to see the name. The round button in the center switches the jetpack exhaust. Collect sparks and fly through the golden rings.',
+    exhaustNone: 'Nothing', exhaustSmoke: 'Continuous smoke', exhaustDust: 'Colorful stardust', exhaustGold: 'Smoky gold', exhaustPlasma: 'Blue ion plasma',
     helpDesk: 'Arrows or WASD: turn, climb and dive. Space up, Shift down, 1/2/3 or F for speed. Z X C: boost, photo, day / night. Drag the mouse to steer (sensitivity in the menu). Esc for the menu. Collect sparks and fly through the golden rings.',
     tools: ['Speed boost', 'Shield', 'Magnet', 'Slow time', 'Roll', 'Land & walk', 'Light trail – double points', 'Companion', 'Photo mode', 'Music', 'Trail color', 'Day / night'],
     rings: ['Powers', 'Flight', 'Atmosphere'], on: 'On', off: 'Off', day: 'Day', night: 'Night', saved: 'Photo saved',
@@ -595,32 +595,93 @@ const ENVS = {
     const satPanels = mergeGeos([boxAt(1.7, 0.05, 0.82, -1.05, 0.02, 0), boxAt(1.7, 0.05, 0.82, 1.05, 0.02, 0)]);
     const satGold = mergeGeos([boxAt(1.82, 0.035, 0.94, -1.05, -0.02, 0), boxAt(1.82, 0.035, 0.94, 1.05, -0.02, 0), boxAt(0.22, 0.08, 0.22, 0, 0.4, -0.55)]);
     const satTip = new THREE.IcosahedronGeometry(0.1, 0); satTip.translate(0, 0.62, 0.2);
-    const dcHull = mergeGeos([cylAt(0.95, 0.95, 3.8, 0), boxAt(0.55, 0.42, 0.72, 0, 0.15, 1.15), boxAt(0.55, 0.42, 0.72, 0, 0.15, -1.15), cylAt(0.05, 0.07, 1.15, 2.45)]);
-    const dcGold = mergeGeos([
-      cylAt(0.62, 0.98, 0.5, 2.05), cylAt(0.98, 0.62, 0.5, -2.05),
-      boxAt(3.75, 0.045, 1.86, 2.75, 0.22, 0), boxAt(3.75, 0.045, 1.86, -2.75, 0.22, 0),
-      boxAt(3.3, 0.045, 1.5, 2.55, -0.98, 0), boxAt(3.3, 0.045, 1.5, -2.55, -0.98, 0)
+    const dishBody = mergeGeos([boxAt(0.72, 0.46, 0.9, 0, 0, 0), boxAt(0.85, 0.05, 0.42, -0.85, 0.02, 0), boxAt(0.85, 0.05, 0.42, 0.85, 0.02, 0)]);
+    const dishPanels = mergeGeos([boxAt(0.78, 0.04, 0.36, -0.85, 0.06, 0), boxAt(0.78, 0.04, 0.36, 0.85, 0.06, 0)]);
+    const dishCone = new THREE.ConeGeometry(0.4, 0.14, 8); dishCone.rotateX(-Math.PI / 2); dishCone.translate(0, 0.12, 0.62);
+    const dishRim = new THREE.TorusGeometry(0.4, 0.03, 5, 12); dishRim.rotateX(Math.PI / 2); dishRim.translate(0, 0.12, 0.68);
+    const dishGold = mergeGeos([dishCone, dishRim, boxAt(0.05, 0.05, 0.32, 0, 0.12, 0.42)]);
+    const dishTip = new THREE.IcosahedronGeometry(0.07, 0); dishTip.translate(0, 0.12, 0.82);
+    /* orbital compute station: halls on a truss, solar wings, radiator fins across them, a docking ring */
+    const radM = M(0xe7eef8, { metalness: 0.58, roughness: 0.3, emissive: 0xa9c4d8, emissiveIntensity: 0.16, flatShading: false });
+    const dcHull = mergeGeos([
+      boxAt(0.22, 6.2, 0.22, 0, 0.15, 0),
+      cylAt(0.72, 0.72, 1.55, 1.85),
+      cylAt(0.86, 0.86, 1.7, 0.05),
+      cylAt(0.68, 0.68, 1.4, -1.75),
+      boxAt(0.38, 0.32, 0.48, 0.62, 0.05, 0),
+      boxAt(0.38, 0.32, 0.48, -0.62, 0.05, 0),
+      cylAt(0.05, 0.07, 0.55, 2.95)
     ]);
-    const dcGlow = mergeGeos([cylAt(1.04, 1.04, 0.14, 1.15), cylAt(1.04, 1.04, 0.14, 0), cylAt(1.04, 1.04, 0.14, -1.15), boxAt(0.16, 1.7, 0.42, 0, 0.15, 1.0)]);
-    const dcTip = new THREE.IcosahedronGeometry(0.16, 0); dcTip.translate(0, 3.15, 0);
-    const dcPanels = mergeGeos([boxAt(3.55, 0.055, 1.7, 2.75, 0.3, 0), boxAt(3.55, 0.055, 1.7, -2.75, 0.3, 0), boxAt(3.1, 0.055, 1.35, 2.55, -0.9, 0), boxAt(3.1, 0.055, 1.35, -2.55, -0.9, 0)]);
-    const dcRing = new THREE.TorusGeometry(1.72, 0.07, 6, 28); dcRing.rotateX(Math.PI / 2);
+    const dcPanels = mergeGeos([
+      boxAt(1.85, 0.045, 1.2, 2.05, 0.4, 0),
+      boxAt(1.85, 0.045, 1.2, -2.05, 0.4, 0),
+      boxAt(1.45, 0.04, 0.95, 3.65, 0.4, 0),
+      boxAt(1.45, 0.04, 0.95, -3.65, 0.4, 0),
+      boxAt(1.55, 0.04, 0.85, 1.85, -0.85, 0),
+      boxAt(1.55, 0.04, 0.85, -1.85, -0.85, 0)
+    ]);
+    const dcRad = mergeGeos([
+      boxAt(0.05, 3.15, 1.15, 0, 0.1, 1.45),
+      boxAt(0.05, 3.15, 1.15, 0, 0.1, -1.45),
+      boxAt(0.04, 2.15, 0.8, 0, -0.15, 2.2),
+      boxAt(0.04, 2.15, 0.8, 0, -0.15, -2.2)
+    ]);
+    const dcDish = new THREE.ConeGeometry(0.26, 0.1, 8); dcDish.rotateZ(-Math.PI / 2); dcDish.translate(1.05, 2.55, 0);
+    const dcGold = mergeGeos([
+      boxAt(1.9, 0.02, 1.26, 2.05, 0.34, 0),
+      boxAt(1.9, 0.02, 1.26, -2.05, 0.34, 0),
+      boxAt(1.5, 0.02, 1.0, 3.65, 0.34, 0),
+      boxAt(1.5, 0.02, 1.0, -3.65, 0.34, 0),
+      boxAt(1.6, 0.02, 0.9, 1.85, -0.9, 0),
+      boxAt(1.6, 0.02, 0.9, -1.85, -0.9, 0),
+      dcDish
+    ]);
+    const dcGlow = mergeGeos([
+      boxAt(0.1, 1.05, 1.2, 0, 1.85, 0.66),
+      boxAt(0.1, 1.15, 1.4, 0, 0.05, 0.8),
+      boxAt(0.1, 0.95, 1.1, 0, -1.75, 0.62),
+      boxAt(1.35, 0.06, 0.06, 0, 0.15, 0.92)
+    ]);
+    const dcTip = new THREE.IcosahedronGeometry(0.11, 0); dcTip.translate(0, 3.35, 0);
+    const dcRing = new THREE.TorusGeometry(0.82, 0.055, 6, 22);
+    dcRing.rotateX(Math.PI / 2); dcRing.translate(0, 2.72, 0);
     const orbiters = [], rings = [], motes = [];
-    const addSat = (piv, origin, dist, phase, tilt, speed, sc) => {
-      const tiltG = new THREE.Group(); tiltG.position.x = origin; tiltG.rotation.z = tilt; piv.add(tiltG);
-      const spin = new THREE.Group(); spin.rotation.y = phase; tiltG.add(spin);
-      const sat = new THREE.Group(); sat.position.x = dist; sat.scale.setScalar(sc); spin.add(sat);
-      sat.add(new THREE.Mesh(satHull, hullM), new THREE.Mesh(satPanels, panelM), new THREE.Mesh(satGold, goldM), new THREE.Mesh(satTip, glowM));
-      orbiters.push([spin, speed]);
+    const satDummy = new THREE.Object3D();
+    const qOrbit = new THREE.Quaternion();
+    const qSat = new THREE.Quaternion();
+    const eOrbit = new THREE.Euler(0, 0, 0, 'YXZ');
+    const eSat = new THREE.Euler(0, 0, 0, 'YXZ');
+    const satBatches = [];
+    const PANEL_TINTS = [0xffffff, 0xd5e4ff, 0xfff1c4, 0xc5d8ff, 0xeef6ff];
+    let satCount = 0, stationCount = 0;
+    const addSatBatch = (parent, origin, items) => {
+      const make = (list, geos) => {
+        if (!list.length) return;
+        const mats = [hullM, panelM, goldM, glowM];
+        const meshes = geos.map((geo, gi) => {
+          const mesh = new THREE.InstancedMesh(geo, mats[gi], list.length);
+          mesh.frustumCulled = false;
+          mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+          parent.add(mesh);
+          return mesh;
+        });
+        const tint = new THREE.Color();
+        list.forEach((s, i) => { tint.setHex(PANEL_TINTS[s.tint % PANEL_TINTS.length]); meshes[1].setColorAt(i, tint); });
+        if (meshes[1].instanceColor) meshes[1].instanceColor.needsUpdate = true;
+        satBatches.push({ origin, items: list, meshes });
+      };
+      make(items.filter((s) => s.kind === 'wing'), [satHull, satPanels, satGold, satTip]);
+      make(items.filter((s) => s.kind === 'dish'), [dishBody, dishPanels, dishGold, dishTip]);
     };
     const addStation = (parent, origin, dist, phase, tilt, speed, sc, lift) => {
+      stationCount++;
       const tiltG = new THREE.Group(); tiltG.position.x = origin; tiltG.rotation.z = tilt; parent.add(tiltG);
       const spin = new THREE.Group(); spin.rotation.y = phase; tiltG.add(spin);
-      const st = new THREE.Group(); st.position.set(dist, lift, 0); st.scale.setScalar(sc); spin.add(st);
-      st.add(new THREE.Mesh(dcHull, hullM), new THREE.Mesh(dcGold, goldM), new THREE.Mesh(dcGlow, glowM), new THREE.Mesh(dcPanels, panelM), new THREE.Mesh(dcTip, glowM));
+      const st = new THREE.Group(); st.position.set(dist, lift, 0); st.scale.setScalar(sc); st.userData.kind = 'datacenter'; spin.add(st);
+      st.add(new THREE.Mesh(dcHull, hullM), new THREE.Mesh(dcGold, goldM), new THREE.Mesh(dcGlow, glowM), new THREE.Mesh(dcPanels, panelM), new THREE.Mesh(dcRad, radM), new THREE.Mesh(dcTip, glowM));
       const ring = new THREE.Mesh(dcRing, goldM); st.add(ring); rings.push(ring);
-      const halo = glowSprite(0xc5dcff, 15, 0.48); st.add(halo);
-      const dust = points(16, () => sphereShell(rand(2.4, 3.6)), 0.42, { colors: () => pick([0xf3cf6b, 0xbfe4ff, 0xffffff]), opacity: 0.85 });
+      const halo = glowSprite(0xc5dcff, 18, 0.4); st.add(halo);
+      const dust = points(8, () => sphereShell(rand(2.2, 3.3)), 0.36, { colors: () => pick([0xf3cf6b, 0xbfe4ff, 0xffffff]), opacity: 0.8 });
       st.add(dust); motes.push(dust);
       orbiters.push([spin, speed]);
     };
@@ -634,20 +695,42 @@ const ENVS = {
       orbit.rotation.x = -Math.PI / 2; g.add(orbit);
       planets.push([piv, 1.2 / Math.sqrt(r), p]);
       const home = index === 2;
-      const nSat = home ? 5 : (index === 4 || index === 5 ? 2 : 1);
-      const sc = clamp(s * 0.16, 0.48, 1.45);
+      const nSat = home ? 15 : (index === 4 || index === 5 ? 6 : 3);
+      const items = [];
       for (let i = 0; i < nSat; i++) {
-        const dist = k === 'ring' ? s * 2.9 + i * s * 0.22 : home ? s * [1.48, 1.72, 2.36, 2.62, 2.94][i] : (s + sc * 2.15 + 0.7) + i * Math.max(1.2, sc * 1.7);
-        addSat(piv, r, dist, home ? i * 1.25 + 0.35 : rand(0, Math.PI * 2), (i % 2 ? 1 : -1) * (0.28 + i * 0.16), (i % 2 ? 1 : -1) * (home ? 0.42 + i * 0.06 : 0.5), sc);
+        const band = nSat === 1 ? 0 : i / (nSat - 1);
+        let dist;
+        if (k === 'ring') dist = s * (2.62 + band * 1.35);
+        else if (home) dist = s * (1.58 + band * 4.15);
+        else dist = s * (1.75 + band * 2.15) + 0.8;
+        const polar = i % 5 === 4;
+        const tilt = polar ? (i % 2 ? 1.28 : -1.22) : (i % 2 ? 1 : -1) * (0.16 + (i % 4) * 0.14);
+        const node = home ? i * 0.9 : rand(0, Math.PI * 2);
+        const speed = (i === nSat - 1 ? -1 : 1) * 0.5 * Math.sqrt((s * 2.1) / dist);
+        const sc = home ? (0.4 + (i % 5) * 0.11) : clamp(0.48 + Math.min(s, 13) * 0.04 + (i % 3) * 0.08, 0.45, 1.2);
+        items.push({ dist, phase: home ? (i * 2.399963) % (Math.PI * 2) : rand(0, Math.PI * 2), tilt, node, speed, sc, kind: i % 3 === 2 ? 'dish' : 'wing', tint: i });
       }
+      satCount += items.length;
+      addSatBatch(piv, r, items);
       if (home || index === 4 || index === 5) {
         const stSc = home ? 1.22 : clamp(s * 0.1, 1.05, 1.55);
         const dist = home ? s + 13 : k === 'ring' ? s * 3.9 : s * 2.35;
         addStation(piv, r, dist, home ? 0.85 : rand(0, 6), home ? 0.4 : (index === 4 ? 0.22 : -0.32), home ? 0.15 : (index === 4 ? 0.08 : -0.07), stSc, home ? 1.6 : 0);
       }
+      if (index === 1 || index === 3 || index === 6 || index === 7) {
+        const far = index >= 6;
+        const stSc = far ? clamp(s * 0.11, 0.95, 1.2) : 0.86;
+        const dist = s * (far ? 2.4 : 2.75);
+        const lift = far ? 0 : (index === 1 ? 2.2 : 1.5);
+        addStation(piv, r, dist, rand(0, 6), index === 1 ? 0.5 : index === 3 ? -0.42 : index === 6 ? 0.28 : -0.36, index % 2 ? 0.065 : -0.055, stSc, lift);
+      }
     });
     /* one station on its own solar orbit, in view above the lane toward Earth */
     addStation(g, 0, 170, -1.325, 0.55, 0.04, 1.5, 28);
+    /* another just off the takeoff lane, slow, so it reads as a station while you fly past */
+    addStation(g, 0, 166, -1.462, 0, 0.004, 1.25, 26);
+    g.userData.flySats = satCount;
+    g.userData.flyStations = stationCount;
     /* put the earth near the start so there is something to see right away */
     planets[2][0].rotation.y = -Math.PI / 2 + 0.25;
     /* black holes: fly into one for bonus points (+50 and a swirl) */
@@ -671,6 +754,19 @@ const ENVS = {
         for (const h of holes) { h.disk.rotation.z += dt * 1.6; h.disk2.rotation.z -= dt * 0.9; h.cd = Math.max(0, h.cd - dt); }
         for (const [piv, w, p] of planets) { piv.rotation.y += w * dt * 0.25; p.rotation.y += dt * 0.3; }
         for (const [spin, w] of orbiters) spin.rotation.y += w * dt;
+        for (const batch of satBatches) {
+          const { origin, items, meshes } = batch;
+          for (let i = 0; i < items.length; i++) {
+            const s = items[i], ang = s.phase + t * s.speed;
+            eOrbit.set(s.tilt, s.node, 0); qOrbit.setFromEuler(eOrbit);
+            satDummy.position.set(Math.cos(ang) * s.dist, 0, Math.sin(ang) * s.dist).applyQuaternion(qOrbit);
+            satDummy.position.x += origin;
+            eSat.set(0, ang + Math.PI / 2, 0); qSat.setFromEuler(eSat); qSat.premultiply(qOrbit);
+            satDummy.quaternion.copy(qSat); satDummy.scale.setScalar(s.sc); satDummy.updateMatrix();
+            for (let mi = 0; mi < meshes.length; mi++) meshes[mi].setMatrixAt(i, satDummy.matrix);
+          }
+          for (let mi = 0; mi < meshes.length; mi++) meshes[mi].instanceMatrix.needsUpdate = true;
+        }
         for (const ring of rings) ring.rotation.y += dt * 0.55;
         for (const m of motes) m.rotation.y -= dt * 0.3;
         sun.rotation.y += dt * 0.05;
@@ -1100,9 +1196,9 @@ function updateComet(dt, playing) {
 function resetComet() { comet.visible = false; cometWait = rand(30, 50); }
 function addScore(n, bonus) {
   score += n; stats.addPoints(n, !!bonus); const el = $('score'); el.textContent = stats.get().total; /* HUD shows the user's accumulated total */ el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
-  if (score > best) { if (best > 0 && score - n <= best) flash(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
+  if (score > best) { if (best > 0 && score - n <= best) sideNote(T[lang].best); best = score; store.set('rg-fly-best', String(best)); }
 }
-let msgTimer = 0;
+let msgTimer = 0, sideTimer = 0;
 function paintRich(el, text) {
   const s = String(text);
   if (s.indexOf(GCOMET) < 0) { el.textContent = s; return; }
@@ -1110,6 +1206,11 @@ function paintRich(el, text) {
   el.innerHTML = s.split(GCOMET).map(e).join(GCOMET_SVG);
 }
 function flash(text) { const m = $('msg'); paintRich(m, text); m.style.opacity = 1; clearTimeout(msgTimer); msgTimer = setTimeout(() => (m.style.opacity = 0), 1100); }
+function sideNote(text) {
+  const el = $('sideNote'); if (!el) return;
+  paintRich(el, text); el.classList.remove('on'); void el.offsetWidth; el.classList.add('on');
+  clearTimeout(sideTimer); sideTimer = setTimeout(() => el.classList.remove('on'), 1500);
+}
 const mtx = new THREE.Matrix4(), qq = new THREE.Quaternion(), one = new THREE.Vector3(1, 1, 1), eul = new THREE.Euler();
 function updateCollectibles(t, dt, playing) {
   const size = player.model.userData.size, ga = sparkGlow.geometry.attributes.position;
@@ -1131,7 +1232,7 @@ function updateCollectibles(t, dt, playing) {
       continue;
     }
     const d = r.position.distanceTo(player.pos);
-    if (playing && d < 3.6 + (usedMouse ? 0.6 + mouseSens * 0.12 : 0)) { const cm = comboHit(); addScore((powerOn('double') ? 10 : 5) * cm); u.flash = 0.6; flash(cm > 1 ? T[lang].combo + ' x' + cm + '!' : pick(T[lang].ring)); if (powerOn('double')) burst(14, 0xffd76a); }
+    if (playing && d < 3.6 + (usedMouse ? 0.6 + mouseSens * 0.12 : 0)) { const cm = comboHit(); const pts = (powerOn('double') ? 10 : 5) * cm; addScore(pts); u.flash = 0.6; sideNote('+' + pts + '  ' + (cm > 1 ? T[lang].combo + ' ×' + cm : pick(T[lang].ring))); if (powerOn('double')) burst(14, 0xffd76a); }
     else if (playing && d < 60 && powerOn('magnet')) { r.position.lerp(player.pos, damp(1.2, dt)); faceRing(r); }
     else if (d > 340) { placeAhead(r.position, 120, 260, 120, true); faceRing(r); }
   }
@@ -1264,49 +1365,60 @@ function updateFx(t, dt, playing) {
   }
 }
 
-/* v18: continuous exhaust. A strip along the nozzle path, narrow at the jet and fading at the tail. */
-const EXHAUSTS = ['ribbon', 'aurora', 'none'];
-const AURORA_PAL = [[0.15, 0.95, 0.38], [0.12, 0.82, 1], [0.52, 0.32, 1], [0.92, 0.42, 0.9]];
-const RIBBON_COLS = [[0.05, 0.2, 1], [0.12, 0.38, 1], [0.55, 0.72, 0.95], [1, 0.9, 0.18], [1, 0.74, 0.08]];
-const aurTmp = [0, 0, 0];
-let exhaustStyle = EXHAUSTS.indexOf(store.get('rg-fly-exhaust', 'ribbon')) >= 0 ? store.get('rg-fly-exhaust', 'ribbon') : 'ribbon';
-function aurAt(u, out) {
-  const x = ((u % 1) + 1) % 1 * AURORA_PAL.length, i = Math.floor(x) % AURORA_PAL.length, f = x - Math.floor(x);
-  const a = AURORA_PAL[i], b = AURORA_PAL[(i + 1) % AURORA_PAL.length];
-  out[0] = a[0] + (b[0] - a[0]) * f; out[1] = a[1] + (b[1] - a[1]) * f; out[2] = a[2] + (b[2] - a[2]) * f;
-  return out;
+/* Jetpack exhaust. Five looks, saved only on the sandbox key so the live app's setting is left alone. */
+const EXHAUSTS = ['none', 'smoke', 'dust', 'gold', 'plasma'];
+const EXHAUST_KEY = 'rg-flysandbox-exhaust';
+const EXHAUST_LABEL = { none: 'exhaustNone', smoke: 'exhaustSmoke', dust: 'exhaustDust', gold: 'exhaustGold', plasma: 'exhaustPlasma' };
+const NOZZLE_COLS = {
+  smoke: [0xd5deea, 0xb7c3d4, 0xf7f9fc],
+  dust: [0xfff6d4, 0xd4af37, 0xfff6d4],
+  gold: [0xf3cf6b, 0xd4af37, 0xfff6d4],
+  plasma: [0x4d7dff, 0x6ec8ff, 0xf4fbff]
+};
+const DUST_COLS = [0x3d7dff, 0xf3cf6b, 0xfff6d4, 0xb48cff, 0x5ce1ff, 0xe7c6ff];
+const SMOKE_HEX = [0xf4f7fb, 0xd5deea, 0xffffff, 0xc5d0de];
+const GOLD_HEX = [0xf3cf6b, 0xffe7a3, 0xfff6d4, 0xd4af37];
+const SMOKE_COLS = [[0.62, 0.66, 0.72], [0.78, 0.82, 0.86], [0.95, 0.96, 0.98], [0.78, 0.82, 0.86], [0.62, 0.66, 0.72]];
+const GOLD_COLS = [[0.77, 0.64, 0.29], [0.91, 0.78, 0.42], [1, 0.96, 0.82], [0.95, 0.81, 0.42], [0.83, 0.69, 0.22]];
+const PLASMA_COLS = [[0.05, 0.22, 0.95], [0.22, 0.66, 1], [0.92, 0.98, 1], [0.18, 0.72, 1], [0.08, 0.3, 0.92]];
+function loadExhaust() {
+  const saved = store.get(EXHAUST_KEY, '');
+  if (EXHAUSTS.indexOf(saved) >= 0) return saved;
+  const old = store.get('rg-fly-exhaust', '');
+  if (old === 'none') return 'none';
+  if (old === 'aurora') return 'dust';
+  return 'plasma';
 }
+let exhaustStyle = loadExhaust();
 function paintNozzle() {
   const off = exhaustStyle === 'none';
+  const cols = NOZZLE_COLS[exhaustStyle] || NOZZLE_COLS.plasma;
   for (const obj of [player.model, buddy]) {
     const u = obj && obj.userData; if (!u) continue;
     if (u.flames) for (const f of u.flames) f.visible = !off;
-    const n = u.nozzle; if (!n) continue;
-    if (exhaustStyle === 'aurora') {
-      n.flame.color.setHex(0x3dffc0); n.flame.emissive.setHex(0x2ee6b0); n.core.color.setHex(0xd8fff6);
-    } else {
-      n.flame.color.setHex(0x4d7dff); n.flame.emissive.setHex(0x3d6bff); n.core.color.setHex(0xffe7a3);
-    }
+    const n = u.nozzle; if (!n || off) continue;
+    n.flame.color.setHex(cols[0]); n.flame.emissive.setHex(cols[1]); n.core.color.setHex(cols[2]);
   }
 }
 function applyExhaustStyle(style, persist) {
-  exhaustStyle = EXHAUSTS.indexOf(style) >= 0 ? style : 'ribbon';
-  if (persist) store.set('rg-fly-exhaust', exhaustStyle);
+  const next = EXHAUSTS.indexOf(style) >= 0 ? style : 'plasma';
+  const changed = next !== exhaustStyle;
+  exhaustStyle = next;
+  if (persist) store.set(EXHAUST_KEY, exhaustStyle);
   const b = $('exhaustToggle');
   if (b) {
-    b.classList.remove('ribbon', 'aurora', 'none'); b.classList.add(exhaustStyle);
+    b.classList.remove('ribbon', 'aurora', 'none', 'smoke', 'dust', 'gold', 'plasma');
+    b.classList.add(exhaustStyle);
     b.dataset.style = exhaustStyle;
-    const key = exhaustStyle === 'aurora' ? 'exhaustAurora' : exhaustStyle === 'none' ? 'exhaustNone' : 'exhaustRibbon';
-    b.setAttribute('aria-label', T[lang][key]);
+    b.setAttribute('aria-label', T[lang][EXHAUST_LABEL[exhaustStyle]]);
   }
-  if (exhaustStyle === 'none') clearRibbon();
+  if (changed || exhaustStyle === 'none') clearRibbon();
   paintNozzle();
 }
 function cycleExhaust() {
   const next = EXHAUSTS[(EXHAUSTS.indexOf(exhaustStyle) + 1) % EXHAUSTS.length];
   applyExhaustStyle(next, true);
-  const key = next === 'aurora' ? 'exhaustAurora' : next === 'none' ? 'exhaustNone' : 'exhaustRibbon';
-  flash(T[lang][key]);
+  sideNote(T[lang][EXHAUST_LABEL[next]]);
 }
 const RN = 64, RVERTS = 5, ROFF = [-1, -0.5, 0, 0.5, 1];
 const rCenters = new Float32Array(RN * 3);
@@ -1327,11 +1439,37 @@ ribbonGeo.setIndex(new THREE.BufferAttribute(rIdx, 1)); ribbonGeo.setDrawRange(0
 const ribbonMat = new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false, toneMapped: false });
 const ribbonMesh = new THREE.Mesh(ribbonGeo, ribbonMat);
 ribbonMesh.frustumCulled = false; ribbonMesh.visible = false; ribbonMesh.renderOrder = 3; scene.add(ribbonMesh);
-const exP = new THREE.Vector3(), exDir = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
+const exParts = [];
+for (let i = 0; i < 64; i++) {
+  const s = glowSprite(0xffffff, 1, 0);
+  s.visible = false; s.frustumCulled = false;
+  s.userData = { life: 0, max: 1, v: new THREE.Vector3(), size: 1, puff: false };
+  scene.add(s); exParts.push(s);
+}
+let exI = 0, exAcc = 0;
+const exP = new THREE.Vector3(), exDir = new THREE.Vector3(), exVel = new THREE.Vector3(), exJitter = new THREE.Vector3(), rA = new THREE.Vector3(), rB = new THREE.Vector3(), rC = new THREE.Vector3();
 const rDir = new THREE.Vector3(), rSide = new THREE.Vector3(), rSpan = new THREE.Vector3(), rWave = new THREE.Vector3();
 const rRight = new THREE.Vector3(), rCamUp = new THREE.Vector3(), rCamFwd = new THREE.Vector3(), rUp = new THREE.Vector3(0, 1, 0);
 function ribbonReset(x, y, z) { rCenters[0] = x; rCenters[1] = y; rCenters[2] = z; rHead = 0; rCount = 1; }
-function clearRibbon() { ribbonFade = 0; rCount = 0; ribbonMesh.visible = false; }
+function clearRibbon() {
+  ribbonFade = 0; rCount = 0; ribbonMesh.visible = false; exAcc = 0;
+  for (let i = 0; i < exParts.length; i++) exParts[i].visible = false;
+}
+function emitExhaust(pos, color, size, life, vel, puff) {
+  const s = exParts[exI = (exI + 1) % exParts.length], u = s.userData;
+  s.position.copy(pos); s.material.color.setHex(color); s.visible = true;
+  u.life = u.max = life; u.size = size; u.puff = puff; u.v.copy(vel);
+}
+function updateExParts(dt) {
+  for (let i = 0; i < exParts.length; i++) {
+    const s = exParts[i], u = s.userData; if (!s.visible) continue;
+    u.life -= dt; if (u.life <= 0) { s.visible = false; continue; }
+    const k = u.life / u.max;
+    s.position.addScaledVector(u.v, dt); u.v.multiplyScalar(1 - dt * 0.55);
+    s.material.opacity = k * (u.puff ? 0.55 : 0.72);
+    s.scale.setScalar(u.size * (u.puff ? 0.55 + (1 - k) * 1.25 : 0.4 + k * 0.75));
+  }
+}
 function ribbonPush(x, y, z) {
   if (rCount < 1) { ribbonReset(x, y, z); return; }
   const o = rHead * 3, px = rCenters[o], py = rCenters[o + 1], pz = rCenters[o + 2];
@@ -1352,13 +1490,34 @@ function putVert(vi, x, y, z, r, g, b, a) {
   rCol[c] = r; rCol[c + 1] = g; rCol[c + 2] = b; rCol[c + 3] = a;
 }
 function updateRibbon(t, dt, playing) {
+  updateExParts(dt);
   const m = player.model; if (!m) return;
-  if (exhaustStyle === 'none') { ribbonMesh.visible = false; return; }
+  const off = exhaustStyle === 'none';
+  const dust = exhaustStyle === 'dust';
+  const smoky = exhaustStyle === 'smoke' || exhaustStyle === 'gold';
+  const plasma = exhaustStyle === 'plasma';
   m.updateMatrixWorld(true);
   const u = m.userData, sz = u.size || 1;
   if (u.exhaust) { u.exhaust.getWorldPosition(exP); exDir.set(0, -1, 0).transformDirection(u.exhaust.matrixWorld); }
   else { heading(); exP.copy(m.position).addScaledVector(fwd, -1.05 * sz); exDir.copy(fwd).multiplyScalar(-1); }
   const extend = playing && player.mode === 'fly';
+  if (extend && !off) {
+    const every = dust ? 0.055 : plasma ? 0.1 : 0.07;
+    exAcc += dt;
+    while (exAcc >= every) {
+      exAcc -= every;
+      exJitter.set(rand(-1, 1), rand(-1, 1), rand(-1, 1));
+      exVel.copy(exDir).multiplyScalar(dust ? rand(0.3, 1.1) : rand(0.7, 2.1)).addScaledVector(exJitter, dust ? 0.9 : 0.35);
+      const col = dust ? pick(DUST_COLS) : exhaustStyle === 'gold' ? pick(GOLD_HEX) : plasma ? pick([0x7ad7ff, 0xf4fbff, 0x4d7dff]) : pick(SMOKE_HEX);
+      const size = dust ? rand(0.7, 1.45) : plasma ? rand(0.12, 0.28) : rand(0.55, 1.2);
+      const life = dust ? rand(0.45, 0.85) : plasma ? rand(0.25, 0.5) : rand(0.9, 1.6);
+      tmp.copy(exP).addScaledVector(exDir, dust ? rand(0.2, 1.6) : rand(0.1, 0.8));
+      if (dust) tmp.addScaledVector(exJitter, 1.35);
+      emitExhaust(tmp, col, size, life, exVel, smoky);
+    }
+  }
+  if (off || dust) { ribbonMesh.visible = false; return; }
+  if (ribbonMat.blending !== THREE.AdditiveBlending) { ribbonMat.blending = THREE.AdditiveBlending; ribbonMat.needsUpdate = true; }
   if (extend) ribbonPush(exP.x, exP.y, exP.z);
   if (extend) ribbonFade = Math.min(1, ribbonFade + dt * 5);
   else if (state !== 'pause') ribbonFade = Math.max(0, ribbonFade - dt * 1.7);
@@ -1375,9 +1534,9 @@ function updateRibbon(t, dt, playing) {
   camera.updateMatrixWorld(true);
   const e = camera.matrixWorld.elements;
   rRight.set(e[0], e[1], e[2]); rCamUp.set(e[4], e[5], e[6]); rCamFwd.set(-e[8], -e[9], -e[10]);
-  const aurora = exhaustStyle === 'aurora';
   const punch = (powerOn('boost') || powerOn('double')) ? 1.35 : 1;
-  const edge = aurora ? [0.72, 0.88, 0.8, 0.88, 0.62] : [0.72, 0.95, 0.4, 0.98, 0.8];
+  const edge = smoky ? [0.28, 0.48, 0.72, 0.48, 0.28] : [0.45, 0.78, 1, 0.78, 0.45];
+  const cols = exhaustStyle === 'gold' ? GOLD_COLS : plasma ? PLASMA_COLS : SMOKE_COLS;
   let psx = 0, psy = 1, psz = 0, have = false;
   for (let k = 0; k < rCount; k++) {
     const o = at(k) * 3, op = at(k - 1) * 3, on = at(k + 1) * 3;
@@ -1388,14 +1547,14 @@ function updateRibbon(t, dt, playing) {
     if (rDir.lengthSq() < 1e-6) rDir.copy(exDir).negate(); else rDir.normalize();
     const along = k / (rCount - 1);
     const fromNose = 1 - along;
-    const grow = Math.min(1, fromNose / 0.14); // point at the jet, opens just behind it
-    const fade = Math.pow(along, aurora ? 0.42 : 0.72) * ribbonFade;
+    const grow = Math.min(1, fromNose / 0.14);
+    const fade = Math.pow(along, smoky ? 0.4 : 0.72) * ribbonFade;
+    rWave.crossVectors(rDir, rUp);
+    if (rWave.lengthSq() < 1e-6) rWave.copy(rRight); else rWave.normalize();
+    if (smoky) rB.addScaledVector(rWave, Math.sin(t * 1.3 + k * 0.5) * 0.22 * sz * Math.sin(along * Math.PI));
+    else rB.addScaledVector(rWave, Math.sin(t * 24 + k * 1.35) * 0.04 * sz);
     let axis = rSide;
-    if (aurora) {
-      const wob = Math.sin(t * 1.2 + k * 0.55) * 0.07 * sz * Math.sin(along * Math.PI);
-      rWave.crossVectors(rDir, rUp);
-      if (rWave.lengthSq() < 1e-6) rWave.copy(rRight); else rWave.normalize();
-      rB.addScaledVector(rWave, wob);
+    if (smoky) {
       rSpan.copy(rUp);
       const d = rSpan.dot(rDir); rSpan.addScaledVector(rDir, -d);
       if (rSpan.lengthSq() < 1e-6) rSpan.copy(rCamUp); else rSpan.normalize();
@@ -1407,11 +1566,11 @@ function updateRibbon(t, dt, playing) {
     }
     if (have && axis.x * psx + axis.y * psy + axis.z * psz < 0) axis.negate();
     psx = axis.x; psy = axis.y; psz = axis.z; have = true;
-    const base = (aurora ? 0.035 + 0.2 * grow : 0.012 + 0.15 * grow) * (1 - fromNose * 0.2) * sz * punch;
-    const colU = fromNose * 3.1 + t * 0.12;
-    const aScale = Math.min(1, (aurora ? 0.38 : 0.78) * (punch > 1 ? 1.1 : 1));
+    const flick = plasma ? 0.75 + Math.sin(t * 28 + k * 0.9) * 0.25 : 1;
+    const base = (smoky ? 0.1 + 0.85 * grow : 0.012 + 0.14 * grow * flick) * (1 - fromNose * 0.18) * sz * punch;
+    const aScale = Math.min(1, (smoky ? 0.7 : 0.9) * (punch > 1 ? 1.08 : 1));
     for (let v = 0; v < 5; v++) {
-      const col = aurora ? aurAt(colU + (v - 2) * 0.05, aurTmp) : RIBBON_COLS[v];
+      const col = cols[v];
       const w = ROFF[v] * base;
       putVert(k * 5 + v, rB.x + axis.x * w, rB.y + axis.y * w, rB.z + axis.z * w, col[0], col[1], col[2], edge[v] * fade * aScale);
     }
@@ -1993,7 +2152,7 @@ function checkHoles() {
     if (h.cd > 0) continue;
     h.g.getWorldPosition(tmp);
     if (tmp.distanceTo(player.pos) < h.r + 2) {
-      h.cd = 6; addScore(50); flash(T[lang].hole);
+      h.cd = 6; addScore(50); sideNote(T[lang].hole);
       player.yawRate += 7; burst(26, 0xffc94a); burst(18, 0x4f7dff);
       // spat out on the far side of the hole, heading away
       player.pos.copy(tmp).addScaledVector(fwd, h.r * 3 + 6); player.vy = 4;
@@ -2107,8 +2266,7 @@ const stats = (() => {
 })();
 function celebrate() { showCel(T[lang].bonus, T[lang].bonusSub); }
 function showCel(title, sub) {
-  const c = $('celebrate'); paintRich(c.querySelector('b'), title); c.querySelector('span').textContent = sub;
-  c.classList.remove('show'); void c.offsetWidth; c.classList.add('show');
+  sideNote(title);
   const cometCel = String(title).indexOf(GCOMET) >= 0;
   for (let i = 0; i < 4; i++) setTimeout(() => { burst(30, cometCel ? COMET_GOLD_LT : 0xffd76a); burst(20, cometCel ? COMET_GOLD : 0x6f9bff); }, i * 220);
   if (navigator.vibrate) try { navigator.vibrate([60, 40, 120]); } catch (e) {}
@@ -2193,5 +2351,5 @@ window.__fly = {
   setExhaust(v) { applyExhaustStyle(v, true); },
   get exhaust() { return exhaustStyle; },
   get ribbon() { return { on: ribbonMesh.visible, n: rCount, fade: +ribbonFade.toFixed(2) }; },
-  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, pitch: Math.round(player.pitch * 180 / Math.PI), camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
+  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, sats: env && env.g ? (env.g.userData.flySats || 0) : 0, stations: env && env.g ? (env.g.userData.flyStations || 0) : 0, pitch: Math.round(player.pitch * 180 / Math.PI), camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
 };
