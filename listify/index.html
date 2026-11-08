@@ -272,6 +272,22 @@
   .ckhead { display: flex; align-items: center; gap: 8px; margin: 14px 4px 6px; color: var(--accent); font-size: 15px; font-weight: 800; }
   .ckhead .ckn { color: var(--muted); font-weight: 700; }
   .ckcard + .listcard { margin-top: 12px; }
+  /* print: screen-only. Uses the same tokens as the other list buttons. */
+  .printrow { display: flex; justify-content: flex-start; margin: 2px 0 0; }
+  .printbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  @media print {
+    .rgtb, .topbar, .printrow, .addform, .cathint, .drophint, .syncslot, #status, .status,
+    .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
+    .pmenu, .sheetwrap, .toast, .gate, .handle, .pchev { display: none !important; }
+    .picker { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
+    html:root { color-scheme: light !important; }
+    html, body, .wrap, .card, .listcard, .list, .list li, .txt, .picker, .sum, .pin, .ckhead, .empty, .note {
+      color: CanvasText !important; background: Canvas !important; box-shadow: none !important;
+    }
+    .done .txt, .txt .note, .sum .sel, .done .pin { color: GrayText !important; }
+    .list li { overflow: visible; break-inside: avoid; }
+    .list li::before, .list li::after { content: none !important; display: none !important; }
+  }
 </style>
 <script src="../shared/rg-bg.js" data-app="publistify" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -284,6 +300,7 @@
       <button type="button" class="themebtn" id="theme-btn"></button>
     </div>
   </header>
+  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
 <main>
     <div class="listbars">
     <div class="listbar" id="listbar">
@@ -318,7 +335,7 @@ window.RGMY_STRINGS = {
         phGoal: "איזה יעד תרצה להשיג?", target: "תאריך יעד (לא חובה)", targetShort: "תאריך יעד", progress: "התקדמות",
         gNot: "לא התחיל", gDoing: "בתהליך", gDone: "הושג", achieve: "סמן כהושג", unachieve: "החזר ליעדים פתוחים",
         emptyGoals: "עוד אין יעדים. כתוב למעלה את היעד הראשון שלך.", allGoals: "כל הכבוד, השגת את כל היעדים! 🎯", goalsDone: "הושגו",
-        phIdea: "מה להוסיף לרשימה?", phNote: "הערה קצרה", phTask: "מה צריך לעשות?", add: "הוסף", due: "תאריך יעד (לא חובה)", dueShort: "תאריך יעד", note: "הערה",
+        phIdea: "מה להוסיף לרשימה?", phNote: "הערה קצרה", phTask: "מה צריך לעשות?", add: "הוסף", print: "הדפס", due: "תאריך יעד (לא חובה)", dueShort: "תאריך יעד", note: "הערה",
         stNew: "רעיון", stDev: "בפיתוח", stDone: "הושלם", stLabel: "סטטוס", stCycle: "שינוי סטטוס",
         sortLabel: "מיון", sortManual: "הסדר שלי", sortNew: "החדשים קודם", sortAbc: "לפי שם", sortStatus: "לפי סטטוס",
         up: "הזז למעלה", down: "הזז למטה", ideas: "רעיונות", tasks: "פריטים",
@@ -343,7 +360,7 @@ window.RGMY_STRINGS = {
         phGoal: "What goal do you want to reach?", target: "Target date (optional)", targetShort: "Target date", progress: "Progress",
         gNot: "Not started", gDoing: "In progress", gDone: "Achieved", achieve: "Mark as achieved", unachieve: "Back to open goals",
         emptyGoals: "No goals yet. Write your first one above.", allGoals: "Well done, you've reached all your goals! 🎯", goalsDone: "Achieved",
-        phIdea: "What should go on this list?", phNote: "Short note", phTask: "What needs doing?", add: "Add", due: "Due date (optional)", dueShort: "Due date", note: "Note",
+        phIdea: "What should go on this list?", phNote: "Short note", phTask: "What needs doing?", add: "Add", print: "Print", due: "Due date (optional)", dueShort: "Due date", note: "Note",
         stNew: "Idea", stDev: "In development", stDone: "Done", stLabel: "Status", stCycle: "Change status",
         sortLabel: "Sort", sortManual: "My order", sortNew: "Newest first", sortAbc: "By name", sortStatus: "By status",
         up: "Move up", down: "Move down", ideas: "ideas", tasks: "items",

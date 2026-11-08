@@ -102,7 +102,8 @@ assert(statusSrc.indexOf("לחתוך") === -1 && css.indexOf("red") === -1 && cs
 assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap targets");
 assert(liveHtml.indexOf("rg-sync-status.js?v=2") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=2") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1, "live private Listify does not load sandbox scripts");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v52"') !== -1, "the private Listify service worker cache was bumped");
+assert(liveSw.indexOf('CACHE = "rg-myideas-v53"') !== -1, "the private Listify service worker cache was bumped");
+assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפס"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveSw.indexOf("rg-sync-status.js?v=2") !== -1 && liveSw.indexOf("app.js?v=42") !== -1, "the service worker precaches the new helper and app");
 
 function never() { return new Promise(function () {}); }
