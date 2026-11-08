@@ -35,7 +35,7 @@ const T = {
     ring: ['יפה!', 'נהדר!', 'איזה מעוף!', 'מעולה!', 'זוהר!'], back: 'חוזרים לאזור המעוף', best: 'שיא חדש!', mul: 'קצב', hole: '🕳️ חור שחור! +50', wh: '⚪ חור לבן! +100', whSub: 'עברת לגלקסיה אחרת', whSeen: '⚪ חור לבן לפניך! עוף לתוכו', bonus: '🎉 בונוס! +400', bonusSub: 'על כל 369 נקודות שצברת', lb: '🏆 טבלת אלופים', lbTitle: 'טבלת אלופים', lbTotal: 'סך הכול', lbBest: 'שיא', lbMine: 'הנקודות שלי', lbGames: 'משחקים', lbNext: 'לבונוס הבא', lbEmpty: 'עדיין אין שחקנים בטבלה', lbLoad: 'טוען…', lbErr: 'לא הצלחתי לטעון את הטבלה', lbSignIn: 'כדי להופיע בטבלה ולשמור נקודות בין מכשירים — מתחברים בתפריט למעלה', lbClose: 'סגירה', player: 'שחקן', combo: 'קומבו', comet: GCOMET + ' שביט זהב! +200', cometSub: 'תפסת את השביט הנדיר', cometSeen: GCOMET + ' שביט זהב! תפוס אותו', streak: '🔥 רצף ימים', streakDay: 'יום', streakBonus: (d, n) => d > 1 ? `🔥 רצף ${d} ימים! +${n}` : `🔥 יום ראשון ברצף! +${n}`, streakSub: 'בונוס יומי על משחק ברצף',
     spd: ['איטי', 'רגיל', 'מהיר'], resume: 'להמשיך לעוף ✨',
     chars: ['גבר', 'אישה', 'ילד', 'ילדה', 'חתול מכונף', 'רובוט ידידותי', 'אסטרונאוט עם תרמיל סילון', 'גיבור על בגלימה', 'קוסם על שטיח מעופף', 'לווייתן שמיים', 'גריפון'],
-    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת', 'אנטארקטיקה', 'למוריה', 'אטלנטיס', 'אזור 51', 'כדור הארץ הפנימי'],
+    envs: ['הרים מושלגים', 'מערכת השמש', 'גלקסיה אחרת', 'יקום ממימד אחר', 'אטלנטיס מתחת למים', 'ממלכת העננים', 'ציוויליזציה חוצנית מתקדמת', 'אנטארקטיקה', 'למוריה', 'אטלנטיס', 'אזור 51', 'כדור הארץ הפנימי', 'ניו יורק בשלג'],
     cams: ['מאחורי הדמות', 'מבעד לעיניים', 'מהצד']
   },
   en: {
@@ -57,12 +57,12 @@ const T = {
     ring: ['Lovely!', 'Wonderful!', 'What a flight!', 'Great!', 'Glowing!'], back: 'Heading back to the flying area', best: 'New best!', mul: 'Pace', hole: '🕳️ Black hole! +50', wh: '⚪ White hole! +100', whSub: 'You jumped to another galaxy', whSeen: '⚪ White hole ahead! Fly into it', bonus: '🎉 Bonus! +400', bonusSub: 'for every 369 points you collect', lb: '🏆 Leaderboard', lbTitle: 'Leaderboard', lbTotal: 'Total', lbBest: 'Best', lbMine: 'My points', lbGames: 'Games', lbNext: 'to next bonus', lbEmpty: 'No players on the board yet', lbLoad: 'Loading…', lbErr: 'Could not load the board', lbSignIn: 'Sign in (menu at the top) to join the board and keep points across devices', lbClose: 'Close', player: 'Player', combo: 'Combo', comet: GCOMET + ' Golden comet! +200', cometSub: 'You caught the rare comet', cometSeen: GCOMET + ' Golden comet! Catch it', streak: '🔥 Day streak', streakDay: 'day', streakBonus: (d, n) => d > 1 ? `🔥 ${d}-day streak! +${n}` : `🔥 Day 1 streak! +${n}`, streakSub: 'Daily bonus for playing in a row',
     spd: ['Slow', 'Normal', 'Fast'], resume: 'Keep flying ✨',
     chars: ['Man', 'Woman', 'Boy', 'Girl', 'Winged cat', 'Friendly robot', 'Jetpack Astronaut', 'Caped Hero', 'Wizard on a Flying Carpet', 'Sky Whale', 'Griffin'],
-    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization', 'Antarctica', 'Lemuria', 'Atlantis', 'Area 51', 'Inner Earth'],
+    envs: ['Snowy mountains', 'The solar system', 'Another galaxy', 'Universe from another dimension', 'Atlantis underwater', 'Cloud kingdom', 'Alien civilization', 'Antarctica', 'Lemuria', 'Atlantis', 'Area 51', 'Inner Earth', 'New York in the snow'],
     cams: ['Behind the character', 'Through its eyes', 'Side view']
   }
 };
 const CHAR_EMOJI = ['🧑', '👩', '👦', '👧', '🐱', '🤖', '🧑‍🚀', '🦸', '🧙', '🐋', '🦅'];
-const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien', 'antarctica', 'lemuria', 'atlantisrise', 'area51', 'hollow'];
+const ENV_IDS = ['snow', 'solar', 'galaxy', 'dimension', 'atlantis', 'clouds', 'alien', 'antarctica', 'lemuria', 'atlantisrise', 'area51', 'hollow', 'nyc'];
 const CAM_IDS = ['third', 'first', 'side'];
 
 let lang = store.get('rg-lang', 'he') === 'en' ? 'en' : 'he';
@@ -1098,6 +1098,48 @@ const ENVS = {
     return { g, sky: [0x071428, 0x123056, 0x071428], fog: [0x123056, 80, 520], hemi: [0xfff0c8, 0x1a4e86, 1.05], sun: [0xffe7a3, 1.4, [0.2, 1, 0.1]],
       start: new THREE.Vector3(0, 30, 110), minY: -300, maxY: 300, R: 340, spark: 0xffe7a3, avoid: [[0, 0, 0, 22]],
       update(t) { sun.rotation.y = t * 0.1; glow.material.rotation = t * 0.2; } };
+  },
+  nyc() {
+    const g = new THREE.Group();
+    const snowM = M(0xeef4fb), stone = M(0xc5ced8), dark = M(0x8d99a8), glass = M(0x7ea6c9, { metalness: 0.4, roughness: 0.28, emissive: 0x16365f, emissiveIntensity: 0.35 });
+    const win = E(0xf3cf6b, 0.7, { roughness: 0.4 }), ice = M(0xb7d0e6, { metalness: 0.2, roughness: 0.25 });
+    const ground = new THREE.Mesh(new THREE.CircleGeometry(1500, 36), snowM); ground.rotation.x = -Math.PI / 2; g.add(ground);
+    const river = new THREE.Mesh(new THREE.PlaneGeometry(54, 980), ice); river.rotation.x = -Math.PI / 2; river.position.set(36, 0.2, -40); g.add(river);
+    const blockG = new THREE.BoxGeometry(1, 1, 1);
+    const blocks = new THREE.InstancedMesh(blockG, stone, 36);
+    const caps = new THREE.InstancedMesh(blockG, snowM, 36);
+    const mm = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3();
+    for (let i = 0; i < 36; i++) {
+      const col = (i % 6) - 2.5, row = ((i / 6) | 0) - 3;
+      const x = col * 18 - 8, z = row * 26 - 10;
+      const h = 14 + ((i * 13) % 26), w = 7 + (i % 3) * 1.6, d = 7 + ((i + 2) % 3) * 1.6;
+      sc.set(w, h, d); mm.compose(new THREE.Vector3(x, h / 2, z), q, sc); blocks.setMatrixAt(i, mm);
+      sc.set(w * 1.04, 0.7, d * 1.04); mm.compose(new THREE.Vector3(x, h + 0.35, z), q, sc); caps.setMatrixAt(i, mm);
+    }
+    g.add(blocks, caps);
+    const shaft = (x, z, w, h, d, mat) => { const b = box(w, h, d, mat); b.position.set(x, h / 2, z); g.add(b); const cap = box(w * 1.05, 0.7, d * 1.05, snowM); cap.position.set(x, h + 0.35, z); g.add(cap); return b; };
+    shaft(0, -36, 14, 28, 14, stone);
+    shaft(0, -36, 9, 52, 9, dark);
+    shaft(0, -36, 5, 68, 5, glass);
+    const spire = cyl(0.35, 0.7, 16, dark, 6); spire.position.set(0, 76, -36); g.add(spire);
+    const tip = ball(0.7, win, 1); tip.position.set(0, 85, -36); g.add(tip);
+    shaft(-28, -58, 16, 40, 12, glass);
+    shaft(22, -48, 8, 46, 8, stone); shaft(32, -62, 8, 42, 8, stone);
+    shaft(-16, -18, 22, 16, 14, dark);
+    for (let i = 0; i < 7; i++) { const band = box(8.4, 0.28, 0.18, win); band.position.set(0, 18 + i * 7, -31.2); g.add(band); }
+    const deck = box(7, 0.5, 70, dark); deck.position.set(36, 7, -24); g.add(deck);
+    for (const z of [-46, -2]) { const p = box(1.4, 18, 1.4, stone); p.position.set(36, 9, z); g.add(p); const cap = box(1.6, 0.5, 1.6, snowM); cap.position.set(36, 18.2, z); g.add(cap); }
+    const pines = new THREE.InstancedMesh(new THREE.ConeGeometry(1, 1, 5), M(0x2f6b4f), 14);
+    for (let i = 0; i < 14; i++) {
+      const x = -52 + (i % 4) * 6, z = -8 - ((i / 4) | 0) * 8, h = 4 + (i % 3);
+      sc.set(1.6, h, 1.6); mm.compose(new THREE.Vector3(x, h / 2, z), q, sc); pines.setMatrixAt(i, mm);
+    }
+    g.add(pines);
+    const snowP = localParticles(360, 52, 0.4, 0xffffff, 0.85); g.add(snowP);
+    const sun = glowSprite(0xfff6e0, 180, 0.75); sun.position.set(-180, 90, -420); g.add(sun);
+    return { g, sky: [0x6f93b8, 0xf3e2c0, 0xd5e6f4], fog: [0xe4eef6, 70, 720], hemi: [0xf7fbff, 0x8aa0b8, 1.15], sun: [0xfff6e0, 1.25, [0.3, 0.55, -0.6]],
+      start: new THREE.Vector3(0, 34, 70), minY: 2, maxY: 220, R: 460, spark: 0xffe7a3,
+      update(t, dt, p) { updateLocal(snowP, p, -3.2, dt, t, 1.1); } };
   }
 };
 
@@ -1110,7 +1152,7 @@ function disposeTree(o) {
 }
 
 /* ================= player ================= */
-const player = { pos: new THREE.Vector3(), yaw: 0, pitch: 0, pitchRate: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
+const player = { pos: new THREE.Vector3(), yaw: 0, vy: 0, yawRate: 0, speed: 16, level: 1, model: null, mode: 'fly', hop: 0 };
 const SPEEDS = [9, 16, 28];
 const MULS = [0.1618, 0.2, 0.4, 1, 1.3, 1.7, 1.9, 2.19, 4, 9, 15];
 let speedMul = parseFloat(store.get('rg-fly-mul', '1')); if (MULS.indexOf(speedMul) < 0) speedMul = 1;
@@ -1138,8 +1180,7 @@ for (let i = 0; i < NR; i++) {
   r.add(new THREE.Mesh(ringInner, new THREE.MeshBasicMaterial({ color: 0xffe7a3, transparent: true, opacity: 0.12, side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending })));
   r.userData = { flash: 0 }; scene.add(r); rings.push(r);
 }
-const fwd = new THREE.Vector3(), right = new THREE.Vector3(), flyDir = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
-const PITCH_MAX = Math.PI * 0.5 * 0.96; // ~86°, almost vertical, at any speed
+const fwd = new THREE.Vector3(), right = new THREE.Vector3(), tmp = new THREE.Vector3(), tmp2 = new THREE.Vector3();
 function heading() { fwd.set(-Math.sin(player.yaw), 0, -Math.cos(player.yaw)); right.set(Math.cos(player.yaw), 0, -Math.sin(player.yaw)); }
 function floorAt(x, z) { return env.heightAt ? env.heightAt(x, z) + env.minY : env.minY; }
 function placeAhead(v, near, far, spread, ring) {
@@ -1168,8 +1209,8 @@ function comboHit() { comboN = time - comboT <= COMBO_GAP ? comboN + 1 : 1; comb
 function comboTick() { if (comboMul > 1 && time - comboT > COMBO_GAP) { comboN = 0; comboMul = 1; comboHud(); } }
 function comboHud() { const el = $('combo'); if (!el) return; el.textContent = comboMul > 1 ? T[lang].combo + ' x' + comboMul : ''; el.classList.toggle('on', comboMul > 1); }
 function resetCombo() { comboN = 0; comboT = -99; comboMul = 1; comboHud(); }
-/* rare golden comet: crosses near the player for 10 s; catching it gives +200. Gold only (#f5d27a / #d4af37) — no red. */
-const COMET_PTS = 200, COMET_LIFE = 10;
+/* rare golden comet: stays up for 30 s so a far spawn can still be caught. Gold only (#f5d27a / #d4af37) — no red. */
+const COMET_PTS = 200, COMET_LIFE = 30;
 const COMET_GOLD = 0xd4af37, COMET_GOLD_LT = 0xf5d27a;
 const comet = new THREE.Group();
 comet.add(new THREE.Mesh(new THREE.SphereGeometry(1.3, 16, 12), new THREE.MeshBasicMaterial({ color: COMET_GOLD_LT })));
@@ -1580,7 +1621,7 @@ function updateRibbon(t, dt, playing) {
 }
 
 /* ---- land & walk ---- */
-const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1, antarctica: 1, lemuria: 1, atlantisrise: 1, area51: 1 }; // worlds with a surface; in open space you stop and hover
+const GROUND = { snow: 1, atlantis: 1, alien: 1, clouds: 1, dimension: 1, antarctica: 1, lemuria: 1, atlantisrise: 1, area51: 1, nyc: 1 }; // worlds with a surface; in open space you stop and hover
 function toggleLand() {
   const L = T[lang];
   if (player.mode === 'fly') {
@@ -1635,7 +1676,7 @@ function applyLighting() {
 
 /* ---- music: soft generated tunes per world (Web Audio, no files), off by default ---- */
 let musicOn = false, actx = null, mOut = null, mTimer = 0, mNext = 0, mStep = 0;
-const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68], antarctica: [60, 62, 67, 69, 72], lemuria: [60, 64, 67, 71, 74], atlantisrise: [55, 60, 64, 67, 72], area51: [58, 62, 65, 69, 70], hollow: [60, 64, 67, 72, 76] };
+const SCALES = { snow: [60, 62, 64, 67, 69], solar: [62, 64, 66, 69, 71, 73], galaxy: [57, 60, 62, 64, 67], dimension: [64, 66, 67, 69, 71, 74], atlantis: [53, 57, 60, 64, 65], clouds: [67, 69, 71, 74, 76], alien: [58, 60, 62, 64, 66, 68], antarctica: [60, 62, 67, 69, 72], lemuria: [60, 64, 67, 71, 74], atlantisrise: [55, 60, 64, 67, 72], area51: [58, 62, 65, 69, 70], hollow: [60, 64, 67, 72, 76], nyc: [60, 62, 64, 67, 70] };
 const hz = (m) => 440 * Math.pow(2, (m - 69) / 12);
 function tone(f, t0, dur, vol, type) {
   const o = actx.createOscillator(), g = actx.createGain();
@@ -1741,7 +1782,7 @@ function setEnv(i) {
   sunLight.position.set(...env.sun[2]);
   applyLighting();
   sparkMat.color.set(env.spark); sparkGlow.material.color.set(env.spark);
-  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
+  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.mode = 'fly';
   resetCollectibles(); if (buddy) buildBuddy(); clearRibbon();
   snapCam = true;
   syncSelects();
@@ -1811,7 +1852,7 @@ function updatePlayer(dt) {
   const k = (a, b) => (keys[a] || keys[b] ? 1 : 0);
   const turn = clamp(input.jx + input.mx + k('ArrowRight', 'KeyD') - k('ArrowLeft', 'KeyA'), -1, 1);
   const climb = clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS') + (input.up || keys.Space ? 1 : 0) - (input.down || keys.ShiftLeft || keys.ShiftRight ? 1 : 0), -1, 1);
-  player.yawRate += (-turn * 2.2 - player.yawRate) * damp(8, dt); // angular rate, not tightened or slowed by speed
+  player.yawRate += (-turn * 1.5 - player.yawRate) * damp(5, dt);
   player.yaw += player.yawRate * dt;
   if (Math.hypot(player.pos.x, player.pos.z) > env.R) {
     let diff = Math.atan2(player.pos.x, player.pos.z) - player.yaw;
@@ -1822,7 +1863,6 @@ function updatePlayer(dt) {
   const fl = floorAt(player.pos.x, player.pos.z);
   if (player.mode === 'walk' || player.mode === 'landing') {
     // on foot: up/down on the joystick walks forward/back, left/right turns
-    player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
     const walk = player.mode === 'walk' ? clamp(-input.jy - input.my + k('ArrowUp', 'KeyW') - k('ArrowDown', 'KeyS'), -1, 1) : 0;
     player.speed += ((player.mode === 'landing' ? 5 : walk * 6) - player.speed) * damp(4, dt);
     player.pos.addScaledVector(fwd, player.speed * dt);
@@ -1832,19 +1872,9 @@ function updatePlayer(dt) {
   } else {
     const hov = player.mode === 'hover';
     player.speed += ((hov ? 0 : SPEEDS[player.level] * speedMul * (powerOn('boost') ? 1.9 : 1)) - player.speed) * damp(powerOn('boost') || hov ? 4 : 2, dt);
-    if (hov) {
-      player.pitch += (0 - player.pitch) * damp(4, dt); player.pitchRate = 0;
-      player.vy += (climb * 8 - player.vy) * damp(4, dt);
-      player.pos.y += player.vy * dt;
-    } else {
-      // pitch the whole velocity, so climb stays steep even when speed is high
-      player.pitchRate += (climb * 2.6 - player.pitchRate) * damp(9, dt);
-      player.pitch = clamp(player.pitch + player.pitchRate * dt, -PITCH_MAX, PITCH_MAX);
-      const cp = Math.cos(player.pitch), sp = Math.sin(player.pitch);
-      flyDir.set(fwd.x * cp, sp, fwd.z * cp);
-      player.pos.addScaledVector(flyDir, player.speed * dt);
-      player.vy = player.speed * sp;
-    }
+    player.vy += (climb * (hov ? 6 : 11) - player.vy) * damp(4, dt);
+    player.pos.addScaledVector(fwd, player.speed * dt);
+    player.pos.y += player.vy * dt;
     if (player.pos.y < fl + 1.2) { player.pos.y += (fl + 1.2 - player.pos.y) * damp(8, dt); if (player.vy < 0) player.vy *= 0.5; }
   }
   if (player.pos.y > env.maxY) { player.pos.y = env.maxY; player.vy = Math.min(player.vy, 0); }
@@ -1861,7 +1891,7 @@ function placeModel(t, playing) {
   m.rotation.order = 'YXZ';
   m.rotation.y = player.yaw;
   const walking = player.mode === 'walk';
-  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? player.pitch : Math.sin(t * 0.8) * 0.05;
+  m.rotation.x = walking ? (m.userData.stand ? Math.PI / 2 * 0.92 : 0) : playing ? clamp(player.vy / 11, -1, 1) * 0.45 : Math.sin(t * 0.8) * 0.05;
   m.rotation.z = playing && !walking ? clamp(player.yawRate * 0.45, -0.6, 0.6) : 0;
   const rl = pw[TI.roll].left; // roll: one full barrel roll, eased
   if (rl > 0 && !walking) { const q = 1 - rl / TOOLS[TI.roll].dur; m.rotation.z += Math.PI * 2 * (q * q * (3 - 2 * q)); }
@@ -1871,14 +1901,6 @@ function placeModel(t, playing) {
 /* ================= camera ================= */
 let snapCam = true;
 const camPos = new THREE.Vector3(), camLook = new THREE.Vector3(), UP = new THREE.Vector3(0, 1, 0), want = new THREE.Vector3(), look = new THREE.Vector3(), fpE = new THREE.Euler(), sideOff = new THREE.Vector3(), sideSm = new THREE.Vector3();
-const camOff = new THREE.Vector3(), lookOff = new THREE.Vector3();
-function chaseCam(off, lookO, dt, rate) {
-  if (snapCam) { camOff.copy(off); lookOff.copy(lookO); snapCam = false; }
-  else { const k = damp(rate, dt); camOff.lerp(off, k); lookOff.lerp(lookO, k); }
-  camera.position.copy(player.pos).add(camOff);
-  camLook.copy(player.pos).add(lookOff);
-  camera.lookAt(camLook); sky.position.copy(camera.position);
-}
 function updateCamera(t, dt, playing) {
   const m = player.model, u = m.userData, cam = CAM_IDS[camIdx];
   heading();
@@ -1895,14 +1917,13 @@ function updateCamera(t, dt, playing) {
     want.set(player.pos.x + Math.sin(a) * r, player.pos.y + r * 0.22, player.pos.z + Math.cos(a) * r);
     look.copy(player.pos); look.y -= 1.0 * u.size;
   } else if (player.mode === 'walk' && cam !== 'first') {
-    want.copy(fwd).multiplyScalar(-u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
-    look.copy(fwd).multiplyScalar(2.5).add(tmp.set(0, u.size * 0.5, 0));
-    chaseCam(want, look, dt, 6); return;
+    // on foot: a calm camera a little behind and above the head, never under the ground
+    want.copy(player.pos).addScaledVector(fwd, -u.camDist * 0.95).add(tmp.set(0, u.size * 1.7, 0));
+    want.y = Math.max(want.y, floorAt(want.x, want.z) + 1.2);
+    look.copy(player.pos).addScaledVector(fwd, 2.5).add(tmp.set(0, u.size * 0.5, 0));
   } else if (cam === 'third') {
-    // fixed chase distance — offset follows the player, so speed cannot pull the camera back
-    want.set(-fwd.x * u.camDist, u.camDist * 0.32, -fwd.z * u.camDist);
-    look.set(fwd.x * 2.2, 0.35, fwd.z * 2.2);
-    chaseCam(want, look, dt, 8); return;
+    want.copy(player.pos).addScaledVector(fwd, -u.camDist).add(tmp.set(0, u.camDist * 0.35 - player.vy * 0.06, 0));
+    look.copy(player.pos).addScaledVector(fwd, 4).add(tmp.set(0, 0.6, 0));
   } else if (cam === 'first') {
     m.visible = false;
     m.updateMatrixWorld(); want.copy(u.eye).applyMatrix4(m.matrixWorld);
@@ -1992,7 +2013,7 @@ let resumable = false;
 function start() {
   stats.newGame(); $('pausePanel') && $('pausePanel').classList.add('hidden');
   state = 'play'; score = 0; $('score').textContent = String(stats.get().total);
-  player.pos.copy(env.start); player.yaw = 0; player.pitch = 0; player.pitchRate = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
+  player.pos.copy(env.start); player.yaw = 0; player.vy = 0; player.yawRate = 0; player.speed = SPEEDS[player.level] * speedMul;
   resetCollectibles(); resetPowers(); resetCombo(); resetComet(); resetWhite(); clearRibbon(); showHud(); resumable = true; if (buddyOn) buildBuddy();
   stats.daily();
   if (!isTouch) { $('keysHint').classList.remove('hidden'); setTimeout(() => $('keysHint').classList.add('hidden'), 9000); }
@@ -2330,7 +2351,7 @@ function frame() {
   stars.position.copy(camera.position); moon.position.copy(camera.position).add(tmp.set(-600, 520, -800));
   if (state !== 'photo') placeModel(time, playing);
   if (state !== 'photo') { updateCollectibles(wtime, wdt, playing); updateFx(time, dt, playing); updateBuddy(time, dt, playing); }
-  if (Math.abs(camera.fov - baseFov) > 0.05) { camera.fov += (baseFov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
+  const fov = baseFov + (playing && powerOn('boost') ? 10 : 0); if (Math.abs(camera.fov - fov) > 0.05) { camera.fov += (fov - camera.fov) * damp(4, dt); camera.updateProjectionMatrix(); }
   if (playing && (time * 10 | 0) !== hudTick) { hudTick = time * 10 | 0; updatePowerBtns(); }
   updateCamera(time, dt, playing);
   if (state !== 'photo') updateRibbon(time, dt, playing);
@@ -2351,5 +2372,5 @@ window.__fly = {
   setExhaust(v) { applyExhaustStyle(v, true); },
   get exhaust() { return exhaustStyle; },
   get ribbon() { return { on: ribbonMesh.visible, n: rCount, fade: +ribbonFade.toFixed(2) }; },
-  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, sats: env && env.g ? (env.g.userData.flySats || 0) : 0, stations: env && env.g ? (env.g.userData.flyStations || 0) : 0, pitch: Math.round(player.pitch * 180 / Math.PI), camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
+  get info() { return { state, score, combo: comboMul, comet: comet.visible, streak: stats.get().streak, env: ENV_IDS[envIdx], char: charIdx, cam: CAM_IDS[camIdx], exhaust: exhaustStyle, sats: env && env.g ? (env.g.userData.flySats || 0) : 0, stations: env && env.g ? (env.g.userData.flyStations || 0) : 0, pitch: player.model ? Math.round(player.model.rotation.x * 180 / Math.PI) : 0, camDist: Math.round(camera.position.distanceTo(player.pos) * 10) / 10, pos: player.pos.toArray().map((v) => Math.round(v)), calls: renderer.info.render.calls, tris: renderer.info.render.triangles }; }
 };
