@@ -1898,22 +1898,35 @@ const INST = {
   }
 };
 const isIOS = () => { const ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
-function instHint() { const k = isIOS() ? 'ios' : /Android/i.test(navigator.userAgent || '') ? 'android' : 'desktop'; return INST[lang][k]; }
+const isAndroid = () => /Android/i.test(navigator.userAgent || '');
+const isHandheld = () => isIOS() || isAndroid() || (isTouch && matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) <= 1024);
+function instHint() { const k = isIOS() ? 'ios' : isAndroid() || isHandheld() ? 'android' : 'desktop'; return INST[lang][k]; }
 let instDeferred = window.__flyBip || null;
 const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: minimal-ui)').matches || navigator.standalone === true);
 function syncInstall() {
-  if (standalone()) { $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); }
+  const btn = $('installBtn'), hint = $('installHint');
+  if (!btn) return;
+  if (standalone()) { btn.classList.add('hidden'); hint.classList.add('hidden'); return; }
+  const offered = !!(instDeferred || window.__flyBip);
+  if (!isHandheld() && !offered) { btn.classList.add('hidden'); hint.classList.add('hidden'); return; }
+  btn.classList.remove('hidden');
 }
 syncInstall();
-if (matchMedia) { const mq = matchMedia('(display-mode: standalone)'); const on = () => syncInstall(); if (mq.addEventListener) mq.addEventListener('change', on); else if (mq.addListener) mq.addListener(on); }
-addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; window.__flyBip = e; });
+['(display-mode: standalone)', '(display-mode: fullscreen)', '(display-mode: minimal-ui)'].forEach((q) => {
+  const mq = matchMedia(q);
+  const on = () => syncInstall();
+  if (mq.addEventListener) mq.addEventListener('change', on);
+  else if (mq.addListener) mq.addListener(on);
+});
+addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; window.__flyBip = e; syncInstall(); });
 addEventListener('appinstalled', () => { instDeferred = null; window.__flyBip = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
 $('installBtn').addEventListener('click', () => {
   const d = instDeferred || window.__flyBip;
-  if (d) {
+  if (d && typeof d.prompt === 'function') {
     instDeferred = null; window.__flyBip = null;
-    try { const p = d.prompt(); if (p && p.then) p.then(() => {}, () => {}); return; } catch (e) {}
+    try { const p = d.prompt(); if (p && p.then) p.then(() => {}, () => {}); syncInstall(); return; } catch (e) {}
   }
+  if (!isHandheld()) { syncInstall(); return; }
   const h = $('installHint'); h.innerHTML = instHint(); h.classList.remove('hidden');
 });
 const FLY_VER = 'sandbox';

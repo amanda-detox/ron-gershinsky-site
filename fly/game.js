@@ -1562,22 +1562,51 @@ document.addEventListener('visibilitychange', () => {
   if (actx && musicOn) { if (document.hidden) actx.suspend(); else actx.resume(); }
 });
 
-/* install (same pattern as the other apps: native prompt, otherwise short instructions) */
+/* Install sits in the menu. A phone always shows it (unless already installed).
+   A computer shows it only after Chrome fires beforeinstallprompt. */
 const INST = {
-  he: { android: '<ol><li>פותחים את תפריט הדפדפן: <b>⋮</b> למעלה ב־Chrome, או <b>☰</b> למטה ב־Samsung Internet.</li><li>בוחרים <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.</li></ol>', ios: '<ol><li>ב־Safari לוחצים על כפתור השיתוף <b>(□↑)</b>.</li><li>בוחרים <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>', desktop: '<ol><li>ב־Chrome או Edge: סמל ההתקנה בצד שורת הכתובת, או תפריט <b>⋮</b> ← <b>„התקנה”</b>.</li><li>בטלפון: פותחים את הכתובת בדפדפן ובוחרים <b>„הוספה למסך הבית”</b>.</li></ol>' },
-  en: { android: '<ol><li>Open the browser menu: <b>⋮</b> at the top in Chrome, or <b>☰</b> at the bottom in Samsung Internet.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.</li></ol>', ios: '<ol><li>In Safari tap the Share button <b>(□↑)</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>', desktop: '<ol><li>In Chrome or Edge: click the install icon at the end of the address bar, or menu <b>⋮</b> → <b>“Install”</b>.</li><li>On a phone: open this address in the browser and choose <b>“Add to Home screen”</b>.</li></ol>' }
+  he: {
+    android: '<ol><li>לחצו על <b>⋮</b> למעלה ב־Chrome.</li><li>בחרו <b>„התקנת אפליקציה”</b> או <b>„הוספה למסך הבית”</b>.</li></ol>',
+    ios: '<ol><li>ב־Safari לחצו על שיתוף <b>□↑</b>.</li><li>בחרו <b>„הוסף למסך הבית”</b> ואז <b>„הוסף”</b>.</li></ol>'
+  },
+  en: {
+    android: '<ol><li>Tap <b>⋮</b> at the top of Chrome.</li><li>Choose <b>“Install app”</b> or <b>“Add to Home screen”</b>.</li></ol>',
+    ios: '<ol><li>In Safari tap Share <b>□↑</b>.</li><li>Choose <b>“Add to Home Screen”</b>, then <b>“Add”</b>.</li></ol>'
+  }
 };
-function instHint() { const ua = navigator.userAgent; const k = /iPhone|iPad|iPod/.test(ua) ? 'ios' : /Android/i.test(ua) ? 'android' : 'desktop'; return INST[lang][k]; }
-let instDeferred = null;
-const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || navigator.standalone === true);
-if (standalone()) $('installBtn').classList.add('hidden');
-addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; });
-addEventListener('appinstalled', () => { instDeferred = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
-$('installBtn').addEventListener('click', () => {
-  if (instDeferred) { const d = instDeferred; instDeferred = null; try { d.prompt(); return; } catch (e) {} }
-  const h = $('installHint'); h.innerHTML = instHint(); h.classList.toggle('hidden');
+const isIOS = () => { const ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
+const isAndroid = () => /Android/i.test(navigator.userAgent || '');
+const isHandheld = () => isIOS() || isAndroid() || (isTouch && matchMedia('(pointer: coarse)').matches && Math.min(screen.width, screen.height) <= 1024);
+function instHint() { return INST[lang][isIOS() ? 'ios' : 'android']; }
+let instDeferred = window.__flyBip || null;
+const standalone = () => (matchMedia('(display-mode: standalone)').matches || matchMedia('(display-mode: fullscreen)').matches || matchMedia('(display-mode: minimal-ui)').matches || navigator.standalone === true);
+function syncInstall() {
+  const btn = $('installBtn'), hint = $('installHint');
+  if (!btn) return;
+  if (standalone()) { btn.classList.add('hidden'); hint.classList.add('hidden'); return; }
+  const offered = !!(instDeferred || window.__flyBip);
+  if (!isHandheld() && !offered) { btn.classList.add('hidden'); hint.classList.add('hidden'); return; }
+  btn.classList.remove('hidden');
+}
+syncInstall();
+['(display-mode: standalone)', '(display-mode: fullscreen)', '(display-mode: minimal-ui)'].forEach((q) => {
+  const mq = matchMedia(q);
+  const on = () => syncInstall();
+  if (mq.addEventListener) mq.addEventListener('change', on);
+  else if (mq.addListener) mq.addListener(on);
 });
-if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
+addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); instDeferred = e; window.__flyBip = e; syncInstall(); });
+addEventListener('appinstalled', () => { instDeferred = null; window.__flyBip = null; $('installBtn').classList.add('hidden'); $('installHint').classList.add('hidden'); });
+$('installBtn').addEventListener('click', () => {
+  const d = instDeferred || window.__flyBip;
+  if (d && typeof d.prompt === 'function') {
+    instDeferred = null; window.__flyBip = null;
+    try { const p = d.prompt(); if (p && p.then) p.then(() => {}, () => {}); syncInstall(); return; } catch (e) {}
+  }
+  if (!isHandheld()) { syncInstall(); return; }
+  const h = $('installHint'); h.innerHTML = instHint(); h.classList.remove('hidden');
+});
+if ('serviceWorker' in navigator && location.protocol !== 'file:' && !window.__flySWReg) navigator.serviceWorker.register('sw.js', { scope: './' }).catch(() => {});
 
 /* ================= loop ================= */
 let baseFov = 62, wtime = 0, hudTick = -1;
