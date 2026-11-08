@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>Musicify</title>
+<style>
+  /* Site night background (--bg2). No extra chrome. */
+  html, body { margin: 0; background: #06112b; color-scheme: dark; }
+  .player { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+</style>
+</head>
+<body>
+<iframe class="player" src="https://www.youtube.com/embed/Tz7JLqVacec" title="מיוזיפיי" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<script>
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(function () {});
+</script>
+</body>
+</html>
