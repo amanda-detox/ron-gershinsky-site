@@ -45,6 +45,29 @@ var oddNet = SS.applyFailure({ failN: 1 }, { status: 0, type: "network" }, true)
 assert(oddNet.syncErr === "server" && oddNet.offline === false, "a failed request while online is a sync error after it repeats");
 
 var blockedSave = SS.applySuccess(null, { blocked: true, sentSame: false });
+function row(id, text, at, deleted) {
+  var x = { id: id, text: text, at: at, _f: { text: at, "~": at } };
+  if (deleted) x.deleted = true;
+  return x;
+}
+var cloud6 = { a: row("a", "A", 1), b: row("b", "B", 1), c: row("c", "C", 1), d: row("d", "D", 1), e: row("e", "E", 1), f: row("f", "F", 1) };
+var phoneLocal = {
+  a: row("a", "A", 5, true), b: row("b", "B", 5, true), c: row("c", "C", 5, true), d: row("d", "D", 5, true),
+  e: row("e", "E edited", 9), n: row("n", "new on phone", 8)
+};
+var restored = SS.restoreLive(phoneLocal, cloud6);
+assert(restored.a && !restored.a.deleted && restored.a.text === "A" && restored.a.at > 5, "a cloud item deleted on the phone comes back newer than the tombstone");
+assert(restored.e && restored.e.text === "E edited" && restored.e.at === 9, "a local edit that was not deleted stays");
+assert(restored.n && restored.n.text === "new on phone", "a local addition stays");
+assert(restored.f && restored.f.text === "F", "a cloud item missing locally is kept");
+assert(restored.a._f && restored.a._f["~"] === restored.a.at, "a restored item stamps its field clock so the tombstone does not win the next merge");
+assert(SS.liveCount(restored) === 7, "restore keeps the new item and the six cloud items");
+assert(SS.tooManyGone(restored, cloud6, 1000, 0) === false, "after restore the upload is no longer blocked");
+var after = SS.applySuccess(null, { blocked: false, sentSame: true });
+assert(after.clearPending && !after.holdBlocked, "a successful restore upload clears pending so the status is not saving");
+assert(SS.ASK_Q === "זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?", "the popup asks in Ron's exact words");
+assert(SS.ASK_YES === "כן, העלי לענן" && SS.ASK_NO === "לא, שחזרי מחיקות", "the popup buttons use the exact wording");
+
 assert(blockedSave.holdBlocked && !blockedSave.clearPending && !blockedSave.again, "a blocked write keeps pending and does not immediately retry");
 var doneSave = SS.applySuccess(null, { blocked: false, sentSame: true });
 assert(doneSave.clearPending && !doneSave.holdBlocked, "a write that landed clears pending");
@@ -68,15 +91,19 @@ assert(liveAccount.indexOf("AbortController") === -1 && liveAccount.indexOf("fet
 assert(livePublic.indexOf("fetchWithTimeout") === -1, "live public store is unchanged");
 assert(liveStore.indexOf("tooManyGone") === -1, "my/store.js is not the private Listify engine");
 assert(liveIdeas.indexOf('APP = "myideas"') !== -1 && liveIdeas.indexOf("sbxmyideas") === -1, "live private Listify still uses myideas");
-assert(liveIdeas.indexOf("holdBlocked") !== -1 && liveIdeas.indexOf("confirmBlocked") !== -1, "live private Listify can confirm a blocked deletion");
-assert(liveIdeas.indexOf('t("blockedAct")') !== -1, "the confirm button uses the existing blocked-deletion label");
-assert(liveIdeas.indexOf("כן, העלי לענן") === -1 && liveIdeas.indexOf("לא, שחזרי מחיקות") === -1, "live private Listify has no restore/upload popup");
-assert(liveHtml.indexOf("כן, העלי לענן") === -1 && liveHtml.indexOf("לא, שחזרי מחיקות") === -1, "the live page has no restore/upload popup");
-assert(liveHtml.indexOf('blockedAct: "לאשר את המחיקה ולשמור"') !== -1, "the Hebrew confirm label is on the live page");
-assert(liveHtml.indexOf("rg-sync-status.js?v=1") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=1") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
+assert(liveIdeas.indexOf("holdBlocked") !== -1 && liveIdeas.indexOf("restoreBlocked") !== -1 && liveIdeas.indexOf("openDeletion") !== -1, "live private Listify asks before uploading or restoring a large deletion");
+assert(liveIdeas.indexOf('t("blockedAct")') === -1, "the single status-line confirm button is no longer the blocked action");
+assert(liveIdeas.indexOf("לחתוך") === -1, "live private Listify does not use a violent Hebrew word");
+var statusSrc = fs.readFileSync(path.join(__dirname, "rg-sync-status.js"), "utf8");
+assert(statusSrc.indexOf("זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?") !== -1, "the helper asks in Ron's exact words");
+assert(statusSrc.indexOf("כן, העלי לענן") !== -1 && statusSrc.indexOf("לא, שחזרי מחיקות") !== -1, "the helper buttons use the exact wording");
+var css = statusSrc.slice(statusSrc.indexOf(".rg-delask-back"), statusSrc.indexOf("@media"));
+assert(statusSrc.indexOf("לחתוך") === -1 && css.indexOf("red") === -1 && css.indexOf("orange") === -1 && css.indexOf("#") === -1, "the popup adds no violent wording and no red, orange, or extra colors");
+assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap targets");
+assert(liveHtml.indexOf("rg-sync-status.js?v=2") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=2") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1, "live private Listify does not load sandbox scripts");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v51"') !== -1, "the private Listify service worker cache was bumped");
-assert(liveSw.indexOf("rg-sync-status.js?v=1") !== -1 && liveSw.indexOf("app.js?v=41") !== -1, "the service worker precaches the new helper and app");
+assert(liveSw.indexOf('CACHE = "rg-myideas-v52"') !== -1, "the private Listify service worker cache was bumped");
+assert(liveSw.indexOf("rg-sync-status.js?v=2") !== -1 && liveSw.indexOf("app.js?v=42") !== -1, "the service worker precaches the new helper and app");
 
 function never() { return new Promise(function () {}); }
 SS.fetchWithTimeout(never, "/x", {}, 30).then(function () {

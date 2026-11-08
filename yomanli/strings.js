@@ -2,7 +2,7 @@
 window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
  "he": {
-  "doc": "יומןלי",
+  "doc": "Journalify",
   "title": "יומןלי",
   "sub": "יומן אישי: פסקה ונושא. בלי חשבון נשמר במכשיר, עם חשבון רק אצלך.",
   "localOnly": "נשמר במכשיר הזה בלבד, בלי חשבון",
@@ -45,7 +45,7 @@ window.RGMY_STRINGS = {
   "del": "מחיקה"
  },
  "en": {
-  "doc": "Yomanli",
+  "doc": "Journalify",
   "title": "Yomanli",
   "sub": "A personal journal. On this device until you sign in, then only in your account.",
   "localOnly": "Saved on this device only, until you sign in",
