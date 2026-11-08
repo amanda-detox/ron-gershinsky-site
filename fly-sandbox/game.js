@@ -496,6 +496,83 @@ const CHAR_BUILD = [
   cat, robot, astronaut, caped, wizard, skyWhale, griffin
 ];
 
+/* Ambient ships. Nose is -Z. Palette stays blue, gold, and pale metal. */
+const SHIP_KINDS = ['saucer', 'needle', 'shuttle', 'ring', 'freighter', 'arrow'];
+function makeShip(kind, glowHex) {
+  const g = new THREE.Group();
+  const pale = M(0xd7e2f2, { metalness: 0.48, roughness: 0.32, flatShading: false });
+  const navy = M(0x24356e, { metalness: 0.52, roughness: 0.36, flatShading: false });
+  const gold = M(0xf3cf6b, { metalness: 0.55, roughness: 0.28, emissive: 0xc9a84a, emissiveIntensity: 0.28, flatShading: false });
+  const glass = new THREE.MeshStandardMaterial({ color: 0xbfe8ff, emissive: 0x2a8fbf, emissiveIntensity: 0.5, transparent: true, opacity: 0.85, roughness: 0.12, metalness: 0.25, flatShading: false });
+  const engine = glowSprite(glowHex, 2.6, 0.8);
+  if (kind === 'saucer') {
+    const hull = ball(2.6, pale, 1); hull.scale.set(1.7, 0.32, 1.7); g.add(hull);
+    const cab = new THREE.Mesh(new THREE.SphereGeometry(1.15, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2), glass); cab.position.y = 0.45; g.add(cab);
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(3.6, 0.22, 4, 22), new THREE.MeshBasicMaterial({ color: glowHex })); rim.rotation.x = Math.PI / 2; g.add(rim);
+    engine.position.y = -0.9; engine.scale.setScalar(4.5); g.add(engine);
+  } else if (kind === 'needle') {
+    const body = cyl(0.28, 0.72, 6.4, pale, 8); body.rotation.x = Math.PI / 2; g.add(body);
+    const nose = cone(0.28, 2.1, gold, 8); nose.rotation.x = -Math.PI / 2; nose.position.z = -4.1; g.add(nose);
+    const finL = box(2.2, 0.08, 1.15, navy); finL.position.set(-1.3, 0, 1.5); g.add(finL);
+    const finR = box(2.2, 0.08, 1.15, navy); finR.position.set(1.3, 0, 1.5); g.add(finR);
+    const finT = box(0.08, 1.35, 1.05, navy); finT.position.set(0, 0.75, 1.7); g.add(finT);
+    engine.position.z = 3.5; g.add(engine);
+  } else if (kind === 'shuttle') {
+    const body = box(1.15, 0.7, 4.4, pale); g.add(body);
+    const wingL = box(2.6, 0.1, 1.8, navy); wingL.position.set(-1.7, -0.05, 0.3); wingL.rotation.y = 0.35; g.add(wingL);
+    const wingR = box(2.6, 0.1, 1.8, navy); wingR.position.set(1.7, -0.05, 0.3); wingR.rotation.y = -0.35; g.add(wingR);
+    const cab = new THREE.Mesh(new THREE.SphereGeometry(0.55, 10, 8), glass); cab.position.set(0, 0.35, -1.5); g.add(cab);
+    const stripe = box(1.2, 0.08, 3.2, gold); stripe.position.y = 0.38; g.add(stripe);
+    engine.position.set(-0.4, 0, 2.4); g.add(engine);
+    const engine2 = glowSprite(glowHex, 2.2, 0.7); engine2.position.set(0.4, 0, 2.4); g.add(engine2);
+  } else if (kind === 'ring') {
+    const pod = ball(0.85, pale, 1); pod.scale.set(1, 0.75, 1.45); g.add(pod);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(2.15, 0.18, 6, 24), navy); ring.rotation.y = Math.PI / 2; g.add(ring);
+    const band = new THREE.Mesh(new THREE.TorusGeometry(2.15, 0.06, 4, 24), gold); band.rotation.y = Math.PI / 2; g.add(band);
+    const cab = new THREE.Mesh(new THREE.SphereGeometry(0.42, 10, 8), glass); cab.position.z = -0.7; g.add(cab);
+    engine.position.z = 1.7; g.add(engine);
+  } else if (kind === 'freighter') {
+    const body = box(2.1, 1.25, 6.2, navy); g.add(body);
+    const podL = cyl(0.42, 0.42, 3.4, pale, 8); podL.rotation.x = Math.PI / 2; podL.position.set(-1.45, -0.15, 0.4); g.add(podL);
+    const podR = cyl(0.42, 0.42, 3.4, pale, 8); podR.rotation.x = Math.PI / 2; podR.position.set(1.45, -0.15, 0.4); g.add(podR);
+    const stripe = box(2.2, 0.16, 4.4, gold); stripe.position.y = 0.68; g.add(stripe);
+    const win = box(1.5, 0.28, 0.08, glass); win.position.set(0, 0.2, -3.12); g.add(win);
+    engine.position.set(-1.45, -0.15, 2.3); engine.scale.setScalar(3.4); g.add(engine);
+    const engine2 = glowSprite(0x9eb6ff, 2.4, 0.7); engine2.position.set(1.45, -0.15, 2.3); g.add(engine2);
+  } else {
+    const wingL = box(2.8, 0.1, 2.6, pale); wingL.position.set(-1.35, 0, 0.15); wingL.rotation.y = 0.55; g.add(wingL);
+    const wingR = box(2.8, 0.1, 2.6, pale); wingR.position.set(1.35, 0, 0.15); wingR.rotation.y = -0.55; g.add(wingR);
+    const spine = box(0.45, 0.38, 3.6, navy); g.add(spine);
+    const nose = cone(0.28, 1.4, gold, 6); nose.rotation.x = -Math.PI / 2; nose.position.z = -2.3; g.add(nose);
+    engine.position.z = 1.9; g.add(engine);
+  }
+  g.userData.ship = kind;
+  return g;
+}
+function shipTrail(color) {
+  const tg = new THREE.BufferGeometry();
+  tg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(28 * 3), 3));
+  const trail = new THREE.Line(tg, new THREE.LineBasicMaterial({ color, transparent: true, opacity: 0.72, blending: THREE.AdditiveBlending, depthWrite: false }));
+  trail.frustumCulled = false;
+  return trail;
+}
+function steerShip(s, t, dt) {
+  const u = s.userData;
+  u.a += u.w * dt;
+  const y = u.h + Math.sin(t * (u.bob || 0.5) + u.r) * (u.wob || 4) * 0.25;
+  s.position.set(u.cx + Math.cos(u.a) * u.r, y, u.cz + Math.sin(u.a) * u.r);
+  if (u.r > 2) s.rotation.y = u.w >= 0 ? u.a + Math.PI : u.a;
+  else s.rotation.y += dt * 0.35;
+  const trail = u.trail;
+  if (!trail) return;
+  const arr = trail.geometry.attributes.position.array;
+  if (!u.init) { for (let i = 0; i < arr.length; i += 3) { arr[i] = s.position.x; arr[i + 1] = s.position.y; arr[i + 2] = s.position.z; } u.init = true; }
+  u.tick = (u.tick || 0) + dt;
+  if (u.tick > 0.06) { u.tick = 0; arr.copyWithin(3, 0, arr.length - 3); }
+  arr[0] = s.position.x; arr[1] = s.position.y; arr[2] = s.position.z;
+  trail.geometry.attributes.position.needsUpdate = true;
+}
+
 /* ================= environments ================= */
 function points(n, fill, size, o = {}) {
   const pos = new Float32Array(n * 3), col = o.colors ? new Float32Array(n * 3) : null;
@@ -731,6 +808,15 @@ const ENVS = {
     addStation(g, 0, 166, -1.462, 0, 0.004, 1.25, 26);
     g.userData.flySats = satCount;
     g.userData.flyStations = stationCount;
+    const cruisers = [];
+    const cruiseGlow = [0x7ee8ff, 0xf3cf6b, 0xb7c6ff, 0x9fd4ff, 0xe7d6ff, 0x7ee8ff];
+    for (let i = 0; i < SHIP_KINDS.length; i++) {
+      const s = makeShip(SHIP_KINDS[i], cruiseGlow[i]);
+      s.scale.setScalar([0.9, 1.05, 0.95, 1.1, 1.3, 0.85][i]);
+      const trail = shipTrail(cruiseGlow[i]);
+      s.userData = { r: [88, 112, 146, 188, 230, 275][i], h: [20, 42, 16, 34, 26, 48][i], w: i % 2 ? 0.07 : -0.055, a: i * 1.05 + 0.4, wob: 10, bob: 0.45, cx: 0, cz: 0, trail, init: false, tick: 0 };
+      g.add(s, trail); cruisers.push(s);
+    }
     /* put the earth near the start so there is something to see right away */
     planets[2][0].rotation.y = -Math.PI / 2 + 0.25;
     /* black holes: fly into one for bonus points (+50 and a swirl) */
@@ -771,6 +857,7 @@ const ENVS = {
         for (const m of motes) m.rotation.y -= dt * 0.3;
         sun.rotation.y += dt * 0.05;
         glowM.emissiveIntensity = 1.15 + Math.sin(t * 2.2) * 0.4;
+        for (const s of cruisers) steerShip(s, t, dt);
       } };
   },
   galaxy() {
@@ -922,19 +1009,17 @@ const ENVS = {
     }
     const domeM = new THREE.MeshStandardMaterial({ color: 0x8fd8ff, transparent: true, opacity: 0.35, metalness: 0.2, roughness: 0.1 });
     for (let i = 0; i < 12; i++) { const dm = new THREE.Mesh(new THREE.SphereGeometry(rand(10, 22), 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), domeM); dm.position.set(rand(-450, 450), 0, rand(-450, 450)); g.add(dm); }
-    /* friendly hovering ships with light trails */
-    const ships = [], TR = 40;
-    const cabM = new THREE.MeshStandardMaterial({ color: 0x9fe8ff, emissive: 0x2a8fbf, emissiveIntensity: 0.6, transparent: true, opacity: 0.8 });
-    for (let i = 0; i < 16; i++) {
-      const s = new THREE.Group();
-      const hull = ball(3, pale, 1); hull.scale.set(1.6, 0.35, 1.6); s.add(hull);
-      const cab = new THREE.Mesh(new THREE.SphereGeometry(1.6, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2), cabM); cab.position.y = 0.5; s.add(cab);
-      const gm = pick(glows), rim = new THREE.Mesh(new THREE.TorusGeometry(4.6, 0.3, 4, 20), gm); rim.rotation.x = Math.PI / 2; s.add(rim);
-      const under = glowSprite(gm.color.getHex(), 9, 0.7); under.position.y = -1.2; s.add(under);
-      const tg = new THREE.BufferGeometry(); tg.setAttribute('position', new THREE.BufferAttribute(new Float32Array(TR * 3), 3));
-      const trail = new THREE.Line(tg, new THREE.LineBasicMaterial({ color: gm.color.getHex(), transparent: true, opacity: 0.75, blending: THREE.AdditiveBlending, depthWrite: false }));
-      trail.frustumCulled = false;
-      s.userData = { r: rand(50, 420), h: rand(25, 160), w: rand(0.05, 0.14) * (Math.random() < 0.5 ? -1 : 1), a: Math.random() * 6, wob: rand(5, 25), cx: rand(-80, 80), cz: rand(-80, 80), trail, init: false, tick: 0 };
+    /* a mixed fleet: each silhouette is a different ship, on the same wandering orbits */
+    const ships = [];
+    const shipGlow = [0x4fe3ff, 0xf3cf6b, 0xb7c6ff, 0x7ee8ff, 0xc9b6ff, 0x9fd4ff];
+    for (let i = 0; i < 12; i++) {
+      const kind = SHIP_KINDS[i % SHIP_KINDS.length];
+      const col = shipGlow[i % shipGlow.length];
+      const s = makeShip(kind, col);
+      s.scale.setScalar(kind === 'freighter' ? 1.35 : 1.05 + (i % 3) * 0.12);
+      const trail = shipTrail(col);
+      const near = i < SHIP_KINDS.length;
+      s.userData = { r: near ? 38 + (i % 2) * 6 : rand(140, 380), h: near ? 78 + (i % 3) * 6 : rand(40, 150), w: (0.03 + (i % 3) * 0.01) * (i % 2 ? -1 : 1), a: near ? -Math.PI / 2 + (i - 2.5) * 0.28 : Math.random() * 6, wob: near ? 3 : rand(6, 16), bob: 0.35, cx: near ? 0 : rand(-40, 40), cz: near ? 0 : rand(-40, 40), trail, init: false, tick: 0 };
       g.add(s, trail); ships.push(s);
     }
     const lanes = points(1400, (i) => { const a = (i / 1400) * Math.PI * 2 * 3, r = 140 + (i % 3) * 120; return [Math.cos(a) * r, 40 + (i % 3) * 35 + Math.sin(a * 4) * 6, Math.sin(a) * r]; }, 1.6, { colors: (i) => [0x4fe3ff, 0xff7ad9, 0xf3cf6b][i % 3], opacity: 0.85 });
@@ -946,16 +1031,7 @@ const ENVS = {
       start: new THREE.Vector3(0, 70, 0), minY: 4, maxY: 300, R: 520, spark: 0xffe7a3, towers,
       update(t, dt) {
         lanes.rotation.y += dt * 0.03;
-        for (const s of ships) {
-          const u = s.userData; u.a += u.w * dt;
-          s.position.set(u.cx + Math.cos(u.a) * u.r, u.h + Math.sin(t * 0.5 + u.r) * u.wob * 0.3, u.cz + Math.sin(u.a) * u.r);
-          s.rotation.y += dt * 1.5;
-          const arr = u.trail.geometry.attributes.position.array;
-          if (!u.init) { for (let i = 0; i < arr.length; i += 3) { arr[i] = s.position.x; arr[i + 1] = s.position.y; arr[i + 2] = s.position.z; } u.init = true; }
-          u.tick += dt; if (u.tick > 0.06) { u.tick = 0; arr.copyWithin(3, 0, arr.length - 3); }
-          arr[0] = s.position.x; arr[1] = s.position.y; arr[2] = s.position.z;
-          u.trail.geometry.attributes.position.needsUpdate = true;
-        }
+        for (const s of ships) steerShip(s, t, dt);
       } };
   },
   antarctica() {
@@ -1064,20 +1140,18 @@ const ENVS = {
     }
     g.add(hills);
     const ufos = [];
-    const hull = M(0xd5deee, { metalness: 0.55, roughness: 0.35 });
     for (let i = 0; i < 7; i++) {
-      const u = new THREE.Group();
-      const disc = cyl(5.5, 5.5, 0.7, hull, 16); u.add(disc);
-      const cab = new THREE.Mesh(new THREE.SphereGeometry(1.8, 12, 8, 0, Math.PI * 2, 0, Math.PI / 2), new THREE.MeshStandardMaterial({ color: 0x9fe8ff, emissive: 0x2a8fbf, emissiveIntensity: 0.5, transparent: true, opacity: 0.8 }));
-      cab.position.y = 0.35; u.add(cab);
-      const lamp = glowSprite(i % 2 ? 0xf3cf6b : 0x7ee8ff, 9, 0.65); lamp.position.y = -1.1; u.add(lamp);
-      u.userData = { a: Math.random() * 6, r: rand(30, 150), h: rand(16, 64), w: rand(0.12, 0.35) * (Math.random() < 0.5 ? -1 : 1), cx: rand(-30, 30), cz: rand(-20, 40) };
+      const kind = i === 0 ? 'saucer' : SHIP_KINDS[i % SHIP_KINDS.length];
+      const col = i % 2 ? 0xf3cf6b : 0x7ee8ff;
+      const u = makeShip(kind, col);
+      u.scale.setScalar(i === 0 ? 1.15 : rand(0.7, 1));
+      u.userData = { a: Math.random() * 6, r: rand(36, 140), h: rand(18, 58), w: rand(0.1, 0.28) * (Math.random() < 0.5 ? -1 : 1), wob: 8, bob: 0.7, cx: rand(-24, 24), cz: rand(-16, 36), trail: null, init: false, tick: 0, ship: kind };
       g.add(u); ufos.push(u);
     }
     ufos[0].userData.r = 0; ufos[0].userData.cx = 14; ufos[0].userData.cz = 6; ufos[0].userData.h = 20;
     return { g, sky: [0x8eb4d8, 0xf2e2b8, 0xc4a86a], fog: [0xe6d3a4, 120, 900], hemi: [0xfff4dd, 0xa89060, 1.3], sun: [0xfff6e0, 1.6, [0.5, 0.9, 0.2]],
       start: new THREE.Vector3(0, 18, 36), minY: 1, maxY: 220, R: 500, spark: 0xf3cf6b,
-      update(t, dt) { for (const u of ufos) { const d = u.userData; d.a += d.w * dt; u.position.set(d.cx + Math.cos(d.a) * d.r, d.h + Math.sin(t * 0.7 + d.r) * 2, d.cz + Math.sin(d.a) * d.r); u.rotation.y += dt * 0.4; } } };
+      update(t, dt) { for (const u of ufos) steerShip(u, t, dt); } };
   },
   hollow() {
     const g = new THREE.Group();
