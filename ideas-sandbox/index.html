@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>ליסטיפיי · Sandbox</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ליסטיפיי Sandbox">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<link rel="stylesheet" href="../my/common.css">
+<style>
+  .catbar { display: flex; align-items: center; gap: 8px; margin-top: 18px; }
+  .tabs { flex: 1; min-width: 0; display: flex; gap: 6px; padding: 4px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab { flex: 1 0 auto; min-height: 42px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font-size: 15.5px; font-weight: 700; white-space: nowrap; }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accentink); }
+  .tabs { touch-action: pan-x; -webkit-user-select: none; user-select: none; }
+  .tab { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: pan-x; transition: transform .12s, box-shadow .12s; }
+  .tab.lifted { transform: scale(1.08); box-shadow: 0 0 0 2px var(--accent), 0 6px 16px rgba(0,0,0,.35); position: relative; z-index: 2; }
+  .tabs.dragging { overflow-x: hidden; }
+  .tabs.dragging .tab:not(.lifted) { opacity: .75; }
+  .tabadd { flex: none; width: 46px; height: 46px; border: 1px dashed var(--accent); box-shadow: var(--shadow); border-radius: 999px; background: transparent; color: var(--accent); font-size: 20px; font-weight: 800; line-height: 1; }
+  html[data-theme="light"] .tabadd { color: var(--accent); }
+  .sum { margin: 14px 4px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 16px; font-weight: 800; color: var(--fg); }
+  .sum b { color: var(--accent); font-weight: 900; }
+  .sum .sel { color: var(--muted); font-weight: 700; }
+  .pin { flex: 0 0 64px; width: 64px; min-width: 64px; max-width: 64px; box-sizing: border-box; height: 38px; margin-inline-start: 4px; padding: 0 4px; border-radius: 10px; border: 1.5px solid var(--line2); background: var(--bg); color: var(--fg); font: 700 16px var(--sans); text-align: center; direction: ltr; outline: none; -webkit-user-select: text; user-select: text; touch-action: manipulation; }
+  .pin::placeholder { color: var(--faint); font-weight: 600; }
+  .pin:focus { border-color: var(--accent); }
+  .pin.bad, .e-price.bad { border-color: #e3bd5b; box-shadow: 0 0 0 2px rgba(227,189,91,.35); }
+  .done .pin { color: var(--faint); }
+  .addform .addextra input.addprice { flex: 0 0 84px; width: 84px; text-align: center; direction: ltr; }
+  .ed .e-price { height: 44px; padding: 0 12px; direction: ltr; text-align: start; }
+  .eic.eprice { font-weight: 900; color: var(--faint); }
+  .eic.eprice.on { color: var(--accent); }
+  .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
+  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
+  .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
+  .sheet .sform { display: flex; flex-direction: column; gap: 10px; }
+  .sheet .s-name { height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card2); color: var(--fg); font-size: 16.5px; outline: none; }
+  .sheet .s-name:focus { border-color: var(--accent); }
+  .sheet .row { display: flex; gap: 8px; }
+  .kinds { display: flex; flex-wrap: wrap; gap: 6px; }
+  .kind { min-height: 38px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--muted); font-size: 14px; font-weight: 700; }
+  .kind[aria-checked="true"] { border-color: var(--accent); background: var(--accent); color: var(--accentink); }
+  .mi { min-height: 48px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .mi.big { border-color: var(--accent); }
+  .mi:disabled { opacity: .35; }
+  .mi.dng { color: var(--muted); }
+  .mrow { display: flex; gap: 8px; } .mrow .mi { flex: 1; text-align: center; }
+  .addform { margin-top: 14px; }
+  .addrow { display: flex; gap: 8px; align-items: flex-start; }
+  textarea.grow { display: block; width: 100%; box-sizing: border-box; resize: none; overflow-y: auto; max-height: 40vh; min-height: 44px; padding: 10px 12px; line-height: 1.4; font-family: inherit; white-space: pre-wrap; overflow-wrap: anywhere; touch-action: pan-y; -webkit-user-select: text; user-select: text; }
+  .addrow textarea.grow { flex: 1 1 auto; }
+  .addform input, .addform textarea, .ed input, .ed textarea, .ed select, .tools2 select { min-width: 0; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 16.5px; outline: none; }
+  .addform input[type=text] { flex: 1; height: 50px; padding: 0 16px; }
+  .addform input:focus, .addform textarea:focus, .ed input:focus, .ed textarea:focus, .ed select:focus { border-color: var(--accent); }
+  .addform ::placeholder, .ed ::placeholder { color: var(--faint); }
+  .addform button[type=submit] { flex: none; height: 50px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  .addextra { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .addextra input, .addextra textarea { flex: 1; height: 42px; padding: 0 14px; font-size: 15px; border-width: 1px; }
+  .addextra label { color: var(--muted); font-size: 13.5px; white-space: nowrap; }
+  .addextra input[type=date] { flex: 0 1 11rem; }
+  .tools2 { display: flex; align-items: center; gap: 8px; margin: 6px 2px 0; color: var(--muted); font-size: 13.5px; }
+  .tools2 select { height: 36px; padding: 0 10px; font-size: 14px; border-width: 1px; border-radius: 10px; }
+  .tools2 .count { margin-inline-start: auto; color: var(--faint); }
+  .listcard { padding: 2px 8px; margin-top: 10px; }
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list > li { display: flex; align-items: center; /* ☰ and the check circle centered between the item's top and bottom, also for multi-line items with notes */ gap: 4px; min-height: 54px; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  .list > li:last-child { border-bottom: 0; }
+  .chk { flex: none; width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+  .chk i { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; }
+  .chk:hover i { border-color: var(--accent); }
+  .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .body { flex: 1; min-width: 0; padding: 9px 4px; cursor: pointer; border-radius: 8px; }
+  .txt { display: block; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; }
+  .note { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  .due { display: inline-block; margin-top: 4px; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .due.late { color: var(--accent); } html[data-theme="light"] .due.late { color: #8a5a00; }
+  .done .txt { color: var(--faint); }
+  .ckbox { flex: none; align-self: center; width: 28px; height: 28px; margin-inline-end: 4px; border: 2px solid var(--line2); border-radius: 7px; background: transparent; color: transparent; font-size: 17px; font-weight: 900; line-height: 1; padding: 0; cursor: pointer; }
+  .ckbox.on-ok { color: #e6c15a; border-color: #e6c15a; background: color-mix(in srgb, #e6c15a 20%, transparent); }
+  .ckbox.on-no { color: #8eaddb; border-color: #8eaddb; background: transparent; }
+  html[data-theme="light"] .ckbox.on-ok { color: #8a6a10; border-color: #c4a046; }
+  html[data-theme="light"] .ckbox.on-no { color: #5c6e90; border-color: #7d92b3; }
+  .ckd .ckbox.on-ok { background: color-mix(in srgb, #e6c15a 28%, transparent); }
+  .ckd .txt, .ckd .note { text-decoration: none; }
+  .chip { flex: none; margin-top: 9px; min-height: 30px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--muted); font-size: 12.5px; font-weight: 700; white-space: nowrap; }
+  .chip.s-dev { border-color: var(--blue); color: var(--blue); background: color-mix(in srgb, var(--blue) 12%, transparent); }
+  .chip.s-done { border-color: var(--accent); background: var(--accent); color: var(--accentink); }
+  .idea.s-done .txt { color: var(--muted); }
+  .mv { flex: none; display: flex; flex-direction: column; margin-top: 2px; }
+  .mv button { width: 34px; height: 24px; border: 0; background: none; color: var(--faint); font-size: 14px; border-radius: 8px; padding: 0; }
+  .mv button:hover:not(:disabled) { color: var(--fg); background: var(--card2); }
+  .mv button:disabled { opacity: .25; cursor: default; }
+  .ed { flex: 1; display: flex; flex-direction: column; gap: 8px; padding: 6px 2px 8px; }
+  .ed input[type=text], .ed select, .ed input[type=date] { height: 44px; padding: 0 12px; }
+  .ed textarea { min-height: 70px; padding: 10px 12px; resize: vertical; font-size: 15px; }
+  .ed .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .ed .row label { color: var(--muted); font-size: 13.5px; }
+  .btn { height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 14.5px; font-weight: 700; }
+  .btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .btn.dng { margin-inline-start: auto; color: var(--muted); }
+  .btn.dng:hover { color: #ff9a9a; border-color: #ff9a9a; }
+  html[data-theme="light"] .btn.dng:hover { color: #a3122a; border-color: #a3122a; }
+  .empty { margin-top: 14px; padding: 22px 18px; text-align: center; color: var(--muted); }
+  .empty p { margin: 0; }
+  details.donebox { margin: 18px 0; }
+  details.donebox > summary { display: flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; padding: 6px 2px; color: var(--muted); font-size: 15px; font-weight: 700; }
+  details.donebox > summary::-webkit-details-marker { display: none; }
+  details.donebox > summary::before { content: "▸"; display: inline-block; transition: transform .15s; }
+  html[dir="rtl"] details.donebox > summary::before { content: "◂"; }
+  details.donebox[open] > summary::before { transform: rotate(90deg); }
+  html[dir="rtl"] details.donebox[open] > summary::before { transform: rotate(-90deg); }
+  .pbar { display: flex; height: 8px; margin-top: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .pbar i { flex: none; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--blue), var(--accent)); }
+  html[dir="rtl"] .pbar i { margin-inline-start: 0; background: linear-gradient(270deg, var(--blue), var(--accent)); }
+  .plabel { display: block; margin-top: 4px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .goal.done .pbar i { background: var(--accent); }
+  .prow { display: flex; align-items: center; gap: 10px; }
+  .prow label { color: var(--muted); font-size: 13.5px; }
+  .prow input[type=range] { flex: 1; min-width: 0; accent-color: var(--accent); height: 30px; }
+  .prow output { min-width: 3.2em; text-align: end; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .btn.sm { height: 34px; padding: 0 12px; font-size: 13.5px; }
+  @media (max-width: 420px) { .tab { padding: 0 10px; font-size: 14.5px; } .tabs { gap: 2px; } }
+  .clear { margin-inline-start: auto; height: 32px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 13px; font-weight: 600; }
+  .drophint { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 30; margin: 0; max-width: 90vw; padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--accent); box-shadow: 0 6px 18px rgba(0,0,0,.35); text-align: center; pointer-events: none; font-size: 12.5px; color: var(--accent); font-weight: 700; } /* floats: showing it while dragging never shifts the list under the finger */
+  .tab.drop { box-shadow: 0 0 0 2px var(--accent) inset; color: var(--fg); }
+  .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
+  .list > li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .list > li .txt, .list > li .note, .list > li input, .list > li textarea { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+  /* Phones: a selectable title steals the swipe and the long-press. Desktop keeps text selection (a sideways mouse drag still swipes). */
+  @media (pointer: coarse) {
+    .list > li .txt, .list > li .note, .list > li input, .list > li textarea { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  }
+
+  .list > li.ilifted { opacity: .45; }
+  .ighost { position: fixed; z-index: 60; pointer-events: none; transform: translate(-50%, -130%); max-width: 70vw; padding: 8px 14px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); }
+  body.idragging { -webkit-user-select: none; user-select: none; }
+  .idea .chip { margin-inline-end: 2px; }
+  .toast { position: fixed; left: 50%; top: calc(14px + env(safe-area-inset-top)); z-index: 70; transform: translate(-50%, -20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+  .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; padding-inline-end: 8px; }
+  .toast.drag { transition: none; }
+  .toast.act { touch-action: none; }
+  .tx { flex: none; width: 28px; height: 28px; border: 0; border-radius: 50%; background: transparent; color: var(--accentink); font-weight: 900; font-size: 16px; line-height: 28px; padding: 0; cursor: pointer; }
+  .toast .tmsg { overflow: hidden; text-overflow: ellipsis; }
+  .tundo { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--accentink); color: var(--accent); font-weight: 800; font-size: 14px; }
+  /* swipe: the row slides. Right reveals delete (🗑) on the left; left reveals the move icon on the right. */
+  .list > li { position: relative; overflow: hidden; touch-action: pan-y; }
+  /* touch-action is not inherited: every part of the row (title, note, checkbox, price, padding) must allow vertical scroll and leave horizontal to the swipe. */
+  .list > li .body, .list > li .txt, .list > li .note, .list > li .ckbox, .list > li .pin { touch-action: pan-y; }
+  .list > li > * { transition: transform .18s ease; }
+  .list > li.swiping > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list > li.swiping, .list > li.swiping * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .list > li.mk-no .txt, .list > li.mk-no .note { opacity: .62; }
+  .list > li::before, .list > li::after { content: ""; position: absolute; top: 50%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .12s, transform .12s; transform: scale(.8); }
+  .list > li::before { content: "✓"; left: 10px; color: var(--accent); border: 2px solid var(--accent); font-weight: 900; font-size: 17px; }
+  .list > li.done::before, .list > li.s-done::before { content: "↺"; }
+  .list > li::after { right: 12px; width: 28px; height: 28px; margin-top: -14px; border-radius: 0; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .list > li.sw-r::before, .list > li.sw-l::after { opacity: .55; }
+  .list > li.sw-r.sw-go::before { opacity: 1; transform: scale(1.15); background: none; color: inherit; }
+  .list > li.sw-l.sw-go::after { opacity: 1; transform: scale(1.1); }
+  /* swipe right = delete (🗑 on the left), swipe left = move (gold move icon on the right). Same palette, no red. */
+  .list > li::before, .list > li.done::before, .list > li.s-done::before { content: "🗑"; left: 12px; width: 28px; height: 28px; margin-top: -14px; border: 0; border-radius: 0; background: none; color: inherit; -webkit-mask: none; mask: none; font-size: 22px; }
+  .list > li::after { content: ""; background: var(--accent); font-size: inherit; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .list > li.sw-r.sw-go::before { background: none; color: inherit; }
+  /* list picker (big) + ☰ edit mode */
+  .listbar { position: relative; display: flex; gap: 8px; margin-top: 16px; }
+  .picker { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 60px; padding: 0 18px; border-radius: 16px; border: 2px solid var(--accent); background: var(--card); color: var(--fg); font-size: 21px; font-weight: 800; box-shadow: var(--shadow); text-align: start; }
+  .picker .pname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .picker .pchev { flex: none; display: inline-flex; color: var(--accent); transition: transform .15s; }
+  .picker[aria-expanded="true"] .pchev { transform: rotate(180deg); }
+  .iconbtn { flex: none; width: 60px; height: 60px; border-radius: 16px; border: 1px solid var(--line2); background: var(--card); color: var(--accent); font-size: 26px; font-weight: 800; line-height: 1; box-shadow: var(--shadow); }
+  .pmenu { position: absolute; top: calc(100% + 6px); inset-inline: 0; z-index: 40; max-height: 60vh; overflow-y: auto; padding: 6px; display: flex; flex-direction: column; gap: 4px; border-radius: 16px; border: 1px solid var(--line2); background: var(--card); box-shadow: 0 14px 34px rgba(0,0,0,.45); }
+  .pmenu[hidden] { display: none; }
+  .listbars .listbar + .listbar { margin-top: 8px; }
+  .listbars .listbar:has(.pmenu:not([hidden])) { z-index: 41; }
+  .picker.empty .pname { opacity: .6; font-weight: 700; }
+  .picker:not(.active) { border-color: var(--line2); }
+  .pm-empty { padding: 12px 16px; opacity: .7; }
+  .popt { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 52px; padding: 0 16px; border: 0; border-radius: 12px; background: transparent; color: var(--fg); font-size: 17.5px; font-weight: 700; text-align: start; }
+  .popt .pn { overflow-wrap: anywhere; }
+  .popt .pk { color: var(--accent); font-weight: 900; }
+  .popt[aria-selected="true"] { background: var(--card2); color: var(--accent); }
+  .popt.padd { color: var(--accent); border: 1px dashed var(--accent); margin-top: 4px; }
+  .ehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .ehead h3 { margin: 0 4px; }
+  .donebtn { flex: none; width: 50px; height: 50px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accentink); font-size: 24px; font-weight: 900; }
+  .elist { list-style: none; margin: 0; padding: 2px; max-height: 52vh; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+  .erow { position: relative; display: flex; align-items: center; gap: 4px; min-height: 56px; padding: 0 4px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card2); }
+  .erow.sorting, .list > li.sorting { z-index: 3; background: var(--card); box-shadow: 0 0 0 2px var(--accent), 0 10px 24px rgba(0,0,0,.45); border-radius: 14px; }
+  .handle { flex: none; display: inline-flex; align-items: center; justify-content: center; touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  /* item ☰: exactly like Purchasify's (gold in night mode, dark blue in day mode, 24px, 44px touch area, at the row's start) */
+  .list .ihandle { flex: none; align-self: stretch; width: 44px; min-height: 44px; margin-inline-start: -4px; margin-inline-end: -4px; color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; -webkit-tap-highlight-color: transparent; }
+  .list .ihandle:active { transform: scale(1.12); }
+  .list .done .ihandle, .list > li.done .ihandle { color: var(--accent); opacity: .75; }
+  .erow .handle { flex: none; width: 46px; height: 52px; display: inline-flex; align-items: center; justify-content: center; color: var(--accent); touch-action: none; cursor: grab; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+  .ename { flex: 1; min-width: 0; font-size: 17px; font-weight: 700; overflow-wrap: anywhere; }
+  .einput { flex: 1; min-width: 0; height: 44px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 16.5px; outline: none; }
+  .eic { flex: none; width: 44px; height: 44px; border: 0; background: none; border-radius: 50%; font-size: 18px; }
+  .eic:hover { background: var(--card); }
+  .sheetwrap.editmode .sheet { max-height: 92vh; }
+  body.idragging .list > li:not(.sorting) { pointer-events: none; }
+  /* list menu head + edit mode (same as Purchasify) */
+  .pmenu { max-height: min(70vh, 560px); overflow: hidden; }
+  .pm-head { display: flex; align-items: center; gap: 8px; padding: 2px 6px 2px 10px; min-height: 44px; }
+  .pm-title { flex: 1; color: var(--faint); font-size: 14px; font-weight: 700; }
+  .pm-edit { flex: none; min-width: 46px; height: 42px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 20px; font-weight: 800; line-height: 1; }
+  .pm-edit.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); font-size: 16px; }
+  .pm-list { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 4px; -webkit-user-select: none; user-select: none; }
+  .pm-list > li { display: flex; }
+  .pm-list > li > .popt { flex: 1; min-width: 0; }
+  .pm-list .pm-name { min-height: 52px; padding: 0 8px; }
+  .pm-list .erow { gap: 2px; padding: 0 2px; }
+  .pm-list .eic { width: 40px; }
+  .pm-list .erow.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .pm-list .pm-h { width: 46px; height: 52px; color: var(--accent); font-size: 22px; font-weight: 900; }
+  .eprice.on { background: var(--accent); color: var(--accentink); }
+  /* v22 options menu */
+  .pm-list .pm-name .pn { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pm-list .pm-more { width: 40px; height: 44px; border-radius: 12px; color: var(--accent); font-size: 22px; font-weight: 900; }
+  .pm-list .pm-more.on { background: var(--accent); color: var(--accentink); }
+  .pm-opts { display: flex !important; flex-direction: column; gap: 2px; margin: 0 6px 4px; padding: 4px; border-radius: 12px; border: 1px solid var(--accent); background: var(--card2); }
+  .pm-oi { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .pm-oi > span { width: 24px; text-align: center; color: var(--accent); font-weight: 900; }
+  .pm-oi:hover { background: var(--card); }
+  .pm-st { margin-inline-start: auto; font-size: 13px; padding: 2px 10px; border-radius: 10px; border: 1px solid var(--line2); color: var(--faint); }
+  .pm-st.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); }
+  .pm-mname { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 700; padding: 0 4px; }
+  .mvrow .eic:disabled { opacity: .3; }
+  /* sheets (move menu etc.): never taller than the screen; the list of lists scrolls */
+  .sheet { max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; }
+  .sheet .mlist { display: flex; flex-direction: column; gap: 6px; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain; flex: 0 1 auto; }
+  .sheet .mlist .mi { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .sheet .mi .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sheet .mi .mc { flex: none; color: var(--faint); font-size: 13px; font-weight: 700; }
+  @media (min-width: 700px) { /* computer: a smaller centered window */
+    .sheetwrap { align-items: center; }
+    .sheet { max-width: 420px; max-height: 80vh; padding: 14px 14px 12px; gap: 6px; }
+    .sheet h3 { font-size: 16px; }
+    .sheet .mi { min-height: 38px; padding: 0 12px; font-size: 14.5px; border-radius: 10px; }
+    .sheet .mlist { gap: 4px; }
+  }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; white-space: normal; overflow-wrap: anywhere; }
+  .status:empty { display: none; }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+  .status .status-txt { display: block; }
+  .status .status-act { display: inline-flex; align-items: center; justify-content: center; margin-top: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: 700 14px/1.2 var(--sans); cursor: pointer; }
+  /* 2026-11-01 lists dropdown: much larger, compact rows, all lists fit; per-list ⋮ menu shows all options */
+  .pmenu { max-height: calc(100vh - 140px) !important; max-height: calc(100dvh - 140px) !important; overflow-y: auto !important; padding: 4px; gap: 2px; }
+  .pm-list { overflow: visible; gap: 2px; }
+  .pm-list > li, .pm-opts, .pm-oi { flex: none; }
+  .pm-list .pm-name, .pm-list .popt { min-height: 40px; font-size: 15.5px; }
+  .pm-list .pm-more, .pm-list .eic { height: 38px; }
+  .pm-head { min-height: 36px; }
+  .pm-oi { min-height: 38px; font-size: 15px; }
+  @media (min-width: 700px) { .pmenu { inset-inline: auto; inset-inline-start: 0; width: max(100%, min(720px, 92vw)); } .pm-list:not(:has(.pm-opts)):not(:has(.erow)) { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+  /* 2026-11-02 Ron: no option ever sits on top of another: the list grows to its full height and the whole menu scrolls; ＋ always below all rows */
+  .pmenu > .pm-list, .pmenu .pm-list { flex: none !important; min-height: auto !important; max-height: none !important; overflow: visible !important; }
+  .pmenu > .pm-head, .pmenu > .popt.padd { flex: none; }
+  /* checklist: checked items in their own section above */
+  .ckhead { display: flex; align-items: center; gap: 8px; margin: 14px 4px 6px; color: var(--accent); font-size: 15px; font-weight: 800; }
+  .ckhead .ckn { color: var(--muted); font-weight: 700; }
+  .ckcard + .listcard { margin-top: 12px; }
+</style>
+<script src="../shared/rg-bg.js" data-app="sbxmyideas" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<p class="sandbox-tag">Sandbox</p>
+<style>.sandbox-tag{position:fixed;z-index:80;top:max(8px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);margin:0;font:800 11px/1.3 Heebo,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;background:var(--accent);color:var(--accentink);pointer-events:none}</style>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <div class="listbars">
+    <div class="listbar" id="listbar">
+      <button type="button" class="picker" id="picker" aria-haspopup="listbox" aria-expanded="false" aria-controls="pmenu"><span class="pname" id="picker-name"></span><span class="pchev" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></button>
+      <div class="pmenu" id="pmenu" role="listbox" hidden></div>
+    </div>
+    </div>
+    <p class="cathint" id="cathint" hidden></p>
+    <p class="drophint" id="drophint" hidden></p>
+    <div id="panels"></div>
+  </main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "./sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "ליסטיפיי · ניסוי", title: "ליסטיפיי", sub: "עותק ניסוי. הרשימות כאן נפרדות ולא נוגעות ברשימות של ליסטיפיי הרגיל.",
+        catAdd: "רשימה חדשה", catPh: "שם הרשימה", catKind: "סוג הקטגוריה", create: "יצירה", kTask: "✓ רשימה לסימון", kIdea: "💡 רעיונות", kGoal: "🎯 יעדים",
+        rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", moveR: "▶ הזזה ימינה", moveL: "הזזה שמאלה ◀", delCat: "🗑 מחיקת הקטגוריה",
+        confirmDelCat: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות רשימה אחת.", noCats: "אין רשימות. לחץ על השם למעלה ובחר ＋ רשימה חדשה.",
+        tabTip: "לחיצה נוספת: שינוי שם ומחיקה · לחיצה ארוכה וגרירה: הזזה",
+        catHint: "טיפ: לחיצה על שם הרשימה פותחת את כל הרשימות ו־＋ רשימה חדשה. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לסידור. החלקת פריט ימינה: מחיקה · שמאלה: העברה לרשימה אחרת או אשפה.",
+        markOk: "סומן ✓", markNo: "סומן ✕",
+        dragNote: "כדי להזיז: לחיצה ארוכה על הקטגוריה וגרירה לכל מקום.", phTitle: "כותרת פריט", emptyList: "הרשימה ריקה. כתוב למעלה את הפריט הראשון.",
+        dropHint: "גרור למעלה או למטה ושחרר במקום הרצוי",
+        delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
+        moveTo: "העבר לרשימה אחרת", moveTitle: "להעביר לאיזו רשימה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד רשימה. אפשר ליצור אחת חדשה ולהעביר אליה.",
+        tabIdeas: "רעיונות לפיתוח", tabTasks: "לבל אפ", tabGoals: "יעדים",
+        phGoal: "איזה יעד תרצה להשיג?", target: "תאריך יעד (לא חובה)", targetShort: "תאריך יעד", progress: "התקדמות",
+        gNot: "לא התחיל", gDoing: "בתהליך", gDone: "הושג", achieve: "סמן כהושג", unachieve: "החזר ליעדים פתוחים",
+        emptyGoals: "עוד אין יעדים. כתוב למעלה את היעד הראשון שלך.", allGoals: "כל הכבוד, השגת את כל היעדים! 🎯", goalsDone: "הושגו",
+        phIdea: "איזו אפליקציה תרצה לפתח?", phNote: "הערה קצרה", phTask: "מה צריך לעשות?", add: "הוסף", due: "תאריך יעד (לא חובה)", dueShort: "תאריך יעד", note: "הערה",
+        stNew: "רעיון", stDev: "בפיתוח", stDone: "הושלם", stLabel: "סטטוס", stCycle: "שינוי סטטוס",
+        sortLabel: "מיון", sortManual: "הסדר שלי", sortNew: "החדשים קודם", sortAbc: "לפי שם", sortStatus: "לפי סטטוס",
+        up: "הזז למעלה", down: "הזז למטה", ideas: "רעיונות", tasks: "פריטים",
+        emptyIdeas: "עוד אין רעיונות. כתוב למעלה את הרעיון הראשון שלך.", emptyTasks: "אין משימות. הוסף למעלה את הדבר הבא שתרצה לעשות.", allDone: "כל הכבוד, סיימת הכול! ✓",
+        doneHead: "נבחר", clearDone: "נקה מסומנים", confirmClear: "למחוק את כל הפריטים שנבחרו?",
+        check: "סמן כנבחר", uncheck: "החזר לרשימה", edit: "עריכה", save: "שמור", cancel: "ביטול", del: "מחק",
+        confirmDel: "בטוח שאתה רוצה למחוק את „{x}”?", today: "היום", tomorrow: "מחר", late: "באיחור",
+        synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת",
+        localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", blockedAct: "לאשר את המחיקה ולשמור", syncErrorAuth: "הענן דחה את ההתחברות. הרשימות נשארו במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימות נשארו במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימות נשארו במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימות נשארו במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימות נשארו במכשיר.",
+        pickList: "בחירת רשימה", pickerPh: "רשימות", groupEmpty: "אין כאן רשימות עדיין. ＋ רשימה חדשה למטה.", editDone: "סיום", editTitle: "סידור ועריכת רשימות", editNote: "גרור את ⠿ כדי לסדר. ✏️ שינוי שם · 🗑 מחיקה · ✓ סיום.", finish: "סיום ושמירה", dragHandle: "גרירה לסידור", renameShort: "שינוי שם", delShort: "מחיקת הרשימה", dragItem: "גרירה לסידור הפריט", priceLabel: "מחיר (₪, לא חובה)", sumTotal: "סה״כ", sumSel: "נבחר", priceToggle: "עמודת מחירים ₪ ברשימה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optPrice: "עמודת מחיר", optDelete: "אשפה", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", stOn: "פעיל", stOff: "כבוי", moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה", seedTask: "לבקר במרקטפלייס בוטים" },
+  en: { doc: "Listify sandbox", title: "Listify", sub: "A sandbox copy. Lists here are separate and do not touch the regular Listify.",
+        catAdd: "New list", catPh: "List name", catKind: "Category type", create: "Create", kTask: "✓ Checklist", kIdea: "💡 Ideas", kGoal: "🎯 Goals",
+        rename: "✏️ Rename", renameTitle: "Rename category", moveR: "Move right ▶", moveL: "◀ Move left", delCat: "🗑 Delete category",
+        confirmDelCat: "Delete the list “{x}” and everything in it?", lastCat: "At least one list has to stay.", noCats: "No lists. Tap the name above and choose ＋ New list.",
+        tabTip: "Tap again: rename and delete · Long-press and drag: move",
+        catHint: "Tip: tap the list name to see all your lists and ＋ New list. In each row: ☰ drag to arrange, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move to another list or trash.",
+        markOk: "Marked ✓", markNo: "Marked ✕",
+        dragNote: "To move it: long-press the category and drag it anywhere.", phTitle: "Item title", emptyList: "The list is empty. Write the first item above.",
+        dropHint: "Drag up or down and release where you want it",
+        delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
+        moveTo: "Move to another list", moveTitle: "Move to which list?", movedTo: "Moved to {x}", noOther: "There's no other list yet. You can create one and move the item there.",
+        tabIdeas: "Ideas to develop", tabTasks: "Level Up", tabGoals: "Goals",
+        phGoal: "What goal do you want to reach?", target: "Target date (optional)", targetShort: "Target date", progress: "Progress",
+        gNot: "Not started", gDoing: "In progress", gDone: "Achieved", achieve: "Mark as achieved", unachieve: "Back to open goals",
+        emptyGoals: "No goals yet. Write your first one above.", allGoals: "Well done, you've reached all your goals! 🎯", goalsDone: "Achieved",
+        phIdea: "Which app would you like to build?", phNote: "Short note", phTask: "What needs doing?", add: "Add", due: "Due date (optional)", dueShort: "Due date", note: "Note",
+        stNew: "Idea", stDev: "In development", stDone: "Done", stLabel: "Status", stCycle: "Change status",
+        sortLabel: "Sort", sortManual: "My order", sortNew: "Newest first", sortAbc: "By name", sortStatus: "By status",
+        up: "Move up", down: "Move down", ideas: "ideas", tasks: "items",
+        emptyIdeas: "No ideas yet. Write your first one above.", emptyTasks: "No tasks. Add the next thing you want to do above.", allDone: "Well done, everything is checked off! ✓",
+        doneHead: "Selected", clearDone: "Clear checked", confirmClear: "Delete all the selected items?",
+        check: "Mark as selected", uncheck: "Back to the list", edit: "Edit", save: "Save", cancel: "Cancel", del: "Delete",
+        confirmDel: "Are you sure you want to delete “{x}”?", today: "Today", tomorrow: "Tomorrow", late: "overdue",
+        synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online",
+        localOnly: "Saved on this device only, until you sign in", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", blockedAct: "Confirm the deletion and save", syncErrorAuth: "The cloud rejected the sign-in. The lists stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The lists stayed on this device.", syncErrorPaused: "The server is paused right now. The lists stayed on this device.", syncErrorServer: "Saving to the cloud failed. The lists stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The lists stayed on this device.",
+        pickList: "Choose a list", pickerPh: "Lists", groupEmpty: "No lists here yet. ＋ New list below.", editDone: "Done", editTitle: "Arrange and edit lists", editNote: "Drag ⠿ to reorder. ✏️ rename · 🗑 delete · ✓ done.", finish: "Done and save", dragHandle: "Drag to reorder", renameShort: "Rename", delShort: "Delete list", dragItem: "Drag to reorder the item", priceLabel: "Price (₪, optional)", sumTotal: "Total", sumSel: "Selected", priceToggle: "₪ price column in the list", optMenu: "Options", optMove: "Reorder", optRename: "Rename", optPrice: "Price column", optDelete: "Delete", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", stOn: "On", stOff: "Off", moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Move up", moveDown: "Move down", seedTask: "Visit the bots marketplace" }
+};
+</script>
+<script src="../sandbox-shared/rg-sync-status.js"></script>
+<script src="../sandbox-shared/rg-account.js"></script>
+<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
+<script src="../my/common.js"></script>
+<script src="app.js?v=41"></script>
+
+<!-- rg-install v3: button only when the browser offers a real install prompt -->
+<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
+<div id="rg-inst-w" hidden><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
+<script>(function(){
+if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}
+var K="rg-sbx-ideas-inst",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),x=document.getElementById("rg-inst-x"),dp=null;
+var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה"},en:{b:"📲 Install app",x:"Close"}};
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
+function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);}
+function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
+function off(){try{return localStorage.getItem(K)==="1";}catch(e){return false;}}
+function U(){w.hidden=!(dp&&!sa()&&!off());}
+R();U();
+addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;U();});
+addEventListener("appinstalled",function(){dp=null;U();});
+b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
+x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
+})();</script>
+</body>
+</html>
