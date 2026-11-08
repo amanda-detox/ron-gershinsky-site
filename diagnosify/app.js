@@ -4,7 +4,7 @@
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-diagnosify-theme", DONE_KEY = "rg-diagnosify-done";
   var L = {
     he: {
-      doc: "דיאגנוסיפיי · Diagnosify", back: "← חזרה לאתר", soon: "יצורף בקרוב",
+      doc: "Diagnosify", back: "← חזרה לאתר", soon: "יצורף בקרוב",
       dark: "לילה", light: "בהיר", toLight: "מעבר למצב בהיר", toDark: "מעבר למצב לילה",
       install: "📲 התקנה למסך הבית", newtab: "נפתח בלשונית חדשה", mark: "סימון שביצעתי",
       doneOf: function (n, total) { return n + " מתוך " + total + " בוצעו"; },
@@ -12,7 +12,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”."
     },
     en: {
-      doc: "Diagnosify · דיאגנוסיפיי", back: "← Back to site", soon: "Coming soon",
+      doc: "Diagnosify", back: "← Back to site", soon: "Coming soon",
       dark: "Night", light: "Light", toLight: "Switch to light mode", toDark: "Switch to night mode",
       install: "📲 Add to home screen", newtab: "opens in a new tab", mark: "Mark as done",
       doneOf: function (n, total) { return n + " of " + total + " done"; },

@@ -11,7 +11,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="קלוקיפיי">
 <meta name="description" content="קלוקיפיי: שעון מעורר עם רשימת משימות. Clockify: alarm clock with task lists.">
-<title>קלוקיפיי</title>
+<title>Clockify</title>
 <script>/* theme + background before first paint (own keys for Clockify): night (default) / light; bg 0 = original, 1-10 = same presets as the landing page */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-alarm-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-alarm-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-alarm-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);})();</script>
 <link rel="manifest" href="manifest.json?v=5">
 <link rel="icon" href="icon.svg?v=4" type="image/svg+xml">
@@ -630,7 +630,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     var L = T[lang];
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = L.title;
+    document.title = "Clockify";
     $("he").setAttribute("aria-pressed", lang === "he"); $("en").setAttribute("aria-pressed", lang === "en");
     var tl = L.test.replace(/^🔊\s*/, ""); $("test-sound").innerHTML = '<span aria-hidden="true">🔊</span><span class="tl"> ' + esc(tl) + "</span>"; $("test-sound").setAttribute("aria-label", tl); $("test-sound").title = tl;
     $("note-title").textContent = L.noteTitle; $("note-text").innerHTML = L.note; applyNote();

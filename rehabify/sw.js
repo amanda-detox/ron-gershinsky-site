@@ -1,6 +1,6 @@
 /* Offline cache for the private "Rehabify" app (my/rehabify/). Scope: my/rehabify/ only.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-pub-rehabify-v1";
+var CACHE = "rg-pub-rehabify-v2";
 var FILES = ["./", "index.html", "help.html", "app.js?v=18", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js", "../my/care.css", "../my/help-now.js", "../shared/rg-public-store.js?v=2",
   "../shared/rg-isolate.js", "../shared/rg-public.css", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 

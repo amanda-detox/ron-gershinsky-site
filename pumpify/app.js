@@ -4,7 +4,7 @@
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-pumpify-theme";
   var L = {
     he: {
-      doc: "פאמפיפיי · Pumpify", back: "← חזרה לאתר", soon: "יצורף בקרוב",
+      doc: "Pumpify", back: "← חזרה לאתר", soon: "יצורף בקרוב",
       note: "תוכן חדש יתווסף כאן מדי פעם.", open: "צפייה ביוטיוב", listen: "האזנה",
       dark: "לילה", light: "בהיר", toLight: "מעבר למצב בהיר", toDark: "מעבר למצב לילה",
       install: "📲 התקנה למסך הבית",
@@ -12,7 +12,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”."
     },
     en: {
-      doc: "Pumpify · פאמפיפיי", back: "← Back to site", soon: "Coming soon",
+      doc: "Pumpify", back: "← Back to site", soon: "Coming soon",
       note: "New content will be added here from time to time.", open: "Watch on YouTube", listen: "Listen",
       dark: "Night", light: "Light", toLight: "Switch to light mode", toDark: "Switch to night mode",
       install: "📲 Add to home screen",

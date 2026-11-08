@@ -52,7 +52,7 @@
 
   function applyLang() {
     document.documentElement.lang = lang; document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = lang === "he" ? "יאנגיפיי · Youngify" : "Youngify · יאנגיפיי";
+    document.title = "Youngify";
     document.querySelectorAll("[data-t]").forEach(function (el) { el.textContent = t(el.getAttribute("data-t")); });
     $("langBtn").textContent = t("langBtn"); $("backBtn").textContent = t("back");
     if (!$("installHint").classList.contains("hidden")) $("installHint").innerHTML = instHint();

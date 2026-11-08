@@ -65,7 +65,7 @@
     document.documentElement.lang = lang; document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
     document.querySelectorAll("[data-t]").forEach(function (el) { el.textContent = T[lang][el.getAttribute("data-t")]; });
     document.getElementById("langBtn").textContent = T[lang].lang;
-    document.title = lang === "en" ? "Calcify · חישובלי" : "חישובלי · Calcify";
+    document.title = "Calcify";
   }
   function renderHist() {
     hl.innerHTML = "";

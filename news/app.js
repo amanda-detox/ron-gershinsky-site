@@ -6,7 +6,7 @@
   var TZ = "Asia/Jerusalem";
   var L = {
     he: {
-      title: "עדכוניפיי", doc: "עדכוניפיי",
+      title: "עדכוניפיי", doc: "Updatify",
       tagline: "החדשות על האנשים והחברות שאתה עוקב אחריהם, מתעדכן כל שעה",
       back: "← חזרה לאתר", updated: "עודכן לאחרונה:", loading: "טוען עדכונים…",
       newEp: "פרק חדש", all: "הכול", people: "אנשים", companies: "חברות ונושאים",
@@ -309,7 +309,7 @@
     $("back").textContent = t().back;
     $("title").textContent = t().title;
     $("tagline").textContent = topic === SUMMARIES_VIEW ? t().sumTag : t().tagline;
-    document.title = (topic === SUMMARIES_VIEW && summCurrent) ? summCurrent.title + " · " + t().doc : t().doc;
+    document.title = t().doc;
     $("install-btn").textContent = t().install;
     if (!$("install-hint").hidden) $("install-hint").textContent = t()[isIOS ? "ios" : "other"];
     $("note").textContent = t().note;
@@ -1003,7 +1003,7 @@
       $("slist").hidden = true;
       $("sfull").hidden = false;
       if ($("sumlead")) $("sumlead").hidden = true;
-      document.title = summCurrent.title + " · " + t().doc;
+      document.title = t().doc;
       return;
     }
     $("sfull").hidden = true;

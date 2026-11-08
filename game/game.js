@@ -904,7 +904,7 @@ function chime() { // soft bell when a soul rises (powers themselves are silent)
 function applyLang() {
   const L = T[lang];
   document.documentElement.lang = lang; document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-  document.title = L.title + (lang === 'he' ? ' · Lightify' : ' · לייטיפיי');
+  document.title = 'Lightify';
   document.querySelectorAll('[data-t]').forEach((el) => { el.textContent = L[el.dataset.t]; });
   $('help').innerHTML = L.help; $('langBtn').textContent = L.langBtn;
   [$('soundBtn'), $('sound2Btn')].forEach((b) => (b.textContent = soundOn ? L.soundOn : L.soundOff));

@@ -19,8 +19,8 @@
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../shared/rg-site.css">
-<script src="lang.js"></script>
-<title>צנצנת גחליליות</title>
+<script src="lang.js?v=1"></script>
+<title>Relaxify</title>
 <style>
   :root {
     --ui-fg: rgba(220,232,255,0.82); --ui-bg: rgba(8,18,44,0.4); --ui-bd: rgba(200,215,255,0.16);
@@ -258,7 +258,7 @@
     function applyText() {
       var l = lang();
       html.lang = l; html.dir = l === 'he' ? 'rtl' : 'ltr';
-      document.title = t('title');
+      document.title = "Relaxify";
       var els = document.querySelectorAll('[data-t]');
       for (var i = 0; i < els.length; i++) els[i].textContent = t(els[i].getAttribute('data-t'));
       var al = document.querySelectorAll('[data-ta]');

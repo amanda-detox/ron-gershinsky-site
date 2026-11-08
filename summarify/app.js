@@ -4,7 +4,7 @@
   "use strict";
   var T = {
     he: {
-      doc: "סיכומיפיי", back: "← חזרה לאתר", title: "סיכומיפיי", tagline: "סיכומים מלאים של פרקים, בעברית",
+      doc: "Summarify", back: "← חזרה לאתר", title: "סיכומיפיי", tagline: "סיכומים מלאים של פרקים, בעברית",
       loading: "טוען סיכומים…", err: "לא הצלחנו לטעון את הסיכומים. בדוק את החיבור ונסה שוב.", empty: "עדיין אין כאן סיכומים.",
       read: "לסיכום המלא", toList: "→ כל הסיכומים", share: "שיתוף", shareAria: "שיתוף הסיכום", copied: "הלינק הועתק", copyFail: "לא הצלחנו להעתיק את הלינק",
       guest: "עם", episodeDate: "תאריך הפרק:", source: "למקור", heOnly: "", notFound: "הסיכום הזה לא נמצא. הנה כל הסיכומים.",
@@ -122,7 +122,7 @@
   function openItem(id, push) {
     var it = findItem(id); if (!it) return false;
     current = it; renderFull(); show("full"); window.scrollTo(0, 0);
-    document.title = it.title + " · " + t().doc;
+    document.title = t().doc;
     if (push) { try { history.pushState({ item: id }, "", "?item=" + encodeURIComponent(id)); } catch (e) {} }
     return true;
   }
@@ -135,7 +135,7 @@
   function render() {
     var L = t(), d = document.documentElement;
     d.lang = lang; d.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = current ? current.title + " · " + L.doc : L.doc;
+    document.title = L.doc;
     $("back").textContent = L.back; $("title").textContent = L.title; $("tagline").textContent = L.tagline;
     $("lang-he").setAttribute("aria-pressed", String(lang === "he")); $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
     $("install-btn").textContent = L.install; $("sheet-title").textContent = L.sheetTitle; $("sheet-close").textContent = L.close;

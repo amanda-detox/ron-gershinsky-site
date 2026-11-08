@@ -979,7 +979,7 @@
     var he = lang === "he";
     document.documentElement.lang = lang;
     document.documentElement.dir = he ? "rtl" : "ltr";
-    document.title = nm(D.APP_NAME) + (he ? " · " + D.APP_NAME.en : "");
+    document.title = "Balancify";
     $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
     $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     $("back").textContent = t().back;

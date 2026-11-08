@@ -68,7 +68,6 @@
   function apply() {
     var h = document.documentElement;
     h.lang = lang; h.dir = lang === "he" ? "rtl" : "ltr";
-    if (document.title) document.title = tr(document.title);
     if (document.body) translateTree(document.body);
     var btn = document.getElementById("rg-lang-btn");
     if (btn) {
