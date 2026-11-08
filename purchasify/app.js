@@ -35,6 +35,7 @@
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 8); }
   function clean(s, n) { return String(s || "").replace(/\s+/g, " ").trim().slice(0, n); }
   var tab = lsGet("rg-pub-purchasify-tab") || "main";
+  var statOpen = lsGet("rg-pub-purchasify-stat") !== "0";
 
   /* ---------- local cache (same key as before; "cats" is simply an extra field) ---------- */
   function loadLocal() {
@@ -203,14 +204,37 @@
     holdBlocked = false; pending = true; syncErr = ""; offline = false;
     saveLocal(); render(); sync();
   }
+  function applyStatChrome() {
+    var slot = $("syncslot"), s = $("status"), b = $("sync-tog"), peek = $("syncpeek");
+    if (!slot || !s) return;
+    var attn = s.classList.contains("off"), has = !!(s.textContent || attn);
+    slot.hidden = !has;
+    slot.classList.toggle("shut", !statOpen);
+    slot.classList.toggle("attn", attn);
+    if (peek) peek.textContent = t("statusPeek");
+    if (b) {
+      b.setAttribute("aria-expanded", statOpen ? "true" : "false");
+      b.setAttribute("aria-label", t(statOpen ? "statusHide" : "statusShow"));
+      var tip = s.title || s.textContent || "";
+      if (tip) b.title = tip;
+    }
+  }
+  function toggleStat() {
+    statOpen = !statOpen;
+    lsSet("rg-pub-purchasify-stat", statOpen ? "1" : "0");
+    applyStatChrome();
+  }
   function setStatus() {
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
-    if (!SS) { s.className = "status" + (offline ? " off" : ""); s.textContent = !RGIsolate.maySync(uid) ? (uid ? t("localOnly") : "") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
-    var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
-    if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
-    else SS.closeDeletion();
+    if (!SS) { s.className = "status" + (offline ? " off" : ""); s.textContent = !RGIsolate.maySync(uid) ? (uid ? t("localOnly") : "") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); }
+    else {
+      var k = SS.kind(statusFlags());
+      SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
+      if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+      else SS.closeDeletion();
+    }
+    applyStatChrome();
   }
 
   function sync() {
@@ -780,6 +804,7 @@
       add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; changed(); i.focus();
     });
     on("suggest", "click", function () { suggested().forEach(function (s) { add(s); }); changed(); });
+    on("sync-tog", "click", function (e) { e.preventDefault(); e.stopPropagation(); toggleStat(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
