@@ -12,7 +12,7 @@
 <meta name="apple-mobile-web-app-title" content="עדכוניפיי">
 <meta name="description" content="עדכוניפיי · חדשות כל שעה על האנשים והחברות שאתה עוקב אחריהם. Updatify, news every hour on the people and companies you follow.">
 <script>/* theme + background before first paint: dark (default) / light; night bg 0 = original (same as the landing page), 1-10 (default 2); light bg 0 = original (default), 1-10 = the landing page light backgrounds */(function(){var d=document.documentElement,t="dark",b="2",lb="0";try{t=localStorage.getItem("rg-news-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-news-bg");if(/^([0-9]|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-news-bg-light");if(/^([0-9]|10)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);try{if(/[?&]tab=summaries(?:&|$)/.test(location.search))d.setAttribute("data-summ","1");}catch(e2){}var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",d.getAttribute("data-summ")==="1"?(t==="light"?"#f3efe6":"#0a1a3f"):(t==="light"?LC[lb]:C[b]));try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
-<title>עדכוניפיי</title>
+<title>Updatify</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -383,7 +383,7 @@ html[data-theme=dark] .sumview .ssh svg{color:#f5c542}
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 <div class="pop-back" id="summ-dev" hidden><div class="pop" role="dialog" aria-modal="true" aria-labelledby="summ-dev-title"><h2 id="summ-dev-title"></h2><p id="summ-dev-text"></p><button type="button" class="pop-ok" id="summ-dev-close"></button></div></div>
 <script src="../shared/rg-account.js"></script>
-<script src="app.js?v=27"></script>
+<script src="app.js?v=28"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->

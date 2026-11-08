@@ -14,7 +14,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="צלילים">
-<title>סאונדיפיי</title>
+<title>Soundify</title>
 <script>(function(){try{if(localStorage.getItem("rg-lang")==="en"){document.documentElement.lang="en";document.documentElement.dir="ltr";}}catch(e){}})();</script>
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
@@ -328,7 +328,7 @@
   var CATS = [{ id: "nature", he: "צלילי טבע", en: "Nature sounds" }, { id: "instruments", he: "כלי נגינה", en: "Instruments" }, { id: "mantras", he: "מנטרות", en: "Mantras" }, { id: "brain", he: "גלי מוח", en: "Brainwaves" }, { id: "special", he: "תדרים מיוחדים", en: "Special frequencies" }];
   var T = {
     he: {
-      doc: "סאונדיפיי", title: "סאונדיפיי", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
+      doc: "Soundify", title: "סאונדיפיי", sub: "נוגעים בצליל כדי להפעיל אותו. אפשר לשלב כמה צלילים יחד ולכוון לכל אחד עוצמה.",
       idle: "בחרו צליל כדי להתחיל", resume: "המיקס האחרון שלכם שמור. לוחצים ▶ כדי לנגן.", playing: "מתנגן: ", paused: "בהשהיה: ",
       preparing: "מכין…", on: "פועל", vol: "עוצמה", master: "עוצמה כללית", stopAll: "⏹ עצור הכול", timer: "⏲ טיימר שינה:",
       off: "כבוי", min: function (m) { return m + " דק׳"; }, left: function (s) { return "נשארו " + s; },
@@ -960,7 +960,7 @@
   // Warm up the saved mix in the background so ▶ starts fast (no sound until the user taps).
   st.on.forEach(function (id) { getSound(id).catch(function () {}); });
   if (window.RGSoundMixes) RGSoundMixes.onChange(function () { renderMixes(); });
-  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=29", { scope: "./" }).catch(function () {});
+  if ("serviceWorker" in navigator && location.protocol !== "file:") navigator.serviceWorker.register("sw.js?v=30", { scope: "./" }).catch(function () {});
 
   window.__mixer = { toneSpec: toneSpec, q: q, get state() { return st; }, get playing() { return playing; }, get ctx() { return ctx; }, voices: voices, keep: keep, buffers: buffers };
 })();

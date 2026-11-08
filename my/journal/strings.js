@@ -2,7 +2,7 @@
 window.RGMY_SW = "./sw.js";
 window.RGMY_STRINGS = {
  "he": {
-  "doc": "יומןלי",
+  "doc": "Journalify",
   "title": "יומןלי",
   "sub": "יומן אישי: כותבים פסקה, בוחרים נושא, והכול נשמר בחשבון – רק אתה רואה אותו",
   "writeTitle": "רשומה חדשה",

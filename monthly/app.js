@@ -5,7 +5,7 @@
   var AWARE = { id: "awareness", color: "#ff8a5c", icon: "🎗️", he: "חודשי מודעות", en: "Awareness months" };
   var L = {
     he: {
-      title: "חודשיפיי", doc: "חודשיפיי · Monthly", back: "← חזרה לאתר",
+      title: "חודשיפיי", doc: "Monthly", back: "← חזרה לאתר",
       tagline: "לכל חודש הנושאים שלו: חודשי מודעות ונושאים שבחרת",
       months: ["ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני", "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"],
       now: "החודש", panel: "הנושאים שלי", sub: "סמן ✓ ליד הנושאים שתרצה לראות. בכל חודש יופיע פריט אחר מכל נושא.",
@@ -19,7 +19,7 @@
       other: "פותחים את תפריט הדפדפן (⋮) ובוחרים „התקנת אפליקציה” או „הוספה למסך הבית”."
     },
     en: {
-      title: "Monthly", doc: "Monthly · חודשיפיי", back: "← Back to site",
+      title: "Monthly", doc: "Monthly", back: "← Back to site",
       tagline: "Every month has its topics: awareness months plus the tracks you pick",
       months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       now: "This month", panel: "My topics", sub: "Tick ✓ the tracks you want to follow. Each month shows a different item from every track.",

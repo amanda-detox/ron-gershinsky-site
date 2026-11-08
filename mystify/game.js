@@ -284,7 +284,7 @@ function moveStick(e) {
 // ---------- Menu / HUD ----------
 function applyLang() {
   const t = T[lang]; document.documentElement.lang = lang; document.documentElement.dir = lang === 'he' ? 'rtl' : 'ltr';
-  $('title').textContent = t.title; $('sub').textContent = t.sub; $('play').textContent = started ? t.resume : t.play;
+  $('title').textContent = t.title; document.title = 'Mystify'; $('sub').textContent = t.sub; $('play').textContent = started ? t.resume : t.play;
   $('bots').textContent = t.bots(botCount); $('sens').textContent = t.sens(sens); $('help').innerHTML = t.help;
   $('lHp').textContent = t.hp; $('lScore').textContent = t.score; $('lDeaths').textContent = t.deaths;
   $('tFire').textContent = t.fire; $('tJump').textContent = t.jump; $('langBtn').textContent = t.lang; hud();

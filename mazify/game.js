@@ -85,7 +85,7 @@
   function tick() { if (running) $("time").textContent = ((performance.now() - t0) / 1000).toFixed(1); requestAnimationFrame(tick); }
   function applyLang() {
     var L = T[lang]; document.documentElement.lang = lang; document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    $("title").textContent = L.title; document.title = "מבוכפיי · Mazify";
+    $("title").textContent = L.title; document.title = "Mazify";
     $("mLevels").textContent = L.levels; $("mDaily").textContent = L.daily; showLvl(); $("mFree").textContent = L.free; $("newBtn").textContent = L.newm;
     $("sizeBtn").textContent = L.size[sizeIdx]; $("lTime").textContent = L.time; $("lBest").textContent = L.best;
     $("hint").textContent = L.hint; $("langBtn").textContent = L.lang;

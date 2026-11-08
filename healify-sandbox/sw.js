@@ -1,7 +1,7 @@
 /* Offline cache for the Healify sandbox only. Scope: healify-sandbox/.
    Does not delete rg-healify-* caches used by the live app. */
-var CACHE = "rg-sbx-healify-v1";
-var FILES = ["./", "index.html", "rg-isolate.js", "../shared/rg-account.js", "../shared/rg-public-store.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+var CACHE = "rg-sbx-healify-v2";
+var FILES = ["./", "index.html", "rg-isolate.js", "../shared/rg-account.js", "../shared/rg-public-store.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "app.js?v=1", "content.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

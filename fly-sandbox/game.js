@@ -1771,7 +1771,7 @@ function applyLang() {
   d.lang = lang; d.dir = lang === 'he' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-t]').forEach((el) => { const v = L[el.dataset.t]; if (typeof v === 'string') el.textContent = v; });
   if (resumable) $('startBtn').textContent = L.resume;
-  document.title = (lang === 'he' ? 'פלייפיי · Flyify' : 'Flyify · פלייפיי') + ' · Sandbox';
+  document.title = 'Flyify';
   $('langBtn').textContent = L.lang;
   $('charSel').innerHTML = L.chars.map((n, i) => `<option value="${i}">${CHAR_EMOJI[i]} ${n}</option>`).join(''); $('charSel').value = String(charIdx); $('charSel').setAttribute('aria-label', L.choose);
   for (const id of ['envSel', 'envSel2']) $(id).innerHTML = L.envs.map((n, i) => `<option value="${i}">${n}</option>`).join('');

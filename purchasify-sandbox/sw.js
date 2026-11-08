@@ -1,5 +1,5 @@
 /* Offline cache for the Purchasify sandbox only. Does not delete the live purchasify cache. */
-var CACHE = "rg-sbx-purchasify-v1";
+var CACHE = "rg-sbx-purchasify-v2";
 var FILES = ["./", "index.html", "app.js?v=1", "rg-isolate.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js",
   "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "../shared/rg-public.css"];
 
