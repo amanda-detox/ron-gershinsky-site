@@ -13,7 +13,9 @@
      goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
    Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
    Offline-first: kept in localStorage per user (rg-myideas-v1:<user id>) and merged into the account copy on every sync.
-   The first checklist item is added once, on the first successful sync of an account whose list was never seeded. */
+   The first checklist item is added once, on the first successful sync of an account whose list was never seeded.
+   A blocked large deletion stays on the status line, with לאשר את המחיקה ולשמור, instead of שומר….
+   Account requests on this page time out after 15s (my/ideas/rg-sync-status.js). shared/rg-account.js is unchanged. */
 (function () {
   "use strict";
   var APP = "myideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
@@ -171,7 +173,7 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-myideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0;
+  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false;
   function bakKey(id) { return "rg-myideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -189,18 +191,29 @@
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
 
-  /* ---------- sync ---------- */
+  /* ---------- sync ----------
+     The status line names why a save is not quietly synced. When tooManyGone blocks a cloud write,
+     pending stays true and the line shows the blocked-deletion text plus לאשר את המחיקה ולשמור
+     (the same 60s bulkOk window as deleting a whole list) instead of sitting on שומר…. */
+  function statusFlags() {
+    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
+  }
+  function confirmBlocked() {
+    bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    holdBlocked = false; syncErr = ""; offline = false; sync();
+  }
   function setStatus() {
     var s = $("status"); if (!s) return;
-    s.className = "status" + (offline ? " off" : "");
-    s.textContent = !uid ? "" : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced");
-    s.title = s.textContent;
+    var SS = window.RGSyncStatus;
+    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
+    var k = SS.kind(statusFlags());
+    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false;
+    var who = uid, sent = null, blocked = false, SS = window.RGSyncStatus;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
@@ -219,22 +232,31 @@
       if (mergeGroups()) dirty = true;
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
-      if (tooManyGone(items, cl)) { blocked = true; try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} return; }
+      if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
+        blocked = true; holdBlocked = true; pending = true; saveLocal();
+        try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
+        return;
+      }
+      holdBlocked = false;
       backup(cl);
       sent = items;
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
       });
     }).then(function () {
       if (who !== uid) return;
-      offline = false;
-      if (blocked) return; // keep "pending": nothing was lost locally, and the cloud copy stays as it was
-      if (!sent || sent === items) { pending = false; saveLocal(); } else again = true;
+      var sentSame = !sent || sent === items;
+      var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
+      offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
+      if (blocked) return; // keep pending: the cloud copy stays as it was, and the lists stay on this device
+      if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
     }, function (e) {
-      if (e && e.code === "signed_out") return;
-      offline = true;
+      if (who !== uid) return;
+      if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
+      var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
+      offline = next.offline; syncErr = next.syncErr; failN = next.failN;
     }).then(function () {
       busy = false; setStatus();
-      if (again) { again = false; sync(); }
+      if (again && who === uid) { again = false; sync(); }
     });
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
@@ -242,8 +264,8 @@
 
   setInterval(function () { if (uid && document.visibilityState === "visible" && !editing) sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
-  window.addEventListener("online", function () { sync(); });
-  window.addEventListener("offline", function () { offline = true; setStatus(); });
+  window.addEventListener("online", function () { offline = false; if (uid) sync(); });
+  window.addEventListener("offline", function () { offline = true; syncErr = ""; setStatus(); });
 
   /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ----------
      Since the "one kind of list" change every category looks and behaves the same: title, short note, נבחר (selected), free order.
@@ -999,12 +1021,13 @@
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;
       if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this device's copy unless unsynced
-      uid = id; editing = null; offline = false; loadLocal(); render();
-      if (uid) sync();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; loadLocal(); render();
+      if (uid) sync(); else setStatus();
     }
     onUser(A.user());
     A.onChange(onUser);
-    A.ready.then(function () { onUser(A.user()); });
+    A.ready.then(function () { onUser(A.user()); if (!uid) setStatus(); });
+    if (!uid) setStatus(); // a visit that is already signed out never enters onUser, and the line would stay blank
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
