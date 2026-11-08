@@ -193,6 +193,22 @@
   .cp-oi { min-height: 38px; font-size: 15px; }
   .cp-list li.cp-opts { flex: none !important; height: auto !important; } #cat-new { flex: none; } #done-wrap .donehead h2 { color: var(--accent); font-weight: 800; }
   .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
+  /* print: screen-only. Uses the same tokens as the other list buttons. */
+  .printrow { display: flex; justify-content: flex-start; margin: 2px 0 0; }
+  .printbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  @media print {
+    .rgtb, .topbar, .printrow, .addform, .cathint, .syncslot, #status, .status,
+    .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
+    .catpanel, .cp-back, .sheetwrap, .toast, .gate, .suggest, .hdl, .synctog, .cb-chev, .ulink, .addnote { display: none !important; }
+    .catbtn { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
+    html:root { color-scheme: light !important; }
+    html, body, .wrap, .card, .listcard, .list, .list li, .txt, .catbtn, .sum, .pin, .donehead, .empty, .note {
+      color: CanvasText !important; background: Canvas !important; box-shadow: none !important;
+    }
+    .done .txt, .txt .note, .txt .addnote, .sum .sel, .done .pin { color: GrayText !important; }
+    .list li { overflow: visible; break-inside: avoid; }
+    .list li::before, .list li::after { content: none !important; display: none !important; }
+  }
 </style>
 <script src="../shared/rg-bg.js" data-app="pubpurchasify" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -206,6 +222,7 @@
     </div>
   </header>
   <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
+  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
 <main>
     <div class="catpick" id="catpick">
       <div class="cathead">
@@ -240,7 +257,7 @@
 <script>
 window.RGMY_SW = "sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "Purchasify", title: "קניותיפיי", sub: "רשימת קניות. בלי חשבון נשמרת במכשיר, עם חשבון רק אצלך.", ph: "מה צריך לקנות?", add: "הוסף", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
+  he: { doc: "Purchasify", title: "קניותיפיי", sub: "רשימת קניות. בלי חשבון נשמרת במכשיר, עם חשבון רק אצלך.", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפס", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", privNote: "בלי חשבון הנתונים נשארים רק במכשיר הזה ולא עולים לשום חשבון. עם חשבון הם נשמרים רק אצלך.", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
@@ -253,7 +270,7 @@ window.RGMY_STRINGS = {
         markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
-  en: { doc: "Purchasify", title: "Purchasify", sub: "A shopping list. On this device until you sign in, then only in your account.", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
+  en: { doc: "Purchasify", title: "Purchasify", sub: "A shopping list. On this device until you sign in, then only in your account.", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", localOnly: "Saved on this device only, until you sign in", privNote: "Without an account, data stays on this device and is never uploaded. With an account, only you can read it.", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",

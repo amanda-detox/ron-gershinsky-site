@@ -182,6 +182,22 @@
   .cp-oi { min-height: 38px; font-size: 15px; }
   .cp-list li.cp-opts { flex: none !important; height: auto !important; } #cat-new { flex: none; } #done-wrap .donehead h2 { color: var(--accent); font-weight: 800; }
   .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
+  /* print: screen-only. Uses the same tokens as the other list buttons. */
+  .printrow { display: flex; justify-content: flex-start; margin: 2px 0 0; }
+  .printbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  @media print {
+    .rgtb, .topbar, .printrow, .addform, .cathint, .syncslot, #status, .status,
+    .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
+    .catpanel, .cp-back, .sheetwrap, .toast, .gate, .suggest, .hdl, .synctog, .cb-chev, .ulink, .addnote { display: none !important; }
+    .catbtn { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
+    html:root { color-scheme: light !important; }
+    html, body, .wrap, .card, .listcard, .list, .list li, .txt, .catbtn, .sum, .pin, .donehead, .empty, .note {
+      color: CanvasText !important; background: Canvas !important; box-shadow: none !important;
+    }
+    .done .txt, .txt .note, .txt .addnote, .sum .sel, .done .pin { color: GrayText !important; }
+    .list li { overflow: visible; break-inside: avoid; }
+    .list li::before, .list li::after { content: none !important; display: none !important; }
+  }
 </style>
 <script src="../shared/rg-bg.js" data-app="sbxpurchasify" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -197,6 +213,7 @@
     </div>
   </header>
   <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
+  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
 <main>
     <div class="catpick" id="catpick">
       <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
@@ -229,7 +246,7 @@
 <script>
 window.RGMY_SW = "sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "Purchasify", title: "קניותיפיי", sub: "עותק ניסוי. הרשימה כאן נפרדת ולא נוגעת בקניותיפיי הרגיל.", ph: "מה צריך לקנות?", add: "הוסף", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
+  he: { doc: "Purchasify", title: "קניותיפיי", sub: "עותק ניסוי. הרשימה כאן נפרדת ולא נוגעת בקניותיפיי הרגיל.", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפס", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
         edit: "עריכה", del: "מחק", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", privNote: "בלי חשבון הנתונים נשארים רק במכשיר הזה ולא עולים לשום חשבון. עם חשבון הם נשמרים רק אצלך.", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", blockedAct: "לאשר את המחיקה ולשמור", syncErrorAuth: "הענן דחה את ההתחברות. הרשימות נשארו במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימות נשארו במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימות נשארו במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימות נשארו במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימות נשארו במכשיר.", importAsk: "יש במכשיר הזה {n} פריטים שנשמרו בלי חשבון. להעתיק אותם אל החשבון? מה שכבר בחשבון נשאר, ושום דבר לא נמחק מהמכשיר.", items: "פריטים",
@@ -242,7 +259,7 @@ window.RGMY_STRINGS = {
         markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
-  en: { doc: "Purchasify", title: "Purchasify", sub: "A sandbox copy. This list is separate and does not touch the regular Purchasify.", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
+  en: { doc: "Purchasify", title: "Purchasify", sub: "A sandbox copy. This list is separate and does not touch the regular Purchasify.", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
         edit: "Edit", del: "Delete", localOnly: "Saved on this device only, until you sign in", privNote: "Without an account, data stays on this device and is never uploaded. With an account, only you can read it.", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", blockedAct: "Confirm the deletion and save", syncErrorAuth: "The cloud rejected the sign-in. The lists stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The lists stayed on this device.", syncErrorPaused: "The server is paused right now. The lists stayed on this device.", syncErrorServer: "Saving to the cloud failed. The lists stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The lists stayed on this device.", importAsk: "This device has {n} items saved without an account. Copy them into the account? What is already in the account stays, and nothing is removed from this device.", items: "items",

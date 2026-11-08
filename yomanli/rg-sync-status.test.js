@@ -159,7 +159,7 @@ assert(pApp.indexOf("openDeletion") !== -1 && pApp.indexOf("restoreBlocked") !==
 assert(pApp.indexOf("keepGone: true") !== -1, "shopping items do not treat gone as a deletion");
 assert(pApp.indexOf("blockedItems") !== -1 && pApp.indexOf("blockedCats") !== -1, "Purchasify can restore items and categories separately");
 assert(pApp.indexOf("rg-pub-purchasify-stat") !== -1 && pApp.indexOf("toggleStat") !== -1, "Purchasify remembers whether the status is folded");
-assert(pSw.indexOf('CACHE = "rg-pub-purchasify-v4"') !== -1, "Purchasify service worker cache was bumped");
+assert(pSw.indexOf('CACHE = "rg-pub-purchasify-v5"') !== -1, "Purchasify service worker cache was bumped");
 assert(pSw.indexOf("rg-sync-status.js?v=1") !== -1 && pSw.indexOf("app.js?v=50") !== -1, "the Purchasify service worker precaches the new helper and app");
 assert(pApp.indexOf("לחתוך") === -1 && pHtml.indexOf("לחתוך") === -1, "Purchasify copy has no violent Hebrew");
 
