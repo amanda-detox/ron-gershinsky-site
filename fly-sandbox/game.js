@@ -2331,7 +2331,12 @@ const stats = (() => {
     }).catch(() => {});
   }
   if (A) { (A.ready && A.ready.then ? A.ready : Promise.resolve()).then(pull, pull); if (A.onChange) A.onChange(pull); }
-  function hudTotal() { const el = document.getElementById('score'); if (el) el.textContent = String(s.total); }
+  function hudTotal() {
+    const n = String(s.total);
+    const el = document.getElementById('score'); if (el) el.textContent = n;
+    const home = document.getElementById('homeScoreN'); if (home) home.textContent = n;
+  }
+  hudTotal();
   addEventListener('pagehide', () => { save(); push(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) { save(); push(); } });
   return {
@@ -2406,7 +2411,10 @@ function openLb() {
   }, () => { box.innerHTML = `<h2>${L.lbTitle}</h2>${mine}<p>${L.lbErr}</p>`; });
 }
 $('lbBtn').addEventListener('click', openLb);
-function menuStreak() { const el = $('streakLine'); if (el) { const n = stats.streakNow(); el.textContent = n > 0 ? T[lang].streak + ': ' + n + ' ' + T[lang].streakDay + (lang === 'en' && n > 1 ? 's' : lang === 'he' && n > 1 ? 'ים' : '') : ''; } }
+function menuStreak() {
+  const el = $('streakLine'); if (el) { const n = stats.streakNow(); el.textContent = n > 0 ? T[lang].streak + ': ' + n + ' ' + T[lang].streakDay + (lang === 'en' && n > 1 ? 's' : lang === 'he' && n > 1 ? 'ים' : '') : ''; }
+  const home = $('homeScoreN'); if (home) home.textContent = String(stats.get().total);
+}
 menuStreak(); setTimeout(menuStreak, 3000);
 $('lbClose').addEventListener('click', () => $('lbPanel').classList.add('hidden'));
 

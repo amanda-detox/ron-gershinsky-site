@@ -199,6 +199,9 @@ if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js",{scope:
   #combo { position:absolute; top:calc(env(safe-area-inset-top) + 58px); left:50%; transform:translateX(-50%); padding:4px 14px; border-radius:999px; background:#0b1f4dcc; border:1px solid #ffd76a; color:#ffd76a; font-weight:800; font-size:16px; opacity:0; transition:opacity .2s; pointer-events:none; }
   #combo.on { opacity:1; }
   #streakLine { text-align:center; color:#ffd76a; font-weight:700; margin-top:6px; min-height:1em; }
+  #homeScore { margin:8px 0 0; font-size:16px; font-weight:700; color:var(--gold); line-height:1.2; }
+  #homeScore b { font-size:22px; font-weight:800; }
+  html[data-theme="light"] #homeScore { color:#a07c10; }
   #updToast { position:fixed; bottom:max(12px, env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); z-index:45;
     max-width:min(86vw, 320px); padding:6px 12px; border-radius:999px; pointer-events:none; text-align:center;
     background:rgba(10,22,72,.92); border:1px solid rgba(243,207,107,.85); color:#fff; font-size:13px; font-weight:700;
@@ -347,6 +350,7 @@ if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js",{scope:
       <label id="mouseRow"><i class="ic" aria-hidden="true">🖱️</i><span data-t="mouseSens"></span><span class="msw"><input type="range" id="mouseSens" min="1" max="10" step="1"><b id="mouseSensV"></b></span></label>
     </div>
     <div class="mrow mrows"><button class="tbtn inst" id="installBtn" data-t="install"></button><button class="tbtn inst" id="updBtn" data-t="checkUpd"></button><button class="tbtn inst" id="tutBtn"></button><button class="tbtn inst" id="lbBtn"></button></div>
+    <p id="homeScore">✨ <span data-t="score"></span>: <b id="homeScoreN">0</b></p>
     <button class="btn main" id="startBtn" data-t="start"></button>
     <div class="install-hint hidden" id="installHint"></div>
     <div class="foot" data-t="copy"></div>
