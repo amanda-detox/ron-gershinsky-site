@@ -155,7 +155,8 @@
   /* ---------- safety net ---------- */
   // Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions),
   // so nothing is ever lost even if a bug writes something wrong: rg-my-shopping-bak:<user id> = [{ t, items, cats }, ...]
-  var BAK_N = 5, bulkOk = 0;
+  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedItems = null, blockedCats = null;
+  var statOpen = lsGet("rg-my-shopping-stat") !== "0";
   function bakKey(id) { return "rg-my-shopping-bak:" + id; }
   function backup(cl, cc) {
     if (!uid || (!Object.keys(cl).length && !Object.keys(cc).length)) return;
@@ -169,16 +170,63 @@
   function liveCount(m, isCat) { var n = 0; for (var k in m) { var x = m[k]; if (x && !x.deleted && !(isCat && x.gone)) n++; } return n; }
   // true when this write would remove most of what is in the cloud at once (and Ron did not just delete a whole category himself)
   function tooManyGone(next, cloud, isCat) {
+    var SS = window.RGSyncStatus;
+    if (SS) return SS.tooManyGone(next, cloud, Date.now(), bulkOk, isCat ? undefined : { keepGone: true });
     if (Date.now() < bulkOk) return false;
     var before = liveCount(cloud, isCat), after = liveCount(next, isCat), gone = before - after;
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
 
   /* ---------- sync ---------- */
+  function statusFlags() {
+    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
+  }
+  function confirmBlocked() {
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
+    bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    holdBlocked = false; syncErr = ""; offline = false; sync();
+  }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    if (SS && blockedItems) items = SS.restoreLive(items, blockedItems, { keepGone: true });
+    if (SS && blockedCats) catsMap = SS.restoreLive(catsMap, blockedCats);
+    snap = stamp(items, null); csnap = stamp(catsMap, null);
+    holdBlocked = false; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
+  }
+  function applyStatChrome() {
+    var slot = $("syncslot"), s = $("status"), b = $("sync-tog"), peek = $("syncpeek");
+    if (!slot || !s) return;
+    var attn = s.classList.contains("off"), has = !!(s.textContent || attn);
+    slot.hidden = !has;
+    slot.classList.toggle("shut", !statOpen);
+    slot.classList.toggle("attn", attn);
+    if (peek) peek.textContent = t("statusPeek");
+    if (b) {
+      b.setAttribute("aria-expanded", statOpen ? "true" : "false");
+      b.setAttribute("aria-label", t(statOpen ? "statusHide" : "statusShow"));
+      var tip = s.title || s.textContent || "";
+      if (tip) b.title = tip;
+    }
+  }
+  function toggleStat() {
+    statOpen = !statOpen;
+    lsSet("rg-my-shopping-stat", statOpen ? "1" : "0");
+    applyStatChrome();
+  }
   function setStatus() {
     var s = $("status"); if (!s) return;
-    s.className = "status" + (offline ? " off" : "");
-    s.textContent = !uid ? "" : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced");
+    if (!uid) { s.className = "status"; s.textContent = ""; s.title = ""; applyStatChrome(); if (window.RGSyncStatus) RGSyncStatus.closeDeletion(); return; }
+    var SS = window.RGSyncStatus;
+    if (!SS) { s.className = "status" + (offline ? " off" : ""); s.textContent = offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); }
+    else {
+      var k = SS.kind(statusFlags());
+      SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
+      if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+      else SS.closeDeletion();
+    }
+    applyStatChrome();
   }
 
   /* ---------- one-time list "ניקויים" (Ron, 2026-10-30) ----------
@@ -301,7 +349,7 @@
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sentI = null, sentC = null, blocked = false;
+    var who = uid, sentI = null, sentC = null, blocked = false, SS = window.RGSyncStatus;
     return Promise.all([A.get(APP, KEY), A.get(APP, CKEY)]).then(function (r) {
       if (who !== uid) return;
       var cl = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
@@ -312,24 +360,33 @@
       var sA = seedCleanse(), sB = seedBodycare(), sC = seedFashion(), sD = seedMore();
       if (sA || sB || sC || sD) { mi = items; mc = catsMap; saveLocal(); render(); }
       var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
-      if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
-      if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
+      var blockI = wI && tooManyGone(mi, cl, false), blockC = wC && tooManyGone(mc, cc, true);
+      if (blockI) { wI = false; blocked = true; try { console.warn("Purchasify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
+      if (blockC) { wC = false; blocked = true; try { console.warn("Purchasify: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
+      blockedItems = blockI ? cl : null;
+      blockedCats = blockC ? cc : null;
+      if (blocked) { holdBlocked = true; pending = true; saveLocal(); }
+      else holdBlocked = false;
       if (wI || wC) backup(cl, cc);
       if (wI) { sentI = mi; jobs.push(A.set(APP, KEY, { v: 1, items: mi })); }
       if (wC) { sentC = mc; jobs.push(A.set(APP, CKEY, { v: 1, cats: mc })); }
       return Promise.all(jobs);
     }).then(function () {
       if (who !== uid) return;
-      offline = false;
-      if (blocked) return; // keep "pending": nothing was lost locally, and the cloud copy stays as it was
-      if ((!sentI || same(sentI, items)) && (!sentC || same(sentC, catsMap))) { pending = false; saveLocal(); } // nothing new changed meanwhile
-      else again = true;
+      var sentSame = (!sentI || same(sentI, items)) && (!sentC || same(sentC, catsMap));
+      var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
+      offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
+      if (blocked) return;
+      if (next.clearPending) { pending = false; saveLocal(); }
+      else if (next.again) again = true;
     }, function (e) {
-      if (e && e.code === "signed_out") return;
-      offline = true; // keep everything locally, retry on the next poll / when back online
+      if (who !== uid) return;
+      if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
+      var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
+      offline = next.offline; syncErr = next.syncErr; failN = next.failN;
     }).then(function () {
       busy = false; setStatus();
-      if (again) { again = false; sync(); }
+      if (again && who === uid) { again = false; sync(); }
     });
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
@@ -338,8 +395,8 @@
   setInterval(function () { if (uid && document.visibilityState === "visible") sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
   window.addEventListener("focus", function () { sync(); });
-  window.addEventListener("online", function () { sync(); });
-  window.addEventListener("offline", function () { offline = true; setStatus(); });
+  window.addEventListener("online", function () { offline = false; syncErr = ""; sync(); });
+  window.addEventListener("offline", function () { offline = true; syncErr = ""; setStatus(); });
 
   /* ---------- actions ---------- */
   /* price: optional, in ₪, decimals allowed; stored on the item as a number ("price"), synced with it; no price = 0 in the sums */
@@ -856,6 +913,7 @@
       add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; changed(); i.focus();
     });
     on("suggest", "click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
+    on("sync-tog", "click", function (e) { e.preventDefault(); e.stopPropagation(); toggleStat(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
@@ -900,7 +958,7 @@
       if (!id && uid) { // signed out: drop this device's copy unless it holds changes that never reached the cloud
         var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null);
       }
-      uid = id; editing = null; offline = false; loadLocal(); render();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; bulkOk = 0; blockedItems = null; blockedCats = null; loadLocal(); render();
       if (uid) sync();
     }
     onUser(A.user());
