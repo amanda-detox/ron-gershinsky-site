@@ -103,7 +103,7 @@ assert(sbxIdeas.indexOf("אמנדה") === -1 && sbxIdeas.indexOf("הרגלים �
 assert(sbxIdeas.indexOf("holdBlocked") !== -1 && sbxIdeas.indexOf("restoreBlocked") !== -1 && sbxIdeas.indexOf("openDeletion") !== -1, "ideas sandbox asks before uploading or restoring a large deletion");
 assert(sbxIdeas.indexOf("blockedAct") === -1, "ideas sandbox no longer uses the single confirm button");
 var statusSrc = fs.readFileSync(path.join(__dirname, "rg-sync-status.js"), "utf8");
-assert(statusSrc.indexOf("זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח גבי זה?") !== -1, "the popup asks in Ron's exact words");
+assert(statusSrc.indexOf("זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?") !== -1, "the popup asks in Ron's exact words");
 assert(statusSrc.indexOf("כן, העלי לענן") !== -1 && statusSrc.indexOf("לא, שחזרי מחיקות") !== -1, "the popup buttons use the exact wording");
 assert(statusSrc.indexOf("לחתוך") === -1, "the popup does not use a violent Hebrew word");
 var yApp2 = fs.readFileSync(path.join(root, "yomanli-sandbox/app.js"), "utf8");
