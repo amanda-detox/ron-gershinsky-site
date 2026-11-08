@@ -42,6 +42,12 @@ window.RGMY_STRINGS = {
   "synced": "✓ מסונכרן",
   "saving": "שומר…",
   "offline": "⚠ אין חיבור – השינויים נשמרים במכשיר ויסונכרנו כשהחיבור יחזור",
+  "blocked": "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.",
+  "syncErrorAuth": "הענן דחה את ההתחברות. היומן נשאר במכשיר.",
+  "syncErrorDenied": "אין הרשאה לשמור בענן. היומן נשאר במכשיר.",
+  "syncErrorPaused": "השרת מושהה כרגע. היומן נשאר במכשיר.",
+  "syncErrorServer": "השמירה לענן נכשלה. היומן נשאר במכשיר.",
+  "syncErrorTimeout": "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. היומן נשאר במכשיר.",
   "del": "מחיקה"
  },
  "en": {
@@ -85,6 +91,12 @@ window.RGMY_STRINGS = {
   "synced": "✓ Synced",
   "saving": "Saving…",
   "offline": "⚠ Offline – changes are saved on this device and will sync when you're back online",
+  "blocked": "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.",
+  "syncErrorAuth": "The cloud rejected the sign-in. The journal stayed on this device.",
+  "syncErrorDenied": "This account is not allowed to save to the cloud. The journal stayed on this device.",
+  "syncErrorPaused": "The server is paused right now. The journal stayed on this device.",
+  "syncErrorServer": "Saving to the cloud failed. The journal stayed on this device.",
+  "syncErrorTimeout": "Saving to the cloud did not finish in time, after several tries. The journal stayed on this device.",
   "del": "Delete"
  }
 };

@@ -1,5 +1,7 @@
 /* Yomanli / יומןלי (yomanli/) — public journal. Guest entries stay on this device. Signed-in entries use
    Appwrite app "pubyomanli", readable and writable by that user only. Starts empty.
+   A large deletion asks before it is uploaded (yomanli/rg-sync-status.js). כן, העלי לענן uploads.
+   לא, שחזרי מחיקות puts cloud entries back, keeps newer local edits and additions, then syncs.
    Item kinds:
      topic { name }                                   a topic the user created
      entry { text, topic?: <topic id>, day }          one paragraph; created = date/time it was written */
@@ -19,7 +21,14 @@
   var filt = "", q = "", editId = null, msg = "", deferred = false, pickTopic = lsGet("rg-pub-yomanli-topic") || "";
   var S = RGStore("pubyomanli", { onChange: function () { render(); }, onStatus: setStatus, busy: typing });
   function typing() { var a = document.activeElement; return !!(a && a.closest && a.closest("#panels") && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)); }
-  function setStatus() { var s = $("status"); if (!s) return; var st = S.state(); s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
+  function setStatus() {
+    var s = $("status"); if (!s) return;
+    var st = S.state(), SS = window.RGSyncStatus;
+    if (!SS) { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; return; }
+    SS.fillStatus(s, st, st && st !== "blocked" ? t(st) : "");
+    if (st === "blocked") SS.openDeletion({ onYes: function () { S.confirmBulk(); }, onNo: function () { S.restoreBulk(); } });
+    else SS.closeDeletion();
+  }
 
   function topics() { return S.list("topic").sort(function (a, b) { return String(a.name).localeCompare(String(b.name), loc()); }); }
   function topicName(id) { var x = id && S.get(id); return x && x.kind === "topic" ? x.name : t("noTopic"); }

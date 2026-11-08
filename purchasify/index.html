@@ -227,7 +227,7 @@ window.RGMY_STRINGS = {
   he: { doc: "Purchasify", title: "קניותיפיי", sub: "רשימת קניות. בלי חשבון נשמרת במכשיר, עם חשבון רק אצלך.", ph: "מה צריך לקנות?", add: "הוסף", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
-        edit: "עריכה", del: "מחק", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", privNote: "בלי חשבון הנתונים נשארים רק במכשיר הזה ולא עולים לשום חשבון. עם חשבון הם נשמרים רק אצלך.", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", items: "פריטים",
+        edit: "עריכה", del: "מחק", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", privNote: "בלי חשבון הנתונים נשארים רק במכשיר הזה ולא עולים לשום חשבון. עם חשבון הם נשמרים רק אצלך.", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
         emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
@@ -240,7 +240,7 @@ window.RGMY_STRINGS = {
   en: { doc: "Purchasify", title: "Purchasify", sub: "A shopping list. On this device until you sign in, then only in your account.", ph: "What do you need to buy?", add: "Add", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
-        edit: "Edit", del: "Delete", localOnly: "Saved on this device only, until you sign in", privNote: "Without an account, data stays on this device and is never uploaded. With an account, only you can read it.", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", items: "items",
+        edit: "Edit", del: "Delete", localOnly: "Saved on this device only, until you sign in", privNote: "Without an account, data stays on this device and is never uploaded. With an account, only you can read it.", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
         emptyCat: "This category is empty. Write above what you need to buy.",
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
@@ -252,10 +252,11 @@ window.RGMY_STRINGS = {
         pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
 };
 </script>
+<script src="rg-sync-status.js?v=1"></script>
 <script src="../shared/rg-account.js"></script>
 <script src="../my/common.js"></script>
 <script src="../shared/rg-isolate.js"></script>
-<script src="app.js?v=48"></script>
+<script src="app.js?v=49"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
