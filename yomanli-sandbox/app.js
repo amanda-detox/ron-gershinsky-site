@@ -35,8 +35,11 @@
   function setStatus() {
     var s = $("status"); if (!s) return;
     var st = S.state();
-    if (window.RGSyncStatus) RGSyncStatus.fillStatus(s, st, st ? t(st) : "", st === "blocked" ? { label: t("blockedAct"), fn: function () { S.confirmBulk(); } } : null);
-    else { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
+    var SS = window.RGSyncStatus;
+    if (!SS) { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st && st !== "blocked" ? t(st) : ""; return; }
+    SS.fillStatus(s, st, st && st !== "blocked" ? t(st) : "");
+    if (st === "blocked") SS.openDeletion({ onYes: function () { S.confirmBulk(); }, onNo: function () { S.restoreDeleted(); } });
+    else SS.closeDeletion();
   }
 
   function topics() { return S.list("topic").sort(function (a, b) { return String(a.name).localeCompare(String(b.name), loc()); }); }
