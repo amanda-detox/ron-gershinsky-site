@@ -25,9 +25,19 @@
   /* Same bookmark glyph as Updatify (news/app.js): outline when off, filled when on. */
   var BMK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
   var BMKF = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
-  var S = RGStore("sbxyomanli", { onChange: function () { render(); }, onStatus: setStatus, busy: typing });
+  var S = RGStore("sbxyomanli", {
+    onChange: function () { render(); },
+    onStatus: setStatus,
+    busy: typing,
+    importGuest: function (n) { return window.confirm(String(t("importAsk")).replace("{n}", String(n))) === true; }
+  });
   function typing() { var a = document.activeElement; return !!(a && a.closest && a.closest("#panels") && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)); }
-  function setStatus() { var s = $("status"); if (!s) return; var st = S.state(); s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
+  function setStatus() {
+    var s = $("status"); if (!s) return;
+    var st = S.state();
+    if (window.RGSyncStatus) RGSyncStatus.fillStatus(s, st, st ? t(st) : "", st === "blocked" ? { label: t("blockedAct"), fn: function () { S.confirmBulk(); } } : null);
+    else { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
+  }
 
   function topics() { return S.list("topic").sort(function (a, b) { return String(a.name).localeCompare(String(b.name), loc()); }); }
   function topicName(id) { var x = id && S.get(id); return x && x.kind === "topic" ? x.name : t("noTopic"); }

@@ -49,6 +49,14 @@ window.RGMY_STRINGS = {
   "synced": "✓ מסונכרן",
   "saving": "שומר…",
   "offline": "⚠ אין חיבור – השינויים נשמרים במכשיר ויסונכרנו כשהחיבור יחזור",
+  "blocked": "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.",
+  "blockedAct": "לאשר את המחיקה ולשמור",
+  "syncErrorAuth": "הענן דחה את ההתחברות. הרשומות נשארו במכשיר.",
+  "syncErrorDenied": "אין הרשאה לשמור בענן. הרשומות נשארו במכשיר.",
+  "syncErrorPaused": "השרת מושהה כרגע. הרשומות נשארו במכשיר.",
+  "syncErrorServer": "השמירה לענן נכשלה. הרשומות נשארו במכשיר.",
+  "syncErrorTimeout": "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשומות נשארו במכשיר.",
+  "importAsk": "יש במכשיר הזה {n} רשומות שנשמרו בלי חשבון. להעתיק אותן אל החשבון? מה שכבר בחשבון נשאר, ושום דבר לא נמחק מהמכשיר.",
   "del": "מחיקה"
  },
  "en": {
@@ -99,6 +107,14 @@ window.RGMY_STRINGS = {
   "synced": "✓ Synced",
   "saving": "Saving…",
   "offline": "⚠ Offline – changes are saved on this device and will sync when you're back online",
+  "blocked": "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.",
+  "blockedAct": "Confirm the deletion and save",
+  "syncErrorAuth": "The cloud rejected the sign-in. The entries stayed on this device.",
+  "syncErrorDenied": "This account is not allowed to save to the cloud. The entries stayed on this device.",
+  "syncErrorPaused": "The server is paused right now. The entries stayed on this device.",
+  "syncErrorServer": "Saving to the cloud failed. The entries stayed on this device.",
+  "syncErrorTimeout": "Saving to the cloud did not finish in time, after several tries. The entries stayed on this device.",
+  "importAsk": "This device has {n} entries saved without an account. Copy them into the account? What is already in the account stays, and nothing is removed from this device.",
   "del": "Delete"
  }
 };

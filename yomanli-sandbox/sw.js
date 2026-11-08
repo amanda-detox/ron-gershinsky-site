@@ -1,8 +1,8 @@
 /* Offline cache for the Yomanli sandbox only. Scope: yomanli-sandbox/.
    Does not delete rg-pub-yomanli-* caches used by the live journal. */
-var CACHE = "rg-sbx-yomanli-v1";
-var FILES = ["./", "index.html", "strings.js", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "../my/common.css", "../my/common.js", "../my/care.css", "../shared/rg-public-store.js?v=2",
-  "rg-isolate.js", "../shared/rg-public.css", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
+var CACHE = "rg-sbx-yomanli-v2";
+var FILES = ["./", "index.html", "strings.js", "app.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "../my/common.css", "../my/common.js", "../my/care.css", "../sandbox-shared/rg-public-store.js?v=1", "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js",
+  "rg-isolate.js", "../shared/rg-public.css", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
