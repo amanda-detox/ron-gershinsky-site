@@ -1,7 +1,7 @@
 /* Offline cache for live Journalify (yomanli/). Scope: yomanli/ only.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-pub-yomanli-v5";
-var FILES = ["./", "index.html", "strings.js?v=5", "rg-sync-status.js?v=1", "rg-store.js?v=1", "app.js?v=4", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "../my/common.css", "../my/common.js", "../my/care.css",
+var CACHE = "rg-pub-yomanli-v6";
+var FILES = ["./", "index.html", "strings.js?v=6", "rg-sync-status.js?v=1", "rg-store.js?v=1", "app.js?v=5", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "../my/common.css", "../my/common.js", "../my/care.css",
   "../shared/rg-isolate.js", "../shared/rg-public.css", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {

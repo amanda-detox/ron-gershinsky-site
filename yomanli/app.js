@@ -18,16 +18,40 @@
   function loc() { return M.lang() === "he" ? "he-IL" : "en-GB"; }
 
   var view = lsGet("rg-pub-yomanli-view") === "topic" ? "topic" : "day";
+  var statOpen = lsGet("rg-pub-yomanli-stat") !== "0";
   var filt = "", q = "", editId = null, msg = "", deferred = false, pickTopic = lsGet("rg-pub-yomanli-topic") || "";
   var S = RGStore("pubyomanli", { onChange: function () { render(); }, onStatus: setStatus, busy: typing });
   function typing() { var a = document.activeElement; return !!(a && a.closest && a.closest("#panels") && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)); }
+  function applyStatChrome() {
+    var slot = document.querySelector(".syncslot"), s = $("status"), b = slot && slot.querySelector(".synctog"), peek = slot && slot.querySelector(".syncpeek");
+    if (!slot || !s) return;
+    var attn = s.classList.contains("off"), has = !!(s.textContent || attn);
+    slot.hidden = !has;
+    slot.classList.toggle("shut", !statOpen);
+    slot.classList.toggle("attn", attn);
+    if (peek) peek.textContent = t("statusPeek");
+    if (b) {
+      b.setAttribute("aria-expanded", statOpen ? "true" : "false");
+      b.setAttribute("aria-label", t(statOpen ? "statusHide" : "statusShow"));
+      var tip = s.title || s.textContent || "";
+      if (tip) b.title = tip;
+    }
+  }
+  function toggleStat() {
+    statOpen = !statOpen;
+    lsSet("rg-pub-yomanli-stat", statOpen ? "1" : "0");
+    applyStatChrome();
+  }
   function setStatus() {
     var s = $("status"); if (!s) return;
     var st = S.state(), SS = window.RGSyncStatus;
-    if (!SS) { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; return; }
-    SS.fillStatus(s, st, st && st !== "blocked" ? t(st) : "");
-    if (st === "blocked") SS.openDeletion({ onYes: function () { S.confirmBulk(); }, onNo: function () { S.restoreBulk(); } });
-    else SS.closeDeletion();
+    if (!SS) { s.className = "status" + (st === "offline" ? " off" : ""); s.textContent = st ? t(st) : ""; }
+    else {
+      SS.fillStatus(s, st, st && st !== "blocked" ? t(st) : "");
+      if (st === "blocked") SS.openDeletion({ onYes: function () { S.confirmBulk(); }, onNo: function () { S.restoreBulk(); } });
+      else SS.closeDeletion();
+    }
+    applyStatChrome();
   }
 
   function topics() { return S.list("topic").sort(function (a, b) { return String(a.name).localeCompare(String(b.name), loc()); }); }
@@ -70,7 +94,10 @@
   function panelList() {
     var all = entries(), ql = q.trim().toLowerCase();
     var list = all.filter(function (x) { return (!filt || (filt === "__none" ? !x.topic || !S.get(x.topic) : x.topic === filt)) && (!ql || String(x.text).toLowerCase().indexOf(ql) > -1); });
-    var h = '<section class="card sec"><h2>' + esc(t("myLog")) + " <small>(" + all.length + ")</small></h2>" +
+    var h = '<section class="card sec"><div class="jhead"><h2>' + esc(t("myLog")) + " <small>(" + all.length + ")</small></h2>" +
+      '<div class="syncslot"><div class="status" id="status" role="status" aria-live="polite"></div><span class="syncpeek"></span>' +
+      '<button type="button" class="synctog" data-a="stat" aria-expanded="' + (statOpen ? "true" : "false") + '" aria-label="' + esc(t(statOpen ? "statusHide" : "statusShow")) + '">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div></div>' +
       '<div class="chips" role="group"><button type="button" data-a="view" data-v="day" aria-pressed="' + (view === "day") + '">📅 ' + esc(t("byDay")) + '</button><button type="button" data-a="view" data-v="topic" aria-pressed="' + (view === "topic") + '">🏷 ' + esc(t("byTopic")) + "</button></div>" +
       '<div class="row2 jfilters"><select class="inp sel" data-a="filt"><option value="">' + esc(t("allTopics")) + "</option>";
     topics().forEach(function (x) { h += '<option value="' + esc(x.id) + '"' + (filt === x.id ? " selected" : "") + ">" + esc(x.name) + "</option>"; });
@@ -163,7 +190,8 @@
     panels.addEventListener("click", function (e) {
       var b = e.target.closest("[data-a]"); if (!b || b.tagName === "SELECT" || b.tagName === "INPUT") return;
       var a = b.getAttribute("data-a"), id = b.getAttribute("data-id");
-      if (a === "view") { view = b.getAttribute("data-v"); lsSet("rg-pub-yomanli-view", view); render(true); }
+      if (a === "stat") { toggleStat(); }
+      else if (a === "view") { view = b.getAttribute("data-v"); lsSet("rg-pub-yomanli-view", view); render(true); }
       else if (a === "edit") { editId = id; render(true); var ta = panels.querySelector('form[data-form="e"] textarea'); if (ta) ta.focus(); }
       else if (a === "cancel") { editId = null; render(true); }
       else if (a === "del") { if (confirm(t("confirmDel"))) { S.del(id); if (editId === id) editId = null; render(true); } }
