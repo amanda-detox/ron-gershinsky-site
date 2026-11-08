@@ -445,12 +445,31 @@
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <script src="shared/rg-account.js"></script>
 <script src="home-dnd.js?v=36"></script>
+<script src="home-catalog.js?v=1"></script>
+<script>
+/* Signed in: load the personal app list before the grid is drawn, so the first paint has one tile per app.
+   Guests do not request this file. */
+(function () {
+  try {
+    var u = JSON.parse(localStorage.getItem("rg-account-user") || "null");
+    if (u && (u.id || u.$id)) document.write('<script src="my/apps.js?v=' + Date.now() + '"><\/script>');
+  } catch (e) {}
+})();
+</script>
 <script>
 var CONTACT = "detoxify.ai@proton.me";
-// Site owner (Ron) by Appwrite user ID: only this account sees "My private apps" on this page.
+// Site owner (Ron) by Appwrite user ID: owner chrome only (brand block, metrics). Any signed-in account
+// gets the personal app tiles; a guest keeps the public list.
 var OWNER_IDS = ["6adefcf6c9d7f919e779"];
-var PRIV_CACHE = "rg-my-home-apps"; // owner's device only: last list, so the section also shows offline
-var privData = null, privLoading = false;
+var PRIV_CACHE = "rg-my-home-apps"; // this device: last personal list, so those tiles also show offline
+function readCachedPriv() {
+  try {
+    var u = JSON.parse(localStorage.getItem("rg-account-user") || "null");
+    if (!u || !(u.id || u.$id)) return null;
+    return JSON.parse(localStorage.getItem(PRIV_CACHE) || "null");
+  } catch (e) { return null; }
+}
+var privData = window.RGMY_APPS || readCachedPriv(), privLoading = false;
 // Paste a checkout link here (Lemon Squeezy or similar). Empty keeps the button honest.
 var CHECKOUT_URL = "";
 // Waitlist signups go to a private Appwrite table (database "ron", table "waitlist").
@@ -494,34 +513,21 @@ var apps = [
   { href: "young/index.html",     icon: "young/icon-192.png",     he: "יאנגיפיי",      en: "Youngify",  heLine: "המלצות לצעירים לחיים טובים, בריאים ומשגשגים (בטא)", enLine: "Tips for young people for a good, healthy, thriving life (beta)" }
 ];
 
-// Site owner signed in: ONE merged grid (public + private apps from my/apps.js), these first, private ones marked with a lock.
-var OWNER_GROUPS = [["my/ideas/", "my/journal/", "fly/index.html"], ["balancify/index.html", "mystify/index.html"]]; // Ron 2026-10-31: row 1 Listify, Journalli, Playify; row 2 Balancify, Mystify; then the rest, previous group A (Purchasify, Updatify) first
+// Signed in: ONE grid. Personal copies replace their public twins (home-catalog.js). These first; personal ones keep the lock.
+// Guests use publicApps() and still see the public twins. Ron 2026-10-31: row 1 Listify, Journalli, Playify; row 2 Balancify, Mystify; then the rest, previous group A (Purchasify, Updatify) first.
+var OWNER_GROUPS = [["my/ideas/", "my/journal/", "fly/index.html"], ["balancify/index.html", "mystify/index.html"]];
 var OWNER_AFTER = ["my/shopping/", "news/index.html"];
-function ownerApps() {
+function accountApps() {
   var u = window.RGAccount ? RGAccount.user() : null;
-  if (!isOwner(u) || !privData || !privData.apps) return null;
-  var all = apps.slice();
-  privData.apps.forEach(function (app) {
-    if (!app || app.hidden || typeof app.href !== "string" || /^[a-z]+:|^\/|\.\./i.test(app.href)) return; // only paths inside my/; hidden: true = off the list
-    all.push({ href: "my/" + app.href, icon: "my/" + app.icon, he: app.he, en: app.en, heLine: app.heLine, enLine: app.enLine, priv: true });
-  });
-  var out = [], used = [];
-  function pick(hrefs) { var g = []; hrefs.forEach(function (h) { all.forEach(function (a) { if (a.href === h && !a.hidden && used.indexOf(a) === -1) { g.push(a); used.push(a); } }); }); return g; }
-  OWNER_GROUPS.forEach(function (hrefs) { var g = pick(hrefs); if (g.length) { if (out.length) out.push({ sep: true }); out = out.concat(g); } });
-  var rest = pick(OWNER_AFTER).concat(all.filter(function (a) { return used.indexOf(a) === -1 && !a.hidden; }));
-  return { top: out, rest: rest };
+  if (!u || !u.id || !window.RGHomeCatalog) return null;
+  return RGHomeCatalog.arrange(RGHomeCatalog.listing(apps, privData, true), OWNER_GROUPS, OWNER_AFTER);
 }
 var LOCK_SVG = '<svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5zm-3 8V7a3 3 0 0 1 6 0v3H9z"/></svg>';
 // Ron 2026-10-31: only the featured apps are tiles; every other app is a tile (icon + name) under the "שאר האפליקציות" heading, always visible, 3 per row (no dropdown).
 // All app descriptions are kept in docs/app-descriptions.md (heLine/enLine stay in the data above).
 function publicApps() {
-  var top = [], used = [];
-  OWNER_GROUPS.forEach(function (hrefs) {
-    var g = [];
-    hrefs.forEach(function (h) { apps.forEach(function (a) { if (a.href === h && !a.hidden && used.indexOf(a) === -1) { g.push(a); used.push(a); } }); });
-    if (g.length) { if (top.length) top.push({ sep: true }); top = top.concat(g); }
-  });
-  return { top: top, rest: apps.filter(function (a) { return !a.hidden && used.indexOf(a) === -1; }) };
+  if (!window.RGHomeCatalog) return { top: [], rest: [] };
+  return RGHomeCatalog.arrange(apps, OWNER_GROUPS, []);
 }
 function appName(app, he) {
   var name = document.createElement("span");
@@ -590,7 +596,7 @@ document.getElementById("hidden-toggle").addEventListener("click", function () {
 function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
-  var set = ownerApps() || publicApps();
+  var set = accountApps() || publicApps();
   if (window.RGHomeDnd) set = RGHomeDnd.apply(set); // saved order (להזיז / להצמיד למעלה), synced with the account when signed in
   var dnd = !!(window.RGHomeDnd && RGHomeDnd.moving());
   document.documentElement.classList.toggle("dnd-on", dnd);
@@ -1069,10 +1075,10 @@ updateInstall();
 if (window.RGHomeDnd) {
   RGHomeDnd.setRender(function () { renderApps(lang === "he"); });
 }
-/* ---------- "My private apps": shown right under the public grid, only to the site owner ----------
-   The owner is matched by Appwrite user ID (the account's $id, never the email). The list itself is not in this page:
-   it is loaded from my/apps.js only after the signed-in user is the owner, and a signed-out visitor or anyone else
-   never requests it. The session is re-checked with Appwrite on load (RGAccount.ready); a 401 hides the section. */
+/* ---------- Personal tiles: any signed-in account, merged into the main grid ----------
+   Guests keep the public apps. A signed-in account lists the personal copy once (see home-catalog.js) and does not
+   list the public twin. my/apps.js is requested only when someone is signed in. The session is re-checked with
+   Appwrite on load (RGAccount.ready); a 401 drops back to the public list. Owner chrome stays owner-only. */
 function isOwner(u) { return !!(u && u.id && OWNER_IDS.indexOf(u.id) !== -1); }
 var metricsConfirmed = false; // stay hidden until RGAccount.ready confirms the session; the cached user is not enough
 function syncMetrics() {
@@ -1084,7 +1090,7 @@ function privHide() {
   document.getElementById("priv-apps").hidden = true;
   document.getElementById("priv-grid").innerHTML = "";
 }
-function renderPriv() { // the owner's private apps are merged into the main grid (renderApps); the separate section stays hidden
+function renderPriv() { // personal apps are merged into the main grid (renderApps); the separate section stays hidden
   privHide();
   renderApps(lang === "he");
 }
@@ -1093,8 +1099,14 @@ function loadPriv() {
   document.documentElement.classList.toggle("rg-owner", isOwner(u)); // owner: hide brand block + waitlist / contact / about / recommended game; install button stays
   updateInstall();
   syncMetrics(); // metrics panel: owner only, and only after the session check below confirms them
-  if (!isOwner(u)) { privData = null; try { localStorage.removeItem(PRIV_CACHE); } catch (e) {} renderPriv(); return; }
-  if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e) { privData = null; } }
+  if (!u || !u.id) { privData = null; renderPriv(); return; }
+  if (window.RGMY_APPS) {
+    privData = window.RGMY_APPS;
+    try { localStorage.setItem(PRIV_CACHE, JSON.stringify(privData)); } catch (e) {}
+    renderPriv();
+    return;
+  }
+  if (!privData) { try { privData = JSON.parse(localStorage.getItem(PRIV_CACHE) || "null"); } catch (e2) { privData = null; } }
   renderPriv();
   if (privLoading) return;
   privLoading = true;
@@ -1102,7 +1114,8 @@ function loadPriv() {
   s.src = "my/apps.js?v=" + Date.now();
   s.onload = function () {
     privLoading = false; s.remove();
-    if (!isOwner(RGAccount.user()) || !window.RGMY_APPS) return;
+    var cur = RGAccount.user();
+    if (!cur || !cur.id || !window.RGMY_APPS) return;
     privData = window.RGMY_APPS;
     try { localStorage.setItem(PRIV_CACHE, JSON.stringify(privData)); } catch (e) {}
     renderPriv();
@@ -1135,7 +1148,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=72", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=73", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
