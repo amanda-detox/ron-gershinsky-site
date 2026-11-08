@@ -173,7 +173,7 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false;
+  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -196,15 +196,26 @@
     return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
   }
   function confirmBlocked() {
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
     bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
     holdBlocked = false; syncErr = ""; offline = false; sync();
+  }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
+    snap = stamp(items, null);
+    holdBlocked = false; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
   }
   function setStatus() {
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
     if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
     var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
+    SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
+    if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    else SS.closeDeletion();
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
@@ -223,7 +234,7 @@
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
       if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
-        blocked = true; holdBlocked = true; pending = true; saveLocal();
+        blocked = true; holdBlocked = true; pending = true; blockedCloud = cl; saveLocal();
         try { console.warn("ideas sandbox: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
         return;
       }

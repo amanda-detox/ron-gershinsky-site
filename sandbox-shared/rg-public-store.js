@@ -90,7 +90,7 @@
   window.RGStore = function (APP, opt) {
     opt = opt || {};
     var A = window.RGAccount, uid = null, items = {}, snap = {}, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
-    var failN = 0, syncErr = "", holdBlocked = false, bulkOk = 0;
+    var failN = 0, syncErr = "", holdBlocked = false, bulkOk = 0, blockedCloud = null;
     RGIsolate.assertPublicApp(APP);
     function cacheKey(id) { return RGIsolate.cacheKey(APP, id); }
     function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
@@ -115,7 +115,7 @@
         if (!same(merged, items)) { items = merged; snap = stamp(items, null); saveLocal(); fire(); }
         if (cloud && same(items, cl)) return;
         if (SS && SS.tooManyGone(items, cl, Date.now(), bulkOk)) {
-          blocked = true; holdBlocked = true; pending = true; saveLocal();
+          blocked = true; holdBlocked = true; pending = true; blockedCloud = cl; saveLocal();
           try { console.warn(APP + " sandbox: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
           return;
         }
@@ -179,6 +179,14 @@
         return SS.kind({ maySync: RGIsolate.maySync(uid), uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline });
       },
       confirmBulk: function () { bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000); holdBlocked = false; syncErr = ""; offline = false; return sync(); },
+      restoreDeleted: function () {
+        var SS = window.RGSyncStatus;
+        if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
+        snap = stamp(items, null);
+        holdBlocked = false; pending = true; syncErr = ""; offline = false;
+        saveLocal(); fire();
+        return sync();
+      },
       sync: sync
     };
   };

@@ -21,7 +21,7 @@
   var BUILTIN = [{ cat: "main", def: "tabMain", ph: "ph", empty: "empty", pos: 0 }, { cat: "tea", def: "tabTea", ph: "phTea", empty: "emptyTea", pos: 1 }];
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, catsMap = {}, pending = false, busy = false, again = false, offline = false, lastT = 0, editing = null, soonT = 0, rendering = false;
-  var failN = 0, syncErr = "", holdBlocked = false;
+  var failN = 0, syncErr = "", holdBlocked = false, blockedItems = null, blockedCats = null;
   var drag = null, idrag = null, needRender = false, noClick = false; // drag = a category row being reordered, idrag = an item being swiped
 
   function $(id) { return document.getElementById(id); }
@@ -183,15 +183,27 @@
     return { maySync: RGIsolate.maySync(uid), uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
   }
   function confirmBlocked() {
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
     bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
     holdBlocked = false; syncErr = ""; offline = false; sync();
+  }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    if (SS && blockedItems) items = SS.restoreLive(items, blockedItems);
+    if (SS && blockedCats) catsMap = SS.restoreLive(catsMap, blockedCats);
+    snap = stamp(items, null); csnap = stamp(catsMap, null);
+    holdBlocked = false; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
   }
   function setStatus() {
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
     if (!SS) { s.textContent = !RGIsolate.maySync(uid) ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
     var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
+    SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
+    if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    else SS.closeDeletion();
   }
 
   function sync() {
@@ -211,7 +223,7 @@
       if (wI && tooManyGone(mi, cl, false)) { wI = false; blocked = true; try { console.warn("Purchasify sandbox: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {} }
       if (wC && tooManyGone(mc, cc, true)) { wC = false; blocked = true; try { console.warn("Purchasify sandbox: a write that removes most categories was blocked; the cloud copy is untouched"); } catch (e) {} }
       holdBlocked = blocked;
-      if (blocked) { pending = true; saveLocal(); }
+      if (blocked) { pending = true; blockedItems = cl; blockedCats = cc; saveLocal(); }
       if (wI || wC) backup(cl, cc);
       if (wI) { sentI = mi; jobs.push(A.set(APP, KEY, { v: 1, items: mi })); }
       if (wC) { sentC = mc; jobs.push(A.set(APP, CKEY, { v: 1, cats: mc })); }

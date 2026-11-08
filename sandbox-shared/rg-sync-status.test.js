@@ -51,6 +51,26 @@ var oddNet = SS.applyFailure({ failN: 1 }, { status: 0, type: "network" }, true)
 assert(oddNet.syncErr === "server" && oddNet.offline === false, "a failed request while online is a sync error after it repeats");
 
 var blockedSave = SS.applySuccess(null, { blocked: true, sentSame: false });
+function row(id, text, at, deleted) {
+  var x = { id: id, text: text, at: at };
+  if (deleted) x.deleted = true;
+  return x;
+}
+var cloud6 = { a: row("a", "A", 1), b: row("b", "B", 1), c: row("c", "C", 1), d: row("d", "D", 1), e: row("e", "E", 1), f: row("f", "F", 1) };
+var phoneLocal = {
+  a: row("a", "A", 5, true), b: row("b", "B", 5, true), c: row("c", "C", 5, true), d: row("d", "D", 5, true),
+  e: row("e", "E edited", 9), n: row("n", "new on phone", 8)
+};
+var restored = SS.restoreLive(phoneLocal, cloud6);
+assert(restored.a && !restored.a.deleted && restored.a.text === "A", "a cloud item deleted on the phone comes back");
+assert(restored.e && restored.e.text === "E edited", "a local edit that was not deleted stays");
+assert(restored.n && restored.n.text === "new on phone", "a local addition stays");
+assert(restored.f && restored.f.text === "F", "a cloud item missing locally is kept");
+assert(SS.liveCount(restored) === 7, "restore keeps the new item and the six cloud items");
+assert(SS.tooManyGone(restored, cloud6, 1000, 0) === false, "after restore the upload is no longer blocked");
+var after = SS.applySuccess(null, { blocked: false, sentSame: true });
+assert(after.clearPending && !after.holdBlocked, "a successful restore upload clears pending so the status is not saving");
+
 assert(blockedSave.holdBlocked && !blockedSave.clearPending && !blockedSave.again, "a blocked write keeps pending and does not immediately retry");
 var doneSave = SS.applySuccess(null, { blocked: false, sentSame: true });
 assert(doneSave.clearPending && !doneSave.holdBlocked, "a write that landed clears pending");
@@ -80,7 +100,16 @@ var sbxIdeasSw = fs.readFileSync(path.join(root, "ideas-sandbox/sw.js"), "utf8")
 assert(sbxIdeas.indexOf('APP = "sbxmyideas"') !== -1, "ideas sandbox uses sbxmyideas");
 assert(sbxIdeas.indexOf('APP = "myideas"') === -1 && sbxIdeas.indexOf("rg-myideas") === -1, "ideas sandbox does not use live app id or live storage keys");
 assert(sbxIdeas.indexOf("אמנדה") === -1 && sbxIdeas.indexOf("הרגלים שלי") === -1, "ideas sandbox does not copy the personal one-time lists");
-assert(sbxIdeas.indexOf("holdBlocked") !== -1 && sbxIdeas.indexOf("confirmBlocked") !== -1, "ideas sandbox can confirm a blocked deletion");
+assert(sbxIdeas.indexOf("holdBlocked") !== -1 && sbxIdeas.indexOf("restoreBlocked") !== -1 && sbxIdeas.indexOf("openDeletion") !== -1, "ideas sandbox asks before uploading or restoring a large deletion");
+assert(sbxIdeas.indexOf("blockedAct") === -1, "ideas sandbox no longer uses the single confirm button");
+var statusSrc = fs.readFileSync(path.join(__dirname, "rg-sync-status.js"), "utf8");
+assert(statusSrc.indexOf("זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?") !== -1, "the popup asks in Ron's exact words");
+assert(statusSrc.indexOf("כן, העלי לענן") !== -1 && statusSrc.indexOf("לא, שחזרי מחיקות") !== -1, "the popup buttons use the exact wording");
+assert(statusSrc.indexOf("לחתוך") === -1, "the popup does not use a violent Hebrew word");
+var yApp2 = fs.readFileSync(path.join(root, "yomanli-sandbox/app.js"), "utf8");
+assert(yApp2.indexOf("openDeletion") !== -1 && yApp2.indexOf("restoreDeleted") !== -1, "yomanli sandbox uses the same popup");
+var buyApp = fs.readFileSync(path.join(root, "purchasify-sandbox/app.js"), "utf8");
+assert(buyApp.indexOf("openDeletion") !== -1 && buyApp.indexOf("restoreBlocked") !== -1, "purchasify sandbox uses the same popup");
 assert(sbxIdeasHtml.indexOf("../sandbox-shared/rg-account.js") !== -1 && sbxIdeasHtml.indexOf("../sandbox-shared/rg-sync-status.js") !== -1, "ideas sandbox loads the sandbox account and status helper");
 assert(sbxIdeasHtml.indexOf("../../shared/rg-account.js") === -1 && sbxIdeasHtml.indexOf("../shared/rg-account.js") === -1, "ideas sandbox does not load the live account script");
 assert(sbxIdeasSw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sbxIdeasSw.indexOf("rg-myideas-") === -1, "ideas sandbox cache cannot delete the live ideas cache");

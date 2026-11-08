@@ -79,18 +79,113 @@
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
 
+  function isLive(x) { return !!(x && !x.deleted && !x.gone); }
+
+  /* Bring back cloud items that were deleted on this device. Live local items, including
+     edits and additions, stay as they are. */
+  function restoreLive(local, cloud) {
+    var out = {}, k, x, c, y, f, at, F, fk;
+    local = local && typeof local === "object" ? local : {};
+    cloud = cloud && typeof cloud === "object" ? cloud : {};
+    for (k in local) out[k] = local[k];
+    for (k in cloud) {
+      c = cloud[k];
+      if (!isLive(c)) continue;
+      x = out[k];
+      if (isLive(x)) continue;
+      y = {};
+      for (f in c) if (f !== "deleted" && f !== "gone") y[f] = c[f];
+      at = Math.max(typeof c.at === "number" ? c.at : 0, x && typeof x.at === "number" ? x.at : 0) + 1;
+      y.at = at;
+      if (y._f && typeof y._f === "object") {
+        F = {};
+        for (fk in y._f) F[fk] = y._f[fk];
+        F["~"] = at;
+        y._f = F;
+      }
+      out[k] = y;
+    }
+    return out;
+  }
+
+  var ASK_Q = "זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?";
+  var ASK_YES = "כן, העלי לענן";
+  var ASK_NO = "לא, שחזרי מחיקות";
+
+  function ensureAskCss(doc) {
+    if (!doc || doc.getElementById("rg-delask-css")) return;
+    var st = doc.createElement("style");
+    st.id = "rg-delask-css";
+    st.textContent = ""
+      + ".rg-delask-back{position:fixed;inset:0;z-index:10000;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:color-mix(in srgb, var(--bg) 45%, transparent)}"
+      + ".rg-delask{width:100%;max-width:440px;margin:0;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:18px;padding:20px 16px calc(16px + env(safe-area-inset-bottom));box-shadow:var(--shadow);text-align:start}"
+      + ".rg-delask p{margin:0 0 16px;font:700 18px/1.45 var(--sans);color:var(--fg)}"
+      + ".rg-delask button{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;margin:8px 0 0;padding:0 16px;border-radius:14px;font:700 17px/1.2 var(--sans);cursor:pointer}"
+      + ".rg-delask button.yes{background:var(--accent);color:var(--accentink);border:0}"
+      + ".rg-delask button.no{background:var(--card);color:var(--fg);border:1px solid var(--line)}"
+      + "@media (min-width:700px){.rg-delask-back{align-items:center}}";
+    (doc.head || doc.documentElement).appendChild(st);
+  }
+
+  function closeDeletion() {
+    var doc = root.document;
+    if (!doc) return;
+    var el = doc.getElementById("rg-delask-back");
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+
+  function openDeletion(opts) {
+    var doc = root.document;
+    if (!doc || !doc.body) return;
+    if (doc.getElementById("rg-delask-back")) return;
+    opts = opts || {};
+    ensureAskCss(doc);
+    var back = doc.createElement("div");
+    back.id = "rg-delask-back";
+    back.className = "rg-delask-back";
+    var box = doc.createElement("div");
+    box.className = "rg-delask";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("dir", "rtl");
+    box.setAttribute("aria-labelledby", "rg-delask-q");
+    var p = doc.createElement("p");
+    p.id = "rg-delask-q";
+    p.textContent = ASK_Q;
+    var yes = doc.createElement("button");
+    yes.type = "button";
+    yes.className = "yes";
+    yes.textContent = ASK_YES;
+    var no = doc.createElement("button");
+    no.type = "button";
+    no.className = "no";
+    no.textContent = ASK_NO;
+    function run(fn) {
+      closeDeletion();
+      if (typeof fn === "function") fn();
+    }
+    yes.addEventListener("click", function () { run(opts.onYes); });
+    no.addEventListener("click", function () { run(opts.onNo); });
+    box.appendChild(p);
+    box.appendChild(yes);
+    box.appendChild(no);
+    back.appendChild(box);
+    doc.body.appendChild(back);
+    try { yes.focus(); } catch (e) {}
+  }
+
   function fillStatus(el, key, label, action) {
     if (!el) return;
     var attention = key === "offline" || key === "blocked" || (key && String(key).indexOf("syncError") === 0);
     el.className = "status" + (attention ? " off" : "");
     while (el.firstChild) el.removeChild(el.firstChild);
-    if (!key) { el.title = ""; return; }
+    if (!key || !label) { el.title = ""; return; }
     var doc = el.ownerDocument || root.document;
     var span = doc.createElement("span");
     span.className = "status-txt";
-    span.textContent = label || "";
+    span.textContent = label;
     el.appendChild(span);
-    el.title = label || "";
+    el.title = label;
     if (key === "blocked" && action && typeof action.fn === "function") {
       var b = doc.createElement("button");
       b.type = "button";
@@ -148,6 +243,12 @@
     applySuccess: applySuccess,
     liveCount: liveCount,
     tooManyGone: tooManyGone,
+    restoreLive: restoreLive,
+    ASK_Q: ASK_Q,
+    ASK_YES: ASK_YES,
+    ASK_NO: ASK_NO,
+    openDeletion: openDeletion,
+    closeDeletion: closeDeletion,
     fillStatus: fillStatus,
     fetchWithTimeout: fetchWithTimeout
   };
