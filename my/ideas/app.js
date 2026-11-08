@@ -14,7 +14,8 @@
    Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
    Offline-first: kept in localStorage per user (rg-myideas-v1:<user id>) and merged into the account copy on every sync.
    The first checklist item is added once, on the first successful sync of an account whose list was never seeded.
-   A blocked large deletion stays on the status line, with לאשר את המחיקה ולשמור, instead of שומר….
+   A blocked large deletion asks before uploading. כן, העלי לענן keeps the 60s confirm and uploads.
+   לא, שחזרי מחיקות puts cloud items back, keeps newer phone edits and additions, then syncs that merge.
    Account requests on this page time out after 15s (my/ideas/rg-sync-status.js). shared/rg-account.js is unchanged. */
 (function () {
   "use strict";
@@ -173,7 +174,7 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-myideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false;
+  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
   function bakKey(id) { return "rg-myideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -192,22 +193,33 @@
   }
 
   /* ---------- sync ----------
-     The status line names why a save is not quietly synced. When tooManyGone blocks a cloud write,
-     pending stays true and the line shows the blocked-deletion text plus לאשר את המחיקה ולשמור
-     (the same 60s bulkOk window as deleting a whole list) instead of sitting on שומר…. */
+     When tooManyGone blocks a cloud write, a popup asks what to do. כן, העלי לענן uses the same
+     60s bulkOk window as deleting a whole list and uploads the local document. לא, שחזרי מחיקות
+     restores cloud items deleted on this phone, keeps newer local edits and additions, then syncs. */
   function statusFlags() {
     return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
   }
   function confirmBlocked() {
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
     bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
     holdBlocked = false; syncErr = ""; offline = false; sync();
+  }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
+    snap = stamp(items, null);
+    holdBlocked = false; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
   }
   function setStatus() {
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
     if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
     var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
+    SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
+    if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    else SS.closeDeletion();
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
@@ -233,7 +245,7 @@
       if (dirty) { saveLocal(); render(); }
       if (cloudSeeded && same(items, cl)) return;
       if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
-        blocked = true; holdBlocked = true; pending = true; saveLocal();
+        blocked = true; holdBlocked = true; pending = true; blockedCloud = cl; saveLocal();
         try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
         return;
       }
