@@ -137,8 +137,8 @@ if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js",{scope:
   #exhaustToggle.none i::after { content:""; position:absolute; left:50%; top:-18%; width:2px; height:136%; background:#eef3ff; border-radius:1px; transform:translateX(-50%) rotate(42deg); }
   #exhaustToggle.smoke { border-color:#e7eef8; background:radial-gradient(circle at 50% 40%, #fff 0 20%, #d5deea 48%, #8ea0b8 80%); box-shadow:0 0 10px rgba(220,230,245,.75), inset 0 0 0 2px rgba(10,20,72,.28); }
   #exhaustToggle.smoke i { width:54%; height:54%; border-radius:50%; background:radial-gradient(circle at 35% 35%, #fff, #c5d0e0 72%); box-shadow:7px -3px 0 -2px #eef3f8, -6px 3px 0 -3px #d5deea; }
-  #exhaustToggle.dust { border-color:#ffe7a3; background:conic-gradient(from 20deg, #2c5cff, #9eb6ff, #f3cf6b, #fff6d4, #c9b6ff, #7ad7ff, #2c5cff); box-shadow:0 0 10px rgba(243,207,107,.75); }
-  #exhaustToggle.dust i { width:52%; height:52%; border-radius:50%; background:radial-gradient(circle at 30% 32%, #fff 0 16%, transparent 17%), radial-gradient(circle at 72% 40%, #f3cf6b 0 14%, transparent 15%), radial-gradient(circle at 46% 74%, #9eb6ff 0 13%, transparent 14%); box-shadow:none; }
+  #exhaustToggle.dust { border-color:#ffe7a3; background:radial-gradient(circle at 50% 38%, #fff6d4 0 22%, #f3cf6b 52%, #a8842a 84%); box-shadow:0 0 10px rgba(243,207,107,.85); }
+  #exhaustToggle.dust i { width:52%; height:52%; border-radius:50%; background:radial-gradient(circle at 32% 34%, #fff 0 14%, transparent 15%), radial-gradient(circle at 68% 40%, #fff6d4 0 12%, transparent 13%), radial-gradient(circle at 48% 72%, #f3cf6b 0 11%, transparent 12%); box-shadow:none; }
   #exhaustToggle.gold { border-color:#f3cf6b; background:radial-gradient(circle at 50% 38%, #fff6d4 0 24%, #f3cf6b 50%, #b8922e 82%); box-shadow:0 0 10px rgba(243,207,107,.9); }
   #exhaustToggle.gold i { width:46%; height:46%; border-radius:46% 62% 40% 70%; background:linear-gradient(#fff6d4, #d4af37); transform:rotate(-18deg); box-shadow:0 0 6px rgba(255,231,163,.9); }
   #exhaustToggle.plasma { border-color:#d6e6ff; background:radial-gradient(circle at 50% 38%, #f4fbff 0 16%, transparent 17%), linear-gradient(#7eb6ff, #2c5cff 55%, #163a9a); box-shadow:0 0 12px rgba(80,140,255,.9), inset 0 0 0 2px rgba(8,20,60,.3); }
@@ -364,7 +364,7 @@ if("serviceWorker" in navigator)navigator.serviceWorker.register("sw.js",{scope:
 <div id="nogl" class="hidden"><div class="panel"><h1 data-t="title"></h1><p data-t="nogl"></p><div class="foot" data-t="copy"></div></div></div>
 
 <script src="../shared/rg-account.js"></script>
-<script type="module" src="game.js?v=31"></script>
+<script type="module" src="game.js?v=32"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#menu" data-where="prepend" data-pin="1"></script>
 
 </body>
