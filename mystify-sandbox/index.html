@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<script>/* display size from the shared top bar, before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#0a1238">
+<meta name="color-scheme" content="dark light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="מיסטיפיי">
+<meta name="description" content="מיסטיפיי סטודיו · משחק פעולה ותפקידים, ארגז חול גרסה א. Mystify Studio action RPG sandbox, version A.">
+<title>Mystify</title>
+<script>/* sandbox theme + site language. Own theme key, never a live app key. */(function(){var d=document.documentElement,t="dark",l="he";try{t=localStorage.getItem("rg-sbx-mystify-theme")==="light"?"light":"dark";l=localStorage.getItem("rg-lang")==="en"?"en":"he";}catch(e){}d.setAttribute("data-theme",t);d.lang=l;d.dir=l==="en"?"ltr":"rtl";var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f3efe6":"#0a1238");})();</script>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<style>
+  :root {
+    --gold:#f3cf6b; --gold2:#ffe7a3; --gold3:#e3bd5b; --gold4:#d4af37;
+    --blue:#2c5cff; --blue2:#3b82f6; --blue3:#1d4fb8; --blue4:#143a8c; --blue-soft:#7fb6ff;
+    --navy:#0a1238; --deep:#050a24; --ink:#eaf0ff; --muted:#b9c8f5; --cream:#fff6dc; --ink-btn:#0b1f4d;
+    --panel:rgba(10,18,56,.9); --line:rgba(243,207,107,.5);
+  }
+  html[data-theme="light"] {
+    --ink:#0b1f4d; --muted:#3f5079; --panel:rgba(255,253,248,.94); --line:rgba(184,137,43,.6); --cream:#fffdf8;
+    color-scheme: light;
+  }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { margin:0; height:100%; overflow:hidden; background:var(--deep); color:var(--ink);
+    font-family:"Heebo", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    user-select:none; -webkit-user-select:none; touch-action:none; overscroll-behavior:none; }
+  button { font:inherit; color:inherit; cursor:pointer; }
+  :focus-visible { outline:3px solid var(--gold3); outline-offset:2px; }
+  #c { position:fixed; inset:0; width:100%; height:100%; display:block; touch-action:none; }
+  .hidden { display:none !important; }
+  .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+
+  #menu.overlay, #pause.overlay, #end.overlay {
+    position:fixed; inset:0; z-index:20; display:flex; flex-direction:column;
+    padding:calc(max(10px, env(safe-area-inset-top)) + 52px) 12px max(10px, env(safe-area-inset-bottom));
+    background:rgba(5,10,36,.78);
+  }
+  html[data-theme="light"] #menu.overlay { background:rgba(243,239,230,.9); }
+  #pause.overlay, #end.overlay { z-index:32; align-items:center; justify-content:center; background:rgba(5,10,36,.55); }
+  .sheet { flex:1; overflow:auto; -webkit-overflow-scrolling:touch; touch-action:pan-y; width:min(680px, 100%); margin:0 auto; padding-bottom:18px; }
+  .go-bar { flex:none; width:min(680px, 100%); margin:8px auto 0; }
+  .banner, .chip {
+    margin:0 auto 8px; text-align:center; background:var(--gold); color:var(--ink-btn);
+    border-radius:999px; padding:6px 12px; font-weight:800; line-height:1.25;
+  }
+  .banner { display:flex; flex-direction:column; gap:1px; width:fit-content; max-width:100%; font-size:13px; }
+  .banner small { font-size:11px; font-weight:700; opacity:.85; }
+  .banner [lang="en"], .chip [lang="en"] { font-size:.92em; font-weight:700; }
+  h1 { margin:4px 0 0; text-align:center; font-size:clamp(36px, 10vw, 56px); font-weight:800; line-height:1;
+    background:linear-gradient(180deg,#fff, var(--gold2) 55%, var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  html[data-theme="light"] h1 { background:linear-gradient(180deg, var(--blue3), var(--gold4)); -webkit-background-clip:text; background-clip:text; }
+  .en-name, .studio, .tag, .help, .foot, h2 { text-align:center; }
+  .en-name { margin:0; color:var(--gold3); font-weight:800; letter-spacing:.04em; }
+  html[data-theme="light"] .en-name { color:#8a6414; }
+  .studio { margin:2px 0 0; font-weight:700; }
+  .tag, .help, .foot { color:var(--muted); }
+  .tag { margin:4px 0 8px; font-size:15px; }
+  h2 { margin:12px 0 6px; font-size:15px; font-weight:700; color:var(--gold2); }
+  html[data-theme="light"] h2 { color:#8a6414; }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .pick, .later {
+    min-height:72px; border-radius:16px; border:1px solid var(--line); background:var(--panel);
+    padding:8px 10px; text-align:start; color:var(--ink);
+  }
+  .pick { border-inline-start:4px solid var(--stripe, var(--gold)); }
+  .pick b, .later b { display:block; font-size:16px; }
+  .pick span, .later span { display:block; margin-top:2px; color:var(--muted); font-size:12.5px; line-height:1.35; }
+  .pick[aria-pressed="true"] { border-color:var(--gold); box-shadow:0 0 0 1px var(--gold), 0 0 16px rgba(243,207,107,.28); }
+  .modes { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .later { border-style:dashed; opacity:.9; }
+  .help { font-size:13.5px; line-height:1.45; margin:12px 0; }
+  .foot { font-size:12px; margin:8px 0 4px; }
+  .go, .ghost {
+    min-height:56px; border-radius:999px; font-weight:800; font-size:18px; width:100%;
+  }
+  .go { border:none; color:var(--ink-btn); background:linear-gradient(180deg, var(--gold2), var(--gold)); }
+  .ghost { margin-top:8px; border:1px solid var(--line); background:var(--panel); color:var(--ink); }
+  .go:active, .ghost:active, .pick:active { transform:scale(.98); }
+  .card { width:min(420px, 100%); background:var(--panel); border:1px solid var(--line); border-radius:20px; padding:16px; text-align:center; }
+  .card h2 { font-size:32px; margin:0 0 6px; color:var(--gold2); }
+  html[data-theme="light"] .card h2 { color:#8a6414; }
+  .card p { margin:4px 0; color:var(--muted); }
+
+  #hud { position:fixed; inset:0; z-index:10; pointer-events:none; }
+  .chip {
+    position:absolute; top:max(6px, env(safe-area-inset-top)); left:50%; transform:translateX(-50%);
+    width:max-content; max-width:calc(100% - 16px); font-size:11px; padding:4px 10px; z-index:2;
+    display:flex; flex-direction:column;
+  }
+  .status {
+    position:absolute; top:calc(max(6px, env(safe-area-inset-top)) + 42px);
+    left:max(10px, env(safe-area-inset-left)); right:max(10px, env(safe-area-inset-right));
+    display:flex; align-items:center; gap:8px; pointer-events:none;
+  }
+  .hpwrap { flex:1; min-width:0; display:flex; align-items:center; gap:8px; background:rgba(10,18,56,.82); border:1px solid var(--line); border-radius:999px; padding:6px 10px; }
+  .hp { flex:1; height:14px; border-radius:999px; background:#0b1f4d; overflow:hidden; direction:ltr; }
+  .hp > span { display:block; height:100%; width:100%; transform-origin:left center; transform:scaleX(var(--hp, 1)); background:linear-gradient(90deg, var(--blue3), var(--gold)); }
+  .hpwrap.low .hp > span { background:var(--gold2); }
+  #hpNum { font-weight:800; font-variant-numeric:tabular-nums; min-width:3.2em; text-align:center; }
+  #pauseBtn {
+    pointer-events:auto; width:48px; height:48px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(10,18,56,.88); color:var(--gold2); font-size:16px;
+  }
+  #obj, #who { position:absolute; left:12px; right:12px; text-align:center; font-weight:700; text-shadow:0 1px 3px #050a24; }
+  #obj { top:calc(max(6px, env(safe-area-inset-top)) + 98px); font-size:16px; }
+  #who { top:calc(max(6px, env(safe-area-inset-top)) + 120px); font-size:12.5px; color:var(--gold2); }
+  #banner {
+    position:absolute; top:30%; left:12px; right:12px; text-align:center; font-weight:800;
+    font-size:clamp(26px, 7vw, 42px); color:var(--cream); opacity:0;
+    text-shadow:0 2px 0 #0a1238, 0 0 18px rgba(243,207,107,.85);
+  }
+  #banner.on { opacity:1; }
+  #skills {
+    position:absolute; left:max(10px, env(safe-area-inset-left)); bottom:max(12px, env(safe-area-inset-bottom));
+    display:grid; grid-template-columns:68px 68px; gap:8px; direction:ltr; pointer-events:auto;
+  }
+  .sk {
+    position:relative; width:68px; height:68px; border-radius:50%; padding:0; overflow:hidden;
+    border:2px solid rgba(243,207,107,.8); color:#fff;
+    background:radial-gradient(circle at 50% 35%, rgba(90,130,255,.95), rgba(20,36,110,.95));
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+    touch-action:none;
+  }
+  .sk .ic { width:22px; height:22px; display:block; }
+  .sk .ic svg { width:22px; height:22px; display:block; }
+  .sk .lb { font-size:11px; font-weight:800; line-height:1; position:relative; z-index:1; }
+  .sk .cd { position:absolute; inset:0; border-radius:50%; background:conic-gradient(rgba(5,10,36,.74) var(--p, 0%), transparent 0); }
+  .sk.ready { box-shadow:0 0 12px rgba(243,207,107,.8); }
+  .sk.hot { box-shadow:0 0 16px rgba(255,231,163,.95); border-color:#fff; }
+  #joy {
+    position:absolute; right:max(12px, env(safe-area-inset-right)); bottom:max(14px, env(safe-area-inset-bottom));
+    width:128px; height:128px; border-radius:50%; pointer-events:auto; touch-action:none; direction:ltr;
+    border:3px solid rgba(143,176,255,.9);
+    background:radial-gradient(circle, rgba(60,100,255,.28), rgba(10,18,56,.55) 70%);
+  }
+  #joy i {
+    position:absolute; left:50%; top:50%; width:48px; height:48px; margin:-24px 0 0 -24px; border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, var(--cream), var(--gold) 70%);
+    transform:translate(var(--x, 0px), var(--y, 0px));
+  }
+  #joy.on { border-color:#fff; }
+  .keys { position:absolute; left:150px; right:150px; bottom:max(8px, env(safe-area-inset-bottom)); text-align:center; font-size:12px; color:#fff; opacity:.8; }
+  @media (hover:none), (max-width:799px) { .keys { display:none; } }
+  @media (max-width:359px) {
+    #skills { grid-template-columns:58px 58px; }
+    .sk { width:58px; height:58px; }
+    #joy { width:108px; height:108px; }
+  }
+  @media (max-height:520px) {
+    #skills { grid-template-columns:54px 54px; gap:6px; }
+    .sk { width:54px; height:54px; }
+    #joy { width:96px; height:96px; }
+    #obj { top:calc(max(4px, env(safe-area-inset-top)) + 86px); }
+    #who { display:none; }
+    #menu.overlay { padding-top:calc(max(4px, env(safe-area-inset-top)) + 58px); }
+    h1 { font-size:26px; }
+    .en-name, .studio, .tag, .help, .foot { display:none; }
+    .banner { font-size:11px; padding:3px 8px; margin-bottom:4px; }
+    .pick, .later { min-height:48px; padding:4px 8px; }
+    .grid, .modes { grid-template-columns:repeat(3, 1fr); }
+    h2 { margin:6px 0 4px; }
+  }
+  body.playing .rgtb { display:none !important; }
+  .status { top:calc(max(6px, env(safe-area-inset-top)) + 50px); }
+  #obj { top:calc(max(6px, env(safe-area-inset-top)) + 104px); }
+  #who { top:calc(max(6px, env(safe-area-inset-top)) + 126px); }
+  @media (min-width:800px) {
+    .grid { grid-template-columns:repeat(3, 1fr); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body data-rg-account-none>
+<canvas id="c"></canvas>
+<div id="hud" class="hidden">
+  <p id="sbxChip" class="chip">
+    <span lang="he">ארגז חול · מיסטיפיי · משחק תפקידים</span>
+    <span lang="en">Sandbox · Mystify · action RPG</span>
+  </p>
+  <div class="status">
+    <div class="hpwrap" id="hpWrap"><div class="hp" id="hpBar"><span id="hpFill"></span></div><b id="hpNum">120</b></div>
+    <button type="button" id="pauseBtn" aria-label="pause">❚❚</button>
+  </div>
+  <div id="obj"></div>
+  <div id="who"></div>
+  <div id="banner"></div>
+  <div id="skills" role="group"></div>
+  <div id="joy"><i></i></div>
+  <p class="keys" id="keys"></p>
+</div>
+<div id="live" class="sr" aria-live="polite"></div>
+
+<div id="menu" class="overlay">
+  <div id="top">
+    <button type="button" id="langBtn" hidden></button>
+    <button type="button" id="theme-btn" hidden></button>
+  </div>
+  <div class="sheet" id="sheet">
+    <p class="banner">
+      <span lang="he">ארגז חול · מיסטיפיי · משחק תפקידים</span>
+      <span lang="en">Sandbox · Mystify · action RPG</span>
+      <small><span lang="he">גרסה א׳</span> · <span lang="en">version A</span></small>
+    </p>
+    <h1>מיסטיפיי</h1>
+    <p class="en-name">Mystify</p>
+    <p class="studio" id="studio"></p>
+    <p class="tag" id="tag"></p>
+    <h2 id="classLabel"></h2>
+    <div class="grid" id="classes" role="group"></div>
+    <h2 id="modeLabel"></h2>
+    <div class="modes" id="modes" role="group"></div>
+    <h2 id="mapLabel"></h2>
+    <div class="grid" id="maps" role="group"></div>
+    <p class="help" id="help"></p>
+    <div class="rg-install-wrap" id="install-wrap" hidden>
+      <button type="button" class="rg-install" id="install-btn"></button>
+    </div>
+    <p class="foot" id="foot"></p>
+  </div>
+  <div class="go-bar"><button type="button" class="go" id="start"></button></div>
+</div>
+
+<div id="pause" class="overlay hidden">
+  <div class="card">
+    <h2 id="pauseTitle"></h2>
+    <button type="button" class="go" id="resume"></button>
+    <button type="button" class="ghost" id="soundBtn"></button>
+    <button type="button" class="ghost" id="pauseMenu"></button>
+  </div>
+</div>
+<div id="end" class="overlay hidden">
+  <div class="card">
+    <h2 id="endTitle"></h2>
+    <p id="endBody"></p>
+    <p id="endTime"></p>
+    <button type="button" class="go" id="again"></button>
+    <button type="button" class="ghost" id="endMenu"></button>
+  </div>
+</div>
+
+<script src="sim.js?v=2"></script>
+<script src="game.js?v=2"></script>
+<script src="../shared/rg-account.js"></script>
+<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="#top" data-where="prepend" data-pin="1"></script>
+</body>
+</html>
