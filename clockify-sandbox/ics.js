@@ -68,6 +68,15 @@
         var when = new Date(+d[1], +d[2] - 1, +d[3], p.h, p.m);
         if (when <= now) return; // one-time alarm already passed
         day = d[1] + d[2] + d[3];
+      } else if (a.type === "d28" || a.type === "monthly" || a.type === "yearly" || a.type === "y5" || a.type === "decade") {
+        var anchor = /^(\d{4})-(\d{2})-(\d{2})$/.exec(a.date || "");
+        if (!anchor) return;
+        day = anchor[1] + anchor[2] + anchor[3];
+        if (a.type === "d28") rrule = "RRULE:FREQ=DAILY;INTERVAL=28";
+        else if (a.type === "monthly") rrule = "RRULE:FREQ=MONTHLY";
+        else if (a.type === "yearly") rrule = "RRULE:FREQ=YEARLY";
+        else if (a.type === "y5") rrule = "RRULE:FREQ=YEARLY;INTERVAL=5";
+        else rrule = "RRULE:FREQ=YEARLY;INTERVAL=10";
       } else {
         day = ymd(now);
         var byday = Array.isArray(a.days) && a.days.length && a.days.length < 7

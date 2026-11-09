@@ -1,6 +1,6 @@
 /* Offline cache + notification clicks for the Clockify sandbox only.
    Scope is clockify-sandbox/. Does not delete rg-clockify-* caches used by the live app. */
-var CACHE = "rg-sbx-clockify-v1";
+var CACHE = "rg-sbx-clockify-v2";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "alarm-core.js", "ics.js", "sounds.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {

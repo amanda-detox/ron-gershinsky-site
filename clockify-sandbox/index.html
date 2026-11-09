@@ -100,6 +100,10 @@
   .seg { display: flex; gap: 0.5rem; }
   .seg button { flex: 1; min-height: 3rem; border-radius: 0.75rem; border: 1px solid var(--field); background: var(--bg); }
   .seg button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); }
+  .seg.wrap { flex-wrap: wrap; }
+  .seg.wrap button { flex: 1 1 calc(50% - 0.25rem); height: auto; padding: 0.45rem 0.55rem; line-height: 1.25; }
+  .seg.days { display: grid; grid-template-columns: repeat(4, minmax(2.75rem, 1fr)); }
+  .seg.days button { width: 100%; min-width: 0; padding: 0 0.2rem; font-weight: 700; }
   .hint { color: var(--faint); font-size: 0.8rem; margin-top: 0.35rem; }
   .actions { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.25rem; }
   .btn { flex: 1; min-height: 3.25rem; border-radius: 0.85rem; border: 0; background: var(--surface-2); font-weight: 600; padding: 0 1rem; }
@@ -355,13 +359,21 @@
     <h3 id="form-title"></h3>
     <label class="field"><span id="l-time"></span><input type="time" id="f-time" required></label>
     <div class="field"><span id="l-type"></span>
-      <div class="seg" role="group">
-        <button type="button" id="t-daily" aria-pressed="true"></button>
-        <button type="button" id="t-once" aria-pressed="false"></button>
-      </div>
+      <div class="seg wrap" id="type-seg" role="group"></div>
+      <div class="hint" id="h-type"></div>
     </div>
-    <label class="field"><span id="l-cat"></span><select id="f-cat"></select></label>
+    <div class="field" id="days-wrap" hidden><span id="l-days"></span>
+      <div class="seg days" id="days-seg" role="group"></div>
+    </div>
     <label class="field" id="date-wrap" hidden><span id="l-date"></span><input type="date" id="f-date"></label>
+    <label class="field"><span id="l-cat"></span><select id="f-cat"></select></label>
+    <div class="field"><span id="l-sound"></span>
+      <div class="seg wrap sounds" id="sound-seg" role="group"></div>
+    </div>
+    <div class="field"><span id="l-vib"></span>
+      <div class="seg wrap" id="vib-seg" role="group"></div>
+      <div class="hint" id="h-vib"></div>
+    </div>
     <label class="field"><span id="l-tasks"></span><textarea id="f-tasks" rows="4"></textarea>
       <div class="hint" id="h-tasks"></div></label>
     <p class="err" id="f-err" hidden></p>
@@ -396,9 +408,9 @@
 
 <div class="toast" id="toast" hidden role="status"></div>
 
-<script src="alarm-core.js"></script>
-<script src="ics.js"></script>
-<script src="sounds.js"></script>
+<script src="alarm-core.js?v=2"></script>
+<script src="ics.js?v=2"></script>
+<script src="sounds.js?v=2"></script>
 <script>
 (function () {
   "use strict";
@@ -431,11 +443,19 @@
       installIos: "שיתוף ← הוספה למסך הבית",
       next: function (s) { return "הצלצול הבא: " + s; }, noNext: "אין שעונים פעילים",
       inMin: function (h, m) { return "בעוד " + (h ? h + " שע׳ " : "") + m + " דק׳"; },
-      daily: "כל יום", once: "חד פעמי", newA: "שעון חדש", editA: "עריכת שעון",
-      lTime: "שעה", lType: "חזרה", lDate: "תאריך", lTasks: "כותרת / משימות",
+      daily: "יומי", once: "חד פעמי", weekly: "שבועי", d28: "28 יום", monthly: "חודשי", yearly: "שנתי", y5: "5 שנים", decade: "כל עשור",
+      newA: "שעון חדש", editA: "עריכת שעון",
+      lTime: "שעה", lType: "חזרה", lDate: "תאריך", lStart: "תאריך התחלה", lDays: "ימים", lTasks: "כותרת / משימות",
+      lSound: "צליל", noSound: "ללא צליל", lVib: "רטט",
+      vibShort: "קצרים", vibLong: "ארוכים", vibCont: "רציף", vibNone: "ללא",
+      dayShort: ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"],
+      dayLong: ["יום ראשון", "יום שני", "יום שלישי", "יום רביעי", "יום חמישי", "יום שישי", "שבת"],
+      typeHint: { once: "צלצול אחד בתאריך שנבחר.", daily: "בימים שמסומנים, בכל שבוע.", weekly: "בימים שמסומנים, בכל שבוע.", d28: "מהתאריך שנבחר, ושוב כל 28 יום.", monthly: "מהתאריך שנבחר, ושוב באותו היום בכל חודש.", yearly: "מהתאריך שנבחר, ושוב באותו התאריך בכל שנה.", y5: "מהתאריך שנבחר, ושוב כל 5 שנים.", decade: "מהתאריך שנבחר, ושוב כל 10 שנים." },
+      vibHint: "אפשר להרגיש דוגמה בלחיצה, אם הדפדפן מרשה רטט.",
+      vibNA: "הדפדפן הזה לא מפעיל רטט. הבחירה נשמרת ותפעל במכשיר שתומך.",
       hTasks: "אפשר להפריד משימות בפסיק, ב־+ או בשורה חדשה, והן יוצגו כרשימה כשהשעון מצלצל.",
       save: "שמירה", cancel: "ביטול", del: "מחיקת השעון", confirmDel: "למחוק את השעון הזה?",
-      errTime: "צריך לבחור שעה.", errDate: "צריך לבחור תאריך לשעון חד פעמי.", errTasks: "צריך לכתוב כותרת או משימה.",
+      errTime: "צריך לבחור שעה.", errDate: "צריך לבחור תאריך לשעון חד פעמי.", errStart: "צריך לבחור תאריך התחלה.", errDays: "צריך לבחור לפחות יום אחד.", errTasks: "צריך לכתוב כותרת או משימה.",
       stop: "עצירה", snooze: "נודניק " + SNOOZE_MIN + " דק׳", snoozed: function (t) { return "נודניק עד " + t; },
       saved: "נשמר ✓", deleted: "נמחק", on: "הופעל", off: "כובה",
       edit: "עריכה", toggle: "הפעלה או כיבוי",
@@ -471,11 +491,19 @@
       installIos: "Share → Add to Home Screen",
       next: function (s) { return "Next alarm: " + s; }, noNext: "No alarms on",
       inMin: function (h, m) { return "in " + (h ? h + " h " : "") + m + " min"; },
-      daily: "Daily", once: "One time", newA: "New alarm", editA: "Edit alarm",
-      lTime: "Time", lType: "Repeat", lDate: "Date", lTasks: "Title / tasks",
+      daily: "Daily", once: "One time", weekly: "Weekly", d28: "28 days", monthly: "Monthly", yearly: "Yearly", y5: "5 years", decade: "Every decade",
+      newA: "New alarm", editA: "Edit alarm",
+      lTime: "Time", lType: "Repeat", lDate: "Date", lStart: "Start date", lDays: "Days", lTasks: "Title / tasks",
+      lSound: "Sound", noSound: "No sound", lVib: "Vibration",
+      vibShort: "Short", vibLong: "Long", vibCont: "Continuous", vibNone: "None",
+      dayShort: ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
+      dayLong: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      typeHint: { once: "Rings once on the chosen date.", daily: "On the marked days, every week.", weekly: "On the marked days, every week.", d28: "From the chosen date, then every 28 days.", monthly: "From the chosen date, then on that day each month.", yearly: "From the chosen date, then on that date each year.", y5: "From the chosen date, then every 5 years.", decade: "From the chosen date, then every 10 years." },
+      vibHint: "Tap an option to feel a sample, when the browser allows vibration.",
+      vibNA: "This browser can't vibrate. The choice is saved and works on a device that can.",
       hTasks: "Separate tasks with a comma, + or a new line. They show as a checklist when the alarm rings.",
       save: "Save", cancel: "Cancel", del: "Delete alarm", confirmDel: "Delete this alarm?",
-      errTime: "Please pick a time.", errDate: "Please pick a date for a one-time alarm.", errTasks: "Please write a title or a task.",
+      errTime: "Please pick a time.", errDate: "Please pick a date for a one-time alarm.", errStart: "Please pick a start date.", errDays: "Please pick at least one day.", errTasks: "Please write a title or a task.",
       stop: "Stop", snooze: "Snooze " + SNOOZE_MIN + " min", snoozed: function (t) { return "Snoozed until " + t; },
       saved: "Saved ✓", deleted: "Deleted", on: "On", off: "Off",
       edit: "Edit", toggle: "Turn on or off",
@@ -505,7 +533,8 @@
   var pmOpt = null, pmAdding = false, pmRen = null, pmFocus = null;
   var STAR = '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path class="star-fill" d="M12 2.8l2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 16.7 6.6 19.6l1-6.1L3.2 9.2l6.1-.9z"></path></svg>';
   var ringing = []; // [{label, title, time}]
-  var editingId = null, formType = "daily";
+  var editingId = null, formType = "daily", formDays = [0, 1, 2, 3, 4, 5, 6], formSound = "chime", formVib = "short";
+  var daysTouched = false, soundTouched = false;
   var $ = function (id) { return document.getElementById(id); };
 
   function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
@@ -548,28 +577,60 @@
       o.connect(g); g.connect(c.destination); o.start(s); o.stop(s + 0.75);
     });
   }
-  function startSound(id) {
-    stopSound();
-    var c = audio(), snd = S.get(id || defSound);
-    var tick = function () { S.play(c, snd.id); buzz([400, 200, 400]); };
-    tick(); beepTimer = setInterval(tick, snd.every);
+  var vibTimer = null;
+  function vibPattern(kind) {
+    if (kind === "long") return [1000, 300, 1000];
+    if (kind === "continuous") return [800, 200, 800, 200, 800, 200, 800, 200, 800, 200, 800];
+    if (kind === "none") return null;
+    return [400, 200, 400];
   }
+  function patternMs(p) { var n = 0; for (var i = 0; i < p.length; i++) n += p[i]; return n; }
   function buzz(p) {
-    if (!navigator.vibrate) return;
+    if (!navigator.vibrate || p == null) return;
     if (navigator.userActivation && !navigator.userActivation.hasBeenActive) return;
     try { navigator.vibrate(p); } catch (e) {}
   }
-  function stopSound() { if (beepTimer) clearInterval(beepTimer); beepTimer = null; buzz(0); }
+  function stopVibrate() { if (vibTimer) clearInterval(vibTimer); vibTimer = null; }
+  function startSound(id) {
+    stopSound();
+    if (!id || id === "none") return;
+    var c = audio(), snd = S.get(id || defSound);
+    var tick = function () { S.play(c, snd.id); };
+    tick(); beepTimer = setInterval(tick, snd.every);
+  }
+  function startVibrate(kind) {
+    stopVibrate();
+    var pattern = vibPattern(kind || "short");
+    if (!pattern) return;
+    var tick = function () { buzz(pattern); };
+    tick();
+    vibTimer = setInterval(tick, kind === "continuous" ? patternMs(pattern) + 80 : 2200);
+  }
+  function startAlert(alarm) {
+    var id = C.soundFor(alarm, cats, defSound);
+    startSound(id);
+    startVibrate(alarm && alarm.vibrate);
+  }
+  function previewVibrate(kind) {
+    if (ringing.length) return;
+    stopVibrate();
+    var pattern = vibPattern(kind);
+    if (!pattern) { buzz(0); return; }
+    buzz(pattern);
+  }
+  function stopSound() { if (beepTimer) clearInterval(beepTimer); beepTimer = null; stopVibrate(); buzz(0); }
   document.addEventListener("pointerdown", function () { audio(); }, { once: true });
 
   /* ---------- notifications ---------- */
   var swReg = null;
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("./sw.js", { scope: "./" }).then(function (r) { swReg = r; }).catch(function () {});
+    navigator.serviceWorker.register("./sw.js?v=2", { scope: "./" }).then(function (r) { swReg = r; }).catch(function () {});
   }
-  function notify(title, body) {
+  function notify(title, body, vib) {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
-    var opts = { body: body, icon: "icon-192.png", badge: "icon-192.png", tag: "rg-sbx-clockify", renotify: true, requireInteraction: true, vibrate: [400, 200, 400] };
+    var opts = { body: body, icon: "icon-192.png", badge: "icon-192.png", tag: "rg-sbx-clockify", renotify: true, requireInteraction: true };
+    var pattern = vibPattern(vib || "short");
+    if (pattern) opts.vibrate = pattern;
     try {
       if (swReg && swReg.showNotification) swReg.showNotification(title, opts);
       else new Notification(title, opts);
@@ -661,9 +722,11 @@ document.getElementById("install-btn").addEventListener("click", function () {
     $("sbx-note").textContent = L.sbx;
     $("empty").textContent = L.empty; $("reset").textContent = L.reset;
     $("cal-btn").textContent = L.cal; $("cal-help").textContent = L.calHelp;
-    $("l-time").textContent = L.lTime; $("l-type").textContent = L.lType; $("l-date").textContent = L.lDate;
-    $("l-tasks").textContent = L.lTasks; $("h-tasks").textContent = L.hTasks; $("t-daily").textContent = L.daily;
-    $("t-once").textContent = L.once; $("save").textContent = L.save; $("cancel").textContent = L.cancel; $("del").textContent = L.del;
+    $("l-time").textContent = L.lTime; $("l-type").textContent = L.lType; $("l-days").textContent = L.lDays;
+    $("l-sound").textContent = L.lSound; $("l-vib").textContent = L.lVib;
+    $("l-tasks").textContent = L.lTasks; $("h-tasks").textContent = L.hTasks;
+    $("save").textContent = L.save; $("cancel").textContent = L.cancel; $("del").textContent = L.del;
+    paintChoices();
     $("form-title").textContent = editingId ? L.editA : L.newA;
     $("stop").textContent = L.stop; $("snooze").textContent = L.snooze;
     $("pt-desktop").textContent = L.pDesktop; $("pt-android").textContent = L.pAndroid; $("pt-ios").textContent = L.pIos; renderHelp();
@@ -699,7 +762,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
         var li = document.createElement("li");
         li.className = "alarm" + (a.enabled ? "" : " off") + (a.star ? " starred" : "");
         var cat = C.catOf(a, cats);
-        var badge = a.type === "once" ? '<span class="badge once">' + esc(t("once") + " · " + fmtDate(a.date)) + "</span>" : '<span class="badge">' + esc(t("daily")) + "</span>";
+        var badge = '<span class="badge' + (a.type === "once" ? " once" : "") + '">' + esc(scheduleLabel(a)) + "</span>";
         if (cat) badge += '<span class="badge cat">' + esc(cname(cat)) + "</span>";
         var starLabel = a.star ? t("starOff") : t("starOn");
         li.innerHTML = '<button type="button" class="main" aria-label="' + esc(t("edit") + " " + a.time) + '"><span class="t">' + esc(a.time) + "</span>" + badge +
@@ -732,10 +795,75 @@ document.getElementById("install-btn").addEventListener("click", function () {
   }
 
   /* ---------- editing ---------- */
-  function setType(type) {
+  function scheduleLabel(a) {
+    var name = t(a.type) || t("daily");
+    if (a.type === "once" && a.date) return name + " · " + fmtDate(a.date);
+    if (C.usesWeekdays(a.type)) {
+      var days = C.daysOf(a);
+      if (days.length < 7) return name + " · " + days.map(function (d) { return t("dayShort")[d]; }).join(" ");
+    }
+    return name;
+  }
+  function choiceButton(attr, id, label, on, aria) {
+    return '<button type="button" ' + attr + '="' + esc(id) + '" aria-pressed="' + (on ? "true" : "false") + '"' +
+      (aria ? ' aria-label="' + esc(aria) + '"' : "") + ">" + esc(label) + "</button>";
+  }
+  function paintChoices() {
+    var typeBox = $("type-seg");
+    if (typeBox) {
+      typeBox.setAttribute("aria-label", t("lType"));
+      typeBox.innerHTML = C.SCHEDULES.map(function (id) { return choiceButton("data-type", id, t(id), formType === id); }).join("");
+    }
+    var dayBox = $("days-seg");
+    if (dayBox) {
+      dayBox.setAttribute("aria-label", t("lDays"));
+      var daysHtml = "";
+      for (var d = 0; d < 7; d++) daysHtml += choiceButton("data-day", String(d), t("dayShort")[d], formDays.indexOf(d) >= 0, t("dayLong")[d]);
+      dayBox.innerHTML = daysHtml;
+    }
+    var soundBox = $("sound-seg");
+    if (soundBox) {
+      soundBox.setAttribute("aria-label", t("lSound"));
+      soundBox.innerHTML = S.LIST.map(function (x) { return choiceButton("data-sound", x.id, x[lang] || x.he, formSound === x.id); }).join("") +
+        choiceButton("data-sound", "none", t("noSound"), formSound === "none");
+    }
+    var vibBox = $("vib-seg");
+    if (vibBox) {
+      vibBox.setAttribute("aria-label", t("lVib"));
+      vibBox.innerHTML = [["short", "vibShort"], ["long", "vibLong"], ["continuous", "vibCont"], ["none", "vibNone"]].map(function (v) {
+        return choiceButton("data-vib", v[0], t(v[1]), formVib === v[0]);
+      }).join("");
+    }
+    var hint = t("typeHint") || {};
+    if ($("h-type")) $("h-type").textContent = hint[formType] || "";
+    if ($("h-vib")) $("h-vib").textContent = navigator.vibrate ? t("vibHint") : t("vibNA");
+    if ($("days-wrap")) $("days-wrap").hidden = !C.usesWeekdays(formType);
+    if ($("date-wrap")) $("date-wrap").hidden = !C.usesDate(formType);
+    if ($("l-date")) $("l-date").textContent = formType === "once" ? t("lDate") : t("lStart");
+  }
+  function effectiveSound(a, catId) {
+    if (a && a.sound) return a.sound;
+    var c = cats.filter(function (x) { return x.id === catId; })[0];
+    return (c && c.sound) || defSound || "chime";
+  }
+  function setType(type, fromUser) {
+    if (C.SCHEDULES.indexOf(type) < 0) type = "daily";
+    var prev = formType;
     formType = type;
-    $("t-daily").setAttribute("aria-pressed", type === "daily"); $("t-once").setAttribute("aria-pressed", type === "once");
-    $("date-wrap").hidden = type !== "once";
+    if (fromUser && C.usesWeekdays(type) && !daysTouched && prev !== type) formDays = type === "weekly" ? [new Date().getDay()] : [0, 1, 2, 3, 4, 5, 6];
+    paintChoices();
+  }
+  function toggleDay(n) {
+    n = +n;
+    if (n < 0 || n > 6) return;
+    var i = formDays.indexOf(n);
+    if (i >= 0) {
+      if (formDays.length === 1) { toast(t("errDays")); return; }
+      formDays.splice(i, 1);
+    } else formDays.push(n);
+    formDays.sort(function (x, y) { return x - y; });
+    daysTouched = true;
+    paintChoices();
   }
   function openEditor(id) {
     if (typeof closeMenu === "function") closeMenu();
@@ -745,26 +873,63 @@ document.getElementById("install-btn").addEventListener("click", function () {
     $("f-time").value = a ? a.time : C.pad((now.getHours() + 1) % 24) + ":00";
     $("f-date").value = a && a.date ? a.date : C.dateKey(now);
     $("f-tasks").value = a ? titleOf(a) : "";
-    setType(a ? a.type : "daily");
+    daysTouched = !!(a && C.usesWeekdays(a.type));
+    soundTouched = !!(a && a.sound);
+    formDays = (a && C.usesWeekdays(a.type)) ? C.daysOf(a).slice() : [0, 1, 2, 3, 4, 5, 6];
+    formVib = a && C.VIBRATIONS.indexOf(a.vibrate) >= 0 ? a.vibrate : "short";
     renderCatSelect();
     var ac = a ? C.catOf(a, cats) : null;
-    $("f-cat").value = a ? (ac ? ac.id : "") : (filter !== "all" ? filter : "");
+    var catId = a ? (ac ? ac.id : "") : (filter !== "all" ? filter : "");
+    $("f-cat").value = catId;
+    formSound = effectiveSound(a, catId);
+    setType(a && C.SCHEDULES.indexOf(a.type) >= 0 ? a.type : "daily", false);
     $("del").hidden = !a; $("f-err").hidden = true;
     $("form-title").textContent = a ? t("editA") : t("newA");
     $("editor").hidden = false;
+    $("form").scrollTop = 0;
     setTimeout(function () { $("f-time").focus(); }, 50);
   }
-  function closeEditor() { $("editor").hidden = true; editingId = null; }
-  $("t-daily").onclick = function () { setType("daily"); };
-  $("t-once").onclick = function () { setType("once"); };
+  function closeEditor() {
+    $("editor").hidden = true; editingId = null;
+    if (!ringing.length) { stopVibrate(); buzz(0); }
+  }
+  $("type-seg").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-type]"); if (!b) return;
+    setType(b.getAttribute("data-type"), true);
+  });
+  $("days-seg").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-day]"); if (!b) return;
+    toggleDay(b.getAttribute("data-day"));
+  });
+  $("sound-seg").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-sound]"); if (!b) return;
+    formSound = b.getAttribute("data-sound") || "chime";
+    soundTouched = true;
+    paintChoices();
+    if (!ringing.length && formSound !== "none") S.play(audio(), formSound);
+  });
+  $("vib-seg").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-vib]"); if (!b) return;
+    formVib = b.getAttribute("data-vib") || "short";
+    paintChoices();
+    previewVibrate(formVib);
+  });
+  $("f-cat").addEventListener("change", function () {
+    if (soundTouched) return;
+    formSound = effectiveSound(null, $("f-cat").value);
+    paintChoices();
+  });
   $("cancel").onclick = closeEditor;
   $("editor").addEventListener("click", function (e) { if (e.target === $("editor")) closeEditor(); });
   $("add").onclick = function () { openEditor(null); };
   $("form").onsubmit = function (e) {
     e.preventDefault();
     var time = $("f-time").value, date = $("f-date").value, text = $("f-tasks").value.trim(), err = "";
+    var needsDate = C.usesDate(formType), usesW = C.usesWeekdays(formType);
     if (!C.parseTime(time)) err = t("errTime");
     else if (formType === "once" && !/^\d{4}-\d{2}-\d{2}$/.test(date)) err = t("errDate");
+    else if (needsDate && formType !== "once" && !/^\d{4}-\d{2}-\d{2}$/.test(date)) err = t("errStart");
+    else if (usesW && !formDays.length) err = t("errDays");
     else if (!text) err = t("errTasks");
     if (err) { $("f-err").textContent = err; $("f-err").hidden = false; return; }
     var a = editingId ? alarms.filter(function (x) { return x.id === editingId; })[0] : null;
@@ -776,8 +941,11 @@ document.getElementById("install-btn").addEventListener("click", function () {
       var other = lang === "he" ? "en" : "he";
       if (!a.title[other]) a.title[other] = text;
     }
-    var changedWhen = a.time !== time || a.type !== formType || (formType === "once" && a.date !== date);
-    a.time = time; a.type = formType; a.date = formType === "once" ? date : "";
+    var nextDate = needsDate ? date : "";
+    var nextDays = usesW ? formDays.slice().sort(function (x, y) { return x - y; }) : [];
+    var changedWhen = a.time !== time || a.type !== formType || (a.date || "") !== nextDate || (a.days || []).join(",") !== nextDays.join(",");
+    a.time = time; a.type = formType; a.date = nextDate; a.days = nextDays;
+    a.sound = formSound || ""; a.vibrate = C.VIBRATIONS.indexOf(formVib) >= 0 ? formVib : "short";
     a.cat = $("f-cat").value || "";
     if (changedWhen || !a.created) { a.created = Date.now(); a.lastFired = ""; }
     a.enabled = true;
@@ -848,20 +1016,23 @@ document.getElementById("install-btn").addEventListener("click", function () {
 
   /* ---------- ringing ---------- */
   var ringStarted = 0;
+  function alarmOfItem(item) {
+    return alarms.filter(function (x) { return x.id === item.alarmId; })[0] || null;
+  }
   function ring(item) {
     ringing.push(item);
-    if (ringing.length === 1) { ringStarted = Date.now(); startSound(soundOfItem(item)); }
+    var a = alarmOfItem(item);
+    if (ringing.length === 1) { ringStarted = Date.now(); startAlert(a); }
     renderRing();
-    notify(item.time + " · " + t("title"), item.title || t("notifBody"));
+    notify(item.time + " · " + t("title"), item.title || t("notifBody"), a && a.vibrate);
   }
   function soundOfItem(item) {
-    var a = alarms.filter(function (x) { return x.id === item.alarmId; })[0];
-    return C.soundFor(a, cats, defSound);
+    return C.soundFor(alarmOfItem(item), cats, defSound);
   }
   function renderRing() {
     var cur = ringing[0];
     $("ring-time").textContent = cur.time;
-    $("ring-label").textContent = cur.snooze ? t("ringLabelSnooze") : (cur.type === "once" ? t("once") : t("daily"));
+    $("ring-label").textContent = cur.snooze ? t("ringLabelSnooze") : (t(cur.type) || t("daily"));
     var ul = $("ring-tasks"); ul.innerHTML = "";
     C.splitTasks(cur.title).forEach(function (task) {
       var li = document.createElement("li");
@@ -879,7 +1050,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
       saveSnoozes(); toast(t("snoozed")(hm(new Date(at))));
     }
     if (!ringing.length) { stopSound(); $("ring").hidden = true; renderList(); }
-    else { ringStarted = Date.now(); startSound(soundOfItem(ringing[0])); renderRing(); }
+    else { ringStarted = Date.now(); startAlert(alarmOfItem(ringing[0])); renderRing(); }
   }
   $("stop").onclick = function () { dismiss(false); };
   $("snooze").onclick = function () { dismiss(true); };

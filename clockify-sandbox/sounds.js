@@ -58,6 +58,6 @@
   ];
   var DEFAULT = "chime";
   function get(id) { for (var i = 0; i < LIST.length; i++) if (LIST[i].id === id) return LIST[i]; return LIST[0]; }
-  function play(c, id) { if (c) get(id).play(c, c.currentTime + 0.02); }
+  function play(c, id) { if (c && id !== "none") get(id).play(c, c.currentTime + 0.02); }
   return { LIST: LIST, DEFAULT: DEFAULT, get: get, play: play };
 });
