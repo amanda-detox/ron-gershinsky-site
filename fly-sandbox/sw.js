@@ -1,6 +1,6 @@
 /* Offline cache for the Flyify sandbox only. Prefix is rg-flysandbox- so the live worker (rg-fly-) cannot wipe it. */
-var CACHE = "rg-flysandbox-v30";
-var FILES = ["./", "index.html", "game.js?v=30", "three.module.min.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
+var CACHE = "rg-flysandbox-v31";
+var FILES = ["./", "index.html", "game.js?v=31", "three.module.min.js", "fonts.css", "fonts/heebo-hebrew.woff2", "fonts/heebo-latin.woff2", "fonts/heebo-latin-ext.woff2",
   "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../shared/rg-topbar.js", "../shared/rg-account.js"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }));
