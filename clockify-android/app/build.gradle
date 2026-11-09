@@ -1,0 +1,79 @@
+plugins {
+    id "com.android.application"
+}
+
+def sandboxAssetsDir = layout.buildDirectory.dir("generated/sandbox-assets")
+
+android {
+    namespace "site.rongershinsky.clockify"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "site.rongershinsky.clockify"
+        minSdk 26
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
+    }
+
+    signingConfigs {
+        sideload {
+            storeFile file("${rootDir}/keystore/clockify-sideload.jks")
+            storePassword "clockify-sideload"
+            keyAlias "clockify"
+            keyPassword "clockify-sideload"
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.sideload
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+        debug {
+            signingConfig signingConfigs.sideload
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    sourceSets.main.java.srcDir "${rootDir}/schedule/src"
+    sourceSets.main.assets.srcDir sandboxAssetsDir
+}
+
+configurations.configureEach {
+    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk7"
+    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "androidx.activity:activity:1.9.3"
+    implementation "androidx.webkit:webkit:1.12.1"
+    implementation "androidx.core:core:1.13.1"
+}
+
+tasks.register("copyClockifySandbox", Copy) {
+    into sandboxAssetsDir
+    from("${rootDir}/../clockify-sandbox") {
+        include "index.html", "alarm-core.js", "ics.js", "sounds.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "sw.js"
+        into "www/clockify-sandbox"
+    }
+    from("${rootDir}/../shared") {
+        include "rg-account.js", "rg-topbar.js", "rg-site.css", "fonts/**"
+        into "www/shared"
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn("copyClockifySandbox")
+}
+tasks.configureEach { task ->
+    if (task.name.startsWith("merge") && task.name.endsWith("Assets")) {
+        task.dependsOn("copyClockifySandbox")
+    }
+}

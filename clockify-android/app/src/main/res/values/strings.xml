@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Clockify</string>
+    <string name="exact_title">שעונים ותזכורות</string>
+    <string name="exact_body">כדי שקלוקיפיי יצלצל גם כשהאפליקציה סגורה או שהמסך כבוי, יש לאפשר „שעונים ותזכורות”.\n\nAllow Alarms &amp; reminders so Clockify can ring when it is closed or the screen is off.</string>
+    <string name="full_title">התראה על כל המסך</string>
+    <string name="full_body">אפשרו התראות במסך מלא כדי שהשעון יופיע מעל מסך הנעילה, ולא רק כהודעה שקטה.\n\nAllow full-screen alerts so the alarm can show on the lock screen.</string>
+    <string name="battery_title">סוללה ללא הגבלה</string>
+    <string name="battery_body">כדי שהצלצול לא ייעצר ברקע, הגדירו את הסוללה של קלוקיפיי ל„ללא הגבלה”.\n\nSet Clockify battery to Unrestricted so Android does not stop the alarm in the background.</string>
+    <string name="allow">לאפשר · Allow</string>
+    <string name="later">לא עכשיו · Later</string>
+</resources>
