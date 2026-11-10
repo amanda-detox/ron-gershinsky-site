@@ -1,7 +1,7 @@
 /* Offline cache for the private Listify sandbox only. Scope: ideas-sandbox/.
    Does not delete caches used by the live app. */
-var CACHE = "rg-sbx-ideas-v13";
-var FILES = ["./", "index.html", "rg-sync-status.js?v=6", "restore.js?v=1", "app.js?v=50", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js",
+var CACHE = "rg-sbx-ideas-v15";
+var FILES = ["./", "index.html", "rg-sync-status.js?v=7", "restore.js?v=1", "app.js?v=52", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js",
   "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js?v=3", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
@@ -12,10 +12,15 @@ self.addEventListener("activate", function (e) {
     return Promise.all(keys.filter(function (k) { return k.indexOf("rg-sbx-ideas-") === 0 && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
+function net(req) {
+  var path = new URL(req.url).pathname;
+  var fresh = req.mode === "navigate" || /\/$/.test(path) || /\.html$/i.test(path) || /\.js$/i.test(path);
+  return fresh ? fetch(req, { cache: "no-cache" }) : fetch(req);
+}
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;
   if (new URL(e.request.url).origin !== self.location.origin) return;
-  e.respondWith(fetch(e.request).then(function (r) {
+  e.respondWith(net(e.request).then(function (r) {
     var copy = r.clone();
     if (r.ok) caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
     return r;

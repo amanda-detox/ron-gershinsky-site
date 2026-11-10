@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v13";
+  var BUILD = "rg-sbx-ideas-v15";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -292,6 +292,32 @@
     if (cur) lsSet(basePrevKey(uid), cur);
     try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
   }
+  function ownKey() { return "rg-sbx-ideas-own:" + (uid || ""); }
+  function rememberOwn(doc) {
+    if (!uid || !doc) return;
+    var own = jparse(lsGet(ownKey()), {}), k, x, f, list, val;
+    if (!own || typeof own !== "object") own = {};
+    for (k in doc) {
+      x = doc[k];
+      if (!x || x.deleted || x.type === "meta") continue;
+      if (!own[k]) own[k] = {};
+      for (f in x) {
+        if (f === "id" || f === "at" || f === "_f") continue;
+        list = own[k][f] || [];
+        val = JSON.stringify(x[f]);
+        if (!list.length || list[list.length - 1] !== val) list.push(val);
+        if (list.length > 12) list = list.slice(-12);
+        own[k][f] = list;
+      }
+    }
+    try { localStorage.setItem(ownKey(), JSON.stringify(own)); } catch (e) {}
+  }
+  function ownValues(key, field, localText) {
+    var own = jparse(lsGet(ownKey()), {}), list = (own[key] && own[key][field]) || [], i, out = [];
+    for (i = 0; i < list.length; i++) { try { out.push(JSON.parse(list[i])); } catch (e) { out.push(list[i]); } }
+    out.push(localText);
+    return out;
+  }
   function clearClashNotice() {
     if (uid) lsSet("rg-sbx-ideas-conflict:" + uid, null);
     paintConflict();
@@ -321,15 +347,33 @@
   }
   function setStatus() {
     paintLastSync();
-    var s = $("status"); if (!s) return;
+    var s = $("status");
     var SS = window.RGSyncStatus;
-    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
+    if (!s) { maybeUpdateReload(); return; }
+    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); maybeUpdateReload(); return; }
     var flags = statusFlags();
     var k = SS.kind(flags);
     SS.fillStatus(s, k, k ? t(k) : "");
     if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
     else SS.closeDeletion();
+    maybeUpdateReload();
   }
+  var updateReady = false;
+  function updateBlocked() { return !updateReady || !!(pending || editing || busy || holdBlocked); }
+  function maybeUpdateReload() {
+    var u = window.RGSbxUpdate;
+    if (!u || !u.waiting || updateBlocked()) return;
+    u.waiting = false;
+    location.reload();
+  }
+  function markUpdateReady() {
+    updateReady = true;
+    maybeUpdateReload();
+  }
+  window.RGSbxUpdate = {
+    blocked: updateBlocked,
+    waiting: !!window.RGSbxUpdateWait
+  };
   function sync() {
     if (APP !== "sbxmyideas") return Promise.resolve();
     if (!uid || !A) return Promise.resolve();
@@ -347,6 +391,7 @@
       if (!restoring && !quietRestore && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
       if (!restoring && !quietRestore && SS && SS.fieldConflicts) {
         var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
+        if (SS.sameDeviceEdits) fought = fought.filter(function (f) { return !SS.sameDeviceEdits(f.localText, f.cloudText, ownValues(f.key, f.field, f.localText)); });
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
       if (restoring && SS && SS.adoptRestore) {
@@ -389,6 +434,7 @@
       if (quietRestore && phase === "same") quietRestore = false;
       if (!hadClash && phase === "same") saveAgreed(items);
       else if (hadClash) saveAgreed(items);
+      else if (!hadClash && phase === "upload" && sent) { saveAgreed(sent); rememberOwn(sent); }
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
       if (SS && SS.shouldStampSync({
         downloaded: true,
@@ -468,7 +514,7 @@
     });
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
-  function changed() { pending = true; saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
+  function changed() { pending = true; rememberOwn(items); saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
   function histKey() { return "rg-sbx-ideas-hist:" + (uid || ""); }
   function loadHistory() {
     var raw = uid ? jparse(lsGet(histKey()), []) : [];
@@ -1515,7 +1561,7 @@
     try { new MutationObserver(function () { injectLoadBtn(); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
     if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
-      var id = u ? u.id : null; if (id === uid) return;
+      var id = u ? u.id : null; if (id === uid) { markUpdateReady(); return; }
       if (!id && uid) {
         var c = jparse(lsGet(cacheKey(uid)), null);
         var plan = window.RGSyncStatus && RGSyncStatus.signOutPlan ? RGSyncStatus.signOutPlan(c) : { backup: !!(c && c.items), dropCache: !c || !c.pending, keepCache: !!(c && c.pending) };
@@ -1526,6 +1572,7 @@
       }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
       uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
+      markUpdateReady();
       if (uid) {
         var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);
         if (offer && offer.pending && lsGet("rg-sbx-ideas-offer-open:" + uid) !== "1") {
