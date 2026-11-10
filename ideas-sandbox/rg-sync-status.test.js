@@ -72,7 +72,7 @@ assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < htm
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=6") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=6") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v11"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=49") !== -1 && sw.indexOf("rg-account.js?v=2") !== -1, "the sandbox service worker cache was bumped");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v12"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=49") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build">rg-sbx-ideas-v11') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v11"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v11");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
@@ -258,7 +258,7 @@ var crypto = require("crypto");
 var pins = {
   "ideas-sandbox/app.js": { v: 49, hash: "abd3b2a4268b88d0" },
   "ideas-sandbox/rg-sync-status.js": { v: 6, hash: "df486ea67d4018b3" },
-  "sandbox-shared/rg-account.js": { v: 2, hash: "a7b14a7466bd96f4" }
+  "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {
   var hash = crypto.createHash("sha256").update(fs.readFileSync(path.join(root, rel))).digest("hex").slice(0, 16);
