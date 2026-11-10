@@ -72,8 +72,8 @@ assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < htm
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=6") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=6") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v12"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=49") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v11') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v11"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v11");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v13"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=50") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v13') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v13"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v13");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
@@ -146,6 +146,30 @@ for (oi = 0; oi < oldest.history.length; oi++) {
   if (oldest.history[oi].data && oldest.history[oi].data.a && oldest.history[oi].data.a.text === "now") currentKept = true;
 }
 assert(oldest.found && oldest.items.a.text === "v0" && oldestKept && currentKept && oldest.history.length === SS.HIST_MAX, "restoring the oldest row at the cap keeps that snapshot and saves the current list");
+var restoreBody = app.slice(app.indexOf("function restoreVersion"), app.indexOf("function openHistory"));
+assert(restoreBody.indexOf("armQuietRestore()") !== -1 && restoreBody.indexOf("adoptRestore") !== -1 && app.indexOf("function armQuietRestore") !== -1, "a version restore is marked quiet before it syncs");
+assert(app.indexOf("if (!restoring && !quietRestore && SS && SS.fieldConflicts)") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
+assert(app.indexOf("roundRestore && (phase === \"upload\" || phase === \"same\")") !== -1, "only the restore's own sync clears the restore snapshot");
+var baseNow = { a: taskAt("a", "now", 5000) };
+assert(SS.fieldConflicts({ a: taskAt("a", "old", 9000) }, baseNow, baseNow).length === 0, "restoring a different local text over an unchanged cloud is not a clash");
+var published = SS.fieldConflicts(
+  { a: taskAt("a", "old", 9000) },
+  { a: taskAt("a", "now", 5000) },
+  { a: taskAt("a", "old", 2000) },
+  { a: taskAt("a", "older", 1000) }
+);
+assert(published.length === 1, "a real replacement of a published edit is still a clash");
+function manyItems(n, text, at) {
+  var o = {}, i;
+  for (i = 0; i < n; i++) o["it" + i] = taskAt("it" + i, text, at);
+  return o;
+}
+var cloud24 = manyItems(24, "now", 5000);
+var keep19 = SS.dropReport(manyItems(19, "old", 9000), cloud24);
+assert(SS.needsConfirm(keep19, { now: 9000, lastSync: 5000, cloudUpdated: 5000, overwriteUntil: 9000 + 60000 }).hold === false, "a chosen restore from 24 items to 19 is not stopped");
+var sharp = SS.dropReport(manyItems(8, "old", 9000), cloud24);
+assert(SS.needsConfirm(sharp, { now: 9000, lastSync: 1000, cloudUpdated: 8000, differs: true }).hold === true, "a sharp drop on a normal sync is still stopped");
+assert(SS.needsConfirm(sharp, { now: 9000, overwriteUntil: 9000 + 60000 }).hold === false, "the same sharp drop is allowed when the user chose a restore");
 var missing = SS.planRestore(full, { a: taskAt("a", "now", 9000) }, "missing-row", 9001);
 assert(missing.found === false && missing.items == null, "a missing version is reported instead of restoring nothing");
 var file = SS.historyFile(hist[0]);
@@ -251,12 +275,12 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 49 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 50 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-sync-status.js") >= 6 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 49, hash: "abd3b2a4268b88d0" },
+  "ideas-sandbox/app.js": { v: 50, hash: "9a980de8d9b4e45a" },
   "ideas-sandbox/rg-sync-status.js": { v: 6, hash: "df486ea67d4018b3" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
