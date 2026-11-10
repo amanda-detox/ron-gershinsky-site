@@ -71,12 +71,74 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=1") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=1") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v4"') !== -1 && sw.indexOf("rg-sync-status.js?v=1") !== -1 && sw.indexOf("app.js?v=42") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=2") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=2") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v5"') !== -1 && sw.indexOf("rg-sync-status.js?v=2") !== -1 && sw.indexOf("app.js?v=43") !== -1, "the sandbox service worker cache was bumped");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
-assert(SS.ASK_Q.indexOf("זיהיתי הרבה מחיקות") === 0 && SS.ASK_YES === "כן, העלי לענן" && SS.ASK_NO === "לא, שחזרי מחיקות", "the deletion prompt is unchanged and is not an automatic delete");
+assert(SS.ASK_YES === "השאר את הענן" && SS.ASK_NO === "העלה בכל זאת" && SS.ASK_Q.indexOf("להשאיר את הענן") !== -1, "the overwrite prompt defaults to keeping the cloud");
+assert(app.indexOf("needsConfirm") !== -1 && app.indexOf("noteGone") !== -1 && app.indexOf("planRestore") !== -1 && app.indexOf("שחזור מקובץ") === -1 && html.indexOf("שחזור מקובץ") === -1, "history and the guard are in the sandbox, and the import button is not");
+assert(html.indexOf("היסטוריית גרסאות") !== -1 && html.indexOf('id="hist-btn"') !== -1, "version history has its own screen");
+
+function cat(id, name, at) {
+  return { id: "c:" + id, type: "cat", cat: id, name: name, at: at, _f: { name: at, "~": at } };
+}
+function task(id, at) { return { id: id, sec: "tasks", text: id, at: at, _f: { text: at, "~": at } }; }
+var t0 = Date.UTC(2026, 10, 5, 8, 0);
+var tHide = Date.UTC(2026, 10, 5, 12, 0);
+var tEdit = Date.UTC(2026, 10, 10, 4, 30);
+var tBack = Date.UTC(2026, 10, 10, 4, 41);
+var shown = SS.noteGone(cat("l0", "קניות", t0), tEdit, false);
+shown.name = "קניות אחרי";
+shown._f.name = tEdit;
+var hid = SS.noteGone(cat("l0", "קניות", t0), tHide, true);
+var replay = SS.mergeRecords(hid, shown);
+assert(!replay.gone && replay.name === "קניות אחרי", "a later un-hide and edit beat an offline hide");
+var plain = cat("l0", "קניות", t0);
+var oldHide = SS.noteGone(plain, tHide, true);
+assert(SS.mergeRecords(oldHide, plain).gone === 1, "a 5/11 gone stamp beats a visible list that never stamped gone");
+var bag = { "c:l0": cat("l0", "קניות", t0) };
+assert(SS.assertVisible(bag, tEdit) === true && bag["c:l0"]._f.gone === tEdit && !bag["c:l0"].gone, "showing a list writes a fresh visibility stamp");
+assert(SS.assertVisible(bag, tEdit + 1000) === false, "a list that already asserted visibility is not rewritten every sync");
+assert(!SS.mergeRecords(oldHide, bag["c:l0"]).gone, "that fresh stamp keeps the list visible");
+var hiddenBag = { "c:l0": SS.noteGone(cat("l0", "קניות", t0), tHide, true) };
+assert(SS.assertVisible(hiddenBag, tEdit) === false && hiddenBag["c:l0"].gone === 1, "a hidden list is not un-hidden by the visibility pass");
+var kept = SS.restoreLive({ "c:l0": oldHide }, { "c:l0": plain });
+assert(!kept["c:l0"].gone && kept["c:l0"]._f.gone > oldHide._f.gone, "keeping the cloud stamps visibility above the old hide");
+assert(!SS.mergeRecords(oldHide, kept["c:l0"]).gone, "the restored list stays visible against the old hide");
+
+var cloud = {}, next = {}, n;
+for (n = 0; n < 10; n++) cloud["c:l" + n] = cat("l" + n, "רשימה " + n, t0);
+next = JSON.parse(JSON.stringify(cloud));
+for (n = 0; n < 10; n++) next["c:l" + n] = SS.noteGone(next["c:l" + n], tHide, true);
+for (n = 0; n < 20; n++) cloud["it" + n] = task("it" + n, t0);
+for (n = 0; n < 20; n++) next["it" + n] = task("it" + n, t0);
+for (n = 0; n < 12; n++) { next["it" + n].deleted = true; next["it" + n].at = tHide; }
+var incident = SS.dropReport(next, cloud);
+assert(incident.cloudLists === 13 && incident.listsHidden === 10, "hiding those 10 lists leaves 3 of 13");
+assert(incident.itemsDeleted === 12, "the 12 tombstones count as deleted items");
+var held = SS.needsConfirm(incident, { now: tBack, lastSync: t0, cloudUpdated: tBack, bulkUntil: tBack + 60000 });
+assert(held.hold === true && held.reason === "drop", "the 10/11 incident is blocked even during the local-delete window");
+assert(SS.needsConfirm(incident, { now: tBack, overwriteUntil: tBack + 60000 }).hold === false, "only an explicit overwrite confirm lets that upload through");
+var one = SS.dropReport({ "c:only": SS.noteGone(cat("only", "אחת", t0), tHide, true) }, { "c:only": cat("only", "אחת", t0) });
+assert(one.listsHidden === 1 && SS.needsConfirm(one, { now: tHide + 1000, lastSync: t0, cloudUpdated: t0 }).hold === false, "hiding a single list on a fresh device still uploads");
+var staleRename = SS.dropReport({ "c:l0": cat("l0", "חדש", tEdit) }, { "c:l0": cat("l0", "ישן", t0) });
+var stale = SS.needsConfirm(staleRename, { now: tEdit, lastSync: t0, cloudUpdated: tEdit, differs: true });
+assert(staleRename.listsHidden === 0 && stale.hold === true && stale.reason === "stale", "a device whose last sync is days old cannot silently overwrite");
+assert(SS.needsConfirm(staleRename, { now: t0 + 60000, lastSync: t0, cloudUpdated: t0 + 1000, differs: true }).hold === false, "a recent device can upload a rename");
+
+var older = { "c:l0": cat("l0", "ישן", t0) };
+var current = { "c:l0": cat("l0", "חדש", tEdit) };
+var hist = SS.pushHistory([], older, t0, true);
+var again = SS.pushHistory(hist, older, t0 + 5000, false);
+assert(again.length === 1, "an unchanged snapshot is not stored twice");
+var plan = SS.planRestore(hist, current, hist[0].id, tEdit);
+assert(plan.savedCurrent && plan.found && plan.history.length === 2, "restore saves the current state as a new version first");
+assert(plan.items["c:l0"].name === "ישן" && plan.history[plan.history.length - 1].data["c:l0"].name === "חדש", "restore returns the chosen version and keeps the previous one");
+var file = SS.historyFile(hist[0]);
+assert(file.v === 1 && file.data["c:l0"].name === "ישן" && file.lists === plan.history[0].lists, "a downloaded version is JSON of that snapshot");
+var joined = SS.mergeHistory(hist, { snaps: [{ id: "cloud-1", t: tEdit, lists: 1, items: 0, data: current }] }, 12);
+assert(joined.snaps.length === 2, "local and cloud history are unioned");
 assert(SS.LOAD_YES === "טען מהענן" && SS.LOAD_Q.indexOf("הענן לא ייכתב") !== -1, "the load action says it will not write the cloud");
 
 function spyTimers() {

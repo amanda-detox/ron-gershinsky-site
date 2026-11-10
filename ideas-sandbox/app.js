@@ -84,6 +84,7 @@
   }
   function fmPlain(x) { var o = {}, l = Object.keys(x).filter(function (k) { return !FM_META[k]; }).sort(); l.forEach(function (k) { o[k] = x[k]; }); return JSON.stringify(o); }
   function mergeItem(a, b) {
+    if (window.RGSyncStatus && RGSyncStatus.mergeRecords) return RGSyncStatus.mergeRecords(a, b);
     if (JSON.stringify(a) === JSON.stringify(b)) return a;
     if (a.deleted || b.deleted) return newer(a, b);
     var oa = fmOld(a), ob = fmOld(b), keys = {}, o = { id: a.id }, F = {}, f, i, l, ta, tb, src, va, vb;
@@ -155,12 +156,26 @@
     if (r) for (k in r) y[k] = r[k];
     else { var c = catOf(cid) || {}; y = { id: "c:" + cid, type: "cat", cat: cid, kind: c.kind || (d && d.kind) || "task", pos: typeof c.pos === "number" ? c.pos : 0, created: c.created || 0 }; }
     for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
-    y.at = now(); put(y);
+    y.at = now();
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, y.at, !!y.gone);
+    put(y);
   }
+  function hiddenByName(name) {
+    var k, x, n = clean(name, 40);
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone && clean(x.name || "", 40) === n) return x.cat;
+    }
+    return "";
+  }
+  function showCat(cid) { upCat(cid, { gone: null }); }
   function addCat(name, kind, g) {
     name = clean(name, 40); if (!name) return null;
+    var again = hiddenByName(name);
+    if (again) { showCat(again); return again; }
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (window.RGSyncStatus && RGSyncStatus.noteGone) rec = RGSyncStatus.noteGone(rec, at, false);
     put(rec);
     return id;
   }
@@ -175,8 +190,8 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
-  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false;
+  var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -204,12 +219,14 @@
   }
   function confirmBlocked() {
     if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
-    bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    overwriteOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    bulkOk = overwriteOk;
     holdBlocked = false; syncErr = ""; offline = false; sync();
   }
   function restoreBlocked() {
     var SS = window.RGSyncStatus;
     if (SS) SS.closeDeletion();
+    rememberSnap(true);
     if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
     snap = stamp(items, null);
     holdBlocked = false; blockedCloud = null; pending = true; syncErr = ""; offline = false;
@@ -220,6 +237,7 @@
     if (!uid) return;
     lsSet(lastSyncKey(uid), String(Date.now()));
     paintLastSync();
+    rememberSnap(false);
   }
   function paintLastSync() {
     var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
@@ -249,7 +267,7 @@
     var flags = statusFlags();
     var k = SS.kind(flags);
     SS.fillStatus(s, k, k ? t(k) : "");
-    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
     else SS.closeDeletion();
   }
   function sync() {
@@ -263,11 +281,18 @@
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
-      var merged = merge(items, cl), dirty = !same(merged, items);
+      var dirty = false;
+      if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
+      var merged = merge(items, cl);
+      if (!same(merged, items)) dirty = true;
       items = merged; snap = stamp(items, null);
       seeded = true; // sandbox starts empty and does not insert the live app's sample task
       if (mergeGroups()) dirty = true;
-      if (!(cloudSeeded && same(items, cl)) && (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl))) {
+      var cloudAt = SS && SS.cloudUpdatedAt ? (Date.parse(SS.cloudUpdatedAt) || 0) : 0;
+      var lastOk = parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0;
+      var report = SS ? SS.dropReport(items, cl) : null;
+      var decision = SS ? SS.needsConfirm(report, { now: Date.now(), lastSync: lastOk, cloudUpdated: cloudAt, overwriteUntil: overwriteOk, differs: !same(items, cl) }) : { hold: tooManyGone(items, cl) };
+      if (!(cloudSeeded && same(items, cl)) && decision.hold) {
         blocked = true; holdBlocked = true; pending = true; phase = "held"; blockedCloud = cl;
       }
       if (dirty || blocked) { saveLocal(); render(); }
@@ -367,7 +392,106 @@
     });
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
-  function changed() { pending = true; saveLocal(); render(); syncSoon(); }
+  function changed() { pending = true; saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
+  function histKey() { return "rg-sbx-ideas-hist:" + (uid || ""); }
+  function loadHistory() {
+    var raw = uid ? jparse(lsGet(histKey()), []) : [];
+    history = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+  }
+  function saveHistory() {
+    if (!uid) return;
+    try { localStorage.setItem(histKey(), JSON.stringify(history)); }
+    catch (e) { history = history.slice(-5); try { localStorage.setItem(histKey(), JSON.stringify(history)); } catch (e2) {} }
+  }
+  function rememberSnap(force) {
+    var SS = window.RGSyncStatus;
+    if (!uid || !SS) return;
+    history = SS.pushHistory(history, items, Date.now(), !!force);
+    saveHistory();
+    pushHistoryCloud();
+  }
+  function pushHistoryCloud() {
+    var SS = window.RGSyncStatus;
+    if (!uid || !A || !SS || histBusy) return;
+    histBusy = true;
+    A.get(APP, "history").then(function (cloud) {
+      if (!uid) return;
+      var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
+      history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
+      saveHistory();
+      var payload = { v: 1, snaps: cloudSnaps };
+      if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
+      return A.set(APP, "history", payload);
+    }).then(function () { histBusy = false; }, function () { histBusy = false; });
+  }
+  function hiddenCats() {
+    var out = [], k, x;
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone) out.push(x);
+    }
+    return out.sort(function (a, b) { return (a.name || a.cat || "").localeCompare(b.name || b.cat || "", "he"); });
+  }
+  function downloadSnap(snap) {
+    var SS = window.RGSyncStatus, file = SS ? SS.historyFile(snap) : snap;
+    var blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    var stamp = SS ? SS.formatSyncTime(snap.t || 0).replace(/[^\d]/g, "") : String(snap.t || 0);
+    a.href = URL.createObjectURL(blob);
+    a.download = "listify-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
+  function restoreVersion(id) {
+    var SS = window.RGSyncStatus;
+    if (!SS) return;
+    var plan = SS.planRestore(history, items, id, Date.now());
+    if (!plan.found || !plan.items) return;
+    history = plan.history;
+    saveHistory();
+    items = plan.items;
+    snap = stamp(items, null);
+    pending = true;
+    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+    holdBlocked = false;
+    blockedCloud = null;
+    saveLocal();
+    closeSheet();
+    render();
+    sync();
+    pushHistoryCloud();
+  }
+  function openHistory() {
+    var SS = window.RGSyncStatus;
+    if (!SS) return;
+    var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
+    var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
+    if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
+    else html += rows.map(function (s) {
+      return '<div class="hrow"><div class="histwhen">' + esc(SS.formatSyncTime(s.t)) + '</div><p class="histmeta">' + esc(t("historyCounts").replace("{l}", String(s.lists)).replace("{n}", String(s.items))) + '</p><div class="row"><button type="button" class="btn pri" data-s="r:' + esc(s.id) + '">' + esc(t("historyRestore")) + '</button><button type="button" class="btn" data-s="d:' + esc(s.id) + '">' + esc(t("historyDownload")) + "</button></div></div>";
+    }).join("");
+    var hid = hiddenCats();
+    if (hid.length) {
+      html += '<h3>' + esc(t("historyHidden")) + "</h3>";
+      html += hid.map(function (c) {
+        return '<div class="hrow"><div class="histwhen">' + esc(c.name || c.cat) + '</div><div class="row"><button type="button" class="btn pri" data-s="h:' + esc(c.cat) + '">' + esc(t("historyShow")) + "</button></div></div>";
+      }).join("");
+    }
+    var w = sheet(html, function (a) {
+      if (a === "x") { closeSheet(); return; }
+      if (a.indexOf("d:") === 0) {
+        var id = a.slice(2), i, snap = null;
+        for (i = 0; i < history.length; i++) if (history[i].id === id) snap = history[i];
+        if (snap) downloadSnap(snap);
+        return;
+      }
+      if (a.indexOf("r:") === 0) { restoreVersion(a.slice(2)); return; }
+      if (a.indexOf("h:") === 0) { showCat(a.slice(2)); closeSheet(); changed(); }
+    });
+    if (w) w.style.zIndex = "10001";
+  }
 
   setInterval(function () { if (uid && document.visibilityState === "visible" && !editing) sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
@@ -1088,6 +1212,8 @@
       else if (a === "del") askDel(id);
     });
     M.onLang(render);
+    var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
+    window.addEventListener("pagehide", function () { rememberSnap(false); });
     document.addEventListener("click", function (e) {
       var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
       if (!b) return;
@@ -1101,7 +1227,7 @@
       var id = u ? u.id : null; if (id === uid) return;
       if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this sandbox copy unless unsynced
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; loadLocal(); render();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
       if (uid) sync(); else setStatus();
     }
     onUser(A.user());

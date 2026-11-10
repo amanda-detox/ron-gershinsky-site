@@ -143,15 +143,195 @@
       for (f in c) if (f !== "deleted" && f !== "gone") y[f] = c[f];
       at = Math.max(typeof c.at === "number" ? c.at : 0, x && typeof x.at === "number" ? x.at : 0) + 1;
       y.at = at;
-      if (y._f && typeof y._f === "object") {
-        F = {};
-        for (fk in y._f) F[fk] = y._f[fk];
-        F["~"] = at;
-        y._f = F;
-      }
+      F = {};
+      if (y._f && typeof y._f === "object") for (fk in y._f) F[fk] = y._f[fk];
+      F["~"] = at;
+      if (c.type === "cat") F.gone = at;
+      y._f = F;
+      delete y.gone;
+      delete y.deleted;
       out[k] = y;
     }
     return out;
+  }
+
+  /* Hide or show a list and stamp `gone` at this exact time, so an older hide cannot
+     beat a later un-hide just because the visible copy never wrote the field. */
+  function noteGone(rec, at, hidden) {
+    var y = {}, k, F = {};
+    rec = rec && typeof rec === "object" ? rec : {};
+    for (k in rec) if (k !== "gone") y[k] = rec[k];
+    if (y._f && typeof y._f === "object") for (k in y._f) F[k] = y._f[k];
+    y.at = at;
+    F.gone = at;
+    F["~"] = at;
+    y._f = F;
+    if (hidden) y.gone = 1;
+    return y;
+  }
+  /* Lists this device is showing get a visibility stamp once, at their own edit time
+     or at `at` when they never had one. Hidden lists are left alone. */
+  function assertVisible(items, at) {
+    var k, x, y, f, F, stamp, changed = false;
+    if (!items || typeof items !== "object") return false;
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || x.gone) continue;
+      stamp = x._f && typeof x._f.gone === "number" ? x._f.gone : 0;
+      if (stamp > 0 && stamp >= (x.at || 0)) continue;
+      y = {};
+      for (f in x) y[f] = x[f];
+      F = {};
+      if (y._f && typeof y._f === "object") for (f in y._f) F[f] = y._f[f];
+      F.gone = Math.max(stamp, y.at || 0, at || 0);
+      F["~"] = Math.max(typeof F["~"] === "number" ? F["~"] : 0, y.at || 0, at || 0);
+      y._f = F;
+      if ((y.at || 0) < F.gone) y.at = F.gone;
+      delete y.gone;
+      items[k] = y;
+      changed = true;
+    }
+    return changed;
+  }
+
+  var FM_META = { id: 1, at: 1, _f: 1 };
+  function newerRec(a, b) {
+    if (!a) return b;
+    if (!b) return a;
+    if ((a.at || 0) !== (b.at || 0)) return (a.at || 0) > (b.at || 0) ? a : b;
+    if (!!a.deleted !== !!b.deleted) return a.deleted ? a : b;
+    return JSON.stringify(a) >= JSON.stringify(b) ? a : b;
+  }
+  function fmOldRec(x) { var s = x._f; return !!(s && typeof s === "object" && typeof s["~"] === "number" && x.at > s["~"]); }
+  function fmTimeRec(x, f, old) {
+    var s = x._f && typeof x._f === "object" ? x._f : null, has = Object.prototype.hasOwnProperty.call(x, f);
+    if (old) return (has || (s && f in s)) ? x.at : -1;
+    if (s && typeof s[f] === "number") return s[f];
+    return has ? x.at : -1;
+  }
+  function fmPlainRec(x) {
+    var o = {}, l = Object.keys(x).filter(function (k) { return !FM_META[k]; }).sort();
+    l.forEach(function (k) { o[k] = x[k]; });
+    return JSON.stringify(o);
+  }
+  function mergeRecords(a, b) {
+    if (JSON.stringify(a) === JSON.stringify(b)) return a;
+    if (a.deleted || b.deleted) return newerRec(a, b);
+    var oa = fmOldRec(a), ob = fmOldRec(b), keys = {}, o = { id: a.id }, F = {}, f, i, l, ta, tb, src, va, vb;
+    [a, b, a._f || {}, b._f || {}].forEach(function (m) { for (var k in m) if (!FM_META[k] && k !== "~") keys[k] = 1; });
+    l = Object.keys(keys).sort();
+    for (i = 0; i < l.length; i++) {
+      f = l[i]; ta = fmTimeRec(a, f, oa); tb = fmTimeRec(b, f, ob);
+      if (ta !== tb) src = ta > tb ? a : b;
+      else { va = JSON.stringify(a[f]); vb = JSON.stringify(b[f]); src = vb === undefined ? a : va === undefined ? b : va >= vb ? a : b; }
+      if (Object.prototype.hasOwnProperty.call(src, f)) o[f] = src[f];
+      if (Math.max(ta, tb) >= 0) F[f] = Math.max(ta, tb);
+    }
+    o.at = Math.max(a.at, b.at);
+    if (fmPlainRec(o) !== fmPlainRec(a) && fmPlainRec(o) !== fmPlainRec(b)) o.at++;
+    F["~"] = o.at;
+    o._f = F;
+    return o;
+  }
+
+  var BUILTINS = ["ideas", "tasks", "goals"];
+  function listIds(items) {
+    var gone = {}, custom = {}, k, x, id, ids = [], i;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || typeof x.cat !== "string") continue;
+      custom[x.cat] = 1;
+      if (x.gone) gone[x.cat] = 1;
+    }
+    for (i = 0; i < BUILTINS.length; i++) if (!gone[BUILTINS[i]]) ids.push(BUILTINS[i]);
+    for (id in custom) if (!gone[id] && BUILTINS.indexOf(id) < 0) ids.push(id);
+    return ids;
+  }
+  function itemIds(items) {
+    var ids = [], k, x;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.gone || x.type === "cat" || x.type === "meta" || !x.sec) continue;
+      ids.push(x.id || k);
+    }
+    return ids;
+  }
+  function summarize(items) { return { lists: listIds(items).length, items: itemIds(items).length }; }
+  /* What an upload would remove compared with the cloud copy. */
+  function dropReport(next, cloud) {
+    var cloudLists = listIds(cloud), nextLists = listIds(next), i, set = {}, listsHidden = 0;
+    var cloudItems = itemIds(cloud), nextItems = itemIds(next), itemsDeleted = 0, iset = {};
+    for (i = 0; i < nextLists.length; i++) set[nextLists[i]] = 1;
+    for (i = 0; i < cloudLists.length; i++) if (!set[cloudLists[i]]) listsHidden++;
+    for (i = 0; i < nextItems.length; i++) iset[nextItems[i]] = 1;
+    for (i = 0; i < cloudItems.length; i++) if (!iset[cloudItems[i]]) itemsDeleted++;
+    var cloudLive = liveCount(cloud), nextLive = liveCount(next);
+    return {
+      listsHidden: listsHidden, itemsDeleted: itemsDeleted, liveDrop: cloudLive - nextLive,
+      cloudLists: cloudLists.length, nextLists: nextLists.length,
+      cloudItems: cloudItems.length, nextItems: nextItems.length,
+      cloudLive: cloudLive, nextLive: nextLive
+    };
+  }
+  var STALE_MS = 12 * 60 * 60 * 1000;
+  /* Explicit overwrite (overwriteUntil) is the only bypass. A local delete's short
+     bulkUntil window is ignored, so a stale device cannot ride it into the cloud. */
+  function needsConfirm(report, meta) {
+    report = report || {};
+    meta = meta || {};
+    var now = typeof meta.now === "number" ? meta.now : 0;
+    if (typeof meta.overwriteUntil === "number" && now < meta.overwriteUntil) return { hold: false, reason: "" };
+    var listsBig = report.listsHidden >= 2 || (report.cloudLists >= 4 && report.listsHidden >= 1 && report.listsHidden * 2 > report.cloudLists);
+    var itemsBig = report.cloudItems >= 4 && report.itemsDeleted >= 3 && report.itemsDeleted * 2 > report.cloudItems;
+    var countBig = report.cloudLive >= 4 && report.liveDrop >= 3 && report.liveDrop * 2 > report.cloudLive;
+    if (listsBig || itemsBig || countBig) return { hold: true, reason: "drop" };
+    var last = meta.lastSync || 0, cloudAt = meta.cloudUpdated || 0;
+    var stale = last > 0 && cloudAt > last && now - last >= STALE_MS;
+    var loss = report.listsHidden >= 1 || report.itemsDeleted >= 1 || report.liveDrop >= 1;
+    if (stale && (loss || meta.differs)) return { hold: true, reason: "stale" };
+    return { hold: false, reason: "" };
+  }
+
+  var HIST_MAX = 20, HIST_CLOUD_MAX = 12;
+  function cloneDoc(items) {
+    try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
+  }
+  function pushHistory(list, items, t, force) {
+    list = Array.isArray(list) ? list.slice() : [];
+    var sum = summarize(items), data = cloneDoc(items), last = list[list.length - 1];
+    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data)) return list;
+    list.push({ id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data });
+    while (list.length > HIST_MAX) list.shift();
+    return list;
+  }
+  function planRestore(list, current, versionId, now) {
+    var next = pushHistory(list, current, now, true), hit = null, i;
+    for (i = 0; i < next.length; i++) if (next[i].id === versionId) hit = next[i];
+    return { history: next, items: hit ? cloneDoc(hit.data) : null, savedCurrent: true, found: !!hit };
+  }
+  function historyFile(snap) {
+    snap = snap || {};
+    return { v: 1, t: snap.t || 0, lists: snap.lists || 0, items: snap.items || 0, savedAt: formatSyncTime(snap.t || 0), data: snap.data || {} };
+  }
+  function mergeHistory(localList, cloudDoc, max) {
+    var map = {}, all = [], i, s, id;
+    var L = Array.isArray(localList) ? localList : (localList && localList.snaps) || [];
+    var C = cloudDoc && Array.isArray(cloudDoc.snaps) ? cloudDoc.snaps : [];
+    function add(row) {
+      if (!row || typeof row.t !== "number") return;
+      id = row.id || String(row.t);
+      if (map[id]) return;
+      map[id] = 1;
+      all.push(row);
+    }
+    for (i = 0; i < L.length; i++) add(L[i]);
+    for (i = 0; i < C.length; i++) add(C[i]);
+    all.sort(function (a, b) { return a.t - b.t; });
+    max = max || HIST_CLOUD_MAX;
+    while (all.length > max) all.shift();
+    return { v: 1, snaps: all };
   }
 
   /* Explicit «טען מהענן»: the device adopts the cloud document. writeCloud stays false. */
@@ -182,9 +362,9 @@
     });
   }
 
-  var ASK_Q = "זיהיתי הרבה מחיקות ורוצה לוודא שאתה בטוח לגבי זה?";
-  var ASK_YES = "כן, העלי לענן";
-  var ASK_NO = "לא, שחזרי מחיקות";
+  var ASK_Q = "העותק במכשיר הזה ישן או מוחק רשימות מול הענן. להשאיר את הענן כמו שהוא?";
+  var ASK_YES = "השאר את הענן";
+  var ASK_NO = "העלה בכל זאת";
   var LOAD_Q = "להחליף את הרשימות שבמכשיר הזה בעותק מהענן? העותק הנוכחי יישמר כגיבוי במכשיר, והענן לא ייכתב.";
   var LOAD_YES = "טען מהענן";
   var LOAD_NO = "ביטול";
@@ -326,8 +506,7 @@
         finish(e);
       }, limit);
       Promise.resolve().then(function () { return doFetch(url, opt); }).then(function (v) {
-        peekUpdated(url, opts, v);
-        finish(null, v);
+        return Promise.resolve(peekUpdated(url, opts, v)).then(function () { finish(null, v); });
       }, function (err) {
         var aborted = !!(err && (err.name === "AbortError" || (ctrl && ctrl.signal && ctrl.signal.aborted)));
         if (aborted || (err && (err.timeout || err.type === "timeout"))) {
@@ -359,10 +538,11 @@
       if (isWrite(url, opts) || !res || typeof res.clone !== "function" || res.ok === false) return;
       var href = typeof url === "string" ? url : (url && url.url) || "";
       if (href.indexOf("/rows/") === -1 || href.indexOf("?") !== -1) return;
-      res.clone().json().then(function (j) {
+      return res.clone().json().then(function (j) {
         if (!j || !j.$updatedAt) return;
-        var app = j.app || (j.data && j.data.app);
-        if (app && app !== "sbxmyideas") return;
+        if (j.key && j.key !== "items") return;
+        var appName = j.app || (j.data && j.data.app);
+        if (appName && appName !== "sbxmyideas") return;
         noteCloud(j.$updatedAt);
       }).catch(function () {});
     } catch (e) {}
@@ -412,6 +592,19 @@
     liveCount: liveCount,
     tooManyGone: tooManyGone,
     restoreLive: restoreLive,
+    noteGone: noteGone,
+    assertVisible: assertVisible,
+    mergeRecords: mergeRecords,
+    summarize: summarize,
+    dropReport: dropReport,
+    needsConfirm: needsConfirm,
+    STALE_MS: STALE_MS,
+    HIST_MAX: HIST_MAX,
+    HIST_CLOUD_MAX: HIST_CLOUD_MAX,
+    pushHistory: pushHistory,
+    planRestore: planRestore,
+    historyFile: historyFile,
+    mergeHistory: mergeHistory,
     planCloudLoad: planCloudLoad,
     loadCloudCopy: loadCloudCopy,
     ASK_Q: ASK_Q,
