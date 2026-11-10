@@ -1,0 +1,200 @@
+/* Sandbox Listify sync rules. Run: node ideas-sandbox/rg-sync-status.test.js */
+"use strict";
+var fs = require("fs");
+var path = require("path");
+var SS = require("./rg-sync-status.js");
+var failed = 0;
+function assert(cond, msg) {
+  if (!cond) { console.error("FAIL " + msg); failed++; }
+  else console.log("ok " + msg);
+}
+
+assert(SS.READ_MS === 15000 && SS.REQ_MS === 15000, "reads stay on the 15s limit");
+assert(SS.UPLOAD_MS === 60000, "uploads get 60s");
+assert(SS.timeoutFor({ method: "GET" }, 15000) === 15000, "a download keeps the 15s timeout");
+assert(SS.timeoutFor({ method: "HEAD" }, 15000) === 15000, "a header read keeps the 15s timeout");
+assert(SS.timeoutFor({}, 15000) === 15000, "a call with no method is a read");
+assert(SS.timeoutFor({ method: "PATCH" }, 15000) === 60000, "an upload ignores the 15s read timeout");
+assert(SS.timeoutFor({ method: "POST" }, SS.REQ_MS) === SS.UPLOAD_MS, "a create ignores the timeout the account helper passes");
+assert(SS.timeoutFor({ method: "PUT" }, 15000) === 60000 && SS.timeoutFor({ method: "patch" }, 15000) === 60000, "every write method gets the upload limit");
+assert(SS.backoffMs(1) === 2000 && SS.backoffMs(2) === 4000 && SS.backoffMs(3) === 8000, "retries wait longer each time");
+assert(SS.backoffMs(2) > SS.backoffMs(1) && SS.backoffMs(6) === 60000 && SS.backoffMs(8) === 60000, "the backoff grows and then stops at 60s");
+
+assert(SS.kind({ maySync: true, uid: "ron", uploadCut: true, pending: true, busy: true, onLine: true, err: "", blocked: false }) === "uploadCut", "a cut-off upload stays visible instead of שומר…");
+assert(SS.kind({ maySync: true, uid: "ron", uploadCut: true, err: "timeout", pending: true, onLine: true, failN: 2 }) === "syncErrorTimeout", "repeated upload timeouts stay an error");
+assert(SS.kind({ maySync: true, uid: "ron", blocked: true, uploadCut: true, bulkUntil: 0, pending: true }) === "blocked", "a deletion question wins over the cutoff line");
+assert(SS.kind({ maySync: true, uid: "ron", blocked: true, bulkUntil: 0, pending: true, busy: true }) === "blocked", "a blocked deletion is not silent saving");
+
+var stampAt = new Date(2026, 0, 5, 9, 4).getTime();
+assert(SS.formatSyncTime(stampAt) === "05/01 09:04", "the clock is local 24h DD/MM HH:MM");
+assert(SS.lastSyncLabel(stampAt) === "סונכרן לאחרונה ב-05/01 09:04", "the line under the status uses the exact Hebrew");
+assert(SS.LAST_PREFIX === "rg-sbx-ideas-lastsync:", "the clock is stored per user and survives reload");
+assert(SS.shouldStampSync({ downloaded: true, uploaded: true, nothingToUpload: false, blocked: false, failed: false, pendingLeft: false }) === true, "a finished upload counts");
+assert(SS.shouldStampSync({ downloaded: true, uploaded: false, nothingToUpload: true, blocked: false, failed: false, pendingLeft: false }) === true, "a download with nothing to upload counts");
+assert(SS.shouldStampSync({ downloaded: true, uploaded: true, blocked: true, failed: false, pendingLeft: false }) === false, "a sync held by the deletion guard does not count");
+assert(SS.shouldStampSync({ downloaded: true, nothingToUpload: true, blocked: true, failed: false, pendingLeft: false }) === false, "a held round does not count even when the documents match");
+assert(SS.shouldStampSync({ downloaded: false, uploaded: true, failed: true, blocked: false, pendingLeft: false }) === false, "a failed round does not count");
+assert(SS.shouldStampSync({ downloaded: true, uploaded: true, failed: false, blocked: false, pendingLeft: true }) === false, "an upload that left newer local edits does not count yet");
+assert(SS.shouldStampSync({ downloaded: true, uploaded: false, nothingToUpload: false, failed: false, blocked: false, pendingLeft: false }) === false, "a download that never uploaded does not count");
+
+function row(id, text, at) { return { id: id, text: text, at: at, _f: { text: at, "~": at } }; }
+var union = SS.restoreLive(
+  { n: row("n", "only phone", 4), a: row("a", "phone edit", 9) },
+  { a: row("a", "cloud", 2), c: row("c", "only cloud", 3) }
+);
+assert(union.n && union.n.text === "only phone" && union.c && union.c.text === "only cloud", "a normal merge keeps data that exists on only one side");
+assert(union.a && union.a.text === "phone edit", "a newer local edit is not overwritten by the cloud");
+
+var plan = SS.planCloudLoad({ a: row("a", "phone only", 4) }, { seeded: true, items: { b: row("b", "cloud", 2) } });
+assert(plan.writeCloud === false, "loading the cloud copy is not a cloud write");
+assert(plan.backup.a && plan.backup.a.text === "phone only" && plan.next.b && !plan.next.a, "the phone-only item stays in the backup and the device takes the cloud copy");
+assert(plan.seeded === true, "the cloud seeded flag is kept");
+
+var root = path.join(__dirname, "..");
+var app = fs.readFileSync(path.join(__dirname, "app.js"), "utf8");
+var html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+var sw = fs.readFileSync(path.join(__dirname, "sw.js"), "utf8");
+var src = fs.readFileSync(path.join(__dirname, "rg-sync-status.js"), "utf8");
+var acct = fs.readFileSync(path.join(root, "sandbox-shared/rg-account.js"), "utf8");
+assert(acct.indexOf("RGSyncStatus.REQ_MS") !== -1, "the sandbox account helper still passes one timeout for every call");
+assert(app.indexOf('APP = "sbxmyideas"') !== -1, "the sandbox app id is unchanged");
+assert(app.indexOf('APP = "myideas"') === -1 && app.indexOf("rg-myideas") === -1, "the sandbox does not use the live app id or live storage keys");
+assert(app.indexOf("אמנדה") === -1 && app.indexOf("הרגלים שלי") === -1, "personal one-time lists stay out of the sandbox");
+assert(app.indexOf("for (k in a) if (valid(a[k])) out[k] = a[k];") !== -1, "the merge still starts from the local copy");
+assert(app.indexOf("out[k] = out[k] ? mergeItem(out[k], b[k]) : b[k];") !== -1, "the merge still unions in cloud-only items");
+assert(app.indexOf("items = cl") === -1 && app.indexOf("items = merged") !== -1, "automatic sync merges and does not replace the local copy with the cloud");
+assert(app.indexOf("ensureDeletion") !== -1 && app.indexOf("restoreBlocked") !== -1 && app.indexOf('t("blockedAct")') === -1, "the deletion question stays a two-choice prompt and is never a one-tap delete");
+assert(app.indexOf("shouldStampSync") !== -1 && app.indexOf("rg-sbx-ideas-lastsync:") !== -1, "the app records a last sync only through the success rule");
+assert(app.indexOf("לחתוך") === -1 && src.indexOf("לחתוך") === -1 && html.indexOf("לחתוך") === -1, "no violent Hebrew");
+var loadBody = app.slice(app.indexOf("function loadFromCloud"), app.indexOf("function syncSoon"));
+assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") === -1 && loadBody.indexOf('"-bak"') !== -1, "טען מהענן saves a -bak copy and has no cloud write");
+assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
+assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
+assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=2") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=2") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v6"') !== -1 && sw.indexOf("rg-sync-status.js?v=2") !== -1 && sw.indexOf("app.js?v=44") !== -1, "the sandbox service worker cache was bumped");
+assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
+var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
+assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
+assert(SS.ASK_YES === "השאר את הענן" && SS.ASK_NO === "העלה בכל זאת" && SS.ASK_Q.indexOf("להשאיר את הענן") !== -1, "the overwrite prompt defaults to keeping the cloud");
+assert(app.indexOf("needsConfirm") !== -1 && app.indexOf("noteGone") !== -1 && app.indexOf("planRestore") !== -1 && html.indexOf("שחזור מקובץ") !== -1, "history, the overwrite guard, and file restore are all in the sandbox");
+assert(html.indexOf("היסטוריית גרסאות") !== -1 && html.indexOf('id="hist-btn"') !== -1, "version history has its own screen");
+
+function cat(id, name, at) {
+  return { id: "c:" + id, type: "cat", cat: id, name: name, at: at, _f: { name: at, "~": at } };
+}
+function task(id, at) { return { id: id, sec: "tasks", text: id, at: at, _f: { text: at, "~": at } }; }
+var t0 = Date.UTC(2026, 10, 5, 8, 0);
+var tHide = Date.UTC(2026, 10, 5, 12, 0);
+var tEdit = Date.UTC(2026, 10, 10, 4, 30);
+var tBack = Date.UTC(2026, 10, 10, 4, 41);
+var shown = SS.noteGone(cat("l0", "קניות", t0), tEdit, false);
+shown.name = "קניות אחרי";
+shown._f.name = tEdit;
+var hid = SS.noteGone(cat("l0", "קניות", t0), tHide, true);
+var replay = SS.mergeRecords(hid, shown);
+assert(!replay.gone && replay.name === "קניות אחרי", "a later un-hide and edit beat an offline hide");
+var plain = cat("l0", "קניות", t0);
+var oldHide = SS.noteGone(plain, tHide, true);
+assert(SS.mergeRecords(oldHide, plain).gone === 1, "a 5/11 gone stamp beats a visible list that never stamped gone");
+var bag = { "c:l0": cat("l0", "קניות", t0) };
+assert(SS.assertVisible(bag, tEdit) === true && bag["c:l0"]._f.gone === tEdit && !bag["c:l0"].gone, "showing a list writes a fresh visibility stamp");
+assert(SS.assertVisible(bag, tEdit + 1000) === false, "a list that already asserted visibility is not rewritten every sync");
+assert(!SS.mergeRecords(oldHide, bag["c:l0"]).gone, "that fresh stamp keeps the list visible");
+var hiddenBag = { "c:l0": SS.noteGone(cat("l0", "קניות", t0), tHide, true) };
+assert(SS.assertVisible(hiddenBag, tEdit) === false && hiddenBag["c:l0"].gone === 1, "a hidden list is not un-hidden by the visibility pass");
+var kept = SS.restoreLive({ "c:l0": oldHide }, { "c:l0": plain });
+assert(!kept["c:l0"].gone && kept["c:l0"]._f.gone > oldHide._f.gone, "keeping the cloud stamps visibility above the old hide");
+assert(!SS.mergeRecords(oldHide, kept["c:l0"]).gone, "the restored list stays visible against the old hide");
+
+var cloud = {}, next = {}, n;
+for (n = 0; n < 10; n++) cloud["c:l" + n] = cat("l" + n, "רשימה " + n, t0);
+next = JSON.parse(JSON.stringify(cloud));
+for (n = 0; n < 10; n++) next["c:l" + n] = SS.noteGone(next["c:l" + n], tHide, true);
+for (n = 0; n < 20; n++) cloud["it" + n] = task("it" + n, t0);
+for (n = 0; n < 20; n++) next["it" + n] = task("it" + n, t0);
+for (n = 0; n < 12; n++) { next["it" + n].deleted = true; next["it" + n].at = tHide; }
+var incident = SS.dropReport(next, cloud);
+assert(incident.cloudLists === 13 && incident.listsHidden === 10, "hiding those 10 lists leaves 3 of 13");
+assert(incident.itemsDeleted === 12, "the 12 tombstones count as deleted items");
+var held = SS.needsConfirm(incident, { now: tBack, lastSync: t0, cloudUpdated: tBack, bulkUntil: tBack + 60000 });
+assert(held.hold === true && held.reason === "drop", "the 10/11 incident is blocked even during the local-delete window");
+assert(SS.needsConfirm(incident, { now: tBack, overwriteUntil: tBack + 60000 }).hold === false, "only an explicit overwrite confirm lets that upload through");
+var one = SS.dropReport({ "c:only": SS.noteGone(cat("only", "אחת", t0), tHide, true) }, { "c:only": cat("only", "אחת", t0) });
+assert(one.listsHidden === 1 && SS.needsConfirm(one, { now: tHide + 1000, lastSync: t0, cloudUpdated: t0 }).hold === false, "hiding a single list on a fresh device still uploads");
+var staleRename = SS.dropReport({ "c:l0": cat("l0", "חדש", tEdit) }, { "c:l0": cat("l0", "ישן", t0) });
+var stale = SS.needsConfirm(staleRename, { now: tEdit, lastSync: t0, cloudUpdated: tEdit, differs: true });
+assert(staleRename.listsHidden === 0 && stale.hold === true && stale.reason === "stale", "a device whose last sync is days old cannot silently overwrite");
+assert(SS.needsConfirm(staleRename, { now: t0 + 60000, lastSync: t0, cloudUpdated: t0 + 1000, differs: true }).hold === false, "a recent device can upload a rename");
+
+var older = { "c:l0": cat("l0", "ישן", t0) };
+var current = { "c:l0": cat("l0", "חדש", tEdit) };
+var hist = SS.pushHistory([], older, t0, true);
+var again = SS.pushHistory(hist, older, t0 + 5000, false);
+assert(again.length === 1, "an unchanged snapshot is not stored twice");
+var plan = SS.planRestore(hist, current, hist[0].id, tEdit);
+assert(plan.savedCurrent && plan.found && plan.history.length === 2, "restore saves the current state as a new version first");
+assert(plan.items["c:l0"].name === "ישן" && plan.history[plan.history.length - 1].data["c:l0"].name === "חדש", "restore returns the chosen version and keeps the previous one");
+var file = SS.historyFile(hist[0]);
+assert(file.v === 1 && file.data["c:l0"].name === "ישן" && file.lists === plan.history[0].lists, "a downloaded version is JSON of that snapshot");
+var joined = SS.mergeHistory(hist, { snaps: [{ id: "cloud-1", t: tEdit, lists: 1, items: 0, data: current }] }, 12);
+assert(joined.snaps.length === 2, "local and cloud history are unioned");
+assert(SS.LOAD_YES === "טען מהענן" && SS.LOAD_Q.indexOf("הענן לא ייכתב") !== -1, "the load action says it will not write the cloud");
+
+function spyTimers() {
+  var real = global.setTimeout, seen = [];
+  global.setTimeout = function (fn, ms) { seen.push(ms); return real(fn, ms); };
+  return { seen: seen, restore: function () { global.setTimeout = real; } };
+}
+
+var spy = spyTimers();
+var reads = 0, writes = 0;
+SS.fetchWithTimeout(function () { reads++; return Promise.resolve({ ok: true, body: "read" }); }, "/row", { method: "GET" }, 15000).then(function (v) {
+  assert(v && v.body === "read" && reads === 1, "a fast download still resolves");
+  assert(spy.seen.indexOf(15000) !== -1 && spy.seen.indexOf(60000) === -1, "the download timer is 15s");
+  spy.seen.length = 0;
+  return SS.fetchWithTimeout(function () { writes++; return Promise.resolve({ ok: true, body: "wrote" }); }, "https://fra.cloud.appwrite.io/v1/tablesdb/ron/tables/userdata/rows/r1", { method: "PATCH" }, 15000);
+}).then(function (v) {
+  assert(v && v.body === "wrote" && writes === 1, "a fast upload is not cut off");
+  assert(spy.seen[0] === 60000 && spy.seen.indexOf(15000) === -1, "the upload timer is 60s even when the caller passes 15s");
+  spy.restore();
+  return SS.fetchWithTimeout(function () { return new Promise(function () {}); }, "/slow-read", { method: "GET" }, 30);
+}).then(function () {
+  assert(false, "a hung download should reject");
+  return null;
+}, function (e) {
+  assert(e && e.type === "timeout" && e.timeout === true, "a hung download still rejects as a timeout");
+  var order = [];
+  return SS.loadCloudCopy({
+    local: { a: row("a", "phone only", 4) },
+    saveBak: function (local) { order.push("bak:" + (local.a && local.a.text)); },
+    get: function () { order.push("get"); return Promise.resolve({ seeded: true, items: { b: row("b", "from cloud", 8) } }); },
+    set: function () { order.push("set"); return Promise.resolve("wrote"); }
+  }).then(function (res) {
+    assert(order.join(",") === "bak:phone only,get", "טען מהענן backs up, then downloads, and never calls set");
+    assert(res && res.wrote === false && res.writes === 0, "the load result records no cloud write");
+    assert(res.items.b && res.items.b.text === "from cloud" && !res.items.a, "only this device's copy is replaced");
+    var noted = [];
+    SS.watchCloudUpdated(function (iso) { noted.push(iso); });
+    function fake(obj) { return { ok: true, clone: function () { return { json: function () { return Promise.resolve(obj); } }; } }; }
+    return SS.fetchWithTimeout(function () { return Promise.resolve(fake({ app: "sbxmyideas", $updatedAt: "2026-11-10T02:05:00.000Z" })); }, "https://fra.cloud.appwrite.io/v1/tablesdb/ron/tables/userdata/rows/r1", { method: "GET" }, 1000).then(function () {
+      return new Promise(function (resolve) { setTimeout(resolve, 20); });
+    }).then(function () {
+      assert(SS.cloudUpdatedAt === "2026-11-10T02:05:00.000Z" && noted[0] === SS.cloudUpdatedAt, "a cloud row download remembers its own updated time");
+      return SS.fetchWithTimeout(function () { return Promise.resolve(fake({ app: "prefs", $updatedAt: "1999-01-01T00:00:00.000Z" })); }, "https://fra.cloud.appwrite.io/v1/tablesdb/ron/tables/userdata/rows/p", { method: "GET" }, 1000);
+    }).then(function () {
+      return new Promise(function (resolve) { setTimeout(resolve, 20); });
+    }).then(function () {
+      assert(SS.cloudUpdatedAt === "2026-11-10T02:05:00.000Z", "another app's row does not replace the Listify cloud time");
+      finish();
+    });
+  });
+}).catch(function (e) {
+  assert(false, "unexpected " + (e && e.stack || e));
+  finish();
+});
+
+function finish() {
+  if (failed) { console.error(failed + " failed"); process.exit(1); }
+  console.log("all ideas-sandbox sync checks passed");
+}
