@@ -72,8 +72,12 @@ assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < htm
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=6") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=6") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v13"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=50") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v13') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v13"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v13");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v14"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=51") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v14') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v14"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v14");
+assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
+assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
+assert(sw.indexOf('cache: "no-cache"') !== -1 && sw.indexOf("caches.match(e.request)") !== -1, "html and js are revalidated and the offline fallback stays");
+assert(app.indexOf("pending || editing || busy || holdBlocked") !== -1 && app.indexOf("RGSbxUpdate") !== -1 && app.indexOf("location.reload") !== -1, "the app reloads for a new version only when nothing unsynced is open");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
@@ -275,12 +279,12 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 50 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 51 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-sync-status.js") >= 6 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 50, hash: "9a980de8d9b4e45a" },
+  "ideas-sandbox/app.js": { v: 51, hash: "e54b30afc982f4cf" },
   "ideas-sandbox/rg-sync-status.js": { v: 6, hash: "df486ea67d4018b3" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };

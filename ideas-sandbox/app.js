@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v13";
+  var BUILD = "rg-sbx-ideas-v14";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -321,15 +321,33 @@
   }
   function setStatus() {
     paintLastSync();
-    var s = $("status"); if (!s) return;
+    var s = $("status");
     var SS = window.RGSyncStatus;
-    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
+    if (!s) { maybeUpdateReload(); return; }
+    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); maybeUpdateReload(); return; }
     var flags = statusFlags();
     var k = SS.kind(flags);
     SS.fillStatus(s, k, k ? t(k) : "");
     if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
     else SS.closeDeletion();
+    maybeUpdateReload();
   }
+  var updateReady = false;
+  function updateBlocked() { return !updateReady || !!(pending || editing || busy || holdBlocked); }
+  function maybeUpdateReload() {
+    var u = window.RGSbxUpdate;
+    if (!u || !u.waiting || updateBlocked()) return;
+    u.waiting = false;
+    location.reload();
+  }
+  function markUpdateReady() {
+    updateReady = true;
+    maybeUpdateReload();
+  }
+  window.RGSbxUpdate = {
+    blocked: updateBlocked,
+    waiting: !!window.RGSbxUpdateWait
+  };
   function sync() {
     if (APP !== "sbxmyideas") return Promise.resolve();
     if (!uid || !A) return Promise.resolve();
@@ -1515,7 +1533,7 @@
     try { new MutationObserver(function () { injectLoadBtn(); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
     if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
-      var id = u ? u.id : null; if (id === uid) return;
+      var id = u ? u.id : null; if (id === uid) { markUpdateReady(); return; }
       if (!id && uid) {
         var c = jparse(lsGet(cacheKey(uid)), null);
         var plan = window.RGSyncStatus && RGSyncStatus.signOutPlan ? RGSyncStatus.signOutPlan(c) : { backup: !!(c && c.items), dropCache: !c || !c.pending, keepCache: !!(c && c.pending) };
@@ -1526,6 +1544,7 @@
       }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
       uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
+      markUpdateReady();
       if (uid) {
         var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);
         if (offer && offer.pending && lsGet("rg-sbx-ideas-offer-open:" + uid) !== "1") {
