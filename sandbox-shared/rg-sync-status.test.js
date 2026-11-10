@@ -70,7 +70,7 @@ var liveStore = fs.readFileSync(path.join(root, "my/store.js"), "utf8");
 var livePublic = fs.readFileSync(path.join(root, "shared/rg-public-store.js"), "utf8");
 assert(liveAccount.indexOf("AbortController") === -1 && liveAccount.indexOf("fetchWithTimeout") === -1, "live rg-account.js has no request timeout");
 assert(liveIdeas.indexOf('APP = "myideas"') !== -1 && liveIdeas.indexOf("sbxmyideas") === -1, "live private Listify still uses myideas");
-assert(liveIdeas.indexOf('s.textContent = !uid ? "" : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced")') !== -1, "live private Listify still collapses pending into saving");
+assert(liveIdeas.indexOf("ensureDeletion") !== -1 && liveIdeas.indexOf('APP = "myideas"') !== -1, "live private Listify asks before a large deletion and keeps its app id");
 assert(liveStore.indexOf("tooManyGone") === -1, "my/store.js is not the private Listify engine");
 assert(livePublic.indexOf("fetchWithTimeout") === -1, "live public store is unchanged");
 
