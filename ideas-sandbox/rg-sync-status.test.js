@@ -71,9 +71,9 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=7") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=7") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v15"') !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=52") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v15') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v15"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v15");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=8") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=8") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v16"') !== -1 && sw.indexOf("rg-sync-status.js?v=8") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=53") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v16') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v16"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v16");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
 assert(sw.indexOf('cache: "no-cache"') !== -1 && sw.indexOf("caches.match(e.request)") !== -1, "html and js are revalidated and the offline fallback stays");
@@ -152,7 +152,7 @@ for (oi = 0; oi < oldest.history.length; oi++) {
 assert(oldest.found && oldest.items.a.text === "v0" && oldestKept && currentKept && oldest.history.length === SS.HIST_MAX, "restoring the oldest row at the cap keeps that snapshot and saves the current list");
 var restoreBody = app.slice(app.indexOf("function restoreVersion"), app.indexOf("function openHistory"));
 assert(restoreBody.indexOf("armQuietRestore()") !== -1 && restoreBody.indexOf("adoptRestore") !== -1 && app.indexOf("function armQuietRestore") !== -1, "a version restore is marked quiet before it syncs");
-assert(app.indexOf("if (!restoring && !quietRestore && SS && SS.fieldConflicts)") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
+assert(app.indexOf("!echo && SS && SS.fieldConflicts") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
 assert(app.indexOf("roundRestore && (phase === \"upload\" || phase === \"same\")") !== -1, "only the restore's own sync clears the restore snapshot");
 var baseNow = { a: taskAt("a", "now", 5000) };
 assert(SS.fieldConflicts({ a: taskAt("a", "old", 9000) }, baseNow, baseNow).length === 0, "restoring a different local text over an unchanged cloud is not a clash");
@@ -169,6 +169,16 @@ var rapid = SS.fieldConflicts({ a: taskAt("a", "v3", 4000) }, { a: taskAt("a", "
 assert(rapid.length === 1 && SS.sameDeviceEdits(rapid[0].localText, rapid[0].cloudText, ["v0", "v1", "v2", "v3"]) === true, "two moves that are this device's own edits are not a clash");
 var twoDev = SS.fieldConflicts({ a: taskAt("a", "AAA", 4000) }, { a: taskAt("a", "BBB", 3500) }, { a: taskAt("a", "base", 1000) });
 assert(twoDev.length === 1 && SS.sameDeviceEdits(twoDev[0].localText, twoDev[0].cloudText, ["base", "AAA"]) === false, "a genuine two-device clash still counts");
+var echoBase = { a: taskAt("a", "r0", 1000) };
+var echoLocal = { a: taskAt("a", "r5", 6000) };
+var echoCloud = { a: taskAt("a", "r4", 5000) };
+var echoFights = SS.fieldConflicts(echoLocal, echoCloud, echoBase);
+var echoDoc = { items: echoCloud, _w: { d: "phone", n: 4 } };
+assert(echoFights.length === 1 && echoFights[0].cloudText === "r4", "an out-of-order r4 against local r5 still looks like a clash before the writer check");
+assert(SS.ownEcho(echoDoc, "phone") === true && SS.reportClash(echoFights, echoDoc, "phone") === false, "an out-of-order echo of our own r4 is not a clash");
+assert(SS.reportClash(echoFights, { items: echoCloud, _w: { d: "other", n: 9 } }, "phone") === true, "the same texts written by another device are still a clash");
+assert(SS.ownEcho({ items: echoCloud }, "phone") === false && SS.reportClash(echoFights, { items: echoCloud }, "phone") === true, "a document with no writer tag is still checked");
+assert(app.indexOf("silenceStaleClash") !== -1 && app.indexOf("if (!hadClash) clearClashNotice()") !== -1 && app.indexOf("_w: writeTag()") !== -1, "a stale clash notice clears, and each upload is tagged with this device");
 assert(app.indexOf("sameDeviceEdits") !== -1 && app.indexOf("saveAgreed(sent)") !== -1 && app.indexOf("rememberOwn") !== -1, "this device records its own writes and moves the base when it uploads");
 function manyItems(n, text, at) {
   var o = {}, i;
@@ -286,13 +296,13 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 52 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
-assert(qver(html, "rg-sync-status.js") >= 7 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 53 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 8 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 52, hash: "c33dab931fb0e903" },
-  "ideas-sandbox/rg-sync-status.js": { v: 7, hash: "48344d1434a77a00" },
+  "ideas-sandbox/app.js": { v: 53, hash: "e5e4170ced21cb7f" },
+  "ideas-sandbox/rg-sync-status.js": { v: 8, hash: "eb7ef5b6ebcbed08" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {

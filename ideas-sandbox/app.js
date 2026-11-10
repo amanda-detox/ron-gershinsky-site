@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v15";
+  var BUILD = "rg-sbx-ideas-v16";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -318,9 +318,31 @@
     out.push(localText);
     return out;
   }
+  function deviceKey() { return "rg-sbx-ideas-device"; }
+  function deviceId() {
+    var id = lsGet(deviceKey());
+    if (!id) { id = now().toString(36) + Math.random().toString(36).slice(2, 10); lsSet(deviceKey(), id); }
+    return id;
+  }
+  function nextWriteSeq() {
+    var k = "rg-sbx-ideas-wseq:" + (uid || ""), n = parseInt(lsGet(k) || "0", 10) || 0;
+    n += 1;
+    lsSet(k, String(n));
+    return n;
+  }
+  function writeTag() { return { d: deviceId(), n: nextWriteSeq() }; }
   function clearClashNotice() {
     if (uid) lsSet("rg-sbx-ideas-conflict:" + uid, null);
     paintConflict();
+  }
+  function silenceStaleClash() {
+    var seen, i;
+    clearClashNotice();
+    if (!uid) return;
+    seen = jparse(lsGet("rg-sbx-ideas-clash-seen:" + uid), {});
+    if (!seen || typeof seen !== "object") seen = {};
+    for (i = 0; i < history.length; i++) if (history[i] && history[i].clash) seen[history[i].id] = 1;
+    try { localStorage.setItem("rg-sbx-ideas-clash-seen:" + uid, JSON.stringify(seen)); } catch (e) {}
   }
   function armQuietRestore() {
     quietRestore = true;
@@ -389,9 +411,11 @@
       var dirty = false, restoring = !!restoreDoc;
       roundRestore = restoring;
       if (!restoring && !quietRestore && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
-      if (!restoring && !quietRestore && SS && SS.fieldConflicts) {
+      var echo = SS && SS.ownEcho && SS.ownEcho(cloud, deviceId());
+      if (!restoring && !quietRestore && !echo && SS && SS.fieldConflicts) {
         var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
         if (SS.sameDeviceEdits) fought = fought.filter(function (f) { return !SS.sameDeviceEdits(f.localText, f.cloudText, ownValues(f.key, f.field, f.localText)); });
+        if (SS.reportClash && !SS.reportClash(fought, cloud, deviceId())) fought = [];
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
       if (restoring && SS && SS.adoptRestore) {
@@ -422,7 +446,7 @@
       backup(cl);
       sent = items;
       phase = "upload";
-      return A.set(APP, KEY, { v: 1, seeded: true, items: items });
+      return A.set(APP, KEY, { v: 1, seeded: true, items: items, _w: writeTag() });
     }).then(function () {
       if (who !== uid || gen !== fileGen) return;
       var sentSame = !sent || sent === items;
@@ -435,6 +459,7 @@
       if (!hadClash && phase === "same") saveAgreed(items);
       else if (hadClash) saveAgreed(items);
       else if (!hadClash && phase === "upload" && sent) { saveAgreed(sent); rememberOwn(sent); }
+      if (!hadClash) clearClashNotice();
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
       if (SS && SS.shouldStampSync({
         downloaded: true,
@@ -1571,7 +1596,7 @@
         if (plan.dropCache) lsSet(cacheKey(uid), null); // pending changes stay in the cache and in the sign-out backup
       }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); silenceStaleClash(); render();
       markUpdateReady();
       if (uid) {
         var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);

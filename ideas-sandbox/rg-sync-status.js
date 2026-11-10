@@ -403,6 +403,17 @@
     }
     return hitL && hitC;
   }
+  /* _w is { d: device id, n: write sequence } stored on a document this device uploaded.
+     A later read can still be an older sequence number. It is our echo either way. */
+  function ownEcho(cloudDoc, deviceId) {
+    var w = cloudDoc && cloudDoc._w;
+    return !!(w && deviceId && w.d === deviceId);
+  }
+  function reportClash(fights, cloudDoc, deviceId) {
+    if (!fights || !fights.length) return false;
+    if (ownEcho(cloudDoc, deviceId)) return false;
+    return true;
+  }
   function clashSnap(local, cloud, fights, now) {
     var data = cloneDoc(local), i, f, src, loser, sum;
     fights = fights || [];
@@ -762,6 +773,8 @@
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
     sameDeviceEdits: sameDeviceEdits,
+    ownEcho: ownEcho,
+    reportClash: reportClash,
     clashSnap: clashSnap,
     rememberClash: rememberClash,
     signOutGate: signOutGate,
