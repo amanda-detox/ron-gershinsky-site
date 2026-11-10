@@ -1,6 +1,8 @@
 /* Sandbox of private Listify. App id sbxmyideas, storage prefix rg-sbx-ideas.
    Never reads or writes the live private Listify app id or its storage keys.
-   A blocked large deletion stays visible (with a confirm button) instead of שומר….
+   Same sync rules as the live app: union merge, and a large deletion asks before any upload.
+   Reads time out after 15s. Uploads get 60s, then a visible cutoff and a growing backoff.
+   «טען מהענן» replaces only this device, after a -bak copy, and never writes to the cloud.
    Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
      mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
@@ -26,7 +28,7 @@
   ];
   var KINDS = ["task", "idea", "goal"]; // old category kinds: still read and kept in the records, but every list now works the same
   var A = window.RGAccount, M = window.RGMy, t = M.t;
-  var uid, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
+  var uid = null, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
   var editing = null, rendering = false;
   var tab = lsGet("rg-sbx-ideas-tab-cur") || lsGet("rg-sbx-ideas-tab") || "ideas", doneOpen = {};
   /* 3 list pickers (Ron 31.10): each list record may carry grp 2 or 3; no grp = picker 1, so old data stays in picker 1.
@@ -82,6 +84,7 @@
   }
   function fmPlain(x) { var o = {}, l = Object.keys(x).filter(function (k) { return !FM_META[k]; }).sort(); l.forEach(function (k) { o[k] = x[k]; }); return JSON.stringify(o); }
   function mergeItem(a, b) {
+    if (window.RGSyncStatus && RGSyncStatus.mergeRecords) return RGSyncStatus.mergeRecords(a, b);
     if (JSON.stringify(a) === JSON.stringify(b)) return a;
     if (a.deleted || b.deleted) return newer(a, b);
     var oa = fmOld(a), ob = fmOld(b), keys = {}, o = { id: a.id }, F = {}, f, i, l, ta, tb, src, va, vb;
@@ -153,12 +156,26 @@
     if (r) for (k in r) y[k] = r[k];
     else { var c = catOf(cid) || {}; y = { id: "c:" + cid, type: "cat", cat: cid, kind: c.kind || (d && d.kind) || "task", pos: typeof c.pos === "number" ? c.pos : 0, created: c.created || 0 }; }
     for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
-    y.at = now(); put(y);
+    y.at = now();
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, y.at, !!y.gone);
+    put(y);
   }
+  function hiddenByName(name) {
+    var k, x, n = clean(name, 40);
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone && clean(x.name || "", 40) === n) return x.cat;
+    }
+    return "";
+  }
+  function showCat(cid) { upCat(cid, { gone: null }); }
   function addCat(name, kind, g) {
     name = clean(name, 40); if (!name) return null;
+    var again = hiddenByName(name);
+    if (again) { showCat(again); return again; }
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (window.RGSyncStatus && RGSyncStatus.noteGone) rec = RGSyncStatus.noteGone(rec, at, false);
     put(rec);
     return id;
   }
@@ -173,7 +190,8 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false;
+  var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -191,69 +209,293 @@
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
 
-  /* ---------- sync ---------- */
+  /* ---------- sync ----------
+     When tooManyGone blocks a cloud write, the question stays on screen until it is answered.
+     כן, העלי לענן uses the same 60s bulkOk window as deleting a whole list and uploads.
+     לא, שחזרי מחיקות puts cloud items back, keeps newer local edits and additions, then syncs.
+     Nothing in this path deletes on its own. A sync that is still held does not count as synced. */
   function statusFlags() {
-    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
+    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline, uploadCut: uploadCut };
   }
   function confirmBlocked() {
-    bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
+    overwriteOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    bulkOk = overwriteOk;
     holdBlocked = false; syncErr = ""; offline = false; sync();
   }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    rememberSnap(true);
+    if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
+    snap = stamp(items, null);
+    holdBlocked = false; blockedCloud = null; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
+  }
+  function lastSyncKey(id) { return (window.RGSyncStatus && RGSyncStatus.LAST_PREFIX || "rg-sbx-ideas-lastsync:") + id; }
+  function markLastSync() {
+    if (!uid) return;
+    lsSet(lastSyncKey(uid), String(Date.now()));
+    paintLastSync();
+    rememberSnap(false);
+  }
+  function paintLastSync() {
+    var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
+    if (!uid) {
+      if (el) el.textContent = "";
+      if (cl) cl.textContent = "";
+      return;
+    }
+    var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
+    if (el) el.textContent = ms && SS ? t("lastSync").replace("{t}", SS.formatSyncTime(ms)) : "";
+    if (cl) {
+      var cms = SS && SS.cloudUpdatedAt ? Date.parse(SS.cloudUpdatedAt) : NaN;
+      cl.textContent = cms && SS ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
+    }
+  }
+  function armBackoff(n) {
+    var ms = (window.RGSyncStatus && RGSyncStatus.backoffMs(n)) || 2000;
+    nextTry = Date.now() + ms;
+    clearTimeout(retryT);
+    retryT = setTimeout(function () { nextTry = 0; if (uid) sync(); }, ms);
+  }
   function setStatus() {
+    paintLastSync();
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
     if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
-    var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
+    var flags = statusFlags();
+    var k = SS.kind(flags);
+    SS.fillStatus(s, k, k ? t(k) : "");
+    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
+    else SS.closeDeletion();
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
+    if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, SS = window.RGSyncStatus;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
-      var merged = merge(items, cl), dirty = !same(merged, items);
+      var dirty = false;
+      if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
+      var merged = merge(items, cl);
+      if (!same(merged, items)) dirty = true;
       items = merged; snap = stamp(items, null);
       seeded = true; // sandbox starts empty and does not insert the live app's sample task
       if (mergeGroups()) dirty = true;
-      if (dirty) { saveLocal(); render(); }
-      if (cloudSeeded && same(items, cl)) return;
-      if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
-        blocked = true; holdBlocked = true; pending = true; saveLocal();
+      var cloudAt = SS && SS.cloudUpdatedAt ? (Date.parse(SS.cloudUpdatedAt) || 0) : 0;
+      var lastOk = parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0;
+      var report = SS ? SS.dropReport(items, cl) : null;
+      var decision = SS ? SS.needsConfirm(report, { now: Date.now(), lastSync: lastOk, cloudUpdated: cloudAt, overwriteUntil: overwriteOk, differs: !same(items, cl) }) : { hold: tooManyGone(items, cl) };
+      if (!(cloudSeeded && same(items, cl)) && decision.hold) {
+        blocked = true; holdBlocked = true; pending = true; phase = "held"; blockedCloud = cl;
+      }
+      if (dirty || blocked) { saveLocal(); render(); }
+      if (blocked) {
         try { console.warn("ideas sandbox: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
         return;
       }
+      if (cloudSeeded && same(items, cl)) { phase = "same"; return; }
       holdBlocked = false;
+      if (SS) SS.closeDeletion();
       backup(cl);
       sent = items;
+      phase = "upload";
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
     }).then(function () {
       if (who !== uid) return;
       var sentSame = !sent || sent === items;
       var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
-      if (blocked) return; // keep pending: the cloud copy stays as it was, and the phone's lists stay on this device
+      if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
+      if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
+      if (SS && SS.shouldStampSync({
+        downloaded: true,
+        uploaded: phase === "upload",
+        nothingToUpload: phase === "same",
+        blocked: false,
+        failed: false,
+        pendingLeft: !next.clearPending
+      })) markLastSync();
     }, function (e) {
       if (who !== uid) return;
-      if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
-      var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
+      if (e && (e.code === "signed_out" || e.type === "signed_out")) { offline = false; syncErr = ""; uploadCut = false; return; }
+      var onLine = typeof navigator === "undefined" || navigator.onLine !== false;
+      var next = SS ? SS.applyFailure({ failN: failN }, e, onLine) : { offline: true, syncErr: "", failN: failN };
       offline = next.offline; syncErr = next.syncErr; failN = next.failN;
+      var cls = SS ? SS.classifyError(e) : "";
+      if (cls === "timeout") {
+        if (phase === "upload") uploadCut = true;
+        armBackoff(failN);
+      }
     }).then(function () {
       busy = false; setStatus();
       if (again && who === uid) { again = false; sync(); }
     });
   }
+  function cloudLoadUsed() { return !!(uid && lsGet("rg-sbx-ideas-loadcloud:" + uid) === "1"); }
+  function injectLoadBtn() {
+    var existing = document.querySelector("[data-a=loadcloud]");
+    if (!uid || cloudLoadUsed()) {
+      if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+      return;
+    }
+    var dlg = document.querySelector(".rgacc-dlg");
+    if (!dlg || dlg.querySelector("[data-a=loadcloud]")) return;
+    var exp = dlg.querySelector('[data-a="export"]');
+    if (!exp) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "rgacc-sec";
+    b.setAttribute("data-a", "loadcloud");
+    b.textContent = t("loadCloud");
+    exp.insertAdjacentElement("afterend", b);
+  }
+  /* One explicit replace of this device's copy. get() only. The previous local copy is the -bak key. */
+  function loadFromCloud() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeLoadAsk();
+    if (!uid || !A || !SS || loadingCloud) return Promise.resolve();
+    loadingCloud = true;
+    var who = uid;
+    return SS.loadCloudCopy({
+      local: items,
+      get: function () { return A.get(APP, KEY); },
+      set: function () { var err = new Error("load from cloud must not write"); err.code = "cloud_write"; throw err; },
+      saveBak: function (snapLocal) {
+        localStorage.setItem(cacheKey(who) + (SS.BAK_SUFFIX || "-bak"), JSON.stringify({ t: Date.now(), items: snapLocal, pending: pending, seeded: seeded }));
+      }
+    }).then(function (res) {
+      loadingCloud = false;
+      if (who !== uid || !res || res.wrote) return;
+      items = res.items || {};
+      seeded = !!(res.seeded || seeded);
+      pending = false;
+      holdBlocked = false;
+      blockedCloud = null;
+      uploadCut = false;
+      snap = stamp(items, null);
+      saveLocal();
+      lsSet("rg-sbx-ideas-loadcloud:" + who, "1");
+      if (SS.shouldStampSync({ downloaded: true, uploaded: false, nothingToUpload: true, blocked: false, failed: false, pendingLeft: false })) markLastSync();
+      render();
+      injectLoadBtn();
+    }, function () {
+      loadingCloud = false;
+      setStatus();
+    });
+  }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
-  function changed() { pending = true; saveLocal(); render(); syncSoon(); }
+  function changed() { pending = true; saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
+  function histKey() { return "rg-sbx-ideas-hist:" + (uid || ""); }
+  function loadHistory() {
+    var raw = uid ? jparse(lsGet(histKey()), []) : [];
+    history = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+  }
+  function saveHistory() {
+    if (!uid) return;
+    try { localStorage.setItem(histKey(), JSON.stringify(history)); }
+    catch (e) { history = history.slice(-5); try { localStorage.setItem(histKey(), JSON.stringify(history)); } catch (e2) {} }
+  }
+  function rememberSnap(force) {
+    var SS = window.RGSyncStatus;
+    if (!uid || !SS) return;
+    history = SS.pushHistory(history, items, Date.now(), !!force);
+    saveHistory();
+    pushHistoryCloud();
+  }
+  function pushHistoryCloud() {
+    var SS = window.RGSyncStatus;
+    if (!uid || !A || !SS || histBusy) return;
+    histBusy = true;
+    A.get(APP, "history").then(function (cloud) {
+      if (!uid) return;
+      var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
+      history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
+      saveHistory();
+      var payload = { v: 1, snaps: cloudSnaps };
+      if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
+      return A.set(APP, "history", payload);
+    }).then(function () { histBusy = false; }, function () { histBusy = false; });
+  }
+  function hiddenCats() {
+    var out = [], k, x;
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone) out.push(x);
+    }
+    return out.sort(function (a, b) { return (a.name || a.cat || "").localeCompare(b.name || b.cat || "", "he"); });
+  }
+  function downloadSnap(snap) {
+    var SS = window.RGSyncStatus, file = SS ? SS.historyFile(snap) : snap;
+    var blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    var stamp = SS ? SS.formatSyncTime(snap.t || 0).replace(/[^\d]/g, "") : String(snap.t || 0);
+    a.href = URL.createObjectURL(blob);
+    a.download = "listify-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
+  function restoreVersion(id) {
+    var SS = window.RGSyncStatus;
+    if (!SS) return;
+    var plan = SS.planRestore(history, items, id, Date.now());
+    if (!plan.found || !plan.items) return;
+    history = plan.history;
+    saveHistory();
+    items = plan.items;
+    snap = stamp(items, null);
+    pending = true;
+    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+    holdBlocked = false;
+    blockedCloud = null;
+    saveLocal();
+    closeSheet();
+    render();
+    sync();
+    pushHistoryCloud();
+  }
+  function openHistory() {
+    var SS = window.RGSyncStatus;
+    if (!SS) return;
+    var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
+    var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
+    if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
+    else html += rows.map(function (s) {
+      return '<div class="hrow"><div class="histwhen">' + esc(SS.formatSyncTime(s.t)) + '</div><p class="histmeta">' + esc(t("historyCounts").replace("{l}", String(s.lists)).replace("{n}", String(s.items))) + '</p><div class="row"><button type="button" class="btn pri" data-s="r:' + esc(s.id) + '">' + esc(t("historyRestore")) + '</button><button type="button" class="btn" data-s="d:' + esc(s.id) + '">' + esc(t("historyDownload")) + "</button></div></div>";
+    }).join("");
+    var hid = hiddenCats();
+    if (hid.length) {
+      html += '<h3>' + esc(t("historyHidden")) + "</h3>";
+      html += hid.map(function (c) {
+        return '<div class="hrow"><div class="histwhen">' + esc(c.name || c.cat) + '</div><div class="row"><button type="button" class="btn pri" data-s="h:' + esc(c.cat) + '">' + esc(t("historyShow")) + "</button></div></div>";
+      }).join("");
+    }
+    var w = sheet(html, function (a) {
+      if (a === "x") { closeSheet(); return; }
+      if (a.indexOf("d:") === 0) {
+        var id = a.slice(2), i, snap = null;
+        for (i = 0; i < history.length; i++) if (history[i].id === id) snap = history[i];
+        if (snap) downloadSnap(snap);
+        return;
+      }
+      if (a.indexOf("r:") === 0) { restoreVersion(a.slice(2)); return; }
+      if (a.indexOf("h:") === 0) { showCat(a.slice(2)); closeSheet(); changed(); }
+    });
+    if (w) w.style.zIndex = "10001";
+  }
 
   setInterval(function () { if (uid && document.visibilityState === "visible" && !editing) sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
-  window.addEventListener("online", function () { offline = false; if (uid) sync(); });
+  window.addEventListener("online", function () { offline = false; nextTry = 0; clearTimeout(retryT); if (uid) sync(); });
   window.addEventListener("offline", function () { offline = true; syncErr = ""; setStatus(); });
 
   /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ----------
@@ -970,15 +1212,28 @@
       else if (a === "del") askDel(id);
     });
     M.onLang(render);
+    var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
+    window.addEventListener("pagehide", function () { rememberSnap(false); });
+    document.addEventListener("click", function (e) {
+      var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
+      if (!b) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.RGSyncStatus) RGSyncStatus.openLoadAsk({ onYes: loadFromCloud });
+    }, true);
+    try { new MutationObserver(function () { injectLoadBtn(); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+    if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;
       if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this sandbox copy unless unsynced
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; loadLocal(); render();
+      if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
       if (uid) sync(); else setStatus();
     }
     onUser(A.user());
     A.onChange(onUser);
-    A.ready.then(function () { onUser(A.user()); });
+    A.ready.then(function () { onUser(A.user()); if (!uid) setStatus(); });
+    if (!uid) setStatus();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
