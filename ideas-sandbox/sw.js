@@ -1,8 +1,8 @@
 /* Offline cache for the private Listify sandbox only. Scope: ideas-sandbox/.
    Does not delete caches used by the live app. */
-var CACHE = "rg-sbx-ideas-v9";
-var FILES = ["./", "index.html", "rg-sync-status.js?v=4", "restore.js?v=1", "app.js?v=47", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js",
-  "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
+var CACHE = "rg-sbx-ideas-v10";
+var FILES = ["./", "index.html", "rg-sync-status.js?v=5", "restore.js?v=1", "app.js?v=48", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../my/common.css", "../my/common.js",
+  "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js?v=2", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
@@ -20,6 +20,11 @@ self.addEventListener("fetch", function (e) {
     if (r.ok) caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
     return r;
   }).catch(function () {
-    return caches.match(e.request, { ignoreSearch: true }).then(function (m) { return m || (e.request.mode === "navigate" ? caches.match("./") : m); });
+    var exact = caches.match(e.request);
+    var versioned = new URL(e.request.url).search;
+    return exact.then(function (m) {
+      if (m || versioned) return m || (e.request.mode === "navigate" ? caches.match("./") : m);
+      return caches.match(e.request, { ignoreSearch: true }).then(function (hit) { return hit || (e.request.mode === "navigate" ? caches.match("./") : hit); });
+    });
   }));
 });
