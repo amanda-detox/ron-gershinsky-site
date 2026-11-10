@@ -71,9 +71,11 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=7") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=7") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v15"') !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=52") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v15') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v15"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v15");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=11") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=11") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v18"') !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('class="lastsync" id="build">rg-sbx-ideas-v18') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v18"') !== -1 && app.indexOf("function paintBuild") !== -1 && app.indexOf("paintVersion") !== -1, "the running script sets the on-screen label to v18");
+var labelEl = { textContent: "" };
+assert(SS.paintVersion({ getElementById: function (id) { return id === "build" ? labelEl : null; } }, "build", "rg-sbx-ideas-v18") === "rg-sbx-ideas-v18" && labelEl.textContent === "rg-sbx-ideas-v18", "the version label writer fills #build and can be reused later");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
 assert(sw.indexOf('cache: "no-cache"') !== -1 && sw.indexOf("caches.match(e.request)") !== -1, "html and js are revalidated and the offline fallback stays");
@@ -152,7 +154,9 @@ for (oi = 0; oi < oldest.history.length; oi++) {
 assert(oldest.found && oldest.items.a.text === "v0" && oldestKept && currentKept && oldest.history.length === SS.HIST_MAX, "restoring the oldest row at the cap keeps that snapshot and saves the current list");
 var restoreBody = app.slice(app.indexOf("function restoreVersion"), app.indexOf("function openHistory"));
 assert(restoreBody.indexOf("armQuietRestore()") !== -1 && restoreBody.indexOf("adoptRestore") !== -1 && app.indexOf("function armQuietRestore") !== -1, "a version restore is marked quiet before it syncs");
-assert(app.indexOf("if (!restoring && !quietRestore && SS && SS.fieldConflicts)") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
+assert(restoreBody.indexOf("restoreImpact") !== -1 && restoreBody.indexOf("restoreImpact") < restoreBody.indexOf("history = plan.history") && restoreBody.indexOf("onCancel: function () {}") !== -1 && restoreBody.indexOf("onRestore: apply") !== -1, "a lossy restore asks first, and cancel does not change history");
+assert(restoreBody.indexOf("RESTORE_TOAST") !== -1 && restoreBody.indexOf("10000") !== -1 && restoreBody.indexOf("fileGen++") !== -1, "after restore the undo toast stays for 10 seconds and puts the previous items back");
+assert(app.indexOf("!echo && SS && SS.fieldConflicts") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
 assert(app.indexOf("roundRestore && (phase === \"upload\" || phase === \"same\")") !== -1, "only the restore's own sync clears the restore snapshot");
 var baseNow = { a: taskAt("a", "now", 5000) };
 assert(SS.fieldConflicts({ a: taskAt("a", "old", 9000) }, baseNow, baseNow).length === 0, "restoring a different local text over an unchanged cloud is not a clash");
@@ -169,6 +173,16 @@ var rapid = SS.fieldConflicts({ a: taskAt("a", "v3", 4000) }, { a: taskAt("a", "
 assert(rapid.length === 1 && SS.sameDeviceEdits(rapid[0].localText, rapid[0].cloudText, ["v0", "v1", "v2", "v3"]) === true, "two moves that are this device's own edits are not a clash");
 var twoDev = SS.fieldConflicts({ a: taskAt("a", "AAA", 4000) }, { a: taskAt("a", "BBB", 3500) }, { a: taskAt("a", "base", 1000) });
 assert(twoDev.length === 1 && SS.sameDeviceEdits(twoDev[0].localText, twoDev[0].cloudText, ["base", "AAA"]) === false, "a genuine two-device clash still counts");
+var echoBase = { a: taskAt("a", "r0", 1000) };
+var echoLocal = { a: taskAt("a", "r5", 6000) };
+var echoCloud = { a: taskAt("a", "r4", 5000) };
+var echoFights = SS.fieldConflicts(echoLocal, echoCloud, echoBase);
+var echoDoc = { items: echoCloud, _w: { d: "phone", n: 4 } };
+assert(echoFights.length === 1 && echoFights[0].cloudText === "r4", "an out-of-order r4 against local r5 still looks like a clash before the writer check");
+assert(SS.ownEcho(echoDoc, "phone") === true && SS.reportClash(echoFights, echoDoc, "phone") === false, "an out-of-order echo of our own r4 is not a clash");
+assert(SS.reportClash(echoFights, { items: echoCloud, _w: { d: "other", n: 9 } }, "phone") === true, "the same texts written by another device are still a clash");
+assert(SS.ownEcho({ items: echoCloud }, "phone") === false && SS.reportClash(echoFights, { items: echoCloud }, "phone") === true, "a document with no writer tag is still checked");
+assert(app.indexOf("silenceStaleClash") !== -1 && app.indexOf("if (!hadClash) clearClashNotice()") !== -1 && app.indexOf("_w: writeTag()") !== -1, "a stale clash notice clears, and each upload is tagged with this device");
 assert(app.indexOf("sameDeviceEdits") !== -1 && app.indexOf("saveAgreed(sent)") !== -1 && app.indexOf("rememberOwn") !== -1, "this device records its own writes and moves the base when it uploads");
 function manyItems(n, text, at) {
   var o = {}, i;
@@ -177,10 +191,47 @@ function manyItems(n, text, at) {
 }
 var cloud24 = manyItems(24, "now", 5000);
 var keep19 = SS.dropReport(manyItems(19, "old", 9000), cloud24);
+assert(SS.needsConfirm(keep19, { now: 9000, lastSync: 5000, cloudUpdated: 5000 }).hold === false, "dropping 24 items to 19 is not a sharp drop");
 assert(SS.needsConfirm(keep19, { now: 9000, lastSync: 5000, cloudUpdated: 5000, overwriteUntil: 9000 + 60000 }).hold === false, "a chosen restore from 24 items to 19 is not stopped");
 var sharp = SS.dropReport(manyItems(8, "old", 9000), cloud24);
 assert(SS.needsConfirm(sharp, { now: 9000, lastSync: 1000, cloudUpdated: 8000, differs: true }).hold === true, "a sharp drop on a normal sync is still stopped");
 assert(SS.needsConfirm(sharp, { now: 9000, overwriteUntil: 9000 + 60000 }).hold === false, "the same sharp drop is allowed when the user chose a restore");
+var lone = { only: taskAt("only", "אחד", 1000) };
+var loneGone = SS.dropReport({}, lone);
+assert(loneGone.itemsDeleted === 1 && loneGone.listsEmptied === 1 && loneGone.nextItems === 0, "one item to none empties its list");
+assert(SS.needsConfirm(loneGone, { now: 5000, lastSync: 1000, cloudUpdated: 1000 }).hold === true && SS.needsConfirm(loneGone, { now: 5000, lastSync: 1000, cloudUpdated: 1000 }).reason === "drop", "a one-item list wiped to zero is a sharp drop");
+assert(SS.needsConfirm(loneGone, { now: 5000, overwriteUntil: 9000 }).hold === false, "an explicit confirm still allows that one-item wipe");
+var threeGone = SS.dropReport({}, manyItems(3, "x", 1000));
+assert(SS.needsConfirm(threeGone, { now: 4000, lastSync: 1000, cloudUpdated: 1000 }).reason === "drop", "wiping a three-item list is a sharp drop under the old percentage floor");
+var halfSmall = SS.dropReport(manyItems(1, "x", 2000), manyItems(2, "x", 1000));
+assert(halfSmall.itemsDeleted === 1 && halfSmall.listsEmptied === 0 && SS.needsConfirm(halfSmall, { now: 3000, lastSync: 1000, cloudUpdated: 1000 }).hold === false, "dropping one item from a two-item list is not a sharp drop");
+var mixedCloud = { a: taskAt("a", "ideas-item", 1000), b: taskAt("b", "tasks-1", 1000), c: taskAt("c", "tasks-2", 1000) };
+mixedCloud.a.sec = "ideas";
+var mixedNext = { b: mixedCloud.b, c: mixedCloud.c };
+var mixedDrop = SS.dropReport(mixedNext, mixedCloud);
+assert(mixedDrop.listsEmptied === 1 && mixedDrop.itemsDeleted === 1 && SS.needsConfirm(mixedDrop, { now: 3000, lastSync: 1000, cloudUpdated: 1000 }).hold === true, "emptying one small list is a sharp drop even when other lists stay");
+var keptItems = JSON.stringify(lone);
+var loss = SS.restoreImpact(lone, {});
+assert(loss.warn === true && loss.removed === 1 && loss.kept === 0 && loss.added === 0 && loss.emptied === 1 && JSON.stringify(lone) === keptItems, "restoring over the only item warns and does not change it");
+var lossView = SS.restorePreview(loss);
+assert(lossView.title === "לשחזר את הגרסה הזו?" && lossView.summary === "אחרי השחזור יישארו 0 פריטים. יוסרו 1 ויתווספו 0." && lossView.empty === true && lossView.emptyLabel === "הרשימה תתרוקן." && lossView.names[0] === "אחד" && lossView.focusCancel === true && lossView.go === "שחזור" && lossView.cancel === "ביטול", "an empty result uses the Hebrew summary, the bold empty line, and focuses cancel");
+var oneOfFive = SS.restoreImpact(manyItems(5, "now", 5000), manyItems(4, "old", 1000));
+assert(oneOfFive.warn === true && oneOfFive.removed === 1 && oneOfFive.kept === 4 && oneOfFive.emptied === 0 && SS.restorePreview(oneOfFive).empty === false && SS.restoreWarning(oneOfFive).indexOf("יוסרו 1") !== -1, "removing one item from a larger list still warns before restore");
+function namedItems(texts) {
+  var o = {}, i;
+  for (i = 0; i < texts.length; i++) o[texts[i]] = taskAt(texts[i], texts[i], 1000);
+  return o;
+}
+var manyGone = SS.restoreImpact(namedItems(["א", "ב", "ג", "ד", "ה"]), namedItems(["ה"]));
+var manyView = SS.restorePreview(manyGone);
+assert(manyGone.removed === 4 && manyGone.kept === 1 && manyGone.added === 0 && manyView.names.join(",") === "א,ב,ג" && manyView.more === 1 && manyView.moreLabel === "ועוד 1", "the preview lists three removed items and counts the rest");
+assert(SS.needsConfirm(SS.dropReport(manyItems(4, "old", 1000), manyItems(5, "now", 5000)), { now: 9000, lastSync: 1000, cloudUpdated: 1000 }).hold === false, "that same one-item drop is not a sharp drop on a normal sync");
+assert(SS.restoreImpact(manyItems(5, "now", 5000), manyItems(5, "now", 5000)).warn === false, "restoring the same items does not warn");
+assert(SS.restoreImpact(manyItems(4, "old", 1000), manyItems(5, "now", 5000)).warn === false, "a version that only adds items does not warn");
+assert(SS.RESTORE_CANCEL === "ביטול" && SS.RESTORE_GO === "שחזור" && SS.RESTORE_TITLE === "לשחזר את הגרסה הזו?" && SS.RESTORE_EMPTY === "הרשימה תתרוקן." && SS.RESTORE_TOAST === "שוחזר.", "the dialog uses the specified Hebrew and the toast is the undo line");
+var restoreCss = src.slice(src.indexOf(".rg-restore-back"), src.indexOf(".rg-restore-cancel"));
+assert(restoreCss.indexOf(".rg-restore-sum.warn{color:#ff7a00") !== -1 && restoreCss.indexOf(".rg-restore-go.warn{background:#ff7a00") !== -1 && restoreCss.indexOf(".rg-restore-go{background:var(--blue)") !== -1 && restoreCss.indexOf("text-decoration:line-through") !== -1 && restoreCss.indexOf("border-radius:12px") !== -1 && restoreCss.indexOf("padding:20px") !== -1, "orange is only the warning summary and the restore button, and the normal button stays blue");
+assert(restoreCss.indexOf("red") === -1 && restoreCss.indexOf("#f00") === -1 && restoreCss.indexOf("#ff0000") === -1 && restoreCss.indexOf("#ff4500") === -1 && src.indexOf('className = "rg-restore-sum" + (view.focusCancel ? " warn" : "")') !== -1 && src.indexOf('className = "rg-restore-go" + (view.focusCancel ? " warn" : "")') !== -1, "the orange class is added only when items will be removed, and there is no red");
 var missing = SS.planRestore(full, { a: taskAt("a", "now", 9000) }, "missing-row", 9001);
 assert(missing.found === false && missing.items == null, "a missing version is reported instead of restoring nothing");
 var file = SS.historyFile(hist[0]);
@@ -286,13 +337,13 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 52 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
-assert(qver(html, "rg-sync-status.js") >= 7 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 55 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 11 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 52, hash: "c33dab931fb0e903" },
-  "ideas-sandbox/rg-sync-status.js": { v: 7, hash: "48344d1434a77a00" },
+  "ideas-sandbox/app.js": { v: 55, hash: "103ff28a7df3a9e8" },
+  "ideas-sandbox/rg-sync-status.js": { v: 11, hash: "c22eea2cb207d303" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {

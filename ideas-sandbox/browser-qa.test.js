@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v15"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v15");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v18"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v18");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=52") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v15"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v18"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -262,6 +262,95 @@ async function main() {
     check(oldErr.length === 0, "the oldest-restore page runs without a script error");
     if (oldErr.length) console.error(oldErr.join(" | "));
     await old.close();
+
+    var emptySnaps = [{ id: "empty-row", t: 1000, lists: 3, items: 0, data: {} }];
+    var warn = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+    var warnPage = await warn.newPage();
+    var warnErr = [];
+    warnPage.on("pageerror", function (err) { warnErr.push(String(err)); });
+    await warnPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await warnPage.addInitScript(userScript(
+      cacheScript("KEEP-ME", 5000, true, "ideas") +
+      "localStorage.setItem('rg-sbx-ideas-hist:" + UID + "'," + JSON.stringify(JSON.stringify(emptySnaps)) + ");"
+    ));
+    await warnPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await warnPage.waitForSelector("#hist-btn");
+    await warnPage.click("#hist-btn");
+    await warnPage.waitForSelector('[data-s="r:empty-row"]');
+    await warnPage.waitForTimeout(1000);
+    await warnPage.click('[data-s="r:empty-row"]');
+    await warnPage.waitForSelector("#rg-restore-back");
+    var warnText = await warnPage.locator("#rg-restore-back").innerText();
+    var warnLook = await warnPage.evaluate(function () {
+      function nums(rgb) { var m = String(rgb || "").match(/\d+/g); return m ? m.slice(0, 3).map(Number) : [0, 0, 0]; }
+      function hue(rgb) {
+        var c = nums(rgb), r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b), h = 0, d = max - min;
+        if (!d) return 0;
+        if (max === r) h = ((g - b) / d) % 6;
+        else if (max === g) h = (b - r) / d + 2;
+        else h = (r - g) / d + 4;
+        h *= 60;
+        return h < 0 ? h + 360 : h;
+      }
+      function orange(rgb) { var h = hue(rgb), c = nums(rgb); return h >= 24 && h <= 42 && c[0] > 200 && c[1] > 70 && c[2] < 40; }
+      function red(rgb) { var c = nums(rgb); return c[0] > 180 && c[1] < 80 && c[2] < 80; }
+      var box = document.querySelector(".rg-restore");
+      var sum = document.querySelector(".rg-restore-sum");
+      var empty = document.querySelector(".rg-restore-empty");
+      var gone = document.querySelector(".rg-restore-gone li");
+      var go = document.querySelector(".rg-restore-go");
+      var cancel = document.querySelector(".rg-restore-cancel");
+      var plain = document.createElement("button");
+      plain.className = "rg-restore-go";
+      box.appendChild(plain);
+      var bs = getComputedStyle(box), es = getComputedStyle(empty), gs = getComputedStyle(gone);
+      var sumC = getComputedStyle(sum).color, goC = getComputedStyle(go).backgroundColor, plainC = getComputedStyle(plain).backgroundColor;
+      plain.parentNode.removeChild(plain);
+      var buttons = Array.prototype.map.call(box.querySelectorAll("button"), function (b) { return b.textContent; });
+      return {
+        dir: box.getAttribute("dir"),
+        radius: bs.borderRadius, pad: bs.padding,
+        emptyWeight: es.fontWeight,
+        sumOrange: orange(sumC), emptyOrange: orange(es.color), goneOrange: orange(gs.color),
+        goOrange: orange(goC), cancelOrange: orange(getComputedStyle(cancel).backgroundColor) || orange(getComputedStyle(cancel).color),
+        plainBlue: hue(plainC) >= 190 && hue(plainC) <= 250,
+        anyRed: red(sumC) || red(es.color) || red(gs.color) || red(goC) || red(plainC),
+        strike: gs.textDecoration.indexOf("line-through") !== -1,
+        buttons: buttons.join("|"),
+        focus: document.activeElement ? document.activeElement.textContent : "",
+        sheetBottom: box.getBoundingClientRect().bottom >= window.innerHeight - 24
+      };
+    });
+    check(warnText.indexOf("לשחזר את הגרסה הזו?") !== -1 && warnText.indexOf("אחרי השחזור יישארו 0 פריטים. יוסרו 1 ויתווספו 0.") !== -1 && warnText.indexOf("הרשימה תתרוקן.") !== -1 && warnText.indexOf("KEEP-ME") !== -1, "the dialog states the counts and the item that would be removed");
+    check(warnLook.dir === "rtl" && warnLook.buttons === "שחזור|ביטול" && warnLook.focus === "ביטול" && warnLook.radius === "12px" && warnLook.pad === "20px" && warnLook.sheetBottom && warnLook.strike && warnLook.sumOrange && warnLook.goOrange && warnLook.plainBlue && !warnLook.emptyOrange && !warnLook.goneOrange && !warnLook.cancelOrange && !warnLook.anyRed && Number(warnLook.emptyWeight) >= 700, "orange is only the warning summary and the restore button, and the normal button stays blue");
+    await warnPage.screenshot({ path: "/opt/cursor/artifacts/restore-warning.png" });
+    await warnPage.locator("#rg-restore-back .rg-restore-cancel").click();
+    await warnPage.waitForFunction(function () { return !document.getElementById("rg-restore-back"); });
+    var afterCancel = await warnPage.evaluate(function (uid) {
+      var raw = localStorage.getItem("rg-sbx-ideas-v1:" + uid);
+      var hist = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
+      var body = document.body ? document.body.innerText : "";
+      return { kept: body.indexOf("KEEP-ME") !== -1, cache: raw && raw.indexOf("KEEP-ME") !== -1, rows: hist ? JSON.parse(hist).length : 0 };
+    }, UID);
+    check(afterCancel.kept && afterCancel.cache && afterCancel.rows === 1, "cancel leaves the item and the history unchanged");
+    await warnPage.click('[data-s="r:empty-row"]');
+    await warnPage.waitForSelector("#rg-restore-back .rg-restore-go");
+    await warnPage.locator("#rg-restore-back .rg-restore-go").click();
+    await warnPage.waitForFunction(function () {
+      var body = document.body ? document.body.innerText : "";
+      return body.indexOf("KEEP-ME") === -1 && body.indexOf("שוחזר") !== -1;
+    });
+    check(true, "confirming the warning applies the empty version and shows the undo toast");
+    await warnPage.locator("#toast .tundo").click();
+    await warnPage.waitForFunction(function () {
+      var body = document.body ? document.body.innerText : "";
+      return body.indexOf("KEEP-ME") !== -1;
+    });
+    check(true, "undo within the toast puts the removed item back");
+    check(warnErr.length === 0, "the restore-warning page runs without a script error");
+    if (warnErr.length) console.error(warnErr.join(" | "));
+    await warn.close();
   } finally {
     await browser.close();
     server.close();

@@ -121,6 +121,8 @@
 
   function tooManyGone(next, cloud, now, bulkUntil) {
     if (typeof bulkUntil === "number" && now < bulkUntil) return false;
+    var report = dropReport(next, cloud);
+    if (report.listsEmptied >= 1 || (report.cloudItems >= 1 && report.nextItems === 0)) return true;
     var before = liveCount(cloud), gone = before - liveCount(next);
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
@@ -259,6 +261,34 @@
     return ids;
   }
   function summarize(items) { return { lists: listIds(items).length, items: itemIds(items).length }; }
+  /* Live items per visible list. A list that had items and then has none was emptied. */
+  function itemCountsByList(items) {
+    var gone = {}, counts = {}, k, x, i;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || typeof x.cat !== "string") continue;
+      if (x.gone) gone[x.cat] = 1;
+    }
+    for (i = 0; i < BUILTINS.length; i++) if (!gone[BUILTINS[i]]) counts[BUILTINS[i]] = 0;
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || x.gone || typeof x.cat !== "string") continue;
+      if (counts[x.cat] == null) counts[x.cat] = 0;
+    }
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.gone || x.type === "cat" || x.type === "meta" || !x.sec || gone[x.sec]) continue;
+      if (counts[x.sec] == null) counts[x.sec] = 0;
+      counts[x.sec]++;
+    }
+    return counts;
+  }
+  function countListsEmptied(next, cloud) {
+    var before = itemCountsByList(cloud), after = itemCountsByList(next), n = 0, id;
+    for (id in before) if (before[id] >= 1 && !(after[id] >= 1)) n++;
+    return n;
+  }
   /* What an upload would remove compared with the cloud copy. */
   function dropReport(next, cloud) {
     var cloudLists = listIds(cloud), nextLists = listIds(next), i, set = {}, listsHidden = 0;
@@ -270,6 +300,7 @@
     var cloudLive = liveCount(cloud), nextLive = liveCount(next);
     return {
       listsHidden: listsHidden, itemsDeleted: itemsDeleted, liveDrop: cloudLive - nextLive,
+      listsEmptied: countListsEmptied(next, cloud),
       cloudLists: cloudLists.length, nextLists: nextLists.length,
       cloudItems: cloudItems.length, nextItems: nextItems.length,
       cloudLive: cloudLive, nextLive: nextLive
@@ -286,7 +317,9 @@
     var listsBig = report.listsHidden >= 2 || (report.cloudLists >= 4 && report.listsHidden >= 1 && report.listsHidden * 2 > report.cloudLists);
     var itemsBig = report.cloudItems >= 4 && report.itemsDeleted >= 3 && report.itemsDeleted * 2 > report.cloudItems;
     var countBig = report.cloudLive >= 4 && report.liveDrop >= 3 && report.liveDrop * 2 > report.cloudLive;
-    if (listsBig || itemsBig || countBig) return { hold: true, reason: "drop" };
+    /* A percentage rule never sees a 1-item list. Emptying any list, including that one, is still a drop. */
+    var smallEmpty = report.listsEmptied >= 1 || (report.cloudItems >= 1 && report.nextItems === 0);
+    if (listsBig || itemsBig || countBig || smallEmpty) return { hold: true, reason: "drop" };
     var last = meta.lastSync || 0, cloudAt = meta.cloudUpdated || 0;
     var stale = last > 0 && cloudAt > last && now - last >= STALE_MS;
     var loss = report.listsHidden >= 1 || report.itemsDeleted >= 1 || report.liveDrop >= 1;
@@ -326,6 +359,55 @@
     var saved = hit ? cloneDoc(hit.data) : null;
     var next = pushHistory(src, current, now, true, hit ? { keepId: hit.id } : null);
     return { history: next, items: saved, savedCurrent: true, found: !!hit };
+  }
+  function liveItemList(items) {
+    var out = [], k, x;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.gone || x.type === "cat" || x.type === "meta" || !x.sec) continue;
+      out.push({ id: x.id || k, text: String(x.text || x.name || x.id || k) });
+    }
+    return out;
+  }
+  /* History restore that drops live items, or leaves a list with none, must be confirmed first. */
+  function restoreImpact(current, snapshot) {
+    var cur = liveItemList(current), next = liveItemList(snapshot), nextIds = {}, curIds = {}, i, removed = [], added = 0;
+    var report = dropReport(snapshot, current);
+    for (i = 0; i < next.length; i++) nextIds[next[i].id] = 1;
+    for (i = 0; i < cur.length; i++) {
+      curIds[cur[i].id] = 1;
+      if (!nextIds[cur[i].id]) removed.push(cur[i].text);
+    }
+    for (i = 0; i < next.length; i++) if (!curIds[next[i].id]) added++;
+    return {
+      kept: next.length, removed: removed.length, added: added, emptied: report.listsEmptied,
+      names: removed, warn: removed.length > 0 || report.listsEmptied > 0
+    };
+  }
+  function restorePreview(impact) {
+    impact = impact || {};
+    var names = impact.names || [], shown = names.slice(0, 3), more = names.length > 3 ? names.length - 3 : 0;
+    var kept = impact.kept || 0, removed = impact.removed || 0, added = impact.added || 0;
+    return {
+      title: "לשחזר את הגרסה הזו?",
+      summary: "אחרי השחזור יישארו " + kept + " פריטים. יוסרו " + removed + " ויתווספו " + added + ".",
+      empty: kept === 0,
+      emptyLabel: "הרשימה תתרוקן.",
+      names: shown,
+      more: more,
+      moreLabel: more ? "ועוד " + more : "",
+      go: "שחזור",
+      cancel: "ביטול",
+      focusCancel: removed > 0
+    };
+  }
+  function restoreWarning(impact) { return restorePreview(impact).summary; }
+  /* Same quiet line the sandbox already shows. A later live promotion can call this on #build. */
+  function paintVersion(doc, id, build) {
+    var el = doc && doc.getElementById ? doc.getElementById(id || "build") : null;
+    if (el && build) el.textContent = build;
+    return build || "";
   }
   /* A restored record must be newer than the cloud copy, or the next merge puts the cloud back. */
   function freshenRecord(rec, at) {
@@ -402,6 +484,17 @@
       if (s === c) hitC = true;
     }
     return hitL && hitC;
+  }
+  /* _w is { d: device id, n: write sequence } stored on a document this device uploaded.
+     A later read can still be an older sequence number. It is our echo either way. */
+  function ownEcho(cloudDoc, deviceId) {
+    var w = cloudDoc && cloudDoc._w;
+    return !!(w && deviceId && w.d === deviceId);
+  }
+  function reportClash(fights, cloudDoc, deviceId) {
+    if (!fights || !fights.length) return false;
+    if (ownEcho(cloudDoc, deviceId)) return false;
+    return true;
   }
   function clashSnap(local, cloud, fights, now) {
     var data = cloneDoc(local), i, f, src, loser, sum;
@@ -513,6 +606,11 @@
   var ASK_Q = "העותק במכשיר הזה ישן או מוחק רשימות מול הענן. להשאיר את הענן כמו שהוא?";
   var ASK_YES = "השאר את הענן";
   var ASK_NO = "העלה בכל זאת";
+  var RESTORE_CANCEL = "ביטול";
+  var RESTORE_GO = "שחזור";
+  var RESTORE_TITLE = "לשחזר את הגרסה הזו?";
+  var RESTORE_EMPTY = "הרשימה תתרוקן.";
+  var RESTORE_TOAST = "שוחזר.";
   var LOAD_Q = "להחליף את הרשימות שבמכשיר הזה בעותק מהענן? העותק הנוכחי יישמר כגיבוי במכשיר, והענן לא ייכתב.";
   var LOAD_YES = "טען מהענן";
   var LOAD_NO = "ביטול";
@@ -603,6 +701,97 @@
   function closeLoadAsk() {
     loadOpts = null;
     removeNode("rg-loadask-back");
+  }
+  function ensureRestoreCss(doc) {
+    if (!doc || doc.getElementById("rg-restore-css")) return;
+    var st = doc.createElement("style");
+    st.id = "rg-restore-css";
+    st.textContent = ""
+      + ".rg-restore-back{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:color-mix(in srgb, var(--bg) 45%, transparent)}"
+      + ".rg-restore{width:100%;max-width:440px;margin:0;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow);text-align:start}"
+      + ".rg-restore h3{margin:0 0 12px;font:800 18px/1.35 var(--sans);color:var(--fg)}"
+      + ".rg-restore-sum{margin:0 0 12px;font:600 16px/1.45 var(--sans);color:var(--fg)}"
+      + ".rg-restore-sum.warn{color:#ff7a00;font-weight:800}"
+      + ".rg-restore-empty{margin:0 0 12px;font-weight:800;font-size:17px;line-height:1.4;color:var(--fg)}"
+      + ".rg-restore-gone{margin:0 0 8px;padding:0;list-style:none}"
+      + ".rg-restore-gone li{color:var(--muted);text-decoration:line-through;font:600 16px/1.45 var(--sans)}"
+      + ".rg-restore-more{margin:0 0 12px;color:var(--muted);font:600 15px/1.4 var(--sans)}"
+      + ".rg-restore button{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;margin:8px 0 0;padding:0 16px;border-radius:12px;font:800 17px/1.2 var(--sans);cursor:pointer}"
+      + ".rg-restore-go{background:var(--blue);color:#0b2a6b;border:0}"
+      + "html[data-theme=light] .rg-restore-go{color:#fff}"
+      + ".rg-restore-go.warn{background:#ff7a00;color:#0b2a6b}"
+      + ".rg-restore-cancel{background:var(--card);color:var(--fg);border:1px solid var(--line)}";
+    (doc.head || doc.documentElement).appendChild(st);
+  }
+  function closeRestoreAsk() { removeNode("rg-restore-back"); }
+  function openRestoreAsk(opts) {
+    opts = opts || {};
+    var doc = root.document;
+    if (!doc || !doc.body) return;
+    closeRestoreAsk();
+    ensureRestoreCss(doc);
+    var view = opts.view || restorePreview(opts.impact || {});
+    var back = doc.createElement("div");
+    back.id = "rg-restore-back";
+    back.className = "rg-restore-back";
+    var box = doc.createElement("div");
+    box.className = "rg-restore";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("dir", "rtl");
+    box.setAttribute("aria-labelledby", "rg-restore-title");
+    var title = doc.createElement("h3");
+    title.id = "rg-restore-title";
+    title.textContent = view.title || RESTORE_TITLE;
+    var sum = doc.createElement("p");
+    sum.className = "rg-restore-sum" + (view.focusCancel ? " warn" : "");
+    sum.textContent = view.summary || "";
+    function finish(fn) {
+      closeRestoreAsk();
+      if (typeof fn === "function") fn();
+    }
+    var go = doc.createElement("button");
+    go.type = "button";
+    go.className = "rg-restore-go" + (view.focusCancel ? " warn" : "");
+    go.textContent = view.go || RESTORE_GO;
+    var cancel = doc.createElement("button");
+    cancel.type = "button";
+    cancel.className = "rg-restore-cancel";
+    cancel.textContent = view.cancel || RESTORE_CANCEL;
+    go.addEventListener("click", function () { finish(opts.onRestore); });
+    cancel.addEventListener("click", function () { finish(opts.onCancel); });
+    box.addEventListener("keydown", function (e) { if (e && e.key === "Escape") finish(opts.onCancel); });
+    back.addEventListener("click", function (e) { if (e.target === back && e.preventDefault) e.preventDefault(); });
+    box.appendChild(title);
+    box.appendChild(sum);
+    if (view.empty) {
+      var empty = doc.createElement("p");
+      empty.className = "rg-restore-empty";
+      empty.textContent = view.emptyLabel || RESTORE_EMPTY;
+      box.appendChild(empty);
+    }
+    if (view.names && view.names.length) {
+      var ul = doc.createElement("ul");
+      ul.className = "rg-restore-gone";
+      var n;
+      for (n = 0; n < view.names.length; n++) {
+        var li = doc.createElement("li");
+        li.textContent = view.names[n];
+        ul.appendChild(li);
+      }
+      box.appendChild(ul);
+    }
+    if (view.moreLabel) {
+      var more = doc.createElement("p");
+      more.className = "rg-restore-more";
+      more.textContent = view.moreLabel;
+      box.appendChild(more);
+    }
+    box.appendChild(go);
+    box.appendChild(cancel);
+    back.appendChild(box);
+    doc.body.appendChild(back);
+    try { (view.focusCancel ? cancel : go).focus(); } catch (e) {}
   }
   function closeChoice() { removeNode("rg-choice-back"); }
   function openChoice(opts) {
@@ -759,9 +948,22 @@
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
     pushHistory: pushHistory,
     planRestore: planRestore,
+    restoreImpact: restoreImpact,
+    restorePreview: restorePreview,
+    restoreWarning: restoreWarning,
+    openRestoreAsk: openRestoreAsk,
+    closeRestoreAsk: closeRestoreAsk,
+    RESTORE_TITLE: RESTORE_TITLE,
+    RESTORE_EMPTY: RESTORE_EMPTY,
+    RESTORE_TOAST: RESTORE_TOAST,
+    paintVersion: paintVersion,
+    RESTORE_CANCEL: RESTORE_CANCEL,
+    RESTORE_GO: RESTORE_GO,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
     sameDeviceEdits: sameDeviceEdits,
+    ownEcho: ownEcho,
+    reportClash: reportClash,
     clashSnap: clashSnap,
     rememberClash: rememberClash,
     signOutGate: signOutGate,
