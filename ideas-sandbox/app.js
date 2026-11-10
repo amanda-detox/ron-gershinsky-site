@@ -54,6 +54,13 @@
   /* ---------- local cache ---------- */
   function loadLocal() {
     var c = uid ? jparse(lsGet(cacheKey(uid)), null) : null;
+    if (uid && (!c || !c.pending)) {
+      var bak = jparse(lsGet(cacheKey(uid) + "-signout"), null);
+      if (bak && bak.pending && bak.items && typeof bak.items === "object") {
+        c = { items: bak.items, pending: true, seeded: !!bak.seeded };
+        lsSet(cacheKey(uid), JSON.stringify(c));
+      }
+    }
     items = (c && c.items && typeof c.items === "object") ? c.items : {}; pending = !!(c && c.pending); seeded = !!(c && c.seeded); snap = stamp(items, null);
   }
   var snap = {};
@@ -192,7 +199,7 @@
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
   var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null, fileGen = 0;
-  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, restoreDoc = null;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -245,6 +252,7 @@
     if (!uid) {
       if (el) el.textContent = "";
       if (cl) cl.textContent = "";
+      paintConflict();
       return;
     }
     var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
@@ -253,6 +261,20 @@
       var cms = SS && SS.cloudUpdatedAt ? Date.parse(SS.cloudUpdatedAt) : NaN;
       cl.textContent = cms && SS ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
     }
+    paintConflict();
+  }
+  function paintConflict() {
+    var el = $("conflict"); if (!el) return;
+    el.textContent = uid ? (lsGet("rg-sbx-ideas-conflict:" + uid) || "") : "";
+  }
+  function keepConflict(local, cloud) {
+    var SS = window.RGSyncStatus;
+    if (!SS || !uid) return;
+    history = SS.pushHistory(history, local, Date.now(), true);
+    history = SS.pushHistory(history, cloud, Date.now() + 1, true);
+    saveHistory();
+    lsSet("rg-sbx-ideas-conflict:" + uid, t("conflictNote"));
+    paintConflict();
   }
   function armBackoff(n) {
     var ms = (window.RGSyncStatus && RGSyncStatus.backoffMs(n)) || 2000;
@@ -283,9 +305,17 @@
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
-      var dirty = false;
-      if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
-      var merged = merge(items, cl);
+      var dirty = false, restoring = !!restoreDoc;
+      if (!restoring && SS && SS.fieldConflicts) {
+        var fought = SS.fieldConflicts(items, cl, parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0);
+        if (fought.length && !lsGet("rg-sbx-ideas-conflict:" + who)) keepConflict(items, cl);
+      }
+      if (restoring && SS && SS.adoptRestore) {
+        overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+        items = SS.adoptRestore(restoreDoc, cl, now());
+        dirty = true;
+      } else if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
+      var merged = restoring ? items : merge(items, cl);
       if (!same(merged, items)) dirty = true;
       items = merged; snap = stamp(items, null);
       seeded = true; // sandbox starts empty and does not insert the live app's sample task
@@ -316,6 +346,7 @@
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
       if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
       if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
+      if (restoreDoc && (phase === "upload" || phase === "same")) restoreDoc = null;
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
       if (SS && SS.shouldStampSync({
         downloaded: true,
@@ -453,7 +484,8 @@
     if (!plan.found || !plan.items) return;
     history = plan.history;
     saveHistory();
-    items = plan.items;
+    restoreDoc = plan.items;
+    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
     snap = stamp(items, null);
     pending = true;
     overwriteOk = Date.now() + (SS.BULK_MS || 60000);
@@ -468,6 +500,8 @@
   function openHistory() {
     var SS = window.RGSyncStatus;
     if (!SS) return;
+    if (uid) lsSet("rg-sbx-ideas-conflict:" + uid, "");
+    paintConflict();
     var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
     var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
     if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
@@ -1219,7 +1253,8 @@
     if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
     rememberSnap(true);
     fileGen++;
-    items = staged.items;
+    restoreDoc = staged.items;
+    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : staged.items;
     seeded = true;
     pending = true;
     editing = null;
@@ -1324,7 +1359,14 @@
     if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;
-      if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this sandbox copy unless unsynced
+      if (!id && uid) {
+        var c = jparse(lsGet(cacheKey(uid)), null);
+        var plan = window.RGSyncStatus && RGSyncStatus.signOutPlan ? RGSyncStatus.signOutPlan(c) : { backup: !!(c && c.items), dropCache: !c || !c.pending, keepCache: !!(c && c.pending) };
+        if (plan.backup && c && c.items) {
+          try { localStorage.setItem(cacheKey(uid) + "-signout", JSON.stringify({ t: Date.now(), items: c.items, pending: !!c.pending, seeded: !!c.seeded })); } catch (e) {}
+        }
+        if (plan.dropCache) lsSet(cacheKey(uid), null); // pending changes stay in the cache and in the sign-out backup
+      }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
       uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
       if (uid) sync(); else setStatus();

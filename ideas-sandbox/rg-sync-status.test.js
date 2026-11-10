@@ -71,8 +71,9 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=2") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=2") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v6"') !== -1 && sw.indexOf("rg-sync-status.js?v=2") !== -1 && sw.indexOf("app.js?v=44") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=3") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=3") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v8"') !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=46") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v8') !== -1, "the sandbox shows the build under the sync line");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
@@ -139,6 +140,59 @@ var file = SS.historyFile(hist[0]);
 assert(file.v === 1 && file.data["c:l0"].name === "ישן" && file.lists === plan.history[0].lists, "a downloaded version is JSON of that snapshot");
 var joined = SS.mergeHistory(hist, { snaps: [{ id: "cloud-1", t: tEdit, lists: 1, items: 0, data: current }] }, 12);
 assert(joined.snaps.length === 2, "local and cloud history are unioned");
+
+function taskAt(id, text, at, note, noteAt) {
+  var x = { id: id, sec: "tasks", text: text, at: at, _f: { text: at, "~": at } };
+  if (note != null) { x.note = note; x._f.note = noteAt || at; if ((noteAt || at) > x.at) x.at = noteAt || at; }
+  x._f["~"] = x.at;
+  return x;
+}
+function mergeAll(a, b) {
+  var out = {}, k;
+  for (k in a) out[k] = a[k];
+  for (k in b) out[k] = out[k] ? SS.mergeRecords(out[k], b[k]) : b[k];
+  return out;
+}
+var snap12 = {}, cloud13 = {}, ni;
+for (ni = 0; ni < 4; ni++) {
+  snap12["c:l" + ni] = cat("l" + ni, "רשימה " + ni, 100);
+  cloud13["c:l" + ni] = cat("l" + ni, "רשימה " + ni, 4000);
+}
+for (ni = 0; ni < 12; ni++) snap12["it" + ni] = taskAt("it" + ni, "ישן " + ni, 100);
+for (ni = 0; ni < 13; ni++) cloud13["it" + ni] = taskAt("it" + ni, "חדש " + ni, 4000);
+var adopted = SS.adoptRestore(snap12, cloud13, 9000);
+assert(SS.summarize(adopted).lists === 7 && SS.summarize(adopted).items === 12, "restore keeps 7 lists and 12 items, not the cloud's 13th");
+assert(adopted.it0.text === "ישן 0" && adopted.it0.at === 9000 && adopted.it0._f.text === 9000, "restored records get fresh field stamps");
+assert(adopted.it12 && adopted.it12.deleted === true && adopted.it12.at === 9000, "an item that exists only in the cloud is tombstoned");
+var revived = mergeAll(adopted, cloud13);
+assert(revived.it0.text === "ישן 0" && !revived.it0.deleted, "the next merge does not put the cloud text back");
+assert(revived.it12.deleted === true, "the next merge does not bring back the extra cloud item");
+var dropOne = SS.dropReport(adopted, cloud13);
+assert(dropOne.itemsDeleted === 1 && SS.needsConfirm(dropOne, { now: 9000, lastSync: 100, cloudUpdated: 4000, overwriteUntil: 9000 + 60000 }).hold === false, "a deliberate restore is not blocked by the overwrite guard");
+
+var lastOk = 2000;
+var bothText = SS.fieldConflicts(
+  { a: taskAt("a", "מ-ב", 3000) },
+  { a: taskAt("a", "מ-א", 3500) },
+  lastOk
+);
+assert(bothText.length === 1 && bothText[0].field === "text" && bothText[0].localWins === false, "the same field edited on both devices since the last sync is a conflict");
+var splitFields = SS.fieldConflicts(
+  { a: taskAt("a", "משותף", 1500, "הערה ב", 3000) },
+  { a: taskAt("a", "מ-א", 3500, "הערה ישנה", 1500) },
+  lastOk
+);
+assert(splitFields.length === 0, "edits to different fields are not a conflict");
+var otherItem = SS.fieldConflicts(
+  { a: taskAt("a", "רק כאן", 3000) },
+  { b: taskAt("b", "רק שם", 3500) },
+  lastOk
+);
+assert(otherItem.length === 0, "edits to different items are not a conflict");
+assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).keepCache === true && SS.signOutPlan({ items: { a: 1 }, pending: true }).dropCache === false, "signing out keeps unsynced local changes");
+assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).backup === true, "signing out also writes a backup");
+assert(SS.signOutPlan({ items: { a: 1 }, pending: false }).dropCache === true, "a fully synced sign-out can drop the cache");
+assert(app.indexOf('"-signout"') !== -1 && app.indexOf("adoptRestore") !== -1 && app.indexOf("fieldConflicts") !== -1, "the app restores with fresh stamps and keeps conflicts");
 assert(SS.LOAD_YES === "טען מהענן" && SS.LOAD_Q.indexOf("הענן לא ייכתב") !== -1, "the load action says it will not write the cloud");
 
 function spyTimers() {

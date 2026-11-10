@@ -311,6 +311,66 @@
     for (i = 0; i < next.length; i++) if (next[i].id === versionId) hit = next[i];
     return { history: next, items: hit ? cloneDoc(hit.data) : null, savedCurrent: true, found: !!hit };
   }
+  /* A restored record must be newer than the cloud copy, or the next merge puts the cloud back. */
+  function freshenRecord(rec, at) {
+    var y = {}, k, f, F = {};
+    rec = rec && typeof rec === "object" ? rec : {};
+    for (k in rec) y[k] = rec[k];
+    if (y._f && typeof y._f === "object") for (k in y._f) F[k] = y._f[k];
+    y.at = at;
+    if (!y.deleted) {
+      for (f in y) if (!FM_META[f]) F[f] = at;
+      if (y.type === "cat") F.gone = at;
+    }
+    F["~"] = at;
+    y._f = F;
+    return y;
+  }
+  function adoptRestore(snapshot, cloud, now) {
+    var out = {}, k, x, c;
+    snapshot = snapshot && typeof snapshot === "object" ? snapshot : {};
+    cloud = cloud && typeof cloud === "object" ? cloud : {};
+    for (k in snapshot) {
+      x = snapshot[k];
+      if (!x || typeof x !== "object" || typeof x.id !== "string") continue;
+      out[k] = freshenRecord(x, now);
+    }
+    for (k in cloud) {
+      c = cloud[k];
+      if (!c || typeof c !== "object" || out[k]) continue;
+      if (c.deleted || (c.type === "cat" && c.gone)) continue;
+      if (c.type === "cat") out[k] = noteGone(c, now, true);
+      else out[k] = { id: c.id || k, deleted: true, at: now, _f: { "~": now } };
+    }
+    return out;
+  }
+  /* Same field edited on both devices since the last shared sync. Different fields are not conflicts. */
+  function fieldConflicts(local, cloud, lastSync) {
+    var out = [], k, a, b, f, seen, ta, tb, oa, ob;
+    local = local && typeof local === "object" ? local : {};
+    cloud = cloud && typeof cloud === "object" ? cloud : {};
+    lastSync = lastSync || 0;
+    for (k in local) {
+      a = local[k]; b = cloud[k];
+      if (!a || !b || a.deleted || b.deleted || a.type === "meta" || b.type === "meta") continue;
+      oa = fmOldRec(a); ob = fmOldRec(b); seen = {};
+      for (f in a) if (!FM_META[f] && Object.prototype.hasOwnProperty.call(b, f)) seen[f] = 1;
+      for (f in seen) {
+        if (JSON.stringify(a[f]) === JSON.stringify(b[f])) continue;
+        ta = fmTimeRec(a, f, oa); tb = fmTimeRec(b, f, ob);
+        if (ta < 0 || tb < 0) continue;
+        if (lastSync > 0 && (ta <= lastSync || tb <= lastSync)) continue;
+        if (!(lastSync > 0) && ta === tb) continue;
+        out.push({ id: a.id || k, field: f, localWins: ta >= tb });
+      }
+    }
+    return out;
+  }
+  function signOutPlan(cache) {
+    var has = !!(cache && cache.items && typeof cache.items === "object");
+    var pending = !!(cache && cache.pending);
+    return { backup: has, dropCache: !!(has && !pending), keepCache: pending };
+  }
   function historyFile(snap) {
     snap = snap || {};
     return { v: 1, t: snap.t || 0, lists: snap.lists || 0, items: snap.items || 0, savedAt: formatSyncTime(snap.t || 0), data: snap.data || {} };
@@ -603,6 +663,9 @@
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
     pushHistory: pushHistory,
     planRestore: planRestore,
+    adoptRestore: adoptRestore,
+    fieldConflicts: fieldConflicts,
+    signOutPlan: signOutPlan,
     historyFile: historyFile,
     mergeHistory: mergeHistory,
     planCloudLoad: planCloudLoad,
