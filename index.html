@@ -444,6 +444,7 @@
 </main>
 <div class="sheet-back" id="bg-sheet" hidden><div class="sheet" role="dialog" aria-modal="true" aria-labelledby="bg-title"><div class="grab"></div><div class="hd"><h2 id="bg-title"></h2><button type="button" class="x" id="bg-close">×</button></div><div class="swatches" id="swatches"></div></div></div>
 <script src="shared/rg-account.js"></script>
+<script src="twins.js?v=1"></script>
 <script src="home-dnd.js?v=36"></script>
 <script>
 var CONTACT = "detoxify.ai@proton.me";
@@ -590,7 +591,9 @@ document.getElementById("hidden-toggle").addEventListener("click", function () {
 function renderApps(he) {
   var grid = document.getElementById("app-grid");
   grid.innerHTML = "";
+  var signed = !!(window.RGAccount && RGAccount.user() && RGAccount.user().id);
   var set = ownerApps() || publicApps();
+  if (signed && window.RGHomeTwins && (privData || window.RGMY_APPS)) set = RGHomeTwins.hidePublicTwins(set, privData || window.RGMY_APPS);
   if (window.RGHomeDnd) set = RGHomeDnd.apply(set); // saved order (להזיז / להצמיד למעלה), synced with the account when signed in
   var dnd = !!(window.RGHomeDnd && RGHomeDnd.moving());
   document.documentElement.classList.toggle("dnd-on", dnd);

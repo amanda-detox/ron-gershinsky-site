@@ -1,9 +1,8 @@
-/* Offline cache for the private "Listify" app (formerly Checklist) (my/ideas/). Scope: my/ideas/ only.
-   Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-myideas-v53";
-var FILES = ["./", "index.html", "rg-sync-status.js?v=2", "app.js?v=42", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../common.css", "../common.js",
+/* Offline cache for private Listify (my/ideas/). Scope: my/ideas/ only.
+   Does not delete caches used by other apps. Personal data is not stored here. */
+var CACHE = "rg-myideas-v54";
+var FILES = ["./", "index.html", "rg-sync-status.js?v=3", "restore.js?v=1", "app.js?v=43", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "../common.css", "../common.js",
   "../../shared/rg-account.js", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
-
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
 });
@@ -12,15 +11,24 @@ self.addEventListener("activate", function (e) {
     return Promise.all(keys.filter(function (k) { return k.indexOf("rg-myideas-") === 0 && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
   }).then(function () { return self.clients.claim(); }));
 });
-// Network first (updates show right away), cache when offline.
+function net(req) {
+  var path = new URL(req.url).pathname;
+  var fresh = req.mode === "navigate" || /\/$/.test(path) || /\.html$/i.test(path) || /\.js$/i.test(path);
+  return fresh ? fetch(req, { cache: "no-cache" }) : fetch(req);
+}
 self.addEventListener("fetch", function (e) {
   if (e.request.method !== "GET") return;
-  if (new URL(e.request.url).origin !== self.location.origin) return; // Appwrite API etc.: network only, never cached
-  e.respondWith(fetch(e.request).then(function (r) {
+  if (new URL(e.request.url).origin !== self.location.origin) return;
+  e.respondWith(net(e.request).then(function (r) {
     var copy = r.clone();
     if (r.ok) caches.open(CACHE).then(function (c) { c.put(e.request, copy); });
     return r;
   }).catch(function () {
-    return caches.match(e.request, { ignoreSearch: true }).then(function (m) { return m || (e.request.mode === "navigate" ? caches.match("./") : m); });
+    var exact = caches.match(e.request);
+    var versioned = new URL(e.request.url).search;
+    return exact.then(function (m) {
+      if (m || versioned) return m || (e.request.mode === "navigate" ? caches.match("./") : m);
+      return caches.match(e.request, { ignoreSearch: true }).then(function (hit) { return hit || (e.request.mode === "navigate" ? caches.match("./") : hit); });
+    });
   }));
 });

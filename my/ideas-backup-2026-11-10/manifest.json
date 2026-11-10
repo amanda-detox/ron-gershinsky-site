@@ -1,0 +1,19 @@
+{
+  "id": "/ron-gershinsky-site/my/ideas/",
+  "name": "ליסטיפיי · Listify",
+  "short_name": "ליסטיפיי",
+  "description": "רשימות פרטיות לפי קטגוריות: רעיונות, משימות ויעדים, שמורות בחשבון שלך · Private lists by category: ideas, tasks and goals, saved in your account",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

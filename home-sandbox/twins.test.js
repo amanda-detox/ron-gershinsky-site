@@ -50,7 +50,7 @@ var after = extractArray(sbxHtml, "OWNER_AFTER");
 
 assert(JSON.stringify(liveApps) === JSON.stringify(sbxApps), "sandbox public catalog matches the live home");
 assert(JSON.stringify(extractArray(liveHtml, "OWNER_GROUPS")) === JSON.stringify(groups), "sandbox featured groups match live");
-assert(liveHtml.indexOf("home-sandbox") === -1 && liveHtml.indexOf("hidePublicTwins") === -1 && liveHtml.indexOf("rg-sbx-home") === -1, "live home does not link the sandbox or the twin filter");
+assert(liveHtml.indexOf("home-sandbox") === -1 && liveHtml.indexOf("rg-sbx-home") === -1 && /if \(signed && window\.RGHomeTwins/.test(liveHtml), "live home hides public twins when signed in and does not link the sandbox");
 assert(liveDnd.indexOf('"rg-home-order"') !== -1 && liveDnd.indexOf("rg-sbx-home") === -1, "live drag-and-drop still uses rg-home-order");
 assert(sbxDnd.indexOf('"rg-sbx-home-order"') !== -1 && sbxDnd.indexOf('"rg-home-order"') === -1 && sbxDnd.indexOf('"rg-sbx-home-hidden"') !== -1, "sandbox drag-and-drop uses rg-sbx-home keys");
 assert(sw.indexOf('CACHE = "rg-sbx-home-v1"') !== -1 && sw.indexOf('indexOf("rg-sbx-home-")') !== -1 && sw.indexOf('indexOf("rg-home-")') === -1, "sandbox cache cannot delete the live home cache");

@@ -141,8 +141,8 @@ assert(loadBody.indexOf("stamp(items, null)") !== -1, "the previous snap is not 
 assert(app.indexOf("RGSbxRestore") !== -1 && app.indexOf("items = merged") !== -1, "the sandbox app restores a file and still merges on sync");
 assert(app.indexOf("rg-myideas") === -1 && app.indexOf('APP = "myideas"') === -1 && app.indexOf('APP = "sbxmyideas"') !== -1, "the sandbox app still never names the live app or its key");
 assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-myideas') === -1 && helper.indexOf("setItem('rg-myideas") === -1, "the helper recognizes a live device key in a file and does not write that string");
-assert(live.indexOf("שחזור מקובץ") === -1 && live.indexOf("RGSbxRestore") === -1, "live Listify has no restore-from-file control");
-assert(liveHtml.indexOf("שחזור מקובץ") === -1 && liveHtml.indexOf("ideas-sandbox/restore.js") === -1, "the live page does not load the sandbox restore helper");
+assert(live.indexOf("RGMyIdeasRestore") !== -1 && live.indexOf("RGSbxRestore") === -1 && live.indexOf("rg-sbx-ideas-") === -1, "live file restore uses the live helper and live keys");
+assert(liveHtml.indexOf("שחזור מקובץ") !== -1 && liveHtml.indexOf("ideas-sandbox/restore.js") === -1 && liveHtml.indexOf('src="restore.js?v=1"') !== -1, "the live page loads its own restore helper");
 
 function LIVE_NEEDLE() { return "rg-" + "myideas-v1:"; }
 

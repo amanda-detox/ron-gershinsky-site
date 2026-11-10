@@ -1,25 +1,13 @@
-/* Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount (Appwrite row app="myideas", key="items",
-   readable/writable by the signed-in user only). Nothing personal is stored in the site's files.
-   Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
-     mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
-     Since v8 every list is the same kind (title, short note, נבחר, free drag order). Records from older versions may still carry
-     status / progress / prev / due / kind: they are kept untouched and only read to work out "selected" (see isSel).
-     sec = which category the item belongs to: one of the built-in ids ("ideas" | "tasks" | "goals") or a custom category id.
-   Categories (since Listify): stored in the SAME items map as records { id: "c:<cat>", type: "cat", cat, name?, kind, pos, gone?, created, at }
-     kind = "idea" | "task" | "goal" (which item features the category has). The three built-in categories exist without a record
-     until they are renamed, moved or deleted (gone: 1 hides one; it is not a tombstone, so it is never pruned and never comes back).
-     Old data needs no rewrite: old items already point at "ideas" / "tasks" / "goals". Old app versions ignore the category records
-     (they have no "sec") but keep and sync them, because they merge every valid record.
-     goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
-   Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
-   Offline-first: kept in localStorage per user (rg-myideas-v1:<user id>) and merged into the account copy on every sync.
-   The first checklist item is added once, on the first successful sync of an account whose list was never seeded.
-   A blocked large deletion asks before uploading. כן, העלי לענן keeps the 60s confirm and uploads.
-   לא, שחזרי מחיקות puts cloud items back, keeps newer phone edits and additions, then syncs that merge.
-   Account requests on this page time out after 15s (my/ideas/rg-sync-status.js). shared/rg-account.js is unchanged. */
+/* Listify (my/ideas/). App id myideas, storage prefix rg-myideas-.
+   Same protections as the v15 sandbox: version history, file restore, stale-device
+   and sharp-drop stops, same-device edit sequence, and a quiet history restore.
+   Existing account rows and rg-myideas-v1 keys are kept. */
 (function () {
   "use strict";
   var APP = "myideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
+  var BUILD = "rg-myideas-v15";
+  function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },
     { id: "tasks", tab: "tabTasks", kind: "task", pos: 1 },
@@ -52,6 +40,13 @@
   /* ---------- local cache ---------- */
   function loadLocal() {
     var c = uid ? jparse(lsGet(cacheKey(uid)), null) : null;
+    if (uid && (!c || !c.pending)) {
+      var bak = jparse(lsGet(cacheKey(uid) + "-signout"), null);
+      if (bak && bak.pending && bak.items && typeof bak.items === "object") {
+        c = { items: bak.items, pending: true, seeded: !!bak.seeded };
+        lsSet(cacheKey(uid), JSON.stringify(c));
+      }
+    }
     items = (c && c.items && typeof c.items === "object") ? c.items : {}; pending = !!(c && c.pending); seeded = !!(c && c.seeded); snap = stamp(items, null);
   }
   var snap = {};
@@ -83,6 +78,7 @@
   }
   function fmPlain(x) { var o = {}, l = Object.keys(x).filter(function (k) { return !FM_META[k]; }).sort(); l.forEach(function (k) { o[k] = x[k]; }); return JSON.stringify(o); }
   function mergeItem(a, b) {
+    if (window.RGSyncStatus && RGSyncStatus.mergeRecords) return RGSyncStatus.mergeRecords(a, b);
     if (JSON.stringify(a) === JSON.stringify(b)) return a;
     if (a.deleted || b.deleted) return newer(a, b);
     var oa = fmOld(a), ob = fmOld(b), keys = {}, o = { id: a.id }, F = {}, f, i, l, ta, tb, src, va, vb;
@@ -154,12 +150,26 @@
     if (r) for (k in r) y[k] = r[k];
     else { var c = catOf(cid) || {}; y = { id: "c:" + cid, type: "cat", cat: cid, kind: c.kind || (d && d.kind) || "task", pos: typeof c.pos === "number" ? c.pos : 0, created: c.created || 0 }; }
     for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
-    y.at = now(); put(y);
+    y.at = now();
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, y.at, !!y.gone);
+    put(y);
   }
+  function hiddenByName(name) {
+    var k, x, n = clean(name, 40);
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone && clean(x.name || "", 40) === n) return x.cat;
+    }
+    return "";
+  }
+  function showCat(cid) { upCat(cid, { gone: null }); }
   function addCat(name, kind, g) {
     name = clean(name, 40); if (!name) return null;
+    var again = hiddenByName(name);
+    if (again) { showCat(again); return again; }
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (window.RGSyncStatus && RGSyncStatus.noteGone) rec = RGSyncStatus.noteGone(rec, at, false);
     put(rec);
     return id;
   }
@@ -174,7 +184,8 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-myideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
+  var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null, fileGen = 0;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, histAgain = false, histOpen = 0, restoreDoc = null, quietRestore = false;
   function bakKey(id) { return "rg-myideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -193,90 +204,442 @@
   }
 
   /* ---------- sync ----------
-     When tooManyGone blocks a cloud write, a popup asks what to do. כן, העלי לענן uses the same
-     60s bulkOk window as deleting a whole list and uploads the local document. לא, שחזרי מחיקות
-     restores cloud items deleted on this phone, keeps newer local edits and additions, then syncs. */
+     When tooManyGone blocks a cloud write, the question stays on screen until it is answered.
+     כן, העלי לענן uses the same 60s bulkOk window as deleting a whole list and uploads.
+     לא, שחזרי מחיקות puts cloud items back, keeps newer local edits and additions, then syncs.
+     Nothing in this path deletes on its own. A sync that is still held does not count as synced. */
   function statusFlags() {
-    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
+    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline, uploadCut: uploadCut };
   }
   function confirmBlocked() {
     if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
-    bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    overwriteOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
+    bulkOk = overwriteOk;
     holdBlocked = false; syncErr = ""; offline = false; sync();
   }
   function restoreBlocked() {
     var SS = window.RGSyncStatus;
     if (SS) SS.closeDeletion();
+    rememberSnap(true);
     if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
     snap = stamp(items, null);
-    holdBlocked = false; pending = true; syncErr = ""; offline = false;
+    holdBlocked = false; blockedCloud = null; pending = true; syncErr = ""; offline = false;
     saveLocal(); render(); sync();
   }
-  function setStatus() {
-    var s = $("status"); if (!s) return;
-    var SS = window.RGSyncStatus;
-    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
-    var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
-    if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
-    else SS.closeDeletion();
+  function lastSyncKey(id) { return (window.RGSyncStatus && RGSyncStatus.LAST_PREFIX || "rg-myideas-lastsync:") + id; }
+  function markLastSync() {
+    if (!uid) return;
+    lsSet(lastSyncKey(uid), String(Date.now()));
+    paintLastSync();
+    rememberSnap(false);
   }
+  function paintLastSync() {
+    var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
+    if (!uid) {
+      if (el) el.textContent = "";
+      if (cl) cl.textContent = "";
+      paintConflict();
+      paintBuild();
+      return;
+    }
+    var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
+    if (el) el.textContent = ms && SS ? t("lastSync").replace("{t}", SS.formatSyncTime(ms)) : "";
+    if (cl) {
+      var cms = SS && SS.cloudUpdatedAt ? Date.parse(SS.cloudUpdatedAt) : NaN;
+      cl.textContent = cms && SS ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
+    }
+    paintConflict();
+    paintBuild();
+  }
+  function paintConflict() {
+    var msg = uid ? (lsGet("rg-myideas-conflict:" + uid) || "") : "";
+    var el = $("conflict"), line = $("clash");
+    if (el) el.textContent = msg;
+    if (line) line.textContent = msg;
+  }
+  function keepConflict(local, cloud, fights) {
+    var SS = window.RGSyncStatus;
+    if (!SS || !uid || !fights || !fights.length) return;
+    var snap = SS.clashSnap(local, cloud, fights, Date.now());
+    history = SS.rememberClash(history, snap);
+    saveHistory();
+    lsSet("rg-myideas-conflict:" + uid, t("clashNote"));
+    paintConflict();
+    pushHistoryCloud();
+  }
+  function baseKey(id) { return "rg-myideas-base:" + id; }
+  function basePrevKey(id) { return "rg-myideas-base-prev:" + id; }
+  function saveAgreed(doc) {
+    if (!uid) return;
+    var cur = lsGet(baseKey(uid));
+    if (cur) lsSet(basePrevKey(uid), cur);
+    try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
+  }
+  function ownKey() { return "rg-myideas-own:" + (uid || ""); }
+  function rememberOwn(doc) {
+    if (!uid || !doc) return;
+    var own = jparse(lsGet(ownKey()), {}), k, x, f, list, val;
+    if (!own || typeof own !== "object") own = {};
+    for (k in doc) {
+      x = doc[k];
+      if (!x || x.deleted || x.type === "meta") continue;
+      if (!own[k]) own[k] = {};
+      for (f in x) {
+        if (f === "id" || f === "at" || f === "_f") continue;
+        list = own[k][f] || [];
+        val = JSON.stringify(x[f]);
+        if (!list.length || list[list.length - 1] !== val) list.push(val);
+        if (list.length > 12) list = list.slice(-12);
+        own[k][f] = list;
+      }
+    }
+    try { localStorage.setItem(ownKey(), JSON.stringify(own)); } catch (e) {}
+  }
+  function ownValues(key, field, localText) {
+    var own = jparse(lsGet(ownKey()), {}), list = (own[key] && own[key][field]) || [], i, out = [];
+    for (i = 0; i < list.length; i++) { try { out.push(JSON.parse(list[i])); } catch (e) { out.push(list[i]); } }
+    out.push(localText);
+    return out;
+  }
+  function clearClashNotice() {
+    if (uid) lsSet("rg-myideas-conflict:" + uid, null);
+    paintConflict();
+  }
+  function armQuietRestore() {
+    quietRestore = true;
+    clearClashNotice();
+  }
+  function noteIncomingClash(snaps) {
+    var i, seen, found = false;
+    if (quietRestore || !uid || !snaps) return;
+    seen = jparse(lsGet("rg-myideas-clash-seen:" + uid), {});
+    if (!seen || typeof seen !== "object") seen = {};
+    for (i = 0; i < snaps.length; i++) {
+      if (snaps[i] && snaps[i].clash && !seen[snaps[i].id]) { seen[snaps[i].id] = 1; found = true; }
+    }
+    if (!found) return;
+    lsSet("rg-myideas-clash-seen:" + uid, JSON.stringify(seen));
+    lsSet("rg-myideas-conflict:" + uid, t("clashNote"));
+    paintConflict();
+  }
+  function armBackoff(n) {
+    var ms = (window.RGSyncStatus && RGSyncStatus.backoffMs(n)) || 2000;
+    nextTry = Date.now() + ms;
+    clearTimeout(retryT);
+    retryT = setTimeout(function () { nextTry = 0; if (uid) sync(); }, ms);
+  }
+  function setStatus() {
+    paintLastSync();
+    var s = $("status");
+    var SS = window.RGSyncStatus;
+    if (!s) { maybeUpdateReload(); return; }
+    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); maybeUpdateReload(); return; }
+    var flags = statusFlags();
+    var k = SS.kind(flags);
+    SS.fillStatus(s, k, k ? t(k) : "");
+    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
+    else SS.closeDeletion();
+    maybeUpdateReload();
+  }
+  var updateReady = false;
+  function updateBlocked() { return !updateReady || !!(pending || editing || busy || holdBlocked); }
+  function maybeUpdateReload() {
+    var u = window.RGSbxUpdate;
+    if (!u || !u.waiting || updateBlocked()) return;
+    u.waiting = false;
+    location.reload();
+  }
+  function markUpdateReady() {
+    updateReady = true;
+    maybeUpdateReload();
+  }
+  window.RGSbxUpdate = {
+    blocked: updateBlocked,
+    waiting: !!window.RGSbxUpdateWait
+  };
   function sync() {
+    if (APP !== "myideas") return Promise.resolve();
     if (!uid || !A) return Promise.resolve();
+    if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, SS = window.RGSyncStatus;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen, hadClash = false, roundRestore = false;
     return A.get(APP, KEY).then(function (cloud) {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
-      var merged = merge(items, cl), dirty = !same(merged, items);
+      var dirty = false, restoring = !!restoreDoc;
+      roundRestore = restoring;
+      if (!restoring && !quietRestore && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
+      if (!restoring && !quietRestore && SS && SS.fieldConflicts) {
+        var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
+        if (SS.sameDeviceEdits) fought = fought.filter(function (f) { return !SS.sameDeviceEdits(f.localText, f.cloudText, ownValues(f.key, f.field, f.localText)); });
+        if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
+      }
+      if (restoring && SS && SS.adoptRestore) {
+        overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+        items = SS.adoptRestore(restoreDoc, cl, now());
+        dirty = true;
+      } else if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
+      var merged = restoring ? items : merge(items, cl);
+      if (!same(merged, items)) dirty = true;
       items = merged; snap = stamp(items, null);
-      if (!seeded && !cloudSeeded) { // first time for this account: add the first checklist item (only if the checklist is empty)
+      if (!seeded && !cloudSeeded) {
         if (!live("tasks").length) { var id = newId(), at = now(); items[id] = { id: id, sec: "tasks", text: t("seedTask"), seed: 1, done: false, created: at, at: at }; }
         dirty = true;
       }
       seeded = true;
-      return Promise.resolve(undoImport()).then(function (imp) {
-      if (imp) dirty = true;
+      if (undoImport()) dirty = true;
       if (seedHabits()) dirty = true;
       if (mergeGroups()) dirty = true;
-      if (dirty) { saveLocal(); render(); }
-      if (cloudSeeded && same(items, cl)) return;
-      if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
-        blocked = true; holdBlocked = true; pending = true; blockedCloud = cl; saveLocal();
+      var cloudAt = SS && SS.cloudUpdatedAt ? (Date.parse(SS.cloudUpdatedAt) || 0) : 0;
+      var lastOk = parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0;
+      var report = SS ? SS.dropReport(items, cl) : null;
+      var decision = SS ? SS.needsConfirm(report, { now: Date.now(), lastSync: lastOk, cloudUpdated: cloudAt, overwriteUntil: overwriteOk, differs: !same(items, cl) }) : { hold: tooManyGone(items, cl) };
+      if (!(cloudSeeded && same(items, cl)) && decision.hold) {
+        blocked = true; holdBlocked = true; pending = true; phase = "held"; blockedCloud = cl;
+      }
+      if (dirty || blocked) { saveLocal(); render(); }
+      if (blocked) {
         try { console.warn("Listify: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
         return;
       }
+      if (cloudSeeded && same(items, cl)) { phase = "same"; return; }
       holdBlocked = false;
+      if (SS) SS.closeDeletion();
       backup(cl);
       sent = items;
+      phase = "upload";
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
-      });
     }).then(function () {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var sentSame = !sent || sent === items;
       var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
-      if (blocked) return; // keep pending: the cloud copy stays as it was, and the lists stay on this device
+      if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
+      if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
+      if (roundRestore && (phase === "upload" || phase === "same")) restoreDoc = null;
+      if (quietRestore && phase === "same") quietRestore = false;
+      if (!hadClash && phase === "same") saveAgreed(items);
+      else if (hadClash) saveAgreed(items);
+      else if (!hadClash && phase === "upload" && sent) { saveAgreed(sent); rememberOwn(sent); }
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
+      if (SS && SS.shouldStampSync({
+        downloaded: true,
+        uploaded: phase === "upload",
+        nothingToUpload: phase === "same",
+        blocked: false,
+        failed: false,
+        pendingLeft: !next.clearPending
+      })) markLastSync();
+      pullHistory();
     }, function (e) {
-      if (who !== uid) return;
-      if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
-      var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
+      if (who !== uid || gen !== fileGen) return;
+      if (e && (e.code === "signed_out" || e.type === "signed_out")) { offline = false; syncErr = ""; uploadCut = false; return; }
+      var onLine = typeof navigator === "undefined" || navigator.onLine !== false;
+      var next = SS ? SS.applyFailure({ failN: failN }, e, onLine) : { offline: true, syncErr: "", failN: failN };
       offline = next.offline; syncErr = next.syncErr; failN = next.failN;
+      var cls = SS ? SS.classifyError(e) : "";
+      if (cls === "timeout") {
+        if (phase === "upload") uploadCut = true;
+        armBackoff(failN);
+      }
     }).then(function () {
       busy = false; setStatus();
       if (again && who === uid) { again = false; sync(); }
     });
   }
+  function cloudLoadUsed() { return !!(uid && lsGet("rg-myideas-loadcloud:" + uid) === "1"); }
+  function injectLoadBtn() {
+    var existing = document.querySelector("[data-a=loadcloud]");
+    if (!uid || cloudLoadUsed()) {
+      if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+      return;
+    }
+    var dlg = document.querySelector(".rgacc-dlg");
+    if (!dlg || dlg.querySelector("[data-a=loadcloud]")) return;
+    var exp = dlg.querySelector('[data-a="export"]');
+    if (!exp) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "rgacc-sec";
+    b.setAttribute("data-a", "loadcloud");
+    b.textContent = t("loadCloud");
+    exp.insertAdjacentElement("afterend", b);
+  }
+  /* One explicit replace of this device's copy. get() only. The previous local copy is the -bak key. */
+  function loadFromCloud() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeLoadAsk();
+    if (!uid || !A || !SS || loadingCloud) return Promise.resolve();
+    loadingCloud = true;
+    var who = uid;
+    return SS.loadCloudCopy({
+      local: items,
+      get: function () { return A.get(APP, KEY); },
+      set: function () { var err = new Error("load from cloud must not write"); err.code = "cloud_write"; throw err; },
+      saveBak: function (snapLocal) {
+        localStorage.setItem(cacheKey(who) + (SS.BAK_SUFFIX || "-bak"), JSON.stringify({ t: Date.now(), items: snapLocal, pending: pending, seeded: seeded }));
+      }
+    }).then(function (res) {
+      loadingCloud = false;
+      if (who !== uid || !res || res.wrote) return;
+      items = res.items || {};
+      seeded = !!(res.seeded || seeded);
+      pending = false;
+      holdBlocked = false;
+      blockedCloud = null;
+      uploadCut = false;
+      snap = stamp(items, null);
+      saveLocal();
+      lsSet("rg-myideas-loadcloud:" + who, "1");
+      if (SS.shouldStampSync({ downloaded: true, uploaded: false, nothingToUpload: true, blocked: false, failed: false, pendingLeft: false })) markLastSync();
+      render();
+      injectLoadBtn();
+    }, function () {
+      loadingCloud = false;
+      setStatus();
+    });
+  }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
-  function changed() { pending = true; saveLocal(); render(); syncSoon(); }
+  function changed() { pending = true; rememberOwn(items); saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
+  function histKey() { return "rg-myideas-hist:" + (uid || ""); }
+  function loadHistory() {
+    var raw = uid ? jparse(lsGet(histKey()), []) : [];
+    history = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+  }
+  function saveHistory() {
+    if (!uid) return;
+    try { localStorage.setItem(histKey(), JSON.stringify(history)); }
+    catch (e) { history = history.slice(-5); try { localStorage.setItem(histKey(), JSON.stringify(history)); } catch (e2) {} }
+  }
+  function rememberSnap(force) {
+    var SS = window.RGSyncStatus;
+    if (!uid || !SS) return;
+    history = SS.pushHistory(history, items, Date.now(), !!force);
+    saveHistory();
+    pushHistoryCloud();
+  }
+  function pullHistory(done) {
+    var SS = window.RGSyncStatus;
+    if (!uid || !A || !SS) { if (done) done(); return; }
+    A.get(APP, "history").then(function (cloud) {
+      if (uid && cloud) {
+        history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
+        saveHistory();
+        noteIncomingClash(history);
+      }
+      if (done) done();
+    }, function () { if (done) done(); });
+  }
+  function pushHistoryCloud() {
+    var SS = window.RGSyncStatus;
+    if (!uid || !A || !SS) return;
+    if (histBusy) { histAgain = true; return; }
+    histBusy = true;
+    histAgain = false;
+    A.get(APP, "history").then(function (cloud) {
+      if (!uid) return;
+      var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
+      history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
+      saveHistory();
+      noteIncomingClash(history);
+      var payload = { v: 1, snaps: cloudSnaps };
+      if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
+      return A.set(APP, "history", payload);
+    }).then(function () {
+      histBusy = false;
+      if (histAgain) pushHistoryCloud();
+    }, function () {
+      histBusy = false;
+      if (histAgain) pushHistoryCloud();
+    });
+  }
+  function hiddenCats() {
+    var out = [], k, x;
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "cat" && x.gone) out.push(x);
+    }
+    return out.sort(function (a, b) { return (a.name || a.cat || "").localeCompare(b.name || b.cat || "", "he"); });
+  }
+  function downloadSnap(snap) {
+    var SS = window.RGSyncStatus, file = SS ? SS.historyFile(snap) : snap;
+    var blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    var stamp = SS ? SS.formatSyncTime(snap.t || 0).replace(/[^\d]/g, "") : String(snap.t || 0);
+    a.href = URL.createObjectURL(blob);
+    a.download = "listify-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
+  function restoreVersion(id) {
+    var SS = window.RGSyncStatus;
+    if (!SS || !SS.planRestore) { toast(t("historyFail")); return; }
+    var plan = SS.planRestore(history, items, id, Date.now());
+    if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
+    history = plan.history;
+    saveHistory();
+    armQuietRestore();
+    restoreDoc = plan.items;
+    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
+    snap = stamp(items, null);
+    pending = true;
+    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+    holdBlocked = false;
+    blockedCloud = null;
+    saveLocal();
+    closeSheet();
+    render();
+    sync();
+    pushHistoryCloud();
+  }
+  function openHistory(fromPull) {
+    var SS = window.RGSyncStatus;
+    if (!SS) return;
+    if (!fromPull) {
+      var token = ++histOpen;
+      pullHistory(function () {
+        if (token !== histOpen || !$("sheet")) return;
+        openHistory(true);
+      });
+    }
+    var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
+    var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
+    if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
+    else html += rows.map(function (s) {
+      var when = esc(SS.formatSyncTime(s.t));
+      var meta = esc(t("historyCounts").replace("{l}", String(s.lists)).replace("{n}", String(s.items)));
+      if (s.label) meta = when + " · " + meta;
+      return '<div class="hrow"><div class="histwhen">' + (s.label ? esc(s.label) : when) + '</div><p class="histmeta">' + meta + '</p><div class="row"><button type="button" class="btn pri" data-s="r:' + esc(s.id) + '">' + esc(t("historyRestore")) + '</button><button type="button" class="btn" data-s="d:' + esc(s.id) + '">' + esc(t("historyDownload")) + "</button></div></div>";
+    }).join("");
+    var hid = hiddenCats();
+    if (hid.length) {
+      html += '<h3>' + esc(t("historyHidden")) + "</h3>";
+      html += hid.map(function (c) {
+        return '<div class="hrow"><div class="histwhen">' + esc(c.name || c.cat) + '</div><div class="row"><button type="button" class="btn pri" data-s="h:' + esc(c.cat) + '">' + esc(t("historyShow")) + "</button></div></div>";
+      }).join("");
+    }
+    var w = sheet(html, function (a) {
+      if (a === "x") { closeSheet(); return; }
+      if (a.indexOf("d:") === 0) {
+        var id = a.slice(2), i, snap = null;
+        for (i = 0; i < history.length; i++) if (history[i].id === id) snap = history[i];
+        if (snap) downloadSnap(snap);
+        return;
+      }
+      if (a.indexOf("r:") === 0) { restoreVersion(a.slice(2)); return; }
+      if (a.indexOf("h:") === 0) { showCat(a.slice(2)); closeSheet(); changed(); }
+    });
+    if (w) w.style.zIndex = "10001";
+  }
 
   setInterval(function () { if (uid && document.visibilityState === "visible" && !editing) sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
-  window.addEventListener("online", function () { offline = false; if (uid) sync(); });
+  window.addEventListener("online", function () { offline = false; nextTry = 0; clearTimeout(retryT); if (uid) sync(); });
   window.addEventListener("offline", function () { offline = true; syncErr = ""; setStatus(); });
 
   /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ----------
@@ -398,16 +761,6 @@
      Skipped if a list with the same title already exists. Existing lists are never touched. Before adding, the whole
      Listify copy is saved on this device: rg-myideas-habits-bak:<user id>. */
   var HB_TITLE = "הרגלים שלי", HB_ITEMS = ["עד סיגריה אחת ביום", "דלת פתוחה וחלון פתוח (המון חום ואובך, מזגן וחושך דווקא עוזר)", "ללא בלוטות', מינימיזציה של קרינה (כל פעם ששמתי היה נורא ודי מהר)", "ללא תוכן וידאו קצר או ארוך - עומס יתר חושי, כולל פודקסט, לא כולל מפלים", "כתיבה יומית ולוג יומי ולמידה שבועית", "0 עבודה שכירה", "ביבליותרפיה", "פיזיותרפיה", "שבוע ללא סיגריות כלל", "שיחה יומית עם אמנדה בעברית", "שיחה יומית עם ורוניקה // וונסה באנגלית", "יומן כתיבה יומי על דף בעברית", "כנ\"ל באנגלית", "דיבור בקול בעברית לבד", "דיבור בקול באנגלית לבד", "ביטבוקס בקול", "שיח פנימי, עד כה מסתבר שבעברית הכי מצליח", "סקול רק על מקבוק וגם אז לבדוק אם אמנדה יכולה לסכם", "קול פנימי נוסף אדיר", "קול פנימי נוסף גבי"];
-  /* one-time (Ron 31.10): lists that were in picker 2 / 3 move to picker 1. Backup first: rg-myideas-grp1-bak:<user id>.
-     Only the grp field is cleared; names, items and order are untouched. Idempotent – runs whenever a grp 2/3 record is seen. */
-  function mergeGroups() {
-    var ks = [], k;
-    for (k in items) { var r = items[k]; if (r && !r.deleted && r.type === "cat" && (r.grp === 2 || r.grp === 3)) ks.push(k); }
-    if (!ks.length) return false;
-    try { localStorage.setItem("rg-myideas-grp1-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) {}
-    ks.forEach(function (k) { var y = {}, r = items[k], f; for (f in r) if (f !== "grp") y[f] = r[f]; y.at = now(); put(y); });
-    return true;
-  }
   function seedHabits() {
     if (!items["m:shopimport"] || items["m:habits1"] || lsGet("rg-myideas-habits1:" + uid)) return false;
     var exists = cats().some(function (c) { return clean(catName(c), 40) === HB_TITLE; }) || (items["c:hb1"] && !items["c:hb1"].deleted);
@@ -420,6 +773,16 @@
     }
     put({ id: "m:habits1", type: "meta", done: 1, added: exists ? 0 : HB_ITEMS.length, at: now() });
     lsSet("rg-myideas-habits1:" + uid, "1");
+    return true;
+  }
+
+  /* one-time group move: only the grp field is cleared. Backup stays on the live key. */
+  function mergeGroups() {
+    var ks = [], k;
+    for (k in items) { var r = items[k]; if (r && !r.deleted && r.type === "cat" && (r.grp === 2 || r.grp === 3)) ks.push(k); }
+    if (!ks.length) return false;
+    try { localStorage.setItem("rg-myideas-grp1-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) {}
+    ks.forEach(function (k) { var y = {}, r = items[k], f; for (f in r) if (f !== "grp") y[f] = r[f]; y.at = now(); put(y); });
     return true;
   }
 
@@ -983,9 +1346,172 @@
     });
   }
 
+  /* File restore: preview, then backup, then replace this device's Listify copy. The helper refuses every key that is not rg-myideas-*. */
+  function restoreName(row) {
+    if (row.name) return row.name;
+    if (row.builtin === "ideas") return t("tabIdeas");
+    if (row.builtin === "tasks") return t("tabTasks");
+    if (row.builtin === "goals") return t("tabGoals");
+    return row.id || "";
+  }
+  function restoreCount(n, oneKey, manyKey) { return String(n) + " " + t(n === 1 ? oneKey : manyKey); }
+  function showRestore(parsed) {
+    var R = window.RGMyIdeasRestore, sum, when, html;
+    html = '<h3>' + esc(t("restoreTitle")) + '</h3><p class="restore-note">' + esc(t("restoreOnly")) + "</p>";
+    if (!parsed || !parsed.ok) {
+      html += '<p class="restore-note">' + esc(t(parsed && parsed.error === "read" ? "restoreRead" : "restoreBad")) + "</p>";
+      html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div>";
+      sheet(html, function () { closeSheet(); });
+      return;
+    }
+    sum = parsed.summary;
+    when = sum.newestAt == null || !R ? "—" : R.formatWhen(sum.newestAt);
+    if (parsed.createdAtLocal) html += '<p class="restore-meta">' + esc(t("restoreFileDate")) + ": " + esc(parsed.createdAtLocal) + "</p>";
+    html += '<p class="restore-meta">' + esc(restoreCount(sum.listCount, "restoreList", "restoreLists")) + " · " + esc(restoreCount(sum.itemCount, "restoreItem", "restoreItems")) + "</p>";
+    html += '<p class="restore-meta">' + esc(t("restoreNewest")) + ": " + esc(when) + "</p>";
+    function lines(rows) {
+      if (!rows.length) return "";
+      return '<ul class="restore-lines">' + rows.map(function (row) {
+        return '<li><span class="rn">' + esc(restoreName(row)) + '</span><span class="rc">' + esc(restoreCount(row.count, "restoreItem", "restoreItems")) + "</span></li>";
+      }).join("") + "</ul>";
+    }
+    if (!sum.visible.length) html += '<p class="restore-note">' + esc(t("restoreEmpty")) + "</p>";
+    else html += lines(sum.visible);
+    if (sum.hidden.length) html += '<p class="restore-note">' + esc(t("restoreHidden")) + "</p>" + lines(sum.hidden);
+    if (sum.builtinsMissing && sum.builtinsMissing.length) html += '<p class="restore-note">' + esc(t("restoreBuiltins")) + "</p>";
+    html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button>";
+    if (uid) html += '<button type="button" class="btn pri" data-s="load">' + esc(t("restoreLoad")) + "</button>";
+    html += "</div>";
+    if (!uid) html += '<p class="restore-note">' + esc(t("restoreNeed")) + "</p>";
+    sheet(html, function (a) {
+      if (a !== "load") { closeSheet(); return; }
+      closeSheet();
+      loadRestore(parsed);
+    });
+  }
+  function loadRestore(parsed) {
+    var R = window.RGMyIdeasRestore, SS = window.RGSyncStatus, staged, wrote, k, x, vis, found;
+    if (!R || !parsed || !parsed.ok) return;
+    if (!uid) { toast(t("restoreNeed")); return; }
+    staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, nextItems: parsed.items, now: Date.now() });
+    wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
+    if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
+    rememberSnap(true);
+    fileGen++;
+    armQuietRestore();
+    restoreDoc = staged.items;
+    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : staged.items;
+    seeded = true;
+    pending = true;
+    editing = null;
+    holdBlocked = false;
+    blockedCloud = null;
+    syncErr = "";
+    offline = false;
+    uploadCut = false;
+    overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000);
+    bulkOk = overwriteOk;
+    lastT = 0;
+    for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
+    snap = stamp(items, null);
+    vis = parsed.summary && parsed.summary.visible ? parsed.summary.visible : [];
+    found = false;
+    vis.forEach(function (r) { if (r.id === tab) found = true; });
+    if (vis.length && !found) { tab = vis[0].id; lsSet("rg-myideas-tab-cur", tab); lsSet(gTabKey(1), tab); }
+    saveLocal();
+    render();
+    sync();
+    pushHistoryCloud();
+    toast(t("restoreDone"));
+  }
+  function bootRestore() {
+    var input = $("restore-file"), lab = $("restore-file-btn");
+    if (!input || !window.RGMyIdeasRestore) return;
+    if (lab) lab.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      input.click();
+    });
+    input.addEventListener("change", function () {
+      var f = input.files && input.files[0];
+      try { input.value = ""; } catch (e) {}
+      if (!f) return;
+      if (f.size > 5000000) { showRestore({ ok: false, error: "read" }); return; }
+      var reader = new FileReader();
+      reader.onload = function () { showRestore(window.RGMyIdeasRestore.parseText(String(reader.result || ""))); };
+      reader.onerror = function () { showRestore({ ok: false, error: "read" }); };
+      reader.readAsText(f);
+    });
+  }
+
+  function unsyncedN() {
+    var SS = window.RGSyncStatus;
+    var since = parseInt(lsGet(lastSyncKey(uid)) || "", 10) || 0;
+    var n = SS && SS.unsyncedCount ? SS.unsyncedCount(items, since) : (pending ? 1 : 0);
+    return n || (pending ? 1 : 0);
+  }
+  function finishSignOut(proceed) {
+    var SS = window.RGSyncStatus, who = uid;
+    if (SS && who) {
+      history = SS.pushHistory(history, items, Date.now(), true, { label: t("signOutLabel"), id: "signout-" + Date.now() });
+      saveHistory();
+      pushHistoryCloud();
+      try { localStorage.setItem(cacheKey(who) + "-signout", JSON.stringify({ t: Date.now(), items: items, pending: true, seeded: !!seeded })); } catch (e) {}
+      pending = true;
+      saveLocal();
+    }
+    lsSet("rg-myideas-offer-open:" + who, null);
+    toast(t("signOutSaved"));
+    if (proceed) proceed();
+    else if (A && A.logout) A.logout();
+  }
+  function askSignOut(proceed) {
+    var SS = window.RGSyncStatus;
+    if (!SS || !SS.openChoice) { finishSignOut(proceed); return; }
+    SS.openChoice({
+      question: t("signOutAsk").replace("{n}", String(unsyncedN())),
+      yes: t("signOutStay"),
+      no: t("signOutAnyway"),
+      onYes: function () {},
+      onNo: function () { finishSignOut(proceed); }
+    });
+  }
+  function hasUnsynced() {
+    if (pending) return true;
+    if (!uid) return false;
+    var c = jparse(lsGet(cacheKey(uid)), null);
+    if (c && c.pending) return true;
+    return unsyncedN() > 0;
+  }
+  function beginSignOut(proceed) {
+    var SS = window.RGSyncStatus;
+    function go() { if (proceed) proceed(); else if (A && A.logout) A.logout(); }
+    function ask() { askSignOut(proceed); }
+    var online = !(typeof navigator !== "undefined" && navigator.onLine === false);
+    var gate = SS && SS.signOutGate ? SS.signOutGate({ pending: hasUnsynced(), online: online, pushed: false }) : (hasUnsynced() ? "ask" : "logout");
+    if (gate === "logout") { go(); return; }
+    if (!online) { ask(); return; }
+    sync().then(function () {
+      var again = SS && SS.signOutGate ? SS.signOutGate({ pending: hasUnsynced(), online: true, pushed: !hasUnsynced() }) : (!hasUnsynced() ? "logout" : "ask");
+      if (again === "logout") { go(); return; }
+      ask();
+    }, ask);
+  }
+  function askMergeBack() {
+    var SS = window.RGSyncStatus;
+    if (!SS || !SS.openChoice || !uid) return;
+    SS.openChoice({
+      question: t("signInMerge"),
+      yes: t("signInYes"),
+      no: t("signInNo"),
+      onYes: function () { pending = true; saveLocal(); sync(); },
+      onNo: function () {}
+    });
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
+    try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootLists(); } catch (e) { setTimeout(function () { throw e; }); } // the lists still load and show even if a control fails
     try { bootItemDrag(); } catch (e) { setTimeout(function () { throw e; }); }
     main.addEventListener("submit", function (e) {
@@ -1030,16 +1556,62 @@
       else if (a === "del") askDel(id);
     });
     M.onLang(render);
+    var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
+    window.addEventListener("pagehide", function () { rememberSnap(false); });
+    window.RGBeforeLogout = function (proceed) {
+      if (!uid || !hasUnsynced()) return true;
+      beginSignOut(proceed);
+      return false;
+    };
+    document.addEventListener("click", function (e) {
+      var out = e.target && e.target.closest && e.target.closest(".rgacc-back [data-a=out]");
+      if (out && uid && hasUnsynced()) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        beginSignOut(function () {
+          var back = document.querySelector(".rgacc-back");
+          var done = function () { if (back) back.hidden = true; };
+          if (A && A.logout) A.logout().then(done, done);
+          else done();
+        });
+        return;
+      }
+    }, true);
+    document.addEventListener("click", function (e) {
+      var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
+      if (!b) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.RGSyncStatus) RGSyncStatus.openLoadAsk({ onYes: loadFromCloud });
+    }, true);
+    try { new MutationObserver(function () { injectLoadBtn(); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+    if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
-      var id = u ? u.id : null; if (id === uid) return;
-      if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this device's copy unless unsynced
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; loadLocal(); render();
-      if (uid) sync(); else setStatus();
+      var id = u ? u.id : null; if (id === uid) { markUpdateReady(); return; }
+      if (!id && uid) {
+        var c = jparse(lsGet(cacheKey(uid)), null);
+        var plan = window.RGSyncStatus && RGSyncStatus.signOutPlan ? RGSyncStatus.signOutPlan(c) : { backup: !!(c && c.items), dropCache: !c || !c.pending, keepCache: !!(c && c.pending) };
+        if (plan.backup && c && c.items) {
+          try { localStorage.setItem(cacheKey(uid) + "-signout", JSON.stringify({ t: Date.now(), items: c.items, pending: !!c.pending, seeded: !!c.seeded })); } catch (e) {}
+        }
+        if (plan.dropCache) lsSet(cacheKey(uid), null); // pending changes stay in the cache and in the sign-out backup
+      }
+      if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
+      markUpdateReady();
+      if (uid) {
+        var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);
+        if (offer && offer.pending && lsGet("rg-myideas-offer-open:" + uid) !== "1") {
+          lsSet("rg-myideas-offer-open:" + uid, "1");
+          askMergeBack();
+        }
+        sync();
+      } else setStatus();
     }
     onUser(A.user());
     A.onChange(onUser);
     A.ready.then(function () { onUser(A.user()); if (!uid) setStatus(); });
-    if (!uid) setStatus(); // a visit that is already signed out never enters onUser, and the line would stay blank
+    if (!uid) setStatus();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
