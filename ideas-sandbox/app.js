@@ -22,6 +22,9 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
+  var BUILD = "rg-sbx-ideas-v10";
+  function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },
     { id: "tasks", tab: "tabTasks", kind: "task", pos: 1 },
@@ -199,7 +202,7 @@
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
   var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null, fileGen = 0;
-  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, restoreDoc = null;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, histAgain = false, histOpen = 0, restoreDoc = null;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -253,6 +256,7 @@
       if (el) el.textContent = "";
       if (cl) cl.textContent = "";
       paintConflict();
+      paintBuild();
       return;
     }
     var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
@@ -262,6 +266,7 @@
       cl.textContent = cms && SS ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
     }
     paintConflict();
+    paintBuild();
   }
   function paintConflict() {
     var msg = uid ? (lsGet("rg-sbx-ideas-conflict:" + uid) || "") : "";
@@ -330,6 +335,7 @@
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
       var dirty = false, restoring = !!restoreDoc;
+      if (!restoring && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
       if (!restoring && SS && SS.fieldConflicts) {
         var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
@@ -382,6 +388,7 @@
         failed: false,
         pendingLeft: !next.clearPending
       })) markLastSync();
+      pullHistory();
     }, function (e) {
       if (who !== uid || gen !== fileGen) return;
       if (e && (e.code === "signed_out" || e.type === "signed_out")) { offline = false; syncErr = ""; uploadCut = false; return; }
@@ -469,10 +476,24 @@
     saveHistory();
     pushHistoryCloud();
   }
+  function pullHistory(done) {
+    var SS = window.RGSyncStatus;
+    if (!uid || !A || !SS) { if (done) done(); return; }
+    A.get(APP, "history").then(function (cloud) {
+      if (uid && cloud) {
+        history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
+        saveHistory();
+        noteIncomingClash(history);
+      }
+      if (done) done();
+    }, function () { if (done) done(); });
+  }
   function pushHistoryCloud() {
     var SS = window.RGSyncStatus;
-    if (!uid || !A || !SS || histBusy) return;
+    if (!uid || !A || !SS) return;
+    if (histBusy) { histAgain = true; return; }
     histBusy = true;
+    histAgain = false;
     A.get(APP, "history").then(function (cloud) {
       if (!uid) return;
       var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
@@ -482,7 +503,13 @@
       var payload = { v: 1, snaps: cloudSnaps };
       if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
       return A.set(APP, "history", payload);
-    }).then(function () { histBusy = false; }, function () { histBusy = false; });
+    }).then(function () {
+      histBusy = false;
+      if (histAgain) pushHistoryCloud();
+    }, function () {
+      histBusy = false;
+      if (histAgain) pushHistoryCloud();
+    });
   }
   function hiddenCats() {
     var out = [], k, x;
@@ -524,9 +551,16 @@
     sync();
     pushHistoryCloud();
   }
-  function openHistory() {
+  function openHistory(fromPull) {
     var SS = window.RGSyncStatus;
     if (!SS) return;
+    if (!fromPull) {
+      var token = ++histOpen;
+      pullHistory(function () {
+        if (token !== histOpen || !$("sheet")) return;
+        openHistory(true);
+      });
+    }
     var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
     var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
     if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
@@ -1332,7 +1366,7 @@
     var n = SS && SS.unsyncedCount ? SS.unsyncedCount(items, since) : (pending ? 1 : 0);
     return n || (pending ? 1 : 0);
   }
-  function finishSignOut() {
+  function finishSignOut(proceed) {
     var SS = window.RGSyncStatus, who = uid;
     if (SS && who) {
       history = SS.pushHistory(history, items, Date.now(), true, { label: t("signOutLabel"), id: "signout-" + Date.now() });
@@ -1344,29 +1378,40 @@
     }
     lsSet("rg-sbx-ideas-offer-open:" + who, null);
     toast(t("signOutSaved"));
-    if (A && A.logout) A.logout();
+    if (proceed) proceed();
+    else if (A && A.logout) A.logout();
   }
-  function askSignOut() {
+  function askSignOut(proceed) {
     var SS = window.RGSyncStatus;
-    if (!SS || !SS.openChoice) { finishSignOut(); return; }
+    if (!SS || !SS.openChoice) { finishSignOut(proceed); return; }
     SS.openChoice({
       question: t("signOutAsk").replace("{n}", String(unsyncedN())),
       yes: t("signOutStay"),
       no: t("signOutAnyway"),
       onYes: function () {},
-      onNo: function () { finishSignOut(); }
+      onNo: function () { finishSignOut(proceed); }
     });
   }
-  function beginSignOut() {
+  function hasUnsynced() {
+    if (pending) return true;
+    if (!uid) return false;
+    var c = jparse(lsGet(cacheKey(uid)), null);
+    if (c && c.pending) return true;
+    return unsyncedN() > 0;
+  }
+  function beginSignOut(proceed) {
     var SS = window.RGSyncStatus;
-    var gate = SS && SS.signOutGate ? SS.signOutGate({ pending: !!pending, online: !(typeof navigator !== "undefined" && navigator.onLine === false), pushed: false }) : (pending ? "ask" : "logout");
-    if (gate === "logout" && !pending) { if (A && A.logout) A.logout(); return; }
-    if (typeof navigator !== "undefined" && navigator.onLine === false) { askSignOut(); return; }
+    function go() { if (proceed) proceed(); else if (A && A.logout) A.logout(); }
+    function ask() { askSignOut(proceed); }
+    var online = !(typeof navigator !== "undefined" && navigator.onLine === false);
+    var gate = SS && SS.signOutGate ? SS.signOutGate({ pending: hasUnsynced(), online: online, pushed: false }) : (hasUnsynced() ? "ask" : "logout");
+    if (gate === "logout") { go(); return; }
+    if (!online) { ask(); return; }
     sync().then(function () {
-      var again = SS && SS.signOutGate ? SS.signOutGate({ pending: !!pending, online: true, pushed: !pending }) : (!pending ? "logout" : "ask");
-      if (again === "logout") { if (A && A.logout) A.logout(); return; }
-      askSignOut();
-    }, function () { askSignOut(); });
+      var again = SS && SS.signOutGate ? SS.signOutGate({ pending: hasUnsynced(), online: true, pushed: !hasUnsynced() }) : (!hasUnsynced() ? "logout" : "ask");
+      if (again === "logout") { go(); return; }
+      ask();
+    }, ask);
   }
   function askMergeBack() {
     var SS = window.RGSyncStatus;
@@ -1429,14 +1474,26 @@
     M.onLang(render);
     var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
     window.addEventListener("pagehide", function () { rememberSnap(false); });
+    window.RGBeforeLogout = function (proceed) {
+      if (!uid || !hasUnsynced()) return true;
+      beginSignOut(proceed);
+      return false;
+    };
     document.addEventListener("click", function (e) {
-      var out = e.target && e.target.closest && e.target.closest(".rgacc-dlg [data-a=out]");
-      if (out && uid && pending) {
+      var out = e.target && e.target.closest && e.target.closest(".rgacc-back [data-a=out]");
+      if (out && uid && hasUnsynced()) {
         e.preventDefault();
-        e.stopPropagation();
-        beginSignOut();
+        e.stopImmediatePropagation();
+        beginSignOut(function () {
+          var back = document.querySelector(".rgacc-back");
+          var done = function () { if (back) back.hidden = true; };
+          if (A && A.logout) A.logout().then(done, done);
+          else done();
+        });
         return;
       }
+    }, true);
+    document.addEventListener("click", function (e) {
       var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
       if (!b) return;
       e.preventDefault();

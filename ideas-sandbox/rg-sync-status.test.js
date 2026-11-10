@@ -71,9 +71,9 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=4") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=4") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v9"') !== -1 && sw.indexOf("rg-sync-status.js?v=4") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=47") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v9') !== -1, "the sandbox shows the build under the sync line");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=5") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=5") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v10"') !== -1 && sw.indexOf("rg-sync-status.js?v=5") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=48") !== -1 && sw.indexOf("rg-account.js?v=2") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v10') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v10"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v10");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
@@ -226,6 +226,32 @@ assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).keepCache === true && 
 assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).backup === true, "signing out also writes a backup");
 assert(SS.signOutPlan({ items: { a: 1 }, pending: false }).dropCache === true, "a fully synced sign-out can drop the cache");
 assert(app.indexOf('"-signout"') !== -1 && app.indexOf("adoptRestore") !== -1 && app.indexOf("fieldConflicts") !== -1, "the app restores with fresh stamps and keeps conflicts");
+var keepBody = app.slice(app.indexOf("function keepConflict"), app.indexOf("function baseKey"));
+assert(keepBody.indexOf('t("clashNote")') !== -1 && keepBody.indexOf("conflictNote") === -1 && app.indexOf("pullHistory") !== -1 && app.indexOf("noteIncomingClash") !== -1, "a clash writes the new notice and the other device pulls that labeled row");
+assert(app.indexOf("window.RGBeforeLogout") !== -1 && app.indexOf("hasUnsynced") !== -1 && app.indexOf('.rgacc-back [data-a=out]') !== -1, "sign-out is gated on the real account button");
+assert(acct.indexOf("window.RGBeforeLogout") !== -1 && acct.indexOf("function doLogout") !== -1 && acct.indexOf('a === "out"') !== -1, "the sandbox account script asks the page before it logs out");
+["index.html", "my/ideas/index.html", "shared/rg-topbar.js"].forEach(function (rel) {
+  var liveSrc = fs.readFileSync(path.join(root, rel), "utf8");
+  assert(liveSrc.indexOf("sandbox-shared/rg-account.js") === -1, rel + " does not load the sandbox account script");
+});
+function qver(src, file) {
+  var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
+  return m ? +m[1] : 0;
+}
+assert(qver(html, "app.js") >= 48 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 5 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
+var crypto = require("crypto");
+var pins = {
+  "ideas-sandbox/app.js": { v: 48, hash: "7c5e9f505d3724e6" },
+  "ideas-sandbox/rg-sync-status.js": { v: 5, hash: "eed25278418ee4b9" },
+  "sandbox-shared/rg-account.js": { v: 2, hash: "a7b14a7466bd96f4" }
+};
+Object.keys(pins).forEach(function (rel) {
+  var hash = crypto.createHash("sha256").update(fs.readFileSync(path.join(root, rel))).digest("hex").slice(0, 16);
+  var ver = qver(rel.indexOf("account") !== -1 ? html : html, rel.split("/").pop());
+  assert(ver === pins[rel].v && hash === pins[rel].hash, rel + " changed (" + hash + "): bump its ?v= in index.html and sw.js, then set the pin to v " + ver + " hash " + hash);
+});
 assert(SS.LOAD_YES === "טען מהענן" && SS.LOAD_Q.indexOf("הענן לא ייכתב") !== -1, "the load action says it will not write the cloud");
 
 function spyTimers() {

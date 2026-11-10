@@ -172,9 +172,10 @@
     });
   }
   function setName(name) { return req("PATCH", "/account/name", { name: String(name || "").trim().slice(0, 128) }).then(function (u) { setUser(u); return cur; }); }
-  function logout() {
+  function doLogout() {
     return req("DELETE", "/account/sessions/current").catch(function () {}).then(function () { lsSet(FB_KEY, null); setUser(null); notePw(null); });
   }
+  function logout() { return doLogout(); }
 
   /* ---------------- data: one row per (user, app, key), deterministic row id ---------------- */
   function h32(s, seed) {
@@ -661,7 +662,15 @@
         busy = false; msg = t()[r.status === "ok" ? "expDone" : r.status === "offline" ? "expOffline" : "expPartial"].replace("{f}", r.file); msgOk = true; renderDlg(false);
       }, function (e) { if (e && e.code === "signed_out") { busy = false; step = firstStep(); renderDlg(true); } else fail(e); });
     }
-    else if (a === "out") { busy = true; renderDlg(false); logout().then(function () { busy = false; close(); }); }
+    else if (a === "out") {
+      var go = function () { busy = true; renderDlg(false); doLogout().then(function () { busy = false; close(); }); };
+      if (typeof window.RGBeforeLogout === "function") {
+        var held = false;
+        try { held = window.RGBeforeLogout(go) === false; } catch (e) { held = false; }
+        if (held) return;
+      }
+      go();
+    }
   }
   function renderAll() {
     buttons.forEach(renderBtn);
