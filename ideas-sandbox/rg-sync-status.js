@@ -307,13 +307,25 @@
     if (meta && meta.id) row.id = meta.id;
     if (meta && meta.clash) row.clash = 1;
     list.push(row);
-    while (list.length > HIST_MAX) list.shift();
+    var keep = meta && meta.keepId;
+    while (list.length > HIST_MAX) {
+      var dropAt = -1, j;
+      for (j = 0; j < list.length; j++) {
+        if (keep && list[j] && list[j].id === keep) continue;
+        dropAt = j;
+        break;
+      }
+      if (dropAt < 0) break;
+      list.splice(dropAt, 1);
+    }
     return list;
   }
   function planRestore(list, current, versionId, now) {
-    var next = pushHistory(list, current, now, true), hit = null, i;
-    for (i = 0; i < next.length; i++) if (next[i].id === versionId) hit = next[i];
-    return { history: next, items: hit ? cloneDoc(hit.data) : null, savedCurrent: true, found: !!hit };
+    var src = Array.isArray(list) ? list.slice() : [], hit = null, i;
+    for (i = 0; i < src.length; i++) if (src[i] && src[i].id === versionId) hit = src[i];
+    var saved = hit ? cloneDoc(hit.data) : null;
+    var next = pushHistory(src, current, now, true, hit ? { keepId: hit.id } : null);
+    return { history: next, items: saved, savedCurrent: true, found: !!hit };
   }
   /* A restored record must be newer than the cloud copy, or the next merge puts the cloud back. */
   function freshenRecord(rec, at) {

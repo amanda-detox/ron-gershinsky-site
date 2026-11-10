@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v10";
+  var BUILD = "rg-sbx-ideas-v11";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -533,9 +533,9 @@
   }
   function restoreVersion(id) {
     var SS = window.RGSyncStatus;
-    if (!SS) return;
+    if (!SS || !SS.planRestore) { toast(t("historyFail")); return; }
     var plan = SS.planRestore(history, items, id, Date.now());
-    if (!plan.found || !plan.items) return;
+    if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
     history = plan.history;
     saveHistory();
     restoreDoc = plan.items;

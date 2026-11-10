@@ -13,9 +13,10 @@ var CLASH = "התנגשות בעריכה: נשמרה הגרסה האחרונה, 
 var STAY = "הישאר מחובר";
 var ANYWAY = "צא בכל זאת";
 
-function rec(text, at) {
+function rec(text, at, sec) {
+  sec = sec || "tasks";
   return {
-    id: "a", sec: "tasks", text: text, done: false, order: 1, created: 1000, at: at,
+    id: "a", sec: sec, text: text, done: false, order: 1, created: 1000, at: at,
     _f: { text: at, "~": at, sec: at, done: at, order: at, created: at }
   };
 }
@@ -51,8 +52,8 @@ function userScript(extra) {
     extra +
     "}catch(e){}";
 }
-function cacheScript(text, at, pending) {
-  var doc = { items: { a: rec(text, at) }, pending: !!pending, seeded: true };
+function cacheScript(text, at, pending, sec) {
+  var doc = { items: { a: rec(text, at, sec) }, pending: !!pending, seeded: true };
   var base = { a: rec("מקור", 1000) };
   return "localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify(doc)) + ");" +
     "localStorage.setItem('rg-sbx-ideas-base:" + UID + "'," + JSON.stringify(JSON.stringify(base)) + ");" +
@@ -136,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v10"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v10");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v11"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v11");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=48") !== -1 && srcs.indexOf("rg-sync-status.js?v=5") !== -1 && srcs.indexOf("rg-account.js?v=2") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=49") !== -1 && srcs.indexOf("rg-sync-status.js?v=6") !== -1 && srcs.indexOf("rg-account.js?v=2") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v10"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v11"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -217,6 +218,48 @@ async function main() {
     if (clashErr.length) console.error(clashErr.join(" | "));
     await a.close();
     await b.close();
+
+    var snaps = [], hi;
+    for (hi = 0; hi < 20; hi++) {
+      snaps.push({
+        id: "row-" + hi, t: 1000 + hi, lists: 3, items: 1,
+        data: { a: rec(hi === 0 ? "OLDEST-TEXT" : ("v" + hi), 1000 + hi, "ideas") }
+      });
+    }
+    var old = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+    var oldPage = await old.newPage();
+    var oldErr = [];
+    oldPage.on("pageerror", function (err) { oldErr.push(String(err)); });
+    await oldPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await oldPage.addInitScript(userScript(
+      cacheScript("CURRENT-NOW", 5000, true, "ideas") +
+      "localStorage.setItem('rg-sbx-ideas-hist:" + UID + "'," + JSON.stringify(JSON.stringify(snaps)) + ");"
+    ));
+    await oldPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await oldPage.waitForSelector("#hist-btn");
+    await oldPage.click("#hist-btn");
+    await oldPage.waitForSelector('[data-s="r:row-0"]');
+    await oldPage.waitForTimeout(1000);
+    await oldPage.click('[data-s="r:row-0"]');
+    await oldPage.waitForFunction(function () {
+      var sheet = document.getElementById("sheet");
+      var body = document.body ? document.body.innerText : "";
+      return !sheet && body.indexOf("OLDEST-TEXT") !== -1 && body.indexOf("CURRENT-NOW") === -1;
+    });
+    var keptOldest = await oldPage.evaluate(function (uid) {
+      var raw = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
+      var rows = raw ? JSON.parse(raw) : [];
+      var hasOld = false, hasNow = false, i;
+      for (i = 0; i < rows.length; i++) {
+        if (rows[i].id === "row-0") hasOld = true;
+        if (rows[i].data && rows[i].data.a && rows[i].data.a.text === "CURRENT-NOW") hasNow = true;
+      }
+      return hasOld && hasNow && rows.length === 20;
+    }, UID);
+    check(keptOldest, "restoring the oldest row at the cap changes the list and keeps that row");
+    check(oldErr.length === 0, "the oldest-restore page runs without a script error");
+    if (oldErr.length) console.error(oldErr.join(" | "));
+    await old.close();
   } finally {
     await browser.close();
     server.close();
