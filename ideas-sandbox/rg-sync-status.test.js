@@ -71,9 +71,9 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=3") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=3") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v8"') !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=46") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v8') !== -1, "the sandbox shows the build under the sync line");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=4") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=4") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v9"') !== -1 && sw.indexOf("rg-sync-status.js?v=4") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=47") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v9') !== -1, "the sandbox shows the build under the sync line");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
@@ -170,25 +170,58 @@ assert(revived.it12.deleted === true, "the next merge does not bring back the ex
 var dropOne = SS.dropReport(adopted, cloud13);
 assert(dropOne.itemsDeleted === 1 && SS.needsConfirm(dropOne, { now: 9000, lastSync: 100, cloudUpdated: 4000, overwriteUntil: 9000 + 60000 }).hold === false, "a deliberate restore is not blocked by the overwrite guard");
 
-var lastOk = 2000;
+var agreed = { a: taskAt("a", "מקור", 1000) };
 var bothText = SS.fieldConflicts(
   { a: taskAt("a", "מ-ב", 3000) },
   { a: taskAt("a", "מ-א", 3500) },
-  lastOk
+  agreed
 );
-assert(bothText.length === 1 && bothText[0].field === "text" && bothText[0].localWins === false, "the same field edited on both devices since the last sync is a conflict");
+assert(bothText.length === 1 && bothText[0].field === "text" && bothText[0].localWins === false, "the same field edited on both devices since the agreed copy is a clash");
+var loserFirst = SS.clashSnap(
+  { a: taskAt("a", "מ-ב", 2000) },
+  { a: taskAt("a", "מ-א", 3500) },
+  SS.fieldConflicts({ a: taskAt("a", "מ-ב", 2000) }, { a: taskAt("a", "מ-א", 3500) }, agreed),
+  9000
+);
+assert(loserFirst.clash === 1 && loserFirst.data.a.text === "מ-ב" && loserFirst.label.indexOf("התנגשות") === 0 && loserFirst.label.indexOf("מ-ב") !== -1, "the losing text is in a labeled history row even if that device synced first");
+var winnerFirst = SS.clashSnap(
+  { a: taskAt("a", "מ-א", 3500) },
+  { a: taskAt("a", "מ-ב", 2000) },
+  SS.fieldConflicts({ a: taskAt("a", "מ-א", 3500) }, { a: taskAt("a", "מ-ב", 2000) }, agreed),
+  9001
+);
+assert(winnerFirst.data.a.text === "מ-ב" && winnerFirst.localWins !== true, "when the other device synced first, the row still holds the losing text");
+var seen = SS.rememberClash([], loserFirst);
+seen = SS.rememberClash(seen, loserFirst);
+assert(seen.length === 1 && seen[0].clash === 1, "the same clash row is stored once and kept");
+var cloudHist = SS.mergeHistory([], { snaps: [loserFirst] }, 12);
+assert(cloudHist.snaps.length === 1 && cloudHist.snaps[0].data.a.text === "מ-ב" && cloudHist.snaps[0].label.indexOf("מ-ב") !== -1, "the losing text is in the cloud history both devices read");
+var replaced = SS.fieldConflicts(
+  { a: taskAt("a", "מ-ב", 2000) },
+  { a: taskAt("a", "מ-א", 3500) },
+  { a: taskAt("a", "מ-ב", 2000) },
+  agreed
+);
+assert(replaced.length === 1 && replaced[0].localText === "מ-ב", "a published edit that the cloud then replaces is still a clash");
 var splitFields = SS.fieldConflicts(
   { a: taskAt("a", "משותף", 1500, "הערה ב", 3000) },
   { a: taskAt("a", "מ-א", 3500, "הערה ישנה", 1500) },
-  lastOk
+  { a: taskAt("a", "משותף", 1500, "הערה ישנה", 1500) }
 );
-assert(splitFields.length === 0, "edits to different fields are not a conflict");
+assert(splitFields.length === 0, "edits to different fields are not a clash");
 var otherItem = SS.fieldConflicts(
   { a: taskAt("a", "רק כאן", 3000) },
   { b: taskAt("b", "רק שם", 3500) },
-  lastOk
+  { a: taskAt("a", "מקור", 1000), b: taskAt("b", "מקור", 1000) }
 );
-assert(otherItem.length === 0, "edits to different items are not a conflict");
+assert(otherItem.length === 0, "edits to different items are not a clash");
+assert(SS.fieldConflicts({ a: taskAt("a", "מ-א", 3000) }, { a: taskAt("a", "מקור", 1000) }, agreed).length === 0, "a single device edit does not raise a clash");
+assert(SS.signOutGate({ pending: false, online: false }) === "logout", "a clean sign-out does not ask");
+assert(SS.signOutGate({ pending: true, online: true, pushed: true }) === "logout", "pending changes that reached the cloud do not ask");
+assert(SS.signOutGate({ pending: true, online: false, pushed: false }) === "ask", "offline unsynced changes ask before sign-out");
+assert(SS.unsyncedCount({ a: taskAt("a", "QA-UNSYNCED", 5000), b: taskAt("b", "old", 1000) }, 2000) === 1, "only records newer than the last sync count as unsynced");
+assert(html.indexOf("התנגשות בעריכה: נשמרה הגרסה האחרונה, הגרסה השנייה בהיסטוריה") !== -1 && html.indexOf('id="clash"') !== -1, "the clash notice is in the list UI");
+assert(html.indexOf("הגיבוי נשמר בהיסטוריית הגרסאות") !== -1 && html.indexOf("צא בכל זאת") !== -1 && html.indexOf("מזג לענן") !== -1, "sign-out and sign-in copy is in Hebrew");
 assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).keepCache === true && SS.signOutPlan({ items: { a: 1 }, pending: true }).dropCache === false, "signing out keeps unsynced local changes");
 assert(SS.signOutPlan({ items: { a: 1 }, pending: true }).backup === true, "signing out also writes a backup");
 assert(SS.signOutPlan({ items: { a: 1 }, pending: false }).dropCache === true, "a fully synced sign-out can drop the cache");

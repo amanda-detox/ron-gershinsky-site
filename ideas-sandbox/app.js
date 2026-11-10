@@ -264,16 +264,40 @@
     paintConflict();
   }
   function paintConflict() {
-    var el = $("conflict"); if (!el) return;
-    el.textContent = uid ? (lsGet("rg-sbx-ideas-conflict:" + uid) || "") : "";
+    var msg = uid ? (lsGet("rg-sbx-ideas-conflict:" + uid) || "") : "";
+    var el = $("conflict"), line = $("clash");
+    if (el) el.textContent = msg;
+    if (line) line.textContent = msg;
   }
-  function keepConflict(local, cloud) {
+  function keepConflict(local, cloud, fights) {
     var SS = window.RGSyncStatus;
-    if (!SS || !uid) return;
-    history = SS.pushHistory(history, local, Date.now(), true);
-    history = SS.pushHistory(history, cloud, Date.now() + 1, true);
+    if (!SS || !uid || !fights || !fights.length) return;
+    var snap = SS.clashSnap(local, cloud, fights, Date.now());
+    history = SS.rememberClash(history, snap);
     saveHistory();
-    lsSet("rg-sbx-ideas-conflict:" + uid, t("conflictNote"));
+    lsSet("rg-sbx-ideas-conflict:" + uid, t("clashNote"));
+    paintConflict();
+    pushHistoryCloud();
+  }
+  function baseKey(id) { return "rg-sbx-ideas-base:" + id; }
+  function basePrevKey(id) { return "rg-sbx-ideas-base-prev:" + id; }
+  function saveAgreed(doc) {
+    if (!uid) return;
+    var cur = lsGet(baseKey(uid));
+    if (cur) lsSet(basePrevKey(uid), cur);
+    try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
+  }
+  function noteIncomingClash(snaps) {
+    var i, seen, found = false;
+    if (!uid || !snaps) return;
+    seen = jparse(lsGet("rg-sbx-ideas-clash-seen:" + uid), {});
+    if (!seen || typeof seen !== "object") seen = {};
+    for (i = 0; i < snaps.length; i++) {
+      if (snaps[i] && snaps[i].clash && !seen[snaps[i].id]) { seen[snaps[i].id] = 1; found = true; }
+    }
+    if (!found) return;
+    lsSet("rg-sbx-ideas-clash-seen:" + uid, JSON.stringify(seen));
+    lsSet("rg-sbx-ideas-conflict:" + uid, t("clashNote"));
     paintConflict();
   }
   function armBackoff(n) {
@@ -299,7 +323,7 @@
     if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen, hadClash = false;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid || gen !== fileGen) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
@@ -307,8 +331,8 @@
       snap = stamp(items, snap);
       var dirty = false, restoring = !!restoreDoc;
       if (!restoring && SS && SS.fieldConflicts) {
-        var fought = SS.fieldConflicts(items, cl, parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0);
-        if (fought.length && !lsGet("rg-sbx-ideas-conflict:" + who)) keepConflict(items, cl);
+        var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
+        if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
       if (restoring && SS && SS.adoptRestore) {
         overwriteOk = Date.now() + (SS.BULK_MS || 60000);
@@ -347,6 +371,8 @@
       if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
       if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
       if (restoreDoc && (phase === "upload" || phase === "same")) restoreDoc = null;
+      if (!hadClash && phase === "same") saveAgreed(items);
+      else if (hadClash) saveAgreed(items);
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
       if (SS && SS.shouldStampSync({
         downloaded: true,
@@ -452,6 +478,7 @@
       var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
+      noteIncomingClash(history);
       var payload = { v: 1, snaps: cloudSnaps };
       if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
       return A.set(APP, "history", payload);
@@ -500,13 +527,14 @@
   function openHistory() {
     var SS = window.RGSyncStatus;
     if (!SS) return;
-    if (uid) lsSet("rg-sbx-ideas-conflict:" + uid, "");
-    paintConflict();
     var rows = history.slice().sort(function (a, b) { return b.t - a.t; });
     var html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
     if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
     else html += rows.map(function (s) {
-      return '<div class="hrow"><div class="histwhen">' + esc(SS.formatSyncTime(s.t)) + '</div><p class="histmeta">' + esc(t("historyCounts").replace("{l}", String(s.lists)).replace("{n}", String(s.items))) + '</p><div class="row"><button type="button" class="btn pri" data-s="r:' + esc(s.id) + '">' + esc(t("historyRestore")) + '</button><button type="button" class="btn" data-s="d:' + esc(s.id) + '">' + esc(t("historyDownload")) + "</button></div></div>";
+      var when = esc(SS.formatSyncTime(s.t));
+      var meta = esc(t("historyCounts").replace("{l}", String(s.lists)).replace("{n}", String(s.items)));
+      if (s.label) meta = when + " · " + meta;
+      return '<div class="hrow"><div class="histwhen">' + (s.label ? esc(s.label) : when) + '</div><p class="histmeta">' + meta + '</p><div class="row"><button type="button" class="btn pri" data-s="r:' + esc(s.id) + '">' + esc(t("historyRestore")) + '</button><button type="button" class="btn" data-s="d:' + esc(s.id) + '">' + esc(t("historyDownload")) + "</button></div></div>";
     }).join("");
     var hid = hiddenCats();
     if (hid.length) {
@@ -1298,6 +1326,59 @@
     });
   }
 
+  function unsyncedN() {
+    var SS = window.RGSyncStatus;
+    var since = parseInt(lsGet(lastSyncKey(uid)) || "", 10) || 0;
+    var n = SS && SS.unsyncedCount ? SS.unsyncedCount(items, since) : (pending ? 1 : 0);
+    return n || (pending ? 1 : 0);
+  }
+  function finishSignOut() {
+    var SS = window.RGSyncStatus, who = uid;
+    if (SS && who) {
+      history = SS.pushHistory(history, items, Date.now(), true, { label: t("signOutLabel"), id: "signout-" + Date.now() });
+      saveHistory();
+      pushHistoryCloud();
+      try { localStorage.setItem(cacheKey(who) + "-signout", JSON.stringify({ t: Date.now(), items: items, pending: true, seeded: !!seeded })); } catch (e) {}
+      pending = true;
+      saveLocal();
+    }
+    lsSet("rg-sbx-ideas-offer-open:" + who, null);
+    toast(t("signOutSaved"));
+    if (A && A.logout) A.logout();
+  }
+  function askSignOut() {
+    var SS = window.RGSyncStatus;
+    if (!SS || !SS.openChoice) { finishSignOut(); return; }
+    SS.openChoice({
+      question: t("signOutAsk").replace("{n}", String(unsyncedN())),
+      yes: t("signOutStay"),
+      no: t("signOutAnyway"),
+      onYes: function () {},
+      onNo: function () { finishSignOut(); }
+    });
+  }
+  function beginSignOut() {
+    var SS = window.RGSyncStatus;
+    var gate = SS && SS.signOutGate ? SS.signOutGate({ pending: !!pending, online: !(typeof navigator !== "undefined" && navigator.onLine === false), pushed: false }) : (pending ? "ask" : "logout");
+    if (gate === "logout" && !pending) { if (A && A.logout) A.logout(); return; }
+    if (typeof navigator !== "undefined" && navigator.onLine === false) { askSignOut(); return; }
+    sync().then(function () {
+      var again = SS && SS.signOutGate ? SS.signOutGate({ pending: !!pending, online: true, pushed: !pending }) : (!pending ? "logout" : "ask");
+      if (again === "logout") { if (A && A.logout) A.logout(); return; }
+      askSignOut();
+    }, function () { askSignOut(); });
+  }
+  function askMergeBack() {
+    var SS = window.RGSyncStatus;
+    if (!SS || !SS.openChoice || !uid) return;
+    SS.openChoice({
+      question: t("signInMerge"),
+      yes: t("signInYes"),
+      no: t("signInNo"),
+      onYes: function () { pending = true; saveLocal(); sync(); },
+      onNo: function () {}
+    });
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
@@ -1349,6 +1430,13 @@
     var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
     window.addEventListener("pagehide", function () { rememberSnap(false); });
     document.addEventListener("click", function (e) {
+      var out = e.target && e.target.closest && e.target.closest(".rgacc-dlg [data-a=out]");
+      if (out && uid && pending) {
+        e.preventDefault();
+        e.stopPropagation();
+        beginSignOut();
+        return;
+      }
       var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
       if (!b) return;
       e.preventDefault();
@@ -1369,7 +1457,14 @@
       }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
       uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
-      if (uid) sync(); else setStatus();
+      if (uid) {
+        var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);
+        if (offer && offer.pending && lsGet("rg-sbx-ideas-offer-open:" + uid) !== "1") {
+          lsSet("rg-sbx-ideas-offer-open:" + uid, "1");
+          askMergeBack();
+        }
+        sync();
+      } else setStatus();
     }
     onUser(A.user());
     A.onChange(onUser);
