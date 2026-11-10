@@ -71,9 +71,9 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=6") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=6") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v14"') !== -1 && sw.indexOf("rg-sync-status.js?v=6") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=51") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v14') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v14"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v14");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=7") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=7") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v15"') !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=52") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v15') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v15"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v15");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
 assert(sw.indexOf('cache: "no-cache"') !== -1 && sw.indexOf("caches.match(e.request)") !== -1, "html and js are revalidated and the offline fallback stays");
@@ -163,6 +163,13 @@ var published = SS.fieldConflicts(
   { a: taskAt("a", "older", 1000) }
 );
 assert(published.length === 1, "a real replacement of a published edit is still a clash");
+assert(SS.sameDeviceEdits("v3", "v2", ["v1", "v2", "v3"]) === true, "rapid edits on one device are one sequence");
+assert(SS.sameDeviceEdits("AAA", "BBB", ["base", "AAA"]) === false, "another device's text is not part of this device's sequence");
+var rapid = SS.fieldConflicts({ a: taskAt("a", "v3", 4000) }, { a: taskAt("a", "v2", 3000) }, { a: taskAt("a", "v0", 1000) });
+assert(rapid.length === 1 && SS.sameDeviceEdits(rapid[0].localText, rapid[0].cloudText, ["v0", "v1", "v2", "v3"]) === true, "two moves that are this device's own edits are not a clash");
+var twoDev = SS.fieldConflicts({ a: taskAt("a", "AAA", 4000) }, { a: taskAt("a", "BBB", 3500) }, { a: taskAt("a", "base", 1000) });
+assert(twoDev.length === 1 && SS.sameDeviceEdits(twoDev[0].localText, twoDev[0].cloudText, ["base", "AAA"]) === false, "a genuine two-device clash still counts");
+assert(app.indexOf("sameDeviceEdits") !== -1 && app.indexOf("saveAgreed(sent)") !== -1 && app.indexOf("rememberOwn") !== -1, "this device records its own writes and moves the base when it uploads");
 function manyItems(n, text, at) {
   var o = {}, i;
   for (i = 0; i < n; i++) o["it" + i] = taskAt("it" + i, text, at);
@@ -279,13 +286,13 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 51 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
-assert(qver(html, "rg-sync-status.js") >= 6 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 52 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 7 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 51, hash: "e54b30afc982f4cf" },
-  "ideas-sandbox/rg-sync-status.js": { v: 6, hash: "df486ea67d4018b3" },
+  "ideas-sandbox/app.js": { v: 52, hash: "c33dab931fb0e903" },
+  "ideas-sandbox/rg-sync-status.js": { v: 7, hash: "48344d1434a77a00" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {
