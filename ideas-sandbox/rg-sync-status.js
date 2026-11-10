@@ -298,11 +298,15 @@
   function cloneDoc(items) {
     try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
   }
-  function pushHistory(list, items, t, force) {
+  function pushHistory(list, items, t, force, meta) {
     list = Array.isArray(list) ? list.slice() : [];
     var sum = summarize(items), data = cloneDoc(items), last = list[list.length - 1];
-    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data)) return list;
-    list.push({ id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data });
+    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return list;
+    var row = { id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data };
+    if (meta && meta.label) row.label = meta.label;
+    if (meta && meta.id) row.id = meta.id;
+    if (meta && meta.clash) row.clash = 1;
+    list.push(row);
     while (list.length > HIST_MAX) list.shift();
     return list;
   }
@@ -344,27 +348,87 @@
     }
     return out;
   }
-  /* Same field edited on both devices since the last shared sync. Different fields are not conflicts. */
-  function fieldConflicts(local, cloud, lastSync) {
-    var out = [], k, a, b, f, seen, ta, tb, oa, ob;
+  /* A clash is the same field changed on both sides since the agreed base, or a
+     published local edit that a later cloud value replaces. Different fields are not clashes.
+     base/prevBase are item maps, not timestamps: a last-sync clock moves forward when the
+     first device uploads and would hide the clash. */
+  function fieldConflicts(local, cloud, base, prevBase) {
+    var out = [], k, a, b, f, seen, ta, tb, oa, ob, bv, pv, lv, cv, localMoved, cloudMoved, replacedMine;
+    if (!base || typeof base !== "object" || typeof base === "number") return [];
     local = local && typeof local === "object" ? local : {};
     cloud = cloud && typeof cloud === "object" ? cloud : {};
-    lastSync = lastSync || 0;
+    prevBase = prevBase && typeof prevBase === "object" ? prevBase : null;
     for (k in local) {
       a = local[k]; b = cloud[k];
       if (!a || !b || a.deleted || b.deleted || a.type === "meta" || b.type === "meta") continue;
       oa = fmOldRec(a); ob = fmOldRec(b); seen = {};
       for (f in a) if (!FM_META[f] && Object.prototype.hasOwnProperty.call(b, f)) seen[f] = 1;
       for (f in seen) {
-        if (JSON.stringify(a[f]) === JSON.stringify(b[f])) continue;
+        lv = a[f]; cv = b[f];
+        if (JSON.stringify(lv) === JSON.stringify(cv)) continue;
         ta = fmTimeRec(a, f, oa); tb = fmTimeRec(b, f, ob);
         if (ta < 0 || tb < 0) continue;
-        if (lastSync > 0 && (ta <= lastSync || tb <= lastSync)) continue;
-        if (!(lastSync > 0) && ta === tb) continue;
-        out.push({ id: a.id || k, field: f, localWins: ta >= tb });
+        bv = base[k] ? base[k][f] : undefined;
+        pv = prevBase && prevBase[k] ? prevBase[k][f] : undefined;
+        localMoved = JSON.stringify(lv) !== JSON.stringify(bv);
+        cloudMoved = JSON.stringify(cv) !== JSON.stringify(bv);
+        replacedMine = !!(prevBase && prevBase[k] && JSON.stringify(lv) === JSON.stringify(bv) && JSON.stringify(lv) !== JSON.stringify(pv) && JSON.stringify(cv) !== JSON.stringify(lv));
+        if (!(localMoved && cloudMoved) && !replacedMine) continue;
+        out.push({ key: k, id: a.id || k, field: f, localWins: ta >= tb, localText: lv, cloudText: cv });
       }
     }
     return out;
+  }
+  function clashSnap(local, cloud, fights, now) {
+    var data = cloneDoc(local), i, f, src, loser, sum;
+    fights = fights || [];
+    for (i = 0; i < fights.length; i++) {
+      f = fights[i];
+      src = f.localWins ? cloud : local;
+      if (src && src[f.key]) data[f.key] = cloneDoc(src[f.key]);
+    }
+    f = fights[0] || {};
+    loser = f.localWins ? f.cloudText : f.localText;
+    sum = summarize(data);
+    return {
+      id: "clash-" + (f.key || "x") + "-" + (f.field || "f") + "-" + String(loser).length + "-" + String(loser).slice(0, 12),
+      t: now,
+      lists: sum.lists,
+      items: sum.items,
+      clash: 1,
+      label: "התנגשות: " + String(loser == null ? "" : loser).slice(0, 80),
+      data: data
+    };
+  }
+  function rememberClash(list, snap) {
+    var next = [], i, rest = [], clashes = [];
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      if (snap && list[i].id === snap.id) return list.slice();
+      next.push(list[i]);
+    }
+    if (snap) next.push(snap);
+    for (i = 0; i < next.length; i++) (next[i].clash ? clashes : rest).push(next[i]);
+    while (rest.length + clashes.length > HIST_MAX) {
+      if (rest.length) rest.shift(); else break;
+    }
+    return rest.concat(clashes);
+  }
+  function signOutGate(opts) {
+    opts = opts || {};
+    if (!opts.pending) return "logout";
+    if (opts.online && opts.pushed) return "logout";
+    return "ask";
+  }
+  function unsyncedCount(items, since) {
+    var n = 0, k, x;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type === "meta") continue;
+      if (!since || (x.at || 0) > since) n++;
+    }
+    return n;
   }
   function signOutPlan(cache) {
     var has = !!(cache && cache.items && typeof cache.items === "object");
@@ -482,7 +546,9 @@
     no.className = "no";
     no.textContent = noText;
     function run(fn) {
-      if (id === "rg-delask-back") closeDeletion(); else closeLoadAsk();
+      if (id === "rg-delask-back") closeDeletion();
+      else if (id === "rg-loadask-back") closeLoadAsk();
+      else removeNode(id);
       if (typeof fn === "function") fn();
     }
     yes.addEventListener("click", function () { run(opts.onYes); });
@@ -513,6 +579,12 @@
   function closeLoadAsk() {
     loadOpts = null;
     removeNode("rg-loadask-back");
+  }
+  function closeChoice() { removeNode("rg-choice-back"); }
+  function openChoice(opts) {
+    opts = opts || {};
+    closeChoice();
+    sheet("rg-choice-back", opts.question || "", opts.yes || "", opts.no || "", { onYes: opts.onYes, onNo: opts.onNo });
   }
   function openLoadAsk(opts) {
     if (opts) loadOpts = opts;
@@ -665,7 +737,13 @@
     planRestore: planRestore,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
+    clashSnap: clashSnap,
+    rememberClash: rememberClash,
+    signOutGate: signOutGate,
+    unsyncedCount: unsyncedCount,
     signOutPlan: signOutPlan,
+    openChoice: openChoice,
+    closeChoice: closeChoice,
     historyFile: historyFile,
     mergeHistory: mergeHistory,
     planCloudLoad: planCloudLoad,
