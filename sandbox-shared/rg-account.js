@@ -476,6 +476,7 @@
     ".rgacc-links{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:12px}.rgacc-lnk{background:none;border:0;padding:4px 0;font-family:inherit;font-size:14px;font-weight:700;color:#ffd98a;cursor:pointer}.rgacc-lnk:hover{text-decoration:underline}",
     ".rgacc-from{margin:0 0 14px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px;line-height:1.5}.rgacc-from bdi{color:#fff;font-weight:700}",
     ".rgacc-dlg input[type=password]{direction:ltr;text-align:left}.rgacc-dlg .rgacc-f2{margin-top:10px}",
+    ".rgacc-dlg .rgacc-user{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}",
     ".rgacc-dlg .rgacc-show{display:flex;align-items:center;gap:8px;margin:8px 0 0;font-size:13.5px;font-weight:600;color:#cfd9f2;cursor:pointer}.rgacc-dlg .rgacc-show input{width:auto;margin:0;padding:0;accent-color:#f5c542}",
     ".rgacc-or{display:flex;align-items:center;gap:10px;margin:14px 0 0;color:#cfd9f2;font-size:13px}.rgacc-or::before,.rgacc-or::after{content:\"\";flex:1;height:1px;background:rgba(255,255,255,.25)}",
     ".rgacc-dlg .rgacc-hint{margin:0 0 12px;padding:10px 12px;border-radius:12px;background:rgba(245,197,66,.1);border:1px solid rgba(245,197,66,.35);color:#f3e6bf;font-size:13.5px}",
@@ -484,7 +485,18 @@
     "@media (prefers-reduced-motion:no-preference){.rgacc-dlg{animation:rgacc-in .2s ease-out}}@keyframes rgacc-in{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}"
   ].join("\n");
 
-  var buttons = [], back = null, step = "email", busy = false, msg = "", msgOk = false, emailDraft = "", lastFocus = null;
+  var buttons = [], back = null, step = "email", busy = false, msg = "", msgOk = false, emailDraft = "", lastFocus = null, fieldMemo = {};
+  function memoField(el) {
+    if (!el || !el.id || el.type === "checkbox" || el.id === "rgacc-code") return;
+    fieldMemo[el.id] = el.value;
+  }
+  function clearMemo() { fieldMemo = {}; }
+  function readField(form, id) {
+    var el = form && form.querySelector("#" + id);
+    var live = el ? String(el.value || "") : "";
+    var saved = fieldMemo[id] || "";
+    return live || saved;
+  }
   function injectCss() { if (document.getElementById("rgacc-css")) return; var s = document.createElement("style"); s.id = "rgacc-css"; s.textContent = CSS; (document.head || document.documentElement).appendChild(s); }
   function renderBtn(b) {
     var u = cur, L = t();
@@ -517,13 +529,26 @@
       back = document.createElement("div"); back.className = "rgacc-back"; back.hidden = true;
       back.addEventListener("click", function (e) { if (e.target === back) close(); else onClick(e); });
       back.addEventListener("submit", function (e) { e.preventDefault(); onSubmit(e.target); });
-      back.addEventListener("input", function (e) { // keep only the 6 digits of a typed / pasted code
-        var el = e.target; if (!el || el.id !== "rgacc-code") return;
-        var c = cleanCode(el.value).slice(0, 6); if (c !== el.value) el.value = c;
+      back.addEventListener("input", function (e) {
+        var el = e.target; if (!el) return;
+        if (el.id === "rgacc-code") {
+          var c = cleanCode(el.value).slice(0, 6); if (c !== el.value) el.value = c;
+          return;
+        }
+        memoField(el);
       });
-      back.addEventListener("change", function (e) { // "show password"
-        var el = e.target; if (!el || el.getAttribute("data-a") !== "showpw") return;
-        var ins = back.querySelectorAll("input[data-pw]"); for (var i = 0; i < ins.length; i++) ins[i].type = el.checked ? "text" : "password";
+      back.addEventListener("change", function (e) {
+        var el = e.target; if (!el) return;
+        if (el.getAttribute("data-a") === "showpw") {
+          var ins = back.querySelectorAll("input[data-pw]"), i, prev;
+          for (i = 0; i < ins.length; i++) {
+            prev = ins[i].value || fieldMemo[ins[i].id] || "";
+            ins[i].type = el.checked ? "text" : "password";
+            if (ins[i].value !== prev) ins[i].value = prev;
+          }
+          return;
+        }
+        memoField(el);
       });
       document.addEventListener("keydown", function (e) { if (e.key === "Escape" && back && !back.hidden) close(); });
       document.body.appendChild(back);
@@ -537,12 +562,28 @@
   function close() { if (back) back.hidden = true; busy = false; msg = ""; if (lastFocus && lastFocus.focus) try { lastFocus.focus(); } catch (e) {} }
   function renderDlg(focus) {
     if (!back || back.hidden) return;
+    if (back.getAttribute("data-step") === step && back.querySelector('form[data-f="' + step + '"]') && (step === "setpw" || step === "pw")) {
+      var err = back.querySelector(".rgacc-err");
+      if (err) { err.textContent = msg; err.classList.toggle("ok", !!msgOk); }
+      var goBtn = back.querySelector("form .rgacc-go");
+      if (goBtn) {
+        var Lb = t();
+        goBtn.disabled = !!busy;
+        goBtn.textContent = step === "setpw" ? (busy ? Lb.savingPw : Lb.savePw) : (busy ? Lb.pwGoing : Lb.pwGo);
+      }
+      return;
+    }
+    if (back.getAttribute("data-step") !== step) clearMemo();
     var L = t(), p = pending(), u = cur, h = "";
     var keep = back.querySelector("input"), kept = keep && keep.id === "rgacc-code" ? keep.value : null;
     var note = '<div class="rgacc-err' + (msgOk ? " ok" : "") + '" role="status" aria-live="polite">' + esc(msg) + "</div>";
     var go = function (txt) { return '<button class="rgacc-go" type="submit"' + (busy ? " disabled" : "") + ">" + esc(txt) + "</button>"; };
-    var emailIn = function (ac) { return '<label for="rgacc-email">' + esc(L.email) + '</label><input id="rgacc-email" type="email" inputmode="email" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" placeholder="name@example.com" value="' + esc(emailDraft || (p && p.email) || (u && u.email) || lsGet(LAST_KEY) || "") + '">'; };
-    var pwIn = function (id, lab, ac, cls) { return '<div class="' + (cls || "") + '"><label for="' + id + '">' + esc(lab) + '</label><input id="' + id + '" data-pw type="password" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" dir="ltr"></div>'; };
+    var emailIn = function (ac) {
+      var nm = ac === "username" ? "username" : "email";
+      return '<label for="rgacc-email">' + esc(L.email) + '</label><input id="rgacc-email" name="' + nm + '" type="email" inputmode="email" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" placeholder="name@example.com" value="' + esc(emailDraft || (p && p.email) || (u && u.email) || lsGet(LAST_KEY) || "") + '">';
+    };
+    var pwIn = function (id, name, lab, ac, cls) { return '<div class="' + (cls || "") + '"><label for="' + id + '">' + esc(lab) + '</label><input id="' + id + '" name="' + name + '" data-pw type="password" autocomplete="' + ac + '" autocapitalize="off" spellcheck="false" dir="ltr"></div>'; };
+    var userField = '<input id="rgacc-user" class="rgacc-user" name="username" type="text" autocomplete="username" readonly tabindex="-1" aria-hidden="true" value="' + esc((u && u.email) || "") + '">';
     var showPw = '<label class="rgacc-show"><input type="checkbox" data-a="showpw">' + esc(L.show) + "</label>";
     if (step === "email") {
       h = '<h2 id="rgacc-h">' + esc(L.head) + "</h2><ul>" + L.ben.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
@@ -551,7 +592,7 @@
         '<div class="rgacc-or">' + esc(L.or) + '</div><button type="button" class="rgacc-sec" data-a="pw">🔑 ' + esc(L.usePw) + "</button>";
     } else if (step === "pw") {
       h = '<h2 id="rgacc-h">' + esc(L.pwHead) + "</h2>" +
-        '<form data-f="pw" novalidate>' + emailIn("username") + pwIn("rgacc-pw", L.pw, "current-password", "rgacc-f2") + showPw +
+        '<form data-f="pw" method="post" action="#" novalidate>' + emailIn("username") + pwIn("rgacc-pw", "current-password", L.pw, "current-password", "rgacc-f2") + showPw +
         note + go(busy ? L.pwGoing : L.pwGo) + "</form>" +
         '<div class="rgacc-links"><button type="button" class="rgacc-lnk" data-a="forgot">' + esc(L.forgot) + "</button></div>" +
         '<p class="rgacc-hint" style="margin-top:12px">' + esc(L.pwNote) + "</p>" +
@@ -569,9 +610,9 @@
         note + go(L.save) + '</form><button type="button" class="rgacc-sec" data-a="skip">' + esc(L.skip) + "</button>";
     } else if (step === "setpw") {
       h = '<h2 id="rgacc-h">' + esc(hasPw ? L.chPw : L.setPw) + "</h2><p>" + esc(L.setPwSub) + "</p>" +
-        '<form data-f="setpw" novalidate><input type="email" autocomplete="username" value="' + esc((u && u.email) || "") + '" readonly hidden tabindex="-1" aria-hidden="true">' +
-        (hasPw ? pwIn("rgacc-oldpw", L.oldPw, "current-password", "") : "") +
-        pwIn("rgacc-newpw", L.newPw, "new-password", hasPw ? "rgacc-f2" : "") + pwIn("rgacc-newpw2", L.newPw2, "new-password", "rgacc-f2") + showPw +
+        '<form data-f="setpw" method="post" action="#" novalidate>' + userField +
+        (hasPw ? pwIn("rgacc-oldpw", "current-password", L.oldPw, "current-password", "") : "") +
+        pwIn("rgacc-newpw", "new-password", L.newPw, "new-password", hasPw ? "rgacc-f2" : "") + pwIn("rgacc-newpw2", "confirm-password", L.newPw2, "new-password", "rgacc-f2") + showPw +
         note + go(busy ? L.savingPw : L.savePw) + '</form><button type="button" class="rgacc-sec" data-a="back">' + esc(L.back) + "</button>";
     } else {
       h = '<h2 id="rgacc-h">' + esc(L.account) + '</h2><div class="rgacc-who"><span class="rgacc-av" aria-hidden="true">' + esc(initial(u)) + "</span><div><b>" + esc(L.hello + ", " + label(u)) + "</b><span>" + esc((u && u.email) || "") + "</span></div></div>" +
@@ -583,10 +624,15 @@
         '<button type="button" class="rgacc-go" data-a="out"' + (busy ? " disabled" : "") + ">" + esc(L.out) + "</button>";
     }
     back.innerHTML = '<div class="rgacc-dlg" role="dialog" aria-modal="true" aria-labelledby="rgacc-h" dir="' + (lang() === "he" ? "rtl" : "ltr") + '" lang="' + lang() + '"><button type="button" class="rgacc-x" data-a="close" aria-label="' + esc(L.close) + '">×</button>' + h + "</div>";
+    back.setAttribute("data-step", step);
+    ["rgacc-email", "rgacc-pw", "rgacc-oldpw", "rgacc-newpw", "rgacc-newpw2"].forEach(function (id) {
+      var keptPw = back.querySelector("#" + id);
+      if (keptPw && !keptPw.value && fieldMemo[id]) keptPw.value = fieldMemo[id];
+    });
     var ci = back.querySelector("#rgacc-code"); if (ci && kept) ci.value = kept;
     if (focus) {
       var i = (step === "pw" && back.querySelector("#rgacc-email") && back.querySelector("#rgacc-email").value ? back.querySelector("#rgacc-pw") : null) ||
-        back.querySelector("input:not([hidden]):not([type=checkbox])") || back.querySelector(".rgacc-go");
+        back.querySelector("input:not([type=checkbox]):not(.rgacc-user)") || back.querySelector(".rgacc-go");
       if (i) setTimeout(function () { try { i.focus(); } catch (e) {} }, 30);
     }
   }
@@ -607,11 +653,12 @@
       busy = true; renderDlg(false);
       sendCode(v).then(function () { busy = false; step = "code"; renderDlg(true); }, fail);
     } else if (kind === "pw") {
-      emailDraft = v;
-      var pw = val(f, "#rgacc-pw");
+      emailDraft = readField(f, "rgacc-email").trim() || v;
+      v = emailDraft;
+      var pw = readField(f, "rgacc-pw");
       if (!emailOk(v)) { msg = t().eEmail; renderDlg(true); return; }
       if (pw.length < 8) { msg = t().eCred; renderDlg(true); return; }
-      busy = true; renderDlg(false);   // the form is re-rendered, so the password is gone from the page; it only goes to Appwrite
+      busy = true; renderDlg(false);   // the password stays in the field until sign-in finishes, then only the value already read is sent
       loginPassword(v, pw).then(signedIn, fail); pw = "";
     } else if (kind === "code") {
       v = cleanCode(v);
@@ -623,7 +670,7 @@
       busy = true; renderDlg(false);
       setName(v).then(function () { busy = false; step = "account"; renderDlg(true); if (hasPw !== false) setTimeout(close, 1200); }, fail);
     } else if (kind === "setpw") {
-      var oldPw = hasPw ? val(f, "#rgacc-oldpw") : "", n1 = val(f, "#rgacc-newpw"), n2 = val(f, "#rgacc-newpw2");
+      var oldPw = hasPw ? readField(f, "rgacc-oldpw") : "", n1 = readField(f, "rgacc-newpw"), n2 = readField(f, "rgacc-newpw2");
       if (hasPw && !oldPw) { msg = t().eOldPw; renderDlg(true); return; }
       if (n1.length < 8) { msg = t().ePwShort; renderDlg(true); return; }
       if (n1 !== n2) { msg = t().ePwMatch; renderDlg(true); return; }
