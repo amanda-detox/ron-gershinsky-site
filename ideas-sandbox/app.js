@@ -1,6 +1,8 @@
 /* Sandbox of private Listify. App id sbxmyideas, storage prefix rg-sbx-ideas.
    Never reads or writes the live private Listify app id or its storage keys.
-   A blocked large deletion stays visible (with a confirm button) instead of שומר….
+   Same sync rules as the live app: union merge, and a large deletion asks before any upload.
+   Reads time out after 15s. Uploads get 60s, then a visible cutoff and a growing backoff.
+   «טען מהענן» replaces only this device, after a -bak copy, and never writes to the cloud.
    Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
      mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
@@ -26,7 +28,7 @@
   ];
   var KINDS = ["task", "idea", "goal"]; // old category kinds: still read and kept in the records, but every list now works the same
   var A = window.RGAccount, M = window.RGMy, t = M.t;
-  var uid, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
+  var uid = null, items = {}, seeded = false, pending = false, busy = false, again = false, offline = false, lastT = 0, soonT = 0;
   var editing = null, rendering = false;
   var tab = lsGet("rg-sbx-ideas-tab-cur") || lsGet("rg-sbx-ideas-tab") || "ideas", doneOpen = {};
   /* 3 list pickers (Ron 31.10): each list record may carry grp 2 or 3; no grp = picker 1, so old data stays in picker 1.
@@ -173,7 +175,8 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false;
+  var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -191,26 +194,70 @@
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
 
-  /* ---------- sync ---------- */
+  /* ---------- sync ----------
+     When tooManyGone blocks a cloud write, the question stays on screen until it is answered.
+     כן, העלי לענן uses the same 60s bulkOk window as deleting a whole list and uploads.
+     לא, שחזרי מחיקות puts cloud items back, keeps newer local edits and additions, then syncs.
+     Nothing in this path deletes on its own. A sync that is still held does not count as synced. */
   function statusFlags() {
-    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline };
+    return { maySync: !!uid, uid: uid, blocked: holdBlocked, bulkUntil: bulkOk, err: syncErr, onLine: typeof navigator === "undefined" || navigator.onLine !== false, failN: failN, pending: pending, busy: busy, offline: offline, uploadCut: uploadCut };
   }
   function confirmBlocked() {
+    if (window.RGSyncStatus) RGSyncStatus.closeDeletion();
     bulkOk = Date.now() + ((window.RGSyncStatus && RGSyncStatus.BULK_MS) || 60000);
     holdBlocked = false; syncErr = ""; offline = false; sync();
   }
+  function restoreBlocked() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeDeletion();
+    if (SS && blockedCloud) items = SS.restoreLive(items, blockedCloud);
+    snap = stamp(items, null);
+    holdBlocked = false; blockedCloud = null; pending = true; syncErr = ""; offline = false;
+    saveLocal(); render(); sync();
+  }
+  function lastSyncKey(id) { return (window.RGSyncStatus && RGSyncStatus.LAST_PREFIX || "rg-sbx-ideas-lastsync:") + id; }
+  function markLastSync() {
+    if (!uid) return;
+    lsSet(lastSyncKey(uid), String(Date.now()));
+    paintLastSync();
+  }
+  function paintLastSync() {
+    var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
+    if (!uid) {
+      if (el) el.textContent = "";
+      if (cl) cl.textContent = "";
+      return;
+    }
+    var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
+    if (el) el.textContent = ms && SS ? t("lastSync").replace("{t}", SS.formatSyncTime(ms)) : "";
+    if (cl) {
+      var cms = SS && SS.cloudUpdatedAt ? Date.parse(SS.cloudUpdatedAt) : NaN;
+      cl.textContent = cms && SS ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
+    }
+  }
+  function armBackoff(n) {
+    var ms = (window.RGSyncStatus && RGSyncStatus.backoffMs(n)) || 2000;
+    nextTry = Date.now() + ms;
+    clearTimeout(retryT);
+    retryT = setTimeout(function () { nextTry = 0; if (uid) sync(); }, ms);
+  }
   function setStatus() {
+    paintLastSync();
     var s = $("status"); if (!s) return;
     var SS = window.RGSyncStatus;
     if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); return; }
-    var k = SS.kind(statusFlags());
-    SS.fillStatus(s, k, k ? t(k) : "", k === "blocked" ? { label: t("blockedAct"), fn: confirmBlocked } : null);
+    var flags = statusFlags();
+    var k = SS.kind(flags);
+    SS.fillStatus(s, k, k ? t(k) : "");
+    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    else SS.closeDeletion();
   }
   function sync() {
     if (!uid || !A) return Promise.resolve();
+    if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, SS = window.RGSyncStatus;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
@@ -220,32 +267,103 @@
       items = merged; snap = stamp(items, null);
       seeded = true; // sandbox starts empty and does not insert the live app's sample task
       if (mergeGroups()) dirty = true;
-      if (dirty) { saveLocal(); render(); }
-      if (cloudSeeded && same(items, cl)) return;
-      if (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl)) {
-        blocked = true; holdBlocked = true; pending = true; saveLocal();
+      if (!(cloudSeeded && same(items, cl)) && (SS ? SS.tooManyGone(items, cl, Date.now(), bulkOk) : tooManyGone(items, cl))) {
+        blocked = true; holdBlocked = true; pending = true; phase = "held"; blockedCloud = cl;
+      }
+      if (dirty || blocked) { saveLocal(); render(); }
+      if (blocked) {
         try { console.warn("ideas sandbox: a write that removes most items was blocked; the cloud copy is untouched"); } catch (e) {}
         return;
       }
+      if (cloudSeeded && same(items, cl)) { phase = "same"; return; }
       holdBlocked = false;
+      if (SS) SS.closeDeletion();
       backup(cl);
       sent = items;
+      phase = "upload";
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
     }).then(function () {
       if (who !== uid) return;
       var sentSame = !sent || sent === items;
       var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
-      if (blocked) return; // keep pending: the cloud copy stays as it was, and the phone's lists stay on this device
+      if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
+      if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
+      if (SS && SS.shouldStampSync({
+        downloaded: true,
+        uploaded: phase === "upload",
+        nothingToUpload: phase === "same",
+        blocked: false,
+        failed: false,
+        pendingLeft: !next.clearPending
+      })) markLastSync();
     }, function (e) {
       if (who !== uid) return;
-      if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
-      var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
+      if (e && (e.code === "signed_out" || e.type === "signed_out")) { offline = false; syncErr = ""; uploadCut = false; return; }
+      var onLine = typeof navigator === "undefined" || navigator.onLine !== false;
+      var next = SS ? SS.applyFailure({ failN: failN }, e, onLine) : { offline: true, syncErr: "", failN: failN };
       offline = next.offline; syncErr = next.syncErr; failN = next.failN;
+      var cls = SS ? SS.classifyError(e) : "";
+      if (cls === "timeout") {
+        if (phase === "upload") uploadCut = true;
+        armBackoff(failN);
+      }
     }).then(function () {
       busy = false; setStatus();
       if (again && who === uid) { again = false; sync(); }
+    });
+  }
+  function cloudLoadUsed() { return !!(uid && lsGet("rg-sbx-ideas-loadcloud:" + uid) === "1"); }
+  function injectLoadBtn() {
+    var existing = document.querySelector("[data-a=loadcloud]");
+    if (!uid || cloudLoadUsed()) {
+      if (existing && existing.parentNode) existing.parentNode.removeChild(existing);
+      return;
+    }
+    var dlg = document.querySelector(".rgacc-dlg");
+    if (!dlg || dlg.querySelector("[data-a=loadcloud]")) return;
+    var exp = dlg.querySelector('[data-a="export"]');
+    if (!exp) return;
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "rgacc-sec";
+    b.setAttribute("data-a", "loadcloud");
+    b.textContent = t("loadCloud");
+    exp.insertAdjacentElement("afterend", b);
+  }
+  /* One explicit replace of this device's copy. get() only. The previous local copy is the -bak key. */
+  function loadFromCloud() {
+    var SS = window.RGSyncStatus;
+    if (SS) SS.closeLoadAsk();
+    if (!uid || !A || !SS || loadingCloud) return Promise.resolve();
+    loadingCloud = true;
+    var who = uid;
+    return SS.loadCloudCopy({
+      local: items,
+      get: function () { return A.get(APP, KEY); },
+      set: function () { var err = new Error("load from cloud must not write"); err.code = "cloud_write"; throw err; },
+      saveBak: function (snapLocal) {
+        localStorage.setItem(cacheKey(who) + (SS.BAK_SUFFIX || "-bak"), JSON.stringify({ t: Date.now(), items: snapLocal, pending: pending, seeded: seeded }));
+      }
+    }).then(function (res) {
+      loadingCloud = false;
+      if (who !== uid || !res || res.wrote) return;
+      items = res.items || {};
+      seeded = !!(res.seeded || seeded);
+      pending = false;
+      holdBlocked = false;
+      blockedCloud = null;
+      uploadCut = false;
+      snap = stamp(items, null);
+      saveLocal();
+      lsSet("rg-sbx-ideas-loadcloud:" + who, "1");
+      if (SS.shouldStampSync({ downloaded: true, uploaded: false, nothingToUpload: true, blocked: false, failed: false, pendingLeft: false })) markLastSync();
+      render();
+      injectLoadBtn();
+    }, function () {
+      loadingCloud = false;
+      setStatus();
     });
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
@@ -253,7 +371,7 @@
 
   setInterval(function () { if (uid && document.visibilityState === "visible" && !editing) sync(); }, POLL_MS);
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") sync(); });
-  window.addEventListener("online", function () { offline = false; if (uid) sync(); });
+  window.addEventListener("online", function () { offline = false; nextTry = 0; clearTimeout(retryT); if (uid) sync(); });
   window.addEventListener("offline", function () { offline = true; syncErr = ""; setStatus(); });
 
   /* ---------- actions (every change makes a new copy of the item, so "items" identity changes too) ----------
@@ -970,15 +1088,26 @@
       else if (a === "del") askDel(id);
     });
     M.onLang(render);
+    document.addEventListener("click", function (e) {
+      var b = e.target && e.target.closest && e.target.closest("[data-a=loadcloud]");
+      if (!b) return;
+      e.preventDefault();
+      e.stopPropagation();
+      if (window.RGSyncStatus) RGSyncStatus.openLoadAsk({ onYes: loadFromCloud });
+    }, true);
+    try { new MutationObserver(function () { injectLoadBtn(); }).observe(document.documentElement, { childList: true, subtree: true }); } catch (e) {}
+    if (window.RGSyncStatus && RGSyncStatus.watchCloudUpdated) RGSyncStatus.watchCloudUpdated(function () { paintLastSync(); });
     function onUser(u) {
       var id = u ? u.id : null; if (id === uid) return;
       if (!id && uid) { var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null); } // signed out: drop this sandbox copy unless unsynced
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; loadLocal(); render();
+      if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; loadLocal(); render();
       if (uid) sync(); else setStatus();
     }
     onUser(A.user());
     A.onChange(onUser);
-    A.ready.then(function () { onUser(A.user()); });
+    A.ready.then(function () { onUser(A.user()); if (!uid) setStatus(); });
+    if (!uid) setStatus();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
