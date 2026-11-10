@@ -1,5 +1,5 @@
-/* The private apps, listed once for the home page's "My private apps" section (shown only to the site owner, see OWNER_IDS in ../index.html).
-   Paths and icons are relative to this my/ folder. Add a new private app here and it shows up on the home page for the owner.
+/* Personal apps for a signed-in home list (../index.html). Paths and icons are relative to this my/ folder.
+   A guest does not see these tiles; they see the public copy. A signed-in account sees these instead of the public twin.
    hidden: true keeps an app off the list (its files stay); remove the flag to show it again. Clockify hidden 2026-10-28. */
 window.RGMY_APPS = {
   title: { he: "האפליקציות הפרטיות שלי", en: "My private apps" },
