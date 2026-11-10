@@ -102,14 +102,14 @@ assert(statusSrc.indexOf("השאר את הענן") !== -1 && statusSrc.indexOf("
 var css = statusSrc.slice(statusSrc.indexOf(".rg-delask-back"), statusSrc.indexOf("@media"));
 assert(statusSrc.indexOf("לחתוך") === -1 && css.indexOf("red") === -1 && css.indexOf("orange") === -1 && css.indexOf("#") === -1, "the popup adds no violent wording and no red, orange, or extra colors");
 assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap targets");
-assert(liveHtml.indexOf("rg-sync-status.js?v=3") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=3") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
+assert(liveHtml.indexOf("rg-sync-status.js?v=8") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=8") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live private Listify does not load sandbox scripts or the sandbox banner");
 assert(liveHtml.indexOf("<title>Listify</title>") !== -1, "the browser tab stays Listify in English");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v54"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
+assert(liveSw.indexOf('CACHE = "rg-myideas-v55"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
 assert(liveHtml.indexOf('updateViaCache:"none"') !== -1 && liveHtml.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1, "a new version reloads only when local edits are safe");
 assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפס"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveHtml.indexOf('id="hist-btn"') !== -1 && liveHtml.indexOf('id="restore-file"') !== -1, "version history and file restore are on the live page");
-assert(liveSw.indexOf("rg-sync-status.js?v=3") !== -1 && liveSw.indexOf("app.js?v=43") !== -1 && liveSw.indexOf("restore.js?v=1") !== -1, "the service worker precaches the new helper and app");
+assert(liveSw.indexOf("rg-sync-status.js?v=8") !== -1 && liveSw.indexOf("app.js?v=55") !== -1 && liveSw.indexOf("restore.js?v=1") !== -1, "the service worker precaches the new helper and app");
 
 function never() { return new Promise(function () {}); }
 SS.fetchWithTimeout(never, "/x", {}, 30).then(function () {
