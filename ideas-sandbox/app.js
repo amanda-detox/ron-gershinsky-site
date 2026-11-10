@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v17";
+  var BUILD = "rg-sbx-ideas-v18";
   /* #build is the sandbox version line (class lastsync, same quiet style as the sync clock).
      Live Listify does not show it yet. A later promotion reuses RGSyncStatus.paintVersion on that same element. */
   function paintBuild() {
@@ -624,6 +624,8 @@
     if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
     var impact = SS.restoreImpact ? SS.restoreImpact(items, plan.items) : { warn: false };
     function apply() {
+      var beforeItems;
+      try { beforeItems = JSON.parse(JSON.stringify(items)); } catch (e) { beforeItems = items; }
       history = plan.history;
       saveHistory();
       armQuietRestore();
@@ -639,15 +641,27 @@
       render();
       sync();
       pushHistoryCloud();
+      toast(SS.RESTORE_TOAST || "שוחזר.", function () {
+        fileGen++;
+        restoreDoc = null;
+        quietRestore = false;
+        items = beforeItems;
+        snap = stamp(items, null);
+        pending = true;
+        holdBlocked = false;
+        blockedCloud = null;
+        overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+        saveLocal();
+        render();
+        sync();
+      }, 10000);
     }
     if (impact.warn) {
-      if (!SS.openChoice || !SS.restoreWarning) { toast(t("historyFail")); return; }
-      SS.openChoice({
-        question: SS.restoreWarning(impact),
-        yes: SS.RESTORE_CANCEL,
-        no: SS.RESTORE_GO,
-        onYes: function () {},
-        onNo: apply
+      if (!SS.openRestoreAsk) { toast(t("historyFail")); return; }
+      SS.openRestoreAsk({
+        impact: impact,
+        onCancel: function () {},
+        onRestore: apply
       });
       return;
     }
@@ -917,13 +931,13 @@
       else { el.style.transform = ""; el.style.opacity = ""; toastT = setTimeout(function () { toastHide(el); }, 3000); } }
     el.addEventListener("pointerup", end); el.addEventListener("pointercancel", end);
   }
-  function toast(msg, undo) {
+  function toast(msg, undo, ms) {
     var el = $("toast"); if (!el) { el = document.createElement("div"); el.id = "toast"; el.className = "toast"; el.setAttribute("role", "status"); el.setAttribute("aria-live", "polite"); document.body.appendChild(el); }
     toastSwipe(el); el.style.transform = ""; el.style.opacity = "";
     el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>" + (undo ? '<button type="button" class="tundo">' + esc(t("undo")) + '</button><button type="button" class="tx" aria-label="close">✕</button>' : "");
     el.classList.toggle("act", !!undo);
     if (undo) { el.querySelector(".tundo").addEventListener("click", function () { toastHide(el); undo(); }); el.querySelector(".tx").addEventListener("click", function () { toastHide(el); }); }
-    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { toastHide(el); }, undo ? 5000 : 2200);
+    el.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { toastHide(el); }, ms || (undo ? 5000 : 2200));
   }
   function delWithUndo(id) {
     var x = items[id]; if (!x || x.deleted) return;

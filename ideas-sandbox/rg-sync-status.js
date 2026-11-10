@@ -360,22 +360,49 @@
     var next = pushHistory(src, current, now, true, hit ? { keepId: hit.id } : null);
     return { history: next, items: saved, savedCurrent: true, found: !!hit };
   }
+  function liveItemList(items) {
+    var out = [], k, x;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.gone || x.type === "cat" || x.type === "meta" || !x.sec) continue;
+      out.push({ id: x.id || k, text: String(x.text || x.name || x.id || k) });
+    }
+    return out;
+  }
   /* History restore that drops live items, or leaves a list with none, must be confirmed first. */
   function restoreImpact(current, snapshot) {
+    var cur = liveItemList(current), next = liveItemList(snapshot), nextIds = {}, curIds = {}, i, removed = [], added = 0;
     var report = dropReport(snapshot, current);
-    var removed = report.itemsDeleted, emptied = report.listsEmptied;
-    return { removed: removed, emptied: emptied, warn: removed > 0 || emptied > 0 };
+    for (i = 0; i < next.length; i++) nextIds[next[i].id] = 1;
+    for (i = 0; i < cur.length; i++) {
+      curIds[cur[i].id] = 1;
+      if (!nextIds[cur[i].id]) removed.push(cur[i].text);
+    }
+    for (i = 0; i < next.length; i++) if (!curIds[next[i].id]) added++;
+    return {
+      kept: next.length, removed: removed.length, added: added, emptied: report.listsEmptied,
+      names: removed, warn: removed.length > 0 || report.listsEmptied > 0
+    };
   }
-  function itemsPhrase(n) { return n === 1 ? "פריט 1" : n + " פריטים"; }
-  function restoreWarning(impact) {
+  function restorePreview(impact) {
     impact = impact || {};
-    var n = impact.removed || 0, k = impact.emptied || 0, msg;
-    if (n > 0 && k === 1) msg = "השחזור יסיר " + itemsPhrase(n) + ", ורשימה אחת תישאר ריקה.";
-    else if (n > 0 && k > 1) msg = "השחזור יסיר " + itemsPhrase(n) + ", ו-" + k + " רשימות יישארו ריקות.";
-    else if (n > 0) msg = "השחזור יסיר " + itemsPhrase(n) + ".";
-    else msg = k === 1 ? "השחזור ישאיר רשימה אחת ריקה." : "השחזור ישאיר " + k + " רשימות ריקות.";
-    return msg + " ביטול ישאיר את הנתונים כמו שהם.";
+    var names = impact.names || [], shown = names.slice(0, 3), more = names.length > 3 ? names.length - 3 : 0;
+    var kept = impact.kept || 0, removed = impact.removed || 0, added = impact.added || 0;
+    return {
+      title: "לשחזר את הגרסה הזו?",
+      summary: "אחרי השחזור יישארו " + kept + " פריטים. יוסרו " + removed + " ויתווספו " + added + ".",
+      empty: kept === 0,
+      emptyLabel: "הרשימה תתרוקן.",
+      names: shown,
+      more: more,
+      moreLabel: more ? "ועוד " + more : "",
+      go: "שחזור",
+      cancel: "ביטול",
+      focusCancel: removed > 0
+    };
   }
+  function restoreWarning(impact) { return restorePreview(impact).summary; }
   /* Same quiet line the sandbox already shows. A later live promotion can call this on #build. */
   function paintVersion(doc, id, build) {
     var el = doc && doc.getElementById ? doc.getElementById(id || "build") : null;
@@ -579,8 +606,11 @@
   var ASK_Q = "העותק במכשיר הזה ישן או מוחק רשימות מול הענן. להשאיר את הענן כמו שהוא?";
   var ASK_YES = "השאר את הענן";
   var ASK_NO = "העלה בכל זאת";
-  var RESTORE_CANCEL = "בטל";
-  var RESTORE_GO = "שחזר בכל זאת";
+  var RESTORE_CANCEL = "ביטול";
+  var RESTORE_GO = "שחזור";
+  var RESTORE_TITLE = "לשחזר את הגרסה הזו?";
+  var RESTORE_EMPTY = "הרשימה תתרוקן.";
+  var RESTORE_TOAST = "שוחזר.";
   var LOAD_Q = "להחליף את הרשימות שבמכשיר הזה בעותק מהענן? העותק הנוכחי יישמר כגיבוי במכשיר, והענן לא ייכתב.";
   var LOAD_YES = "טען מהענן";
   var LOAD_NO = "ביטול";
@@ -671,6 +701,94 @@
   function closeLoadAsk() {
     loadOpts = null;
     removeNode("rg-loadask-back");
+  }
+  function ensureRestoreCss(doc) {
+    if (!doc || doc.getElementById("rg-restore-css")) return;
+    var st = doc.createElement("style");
+    st.id = "rg-restore-css";
+    st.textContent = ""
+      + ".rg-restore-back{position:fixed;inset:0;z-index:2147483600;display:flex;align-items:flex-end;justify-content:center;padding:12px;background:color-mix(in srgb, var(--bg) 45%, transparent)}"
+      + ".rg-restore{width:100%;max-width:440px;margin:0;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow);text-align:start}"
+      + ".rg-restore h3{margin:0 0 12px;font:800 18px/1.35 var(--sans);color:var(--fg)}"
+      + ".rg-restore-sum{margin:0 0 12px;font:600 16px/1.45 var(--sans);color:var(--fg)}"
+      + ".rg-restore-empty{margin:0 0 12px;font-weight:800;font-size:17px;line-height:1.4;color:var(--accent)}"
+      + ".rg-restore-gone{margin:0 0 8px;padding:0;list-style:none}"
+      + ".rg-restore-gone li{color:var(--muted);text-decoration:line-through;font:600 16px/1.45 var(--sans)}"
+      + ".rg-restore-more{margin:0 0 12px;color:var(--muted);font:600 15px/1.4 var(--sans)}"
+      + ".rg-restore button{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;margin:8px 0 0;padding:0 16px;border-radius:12px;font:800 17px/1.2 var(--sans);cursor:pointer}"
+      + ".rg-restore-go{background:var(--accent);color:var(--accentink);border:0}"
+      + ".rg-restore-cancel{background:var(--card);color:var(--fg);border:1px solid var(--line)}";
+    (doc.head || doc.documentElement).appendChild(st);
+  }
+  function closeRestoreAsk() { removeNode("rg-restore-back"); }
+  function openRestoreAsk(opts) {
+    opts = opts || {};
+    var doc = root.document;
+    if (!doc || !doc.body) return;
+    closeRestoreAsk();
+    ensureRestoreCss(doc);
+    var view = opts.view || restorePreview(opts.impact || {});
+    var back = doc.createElement("div");
+    back.id = "rg-restore-back";
+    back.className = "rg-restore-back";
+    var box = doc.createElement("div");
+    box.className = "rg-restore";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.setAttribute("dir", "rtl");
+    box.setAttribute("aria-labelledby", "rg-restore-title");
+    var title = doc.createElement("h3");
+    title.id = "rg-restore-title";
+    title.textContent = view.title || RESTORE_TITLE;
+    var sum = doc.createElement("p");
+    sum.className = "rg-restore-sum";
+    sum.textContent = view.summary || "";
+    function finish(fn) {
+      closeRestoreAsk();
+      if (typeof fn === "function") fn();
+    }
+    var go = doc.createElement("button");
+    go.type = "button";
+    go.className = "rg-restore-go";
+    go.textContent = view.go || RESTORE_GO;
+    var cancel = doc.createElement("button");
+    cancel.type = "button";
+    cancel.className = "rg-restore-cancel";
+    cancel.textContent = view.cancel || RESTORE_CANCEL;
+    go.addEventListener("click", function () { finish(opts.onRestore); });
+    cancel.addEventListener("click", function () { finish(opts.onCancel); });
+    box.addEventListener("keydown", function (e) { if (e && e.key === "Escape") finish(opts.onCancel); });
+    back.addEventListener("click", function (e) { if (e.target === back && e.preventDefault) e.preventDefault(); });
+    box.appendChild(title);
+    box.appendChild(sum);
+    if (view.empty) {
+      var empty = doc.createElement("p");
+      empty.className = "rg-restore-empty";
+      empty.textContent = view.emptyLabel || RESTORE_EMPTY;
+      box.appendChild(empty);
+    }
+    if (view.names && view.names.length) {
+      var ul = doc.createElement("ul");
+      ul.className = "rg-restore-gone";
+      var n;
+      for (n = 0; n < view.names.length; n++) {
+        var li = doc.createElement("li");
+        li.textContent = view.names[n];
+        ul.appendChild(li);
+      }
+      box.appendChild(ul);
+    }
+    if (view.moreLabel) {
+      var more = doc.createElement("p");
+      more.className = "rg-restore-more";
+      more.textContent = view.moreLabel;
+      box.appendChild(more);
+    }
+    box.appendChild(go);
+    box.appendChild(cancel);
+    back.appendChild(box);
+    doc.body.appendChild(back);
+    try { (view.focusCancel ? cancel : go).focus(); } catch (e) {}
   }
   function closeChoice() { removeNode("rg-choice-back"); }
   function openChoice(opts) {
@@ -828,7 +946,13 @@
     pushHistory: pushHistory,
     planRestore: planRestore,
     restoreImpact: restoreImpact,
+    restorePreview: restorePreview,
     restoreWarning: restoreWarning,
+    openRestoreAsk: openRestoreAsk,
+    closeRestoreAsk: closeRestoreAsk,
+    RESTORE_TITLE: RESTORE_TITLE,
+    RESTORE_EMPTY: RESTORE_EMPTY,
+    RESTORE_TOAST: RESTORE_TOAST,
     paintVersion: paintVersion,
     RESTORE_CANCEL: RESTORE_CANCEL,
     RESTORE_GO: RESTORE_GO,

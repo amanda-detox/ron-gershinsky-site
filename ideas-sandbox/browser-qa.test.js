@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v17"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v17");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v18"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v18");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=54") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=10") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v17"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v18"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -279,12 +279,34 @@ async function main() {
     await warnPage.waitForSelector('[data-s="r:empty-row"]');
     await warnPage.waitForTimeout(1000);
     await warnPage.click('[data-s="r:empty-row"]');
-    await warnPage.waitForSelector("#rg-choice-back");
-    var warnText = await warnPage.locator("#rg-choice-back").innerText();
-    check(warnText.indexOf("1") !== -1 && warnText.indexOf("ריקה") !== -1 && warnText.indexOf("בטל") !== -1 && warnText.indexOf("שחזר בכל זאת") !== -1, "restoring an empty version warns how many items would be removed");
+    await warnPage.waitForSelector("#rg-restore-back");
+    var warnText = await warnPage.locator("#rg-restore-back").innerText();
+    var warnLook = await warnPage.evaluate(function () {
+      function nums(rgb) { var m = String(rgb || "").match(/\d+/g); return m ? m.slice(0, 3).map(Number) : [0, 0, 0]; }
+      function red(rgb) { var c = nums(rgb); return c[0] > 180 && c[1] < 90 && c[2] < 90; }
+      var box = document.querySelector(".rg-restore");
+      var empty = document.querySelector(".rg-restore-empty");
+      var gone = document.querySelector(".rg-restore-gone li");
+      var go = document.querySelector(".rg-restore-go");
+      var cancel = document.querySelector(".rg-restore-cancel");
+      var bs = getComputedStyle(box), es = getComputedStyle(empty), gs = getComputedStyle(gone), gos = getComputedStyle(go);
+      var buttons = Array.prototype.map.call(box.querySelectorAll("button"), function (b) { return b.textContent; });
+      return {
+        dir: box.getAttribute("dir"),
+        radius: bs.borderRadius, pad: bs.padding,
+        emptyWeight: es.fontWeight, emptyRed: red(es.color),
+        strike: gs.textDecoration.indexOf("line-through") !== -1, goneRed: red(gs.color),
+        goRed: red(gos.backgroundColor),
+        buttons: buttons.join("|"),
+        focus: document.activeElement ? document.activeElement.textContent : "",
+        sheetBottom: box.getBoundingClientRect().bottom >= window.innerHeight - 24
+      };
+    });
+    check(warnText.indexOf("לשחזר את הגרסה הזו?") !== -1 && warnText.indexOf("אחרי השחזור יישארו 0 פריטים. יוסרו 1 ויתווספו 0.") !== -1 && warnText.indexOf("הרשימה תתרוקן.") !== -1 && warnText.indexOf("KEEP-ME") !== -1, "the dialog states the counts and the item that would be removed");
+    check(warnLook.dir === "rtl" && warnLook.buttons === "שחזור|ביטול" && warnLook.focus === "ביטול" && warnLook.radius === "12px" && warnLook.pad === "20px" && warnLook.sheetBottom && warnLook.strike && !warnLook.emptyRed && !warnLook.goneRed && !warnLook.goRed && Number(warnLook.emptyWeight) >= 700, "the sheet is a bottom sheet, cancel is focused, and the warning uses the existing accent");
     await warnPage.screenshot({ path: "/opt/cursor/artifacts/restore-warning.png" });
-    await warnPage.locator("#rg-choice-back button.yes").click();
-    await warnPage.waitForFunction(function () { return !document.getElementById("rg-choice-back"); });
+    await warnPage.locator("#rg-restore-back .rg-restore-cancel").click();
+    await warnPage.waitForFunction(function () { return !document.getElementById("rg-restore-back"); });
     var afterCancel = await warnPage.evaluate(function (uid) {
       var raw = localStorage.getItem("rg-sbx-ideas-v1:" + uid);
       var hist = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
@@ -293,13 +315,19 @@ async function main() {
     }, UID);
     check(afterCancel.kept && afterCancel.cache && afterCancel.rows === 1, "cancel leaves the item and the history unchanged");
     await warnPage.click('[data-s="r:empty-row"]');
-    await warnPage.waitForSelector("#rg-choice-back button.no");
-    await warnPage.locator("#rg-choice-back button.no").click();
+    await warnPage.waitForSelector("#rg-restore-back .rg-restore-go");
+    await warnPage.locator("#rg-restore-back .rg-restore-go").click();
     await warnPage.waitForFunction(function () {
       var body = document.body ? document.body.innerText : "";
-      return body.indexOf("KEEP-ME") === -1;
+      return body.indexOf("KEEP-ME") === -1 && body.indexOf("שוחזר") !== -1;
     });
-    check(true, "confirming the warning applies the empty version");
+    check(true, "confirming the warning applies the empty version and shows the undo toast");
+    await warnPage.locator("#toast .tundo").click();
+    await warnPage.waitForFunction(function () {
+      var body = document.body ? document.body.innerText : "";
+      return body.indexOf("KEEP-ME") !== -1;
+    });
+    check(true, "undo within the toast puts the removed item back");
     check(warnErr.length === 0, "the restore-warning page runs without a script error");
     if (warnErr.length) console.error(warnErr.join(" | "));
     await warn.close();
