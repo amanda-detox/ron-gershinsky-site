@@ -121,6 +121,8 @@
 
   function tooManyGone(next, cloud, now, bulkUntil) {
     if (typeof bulkUntil === "number" && now < bulkUntil) return false;
+    var report = dropReport(next, cloud);
+    if (report.listsEmptied >= 1 || (report.cloudItems >= 1 && report.nextItems === 0)) return true;
     var before = liveCount(cloud), gone = before - liveCount(next);
     return before >= 4 && gone >= 3 && gone * 2 > before;
   }
@@ -259,6 +261,34 @@
     return ids;
   }
   function summarize(items) { return { lists: listIds(items).length, items: itemIds(items).length }; }
+  /* Live items per visible list. A list that had items and then has none was emptied. */
+  function itemCountsByList(items) {
+    var gone = {}, counts = {}, k, x, i;
+    items = items && typeof items === "object" ? items : {};
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || typeof x.cat !== "string") continue;
+      if (x.gone) gone[x.cat] = 1;
+    }
+    for (i = 0; i < BUILTINS.length; i++) if (!gone[BUILTINS[i]]) counts[BUILTINS[i]] = 0;
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.type !== "cat" || x.gone || typeof x.cat !== "string") continue;
+      if (counts[x.cat] == null) counts[x.cat] = 0;
+    }
+    for (k in items) {
+      x = items[k];
+      if (!x || x.deleted || x.gone || x.type === "cat" || x.type === "meta" || !x.sec || gone[x.sec]) continue;
+      if (counts[x.sec] == null) counts[x.sec] = 0;
+      counts[x.sec]++;
+    }
+    return counts;
+  }
+  function countListsEmptied(next, cloud) {
+    var before = itemCountsByList(cloud), after = itemCountsByList(next), n = 0, id;
+    for (id in before) if (before[id] >= 1 && !(after[id] >= 1)) n++;
+    return n;
+  }
   /* What an upload would remove compared with the cloud copy. */
   function dropReport(next, cloud) {
     var cloudLists = listIds(cloud), nextLists = listIds(next), i, set = {}, listsHidden = 0;
@@ -270,6 +300,7 @@
     var cloudLive = liveCount(cloud), nextLive = liveCount(next);
     return {
       listsHidden: listsHidden, itemsDeleted: itemsDeleted, liveDrop: cloudLive - nextLive,
+      listsEmptied: countListsEmptied(next, cloud),
       cloudLists: cloudLists.length, nextLists: nextLists.length,
       cloudItems: cloudItems.length, nextItems: nextItems.length,
       cloudLive: cloudLive, nextLive: nextLive
@@ -286,7 +317,9 @@
     var listsBig = report.listsHidden >= 2 || (report.cloudLists >= 4 && report.listsHidden >= 1 && report.listsHidden * 2 > report.cloudLists);
     var itemsBig = report.cloudItems >= 4 && report.itemsDeleted >= 3 && report.itemsDeleted * 2 > report.cloudItems;
     var countBig = report.cloudLive >= 4 && report.liveDrop >= 3 && report.liveDrop * 2 > report.cloudLive;
-    if (listsBig || itemsBig || countBig) return { hold: true, reason: "drop" };
+    /* A percentage rule never sees a 1-item list. Emptying any list, including that one, is still a drop. */
+    var smallEmpty = report.listsEmptied >= 1 || (report.cloudItems >= 1 && report.nextItems === 0);
+    if (listsBig || itemsBig || countBig || smallEmpty) return { hold: true, reason: "drop" };
     var last = meta.lastSync || 0, cloudAt = meta.cloudUpdated || 0;
     var stale = last > 0 && cloudAt > last && now - last >= STALE_MS;
     var loss = report.listsHidden >= 1 || report.itemsDeleted >= 1 || report.liveDrop >= 1;
@@ -326,6 +359,28 @@
     var saved = hit ? cloneDoc(hit.data) : null;
     var next = pushHistory(src, current, now, true, hit ? { keepId: hit.id } : null);
     return { history: next, items: saved, savedCurrent: true, found: !!hit };
+  }
+  /* History restore that drops live items, or leaves a list with none, must be confirmed first. */
+  function restoreImpact(current, snapshot) {
+    var report = dropReport(snapshot, current);
+    var removed = report.itemsDeleted, emptied = report.listsEmptied;
+    return { removed: removed, emptied: emptied, warn: removed > 0 || emptied > 0 };
+  }
+  function itemsPhrase(n) { return n === 1 ? "פריט 1" : n + " פריטים"; }
+  function restoreWarning(impact) {
+    impact = impact || {};
+    var n = impact.removed || 0, k = impact.emptied || 0, msg;
+    if (n > 0 && k === 1) msg = "השחזור יסיר " + itemsPhrase(n) + ", ורשימה אחת תישאר ריקה.";
+    else if (n > 0 && k > 1) msg = "השחזור יסיר " + itemsPhrase(n) + ", ו-" + k + " רשימות יישארו ריקות.";
+    else if (n > 0) msg = "השחזור יסיר " + itemsPhrase(n) + ".";
+    else msg = k === 1 ? "השחזור ישאיר רשימה אחת ריקה." : "השחזור ישאיר " + k + " רשימות ריקות.";
+    return msg + " ביטול ישאיר את הנתונים כמו שהם.";
+  }
+  /* Same quiet line the sandbox already shows. A later live promotion can call this on #build. */
+  function paintVersion(doc, id, build) {
+    var el = doc && doc.getElementById ? doc.getElementById(id || "build") : null;
+    if (el && build) el.textContent = build;
+    return build || "";
   }
   /* A restored record must be newer than the cloud copy, or the next merge puts the cloud back. */
   function freshenRecord(rec, at) {
@@ -524,6 +579,8 @@
   var ASK_Q = "העותק במכשיר הזה ישן או מוחק רשימות מול הענן. להשאיר את הענן כמו שהוא?";
   var ASK_YES = "השאר את הענן";
   var ASK_NO = "העלה בכל זאת";
+  var RESTORE_CANCEL = "בטל";
+  var RESTORE_GO = "שחזר בכל זאת";
   var LOAD_Q = "להחליף את הרשימות שבמכשיר הזה בעותק מהענן? העותק הנוכחי יישמר כגיבוי במכשיר, והענן לא ייכתב.";
   var LOAD_YES = "טען מהענן";
   var LOAD_NO = "ביטול";
@@ -770,6 +827,11 @@
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
     pushHistory: pushHistory,
     planRestore: planRestore,
+    restoreImpact: restoreImpact,
+    restoreWarning: restoreWarning,
+    paintVersion: paintVersion,
+    RESTORE_CANCEL: RESTORE_CANCEL,
+    RESTORE_GO: RESTORE_GO,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
     sameDeviceEdits: sameDeviceEdits,

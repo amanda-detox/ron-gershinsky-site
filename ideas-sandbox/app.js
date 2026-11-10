@@ -22,8 +22,13 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v16";
-  function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  var BUILD = "rg-sbx-ideas-v17";
+  /* #build is the sandbox version line (class lastsync, same quiet style as the sync clock).
+     Live Listify does not show it yet. A later promotion reuses RGSyncStatus.paintVersion on that same element. */
+  function paintBuild() {
+    if (window.RGSyncStatus && RGSyncStatus.paintVersion) RGSyncStatus.paintVersion(document, "build", BUILD);
+    else { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  }
   paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },
@@ -617,21 +622,36 @@
     if (!SS || !SS.planRestore) { toast(t("historyFail")); return; }
     var plan = SS.planRestore(history, items, id, Date.now());
     if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
-    history = plan.history;
-    saveHistory();
-    armQuietRestore();
-    restoreDoc = plan.items;
-    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
-    snap = stamp(items, null);
-    pending = true;
-    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
-    holdBlocked = false;
-    blockedCloud = null;
-    saveLocal();
-    closeSheet();
-    render();
-    sync();
-    pushHistoryCloud();
+    var impact = SS.restoreImpact ? SS.restoreImpact(items, plan.items) : { warn: false };
+    function apply() {
+      history = plan.history;
+      saveHistory();
+      armQuietRestore();
+      restoreDoc = plan.items;
+      items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
+      snap = stamp(items, null);
+      pending = true;
+      overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+      holdBlocked = false;
+      blockedCloud = null;
+      saveLocal();
+      closeSheet();
+      render();
+      sync();
+      pushHistoryCloud();
+    }
+    if (impact.warn) {
+      if (!SS.openChoice || !SS.restoreWarning) { toast(t("historyFail")); return; }
+      SS.openChoice({
+        question: SS.restoreWarning(impact),
+        yes: SS.RESTORE_CANCEL,
+        no: SS.RESTORE_GO,
+        onYes: function () {},
+        onNo: apply
+      });
+      return;
+    }
+    apply();
   }
   function openHistory(fromPull) {
     var SS = window.RGSyncStatus;

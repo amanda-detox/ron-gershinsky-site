@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v16"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v16");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v17"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v17");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=53") !== -1 && srcs.indexOf("rg-sync-status.js?v=8") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=54") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v16"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v17"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -262,6 +262,47 @@ async function main() {
     check(oldErr.length === 0, "the oldest-restore page runs without a script error");
     if (oldErr.length) console.error(oldErr.join(" | "));
     await old.close();
+
+    var emptySnaps = [{ id: "empty-row", t: 1000, lists: 3, items: 0, data: {} }];
+    var warn = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+    var warnPage = await warn.newPage();
+    var warnErr = [];
+    warnPage.on("pageerror", function (err) { warnErr.push(String(err)); });
+    await warnPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await warnPage.addInitScript(userScript(
+      cacheScript("KEEP-ME", 5000, true, "ideas") +
+      "localStorage.setItem('rg-sbx-ideas-hist:" + UID + "'," + JSON.stringify(JSON.stringify(emptySnaps)) + ");"
+    ));
+    await warnPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await warnPage.waitForSelector("#hist-btn");
+    await warnPage.click("#hist-btn");
+    await warnPage.waitForSelector('[data-s="r:empty-row"]');
+    await warnPage.waitForTimeout(1000);
+    await warnPage.click('[data-s="r:empty-row"]');
+    await warnPage.waitForSelector("#rg-choice-back");
+    var warnText = await warnPage.locator("#rg-choice-back").innerText();
+    check(warnText.indexOf("1") !== -1 && warnText.indexOf("ריקה") !== -1 && warnText.indexOf("בטל") !== -1 && warnText.indexOf("שחזר בכל זאת") !== -1, "restoring an empty version warns how many items would be removed");
+    await warnPage.screenshot({ path: "/opt/cursor/artifacts/restore-warning.png" });
+    await warnPage.locator("#rg-choice-back button.yes").click();
+    await warnPage.waitForFunction(function () { return !document.getElementById("rg-choice-back"); });
+    var afterCancel = await warnPage.evaluate(function (uid) {
+      var raw = localStorage.getItem("rg-sbx-ideas-v1:" + uid);
+      var hist = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
+      var body = document.body ? document.body.innerText : "";
+      return { kept: body.indexOf("KEEP-ME") !== -1, cache: raw && raw.indexOf("KEEP-ME") !== -1, rows: hist ? JSON.parse(hist).length : 0 };
+    }, UID);
+    check(afterCancel.kept && afterCancel.cache && afterCancel.rows === 1, "cancel leaves the item and the history unchanged");
+    await warnPage.click('[data-s="r:empty-row"]');
+    await warnPage.waitForSelector("#rg-choice-back button.no");
+    await warnPage.locator("#rg-choice-back button.no").click();
+    await warnPage.waitForFunction(function () {
+      var body = document.body ? document.body.innerText : "";
+      return body.indexOf("KEEP-ME") === -1;
+    });
+    check(true, "confirming the warning applies the empty version");
+    check(warnErr.length === 0, "the restore-warning page runs without a script error");
+    if (warnErr.length) console.error(warnErr.join(" | "));
+    await warn.close();
   } finally {
     await browser.close();
     server.close();

@@ -71,9 +71,11 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=8") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=8") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v16"') !== -1 && sw.indexOf("rg-sync-status.js?v=8") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=53") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v16') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v16"') !== -1 && app.indexOf("function paintBuild") !== -1, "the running script sets the on-screen label to v16");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=9") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=9") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v17"') !== -1 && sw.indexOf("rg-sync-status.js?v=9") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=54") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('class="lastsync" id="build">rg-sbx-ideas-v17') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v17"') !== -1 && app.indexOf("function paintBuild") !== -1 && app.indexOf("paintVersion") !== -1, "the running script sets the on-screen label to v17");
+var labelEl = { textContent: "" };
+assert(SS.paintVersion({ getElementById: function (id) { return id === "build" ? labelEl : null; } }, "build", "rg-sbx-ideas-v17") === "rg-sbx-ideas-v17" && labelEl.textContent === "rg-sbx-ideas-v17", "the version label writer fills #build and can be reused later");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
 assert(sw.indexOf('cache: "no-cache"') !== -1 && sw.indexOf("caches.match(e.request)") !== -1, "html and js are revalidated and the offline fallback stays");
@@ -152,6 +154,7 @@ for (oi = 0; oi < oldest.history.length; oi++) {
 assert(oldest.found && oldest.items.a.text === "v0" && oldestKept && currentKept && oldest.history.length === SS.HIST_MAX, "restoring the oldest row at the cap keeps that snapshot and saves the current list");
 var restoreBody = app.slice(app.indexOf("function restoreVersion"), app.indexOf("function openHistory"));
 assert(restoreBody.indexOf("armQuietRestore()") !== -1 && restoreBody.indexOf("adoptRestore") !== -1 && app.indexOf("function armQuietRestore") !== -1, "a version restore is marked quiet before it syncs");
+assert(restoreBody.indexOf("restoreImpact") !== -1 && restoreBody.indexOf("restoreImpact") < restoreBody.indexOf("history = plan.history") && restoreBody.indexOf("onYes: function () {}") !== -1 && restoreBody.indexOf("onNo: apply") !== -1, "a lossy restore asks first, and cancel does not change history");
 assert(app.indexOf("!echo && SS && SS.fieldConflicts") !== -1 && app.indexOf("if (quietRestore || !uid || !snaps) return;") !== -1, "that cycle does not raise a clash notice");
 assert(app.indexOf("roundRestore && (phase === \"upload\" || phase === \"same\")") !== -1, "only the restore's own sync clears the restore snapshot");
 var baseNow = { a: taskAt("a", "now", 5000) };
@@ -187,10 +190,35 @@ function manyItems(n, text, at) {
 }
 var cloud24 = manyItems(24, "now", 5000);
 var keep19 = SS.dropReport(manyItems(19, "old", 9000), cloud24);
+assert(SS.needsConfirm(keep19, { now: 9000, lastSync: 5000, cloudUpdated: 5000 }).hold === false, "dropping 24 items to 19 is not a sharp drop");
 assert(SS.needsConfirm(keep19, { now: 9000, lastSync: 5000, cloudUpdated: 5000, overwriteUntil: 9000 + 60000 }).hold === false, "a chosen restore from 24 items to 19 is not stopped");
 var sharp = SS.dropReport(manyItems(8, "old", 9000), cloud24);
 assert(SS.needsConfirm(sharp, { now: 9000, lastSync: 1000, cloudUpdated: 8000, differs: true }).hold === true, "a sharp drop on a normal sync is still stopped");
 assert(SS.needsConfirm(sharp, { now: 9000, overwriteUntil: 9000 + 60000 }).hold === false, "the same sharp drop is allowed when the user chose a restore");
+var lone = { only: taskAt("only", "אחד", 1000) };
+var loneGone = SS.dropReport({}, lone);
+assert(loneGone.itemsDeleted === 1 && loneGone.listsEmptied === 1 && loneGone.nextItems === 0, "one item to none empties its list");
+assert(SS.needsConfirm(loneGone, { now: 5000, lastSync: 1000, cloudUpdated: 1000 }).hold === true && SS.needsConfirm(loneGone, { now: 5000, lastSync: 1000, cloudUpdated: 1000 }).reason === "drop", "a one-item list wiped to zero is a sharp drop");
+assert(SS.needsConfirm(loneGone, { now: 5000, overwriteUntil: 9000 }).hold === false, "an explicit confirm still allows that one-item wipe");
+var threeGone = SS.dropReport({}, manyItems(3, "x", 1000));
+assert(SS.needsConfirm(threeGone, { now: 4000, lastSync: 1000, cloudUpdated: 1000 }).reason === "drop", "wiping a three-item list is a sharp drop under the old percentage floor");
+var halfSmall = SS.dropReport(manyItems(1, "x", 2000), manyItems(2, "x", 1000));
+assert(halfSmall.itemsDeleted === 1 && halfSmall.listsEmptied === 0 && SS.needsConfirm(halfSmall, { now: 3000, lastSync: 1000, cloudUpdated: 1000 }).hold === false, "dropping one item from a two-item list is not a sharp drop");
+var mixedCloud = { a: taskAt("a", "ideas-item", 1000), b: taskAt("b", "tasks-1", 1000), c: taskAt("c", "tasks-2", 1000) };
+mixedCloud.a.sec = "ideas";
+var mixedNext = { b: mixedCloud.b, c: mixedCloud.c };
+var mixedDrop = SS.dropReport(mixedNext, mixedCloud);
+assert(mixedDrop.listsEmptied === 1 && mixedDrop.itemsDeleted === 1 && SS.needsConfirm(mixedDrop, { now: 3000, lastSync: 1000, cloudUpdated: 1000 }).hold === true, "emptying one small list is a sharp drop even when other lists stay");
+var keptItems = JSON.stringify(lone);
+var loss = SS.restoreImpact(lone, {});
+assert(loss.warn === true && loss.removed === 1 && loss.emptied === 1 && JSON.stringify(lone) === keptItems, "restoring over the only item warns and does not change it");
+assert(SS.restoreWarning(loss).indexOf("1") !== -1 && SS.restoreWarning(loss).indexOf("ריקה") !== -1 && SS.restoreWarning(loss).indexOf("ביטול ישאיר את הנתונים כמו שהם") !== -1, "the Hebrew warning states the removed count and that cancel keeps the data");
+var oneOfFive = SS.restoreImpact(manyItems(5, "now", 5000), manyItems(4, "old", 1000));
+assert(oneOfFive.warn === true && oneOfFive.removed === 1 && oneOfFive.emptied === 0 && SS.restoreWarning(oneOfFive).indexOf("1") !== -1, "removing one item from a larger list still warns before restore");
+assert(SS.needsConfirm(SS.dropReport(manyItems(4, "old", 1000), manyItems(5, "now", 5000)), { now: 9000, lastSync: 1000, cloudUpdated: 1000 }).hold === false, "that same one-item drop is not a sharp drop on a normal sync");
+assert(SS.restoreImpact(manyItems(5, "now", 5000), manyItems(5, "now", 5000)).warn === false, "restoring the same items does not warn");
+assert(SS.restoreImpact(manyItems(4, "old", 1000), manyItems(5, "now", 5000)).warn === false, "a version that only adds items does not warn");
+assert(SS.RESTORE_CANCEL === "בטל" && SS.RESTORE_GO === "שחזר בכל זאת", "cancel is the first choice and restore is the second");
 var missing = SS.planRestore(full, { a: taskAt("a", "now", 9000) }, "missing-row", 9001);
 assert(missing.found === false && missing.items == null, "a missing version is reported instead of restoring nothing");
 var file = SS.historyFile(hist[0]);
@@ -296,13 +324,13 @@ function qver(src, file) {
   var m = src.match(new RegExp(file.replace(/\./g, "\\.") + "\\?v=(\\d+)"));
   return m ? +m[1] : 0;
 }
-assert(qver(html, "app.js") >= 53 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
-assert(qver(html, "rg-sync-status.js") >= 8 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "app.js") >= 54 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 9 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 53, hash: "e5e4170ced21cb7f" },
-  "ideas-sandbox/rg-sync-status.js": { v: 8, hash: "eb7ef5b6ebcbed08" },
+  "ideas-sandbox/app.js": { v: 54, hash: "8d44a316051f9063" },
+  "ideas-sandbox/rg-sync-status.js": { v: 9, hash: "1c4a4f6bbbac4b9e" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {
