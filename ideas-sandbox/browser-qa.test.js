@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v11"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v11");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v13"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v13");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=49") !== -1 && srcs.indexOf("rg-sync-status.js?v=6") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=50") !== -1 && srcs.indexOf("rg-sync-status.js?v=6") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v11"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v13"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -257,6 +257,8 @@ async function main() {
       return hasOld && hasNow && rows.length === 20;
     }, UID);
     check(keptOldest, "restoring the oldest row at the cap changes the list and keeps that row");
+    var clashText = await oldPage.locator("#clash").innerText();
+    check(clashText.indexOf("התנגשות בעריכה") === -1, "restoring a version does not show the clash notice");
     check(oldErr.length === 0, "the oldest-restore page runs without a script error");
     if (oldErr.length) console.error(oldErr.join(" | "));
     await old.close();

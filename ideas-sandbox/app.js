@@ -22,7 +22,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v11";
+  var BUILD = "rg-sbx-ideas-v13";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -202,7 +202,7 @@
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
   var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null, fileGen = 0;
-  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, histAgain = false, histOpen = 0, restoreDoc = null;
+  var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false, histAgain = false, histOpen = 0, restoreDoc = null, quietRestore = false;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
     if (!uid || !Object.keys(cl).length) return;
@@ -292,9 +292,17 @@
     if (cur) lsSet(basePrevKey(uid), cur);
     try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
   }
+  function clearClashNotice() {
+    if (uid) lsSet("rg-sbx-ideas-conflict:" + uid, null);
+    paintConflict();
+  }
+  function armQuietRestore() {
+    quietRestore = true;
+    clearClashNotice();
+  }
   function noteIncomingClash(snaps) {
     var i, seen, found = false;
-    if (!uid || !snaps) return;
+    if (quietRestore || !uid || !snaps) return;
     seen = jparse(lsGet("rg-sbx-ideas-clash-seen:" + uid), {});
     if (!seen || typeof seen !== "object") seen = {};
     for (i = 0; i < snaps.length; i++) {
@@ -328,15 +336,16 @@
     if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen, hadClash = false;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen, hadClash = false, roundRestore = false;
     return A.get(APP, KEY).then(function (cloud) {
       if (who !== uid || gen !== fileGen) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
       var dirty = false, restoring = !!restoreDoc;
-      if (!restoring && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
-      if (!restoring && SS && SS.fieldConflicts) {
+      roundRestore = restoring;
+      if (!restoring && !quietRestore && same(items, cl) && !jparse(lsGet(baseKey(who)), null)) saveAgreed(items);
+      if (!restoring && !quietRestore && SS && SS.fieldConflicts) {
         var fought = SS.fieldConflicts(items, cl, jparse(lsGet(baseKey(who)), null), jparse(lsGet(basePrevKey(who)), null));
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
@@ -376,7 +385,8 @@
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
       if (!blocked) { uploadCut = false; nextTry = 0; clearTimeout(retryT); }
       if (blocked) return; // keep pending: the cloud copy stays as it was, and this round does not count as synced
-      if (restoreDoc && (phase === "upload" || phase === "same")) restoreDoc = null;
+      if (roundRestore && (phase === "upload" || phase === "same")) restoreDoc = null;
+      if (quietRestore && phase === "same") quietRestore = false;
       if (!hadClash && phase === "same") saveAgreed(items);
       else if (hadClash) saveAgreed(items);
       if (next.clearPending) { pending = false; saveLocal(); } else if (next.again) again = true;
@@ -538,6 +548,7 @@
     if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
     history = plan.history;
     saveHistory();
+    armQuietRestore();
     restoreDoc = plan.items;
     items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
     snap = stamp(items, null);
@@ -1315,6 +1326,7 @@
     if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
     rememberSnap(true);
     fileGen++;
+    armQuietRestore();
     restoreDoc = staged.items;
     items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : staged.items;
     seeded = true;
