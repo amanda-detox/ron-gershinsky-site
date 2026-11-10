@@ -1,0 +1,15 @@
+{
+  "format": "listify-restore",
+  "createdAtLocal": "10/11/2026 07:20",
+  "source": "synthetic",
+  "app": "myideas",
+  "value": {
+    "v": 1,
+    "seeded": true,
+    "items": {
+      "c:abc": {"id": "c:abc", "type": "cat", "kind": "task", "cat": "abc", "name": "List A", "pos": 0, "created": 1, "at": 1},
+      "x1": {"id": "x1", "sec": "abc", "text": "item", "done": false, "order": 0, "created": 1, "at": 1},
+      "x2": {"id": "x2", "deleted": true, "at": 1}
+    }
+  }
+}

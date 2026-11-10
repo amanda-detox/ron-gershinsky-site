@@ -3,6 +3,7 @@
    Same sync rules as the live app: union merge, and a large deletion asks before any upload.
    Reads time out after 15s. Uploads get 60s, then a visible cutoff and a growing backoff.
    «טען מהענן» replaces only this device, after a -bak copy, and never writes to the cloud.
+   A confirmed file restore first saves the current sandbox state as a version, then loads the file and syncs it as a deliberate overwrite. The file's own stamps stay as they are.
    Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
      mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
@@ -190,7 +191,7 @@
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
      rg-sbx-ideas-bak:<user id> = [{ t, items }, ...]. A write that would suddenly remove most of the lists / items is blocked
      (the cloud copy stays as it was) unless Ron just deleted a whole list himself. */
-  var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null;
+  var BAK_N = 5, bulkOk = 0, overwriteOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedCloud = null, fileGen = 0;
   var retryT = 0, nextTry = 0, uploadCut = false, loadingCloud = false, history = [], histT = 0, histBusy = false;
   function bakKey(id) { return "rg-sbx-ideas-bak:" + id; }
   function backup(cl) {
@@ -271,13 +272,14 @@
     else SS.closeDeletion();
   }
   function sync() {
+    if (APP !== "sbxmyideas") return Promise.resolve();
     if (!uid || !A) return Promise.resolve();
     if (nextTry && Date.now() < nextTry) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus;
+    var who = uid, sent = null, blocked = false, phase = "read", SS = window.RGSyncStatus, gen = fileGen;
     return A.get(APP, KEY).then(function (cloud) {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var cl = (cloud && cloud.items && typeof cloud.items === "object") ? cloud.items : {};
       var cloudSeeded = !!(cloud && cloud.seeded);
       snap = stamp(items, snap);
@@ -308,7 +310,7 @@
       phase = "upload";
       return A.set(APP, KEY, { v: 1, seeded: true, items: items });
     }).then(function () {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var sentSame = !sent || sent === items;
       var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
@@ -324,7 +326,7 @@
         pendingLeft: !next.clearPending
       })) markLastSync();
     }, function (e) {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       if (e && (e.code === "signed_out" || e.type === "signed_out")) { offline = false; syncErr = ""; uploadCut = false; return; }
       var onLine = typeof navigator === "undefined" || navigator.onLine !== false;
       var next = SS ? SS.applyFailure({ failN: failN }, e, onLine) : { offline: true, syncErr: "", failN: failN };
@@ -1165,9 +1167,106 @@
     });
   }
 
+  /* File restore stays in this sandbox: preview, then backup, then replace. The helper refuses every key that is not rg-sbx-ideas-*. */
+  function restoreName(row) {
+    if (row.name) return row.name;
+    if (row.builtin === "ideas") return t("tabIdeas");
+    if (row.builtin === "tasks") return t("tabTasks");
+    if (row.builtin === "goals") return t("tabGoals");
+    return row.id || "";
+  }
+  function restoreCount(n, oneKey, manyKey) { return String(n) + " " + t(n === 1 ? oneKey : manyKey); }
+  function showRestore(parsed) {
+    var R = window.RGSbxRestore, sum, when, html;
+    html = '<h3>' + esc(t("restoreTitle")) + '</h3><p class="restore-note">' + esc(t("restoreOnly")) + "</p>";
+    if (!parsed || !parsed.ok) {
+      html += '<p class="restore-note">' + esc(t(parsed && parsed.error === "read" ? "restoreRead" : "restoreBad")) + "</p>";
+      html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div>";
+      sheet(html, function () { closeSheet(); });
+      return;
+    }
+    sum = parsed.summary;
+    when = sum.newestAt == null || !R ? "—" : R.formatWhen(sum.newestAt);
+    if (parsed.createdAtLocal) html += '<p class="restore-meta">' + esc(t("restoreFileDate")) + ": " + esc(parsed.createdAtLocal) + "</p>";
+    html += '<p class="restore-meta">' + esc(restoreCount(sum.listCount, "restoreList", "restoreLists")) + " · " + esc(restoreCount(sum.itemCount, "restoreItem", "restoreItems")) + "</p>";
+    html += '<p class="restore-meta">' + esc(t("restoreNewest")) + ": " + esc(when) + "</p>";
+    function lines(rows) {
+      if (!rows.length) return "";
+      return '<ul class="restore-lines">' + rows.map(function (row) {
+        return '<li><span class="rn">' + esc(restoreName(row)) + '</span><span class="rc">' + esc(restoreCount(row.count, "restoreItem", "restoreItems")) + "</span></li>";
+      }).join("") + "</ul>";
+    }
+    if (!sum.visible.length) html += '<p class="restore-note">' + esc(t("restoreEmpty")) + "</p>";
+    else html += lines(sum.visible);
+    if (sum.hidden.length) html += '<p class="restore-note">' + esc(t("restoreHidden")) + "</p>" + lines(sum.hidden);
+    if (sum.builtinsMissing && sum.builtinsMissing.length) html += '<p class="restore-note">' + esc(t("restoreBuiltins")) + "</p>";
+    html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button>";
+    if (uid) html += '<button type="button" class="btn pri" data-s="load">' + esc(t("restoreLoad")) + "</button>";
+    html += "</div>";
+    if (!uid) html += '<p class="restore-note">' + esc(t("restoreNeed")) + "</p>";
+    sheet(html, function (a) {
+      if (a !== "load") { closeSheet(); return; }
+      closeSheet();
+      loadRestore(parsed);
+    });
+  }
+  function loadRestore(parsed) {
+    var R = window.RGSbxRestore, SS = window.RGSyncStatus, staged, wrote, k, x, vis, found;
+    if (!R || !parsed || !parsed.ok) return;
+    if (!uid) { toast(t("restoreNeed")); return; }
+    staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, nextItems: parsed.items, now: Date.now() });
+    wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
+    if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
+    rememberSnap(true);
+    fileGen++;
+    items = staged.items;
+    seeded = true;
+    pending = true;
+    editing = null;
+    holdBlocked = false;
+    blockedCloud = null;
+    syncErr = "";
+    offline = false;
+    uploadCut = false;
+    overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000);
+    bulkOk = overwriteOk;
+    lastT = 0;
+    for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
+    snap = stamp(items, null);
+    vis = parsed.summary && parsed.summary.visible ? parsed.summary.visible : [];
+    found = false;
+    vis.forEach(function (r) { if (r.id === tab) found = true; });
+    if (vis.length && !found) { tab = vis[0].id; lsSet("rg-sbx-ideas-tab-cur", tab); lsSet(gTabKey(1), tab); }
+    saveLocal();
+    render();
+    sync();
+    pushHistoryCloud();
+    toast(t("restoreDone"));
+  }
+  function bootRestore() {
+    var input = $("restore-file"), lab = $("restore-file-btn");
+    if (!input || !window.RGSbxRestore) return;
+    if (lab) lab.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      input.click();
+    });
+    input.addEventListener("change", function () {
+      var f = input.files && input.files[0];
+      try { input.value = ""; } catch (e) {}
+      if (!f) return;
+      if (f.size > 5000000) { showRestore({ ok: false, error: "read" }); return; }
+      var reader = new FileReader();
+      reader.onload = function () { showRestore(window.RGSbxRestore.parseText(String(reader.result || ""))); };
+      reader.onerror = function () { showRestore({ ok: false, error: "read" }); };
+      reader.readAsText(f);
+    });
+  }
+
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
+    try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootLists(); } catch (e) { setTimeout(function () { throw e; }); } // the lists still load and show even if a control fails
     try { bootItemDrag(); } catch (e) { setTimeout(function () { throw e; }); }
     main.addEventListener("submit", function (e) {
