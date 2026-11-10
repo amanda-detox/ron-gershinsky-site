@@ -711,12 +711,15 @@
       + ".rg-restore{width:100%;max-width:440px;margin:0;box-sizing:border-box;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow);text-align:start}"
       + ".rg-restore h3{margin:0 0 12px;font:800 18px/1.35 var(--sans);color:var(--fg)}"
       + ".rg-restore-sum{margin:0 0 12px;font:600 16px/1.45 var(--sans);color:var(--fg)}"
-      + ".rg-restore-empty{margin:0 0 12px;font-weight:800;font-size:17px;line-height:1.4;color:var(--accent)}"
+      + ".rg-restore-sum.warn{color:#ff7a00;font-weight:800}"
+      + ".rg-restore-empty{margin:0 0 12px;font-weight:800;font-size:17px;line-height:1.4;color:var(--fg)}"
       + ".rg-restore-gone{margin:0 0 8px;padding:0;list-style:none}"
       + ".rg-restore-gone li{color:var(--muted);text-decoration:line-through;font:600 16px/1.45 var(--sans)}"
       + ".rg-restore-more{margin:0 0 12px;color:var(--muted);font:600 15px/1.4 var(--sans)}"
       + ".rg-restore button{display:flex;width:100%;min-height:48px;align-items:center;justify-content:center;margin:8px 0 0;padding:0 16px;border-radius:12px;font:800 17px/1.2 var(--sans);cursor:pointer}"
-      + ".rg-restore-go{background:var(--accent);color:var(--accentink);border:0}"
+      + ".rg-restore-go{background:var(--blue);color:#0b2a6b;border:0}"
+      + "html[data-theme=light] .rg-restore-go{color:#fff}"
+      + ".rg-restore-go.warn{background:#ff7a00;color:#0b2a6b}"
       + ".rg-restore-cancel{background:var(--card);color:var(--fg);border:1px solid var(--line)}";
     (doc.head || doc.documentElement).appendChild(st);
   }
@@ -741,7 +744,7 @@
     title.id = "rg-restore-title";
     title.textContent = view.title || RESTORE_TITLE;
     var sum = doc.createElement("p");
-    sum.className = "rg-restore-sum";
+    sum.className = "rg-restore-sum" + (view.focusCancel ? " warn" : "");
     sum.textContent = view.summary || "";
     function finish(fn) {
       closeRestoreAsk();
@@ -749,7 +752,7 @@
     }
     var go = doc.createElement("button");
     go.type = "button";
-    go.className = "rg-restore-go";
+    go.className = "rg-restore-go" + (view.focusCancel ? " warn" : "");
     go.textContent = view.go || RESTORE_GO;
     var cancel = doc.createElement("button");
     cancel.type = "button";

@@ -71,8 +71,8 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=10") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=10") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v18"') !== -1 && sw.indexOf("rg-sync-status.js?v=10") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=11") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=11") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v18"') !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('class="lastsync" id="build">rg-sbx-ideas-v18') !== -1 && app.indexOf('BUILD = "rg-sbx-ideas-v18"') !== -1 && app.indexOf("function paintBuild") !== -1 && app.indexOf("paintVersion") !== -1, "the running script sets the on-screen label to v18");
 var labelEl = { textContent: "" };
 assert(SS.paintVersion({ getElementById: function (id) { return id === "build" ? labelEl : null; } }, "build", "rg-sbx-ideas-v18") === "rg-sbx-ideas-v18" && labelEl.textContent === "rg-sbx-ideas-v18", "the version label writer fills #build and can be reused later");
@@ -230,7 +230,8 @@ assert(SS.restoreImpact(manyItems(5, "now", 5000), manyItems(5, "now", 5000)).wa
 assert(SS.restoreImpact(manyItems(4, "old", 1000), manyItems(5, "now", 5000)).warn === false, "a version that only adds items does not warn");
 assert(SS.RESTORE_CANCEL === "ביטול" && SS.RESTORE_GO === "שחזור" && SS.RESTORE_TITLE === "לשחזר את הגרסה הזו?" && SS.RESTORE_EMPTY === "הרשימה תתרוקן." && SS.RESTORE_TOAST === "שוחזר.", "the dialog uses the specified Hebrew and the toast is the undo line");
 var restoreCss = src.slice(src.indexOf(".rg-restore-back"), src.indexOf(".rg-restore-cancel"));
-assert(restoreCss.indexOf("color:var(--accent)") !== -1 && restoreCss.indexOf("text-decoration:line-through") !== -1 && restoreCss.indexOf("border-radius:12px") !== -1 && restoreCss.indexOf("padding:20px") !== -1 && restoreCss.indexOf("#") === -1 && restoreCss.indexOf("red") === -1 && restoreCss.indexOf("orange") === -1, "the restore sheet uses the existing accent, grey strikethrough, 12px radius, 20px padding, and no red");
+assert(restoreCss.indexOf(".rg-restore-sum.warn{color:#ff7a00") !== -1 && restoreCss.indexOf(".rg-restore-go.warn{background:#ff7a00") !== -1 && restoreCss.indexOf(".rg-restore-go{background:var(--blue)") !== -1 && restoreCss.indexOf("text-decoration:line-through") !== -1 && restoreCss.indexOf("border-radius:12px") !== -1 && restoreCss.indexOf("padding:20px") !== -1, "orange is only the warning summary and the restore button, and the normal button stays blue");
+assert(restoreCss.indexOf("red") === -1 && restoreCss.indexOf("#f00") === -1 && restoreCss.indexOf("#ff0000") === -1 && restoreCss.indexOf("#ff4500") === -1 && src.indexOf('className = "rg-restore-sum" + (view.focusCancel ? " warn" : "")') !== -1 && src.indexOf('className = "rg-restore-go" + (view.focusCancel ? " warn" : "")') !== -1, "the orange class is added only when items will be removed, and there is no red");
 var missing = SS.planRestore(full, { a: taskAt("a", "now", 9000) }, "missing-row", 9001);
 assert(missing.found === false && missing.items == null, "a missing version is reported instead of restoring nothing");
 var file = SS.historyFile(hist[0]);
@@ -337,12 +338,12 @@ function qver(src, file) {
   return m ? +m[1] : 0;
 }
 assert(qver(html, "app.js") >= 55 && qver(sw, "app.js") === qver(html, "app.js"), "app.js query param is bumped and identical in index.html and sw.js");
-assert(qver(html, "rg-sync-status.js") >= 10 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
+assert(qver(html, "rg-sync-status.js") >= 11 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
   "ideas-sandbox/app.js": { v: 55, hash: "103ff28a7df3a9e8" },
-  "ideas-sandbox/rg-sync-status.js": { v: 10, hash: "3a221757ef30f0ab" },
+  "ideas-sandbox/rg-sync-status.js": { v: 11, hash: "c22eea2cb207d303" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {

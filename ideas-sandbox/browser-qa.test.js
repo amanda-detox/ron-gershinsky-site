@@ -142,7 +142,7 @@ async function main() {
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=10") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
     await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v18"; });
@@ -283,27 +283,47 @@ async function main() {
     var warnText = await warnPage.locator("#rg-restore-back").innerText();
     var warnLook = await warnPage.evaluate(function () {
       function nums(rgb) { var m = String(rgb || "").match(/\d+/g); return m ? m.slice(0, 3).map(Number) : [0, 0, 0]; }
-      function red(rgb) { var c = nums(rgb); return c[0] > 180 && c[1] < 90 && c[2] < 90; }
+      function hue(rgb) {
+        var c = nums(rgb), r = c[0] / 255, g = c[1] / 255, b = c[2] / 255;
+        var max = Math.max(r, g, b), min = Math.min(r, g, b), h = 0, d = max - min;
+        if (!d) return 0;
+        if (max === r) h = ((g - b) / d) % 6;
+        else if (max === g) h = (b - r) / d + 2;
+        else h = (r - g) / d + 4;
+        h *= 60;
+        return h < 0 ? h + 360 : h;
+      }
+      function orange(rgb) { var h = hue(rgb), c = nums(rgb); return h >= 24 && h <= 42 && c[0] > 200 && c[1] > 70 && c[2] < 40; }
+      function red(rgb) { var c = nums(rgb); return c[0] > 180 && c[1] < 80 && c[2] < 80; }
       var box = document.querySelector(".rg-restore");
+      var sum = document.querySelector(".rg-restore-sum");
       var empty = document.querySelector(".rg-restore-empty");
       var gone = document.querySelector(".rg-restore-gone li");
       var go = document.querySelector(".rg-restore-go");
       var cancel = document.querySelector(".rg-restore-cancel");
-      var bs = getComputedStyle(box), es = getComputedStyle(empty), gs = getComputedStyle(gone), gos = getComputedStyle(go);
+      var plain = document.createElement("button");
+      plain.className = "rg-restore-go";
+      box.appendChild(plain);
+      var bs = getComputedStyle(box), es = getComputedStyle(empty), gs = getComputedStyle(gone);
+      var sumC = getComputedStyle(sum).color, goC = getComputedStyle(go).backgroundColor, plainC = getComputedStyle(plain).backgroundColor;
+      plain.parentNode.removeChild(plain);
       var buttons = Array.prototype.map.call(box.querySelectorAll("button"), function (b) { return b.textContent; });
       return {
         dir: box.getAttribute("dir"),
         radius: bs.borderRadius, pad: bs.padding,
-        emptyWeight: es.fontWeight, emptyRed: red(es.color),
-        strike: gs.textDecoration.indexOf("line-through") !== -1, goneRed: red(gs.color),
-        goRed: red(gos.backgroundColor),
+        emptyWeight: es.fontWeight,
+        sumOrange: orange(sumC), emptyOrange: orange(es.color), goneOrange: orange(gs.color),
+        goOrange: orange(goC), cancelOrange: orange(getComputedStyle(cancel).backgroundColor) || orange(getComputedStyle(cancel).color),
+        plainBlue: hue(plainC) >= 190 && hue(plainC) <= 250,
+        anyRed: red(sumC) || red(es.color) || red(gs.color) || red(goC) || red(plainC),
+        strike: gs.textDecoration.indexOf("line-through") !== -1,
         buttons: buttons.join("|"),
         focus: document.activeElement ? document.activeElement.textContent : "",
         sheetBottom: box.getBoundingClientRect().bottom >= window.innerHeight - 24
       };
     });
     check(warnText.indexOf("לשחזר את הגרסה הזו?") !== -1 && warnText.indexOf("אחרי השחזור יישארו 0 פריטים. יוסרו 1 ויתווספו 0.") !== -1 && warnText.indexOf("הרשימה תתרוקן.") !== -1 && warnText.indexOf("KEEP-ME") !== -1, "the dialog states the counts and the item that would be removed");
-    check(warnLook.dir === "rtl" && warnLook.buttons === "שחזור|ביטול" && warnLook.focus === "ביטול" && warnLook.radius === "12px" && warnLook.pad === "20px" && warnLook.sheetBottom && warnLook.strike && !warnLook.emptyRed && !warnLook.goneRed && !warnLook.goRed && Number(warnLook.emptyWeight) >= 700, "the sheet is a bottom sheet, cancel is focused, and the warning uses the existing accent");
+    check(warnLook.dir === "rtl" && warnLook.buttons === "שחזור|ביטול" && warnLook.focus === "ביטול" && warnLook.radius === "12px" && warnLook.pad === "20px" && warnLook.sheetBottom && warnLook.strike && warnLook.sumOrange && warnLook.goOrange && warnLook.plainBlue && !warnLook.emptyOrange && !warnLook.goneOrange && !warnLook.cancelOrange && !warnLook.anyRed && Number(warnLook.emptyWeight) >= 700, "orange is only the warning summary and the restore button, and the normal button stays blue");
     await warnPage.screenshot({ path: "/opt/cursor/artifacts/restore-warning.png" });
     await warnPage.locator("#rg-restore-back .rg-restore-cancel").click();
     await warnPage.waitForFunction(function () { return !document.getElementById("rg-restore-back"); });
