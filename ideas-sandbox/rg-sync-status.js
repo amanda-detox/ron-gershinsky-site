@@ -391,6 +391,18 @@
     }
     return out;
   }
+  /* Both values were written by this device, one after another. That is one
+     editing sequence, not a clash with another device. */
+  function sameDeviceEdits(localText, cloudText, ownValues) {
+    if (!ownValues || !ownValues.length) return false;
+    var l = JSON.stringify(localText), c = JSON.stringify(cloudText), i, s, hitL = false, hitC = false;
+    for (i = 0; i < ownValues.length; i++) {
+      s = JSON.stringify(ownValues[i]);
+      if (s === l) hitL = true;
+      if (s === c) hitC = true;
+    }
+    return hitL && hitC;
+  }
   function clashSnap(local, cloud, fights, now) {
     var data = cloneDoc(local), i, f, src, loser, sum;
     fights = fights || [];
@@ -749,6 +761,7 @@
     planRestore: planRestore,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
+    sameDeviceEdits: sameDeviceEdits,
     clashSnap: clashSnap,
     rememberClash: rememberClash,
     signOutGate: signOutGate,
