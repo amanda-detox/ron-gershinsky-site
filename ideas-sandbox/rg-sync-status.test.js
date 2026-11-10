@@ -72,13 +72,13 @@ assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < htm
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=3") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=3") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = "rg-sbx-ideas-v7"') !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("app.js?v=45") !== -1, "the sandbox service worker cache was bumped");
-assert(html.indexOf('id="build">rg-sbx-ideas-v7') !== -1, "the sandbox shows the build under the sync line");
+assert(sw.indexOf('CACHE = "rg-sbx-ideas-v8"') !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=46") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf('id="build">rg-sbx-ideas-v8') !== -1, "the sandbox shows the build under the sync line");
 assert(sw.indexOf('indexOf("rg-sbx-ideas-")') !== -1 && sw.indexOf("rg-myideas-") === -1, "the sandbox cache cannot delete the live cache");
 var css = src.slice(src.indexOf(".rg-delask-back"), src.indexOf("@media"));
 assert(css.indexOf("red") === -1 && css.indexOf("#") === -1 && html.indexOf(".lastsync") !== -1 && html.slice(html.indexOf(".lastsync"), html.indexOf(".lastsync") + 280).indexOf("red") === -1, "new UI keeps the existing palette");
 assert(SS.ASK_YES === "השאר את הענן" && SS.ASK_NO === "העלה בכל זאת" && SS.ASK_Q.indexOf("להשאיר את הענן") !== -1, "the overwrite prompt defaults to keeping the cloud");
-assert(app.indexOf("needsConfirm") !== -1 && app.indexOf("noteGone") !== -1 && app.indexOf("planRestore") !== -1 && app.indexOf("שחזור מקובץ") === -1 && html.indexOf("שחזור מקובץ") === -1, "history and the guard are in the sandbox, and the import button is not");
+assert(app.indexOf("needsConfirm") !== -1 && app.indexOf("noteGone") !== -1 && app.indexOf("planRestore") !== -1 && html.indexOf("שחזור מקובץ") !== -1, "history, the overwrite guard, and file restore are all in the sandbox");
 assert(html.indexOf("היסטוריית גרסאות") !== -1 && html.indexOf('id="hist-btn"') !== -1, "version history has its own screen");
 
 function cat(id, name, at) {
