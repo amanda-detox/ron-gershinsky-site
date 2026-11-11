@@ -3,6 +3,14 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>
+/* Android APK only. A browser has neither ClockifyNative nor this token, so nothing here changes the web sandbox. */
+(function () {
+  var ua = navigator.userAgent || "";
+  var cap = window.Capacitor && typeof window.Capacitor.isNativePlatform === "function" && window.Capacitor.isNativePlatform();
+  if (cap || window.ClockifyNative || ua.indexOf("ClockifyNative/") >= 0) document.documentElement.setAttribute("data-native-app", "1");
+})();
+</script>
 <meta name="robots" content="noindex">
 <script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -36,6 +44,8 @@
   button { font: inherit; color: inherit; cursor: pointer; }
   :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   [hidden] { display: none !important; }
+  html[data-native-app="1"] #install-wrap,
+  html[data-native-app="1"] #note { display: none !important; }
   .wrap { width: 100%; max-width: 32rem; margin: 0 auto;
     padding: max(0.75rem, env(safe-area-inset-top)) 1rem calc(1.5rem + env(safe-area-inset-bottom)); }
   .rg-install-wrap { margin: 0.15rem auto 0.85rem; }
@@ -417,6 +427,86 @@
   var C = window.AlarmCore;
   var KEY = "rg-sbx-clockify-alarms-v1", SNZ = "rg-sbx-clockify-snoozes-v1", LANG = "rg-lang";
   var SNOOZE_MIN = 10, RING_MAX_MS = 5 * 60 * 1000;
+  var REV = "rg-sbx-clockify-rev";
+  var nativeReady = false;
+  function nativeApp() {
+    var ua = navigator.userAgent || "";
+    var cap = window.Capacitor && typeof window.Capacitor.isNativePlatform === "function" && window.Capacitor.isNativePlatform();
+    return !!(cap || window.ClockifyNative || ua.indexOf("ClockifyNative/") >= 0 || document.documentElement.getAttribute("data-native-app") === "1");
+  }
+  function bumpRev() {
+    var n = 0;
+    try { n = parseInt(localStorage.getItem(REV), 10) || 0; } catch (e) {}
+    n += 1;
+    try { localStorage.setItem(REV, String(n)); } catch (e2) {}
+    return n;
+  }
+  function pullNativeState() {
+    if (!nativeApp() || !window.ClockifyNative || typeof window.ClockifyNative.storedState !== "function") return;
+    var raw;
+    try { raw = window.ClockifyNative.storedState(); } catch (e) { return; }
+    if (!raw) return;
+    var st;
+    try { st = JSON.parse(raw); } catch (e2) { return; }
+    if (!st || !Array.isArray(st.alarms)) return;
+    var nativeRev = +st.rev || 0, localRev = 0;
+    try { localRev = parseInt(localStorage.getItem(REV), 10) || 0; } catch (e3) {}
+    if (nativeRev < localRev) return;
+    try {
+      localStorage.setItem(KEY, JSON.stringify(st.alarms));
+      localStorage.setItem(SNZ, JSON.stringify(st.snoozes || []));
+      if (Array.isArray(st.cats)) localStorage.setItem("rg-sbx-clockify-cats-v1", JSON.stringify(st.cats));
+      if (typeof st.defSound === "string" && st.defSound) localStorage.setItem("rg-sbx-clockify-defsound-v1", st.defSound);
+      localStorage.setItem(REV, String(nativeRev));
+    } catch (e4) {}
+  }
+  function syncNative() {
+    if (!nativeReady || !nativeApp()) return;
+    var bridge = window.ClockifyNative;
+    if (!bridge || typeof bridge.sync !== "function" || !cats) return;
+    var now = new Date(), items = [];
+    C.dueAlarms(alarms, now).forEach(function (d) {
+      var a = d.alarm;
+      items.push({ id: "due:" + a.id + ":" + d.key, alarmId: a.id, at: now.getTime() + 1500, occurrenceKey: d.key, title: titleOf(a), time: a.time, type: a.type, sound: C.soundFor(a, cats, defSound), vibrate: a.vibrate || "short", snooze: false, snoozeAt: 0 });
+    });
+    alarms.forEach(function (a) {
+      var n = C.nextOccurrence(a, now);
+      if (!n) return;
+      items.push({ id: "a:" + a.id, alarmId: a.id, at: n.getTime(), occurrenceKey: C.occKey(n), title: titleOf(a), time: a.time, type: a.type, sound: C.soundFor(a, cats, defSound), vibrate: a.vibrate || "short", snooze: false, snoozeAt: 0 });
+    });
+    (snoozes || []).forEach(function (s) {
+      if (!s || typeof s.at !== "number") return;
+      var a = null, i;
+      for (i = 0; i < alarms.length; i++) if (alarms[i].id === s.alarmId) a = alarms[i];
+      items.push({ id: "s:" + (s.alarmId || "x") + ":" + s.at, alarmId: s.alarmId || "", at: s.at <= now.getTime() ? now.getTime() + 1500 : s.at, occurrenceKey: "", title: s.title || (a ? titleOf(a) : ""), time: "", type: s.type || (a ? a.type : "once"), sound: a ? C.soundFor(a, cats, defSound) : (defSound || "chime"), vibrate: (a && a.vibrate) || "short", snooze: true, snoozeAt: s.at });
+    });
+    var rev = 0;
+    try { rev = parseInt(localStorage.getItem(REV), 10) || 0; } catch (e) {}
+    try {
+      bridge.sync(JSON.stringify({ alarms: alarms, snoozes: snoozes, cats: cats, defSound: defSound || "chime", lang: lang, snoozeMin: SNOOZE_MIN, rev: rev, schedule: items }));
+    } catch (e2) {}
+  }
+  function touchNative() { if (!nativeApp()) return; bumpRev(); syncNative(); }
+  function applyNativeState(raw) {
+    var st;
+    try { st = typeof raw === "string" ? JSON.parse(raw) : raw; } catch (e) { return; }
+    if (!st || !Array.isArray(st.alarms)) return;
+    alarms = C.normalizeAlarms(st.alarms).alarms;
+    snoozes = Array.isArray(st.snoozes) ? st.snoozes : [];
+    if (Array.isArray(st.cats)) cats = C.ensureCategories(st.cats).cats;
+    if (typeof st.defSound === "string" && st.defSound) defSound = st.defSound;
+    try {
+      localStorage.setItem(KEY, JSON.stringify(alarms));
+      localStorage.setItem(SNZ, JSON.stringify(snoozes));
+      localStorage.setItem("rg-sbx-clockify-cats-v1", JSON.stringify(cats));
+      if (defSound) localStorage.setItem("rg-sbx-clockify-defsound-v1", defSound);
+      localStorage.setItem(REV, String(+st.rev || 0));
+    } catch (e2) {}
+    if (!$("editor").hidden) closeEditor();
+    render();
+    renderNext();
+  }
+  pullNativeState();
 
   var T = {
     he: {
@@ -538,9 +628,9 @@
   var $ = function (id) { return document.getElementById(id); };
 
   function load(k, d) { try { var v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } }
-  function save() { localStorage.setItem(KEY, JSON.stringify(alarms)); }
-  function saveSnoozes() { localStorage.setItem(SNZ, JSON.stringify(snoozes)); }
-  function saveCats() { localStorage.setItem(CATS, JSON.stringify(cats)); }
+  function save() { localStorage.setItem(KEY, JSON.stringify(alarms)); touchNative(); }
+  function saveSnoozes() { localStorage.setItem(SNZ, JSON.stringify(snoozes)); touchNative(); }
+  function saveCats() { localStorage.setItem(CATS, JSON.stringify(cats)); touchNative(); }
   function cname(c) { return C.catName(c, lang); }
   function t(k) { return T[lang][k]; }
   function titleOf(a) { return (a.title && (a.title[lang] || a.title.he || a.title.en)) || ""; }
@@ -623,7 +713,7 @@
 
   /* ---------- notifications ---------- */
   var swReg = null;
-  if ("serviceWorker" in navigator && location.protocol !== "file:") {
+  if ("serviceWorker" in navigator && location.protocol !== "file:" && !nativeApp()) {
     navigator.serviceWorker.register("./sw.js?v=2", { scope: "./" }).then(function (r) { swReg = r; }).catch(function () {});
   }
   function notify(title, body, vib) {
@@ -687,6 +777,14 @@ function instKey() {
 function instIosSafari() { return instKey() === "iosSafari"; }
 function updateInstall() {
   var btn = document.getElementById("install-btn"), hint = document.getElementById("install-hint"), wrap = document.getElementById("install-wrap");
+  if (nativeApp()) {
+    if (btn) btn.hidden = true;
+    if (hint) hint.hidden = true;
+    if (wrap) wrap.hidden = true;
+    var note = document.getElementById("note");
+    if (note) note.hidden = true;
+    return;
+  }
   var show = !instStandalone() && !instDone;
   btn.hidden = !show;
   var ios = show && instIosSafari();
@@ -1059,6 +1157,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
   };
 
   function check() {
+    if (nativeApp()) return;
     var now = new Date(), changed = false;
     C.dueAlarms(alarms, now).forEach(function (d) {
       C.markFired(d.alarm, d.key); changed = true;
@@ -1229,7 +1328,7 @@ document.getElementById("install-btn").addEventListener("click", function () {
     var el = e.target;
     if (!el.classList || !el.classList.contains("snd-sel")) return;
     var id = el.getAttribute("data-id");
-    if (!id) { defSound = el.value; try { localStorage.setItem(DEFSND, defSound); } catch (e2) {} }
+    if (!id) { defSound = el.value; try { localStorage.setItem(DEFSND, defSound); } catch (e2) {} touchNative(); }
     else { cats.forEach(function (c) { if (c.id === id) c.sound = el.value; }); saveCats(); }
     S.play(audio(), el.value);
   });
@@ -1301,8 +1400,8 @@ document.getElementById("install-btn").addEventListener("click", function () {
   window.__alarmTheme = { setTheme: setTheme, setBg: setBg, readThemeFromStorage: readThemeFromStorage };
 
   /* ---------- wiring ---------- */
-  $("he").onclick = function () { lang = "he"; localStorage.setItem(LANG, lang); render(); };
-  $("en").onclick = function () { lang = "en"; localStorage.setItem(LANG, lang); render(); };
+  $("he").onclick = function () { lang = "he"; localStorage.setItem(LANG, lang); render(); syncNative(); };
+  $("en").onclick = function () { lang = "en"; localStorage.setItem(LANG, lang); render(); syncNative(); };
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("editor").hidden) closeEditor(); });
   document.addEventListener("visibilitychange", function () {
     if (document.visibilityState === "visible") { loop(); if (wantWake && !wakeLock) requestWake(); }
@@ -1318,8 +1417,11 @@ document.getElementById("install-btn").addEventListener("click", function () {
   });
 
   render(); updateInstall(); loop();
+  nativeReady = true;
+  if (nativeApp()) syncNative();
   setInterval(loop, 1000);
   window.__alarmApp = { check: check, get alarms() { return alarms; }, get ringing() { return ringing; }, get cats() { return cats; }, soundOfItem: soundOfItem };
+  window.__clockifyApplyNativeState = applyNativeState;
 })();
 </script>
 <script src="../shared/rg-account.js"></script>

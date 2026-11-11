@@ -151,6 +151,12 @@ assert(sw.indexOf('var CACHE = "rg-sbx-clockify-v2"') >= 0, "sandbox service wor
 assert(liveSw.indexOf('rg-clockify-v15') >= 0 && liveSw.indexOf("rg-sbx-clockify") < 0, "live Clockify service worker was not changed");
 assert(mySw.indexOf('rg-myclock-v13') >= 0 && mySw.indexOf("ללא צליל") < 0, "my clock service worker was not changed");
 assert(page.indexOf('vibNone: "ללא"') >= 0, "vibration can be turned off");
+assert(page.indexOf("data-native-app") >= 0 && page.indexOf("ClockifyNative") >= 0 && page.indexOf("nextOccurrence") >= 0, "the sandbox page can hand nextOccurrence to the native app");
+assert(page.indexOf('id="install-wrap"') >= 0 && page.indexOf('id="install-btn"') >= 0 && page.indexOf('id="note-title"') >= 0 && page.indexOf("חשוב לדעת") >= 0, "install button and good-to-know stay in the page for the browser");
+assert(page.indexOf('html[data-native-app="1"] #install-wrap') >= 0 && page.indexOf('html[data-native-app="1"] #note') >= 0, "the native app hides install and the note section");
+assert(livePage.indexOf("ClockifyNative") < 0 && livePage.indexOf("data-native-app") < 0, "live Clockify has no Android wrapper branch");
+var myPage = fs.readFileSync(path.join(root, "../my/clock/index.html"), "utf8");
+assert(myPage.indexOf("ClockifyNative") < 0 && myPage.indexOf("data-native-app") < 0, "my clock was not changed");
 
 if (failed) { console.error(failed + " failed"); process.exit(1); }
 console.log("all passed");
