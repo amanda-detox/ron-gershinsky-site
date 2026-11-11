@@ -1,7 +1,7 @@
 /* Imagify sandbox only. Cache name stays versioned so a later sandbox can replace it
    without touching any other app's caches. Photos themselves are never cached here;
    they live in IndexedDB on the device. */
-var CACHE = "rg-imagify-sbx-v1";
+var CACHE = "rg-imagify-sbx-v2";
 var FILES = [
   "./",
   "index.html",
