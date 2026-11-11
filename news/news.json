@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-09T07:30:23+02:00",
+ "updated": "2026-11-11T07:11:32+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,91 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-bot-tailscale-personal-company-tailnets",
+   "topic": "grokbot",
+   "date": "2026-11-10T22:16:43Z",
+   "url": "https://x.com/bot/status/2120279511707386263",
+   "source": "X · @bot",
+   "he": {
+    "title": "Grok Bot יכול להצטרף לרשתות Tailscale אישיות וארגוניות",
+    "summary": "החשבון הרשמי @bot הודיע ב-10 בנובמבר ש-Grok Bot יכול להצטרף לרשתות Tailscale אישיות או של חברה, כדי להגיע בצורה מאובטחת לשרתי MCP פרטיים, לכלים פנימיים ולאפליקציות ברשת. תמיכה ברשת אישית כבר הופיעה ביומן השינויים ב-4 בנובמבר. ב-9 בנובמבר Tailscale הודיעה ש-OAuth apps זמינים באופן כללי, וציינה ש-Grok Bot כבר משתמש בהם."
+   },
+   "en": {
+    "title": "Grok Bot can now join personal or company Tailscale tailnets",
+    "summary": "The official @bot account said on November 10 that Grok Bot can join personal or company Tailscale tailnets to securely reach private MCP servers, internal tools, and apps on the network. Personal-tailnet support was already listed in the November 4 changelog. On November 9, Tailscale said OAuth apps were generally available and that Grok Bot was already using them in production."
+   },
+   "full_en": "Grok Bot can now join your personal or company tailnets on Tailscale.\n\nUse it to securely reach private MCP servers, internal tools, and apps on your network.\n\nThe official @bot account posted this on November 10. Personal-tailnet support was already listed in the official changelog on November 4, in version 0.78.5, which said you can connect your personal tailnet from the Tailscale plugin so Bots can reach MCP servers on it.\n\nA day earlier, on November 9, Tailscale published a blog post, \"Grok Bot has a Tailscale integration—and now you can, too,\" saying Tailscale OAuth apps were generally available. Unlike older OAuth clients that create tag-owned devices under a shared service identity, OAuth apps act on behalf of the user who authorizes them, so tailnet access policies, audit logs, and device quotas still apply. The post said this flow was already in production for Grok Bot, which can connect to private Model Context Protocol servers on a tailnet without exposing them to the public internet.\n\nAccording to the same Tailscale post, when Grok Bot is added to a tailnet on a Premium or Enterprise plan it gets a custom posture attribute, so policy can let a Bot reach designated MCP servers without inheriting the user's broader network access. On other plans, similar limits can be set with tags. The post tells users to connect from the Tailscale plugin in the Grok Bot desktop app. The @bot announcement and the November 4 changelog do not say which Grok Bot plans include the integration.",
+   "full_he": "Grok Bot יכול עכשיו להצטרף לרשתות Tailscale האישיות או הארגוניות שלך.\n\nאפשר להשתמש בזה כדי להגיע בצורה מאובטחת לשרתי MCP פרטיים, לכלים פנימיים ולאפליקציות ברשת שלך.\n\nהחשבון הרשמי @bot פרסם את זה ב-10 בנובמבר. תמיכה ברשת אישית כבר הופיעה ביומן השינויים הרשמי ב-4 בנובמבר, בגרסה 0.78.5, שבה נכתב שאפשר לחבר את הרשת האישית מתוסף Tailscale כדי שהבוטים יוכלו להגיע לשרתי MCP שעליה.\n\nיום קודם, ב-9 בנובמבר, Tailscale פרסמה פוסט בבלוג, \"יש ל-Grok Bot חיבור ל-Tailscale, ועכשיו גם אתם יכולים,\" ובו נכתב ש-OAuth apps של Tailscale זמינים באופן כללי. בניגוד ללקוחות OAuth ישנים שיוצרים מכשירים בבעלות תגית תחת זהות שירות משותפת, OAuth apps פועלים בשם המשתמש שאישר אותם, ולכן מדיניות הגישה, יומני הביקורת ומכסות המכשירים של הרשת ממשיכים לחול. לפי הפוסט, הזרימה הזו כבר בשימוש אצל Grok Bot, שיכול להתחבר לשרתי Model Context Protocol פרטיים ברשת בלי לחשוף אותם לאינטרנט הציבורי.\n\nלפי אותו פוסט של Tailscale, כשמוסיפים את Grok Bot לרשת בתוכנית Premium או Enterprise הוא מקבל תכונת posture מותאמת, כך שהמדיניות יכולה לאפשר לבוט להגיע לשרתי MCP שנבחרו בלי לקבל את כל הגישה הרחבה יותר של המשתמש. בתוכניות אחרות אפשר להגביל באופן דומה בעזרת תגיות. הפוסט מפנה להתחבר מתוסף Tailscale באפליקציית שולחן העבודה של Grok Bot. בהודעת @bot וביומן השינויים מ-4 בנובמבר לא נאמר אילו תוכניות של Grok Bot כוללות את החיבור."
+  },
+  {
+   "id": "grokbot-palmer-whats-new-recap-nov-10",
+   "topic": "grokbot",
+   "date": "2026-11-10T22:04:15Z",
+   "url": "https://www.webpronews.com/grok-bot-update-phone-calls-gift-planning-team-bots-analytics/",
+   "source": "WebProNews",
+   "he": {
+    "title": "סיכום של פאלמר: שיחות, קניות, בוטים לצוות והתראה על הוראות מוסתרות",
+    "summary": "WebProNews סיכם בטקסט את סרטון \"מה חדש ב-Grok Bot\" שמאט פאלמר פרסם ב-10 בנובמבר. בסיכום: הדגמת שיחה יוצאת לעסק בארה\"ב (מחוץ לוושינגטון ואילינוי), מחירי מבצע וקודי הנחה בקופה, תבנית Gift Concierge, תפקידים בבוטים לצוות, והתראה כשדף מסתיר הוראות לסוכני AI. שיחות יוצאות כבר הוצגו קודם, וחלק מהשינויים הופיעו ביומן השינויים בתחילת נובמבר."
+   },
+   "en": {
+    "title": "Palmer's recap: calls, shopping, Team Bots, and hidden-instruction warnings",
+    "summary": "WebProNews published a text write-up of Matt Palmer's November 10 \"What's new in Grok Bot\" video. It covers a demo of an outbound business call in the U.S. (except Washington and Illinois), sale prices and promo codes at checkout, a Gift Concierge template, Team Bot roles, and a warning when a page hides instructions for AI agents. Outbound calling had already been introduced earlier, and some of the changes were in the early-November changelog."
+   },
+   "full_en": "WebProNews published a text summary of the \"What's new in Grok Bot\" video that SpaceXSI's Matt Palmer posted on X on November 10. The article is used here as the source, rather than the video post itself.\n\nAccording to the write-up, Palmer demonstrated an outbound call: a Bot waited on hold to cancel an internet plan, identified itself as a virtual assistant calling on a recorded line, and declined a retention discount. Bots can work through phone menus, show a live transcript, and let the user tap Take over or End call. Users accept calling terms once, including that they will call only U.S. businesses and people who have agreed to hear from them, and the Bot shows who it is about to dial before each call. Palmer said calls work across the U.S. except in Washington and Illinois. Outbound calling itself had already been introduced in late October and early November; this was a weekly recap and demo, not the first announcement of the feature.\n\nOn shopping, the article says product cards now show sale prices, checkout applies promo codes, totals update for shipping, tax and promo changes before the user buys, and checkout cards stay valid for six hours instead of 30 minutes. A Gift Concierge template tracks gift lists, budgets and shipping deadlines so a purchase can be marked as arriving in time.\n\nFor teams, a Bot can be shared with individuals or groups. People added start as Collaborators, who chat with it, and can be made Managers, who can also change how it works and share it. Palmer showed a setting for how a shared Bot signs in to an app such as HubSpot: with each teammate's account, a shared account, or an account of its own. An analytics tab charts messages and \"hours saved\" over 7, 30 or 90 days.\n\nPalmer also described safeguards: when a web page hides instructions aimed at AI agents, the Bot ignores them and tells the user it found them and didn't follow them; when a connection such as Gmail expires, the Bot sends a notification with a one-tap reconnect; and draft emails and Slack messages now show attached files before anything is sent.\n\nSmaller changes in the recap include Grok Bot in the iPhone Share Sheet, 38 languages and right-to-left text, CSV files opening as tables, X posts appearing as cards, a weather card, Command+K search on desktop, a flatter black-and-white app icon, Library filters, and quicker in-place edits to Google Docs, Sheets, Slides and Drive files. Palmer ended on usage without giving numbers, saying the team was working on token efficiency and had been working through the weekend.\n\nSome of these items, including gift requests, hidden-instruction warnings, draft attachments, the new icon and Library filters, were already listed in the official changelog dated November 5 and 6.",
+   "full_he": "WebProNews פרסם סיכום טקסטואלי של סרטון \"מה חדש ב-Grok Bot\" שמאט פאלמר מ-SpaceXSI העלה ב-X ב-10 בנובמבר. כאן משמש המאמר כמקור, ולא פוסט הסרטון עצמו.\n\nלפי הסיכום, פאלמר הדגים שיחה יוצאת: בוט המתין על הקו כדי לבטל תוכנית אינטרנט, הציג את עצמו כעוזר וירטואלי שמתקשר בקו מוקלט, וסירב להנחת שימור. בוטים יכולים לעבור תפריטי טלפון, להציג תמלול חי, ולתת למשתמש להקיש \"לקחת פיקוד\" או \"לסיים שיחה\". המשתמשים מאשרים פעם אחת את תנאי השיחות, כולל שיתקשרו רק לעסקים בארה\"ב ולאנשים שהסכימו לשמוע מהם, ולפני כל שיחה הבוט מציג למי הוא עומד להתקשר. פאלמר אמר שהשיחות פועלות בכל ארה\"ב מלבד וושינגטון ואילינוי. שיחות יוצאות עצמן כבר הוצגו בסוף אוקטובר ובתחילת נובמבר; זה היה סיכום שבועי והדגמה, לא ההכרזה הראשונה על היכולת.\n\nבקניות, לפי המאמר, כרטיסי מוצר מציגים עכשיו מחירי מבצע, הקופה מפעילה קודי הנחה, הסכומים מתעדכנים לפי משלוח, מס ושינויי מבצע לפני הרכישה, וכרטיסי הקופה נשארים בתוקף שש שעות במקום 30 דקות. תבנית Gift Concierge עוקבת אחרי רשימות מתנות, תקציבים ומועדי משלוח, כדי שאפשר יהיה לסמן שרכישה מגיעה בזמן.\n\nלצוותים אפשר לשתף בוט עם אנשים או קבוצות. מי שנוסף מתחיל כמשתף פעולה, שיכול לשאול אותו, ואפשר להפוך אותו למנהל, שיכול גם לשנות איך הבוט עובד ולשתף אותו. פאלמר הציג הגדרה לאופן שבו בוט משותף נכנס לאפליקציה כמו HubSpot: עם החשבון של כל חבר צוות, עם חשבון משותף, או עם חשבון משלו. לשונית אנליטיקה מציגה תרשימים של הודעות ושל \"שעות שנחסכו\" ל-7, 30 או 90 ימים.\n\nפאלמר תיאר גם הגנות: כשדף אינטרנט מסתיר הוראות שמכוונות לסוכני AI, הבוט מתעלם מהן ואומר למשתמש שמצא אותן ולא פעל לפיהן; כשחיבור כמו Gmail פג, הבוט שולח התראה עם חיבור מחדש בלחיצה אחת; וטיוטות אימייל והודעות סלאק מציגות עכשיו קבצים מצורפים לפני שנשלח משהו.\n\nשינויים קטנים יותר בסיכום: Grok Bot בגיליון השיתוף באייפון, 38 שפות וטקסט מימין לשמאל, קובצי CSV שנפתחים כטבלאות, פוסטים מ-X שמופיעים ככרטיסים, כרטיס מזג אוויר, חיפוש Command+K בשולחן העבודה, סמל אפליקציה שטוח יותר בשחור-לבן, מסננים בספרייה, ועריכות מהירות יותר במקום ב-Google Docs, Sheets, Slides ו-Drive. פאלמר סיים בנושא השימוש בלי למסור מספרים, ואמר שהצוות עובד על יעילות טוקנים ועבד גם בסוף השבוע.\n\nחלק מהפריטים האלה, כולל בקשות למתנות, התראות על הוראות מוסתרות, קבצים מצורפים בטיוטות, הסמל החדש ומסנני הספרייה, כבר הופיעו ביומן השינויים הרשמי מ-5 ו-6 בנובמבר."
+  },
+  {
+   "id": "grokbot-musk-48-soft-rollout-bot-users",
+   "topic": "grokbot",
+   "date": "2026-11-10T09:35:59Z",
+   "url": "https://x.com/elonmusk/status/2120088070443655190",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: השקה רכה של Grok 4.8 למשתמשי Bot בהמשך השבוע",
+    "summary": "בתשובה לשאלה מתי לצפות ל-Grok 4.8, מאסק כתב שהמחסנית נכתבה מחדש ב-C/C++, שהאימון המוקדם הסתיים, ושהמודל נמצא כעת ב-RL. הוא אמר שתהיה השקה רכה למשתמשי Bot בהמשך השבוע, כדי לראות איך זה הולך. ביומן השינויים הרשמי זה עדיין לא מופיע."
+   },
+   "en": {
+    "title": "Musk: soft rollout of Grok 4.8 to Bot users later this week",
+    "summary": "Asked when to expect Grok 4.8, Musk said the stack had been rewritten in C/C++, pre-training was done, and the model was now in RL. He said they would do a soft rollout to Bot users later this week and see how it goes. It does not yet appear in the official changelog."
+   },
+   "full_en": "Asked \"Can we have an update on when to expect Grok 4.8 please,\" Musk wrote:\n\nWe have dumped JAX/SGLang and rewritten the entire RL and inference stack from scratch in C/C++, which took some extra time.\n\nTraining (aka pre-training) is done. Lot of cleanup was needed on the SFT data to get that mostly right. Now, 4.8 is in RL and the evals are starting to climb. We will do a soft rollout to Bot users later this week and see how it goes.\n\nGrok 4.8 will bear no resemblance to 4.7 (thankfully). It is not yet incredible, but, this time, the foundations are built right, so I expect it to evolve to be something special.\n\nIn follow-up replies in the same thread, Musk added:\n\n• \"C with a little C++, but not too much.\"\n• \"At SpaceX, we write our own headers and calculate our own time (includes leap seconds). Not many people will know what this means, but those that do will appreciate it. The new Grok AI/SI training and inference stack is derived from incredible of work done by amazing engineers to create Starlink.\"\n• \"(There's even some assembly). One day, super intelligence will write a better software stack, but that day has not yet come. This is tight code.\"\n• \"Not as good. Opus 5.5 is a masterpiece. But Grok 5 should exceed Opus 5.5 and maybe that happens in 2 or 3 months, with continued acceleration thereafter.\"\n\nThe official Grok Bot changelog still listed v0.79.3 from November 6 and did not describe a 4.8 rollout.",
+   "full_he": "לשאלה \"אפשר עדכון מתי לצפות ל-Grok 4.8?\" כתב מאסק:\n\nויתרנו על JAX/SGLang וכתבנו מחדש מאפס את כל מחסנית ה-RL וההסקה ב-C/C++, וזה לקח קצת יותר זמן.\n\nהאימון (כלומר האימון המוקדם) הסתיים. היה צריך הרבה ניקוי בנתוני ה-SFT כדי ליישר את זה ברובם. עכשיו 4.8 נמצא ב-RL, והמבחנים מתחילים לעלות. נעשה השקה רכה למשתמשי Bot בהמשך השבוע, ונראה איך זה הולך.\n\nGrok 4.8 לא ידמה בכלל ל-4.7 (וטוב שכך). הוא עדיין לא מדהים, אבל הפעם היסודות בנויים כמו שצריך, ולכן אני מצפה שהוא יתפתח למשהו מיוחד.\n\nבתגובות המשך באותו שרשור הוסיף מאסק:\n\n• \"C עם קצת C++, אבל לא יותר מדי.\"\n• \"ב-SpaceX אנחנו כותבים בעצמנו את כותרות הקבצים ומחשבים בעצמנו את הזמן (כולל שניות מעוברות). לא הרבה ידעו למה הכוונה, אבל מי שיודע יעריך. מחסנית האימון וההסקה החדשה של Grok AI/SI נגזרת מעבודה מדהימה של מהנדסים שיצרו את Starlink.\"\n• \"(יש אפילו קצת assembly). יום אחד בינה עילאית תכתוב מחסנית תוכנה טובה יותר, אבל היום הזה עדיין לא הגיע. זה קוד הדוק.\"\n• \"עדיין לא טוב באותה מידה. Opus 5.5 הוא יצירת מופת. אבל Grok 5 אמור לעבור את Opus 5.5, אולי בעוד חודשיים-שלושה, ועם האצה מתמשכת אחר כך.\"\n\nביומן השינויים הרשמי של Grok Bot עדיין הופיע v0.79.3 מ-6 בנובמבר, בלי תיאור של השקת 4.8."
+  },
+  {
+   "id": "grokbot-bot-reset-weekly-limits",
+   "topic": "grokbot",
+   "date": "2026-11-09T19:17:20Z",
+   "url": "https://x.com/bot/status/2119871982946971659",
+   "source": "X · @bot",
+   "he": {
+    "title": "Grok Bot: איפסנו את מגבלות השבוע לכל המשתמשים",
+    "summary": "החשבון הרשמי @bot הודיע ב-9 בנובמבר שאיפס את המגבלות השבועיות לכל משתמשי Grok Bot. מאסק עשה ריפוסט להודעה, ומאט פאלמר הוסיף שהצוות עובד מסביב לשעון. ההודעה לא פירטה כמה שימוש הוחזר, ולא הופיעה ביומן השינויים הרשמי."
+   },
+   "en": {
+    "title": "Grok Bot: we've reset weekly limits for all users",
+    "summary": "The official @bot account said on November 9 that it had reset weekly limits for all Grok Bot users. Musk reposted the announcement, and Matt Palmer added that the team is working around the clock. The post did not say how much usage was restored, and it does not appear in the official changelog."
+   },
+   "full_en": "We've reset weekly limits for all Grok Bot users.\n\nEnjoy!\n\nThe official @bot account posted this at 19:17 UTC on November 9 (1:17 p.m. CT). Elon Musk reposted it. Minutes later, Matt Palmer of SpaceXSI wrote: \"Grok Bot weekly limits have been reset. Thank you all for your support - the team is working around the clock.\"\n\nThe post does not say how much usage was restored, why the limits were reset, or whether anyone's next regular reset date has changed. The official changelog at x.ai/changelog/bot, checked after the announcement, still listed v0.79.3, dated November 6, as its latest entry, and did not describe the reset.\n\nThe announcement came the afternoon after Musk's November 9 round-table review, when he said fixes were being implemented overnight and users should notice a dramatic improvement by the next day. The @bot post does not itself say that the reset is that improvement.",
+   "full_he": "איפסנו את המגבלות השבועיות לכל משתמשי Grok Bot.\n\nתהנו!\n\nהחשבון הרשמי @bot פרסם את זה ב-19:17 לפי UTC ב-9 בנובמבר (13:17 שעון מרכז ארה\"ב). אילון מאסק עשה להודעה ריפוסט. דקות אחר כך כתב מאט פאלמר מ-SpaceXSI: \"המגבלות השבועיות של Grok Bot אופסו. תודה לכולם על התמיכה - הצוות עובד מסביב לשעון.\"\n\nההודעה לא מפרטת כמה שימוש הוחזר, למה המגבלות אופסו, או אם תאריך האיפוס הרגיל הבא השתנה אצל מישהו. ביומן השינויים הרשמי ב-x.ai/changelog/bot, שנבדק אחרי ההודעה, עדיין הופיע v0.79.3 מ-6 בנובמבר כערך האחרון, בלי תיאור של האיפוס.\n\nההודעה הגיעה אחרי סקירת השולחן העגול של מאסק ב-9 בנובמבר, שבה אמר שהתיקונים מוטמעים במהלך הלילה ושהמשתמשים אמורים להרגיש שיפור דרמטי עד למחרת. פוסט @bot עצמו לא אומר שהאיפוס הוא השיפור הזה."
+  },
+  {
+   "id": "grokbot-palmer-aggregating-user-feedback",
+   "topic": "grokbot",
+   "date": "2026-11-09T13:49:33Z",
+   "url": "https://x.com/mattyp/status/2119789494723649662",
+   "source": "X · @mattyp",
+   "he": {
+    "title": "פאלמר: עניתי למאות, ואשתמש ב-Grok Bot כדי לרכז משוב",
+    "summary": "מאט פאלמר מ-SpaceXSI כתב שענה למאות משתמשים וימשיך לעקוב אחרי התגובות. הוא ישתמש ב-Grok Bot כדי לרכז משוב לצוות, והדגיש שזה לא מחליף שיחה ישירה: כל תשובה מגיעה ממנו."
+   },
+   "en": {
+    "title": "Palmer: I replied to hundreds, and I'll use Grok Bot to aggregate feedback",
+    "summary": "SpaceXSI's Matt Palmer said he had replied to hundreds of users and would keep watching the comments. He'll use Grok Bot to send aggregate feedback to the team, and stressed that this doesn't replace talking to users: every reply comes from him."
+   },
+   "full_en": "I responded to hundreds of you and will continue to monitor comments\n\nI'll be using @bot to get aggregate feedback to the team\n\nof course, aggregate feedback is no substitute for talking to users.\n\nI will continue to talk with you all. Every response comes from me!\n\nThe post came on the morning of November 9, after a weekend of complaints about weekly usage running out early, and after Musk had already said token-efficiency and behavior fixes were underway.",
+   "full_he": "עניתי למאות מכם, ואמשיך לעקוב אחרי התגובות\n\nאשתמש ב-@bot כדי להעביר לצוות משוב מרוכז\n\nכמובן שמשוב מרוכז לא מחליף שיחה עם משתמשים.\n\nאמשיך לדבר איתכם. כל תשובה מגיעה ממני!\n\nהפוסט פורסם בבוקר ה-9 בנובמבר, אחרי סוף שבוע של תלונות על מגבלות שבועיות שנגמרות מוקדם, ואחרי שמאסק כבר אמר שתיקונים ליעילות טוקנים ולהתנהגות בדרך."
+  },
   {
    "id": "huang-apology-email-alice-huang-affair",
    "topic": "huang",
