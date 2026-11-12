@@ -232,6 +232,7 @@
     if (k === "saving") s.className += " save";
     else if (k === "synced") s.className += " ok";
     else if (k === "waiting") s.className += " wait";
+    else if (k === "localOnly") s.className += " local";
     else if (k === "offline" || k === "blocked" || (k && String(k).indexOf("syncError") === 0)) s.className += " off";
     while (s.firstChild) s.removeChild(s.firstChild);
     doc = s.ownerDocument || document;

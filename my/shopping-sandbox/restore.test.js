@@ -124,7 +124,7 @@ var printCss = page.slice(page.indexOf(".printbtn {"), page.indexOf(".printbtn {
 assert(printCss.indexOf("padding: 0 18px") !== -1, "print uses Listify's 18px padding");
 var searchCss = page.slice(page.indexOf(".searchin {"), page.indexOf(".searchin:focus"));
 assert(searchCss.indexOf("text-align: start") !== -1 && page.indexOf(".searchin:placeholder-shown { text-align: center; }") !== -1, "only the search placeholder is centered");
-assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v6"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=53") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
+assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v7"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=54") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
 var bakBody = app.slice(app.indexOf("function downloadBackup"), app.indexOf("function openHistory"));
 assert(bakBody.indexOf("backupEmpty") !== -1 && bakBody.indexOf("restoreNeed") === -1, "an empty backup shows a short message and does not ask to sign in");
 assert(page.indexOf('backupEmpty: "אין עדיין מה לגבות"') !== -1 && page.indexOf("ממתין לסנכרון…") !== -1 && page.indexOf("#4A78DC") !== -1 && page.indexOf("#1E3A8A") !== -1 && page.indexOf("#5B8DEF") !== -1, "waiting is deep blue and the backup link uses the synced blue");
