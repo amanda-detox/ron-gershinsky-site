@@ -1,7 +1,7 @@
 /* Offline cache for the Purchasify sandbox (my/shopping-sandbox/). Scope: my/shopping-sandbox/ only.
    Deletes only rg-sbx-shopping- caches. The live shopping cache is left alone.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-sbx-shopping-v2";
+var CACHE = "rg-sbx-shopping-v3";
 var FILES = ["./", "index.html", "rg-sync-status.js?v=2", "restore.js?v=1", "app.js?v=51", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=1", "icon-maskable-512.png?v=1", "../common.css", "../common.js",
   "../../shared/rg-account.js", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 
