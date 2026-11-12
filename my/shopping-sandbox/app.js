@@ -224,14 +224,14 @@
     var s = $("status"), SS = window.RGSyncStatus, k, doc, span, mark, raw;
     if (!s) return;
     if (!uid) k = "localOnly";
-    else if (!SS) k = offline ? "offline" : (busy || pending) ? "saving" : "synced";
+    else if (!SS) k = offline ? "offline" : busy ? "saving" : pending ? "waiting" : "synced";
     else k = SS.kind(statusFlags());
-    if (k === "waiting") k = "saving";
     if (k === "blocked" && SS) SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
     else if (SS) SS.closeDeletion();
     s.className = "status";
     if (k === "saving") s.className += " save";
     else if (k === "synced") s.className += " ok";
+    else if (k === "waiting") s.className += " wait";
     else if (k === "offline" || k === "blocked" || (k && String(k).indexOf("syncError") === 0)) s.className += " off";
     while (s.firstChild) s.removeChild(s.firstChild);
     doc = s.ownerDocument || document;
@@ -250,7 +250,7 @@
     }
     span = doc.createElement("span");
     span.className = "status-txt";
-    span.textContent = k ? t(k) : "";
+    span.textContent = k === "waiting" ? t("syncWait") : (k ? t(k) : "");
     s.appendChild(span);
   }
 
@@ -1130,8 +1130,17 @@
     setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
   }
   /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
+  function mapHasRows(map) {
+    var k, x;
+    for (k in (map || {})) {
+      x = map[k];
+      if (x && typeof x === "object" && !x.deleted) return true;
+    }
+    return false;
+  }
   function downloadBackup() {
     var R = window.RGSbxShopRestore, when, stamp, file;
+    if (!mapHasRows(items) && !mapHasRows(catsMap)) { toast(t("backupEmpty")); return; }
     if (!R || !R.buildFile) return;
     when = Date.now();
     file = R.buildFile(items || {}, catsMap || {}, when);

@@ -346,17 +346,40 @@
     clearTimeout(retryT);
     retryT = setTimeout(function () { nextTry = 0; if (uid) sync(); }, ms);
   }
+  function paintStatusWord(s, text) {
+    while (s.firstChild) s.removeChild(s.firstChild);
+    var span = document.createElement("span");
+    span.className = "status-txt";
+    span.textContent = text || "";
+    s.appendChild(span);
+  }
+  function paintSyncedStatus(s) {
+    var mark, span;
+    while (s.firstChild) s.removeChild(s.firstChild);
+    mark = document.createElement("span");
+    mark.className = "syncmark";
+    mark.setAttribute("aria-hidden", "true");
+    mark.textContent = "✓";
+    span = document.createElement("span");
+    span.className = "status-txt";
+    span.textContent = t("synced").replace(/^✓\s*/, "");
+    s.appendChild(mark);
+    s.appendChild(span);
+  }
   function setStatus() {
     paintLastSync();
-    var s = $("status");
-    var SS = window.RGSyncStatus;
+    var s = $("status"), SS = window.RGSyncStatus, flags, k, show;
     if (!s) { maybeUpdateReload(); return; }
-    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); maybeUpdateReload(); return; }
-    var flags = statusFlags();
-    var k = SS.kind(flags);
-    SS.fillStatus(s, k, k ? t(k) : "");
-    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
-    else SS.closeDeletion();
+    flags = statusFlags();
+    k = SS ? SS.kind(flags) : (!uid ? "localOnly" : offline ? "offline" : busy ? "saving" : pending ? "waiting" : "synced");
+    show = (k === "saving" && pending && !busy) ? "waiting" : k;
+    if (show === "synced") { s.className = "status ok"; paintSyncedStatus(s); }
+    else if (show === "saving") { s.className = "status save"; paintStatusWord(s, t("saving")); }
+    else if (show === "waiting") { s.className = "status wait"; paintStatusWord(s, t("waiting")); }
+    else if (SS) SS.fillStatus(s, k, k ? t(k) : "");
+    else { s.className = "status" + (k === "offline" ? " off" : ""); paintStatusWord(s, t(k)); }
+    if (k === "blocked" || holdBlocked) { if (SS) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked }); }
+    else if (SS) SS.closeDeletion();
     maybeUpdateReload();
   }
   var updateReady = false;
@@ -1549,8 +1572,17 @@
     if (x) x.addEventListener("click", function () { el.value = ""; sync(); el.focus(); });
   }
   /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
+  function backupHasRows() {
+    var k, x;
+    for (k in (items || {})) {
+      x = items[k];
+      if (x && typeof x === "object" && !x.deleted) return true;
+    }
+    return false;
+  }
   function downloadBackup() {
     var R = window.RGSbxRestore, file, blob, a, when, stamp;
+    if (!backupHasRows()) { toast(t("backupEmpty")); return; }
     if (!R || !R.buildFile) return;
     when = Date.now();
     file = R.buildFile(items || {}, when);

@@ -135,8 +135,8 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=56") !== -1, "the sandbox page loads the restore helper and the bumped app");
-assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v24"') !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=56") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=57") !== -1, "the sandbox page loads the restore helper and the bumped app");
+assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v25"') !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=57") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
@@ -147,7 +147,10 @@ var built = R.buildFile({ a: { id: "a", at: 5, text: "Hi", sec: "tasks" } }, new
 var back = R.parse(built);
 assert(back.ok && back.kind === "listify-restore" && back.items.a.text === "Hi", "a backup file loads back through restore");
 var bakBody = app.slice(app.indexOf("function downloadBackup"), app.indexOf("function boot()"));
-assert(bakBody.indexOf("function downloadBackup") === 0 && bakBody.indexOf("toast") === -1 && bakBody.indexOf("restoreNeed") === -1, "the backup link downloads without a sign-in message");
+assert(bakBody.indexOf("function downloadBackup") === 0 && bakBody.indexOf("backupEmpty") !== -1 && bakBody.indexOf("restoreNeed") === -1, "an empty backup shows a short message and does not ask to sign in");
+assert(page.indexOf('backupEmpty: "אין עדיין מה לגבות"') !== -1 && page.indexOf('waiting: "ממתין לסנכרון…"') !== -1, "the empty-backup and waiting lines are in Hebrew");
+var restoreCss = page.slice(page.indexOf(".restorebtn {"), page.indexOf(".restorebtn {") + 420);
+assert(restoreCss.indexOf("16px") !== -1 && restoreCss.indexOf("15px") === -1, "the restore button is 16px like print");
 var loadBody = app.slice(app.indexOf("function loadRestore"), app.indexOf("function bootRestore"));
 assert(loadBody.indexOf("rememberSnap(true)") !== -1 && loadBody.indexOf("rememberSnap(true)") < loadBody.indexOf("restoreDoc = staged.items"), "a confirmed file restore saves the current state as a version first");
 assert(loadBody.indexOf("adoptRestore") !== -1 && loadBody.indexOf("overwriteOk") !== -1 && loadBody.indexOf("sync()") !== -1 && loadBody.indexOf("restoreReplace") === -1, "a file restore is stamped fresh, then synced as a deliberate overwrite");
