@@ -174,19 +174,25 @@
   .status:empty { display: none; }
   .status.save { color: var(--accent); font-weight: 700; opacity: 1; }
   html[data-theme="dark"] .status.ok { color: #5B8DEF; font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.wait { color: #4A78DC; font-weight: 700; opacity: 1; }
   html[data-theme="light"] .status.save { color: #8a6a10; }
   html[data-theme="light"] .status.ok { color: var(--blue); font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.wait { color: #1E3A8A; font-weight: 700; opacity: 1; }
   .status.ok { display: flex; justify-content: center; align-items: baseline; gap: 4px; }
   .syncmark { color: var(--accent); font-weight: 900; }
   html[data-theme="light"] .syncmark { color: #8a6a10; }
   .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
   html[data-theme="light"] .status.off { color: #8a5a00; }
   .status .status-txt { display: inline; }
-  .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: .85; }
+  .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: #5B8DEF; font-size: 12px; line-height: 1.35; opacity: 1; }
   .lastsync:empty { display: none; }
+  #lastsync, #cloudat, .baklink { color: #5B8DEF; opacity: 1; }
+  html[data-theme="light"] #lastsync,
+  html[data-theme="light"] #cloudat,
+  html[data-theme="light"] .baklink { color: var(--blue); }
   .histrow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 16px; margin: 4px auto 8px; }
   .histbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: 700 14px/1.2 var(--sans); cursor: pointer; }
-  .baklink { box-sizing: border-box; min-height: 44px; margin: 0; padding: 0 2px; border: 0; background: transparent; color: var(--muted); font: 600 13px/1.3 var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .baklink { box-sizing: border-box; min-height: 44px; margin: 0; padding: 0 2px; border: 0; background: transparent; color: #5B8DEF; font: 600 13px/1.3 var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
   .baklink:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .hrow { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
   .histwhen { font-weight: 800; font-size: 16px; }
@@ -216,7 +222,7 @@
   .searchx[hidden] { display: none; }
   .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .restore-row { position: relative; display: flex; flex: 0 0 auto; min-width: 44px; margin: 0; }
-  .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 15px/1.2 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .restorebtn span { display: block; white-space: nowrap; }
   .restorebtn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -318,7 +324,7 @@ window.RGMY_STRINGS = {
   he: { doc: "Purchasify", title: "קניותיפיי", sub: "עותק ניסוי. הרשימה כאן נפרדת ולא נוגעת בקניותיפיי הרגיל.", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפסה", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
-        edit: "עריכה", del: "מחק", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", synced: "✓ מסונכרן", saving: "שומר…", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", lastSync: "סונכרן לאחרונה ב-{t}", cloudAt: "עודכן בענן ב-{t}", history: "היסטוריית גרסאות", historyEmpty: "עדיין אין גרסאות שמורות.", historyBack: "סגור", historyDownload: "הורד", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
+        edit: "עריכה", del: "מחק", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", synced: "✓ מסונכרן", saving: "שומר…", waiting: "ממתין לסנכרון…", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", backupEmpty: "אין עדיין מה לגבות", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", lastSync: "סונכרן לאחרונה ב-{t}", cloudAt: "עודכן בענן ב-{t}", history: "היסטוריית גרסאות", historyEmpty: "עדיין אין גרסאות שמורות.", historyBack: "סגור", historyDownload: "הורד", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
         emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
@@ -340,7 +346,7 @@ window.RGMY_STRINGS = {
   en: { doc: "Purchasify", title: "Purchasify", sub: "Sandbox copy. This list is separate and does not touch the regular Purchasify list.", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
-        edit: "Edit", del: "Delete", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", synced: "✓ Synced", saving: "Saving…", localOnly: "Saved on this device only, until you sign in", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", lastSync: "Last synced at {t}", cloudAt: "Cloud copy updated at {t}", history: "Version history", historyEmpty: "No saved versions yet.", historyBack: "Close", historyDownload: "Download", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
+        edit: "Edit", del: "Delete", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", synced: "✓ Synced", saving: "Saving…", waiting: "Waiting to sync…", localOnly: "Saved on this device only, until you sign in", backupEmpty: "Nothing to back up yet.", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", lastSync: "Last synced at {t}", cloudAt: "Cloud copy updated at {t}", history: "Version history", historyEmpty: "No saved versions yet.", historyBack: "Close", historyDownload: "Download", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
         emptyCat: "This category is empty. Write above what you need to buy.",
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
@@ -365,7 +371,7 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="restore.js?v=1"></script>
-<script src="app.js?v=52"></script>
+<script src="app.js?v=53"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside the installed parent app -->

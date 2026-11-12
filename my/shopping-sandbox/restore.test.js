@@ -124,9 +124,12 @@ var printCss = page.slice(page.indexOf(".printbtn {"), page.indexOf(".printbtn {
 assert(printCss.indexOf("padding: 0 18px") !== -1, "print uses Listify's 18px padding");
 var searchCss = page.slice(page.indexOf(".searchin {"), page.indexOf(".searchin:focus"));
 assert(searchCss.indexOf("text-align: start") !== -1 && page.indexOf(".searchin:placeholder-shown { text-align: center; }") !== -1, "only the search placeholder is centered");
-assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v5"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=52") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
+assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v6"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=53") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
 var bakBody = app.slice(app.indexOf("function downloadBackup"), app.indexOf("function openHistory"));
-assert(bakBody.indexOf("toast") === -1 && bakBody.indexOf("restoreNeed") === -1, "the backup link downloads without a sign-in message");
+assert(bakBody.indexOf("backupEmpty") !== -1 && bakBody.indexOf("restoreNeed") === -1, "an empty backup shows a short message and does not ask to sign in");
+assert(page.indexOf('backupEmpty: "אין עדיין מה לגבות"') !== -1 && page.indexOf("ממתין לסנכרון…") !== -1 && page.indexOf("#4A78DC") !== -1 && page.indexOf("#1E3A8A") !== -1 && page.indexOf("#5B8DEF") !== -1, "waiting is deep blue and the backup link uses the synced blue");
+var restoreCss = page.slice(page.indexOf(".restorebtn {"), page.indexOf(".restorebtn {") + 420);
+assert(restoreCss.indexOf("16px") !== -1 && restoreCss.indexOf("15px") === -1, "the restore button is 16px like print");
 assert(SS.formatSyncTime(new Date(2026, 0, 5, 9, 4).getTime()) === "05/01 09:04", "sync times use DD/MM HH:MM");
 assert(SS.LAST_PREFIX === "rg-sbx-shopping-lastsync:", "the clock key stays in the sandbox prefix");
 assert(SS.shouldStampSync({ downloaded: true, uploaded: true, nothingToUpload: false, blocked: false, failed: false, pendingLeft: false }) === true, "a finished upload stamps a sync time");
