@@ -55,7 +55,7 @@
   .cp-act:disabled { opacity: .3; }
   .cp-back { position: fixed; inset: 0; z-index: 44; }
   .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
-  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheetwrap { position: fixed; inset: 0; z-index: 10001; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
   .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
   .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
   .sheet .sform { display: flex; flex-direction: column; gap: 10px; }
@@ -168,23 +168,30 @@
     .sheet .mlist { gap: 4px; }
   }
   .cathead { display: flex; align-items: center; gap: 8px; }
-  .cathead .catbtn { flex: 1 1 auto; width: auto; min-width: 0; }
-  .syncslot { display: flex; align-items: center; justify-content: flex-end; gap: 2px; min-width: 0; max-width: 46%; }
-  .syncslot[hidden] { display: none !important; }
-  .syncslot .status { display: block; margin: 0; padding: 0; text-align: end; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: .9; white-space: normal; overflow-wrap: anywhere; min-width: 0; }
-  .syncslot .status:empty { display: none; }
-  .syncslot .status.off { color: var(--accent); font-weight: 700; opacity: 1; }
-  .syncpeek { display: none; font: 700 12px/1.2 var(--sans); white-space: nowrap; }
-  .synctog { flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
-  .synctog svg { width: 18px; height: 18px; display: block; margin: auto; transition: transform .15s; }
-  .syncslot.shut { max-width: none; }
-  .syncslot.shut .synctog svg { transform: rotate(180deg); }
-  .syncslot.shut .status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-  .syncslot.shut.attn .syncpeek { display: inline; color: var(--accent); }
-  .syncslot.shut.attn .synctog { color: var(--accent); }
-  html[data-theme="light"] .syncslot .status.off,
-  html[data-theme="light"] .syncslot.shut.attn .syncpeek,
-  html[data-theme="light"] .syncslot.shut.attn .synctog { color: #8a5a00; }
+  .cathead .catbtn { flex: 1 1 auto; width: 100%; min-width: 0; }
+  .syncline { position: relative; display: flex; width: 100%; justify-content: flex-end; align-items: center; min-height: 28px; margin: 2px 0 0; }
+  html[dir="ltr"] .syncline { justify-content: flex-start; }
+  .syncstat { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-height: 32px; padding: 0 2px; border: 0; background: transparent; font: 700 13px/1 var(--sans); white-space: nowrap; cursor: default; -webkit-tap-highlight-color: transparent; }
+  .syncstat.has-detail { cursor: pointer; }
+  .syncstat.save { color: var(--accent); }
+  .syncstat.ok { color: #8eaddb; }
+  .syncstat.wait, .syncstat.out { color: color-mix(in srgb, #8eaddb 72%, var(--accentink)); }
+  .syncmark { color: var(--accent); font-weight: 900; }
+  html[data-theme="light"] .syncstat.save,
+  html[data-theme="light"] .syncmark { color: #8a6a10; }
+  html[data-theme="light"] .syncstat.ok { color: var(--blue); }
+  html[data-theme="light"] .syncstat.wait,
+  html[data-theme="light"] .syncstat.out { color: var(--accent); }
+  .synccloud { width: 16px; height: 16px; flex: none; display: block; }
+  .syncword { min-width: 0; }
+  .syncdots { display: inline-flex; align-items: flex-end; gap: 2px; height: 0.8em; }
+  .syncdots[hidden] { display: none !important; }
+  .syncdots i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; animation: syncdot 1.1s infinite ease-in-out; }
+  .syncdots i:nth-child(2) { animation-delay: .15s; }
+  .syncdots i:nth-child(3) { animation-delay: .3s; }
+  @keyframes syncdot { 0%, 70%, 100% { opacity: .25; } 35% { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) { .syncdots i { animation: none; opacity: 1; } }
+  .syncpop { position: absolute; z-index: 46; top: 100%; margin-top: 4px; inset-inline-end: 0; width: max-content; max-width: min(18rem, calc(100vw - 32px)); padding: 8px 10px; border-radius: 12px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 600 13px/1.45 var(--sans); white-space: normal; box-shadow: var(--shadow); }
   /* 2026-11-01 lists dropdown: much larger, compact rows, all lists fit; per-list ⋮ menu shows all options */
   .cp-list { max-height: calc(100vh - 170px) !important; max-height: calc(100dvh - 170px) !important; gap: 2px; }
   .cp-list li { min-height: 40px; }
@@ -194,11 +201,31 @@
   .cp-oi { min-height: 38px; font-size: 15px; }
   .cp-list li.cp-opts { flex: none !important; height: auto !important; } #cat-new { flex: none; } #done-wrap .donehead h2 { color: var(--accent); font-weight: 800; }
   .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
-  /* print: screen-only. Uses the same tokens as the other list buttons. */
-  .printrow { display: flex; justify-content: flex-start; margin: 2px 0 0; }
-  .printbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  /* print, backup, restore, and search: one row, same tokens as Listify's options row. */
+  .actrow { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; margin: 2px 0 0; min-width: 0; }
+  .searchbox { position: relative; flex: 1 1 auto; min-width: 5.75rem; display: flex; align-items: center; }
+  .searchin { box-sizing: border-box; width: 100%; min-height: 44px; min-width: 0; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); -webkit-tap-highlight-color: transparent; }
+  .searchbox.hasq .searchin { padding-inline-end: 44px; }
+  .searchin::placeholder { color: var(--faint); font-weight: 700; }
+  .searchin:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .searchx { position: absolute; inset-inline-end: 0; top: 0; bottom: 0; width: 44px; min-height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 800 18px/1 var(--sans); cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+  .searchx:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .searchx[hidden] { display: none; }
+  .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+  .restore-row { position: relative; display: flex; flex: 0 0 auto; min-width: 44px; margin: 0; }
+  .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 15px/1.2 var(--sans); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+  .restorebtn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .restore-note { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+  .restore-meta { margin: 0; color: var(--fg); font-size: 15.5px; font-weight: 800; }
+  .restore-lines { list-style: none; margin: 0; padding: 0; max-height: 38vh; overflow-y: auto; overscroll-behavior: contain; }
+  .restore-lines li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-height: 40px; padding: 6px 2px; border-bottom: 1px solid var(--line); font-size: 15.5px; font-weight: 700; }
+  .restore-lines .rn { min-width: 0; overflow-wrap: anywhere; }
+  .restore-lines .rc { flex: none; color: var(--muted); font-weight: 800; }
+  mark.qhit { background: var(--accent); color: var(--accentink); border-radius: 4px; padding: 0 1px; }
+  .srchhead { margin: 14px 4px 0; font-size: 16px; font-weight: 800; line-height: 1.35; color: var(--fg); }
   @media print {
-    .rgtb, .topbar, .printrow, .addform, .cathint, .syncslot, #status, .status,
+    .rgtb, .topbar, .actrow, .syncline, .syncpop, #search-out, .addform, .cathint, #status, .status,
     .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
     .catpanel, .cp-back, .sheetwrap, .toast, .gate, .suggest, .hdl, .synctog, .cb-chev, .ulink, .addnote { display: none !important; }
     .catbtn { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
@@ -225,7 +252,18 @@
     </div>
   </header>
   <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
-  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
+  <div class="actrow" id="actrow">
+    <div class="searchbox" id="searchbox" role="search">
+      <input id="list-search" class="searchin" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-i18n-ph="searchPh" data-i18n-label="searchLabel" placeholder="חיפוש" aria-label="חיפוש ברשימות ובפריטים">
+      <button type="button" class="searchx" id="search-clear" hidden data-i18n-label="searchClear" aria-label="ניקוי החיפוש">✕</button>
+    </div>
+    <button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button>
+    <div class="restore-row">
+      <label class="restorebtn" id="restore-file-btn" for="restore-file" tabindex="0" data-i18n-label="restoreBtnLabel"><span data-i18n="restoreBtn">שחזור</span></label>
+      <input id="restore-file" class="restore-file" type="file" accept="application/json,.json">
+    </div>
+    <button type="button" class="printbtn" id="backup-btn" data-i18n="backupBtn">גיבוי</button>
+  </div>
 
   <section class="card gate" data-when="out" hidden>
     <div class="lock" aria-hidden="true">🔒</div>
@@ -234,11 +272,10 @@
     <span data-rg-account></span>
   </section>
 
-  <main data-when="in" hidden>
-    <div class="catpick" id="catpick">
+  <main>
+    <div class="catpick" id="catpick" data-when="in" hidden>
       <div class="cathead">
       <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="syncslot" id="syncslot"><div class="status" id="status" role="status" aria-live="polite"></div><span class="syncpeek" id="syncpeek"></span><button type="button" class="synctog" id="sync-tog" aria-expanded="true" aria-controls="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
       </div>
       <div class="catpanel" id="cat-panel" hidden>
         <div class="cp-head"><span class="cp-title" id="cp-title"></span></div>
@@ -246,6 +283,15 @@
         <button type="button" class="cp-new" id="cat-new"></button>
       </div>
     </div>
+    <div class="syncline" id="syncline" hidden>
+      <button type="button" class="syncstat" id="syncstat" aria-expanded="false" aria-controls="syncpop">
+        <svg class="synccloud is-solid" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.2 17.6h11.1a4.1 4.1 0 0 0 .5-8.2 5.5 5.5 0 0 0-10.6-1.6 3.6 3.6 0 0 0-1 9.8z"/></svg>
+        <svg class="synccloud is-line" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M7 17.6h10.2a3.6 3.6 0 0 0 .4-7.2 5 5 0 0 0-9.6-1.5A3.3 3.3 0 0 0 7 17.6z"/></svg>
+        <span class="syncword" id="status" role="status" aria-live="polite"></span><span class="syncdots" id="syncdots" hidden aria-hidden="true"><i></i><i></i><i></i></span><span class="syncmark" id="syncmark" hidden>✓</span>
+      </button>
+      <p class="syncpop" id="syncpop" role="dialog" hidden></p>
+    </div>
+    <div data-when="in" id="shop-rest" hidden>
     <p class="cathint" id="cathint" hidden></p>
     <form class="addform" id="add-form" autocomplete="off">
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
@@ -255,11 +301,13 @@
     </form>
     <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
     <p class="sum" id="sum" role="status" aria-live="polite" hidden></p>
+    <div id="search-out" hidden></div>
     <div id="done-wrap" hidden>
       <div class="donehead"><h2 id="done-h"></h2></div>
       <div class="card listcard"><ul class="list" id="done"></ul></div>
     </div>
     <div class="card listcard" id="active-card" style="margin-top:14px"><ul class="list" id="active"></ul></div>
+    </div>
   </main>
   <p class="privnote" data-i18n="privNote"></p>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
@@ -280,7 +328,16 @@ window.RGMY_STRINGS = {
         catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה.",
         markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
-        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
+        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה.",
+        searchPh: "חיפוש", searchLabel: "חיפוש ברשימות ובפריטים", searchClear: "ניקוי החיפוש", searchEmpty: "אין התאמה",
+        restoreBtn: "שחזור", restoreBtnLabel: "שחזור. עותק הניסוי בלבד", restoreTitle: "שחזור", backupBtn: "גיבוי",
+        restoreOnly: "זה נטען רק לעותק הניסוי. קניותיפיי הרגיל לא משתנה.",
+        restoreList: "רשימה", restoreLists: "רשימות", restoreItem: "פריט", restoreItems: "פריטים",
+        restoreNewest: "התאריך החדש ביותר", restoreFileDate: "תאריך הקובץ", restoreEmpty: "אין רשימות גלויות בקובץ.",
+        restoreHidden: "מוסתרות בקובץ", restoreLoad: "טען לעותק הניסוי", restoreBad: "הקובץ הזה אינו קובץ שחזור של קניותיפיי.",
+        restoreRead: "לא הצלחתי לקרוא את הקובץ.", restoreNeed: "צריך להיות מחובר כדי לטעון לעותק הניסוי.",
+        restoreDone: "העותק נטען לניסוי. מה שהיה כאן נשמר כגיבוי במכשיר הזה.", restoreFail: "השמירה לעותק הניסוי לא הצליחה.",
+        syncSave: "שומר…", syncOk: "מסונכרן", syncWait: "ממתין לסנכרון…", syncOut: "לא מחובר" },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Sandbox copy. This list is separate and does not touch the regular Purchasify list.", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
@@ -293,13 +350,23 @@ window.RGMY_STRINGS = {
         catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move or trash.",
         markOk: "Marked ✓", markNo: "Marked ✕",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
-        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
+        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there.",
+        searchPh: "Search", searchLabel: "Search lists and items", searchClear: "Clear search", searchEmpty: "No matches",
+        restoreBtn: "Restore", restoreBtnLabel: "Restore. Sandbox only", restoreTitle: "Restore", backupBtn: "Backup",
+        restoreOnly: "This loads into the sandbox only. Regular Purchasify is not changed.",
+        restoreList: "list", restoreLists: "lists", restoreItem: "item", restoreItems: "items",
+        restoreNewest: "Newest date", restoreFileDate: "File date", restoreEmpty: "No visible lists in this file.",
+        restoreHidden: "Hidden in the file", restoreLoad: "Load into the sandbox", restoreBad: "This file is not a Purchasify restore file.",
+        restoreRead: "The file could not be read.", restoreNeed: "Sign in to load this into the sandbox.",
+        restoreDone: "Loaded into the sandbox. What was here was kept as a backup on this device.", restoreFail: "Could not save into the sandbox.",
+        syncSave: "Saving…", syncOk: "Synced", syncWait: "Waiting to sync…", syncOut: "Signed out" }
 };
 </script>
-<script src="rg-sync-status.js?v=1"></script>
+<script src="rg-sync-status.js?v=2"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=50"></script>
+<script src="restore.js?v=1"></script>
+<script src="app.js?v=51"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
