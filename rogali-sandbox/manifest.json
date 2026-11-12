@@ -1,0 +1,45 @@
+{
+  "id": "/ron-gershinsky-site/rogali-sandbox/",
+  "name": "רוגעלי · Sandbox",
+  "short_name": "רוגעלי SB",
+  "description": "עותק ניסוי של רוגעלי. לא נוגע בצ'ק-אין הרגיל. · A sandbox copy of Rogali. It does not touch the regular check-ins.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "icon-maskable-192.png?v=1",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "icon-maskable-512.png?v=1",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
