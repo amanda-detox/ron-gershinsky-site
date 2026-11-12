@@ -164,6 +164,29 @@ html[dir=rtl] .bar i{margin-right:0;margin-left:auto}
 .plan h3 .spark{width:9px;height:9px;transform:rotate(45deg);background:var(--gold);box-shadow:0 0 10px rgba(245,210,122,.9);animation:breathe 3s ease-in-out infinite}
 .plan p{margin:0;color:var(--ink);opacity:.88}
 .plan .body{white-space:pre-line}
+.extra{margin-top:18px}
+.extra-label{margin:0 0 10px;text-align:center;color:var(--g3);font:600 14.5px var(--sans)}
+.seg{display:flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:rgba(255,255,255,.02)}
+.seg button{flex:1;min-height:44px;border:0;border-radius:999px;background:transparent;color:var(--mute);font:600 15px var(--sans);cursor:pointer;padding:8px 2px;direction:ltr}
+.seg button[aria-checked=true]{color:#1a1206;background:var(--gold);box-shadow:0 0 14px rgba(245,210,122,.35)}
+#q-extra[hidden],#q-next[hidden]{display:none}
+.q-next{width:100%;margin-top:16px}
+.q-next[disabled]{opacity:.4;cursor:default;box-shadow:none}
+.q-next[disabled]::after{display:none}
+.recs{display:grid;gap:16px}
+.rec h4{font-family:var(--serif);font-weight:500;font-size:26px;color:var(--g1);margin:0 0 6px;line-height:1.2;padding-bottom:.04em}
+.rec .lead{margin:0 0 10px;color:var(--ink)}
+.method{margin:0 0 10px;padding:12px 14px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.025)}
+.method:last-child{margin-bottom:0}
+.method .mt{margin:0 0 4px;font-weight:600;color:var(--g2)}
+.method .md,.method .who{margin:0;color:var(--ink)}
+.method .who,.method .mp{margin-top:6px}
+.method .mp{color:var(--g2);font-size:15px}
+.method .risk{margin:8px 0 0;padding-top:8px;border-top:1px solid var(--line);color:var(--mute);font-size:13.5px}
+.providers{margin:8px 0 0;color:var(--mute);font-size:14.5px}
+.ltr{unicode-bidi:isolate;direction:ltr;display:inline-block;max-width:100%;vertical-align:bottom}
+.banks-a{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline}
+.banks-a .k{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--mute)}
 .actions{display:grid;gap:12px;margin:6px 0 18px}
 .actions .btn{width:100%}
 .disc{font-size:12.5px;color:var(--dim);text-align:center;line-height:1.5;margin:4px auto 0;max-width:46ch}
@@ -224,6 +247,9 @@ html[data-theme=light] .opt:hover{background:rgba(255,248,230,.95)}
 html[data-theme=light] .opt[aria-checked=true]{background:linear-gradient(135deg,rgba(245,210,122,.35),rgba(255,250,240,.9))}
 html[data-theme=light] .tier{background:radial-gradient(120% 90% at 50% 0%,rgba(245,210,122,.3),rgba(255,250,240,.92) 60%),var(--bg2);box-shadow:0 10px 40px -16px rgba(148,105,22,.45)}
 html[data-theme=light] .plan{background:rgba(255,255,255,.7)}
+html[data-theme=light] .seg{background:rgba(255,255,255,.7)}
+html[data-theme=light] .seg button[aria-checked=true]{color:#fff6dc;background:#0b2a6b;box-shadow:none}
+html[data-theme=light] .method{background:rgba(255,255,255,.72)}
 html[data-theme=light] .icon-btn,html[data-theme=light] .pill{background:rgba(255,255,255,.75)}
 html[data-theme=light] .sheet{background:linear-gradient(180deg,#fffdf8,#f6efe0)}
 html[data-theme=light] .sheet .note{background:rgba(255,255,255,.7)}
@@ -248,7 +274,6 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     </div>
     </div>
   </header>
-
   <main>
     <!-- 1. Welcome -->
     <section class="screen welcome" id="s-welcome">
@@ -282,7 +307,9 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       </div>
       <h2 class="qtitle goldtext" id="q-title" tabindex="-1"></h2>
       <div class="opts" id="q-opts" role="radiogroup"></div>
-      <p class="hint" data-i18n="hint"></p>
+      <div class="extra" id="q-extra" hidden></div>
+      <p class="hint" id="q-hint" data-i18n="hint"></p>
+      <button type="button" class="btn q-next" id="q-next" hidden data-i18n="cont"></button>
     </section>
 
     <!-- 3. Results -->
@@ -299,7 +326,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       <div class="cards" id="res-cards"></div>
       <div class="plan">
         <h3><span class="spark" aria-hidden="true"></span><span data-i18n="planTitle"></span></h3>
-        <p class="body" id="plan-body"></p>
+        <div id="plan-body"></div>
       </div>
       <div class="actions">
         <button type="button" class="btn ghost" id="retake" data-i18n="retake"></button>
@@ -324,7 +351,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
 (function () {
   "use strict";
 
-  /* ===== Questionnaire data: add questions here; everything else adapts. ===== */
+  /* ===== Questionnaire. Order: equity, tax, passports, monthly income, banks. ===== */
   var QUESTIONS = [
     { id: "equity", icon: "coin", he: "כמה הון עצמי יש לך?", en: "How much equity do you have?", options: [
       { id: "debt",      he: "בחובות",                                   en: "In debt" },
@@ -342,7 +369,27 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       { id: "1",   he: "<span class=num>1</span>",        en: "<span class=num>1</span>" },
       { id: "2-5", he: "בין <span class=num>2</span> ל־<span class=num>5</span>", en: "<span class=num>2–5</span>" },
       { id: "5+",  he: "יותר מ־<span class=num>5</span>", en: "More than <span class=num>5</span>" }
-    ]}
+    ]},
+    { id: "income", icon: "income", he: "מה ההכנסה החודשית שלך?", en: "What is your monthly income?", options: [
+      { id: "to-3k",    he: "עד <span class=num>3,000</span> דולר", en: "Up to <span class=num>$3K</span>" },
+      { id: "3k-10k",   he: "בין <span class=num>3,000</span> ל־<span class=num>10,000</span> דולר", en: "<span class=num>$3K–$10K</span>" },
+      { id: "10k-100k", he: "בין <span class=num>10,000</span> ל־<span class=num>100,000</span> דולר", en: "<span class=num>$10K–$100K</span>" },
+      { id: "100k-1m",  he: "בין <span class=num>100,000</span> דולר למיליון דולר", en: "<span class=num>$100K–$1M</span>" },
+      { id: "1m+",      he: "מעל מיליון דולר", en: "<span class=num>$1M+</span>" }
+    ]},
+    { id: "banks", icon: "bank", he: "בכמה בנקים אתה מנהל את הונך?", en: "In how many banks do you manage your wealth?", options: [
+      { id: "1",   he: "<span class=num>1</span>", en: "<span class=num>1</span>" },
+      { id: "2-3", he: "<span class=num>2–3</span>", en: "<span class=num>2–3</span>" },
+      { id: "4-6", he: "<span class=num>4–6</span>", en: "<span class=num>4–6</span>" },
+      { id: "7-9", he: "<span class=num>7–9</span>", en: "<span class=num>7–9</span>" },
+      { id: "10+", he: "<bdi class=num dir=ltr>\u200E10+</bdi>", en: "<bdi class=num dir=ltr>\u200E10+</bdi>" }
+    ], extra: { id: "bankCountries", he: "בכמה מדינות?", en: "In how many countries?", options: [
+      { id: "1",  he: "1", en: "1" },
+      { id: "2",  he: "2", en: "2" },
+      { id: "3",  he: "3", en: "3" },
+      { id: "4",  he: "4", en: "4" },
+      { id: "5+", he: "\u200E5+", en: "\u200E5+" }
+    ]}}
   ];
 
   /* Starting-point stage, one per equity answer (just a label of where you start, not advice). */
@@ -355,17 +402,62 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   ];
   var EQUITY_TIER = { "debt": "foundation", "0-50k": "growth", "50k-500k": "established", "500k-5m": "wealth", "5m+": "hnw" };
 
-  /* Recommendations, Healify-style: every chosen answer can add its own recommendation to the summary.
-     Written by Ron. While a text is empty it is skipped; when all are empty users see "יצורף בקרוב" (planSoon).
-     TODO(Ron): fill in he/en for the answers that should add a recommendation. */
-  var RECS = {
-    equity:    { "debt": { he: "", en: "" }, "0-50k": { he: "", en: "" }, "50k-500k": { he: "", en: "" }, "500k-5m": { he: "", en: "" }, "5m+": { he: "", en: "" } },
-    tax:       { "0": { he: "", en: "" }, "0-7": { he: "", en: "" }, "7+": { he: "", en: "" } },
-    passports: { "1": { he: "", en: "" }, "2-5": { he: "", en: "" }, "5+": { he: "", en: "" } }
-  };
-  function recsFor(l) {
+  /* Monthly income above $10K is the top three options (the $3K–$10K band is not above $10K). */
+  var HIGH_INCOME = { "10k-100k": true, "100k-1m": true, "1m+": true };
+  function recCapital(l) {
+    var he = l === "he";
+    return {
+      title: he ? "לאגור הון" : "Build up capital",
+      lead: he ? "כדאי לך לאגור הון. הנה שלוש דרכים:" : "Build up capital. Three ways:",
+      methods: [
+        {
+          title: he ? "מסחר בשווקים במימון חיצוני" : "Funded market trading",
+          body: he ? "מניות, חוזים עתידיים, אופציות, מטבעות דיגיטליים ועוד, במימון של חברת מימון חיצונית." : "Stocks, futures, options, crypto and more, financed by an external funding company.",
+          invest: he ? "השקעה: נמוכה מאוד" : "Investment: very low",
+          profit: he ? "פוטנציאל רווח: גדול מאוד" : "Profit potential: very large",
+          risk: he ? "במסחר יש סיכון להפסד." : "Trading carries a risk of loss."
+        },
+        {
+          title: he ? "בניית אפליקציה לקהל רחב" : "Building a mass-market app",
+          body: he ? "עם מודלי תמחור כמו פרימיום, תקופת ניסיון בחינם ושדרוגים בתשלום." : "With pricing models such as premium, a free trial and upsells.",
+          invest: he ? "השקעה: נמוכה מאוד" : "Investment: very low",
+          profit: he ? "פוטנציאל רווח: גדול מאוד" : "Profit potential: very large"
+        },
+        {
+          title: he ? "סיטונאות נדל״ן" : "Wholesale real estate",
+          body: he ? "אתה מקבל תשלום על איתור נכסים מתאימים לקונים פעילים. אין צורך ברישיון או בידע קודם, ואפשר לעשות את זה מהבית, מכל מקום בעולם." : "You get paid for finding suitable properties for active buyers. No license or prior knowledge is needed, and you can do it from home anywhere in the world.",
+          names: "Maximilian Dyer, Richard Taylor.",
+          invest: he ? "השקעה: מינימלית" : "Investment: minimal",
+          profit: he ? "פוטנציאל רווח: מיליונים נקיים" : "Potential profit: clean millions"
+        }
+      ]
+    };
+  }
+  function recTax(l) {
+    var he = l === "he";
+    return {
+      title: he ? "חברה עם 0% מס" : "A company with 0% tax",
+      body: he ? "כדאי לך להקים חברה עם 0% מס, בדרך חוקית לגמרי." : "Set up a company with 0% tax, in a fully legal way.",
+      providers: true
+    };
+  }
+  function recPassports(l) {
+    var he = l === "he";
+    return {
+      title: he ? "עוד דרכונים ואזרחויות" : "More passports and citizenships",
+      body: he ? "כדאי לך להשיג עוד דרכונים, ויזות ואזרחויות, כדי לקבל יותר חופש תנועה וחופש כלכלי, וגישה לבנקים ולשירותים פיננסיים איכותיים יותר." : "Obtain more passports, visas and citizenships for more freedom of movement and financial freedom, and access to more quality banks and financial services.",
+      providers: true
+    };
+  }
+  /* Each rule can read several answers. The first match is not exclusive: every matching rule is shown. */
+  var RULES = [
+    { when: function (a) { return a.equity === "debt"; }, rec: recCapital },
+    { when: function (a) { return a.tax && a.tax !== "0" && !!HIGH_INCOME[a.income]; }, rec: recTax },
+    { when: function (a) { return (a.passports === "1" || a.passports === "2-5") && !!HIGH_INCOME[a.income]; }, rec: recPassports }
+  ];
+  function recommendations(l) {
     var out = [];
-    QUESTIONS.forEach(function (q) { var r = RECS[q.id] && RECS[q.id][answers[q.id]]; if (r && r[l]) out.push(r[l]); });
+    RULES.forEach(function (rule) { if (rule.when(answers)) out.push(rule.rec(l)); });
     return out;
   }
 
@@ -376,10 +468,10 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       eyebrow: "",
       appName: "שפעלי",
       tagline: "הדרך שלך לשגשוג ולחופש כלכלי",
-      sub: "שלוש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
+      sub: "חמש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
       start: "בוא נתחיל",
       meta: "פחות מדקה · התשובות נשמרות רק במכשיר שלך",
-      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
+      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות למיסטיפיי סטודיו 2026",
       sheetTitle: "התקנה למסך הבית",
       close: "הבנתי",
       iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>. האייקון של שפעלי יופיע במסך הבית.</li></ol>",
@@ -389,6 +481,10 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       step: function (i, n) { return "שאלה " + i + " מתוך " + n; },
       backQ: "חזרה",
       hint: "נגיעה באפשרות בוחרת וממשיכה",
+      hintBanks: "בחר כמה בנקים וכמה מדינות, ואז המשך.",
+      cont: "המשך",
+      banksShort: "בנקים",
+      countriesShort: "מדינות",
       resEyebrow: "הפרופיל שלך",
       resTitle: "נקודת המוצא שלך",
       tierLabel: "שלב",
@@ -405,10 +501,10 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       eyebrow: "",
       appName: "Wealthify",
       tagline: "Your path to prosperity and financial freedom",
-      sub: "Three short questions to understand where you're starting from, so we can map the road ahead together.",
+      sub: "Five short questions to understand where you're starting from, so we can map the road ahead together.",
       start: "Begin",
       meta: "Under a minute · answers stay on your device",
-      install: "📲 Install to home screen", foot: "© 2026 Healify Ltd. All rights reserved.",
+      install: "📲 Install to home screen", foot: "© 2026 Mystify Studio. All rights reserved.",
       sheetTitle: "Install to home screen",
       close: "Got it",
       iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>. The Wealthify icon will appear on your home screen.</li></ol>",
@@ -418,6 +514,10 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       step: function (i, n) { return "Question " + i + " of " + n; },
       backQ: "Back",
       hint: "Tap an option to select and continue",
+      hintBanks: "Choose how many banks and how many countries, then continue.",
+      cont: "Continue",
+      banksShort: "Banks",
+      countriesShort: "Countries",
       resEyebrow: "<span class=lat>Your profile</span>",
       resTitle: "Your starting point",
       tierLabel: "<span class=lat>Stage</span>",
@@ -434,7 +534,8 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     coin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></svg>',
     bank: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 4l9 5.5M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20.5h18"/></svg>',
     passport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.8 10.5h6.4M12 7.3c-1.2 1.6-1.2 4.8 0 6.4M12 7.3c1.2 1.6 1.2 4.8 0 6.4M9 17h6"/></svg>',
-    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>'
+    percent: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M19 5L5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></svg>',
+    income: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.2"/></svg>'
   };
 
   var ANS_KEY = "rg-wealth-answers-v2", LANG_KEY = "rg-lang";
@@ -452,8 +553,13 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   function save() {
     try { localStorage.setItem(ANS_KEY, JSON.stringify({ v: 1, answers: answers, completed: completed, updated: new Date().toISOString() })); } catch (e) {}
   }
-  function isComplete() { return QUESTIONS.every(function (q) { return findOpt(q, answers[q.id]); }); }
   function findOpt(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
+  function qAnswered(q) {
+    if (!findOpt(q, answers[q.id])) return false;
+    if (q.extra && !findOpt(q.extra, answers[q.extra.id])) return false;
+    return true;
+  }
+  function isComplete() { return QUESTIONS.every(qAnswered); }
   function tierFor() { var id = EQUITY_TIER[answers.equity] || "foundation"; for (var i = 0; i < TIERS.length; i++) if (TIERS[i].id === id) return { t: TIERS[i], idx: i }; return { t: TIERS[0], idx: 0 }; }
 
   function show(v) {
@@ -483,18 +589,79 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       b.onclick = function () { choose(q, o, b); };
       box.appendChild(b);
     });
+    renderExtra(q);
+    $("q-hint").textContent = q.extra ? L.hintBanks : L.hint;
     if (focus) { try { $("q-title").focus({ preventScroll: true }); } catch (e) {} }
   }
 
-  var advancing = false;
+  function renderExtra(q) {
+    var extra = $("q-extra"), next = $("q-next"), L = T[lang];
+    extra.innerHTML = "";
+    extra.hidden = !q.extra;
+    next.hidden = !q.extra;
+    next.textContent = L.cont;
+    if (!q.extra) return;
+    var lab = document.createElement("p");
+    lab.className = "extra-label";
+    lab.id = "q-extra-label";
+    lab.textContent = q.extra[lang];
+    extra.appendChild(lab);
+    var seg = document.createElement("div");
+    seg.className = "seg";
+    seg.setAttribute("role", "radiogroup");
+    seg.setAttribute("aria-labelledby", "q-extra-label");
+    q.extra.options.forEach(function (o) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "radio");
+      b.setAttribute("aria-checked", String(answers[q.extra.id] === o.id));
+      b.dataset.id = o.id;
+      var iso = document.createElement("bdi");
+      iso.dir = "ltr";
+      iso.textContent = o[lang];
+      b.appendChild(iso);
+      b.onclick = function () {
+        answers[q.extra.id] = o.id;
+        save();
+        var bs = seg.querySelectorAll("button");
+        for (var i = 0; i < bs.length; i++) bs[i].setAttribute("aria-checked", String(bs[i] === b));
+        syncNext();
+      };
+      seg.appendChild(b);
+    });
+    extra.appendChild(seg);
+    syncNext();
+  }
+  function syncNext() {
+    var q = QUESTIONS[step], next = $("q-next");
+    if (!q || !q.extra) return;
+    next.disabled = !qAnswered(q);
+  }
+
+  var advancing = false, editingOne = false;
   function choose(q, o, btn) {
     if (advancing) return;
     answers[q.id] = o.id; save();
     var all = $("q-opts").children;
     for (var i = 0; i < all.length; i++) all[i].setAttribute("aria-checked", String(all[i] === btn));
+    if (q.extra) { syncNext(); return; }
+    goNext();
+  }
+  function returnToResults() {
+    editingOne = false;
+    completed = true;
+    save();
+    renderResults();
+    show("results");
+    try { $("res-title").focus({ preventScroll: true }); } catch (e) {}
+  }
+  function goNext() {
+    if (advancing) return;
     advancing = true;
+    var backToResults = editingOne;
     setTimeout(function () {
       advancing = false;
+      if (backToResults) { returnToResults(); return; }
       if (step < QUESTIONS.length - 1) { step++; renderQuiz(true); window.scrollTo(0, 0); }
       else { completed = true; save(); renderResults(); show("results"); try { $("res-title").focus({ preventScroll: true }); } catch (e) {} }
     }, reduced() ? 80 : 320);
@@ -508,16 +675,82 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     $("tier-gems").innerHTML = g;
     var cards = $("res-cards"); cards.innerHTML = "";
     QUESTIONS.forEach(function (q, qi) {
-      var o = findOpt(q, answers[q.id]); if (!o) return;
+      if (!qAnswered(q)) return;
       var d = document.createElement("div"); d.className = "card"; d.style.animationDelay = (qi * 90) + "ms";
-      d.innerHTML = '<div class="ic" aria-hidden="true">' + (ICONS[q.icon] || ICONS.coin) + '</div><div><div class="q"></div><div class="a">' + o[lang] + '</div></div><button type="button" class="edit"></button>';
+      d.innerHTML = '<div class="ic" aria-hidden="true">' + (ICONS[q.icon] || ICONS.coin) + '</div><div><div class="q"></div><div class="a"></div></div><button type="button" class="edit"></button>';
       d.querySelector(".q").textContent = q[lang];
+      var ans = d.querySelector(".a");
+      if (q.extra) {
+        var bank = findOpt(q, answers[q.id]), country = findOpt(q.extra, answers[q.extra.id]);
+        ans.className = "a banks-a";
+        ans.innerHTML = '<span class="pair"><span class="k"></span> <bdi class="num" dir="ltr"></bdi></span><span class="pair"><span class="k"></span> <bdi class="num" dir="ltr"></bdi></span>';
+        var ks = ans.querySelectorAll(".k"), ns = ans.querySelectorAll(".num");
+        ks[0].textContent = L.banksShort; ns[0].textContent = bank[lang].replace(/<[^>]+>/g, "");
+        ks[1].textContent = L.countriesShort; ns[1].textContent = country[lang];
+      } else ans.innerHTML = findOpt(q, answers[q.id])[lang];
       var e = d.querySelector(".edit"); e.textContent = L.change; e.setAttribute("aria-label", L.change + ": " + q[lang]);
-      e.onclick = function () { step = qi; renderQuiz(); show("quiz"); };
+      e.onclick = function () { editingOne = true; step = qi; renderQuiz(true); show("quiz"); };
       cards.appendChild(d);
     });
-    var recs = recsFor(lang);
-    $("plan-body").textContent = recs.length ? recs.join("\n\n") : L.planSoon;
+    renderPlan(L);
+  }
+
+  function renderPlan(L) {
+    var el = $("plan-body"), recs = recommendations(lang);
+    el.innerHTML = "";
+    el.className = recs.length ? "recs" : "body";
+    if (!recs.length) { el.textContent = L.planSoon; return; }
+    recs.forEach(function (r) { el.appendChild(renderRec(r)); });
+  }
+  function addP(parent, cls, text) {
+    var p = document.createElement("p");
+    p.className = cls;
+    p.textContent = text;
+    parent.appendChild(p);
+  }
+  function renderRec(r) {
+    var box = document.createElement("section");
+    box.className = "rec";
+    var h = document.createElement("h4");
+    h.textContent = r.title;
+    box.appendChild(h);
+    if (r.lead) addP(box, "lead", r.lead);
+    if (r.body) addP(box, "lead", r.body);
+    (r.methods || []).forEach(function (m) {
+      var d = document.createElement("div");
+      d.className = "method";
+      addP(d, "mt", m.title);
+      addP(d, "md", m.body);
+      if (m.names) d.appendChild(namesLine(m.names));
+      addP(d, "mp", m.invest);
+      addP(d, "mp", m.profit);
+      if (m.risk) addP(d, "risk", m.risk);
+      box.appendChild(d);
+    });
+    if (r.providers) box.appendChild(providersLine());
+    return box;
+  }
+  function ltr(text) {
+    var s = document.createElement("span");
+    s.className = "ltr";
+    s.textContent = text;
+    return s;
+  }
+  function namesLine(names) {
+    var p = document.createElement("p");
+    p.className = "who";
+    p.appendChild(document.createTextNode(lang === "he" ? "מומלצים: " : "Recommended: "));
+    p.appendChild(ltr(names));
+    return p;
+  }
+  function providersLine() {
+    var p = document.createElement("p");
+    p.className = "providers";
+    p.appendChild(document.createTextNode(lang === "he" ? "ספקים מומלצים: " : "Recommended providers: "));
+    p.appendChild(ltr("First Class Citizen"));
+    p.appendChild(document.createTextNode(lang === "he" ? " (אזרח מחלקה ראשונה), " : ", "));
+    p.appendChild(ltr("Nomad Capitalist."));
+    return p;
   }
 
   function render() {
@@ -538,13 +771,19 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   $("lang-he").onclick = function () { setLang("he"); };
   $("lang-en").onclick = function () { setLang("en"); };
 
-  $("start").onclick = function () { step = 0; renderQuiz(true); show("quiz"); };
+  $("start").onclick = function () { editingOne = false; step = 0; renderQuiz(true); show("quiz"); };
+  $("q-next").onclick = function () {
+    var q = QUESTIONS[step];
+    if (!q || !q.extra || !qAnswered(q)) return;
+    goNext();
+  };
   $("q-back").onclick = function () {
+    if (editingOne) { returnToResults(); return; }
     if (step > 0) { step--; renderQuiz(true); }
     else if (completed && isComplete()) { renderResults(); show("results"); }
     else show("welcome");
   };
-  $("retake").onclick = function () { answers = {}; completed = false; save(); step = 0; renderQuiz(true); show("quiz"); };
+  $("retake").onclick = function () { editingOne = false; answers = {}; completed = false; save(); step = 0; renderQuiz(true); show("quiz"); };
 
   /* ----- install: visible whenever not running as an installed app ----- */
   var deferred = null, installedNow = false;
@@ -600,12 +839,12 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=22", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
-<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
+<script src="../shared/rg-topbar.js?v=6" data-nohome="1" data-slot="header.top"></script>
 </body>
 </html>
