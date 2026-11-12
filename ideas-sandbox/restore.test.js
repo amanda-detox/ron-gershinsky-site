@@ -137,7 +137,7 @@ assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maska
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
 assert(manifest.indexOf('"purpose": "any"') !== -1 && manifest.indexOf("icon-maskable-192.png?v=20") !== -1 && manifest.indexOf("icon-maskable-512.png?v=20") !== -1 && manifest.indexOf('"purpose": "maskable"') !== -1, "the sandbox manifest keeps the any icons and adds maskable ones");
-assert(liveManifest.indexOf("maskable") === -1 && live.indexOf("icon-maskable") === -1, "live Listify has no maskable icon");
+assert(liveManifest.indexOf("icon-maskable-192.png?v=56") !== -1 && liveManifest.indexOf("icon-maskable-512.png?v=56") !== -1 && liveManifest.indexOf('"purpose": "maskable"') !== -1 && liveManifest.indexOf('"start_url": "./"') !== -1 && liveManifest.indexOf('"scope": "./"') !== -1 && liveManifest.indexOf('"/ron-gershinsky-site/my/ideas/"') !== -1 && live.indexOf("icon-maskable") === -1, "live Listify keeps its manifest id, start_url, and scope and adds maskable icons");
 assert(sw.indexOf("rg-myideas-") === -1, "the sandbox service worker does not name the live cache");
 var loadBody = app.slice(app.indexOf("function loadRestore"), app.indexOf("function bootRestore"));
 assert(loadBody.indexOf("rememberSnap(true)") !== -1 && loadBody.indexOf("rememberSnap(true)") < loadBody.indexOf("restoreDoc = staged.items"), "a confirmed file restore saves the current state as a version first");
@@ -149,7 +149,7 @@ assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-myide
 assert(live.indexOf("RGMyIdeasRestore") !== -1 && live.indexOf("RGSbxRestore") === -1 && live.indexOf("rg-sbx-ideas-") === -1, "live file restore uses the live helper and live keys");
 assert(liveHtml.indexOf("שחזור מקובץ") !== -1 && liveHtml.indexOf("ideas-sandbox/restore.js") === -1 && liveHtml.indexOf('src="restore.js?v=1"') !== -1, "the live page loads its own restore helper");
 assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear"') !== -1 && page.indexOf('id="actrow"') !== -1 && page.indexOf('id="print-btn"') !== -1, "search sits in the same row as print and restore");
-assert(liveHtml.indexOf("list-search") === -1 && live.indexOf("function searchView") === -1, "live Listify has no search control");
+assert(liveHtml.indexOf('id="list-search"') !== -1 && live.indexOf("function searchView") !== -1 && live.indexOf('APP = "myideas"') !== -1 && live.indexOf("rg-sbx-ideas") === -1, "live Listify has search and still uses the live app id and keys");
 var searchBody = app.slice(app.indexOf("function searchView"), app.indexOf("function render"));
 assert(searchBody.indexOf("saveLocal") === -1 && searchBody.indexOf("changed(") === -1 && searchBody.indexOf("put(") === -1 && searchBody.indexOf("localStorage") === -1 && searchBody.indexOf("setOrder") === -1, "the search view does not write or reorder");
 
