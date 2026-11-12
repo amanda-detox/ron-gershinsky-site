@@ -12,6 +12,7 @@
   var REQ_MS = 15000;
   var BULK_MS = 60000;
   var APPWRITE = "https://fra.cloud.appwrite.io/v1";
+  var LAST_PREFIX = "rg-sbx-shopping-lastsync:";
 
   function classifyError(e) {
     if (!e) return "network";
@@ -44,6 +45,22 @@
     if (f.busy) return "saving";
     if (f.pending) return "waiting";
     return "synced";
+  }
+
+  /* A full success is a finished download plus an upload that landed, or a download
+     that already matched so there was nothing to upload. A deletion hold does not count. */
+  function shouldStampSync(info) {
+    info = info || {};
+    if (info.failed || info.blocked || info.held) return false;
+    if (!info.downloaded) return false;
+    if (info.pendingLeft) return false;
+    return !!(info.uploaded || info.nothingToUpload);
+  }
+  function pad2(n) { return (n < 10 ? "0" : "") + n; }
+  function formatSyncTime(ms) {
+    var d = new Date(ms);
+    if (isNaN(d.getTime())) return "";
+    return pad2(d.getDate()) + "/" + pad2(d.getMonth() + 1) + " " + pad2(d.getHours()) + ":" + pad2(d.getMinutes());
   }
 
   function applyFailure(prev, e, onLine) {
@@ -235,7 +252,9 @@
         e.status = 0; e.type = "timeout"; e.timeout = true;
         finish(e);
       }, ms);
-      Promise.resolve().then(function () { return doFetch(url, opt); }).then(function (v) { finish(null, v); }, function (err) {
+      Promise.resolve().then(function () { return doFetch(url, opt); }).then(function (v) {
+        return Promise.resolve(peekUpdated(url, opts, v)).then(function () { finish(null, v); });
+      }, function (err) {
         var aborted = !!(err && (err.name === "AbortError" || (ctrl && ctrl.signal && ctrl.signal.aborted)));
         if (aborted || (err && (err.timeout || err.type === "timeout"))) {
           var e = new Error("timeout");
@@ -269,10 +288,40 @@
     root.fetch = wrapped;
   }
 
+  var cloudUpdatedAt = "";
+  function noteCloud(iso) {
+    if (!iso) return;
+    if (cloudUpdatedAt && iso <= cloudUpdatedAt) return;
+    cloudUpdatedAt = iso;
+    if (api) api.cloudUpdatedAt = iso;
+  }
+  function peekUpdated(url, opts, res) {
+    try {
+      var m = opts && opts.method;
+      if (!m && url && typeof url !== "string" && url.method) m = url.method;
+      m = String(m || "GET").toUpperCase();
+      if (m !== "GET" && m !== "HEAD") return;
+      if (!res || typeof res.clone !== "function" || res.ok === false) return;
+      var href = typeof url === "string" ? url : (url && url.url) || "";
+      if (href.indexOf("/rows/") === -1 || href.indexOf("?") !== -1) return;
+      return res.clone().json().then(function (j) {
+        if (!j || !j.$updatedAt) return;
+        if (j.key && j.key !== "items" && j.key !== "cats") return;
+        var appName = j.app || (j.data && j.data.app);
+        if (appName && appName !== "sbxshopping") return;
+        noteCloud(j.$updatedAt);
+      }).catch(function () {});
+    } catch (e) {}
+  }
+
   var api = {
     FAIL_LIMIT: FAIL_LIMIT,
     REQ_MS: REQ_MS,
     BULK_MS: BULK_MS,
+    LAST_PREFIX: LAST_PREFIX,
+    cloudUpdatedAt: cloudUpdatedAt,
+    shouldStampSync: shouldStampSync,
+    formatSyncTime: formatSyncTime,
     classifyError: classifyError,
     kind: kind,
     applyFailure: applyFailure,

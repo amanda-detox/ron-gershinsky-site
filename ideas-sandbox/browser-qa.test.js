@@ -142,7 +142,7 @@ async function main() {
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=56") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
     await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v21"; });
@@ -355,11 +355,11 @@ async function main() {
         var need = probe.getBoundingClientRect().width;
         probe.remove();
         var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
-        return { need: Math.ceil(need), have: Math.floor(input.clientWidth - pad), scroll: document.documentElement.scrollWidth, iw: window.innerWidth, label: (document.getElementById("restore-file-btn") || {}).innerText || "" };
+        return { need: Math.ceil(need), have: Math.floor(input.clientWidth - pad), scroll: document.documentElement.scrollWidth, iw: window.innerWidth, label: (document.getElementById("restore-file-btn") || {}).innerText || "", print: (document.getElementById("print-btn") || {}).innerText || "" };
       });
     }
     var fit390 = await placeholderFits();
-    check(fit390.label.replace(/\s/g, "") === "שחזור" && fit390.have >= fit390.need && fit390.scroll <= fit390.iw + 1, "at 390px חיפוש is fully visible and the page does not scroll sideways");
+    check(fit390.label.replace(/\s/g, "") === "שיחזור" && fit390.print.replace(/\s/g, "") === "הדפסה" && fit390.have >= fit390.need && fit390.scroll <= fit390.iw + 1, "at 390px חיפוש is fully visible and the page does not scroll sideways");
     await searchPage.setViewportSize({ width: 360, height: 800 });
     var fit360 = await placeholderFits();
     check(fit360.have >= fit360.need && fit360.scroll <= fit360.iw + 1, "at 360px חיפוש is fully visible and the page does not scroll sideways");

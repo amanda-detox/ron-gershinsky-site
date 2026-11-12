@@ -1548,6 +1548,22 @@
     });
     if (x) x.addEventListener("click", function () { el.value = ""; sync(); el.focus(); });
   }
+  /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
+  function downloadBackup() {
+    var R = window.RGSbxRestore, file, blob, a, when, stamp;
+    if (!R || !R.buildFile) return;
+    when = Date.now();
+    file = R.buildFile(items || {}, when);
+    blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    a = document.createElement("a");
+    stamp = String(R.formatWhen(when) || "").replace(/[^\d]/g, "");
+    a.href = URL.createObjectURL(blob);
+    a.download = "listify-" + (stamp || "backup") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    if (a.parentNode) a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
@@ -1598,6 +1614,7 @@
     });
     M.onLang(render);
     var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
+    var bl = $("backup-link"); if (bl) bl.addEventListener("click", function () { downloadBackup(); });
     window.addEventListener("pagehide", function () { rememberSnap(false); });
     window.RGBeforeLogout = function (proceed) {
       if (!uid || !hasUnsynced()) return true;
