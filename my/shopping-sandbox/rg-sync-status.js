@@ -41,7 +41,8 @@
     if (f.err === "server") return "syncErrorServer";
     if (f.err === "timeout") return "syncErrorTimeout";
     if (f.offline || f.onLine === false) return "offline";
-    if (f.pending || f.busy) return "saving";
+    if (f.busy) return "saving";
+    if (f.pending) return "waiting";
     return "synced";
   }
 

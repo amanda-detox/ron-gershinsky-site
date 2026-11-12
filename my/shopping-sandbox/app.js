@@ -22,6 +22,7 @@
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, catsMap = {}, pending = false, busy = false, again = false, offline = false, lastT = 0, editing = null, soonT = 0, rendering = false;
   var drag = null, idrag = null, needRender = false, noClick = false; // drag = a category row being reordered, idrag = an item being swiped
+  var restoreDoc = null, fileGen = 0, syncDetail = "";
 
   function $(id) { return document.getElementById(id); }
   function on(id, ev, fn) { var el = $(id); if (el) el.addEventListener(ev, fn); } // a missing element (old cached page) never stops the app from loading
@@ -159,7 +160,6 @@
   // Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions),
   // so nothing is ever lost even if a bug writes something wrong: rg-sbx-shopping-bak:<user id> = [{ t, items, cats }, ...]
   var BAK_N = 5, bulkOk = 0, failN = 0, syncErr = "", holdBlocked = false, blockedItems = null, blockedCats = null;
-  var statOpen = lsGet("rg-sbx-shopping-stat") !== "0";
   function bakKey(id) { return "rg-sbx-shopping-bak:" + id; }
   function backup(cl, cc) {
     if (!uid || (!Object.keys(cl).length && !Object.keys(cc).length)) return;
@@ -198,38 +198,49 @@
     holdBlocked = false; pending = true; syncErr = ""; offline = false;
     saveLocal(); render(); sync();
   }
-  function applyStatChrome() {
-    var slot = $("syncslot"), s = $("status"), b = $("sync-tog"), peek = $("syncpeek");
-    if (!slot || !s) return;
-    var attn = s.classList.contains("off"), has = !!(s.textContent || attn);
-    slot.hidden = !has;
-    slot.classList.toggle("shut", !statOpen);
-    slot.classList.toggle("attn", attn);
-    if (peek) peek.textContent = t("statusPeek");
-    if (b) {
-      b.setAttribute("aria-expanded", statOpen ? "true" : "false");
-      b.setAttribute("aria-label", t(statOpen ? "statusHide" : "statusShow"));
-      var tip = s.title || s.textContent || "";
-      if (tip) b.title = tip;
-    }
+  function closeSyncPop() {
+    var pop = $("syncpop"), b = $("syncstat");
+    if (pop) { pop.hidden = true; pop.textContent = ""; }
+    if (b) b.setAttribute("aria-expanded", "false");
   }
-  function toggleStat() {
-    statOpen = !statOpen;
-    lsSet("rg-sbx-shopping-stat", statOpen ? "1" : "0");
-    applyStatChrome();
+  function openSyncPop() {
+    var pop = $("syncpop"), b = $("syncstat");
+    if (!pop || !syncDetail) return;
+    pop.textContent = syncDetail;
+    pop.hidden = false;
+    if (b) b.setAttribute("aria-expanded", "true");
   }
+  /* One thin line: cloud + a short word. Long errors stay in the popover until the line is tapped. */
   function setStatus() {
-    var s = $("status"); if (!s) return;
-    if (!uid) { s.className = "status"; s.textContent = ""; s.title = ""; applyStatChrome(); if (window.RGSyncStatus) RGSyncStatus.closeDeletion(); return; }
-    var SS = window.RGSyncStatus;
-    if (!SS) { s.className = "status" + (offline ? " off" : ""); s.textContent = offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); }
-    else {
-      var k = SS.kind(statusFlags());
-      SS.fillStatus(s, k, k && k !== "blocked" ? t(k) : "");
-      if (k === "blocked") SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
-      else SS.closeDeletion();
-    }
-    applyStatChrome();
+    var s = $("status"), b = $("syncstat"), line = $("syncline");
+    if (!s || !b) return;
+    var SS = window.RGSyncStatus, k;
+    if (!uid) k = "localOnly";
+    else if (!SS) k = offline ? "offline" : busy ? "saving" : pending ? "waiting" : "synced";
+    else k = SS.kind(statusFlags());
+    if (k === "blocked" && SS) SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
+    else if (SS) SS.closeDeletion();
+    var mode = "wait", labelKey = "syncWait", detail = "";
+    if (k === "localOnly") { mode = "out"; labelKey = "syncOut"; }
+    else if (k === "saving") { mode = "save"; labelKey = "syncSave"; }
+    else if (k === "synced") { mode = "ok"; labelKey = "syncOk"; }
+    else if (k === "offline") detail = t("offline");
+    else if (k && String(k).indexOf("syncError") === 0) detail = t(k);
+    syncDetail = detail;
+    var phrase = t(labelKey);
+    b.className = "syncstat " + mode + (detail ? " has-detail" : "");
+    var solid = b.querySelector(".is-solid"), outline = b.querySelector(".is-line");
+    var bare = mode === "wait" || mode === "out";
+    if (solid) solid.hidden = bare;
+    if (outline) outline.hidden = !bare;
+    var dots = $("syncdots"), mark = $("syncmark");
+    if (mode === "save") { s.textContent = phrase.replace(/…|\.\.\.$/, ""); if (dots) dots.hidden = false; }
+    else { s.textContent = phrase; if (dots) dots.hidden = true; }
+    if (mark) mark.hidden = mode !== "ok";
+    b.setAttribute("aria-label", phrase);
+    if (line) line.hidden = false;
+    if (!detail) closeSyncPop();
+    else { var pop = $("syncpop"); if (pop && !pop.hidden) pop.textContent = detail; }
   }
 
   /* ---------- one-time list "ניקויים" (Ron, 2026-10-30) ----------
@@ -349,18 +360,57 @@
     return true;
   }
   function seedMore() { var any = false; MORE_SEEDS.forEach(function (S) { if (seedOne(S)) any = true; }); if (seedTbd2()) any = true; return any; }
+  function freshenRec(rec, at) {
+    var y = {}, k, f, F = {};
+    for (k in rec) if (k !== "__proto__" && k !== "constructor" && k !== "prototype") y[k] = rec[k];
+    if (y._f && typeof y._f === "object") for (k in y._f) F[k] = y._f[k];
+    y.at = at;
+    if (!y.deleted) for (f in y) if (f !== "id" && f !== "at" && f !== "_f") F[f] = at;
+    F["~"] = at;
+    y._f = F;
+    return y;
+  }
+  /* The file replaces the sandbox copy. Cloud rows the file does not have become tombstones, so the next merge does not put them back. */
+  function adoptMap(snapshot, cloud, at) {
+    var out = {}, k, x, c;
+    snapshot = snapshot && typeof snapshot === "object" ? snapshot : {};
+    cloud = cloud && typeof cloud === "object" ? cloud : {};
+    for (k in snapshot) {
+      x = snapshot[k];
+      if (!x || typeof x !== "object" || typeof x.id !== "string") continue;
+      out[k] = freshenRec(x, at);
+    }
+    for (k in cloud) {
+      c = cloud[k];
+      if (!c || typeof c !== "object" || out[k] || c.deleted) continue;
+      out[k] = { id: typeof c.id === "string" ? c.id : k, deleted: true, at: at, _f: { "~": at } };
+    }
+    return out;
+  }
   function sync() {
+    if (APP !== "sbxshopping") return Promise.resolve();
     if (!uid || !A) return Promise.resolve();
     if (busy) { again = true; return Promise.resolve(); }
     busy = true; again = false; setStatus();
-    var who = uid, sentI = null, sentC = null, blocked = false, SS = window.RGSyncStatus;
+    var who = uid, sentI = null, sentC = null, blocked = false, SS = window.RGSyncStatus, gen = fileGen, roundRestore = false;
     return Promise.all([A.get(APP, KEY), A.get(APP, CKEY)]).then(function (r) {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var cl = (r[0] && r[0].items && typeof r[0].items === "object") ? r[0].items : {};
       var cc = (r[1] && r[1].cats && typeof r[1].cats === "object") ? r[1].cats : {};
-      snap = stamp(items, snap); csnap = stamp(catsMap, csnap);
-      var mi = merge(items, cl), mc = merge(catsMap, cc);
-      if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; snap = stamp(items, null); csnap = stamp(catsMap, null); saveLocal(); render(); }
+      var mi, mc, restoring = !!restoreDoc;
+      roundRestore = restoring;
+      if (restoring) {
+        bulkOk = Date.now() + ((SS && SS.BULK_MS) || 60000);
+        items = adoptMap(restoreDoc.items, cl, now());
+        catsMap = adoptMap(restoreDoc.cats, cc, now());
+        snap = stamp(items, null); csnap = stamp(catsMap, null);
+        mi = items; mc = catsMap;
+        saveLocal(); render();
+      } else {
+        snap = stamp(items, snap); csnap = stamp(catsMap, csnap);
+        mi = merge(items, cl); mc = merge(catsMap, cc);
+        if (!same(mi, items) || !same(mc, catsMap)) { items = mi; catsMap = mc; snap = stamp(items, null); csnap = stamp(catsMap, null); saveLocal(); render(); }
+      }
       var sA = seedCleanse(), sB = seedBodycare(), sC = seedFashion(), sD = seedMore();
       if (sA || sB || sC || sD) { mi = items; mc = catsMap; saveLocal(); render(); }
       var jobs = [], wI = !same(mi, cl), wC = !same(mc, cc);
@@ -376,15 +426,16 @@
       if (wC) { sentC = mc; jobs.push(A.set(APP, CKEY, { v: 1, cats: mc })); }
       return Promise.all(jobs);
     }).then(function () {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       var sentSame = (!sentI || same(sentI, items)) && (!sentC || same(sentC, catsMap));
       var next = SS ? SS.applySuccess(null, { blocked: blocked, sentSame: sentSame }) : { holdBlocked: blocked, clearPending: !blocked && sentSame, again: !blocked && !sentSame };
       offline = false; syncErr = ""; failN = 0; holdBlocked = !!next.holdBlocked;
+      if (roundRestore && !blocked) restoreDoc = null;
       if (blocked) return;
       if (next.clearPending) { pending = false; saveLocal(); }
       else if (next.again) again = true;
     }, function (e) {
-      if (who !== uid) return;
+      if (who !== uid || gen !== fileGen) return;
       if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
       var next = SS ? SS.applyFailure({ failN: failN }, e, typeof navigator === "undefined" || navigator.onLine !== false) : { offline: true, syncErr: "", failN: failN };
       offline = next.offline; syncErr = next.syncErr; failN = next.failN;
@@ -457,14 +508,39 @@
 
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  /* Search reads the field and paints a view. It never calls saveLocal, upd, or setOrder. */
+  function fold(s) { return String(s == null ? "" : s).toLocaleLowerCase("en"); }
+  function searchRaw() {
+    var el = $("list-search");
+    return el ? String(el.value || "").replace(/^\s+|\s+$/g, "") : "";
+  }
+  function hit(text, q) {
+    if (q == null) q = searchRaw();
+    if (!q) return false;
+    return fold(text).indexOf(fold(q)) !== -1;
+  }
+  function hi(text) {
+    var raw = String(text == null ? "" : text), q = searchRaw(), re, out, last, m;
+    if (!q) return esc(raw);
+    try { re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "giu"); }
+    catch (e) { return esc(raw); }
+    out = ""; last = 0;
+    while ((m = re.exec(raw))) {
+      if (!m[0]) { re.lastIndex++; continue; }
+      out += esc(raw.slice(last, m.index)) + '<mark class="qhit">' + esc(m[0]) + "</mark>";
+      last = m.index + m[0].length;
+    }
+    return out + esc(raw.slice(last));
+  }
+  function itemHit(x, q) { return hit(x.text, q) || hit(x.note || "", q); }
   function row(x) {
-    var showC = isChk(curTab()), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
+    var showC = isChk(listOf(x)), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
     var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
       ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
         '<textarea class="enote" data-enote="' + id + '" maxlength="500" rows="2" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + "</textarea></div>"
-      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + esc(x.text) +
-        (x.note ? '<span class="note">' + esc(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
+      : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + hi(x.text) +
+        (x.note ? '<span class="note">' + hi(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
     var cls = (x.done ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g;
@@ -492,6 +568,33 @@
     if (v !== old) { upd(id, { price: v }); pending = true; saveLocal(); syncSoon(); } // null removes the price
     inp.value = v == null ? "" : String(v);
     sumNow(); return true;
+  }
+  function searchView() {
+    var q = searchRaw(), html = "", any = false;
+    cats().forEach(function (c) {
+      var nameHit = hit(catName(c), q), all = [], k, x;
+      for (k in items) { x = items[k]; if (x && !x.deleted && x.type !== "cat" && listOf(x) === c.cat) all.push(x); }
+      if (!nameHit && !all.some(function (it) { return itemHit(it, q); })) return;
+      any = true;
+      var chkM = isChk(c.cat);
+      all.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); });
+      var act = all, done = [];
+      if (chkM) { done = act.filter(function (it) { return !!it.ck; }); act = act.filter(function (it) { return !it.ck; }); }
+      else {
+        done = act.filter(function (it) { return it.mark === "ok"; });
+        act = act.filter(function (it) { return it.mark !== "ok"; });
+        done.sort(function (a, b) { var p = dordOf(a), qq = dordOf(b); return p !== qq ? (p < qq ? -1 : 1) : ((a.at || 0) - (b.at || 0)); });
+      }
+      function vis(arr) { return nameHit ? arr : arr.filter(function (it) { return itemHit(it, q); }); }
+      var doneV = vis(done), actV = vis(act);
+      var head = chkM ? "✓ " + (document.documentElement.lang !== "en" ? "סומנו" : "Checked") : (document.documentElement.lang !== "en" ? "נבחרים" : "Chosen");
+      var body = (doneV.length ? '<div class="donehead"><h2>' + esc(head) + " (" + doneV.length + ')</h2></div><div class="card listcard"><ul class="list">' + doneV.map(row).join("") + "</ul></div>" : "") +
+        (actV.length ? '<div class="card listcard"><ul class="list">' + actV.map(row).join("") + "</ul></div>" : "");
+      if (!body) body = '<div class="card empty"><p>' + esc(t("emptyCat")) + "</p></div>";
+      html += '<section class="srchsec"><h2 class="srchhead">' + hi(catName(c)) + "</h2>" + body + "</section>";
+    });
+    if (!any) return '<div class="card empty"><p>' + esc(t("searchEmpty")) + "</p></div>";
+    return html;
   }
   function render() {
     if (!$("active")) return;
@@ -534,6 +637,14 @@
       else if (inp && !pk) { if (keep) { inp.value = keep.v; } inp.focus(); try { if (keep && !keep.nofocus) inp.setSelectionRange(keep.s, keep.e); } catch (e) {} }
     }
     if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; if (pk.bad) pi.classList.add("bad"); pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
+    var qOn = !!searchRaw(), so = $("search-out");
+    if (so) { so.hidden = !qOn; if (qOn) so.innerHTML = searchView(); }
+    if (qOn) {
+      $("active-card").hidden = true;
+      $("done-wrap").hidden = true;
+      $("empty").hidden = true;
+      if ($("sum")) $("sum").hidden = true;
+    }
     rendering = false;
     setStatus();
   }
@@ -897,11 +1008,156 @@
     });
   }
 
+  /* File restore stays in this sandbox: preview, confirm, then backup, then replace. The helper refuses every key that is not rg-sbx-shopping*. */
+  function restoreName(row) {
+    if (row.name) return row.name;
+    if (row.builtin === "main") return t("tabMain");
+    if (row.builtin === "tea") return t("tabTea");
+    return row.id || "";
+  }
+  function restoreCount(n, oneKey, manyKey) { return String(n) + " " + t(n === 1 ? oneKey : manyKey); }
+  function showRestore(parsed) {
+    var R = window.RGSbxShopRestore, sum, when, html;
+    html = '<h3>' + esc(t("restoreTitle")) + '</h3><p class="restore-note">' + esc(t("restoreOnly")) + "</p>";
+    if (!parsed || !parsed.ok) {
+      html += '<p class="restore-note">' + esc(t(parsed && parsed.error === "read" ? "restoreRead" : "restoreBad")) + "</p>";
+      html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div>";
+      sheet(html, function () { closeSheet(); });
+      return;
+    }
+    sum = parsed.summary;
+    when = !sum || sum.newestAt == null || !R ? "—" : R.formatWhen(sum.newestAt);
+    if (parsed.createdAtLocal) html += '<p class="restore-meta">' + esc(t("restoreFileDate")) + ": " + esc(parsed.createdAtLocal) + "</p>";
+    html += '<p class="restore-meta">' + esc(restoreCount(sum.listCount, "restoreList", "restoreLists")) + " · " + esc(restoreCount(sum.itemCount, "restoreItem", "restoreItems")) + "</p>";
+    html += '<p class="restore-meta">' + esc(t("restoreNewest")) + ": " + esc(when) + "</p>";
+    function lines(rows) {
+      if (!rows.length) return "";
+      return '<ul class="restore-lines">' + rows.map(function (row) {
+        return '<li><span class="rn">' + esc(restoreName(row)) + '</span><span class="rc">' + esc(restoreCount(row.count, "restoreItem", "restoreItems")) + "</span></li>";
+      }).join("") + "</ul>";
+    }
+    if (!sum.visible.length) html += '<p class="restore-note">' + esc(t("restoreEmpty")) + "</p>";
+    else html += lines(sum.visible);
+    if (sum.hidden.length) html += '<p class="restore-note">' + esc(t("restoreHidden")) + "</p>" + lines(sum.hidden);
+    html += '<div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button>";
+    if (uid) html += '<button type="button" class="btn pri" data-s="load">' + esc(t("restoreLoad")) + "</button>";
+    html += "</div>";
+    if (!uid) html += '<p class="restore-note">' + esc(t("restoreNeed")) + "</p>";
+    sheet(html, function (a) {
+      if (a !== "load") { closeSheet(); return; }
+      closeSheet();
+      loadRestore(parsed);
+    });
+  }
+  function loadRestore(parsed) {
+    var R = window.RGSbxShopRestore, staged, wrote, k, x, vis, found;
+    if (!R || !parsed || !parsed.ok) return;
+    if (!uid) { toast(t("restoreNeed")); return; }
+    staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, currentCats: catsMap, nextItems: parsed.items, nextCats: parsed.cats, now: Date.now() });
+    wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
+    if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
+    fileGen++;
+    restoreDoc = { items: staged.items, cats: staged.cats };
+    items = adoptMap(staged.items, {}, Date.now());
+    catsMap = adoptMap(staged.cats, {}, Date.now());
+    snap = stamp(items, null); csnap = stamp(catsMap, null);
+    pending = true;
+    editing = null;
+    holdBlocked = false;
+    blockedItems = null;
+    blockedCats = null;
+    syncErr = "";
+    offline = false;
+    bulkOk = Date.now() + ((window.RGSyncStatus && window.RGSyncStatus.BULK_MS) || 60000);
+    lastT = 0;
+    for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
+    for (k in catsMap) { x = catsMap[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
+    vis = parsed.summary && parsed.summary.visible ? parsed.summary.visible : [];
+    found = false;
+    vis.forEach(function (r) { if (r.id === tab) found = true; });
+    if (vis.length && !found) { tab = vis[0].id; lsSet("rg-sbx-shopping-tab", tab); }
+    saveLocal();
+    render();
+    sync();
+    toast(t("restoreDone"));
+  }
+  function bootRestore() {
+    var input = $("restore-file"), lab = $("restore-file-btn");
+    if (!input || !window.RGSbxShopRestore) return;
+    if (lab) lab.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+      input.click();
+    });
+    input.addEventListener("change", function () {
+      var f = input.files && input.files[0];
+      try { input.value = ""; } catch (e) {}
+      if (!f) return;
+      if (f.size > 5000000) { showRestore({ ok: false, error: "read" }); return; }
+      var reader = new FileReader();
+      reader.onload = function () { showRestore(window.RGSbxShopRestore.parseText(String(reader.result || ""))); };
+      reader.onerror = function () { showRestore({ ok: false, error: "read" }); };
+      reader.readAsText(f);
+    });
+  }
+  function bootBackup() {
+    on("backup-btn", "click", function () {
+      var R = window.RGSbxShopRestore, file, blob, a, stamp;
+      if (!uid) { toast(t("restoreNeed")); return; }
+      if (!R || !R.buildFile) return;
+      file = R.buildFile(items, catsMap, Date.now());
+      blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+      a = document.createElement("a");
+      stamp = String(R.formatWhen(Date.now()) || "").replace(/[^\d]/g, "");
+      a.href = URL.createObjectURL(blob);
+      a.download = "purchasify-" + stamp + ".json";
+      document.body.appendChild(a);
+      a.click();
+      if (a.parentNode) a.parentNode.removeChild(a);
+      setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+    });
+  }
+  function bootSearch() {
+    var el = $("list-search"), x = $("search-clear"), box = $("searchbox");
+    if (!el) return;
+    function paint() {
+      var on = !!String(el.value || "");
+      if (x) x.hidden = !on;
+      if (box) box.classList.toggle("hasq", on);
+      render();
+    }
+    el.addEventListener("input", paint);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && el.value) { e.preventDefault(); el.value = ""; paint(); }
+    });
+    if (x) x.addEventListener("click", function () { el.value = ""; paint(); el.focus(); });
+  }
+  function bootSyncLine() {
+    var b = $("syncstat");
+    if (!b) return;
+    b.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var pop = $("syncpop");
+      if (!syncDetail) { closeSyncPop(); return; }
+      if (pop && pop.hidden) openSyncPop(); else closeSyncPop();
+    });
+    document.addEventListener("click", function (e) {
+      var pop = $("syncpop");
+      if (!pop || pop.hidden) return;
+      if (e.target.closest && e.target.closest("#syncline")) return;
+      closeSyncPop();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSyncPop(); });
+  }
   function boot() {
     try { bootUI(); } catch (e) { setTimeout(function () { throw e; }); } // the list still loads and shows even if a control fails
     startData();
   }
   function bootUI() {
+    try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
+    try { bootBackup(); } catch (e) { setTimeout(function () { throw e; }); }
+    try { bootSearch(); } catch (e) { setTimeout(function () { throw e; }); }
+    try { bootSyncLine(); } catch (e) { setTimeout(function () { throw e; }); }
     bootCats();
     bootItemDrag();
     sortable({ list: $("active"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id",
@@ -917,7 +1173,6 @@
       add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; changed(); i.focus();
     });
     on("suggest", "click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
-    on("sync-tog", "click", function (e) { e.preventDefault(); e.stopPropagation(); toggleStat(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
@@ -962,12 +1217,14 @@
       if (!id && uid) { // signed out: drop this device's copy unless it holds changes that never reached the cloud
         var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null);
       }
+      fileGen++; restoreDoc = null;
       uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; bulkOk = 0; blockedItems = null; blockedCats = null; loadLocal(); render();
       if (uid) sync();
     }
     onUser(A.user());
     A.onChange(onUser);
     A.ready.then(function () { onUser(A.user()); });
+    render();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();

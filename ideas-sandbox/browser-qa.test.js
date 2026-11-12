@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v20"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v20");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v21"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v21");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=54") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=55") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v20"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v21"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -343,6 +343,27 @@ async function main() {
     check(row0.restore && row0.restore.h >= 44 && row0.restore.w >= 44, "restore stays at least 44px");
     check(Math.abs(row0.search.top - row0.print.top) <= 8 && Math.abs(row0.print.top - row0.restore.top) <= 8, "search, print, and restore sit on one row");
     check(row0.rowLeft >= -1 && row0.rowRight <= row0.iw + 1 && row0.sw <= row0.cw + 1, "the row fits the phone width");
+    await searchPage.evaluate(function () { return document.fonts && document.fonts.ready; });
+    async function placeholderFits() {
+      return searchPage.evaluate(function () {
+        var input = document.getElementById("list-search");
+        var cs = getComputedStyle(input);
+        var probe = document.createElement("span");
+        probe.textContent = input.placeholder || "";
+        probe.style.cssText = "position:absolute;visibility:hidden;white-space:nowrap;font:" + cs.font + ";font-weight:700";
+        document.body.appendChild(probe);
+        var need = probe.getBoundingClientRect().width;
+        probe.remove();
+        var pad = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+        return { need: Math.ceil(need), have: Math.floor(input.clientWidth - pad), scroll: document.documentElement.scrollWidth, iw: window.innerWidth, label: (document.getElementById("restore-file-btn") || {}).innerText || "" };
+      });
+    }
+    var fit390 = await placeholderFits();
+    check(fit390.label.replace(/\s/g, "") === "שחזור" && fit390.have >= fit390.need && fit390.scroll <= fit390.iw + 1, "at 390px חיפוש is fully visible and the page does not scroll sideways");
+    await searchPage.setViewportSize({ width: 360, height: 800 });
+    var fit360 = await placeholderFits();
+    check(fit360.have >= fit360.need && fit360.scroll <= fit360.iw + 1, "at 360px חיפוש is fully visible and the page does not scroll sideways");
+    await searchPage.setViewportSize({ width: 390, height: 844 });
     await searchPage.evaluate(function () { window.scrollTo(0, 0); });
     await searchPage.screenshot({ path: shotDir + "/listify_search_row.png" });
     await searchPage.fill("#list-search", "alpha");

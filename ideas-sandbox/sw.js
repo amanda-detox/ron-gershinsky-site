@@ -1,7 +1,7 @@
 /* Offline cache for the private Listify sandbox only. Scope: ideas-sandbox/.
    Does not delete caches used by the live app. */
-var CACHE = "rg-sbx-ideas-v20";
-var FILES = ["./", "index.html", "rg-sync-status.js?v=7", "restore.js?v=1", "app.js?v=54", "manifest.json?v=20", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../my/common.css", "../my/common.js",
+var CACHE = "rg-sbx-ideas-v21";
+var FILES = ["./", "index.html", "rg-sync-status.js?v=7", "restore.js?v=1", "app.js?v=55", "manifest.json?v=20", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../my/common.css", "../my/common.js",
   "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js?v=3", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
