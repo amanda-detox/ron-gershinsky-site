@@ -170,30 +170,30 @@
   }
   .cathead { display: flex; align-items: center; gap: 8px; }
   .cathead .catbtn { flex: 1 1 auto; width: 100%; min-width: 0; }
-  .syncline { position: relative; display: flex; width: 100%; justify-content: flex-end; align-items: center; min-height: 28px; margin: 2px 0 0; }
-  html[dir="ltr"] .syncline { justify-content: flex-start; }
-  .syncstat { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-height: 32px; padding: 0 2px; border: 0; background: transparent; font: 700 13px/1 var(--sans); white-space: nowrap; cursor: default; -webkit-tap-highlight-color: transparent; }
-  .syncstat.has-detail { cursor: pointer; }
-  .syncstat.save { color: var(--accent); }
-  html[data-theme="dark"] .syncstat.ok { color: #5B8DEF; }
-  html[data-theme="dark"] .syncstat.wait,
-  html[data-theme="dark"] .syncstat.out { color: #4A78DC; }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; white-space: normal; overflow-wrap: anywhere; }
+  .status:empty { display: none; }
+  .status.save { color: var(--accent); font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.ok { color: #5B8DEF; font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.save { color: #8a6a10; }
+  html[data-theme="light"] .status.ok { color: var(--blue); font-weight: 700; opacity: 1; }
+  .status.ok { display: flex; justify-content: center; align-items: baseline; gap: 4px; }
   .syncmark { color: var(--accent); font-weight: 900; }
-  html[data-theme="light"] .syncstat.save,
   html[data-theme="light"] .syncmark { color: #8a6a10; }
-  html[data-theme="light"] .syncstat.ok { color: var(--blue); }
-  html[data-theme="light"] .syncstat.wait,
-  html[data-theme="light"] .syncstat.out { color: var(--accent); }
-  .synccloud { width: 16px; height: 16px; flex: none; display: block; }
-  .syncword { min-width: 0; }
-  .syncdots { display: inline-flex; align-items: flex-end; gap: 2px; height: 0.8em; }
-  .syncdots[hidden] { display: none !important; }
-  .syncdots i { width: 3px; height: 3px; border-radius: 50%; background: currentColor; animation: syncdot 1.1s infinite ease-in-out; }
-  .syncdots i:nth-child(2) { animation-delay: .15s; }
-  .syncdots i:nth-child(3) { animation-delay: .3s; }
-  @keyframes syncdot { 0%, 70%, 100% { opacity: .25; } 35% { opacity: 1; } }
-  @media (prefers-reduced-motion: reduce) { .syncdots i { animation: none; opacity: 1; } }
-  .syncpop { position: absolute; z-index: 46; top: 100%; margin-top: 4px; inset-inline-end: 0; width: max-content; max-width: min(18rem, calc(100vw - 32px)); padding: 8px 10px; border-radius: 12px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 600 13px/1.45 var(--sans); white-space: normal; box-shadow: var(--shadow); }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+  .status .status-txt { display: inline; }
+  .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: .85; }
+  .lastsync:empty { display: none; }
+  .histrow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 16px; margin: 4px auto 8px; }
+  .histbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: 700 14px/1.2 var(--sans); cursor: pointer; }
+  .baklink { box-sizing: border-box; min-height: 44px; margin: 0; padding: 0 2px; border: 0; background: transparent; color: var(--muted); font: 600 13px/1.3 var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .baklink:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .hrow { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .histwhen { font-weight: 800; font-size: 16px; }
+  .hrow .row { display: flex; gap: 8px; }
+  .hrow .btn { flex: 1; min-height: 44px; height: auto; }
+  .ehead { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .ehead h3 { margin: 0 4px; }
   /* 2026-11-01 lists dropdown: much larger, compact rows, all lists fit; per-list ⋮ menu shows all options */
   .cp-list { max-height: calc(100vh - 170px) !important; max-height: calc(100dvh - 170px) !important; gap: 2px; }
   .cp-list li { min-height: 40px; }
@@ -203,19 +203,21 @@
   .cp-oi { min-height: 38px; font-size: 15px; }
   .cp-list li.cp-opts { flex: none !important; height: auto !important; } #cat-new { flex: none; } #done-wrap .donehead h2 { color: var(--accent); font-weight: 800; }
   .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
-  /* print, backup, restore, and search: one row, same tokens as Listify's options row. */
+  /* print, restore, and search: one row, same tokens as the Listify sandbox options row. */
   .actrow { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; margin: 2px 0 0; min-width: 0; }
   .searchbox { position: relative; flex: 1 1 auto; min-width: 5.75rem; display: flex; align-items: center; }
-  .searchin { box-sizing: border-box; width: 100%; min-height: 44px; min-width: 0; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); -webkit-tap-highlight-color: transparent; }
+  .searchin { box-sizing: border-box; width: 100%; min-height: 44px; min-width: 0; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); text-align: start; -webkit-tap-highlight-color: transparent; }
   .searchbox.hasq .searchin { padding-inline-end: 44px; }
-  .searchin::placeholder { color: var(--faint); font-weight: 700; }
+  .searchin:placeholder-shown { text-align: center; }
+  .searchin::placeholder { color: var(--faint); font-weight: 700; text-align: center; }
   .searchin:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .searchx { position: absolute; inset-inline-end: 0; top: 0; bottom: 0; width: 44px; min-height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 800 18px/1 var(--sans); cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
   .searchx:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .searchx[hidden] { display: none; }
-  .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+  .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .restore-row { position: relative; display: flex; flex: 0 0 auto; min-width: 44px; margin: 0; }
-  .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 15px/1.2 var(--sans); cursor: pointer; white-space: nowrap; -webkit-tap-highlight-color: transparent; }
+  .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 15px/1.2 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .restorebtn span { display: block; white-space: nowrap; }
   .restorebtn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   .restore-note { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
@@ -227,7 +229,7 @@
   mark.qhit { background: var(--accent); color: var(--accentink); border-radius: 4px; padding: 0 1px; }
   .srchhead { margin: 14px 4px 0; font-size: 16px; font-weight: 800; line-height: 1.35; color: var(--fg); }
   @media print {
-    .rgtb, .topbar, .actrow, .syncline, .syncpop, #search-out, .addform, .cathint, #status, .status,
+    .rgtb, .topbar, .actrow, .histrow, #backup-link, #search-out, .addform, .cathint, #status, .status, #lastsync, #cloudat,
     .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
     .catpanel, .cp-back, .sheetwrap, .toast, .gate, .suggest, .hdl, .synctog, .cb-chev, .ulink, .addnote { display: none !important; }
     .catbtn { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
@@ -259,12 +261,11 @@
       <input id="list-search" class="searchin" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-i18n-ph="searchPh" data-i18n-label="searchLabel" placeholder="חיפוש" aria-label="חיפוש ברשימות ובפריטים">
       <button type="button" class="searchx" id="search-clear" hidden data-i18n-label="searchClear" aria-label="ניקוי החיפוש">✕</button>
     </div>
-    <button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button>
+    <button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפסה</button>
     <div class="restore-row">
-      <label class="restorebtn" id="restore-file-btn" for="restore-file" tabindex="0" data-i18n-label="restoreBtnLabel"><span data-i18n="restoreBtn">שחזור</span></label>
+      <label class="restorebtn" id="restore-file-btn" for="restore-file" tabindex="0" data-i18n-label="restoreBtnLabel"><span data-i18n="restoreBtn">שיחזור</span></label>
       <input id="restore-file" class="restore-file" type="file" accept="application/json,.json">
     </div>
-    <button type="button" class="printbtn" id="backup-btn" data-i18n="backupBtn">גיבוי</button>
   </div>
 
   <section class="card gate" data-when="out" hidden>
@@ -285,14 +286,6 @@
         <button type="button" class="cp-new" id="cat-new"></button>
       </div>
     </div>
-    <div class="syncline" id="syncline" hidden>
-      <button type="button" class="syncstat" id="syncstat" aria-expanded="false" aria-controls="syncpop">
-        <svg class="synccloud is-solid" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.2 17.6h11.1a4.1 4.1 0 0 0 .5-8.2 5.5 5.5 0 0 0-10.6-1.6 3.6 3.6 0 0 0-1 9.8z"/></svg>
-        <svg class="synccloud is-line" viewBox="0 0 24 24" aria-hidden="true" hidden><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M7 17.6h10.2a3.6 3.6 0 0 0 .4-7.2 5 5 0 0 0-9.6-1.5A3.3 3.3 0 0 0 7 17.6z"/></svg>
-        <span class="syncword" id="status" role="status" aria-live="polite"></span><span class="syncdots" id="syncdots" hidden aria-hidden="true"><i></i><i></i><i></i></span><span class="syncmark" id="syncmark" hidden>✓</span>
-      </button>
-      <p class="syncpop" id="syncpop" role="dialog" hidden></p>
-    </div>
     <div data-when="in" id="shop-rest" hidden>
     <p class="cathint" id="cathint" hidden></p>
     <form class="addform" id="add-form" autocomplete="off">
@@ -311,6 +304,10 @@
     <div class="card listcard" id="active-card" style="margin-top:14px"><ul class="list" id="active"></ul></div>
     </div>
   </main>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+  <p class="lastsync" id="lastsync"></p>
+  <p class="lastsync" id="cloudat"></p>
+  <p class="histrow"><button type="button" class="histbtn" id="hist-btn" data-i18n="history">היסטוריית גרסאות</button><button type="button" class="baklink" id="backup-link" data-i18n="backupLink">גיבוי</button></p>
   <p class="privnote" data-i18n="privNote"></p>
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
@@ -318,10 +315,10 @@
 <script>
 window.RGMY_SW = "sw.js";
 window.RGMY_STRINGS = {
-  he: { doc: "Purchasify", title: "קניותיפיי", sub: "עותק ניסוי. הרשימה כאן נפרדת ולא נוגעת בקניותיפיי הרגיל.", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפס", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
+  he: { doc: "Purchasify", title: "קניותיפיי", sub: "עותק ניסוי. הרשימה כאן נפרדת ולא נוגעת בקניותיפיי הרגיל.", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפסה", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
         tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
         empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
-        edit: "עריכה", del: "מחק", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
+        edit: "עריכה", del: "מחק", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", synced: "✓ מסונכרן", saving: "שומר…", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", lastSync: "סונכרן לאחרונה ב-{t}", cloudAt: "עודכן בענן ב-{t}", history: "היסטוריית גרסאות", historyEmpty: "עדיין אין גרסאות שמורות.", historyBack: "סגור", historyDownload: "הורד", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
         emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
         catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
         rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
@@ -332,7 +329,7 @@ window.RGMY_STRINGS = {
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
         pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה.",
         searchPh: "חיפוש", searchLabel: "חיפוש ברשימות ובפריטים", searchClear: "ניקוי החיפוש", searchEmpty: "אין התאמה",
-        restoreBtn: "שחזור", restoreBtnLabel: "שחזור. עותק הניסוי בלבד", restoreTitle: "שחזור", backupBtn: "גיבוי",
+        restoreBtn: "שיחזור", restoreBtnLabel: "שיחזור. עותק הניסוי בלבד", restoreTitle: "שיחזור", backupLink: "גיבוי",
         restoreOnly: "זה נטען רק לעותק הניסוי. קניותיפיי הרגיל לא משתנה.",
         restoreList: "רשימה", restoreLists: "רשימות", restoreItem: "פריט", restoreItems: "פריטים",
         restoreNewest: "התאריך החדש ביותר", restoreFileDate: "תאריך הקובץ", restoreEmpty: "אין רשימות גלויות בקובץ.",
@@ -343,7 +340,7 @@ window.RGMY_STRINGS = {
   en: { doc: "Purchasify", title: "Purchasify", sub: "Sandbox copy. This list is separate and does not touch the regular Purchasify list.", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
-        edit: "Edit", del: "Delete", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
+        edit: "Edit", del: "Delete", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", synced: "✓ Synced", saving: "Saving…", localOnly: "Saved on this device only, until you sign in", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", lastSync: "Last synced at {t}", cloudAt: "Cloud copy updated at {t}", history: "Version history", historyEmpty: "No saved versions yet.", historyBack: "Close", historyDownload: "Download", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
         emptyCat: "This category is empty. Write above what you need to buy.",
         catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
         rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
@@ -354,7 +351,7 @@ window.RGMY_STRINGS = {
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
         pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there.",
         searchPh: "Search", searchLabel: "Search lists and items", searchClear: "Clear search", searchEmpty: "No matches",
-        restoreBtn: "Restore", restoreBtnLabel: "Restore. Sandbox only", restoreTitle: "Restore", backupBtn: "Backup",
+        restoreBtn: "Restore", restoreBtnLabel: "Restore. Sandbox only", restoreTitle: "Restore", backupLink: "Backup",
         restoreOnly: "This loads into the sandbox only. Regular Purchasify is not changed.",
         restoreList: "list", restoreLists: "lists", restoreItem: "item", restoreItems: "items",
         restoreNewest: "Newest date", restoreFileDate: "File date", restoreEmpty: "No visible lists in this file.",
@@ -364,11 +361,11 @@ window.RGMY_STRINGS = {
         syncSave: "Saving…", syncOk: "Synced", syncWait: "Waiting to sync…", syncOut: "Signed out" }
 };
 </script>
-<script src="rg-sync-status.js?v=2"></script>
+<script src="rg-sync-status.js?v=3"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="restore.js?v=1"></script>
-<script src="app.js?v=51"></script>
+<script src="app.js?v=52"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside the installed parent app -->

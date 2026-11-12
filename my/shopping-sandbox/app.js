@@ -22,7 +22,7 @@
   var A = window.RGAccount, M = window.RGMy, t = M.t;
   var uid = null, items = {}, catsMap = {}, pending = false, busy = false, again = false, offline = false, lastT = 0, editing = null, soonT = 0, rendering = false;
   var drag = null, idrag = null, needRender = false, noClick = false; // drag = a category row being reordered, idrag = an item being swiped
-  var restoreDoc = null, fileGen = 0, syncDetail = "";
+  var restoreDoc = null, fileGen = 0;
 
   function $(id) { return document.getElementById(id); }
   function on(id, ev, fn) { var el = $(id); if (el) el.addEventListener(ev, fn); } // a missing element (old cached page) never stops the app from loading
@@ -198,49 +198,60 @@
     holdBlocked = false; pending = true; syncErr = ""; offline = false;
     saveLocal(); render(); sync();
   }
-  function closeSyncPop() {
-    var pop = $("syncpop"), b = $("syncstat");
-    if (pop) { pop.hidden = true; pop.textContent = ""; }
-    if (b) b.setAttribute("aria-expanded", "false");
+  function lastSyncKey(id) { return (window.RGSyncStatus && RGSyncStatus.LAST_PREFIX || "rg-sbx-shopping-lastsync:") + id; }
+  function markLastSync() {
+    if (!uid) return;
+    lsSet(lastSyncKey(uid), String(Date.now()));
+    paintLastSync();
   }
-  function openSyncPop() {
-    var pop = $("syncpop"), b = $("syncstat");
-    if (!pop || !syncDetail) return;
-    pop.textContent = syncDetail;
-    pop.hidden = false;
-    if (b) b.setAttribute("aria-expanded", "true");
+  function paintLastSync() {
+    var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
+    if (!uid) {
+      if (el) el.textContent = "";
+      if (cl) cl.textContent = "";
+      return;
+    }
+    var ms = parseInt(lsGet(lastSyncKey(uid)) || "", 10);
+    if (el) el.textContent = ms && SS && SS.formatSyncTime ? t("lastSync").replace("{t}", SS.formatSyncTime(ms)) : "";
+    if (cl) {
+      var cms = SS && SS.cloudUpdatedAt ? Date.parse(SS.cloudUpdatedAt) : NaN;
+      cl.textContent = cms && SS && SS.formatSyncTime ? t("cloudAt").replace("{t}", SS.formatSyncTime(cms)) : "";
+    }
   }
-  /* One thin line: cloud + a short word. Long errors stay in the popover until the line is tapped. */
+  /* Bottom line, same words as Listify. Saving is gold, synced is blue with a gold check. */
   function setStatus() {
-    var s = $("status"), b = $("syncstat"), line = $("syncline");
-    if (!s || !b) return;
-    var SS = window.RGSyncStatus, k;
+    paintLastSync();
+    var s = $("status"), SS = window.RGSyncStatus, k, doc, span, mark, raw;
+    if (!s) return;
     if (!uid) k = "localOnly";
-    else if (!SS) k = offline ? "offline" : busy ? "saving" : pending ? "waiting" : "synced";
+    else if (!SS) k = offline ? "offline" : (busy || pending) ? "saving" : "synced";
     else k = SS.kind(statusFlags());
+    if (k === "waiting") k = "saving";
     if (k === "blocked" && SS) SS.openDeletion({ onYes: confirmBlocked, onNo: restoreBlocked });
     else if (SS) SS.closeDeletion();
-    var mode = "wait", labelKey = "syncWait", detail = "";
-    if (k === "localOnly") { mode = "out"; labelKey = "syncOut"; }
-    else if (k === "saving") { mode = "save"; labelKey = "syncSave"; }
-    else if (k === "synced") { mode = "ok"; labelKey = "syncOk"; }
-    else if (k === "offline") detail = t("offline");
-    else if (k && String(k).indexOf("syncError") === 0) detail = t(k);
-    syncDetail = detail;
-    var phrase = t(labelKey);
-    b.className = "syncstat " + mode + (detail ? " has-detail" : "");
-    var solid = b.querySelector(".is-solid"), outline = b.querySelector(".is-line");
-    var bare = mode === "wait" || mode === "out";
-    if (solid) solid.hidden = bare;
-    if (outline) outline.hidden = !bare;
-    var dots = $("syncdots"), mark = $("syncmark");
-    if (mode === "save") { s.textContent = phrase.replace(/…|\.\.\.$/, ""); if (dots) dots.hidden = false; }
-    else { s.textContent = phrase; if (dots) dots.hidden = true; }
-    if (mark) mark.hidden = mode !== "ok";
-    b.setAttribute("aria-label", phrase);
-    if (line) line.hidden = false;
-    if (!detail) closeSyncPop();
-    else { var pop = $("syncpop"); if (pop && !pop.hidden) pop.textContent = detail; }
+    s.className = "status";
+    if (k === "saving") s.className += " save";
+    else if (k === "synced") s.className += " ok";
+    else if (k === "offline" || k === "blocked" || (k && String(k).indexOf("syncError") === 0)) s.className += " off";
+    while (s.firstChild) s.removeChild(s.firstChild);
+    doc = s.ownerDocument || document;
+    if (k === "synced") {
+      mark = doc.createElement("span");
+      mark.className = "syncmark";
+      mark.setAttribute("aria-hidden", "true");
+      mark.textContent = "✓";
+      span = doc.createElement("span");
+      span.className = "status-txt";
+      raw = t("synced").replace(/^✓\s*/, "");
+      span.textContent = raw;
+      s.appendChild(mark);
+      s.appendChild(span);
+      return;
+    }
+    span = doc.createElement("span");
+    span.className = "status-txt";
+    span.textContent = k ? t(k) : "";
+    s.appendChild(span);
   }
 
   /* ---------- one-time list "ניקויים" (Ron, 2026-10-30) ----------
@@ -434,6 +445,14 @@
       if (blocked) return;
       if (next.clearPending) { pending = false; saveLocal(); }
       else if (next.again) again = true;
+      if (SS && SS.shouldStampSync && SS.shouldStampSync({
+        downloaded: true,
+        uploaded: !!(sentI || sentC),
+        nothingToUpload: !sentI && !sentC,
+        blocked: false,
+        failed: false,
+        pendingLeft: !next.clearPending
+      })) markLastSync();
     }, function (e) {
       if (who !== uid || gen !== fileGen) return;
       if (e && e.code === "signed_out") { offline = false; syncErr = ""; return; }
@@ -1100,21 +1119,47 @@
       reader.readAsText(f);
     });
   }
-  function bootBackup() {
-    on("backup-btn", "click", function () {
-      var R = window.RGSbxShopRestore, file, blob, a, stamp;
-      if (!uid) { toast(t("restoreNeed")); return; }
-      if (!R || !R.buildFile) return;
-      file = R.buildFile(items, catsMap, Date.now());
-      blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
-      a = document.createElement("a");
-      stamp = String(R.formatWhen(Date.now()) || "").replace(/[^\d]/g, "");
-      a.href = URL.createObjectURL(blob);
-      a.download = "purchasify-" + stamp + ".json";
-      document.body.appendChild(a);
-      a.click();
-      if (a.parentNode) a.parentNode.removeChild(a);
-      setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  function downloadBlob(file, name) {
+    var blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+    if (a.parentNode) a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
+  /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
+  function downloadBackup() {
+    var R = window.RGSbxShopRestore, when, stamp, file;
+    if (!R || !R.buildFile) return;
+    when = Date.now();
+    file = R.buildFile(items || {}, catsMap || {}, when);
+    stamp = String(R.formatWhen(when) || "").replace(/[^\d]/g, "");
+    downloadBlob(file, "purchasify-" + (stamp || "backup") + ".json");
+  }
+  function openHistory() {
+    var R = window.RGSbxShopRestore, SS = window.RGSyncStatus, rows = [], raw, html;
+    if (uid) {
+      raw = jparse(lsGet(bakKey(uid)), []);
+      if (Array.isArray(raw)) rows = raw.filter(function (s) { return s && typeof s.t === "number"; }).sort(function (a, b) { return b.t - a.t; });
+    }
+    html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
+    if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
+    else html += rows.map(function (s, i) {
+      var when = SS && SS.formatSyncTime ? SS.formatSyncTime(s.t) : (R && R.formatWhen ? R.formatWhen(s.t) : "");
+      return '<div class="hrow"><div class="histwhen">' + esc(when) + '</div><div class="row"><button type="button" class="btn" data-s="d:' + i + '">' + esc(t("historyDownload")) + "</button></div></div>";
+    }).join("");
+    sheet(html, function (a) {
+      var i, snap, file, stamp;
+      if (a === "x") { closeSheet(); return; }
+      if (a.indexOf("d:") !== 0 || !R || !R.buildFile) return;
+      i = parseInt(a.slice(2), 10);
+      snap = rows[i];
+      if (!snap) return;
+      file = R.buildFile(snap.items || {}, snap.cats || {}, snap.t);
+      stamp = String(R.formatWhen(snap.t) || "").replace(/[^\d]/g, "");
+      downloadBlob(file, "purchasify-" + (stamp || "backup") + ".json");
     });
   }
   function bootSearch() {
@@ -1132,32 +1177,15 @@
     });
     if (x) x.addEventListener("click", function () { el.value = ""; paint(); el.focus(); });
   }
-  function bootSyncLine() {
-    var b = $("syncstat");
-    if (!b) return;
-    b.addEventListener("click", function (e) {
-      e.stopPropagation();
-      var pop = $("syncpop");
-      if (!syncDetail) { closeSyncPop(); return; }
-      if (pop && pop.hidden) openSyncPop(); else closeSyncPop();
-    });
-    document.addEventListener("click", function (e) {
-      var pop = $("syncpop");
-      if (!pop || pop.hidden) return;
-      if (e.target.closest && e.target.closest("#syncline")) return;
-      closeSyncPop();
-    });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSyncPop(); });
-  }
   function boot() {
     try { bootUI(); } catch (e) { setTimeout(function () { throw e; }); } // the list still loads and shows even if a control fails
     startData();
   }
   function bootUI() {
     try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
-    try { bootBackup(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootSearch(); } catch (e) { setTimeout(function () { throw e; }); }
-    try { bootSyncLine(); } catch (e) { setTimeout(function () { throw e; }); }
+    on("backup-link", "click", function () { downloadBackup(); });
+    on("hist-btn", "click", function () { openHistory(); });
     bootCats();
     bootItemDrag();
     sortable({ list: $("active"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id",

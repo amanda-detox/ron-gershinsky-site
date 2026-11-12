@@ -172,6 +172,16 @@
     p = function (n) { return (n < 10 ? "0" : "") + n; };
     return p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() + " " + p(d.getHours()) + ":" + p(d.getMinutes());
   }
+  /* Current lists as a file this sandbox can read back. No network and no account check. */
+  function buildFile(items, when) {
+    return {
+      format: "listify-restore",
+      createdAtLocal: formatWhen(when),
+      source: "sandbox",
+      app: "sbxmyideas",
+      value: { v: 1, seeded: true, items: cleanItems(items) }
+    };
+  }
   function uidOk(uid) {
     return typeof uid === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(uid) && uid.indexOf("myideas") === -1;
   }
@@ -234,7 +244,7 @@
     return { ok: true };
   }
 
-  var api = { parse: parse, parseText: parseText, summarize: summarize, formatWhen: formatWhen, stage: stage, commit: commit };
+  var api = { parse: parse, parseText: parseText, summarize: summarize, formatWhen: formatWhen, buildFile: buildFile, stage: stage, commit: commit };
   root.RGSbxRestore = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);
