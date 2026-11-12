@@ -1,0 +1,21 @@
+{
+  "id": "/ron-gershinsky-site/wealthify-sandbox/",
+  "name": "שפעלי · Sandbox",
+  "short_name": "שפעלי SB",
+  "description": "עותק ניסוי של שפעלי. לא נוגע באפליקציה החיה. · Sandbox copy of Wealthify. Does not touch the live app.",
+  "start_url": "/ron-gershinsky-site/wealthify-sandbox/",
+  "scope": "/ron-gershinsky-site/wealthify-sandbox/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07060a",
+  "theme_color": "#07060a",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
