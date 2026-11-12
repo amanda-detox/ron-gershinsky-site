@@ -131,6 +131,7 @@ var live = fs.readFileSync(path.join(root, "../my/ideas/app.js"), "utf8");
 var liveHtml = fs.readFileSync(path.join(root, "../my/ideas/index.html"), "utf8");
 assert(page.indexOf('restoreBtn: "שחזור"') !== -1 && page.indexOf('data-i18n="restoreBtn">שחזור</span>') !== -1 && page.indexOf('id="restore-file"') !== -1, "the sandbox restore control says שחזור");
 assert(page.indexOf('restoreTitle: "שחזור"') !== -1 && page.indexOf("שחזור מקובץ") === -1, "the restore dialog title is שחזור");
+assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
 assert(page.indexOf("restore.js?v=1") !== -1 && page.indexOf("app.js?v=55") !== -1, "the sandbox page loads the restore helper and the bumped app");
 assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v23"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
