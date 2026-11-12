@@ -2,7 +2,9 @@
    Entries and topics use RGStore("sbxjournal"): local key rg-sbx-journal-v1:<user>, cloud app sbxjournal / items.
    This file never opens the live journal. Bookmarks are ids in RGJournalBookmarks (rg-sbx-journal-bookmarks
    and cloud key journal-bookmarks). Toggling a bookmark does not update, re-save, or delete an entry.
-   UI prefs use rg-sbx-journal-* keys. */
+   UI prefs use rg-sbx-journal-* keys.
+   Renaming a topic writes a new name on that same topic id and syncs with the other items.
+   Entries keep the topic id, so they stay on the topic. A rename never adds a second topic. */
 (function () {
   "use strict";
   var M = window.RGMy, t = M.t;
@@ -21,7 +23,7 @@
   var view = lsGet("rg-sbx-journal-view") === "topic" ? "topic" : "day";
   var statOpen = lsGet("rg-sbx-journal-stat") !== "0";
   var onlySaved = lsGet("rg-sbx-journal-saved") === "1";
-  var filt = "", q = "", editId = null, msg = "", deferred = false, pickTopic = lsGet("rg-sbx-journal-topic") || "";
+  var filt = "", q = "", editId = null, renId = null, renCode = "", msg = "", deferred = false, pickTopic = lsGet("rg-sbx-journal-topic") || "";
   /* Same bookmark glyph as Updatify (news/app.js): outline when off, filled when on. */
   var BMK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
   var BMKF = '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v16l-6.5-4.2-6.5 4.2v-16a1 1 0 0 1 1-1z"/></svg>';
@@ -134,15 +136,28 @@
     });
     return h + "</section>";
   }
+  function topicRow(x, n) {
+    if (renId === x.id) {
+      var err = renCode === "empty" ? t("renameEmpty") : renCode === "exists" ? t("topicExists") : "";
+      return '<li class="jren"><form data-form="r" data-id="' + esc(x.id) + '" class="grow" novalidate>' +
+        '<label class="fld"><span>' + esc(t("renameQ")) + '</span>' +
+        '<input class="inp" name="name" maxlength="60" value="' + esc(x.name) + '" autocomplete="off" enterkeyhint="done"></label>' +
+        (err ? '<p class="renmsg" role="alert">' + esc(err) + "</p>" : "") +
+        '<div class="btns"><button class="btn pri" type="submit">' + esc(t("saveEdit")) + '</button>' +
+        '<button class="btn" type="button" data-a="cancelRen">' + esc(t("cancel")) + "</button></div></form></li>";
+    }
+    return '<li><span class="grow">' + esc(x.name) + '<span class="meta">' + n + " " + esc(t("entriesN")) + '</span></span>' +
+      '<button class="btn sm renbtn" type="button" data-a="ren" data-id="' + esc(x.id) + '">✎ ' + esc(t("renameBtn")) + '</button>' +
+      '<button class="btn sm dng" type="button" data-a="delT" data-id="' + esc(x.id) + '" aria-label="' + esc(t("del")) + '">🗑</button></li>';
+  }
   function panelTopics() {
     var tp = topics(), cnt = {};
     S.list("entry").forEach(function (x) { if (x.topic) cnt[x.topic] = (cnt[x.topic] || 0) + 1; });
+    if (renId && !S.get(renId)) { renId = null; renCode = ""; }
     var h = '<section class="card sec"><details class="jtopics"><summary><h2>' + esc(t("topicsTitle")) + " (" + tp.length + ")</h2></summary>" +
       '<form data-form="t" class="row2"><input class="inp" name="name" maxlength="60" placeholder="' + esc(t("phTopic")) + '"><button class="btn pri" type="submit">' + esc(t("add")) + "</button></form>";
     if (!tp.length) h += '<p class="empty">' + esc(t("noTopics")) + "</p>";
-    else h += '<ul class="list">' + tp.map(function (x) {
-      return '<li><span class="grow">' + esc(x.name) + '<span class="meta">' + (cnt[x.id] || 0) + " " + esc(t("entriesN")) + '</span></span><button class="btn sm" type="button" data-a="ren" data-id="' + esc(x.id) + '">✎</button><button class="btn sm dng" type="button" data-a="delT" data-id="' + esc(x.id) + '" aria-label="' + esc(t("del")) + '">🗑</button></li>';
-    }).join("") + "</ul>";
+    else h += '<ul class="list">' + tp.map(function (x) { return topicRow(x, cnt[x.id] || 0); }).join("") + "</ul>";
     return h + '<div class="btns"><button class="btn sm" type="button" data-a="export">⬇ ' + esc(t("export")) + "</button></div></details></section>";
   }
 
@@ -161,6 +176,15 @@
   function newRow() { var s = $("panels").querySelector('[data-a="pick"]'), r = $("newTopicRow"); if (s && r) r.classList.toggle("hidden", s.value !== "__new"); }
   function findTopic(name) { var n = name.toLowerCase(); return topics().filter(function (x) { return String(x.name).toLowerCase() === n; })[0]; }
   function addTopic(name) { name = clean(name, 60); if (!name) return ""; var ex = findTopic(name); return ex ? ex.id : S.add({ kind: "topic", name: name }); }
+  /* empty keeps the old name; a cleaned name equal to the current one is not a write; another topic with that name is refused */
+  function planRename(raw, current, id) {
+    var nm = clean(raw, 60);
+    if (!nm) return { ok: false, code: "empty" };
+    if (nm === current) return { ok: true, code: "same", name: nm };
+    var ex = findTopic(nm);
+    if (ex && ex.id !== id) return { ok: false, code: "exists" };
+    return { ok: true, code: "rename", name: nm };
+  }
   function focusMark(id) {
     var found = null;
     $("panels").querySelectorAll('[data-a="mark"]').forEach(function (el) { if (el.getAttribute("data-id") === id) found = el; });
@@ -211,6 +235,23 @@
         var nm = clean(f.name.value, 60); if (!nm) return;
         if (findTopic(nm)) { alert(t("topicExists")); return; }
         f.name.value = ""; addTopic(nm); document.activeElement.blur(); render(true);
+      } else if (kind === "r") {
+        var rid = f.getAttribute("data-id"), topic = S.get(rid);
+        if (!topic || topic.kind !== "topic") { renId = null; renCode = ""; render(true); return; }
+        var plan = planRename(f.name.value, topic.name, rid);
+        if (!plan.ok) {
+          renCode = plan.code;
+          var typed = f.name.value;
+          render(true);
+          var bad = panels.querySelector('form[data-form="r"] [name="name"]');
+          if (bad) { bad.value = typed; bad.focus(); }
+          return;
+        }
+        renId = null; renCode = "";
+        /* same id only: entries point at this id, and the store syncs the new name with the other items */
+        if (plan.code === "rename" && plan.name) S.upd(rid, { name: plan.name });
+        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+        render(true);
       }
     });
     panels.addEventListener("click", function (e) {
@@ -231,8 +272,16 @@
       else if (a === "edit") { editId = id; render(true); var ta = panels.querySelector('form[data-form="e"] textarea'); if (ta) ta.focus(); }
       else if (a === "cancel") { editId = null; render(true); }
       else if (a === "del") { if (confirm(t("confirmDel"))) { S.del(id); B.forget(id); if (editId === id) editId = null; render(true); } }
-      else if (a === "delT") { if (confirm(t("confirmDelT").replace("{n}", topicName(id)))) { S.del(id); if (filt === id) filt = ""; render(true); } }
-      else if (a === "ren") { var x = S.get(id); if (!x) return; var nm = prompt(t("renameQ"), x.name); nm = clean(nm, 60); if (nm && nm !== x.name) { var ex = findTopic(nm); if (ex && ex.id !== id) { alert(t("topicExists")); return; } S.upd(id, { name: nm }); render(true); } }
+      else if (a === "delT") { if (confirm(t("confirmDelT").replace("{n}", topicName(id)))) { S.del(id); if (filt === id) filt = ""; if (renId === id) { renId = null; renCode = ""; } render(true); } }
+      else if (a === "ren") {
+        var topic = S.get(id);
+        if (!topic || topic.kind !== "topic") return;
+        renId = id; renCode = "";
+        render(true);
+        var inp = panels.querySelector('form[data-form="r"] [name="name"]');
+        if (inp) { inp.focus(); try { inp.select(); } catch (err) {} }
+      }
+      else if (a === "cancelRen") { renId = null; renCode = ""; render(true); }
       else if (a === "export") exportJson();
     });
     M.onLang(function () { render(true); });
