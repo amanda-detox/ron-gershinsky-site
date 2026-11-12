@@ -1,8 +1,8 @@
 /* Balancify (באלאנסיפיי). Content lives in data.js.
    Every list: add items, edit the title and the note, reorder, swipe right = delete (undo), swipe left = move.
    The mark is stored on the synced user record (marks[id] = "ok" | "no"); tapping the same mark again clears it.
-   Listify keeps its own swipe code in my/ideas (no shared module); directions here are physical:
-   clientX right = delete, clientX left = move to another list. A vertical drag scrolls the page. */
+   Directions are physical: clientX right = delete, clientX left = move to another list.
+   A vertical drag on the row scrolls the page. A drag on ☰ reorders. */
 (function () {
   "use strict";
   var LANG_KEY = "rg-lang", THEME_KEY = "rg-balancify-theme", BG_KEY = "rg-balancify-bg", CHK_PREFIX = "rg-balancify-checked-";
@@ -741,11 +741,18 @@
     }
   }
 
+  /* Visible row order, then any id already stored for this list that is not on screen
+     (hidden, or not rendered this pass). Never drops or duplicates an id. */
   function saveOrderFromDom(ul) {
     if (!current) return;
     var ids = [];
-    ul.querySelectorAll(".drow").forEach(function (r) { var id = r.getAttribute("data-id"); if (id) ids.push(id); });
+    ul.querySelectorAll(".drow").forEach(function (r) {
+      var id = r.getAttribute("data-id");
+      if (id && ids.indexOf(id) === -1) ids.push(id);
+    });
     var u = getUser();
+    var prev = (u.order && Array.isArray(u.order[current])) ? u.order[current] : [];
+    prev.forEach(function (id) { if (id && ids.indexOf(id) === -1) ids.push(id); });
     u.order[current] = ids;
     saveUser(u);
   }
@@ -753,49 +760,84 @@
     var sec = li.getAttribute("data-sec");
     return Array.prototype.filter.call(li.parentNode.querySelectorAll(".drow"), function (r) { return r.getAttribute("data-sec") === sec; });
   }
-  function place(li, y) {
-    var rows = siblingsInGroup(li);
-    if (!rows.length) return;
-    var first = rows[0], last = rows[rows.length - 1];
-    var fb = first.getBoundingClientRect(), lb = last.getBoundingClientRect();
-    if (y < fb.top + fb.height / 2) { if (li !== first) li.parentNode.insertBefore(li, first); return; }
-    if (y > lb.top + lb.height / 2) { if (li !== last) li.parentNode.insertBefore(li, last.nextSibling); return; }
-    for (var i = 0; i < rows.length; i++) {
-      var r = rows[i];
-      if (r === li) continue;
-      var b = r.getBoundingClientRect();
-      if (y > b.top && y < b.bottom) {
-        if (y < b.top + b.height / 2) li.parentNode.insertBefore(li, r);
-        else li.parentNode.insertBefore(li, r.nextSibling);
-        return;
-      }
-    }
-  }
 
-  /* Sideways swipe is immediate (right delete, left move). A vertical drag is native
+  /* Sideways swipe is immediate (right delete, left move). A vertical drag on the row is native
      page scrolling and never marks the item. Tapping the mark square still toggles ✓,
-     which moves the item into נבחרים; clearing ✓ puts it back. */
+     which moves the item into נבחרים; clearing ✓ puts it back.
+     Reorder: the ☰ handle lifts at once. The row follows the finger with a transform and
+     the other rows in the same group shift to show the gap. The DOM is not moved until
+     the finger lifts — moving it mid-drag made the row jump back under the finger (and
+     mobile browsers cancelled the pointer), so the order never stuck. */
   var g = null;
   var sheetReadyAt = 0;
   function bootGestures() {
     var ul = $("items");
-    function lift() {
-      if (!g || g.lifted) return;
-      if (g.timer) { clearTimeout(g.timer); g.timer = null; }
+    function scrollY() { return window.scrollY || window.pageYOffset || 0; }
+    function armCancelFallback() {
+      if (!g) return;
+      var cur = g;
+      clearTimeout(cur.cancelT);
+      cur.cancelT = setTimeout(function () {
+        if (g === cur && cur.mode === "drag" && cur.sawCancel) end({ pointerId: cur.pid, type: "touchend" });
+      }, 160);
+    }
+    /* Snapshot row centers once. Later frames only write transforms, so a moving finger
+       is compared with the original list, not with boxes that jump on every swap. */
+    function lift(handle) {
+      if (!g || g.lifted || g.mode !== "drag") return;
+      var rows = siblingsInGroup(g.li);
+      var sy = scrollY();
+      var mids = rows.map(function (r) {
+        var b = r.getBoundingClientRect();
+        return { el: r, mid: b.top + sy + b.height / 2, h: b.height };
+      });
+      var from = rows.indexOf(g.li);
+      if (from < 0) return;
       g.lifted = true;
+      g.drag = { rows: rows, mids: mids, from: from, to: from, y0: g.y + sy, h: mids[from].h };
       g.li.classList.add("lifted");
       g.ul.classList.add("dragging");
-      if (navigator.vibrate) { try { navigator.vibrate(12); } catch (e) {} }
+      try { if (handle) handle.setPointerCapture(g.pid); } catch (err) {}
+      if (navigator.vibrate && g.type !== "mouse") { try { navigator.vibrate(12); } catch (e) {} }
+      dragFollow(g.y);
       tick();
+    }
+    function dragFollow(clientY) {
+      if (!g || !g.drag) return;
+      var d = g.drag, docY = clientY + scrollY(), to = 0, i, j;
+      for (i = 0; i < d.mids.length; i++) if (i !== d.from && d.mids[i].mid < docY) to++;
+      d.to = to;
+      var dy = docY - d.y0;
+      var origin = d.mids[d.from];
+      if (d.mids.length) {
+        var min = d.mids[0].mid - origin.mid, max = d.mids[d.mids.length - 1].mid - origin.mid;
+        if (dy < min) dy = min;
+        if (dy > max) dy = max;
+      }
+      var shift = d.h + 8;
+      for (j = 0; j < d.mids.length; j++) {
+        var el = d.mids[j].el, s = 0;
+        if (j === d.from) { el.style.transform = "translate3d(0," + dy + "px,0)"; continue; }
+        if (d.from < to && j > d.from && j <= to) s = -shift;
+        else if (d.from > to && j >= to && j < d.from) s = shift;
+        el.style.transform = s ? "translate3d(0," + s + "px,0)" : "";
+      }
     }
     function tick() {
       if (!g || !g.lifted) return;
       var y = g.y, H = window.innerHeight, sp = 0;
       if (y < 72) sp = -Math.ceil((72 - y) / 5);
       else if (y > H - 72) sp = Math.ceil((y - (H - 72)) / 5);
-      if (sp) { window.scrollBy(0, sp); place(g.li, y); }
+      if (sp) {
+        var before = scrollY();
+        window.scrollBy(0, sp);
+        if (scrollY() !== before) dragFollow(y);
+      }
       g.raf = requestAnimationFrame(tick);
     }
+    ul.addEventListener("touchstart", function (e) {
+      if (e.target.closest && e.target.closest(".hdl") && e.cancelable) e.preventDefault();
+    }, { passive: false });
     ul.addEventListener("pointerdown", function (e) {
       if (e.button > 0) return;
       var handle = e.target.closest(".hdl");
@@ -806,10 +848,8 @@
       if (!li) return;
       if (handle) {
         e.preventDefault();
-        g = { mode: "drag", li: li, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, y0: e.clientY, x0: e.clientX, lifted: false, timer: null, raf: 0 };
-        try { handle.setPointerCapture(e.pointerId); } catch (err) {}
-        if (e.pointerType === "mouse") lift();
-        else g.timer = setTimeout(lift, 180);
+        g = { mode: "drag", li: li, ul: ul, pid: e.pointerId, type: e.pointerType, x: e.clientX, y: e.clientY, lifted: false, timer: null, raf: 0, cancelT: 0 };
+        lift(handle);
         return;
       }
       g = { mode: "maybe", li: li, face: face, ul: ul, pid: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: Date.now(), type: e.pointerType };
@@ -817,13 +857,11 @@
     document.addEventListener("pointermove", function (e) {
       if (!g || e.pointerId !== g.pid) return;
       if (g.mode === "drag") {
+        if (g.sawCancel && g.type === "touch") return;
         g.y = e.clientY;
-        if (!g.lifted) {
-          if (Math.abs(e.clientY - g.y0) > 8 || Math.abs(e.clientX - g.x0) > 8) lift();
-          return;
-        }
-        e.preventDefault();
-        place(g.li, e.clientY);
+        g.x = e.clientX;
+        if (e.cancelable) e.preventDefault();
+        dragFollow(e.clientY);
         return;
       }
       var dx = e.clientX - g.x, dy = e.clientY - g.y, adx = Math.abs(dx), ady = Math.abs(dy);
@@ -848,15 +886,23 @@
       }
     });
     function end(e) {
-      if (!g || e.pointerId !== g.pid) return;
+      if (!g || (e.pointerId != null && e.pointerId !== g.pid)) return;
       if (g.type === "touch" && g.mode !== "swipe" && g.mode !== "drag" && e.type === "pointercancel") {
         g.sawCancel = true;
         g.mode = "vert";
         return;
       }
+      /* A touch reorder keeps going on touchmove/touchend after the browser cancels the pointer.
+         Committing here would drop the row back before the finger has finished. */
+      if (e.type === "pointercancel" && g.mode === "drag" && g.type === "touch") {
+        g.sawCancel = true;
+        armCancelFallback();
+        return;
+      }
       var cur = g;
       g = null;
       if (cur.timer) clearTimeout(cur.timer);
+      if (cur.cancelT) clearTimeout(cur.cancelT);
       if (cur.raf) cancelAnimationFrame(cur.raf);
       if (cur.mode === "swipe") {
         swallow = true;
@@ -872,23 +918,36 @@
         setTimeout(function () { cur.face.style.transition = ""; }, 200);
         return;
       }
-      if (cur.mode !== "drag") return;
-      if (cur.mode === "drag" && cur.lifted) {
-        swallow = true;
-        setTimeout(function () { swallow = false; }, 450);
-        cur.li.classList.remove("lifted");
-        cur.ul.classList.remove("dragging");
-        saveOrderFromDom(cur.ul);
-        renderList();
-        var again = ul.querySelector('.drow[data-id="' + cur.li.getAttribute("data-id") + '"] .hdl');
-        if (again) again.focus();
-      }
+      if (cur.mode !== "drag" || !cur.lifted) return;
+      swallow = true;
+      setTimeout(function () { swallow = false; }, 450);
+      var d = cur.drag;
+      var moved = d && d.to !== d.from;
+      if (d) d.mids.forEach(function (m) { m.el.style.transform = ""; });
+      cur.li.classList.remove("lifted");
+      cur.ul.classList.remove("dragging");
+      if (!moved) return;
+      var parent = cur.li.parentNode;
+      if (d.to < d.from) parent.insertBefore(cur.li, d.rows[d.to]);
+      else parent.insertBefore(cur.li, d.rows[d.to].nextSibling);
+      var movedId = cur.li.getAttribute("data-id");
+      saveOrderFromDom(cur.ul);
+      renderList();
+      var again = ul.querySelector('.drow[data-id="' + movedId + '"] .hdl');
+      if (again && cur.type === "mouse") again.focus();
     }
     document.addEventListener("pointerup", end);
     document.addEventListener("pointercancel", end);
     document.addEventListener("touchend", function (e) {
-      if (!g || g.handled || g.mode === "drag") return;
+      if (!g || g.handled) return;
       var tch = e.changedTouches && e.changedTouches[0]; if (!tch) return;
+      if (g.mode === "drag") {
+        g.y = tch.clientY;
+        g.x = tch.clientX;
+        if (g.lifted) dragFollow(tch.clientY);
+        end({ pointerId: g.pid, type: "touchend" });
+        return;
+      }
       if (g.mode === "swipe" && g.sawCancel) {
         g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
         end({ pointerId: g.pid, type: "touchend" });
@@ -898,8 +957,17 @@
       g = null;
     }, { passive: true });
     document.addEventListener("touchmove", function (e) {
-      if (!g || g.mode === "drag" || g.mode === "vert") return;
+      if (!g || g.handled) return;
       var tch = e.touches && e.touches[0]; if (!tch) return;
+      if (g.mode === "drag") {
+        if (e.cancelable) e.preventDefault();
+        g.y = tch.clientY;
+        g.x = tch.clientX;
+        dragFollow(tch.clientY);
+        if (g.sawCancel) armCancelFallback();
+        return;
+      }
+      if (g.mode === "vert") return;
       g.dx = tch.clientX - g.x; g.dy = tch.clientY - g.y;
       var adx = Math.abs(g.dx), ady = Math.abs(g.dy);
       if (g.mode === "swipe" && g.face) {
@@ -912,7 +980,7 @@
         g.mode = "swipe";
         g.li.classList.add("swiping");
       } else if (ady > adx * 1.5) g.mode = "vert";
-    }, { passive: true });
+    }, { passive: false });
     ul.addEventListener("keydown", function (e) {
       var handle = e.target.closest && e.target.closest(".hdl");
       if (!handle) return;
