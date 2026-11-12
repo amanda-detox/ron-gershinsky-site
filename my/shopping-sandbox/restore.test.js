@@ -118,7 +118,7 @@ assert(page.indexOf('restoreBtn: "שחזור"') !== -1 && page.indexOf('searchPh
 assert(page.indexOf('id="cat-btn"') < page.indexOf('id="syncline"') && page.indexOf('id="syncline"') < page.indexOf('id="add-form"'), "the sync line sits under the category button and above the add field");
 assert(page.indexOf('id="syncslot"') === -1 && page.indexOf("syncSave") !== -1 && page.indexOf("ממתין לסנכרון…") !== -1 && page.indexOf("לא מחובר") !== -1, "the short sync words replace the old status slot");
 assert(page.indexOf("לא מסונכרן") === -1, "the waiting state does not use לא מסונכרן");
-assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v3"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=51") !== -1 && sw.indexOf("rg-sync-status.js?v=2") !== -1, "the sandbox cache name includes the new files");
+assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v4"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=51") !== -1 && sw.indexOf("rg-sync-status.js?v=2") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
 assert(app.indexOf('APP = "sbxshopping"') !== -1 && app.indexOf('APP = "shopping"') === -1 && app.indexOf("rg-my-shopping") === -1, "the sandbox app still never names the live app or its key");
 assert(app.indexOf('if (APP !== "sbxshopping")') !== -1, "sync refuses to run unless the app id is the sandbox");
 assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-my-shopping') === -1 && helper.indexOf("setItem('rg-my-shopping") === -1, "the helper recognizes a live device key in a file and does not write it");

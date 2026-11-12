@@ -1,0 +1,19 @@
+{
+  "id": "/ron-gershinsky-site/content-sandbox/",
+  "name": "תוכן · ניסוי התקנה",
+  "short_name": "תוכן SB",
+  "description": "עותק ניסוי של כפתור ההתקנה בדף התוכן. לא מקושר מהדף החי.",
+  "start_url": "/ron-gershinsky-site/content-sandbox/",
+  "scope": "/ron-gershinsky-site/content-sandbox/",
+  "prefer_related_applications": false,
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a1a3f",
+  "theme_color": "#0a1a3f",
+  "lang": "he",
+  "dir": "rtl",
+  "icons": [
+    { "src": "../app-icon-192.png?v=23", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../app-icon-512.png?v=23", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

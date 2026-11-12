@@ -133,8 +133,8 @@ assert(page.indexOf('restoreBtn: "שחזור"') !== -1 && page.indexOf('data-i18
 assert(page.indexOf('restoreTitle: "שחזור"') !== -1 && page.indexOf("שחזור מקובץ") === -1, "the restore dialog title is שחזור");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
 assert(page.indexOf("restore.js?v=1") !== -1 && page.indexOf("app.js?v=55") !== -1, "the sandbox page loads the restore helper and the bumped app");
-assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v22"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1, "the sandbox cache version includes the new files");
-assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=20") !== -1, "the sandbox cache includes the maskable icons");
+assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v23"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
 assert(manifest.indexOf('"purpose": "any"') !== -1 && manifest.indexOf("icon-maskable-192.png?v=20") !== -1 && manifest.indexOf("icon-maskable-512.png?v=20") !== -1 && manifest.indexOf('"purpose": "maskable"') !== -1, "the sandbox manifest keeps the any icons and adds maskable ones");
