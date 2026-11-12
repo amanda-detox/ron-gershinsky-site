@@ -105,11 +105,14 @@ assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap 
 assert(liveHtml.indexOf("rg-sync-status.js?v=8") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=8") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live private Listify does not load sandbox scripts or the sandbox banner");
 assert(liveHtml.indexOf("<title>Listify</title>") !== -1, "the browser tab stays Listify in English");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v55"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
+assert(liveSw.indexOf('CACHE = "rg-myideas-v56"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
 assert(liveHtml.indexOf('updateViaCache:"none"') !== -1 && liveHtml.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1, "a new version reloads only when local edits are safe");
 assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפס"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveHtml.indexOf('id="hist-btn"') !== -1 && liveHtml.indexOf('id="restore-file"') !== -1, "version history and file restore are on the live page");
-assert(liveSw.indexOf("rg-sync-status.js?v=8") !== -1 && liveSw.indexOf("app.js?v=55") !== -1 && liveSw.indexOf("restore.js?v=1") !== -1, "the service worker precaches the new helper and app");
+assert(liveSw.indexOf("rg-sync-status.js?v=8") !== -1 && liveSw.indexOf("app.js?v=56") !== -1 && liveSw.indexOf("restore.js?v=1") !== -1, "the service worker precaches the new helper and app");
+assert(liveHtml.indexOf('id="list-search"') !== -1 && liveIdeas.indexOf("function searchView") !== -1, "search is on the live page and does not replace the app id");
+assert(liveSw.indexOf("icon-maskable-192.png?v=56") !== -1 && liveSw.indexOf("icon-maskable-512.png?v=56") !== -1, "maskable icons are precached under the live cache");
+assert(liveIdeas.indexOf("sbxmyideas") === -1 && liveIdeas.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live keeps its own keys and has no sandbox banner");
 
 function never() { return new Promise(function () {}); }
 SS.fetchWithTimeout(never, "/x", {}, 30).then(function () {
