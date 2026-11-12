@@ -932,7 +932,7 @@
     render();
   }
 
-  /* ---------- toast (gold, at the top; X or swipe any direction dismisses) + delete with a 5-second undo ---------- */
+  /* ---------- toast (gold, at the bottom; X or swipe any direction dismisses) + delete with a 5-second undo ---------- */
   var toastT = 0;
   function toastHide(el) { clearTimeout(toastT); el.classList.remove("on", "act", "drag"); el.style.transform = ""; el.style.opacity = ""; }
   function toastSwipe(el) {

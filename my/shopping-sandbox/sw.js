@@ -1,8 +1,8 @@
 /* Offline cache for the Purchasify sandbox (my/shopping-sandbox/). Scope: my/shopping-sandbox/ only.
    Deletes only rg-sbx-shopping- caches. The live shopping cache is left alone.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-sbx-shopping-v7";
-var FILES = ["./", "index.html", "rg-sync-status.js?v=3", "restore.js?v=1", "app.js?v=54", "manifest.json?v=4", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=1", "icon-maskable-512.png?v=1", "../common.css", "../common.js",
+var CACHE = "rg-sbx-shopping-v8";
+var FILES = ["./", "index.html", "rg-sync-status.js?v=3", "restore.js?v=1", "app.js?v=55", "manifest.json?v=4", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=1", "icon-maskable-512.png?v=1", "../common.css", "../common.js",
   "../../sandbox-shared/rg-install.js?v=1", "../../shared/rg-account.js", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
