@@ -1,0 +1,12 @@
+{
+  "name": "ron-gershinsky-site-smoke",
+  "private": true,
+  "description": "Read-only Playwright smoke tests. They load public pages and never sign in or change data.",
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  }
+}

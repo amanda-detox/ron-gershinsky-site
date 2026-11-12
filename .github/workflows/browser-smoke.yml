@@ -1,0 +1,60 @@
+# Read-only browser checks. This workflow does not deploy GitHub Pages.
+name: Browser smoke tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Site to open. Leave the live GitHub Pages address unless you were asked to test another copy. Keep the slash at the end."
+        required: false
+        default: "https://amanda-detox.github.io/ron-gershinsky-site/"
+        type: string
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-smoke-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    name: Load pages in Chrome
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BASE_URL: ${{ github.event.inputs.base_url || 'https://amanda-detox.github.io/ron-gershinsky-site/' }}
+    defaults:
+      run:
+        working-directory: tests
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: tests/package-lock.json
+
+      - name: Install the test tools
+        run: npm ci
+
+      - name: Install Chrome for Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Open the pages
+        run: npx playwright test
+
+      - name: Upload the HTML report and screenshots
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-smoke-report
+          path: |
+            tests/playwright-report
+            tests/test-results
+          retention-days: 14
+          if-no-files-found: warn
