@@ -4,6 +4,7 @@
    Reads time out after 15s. Uploads get 60s, then a visible cutoff and a growing backoff.
    «טען מהענן» replaces only this device, after a -bak copy, and never writes to the cloud.
    A confirmed file restore first saves the current sandbox state as a version, then loads the file and syncs it as a deliberate overwrite. The file's own stamps stay as they are.
+   Search filters and highlights the view only. It does not write, delete, or reorder lists or items.
    Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount.
    Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
      mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
@@ -22,7 +23,7 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v15";
+  var BUILD = "rg-sbx-ideas-v20";
   function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
@@ -776,6 +777,32 @@
   }
   var GRIP = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 7h14M5 12h14M5 17h14"/></svg>';
   var showP = false, showC = false;
+  /* Search reads the field and paints a view. It never calls put, saveLocal, or setOrder. */
+  function fold(s) { return String(s == null ? "" : s).toLocaleLowerCase("en"); }
+  function searchRaw() {
+    var el = $("list-search");
+    return el ? String(el.value || "").replace(/^\s+|\s+$/g, "") : "";
+  }
+  function hit(text, q) {
+    if (q == null) q = searchRaw();
+    if (!q) return false;
+    return fold(text).indexOf(fold(q)) !== -1;
+  }
+  function hi(text) {
+    var raw = String(text == null ? "" : text), q = searchRaw(), re, out, last, m;
+    if (!q) return esc(raw);
+    try { re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "giu"); }
+    catch (e) { return esc(raw); }
+    out = ""; last = 0;
+    while ((m = re.exec(raw))) {
+      if (!m[0]) { re.lastIndex++; continue; }
+      out += esc(raw.slice(last, m.index)) + '<mark class="qhit">' + esc(m[0]) + "</mark>";
+      last = m.index + m[0].length;
+    }
+    return out + esc(raw.slice(last));
+  }
+  function itemHit(x, q) { return hit(label(x), q) || hit(x.note || "", q); }
+  function listHit(c, q) { return hit(catName(c), q) || live(c.cat).some(function (x) { return itemHit(x, q); }); }
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
@@ -784,7 +811,7 @@
     return '<li data-id="' + esc(x.id) + '"' + (cls ? ' class="' + cls + '"' : "") + '>' +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' +
       box +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + esc(n) + "</span>" + (x.note ? '<span class="note">' + esc(x.note) + "</span>" : "") + "</div>" +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span>" + (x.note ? '<span class="note">' + hi(x.note) + "</span>" : "") + "</div>" +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
@@ -804,6 +831,28 @@
       (cked.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "סומנו" : "Checked") + ' <span class="ckn">(' + cked.length + ')</span></div><div class="card listcard ckcard"><ul class="list" id="list-ck">' + cked.map(row).join("") + "</ul></div>" : "") +
       (act.length ? '<div class="card listcard"><ul class="list" id="list-active">' + act.map(row).join("") + "</ul></div>"
         : (cked.length || chosen.length) ? "" : '<div class="card empty"><p>' + esc(t(done.length ? "allDone" : "emptyList")) + "</p></div>") + '<div class="sum" id="sum" hidden></div>';
+  }
+  /* A read-only pass over cats() and each list's existing order. No ids that the reorder gesture writes from. */
+  function searchView() {
+    var q = searchRaw(), html = "", any = false;
+    cats().forEach(function (c) {
+      var nameHit = hit(catName(c), q), anyItem = live(c.cat).some(function (x) { return itemHit(x, q); });
+      if (!nameHit && !anyItem) return;
+      any = true;
+      showP = hasPrices(c.cat); showC = isChk(c.cat);
+      var act = live(c.cat).sort(byOrder), cked = [], chosen = [];
+      if (showC) { cked = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); }
+      else { chosen = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); }
+      function vis(arr) { return nameHit ? arr : arr.filter(function (x) { return itemHit(x, q); }); }
+      var ckedV = vis(cked), chosenV = vis(chosen), actV = vis(act);
+      var body = (chosenV.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "נבחרים" : "Chosen") + ' <span class="ckn">(' + chosenV.length + ')</span></div><div class="card listcard ckcard"><ul class="list">' + chosenV.map(row).join("") + "</ul></div>" : "") +
+        (ckedV.length ? '<div class="ckhead"><span aria-hidden="true">✓</span>' + esc(document.documentElement.lang !== "en" ? "סומנו" : "Checked") + ' <span class="ckn">(' + ckedV.length + ')</span></div><div class="card listcard ckcard"><ul class="list">' + ckedV.map(row).join("") + "</ul></div>" : "") +
+        (actV.length ? '<div class="card listcard"><ul class="list">' + actV.map(row).join("") + "</ul></div>" : "");
+      if (!body) body = '<div class="card empty"><p>' + esc(t("emptyList")) + "</p></div>";
+      html += '<section class="srchsec" data-panel="' + esc(c.cat) + '"><h2 class="srchhead">' + hi(catName(c)) + "</h2>" + body + "</section>";
+    });
+    if (!any) return '<div class="card empty"><p>' + esc(t("searchEmpty")) + "</p></div>";
+    return html;
   }
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
@@ -830,7 +879,7 @@
     // (the ☰ list-edit button was removed: rename/delete/reorder live inside the list menu)
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-sbx-ideas-hint3"); }
-    panels.innerHTML = !cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>";
+    panels.innerHTML = searchRaw() ? searchView() : (!cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>");
     document.querySelectorAll(".addform input,.addform textarea").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
     growAll();
@@ -989,12 +1038,14 @@
      ↕ reorder (move mode: ☰ drag or ▲▼ on every row, "סיום" ends it) · ✏️ rename · ₪ price column on/off · 🗑 delete (confirm). */
   var pmOpt = null, pmMove = false;
   function fillMenu() {
-    var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return; var gl = catsG(menuG);
+    var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
+    var q = searchRaw(), gl = catsG(menuG);
+    if (q && !pmMove) gl = gl.filter(function (c) { return listHit(c, q); }); // display filter only; move mode keeps every list so order is never saved from a subset
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
     var head = '<div class="pm-head"><span class="pm-title">' + esc(pmMove ? t("moveNote") : t("pickerPh").replace("{n}", menuG)) + "</span>" +
       (pmMove ? '<button type="button" class="pm-edit on" data-pick="mvend">' + esc(t("editDone")) + "</button>" : "") + "</div>";
-    var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(t("groupEmpty")) + "</li>") + gl.map(function (c, i) {
-      var nm = esc(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price), ckm = isChk(c.cat);
+    var rows = (gl.length ? "" : '<li class="pm-empty">' + esc(q && !pmMove ? t("searchEmpty") : t("groupEmpty")) + "</li>") + gl.map(function (c, i) {
+      var nm = hi(catName(c)), id = esc(c.cat), on = c.cat === cur, pr = !!(catRec(c.cat) && catRec(c.cat).price), ckm = isChk(c.cat);
       if (pmMove) return '<li class="erow mvrow' + (on ? " cur" : "") + '" data-cat="' + id + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + catName(c)) + '">☰</span>' +
         '<span class="pm-mname">' + nm + "</span>" +
         '<button type="button" class="eic" data-pick="upp:' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + catName(c)) + '">▲</button>' +
@@ -1482,10 +1533,26 @@
       onNo: function () {}
     });
   }
+  function bootSearch() {
+    var el = $("list-search"), x = $("search-clear"), box = $("searchbox");
+    if (!el) return;
+    function sync() {
+      var on = !!String(el.value || "");
+      if (x) x.hidden = !on;
+      if (box) box.classList.toggle("hasq", on);
+      render();
+    }
+    el.addEventListener("input", sync);
+    el.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && el.value) { e.preventDefault(); el.value = ""; sync(); }
+    });
+    if (x) x.addEventListener("click", function () { el.value = ""; sync(); el.focus(); });
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
     try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
+    try { bootSearch(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootLists(); } catch (e) { setTimeout(function () { throw e; }); } // the lists still load and show even if a control fails
     try { bootItemDrag(); } catch (e) { setTimeout(function () { throw e; }); }
     main.addEventListener("submit", function (e) {

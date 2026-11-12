@@ -131,8 +131,13 @@ var live = fs.readFileSync(path.join(root, "../my/ideas/app.js"), "utf8");
 var liveHtml = fs.readFileSync(path.join(root, "../my/ideas/index.html"), "utf8");
 assert(page.indexOf("שחזור מקובץ") !== -1 && page.indexOf('id="restore-file"') !== -1, "the sandbox page has the Hebrew restore control");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("restore.js?v=1") !== -1 && page.indexOf("app.js?v=52") !== -1, "the sandbox page loads the restore helper and the bumped app");
-assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v15"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=52") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("restore.js?v=1") !== -1 && page.indexOf("app.js?v=54") !== -1, "the sandbox page loads the restore helper and the bumped app");
+assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v20"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=54") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1, "the sandbox cache version includes the new files");
+assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=20") !== -1, "the sandbox cache includes the maskable icons");
+var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
+var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
+assert(manifest.indexOf('"purpose": "any"') !== -1 && manifest.indexOf("icon-maskable-192.png?v=20") !== -1 && manifest.indexOf("icon-maskable-512.png?v=20") !== -1 && manifest.indexOf('"purpose": "maskable"') !== -1, "the sandbox manifest keeps the any icons and adds maskable ones");
+assert(liveManifest.indexOf("maskable") === -1 && live.indexOf("icon-maskable") === -1, "live Listify has no maskable icon");
 assert(sw.indexOf("rg-myideas-") === -1, "the sandbox service worker does not name the live cache");
 var loadBody = app.slice(app.indexOf("function loadRestore"), app.indexOf("function bootRestore"));
 assert(loadBody.indexOf("rememberSnap(true)") !== -1 && loadBody.indexOf("rememberSnap(true)") < loadBody.indexOf("restoreDoc = staged.items"), "a confirmed file restore saves the current state as a version first");
@@ -143,6 +148,10 @@ assert(app.indexOf("rg-myideas") === -1 && app.indexOf('APP = "myideas"') === -1
 assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-myideas') === -1 && helper.indexOf("setItem('rg-myideas") === -1, "the helper recognizes a live device key in a file and does not write that string");
 assert(live.indexOf("RGMyIdeasRestore") !== -1 && live.indexOf("RGSbxRestore") === -1 && live.indexOf("rg-sbx-ideas-") === -1, "live file restore uses the live helper and live keys");
 assert(liveHtml.indexOf("שחזור מקובץ") !== -1 && liveHtml.indexOf("ideas-sandbox/restore.js") === -1 && liveHtml.indexOf('src="restore.js?v=1"') !== -1, "the live page loads its own restore helper");
+assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear"') !== -1 && page.indexOf('id="actrow"') !== -1 && page.indexOf('id="print-btn"') !== -1, "search sits in the same row as print and restore");
+assert(liveHtml.indexOf("list-search") === -1 && live.indexOf("function searchView") === -1, "live Listify has no search control");
+var searchBody = app.slice(app.indexOf("function searchView"), app.indexOf("function render"));
+assert(searchBody.indexOf("saveLocal") === -1 && searchBody.indexOf("changed(") === -1 && searchBody.indexOf("put(") === -1 && searchBody.indexOf("localStorage") === -1 && searchBody.indexOf("setOrder") === -1, "the search view does not write or reorder");
 
 function LIVE_NEEDLE() { return "rg-" + "myideas-v1:"; }
 

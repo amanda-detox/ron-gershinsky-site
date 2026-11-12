@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v15"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v15");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v20"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v20");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=52") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=54") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v15"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v20"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -262,6 +262,158 @@ async function main() {
     check(oldErr.length === 0, "the oldest-restore page runs without a script error");
     if (oldErr.length) console.error(oldErr.join(" | "));
     await old.close();
+
+    var searchItems = {
+      a1: { id: "a1", sec: "ideas", text: "Alpha one", note: "first", done: false, order: 1, created: 2001, at: 2001 },
+      a2: { id: "a2", sec: "ideas", text: "Middle skip", done: false, order: 2, created: 2002, at: 2002 },
+      a3: { id: "a3", sec: "ideas", text: "Alpha two", done: false, order: 3, created: 2003, at: 2003 },
+      s1: { id: "s1", sec: "shop", text: "חלב טרי", note: "בבוקר", done: false, order: 1, created: 2101, at: 2101 },
+      s2: { id: "s2", sec: "shop", text: "לחם", done: false, order: 2, created: 2102, at: 2102 },
+      s3: { id: "s3", sec: "shop", text: "חלב יבש", done: false, order: 3, created: 2103, at: 2103 },
+      w1: { id: "w1", sec: "work", text: "Report", note: "Monday", done: false, order: 1, created: 2201, at: 2201 },
+      "c:shop": { id: "c:shop", type: "cat", cat: "shop", name: "קניות", kind: "task", pos: 10, created: 1000, at: 1000 },
+      "c:work": { id: "c:work", type: "cat", cat: "work", name: "Work", kind: "task", pos: 11, created: 1000, at: 1000 }
+    };
+    var searchDoc = { items: searchItems, pending: false, seeded: true };
+    var searchCtx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true, serviceWorkers: "block" });
+    var searchPage = await searchCtx.newPage();
+    var searchErr = [];
+    searchPage.on("pageerror", function (err) { searchErr.push(String(err)); });
+    searchPage.on("console", function (msg) {
+      if (msg.type() !== "error") return;
+      var text = msg.text();
+      if (text.indexOf("ERR_FAILED") !== -1 || text.indexOf("Failed to load resource") !== -1) return;
+      searchErr.push(text);
+    });
+    await searchPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await searchPage.addInitScript(userScript(
+      "localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify(searchDoc)) + ");"
+    ));
+    var shotDir = "/opt/cursor/artifacts";
+    await searchPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await searchPage.waitForFunction(function () { return document.body && document.body.innerText.indexOf("Middle skip") !== -1; });
+    function idsOf(page) {
+      return page.evaluate(function () {
+        return Array.prototype.map.call(document.querySelectorAll("#panels [data-id]"), function (el) { return el.getAttribute("data-id"); });
+      });
+    }
+    function marksOf(page) {
+      return page.evaluate(function () {
+        return Array.prototype.map.call(document.querySelectorAll("#panels mark.qhit"), function (el) { return el.textContent; });
+      });
+    }
+    function dataOf(page) {
+      return page.evaluate(function (uid) {
+        var raw = localStorage.getItem("rg-sbx-ideas-v1:" + uid);
+        var doc = raw ? JSON.parse(raw) : { items: {} };
+        var rows = Object.keys(doc.items || {}).sort().map(function (k) {
+          var x = doc.items[k];
+          return [x.id, x.type || "", x.name || "", x.sec || "", x.text || "", x.note || "", x.order == null ? "" : x.order, x.deleted ? 1 : 0].join("|");
+        });
+        var live = [];
+        for (var i = 0; i < localStorage.length; i++) {
+          var key = localStorage.key(i);
+          if (key && key.indexOf("rg-myideas") === 0) live.push(key);
+        }
+        return { rows: rows.join("\n"), live: live, tab: localStorage.getItem("rg-sbx-ideas-tab-cur") || "" };
+      }, UID);
+    }
+    function geomOf(page) {
+      return page.evaluate(function () {
+        function box(id) {
+          var el = document.getElementById(id);
+          if (!el || el.hidden) return null;
+          var b = el.getBoundingClientRect();
+          return { w: Math.round(b.width), h: Math.round(b.height), top: Math.round(b.top), left: Math.round(b.left), right: Math.round(b.right) };
+        }
+        var row = document.getElementById("actrow");
+        var rb = row.getBoundingClientRect();
+        return {
+          search: box("list-search"), print: box("print-btn"), restore: box("restore-file-btn"), clear: box("search-clear"),
+          rowRight: Math.round(rb.right), rowLeft: Math.round(rb.left), sw: row.scrollWidth, cw: row.clientWidth, iw: window.innerWidth
+        };
+      });
+    }
+    var before = await dataOf(searchPage);
+    var fullIds = await idsOf(searchPage);
+    check(fullIds.join(",") === "a1,a2,a3", "before a search the open list keeps its saved order");
+    var row0 = await geomOf(searchPage);
+    check(row0.search && row0.search.h >= 44 && row0.search.w >= 44, "the search field is at least 44px");
+    check(row0.print && row0.print.h >= 44 && row0.print.w >= 44, "print stays at least 44px");
+    check(row0.restore && row0.restore.h >= 44 && row0.restore.w >= 44, "restore stays at least 44px");
+    check(Math.abs(row0.search.top - row0.print.top) <= 8 && Math.abs(row0.print.top - row0.restore.top) <= 8, "search, print, and restore sit on one row");
+    check(row0.rowLeft >= -1 && row0.rowRight <= row0.iw + 1 && row0.sw <= row0.cw + 1, "the row fits the phone width");
+    await searchPage.evaluate(function () { window.scrollTo(0, 0); });
+    await searchPage.screenshot({ path: shotDir + "/listify_search_row.png" });
+    await searchPage.fill("#list-search", "alpha");
+    await searchPage.waitForFunction(function () { return document.body.innerText.indexOf("Middle skip") === -1 && document.body.innerText.indexOf("Alpha two") !== -1; });
+    var alphaIds = await idsOf(searchPage);
+    var alphaMarks = await marksOf(searchPage);
+    check(alphaIds.join(",") === "a1,a3", "an English search keeps matching items in their saved order and hides the rest");
+    check(alphaMarks.join(" ").toLowerCase().indexOf("alpha") !== -1, "the English match is highlighted");
+    await searchPage.fill("#list-search", "ALPHA");
+    await searchPage.waitForFunction(function () {
+      var ids = Array.prototype.map.call(document.querySelectorAll("#panels [data-id]"), function (el) { return el.getAttribute("data-id"); });
+      return ids.join(",") === "a1,a3";
+    });
+    check(true, "English search is case-insensitive");
+    await searchPage.evaluate(function () { window.scrollTo(0, 0); });
+    await searchPage.screenshot({ path: shotDir + "/listify_search_english.png" });
+    await searchPage.fill("#list-search", "חלב");
+    await searchPage.waitForFunction(function () { return document.body.innerText.indexOf("חלב יבש") !== -1 && document.body.innerText.indexOf("לחם") === -1; });
+    var hebIds = await idsOf(searchPage);
+    var hebMarks = await marksOf(searchPage);
+    check(hebIds.join(",") === "s1,s3", "a Hebrew search keeps matching items in their saved order");
+    check(hebMarks.indexOf("חלב") !== -1, "the Hebrew match is highlighted");
+    await searchPage.evaluate(function () { window.scrollTo(0, 0); });
+    await searchPage.screenshot({ path: shotDir + "/listify_search_hebrew.png" });
+    var clearBox = await geomOf(searchPage);
+    check(clearBox.clear && clearBox.clear.h >= 44 && clearBox.clear.w >= 44, "the clear button is at least 44px");
+    await searchPage.fill("#list-search", "קני");
+    await searchPage.waitForFunction(function () { return document.body.innerText.indexOf("לחם") !== -1 && document.body.innerText.indexOf("קניות") !== -1; });
+    check((await marksOf(searchPage)).indexOf("קני") !== -1, "a matching list name is highlighted and its items stay in order");
+    await searchPage.fill("#list-search", "work");
+    await searchPage.waitForFunction(function () { return document.body.innerText.indexOf("Report") !== -1; });
+    check((await marksOf(searchPage)).join(" ").toLowerCase().indexOf("work") !== -1, "an English list name matches without regard to case");
+    await searchPage.fill("#list-search", "בבוקר");
+    await searchPage.waitForFunction(function () {
+      var ids = Array.prototype.map.call(document.querySelectorAll("#panels [data-id]"), function (el) { return el.getAttribute("data-id"); });
+      return ids.join(",") === "s1";
+    });
+    check(true, "a note matches without showing the other items");
+    await searchPage.fill("#list-search", "zzz");
+    await searchPage.waitForFunction(function () { return document.body.innerText.indexOf("אין התאמה") !== -1; });
+    check((await idsOf(searchPage)).length === 0, "a query with no match shows the empty line and no items");
+    var mid = await dataOf(searchPage);
+    check(mid.rows === before.rows && mid.tab === before.tab && mid.live.length === 0, "typing a search does not write lists or live keys");
+    await searchPage.click("#search-clear");
+    await searchPage.waitForFunction(function () {
+      var box = document.getElementById("list-search");
+      return box && box.value === "" && document.body.innerText.indexOf("Middle skip") !== -1 && !document.querySelector("#panels mark.qhit");
+    });
+    var afterIds = await idsOf(searchPage);
+    var after = await dataOf(searchPage);
+    check(afterIds.join(",") === "a1,a2,a3", "clearing the search restores the full open list in its saved order");
+    check(after.rows === before.rows && after.tab === before.tab && after.live.length === 0, "clearing the search does not write lists or live keys");
+    await searchPage.evaluate(function () { window.scrollTo(0, 0); });
+    await searchPage.screenshot({ path: shotDir + "/listify_search_cleared.png" });
+    await searchPage.click("#picker");
+    await searchPage.waitForSelector("#pmenu:not([hidden])");
+    await searchPage.fill("#list-search", "Work");
+    await searchPage.waitForFunction(function () {
+      var menu = document.getElementById("pmenu");
+      return menu && menu.innerText.indexOf("Work") !== -1 && menu.innerText.indexOf("קניות") === -1;
+    });
+    check(true, "the list menu filters to matching lists and does not reorder them into storage");
+    var menuData = await dataOf(searchPage);
+    check(menuData.rows === before.rows, "filtering the menu does not write the lists");
+    await searchPage.setViewportSize({ width: 320, height: 700 });
+    var narrow = await geomOf(searchPage);
+    check(narrow.search && narrow.search.h >= 44 && narrow.print.h >= 44 && narrow.restore.h >= 44 && narrow.clear && narrow.clear.h >= 44 && narrow.clear.w >= 44, "phone-narrow controls stay at least 44px tall");
+    check(narrow.rowLeft >= -1 && narrow.rowRight <= narrow.iw + 1 && narrow.sw <= narrow.cw + 1, "the row still fits a 320px-wide phone");
+    check(searchErr.length === 0, "search runs without a console error");
+    if (searchErr.length) console.error(searchErr.join(" | "));
+    await searchCtx.close();
   } finally {
     await browser.close();
     server.close();
