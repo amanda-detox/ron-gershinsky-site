@@ -376,6 +376,7 @@
     if (show === "synced") { s.className = "status ok"; paintSyncedStatus(s); }
     else if (show === "saving") { s.className = "status save"; paintStatusWord(s, t("saving")); }
     else if (show === "waiting") { s.className = "status wait"; paintStatusWord(s, t("waiting")); }
+    else if (show === "localOnly") { s.className = "status local"; paintStatusWord(s, t("localOnly")); }
     else if (SS) SS.fillStatus(s, k, k ? t(k) : "");
     else { s.className = "status" + (k === "offline" ? " off" : ""); paintStatusWord(s, t(k)); }
     if (k === "blocked" || holdBlocked) { if (SS) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked }); }

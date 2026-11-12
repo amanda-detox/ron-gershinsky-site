@@ -135,8 +135,8 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=57") !== -1, "the sandbox page loads the restore helper and the bumped app");
-assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v25"') !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=57") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=58") !== -1, "the sandbox page loads the restore helper and the bumped app");
+assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v26"') !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=58") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");

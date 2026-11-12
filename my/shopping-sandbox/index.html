@@ -174,10 +174,12 @@
   .status:empty { display: none; }
   .status.save { color: var(--accent); font-weight: 700; opacity: 1; }
   html[data-theme="dark"] .status.ok { color: #5B8DEF; font-weight: 700; opacity: 1; }
-  html[data-theme="dark"] .status.wait { color: #4A78DC; font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.wait,
+  html[data-theme="dark"] .status.local { color: #4A78DC; font-weight: 700; opacity: 1; }
   html[data-theme="light"] .status.save { color: #8a6a10; }
   html[data-theme="light"] .status.ok { color: var(--blue); font-weight: 700; opacity: 1; }
-  html[data-theme="light"] .status.wait { color: #1E3A8A; font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.wait,
+  html[data-theme="light"] .status.local { color: #1E3A8A; font-weight: 700; opacity: 1; }
   .status.ok { display: flex; justify-content: center; align-items: baseline; gap: 4px; }
   .syncmark { color: var(--accent); font-weight: 900; }
   html[data-theme="light"] .syncmark { color: #8a6a10; }
@@ -211,7 +213,7 @@
   .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
   /* print, restore, and search: one row, same tokens as the Listify sandbox options row. */
   .actrow { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; margin: 2px 0 0; min-width: 0; }
-  .searchbox { position: relative; flex: 1 1 auto; min-width: 5.75rem; display: flex; align-items: center; }
+  .searchbox { position: relative; flex: 1 1 auto; min-width: 0; display: flex; align-items: center; }
   .searchin { box-sizing: border-box; width: 100%; min-height: 44px; min-width: 0; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); text-align: start; -webkit-tap-highlight-color: transparent; }
   .searchbox.hasq .searchin { padding-inline-end: 44px; }
   .searchin:placeholder-shown { text-align: center; }
@@ -220,11 +222,17 @@
   .searchx { position: absolute; inset-inline-end: 0; top: 0; bottom: 0; width: 44px; min-height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 800 18px/1 var(--sans); cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
   .searchx:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
   .searchx[hidden] { display: none; }
-  .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
-  .restore-row { position: relative; display: flex; flex: 0 0 auto; min-width: 44px; margin: 0; }
+  .printbtn { box-sizing: border-box; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); white-space: nowrap; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .restore-row { position: relative; display: flex; flex: 0 0 auto; min-width: 0; margin: 0; }
   .restorebtn { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
   .restorebtn span { display: block; white-space: nowrap; }
   .restorebtn:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (max-width: 359px) {
+    .actrow { gap: 4px; }
+    .searchbox { min-width: 0; }
+    .searchin { padding: 0 8px; }
+    .printbtn, .restorebtn { padding: 0 8px; }
+  }
   .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
   .restore-note { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
   .restore-meta { margin: 0; color: var(--fg); font-size: 15.5px; font-weight: 800; }
@@ -371,7 +379,7 @@ window.RGMY_STRINGS = {
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="restore.js?v=1"></script>
-<script src="app.js?v=53"></script>
+<script src="app.js?v=54"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside the installed parent app -->
