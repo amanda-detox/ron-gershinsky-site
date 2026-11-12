@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl" data-theme="dark">
 <head>
 <meta charset="utf-8">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__rgBip=e;});</script>
 <script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0a1a3f">
@@ -453,9 +454,9 @@ window.RGMY_STRINGS = {
 <script src="restore.js?v=1"></script>
 <script src="app.js?v=56"></script>
 
-<!-- rg-install v3: button only when the browser offers a real install prompt -->
-<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
-<div id="rg-inst-w" hidden><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
+<!-- install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside היליפיי -->
+<style>#rg-inst-w{position:fixed;bottom:max(14px,env(safe-area-inset-bottom));inset-inline-start:14px;z-index:9999;font:14px/1.45 Heebo,system-ui,sans-serif;max-width:min(92vw,24rem)}#rg-inst-w[hidden]{display:none !important}#rg-inst-w:not([hidden]){display:flex;flex-direction:column;align-items:flex-start;gap:8px}#rg-inst-h{margin:0;padding:10px 12px;border-radius:14px;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:600 14px/1.45 Heebo,system-ui,sans-serif;max-height:42vh;overflow:auto}#rg-inst-h[hidden]{display:none !important}#rg-inst-h a{display:inline-block;margin-top:8px;color:#fff6dc;font-weight:800}#install-hint{color:#f5d27a;background:#0b1a3f;border:1.5px solid #d4af37;max-height:42vh;overflow:auto}#rg-inst-row{position:relative;display:inline-block}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
+<div id="rg-inst-w" hidden><p id="rg-inst-h" hidden></p><div id="rg-inst-row"><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div></div>
 <script>(function(){
 if("serviceWorker" in navigator){(function(){
 var had=!!navigator.serviceWorker.controller,reg=null;
@@ -465,20 +466,8 @@ function kick(){var p=reg?Promise.resolve(reg):navigator.serviceWorker.register(
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",kick);else kick();
 document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible")kick();});
 })();}
-var K="rg-inst-off",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),x=document.getElementById("rg-inst-x"),dp=null;
-var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה"},en:{b:"📲 Install app",x:"Close"}};
-function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
-function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);}
-function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
-function off(){try{return localStorage.getItem(K)==="1";}catch(e){return false;}}
-function U(){w.hidden=!(dp&&!sa()&&!off());}
-R();U();
-addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
-new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
-addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;U();});
-addEventListener("appinstalled",function(){dp=null;U();});
-b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
-x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
 })();</script>
+<script src="../../shared/rg-install.js?v=1"></script>
+<script>RGInstall.attach({nameHe:"ליסטיפיי",nameEn:"Listify",dismissKey:"rg-inst-off",underMyHub:true});</script>
 </body>
 </html>

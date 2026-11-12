@@ -104,8 +104,8 @@ assert(/\{\s*hidden:\s*true,\s*href:\s*"clockify\/index.html"/.test(home), "the 
 var myApps = fs.readFileSync(path.join(root, "my/apps.js"), "utf8");
 assert(/\{\s*hidden:\s*true,\s*href:\s*"clock\/"/.test(myApps), "the private clock stays hidden");
 var sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
-assert(sw.indexOf("rg-home-v72") !== -1, "home service worker cache is bumped");
-assert(home.indexOf("sw.js?v=72") !== -1, "home page registers the bumped service worker");
+assert(sw.indexOf("rg-home-v73") !== -1, "home service worker cache is bumped");
+assert(home.indexOf("sw.js?v=73") !== -1, "home page registers the bumped service worker");
 
 assert(home.indexOf("healify-sandbox") === -1 && home.indexOf("yomanli-sandbox") === -1, "homepage does not link the sandboxes");
 var hIso = require(path.join(root, "healify-sandbox/rg-isolate.js"));

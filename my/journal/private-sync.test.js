@@ -51,7 +51,7 @@ assert(sHtml.indexOf('doc: "Purchasify"') !== -1 && sHtml.indexOf('title: "קנ�
 assert(sHtml.indexOf('class="cathead"') !== -1 && sHtml.indexOf('id="status"') < sHtml.indexOf("</main>"), "the status sits beside the category heading");
 assert(sHtml.indexOf('statusPeek: "שים לב"') !== -1, "private shopping uses the same short notice");
 assert(sHtml.indexOf("rg-sync-status.js?v=1") < sHtml.indexOf("../../shared/rg-account.js"), "the shopping helper loads before the account script");
-assert(sSw.indexOf('CACHE = "rg-myshop-v19"') !== -1 && sSw.indexOf("app.js?v=49") !== -1, "the private shopping cache was bumped");
+assert(sSw.indexOf('CACHE = "rg-myshop-v20"') !== -1 && sSw.indexOf("app.js?v=49") !== -1, "the private shopping cache was bumped");
 assert(sApp.indexOf("לחתוך") === -1 && sHtml.indexOf("לחתוך") === -1, "shopping copy has no violent Hebrew");
 
 if (failed) { console.error(failed + " failed"); process.exit(1); }

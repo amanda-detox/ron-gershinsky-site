@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
+<script>addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__rgBip=e;});</script>
 <script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0f172a">
@@ -11,7 +12,8 @@
 <script>/* directory URL and index.html are the same page; keep one address so the installed app opens on start_url */if(/\/$/.test(location.pathname))location.replace(location.pathname+"index.html"+location.search+location.hash);</script>
 <script>/* theme + background before first paint: dark (default, original look) / light; night bg 0 = original (default), 1-10 = the Updatify backgrounds */(function(){var d=document.documentElement,t="dark",b="0",lb="0";try{t=localStorage.getItem("rg-home-theme")==="light"?"light":"dark";var v=localStorage.getItem("rg-home-bg");if(/^(0|2|3|5|6|8|9|10)$/.test(v||""))b=v;var w=localStorage.getItem("rg-home-bg-light");if(/^(0|6|9)$/.test(w||""))lb=w;}catch(e){}d.setAttribute("data-theme",t);d.setAttribute("data-bg",b);d.setAttribute("data-lbg",lb);var C={"0":"#0f172a","1":"#07090f","2":"#e9506a","3":"#1a0c26","4":"#0b4d43","5":"#0a0610","6":"#3a1a0a","7":"#355e3b","8":"#6d1a7e","9":"#1a1416","10":"#14110a"};window.RG_BG_TC=C;var LC={"0":"#f3efe6","1":"#e3eeff","2":"#fbf3e2","3":"#ece6ff","4":"#ffe9dc","5":"#f6f4fb","6":"#fff1d8","7":"#e5f4ff","8":"#feebf1","9":"#fdf2dd","10":"#e7eef8"};window.RG_LBG_TC=LC;var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?LC[lb]:C[b]);try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
 <script>/* site owner (Ron) signed in on this device: hide the brand block (icon, name, bio) and waitlist / contact / about / recommended game before first paint; the install button stays visible; re-checked after the session check below */(function(){try{var u=JSON.parse(localStorage.getItem("rg-account-user")||"null");if(u&&(u.id||u.$id)==="6adefcf6c9d7f919e779")document.documentElement.classList.add("rg-owner");}catch(e){}})();</script>
-<link rel="manifest" href="manifest.json?v=37">
+<link rel="manifest" href="manifest.json?v=38">
+<script src="shared/rg-install.js?v=1"></script>
 <link rel="icon" href="favicon-32.png?v=33" type="image/png" sizes="32x32">
 <link rel="icon" href="favicon.ico?v=33" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=33">
@@ -389,7 +391,7 @@
   </div>
   <div class="rg-install-wrap" id="install-wrap">
     <button type="button" class="rg-install" id="install-btn">📲 התקנה למסך הבית</button>
-    <div class="rg-install-hint" id="install-hint">סמל ההתקנה בשורת הכתובת, או תפריט הדפדפן ← „התקן את האפליקציה”.</div>
+    <div class="rg-install-hint" id="install-hint" hidden></div>
   </div>
   <img class="mark owner-hide" id="mark" src="app-icon.svg?v=33" alt="היליפיי בע&quot;מ" width="120" height="120">
   <h1 class="owner-hide"><span id="name">היליפיי בע"מ</span></h1>
@@ -966,55 +968,10 @@ document.getElementById("form").addEventListener("submit", function (event) {
 });
 
 /* ---------- Install to home screen ----------
-   Same gold/blue button as the other apps (.rg-install). Shown for visitors, signed-in
-   users, and the owner. Hidden only while this page is actually running standalone.
-   Chromium: prompt() when beforeinstallprompt fired. Otherwise (iOS, already installed,
-   or the prompt never arrives) the short hint stays under the button. */
-var instDeferred = null;
-function instStandalone() {
-  return (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true;
-}
-function instKey() {
-  var ua = navigator.userAgent || "";
-  var ios = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (ios) return (/Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|YaBrowser|DuckDuckGo|FBAN|FBAV|Instagram|WhatsApp|Line\//.test(ua)) ? "iosSafari" : "iosOther";
-  if (/Android/i.test(ua)) return "android";
-  return "desktop";
-}
-function instShort(l) {
-  var t = copy[l === "en" ? "en" : "he"];
-  var k = instKey();
-  if (k === "iosSafari" || k === "iosOther") return t.installIos;
-  if (k === "desktop") return t.installDesktop;
-  return t.installOther;
-}
-function updateInstall() {
-  var wrap = document.getElementById("install-wrap");
-  var hint = document.getElementById("install-hint");
-  var btn = document.getElementById("install-btn");
-  if (!wrap || !hint || !btn) return;
-  var stand = instStandalone();
-  wrap.hidden = stand;
-  btn.hidden = stand;
-  if (stand) { hint.hidden = true; return; }
-  if (instDeferred) { hint.hidden = true; return; }
-  hint.textContent = instShort(lang);
-  hint.hidden = false;
-}
-window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); instDeferred = e; updateInstall(); });
-window.addEventListener("appinstalled", function () { instDeferred = null; updateInstall(); });
-if (window.matchMedia) { var instMq = window.matchMedia("(display-mode: standalone)"); if (instMq.addEventListener) instMq.addEventListener("change", updateInstall); else if (instMq.addListener) instMq.addListener(updateInstall); }
-document.getElementById("install-btn").addEventListener("click", function () {
-  if (instDeferred) {
-    var d = instDeferred; instDeferred = null;
-    try {
-      d.prompt();
-      (d.userChoice || Promise.resolve()).then(updateInstall, updateInstall);
-      return;
-    } catch (e) {}
-  }
-  updateInstall();
-});
+   The button calls Chrome's install prompt when the browser offers one.
+   Otherwise it explains, in Hebrew, why the menu cannot install a separate app. */
+var rgInstallCtl = window.RGInstall ? RGInstall.attach({ nameHe: "היליפיי", nameEn: "Healify" }) : null;
+function updateInstall() { if (rgInstallCtl) rgInstallCtl.place(); }
 
 /* ---------- Background picker (same backgrounds as Updatify; 0 = original) ---------- */
 var BG_KEY = "rg-home-bg", THEME_KEY = "rg-home-theme";
@@ -1138,7 +1095,7 @@ if ("serviceWorker" in navigator && location.protocol !== "file:") {
       location.reload();
     });
   }
-  navigator.serviceWorker.register("sw.js?v=72", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+  navigator.serviceWorker.register("sw.js?v=73", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
 }
 </script>
 <script>/* site metrics: real numbers only; all 0 until a real source is wired */
