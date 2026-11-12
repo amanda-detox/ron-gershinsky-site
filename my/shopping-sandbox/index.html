@@ -174,8 +174,9 @@
   .syncstat { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-height: 32px; padding: 0 2px; border: 0; background: transparent; font: 700 13px/1 var(--sans); white-space: nowrap; cursor: default; -webkit-tap-highlight-color: transparent; }
   .syncstat.has-detail { cursor: pointer; }
   .syncstat.save { color: var(--accent); }
-  .syncstat.ok { color: #8eaddb; }
-  .syncstat.wait, .syncstat.out { color: color-mix(in srgb, #8eaddb 72%, var(--accentink)); }
+  html[data-theme="dark"] .syncstat.ok { color: #5B8DEF; }
+  html[data-theme="dark"] .syncstat.wait,
+  html[data-theme="dark"] .syncstat.out { color: #4A78DC; }
   .syncmark { color: var(--accent); font-weight: 900; }
   html[data-theme="light"] .syncstat.save,
   html[data-theme="light"] .syncmark { color: #8a6a10; }
