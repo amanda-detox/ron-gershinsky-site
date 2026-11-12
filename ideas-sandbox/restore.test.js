@@ -135,8 +135,10 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=59") !== -1, "the sandbox page loads the restore helper and the bumped app");
-assert(sw.indexOf('var CACHE = "rg-sbx-ideas-v27"') !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=59") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("version.js?v=1") !== -1 && page.indexOf("version.js?v=1") < page.indexOf("app.js?v=60") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=60") !== -1, "the sandbox page loads the shared version, then the bumped app");
+assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=1") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=60") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+var verFile = fs.readFileSync(path.join(root, "version.js"), "utf8");
+assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v28"') !== -1 && sw.indexOf("rg-sbx-ideas-v28") === -1 && app.indexOf("rg-sbx-ideas-v28") === -1, "the cache name is written once, in version.js");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");

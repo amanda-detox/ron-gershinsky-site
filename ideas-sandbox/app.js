@@ -23,8 +23,8 @@
 (function () {
   "use strict";
   var APP = "sbxmyideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-sbx-ideas-v21";
-  function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  var BUILD = (typeof RG_SBX_IDEAS_CACHE === "string" && RG_SBX_IDEAS_CACHE.indexOf("rg-sbx-ideas-") === 0) ? RG_SBX_IDEAS_CACHE : "";
+  function paintBuild() { var el = document.getElementById("build"); if (el && BUILD) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },

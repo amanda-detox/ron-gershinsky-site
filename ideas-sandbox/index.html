@@ -272,9 +272,10 @@
   .status .status-act { display: inline-flex; align-items: center; justify-content: center; margin-top: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--fg); font: 700 14px/1.2 var(--sans); cursor: pointer; }
   .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: .85; }
   .lastsync:empty { display: none; }
-  #lastsync, #cloudat, .baklink { color: #5B8DEF; opacity: 1; }
+  #lastsync, #cloudat, #build, .baklink { color: #5B8DEF; opacity: 1; }
   html[data-theme="light"] #lastsync,
   html[data-theme="light"] #cloudat,
+  html[data-theme="light"] #build,
   html[data-theme="light"] .baklink { color: #1A47A0; }
   #clash:empty { display: none; }
   .histrow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 16px; margin: 4px auto 8px; }
@@ -394,7 +395,7 @@
   <div class="status" id="status" role="status" aria-live="polite"></div>
   <p class="lastsync" id="lastsync"></p>
   <p class="lastsync" id="cloudat"></p>
-  <p class="lastsync" id="build">rg-sbx-ideas-v21</p>
+  <p class="lastsync" id="build"></p>
   <p class="lastsync" id="conflict"></p>
   <p class="histrow"><button type="button" class="histbtn" id="hist-btn" data-i18n="history">היסטוריית גרסאות</button><button type="button" class="baklink" id="backup-link" data-i18n="backupLink">גיבוי</button></p>
   <p class="privnote" data-i18n="privNote"></p>
@@ -479,8 +480,9 @@ window.RGMY_STRINGS = {
 <script src="../sandbox-shared/rg-account.js?v=3"></script>
 <script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 <script src="../my/common.js"></script>
+<script src="version.js?v=1"></script>
 <script src="restore.js?v=2"></script>
-<script src="app.js?v=59"></script>
+<script src="app.js?v=60"></script>
 
 <!-- rg-install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside the installed parent app -->
 <style>#rg-inst-w{position:fixed;bottom:max(14px,env(safe-area-inset-bottom));inset-inline-start:14px;z-index:9999;font:14px/1.45 Heebo,system-ui,sans-serif;max-width:min(92vw,24rem)}#rg-inst-w[hidden]{display:none !important}#rg-inst-w:not([hidden]){display:flex;flex-direction:column;align-items:flex-start;gap:8px}#rg-inst-h{margin:0;padding:10px 12px;border-radius:14px;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:600 14px/1.45 Heebo,system-ui,sans-serif;max-height:42vh;overflow:auto}#rg-inst-h[hidden]{display:none !important}#rg-inst-h a{display:inline-block;margin-top:8px;color:#fff6dc;font-weight:800}#install-hint{color:#f5d27a;background:#0b1a3f;border:1.5px solid #d4af37;max-height:42vh;overflow:auto}#rg-inst-row{position:relative;display:inline-block}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
