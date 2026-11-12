@@ -248,14 +248,16 @@ h1 { margin: 0; font-size: 28px; line-height: 1.15; font-weight: 800; }
 .confirm-actions { display: flex; gap: 8px; }
 .confirm-actions .btn { flex: 1; }
 .inst-anchor { position: relative; display: inline-block; }
-#install-btn { padding-inline: 22px 36px; }
+#install-btn { padding-inline: 22px 44px; }
 .inst-emoji { font-size: 16px; line-height: 1; }
 .inst-x {
   position: absolute;
-  top: -12px;
-  inset-inline-end: -12px;
-  width: 32px;
-  height: 32px;
+  top: -16px;
+  inset-inline-end: -16px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   border: 1.5px solid #d4af37;
   background: #0b1a3f;

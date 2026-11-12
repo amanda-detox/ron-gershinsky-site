@@ -262,7 +262,7 @@
     $("viewer-img").removeAttribute("src");
     if (viewerUrl) { URL.revokeObjectURL(viewerUrl); viewerUrl = null; }
     viewerIndex = -1;
-    if (!swallowClick) return;
+    if (swallowClick !== true) return;
     /* A touch tap also synthesizes a click. Once the viewer is gone that click
        hits the card underneath and would open it again. Eat that one click. */
     function eat(ev) {
@@ -444,7 +444,7 @@
   $("file-gallery").addEventListener("change", function () { onFiles($("file-gallery")); });
   $("file-camera").addEventListener("change", function () { onFiles($("file-camera")); });
 
-  $("viewer-close").onclick = closeViewer;
+  $("viewer-close").onclick = function () { closeViewer(); };
   $("viewer-share").onclick = function () { var rec = current(); if (rec) shareOrDownload(rec); };
   $("viewer-delete").onclick = function () { var rec = current(); if (rec) askDelete(rec); };
   var stage = $("stage");
