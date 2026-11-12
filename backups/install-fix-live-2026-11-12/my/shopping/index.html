@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a1a3f">
+<meta name="robots" content="noindex">
+<title>Purchasify</title>
+<link rel="manifest" href="manifest.json?v=19">
+<link rel="icon" href="icon-192.png?v=6" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png?v=6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="קניותיפיי">
+<script>(function(){var d=document.documentElement,l,t;try{l=localStorage.getItem("rg-lang");t=localStorage.getItem("rg-home-theme");}catch(e){}if(l==="en"){d.lang="en";d.dir="ltr";}d.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector("meta[name=theme-color]");if(m)m.content="#f3efe6";}})();</script>
+<link rel="preload" href="../../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../../shared/rg-site.css">
+<link rel="stylesheet" href="../common.css">
+<style>
+  /* category picker: one large button showing the open category; it opens the list of all categories */
+  .catpick { position: relative; margin-top: 16px; }
+  .catbtn { width: 100%; min-height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 18px; border-radius: 18px; border: 1.5px solid var(--accent); background: var(--card); color: var(--fg); box-shadow: var(--shadow); font: 800 19px var(--sans); text-align: start; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .catbtn .cb-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .catbtn .cb-chev { flex: none; width: 22px; height: 22px; color: var(--accent); transition: transform .15s; }
+  .catbtn[aria-expanded="true"] .cb-chev { transform: rotate(180deg); }
+  .catpanel { position: absolute; z-index: 45; top: calc(100% + 6px); inset-inline: 0; padding: 8px; border-radius: 18px; border: 1px solid var(--line2); background: var(--card); box-shadow: 0 14px 40px rgba(0,0,0,.4); display: flex; flex-direction: column; gap: 6px; }
+  .catpanel[hidden] { display: none; }
+  .cp-head { display: flex; align-items: center; gap: 8px; padding: 2px 6px 2px 10px; min-height: 44px; }
+  .cp-title { flex: 1; color: var(--faint); font-size: 14px; font-weight: 700; }
+  .cp-edit { flex: none; min-width: 46px; height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 800 20px var(--sans); line-height: 1; cursor: pointer; }
+  .cp-edit.on { background: var(--accent); color: var(--accentink); border-color: var(--accent); font-size: 16px; }
+  .cp-list { list-style: none; margin: 0; padding: 0; max-height: min(56vh, 430px); overflow-y: auto; overscroll-behavior: contain; position: relative; display: flex; flex-direction: column; gap: 4px; -webkit-user-select: none; user-select: none; }
+  .cp-list li { position: relative; display: flex; flex-shrink: 0; align-items: center; gap: 6px; min-height: 54px; border-radius: 14px; background: var(--card2); -webkit-touch-callout: none; }
+  .cp-pick { flex: 1; min-width: 0; min-height: 54px; display: flex; align-items: center; gap: 10px; padding: 0 16px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 700 17px var(--sans); text-align: start; cursor: pointer; }
+  .cp-pick .nm, .cp-list .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .cp-pick .ck { flex: none; color: var(--accent); font-weight: 900; }
+  .cp-list li.cur { box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .cp-list.editing li { padding-inline-end: 4px; }
+  .cp-list.editing .cp-pick { padding: 0 6px; }
+  .cp-list.editing .nm { padding-inline-start: 2px; font: 700 17px var(--sans); color: var(--fg); }
+  .cp-handle { flex: none; width: 48px; height: 54px; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; font-weight: 900; cursor: grab; touch-action: none; }
+  .cp-act { flex: none; width: 42px; height: 42px; border-radius: 12px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 17px; cursor: pointer; }
+  .cp-list li.lifted { z-index: 3; background: var(--card); box-shadow: 0 0 0 2px var(--accent), 0 10px 26px rgba(0,0,0,.45); transform: translateY(var(--dy, 0)) scale(1.03); transition: box-shadow .12s, scale .12s; cursor: grabbing; }
+  .cp-list.dragging li:not(.lifted) { transition: transform .16s ease; }
+  .cp-list.dragging { cursor: grabbing; }
+  .cp-new { min-height: 52px; border-radius: 14px; border: 1.5px dashed var(--accent); background: transparent; color: var(--accent); font: 800 17px var(--sans); cursor: pointer; }
+  .cp-more { flex: none; width: 42px; height: 46px; margin-inline-end: 4px; border-radius: 12px; border: 0; background: transparent; color: var(--accent); font: 900 22px var(--sans); cursor: pointer; }
+  .cp-more.on { background: var(--accent); color: var(--accentink); }
+  .cp-list li.cp-opts { flex-direction: column; align-items: stretch; gap: 2px; min-height: 0; margin: 0 6px 4px; padding: 4px; border: 1px solid var(--accent); border-radius: 12px; }
+  .cp-oi { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 0; border-radius: 10px; background: transparent; color: var(--fg); font: 700 16px var(--sans); text-align: start; cursor: pointer; }
+  .cp-oi > span { width: 24px; text-align: center; color: var(--accent); font-weight: 900; }
+  .cp-list.editing li > .nm { padding: 0 4px; }
+  .cp-act:disabled { opacity: .3; }
+  .cp-back { position: fixed; inset: 0; z-index: 44; }
+  .cathint { margin: 6px 4px 0; color: var(--faint); font-size: 12.5px; }
+  .sheetwrap { position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center; padding: 12px; background: rgba(3, 10, 30, .55); }
+  .sheet { width: 100%; max-width: 460px; padding: 18px 16px calc(16px + env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 10px; }
+  .sheet h3 { margin: 0 4px 4px; font-size: 18px; overflow-wrap: anywhere; }
+  .sheet .sform { display: flex; flex-direction: column; gap: 10px; }
+  .sheet .s-name { height: 50px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card2); color: var(--fg); font-size: 16.5px; outline: none; }
+  .sheet .s-name:focus { border-color: var(--accent); }
+  .sheet .row { display: flex; gap: 8px; }
+  .btn { flex: 1; min-height: 46px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; }
+  .btn.pri { border: 0; background: var(--accent); color: var(--accentink); font-weight: 800; }
+  .mi { min-height: 48px; padding: 0 16px; border-radius: 14px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font-size: 16px; font-weight: 700; text-align: start; }
+  .mi.big { border-color: var(--accent); }
+  .mi.dng { color: var(--muted); }
+  .mnote { margin: 0 4px; color: var(--faint); font-size: 13px; }
+  .list li { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .list li .txt, .list li .note, .list li input, .list li textarea { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
+
+  .addform { display: grid; grid-template-columns: minmax(0, 1fr) 76px auto; gap: 8px; margin-top: 16px; }
+  .addform input { width: 100%; min-width: 0; box-sizing: border-box; height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid var(--line2); background: var(--card); color: var(--fg); font-size: 17px; outline: none; }
+  .addform input:focus { border-color: var(--accent); }
+  .addform input::placeholder { color: var(--faint); }
+  /* ☰ drag handle on each item: touch it and drag (no long-press) */
+  .list .hdl { flex: none; align-self: stretch; width: 44px; min-height: 48px; display: inline-flex; align-items: center; justify-content: center; margin-inline-start: -4px; margin-inline-end: -4px; color: var(--accent); font-size: 24px; font-weight: 900; line-height: 1; cursor: grab; touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  .list .hdl:active { transform: scale(1.12); }
+  .done .hdl { color: var(--accent); opacity: .75; }
+  .list li.lifted { z-index: 3; background: var(--card2); border-radius: 12px; box-shadow: 0 0 0 2px var(--accent), 0 10px 26px rgba(0,0,0,.45); transform: translateY(var(--dy, 0)) scale(1.02); cursor: grabbing; }
+  .list li.lifted .hdl { color: var(--accent); }
+  .list.dragging li:not(.lifted) { transition: transform .16s ease; }
+  .listcard:has(.list.dragging) { overflow: visible; }
+  body.sorting { -webkit-user-select: none; user-select: none; cursor: grabbing; }
+  .addform input.note-in { grid-column: 1 / -1; height: 44px; font-size: 15px; }
+  .ebox { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
+  .enote { width: 100%; min-width: 0; box-sizing: border-box; min-height: 56px; padding: 8px 10px; border-radius: 10px; border: 2px solid var(--line2); background: var(--bg); color: var(--fg); font: inherit; font-size: 15px; line-height: 1.4; resize: vertical; outline: none; }
+  .enote:focus { border-color: var(--accent); }
+  .txt .note { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  .txt .addnote { display: block; margin-top: 2px; color: var(--faint); font-size: 12.5px; font-weight: 600; }
+  .addform input.price-in { padding: 0 6px; text-align: center; direction: ltr; font-size: 16px; }
+  @media (max-width: 480px) { /* phones: the name gets the whole first row, price + add below it */
+    .addform { grid-template-columns: 96px minmax(0, 1fr); }
+    .addform #add-input { grid-column: 1 / -1; }
+  }
+  .sum { margin: 14px 4px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 16px; font-weight: 800; color: var(--fg); }
+  .sum b { color: var(--accent); font-weight: 900; }
+  .sum .sel { color: var(--muted); font-weight: 700; }
+  .ckbox { flex: none; align-self: center; width: 28px; height: 28px; margin-inline-end: 4px; border: 2px solid var(--line2); border-radius: 7px; background: transparent; color: transparent; font-size: 17px; font-weight: 900; line-height: 1; padding: 0; cursor: pointer; }
+  .ckbox.on-ok { color: #e6c15a; border-color: #e6c15a; background: color-mix(in srgb, #e6c15a 20%, transparent); }
+  .ckbox.on-no { color: #8eaddb; border-color: #8eaddb; background: transparent; }
+  html[data-theme="light"] .ckbox.on-ok { color: #8a6a10; border-color: #c4a046; }
+  html[data-theme="light"] .ckbox.on-no { color: #5c6e90; border-color: #7d92b3; }
+  .ckd .ckbox.on-ok { background: color-mix(in srgb, #e6c15a 28%, transparent); }
+  .ckd .txt, .ckd .note { text-decoration: none; opacity: 1; }
+  /* fixed price column on every row: type the price right in the list */
+  .pin { flex: 0 0 64px; width: 64px; min-width: 64px; max-width: 64px; box-sizing: border-box; height: 38px; margin-inline-start: 4px; padding: 0 4px; border-radius: 10px; border: 1.5px solid var(--line2); background: var(--bg); color: var(--fg); font: 700 16px var(--sans); text-align: center; direction: ltr; outline: none; -webkit-user-select: text; user-select: text; touch-action: manipulation; }
+  .ulink { flex: 0 0 auto; padding: 0 6px; font-size: 18px; text-decoration: none; line-height: 38px; }
+  .pin::placeholder { color: var(--faint); font-weight: 600; }
+  .pin:focus { border-color: var(--accent); }
+  .pin.bad { border-color: #e3bd5b; box-shadow: 0 0 0 2px rgba(227,189,91,.35); }
+  .done .pin { color: var(--faint); }
+  .addform button { min-width: 0; height: 52px; padding: 0 20px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 16px; }
+  .list { list-style: none; margin: 12px 0 0; padding: 0; }
+  .list li { display: flex; align-items: center; gap: 2px; min-height: 52px; padding: 3px 4px; border-bottom: 1px solid var(--line); }
+  .list li:last-child { border-bottom: 0; }
+  .listcard { padding: 4px 8px; }
+  .chk { flex: none; width: 34px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 0; background: none; padding: 0; }
+  .chk i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line2); display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 15px; font-weight: 900; color: transparent; transition: background .15s, border-color .15s; }
+  .chk:hover i { border-color: var(--accent); }
+  .done .chk i { background: var(--accent); border-color: var(--accent); color: var(--accentink); }
+  .txt { flex: 1; min-width: 0; padding: 10px 4px; font-size: 17px; line-height: 1.35; overflow-wrap: anywhere; cursor: text; border-radius: 8px; }
+  .done .txt { color: var(--faint); }
+  .edit { flex: 1 1 auto; width: 100%; min-width: 0; box-sizing: border-box; height: 42px; padding: 0 10px; border-radius: 10px; border: 2px solid var(--accent); background: var(--bg); color: var(--fg); font-size: 17px; outline: none; }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 70; transform: translate(-50%, 20px); max-width: 86vw; padding: 10px 18px; border-radius: 999px; background: var(--accent); color: var(--accentink); font-weight: 800; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; box-shadow: 0 6px 16px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); }
+  .toast.act { display: flex; align-items: center; gap: 12px; pointer-events: auto; padding-inline-end: 8px; }
+  .toast .tmsg { overflow: hidden; text-overflow: ellipsis; }
+  .tundo { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 999px; background: var(--accentink); color: var(--accent); font-weight: 800; font-size: 14px; }
+  /* swipe: the row slides. Right reveals delete (🗑) on the left; left reveals the move icon on the right. */
+  .list li { position: relative; overflow: hidden; touch-action: pan-y; }
+  .list li > * { transition: transform .18s ease; }
+  .list li.swiping > * { transition: none; transform: translateX(var(--sx, 0)); }
+  .list li.mk-no .txt, .list li.mk-no .note { opacity: .62; }
+  .list li .txt, .list li .note, .list li .ckbox, .list li .addnote, .list li .ulink { touch-action: pan-y; }
+  .list li::before, .list li::after { content: ""; position: absolute; top: 50%; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .12s, transform .12s; transform: scale(.8); }
+  .list li::before { content: "✓"; left: 10px; color: var(--accent); border: 2px solid var(--accent); font-weight: 900; font-size: 17px; }
+  .list li.done::before { content: "↺"; }
+  .list li::after { right: 12px; width: 28px; height: 28px; margin-top: -14px; border-radius: 0; background: var(--accent); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .list li.sw-r::before, .list li.sw-l::after { opacity: .55; }
+  .list li.sw-r.sw-go::before { opacity: 1; transform: scale(1.15); background: none; color: inherit; }
+  .list li.sw-l.sw-go::after { opacity: 1; transform: scale(1.1); }
+  /* swipe right = delete (🗑 on the left), swipe left = move (gold move icon on the right). Same palette, no red. */
+  .list li::before, .list li.done::before, .list li.s-done::before { content: "🗑"; left: 12px; width: 28px; height: 28px; margin-top: -14px; border: 0; border-radius: 0; background: none; color: inherit; -webkit-mask: none; mask: none; font-size: 22px; }
+  .list li::after { content: ""; background: var(--accent); font-size: inherit; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat; }
+  .list li.sw-r.sw-go::before { background: none; color: inherit; }
+  .donehead { display: flex; align-items: center; gap: 10px; margin: 8px 4px 10px; } /* "selected" group now sits above the list */
+  .donehead h2 { margin: 0; font-size: 15px; color: var(--muted); font-weight: 700; }
+  .empty { margin-top: 18px; padding: 22px 18px; text-align: center; color: var(--muted); }
+  .empty p { margin: 0 0 8px; }
+  .suggest { background: none; border: 0; padding: 4px; color: var(--accent); font-weight: 700; font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+  html[data-theme="light"] .suggest { color: var(--blue); }
+  .count { color: var(--faint); font-size: 13px; margin-inline-start: auto; }
+  .mrow { display: flex; gap: 8px; } .mrow .mi { flex: 1; text-align: center; }
+  /* sheets (move menu etc.): never taller than the screen; the list of categories scrolls */
+  .sheet { max-height: 85vh; overflow-y: auto; overscroll-behavior: contain; }
+  .sheet .mlist { display: flex; flex-direction: column; gap: 6px; max-height: 52vh; overflow-y: auto; overscroll-behavior: contain; flex: 0 1 auto; }
+  .sheet .mlist .mi { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .sheet .mi .mn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sheet .mi .mc { flex: none; color: var(--faint); font-size: 13px; font-weight: 700; }
+  @media (min-width: 700px) {
+    .sheetwrap { align-items: center; }
+    .sheet { max-width: 420px; max-height: 80vh; padding: 14px 14px 12px; gap: 6px; }
+    .sheet h3 { font-size: 16px; }
+    .sheet .mi { min-height: 38px; padding: 0 12px; font-size: 14.5px; border-radius: 10px; }
+    .sheet .mlist { gap: 4px; }
+  }
+  .cathead { display: flex; align-items: center; gap: 8px; }
+  .cathead .catbtn { flex: 1 1 auto; width: auto; min-width: 0; }
+  .syncslot { display: flex; align-items: center; justify-content: flex-end; gap: 2px; min-width: 0; max-width: 46%; }
+  .syncslot[hidden] { display: none !important; }
+  .syncslot .status { display: block; margin: 0; padding: 0; text-align: end; color: var(--muted); font-size: 12px; line-height: 1.35; opacity: .9; white-space: normal; overflow-wrap: anywhere; min-width: 0; }
+  .syncslot .status:empty { display: none; }
+  .syncslot .status.off { color: var(--accent); font-weight: 700; opacity: 1; }
+  .syncpeek { display: none; font: 700 12px/1.2 var(--sans); white-space: nowrap; }
+  .synctog { flex: none; width: 36px; height: 36px; padding: 0; border: 0; border-radius: 10px; background: transparent; color: var(--muted); cursor: pointer; }
+  .synctog svg { width: 18px; height: 18px; display: block; margin: auto; transition: transform .15s; }
+  .syncslot.shut { max-width: none; }
+  .syncslot.shut .synctog svg { transform: rotate(180deg); }
+  .syncslot.shut .status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .syncslot.shut.attn .syncpeek { display: inline; color: var(--accent); }
+  .syncslot.shut.attn .synctog { color: var(--accent); }
+  html[data-theme="light"] .syncslot .status.off,
+  html[data-theme="light"] .syncslot.shut.attn .syncpeek,
+  html[data-theme="light"] .syncslot.shut.attn .synctog { color: #8a5a00; }
+  /* 2026-11-01 lists dropdown: much larger, compact rows, all lists fit; per-list ⋮ menu shows all options */
+  .cp-list { max-height: calc(100vh - 170px) !important; max-height: calc(100dvh - 170px) !important; gap: 2px; }
+  .cp-list li { min-height: 40px; }
+  .cp-pick { min-height: 40px; font-size: 15.5px; }
+  .cp-handle { height: 40px; } .cp-act { width: 38px; height: 36px; } .cp-more { height: 38px; }
+  .cp-list li.cp-opts, .cp-oi { flex-shrink: 0; }
+  .cp-oi { min-height: 38px; font-size: 15px; }
+  .cp-list li.cp-opts { flex: none !important; height: auto !important; } #cat-new { flex: none; } #done-wrap .donehead h2 { color: var(--accent); font-weight: 800; }
+  .cp-head { min-height: 36px; } .cp-new { min-height: 42px; font-size: 15.5px; }
+  /* print: screen-only. Uses the same tokens as the other list buttons. */
+  .printrow { display: flex; justify-content: flex-start; margin: 2px 0 0; }
+  .printbtn { box-sizing: border-box; min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  @media print {
+    .rgtb, .topbar, .printrow, .addform, .cathint, .syncslot, #status, .status,
+    .privnote, footer, .rg-install-wrap, #install-wrap, #rg-inst-w, .sandbox-tag,
+    .catpanel, .cp-back, .sheetwrap, .toast, .gate, .suggest, .hdl, .synctog, .cb-chev, .ulink, .addnote { display: none !important; }
+    .catbtn { border: 0; box-shadow: none; background: transparent; min-height: 0; padding: 0; }
+    html:root { color-scheme: light !important; }
+    html, body, .wrap, .card, .listcard, .list, .list li, .txt, .catbtn, .sum, .pin, .donehead, .empty, .note {
+      color: CanvasText !important; background: Canvas !important; box-shadow: none !important;
+    }
+    .done .txt, .txt .note, .txt .addnote, .sum .sel, .done .pin { color: GrayText !important; }
+    .list li { overflow: visible; break-inside: avoid; }
+    .list li::before, .list li::after { content: none !important; display: none !important; }
+  }
+</style>
+<script src="../../shared/rg-bg.js" data-app="my" data-slot=".topbar .tools" data-before="#theme-btn"></script>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="tools">
+      <label class="langsel"><span class="globe" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><select id="lang-sel"><option value="he">עברית</option><option value="en">English</option></select><span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></span></label>
+      <span data-rg-account></span>
+      <button type="button" class="themebtn" id="theme-btn"></button>
+    </div>
+  </header>
+  <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
+  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
+
+  <section class="card gate" data-when="out" hidden>
+    <div class="lock" aria-hidden="true">🔒</div>
+    <h2 data-i18n="gateTitle"></h2>
+    <p data-i18n="gateText"></p>
+    <span data-rg-account></span>
+  </section>
+
+  <main data-when="in" hidden>
+    <div class="catpick" id="catpick">
+      <div class="cathead">
+      <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="syncslot" id="syncslot"><div class="status" id="status" role="status" aria-live="polite"></div><span class="syncpeek" id="syncpeek"></span><button type="button" class="synctog" id="sync-tog" aria-expanded="true" aria-controls="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
+      </div>
+      <div class="catpanel" id="cat-panel" hidden>
+        <div class="cp-head"><span class="cp-title" id="cp-title"></span></div>
+        <ul class="cp-list" id="cat-list"></ul>
+        <button type="button" class="cp-new" id="cat-new"></button>
+      </div>
+    </div>
+    <p class="cathint" id="cathint" hidden></p>
+    <form class="addform" id="add-form" autocomplete="off">
+      <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
+      <input id="add-price" class="price-in" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" data-i18n-ph="pricePh" data-i18n-label="priceLabel">
+      <button type="submit" data-i18n="add"></button>
+      <input id="add-note" class="note-in" type="text" maxlength="500" enterkeyhint="done" data-i18n-ph="phNote" data-i18n-label="note">
+    </form>
+    <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
+    <p class="sum" id="sum" role="status" aria-live="polite" hidden></p>
+    <div id="done-wrap" hidden>
+      <div class="donehead"><h2 id="done-h"></h2></div>
+      <div class="card listcard"><ul class="list" id="done"></ul></div>
+    </div>
+    <div class="card listcard" id="active-card" style="margin-top:14px"><ul class="list" id="active"></ul></div>
+  </main>
+  <p class="privnote" data-i18n="privNote"></p>
+  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <footer data-i18n="footer"></footer>
+</div>
+<script>
+window.RGMY_SW = "sw.js";
+window.RGMY_STRINGS = {
+  he: { doc: "Purchasify", title: "קניותיפיי", sub: "מתעדכנת בזמן אמת בכל המכשירים שלך", ph: "מה צריך לקנות?", add: "הוסף", print: "הדפס", phNote: "הערה (לא חובה)", note: "הערה", addNote: "+ הוספת הערה",
+        tabMain: "קניות", tabTea: "תה", phTea: "איזה תה צריך לקנות?", emptyTea: "עוד אין תה ברשימה. כתוב למעלה איזה תה צריך לקנות.",
+        empty: "הרשימה ריקה.", suggest: "הוסף פריטים מוצעים",  bought: "נבחר", check: "סמן כנבחר", uncheck: "החזר לרשימה",
+        edit: "עריכה", del: "מחק", statusHide: "הסתרת מצב השמירה", statusShow: "הצגת מצב השמירה", statusPeek: "שים לב", synced: "✓ מסונכרן", saving: "שומר…", offline: "⚠ אין חיבור – השינויים נשמרו במכשיר ויסונכרנו כשתחזור לרשת", blocked: "השמירה נעצרה: נראית מחיקה גדולה מול העותק בענן. מה שנמצא במכשיר נשאר כאן, והענן לא נדרס.", syncErrorAuth: "הענן דחה את ההתחברות. הרשימה נשארה במכשיר.", syncErrorDenied: "אין הרשאה לשמור בענן. הרשימה נשארה במכשיר.", syncErrorPaused: "השרת מושהה כרגע. הרשימה נשארה במכשיר.", syncErrorServer: "השמירה לענן נכשלה. הרשימה נשארה במכשיר.", syncErrorTimeout: "השמירה לענן לא הסתיימה בזמן, אחרי כמה ניסיונות. הרשימה נשארה במכשיר.", items: "פריטים",
+        emptyCat: "הקטגוריה ריקה. כתוב למעלה מה צריך לקנות.",
+        catAdd: "קטגוריה חדשה", catPh: "שם הקטגוריה", create: "יצירה", save: "שמור", cancel: "ביטול",
+        rename: "✏️ שינוי שם", renameTitle: "שינוי שם הקטגוריה", delCat: "🗑 מחיקת הקטגוריה",
+        confirmDelCat: "למחוק את הקטגוריה „{x}” וכל מה שבתוכה?", lastCat: "צריכה להישאר לפחות קטגוריה אחת.",
+        pickTitle: "בחר קטגוריה", editTitle: "גרור ☰ כדי לסדר", editOrder: "סידור, שינוי שם ומחיקה", editDone: "✓ סיום", newCat: "＋ קטגוריה חדשה", renameOne: "שינוי שם", delOne: "מחיקה", handle: "גרירה לשינוי הסדר", chooseCat: "קטגוריה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optDelete: "אשפה", moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה",
+        catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה.",
+        markOk: "סומן ✓", markNo: "סומן ✕",
+        delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
+        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
+  en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
+        tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
+        empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
+        edit: "Edit", del: "Delete", statusHide: "Hide save status", statusShow: "Show save status", statusPeek: "Note", synced: "✓ Synced", saving: "Saving…", offline: "⚠ Offline – changes are saved on this device and will sync when you're back online", blocked: "Saving stopped: this looks like a large deletion compared with the cloud copy. What is on this device stays here, and the cloud copy was not replaced.", syncErrorAuth: "The cloud rejected the sign-in. The list stayed on this device.", syncErrorDenied: "This account is not allowed to save to the cloud. The list stayed on this device.", syncErrorPaused: "The server is paused right now. The list stayed on this device.", syncErrorServer: "Saving to the cloud failed. The list stayed on this device.", syncErrorTimeout: "Saving to the cloud did not finish in time, after several tries. The list stayed on this device.", items: "items",
+        emptyCat: "This category is empty. Write above what you need to buy.",
+        catAdd: "New category", catPh: "Category name", create: "Create", save: "Save", cancel: "Cancel",
+        rename: "✏️ Rename", renameTitle: "Rename category", delCat: "🗑 Delete category",
+        confirmDelCat: "Delete the category “{x}” and everything in it?", lastCat: "At least one category has to stay.",
+        pickTitle: "Choose a category", editTitle: "Drag ☰ to reorder", editOrder: "Reorder, rename and delete", editDone: "✓ Done", newCat: "＋ New category", renameOne: "Rename", delOne: "Delete", handle: "Drag to reorder", chooseCat: "Category", optMenu: "Options", optMove: "Reorder", optRename: "Rename", optDelete: "Delete", moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Move up", moveDown: "Move down",
+        catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move or trash.",
+        markOk: "Marked ✓", markNo: "Marked ✕",
+        delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
+        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
+};
+</script>
+<script src="rg-sync-status.js?v=1"></script>
+<script src="../../shared/rg-account.js"></script>
+<script src="../common.js"></script>
+<script src="app.js?v=49"></script>
+<script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
+
+<!-- rg-install v3: button only when the browser offers a real install prompt -->
+<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
+<div id="rg-inst-w" hidden><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
+<script>(function(){
+if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}
+var K="rg-inst-off",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),x=document.getElementById("rg-inst-x"),dp=null;
+var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה"},en:{b:"📲 Install app",x:"Close"}};
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
+function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);}
+function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
+function off(){try{return localStorage.getItem(K)==="1";}catch(e){return false;}}
+function U(){w.hidden=!(dp&&!sa()&&!off());}
+R();U();
+addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;U();});
+addEventListener("appinstalled",function(){dp=null;U();});
+b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
+x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
+})();</script>
+</body>
+</html>

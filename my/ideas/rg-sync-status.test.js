@@ -105,7 +105,7 @@ assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap 
 assert(liveHtml.indexOf("rg-sync-status.js?v=8") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=8") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live private Listify does not load sandbox scripts or the sandbox banner");
 assert(liveHtml.indexOf("<title>Listify</title>") !== -1, "the browser tab stays Listify in English");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v56"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
+assert(liveSw.indexOf('CACHE = "rg-myideas-v57"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
 assert(liveHtml.indexOf('updateViaCache:"none"') !== -1 && liveHtml.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1, "a new version reloads only when local edits are safe");
 assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפס"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveHtml.indexOf('id="hist-btn"') !== -1 && liveHtml.indexOf('id="restore-file"') !== -1, "version history and file restore are on the live page");
