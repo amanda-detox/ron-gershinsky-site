@@ -1,8 +1,8 @@
 /* Offline cache for the Wealthify sandbox only (שפעלי sandbox).
-   Cache name is rg-wealth-sbx-v1 so it does not share the live app cache (rg-wealth-v21).
+   Cache name is rg-wealth-sbx-v2 so it does not share the live app cache (rg-wealth-v21).
    This worker deletes only older rg-wealth-sbx- caches. It never deletes rg-wealth-v* . */
-var CACHE = "rg-wealth-sbx-v1";
-var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
+var CACHE = "rg-wealth-sbx-v2";
+var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js?v=6", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "manifest.json", "icon.svg", "icon-192.png", "icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

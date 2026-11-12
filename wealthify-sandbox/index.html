@@ -276,7 +276,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     </div>
     </div>
   </header>
-  <p class="ver" id="ver">sandbox v1</p>
+  <p class="ver" id="ver">sandbox v2</p>
 
   <main>
     <!-- 1. Welcome -->
@@ -386,13 +386,13 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       { id: "2-3", he: "<span class=num>2–3</span>", en: "<span class=num>2–3</span>" },
       { id: "4-6", he: "<span class=num>4–6</span>", en: "<span class=num>4–6</span>" },
       { id: "7-9", he: "<span class=num>7–9</span>", en: "<span class=num>7–9</span>" },
-      { id: "10+", he: "<span class=num>10+</span>", en: "<span class=num>10+</span>" }
+      { id: "10+", he: "<bdi class=num dir=ltr>\u200E10+</bdi>", en: "<bdi class=num dir=ltr>\u200E10+</bdi>" }
     ], extra: { id: "bankCountries", he: "בכמה מדינות?", en: "In how many countries?", options: [
       { id: "1",  he: "1", en: "1" },
       { id: "2",  he: "2", en: "2" },
       { id: "3",  he: "3", en: "3" },
       { id: "4",  he: "4", en: "4" },
-      { id: "5+", he: "5+", en: "5+" }
+      { id: "5+", he: "\u200E5+", en: "\u200E5+" }
     ]}}
   ];
 
@@ -475,7 +475,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       sub: "חמש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
       start: "בוא נתחיל",
       meta: "פחות מדקה · התשובות נשמרות רק במכשיר שלך",
-      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות לחברת היליפיי בע\"מ 2026",
+      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות למיסטיפיי סטודיו 2026",
       sheetTitle: "התקנה למסך הבית",
       close: "הבנתי",
       iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>. האייקון של שפעלי יופיע במסך הבית.</li></ol>",
@@ -508,7 +508,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       sub: "Five short questions to understand where you're starting from, so we can map the road ahead together.",
       start: "Begin",
       meta: "Under a minute · answers stay on your device",
-      install: "📲 Install to home screen", foot: "© 2026 Healify Ltd. All rights reserved.",
+      install: "📲 Install to home screen", foot: "© 2026 Mystify Studio. All rights reserved.",
       sheetTitle: "Install to home screen",
       close: "Got it",
       iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>. The Wealthify icon will appear on your home screen.</li></ol>",
@@ -620,7 +620,10 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       b.setAttribute("role", "radio");
       b.setAttribute("aria-checked", String(answers[q.extra.id] === o.id));
       b.dataset.id = o.id;
-      b.textContent = o[lang];
+      var iso = document.createElement("bdi");
+      iso.dir = "ltr";
+      iso.textContent = o[lang];
+      b.appendChild(iso);
       b.onclick = function () {
         answers[q.extra.id] = o.id;
         save();
@@ -639,7 +642,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     next.disabled = !qAnswered(q);
   }
 
-  var advancing = false;
+  var advancing = false, editingOne = false;
   function choose(q, o, btn) {
     if (advancing) return;
     answers[q.id] = o.id; save();
@@ -648,11 +651,21 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     if (q.extra) { syncNext(); return; }
     goNext();
   }
+  function returnToResults() {
+    editingOne = false;
+    completed = true;
+    save();
+    renderResults();
+    show("results");
+    try { $("res-title").focus({ preventScroll: true }); } catch (e) {}
+  }
   function goNext() {
     if (advancing) return;
     advancing = true;
+    var backToResults = editingOne;
     setTimeout(function () {
       advancing = false;
+      if (backToResults) { returnToResults(); return; }
       if (step < QUESTIONS.length - 1) { step++; renderQuiz(true); window.scrollTo(0, 0); }
       else { completed = true; save(); renderResults(); show("results"); try { $("res-title").focus({ preventScroll: true }); } catch (e) {} }
     }, reduced() ? 80 : 320);
@@ -674,13 +687,13 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       if (q.extra) {
         var bank = findOpt(q, answers[q.id]), country = findOpt(q.extra, answers[q.extra.id]);
         ans.className = "a banks-a";
-        ans.innerHTML = '<span class="pair"><span class="k"></span> <span class="num"></span></span><span class="pair"><span class="k"></span> <span class="num"></span></span>';
+        ans.innerHTML = '<span class="pair"><span class="k"></span> <bdi class="num" dir="ltr"></bdi></span><span class="pair"><span class="k"></span> <bdi class="num" dir="ltr"></bdi></span>';
         var ks = ans.querySelectorAll(".k"), ns = ans.querySelectorAll(".num");
         ks[0].textContent = L.banksShort; ns[0].textContent = bank[lang].replace(/<[^>]+>/g, "");
         ks[1].textContent = L.countriesShort; ns[1].textContent = country[lang];
       } else ans.innerHTML = findOpt(q, answers[q.id])[lang];
       var e = d.querySelector(".edit"); e.textContent = L.change; e.setAttribute("aria-label", L.change + ": " + q[lang]);
-      e.onclick = function () { step = qi; renderQuiz(); show("quiz"); };
+      e.onclick = function () { editingOne = true; step = qi; renderQuiz(true); show("quiz"); };
       cards.appendChild(d);
     });
     renderPlan(L);
@@ -739,7 +752,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     p.className = "providers";
     p.appendChild(document.createTextNode(lang === "he" ? "ספקים מומלצים: " : "Recommended providers: "));
     p.appendChild(ltr("First Class Citizen"));
-    p.appendChild(document.createTextNode(" (אזרח מחלקה ראשונה), "));
+    p.appendChild(document.createTextNode(lang === "he" ? " (אזרח מחלקה ראשונה), " : ", "));
     p.appendChild(ltr("Nomad Capitalist."));
     return p;
   }
@@ -762,18 +775,19 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   $("lang-he").onclick = function () { setLang("he"); };
   $("lang-en").onclick = function () { setLang("en"); };
 
-  $("start").onclick = function () { step = 0; renderQuiz(true); show("quiz"); };
+  $("start").onclick = function () { editingOne = false; step = 0; renderQuiz(true); show("quiz"); };
   $("q-next").onclick = function () {
     var q = QUESTIONS[step];
     if (!q || !q.extra || !qAnswered(q)) return;
     goNext();
   };
   $("q-back").onclick = function () {
+    if (editingOne) { returnToResults(); return; }
     if (step > 0) { step--; renderQuiz(true); }
     else if (completed && isComplete()) { renderResults(); show("results"); }
     else show("welcome");
   };
-  $("retake").onclick = function () { answers = {}; completed = false; save(); step = 0; renderQuiz(true); show("quiz"); };
+  $("retake").onclick = function () { editingOne = false; answers = {}; completed = false; save(); step = 0; renderQuiz(true); show("quiz"); };
 
   /* ----- install: visible whenever not running as an installed app ----- */
   var deferred = null, installedNow = false;
@@ -829,12 +843,12 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=2", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
-<script src="../shared/rg-topbar.js?v=5" data-nohome="1" data-slot="header.top"></script>
+<script src="../shared/rg-topbar.js?v=6" data-nohome="1" data-slot="header.top"></script>
 </body>
 </html>
