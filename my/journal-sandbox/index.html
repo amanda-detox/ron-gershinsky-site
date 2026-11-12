@@ -48,6 +48,14 @@
   details.jtopics > summary h2 { display: inline; }
   details.jtopics > summary::after { content: " ▾"; color: var(--muted); }
   details.jtopics form { margin-top: 10px; display: flex; gap: 8px; }
+  details.jtopics > summary { min-height: 44px; display: flex; align-items: center; }
+  details.jtopics > summary h2 { margin: 0; }
+  details.jtopics .renbtn { min-height: 44px; min-width: 44px; flex: none; white-space: nowrap; touch-action: manipulation; }
+  details.jtopics .list > li > .btn.dng { min-height: 44px; min-width: 44px; flex: none; touch-action: manipulation; }
+  details.jtopics form[data-form="r"] { display: block; margin-top: 0; }
+  details.jtopics form[data-form="r"] .btn { min-height: 44px; min-width: 44px; touch-action: manipulation; }
+  details.jtopics .list > li.jren { align-items: stretch; }
+  details.jtopics .renmsg { margin: 8px 0 0; color: var(--fg); font-size: 14.5px; font-weight: 700; }
   .sandbox-tag { display: inline-block; margin: 0 0 8px; font: 800 11px/1.3 Heebo, system-ui, sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: #f5c542; color: #0b2a6b; }
   .sbxnote { margin: 0 2px 4px; color: var(--muted); font-size: 13.5px; line-height: 1.45; }
   /* Bookmark: same glyph and gold states as Updatify (news/index.html .card .bm). 44px so a thumb can hit it. */
@@ -94,13 +102,13 @@
   <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
 </div>
-<script src="strings.js?v=1"></script>
+<script src="strings.js?v=2"></script>
 <script src="rg-sync-status.js?v=1"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="rg-store.js?v=1"></script>
 <script src="bookmarks.js?v=1"></script>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <!-- rg-install v3: button only when the browser offers a real install prompt -->
