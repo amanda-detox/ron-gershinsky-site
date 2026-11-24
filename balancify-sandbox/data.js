@@ -1,4 +1,4 @@
-/* Balancify (באלאנסיפיי) content. Edit freely.
+/* Balancify (איזוניפיי) content. Edit freely.
    - APP_NAME: the app's name in one place (also update manifest.json + index.html <title>/apple title if renamed).
    - lists: each entry = one button on the home screen, in order. To add a button, add an object.
      items: [] (empty) shows "יצורף בקרוב" / "Coming soon".
@@ -9,7 +9,7 @@
    - backgrounds: the design picker. file = bg/<id>.webp, thumb = bg/<id>-t.webp. */
 var BAL_SOON = { he: "ההסבר יצורף בקרוב", en: "Explanation coming soon" }; // placeholder explanation
 window.BAL_DATA = {
-  APP_NAME: { he: "באלאנסיפיי", en: "Balancify" },
+  APP_NAME: { he: "איזוניפיי", en: "Balancify" },
   subtitle: {
     he: "אפליקציה להרגעה, איזון וזרימה, במיוחד למתמודדים עם קושי נפשי ו/או פיזי רב.",
     en: "An app for calm, balance and flow, especially for those coping with significant emotional and/or physical difficulty."
