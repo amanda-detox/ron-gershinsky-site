@@ -717,7 +717,7 @@
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
       noteIncomingClash(history);
-      var payload = SS.cloudHistoryPayload(SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps);
+      var payload = SS.cloudHistoryPayload(history);
       var body = JSON.stringify(payload);
       if (body === histSent) return;
       histSent = body;
