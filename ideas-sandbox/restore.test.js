@@ -135,10 +135,10 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("version.js?v=1") !== -1 && page.indexOf("version.js?v=1") < page.indexOf("app.js?v=60") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=60") !== -1, "the sandbox page loads the shared version, then the bumped app");
-assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=1") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=60") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("version.js?v=2") !== -1 && page.indexOf("version.js?v=2") < page.indexOf("app.js?v=61") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=61") !== -1, "the sandbox page loads the shared version, then the bumped app");
+assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=2") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=61") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
 var verFile = fs.readFileSync(path.join(root, "version.js"), "utf8");
-assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v28"') !== -1 && sw.indexOf("rg-sbx-ideas-v28") === -1 && app.indexOf("rg-sbx-ideas-v28") === -1, "the cache name is written once, in version.js");
+assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v29"') !== -1 && sw.indexOf("rg-sbx-ideas-v29") === -1 && app.indexOf("rg-sbx-ideas-v29") === -1, "the cache name is written once, in version.js");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
@@ -166,6 +166,19 @@ assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear
 assert(liveHtml.indexOf('id="list-search"') !== -1 && live.indexOf("function searchView") !== -1 && live.indexOf('APP = "myideas"') !== -1 && live.indexOf("rg-sbx-ideas") === -1, "live Listify has search and still uses the live app id and keys");
 var searchBody = app.slice(app.indexOf("function searchView"), app.indexOf("function render"));
 assert(searchBody.indexOf("saveLocal") === -1 && searchBody.indexOf("changed(") === -1 && searchBody.indexOf("put(") === -1 && searchBody.indexOf("localStorage") === -1 && searchBody.indexOf("setOrder") === -1, "the search view does not write or reorder");
+var delBoxBody = app.slice(app.indexOf("function delBox"), app.indexOf("function orderWithin"));
+assert(delBoxBody.indexOf("function delBox") === 0 && delBoxBody.indexOf("del(") === -1 && delBoxBody.indexOf("box: null") !== -1, "deleting a category clears the list link and does not delete lists");
+assert(app.indexOf("NOTE_MAX = 2500") !== -1 && app.indexOf("function cleanNote") !== -1 && app.indexOf("clean(note, 500)") === -1 && app.indexOf('maxlength="500"') === -1, "the note cap is 2500 and notes are not sliced");
+assert(page.indexOf("הגעת לאורך המרבי של הערה") !== -1 && page.indexOf('id="box-picker"') !== -1 && page.indexOf('boxDefault: "כללי"') !== -1 && page.indexOf('id="notes-all"') !== -1, "the category dropdown, the note toggles, and the max-length message are in the sandbox");
+assert(page.indexOf("נחתך") === -1 && app.indexOf("נחתך") === -1 && page.indexOf("לחתוך") === -1 && app.indexOf("לחתוך") === -1, "the UI never says a note was cut");
+var longNote = new Array(2501).join("נ");
+var many = { "c:shop": { id: "c:shop", type: "cat", cat: "shop", name: "קניות", box: "brand", pos: 4, at: 5 }, "b:brand": { id: "b:brand", type: "box", box: "brand", name: "מיתוג", pos: 1, at: 6 }, s1: { id: "s1", sec: "shop", text: "חלב", note: longNote, done: false, order: 1, at: 7 } };
+for (var li = 0; li < 30; li++) many["n" + li] = { id: "n" + li, sec: "shop", text: "שורה " + li, note: li === 3 ? "סימן" : "", done: false, order: li + 2, at: 8 + li };
+var builtLong = R.buildFile(many, new Date(2026, 10, 11, 8, 0).getTime());
+var backLong = R.parse(builtLong);
+assert(backLong.ok && backLong.items.s1.note === longNote && backLong.items.s1.note.length === 2500, "a 2500-character note survives backup and restore whole");
+assert(backLong.items["c:shop"] && backLong.items["c:shop"].box === "brand" && backLong.items["b:brand"].name === "מיתוג" && !backLong.items.s1.deleted, "a category and its list survive backup and restore");
+assert(Object.keys(backLong.items).filter(function (k) { return backLong.items[k].sec === "shop"; }).length === 31, "a long list survives backup and restore");
 
 function LIVE_NEEDLE() { return "rg-" + "myideas-v1:"; }
 

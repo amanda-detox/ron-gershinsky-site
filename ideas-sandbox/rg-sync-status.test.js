@@ -65,14 +65,14 @@ assert(app.indexOf("out[k] = out[k] ? mergeItem(out[k], b[k]) : b[k];") !== -1, 
 assert(app.indexOf("items = cl") === -1 && app.indexOf("items = merged") !== -1, "automatic sync merges and does not replace the local copy with the cloud");
 assert(app.indexOf("ensureDeletion") !== -1 && app.indexOf("restoreBlocked") !== -1 && app.indexOf('t("blockedAct")') === -1, "the deletion question stays a two-choice prompt and is never a one-tap delete");
 assert(app.indexOf("shouldStampSync") !== -1 && app.indexOf("rg-sbx-ideas-lastsync:") !== -1, "the app records a last sync only through the success rule");
-assert(app.indexOf("לחתוך") === -1 && src.indexOf("לחתוך") === -1 && html.indexOf("לחתוך") === -1, "no violent Hebrew");
+assert(app.indexOf("לחתוך") === -1 && src.indexOf("לחתוך") === -1 && html.indexOf("לחתוך") === -1 && app.indexOf("נחתך") === -1 && html.indexOf("נחתך") === -1, "no violent Hebrew and notes are never described as cut");
 var loadBody = app.slice(app.indexOf("function loadFromCloud"), app.indexOf("function syncSoon"));
 assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") === -1 && loadBody.indexOf('"-bak"') !== -1, "טען מהענן saves a -bak copy and has no cloud write");
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=7") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=7") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=1") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=60") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
+assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=2") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=61") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build"') !== -1 && html.indexOf("rg-sbx-ideas-v21") === -1 && app.indexOf("RG_SBX_IDEAS_CACHE") !== -1 && app.indexOf("function paintBuild") !== -1, "the on-screen version is painted from the shared cache name");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
@@ -291,7 +291,7 @@ assert(qver(html, "rg-sync-status.js") >= 7 && qver(sw, "rg-sync-status.js") ===
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
 var pins = {
-  "ideas-sandbox/app.js": { v: 60, hash: "d0e0e34cb2fb7a09" },
+  "ideas-sandbox/app.js": { v: 61, hash: "c9bb3fdb96d65afb" },
   "ideas-sandbox/rg-sync-status.js": { v: 7, hash: "48344d1434a77a00" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
