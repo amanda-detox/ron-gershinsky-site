@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v28"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v28");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v29"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v29");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=60") !== -1 && srcs.indexOf("version.js?v=1") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=61") !== -1 && srcs.indexOf("version.js?v=2") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v28"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v29"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -435,6 +435,197 @@ async function main() {
     check(searchErr.length === 0, "search runs without a console error");
     if (searchErr.length) console.error(searchErr.join(" | "));
     await searchCtx.close();
+
+    var featItems = {
+      a1: { id: "a1", sec: "ideas", text: "Alpha one", note: "first", done: false, order: 1, created: 3001, at: 3001 },
+      keep: { id: "keep", sec: "ideas", text: "שמור", note: new Array(501).join("ק"), done: false, order: 2, created: 3002, at: 3002 },
+      s1: { id: "s1", sec: "shop", text: "חלב טרי", note: "בבוקר", done: false, order: 1, created: 3101, at: 3101 },
+      "c:shop": { id: "c:shop", type: "cat", cat: "shop", name: "קניות", kind: "task", pos: 10, created: 1000, at: 1000 }
+    };
+    var fi;
+    for (fi = 1; fi <= 24; fi++) featItems["n" + fi] = { id: "n" + fi, sec: "ideas", text: "שורה " + fi, note: fi === 7 ? "סימןארוך" : "", done: false, order: 10 + fi, created: 3200 + fi, at: 3200 + fi };
+    var featDoc = { items: featItems, pending: true, seeded: true };
+    var featStore = {};
+    var feat = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+    var featPage = await feat.newPage();
+    var featErr = [], featAsk = [];
+    featPage.on("pageerror", function (err) { featErr.push(String(err)); });
+    featPage.on("dialog", function (d) { featAsk.push(d.message()); d.accept(); });
+    await installCloud(featPage, featStore);
+    await featPage.addInitScript(userScript(
+      "localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify(featDoc)) + ");"
+    ));
+    await featPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await featPage.waitForFunction(function () { return document.getElementById("box-name") && document.getElementById("box-name").textContent === "כללי" && document.body.innerText.indexOf("Alpha one") !== -1; });
+    var stack = await featPage.evaluate(function () {
+      var b = document.getElementById("box-picker").getBoundingClientRect();
+      var p = document.getElementById("picker").getBoundingClientRect();
+      return { boxAbove: b.bottom <= p.top + 1, noteMax: (document.querySelector(".notein") || {}).maxLength || 0 };
+    });
+    check(stack.boxAbove && stack.noteMax === 2500, "the category dropdown sits above the lists and the note field allows 2500");
+    function noteMap(page) {
+      return page.evaluate(function (uid) {
+        var raw = localStorage.getItem("rg-sbx-ideas-v1:" + uid);
+        var doc = raw ? JSON.parse(raw) : { items: {} };
+        var out = {};
+        Object.keys(doc.items).forEach(function (k) {
+          var x = doc.items[k];
+          if (x && x.note) out[x.id] = x.note;
+        });
+        return out;
+      }, UID);
+    }
+    var notesBefore = JSON.stringify(await noteMap(featPage));
+    check(notesBefore.indexOf("first") !== -1 && notesBefore.indexOf(new Array(501).join("ק")) !== -1, "an existing 500-character note is kept whole");
+    await featPage.click('[data-id="a1"] .notetog');
+    await featPage.waitForFunction(function () { var n = document.querySelector('[data-id="a1"] .note'); return n && n.classList.contains("note-off"); });
+    check(JSON.stringify(await noteMap(featPage)) === notesBefore, "hiding one note does not change stored notes");
+    await featPage.reload({ waitUntil: "domcontentloaded" });
+    await featPage.waitForFunction(function () { var n = document.querySelector('[data-id="a1"] .note'); return n && n.classList.contains("note-off"); });
+    check(true, "the per-item note toggle is still hidden after reload");
+    await featPage.click("#notes-all");
+    await featPage.waitForFunction(function () { return document.getElementById("notes-all") && document.getElementById("notes-all").textContent === "הצג הערות" && document.querySelectorAll("#panels .note.note-off").length >= 2; });
+    var hiddenCount = await featPage.evaluate(function () { return document.querySelectorAll("#panels .note.note-off").length; });
+    check(hiddenCount >= 2 && JSON.stringify(await noteMap(featPage)) === notesBefore, "the global toggle hides every note and writes nothing");
+    await featPage.reload({ waitUntil: "domcontentloaded" });
+    await featPage.waitForFunction(function () { return document.getElementById("notes-all") && document.getElementById("notes-all").textContent === "הצג הערות"; });
+    check(true, "the global note toggle stays hidden after reload");
+    await featPage.click("#notes-all");
+    await featPage.waitForFunction(function () { return document.querySelector('[data-id="a1"] .note') && !document.querySelector('[data-id="a1"] .note').classList.contains("note-off"); });
+    await featPage.click("#box-picker");
+    await featPage.waitForSelector('#bmenu:not([hidden]) [data-box="+"]');
+    await featPage.click('#bmenu [data-box="+"]');
+    await featPage.waitForSelector("#sheet .s-name");
+    await featPage.fill("#sheet .s-name", "מיתוג");
+    await featPage.waitForTimeout(500);
+    await featPage.click('#sheet button[type=submit]');
+    await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "מיתוג"; });
+    await featPage.click("#box-picker");
+    await featPage.click("#bmenu .pm-more");
+    await featPage.click('#bmenu [data-box^="ren:"]');
+    await featPage.waitForSelector("#sheet .s-name");
+    await featPage.fill("#sheet .s-name", "מיתוג2");
+    await featPage.waitForTimeout(500);
+    await featPage.click('#sheet button[type=submit]');
+    await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "מיתוג2"; });
+    if (await featPage.evaluate(function () { var m = document.getElementById("bmenu"); return !m || m.hidden; })) await featPage.click("#box-picker");
+    await featPage.click('#bmenu button[data-box="all"]');
+    await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "כללי" && document.body.innerText.indexOf("חלב טרי") === -1; });
+    await featPage.click("#picker");
+    await featPage.click('[data-pick="opt:shop"]');
+    await featPage.click('[data-pick="box:shop"]');
+    await featPage.waitForSelector("#sheet");
+    await featPage.waitForTimeout(500);
+    await featPage.locator("#sheet button", { hasText: "מיתוג2" }).click();
+    if (await featPage.evaluate(function () { var m = document.getElementById("bmenu"); return !m || m.hidden; })) await featPage.click("#box-picker");
+    await featPage.locator("#bmenu button", { hasText: "מיתוג2" }).click();
+    await featPage.waitForFunction(function () { return document.body.innerText.indexOf("חלב טרי") !== -1 && document.body.innerText.indexOf("Alpha one") === -1; });
+    check(true, "picking a category filters the lists");
+    if (await featPage.evaluate(function () { var m = document.getElementById("bmenu"); return !m || m.hidden; })) await featPage.click("#box-picker");
+    await featPage.click("#bmenu .pm-more");
+    await featPage.click('#bmenu [data-box^="del:"]');
+    await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "כללי" && document.body.innerText.indexOf("חלב טרי") !== -1; });
+    var afterDel = await featPage.evaluate(function (uid) {
+      var doc = JSON.parse(localStorage.getItem("rg-sbx-ideas-v1:" + uid));
+      var shop = doc.items["c:shop"], milk = doc.items.s1, boxes = [];
+      Object.keys(doc.items).forEach(function (k) { var x = doc.items[k]; if (x && x.type === "box") boxes.push(x); });
+      return { shop: !!(shop && !shop.deleted && !shop.gone && !shop.box), milk: !!(milk && !milk.deleted && milk.text === "חלב טרי"), boxes: boxes.map(function (b) { return b.gone ? 1 : 0; }) };
+    }, UID);
+    check(afterDel.shop && afterDel.milk && afterDel.boxes.length === 1 && afterDel.boxes[0] === 1, "deleting a category keeps the list and its items and sends the list back to כללי");
+    check(featAsk.some(function (m) { return m.indexOf("הרשימות נשארות") !== -1 && m.indexOf("וכל מה שבתוכה") === -1; }), "the delete question says the lists stay");
+    await featPage.click('[data-id="s1"] [data-a="edit"]');
+    await featPage.waitForSelector(".e-note");
+    await featPage.evaluate(function (n) {
+      var el = document.querySelector(".e-note");
+      el.value = new Array(n + 1).join("נ");
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+    }, 2500);
+    await featPage.waitForSelector(".ed .notemax:not([hidden])");
+    var maxMsg = await featPage.evaluate(function () {
+      var p = document.querySelector(".ed .notemax");
+      var cs = getComputedStyle(p), gold = getComputedStyle(p.querySelector("bdi"));
+      return { text: p.textContent, color: cs.color, gold: gold.color, len: document.querySelector(".e-note").value.length };
+    });
+    check(maxMsg.len === 2500 && maxMsg.text.indexOf("הגעת לאורך המרבי של הערה") !== -1 && maxMsg.text.indexOf("2500/2500") !== -1 && maxMsg.color === "rgb(91, 141, 239)" && maxMsg.gold === "rgb(245, 197, 66)", "a full note shows a blue and gold limit message with a counter");
+    await featPage.evaluate(function () { document.documentElement.style.zoom = "1.2"; });
+    await featPage.setViewportSize({ width: 320, height: 700 });
+    var fitDark = await featPage.evaluate(function () {
+      return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, search: document.getElementById("list-search").getAttribute("placeholder"), print: document.getElementById("print-btn").textContent, restore: document.querySelector("#restore-file-btn span").textContent };
+    });
+    check(fitDark.sw <= fitDark.cw + 1 && fitDark.search === "חיפוש" && fitDark.print.replace(/\s/g, "") === "הדפסה" && fitDark.restore.replace(/\s/g, "") === "שיחזור", "at 320px and 120% the dark page fits and the toolbar stays");
+    await featPage.screenshot({ path: "/opt/cursor/artifacts/listify-note-max-dark.png" });
+    await featPage.evaluate(function () { document.documentElement.setAttribute("data-theme", "light"); });
+    await featPage.waitForFunction(function () { return document.documentElement.getAttribute("data-theme") === "light"; });
+    var fitLight = await featPage.evaluate(function () {
+      var p = document.querySelector(".ed .notemax");
+      return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, color: getComputedStyle(p).color, gold: getComputedStyle(p.querySelector("bdi")).color };
+    });
+    check(fitLight.sw <= fitLight.cw + 1 && fitLight.color === "rgb(26, 71, 160)" && fitLight.gold === "rgb(138, 106, 16)", "at 320px and 120% the light page fits and the message stays blue and gold");
+    await featPage.screenshot({ path: "/opt/cursor/artifacts/listify-note-max-light.png" });
+    await featPage.evaluate(function () { document.documentElement.style.zoom = "1"; });
+    await featPage.setViewportSize({ width: 390, height: 844 });
+    await featPage.click('[data-a="save"]');
+    await featPage.waitForFunction(function (uid) {
+      var doc = JSON.parse(localStorage.getItem("rg-sbx-ideas-v1:" + uid) || "{}");
+      return doc.items && doc.items.s1 && doc.items.s1.note && doc.items.s1.note.length === 2500 && doc.items.keep.note.length === 500;
+    }, UID);
+    check(true, "saving a max-length note stores all 2500 characters and leaves the older note whole");
+    await featPage.click("#notes-all");
+    await featPage.waitForFunction(function () { var n = document.querySelector('[data-id="s1"] .note'); return n && n.classList.contains("note-off"); });
+    var storedHidden = JSON.stringify(await noteMap(featPage));
+    await featPage.fill("#list-search", "נננ");
+    await featPage.waitForFunction(function () {
+      var n = document.querySelector('[data-id="s1"] .note');
+      return n && !n.classList.contains("note-off") && n.innerText.indexOf("נ") !== -1;
+    });
+    check(JSON.stringify(await noteMap(featPage)) === storedHidden, "search can show a hidden note without writing it");
+    await featPage.click("#search-clear");
+    await featPage.fill("#list-search", "שורה 18");
+    await featPage.waitForFunction(function () { return document.body.innerText.indexOf("שורה 18") !== -1 && document.body.innerText.indexOf("שורה 17") === -1; });
+    check(true, "search still finds one row in a long list");
+    await featPage.click("#search-clear");
+    await featPage.emulateMedia({ media: "print" });
+    var printed = await featPage.evaluate(function () { var n = document.querySelector('[data-id="s1"] .note'); return n ? getComputedStyle(n).display : ""; });
+    check(printed === "block", "print still shows a note that is hidden on screen");
+    await featPage.emulateMedia({ media: "screen" });
+    var backup = await featPage.evaluate(function (uid) {
+      var doc = JSON.parse(localStorage.getItem("rg-sbx-ideas-v1:" + uid));
+      var file = window.RGSbxRestore.buildFile(doc.items, Date.now());
+      var back = window.RGSbxRestore.parse(file);
+      return { len: back.items.s1.note.length, lists: back.summary.listCount, items: back.summary.itemCount, box: back.items["b:brand"] ? back.items["b:brand"].name : (function () { var k, x; for (k in back.items) { x = back.items[k]; if (x && x.type === "box") return x.name || ""; } return ""; })() };
+    }, UID);
+    check(backup.len === 2500 && backup.items >= 24 && backup.lists >= 2, "backup and restore keep a long note and a long list");
+    await waitFor(function () {
+      var doc = cloudValue(featStore, "items");
+      if (!doc || !doc.items || !doc.items.s1) return false;
+      return doc.items.s1.note && doc.items.s1.note.length === 2500 && doc.items.keep && doc.items.keep.note.length === 500 && doc.items["c:shop"] && !doc.items["c:shop"].deleted;
+    }, 15000);
+    check(true, "sync uploads the whole long note and the list");
+    var featB = await browser.newContext({ viewport: { width: 390, height: 844 }, serviceWorkers: "block" });
+    var pageB2 = await featB.newPage();
+    var featBErr = [];
+    pageB2.on("pageerror", function (err) { featBErr.push(String(err)); });
+    await installCloud(pageB2, featStore);
+    await pageB2.addInitScript(userScript("localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify({ items: {}, pending: false, seeded: true })) + ");"));
+    await pageB2.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await pageB2.waitForFunction(function () {
+      var raw = localStorage.getItem("rg-sbx-ideas-v1:" + "qa-user");
+      if (!raw) return false;
+      var doc = JSON.parse(raw);
+      return doc.items && doc.items.s1 && doc.items.s1.note && doc.items.s1.note.length === 2500 && doc.items["c:shop"] && !doc.items["c:shop"].deleted;
+    });
+    await pageB2.click("#picker");
+    await pageB2.click('[data-pick="shop"]');
+    await pageB2.waitForSelector('[data-id="s1"] .note');
+    var cloudSnap = JSON.stringify(featStore);
+    await pageB2.click("#notes-all");
+    await pageB2.waitForFunction(function () { var n = document.querySelector('[data-id="s1"] .note'); return n && n.classList.contains("note-off"); });
+    await new Promise(function (r) { setTimeout(r, 800); });
+    check(JSON.stringify(featStore) === cloudSnap, "hiding notes on the other device does not write the cloud copy");
+    check(featErr.length === 0 && featBErr.length === 0, "notes, categories, and sync run without a script error");
+    if (featErr.length || featBErr.length) console.error(featErr.concat(featBErr).join(" | "));
+    await featB.close();
+    await feat.close();
   } finally {
     await browser.close();
     server.close();

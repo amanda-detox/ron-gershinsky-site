@@ -16,6 +16,10 @@
      until they are renamed, moved or deleted (gone: 1 hides one; it is not a tombstone, so it is never pruned and never comes back).
      Old data needs no rewrite: old items already point at "ideas" / "tasks" / "goals". Old app versions ignore the category records
      (they have no "sec") but keep and sync them, because they merge every valid record.
+   Grouping categories (sandbox): a category holds several lists. Stored as records { id: "b:<id>", type: "box", box, name, pos, gone?, created, at }
+     in the same items map, so they sync with the lists. A list record may carry box: "<id>". No box (or a box the record does not know)
+     means the default category «כללי». Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
+     when they copy the record, so existing lists need no rewrite. Deleting a category clears that field and hides the box record. It does not delete lists.
      goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
    Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
    Offline-first: kept in localStorage per user (rg-sbx-ideas-v1:<user id>) and merged into the account copy on every sync.
@@ -53,6 +57,10 @@
   function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 8); }
   function clean(s, n) { return String(s || "").replace(/[ \t\u00a0]+/g, " ").replace(/\n{3,}/g, "\n\n").trim().slice(0, n); }
+  /* Item notes were capped at 500 (textarea maxlength and clean()). The cap is now 5× that.
+     cleanNote() does not slice: a note is stored whole. The field stops new typing at NOTE_MAX and says so. */
+  var NOTE_MAX = 2500;
+  function cleanNote(s) { return String(s || "").replace(/[ \t\u00a0]+/g, " ").replace(/\n{3,}/g, "\n\n").trim(); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
   /* ---------- local cache ---------- */
@@ -187,6 +195,7 @@
     if (again) { showCat(again); return again; }
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (curBox()) rec.box = curBox();
     if (window.RGSyncStatus && RGSyncStatus.noteGone) rec = RGSyncStatus.noteGone(rec, at, false);
     put(rec);
     return id;
@@ -196,7 +205,82 @@
     live(cid).forEach(function (x) { del(x.id); });
     upCat(cid, { gone: 1 });
   }
-  function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
+
+  /* ---------- grouping categories (type "box"), above the lists. «כללי» is the absence of a box field. ---------- */
+  var boxTab = lsGet("rg-sbx-ideas-box") || "";
+  function boxRec(bid) { var r = items["b:" + bid]; return r && !r.deleted && r.type === "box" && typeof r.box === "string" ? r : null; }
+  function boxes() {
+    var out = [], k, r;
+    for (k in items) {
+      r = items[k];
+      if (!r || r.deleted || r.gone || r.type !== "box" || typeof r.box !== "string") continue;
+      out.push({ box: r.box, name: r.name || "…", pos: typeof r.pos === "number" ? r.pos : 0, created: r.created || 0 });
+    }
+    return out.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.box < b.box ? -1 : 1); });
+  }
+  function curBox() {
+    if (!boxTab) return "";
+    var r = boxRec(boxTab);
+    if (!r || r.gone) { boxTab = ""; lsSet("rg-sbx-ideas-box", ""); return ""; }
+    return boxTab;
+  }
+  function listBoxId(c) {
+    var r = c && catRec(c.cat), id = r && typeof r.box === "string" ? r.box : "";
+    if (!id) return "";
+    var b = boxRec(id);
+    return b && !b.gone ? id : "";
+  }
+  function listsNow() {
+    var bid = curBox();
+    return cats().filter(function (c) { return listBoxId(c) === bid; });
+  }
+  function upBox(bid, patch) {
+    var r = boxRec(bid), y = {}, k;
+    if (!r) return;
+    for (k in r) y[k] = r[k];
+    for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
+    y.at = now();
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, y.at, !!y.gone);
+    put(y);
+  }
+  function hiddenBoxByName(name) {
+    var k, x, n = clean(name, 40);
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "box" && x.gone && clean(x.name || "", 40) === n) return x.box;
+    }
+    return "";
+  }
+  function addBox(name) {
+    name = clean(name, 40); if (!name) return null;
+    var again = hiddenBoxByName(name);
+    if (again) { upBox(again, { gone: null }); return again; }
+    var l = boxes(), id = newId(), at = now(), pos = l.reduce(function (m, b) { return Math.max(m, b.pos); }, -1) + 1;
+    put({ id: "b:" + id, type: "box", box: id, name: name, pos: pos, created: at, at: at });
+    return id;
+  }
+  function delBox(bid) {
+    if (!bid || !boxRec(bid)) return;
+    cats().forEach(function (c) { if (listBoxId(c) === bid) upCat(c.cat, { box: null }); });
+    upBox(bid, { gone: 1 });
+    if (boxTab === bid) { boxTab = ""; lsSet("rg-sbx-ideas-box", ""); }
+  }
+  function orderWithin(ids) {
+    var all = cats().map(function (c) { return c.cat; }), set = {}, queue = ids.slice(), next;
+    ids.forEach(function (id) { set[id] = 1; });
+    next = all.map(function (id) { return set[id] ? queue.shift() : id; });
+    ids.forEach(function (id) { if (all.indexOf(id) < 0) next.push(id); });
+    setOrder(next);
+  }
+  function curTab() {
+    var l = listsNow();
+    if (l.some(function (c) { return c.cat === tab; })) return tab;
+    if (!l.length) return "";
+    tab = l[0].cat;
+    lsSet("rg-sbx-ideas-tab-cur", tab);
+    lsSet(gTabKey(1), tab);
+    return tab;
+  }
 
   /* ---------- safety net (same as Purchasify) ----------
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
@@ -712,7 +796,7 @@
   function add(sec, text, note, price) {
     text = clean(text, 200); if (!text) return;
     var o = nextOrder(sec), id = newId(), at = now(), x = { id: id, sec: sec, text: text, done: false, order: o, created: at, at: at };
-    note = clean(note, 500); if (note) x.note = note;
+    note = cleanNote(note); if (note) x.note = note;
     if (typeof price === "number" && isFinite(price)) x.price = price;
     put(x);
   }
@@ -794,7 +878,8 @@
   function editor(x) {
     return '<div class="ed" data-ed="' + esc(x.id) + '">' +
       '<textarea class="e-text grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' + esc(label(x)) + '</textarea>' +
-      '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<textarea class="e-note" maxlength="' + NOTE_MAX + '" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<p class="notemax" hidden></p>' +
       '<input type="text" class="e-price" inputmode="decimal" maxlength="10" placeholder="' + esc(t("priceLabel")) + '" aria-label="' + esc(t("priceLabel")) + '" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '">' +
       '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
@@ -826,7 +911,55 @@
     return out + esc(raw.slice(last));
   }
   function itemHit(x, q) { return hit(label(x), q) || hit(x.note || "", q); }
-  function listHit(c, q) { return hit(catName(c), q) || live(c.cat).some(function (x) { return itemHit(x, q); }); }
+  function boxLabelOf(c) { var id = listBoxId(c), r = id && boxRec(id); return (r && r.name) || ""; }
+  function listHit(c, q) { return hit(catName(c), q) || hit(boxLabelOf(c), q) || live(c.cat).some(function (x) { return itemHit(x, q); }); }
+  /* View-only. Never written onto the item, so sync, backup, restore and print still have the whole note. */
+  function noteKey() { return "rg-sbx-ideas-notefold:" + (uid || "local"); }
+  function notePrefs() {
+    var p = jparse(lsGet(noteKey()), null);
+    if (!p || typeof p !== "object") p = { all: 0, item: {} };
+    if (!p.item || typeof p.item !== "object") p.item = {};
+    return p;
+  }
+  function saveNotePrefs(p) { lsSet(noteKey(), JSON.stringify({ all: p.all ? 1 : 0, item: p.item || {} })); }
+  function noteHidden(id) {
+    var p = notePrefs();
+    if (p.item && Object.prototype.hasOwnProperty.call(p.item, id)) return p.item[id] === "hide";
+    return !!p.all;
+  }
+  function noteFolded(x) {
+    if (!x || !x.note) return false;
+    if (searchRaw() && hit(x.note, searchRaw())) return false;
+    return noteHidden(x.id);
+  }
+  function toggleItemNote(id) {
+    var p = notePrefs();
+    p.item[id] = noteHidden(id) ? "show" : "hide";
+    saveNotePrefs(p);
+    render();
+  }
+  function toggleAllNotes() {
+    var p = notePrefs();
+    p.all = p.all ? 0 : 1;
+    p.item = {};
+    saveNotePrefs(p);
+    render();
+  }
+  function paintNoteMax(el) {
+    if (!el) return;
+    var p = el.nextElementSibling && el.nextElementSibling.classList.contains("notemax") ? el.nextElementSibling : null;
+    if (!p) { var w = el.closest(".notewrap"); p = w ? w.querySelector(".notemax") : null; }
+    if (!p) return;
+    var n = String(el.value || "").length, on = n >= NOTE_MAX, s, b;
+    p.hidden = !on;
+    p.textContent = "";
+    if (!on) return;
+    s = document.createElement("span"); s.textContent = t("noteMax");
+    b = document.createElement("bdi"); b.textContent = n + "/" + NOTE_MAX;
+    p.appendChild(s); p.appendChild(document.createTextNode(" ")); p.appendChild(b);
+    el.style.height = "auto";
+    el.style.height = Math.max(42, Math.min(el.scrollHeight + 2, 220)) + "px";
+  }
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
@@ -835,7 +968,8 @@
     return '<li data-id="' + esc(x.id) + '"' + (cls ? ' class="' + cls + '"' : "") + '>' +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' +
       box +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span>" + (x.note ? '<span class="note">' + hi(x.note) + "</span>" : "") + "</div>" +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span>" + (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '">' + hi(x.note) + "</span>" : "") + "</div>" +
+      (x.note ? '<button type="button" class="notetog' + (noteHidden(x.id) ? "" : " on") + '" data-a="note" aria-pressed="' + (noteHidden(x.id) ? "false" : "true") + '" aria-label="' + esc((noteHidden(x.id) ? t("noteShow") : t("noteHide")) + ": " + n) + '">' + esc(t("noteWord")) + "</button>" : "") +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
@@ -846,7 +980,7 @@
     else { chosen = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); } // ✓ moves into נבחרים; clearing it returns the item
     var done = []; // old "done" נבחר stays off (Ron 31.10). ✓ uses mark, which already syncs.
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
-      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
+      '<div class="addextra"><div class="notewrap"><textarea name="note" class="notein" rows="2" maxlength="' + NOTE_MAX + '" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></textarea><p class="notemax" hidden></p></div>' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
         '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "") +  // selected ("נבחר") group sits ABOVE the open items (Ron 30.10)
@@ -860,7 +994,7 @@
   function searchView() {
     var q = searchRaw(), html = "", any = false;
     cats().forEach(function (c) {
-      var nameHit = hit(catName(c), q), anyItem = live(c.cat).some(function (x) { return itemHit(x, q); });
+      var nameHit = hit(catName(c), q) || hit(boxLabelOf(c), q), anyItem = live(c.cat).some(function (x) { return itemHit(x, q); });
       if (!nameHit && !anyItem) return;
       any = true;
       showP = hasPrices(c.cat); showC = isChk(c.cat);
@@ -881,7 +1015,7 @@
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
     if (drag || idrag) { needRender = true; return; } // never rebuild under a finger that is dragging (a category or an item)
-    if (!uid) { pn.textContent = ""; closeMenu(); panels.innerHTML = ""; setStatus(); return; } // signed out: nothing private on the page
+    if (!uid) { pn.textContent = ""; closeMenu(); closeBoxMenu(); panels.innerHTML = ""; var nb0 = $("notesbar"); if (nb0) nb0.hidden = true; setStatus(); return; } // signed out: nothing private on the page
     var unm = false; for (var uk in items) { var ux = items[uk]; if (!ux.deleted && ux.type !== "meta" && ux.sec && isSel(ux)) { upd(uk, { done: false, dord: null }); unm = true; } } // unmark old "נבחר" items: one list only (Ron 31.10)
     if (unm) { pending = true; saveLocal(); syncSoon(); }
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
@@ -895,15 +1029,17 @@
     var cur = curTab(), cc = cur && catOf(cur);
     GROUPS.forEach(function (g) { // each picker shows its own last list; the one whose list is open below is marked
       var p = $(g === 1 ? "picker" : "picker" + g), nm = $(g === 1 ? "picker-name" : "picker-name" + g); if (!p || !nm) return;
-      var gc = catOf(gTab(g)), ph = t("pickerPh").replace("{n}", g);
+      var gc = g === 1 ? cc : catOf(gTab(g)), ph = t("pickerPh").replace("{n}", g);
       nm.textContent = gc ? catName(gc) : ph; p.classList.toggle("active", !!cc && gOf(cc) === g); p.classList.toggle("empty", !gc);
       p.setAttribute("aria-label", ph + ": " + nm.textContent); p.title = ph;
     });
-    if (!cc) pn.textContent = t("noCats");
+    if (!cc) pn.textContent = curBox() ? t("pickerPh").replace("{n}", 1) : t("noCats");
+    paintBoxPicker();
+    if (boxMenuOpen()) fillBoxMenu();
     // (the ☰ list-edit button was removed: rename/delete/reorder live inside the list menu)
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-sbx-ideas-hint3"); }
-    panels.innerHTML = searchRaw() ? searchView() : (!cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>");
+    panels.innerHTML = searchRaw() ? searchView() : (!cur ? '<div class="card empty"><p>' + esc(curBox() ? t("boxEmpty") : t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>");
     document.querySelectorAll(".addform input,.addform textarea").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
     growAll();
@@ -913,6 +1049,8 @@
     }
     if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
     sumNow();
+    document.querySelectorAll(".e-note, .notein").forEach(paintNoteMax);
+    paintNotesAll();
     rendering = false;
     setStatus();
   }
@@ -924,7 +1062,7 @@
     if (!text) { render(); return; }
     var p = {};
     if (text !== label(x)) { p.text = text; p.seed = null; } // once edited, the first item keeps its own text
-    var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt;
+    var nt = cleanNote(ed.querySelector(".e-note").value); if (nt !== (x.note || "")) p.note = nt;
     var pe = ed.querySelector(".e-price"), pv = pe ? parsePrice(pe.value) : (typeof x.price === "number" ? x.price : null);
     if (typeof pv === "number" && isNaN(pv)) { editing = id; pe.classList.add("bad"); pe.focus(); return; }
     if (pv !== (typeof x.price === "number" ? x.price : null)) p.price = pv;
@@ -975,8 +1113,9 @@
     return w;
   }
   function closeSheet() { var w = $("sheet"); if (!w) return; var f = w.onClose; w.onClose = null; w.parentNode.removeChild(w); if (f) f(); }
-  function nameSheet(title, value, isNew, done) {
-    var w = sheet('<h3>' + esc(title) + '</h3><form class="sform" autocomplete="off"><input type="text" class="s-name" maxlength="40" enterkeyhint="done" value="' + esc(value || "") + '" placeholder="' + esc(t("catPh")) + '" aria-label="' + esc(t("catPh")) + '">' +
+  function nameSheet(title, value, isNew, done, ph) {
+    ph = ph || t("catPh");
+    var w = sheet('<h3>' + esc(title) + '</h3><form class="sform" autocomplete="off"><input type="text" class="s-name" maxlength="40" enterkeyhint="done" value="' + esc(value || "") + '" placeholder="' + esc(ph) + '" aria-label="' + esc(ph) + '">' +
       '<div class="row"><button type="submit" class="btn pri">' + esc(t(isNew ? "create" : "save")) + '</button><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div></form>",
       function (a) { if (a === "x") closeSheet(); });
     w.querySelector("form").addEventListener("submit", function (e) {
@@ -1051,6 +1190,95 @@
     };
   }
 
+  function paintBoxPicker() {
+    var bn = $("box-name"), bp = $("box-picker"), bid = curBox(), br = bid && boxRec(bid);
+    if (!bn || !bp) return;
+    bn.textContent = br && !br.gone ? (br.name || "…") : t("boxDefault");
+    bp.setAttribute("aria-label", t("boxLabel") + ": " + bn.textContent);
+    bp.classList.toggle("empty", !(br && !br.gone));
+  }
+  function paintNotesAll() {
+    var bar = $("notesbar"), b = $("notes-all"), any = false, pool;
+    if (!bar || !b) return;
+    pool = searchRaw() ? cats() : listsNow();
+    pool.forEach(function (c) { if (any) return; live(c.cat).forEach(function (x) { if (x.note) any = true; }); });
+    if (!uid || (!any && !notePrefs().all)) { bar.hidden = true; return; }
+    bar.hidden = false;
+    var hiding = !!notePrefs().all;
+    b.textContent = t(hiding ? "notesShow" : "notesHide");
+    b.setAttribute("aria-pressed", hiding ? "true" : "false");
+  }
+  var bmOpt = null;
+  function boxMenuOpen() { var m = $("bmenu"); return m && !m.hidden; }
+  function closeBoxMenu() {
+    bmOpt = null;
+    var m = $("bmenu"), p = $("box-picker");
+    if (m) m.hidden = true;
+    if (p) p.setAttribute("aria-expanded", "false");
+  }
+  function fillBoxMenu() {
+    var m = $("bmenu"), cur = curBox(); if (!m) return;
+    function row(id, name, on, canEdit) {
+      var open = canEdit && bmOpt === id, key = id || "all";
+      return '<li class="erow' + (on ? " cur" : "") + '" data-box="' + esc(key) + '">' +
+        '<button type="button" class="popt pm-name" role="option" data-box="' + esc(key) + '" aria-selected="' + on + '"><span class="pn">' + esc(name) + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
+        (canEdit ? '<button type="button" class="eic pm-more' + (open ? " on" : "") + '" data-box="opt:' + esc(id) + '" aria-expanded="' + open + '" aria-label="' + esc(t("optMenu") + ": " + name) + '">⋮</button>' : "") +
+        "</li>" +
+        (open ? '<li class="pm-opts" data-opts="' + esc(id) + '">' +
+          '<button type="button" class="pm-oi" data-box="ren:' + esc(id) + '"><span aria-hidden="true">✏️</span>' + esc(t("renameShort")) + "</button>" +
+          '<button type="button" class="pm-oi pm-del" data-box="del:' + esc(id) + '"><span aria-hidden="true">🗑</span>' + esc(t("boxDel")) + "</button></li>" : "");
+    }
+    var rows = row("", t("boxDefault"), !cur, false);
+    boxes().forEach(function (b) { rows += row(b.box, b.name, cur === b.box, true); });
+    m.innerHTML = '<div class="pm-head"><span class="pm-title">' + esc(t("boxLabel")) + "</span></div>" +
+      '<ul class="pm-list">' + rows + '</ul><button type="button" class="popt padd" data-box="+">' + esc("＋ " + t("boxAdd")) + "</button>";
+  }
+  function openBoxMenu() {
+    hideHint(); closeMenu();
+    var m = $("bmenu"), p = $("box-picker"); if (!m || !p) return;
+    fillBoxMenu(); m.hidden = false; p.setAttribute("aria-expanded", "true");
+    var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} }
+  }
+  function moveListBox(cid) {
+    var c = catOf(cid); if (!c) return;
+    var cur = listBoxId(c);
+    var html = '<h3>' + esc(t("boxMove")) + '</h3><p class="mnote">' + esc(catName(c)) + '</p><div class="mlist">' +
+      '<button type="button" class="mi" data-s="tobox:"><span class="mn">' + esc(t("boxDefault")) + "</span>" + (cur ? "" : '<span class="mc">✓</span>') + "</button>" +
+      boxes().map(function (b) { return '<button type="button" class="mi" data-s="tobox:' + esc(b.box) + '"><span class="mn">' + esc(b.name) + "</span>" + (cur === b.box ? '<span class="mc">✓</span>' : "") + "</button>"; }).join("") +
+      '</div><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + "</button>";
+    sheet(html, function (a) {
+      if (a === "x" || a.indexOf("tobox:") !== 0) { closeSheet(); return; }
+      var bid = a.slice(6);
+      closeSheet();
+      if ((bid || "") === cur) return;
+      upCat(cid, { box: bid || null });
+      changed();
+    });
+  }
+  function boxAction(p) {
+    if (p === "+") {
+      nameSheet(t("boxAdd"), "", true, function (v) {
+        var id = addBox(v);
+        if (!id) return;
+        boxTab = id; lsSet("rg-sbx-ideas-box", id); closeBoxMenu(); changed();
+      }, t("boxPh"));
+      return;
+    }
+    if (p.indexOf("opt:") === 0) { var oid = p.slice(4); bmOpt = bmOpt === oid ? null : oid; fillBoxMenu(); return; }
+    if (p.indexOf("ren:") === 0) {
+      var rid = p.slice(4), rr = boxRec(rid); if (!rr) return;
+      bmOpt = null; fillBoxMenu();
+      nameSheet(t("boxRename"), rr.name || "", false, function (v) { if (v && v !== (rr.name || "")) { upBox(rid, { name: v }); changed(); } }, t("boxPh"));
+      return;
+    }
+    if (p.indexOf("del:") === 0) {
+      var did = p.slice(4), dr = boxRec(did); if (!dr) return;
+      if (window.confirm(t("boxDelAsk").replace("{x}", dr.name || ""))) { delBox(did); closeBoxMenu(); changed(); }
+      return;
+    }
+    boxTab = p === "all" ? "" : (p || ""); lsSet("rg-sbx-ideas-box", boxTab); closeBoxMenu(); render();
+  }
+
   /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
   var pmEdit = false, pmSort = null;
   function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
@@ -1063,7 +1291,7 @@
   var pmOpt = null, pmMove = false;
   function fillMenu() {
     var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
-    var q = searchRaw(), gl = catsG(menuG);
+    var q = searchRaw(), gl = listsNow();
     if (q && !pmMove) gl = gl.filter(function (c) { return listHit(c, q); }); // display filter only; move mode keeps every list so order is never saved from a subset
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
     var head = '<div class="pm-head"><span class="pm-title">' + esc(pmMove ? t("moveNote") : t("pickerPh").replace("{n}", menuG)) + "</span>" +
@@ -1083,6 +1311,7 @@
           '<button type="button" class="pm-oi" data-pick="ren:' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
           '<button type="button" class="pm-oi" data-pick="prc:' + id + '" aria-pressed="' + pr + '"><span aria-hidden="true">₪</span>' + esc(t("optPrice")) + '<b class="pm-st' + (pr ? " on" : "") + '">' + esc(pr ? t("stOn") : t("stOff")) + "</b></button>" +
           '<button type="button" class="pm-oi" data-pick="chk:' + id + '"><span aria-hidden="true">' + (ckm ? "☰" : "☑") + "</span>" + esc(t(ckm ? "optToList" : "optToCheck")) + "</button>" +
+          '<button type="button" class="pm-oi" data-pick="box:' + id + '"><span aria-hidden="true">▣</span>' + esc(t("boxMove")) + "</button>" +
           '<button type="button" class="pm-oi pm-del" data-pick="del:' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
     m.innerHTML = head + '<ul class="pm-list' + (pmMove ? " editing" : "") + '">' + rows + "</ul>" + (pmMove ? "" : '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>");
@@ -1090,7 +1319,7 @@
     if (pmOpt) { var ob = m.querySelector(".pm-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e) {} }
   }
   function pickerEl(g) { return $(g === 1 ? "picker" : "picker" + g); }
-  function openMenu(g) { hideHint(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
+  function openMenu(g) { hideHint(); closeBoxMenu(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
   function menuAction(p) {
     if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
     if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }, menuG); return; }
@@ -1099,9 +1328,9 @@
     if (p.indexOf("opt:") === 0) { pmOpt = pmOpt === cid ? null : cid; fillMenu(); return; }
     if (p.indexOf("mov:") === 0) { pmOpt = null; pmMove = true; fillMenu(); return; }
     if (p.indexOf("upp:") === 0 || p.indexOf("dwn:") === 0) {
-      var ids = catsG(menuG).map(function (x) { return x.cat; }), i = ids.indexOf(cid), j = p.indexOf("upp:") === 0 ? i - 1 : i + 1;
+      var ids = listsNow().map(function (x) { return x.cat; }), i = ids.indexOf(cid), j = p.indexOf("upp:") === 0 ? i - 1 : i + 1;
       if (i < 0 || j < 0 || j >= ids.length) return;
-      ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); changed();
+      ids.splice(j, 0, ids.splice(i, 1)[0]); orderWithin(ids); changed();
       var mb = $("pmenu").querySelector('[data-pick="' + p + '"]'); if (mb && !mb.disabled) mb.focus(); else { var li2 = $("pmenu").querySelector('[data-cat="' + cid + '"]'); if (li2) li2.scrollIntoView({ block: "nearest" }); }
       return;
     }
@@ -1109,6 +1338,7 @@
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
     if (p.indexOf("chk:") === 0) { if (c) { upCat(cid, { check: isChk(cid) ? null : 1 }); changed(); } return; }
+    if (p.indexOf("box:") === 0) { pmOpt = null; fillMenu(); moveListBox(cid); return; }
     if (p.indexOf("del:") === 0) {
       if (!c) return; if (cats().length <= 1) { window.alert(t("lastCat")); return; }
       if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-sbx-ideas-tab-cur", curTab()); } changed(); }
@@ -1130,7 +1360,7 @@
     function upE(e) {
       if (!pmSort || !sd || e.pointerId !== sd.pid) return;
       var r = pmSort.end(); pmSort = null; sd = null; noClick = true; setTimeout(function () { noClick = false; }, 350);
-      if (r.moved) { setOrder(r.order.map(function (li) { return li.getAttribute("data-cat"); })); changed(); } else fillMenu();
+      if (r.moved) { orderWithin(r.order.map(function (li) { return li.getAttribute("data-cat"); })); changed(); } else fillMenu();
     }
     m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
   }
@@ -1211,13 +1441,20 @@
 
   function bootLists() {
     GROUPS.forEach(function (g) { var p = pickerEl(g); if (p) p.addEventListener("click", function (e) { e.stopPropagation(); var same = menuOpen() && menuG === g; if (menuOpen()) closeMenu(); if (!same) openMenu(g); }); });
+    var bp = $("box-picker");
+    if (bp) bp.addEventListener("click", function (e) { e.stopPropagation(); if (boxMenuOpen()) closeBoxMenu(); else openBoxMenu(); });
+    var bm = $("bmenu");
+    if (bm) bm.addEventListener("click", function (e) {
+      e.stopPropagation(); var b = e.target.closest("[data-box]"); if (!b) return;
+      boxAction(b.getAttribute("data-box"));
+    });
     $("pmenu").addEventListener("click", function (e) {
       e.stopPropagation(); if (noClick) { noClick = false; return; } var b = e.target.closest("[data-pick]"); if (!b) return;
       menuAction(b.getAttribute("data-pick"));
     });
     bootMenuDrag();
-    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest(".listbars") && !e.target.closest("#sheet")) closeMenu(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".listbars") && !e.target.closest("#sheet")) { if (menuOpen()) closeMenu(); if (boxMenuOpen()) closeBoxMenu(); } });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("sheet") && (menuOpen() || boxMenuOpen())) { closeMenu(); closeBoxMenu(); var focus = menuG ? pickerEl(menuG) : $("box-picker"); if (focus) focus.focus(); } });
   }
 
   /* ---------- items: swipe right = delete, swipe left = move. The gesture starts on any part of the row
@@ -1304,6 +1541,7 @@
     }
     main.addEventListener("pointerdown", function (e) {
       var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
+      if (e.target.closest(".notetog")) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var h = e.target.closest(".ihandle");
       if (h) { // ☰: horizontal = swipe, vertical = reorder.
@@ -1628,7 +1866,10 @@
       else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
     });
     main.addEventListener("focusout", function (e) { if (!rendering && e.target.getAttribute && e.target.getAttribute("data-price")) commitPrice(e.target); });
-    main.addEventListener("input", function (e) { if (e.target.classList && e.target.classList.contains("grow")) { if (/[\r\n]/.test(e.target.value)) e.target.value = e.target.value.replace(/[\r\n]+/g, " "); grow(e.target); } });
+    main.addEventListener("input", function (e) {
+      if (e.target.classList && (e.target.classList.contains("e-note") || e.target.classList.contains("notein"))) { paintNoteMax(e.target); return; }
+      if (e.target.classList && e.target.classList.contains("grow")) { if (/[\r\n]/.test(e.target.value)) e.target.value = e.target.value.replace(/[\r\n]+/g, " "); grow(e.target); }
+    });
     window.addEventListener("resize", growAll);
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
@@ -1640,6 +1881,7 @@
       if (a === "move") { moveMenu(id); return; }
       if (a === "trash") { delWithUndo(id); return; }
       if (a === "ck") { toggleCk(id); changed(); return; }
+      if (a === "note") { toggleItemNote(id); return; }
       if (a === "edit") { editing = id; render(); }
       else if (a === "save") saveEdit(id);
       else if (a === "cancel") { editing = null; render(); }
@@ -1648,6 +1890,7 @@
     M.onLang(render);
     var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
     var bl = $("backup-link"); if (bl) bl.addEventListener("click", function () { downloadBackup(); });
+    var na = $("notes-all"); if (na) na.addEventListener("click", function () { toggleAllNotes(); });
     window.addEventListener("pagehide", function () { rememberSnap(false); });
     window.RGBeforeLogout = function (proceed) {
       if (!uid || !hasUnsynced()) return true;
