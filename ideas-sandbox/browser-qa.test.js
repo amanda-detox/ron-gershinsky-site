@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v32"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v32");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v33"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v33");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=64") !== -1 && srcs.indexOf("version.js?v=5") !== -1 && srcs.indexOf("rg-sync-status.js?v=10") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=65") !== -1 && srcs.indexOf("version.js?v=6") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v32"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v33"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -158,8 +158,8 @@ async function main() {
     check(choice.indexOf("שינויים שטרם סונכרנו") !== -1, "the question names the unsynced changes");
     await signPage.locator("#rg-choice-back button.no").click();
     await signPage.waitForFunction(function (uid) {
-      var raw = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
-      return raw && raw.indexOf("גיבוי לפני יציאה") !== -1;
+      var raw = localStorage.getItem("rg-sbx-ideas-hist2:" + uid);
+      return raw && raw.indexOf("גיבוי לפני יציאה") !== -1 && raw.indexOf('"fmt":2') !== -1;
     }, UID);
     check(true, "signing out anyway stores a labeled backup in version history");
     check(signErr.length === 0, "the sign-out page runs without a script error");
@@ -233,6 +233,7 @@ async function main() {
     await oldPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await oldPage.addInitScript(userScript(
       cacheScript("CURRENT-NOW", 5000, true, "ideas") +
+      "localStorage.removeItem('rg-sbx-ideas-hist2:" + UID + "');" +
       "localStorage.setItem('rg-sbx-ideas-hist:" + UID + "'," + JSON.stringify(JSON.stringify(snaps)) + ");"
     ));
     await oldPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
@@ -264,15 +265,18 @@ async function main() {
       return !sheet && body.indexOf("OLDEST-TEXT") !== -1 && body.indexOf("CURRENT-NOW") === -1;
     });
     var keptOldest = await oldPage.evaluate(function (uid) {
-      var raw = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
-      var rows = raw ? JSON.parse(raw) : [];
+      var legacy = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
+      var raw = localStorage.getItem("rg-sbx-ideas-hist2:" + uid);
+      var doc = raw ? JSON.parse(raw) : null;
+      var rows = doc && doc.snaps ? doc.snaps : [];
       if (window.RGSyncStatus && RGSyncStatus.expandHistory) rows = RGSyncStatus.expandHistory(rows);
-      var hasOld = false, hasNow = false, i;
+      var hasOld = false, hasNow = false, i, legacySame = false;
+      try { legacySame = JSON.parse(legacy).length === 20 && legacy.indexOf("CURRENT-NOW") === -1; } catch (e) { legacySame = false; }
       for (i = 0; i < rows.length; i++) {
         if (rows[i].id === "row-0") hasOld = true;
         if (rows[i].data && rows[i].data.a && rows[i].data.a.text === "CURRENT-NOW") hasNow = true;
       }
-      return hasOld && hasNow && rows.length === 20;
+      return hasOld && hasNow && rows.length === 20 && doc && doc.fmt === 2 && legacySame;
     }, UID);
     check(keptOldest, "restoring the oldest row at the cap changes the list and keeps that row");
     var clashText = await oldPage.locator("#clash").innerText();
