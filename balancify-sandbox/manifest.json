@@ -1,8 +1,8 @@
 {
   "id": "/ron-gershinsky-site/balancify-sandbox/",
-  "name": "באלאנסיפיי · Balancify sandbox",
-  "short_name": "באלאנסיפיי SB",
-  "description": "הרגעה, איזון וזרימה · Calm, balance and flow",
+  "name": "איזוניפיי · Balancify sandbox",
+  "short_name": "איזוניפיי SB",
+  "description": "איזוניפיי · הרגעה, איזון וזרימה · Calm, balance and flow",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
