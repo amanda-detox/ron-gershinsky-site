@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v29"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v29");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v30"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v30");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=61") !== -1 && srcs.indexOf("version.js?v=2") !== -1 && srcs.indexOf("rg-sync-status.js?v=7") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=62") !== -1 && srcs.indexOf("version.js?v=3") !== -1 && srcs.indexOf("rg-sync-status.js?v=8") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v29"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v30"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -626,6 +626,57 @@ async function main() {
     if (featErr.length || featBErr.length) console.error(featErr.concat(featBErr).join(" | "));
     await featB.close();
     await feat.close();
+
+    var layItems = {
+      a1: { id: "a1", sec: "ideas", text: "כותרת", note: new Array(801).join("ש"), done: false, order: 1, created: 1, at: 1 }
+    };
+    var lay = await browser.newContext({ viewport: { width: 320, height: 700 }, serviceWorkers: "block" });
+    var layPage = await lay.newPage();
+    await layPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await layPage.addInitScript(userScript("localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify({ items: layItems, pending: false, seeded: true })) + ");"));
+    await layPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await layPage.waitForSelector('[data-id="a1"] .notetog');
+    var narrow = await layPage.evaluate(function () {
+      var row = document.querySelector('[data-id="a1"]');
+      var title = row.querySelector(".txt");
+      var tog = row.querySelector(".notetog");
+      var note = row.querySelector(".note");
+      var rb = row.getBoundingClientRect();
+      var tb = title.getBoundingClientRect();
+      var gb = tog.getBoundingClientRect();
+      var nb = note.getBoundingClientRect();
+      return {
+        togTop: Math.round(gb.top - tb.top),
+        noteW: Math.round(nb.width),
+        rowW: Math.round(rb.width),
+        color: getComputedStyle(note).color
+      };
+    });
+    check(narrow.togTop <= 20 && narrow.togTop >= -8, "the note toggle sits at the top of a long row, next to the title");
+    check(narrow.noteW >= narrow.rowW - 8, "at 320px the note uses the full row width");
+    check(narrow.color === "rgb(246, 237, 212)", "dark note text is cream, not pale blue");
+    await layPage.evaluate(function () { document.documentElement.setAttribute("data-theme", "light"); });
+    var lightNote = await layPage.evaluate(function () { return getComputedStyle(document.querySelector('[data-id="a1"] .note')).color; });
+    check(lightNote === "rgb(11, 31, 77)", "light note text is the body navy");
+    await layPage.setViewportSize({ width: 1100, height: 800 });
+    await layPage.click("#box-picker");
+    await layPage.waitForSelector("#bmenu:not([hidden])");
+    var boxW = await layPage.evaluate(function () {
+      var b = document.getElementById("box-picker").getBoundingClientRect();
+      var m = document.getElementById("bmenu").getBoundingClientRect();
+      return { bw: Math.round(b.width), mw: Math.round(m.width) };
+    });
+    check(Math.abs(boxW.bw - boxW.mw) <= 2, "the category menu matches its button width");
+    await layPage.click("#box-picker");
+    await layPage.click("#picker");
+    await layPage.waitForSelector("#pmenu:not([hidden])");
+    var listW = await layPage.evaluate(function () {
+      var b = document.getElementById("picker").getBoundingClientRect();
+      var m = document.getElementById("pmenu").getBoundingClientRect();
+      return { bw: Math.round(b.width), mw: Math.round(m.width) };
+    });
+    check(Math.abs(listW.bw - listW.mw) <= 2, "the list menu matches its button width");
+    await lay.close();
   } finally {
     await browser.close();
     server.close();

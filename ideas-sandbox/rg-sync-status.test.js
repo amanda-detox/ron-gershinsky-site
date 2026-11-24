@@ -71,8 +71,8 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=7") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=7") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=2") !== -1 && sw.indexOf("rg-sync-status.js?v=7") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=61") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=8") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=8") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=3") !== -1 && sw.indexOf("rg-sync-status.js?v=8") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=62") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build"') !== -1 && html.indexOf("rg-sbx-ideas-v21") === -1 && app.indexOf("RG_SBX_IDEAS_CACHE") !== -1 && app.indexOf("function paintBuild") !== -1, "the on-screen version is painted from the shared cache name");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
@@ -290,9 +290,38 @@ assert(qver(html, "app.js") >= 52 && qver(sw, "app.js") === qver(html, "app.js")
 assert(qver(html, "rg-sync-status.js") >= 7 && qver(sw, "rg-sync-status.js") === qver(html, "rg-sync-status.js"), "rg-sync-status.js query param is bumped and identical in index.html and sw.js");
 assert(qver(html, "rg-account.js") >= 2 && qver(sw, "rg-account.js") === qver(html, "rg-account.js"), "rg-account.js query param is bumped and identical in index.html and sw.js");
 var crypto = require("crypto");
+var stressItems = {}, si, stressNote = new Array(2501).join("א");
+for (si = 0; si < 102; si++) {
+  stressItems["i" + si] = { id: "i" + si, sec: "ideas", text: "פריט " + si, done: false, order: si, created: 1000 + si, at: 1000 + si };
+  if (si < 70) stressItems["i" + si].note = stressNote;
+}
+var stressLive = JSON.stringify({ items: stressItems, pending: false, seeded: true }).length;
+var stressHist = [], sv, stressCopy;
+for (sv = 0; sv < 20; sv++) {
+  stressCopy = JSON.parse(JSON.stringify(stressItems));
+  stressCopy.i0.at = 2000 + sv;
+  stressCopy.i0.text = "עריכה " + sv;
+  stressHist = SS.pushHistory(stressHist, stressCopy, 3000 + sv, true);
+}
+var stressBak = [];
+for (sv = 0; sv < 5; sv++) stressBak.push({ t: sv, items: JSON.parse(JSON.stringify(stressItems)) });
+var beforeHist = JSON.stringify(stressHist).length, beforeBak = JSON.stringify(stressBak).length;
+var packedStress = SS.packHistory(stressHist);
+var afterHist = JSON.stringify(packedStress).length;
+var cappedBak = SS.capList(stressBak, 5, SS.BAK_BYTES);
+var afterBak = JSON.stringify(cappedBak).length;
+var beforeTotal = stressLive + beforeHist + beforeBak;
+var afterTotal = stressLive + afterHist + afterBak;
+var expandedStress = SS.expandHistory(packedStress);
+var newestStress = expandedStress[expandedStress.length - 1];
+assert(beforeTotal > afterTotal * 3 && afterHist < beforeHist / 5 && newestStress.data.i69.note.length === 2500 && newestStress.data.i0.text === "עריכה 19" && expandedStress[0].data.i0.text === "עריכה 0", "stress storage " + beforeTotal + " -> " + afterTotal + " chars (history " + beforeHist + " -> " + afterHist + ", backups " + beforeBak + " -> " + afterBak + ", live " + stressLive + ")");
+var snapBody = app.slice(app.indexOf("function rememberSnap"), app.indexOf("function pullHistory"));
+assert(snapBody.indexOf("scheduleHistoryPush()") !== -1 && snapBody.indexOf("pushHistoryCloud()") === -1, "one edit schedules a single history upload");
+var pruneBody = app.slice(app.indexOf("function pruneFootprint"), app.indexOf("function writeLocal"));
+assert(pruneBody.indexOf("removeItem(cacheKey(uid))") === -1 && pruneBody.indexOf("removeItem(currentCacheKey") === -1 && app.indexOf("function writeLocal") !== -1, "a full disk drops history and backups and keeps the current lists");
 var pins = {
-  "ideas-sandbox/app.js": { v: 61, hash: "c9bb3fdb96d65afb" },
-  "ideas-sandbox/rg-sync-status.js": { v: 7, hash: "48344d1434a77a00" },
+  "ideas-sandbox/app.js": { v: 62, hash: "a5341cf456d14152" },
+  "ideas-sandbox/rg-sync-status.js": { v: 8, hash: "04fd8481ed83bf70" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {

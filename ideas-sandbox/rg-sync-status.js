@@ -294,31 +294,102 @@
     return { hold: false, reason: "" };
   }
 
-  var HIST_MAX = 20, HIST_CLOUD_MAX = 12;
+  var HIST_MAX = 20, HIST_CLOUD_MAX = 12, HIST_BYTES = 480 * 1024, BAK_BYTES = 480 * 1024;
   function cloneDoc(items) {
     try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
   }
   function pushHistory(list, items, t, force, meta) {
-    list = Array.isArray(list) ? list.slice() : [];
-    var sum = summarize(items), data = cloneDoc(items), last = list[list.length - 1];
-    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return list;
-    var row = { id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data };
+    var src = Array.isArray(list) ? list : [];
+    var sum = summarize(items), data = cloneDoc(items), last = src[src.length - 1];
+    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return src;
+    var next = src.slice();
+    var row = { id: String(t) + "-" + next.length, t: t, lists: sum.lists, items: sum.items, data: data };
     if (meta && meta.label) row.label = meta.label;
     if (meta && meta.id) row.id = meta.id;
     if (meta && meta.clash) row.clash = 1;
-    list.push(row);
+    next.push(row);
     var keep = meta && meta.keepId;
-    while (list.length > HIST_MAX) {
+    while (next.length > HIST_MAX) {
       var dropAt = -1, j;
-      for (j = 0; j < list.length; j++) {
-        if (keep && list[j] && list[j].id === keep) continue;
+      for (j = 0; j < next.length; j++) {
+        if (keep && next[j] && next[j].id === keep) continue;
         dropAt = j;
         break;
       }
       if (dropAt < 0) break;
-      list.splice(dropAt, 1);
+      next.splice(dropAt, 1);
     }
-    return list;
+    return next;
+  }
+  function diffOf(prev, next) {
+    var changed = {}, removed = [], k, same = true;
+    prev = prev || {};
+    next = next || {};
+    for (k in next) {
+      if (JSON.stringify(prev[k]) !== JSON.stringify(next[k])) { changed[k] = next[k]; same = false; }
+    }
+    for (k in prev) if (!Object.prototype.hasOwnProperty.call(next, k)) { removed.push(k); same = false; }
+    return same ? { changed: {}, removed: [] } : { changed: changed, removed: removed };
+  }
+  function applyDiff(base, diff) {
+    var out = cloneDoc(base || {}), k, i;
+    diff = diff || {};
+    if (diff.changed) for (k in diff.changed) out[k] = cloneDoc(diff.changed[k]);
+    if (diff.removed) for (i = 0; i < diff.removed.length; i++) delete out[diff.removed[i]];
+    return out;
+  }
+  /* Rows may be a full copy (`data`) or a diff from the previous row. Expand walks forward so restore still sees a whole list. */
+  function expandHistory(list) {
+    var out = [], i, row, data = null, y, k;
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      row = list[i];
+      if (!row || typeof row !== "object") continue;
+      if (row.data && typeof row.data === "object") data = cloneDoc(row.data);
+      else if (row.diff) data = applyDiff(data || {}, row.diff);
+      else data = data ? cloneDoc(data) : {};
+      y = {};
+      for (k in row) if (k !== "diff") y[k] = row[k];
+      y.data = data || {};
+      out.push(y);
+    }
+    return out;
+  }
+  function historyRow(row, data, diff) {
+    var y = {}, k;
+    for (k in row) if (k !== "data" && k !== "diff") y[k] = row[k];
+    if (diff) y.diff = diff;
+    else y.data = data;
+    return y;
+  }
+  /* Keep the newest rows. The oldest kept row is a full copy; later rows are only what changed. Always keeps the newest row. */
+  function packHistory(list) {
+    var full = expandHistory(list), packed, prev, i, row, diff;
+    function emit(rows) {
+      var out = [], p = null, j, r, d;
+      for (j = 0; j < rows.length; j++) {
+        r = rows[j];
+        if (j === 0 || j === rows.length - 1 || !p) out.push(historyRow(r, cloneDoc(r.data), null));
+        else {
+          d = diffOf(p, r.data);
+          out.push(historyRow(r, null, d));
+        }
+        p = r.data;
+      }
+      return out;
+    }
+    packed = emit(full);
+    while (full.length > 1 && JSON.stringify(packed).length > HIST_BYTES) {
+      full.shift();
+      packed = emit(full);
+    }
+    return packed;
+  }
+  function capList(list, maxN, maxBytes) {
+    var next = Array.isArray(list) ? list.slice() : [];
+    while (next.length > maxN) next.shift();
+    while (next.length > 1 && JSON.stringify(next).length > maxBytes) next.shift();
+    return next;
   }
   function planRestore(list, current, versionId, now) {
     var src = Array.isArray(list) ? list.slice() : [], hit = null, i;
@@ -478,6 +549,7 @@
     for (i = 0; i < C.length; i++) add(C[i]);
     all.sort(function (a, b) { return a.t - b.t; });
     max = max || HIST_CLOUD_MAX;
+    all = expandHistory(all);
     while (all.length > max) all.shift();
     return { v: 1, snaps: all };
   }
@@ -757,7 +829,12 @@
     STALE_MS: STALE_MS,
     HIST_MAX: HIST_MAX,
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
+    HIST_BYTES: HIST_BYTES,
+    BAK_BYTES: BAK_BYTES,
     pushHistory: pushHistory,
+    packHistory: packHistory,
+    expandHistory: expandHistory,
+    capList: capList,
     planRestore: planRestore,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,
