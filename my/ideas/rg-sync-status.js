@@ -1,6 +1,8 @@
 /* Live private Listify (my/ideas/). App id myideas, storage prefix rg-myideas-.
-   Reads still abort after 15s. Uploads get 60s. A large deletion or a stale
-   device asks before any upload and never deletes on its own. */
+   Cloud rows stay in database ron, table userdata, app myideas.
+   Reads still abort after 15s. A full-document upload gets 60s, then a visible
+   cutoff and a retry with growing backoff. A large-deletion question stays up
+   until it is answered and never deletes on its own. */
 (function (root) {
   "use strict";
   var FAIL_LIMIT = 2;
@@ -292,31 +294,113 @@
     return { hold: false, reason: "" };
   }
 
-  var HIST_MAX = 20, HIST_CLOUD_MAX = 12;
+  var HIST_MAX = 20, HIST_CLOUD_MAX = 12, HIST_BYTES = 480 * 1024, BAK_BYTES = 480 * 1024;
   function cloneDoc(items) {
     try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
   }
   function pushHistory(list, items, t, force, meta) {
-    list = Array.isArray(list) ? list.slice() : [];
-    var sum = summarize(items), data = cloneDoc(items), last = list[list.length - 1];
-    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return list;
-    var row = { id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data };
+    var src = Array.isArray(list) ? list : [];
+    var sum = summarize(items), data = cloneDoc(items), last = src[src.length - 1];
+    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return src;
+    var next = src.slice();
+    var row = { id: String(t) + "-" + next.length, t: t, lists: sum.lists, items: sum.items, data: data };
     if (meta && meta.label) row.label = meta.label;
     if (meta && meta.id) row.id = meta.id;
     if (meta && meta.clash) row.clash = 1;
-    list.push(row);
+    next.push(row);
     var keep = meta && meta.keepId;
-    while (list.length > HIST_MAX) {
+    while (next.length > HIST_MAX) {
       var dropAt = -1, j;
-      for (j = 0; j < list.length; j++) {
-        if (keep && list[j] && list[j].id === keep) continue;
+      for (j = 0; j < next.length; j++) {
+        if (keep && next[j] && next[j].id === keep) continue;
         dropAt = j;
         break;
       }
       if (dropAt < 0) break;
-      list.splice(dropAt, 1);
+      next.splice(dropAt, 1);
     }
-    return list;
+    return next;
+  }
+  function diffOf(prev, next) {
+    var changed = {}, removed = [], k, same = true;
+    prev = prev || {};
+    next = next || {};
+    for (k in next) {
+      if (JSON.stringify(prev[k]) !== JSON.stringify(next[k])) { changed[k] = next[k]; same = false; }
+    }
+    for (k in prev) if (!Object.prototype.hasOwnProperty.call(next, k)) { removed.push(k); same = false; }
+    return same ? { changed: {}, removed: [] } : { changed: changed, removed: removed };
+  }
+  function applyDiff(base, diff) {
+    var out = cloneDoc(base || {}), k, i;
+    diff = diff || {};
+    if (diff.changed) for (k in diff.changed) out[k] = cloneDoc(diff.changed[k]);
+    if (diff.removed) for (i = 0; i < diff.removed.length; i++) delete out[diff.removed[i]];
+    return out;
+  }
+  /* Rows may be a full copy (`data`) or a diff from the previous row. Expand walks forward so restore still sees a whole list. */
+  function expandHistory(list) {
+    var out = [], i, row, data = null, y, k;
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      row = list[i];
+      if (!row || typeof row !== "object") continue;
+      if (row.data && typeof row.data === "object") data = cloneDoc(row.data);
+      else if (row.diff) data = applyDiff(data || {}, row.diff);
+      else data = data ? cloneDoc(data) : {};
+      y = {};
+      for (k in row) if (k !== "diff") y[k] = row[k];
+      y.data = data || {};
+      out.push(y);
+    }
+    return out;
+  }
+  function historyRow(row, data, diff) {
+    var y = {}, k;
+    for (k in row) if (k !== "data" && k !== "diff") y[k] = row[k];
+    if (diff) y.diff = diff;
+    else y.data = data;
+    return y;
+  }
+  /* Keep the newest rows. The oldest kept row is a full copy; later rows are only what changed. Always keeps the newest row. */
+  function packHistory(list) {
+    var full = expandHistory(list), packed, prev, i, row, diff;
+    function emit(rows) {
+      var out = [], p = null, j, r, d;
+      for (j = 0; j < rows.length; j++) {
+        r = rows[j];
+        if (j === 0 || j === rows.length - 1 || !p) out.push(historyRow(r, cloneDoc(r.data), null));
+        else {
+          d = diffOf(p, r.data);
+          out.push(historyRow(r, null, d));
+        }
+        p = r.data;
+      }
+      return out;
+    }
+    packed = emit(full);
+    while (full.length > 1 && JSON.stringify(packed).length > HIST_BYTES) {
+      full.shift();
+      packed = emit(full);
+    }
+    return packed;
+  }
+  function capList(list, maxN, maxBytes) {
+    var next = Array.isArray(list) ? list.slice() : [];
+    while (next.length > maxN) next.shift();
+    while (next.length > 1 && JSON.stringify(next).length > maxBytes) next.shift();
+    return next;
+  }
+  /* Backup rows only. A preupgrade row is the lists from before this upgrade and is kept while holdPreupgrade is set. */
+  function capBackups(list, maxN, maxBytes, holdPreupgrade) {
+    var held = [], rest = [], i, row;
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      row = list[i];
+      if (holdPreupgrade && row && row.preupgrade) held.push(row);
+      else rest.push(row);
+    }
+    return held.concat(capList(rest, maxN, maxBytes));
   }
   function planRestore(list, current, versionId, now) {
     var src = Array.isArray(list) ? list.slice() : [], hit = null, i;
@@ -476,6 +560,7 @@
     for (i = 0; i < C.length; i++) add(C[i]);
     all.sort(function (a, b) { return a.t - b.t; });
     max = max || HIST_CLOUD_MAX;
+    all = expandHistory(all);
     while (all.length > max) all.shift();
     return { v: 1, snaps: all };
   }
@@ -702,11 +787,11 @@
     } catch (e) {}
   }
 
-  /* Page-local. The sandbox account helper calls fetchWithTimeout with REQ_MS for every
+  /* Page-local. The account helper calls fetchWithTimeout with REQ_MS for every
      call; timeoutFor still gives uploads 60s. A request that already carries a signal
      keeps that outer limit instead of starting a second 15s abort. */
   function installPageTimeout() {
-    if (typeof document === "undefined" || !root.fetch || root.fetch.__rgSbxIdeasTimeout) return;
+    if (typeof document === "undefined" || !root.fetch || root.fetch.__rgMyIdeasTimeout) return;
     var orig = root.fetch.bind(root);
     function wrapped(url, opts) {
       var href = "";
@@ -720,7 +805,7 @@
       }
       return orig(url, opts);
     }
-    wrapped.__rgSbxIdeasTimeout = true;
+    wrapped.__rgMyIdeasTimeout = true;
     root.fetch = wrapped;
   }
 
@@ -755,7 +840,13 @@
     STALE_MS: STALE_MS,
     HIST_MAX: HIST_MAX,
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
+    HIST_BYTES: HIST_BYTES,
+    BAK_BYTES: BAK_BYTES,
     pushHistory: pushHistory,
+    packHistory: packHistory,
+    expandHistory: expandHistory,
+    capList: capList,
+    capBackups: capBackups,
     planRestore: planRestore,
     adoptRestore: adoptRestore,
     fieldConflicts: fieldConflicts,

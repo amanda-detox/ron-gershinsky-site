@@ -1,9 +1,12 @@
 /* Restore from a JSON file for live Listify (my/ideas/).
-   commit() writes only rg-myideas-* keys. It refuses sandbox keys. */
+   Reads a listify-restore file, or a site export's myideas device/cloud value, and
+   returns a preview. commit() writes only rg-myideas-* keys. It refuses sandbox keys.
+   A site export is read from the rg-myideas-v1 device copy. Sandbox device keys are skipped. */
 (function (root) {
   "use strict";
   var SBX = "rg-myideas-";
   var FOREIGN = "rg-sbx-ideas-";
+  var LIVE_DEVICE = "rg-myideas-v1:";
   var BUILTIN_POS = { ideas: 0, tasks: 1, goals: 2 };
   var BAK_N = 5;
 
@@ -74,7 +77,7 @@
       keys = own(device);
       for (i = 0; i < keys.length; i++) {
         k = keys[i];
-        if (k.indexOf(LIVE_DEVICE) !== 0) continue;
+        if (k.indexOf(FOREIGN) === 0 || k.indexOf(LIVE_DEVICE) !== 0) continue;
         items = itemsFrom(device[k], 0);
         if (!items || !hasOwn(cleanItems(items))) continue;
         if (!best || better(rankOf(items, k), bestRank)) { best = items; bestRank = rankOf(items, k); }
@@ -170,6 +173,16 @@
     p = function (n) { return (n < 10 ? "0" : "") + n; };
     return p(d.getDate()) + "/" + p(d.getMonth() + 1) + "/" + d.getFullYear() + " " + p(d.getHours()) + ":" + p(d.getMinutes());
   }
+  /* Current lists as a file this app can read back. No network and no account check. */
+  function buildFile(items, when) {
+    return {
+      format: "listify-restore",
+      createdAtLocal: formatWhen(when),
+      source: "listify",
+      app: "myideas",
+      value: { v: 1, seeded: true, items: cleanItems(items) }
+    };
+  }
   function uidOk(uid) {
     return typeof uid === "string" && /^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$/.test(uid);
   }
@@ -232,7 +245,7 @@
     return { ok: true };
   }
 
-  var api = { parse: parse, parseText: parseText, summarize: summarize, formatWhen: formatWhen, stage: stage, commit: commit };
+  var api = { parse: parse, parseText: parseText, summarize: summarize, formatWhen: formatWhen, buildFile: buildFile, stage: stage, commit: commit };
   root.RGMyIdeasRestore = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

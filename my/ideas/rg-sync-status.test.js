@@ -102,17 +102,39 @@ assert(statusSrc.indexOf("השאר את הענן") !== -1 && statusSrc.indexOf("
 var css = statusSrc.slice(statusSrc.indexOf(".rg-delask-back"), statusSrc.indexOf("@media"));
 assert(statusSrc.indexOf("לחתוך") === -1 && css.indexOf("red") === -1 && css.indexOf("orange") === -1 && css.indexOf("#") === -1, "the popup adds no violent wording and no red, orange, or extra colors");
 assert(statusSrc.indexOf("min-height:48px") !== -1, "popup buttons are 48px tap targets");
-assert(liveHtml.indexOf("rg-sync-status.js?v=8") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=8") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
+assert(liveHtml.indexOf("rg-sync-status.js?v=9") !== -1 && liveHtml.indexOf("rg-sync-status.js?v=9") < liveHtml.indexOf("../../shared/rg-account.js"), "the page helper loads before the shared account script");
 assert(liveHtml.indexOf("../sandbox-shared/") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live private Listify does not load sandbox scripts or the sandbox banner");
 assert(liveHtml.indexOf("<title>Listify</title>") !== -1, "the browser tab stays Listify in English");
-assert(liveSw.indexOf('CACHE = "rg-myideas-v57"') !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
+assert(liveSw.indexOf("var CACHE = RG_MYIDEAS_CACHE") !== -1 && liveSw.indexOf('cache: "no-cache"') !== -1, "the private Listify service worker cache was bumped and revalidates html and js");
 assert(liveHtml.indexOf('updateViaCache:"none"') !== -1 && liveHtml.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1, "a new version reloads only when local edits are safe");
-assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפס"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
+assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפסה"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveHtml.indexOf('id="hist-btn"') !== -1 && liveHtml.indexOf('id="restore-file"') !== -1, "version history and file restore are on the live page");
-assert(liveSw.indexOf("rg-sync-status.js?v=8") !== -1 && liveSw.indexOf("app.js?v=56") !== -1 && liveSw.indexOf("restore.js?v=1") !== -1, "the service worker precaches the new helper and app");
+assert(liveSw.indexOf("rg-sync-status.js?v=9") !== -1 && liveSw.indexOf("app.js?v=58") !== -1 && liveSw.indexOf("restore.js?v=2") !== -1 && liveSw.indexOf("version.js?v=1") !== -1, "the service worker precaches the new helper and app");
 assert(liveHtml.indexOf('id="list-search"') !== -1 && liveIdeas.indexOf("function searchView") !== -1, "search is on the live page and does not replace the app id");
 assert(liveSw.indexOf("icon-maskable-192.png?v=56") !== -1 && liveSw.indexOf("icon-maskable-512.png?v=56") !== -1, "maskable icons are precached under the live cache");
 assert(liveIdeas.indexOf("sbxmyideas") === -1 && liveIdeas.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live keeps its own keys and has no sandbox banner");
+var verFile = fs.readFileSync(path.join(__dirname, "version.js"), "utf8");
+assert(verFile.indexOf('RG_MYIDEAS_CACHE = "rg-myideas-v58"') !== -1 && liveSw.indexOf("rg-myideas-v58") === -1 && liveIdeas.indexOf("rg-myideas-v58") === -1, "the cache name is written once, in version.js");
+assert(liveHtml.indexOf("version.js?v=1") !== -1 && liveHtml.indexOf("version.js?v=1") < liveHtml.indexOf("app.js?v=58") && liveIdeas.indexOf("RG_MYIDEAS_CACHE") !== -1, "the on-screen version is painted from version.js");
+assert(liveHtml.indexOf('id="backup-link"') !== -1 && liveHtml.indexOf('backupLink: "גיבוי"') !== -1 && liveHtml.indexOf('restoreBtn: "שיחזור"') !== -1 && liveHtml.indexOf('id="box-picker"') !== -1 && liveHtml.indexOf('id="notes-all"') !== -1, "backup, restore, categories, and note toggles are on the live page");
+assert(liveHtml.indexOf('dismissKey:"rg-inst-off"') !== -1 && liveHtml.indexOf("underMyHub:true") !== -1 && liveHtml.indexOf("../../shared/rg-install.js?v=1") !== -1, "the install button stays the shared live one");
+assert(SS.LAST_PREFIX === "rg-myideas-lastsync:" && SS.formatSyncTime(new Date(2026, 0, 5, 9, 4).getTime()) === "05/01 09:04", "the sync clock stays on the live key and shows the exact time");
+assert(typeof SS.capBackups === "function" && SS.HIST_BYTES > 0 && SS.BAK_BYTES > 0, "history and backups have a byte cap");
+var preItems = { a: { id: "a", text: "keep-me", at: 4 } };
+var fatBak = [{ t: 1, items: preItems, preupgrade: 1, reason: "before-v58" }];
+var zi;
+for (zi = 0; zi < 6; zi++) fatBak.push({ t: 10 + zi, items: { x: { id: "x", text: new Array(80).join("z") + zi, at: zi } } });
+var heldBak = SS.capBackups(fatBak, 2, 120, true);
+var heldRow = null;
+for (zi = 0; zi < heldBak.length; zi++) if (heldBak[zi].preupgrade) heldRow = heldBak[zi];
+assert(heldRow && heldRow.items.a.text === "keep-me" && JSON.stringify(heldRow.items) === JSON.stringify(preItems), "a byte cap keeps the pre-upgrade list snapshot until sync");
+var released = SS.capBackups(fatBak, 2, 120, false);
+var releasedHit = false;
+for (zi = 0; zi < released.length; zi++) if (released[zi].preupgrade) releasedHit = true;
+assert(releasedHit === false && released.length <= 2, "after one sync the same cap may drop backup extras");
+var snapBody = liveIdeas.slice(liveIdeas.indexOf("function rememberSnap"), liveIdeas.indexOf("function pullHistory"));
+assert(snapBody.indexOf("scheduleHistoryPush()") !== -1 && snapBody.indexOf("pushHistoryCloud()") === -1, "one edit schedules a single history upload");
+assert(liveIdeas.indexOf("removeItem(cacheKey(uid))") === -1 && liveIdeas.indexOf("function keepPreupgrade") !== -1 && liveIdeas.indexOf("if (uid) keepPreupgrade()") < liveIdeas.indexOf("loadLocal(); loadHistory()"), "the current cache is not deleted and the pre-upgrade copy is taken before load");
 
 function never() { return new Promise(function () {}); }
 SS.fetchWithTimeout(never, "/x", {}, 30).then(function () {
