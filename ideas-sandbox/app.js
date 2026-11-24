@@ -717,13 +717,8 @@
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
       noteIncomingClash(history);
-      var snaps = SS.packHistory(SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps);
-      var payload = { v: 1, snaps: snaps };
+      var payload = SS.cloudHistoryPayload(SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps);
       var body = JSON.stringify(payload);
-      if (body.length > 450000) {
-        payload.snaps = SS.packHistory(snaps.slice(-1));
-        body = JSON.stringify(payload);
-      }
       if (body === histSent) return;
       histSent = body;
       return A.set(APP, "history", payload);
@@ -813,7 +808,7 @@
       }
       if (a.indexOf("r:") === 0) { restoreVersion(a.slice(2)); return; }
       if (a.indexOf("h:") === 0) { showCat(a.slice(2)); closeSheet(); changed(); }
-    });
+    }, { immediate: true });
     if (w) w.style.zIndex = "10001";
   }
 
@@ -1162,13 +1157,14 @@
   function askDel(id) { delWithUndo(id); }
 
   /* ---------- sheets (bottom panels) ---------- */
-  function sheet(html, onClick) {
+  function sheet(html, onClick, opts) {
     closeSheet();
     var w = document.createElement("div"); w.className = "sheetwrap"; w.id = "sheet";
     w.innerHTML = '<div class="sheet card" role="dialog" aria-modal="true">' + html + "</div>";
     document.body.appendChild(w);
     var opened = Date.now(); // the finger that opened the sheet (long-press) also sends a late click: ignore clicks in the first moments
-    w.addEventListener("click", function (e) { if (Date.now() - opened < 450) { e.preventDefault(); return; } if (e.target === w) { closeSheet(); return; } var b = e.target.closest("[data-s]"); if (b) onClick(b.getAttribute("data-s"), w, e); });
+    var ready = !!(opts && opts.immediate);
+    w.addEventListener("click", function (e) { if (!ready && Date.now() - opened < 450) { e.preventDefault(); return; } if (e.target === w) { closeSheet(); return; } var b = e.target.closest("[data-s]"); if (b) onClick(b.getAttribute("data-s"), w, e); });
     w.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
     var f = w.querySelector("input") || w.querySelector("button"); if (f) setTimeout(function () { f.focus(); if (f.select) f.select(); }, 30);
     return w;

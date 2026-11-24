@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v30"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v30");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v31"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v31");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=62") !== -1 && srcs.indexOf("version.js?v=3") !== -1 && srcs.indexOf("rg-sync-status.js?v=8") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=63") !== -1 && srcs.indexOf("version.js?v=4") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v30"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v31"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -237,9 +237,26 @@ async function main() {
     ));
     await oldPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
     await oldPage.waitForSelector("#hist-btn");
+    var earlyRestore = await oldPage.evaluate(function () {
+      var open = document.getElementById("hist-btn");
+      if (!open) return "no-history";
+      open.click();
+      var btn = document.querySelector('[data-s="r:row-0"]');
+      if (!btn) return "no-button";
+      if (btn.disabled) return "disabled";
+      btn.click();
+      var sheet = document.getElementById("sheet");
+      var body = document.body ? document.body.innerText : "";
+      if (sheet) return "sheet-open";
+      if (body.indexOf("OLDEST-TEXT") === -1 || body.indexOf("CURRENT-NOW") !== -1) return "not-restored";
+      return "ok";
+    });
+    check(earlyRestore === "ok", "שחזר works on the first click (" + earlyRestore + ")");
+    await oldPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await oldPage.waitForSelector("#hist-btn");
     await oldPage.click("#hist-btn");
     await oldPage.waitForSelector('[data-s="r:row-0"]');
-    await oldPage.waitForTimeout(1000);
+    await oldPage.waitForTimeout(300);
     await oldPage.click('[data-s="r:row-0"]');
     await oldPage.waitForFunction(function () {
       var sheet = document.getElementById("sheet");
