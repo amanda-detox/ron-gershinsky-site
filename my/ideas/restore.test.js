@@ -134,10 +134,10 @@ assert(page.indexOf('restoreTitle: "שיחזור"') !== -1 && page.indexOf("שח
 assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</button>") !== -1 && page.indexOf('searchPh: "חיפוש"') !== -1, "the toolbar says חיפוש, הדפסה, and שיחזור");
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("<title>Listify</title>") !== -1 && page.indexOf('doc: "Listify"') !== -1, "the English tab title stays Listify");
-assert(page.indexOf("version.js?v=2") !== -1 && page.indexOf("version.js?v=2") < page.indexOf("app.js?v=59") && page.indexOf("restore.js?v=2") !== -1, "the page loads version.js, then the bumped app");
-assert(sw.indexOf("var CACHE = RG_MYIDEAS_CACHE") !== -1 && sw.indexOf("version.js?v=2") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=59") !== -1 && sw.indexOf("../../shared/rg-install.js?v=1") !== -1, "the live cache list includes the new files and the shared install script");
+assert(page.indexOf("version.js?v=3") !== -1 && page.indexOf("version.js?v=3") < page.indexOf("app.js?v=60") && page.indexOf("restore.js?v=2") !== -1, "the page loads version.js, then the bumped app");
+assert(sw.indexOf("var CACHE = RG_MYIDEAS_CACHE") !== -1 && sw.indexOf("version.js?v=3") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=60") !== -1 && sw.indexOf("../../shared/rg-install.js?v=1") !== -1, "the live cache list includes the new files and the shared install script");
 var verFile = fs.readFileSync(path.join(root, "version.js"), "utf8");
-assert(verFile.indexOf('RG_MYIDEAS_CACHE = "rg-myideas-v59"') !== -1 && sw.indexOf("rg-myideas-v59") === -1 && app.indexOf("rg-myideas-v59") === -1, "the cache name is written once, in version.js");
+assert(verFile.indexOf('RG_MYIDEAS_CACHE = "rg-myideas-v60"') !== -1 && sw.indexOf("rg-myideas-v60") === -1 && app.indexOf("rg-myideas-v60") === -1, "the cache name is written once, in version.js");
 assert(app.indexOf('BUILD.indexOf("rg-") === 0 ? BUILD.slice(3)') !== -1, "the footer drops the leading rg-");
 assert(app.indexOf('DEFAULT_BOX_ID = "b:"') !== -1 && app.indexOf("function saveDefaultName") !== -1 && app.indexOf("rg-myideas-boxname") === -1, "renaming כללי writes record b: inside the items map and adds no storage key");
 assert(sw.indexOf("icon-maskable-192.png?v=56") !== -1 && manifest.indexOf("icon-maskable-192.png?v=56") !== -1 && manifest.indexOf('"scope": "./"') !== -1 && manifest.indexOf('"/ron-gershinsky-site/my/ideas/"') !== -1, "the live manifest scope and maskable icons stay");
@@ -164,6 +164,9 @@ var delBoxBody = app.slice(app.indexOf("function delBox"), app.indexOf("function
 assert(delBoxBody.indexOf("function delBox") === 0 && delBoxBody.indexOf("del(") === -1 && delBoxBody.indexOf("box: null") !== -1, "deleting a category clears the list link and does not delete lists");
 assert(app.indexOf("NOTE_MAX = 2500") !== -1 && app.indexOf("function cleanNote") !== -1 && app.indexOf("clean(note, 500)") === -1 && app.indexOf('maxlength="500"') === -1, "the note cap is 2500 and notes are not sliced");
 assert(page.indexOf("הגעת לאורך המרבי של הערה") !== -1 && page.indexOf('id="box-picker"') !== -1 && page.indexOf('boxDefault: "כללי"') !== -1 && page.indexOf('id="notes-all"') !== -1, "the category dropdown, the note toggles, and the max-length message are on the live page");
+var boxMenu = app.slice(app.indexOf("function fillBoxMenu"), app.indexOf("function openBoxMenu"));
+assert(boxMenu.indexOf('t("optMove")') !== -1 && boxMenu.indexOf('t("moveNote")') !== -1 && boxMenu.indexOf("pm-h") !== -1 && boxMenu.indexOf('t("editDone")') !== -1 && boxMenu.indexOf('data-box="mov:') !== -1, "every category, including כללי, gets סידור with the list reorder wording");
+assert(app.indexOf("function setBoxOrder") !== -1 && app.indexOf("writeDefault({ pos: n })") !== -1 && app.indexOf("boxorder") === -1 && app.indexOf("function boxViews") !== -1, "category order is a pos field on the existing box records");
 assert(page.indexOf('boxDelKeep: "אי אפשר למחוק את הקטגוריה הזו: אין קטגוריה אחרת, או שיש בה רשימות."') !== -1 && page.indexOf('noteToggle: "הצג/הסתר הערה"') !== -1 && page.indexOf("width: 36px") !== -1 && page.indexOf("height: 36px") !== -1, "כללי can be renamed, delete is blocked in Hebrew, and the note control is 36px");
 assert(page.indexOf("נחתך") === -1 && app.indexOf("נחתך") === -1 && page.indexOf("לחתוך") === -1 && app.indexOf("לחתוך") === -1, "the UI never says a note was cut");
 var longNote = new Array(2501).join("נ");

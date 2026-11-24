@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "sbx-ideas-v34"; });
-    check(true, "the on-screen label shows sbx-ideas-v34");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "sbx-ideas-v35"; });
+    check(true, "the on-screen label shows sbx-ideas-v35");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=66") !== -1 && srcs.indexOf("version.js?v=7") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=67") !== -1 && srcs.indexOf("version.js?v=8") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "sbx-ideas-v34"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "sbx-ideas-v35"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -665,9 +665,10 @@ async function main() {
     var defMenu = await featPage.evaluate(function () {
       var ren = document.querySelector('#bmenu [data-box="ren:"]');
       var del = document.querySelector('#bmenu [data-box="del:"]');
-      return { ren: ren ? ren.textContent : "", del: del ? del.textContent : "" };
+      var mov = document.querySelector('#bmenu [data-box="mov:"]');
+      return { ren: ren ? ren.textContent : "", del: del ? del.textContent : "", mov: mov ? mov.textContent : "" };
     });
-    check(defMenu.ren.indexOf("שינוי שם") !== -1 && defMenu.del.indexOf("מחיקת הקטגוריה") !== -1, "כללי has the same options, including שינוי שם");
+    check(defMenu.ren.indexOf("שינוי שם") !== -1 && defMenu.del.indexOf("מחיקת הקטגוריה") !== -1 && defMenu.mov.indexOf("סידור") !== -1, "כללי has שינוי שם and סידור");
     await featPage.screenshot({ path: "/opt/cursor/artifacts/listify-default-category-menu.png" });
     await featPage.click('#bmenu [data-box="del:"]');
     check(featAsk.some(function (m) { return m.indexOf("אי אפשר למחוק") !== -1; }), "deleting כללי while it has lists is blocked in Hebrew");
@@ -758,6 +759,197 @@ async function main() {
     });
     check(Math.abs(listW.bw - listW.mw) <= 2, "the list menu matches its button width");
     await lay.close();
+
+    var ordItems = {
+      a1: { id: "a1", sec: "ideas", text: "פריט", done: false, order: 1, created: 1, at: 1 },
+      "b:home": { id: "b:home", type: "box", box: "home", name: "בית", pos: 0, created: 10, at: 10 },
+      "b:work": { id: "b:work", type: "box", box: "work", name: "עבודה", pos: 1, created: 20, at: 20 }
+    };
+    var ordStore = {}, ordKeys = [];
+    var ord = await browser.newContext({ viewport: { width: 360, height: 780 }, serviceWorkers: "block" });
+    var ordPage = await ord.newPage();
+    var ordErr = [];
+    ordPage.on("pageerror", function (err) { ordErr.push(String(err)); });
+    await ordPage.route("https://fra.cloud.appwrite.io/**", function (route) {
+      var req = route.request();
+      var url = new URL(req.url());
+      var method = req.method();
+      if (url.pathname === "/v1/account" || url.pathname === "/v1/account/") {
+        return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ $id: UID, email: "qa@example.com", name: "QA", passwordUpdate: "2020-01-01T00:00:00.000+00:00" }) });
+      }
+      var row = url.pathname.match(/\/rows\/([^/]+)$/);
+      var body = {};
+      try { body = JSON.parse(req.postData() || "{}"); } catch (eOrd) {}
+      if (body.data && body.data.key) ordKeys.push((body.data.app || "") + ":" + body.data.key);
+      if (url.pathname.indexOf("/rows") !== -1 && method === "POST") {
+        var cid = body.rowId;
+        ordStore[cid] = body.data && body.data.value;
+        return route.fulfill({ status: 201, contentType: "application/json", body: JSON.stringify({ $id: cid, value: ordStore[cid] || "" }) });
+      }
+      if (row && method === "GET") {
+        if (!Object.prototype.hasOwnProperty.call(ordStore, row[1])) return route.fulfill({ status: 404, contentType: "application/json", body: JSON.stringify({ message: "missing", type: "document_not_found" }) });
+        return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ $id: row[1], value: ordStore[row[1]] }) });
+      }
+      if (row && (method === "PATCH" || method === "PUT")) {
+        ordStore[row[1]] = body.data && body.data.value;
+        return route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ $id: row[1], value: ordStore[row[1]] || "" }) });
+      }
+      if (method === "DELETE") return route.fulfill({ status: 204, body: "" });
+      return route.fulfill({ status: 200, contentType: "application/json", body: "{}" });
+    });
+    await ordPage.addInitScript(userScript("localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(JSON.stringify({ items: ordItems, pending: false, seeded: true })) + ");"));
+    await ordPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await ordPage.waitForFunction(function () { return document.getElementById("box-name") && document.getElementById("box-name").textContent === "כללי" && document.body.innerText.indexOf("פריט") !== -1; });
+    check(await ordPage.evaluate(function () { return document.documentElement.dir; }) === "rtl", "the category page is Hebrew RTL");
+    await ordPage.click("#picker");
+    await ordPage.waitForSelector("#pmenu:not([hidden])");
+    await ordPage.click('[data-pick="opt:ideas"]');
+    await ordPage.click('[data-pick="mov:ideas"]');
+    await ordPage.waitForSelector("#pmenu .pm-h");
+    var listLook = await ordPage.evaluate(function () {
+      var h = document.querySelector("#pmenu .pm-h");
+      var d = document.querySelector("#pmenu .pm-edit");
+      var up = document.querySelector('#pmenu button[data-pick^="upp:"]');
+      return {
+        title: document.querySelector("#pmenu .pm-title").textContent,
+        done: d.textContent,
+        handle: getComputedStyle(h).color,
+        doneBg: getComputedStyle(d).backgroundColor,
+        doneFg: getComputedStyle(d).color,
+        upW: Math.round(up.getBoundingClientRect().width),
+        upH: Math.round(up.getBoundingClientRect().height),
+        grip: h.textContent
+      };
+    });
+    await ordPage.click('[data-pick="mvend"]');
+    await ordPage.click("#picker");
+    await ordPage.click("#box-picker");
+    await ordPage.waitForSelector("#bmenu:not([hidden]) .pm-name");
+    var menuNames = await ordPage.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll("#bmenu .pm-name .pn"), function (n) { return n.textContent; }).join(",");
+    });
+    check(menuNames === "כללי,בית,עבודה", "categories start as כללי, then the saved box order");
+    var optIds = await ordPage.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll("#bmenu .pm-more"), function (b) { return b.getAttribute("data-box"); });
+    });
+    var movLabels = [], oi;
+    for (oi = 0; oi < optIds.length; oi++) {
+      await ordPage.click('#bmenu [data-box="' + optIds[oi] + '"]');
+      movLabels.push(await ordPage.evaluate(function (id) {
+        var btn = document.querySelector('#bmenu [data-box="mov:' + id.slice(4) + '"]');
+        return btn ? btn.textContent : "";
+      }, optIds[oi]));
+      await ordPage.click('#bmenu [data-box="' + optIds[oi] + '"]');
+    }
+    check(movLabels.length >= 3 && movLabels.every(function (s) { return s.indexOf("סידור") !== -1; }), "every category, including כללי, has סידור");
+    await ordPage.click('#bmenu [data-box="opt:"]');
+    await ordPage.click('#bmenu [data-box="mov:"]');
+    await ordPage.waitForSelector("#bmenu .pm-h");
+    var catLook = await ordPage.evaluate(function () {
+      var h = document.querySelector("#bmenu .pm-h");
+      var d = document.querySelector("#bmenu .pm-edit");
+      var up = document.querySelector('#bmenu button[data-box^="upp:"]');
+      var rows = Array.prototype.map.call(document.querySelectorAll("#bmenu .mvrow .pm-mname"), function (n) { return n.textContent; });
+      var ups = document.querySelectorAll('#bmenu .mvrow button[data-box^="upp:"]');
+      var dns = document.querySelectorAll('#bmenu .mvrow button[data-box^="dwn:"]');
+      var menu = document.getElementById("bmenu").getBoundingClientRect();
+      return {
+        title: document.querySelector("#bmenu .pm-title").textContent,
+        done: d.textContent,
+        handle: getComputedStyle(h).color,
+        doneBg: getComputedStyle(d).backgroundColor,
+        doneFg: getComputedStyle(d).color,
+        upW: Math.round(up.getBoundingClientRect().width),
+        upH: Math.round(up.getBoundingClientRect().height),
+        grip: h.textContent,
+        rows: rows.join(","),
+        firstDisabled: ups[0].disabled,
+        lastDisabled: dns[dns.length - 1].disabled,
+        left: menu.left,
+        right: menu.right,
+        sw: document.documentElement.scrollWidth,
+        cw: document.documentElement.clientWidth,
+        iw: window.innerWidth
+      };
+    });
+    check(catLook.title === listLook.title && catLook.title.indexOf("סידור") !== -1 && catLook.done === listLook.done && catLook.grip === "☰" && catLook.done.indexOf("סיום") !== -1, "category reorder uses the same wording as list reorder");
+    check(catLook.handle === listLook.handle && catLook.doneBg === listLook.doneBg && catLook.doneFg === listLook.doneFg && catLook.upW === listLook.upW && catLook.upH === listLook.upH, "category reorder uses the same handle, done button, and arrow size");
+    check(catLook.handle === "rgb(245, 197, 66)" && catLook.doneBg === "rgb(245, 197, 66)", "the reorder controls are gold");
+    check(catLook.rows === "כללי,בית,עבודה" && catLook.firstDisabled && catLook.lastDisabled, "the first category cannot move up and the last cannot move down");
+    check(catLook.sw <= catLook.cw + 1 && catLook.left >= -1 && catLook.right <= catLook.iw + 1, "at 360px the category reorder menu fits");
+    await ordPage.screenshot({ path: "/opt/cursor/artifacts/listify-sbx-category-reorder-360.png" });
+    var keysBefore = await ordPage.evaluate(function () { return Object.keys(localStorage).sort(); });
+    await ordPage.click('#bmenu button[data-box="dwn:"]');
+    await ordPage.waitForFunction(function () {
+      var names = Array.prototype.map.call(document.querySelectorAll("#bmenu .mvrow .pm-mname"), function (n) { return n.textContent; });
+      return names.join(",") === "בית,כללי,עבודה";
+    });
+    var saved = await ordPage.evaluate(function (uid) {
+      var doc = JSON.parse(localStorage.getItem("rg-sbx-ideas-v1:" + uid));
+      var home = doc.items["b:home"], work = doc.items["b:work"], def = doc.items["b:"], item = doc.items.a1;
+      return { home: home && home.pos, work: work && work.pos, def: def && def.pos, defType: def && def.type, defBox: !!(def && Object.prototype.hasOwnProperty.call(def, "box")), homeName: home && home.name, workName: work && work.name, item: item && item.text, sec: item && item.sec };
+    }, UID);
+    check(saved.home === 0 && saved.def === 1 && saved.work === 2 && saved.defType === "box" && saved.defBox === false && saved.homeName === "בית" && saved.workName === "עבודה" && saved.item === "פריט" && saved.sec === "ideas", "the new order is pos on the existing box records, including b: for כללי");
+    var keysAfter = await ordPage.evaluate(function () { return Object.keys(localStorage).sort(); });
+    var extraKeys = keysAfter.filter(function (k) { return keysBefore.indexOf(k) < 0; });
+    check(extraKeys.every(function (k) { return k.indexOf("hist") !== -1 || k.indexOf("-own:") !== -1 || k.indexOf("-base") !== -1 || k.indexOf("-bak") !== -1 || k.indexOf("lastsync") !== -1; }) && extraKeys.join(",").indexOf("boxorder") === -1, "reordering does not add a storage key (" + extraKeys.join(",") + ")");
+    await ordPage.setViewportSize({ width: 320, height: 700 });
+    var narrowFit = await ordPage.evaluate(function () {
+      var menu = document.getElementById("bmenu").getBoundingClientRect();
+      return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, left: menu.left, right: menu.right, iw: window.innerWidth, open: !document.getElementById("bmenu").hidden };
+    });
+    check(narrowFit.open && narrowFit.sw <= narrowFit.cw + 1 && narrowFit.left >= -1 && narrowFit.right <= narrowFit.iw + 1, "at 320px the category reorder menu fits");
+    var rawOrder = await ordPage.evaluate(function (uid) { return localStorage.getItem("rg-sbx-ideas-v1:" + uid); }, UID);
+    var ordB = await browser.newContext({ viewport: { width: 360, height: 780 }, serviceWorkers: "block" });
+    var pageB = await ordB.newPage();
+    await pageB.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
+    await pageB.addInitScript(userScript("localStorage.setItem('rg-sbx-ideas-v1:" + UID + "'," + JSON.stringify(rawOrder) + ");"));
+    await pageB.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
+    await pageB.click("#box-picker");
+    await pageB.waitForSelector("#bmenu .pm-name");
+    var reloaded = await pageB.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll("#bmenu .pm-name .pn"), function (n) { return n.textContent; }).join(",");
+    });
+    check(reloaded === "בית,כללי,עבודה", "the category order is still there after a fresh load");
+    await pageB.click('#bmenu [data-box="opt:home"]');
+    await pageB.click('#bmenu [data-box="mov:home"]');
+    await pageB.waitForSelector("#bmenu .pm-h");
+    var grip = await pageB.locator("#bmenu .mvrow .pm-h").first().boundingBox();
+    var secondRow = await pageB.locator("#bmenu .mvrow").nth(1).boundingBox();
+    await pageB.mouse.move(grip.x + grip.width / 2, grip.y + grip.height / 2);
+    await pageB.mouse.down();
+    await pageB.mouse.move(grip.x + grip.width / 2, secondRow.y + secondRow.height + 6, { steps: 14 });
+    await pageB.mouse.up();
+    var dragged = false;
+    try {
+      await pageB.waitForFunction(function () {
+        var names = Array.prototype.map.call(document.querySelectorAll("#bmenu .pm-mname"), function (n) { return n.textContent; });
+        return names[0] === "כללי";
+      }, null, { timeout: 4000 });
+      dragged = true;
+    } catch (eDrag) { dragged = false; }
+    var dragNames = await pageB.evaluate(function () {
+      return Array.prototype.map.call(document.querySelectorAll("#bmenu .pm-mname"), function (n) { return n.textContent; }).join(",");
+    });
+    check(dragged && dragNames === "כללי,בית,עבודה", "dragging ☰ reorders the categories (" + dragNames + ")");
+    var dragSaved = await pageB.evaluate(function (uid) {
+      var doc = JSON.parse(localStorage.getItem("rg-sbx-ideas-v1:" + uid));
+      return { def: doc.items["b:"] && doc.items["b:"].pos, home: doc.items["b:home"] && doc.items["b:home"].pos, work: doc.items["b:work"] && doc.items["b:work"].pos };
+    }, UID);
+    check(dragSaved.def === 0 && dragSaved.home === 1 && dragSaved.work === 2, "the dragged order is saved on the same records");
+    await ordB.close();
+    await waitFor(function () {
+      var id, v;
+      for (id in ordStore) {
+        try { v = JSON.parse(ordStore[id]); } catch (eCloud) { continue; }
+        if (v && v.items && v.items["b:"] && typeof v.items["b:"].pos === "number" && v.items["b:home"] && v.items["b:work"]) return true;
+      }
+      return false;
+    }, 12000);
+    check(ordKeys.length > 0 && ordKeys.every(function (k) { return k === "sbxmyideas:items" || k === "sbxmyideas:history2" || k === "prefs:all"; }), "sync keeps the order inside items or history (" + ordKeys.filter(function (k, i, a) { return a.indexOf(k) === i; }).join(",") + ")");
+    check(ordErr.length === 0, "category reorder runs without a script error");
+    if (ordErr.length) console.error(ordErr.join(" | "));
+    await ord.close();
   } finally {
     await browser.close();
     server.close();
