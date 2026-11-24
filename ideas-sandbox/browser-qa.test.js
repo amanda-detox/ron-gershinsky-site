@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v31"; });
-    check(true, "the on-screen label shows rg-sbx-ideas-v31");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-sbx-ideas-v32"; });
+    check(true, "the on-screen label shows rg-sbx-ideas-v32");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=63") !== -1 && srcs.indexOf("version.js?v=4") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=64") !== -1 && srcs.indexOf("version.js?v=5") !== -1 && srcs.indexOf("rg-sync-status.js?v=10") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v31"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-sbx-ideas-v32"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -266,6 +266,7 @@ async function main() {
     var keptOldest = await oldPage.evaluate(function (uid) {
       var raw = localStorage.getItem("rg-sbx-ideas-hist:" + uid);
       var rows = raw ? JSON.parse(raw) : [];
+      if (window.RGSyncStatus && RGSyncStatus.expandHistory) rows = RGSyncStatus.expandHistory(rows);
       var hasOld = false, hasNow = false, i;
       for (i = 0; i < rows.length; i++) {
         if (rows[i].id === "row-0") hasOld = true;
