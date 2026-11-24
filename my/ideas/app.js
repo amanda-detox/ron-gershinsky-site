@@ -98,7 +98,11 @@
     var SS = window.RGSyncStatus, b, next;
     if (history.length > 1) history = history.slice(-1);
     if (!uid) return;
-    try { localStorage.setItem(histKey(), JSON.stringify(SS && SS.packHistory ? SS.packHistory(history) : history.slice(-1))); }
+    try {
+      var packed = SS && SS.packHistory ? SS.packHistory(history) : history.slice(-1);
+      var body = SS && SS.historyEnvelope ? SS.historyEnvelope(packed) : { fmt: 2, snaps: packed };
+      localStorage.setItem(histKey(), JSON.stringify(body));
+    }
     catch (e) { try { localStorage.removeItem(histKey()); } catch (e2) {} }
     b = jparse(lsGet(bakKey(uid)), []);
     if (Array.isArray(b) && b.length) {
@@ -570,9 +574,10 @@
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
       if (restoring && SS && SS.adoptRestore) {
-        overwriteOk = Date.now() + (SS.BULK_MS || 60000);
-        items = SS.adoptRestore(restoreDoc, cl, now());
+        items = SS.adoptRestore(restoreDoc, cl, now(), items);
         dirty = true;
+        if (SS.sparseRestore && SS.sparseRestore(items, cl)) overwriteOk = 0;
+        else overwriteOk = Date.now() + (SS.BULK_MS || 60000);
       } else if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
       var merged = restoring ? items : merge(items, cl);
       if (!same(merged, items)) dirty = true;
@@ -694,18 +699,30 @@
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
   function changed() { pending = true; rememberOwn(items); saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
-  function histKey() { return "rg-myideas-hist:" + (uid || ""); }
+  /* history2 is the only key this version writes. The previous key stays byte-for-byte
+     so a device still on the old reader keeps its own history. fmt 2 marks the envelope. */
+  var HIST_CLOUD = "history2", HIST_CLOUD_OLD = "history";
+  function histKey() { return "rg-myideas-hist2:" + (uid || ""); }
+  function histLegacyKey() { return "rg-myideas-hist:" + (uid || ""); }
   function loadHistory() {
-    var raw = uid ? jparse(lsGet(histKey()), []) : [];
-    var list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
-    history = (window.RGSyncStatus && RGSyncStatus.expandHistory) ? RGSyncStatus.expandHistory(list) : list;
+    var SS = window.RGSyncStatus, raw2, legacyRaw;
+    if (!uid || !SS) { history = []; return; }
+    raw2 = lsGet(histKey());
+    if (raw2 != null) {
+      history = SS.readHistory ? SS.readHistory(jparse(raw2, null)) : [];
+      return;
+    }
+    legacyRaw = lsGet(histLegacyKey());
+    if (legacyRaw == null) { history = []; return; }
+    history = SS.readLegacyHistory ? SS.readLegacyHistory(jparse(legacyRaw, null)) : [];
+    saveHistory();
   }
   function saveHistory() {
     if (!uid) return;
     var SS = window.RGSyncStatus;
     var packed = SS && SS.packHistory ? SS.packHistory(history) : history;
     if (SS && SS.expandHistory) history = SS.expandHistory(packed);
-    writeLocal(histKey(), JSON.stringify(packed));
+    writeLocal(histKey(), JSON.stringify(SS && SS.historyEnvelope ? SS.historyEnvelope(packed) : packed));
   }
   var histPushT = 0, histSent = "";
   function scheduleHistoryPush() {
@@ -725,7 +742,11 @@
   function pullHistory(done) {
     var SS = window.RGSyncStatus;
     if (!uid || !A || !SS) { if (done) done(); return; }
-    A.get(APP, "history").then(function (cloud) {
+    A.get(APP, HIST_CLOUD).then(function (cloud) {
+      if (!uid) return null;
+      if (cloud) return cloud;
+      return A.get(APP, HIST_CLOUD_OLD);
+    }).then(function (cloud) {
       if (uid && cloud) {
         history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
         saveHistory();
@@ -741,8 +762,13 @@
     if (histBusy) { histAgain = true; return; }
     histBusy = true;
     histAgain = false;
-    A.get(APP, "history").then(function (cloud) {
+    A.get(APP, HIST_CLOUD).then(function (cloud) {
+      if (!uid) return null;
+      if (cloud) return cloud;
+      return A.get(APP, HIST_CLOUD_OLD);
+    }).then(function (cloud) {
       if (!uid) return;
+      if (cloud && cloud.fmt != null && cloud.fmt !== SS.HIST_FMT) return;
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
       noteIncomingClash(history);
@@ -750,7 +776,7 @@
       var body = JSON.stringify(payload);
       if (body === histSent) return;
       histSent = body;
-      return A.set(APP, "history", payload);
+      return A.set(APP, HIST_CLOUD, payload);
     }).then(function () {
       histBusy = false;
       if (histAgain) { histAgain = false; scheduleHistoryPush(); }
@@ -781,18 +807,20 @@
     setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
   }
   function restoreVersion(id) {
-    var SS = window.RGSyncStatus;
+    var SS = window.RGSyncStatus, before;
     if (!SS || !SS.planRestore) { toast(t("historyFail")); return; }
     var plan = SS.planRestore(history, items, id, Date.now());
     if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
+    before = items;
     history = plan.history;
     saveHistory();
     armQuietRestore();
     restoreDoc = plan.items;
-    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
+    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now(), before) : plan.items;
     snap = stamp(items, null);
     pending = true;
-    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+    if (SS.sparseRestore && SS.sparseRestore(items, before)) overwriteOk = 0;
+    else overwriteOk = Date.now() + (SS.BULK_MS || 60000);
     holdBlocked = false;
     blockedCloud = null;
     saveLocal();
@@ -1769,11 +1797,12 @@
     staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, nextItems: parsed.items, now: Date.now() });
     wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
     if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
+    var beforeItems = items;
     rememberSnap(true);
     fileGen++;
     armQuietRestore();
     restoreDoc = staged.items;
-    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : staged.items;
+    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now(), beforeItems) : staged.items;
     seeded = true;
     pending = true;
     editing = null;
@@ -1782,8 +1811,8 @@
     syncErr = "";
     offline = false;
     uploadCut = false;
-    overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000);
-    bulkOk = overwriteOk;
+    if (SS && SS.sparseRestore && SS.sparseRestore(items, beforeItems)) { overwriteOk = 0; bulkOk = 0; }
+    else { overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000); bulkOk = overwriteOk; }
     lastT = 0;
     for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
     snap = stamp(items, null);
