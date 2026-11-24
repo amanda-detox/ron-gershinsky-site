@@ -237,9 +237,26 @@ async function main() {
     ));
     await oldPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
     await oldPage.waitForSelector("#hist-btn");
+    var earlyRestore = await oldPage.evaluate(function () {
+      var open = document.getElementById("hist-btn");
+      if (!open) return "no-history";
+      open.click();
+      var btn = document.querySelector('[data-s="r:row-0"]');
+      if (!btn) return "no-button";
+      if (btn.disabled) return "disabled";
+      btn.click();
+      var sheet = document.getElementById("sheet");
+      var body = document.body ? document.body.innerText : "";
+      if (sheet) return "sheet-open";
+      if (body.indexOf("OLDEST-TEXT") === -1 || body.indexOf("CURRENT-NOW") !== -1) return "not-restored";
+      return "ok";
+    });
+    check(earlyRestore === "ok", "שחזר works on the first click (" + earlyRestore + ")");
+    await oldPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
+    await oldPage.waitForSelector("#hist-btn");
     await oldPage.click("#hist-btn");
     await oldPage.waitForSelector('[data-s="r:row-0"]');
-    await oldPage.waitForTimeout(1000);
+    await oldPage.waitForTimeout(300);
     await oldPage.click('[data-s="r:row-0"]');
     await oldPage.waitForFunction(function () {
       var sheet = document.getElementById("sheet");
