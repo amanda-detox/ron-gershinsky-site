@@ -71,8 +71,8 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=10") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=10") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=5") !== -1 && sw.indexOf("rg-sync-status.js?v=10") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=64") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=11") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=11") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=6") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=65") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build"') !== -1 && html.indexOf("rg-sbx-ideas-v21") === -1 && app.indexOf("RG_SBX_IDEAS_CACHE") !== -1 && app.indexOf("function paintBuild") !== -1, "the on-screen version is painted from the shared cache name");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
@@ -464,14 +464,206 @@ for (ak in aloneRow.data) if (aloneRow.data[ak] && aloneRow.data[ak].sec === "sh
 assert(alonePayload.snaps.length === 1 && aloneRow.id === "only" && aloneRow.data["c:shop"] && aloneCount === 180, "a single oversized version is kept whole");
 var pushBody = app.slice(app.indexOf("function pushHistoryCloud"), app.indexOf("function hiddenCats"));
 assert(pushBody.indexOf("cloudHistoryPayload(history)") !== -1 && pushBody.indexOf("HIST_CLOUD_MAX") === -1 && pushBody.indexOf("slice(-1)") === -1 && pushBody.indexOf("450000") === -1 && pushBody.indexOf("480") === -1, "the upload packs the merged history under the shared cap and does not replace it");
-assert((pushBody.match(/A\.set\(APP, "history"/g) || []).length === 1, "one edit still uploads history once");
+assert((pushBody.match(/A\.set\(APP, HIST_CLOUD/g) || []).length === 1, "one edit still uploads history once");
+assert(pushBody.indexOf("HIST_CLOUD_OLD") !== -1 && pushBody.indexOf("A.set(APP, HIST_CLOUD_OLD)") === -1 && pushBody.indexOf('A.set(APP, "history"') === -1, "a missing history2 row is read from the old cloud key and that key is not written");
+var syncBody = app.slice(app.indexOf("function sync("), app.indexOf("function cloudLoadUsed"));
+assert((syncBody.match(/A\.set\(APP, KEY/g) || []).length === 1, "one edit uploads the items row once");
+assert(app.indexOf('KEY = "items"') !== -1 && app.indexOf('HIST_CLOUD = "history2"') !== -1 && app.indexOf('HIST_CLOUD_OLD = "history"') !== -1, "items stays the items key and history moves to history2");
+assert(app.indexOf('rg-sbx-ideas-hist2:') !== -1 && app.indexOf('rg-sbx-ideas-hist:') !== -1, "local history2 has its own prefix and the old prefix is still named");
+assert(app.indexOf("writeLocal(histLegacyKey") === -1 && app.indexOf("setItem(histLegacyKey") === -1 && app.indexOf("removeItem(histLegacyKey") === -1, "the old local history key is never written or removed");
 var sheetBody = app.slice(app.indexOf("function sheet("), app.indexOf("function closeSheet"));
 var openBody = app.slice(app.indexOf("function openHistory"), app.indexOf("setInterval"));
 assert(sheetBody.indexOf("opts.immediate") !== -1 && sheetBody.indexOf("< 450") !== -1, "other sheets still ignore the opening click");
 assert(openBody.indexOf("immediate: true") !== -1 && openBody.indexOf('data-s="r:') !== -1, "version history takes a restore click immediately");
+assert(restoreBody.indexOf("sparseRestore") !== -1 && syncBody.indexOf("sparseRestore") !== -1, "an empty restore does not bypass the deletion question");
+assert(restoreBody.indexOf("adoptRestore(restoreDoc, {}, Date.now(), before)") !== -1 && syncBody.indexOf("adoptRestore(restoreDoc, cl, now(), items)") !== -1, "restore stamps only records that differ from the list on screen");
+
+function notedList(nItems, edit, at) {
+  var o = {}, i, note = new Array(2501).join("א"), base = at || 1000, stamp;
+  o["c:shop"] = { id: "c:shop", type: "cat", cat: "shop", name: "קניות", kind: "task", pos: 0, at: base, _f: { name: base, kind: base, cat: base, pos: base, "~": base } };
+  for (i = 0; i < nItems; i++) {
+    stamp = i === 0 ? base + edit : base;
+    o["i" + i] = {
+      id: "i" + i, sec: "shop", text: i === 0 ? ("עריכה " + edit) : ("פריט " + i),
+      note: note, done: false, order: i, created: 1000, at: stamp,
+      _f: { text: stamp, note: stamp, sec: stamp, done: stamp, order: stamp, created: stamp, "~": stamp }
+    };
+  }
+  return o;
+}
+function buildNotedHist(nItems, steps) {
+  var hist = [], s;
+  for (s = 0; s < steps; s++) hist = SS.pushHistory(hist, notedList(nItems, s, 1000), 8000 + s, true, { id: "v" + s });
+  return hist;
+}
+function rowById(rows, id) {
+  var i;
+  for (i = 0; i < rows.length; i++) if (rows[i] && rows[i].id === id) return rows[i];
+  return null;
+}
+function restoreKept(nItems, steps, idx, selective) {
+  var hist = buildNotedHist(nItems, steps);
+  var cappedBefore = SS.expandHistory(SS.cloudHistoryPayload(hist).snaps).length;
+  var cur = hist[hist.length - 1].data;
+  var target = hist[idx];
+  var plan = SS.planRestore(hist, cur, target.id, 90000);
+  var adopted = selective ? SS.adoptRestore(plan.items, cur, 90000, cur) : SS.adoptRestore(plan.items, {}, 90000);
+  var next = SS.pushHistory(plan.history, adopted, 90001, true, { id: "restored-" + idx });
+  var payload = SS.cloudHistoryPayload(next);
+  var rows = SS.expandHistory(payload.snaps);
+  var bad = [], i, hit, again;
+  for (i = 0; i < hist.length; i++) {
+    hit = rowById(rows, hist[i].id);
+    if (!hit) continue;
+    if (!sameDoc(hit.data, hist[i].data)) bad.push(hist[i].id);
+  }
+  again = rowById(rows, "restored-" + idx);
+  var back = SS.planRestore(rows, rows[rows.length - 1].data, target.id, 90002);
+  var restoredBack = again ? SS.planRestore(rows, rows[rows.length - 1].data, again.id, 90003) : null;
+  return {
+    before: hist.length,
+    cappedBefore: cappedBefore,
+    after: rows.length,
+    bytes: JSON.stringify(payload).length,
+    bad: bad,
+    adoptedOk: !!(again && sameDoc(again.data, adopted)),
+    targetBack: !!(back.found && sameDoc(back.items, target.data)),
+    restoredBack: !!(restoredBack && restoredBack.found && sameDoc(restoredBack.items, adopted)),
+    contentOk: adopted.i0.text === target.data.i0.text && adopted.i1.note === target.data.i1.note,
+    fmt: payload.fmt,
+    note: adopted.i1 && adopted.i1.note ? adopted.i1.note.length : 0
+  };
+}
+[100, 150].forEach(function (nItems) {
+  var steps = 20, positions = { "newest-1": steps - 2, middle: Math.floor(steps / 2), oldest: 0 };
+  Object.keys(positions).forEach(function (name) {
+    var kept = restoreKept(nItems, steps, positions[name], true);
+    assert(kept.after >= kept.cappedBefore && kept.bytes <= SS.HIST_BYTES, "B1 " + nItems + " " + name + " keeps history " + kept.after + "/" + kept.before + " (cap " + kept.cappedBefore + ", " + kept.bytes + " chars)");
+    assert(!kept.bad.length && kept.adoptedOk && kept.restoredBack && kept.contentOk && kept.note === 2500 && kept.fmt === 2, "B1 " + nItems + " " + name + " still restores exactly");
+    if (name !== "oldest") assert(kept.targetBack, "B1 " + nItems + " " + name + " keeps that version byte for byte");
+  });
+  var mass = restoreKept(nItems, steps, 0, false);
+  assert(mass.after >= mass.cappedBefore - 1 && mass.after > 8 && mass.bytes <= SS.HIST_BYTES, "B1 " + nItems + " mass re-stamp still keeps history " + mass.after + "/" + mass.before + " (cap " + mass.cappedBefore + ", " + mass.bytes + ")");
+  assert(!mass.bad.length && mass.adoptedOk && mass.restoredBack && mass.contentOk, "B1 " + nItems + " mass re-stamp still restores exactly");
+});
+var sampleHist = buildNotedHist(12, 6);
+var sampleCur = sampleHist[sampleHist.length - 1].data;
+var sampleOld = sampleHist[0].data;
+var sampleAdopted = SS.adoptRestore(sampleOld, sampleCur, 91000, sampleCur);
+assert(sampleAdopted.i5.at === sampleCur.i5.at && JSON.stringify(sampleAdopted.i5._f) === JSON.stringify(sampleCur.i5._f), "an unchanged record keeps its at and _f");
+assert(sampleAdopted.i0.text === sampleOld.i0.text && sampleAdopted.i0.at === 91000 && sampleAdopted.i0._f.text === 91000, "a changed record is stamped so the restore wins");
+assert(SS.mergeRecords(sampleAdopted.i0, sampleCur.i0).text === sampleOld.i0.text, "the next merge keeps the restored text");
+var massList = buildNotedHist(8, 4);
+var massAdopted = SS.adoptRestore(massList[0].data, {}, 92000);
+var massNext = SS.pushHistory(SS.planRestore(massList, massList[massList.length - 1].data, massList[0].id, 92000).history, massAdopted, 92001, true, { id: "mass" });
+var massPacked = SS.packHistory(massNext);
+var massAt = 0, mi;
+for (mi = 0; mi < massPacked.length; mi++) if (massPacked[mi].diff && massPacked[mi].diff.atOnly) massAt += Object.keys(massPacked[mi].diff.atOnly).length;
+assert(massAt >= 8 && SS.expandHistory(massPacked).length === massNext.length, "timestamp-only changes are stored as an at map (" + massAt + ")");
+
+function fullCopyRows(hist) {
+  var out = [], i, y, k;
+  for (i = 0; i < hist.length; i++) {
+    y = {};
+    for (k in hist[i]) if (k !== "diff") y[k] = hist[i][k];
+    y.data = JSON.parse(JSON.stringify(hist[i].data));
+    out.push(y);
+  }
+  return out;
+}
+function readV57(raw) {
+  var rows = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []), out = [], i, row;
+  for (i = 0; i < rows.length; i++) {
+    row = rows[i];
+    if (!row || typeof row.t !== "number") continue;
+    out.push({ id: row.id, t: row.t, data: (row.data && typeof row.data === "object" && !Array.isArray(row.data)) ? row.data : {} });
+  }
+  return out;
+}
+function applyOldForward(base, diff) {
+  var out = JSON.parse(JSON.stringify(base || {})), k, i;
+  diff = diff || {};
+  if (diff.changed) for (k in diff.changed) out[k] = JSON.parse(JSON.stringify(diff.changed[k]));
+  if (diff.removed) for (i = 0; i < diff.removed.length; i++) delete out[diff.removed[i]];
+  return out;
+}
+function readV31(raw) {
+  var rows = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []), out = [], i, row, base = {};
+  for (i = 0; i < rows.length; i++) {
+    row = rows[i];
+    if (!row || typeof row.t !== "number") continue;
+    if (row.data && typeof row.data === "object" && !Array.isArray(row.data)) base = JSON.parse(JSON.stringify(row.data));
+    else if (row.diff && typeof row.diff === "object") base = applyOldForward(base, row.diff);
+    else base = {};
+    out.push({ id: row.id, t: row.t, data: base });
+  }
+  return out;
+}
+function migrateStore(legacyBytes) {
+  var oldKey = "rg-sbx-ideas-hist:user", newKey = "rg-sbx-ideas-hist2:user", store = {};
+  store[oldKey] = legacyBytes;
+  if (store[newKey] == null) {
+    var migrated = SS.readLegacyHistory(JSON.parse(store[oldKey]));
+    store[newKey] = JSON.stringify(SS.historyEnvelope(SS.packHistory(migrated)));
+  }
+  var frozen = store[oldKey];
+  var hist = SS.readHistory(JSON.parse(store[newKey]));
+  var edited = JSON.parse(JSON.stringify(hist[hist.length - 1].data));
+  edited.i0.text = "אחרי עריכה";
+  edited.i0.note = new Array(2501).join("ב");
+  hist = SS.pushHistory(hist, edited, 16000, true, { id: "edit-after" });
+  store[newKey] = JSON.stringify(SS.historyEnvelope(SS.packHistory(hist)));
+  return { store: store, oldKey: oldKey, newKey: newKey, frozen: frozen, hist: hist };
+}
+function migratedExact(label, legacyDoc, hist, reader) {
+  var bytes = JSON.stringify(legacyDoc);
+  var moved = SS.readHistory(SS.historyEnvelope(SS.packHistory(SS.readLegacyHistory(JSON.parse(bytes)))));
+  var bad = versionsMatch(moved, hist);
+  var sim = migrateStore(bytes);
+  var readOld = reader(JSON.parse(sim.store[sim.oldKey]));
+  var readBad = [], i, hit;
+  for (i = 0; i < hist.length; i++) {
+    hit = null;
+    var j;
+    for (j = 0; j < readOld.length; j++) if (readOld[j].id === hist[i].id) hit = readOld[j];
+    if (!hit || !sameDoc(hit.data, hist[i].data)) readBad.push(hist[i].id);
+  }
+  var after = SS.readHistory(JSON.parse(sim.store[sim.newKey]));
+  assert(!bad.length && moved.length === hist.length && moved[0] && sameDoc(moved[0].data, hist[0].data), label + " migrates into history2 with every version exact (" + moved.length + ")");
+  assert(sim.store[sim.oldKey] === bytes && sim.frozen === bytes, label + " leaves the old key byte-for-byte after migration and a later edit");
+  assert(!readBad.length && readOld.length === hist.length, label + " old reader still parses the untouched old key");
+  assert(after.length === hist.length + 1 && rowById(after, "edit-after") && rowById(after, "edit-after").data.i0.text === "אחרי עריכה", label + " further edits land only in history2");
+}
+var migV57 = buildNotedHist(100, 8);
+migratedExact("v57 full-copy", fullCopyRows(migV57), migV57, readV57);
+var migV31 = buildNotedHist(100, 8);
+migratedExact("v31 forward-diff", packOldFormat(migV31), migV31, readV31);
+var migRev = buildNotedHist(40, 6);
+var migRevPacked = SS.packHistory(migRev);
+migratedExact("v32 reverse-diff", migRevPacked, migRev, function (raw) { return SS.expandHistory(Array.isArray(raw) ? raw : raw.snaps); });
+assert(SS.readHistory([{ id: "a", t: 1, data: notedList(1, 0, 1) }]).length === 0, "history2 refuses a bare list with no fmt marker");
+assert(SS.readHistory({ fmt: 3, snaps: fullCopyRows(buildNotedHist(2, 2)) }).length === 0, "history2 ignores an envelope it cannot parse");
+
+var goodSnap = SS.pushHistory([], notedList(6, 0, 1000), 1000, true, { id: "good" });
+var brokenChain = [{ id: "bad", t: 1, diff: { rev: 1, changed: "nope" } }].concat(SS.packHistory(goodSnap));
+var brokenRead = SS.expandHistory(brokenChain);
+assert(brokenRead.length === 1 && brokenRead[0].id === "good" && sameDoc(brokenRead[0].data, goodSnap[0].data), "an unparseable row is skipped and the good version stays whole");
+assert(SS.expandHistory([{ id: "bad", t: 1 }]).length === 0, "a row with no data and no diff is not an empty list");
+assert(SS.expandHistory([{ id: "bad", t: 1, diff: { rev: 1, changed: [], removed: [] } }]).length === 0, "a reverse diff with a broken changed map is not restored");
+assert(SS.expandHistory([{ id: "bad", t: 1, diff: { rev: 1, changed: {}, removed: [] } }]).length === 0, "a reverse diff with no newer copy is skipped instead of becoming empty");
+var oldWouldEmpty = readV57([{ id: "bad", t: 1, diff: { rev: 1, changed: {}, removed: [] } }]);
+assert(oldWouldEmpty.length === 1 && Object.keys(oldWouldEmpty[0].data).length === 0, "the old reader still turns that row into an empty list");
+var skippedPlan = SS.planRestore(brokenRead, brokenRead[0].data, "bad", 5);
+assert(skippedPlan.found === false && skippedPlan.items == null, "a skipped row cannot be restored");
+var emptyBase = notedList(24, 0, 1000);
+assert(SS.sparseRestore({}, emptyBase) === true && SS.needsConfirm(SS.dropReport({}, emptyBase), { now: 9000, differs: true }).hold === true, "an empty restore goes through the deletion guard");
+assert(SS.sparseRestore(notedList(2, 1, 9000), emptyBase) === true, "a near-empty restore is treated as a bulk drop");
+assert(SS.sparseRestore(notedList(19, 1, 9000), emptyBase) === false, "a normal older version is not a near-empty restore");
+assert(SS.needsConfirm(SS.dropReport(notedList(8, 1, 9000), emptyBase), { now: 9000, overwriteUntil: 9000 + 60000 }).hold === false, "a chosen restore that is not near-empty can still overwrite");
+
 var pins = {
-  "ideas-sandbox/app.js": { v: 64, hash: "d84ecd994b5d96ee" },
-  "ideas-sandbox/rg-sync-status.js": { v: 10, hash: "b11f99a2c80fc409" },
+  "ideas-sandbox/app.js": { v: 65, hash: "0f7299b4a641cd59" },
+  "ideas-sandbox/rg-sync-status.js": { v: 11, hash: "03552d2f94cf7fb6" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {
