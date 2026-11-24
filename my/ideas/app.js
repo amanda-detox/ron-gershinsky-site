@@ -18,7 +18,9 @@
      (they have no "sec") but keep and sync them, because they merge every valid record.
    Grouping categories: a category holds several lists. Stored as records { id: "b:<id>", type: "box", box, name, pos, gone?, created, at }
      in the same items map, so they sync with the lists. A list record may carry box: "<id>". No box (or a box the record does not know)
-     means the default category «כללי». Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
+     means the default category «כללי». Renaming it stores the new name on record id "b:" (type "box", no box field) inside this same items map.
+     That record is not a new storage key and does not move lists. Older builds skip it. Delete stays blocked while it is the only category or still has lists.
+     Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
      when they copy the record, so existing lists need no rewrite. Deleting a category clears that field and hides the box record. It does not delete lists.
      goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
    Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
@@ -28,7 +30,7 @@
   "use strict";
   var APP = "myideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
   var BUILD = (typeof RG_MYIDEAS_CACHE === "string" && RG_MYIDEAS_CACHE.indexOf("rg-myideas-") === 0) ? RG_MYIDEAS_CACHE : "";
-  function paintBuild() { var el = document.getElementById("build"); if (el && BUILD) el.textContent = BUILD; }
+  function paintBuild() { var el = document.getElementById("build"); if (el && BUILD) el.textContent = BUILD.indexOf("rg-") === 0 ? BUILD.slice(3) : BUILD; }
   paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },
@@ -268,7 +270,9 @@
     upCat(cid, { gone: 1 });
   }
 
-  /* ---------- grouping categories (type "box"), above the lists. «כללי» is the absence of a box field. ---------- */
+  /* ---------- grouping categories (type "box"), above the lists. «כללי» is the absence of a box field.
+     Renaming it stores the new name on record id "b:" (type "box", no box field) and does not move lists.
+     Older builds skip that record. Delete stays blocked while it is the only category or still has lists. ---------- */
   var boxTab = lsGet("rg-myideas-box") || "";
   function boxRec(bid) { var r = items["b:" + bid]; return r && !r.deleted && r.type === "box" && typeof r.box === "string" ? r : null; }
   function boxes() {
@@ -281,10 +285,16 @@
     return out.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.box < b.box ? -1 : 1); });
   }
   function curBox() {
-    if (!boxTab) return "";
-    var r = boxRec(boxTab);
-    if (!r || r.gone) { boxTab = ""; lsSet("rg-myideas-box", ""); return ""; }
-    return boxTab;
+    if (boxTab) {
+      var r = boxRec(boxTab);
+      if (!r || r.gone) { boxTab = ""; lsSet("rg-myideas-box", ""); }
+    }
+    if (!boxTab && defaultHidden()) {
+      var fb = boxes()[0];
+      boxTab = fb ? fb.box : "";
+      if (boxTab) lsSet("rg-myideas-box", boxTab);
+    }
+    return boxTab || "";
   }
   function listBoxId(c) {
     var r = c && catRec(c.cat), id = r && typeof r.box === "string" ? r.box : "";
@@ -309,7 +319,7 @@
     var k, x, n = clean(name, 40);
     for (k in items) {
       x = items[k];
-      if (x && !x.deleted && x.type === "box" && x.gone && clean(x.name || "", 40) === n) return x.box;
+      if (x && !x.deleted && x.type === "box" && x.gone && typeof x.box === "string" && x.box && clean(x.name || "", 40) === n) return x.box;
     }
     return "";
   }
@@ -321,9 +331,44 @@
     put({ id: "b:" + id, type: "box", box: id, name: name, pos: pos, created: at, at: at });
     return id;
   }
+  /* The default category's name lives inside the items map (id "b:"), not in a new storage key. */
+  var DEFAULT_BOX_ID = "b:";
+  function defaultRec() {
+    var r = items[DEFAULT_BOX_ID];
+    return r && !r.deleted && r.type === "box" && !r.box ? r : null;
+  }
+  function defaultBoxName() {
+    var r = defaultRec(), n = r && clean(r.name || "", 40);
+    return n || t("boxDefault");
+  }
+  function defaultLists() { return cats().filter(function (c) { return !listBoxId(c); }); }
+  function defaultHidden() {
+    var r = defaultRec();
+    if (!r || !r.gone) return false;
+    if (!boxes().length) return false;
+    if (defaultLists().length) return false;
+    return true;
+  }
+  function writeDefault(patch) {
+    var r = defaultRec(), y = {}, k, at = now();
+    if (r) { for (k in r) y[k] = r[k]; }
+    else { y.id = DEFAULT_BOX_ID; y.type = "box"; y.pos = -1; y.created = at; }
+    for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
+    delete y.box;
+    y.id = DEFAULT_BOX_ID;
+    y.type = "box";
+    y.at = at;
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, at, !!patch.gone);
+    put(y);
+  }
+  function saveDefaultName(name) { name = clean(name, 40); if (!name) return; writeDefault({ name: name, gone: null }); }
+  function showDefault() { if (defaultRec() && defaultRec().gone) writeDefault({ gone: null }); }
+  function hideDefault() { writeDefault({ name: defaultBoxName(), gone: 1 }); }
   function delBox(bid) {
     if (!bid || !boxRec(bid)) return;
-    cats().forEach(function (c) { if (listBoxId(c) === bid) upCat(c.cat, { box: null }); });
+    var back = false;
+    cats().forEach(function (c) { if (listBoxId(c) === bid) { upCat(c.cat, { box: null }); back = true; } });
+    if (back) showDefault();
     upBox(bid, { gone: 1 });
     if (boxTab === bid) { boxTab = ""; lsSet("rg-myideas-box", ""); }
   }
@@ -1081,7 +1126,7 @@
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' +
       box +
       '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span></div>" +
-      (x.note ? '<button type="button" class="notetog' + (noteHidden(x.id) ? "" : " on") + '" data-a="note" aria-pressed="' + (noteHidden(x.id) ? "false" : "true") + '" aria-label="' + esc((noteHidden(x.id) ? t("noteShow") : t("noteHide")) + ": " + n) + '">' + esc(t("noteWord")) + "</button>" : "") +
+      (x.note ? '<button type="button" class="notetog' + (noteHidden(x.id) ? "" : " on") + '" data-a="note" aria-pressed="' + (noteHidden(x.id) ? "false" : "true") + '" aria-label="' + esc(t("noteToggle")) + '">i</button>' : "") +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
       (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '" data-a="edit">' + hi(x.note) + "</span>" : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
@@ -1307,7 +1352,7 @@
   function paintBoxPicker() {
     var bn = $("box-name"), bp = $("box-picker"), bid = curBox(), br = bid && boxRec(bid);
     if (!bn || !bp) return;
-    bn.textContent = br && !br.gone ? (br.name || "…") : t("boxDefault");
+    bn.textContent = br && !br.gone ? (br.name || "…") : defaultBoxName();
     bp.setAttribute("aria-label", t("boxLabel") + ": " + bn.textContent);
     bp.classList.toggle("empty", !(br && !br.gone));
   }
@@ -1342,7 +1387,7 @@
           '<button type="button" class="pm-oi" data-box="ren:' + esc(id) + '"><span aria-hidden="true">✏️</span>' + esc(t("renameShort")) + "</button>" +
           '<button type="button" class="pm-oi pm-del" data-box="del:' + esc(id) + '"><span aria-hidden="true">🗑</span>' + esc(t("boxDel")) + "</button></li>" : "");
     }
-    var rows = row("", t("boxDefault"), !cur, false);
+    var rows = defaultHidden() ? "" : row("", defaultBoxName(), !cur, true);
     boxes().forEach(function (b) { rows += row(b.box, b.name, cur === b.box, true); });
     m.innerHTML = '<div class="pm-head"><span class="pm-title">' + esc(t("boxLabel")) + "</span></div>" +
       '<ul class="pm-list">' + rows + '</ul><button type="button" class="popt padd" data-box="+">' + esc("＋ " + t("boxAdd")) + "</button>";
@@ -1357,7 +1402,7 @@
     var c = catOf(cid); if (!c) return;
     var cur = listBoxId(c);
     var html = '<h3>' + esc(t("boxMove")) + '</h3><p class="mnote">' + esc(catName(c)) + '</p><div class="mlist">' +
-      '<button type="button" class="mi" data-s="tobox:"><span class="mn">' + esc(t("boxDefault")) + "</span>" + (cur ? "" : '<span class="mc">✓</span>') + "</button>" +
+      '<button type="button" class="mi" data-s="tobox:"><span class="mn">' + esc(defaultBoxName()) + "</span>" + (cur ? "" : '<span class="mc">✓</span>') + "</button>" +
       boxes().map(function (b) { return '<button type="button" class="mi" data-s="tobox:' + esc(b.box) + '"><span class="mn">' + esc(b.name) + "</span>" + (cur === b.box ? '<span class="mc">✓</span>' : "") + "</button>"; }).join("") +
       '</div><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + "</button>";
     sheet(html, function (a) {
@@ -1365,6 +1410,7 @@
       var bid = a.slice(6);
       closeSheet();
       if ((bid || "") === cur) return;
+      if (!bid) showDefault();
       upCat(cid, { box: bid || null });
       changed();
     });
@@ -1380,13 +1426,33 @@
     }
     if (p.indexOf("opt:") === 0) { var oid = p.slice(4); bmOpt = bmOpt === oid ? null : oid; fillBoxMenu(); return; }
     if (p.indexOf("ren:") === 0) {
-      var rid = p.slice(4), rr = boxRec(rid); if (!rr) return;
+      var rid = p.slice(4);
+      if (!rid) {
+        bmOpt = null; fillBoxMenu();
+        var curName = defaultBoxName();
+        nameSheet(t("boxRename"), curName, false, function (v) { if (v && v !== curName) { saveDefaultName(v); changed(); } }, t("boxPh"));
+        return;
+      }
+      var rr = boxRec(rid); if (!rr) return;
       bmOpt = null; fillBoxMenu();
       nameSheet(t("boxRename"), rr.name || "", false, function (v) { if (v && v !== (rr.name || "")) { upBox(rid, { name: v }); changed(); } }, t("boxPh"));
       return;
     }
     if (p.indexOf("del:") === 0) {
-      var did = p.slice(4), dr = boxRec(did); if (!dr) return;
+      var did = p.slice(4);
+      if (!did) {
+        if (!boxes().length || defaultLists().length) { window.alert(t("boxDelKeep")); return; }
+        if (window.confirm(t("boxDelAsk").replace("{x}", defaultBoxName()))) {
+          hideDefault();
+          var firstBox = boxes()[0];
+          boxTab = firstBox ? firstBox.box : "";
+          lsSet("rg-myideas-box", boxTab);
+          closeBoxMenu();
+          changed();
+        }
+        return;
+      }
+      var dr = boxRec(did); if (!dr) return;
       if (window.confirm(t("boxDelAsk").replace("{x}", dr.name || ""))) { delBox(did); closeBoxMenu(); changed(); }
       return;
     }

@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "rg-myideas-v58"; });
-    check(true, "the on-screen label shows rg-myideas-v58");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "myideas-v59"; });
+    check(true, "the on-screen label shows myideas-v59");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=58") !== -1 && srcs.indexOf("version.js?v=1") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=59") !== -1 && srcs.indexOf("version.js?v=2") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-myideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "rg-myideas-v58"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v59"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.waitForSelector("[data-rg-account] button");
@@ -523,7 +523,7 @@ async function main() {
     await featPage.click('#sheet button[type=submit]');
     await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "מיתוג"; });
     await featPage.click("#box-picker");
-    await featPage.click("#bmenu .pm-more");
+    await featPage.click("#bmenu .erow.cur .pm-more");
     await featPage.click('#bmenu [data-box^="ren:"]');
     await featPage.waitForSelector("#sheet .s-name");
     await featPage.fill("#sheet .s-name", "מיתוג2");
@@ -544,7 +544,7 @@ async function main() {
     await featPage.waitForFunction(function () { return document.body.innerText.indexOf("חלב טרי") !== -1 && document.body.innerText.indexOf("Alpha one") === -1; });
     check(true, "picking a category filters the lists");
     if (await featPage.evaluate(function () { var m = document.getElementById("bmenu"); return !m || m.hidden; })) await featPage.click("#box-picker");
-    await featPage.click("#bmenu .pm-more");
+    await featPage.click("#bmenu .erow.cur .pm-more");
     await featPage.click('#bmenu [data-box^="del:"]');
     await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "כללי" && document.body.innerText.indexOf("חלב טרי") !== -1; });
     var afterDel = await featPage.evaluate(function (uid) {
@@ -639,6 +639,41 @@ async function main() {
     await pageB2.click("#picker");
     await pageB2.click('[data-pick="shop"]');
     await pageB2.waitForSelector('[data-id="s1"] .note');
+    function catLinks() {
+      return featPage.evaluate(function (uid) {
+        var doc = JSON.parse(localStorage.getItem("rg-myideas-v1:" + uid));
+        var lists = [];
+        Object.keys(doc.items).forEach(function (k) {
+          var x = doc.items[k];
+          if (x && x.type === "cat" && !x.deleted) lists.push(x.cat + ":" + (x.box || ""));
+        });
+        lists.sort();
+        return lists.join(",");
+      }, UID);
+    }
+    var linksBefore = await catLinks();
+    if (await featPage.evaluate(function () { var m = document.getElementById("bmenu"); return m && !m.hidden; })) await featPage.click("#box-picker");
+    await featPage.click("#box-picker");
+    await featPage.waitForSelector('#bmenu [data-box="opt:"]');
+    await featPage.click('#bmenu [data-box="opt:"]');
+    await featPage.waitForSelector('#bmenu [data-box="ren:"]');
+    var defMenu = await featPage.evaluate(function () {
+      var ren = document.querySelector('#bmenu [data-box="ren:"]');
+      var del = document.querySelector('#bmenu [data-box="del:"]');
+      return { ren: ren ? ren.textContent : "", del: del ? del.textContent : "" };
+    });
+    check(defMenu.ren.indexOf("שינוי שם") !== -1 && defMenu.del.indexOf("מחיקת הקטגוריה") !== -1, "כללי has the same options, including שינוי שם");
+    await featPage.screenshot({ path: "/opt/cursor/artifacts/listify-default-category-menu.png" });
+    await featPage.click('#bmenu [data-box="del:"]');
+    check(featAsk.some(function (m) { return m.indexOf("אי אפשר למחוק") !== -1; }), "deleting כללי while it has lists is blocked in Hebrew");
+    check(await catLinks() === linksBefore, "the blocked delete does not move lists");
+    await featPage.click('#bmenu [data-box="ren:"]');
+    await featPage.waitForSelector("#sheet .s-name");
+    await featPage.fill("#sheet .s-name", "בית");
+    await featPage.waitForTimeout(500);
+    await featPage.click('#sheet button[type=submit]');
+    await featPage.waitForFunction(function () { return document.getElementById("box-name").textContent === "בית" && document.body.innerText.indexOf("חלב טרי") !== -1; });
+    check(await catLinks() === linksBefore, "renaming כללי keeps every list in place");
     await featPage.close();
     function listsDoc(store) {
       var id, v;
@@ -676,19 +711,43 @@ async function main() {
       var tb = title.getBoundingClientRect();
       var gb = tog.getBoundingClientRect();
       var nb = note.getBoundingClientRect();
+      var cs = getComputedStyle(tog);
       return {
         togTop: Math.round(gb.top - tb.top),
         noteW: Math.round(nb.width),
         rowW: Math.round(rb.width),
-        color: getComputedStyle(note).color
+        color: getComputedStyle(note).color,
+        letter: tog.textContent,
+        label: tog.getAttribute("aria-label"),
+        togH: Math.round(gb.height),
+        togW: Math.round(gb.width),
+        togColor: cs.color,
+        togBg: cs.backgroundColor,
+        togBorder: cs.borderTopWidth,
+        radius: cs.borderRadius
       };
     });
     check(narrow.togTop <= 20 && narrow.togTop >= -8, "the note toggle sits at the top of a long row, next to the title");
     check(narrow.noteW >= narrow.rowW - 8, "at 320px the note uses the full row width");
     check(narrow.color === "rgb(246, 237, 212)", "dark note text is cream, not pale blue");
+    check(narrow.letter === "i" && narrow.label === "הצג/הסתר הערה", "the note control is a letter i labeled הצג/הסתר הערה");
+    check(narrow.togH >= 32 && narrow.togH <= 40 && narrow.togW >= 32 && narrow.togW <= 40, "the note control tap target is about 32-40px");
+    check(narrow.togColor === "rgb(245, 197, 66)" && narrow.togBg === "rgba(0, 0, 0, 0)" && narrow.togBorder === "0px" && narrow.radius === "0px", "a shown note's i is gold, with no circle or border");
+    await layPage.screenshot({ path: "/opt/cursor/artifacts/listify-note-i-dark.png" });
+    await layPage.click('[data-id="a1"] .notetog');
+    await layPage.waitForFunction(function () { var n = document.querySelector('[data-id="a1"] .note'); return n && n.classList.contains("note-off"); });
+    var iOff = await layPage.evaluate(function () { return getComputedStyle(document.querySelector('[data-id="a1"] .notetog')).color; });
+    check(iOff === "rgb(90, 116, 168)", "a hidden note's i is a muted dark blue in dark mode");
     await layPage.evaluate(function () { document.documentElement.setAttribute("data-theme", "light"); });
     var lightNote = await layPage.evaluate(function () { return getComputedStyle(document.querySelector('[data-id="a1"] .note')).color; });
     check(lightNote === "rgb(11, 31, 77)", "light note text is the body navy");
+    var iLightOff = await layPage.evaluate(function () { return getComputedStyle(document.querySelector('[data-id="a1"] .notetog')).color; });
+    check(iLightOff === "rgb(11, 31, 77)", "a hidden note's i is dark navy in light mode");
+    await layPage.screenshot({ path: "/opt/cursor/artifacts/listify-note-i-light.png" });
+    await layPage.click('[data-id="a1"] .notetog');
+    await layPage.waitForFunction(function () { var n = document.querySelector('[data-id="a1"] .note'); var b = document.querySelector('[data-id="a1"] .notetog'); return n && b && !n.classList.contains("note-off") && b.classList.contains("on"); });
+    var iLightOn = await layPage.evaluate(function () { return getComputedStyle(document.querySelector('[data-id="a1"] .notetog')).color; });
+    check(iLightOn === "rgb(138, 106, 16)", "a shown note's i is gold in light mode");
     await layPage.setViewportSize({ width: 1100, height: 800 });
     await layPage.click("#box-picker");
     await layPage.waitForSelector("#bmenu:not([hidden])");
