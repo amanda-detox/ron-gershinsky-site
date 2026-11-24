@@ -1,13 +1,34 @@
 /* Listify (my/ideas/). App id myideas, storage prefix rg-myideas-.
-   Search filters and highlights the view only. It does not write, delete, or reorder.
-   Same protections as before: version history, file restore, stale-device
-   and sharp-drop stops, same-device edit sequence, and a quiet history restore.
-   Existing account rows and rg-myideas-v1 keys are kept. */
+   Existing account rows stay on app myideas in database ron, table userdata. Keys stay items and history.
+   Union merge, and a large deletion asks before any upload.
+   Reads time out after 15s. Uploads get 60s, then a visible cutoff and a growing backoff.
+   «טען מהענן» replaces only this device, after a -bak copy, and never writes to the cloud.
+   A confirmed file restore first saves the current lists as a version, then loads the file and syncs it as a deliberate overwrite. The file's own stamps stay as they are.
+   Search filters and highlights the view only. It does not write, delete, or reorder lists or items.
+   Listify (my/ideas/, formerly "Checklist") — private, per-user, synced through RGAccount.
+   Model: { v: 1, seeded: true, items: { <id>: { id, sec, text, note?, done, order, created, at, deleted?, seed?, mark? } } }
+     mark is "ok" (✓) or "no" (✕). One field, so the two marks replace each other; tapping the same mark again clears it.
+     Since v8 every list is the same kind (title, short note, נבחר, free drag order). Records from older versions may still carry
+     status / progress / prev / due / kind: they are kept untouched and only read to work out "selected" (see isSel).
+     sec = which category the item belongs to: one of the built-in ids ("ideas" | "tasks" | "goals") or a custom category id.
+   Categories (since Listify): stored in the SAME items map as records { id: "c:<cat>", type: "cat", cat, name?, kind, pos, gone?, created, at }
+     kind = "idea" | "task" | "goal" (which item features the category has). The three built-in categories exist without a record
+     until they are renamed, moved or deleted (gone: 1 hides one; it is not a tombstone, so it is never pruned and never comes back).
+     Old data needs no rewrite: old items already point at "ideas" / "tasks" / "goals". Old app versions ignore the category records
+     (they have no "sec") but keep and sync them, because they merge every valid record.
+   Grouping categories: a category holds several lists. Stored as records { id: "b:<id>", type: "box", box, name, pos, gone?, created, at }
+     in the same items map, so they sync with the lists. A list record may carry box: "<id>". No box (or a box the record does not know)
+     means the default category «כללי». Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
+     when they copy the record, so existing lists need no rewrite. Deleting a category clears that field and hides the box record. It does not delete lists.
+     goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
+   Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
+   Offline-first: kept in localStorage per user (rg-myideas-v1:<user id>) and merged into the account copy on every sync.
+   The first checklist item is added once, on the first successful sync of an account whose list was never seeded. */
 (function () {
   "use strict";
   var APP = "myideas", KEY = "items", POLL_MS = 10000, TOMB_MS = 30 * 24 * 3600 * 1000;
-  var BUILD = "rg-myideas-v15";
-  function paintBuild() { var el = document.getElementById("build"); if (el) el.textContent = BUILD; }
+  var BUILD = (typeof RG_MYIDEAS_CACHE === "string" && RG_MYIDEAS_CACHE.indexOf("rg-myideas-") === 0) ? RG_MYIDEAS_CACHE : "";
+  function paintBuild() { var el = document.getElementById("build"); if (el && BUILD) el.textContent = BUILD; }
   paintBuild();
   var SECTIONS = [
     { id: "ideas", tab: "tabIdeas", kind: "idea", pos: 0 },
@@ -36,6 +57,10 @@
   function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 8); }
   function clean(s, n) { return String(s || "").replace(/[ \t\u00a0]+/g, " ").replace(/\n{3,}/g, "\n\n").trim().slice(0, n); }
+  /* Item notes were capped at 500 (textarea maxlength and clean()). The cap is now 5× that.
+     cleanNote() does not slice: a note is stored whole. The field stops new typing at NOTE_MAX and says so. */
+  var NOTE_MAX = 2500;
+  function cleanNote(s) { return String(s || "").replace(/[ \t\u00a0]+/g, " ").replace(/\n{3,}/g, "\n\n").trim(); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
   /* ---------- local cache ---------- */
@@ -51,7 +76,69 @@
     items = (c && c.items && typeof c.items === "object") ? c.items : {}; pending = !!(c && c.pending); seeded = !!(c && c.seeded); snap = stamp(items, null);
   }
   var snap = {};
-  function saveLocal() { snap = stamp(items, snap); if (uid) lsSet(cacheKey(uid), JSON.stringify({ items: items, pending: pending, seeded: seeded })); }
+  /* Current lists live in rg-myideas-v1:<user>. Quota recovery may drop history and backups. It never removes that key. */
+  function currentCacheKey() { return uid ? cacheKey(uid) : ""; }
+  function keptKey(id) { return "rg-myideas-upgrade-kept:" + id; }
+  function preupgradeHeld() { return !!(uid && lsGet(keptKey(uid)) !== "1"); }
+  /* Copy of the lists already stored for this user. Writes the rolling backup only, never the current cache key.
+     Kept until one successful sync, including when a later cap drops older backup rows. */
+  function keepPreupgrade() {
+    var cur, snapItems, l, i, has;
+    if (!uid || !preupgradeHeld()) return;
+    cur = jparse(lsGet(cacheKey(uid)), null);
+    snapItems = (cur && cur.items && typeof cur.items === "object") ? cur.items : {};
+    l = jparse(lsGet(bakKey(uid)), []);
+    if (!Array.isArray(l)) l = [];
+    has = false;
+    for (i = 0; i < l.length; i++) if (l[i] && l[i].preupgrade) has = true;
+    if (!has) l.push({ t: Date.now(), items: snapItems, preupgrade: 1, reason: "before-v58" });
+    try { localStorage.setItem(bakKey(uid), JSON.stringify(l)); } catch (e) {}
+  }
+  function pruneFootprint() {
+    var SS = window.RGSyncStatus, b, next;
+    if (history.length > 1) history = history.slice(-1);
+    if (!uid) return;
+    try {
+      var packed = SS && SS.packHistory ? SS.packHistory(history) : history.slice(-1);
+      var body = SS && SS.historyEnvelope ? SS.historyEnvelope(packed) : { fmt: 2, snaps: packed };
+      localStorage.setItem(histKey(), JSON.stringify(body));
+    }
+    catch (e) { try { localStorage.removeItem(histKey()); } catch (e2) {} }
+    b = jparse(lsGet(bakKey(uid)), []);
+    if (Array.isArray(b) && b.length) {
+      next = SS && SS.capBackups ? SS.capBackups(b, 1, SS.BAK_BYTES, preupgradeHeld()) : b.slice(-1);
+      try { localStorage.setItem(bakKey(uid), JSON.stringify(next)); }
+      catch (e3) {
+        try {
+          var held = [];
+          if (preupgradeHeld()) { for (var hi = 0; hi < b.length; hi++) if (b[hi] && b[hi].preupgrade) held.push(b[hi]); }
+          if (held.length) localStorage.setItem(bakKey(uid), JSON.stringify(held));
+          else localStorage.removeItem(bakKey(uid));
+        } catch (e4) {}
+      }
+    }
+    try { localStorage.removeItem(basePrevKey(uid)); } catch (e5) {}
+    try { localStorage.removeItem(ownKey()); } catch (e6) {}
+    try { localStorage.removeItem(cacheKey(uid) + "-signout"); } catch (e7) {}
+    try { localStorage.removeItem("rg-myideas-grp1-bak:" + uid); } catch (e8) {}
+  }
+  function writeLocal(key, json) {
+    var cur = currentCacheKey();
+    try { localStorage.setItem(key, json); return true; }
+    catch (e) {
+      pruneFootprint();
+      try { localStorage.setItem(key, json); return true; }
+      catch (e2) {
+        if (cur && key !== cur) { try { localStorage.removeItem(key); } catch (e3) {} }
+        return false;
+      }
+    }
+  }
+  function saveLocal() {
+    snap = stamp(items, snap);
+    if (!uid) return;
+    writeLocal(cacheKey(uid), JSON.stringify({ items: items, pending: pending, seeded: seeded }));
+  }
   window.addEventListener("storage", function (e) { if (uid && e.key === cacheKey(uid)) { loadLocal(); render(); } });
 
   /* ---------- merge (per field, since Oct 2026) ----------
@@ -170,6 +257,7 @@
     if (again) { showCat(again); return again; }
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
     var rec = { id: "c:" + id, type: "cat", cat: id, name: name, kind: KINDS.indexOf(kind) >= 0 ? kind : "task", pos: pos, created: at, at: at };
+    if (curBox()) rec.box = curBox();
     if (window.RGSyncStatus && RGSyncStatus.noteGone) rec = RGSyncStatus.noteGone(rec, at, false);
     put(rec);
     return id;
@@ -179,7 +267,82 @@
     live(cid).forEach(function (x) { del(x.id); });
     upCat(cid, { gone: 1 });
   }
-  function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
+
+  /* ---------- grouping categories (type "box"), above the lists. «כללי» is the absence of a box field. ---------- */
+  var boxTab = lsGet("rg-myideas-box") || "";
+  function boxRec(bid) { var r = items["b:" + bid]; return r && !r.deleted && r.type === "box" && typeof r.box === "string" ? r : null; }
+  function boxes() {
+    var out = [], k, r;
+    for (k in items) {
+      r = items[k];
+      if (!r || r.deleted || r.gone || r.type !== "box" || typeof r.box !== "string") continue;
+      out.push({ box: r.box, name: r.name || "…", pos: typeof r.pos === "number" ? r.pos : 0, created: r.created || 0 });
+    }
+    return out.sort(function (a, b) { return (a.pos - b.pos) || (a.created - b.created) || (a.box < b.box ? -1 : 1); });
+  }
+  function curBox() {
+    if (!boxTab) return "";
+    var r = boxRec(boxTab);
+    if (!r || r.gone) { boxTab = ""; lsSet("rg-myideas-box", ""); return ""; }
+    return boxTab;
+  }
+  function listBoxId(c) {
+    var r = c && catRec(c.cat), id = r && typeof r.box === "string" ? r.box : "";
+    if (!id) return "";
+    var b = boxRec(id);
+    return b && !b.gone ? id : "";
+  }
+  function listsNow() {
+    var bid = curBox();
+    return cats().filter(function (c) { return listBoxId(c) === bid; });
+  }
+  function upBox(bid, patch) {
+    var r = boxRec(bid), y = {}, k;
+    if (!r) return;
+    for (k in r) y[k] = r[k];
+    for (k in patch) { if (patch[k] === "" || patch[k] == null) delete y[k]; else y[k] = patch[k]; }
+    y.at = now();
+    if (patch && Object.prototype.hasOwnProperty.call(patch, "gone") && window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, y.at, !!y.gone);
+    put(y);
+  }
+  function hiddenBoxByName(name) {
+    var k, x, n = clean(name, 40);
+    for (k in items) {
+      x = items[k];
+      if (x && !x.deleted && x.type === "box" && x.gone && clean(x.name || "", 40) === n) return x.box;
+    }
+    return "";
+  }
+  function addBox(name) {
+    name = clean(name, 40); if (!name) return null;
+    var again = hiddenBoxByName(name);
+    if (again) { upBox(again, { gone: null }); return again; }
+    var l = boxes(), id = newId(), at = now(), pos = l.reduce(function (m, b) { return Math.max(m, b.pos); }, -1) + 1;
+    put({ id: "b:" + id, type: "box", box: id, name: name, pos: pos, created: at, at: at });
+    return id;
+  }
+  function delBox(bid) {
+    if (!bid || !boxRec(bid)) return;
+    cats().forEach(function (c) { if (listBoxId(c) === bid) upCat(c.cat, { box: null }); });
+    upBox(bid, { gone: 1 });
+    if (boxTab === bid) { boxTab = ""; lsSet("rg-myideas-box", ""); }
+  }
+  function orderWithin(ids) {
+    var all = cats().map(function (c) { return c.cat; }), set = {}, queue = ids.slice(), next;
+    ids.forEach(function (id) { set[id] = 1; });
+    next = all.map(function (id) { return set[id] ? queue.shift() : id; });
+    ids.forEach(function (id) { if (all.indexOf(id) < 0) next.push(id); });
+    setOrder(next);
+  }
+  function curTab() {
+    var l = listsNow();
+    if (l.some(function (c) { return c.cat === tab; })) return tab;
+    if (!l.length) return "";
+    tab = l[0].cat;
+    lsSet("rg-myideas-tab-cur", tab);
+    lsSet(gTabKey(1), tab);
+    return tab;
+  }
 
   /* ---------- safety net (same as Purchasify) ----------
      Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions):
@@ -194,8 +357,9 @@
     var last = l[l.length - 1];
     if (last && same(last.items || {}, cl)) return; // same as the newest backup
     l.push({ t: Date.now(), items: cl });
-    while (l.length > BAK_N) l.shift();
-    try { localStorage.setItem(bakKey(uid), JSON.stringify(l)); } catch (e) { l.splice(0, l.length - 1); lsSet(bakKey(uid), JSON.stringify(l)); }
+    if (window.RGSyncStatus && RGSyncStatus.capBackups) l = RGSyncStatus.capBackups(l, BAK_N, RGSyncStatus.BAK_BYTES, preupgradeHeld());
+    else { while (l.length > BAK_N) l.shift(); }
+    writeLocal(bakKey(uid), JSON.stringify(l));
   }
   function liveCount(m) { var n = 0; for (var k in m) { var x = m[k]; if (x && !x.deleted && !x.gone) n++; } return n; }
   function tooManyGone(next, cloud) {
@@ -233,6 +397,7 @@
     lsSet(lastSyncKey(uid), String(Date.now()));
     paintLastSync();
     rememberSnap(false);
+    lsSet(keptKey(uid), "1");
   }
   function paintLastSync() {
     var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
@@ -266,7 +431,7 @@
     saveHistory();
     lsSet("rg-myideas-conflict:" + uid, t("clashNote"));
     paintConflict();
-    pushHistoryCloud();
+    scheduleHistoryPush();
   }
   function baseKey(id) { return "rg-myideas-base:" + id; }
   function basePrevKey(id) { return "rg-myideas-base-prev:" + id; }
@@ -274,7 +439,7 @@
     if (!uid) return;
     var cur = lsGet(baseKey(uid));
     if (cur) lsSet(basePrevKey(uid), cur);
-    try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
+    writeLocal(baseKey(uid), JSON.stringify(doc));
   }
   function ownKey() { return "rg-myideas-own:" + (uid || ""); }
   function rememberOwn(doc) {
@@ -290,11 +455,17 @@
         list = own[k][f] || [];
         val = JSON.stringify(x[f]);
         if (!list.length || list[list.length - 1] !== val) list.push(val);
-        if (list.length > 12) list = list.slice(-12);
+        var cap = val.length > 400 ? 2 : 4;
+        if (list.length > cap) list = list.slice(-cap);
         own[k][f] = list;
       }
     }
-    try { localStorage.setItem(ownKey(), JSON.stringify(own)); } catch (e) {}
+    var ownJson = JSON.stringify(own);
+    if (ownJson.length > 256 * 1024) {
+      for (k in own) for (f in own[k]) if (own[k][f] && own[k][f].length) own[k][f] = own[k][f].slice(-1);
+      ownJson = JSON.stringify(own);
+    }
+    writeLocal(ownKey(), ownJson);
   }
   function ownValues(key, field, localText) {
     var own = jparse(lsGet(ownKey()), {}), list = (own[key] && own[key][field]) || [], i, out = [];
@@ -329,17 +500,41 @@
     clearTimeout(retryT);
     retryT = setTimeout(function () { nextTry = 0; if (uid) sync(); }, ms);
   }
+  function paintStatusWord(s, text) {
+    while (s.firstChild) s.removeChild(s.firstChild);
+    var span = document.createElement("span");
+    span.className = "status-txt";
+    span.textContent = text || "";
+    s.appendChild(span);
+  }
+  function paintSyncedStatus(s) {
+    var mark, span;
+    while (s.firstChild) s.removeChild(s.firstChild);
+    mark = document.createElement("span");
+    mark.className = "syncmark";
+    mark.setAttribute("aria-hidden", "true");
+    mark.textContent = "✓";
+    span = document.createElement("span");
+    span.className = "status-txt";
+    span.textContent = t("synced").replace(/^✓\s*/, "");
+    s.appendChild(mark);
+    s.appendChild(span);
+  }
   function setStatus() {
     paintLastSync();
-    var s = $("status");
-    var SS = window.RGSyncStatus;
+    var s = $("status"), SS = window.RGSyncStatus, flags, k, show;
     if (!s) { maybeUpdateReload(); return; }
-    if (!SS) { s.textContent = !uid ? t("localOnly") : offline ? t("offline") : (pending || busy) ? t("saving") : t("synced"); maybeUpdateReload(); return; }
-    var flags = statusFlags();
-    var k = SS.kind(flags);
-    SS.fillStatus(s, k, k ? t(k) : "");
-    if (k === "blocked" || holdBlocked) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked });
-    else SS.closeDeletion();
+    flags = statusFlags();
+    k = SS ? SS.kind(flags) : (!uid ? "localOnly" : offline ? "offline" : busy ? "saving" : pending ? "waiting" : "synced");
+    show = (k === "saving" && pending && !busy) ? "waiting" : k;
+    if (show === "synced") { s.className = "status ok"; paintSyncedStatus(s); }
+    else if (show === "saving") { s.className = "status save"; paintStatusWord(s, t("saving")); }
+    else if (show === "waiting") { s.className = "status wait"; paintStatusWord(s, t("waiting")); }
+    else if (show === "localOnly") { s.className = "status local"; paintStatusWord(s, t("localOnly")); }
+    else if (SS) SS.fillStatus(s, k, k ? t(k) : "");
+    else { s.className = "status" + (k === "offline" ? " off" : ""); paintStatusWord(s, t(k)); }
+    if (k === "blocked" || holdBlocked) { if (SS) SS.ensureDeletion({ onYes: restoreBlocked, onNo: confirmBlocked }); }
+    else if (SS) SS.closeDeletion();
     maybeUpdateReload();
   }
   var updateReady = false;
@@ -379,9 +574,10 @@
         if (fought.length) { hadClash = true; keepConflict(items, cl, fought); }
       }
       if (restoring && SS && SS.adoptRestore) {
-        overwriteOk = Date.now() + (SS.BULK_MS || 60000);
-        items = SS.adoptRestore(restoreDoc, cl, now());
+        items = SS.adoptRestore(restoreDoc, cl, now(), items);
         dirty = true;
+        if (SS.sparseRestore && SS.sparseRestore(items, cl)) overwriteOk = 0;
+        else overwriteOk = Date.now() + (SS.BULK_MS || 60000);
       } else if (SS && SS.assertVisible && SS.assertVisible(items, now())) dirty = true;
       var merged = restoring ? items : merge(items, cl);
       if (!same(merged, items)) dirty = true;
@@ -391,8 +587,6 @@
         dirty = true;
       }
       seeded = true;
-      if (undoImport()) dirty = true;
-      if (seedHabits()) dirty = true;
       if (mergeGroups()) dirty = true;
       var cloudAt = SS && SS.cloudUpdatedAt ? (Date.parse(SS.cloudUpdatedAt) || 0) : 0;
       var lastOk = parseInt(lsGet(lastSyncKey(who)) || "", 10) || 0;
@@ -505,27 +699,54 @@
   }
   function syncSoon() { clearTimeout(soonT); soonT = setTimeout(sync, 250); }
   function changed() { pending = true; rememberOwn(items); saveLocal(); render(); syncSoon(); clearTimeout(histT); histT = setTimeout(function () { rememberSnap(false); }, 1500); }
-  function histKey() { return "rg-myideas-hist:" + (uid || ""); }
+  /* history2 is the only key this version writes. The previous key stays byte-for-byte
+     so a device still on the old reader keeps its own history. fmt 2 marks the envelope. */
+  var HIST_CLOUD = "history2", HIST_CLOUD_OLD = "history";
+  function histKey() { return "rg-myideas-hist2:" + (uid || ""); }
+  function histLegacyKey() { return "rg-myideas-hist:" + (uid || ""); }
   function loadHistory() {
-    var raw = uid ? jparse(lsGet(histKey()), []) : [];
-    history = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+    var SS = window.RGSyncStatus, raw2, legacyRaw;
+    if (!uid || !SS) { history = []; return; }
+    raw2 = lsGet(histKey());
+    if (raw2 != null) {
+      history = SS.readHistory ? SS.readHistory(jparse(raw2, null)) : [];
+      return;
+    }
+    legacyRaw = lsGet(histLegacyKey());
+    if (legacyRaw == null) { history = []; return; }
+    history = SS.readLegacyHistory ? SS.readLegacyHistory(jparse(legacyRaw, null)) : [];
+    saveHistory();
   }
   function saveHistory() {
     if (!uid) return;
-    try { localStorage.setItem(histKey(), JSON.stringify(history)); }
-    catch (e) { history = history.slice(-5); try { localStorage.setItem(histKey(), JSON.stringify(history)); } catch (e2) {} }
+    var SS = window.RGSyncStatus;
+    var packed = SS && SS.packHistory ? SS.packHistory(history) : history;
+    if (SS && SS.expandHistory) history = SS.expandHistory(packed);
+    writeLocal(histKey(), JSON.stringify(SS && SS.historyEnvelope ? SS.historyEnvelope(packed) : packed));
+  }
+  var histPushT = 0, histSent = "";
+  function scheduleHistoryPush() {
+    clearTimeout(histPushT);
+    histPushT = setTimeout(function () { pushHistoryCloud(); }, 1200);
   }
   function rememberSnap(force) {
-    var SS = window.RGSyncStatus;
+    var SS = window.RGSyncStatus, n, id;
     if (!uid || !SS) return;
+    n = history.length;
+    id = n ? history[n - 1].id : "";
     history = SS.pushHistory(history, items, Date.now(), !!force);
+    if (history.length === n && (!history.length || history[history.length - 1].id === id)) return;
     saveHistory();
-    pushHistoryCloud();
+    scheduleHistoryPush();
   }
   function pullHistory(done) {
     var SS = window.RGSyncStatus;
     if (!uid || !A || !SS) { if (done) done(); return; }
-    A.get(APP, "history").then(function (cloud) {
+    A.get(APP, HIST_CLOUD).then(function (cloud) {
+      if (!uid) return null;
+      if (cloud) return cloud;
+      return A.get(APP, HIST_CLOUD_OLD);
+    }).then(function (cloud) {
       if (uid && cloud) {
         history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
         saveHistory();
@@ -536,25 +757,33 @@
   }
   function pushHistoryCloud() {
     var SS = window.RGSyncStatus;
+    clearTimeout(histPushT);
     if (!uid || !A || !SS) return;
     if (histBusy) { histAgain = true; return; }
     histBusy = true;
     histAgain = false;
-    A.get(APP, "history").then(function (cloud) {
+    A.get(APP, HIST_CLOUD).then(function (cloud) {
+      if (!uid) return null;
+      if (cloud) return cloud;
+      return A.get(APP, HIST_CLOUD_OLD);
+    }).then(function (cloud) {
       if (!uid) return;
-      var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
+      if (cloud && cloud.fmt != null && cloud.fmt !== SS.HIST_FMT) return;
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
       noteIncomingClash(history);
-      var payload = { v: 1, snaps: cloudSnaps };
-      if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
-      return A.set(APP, "history", payload);
+      var payload = SS.cloudHistoryPayload(history);
+      var body = JSON.stringify(payload);
+      if (body === histSent) return;
+      histSent = body;
+      return A.set(APP, HIST_CLOUD, payload);
     }).then(function () {
       histBusy = false;
-      if (histAgain) pushHistoryCloud();
+      if (histAgain) { histAgain = false; scheduleHistoryPush(); }
     }, function () {
       histBusy = false;
-      if (histAgain) pushHistoryCloud();
+      histSent = "";
+      if (histAgain) { histAgain = false; scheduleHistoryPush(); }
     });
   }
   function hiddenCats() {
@@ -578,18 +807,20 @@
     setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
   }
   function restoreVersion(id) {
-    var SS = window.RGSyncStatus;
+    var SS = window.RGSyncStatus, before;
     if (!SS || !SS.planRestore) { toast(t("historyFail")); return; }
     var plan = SS.planRestore(history, items, id, Date.now());
     if (!plan.found || !plan.items) { toast(t("historyFail")); return; }
+    before = items;
     history = plan.history;
     saveHistory();
     armQuietRestore();
     restoreDoc = plan.items;
-    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : plan.items;
+    items = SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now(), before) : plan.items;
     snap = stamp(items, null);
     pending = true;
-    overwriteOk = Date.now() + (SS.BULK_MS || 60000);
+    if (SS.sparseRestore && SS.sparseRestore(items, before)) overwriteOk = 0;
+    else overwriteOk = Date.now() + (SS.BULK_MS || 60000);
     holdBlocked = false;
     blockedCloud = null;
     saveLocal();
@@ -634,7 +865,7 @@
       }
       if (a.indexOf("r:") === 0) { restoreVersion(a.slice(2)); return; }
       if (a.indexOf("h:") === 0) { showCat(a.slice(2)); closeSheet(); changed(); }
-    });
+    }, { immediate: true });
     if (w) w.style.zIndex = "10001";
   }
 
@@ -677,7 +908,7 @@
   function add(sec, text, note, price) {
     text = clean(text, 200); if (!text) return;
     var o = nextOrder(sec), id = newId(), at = now(), x = { id: id, sec: sec, text: text, done: false, order: o, created: at, at: at };
-    note = clean(note, 500); if (note) x.note = note;
+    note = cleanNote(note); if (note) x.note = note;
     if (typeof price === "number" && isFinite(price)) x.price = price;
     put(x);
   }
@@ -737,47 +968,10 @@
     inp.value = v == null ? "" : String(v); sumNow(); return true;
   }
 
-  /* ---------- one-time undo of the v13 Purchasify import (v14) ----------
-     v13 copied Purchasify into Listify with fixed ids: lists "c:sh-<cat>" (cat "sh-<cat>") and items "sh-<id>", plus the marker
-     "m:shopimport". This removes every list whose cat starts with "sh-" (with everything in it) and any leftover "sh-" item.
-     It only touches Listify's own records (app "myideas"); Purchasify (app "shopping") is never read or written here.
-     Before deleting, the whole Listify copy is saved on this device: rg-myideas-undo-bak:<user id>.
-     A marker { id: "m:shopundo" } keeps it from running again. */
-  function undoImport() {
-    if (!items["m:shopimport"] || items["m:shopundo"]) return false;
-    try { localStorage.setItem("rg-myideas-undo-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) { return false; }
-    bulkOk = Date.now() + 60000;
-    var k, x, cs = [];
-    for (k in items) { x = items[k]; if (x && x.type === "cat" && typeof x.cat === "string" && x.cat.indexOf("sh-") === 0 && !x.gone) cs.push(x.cat); }
-    cs.forEach(function (cid) { delCat(cid); });
-    for (k in items) { x = items[k]; if (k.indexOf("sh-") === 0 && x && !x.deleted) del(k); }
-    put({ id: "m:shopundo", type: "meta", done: 1, lists: cs.length, at: now() });
-    return true;
-  }
-
-
-  /* ---------- one-time list "הרגלים שלי" (Ron, 2026-10-30) ----------
-     Runs only on Ron's account (the one that has the v13 marker "m:shopimport"), once: fixed ids "c:hb1" / "hb1-01".."hb1-20"
-     plus a synced marker "m:habits1" and a local flag rg-myideas-habits1:<user id>, so other devices never add it again.
-     Skipped if a list with the same title already exists. Existing lists are never touched. Before adding, the whole
-     Listify copy is saved on this device: rg-myideas-habits-bak:<user id>. */
-  var HB_TITLE = "הרגלים שלי", HB_ITEMS = ["עד סיגריה אחת ביום", "דלת פתוחה וחלון פתוח (המון חום ואובך, מזגן וחושך דווקא עוזר)", "ללא בלוטות', מינימיזציה של קרינה (כל פעם ששמתי היה נורא ודי מהר)", "ללא תוכן וידאו קצר או ארוך - עומס יתר חושי, כולל פודקסט, לא כולל מפלים", "כתיבה יומית ולוג יומי ולמידה שבועית", "0 עבודה שכירה", "ביבליותרפיה", "פיזיותרפיה", "שבוע ללא סיגריות כלל", "שיחה יומית עם אמנדה בעברית", "שיחה יומית עם ורוניקה // וונסה באנגלית", "יומן כתיבה יומי על דף בעברית", "כנ\"ל באנגלית", "דיבור בקול בעברית לבד", "דיבור בקול באנגלית לבד", "ביטבוקס בקול", "שיח פנימי, עד כה מסתבר שבעברית הכי מצליח", "סקול רק על מקבוק וגם אז לבדוק אם אמנדה יכולה לסכם", "קול פנימי נוסף אדיר", "קול פנימי נוסף גבי"];
-  function seedHabits() {
-    if (!items["m:shopimport"] || items["m:habits1"] || lsGet("rg-myideas-habits1:" + uid)) return false;
-    var exists = cats().some(function (c) { return clean(catName(c), 40) === HB_TITLE; }) || (items["c:hb1"] && !items["c:hb1"].deleted);
-    if (!exists) {
-      try { localStorage.setItem("rg-myideas-habits-bak:" + uid, JSON.stringify({ t: Date.now(), items: items })); } catch (e) { return false; }
-      var l = cats(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1, at = now();
-      put({ id: "c:hb1", type: "cat", cat: "hb1", name: HB_TITLE, kind: "task", pos: pos, created: at, at: at });
-      HB_ITEMS.forEach(function (txt, n) { var id = "hb1-" + (n < 9 ? "0" : "") + (n + 1), a = now();
-        if (!items[id]) put({ id: id, sec: "hb1", text: txt, done: false, order: n + 1, created: a, at: a }); });
-    }
-    put({ id: "m:habits1", type: "meta", done: 1, added: exists ? 0 : HB_ITEMS.length, at: now() });
-    lsSet("rg-myideas-habits1:" + uid, "1");
-    return true;
-  }
-
-  /* one-time group move: only the grp field is cleared. Backup stays on the live key. */
+  /* This upgrade does not re-run one-time imports. Lists already stored are not rewritten or deleted. */
+  function undoImport() { return false; }
+  function seedHabits() { return false; }
+  /* one-time group move: only the grp field is cleared. The backup stays on this app's key. */
   function mergeGroups() {
     var ks = [], k;
     for (k in items) { var r = items[k]; if (r && !r.deleted && r.type === "cat" && (r.grp === 2 || r.grp === 3)) ks.push(k); }
@@ -796,7 +990,8 @@
   function editor(x) {
     return '<div class="ed" data-ed="' + esc(x.id) + '">' +
       '<textarea class="e-text grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '">' + esc(label(x)) + '</textarea>' +
-      '<textarea class="e-note" maxlength="500" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<textarea class="e-note" maxlength="' + NOTE_MAX + '" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' + esc(x.note || "") + "</textarea>" +
+      '<p class="notemax" hidden></p>' +
       '<input type="text" class="e-price" inputmode="decimal" maxlength="10" placeholder="' + esc(t("priceLabel")) + '" aria-label="' + esc(t("priceLabel")) + '" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '">' +
       '<div class="row"><button type="button" class="btn pri" data-a="save">' + esc(t("save")) + '</button><button type="button" class="btn" data-a="cancel">' + esc(t("cancel")) +
       '</button><button type="button" class="btn dng" data-a="del">' + esc(t("del")) + "</button></div></div>";
@@ -828,17 +1023,67 @@
     return out + esc(raw.slice(last));
   }
   function itemHit(x, q) { return hit(label(x), q) || hit(x.note || "", q); }
-  function listHit(c, q) { return hit(catName(c), q) || live(c.cat).some(function (x) { return itemHit(x, q); }); }
+  function boxLabelOf(c) { var id = listBoxId(c), r = id && boxRec(id); return (r && r.name) || ""; }
+  function listHit(c, q) { return hit(catName(c), q) || hit(boxLabelOf(c), q) || live(c.cat).some(function (x) { return itemHit(x, q); }); }
+  /* View-only. Never written onto the item, so sync, backup, restore and print still have the whole note. */
+  function noteKey() { return "rg-myideas-notefold:" + (uid || "local"); }
+  function notePrefs() {
+    var p = jparse(lsGet(noteKey()), null);
+    if (!p || typeof p !== "object") p = { all: 0, item: {} };
+    if (!p.item || typeof p.item !== "object") p.item = {};
+    return p;
+  }
+  function saveNotePrefs(p) { lsSet(noteKey(), JSON.stringify({ all: p.all ? 1 : 0, item: p.item || {} })); }
+  function noteHidden(id) {
+    var p = notePrefs();
+    if (p.item && Object.prototype.hasOwnProperty.call(p.item, id)) return p.item[id] === "hide";
+    return !!p.all;
+  }
+  function noteFolded(x) {
+    if (!x || !x.note) return false;
+    if (searchRaw() && hit(x.note, searchRaw())) return false;
+    return noteHidden(x.id);
+  }
+  function toggleItemNote(id) {
+    var p = notePrefs();
+    p.item[id] = noteHidden(id) ? "show" : "hide";
+    saveNotePrefs(p);
+    render();
+  }
+  function toggleAllNotes() {
+    var p = notePrefs();
+    p.all = p.all ? 0 : 1;
+    p.item = {};
+    saveNotePrefs(p);
+    render();
+  }
+  function paintNoteMax(el) {
+    if (!el) return;
+    var p = el.nextElementSibling && el.nextElementSibling.classList.contains("notemax") ? el.nextElementSibling : null;
+    if (!p) { var w = el.closest(".notewrap"); p = w ? w.querySelector(".notemax") : null; }
+    if (!p) return;
+    var n = String(el.value || "").length, on = n >= NOTE_MAX, s, b;
+    p.hidden = !on;
+    p.textContent = "";
+    if (!on) return;
+    s = document.createElement("span"); s.textContent = t("noteMax");
+    b = document.createElement("bdi"); b.textContent = n + "/" + NOTE_MAX;
+    p.appendChild(s); p.appendChild(document.createTextNode(" ")); p.appendChild(b);
+    el.style.height = "auto";
+    el.style.height = Math.max(42, Math.min(el.scrollHeight + 2, 220)) + "px";
+  }
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
-    var cls = (sel ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g;
+    var cls = (sel ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g; if (x.note) cls = (cls ? cls + " " : "") + "has-note";
     var box = '<button type="button" class="ckbox' + (g ? " on-" + g : "") + '" data-a="ck" role="checkbox" aria-checked="' + (g === "ok" ? "true" : "false") + '" aria-label="' + esc((g === "no" ? t("markNo") : g === "ok" ? t("markOk") : t("check")) + ": " + n) + '">' + (g === "ok" ? "✓" : g === "no" ? "✕" : "") + "</button>";
     return '<li data-id="' + esc(x.id) + '"' + (cls ? ' class="' + cls + '"' : "") + '>' +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' +
       box +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span>" + (x.note ? '<span class="note">' + hi(x.note) + "</span>" : "") + "</div>" +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span></div>" +
+      (x.note ? '<button type="button" class="notetog' + (noteHidden(x.id) ? "" : " on") + '" data-a="note" aria-pressed="' + (noteHidden(x.id) ? "false" : "true") + '" aria-label="' + esc((noteHidden(x.id) ? t("noteShow") : t("noteHide")) + ": " + n) + '">' + esc(t("noteWord")) + "</button>" : "") +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
+      (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '" data-a="edit">' + hi(x.note) + "</span>" : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
   function panel(sec) {
@@ -848,7 +1093,7 @@
     else { chosen = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); } // ✓ moves into נבחרים; clearing it returns the item
     var done = []; // old "done" נבחר stays off (Ron 31.10). ✓ uses mark, which already syncs.
     return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
-      '<div class="addextra"><input type="text" name="note" maxlength="500" enterkeyhint="done" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '">' +
+      '<div class="addextra"><div class="notewrap"><textarea name="note" class="notein" rows="2" maxlength="' + NOTE_MAX + '" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></textarea><p class="notemax" hidden></p></div>' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
         '<div class="card listcard"><ul class="list" id="list-done">' + done.map(row).join("") + "</ul></div></details>" : "") +  // selected ("נבחר") group sits ABOVE the open items (Ron 30.10)
@@ -862,7 +1107,7 @@
   function searchView() {
     var q = searchRaw(), html = "", any = false;
     cats().forEach(function (c) {
-      var nameHit = hit(catName(c), q), anyItem = live(c.cat).some(function (x) { return itemHit(x, q); });
+      var nameHit = hit(catName(c), q) || hit(boxLabelOf(c), q), anyItem = live(c.cat).some(function (x) { return itemHit(x, q); });
       if (!nameHit && !anyItem) return;
       any = true;
       showP = hasPrices(c.cat); showC = isChk(c.cat);
@@ -883,7 +1128,7 @@
   function render() {
     var panels = $("panels"), pn = $("picker-name"); if (!panels || !pn) return;
     if (drag || idrag) { needRender = true; return; } // never rebuild under a finger that is dragging (a category or an item)
-    if (!uid) { pn.textContent = ""; closeMenu(); panels.innerHTML = ""; setStatus(); return; } // signed out: nothing private on the page
+    if (!uid) { pn.textContent = ""; closeMenu(); closeBoxMenu(); panels.innerHTML = ""; var nb0 = $("notesbar"); if (nb0) nb0.hidden = true; setStatus(); return; } // signed out: nothing private on the page
     var unm = false; for (var uk in items) { var ux = items[uk]; if (!ux.deleted && ux.type !== "meta" && ux.sec && isSel(ux)) { upd(uk, { done: false, dord: null }); unm = true; } } // unmark old "נבחר" items: one list only (Ron 31.10)
     if (unm) { pending = true; saveLocal(); syncSoon(); }
     if (editing && (!items[editing] || items[editing].deleted)) editing = null;
@@ -897,15 +1142,17 @@
     var cur = curTab(), cc = cur && catOf(cur);
     GROUPS.forEach(function (g) { // each picker shows its own last list; the one whose list is open below is marked
       var p = $(g === 1 ? "picker" : "picker" + g), nm = $(g === 1 ? "picker-name" : "picker-name" + g); if (!p || !nm) return;
-      var gc = catOf(gTab(g)), ph = t("pickerPh").replace("{n}", g);
+      var gc = g === 1 ? cc : catOf(gTab(g)), ph = t("pickerPh").replace("{n}", g);
       nm.textContent = gc ? catName(gc) : ph; p.classList.toggle("active", !!cc && gOf(cc) === g); p.classList.toggle("empty", !gc);
       p.setAttribute("aria-label", ph + ": " + nm.textContent); p.title = ph;
     });
-    if (!cc) pn.textContent = t("noCats");
+    if (!cc) pn.textContent = curBox() ? t("pickerPh").replace("{n}", 1) : t("noCats");
+    paintBoxPicker();
+    if (boxMenuOpen()) fillBoxMenu();
     // (the ☰ list-edit button was removed: rename/delete/reorder live inside the list menu)
     if (menuOpen()) fillMenu();
     var hint = $("cathint"); if (hint) { hint.textContent = t("catHint"); hint.hidden = !!lsGet("rg-myideas-hint3"); }
-    panels.innerHTML = searchRaw() ? searchView() : (!cur ? '<div class="card empty"><p>' + esc(t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>");
+    panels.innerHTML = searchRaw() ? searchView() : (!cur ? '<div class="card empty"><p>' + esc(curBox() ? t("boxEmpty") : t("noCats")) + "</p></div>" : '<section role="tabpanel" data-panel="' + esc(cur) + '">' + panel(cur) + "</section>");
     document.querySelectorAll(".addform input,.addform textarea").forEach(function (i) { var v = drafts[i.closest("form").getAttribute("data-add") + "/" + i.name]; if (v) i.value = v; });
     if (keep) { var k = document.querySelector('.addform[data-add="' + keep.form + '"] [name="' + keep.name + '"]'); if (k) k.focus(); }
     growAll();
@@ -915,6 +1162,8 @@
     }
     if (pk) { var pi = document.querySelector('[data-price="' + pk.id + '"]'); if (pi) { pi.value = pk.v; pi.focus(); try { pi.setSelectionRange(pk.s, pk.e); } catch (e) {} } }
     sumNow();
+    document.querySelectorAll(".e-note, .notein").forEach(paintNoteMax);
+    paintNotesAll();
     rendering = false;
     setStatus();
   }
@@ -926,7 +1175,7 @@
     if (!text) { render(); return; }
     var p = {};
     if (text !== label(x)) { p.text = text; p.seed = null; } // once edited, the first item keeps its own text
-    var nt = clean(ed.querySelector(".e-note").value, 500); if (nt !== (x.note || "")) p.note = nt;
+    var nt = cleanNote(ed.querySelector(".e-note").value); if (nt !== (x.note || "")) p.note = nt;
     var pe = ed.querySelector(".e-price"), pv = pe ? parsePrice(pe.value) : (typeof x.price === "number" ? x.price : null);
     if (typeof pv === "number" && isNaN(pv)) { editing = id; pe.classList.add("bad"); pe.focus(); return; }
     if (pv !== (typeof x.price === "number" ? x.price : null)) p.price = pv;
@@ -934,7 +1183,7 @@
     render();
   }
 
-  /* ---------- toast (gold, at the top; X or swipe any direction dismisses) + delete with a 5-second undo ---------- */
+  /* ---------- toast (gold, at the bottom; X or swipe any direction dismisses) + delete with a 5-second undo ---------- */
   var toastT = 0;
   function toastHide(el) { clearTimeout(toastT); el.classList.remove("on", "act", "drag"); el.style.transform = ""; el.style.opacity = ""; }
   function toastSwipe(el) {
@@ -965,20 +1214,22 @@
   function askDel(id) { delWithUndo(id); }
 
   /* ---------- sheets (bottom panels) ---------- */
-  function sheet(html, onClick) {
+  function sheet(html, onClick, opts) {
     closeSheet();
     var w = document.createElement("div"); w.className = "sheetwrap"; w.id = "sheet";
     w.innerHTML = '<div class="sheet card" role="dialog" aria-modal="true">' + html + "</div>";
     document.body.appendChild(w);
     var opened = Date.now(); // the finger that opened the sheet (long-press) also sends a late click: ignore clicks in the first moments
-    w.addEventListener("click", function (e) { if (Date.now() - opened < 450) { e.preventDefault(); return; } if (e.target === w) { closeSheet(); return; } var b = e.target.closest("[data-s]"); if (b) onClick(b.getAttribute("data-s"), w, e); });
+    var ready = !!(opts && opts.immediate);
+    w.addEventListener("click", function (e) { if (!ready && Date.now() - opened < 450) { e.preventDefault(); return; } if (e.target === w) { closeSheet(); return; } var b = e.target.closest("[data-s]"); if (b) onClick(b.getAttribute("data-s"), w, e); });
     w.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
     var f = w.querySelector("input") || w.querySelector("button"); if (f) setTimeout(function () { f.focus(); if (f.select) f.select(); }, 30);
     return w;
   }
   function closeSheet() { var w = $("sheet"); if (!w) return; var f = w.onClose; w.onClose = null; w.parentNode.removeChild(w); if (f) f(); }
-  function nameSheet(title, value, isNew, done) {
-    var w = sheet('<h3>' + esc(title) + '</h3><form class="sform" autocomplete="off"><input type="text" class="s-name" maxlength="40" enterkeyhint="done" value="' + esc(value || "") + '" placeholder="' + esc(t("catPh")) + '" aria-label="' + esc(t("catPh")) + '">' +
+  function nameSheet(title, value, isNew, done, ph) {
+    ph = ph || t("catPh");
+    var w = sheet('<h3>' + esc(title) + '</h3><form class="sform" autocomplete="off"><input type="text" class="s-name" maxlength="40" enterkeyhint="done" value="' + esc(value || "") + '" placeholder="' + esc(ph) + '" aria-label="' + esc(ph) + '">' +
       '<div class="row"><button type="submit" class="btn pri">' + esc(t(isNew ? "create" : "save")) + '</button><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div></form>",
       function (a) { if (a === "x") closeSheet(); });
     w.querySelector("form").addEventListener("submit", function (e) {
@@ -1053,6 +1304,95 @@
     };
   }
 
+  function paintBoxPicker() {
+    var bn = $("box-name"), bp = $("box-picker"), bid = curBox(), br = bid && boxRec(bid);
+    if (!bn || !bp) return;
+    bn.textContent = br && !br.gone ? (br.name || "…") : t("boxDefault");
+    bp.setAttribute("aria-label", t("boxLabel") + ": " + bn.textContent);
+    bp.classList.toggle("empty", !(br && !br.gone));
+  }
+  function paintNotesAll() {
+    var bar = $("notesbar"), b = $("notes-all"), any = false, pool;
+    if (!bar || !b) return;
+    pool = searchRaw() ? cats() : listsNow();
+    pool.forEach(function (c) { if (any) return; live(c.cat).forEach(function (x) { if (x.note) any = true; }); });
+    if (!uid || (!any && !notePrefs().all)) { bar.hidden = true; return; }
+    bar.hidden = false;
+    var hiding = !!notePrefs().all;
+    b.textContent = t(hiding ? "notesShow" : "notesHide");
+    b.setAttribute("aria-pressed", hiding ? "true" : "false");
+  }
+  var bmOpt = null;
+  function boxMenuOpen() { var m = $("bmenu"); return m && !m.hidden; }
+  function closeBoxMenu() {
+    bmOpt = null;
+    var m = $("bmenu"), p = $("box-picker");
+    if (m) m.hidden = true;
+    if (p) p.setAttribute("aria-expanded", "false");
+  }
+  function fillBoxMenu() {
+    var m = $("bmenu"), cur = curBox(); if (!m) return;
+    function row(id, name, on, canEdit) {
+      var open = canEdit && bmOpt === id, key = id || "all";
+      return '<li class="erow' + (on ? " cur" : "") + '" data-box="' + esc(key) + '">' +
+        '<button type="button" class="popt pm-name" role="option" data-box="' + esc(key) + '" aria-selected="' + on + '"><span class="pn">' + esc(name) + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
+        (canEdit ? '<button type="button" class="eic pm-more' + (open ? " on" : "") + '" data-box="opt:' + esc(id) + '" aria-expanded="' + open + '" aria-label="' + esc(t("optMenu") + ": " + name) + '">⋮</button>' : "") +
+        "</li>" +
+        (open ? '<li class="pm-opts" data-opts="' + esc(id) + '">' +
+          '<button type="button" class="pm-oi" data-box="ren:' + esc(id) + '"><span aria-hidden="true">✏️</span>' + esc(t("renameShort")) + "</button>" +
+          '<button type="button" class="pm-oi pm-del" data-box="del:' + esc(id) + '"><span aria-hidden="true">🗑</span>' + esc(t("boxDel")) + "</button></li>" : "");
+    }
+    var rows = row("", t("boxDefault"), !cur, false);
+    boxes().forEach(function (b) { rows += row(b.box, b.name, cur === b.box, true); });
+    m.innerHTML = '<div class="pm-head"><span class="pm-title">' + esc(t("boxLabel")) + "</span></div>" +
+      '<ul class="pm-list">' + rows + '</ul><button type="button" class="popt padd" data-box="+">' + esc("＋ " + t("boxAdd")) + "</button>";
+  }
+  function openBoxMenu() {
+    hideHint(); closeMenu();
+    var m = $("bmenu"), p = $("box-picker"); if (!m || !p) return;
+    fillBoxMenu(); m.hidden = false; p.setAttribute("aria-expanded", "true");
+    var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} }
+  }
+  function moveListBox(cid) {
+    var c = catOf(cid); if (!c) return;
+    var cur = listBoxId(c);
+    var html = '<h3>' + esc(t("boxMove")) + '</h3><p class="mnote">' + esc(catName(c)) + '</p><div class="mlist">' +
+      '<button type="button" class="mi" data-s="tobox:"><span class="mn">' + esc(t("boxDefault")) + "</span>" + (cur ? "" : '<span class="mc">✓</span>') + "</button>" +
+      boxes().map(function (b) { return '<button type="button" class="mi" data-s="tobox:' + esc(b.box) + '"><span class="mn">' + esc(b.name) + "</span>" + (cur === b.box ? '<span class="mc">✓</span>' : "") + "</button>"; }).join("") +
+      '</div><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + "</button>";
+    sheet(html, function (a) {
+      if (a === "x" || a.indexOf("tobox:") !== 0) { closeSheet(); return; }
+      var bid = a.slice(6);
+      closeSheet();
+      if ((bid || "") === cur) return;
+      upCat(cid, { box: bid || null });
+      changed();
+    });
+  }
+  function boxAction(p) {
+    if (p === "+") {
+      nameSheet(t("boxAdd"), "", true, function (v) {
+        var id = addBox(v);
+        if (!id) return;
+        boxTab = id; lsSet("rg-myideas-box", id); closeBoxMenu(); changed();
+      }, t("boxPh"));
+      return;
+    }
+    if (p.indexOf("opt:") === 0) { var oid = p.slice(4); bmOpt = bmOpt === oid ? null : oid; fillBoxMenu(); return; }
+    if (p.indexOf("ren:") === 0) {
+      var rid = p.slice(4), rr = boxRec(rid); if (!rr) return;
+      bmOpt = null; fillBoxMenu();
+      nameSheet(t("boxRename"), rr.name || "", false, function (v) { if (v && v !== (rr.name || "")) { upBox(rid, { name: v }); changed(); } }, t("boxPh"));
+      return;
+    }
+    if (p.indexOf("del:") === 0) {
+      var did = p.slice(4), dr = boxRec(did); if (!dr) return;
+      if (window.confirm(t("boxDelAsk").replace("{x}", dr.name || ""))) { delBox(did); closeBoxMenu(); changed(); }
+      return;
+    }
+    boxTab = p === "all" ? "" : (p || ""); lsSet("rg-myideas-box", boxTab); closeBoxMenu(); render();
+  }
+
   /* ---------- list picker: a big button with the open list; it opens every list + "＋ new list". ☰ = edit mode ---------- */
   var pmEdit = false, pmSort = null;
   function menuOpen() { var m = $("pmenu"); return m && !m.hidden; }
@@ -1065,7 +1405,7 @@
   var pmOpt = null, pmMove = false;
   function fillMenu() {
     var m = $("pmenu"), cur = curTab(); if (!m || pmSort) return;
-    var q = searchRaw(), gl = catsG(menuG);
+    var q = searchRaw(), gl = listsNow();
     if (q && !pmMove) gl = gl.filter(function (c) { return listHit(c, q); }); // display filter only; move mode keeps every list so order is never saved from a subset
     var st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
     var head = '<div class="pm-head"><span class="pm-title">' + esc(pmMove ? t("moveNote") : t("pickerPh").replace("{n}", menuG)) + "</span>" +
@@ -1085,6 +1425,7 @@
           '<button type="button" class="pm-oi" data-pick="ren:' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
           '<button type="button" class="pm-oi" data-pick="prc:' + id + '" aria-pressed="' + pr + '"><span aria-hidden="true">₪</span>' + esc(t("optPrice")) + '<b class="pm-st' + (pr ? " on" : "") + '">' + esc(pr ? t("stOn") : t("stOff")) + "</b></button>" +
           '<button type="button" class="pm-oi" data-pick="chk:' + id + '"><span aria-hidden="true">' + (ckm ? "☰" : "☑") + "</span>" + esc(t(ckm ? "optToList" : "optToCheck")) + "</button>" +
+          '<button type="button" class="pm-oi" data-pick="box:' + id + '"><span aria-hidden="true">▣</span>' + esc(t("boxMove")) + "</button>" +
           '<button type="button" class="pm-oi pm-del" data-pick="del:' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
     m.innerHTML = head + '<ul class="pm-list' + (pmMove ? " editing" : "") + '">' + rows + "</ul>" + (pmMove ? "" : '<button type="button" class="popt padd" data-pick="+">' + esc("＋ " + t("catAdd")) + "</button>");
@@ -1092,7 +1433,7 @@
     if (pmOpt) { var ob = m.querySelector(".pm-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e) {} }
   }
   function pickerEl(g) { return $(g === 1 ? "picker" : "picker" + g); }
-  function openMenu(g) { hideHint(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
+  function openMenu(g) { hideHint(); closeBoxMenu(); menuG = g || 1; pmEdit = true; var m = $("pmenu"), w = pickerEl(menuG).parentNode; if (m.parentNode !== w) w.appendChild(m); fillMenu(); m.hidden = false; GROUPS.forEach(function (k) { var p = pickerEl(k); if (p) p.setAttribute("aria-expanded", String(k === menuG)); }); var s = m.querySelector('[aria-selected="true"]'); if (s) { s.focus(); try { s.scrollIntoView({ block: "nearest" }); } catch (e) {} } }
   function menuAction(p) {
     if (p === "edit") { pmEdit = !pmEdit; fillMenu(); if (!pmEdit) syncSoon(); return; }
     if (p === "+") { newList(function (id) { if (menuOpen()) { fillMenu(); var b = $("pmenu").querySelector('[data-cat="' + id + '"]'); if (b) try { b.scrollIntoView({ block: "nearest" }); } catch (e) {} } else selectTab(id); }, menuG); return; }
@@ -1101,9 +1442,9 @@
     if (p.indexOf("opt:") === 0) { pmOpt = pmOpt === cid ? null : cid; fillMenu(); return; }
     if (p.indexOf("mov:") === 0) { pmOpt = null; pmMove = true; fillMenu(); return; }
     if (p.indexOf("upp:") === 0 || p.indexOf("dwn:") === 0) {
-      var ids = catsG(menuG).map(function (x) { return x.cat; }), i = ids.indexOf(cid), j = p.indexOf("upp:") === 0 ? i - 1 : i + 1;
+      var ids = listsNow().map(function (x) { return x.cat; }), i = ids.indexOf(cid), j = p.indexOf("upp:") === 0 ? i - 1 : i + 1;
       if (i < 0 || j < 0 || j >= ids.length) return;
-      ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); changed();
+      ids.splice(j, 0, ids.splice(i, 1)[0]); orderWithin(ids); changed();
       var mb = $("pmenu").querySelector('[data-pick="' + p + '"]'); if (mb && !mb.disabled) mb.focus(); else { var li2 = $("pmenu").querySelector('[data-cat="' + cid + '"]'); if (li2) li2.scrollIntoView({ block: "nearest" }); }
       return;
     }
@@ -1111,6 +1452,7 @@
     if (p.indexOf("ren:") === 0) { if (c) nameSheet(t("renameTitle"), catName(c), false, function (v) { if (v !== catName(c)) { upCat(cid, { name: v }); changed(); } }); return; }
     if (p.indexOf("prc:") === 0) { if (c) { upCat(cid, { price: (catRec(cid) && catRec(cid).price) ? null : 1 }); changed(); } return; }
     if (p.indexOf("chk:") === 0) { if (c) { upCat(cid, { check: isChk(cid) ? null : 1 }); changed(); } return; }
+    if (p.indexOf("box:") === 0) { pmOpt = null; fillMenu(); moveListBox(cid); return; }
     if (p.indexOf("del:") === 0) {
       if (!c) return; if (cats().length <= 1) { window.alert(t("lastCat")); return; }
       if (window.confirm(t("confirmDelCat").replace("{x}", catName(c)))) { bulkOk = Date.now() + 60000; delCat(cid); if (tab === cid) { tab = ""; lsSet("rg-myideas-tab-cur", curTab()); } changed(); }
@@ -1132,7 +1474,7 @@
     function upE(e) {
       if (!pmSort || !sd || e.pointerId !== sd.pid) return;
       var r = pmSort.end(); pmSort = null; sd = null; noClick = true; setTimeout(function () { noClick = false; }, 350);
-      if (r.moved) { setOrder(r.order.map(function (li) { return li.getAttribute("data-cat"); })); changed(); } else fillMenu();
+      if (r.moved) { orderWithin(r.order.map(function (li) { return li.getAttribute("data-cat"); })); changed(); } else fillMenu();
     }
     m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
   }
@@ -1213,13 +1555,20 @@
 
   function bootLists() {
     GROUPS.forEach(function (g) { var p = pickerEl(g); if (p) p.addEventListener("click", function (e) { e.stopPropagation(); var same = menuOpen() && menuG === g; if (menuOpen()) closeMenu(); if (!same) openMenu(g); }); });
+    var bp = $("box-picker");
+    if (bp) bp.addEventListener("click", function (e) { e.stopPropagation(); if (boxMenuOpen()) closeBoxMenu(); else openBoxMenu(); });
+    var bm = $("bmenu");
+    if (bm) bm.addEventListener("click", function (e) {
+      e.stopPropagation(); var b = e.target.closest("[data-box]"); if (!b) return;
+      boxAction(b.getAttribute("data-box"));
+    });
     $("pmenu").addEventListener("click", function (e) {
       e.stopPropagation(); if (noClick) { noClick = false; return; } var b = e.target.closest("[data-pick]"); if (!b) return;
       menuAction(b.getAttribute("data-pick"));
     });
     bootMenuDrag();
-    document.addEventListener("click", function (e) { if (menuOpen() && !e.target.closest(".listbars") && !e.target.closest("#sheet")) closeMenu(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menuOpen() && !$("sheet")) { closeMenu(); pickerEl(menuG).focus(); } });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".listbars") && !e.target.closest("#sheet")) { if (menuOpen()) closeMenu(); if (boxMenuOpen()) closeBoxMenu(); } });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("sheet") && (menuOpen() || boxMenuOpen())) { closeMenu(); closeBoxMenu(); var focus = menuG ? pickerEl(menuG) : $("box-picker"); if (focus) focus.focus(); } });
   }
 
   /* ---------- items: swipe right = delete, swipe left = move. The gesture starts on any part of the row
@@ -1306,6 +1655,7 @@
     }
     main.addEventListener("pointerdown", function (e) {
       var li = e.target.closest(".list > li[data-id]"); if (!li || li.querySelector(".ed") || editing) return;
+      if (e.target.closest(".notetog")) return;
       if (e.pointerType === "mouse" && e.button !== 0) return;
       var h = e.target.closest(".ihandle");
       if (h) { // ☰: horizontal = swipe, vertical = reorder.
@@ -1397,7 +1747,7 @@
     });
   }
 
-  /* File restore: preview, then backup, then replace this device's Listify copy. The helper refuses every key that is not rg-myideas-*. */
+  /* File restore: preview, then backup, then replace this device's lists. The helper writes only rg-myideas-* keys. */
   function restoreName(row) {
     if (row.name) return row.name;
     if (row.builtin === "ideas") return t("tabIdeas");
@@ -1447,11 +1797,12 @@
     staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, nextItems: parsed.items, now: Date.now() });
     wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
     if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
+    var beforeItems = items;
     rememberSnap(true);
     fileGen++;
     armQuietRestore();
     restoreDoc = staged.items;
-    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now()) : staged.items;
+    items = SS && SS.adoptRestore ? SS.adoptRestore(restoreDoc, {}, Date.now(), beforeItems) : staged.items;
     seeded = true;
     pending = true;
     editing = null;
@@ -1460,8 +1811,8 @@
     syncErr = "";
     offline = false;
     uploadCut = false;
-    overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000);
-    bulkOk = overwriteOk;
+    if (SS && SS.sparseRestore && SS.sparseRestore(items, beforeItems)) { overwriteOk = 0; bulkOk = 0; }
+    else { overwriteOk = Date.now() + ((SS && SS.BULK_MS) || 60000); bulkOk = overwriteOk; }
     lastT = 0;
     for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
     snap = stamp(items, null);
@@ -1574,6 +1925,31 @@
     });
     if (x) x.addEventListener("click", function () { el.value = ""; sync(); el.focus(); });
   }
+  /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
+  function backupHasRows() {
+    var k, x;
+    for (k in (items || {})) {
+      x = items[k];
+      if (x && typeof x === "object" && !x.deleted) return true;
+    }
+    return false;
+  }
+  function downloadBackup() {
+    var R = window.RGMyIdeasRestore, file, blob, a, when, stamp;
+    if (!backupHasRows()) { toast(t("backupEmpty")); return; }
+    if (!R || !R.buildFile) return;
+    when = Date.now();
+    file = R.buildFile(items || {}, when);
+    blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    a = document.createElement("a");
+    stamp = String(R.formatWhen(when) || "").replace(/[^\d]/g, "");
+    a.href = URL.createObjectURL(blob);
+    a.download = "listify-" + (stamp || "backup") + ".json";
+    document.body.appendChild(a);
+    a.click();
+    if (a.parentNode) a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
@@ -1605,7 +1981,10 @@
       else if (e.key === "Escape") { e.preventDefault(); var xx = items[e.target.getAttribute("data-price")]; e.target.value = xx && typeof xx.price === "number" ? String(xx.price) : ""; e.target.classList.remove("bad"); e.target.blur(); sumNow(); }
     });
     main.addEventListener("focusout", function (e) { if (!rendering && e.target.getAttribute && e.target.getAttribute("data-price")) commitPrice(e.target); });
-    main.addEventListener("input", function (e) { if (e.target.classList && e.target.classList.contains("grow")) { if (/[\r\n]/.test(e.target.value)) e.target.value = e.target.value.replace(/[\r\n]+/g, " "); grow(e.target); } });
+    main.addEventListener("input", function (e) {
+      if (e.target.classList && (e.target.classList.contains("e-note") || e.target.classList.contains("notein"))) { paintNoteMax(e.target); return; }
+      if (e.target.classList && e.target.classList.contains("grow")) { if (/[\r\n]/.test(e.target.value)) e.target.value = e.target.value.replace(/[\r\n]+/g, " "); grow(e.target); }
+    });
     window.addEventListener("resize", growAll);
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
@@ -1617,6 +1996,7 @@
       if (a === "move") { moveMenu(id); return; }
       if (a === "trash") { delWithUndo(id); return; }
       if (a === "ck") { toggleCk(id); changed(); return; }
+      if (a === "note") { toggleItemNote(id); return; }
       if (a === "edit") { editing = id; render(); }
       else if (a === "save") saveEdit(id);
       else if (a === "cancel") { editing = null; render(); }
@@ -1624,6 +2004,8 @@
     });
     M.onLang(render);
     var hb = $("hist-btn"); if (hb) hb.addEventListener("click", function () { openHistory(); });
+    var bl = $("backup-link"); if (bl) bl.addEventListener("click", function () { downloadBackup(); });
+    var na = $("notes-all"); if (na) na.addEventListener("click", function () { toggleAllNotes(); });
     window.addEventListener("pagehide", function () { rememberSnap(false); });
     window.RGBeforeLogout = function (proceed) {
       if (!uid || !hasUnsynced()) return true;
@@ -1664,7 +2046,7 @@
         if (plan.dropCache) lsSet(cacheKey(uid), null); // pending changes stay in the cache and in the sign-out backup
       }
       if (!id && window.RGSyncStatus) RGSyncStatus.closeDeletion();
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; loadLocal(); loadHistory(); render();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; blockedCloud = null; uploadCut = false; nextTry = 0; overwriteOk = 0; if (uid) keepPreupgrade(); loadLocal(); loadHistory(); render();
       markUpdateReady();
       if (uid) {
         var offer = jparse(lsGet(cacheKey(uid) + "-signout"), null);

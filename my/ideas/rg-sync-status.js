@@ -1,6 +1,8 @@
 /* Live private Listify (my/ideas/). App id myideas, storage prefix rg-myideas-.
-   Reads still abort after 15s. Uploads get 60s. A large deletion or a stale
-   device asks before any upload and never deletes on its own. */
+   Cloud rows stay in database ron, table userdata, app myideas.
+   Reads still abort after 15s. A full-document upload gets 60s, then a visible
+   cutoff and a retry with growing backoff. A large-deletion question stays up
+   until it is answered and never deletes on its own. */
 (function (root) {
   "use strict";
   var FAIL_LIMIT = 2;
@@ -292,31 +294,309 @@
     return { hold: false, reason: "" };
   }
 
-  var HIST_MAX = 20, HIST_CLOUD_MAX = 12;
+  /* One cap for packed history and the cloud payload. 450K, not a second lower cutoff. */
+  var HIST_MAX = 20, HIST_CLOUD_MAX = 12, HIST_BYTES = 450000, BAK_BYTES = 480 * 1024;
   function cloneDoc(items) {
     try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
   }
   function pushHistory(list, items, t, force, meta) {
-    list = Array.isArray(list) ? list.slice() : [];
-    var sum = summarize(items), data = cloneDoc(items), last = list[list.length - 1];
-    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return list;
-    var row = { id: String(t) + "-" + list.length, t: t, lists: sum.lists, items: sum.items, data: data };
+    var src = Array.isArray(list) ? list : [];
+    var sum = summarize(items), data = cloneDoc(items), last = src[src.length - 1];
+    if (!force && last && JSON.stringify(last.data) === JSON.stringify(data) && !(meta && meta.label)) return src;
+    var next = src.slice();
+    var row = { id: String(t) + "-" + next.length, t: t, lists: sum.lists, items: sum.items, data: data };
     if (meta && meta.label) row.label = meta.label;
     if (meta && meta.id) row.id = meta.id;
     if (meta && meta.clash) row.clash = 1;
-    list.push(row);
+    next.push(row);
     var keep = meta && meta.keepId;
-    while (list.length > HIST_MAX) {
+    while (next.length > HIST_MAX) {
       var dropAt = -1, j;
-      for (j = 0; j < list.length; j++) {
-        if (keep && list[j] && list[j].id === keep) continue;
+      for (j = 0; j < next.length; j++) {
+        if (keep && next[j] && next[j].id === keep) continue;
         dropAt = j;
         break;
       }
       if (dropAt < 0) break;
-      list.splice(dropAt, 1);
+      next.splice(dropAt, 1);
     }
-    return list;
+    return next;
+  }
+  function ownKeys(obj) {
+    var keys = [], k;
+    obj = obj && typeof obj === "object" ? obj : {};
+    for (k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) keys.push(k);
+    return keys;
+  }
+  /* Same keys in the same order, and every field except at/_f is equal.
+     A restore re-stamps at/_f; that must not copy the note into the diff. */
+  function stampsOnly(a, b) {
+    var ak, bk, i, k;
+    if (!a || !b || typeof a !== "object" || typeof b !== "object" || Array.isArray(a) || Array.isArray(b)) return false;
+    ak = ownKeys(a);
+    bk = ownKeys(b);
+    if (ak.length !== bk.length) return false;
+    for (i = 0; i < ak.length; i++) {
+      if (ak[i] !== bk[i]) return false;
+      k = ak[i];
+      if (k === "at" || k === "_f") continue;
+      if (JSON.stringify(a[k]) !== JSON.stringify(b[k])) return false;
+    }
+    return true;
+  }
+  function cloneVal(v) {
+    if (v == null || typeof v !== "object") return v;
+    try { return JSON.parse(JSON.stringify(v)); } catch (e) { return v; }
+  }
+  function fKeys(rec) {
+    var keys = [], k, src = rec && rec._f;
+    if (!src || typeof src !== "object") return keys;
+    for (k in src) if (Object.prototype.hasOwnProperty.call(src, k)) keys.push(k);
+    return keys;
+  }
+  function sameKeyList(a, b) {
+    var i;
+    if (a.length !== b.length) return false;
+    for (i = 0; i < a.length; i++) if (a[i] !== b[i]) return false;
+    return true;
+  }
+  /* A bare number means: at is that time, and every _f value is that time, with the
+     base record's _f keys. Anything else keeps the at/_f object so the old version
+     comes back exactly. */
+  function stampSpec(newer, older) {
+    var s, k, uniform, src;
+    src = older && older._f;
+    uniform = !!(src && typeof src === "object" && Object.prototype.hasOwnProperty.call(older, "at"));
+    if (uniform) for (k in src) if (src[k] !== older.at) { uniform = false; break; }
+    if (uniform && sameKeyList(fKeys(newer), fKeys(older))) return older.at;
+    s = {};
+    if (older && Object.prototype.hasOwnProperty.call(older, "at")) s.at = older.at;
+    if (older && Object.prototype.hasOwnProperty.call(older, "_f")) s._f = cloneVal(older._f);
+    return s;
+  }
+  function diffOf(prev, next) {
+    var changed = {}, removed = [], atOnly = {}, k, i, prevKeys, nextKeys, orderDiff, d, hasAt;
+    prev = prev || {};
+    next = next || {};
+    prevKeys = ownKeys(prev);
+    nextKeys = ownKeys(next);
+    for (i = 0; i < nextKeys.length; i++) {
+      k = nextKeys[i];
+      if (JSON.stringify(prev[k]) === JSON.stringify(next[k])) continue;
+      if (stampsOnly(prev[k], next[k])) atOnly[k] = stampSpec(prev[k], next[k]);
+      else changed[k] = next[k];
+    }
+    for (i = 0; i < prevKeys.length; i++) {
+      k = prevKeys[i];
+      if (!Object.prototype.hasOwnProperty.call(next, k)) removed.push(k);
+    }
+    orderDiff = prevKeys.length !== nextKeys.length;
+    if (!orderDiff) for (i = 0; i < nextKeys.length; i++) if (prevKeys[i] !== nextKeys[i]) { orderDiff = true; break; }
+    d = {};
+    if (ownKeys(changed).length) d.changed = changed;
+    if (removed.length) d.removed = removed;
+    hasAt = false;
+    for (k in atOnly) if (Object.prototype.hasOwnProperty.call(atOnly, k)) { hasAt = true; break; }
+    if (hasAt) d.atOnly = atOnly;
+    if (orderDiff) d.order = nextKeys;
+    return d;
+  }
+  function applyDiff(base, diff) {
+    var out = cloneDoc(base || {}), k, i, ordered, spec, rec;
+    diff = diff || {};
+    if (diff.changed && typeof diff.changed === "object") {
+      for (k in diff.changed) if (Object.prototype.hasOwnProperty.call(diff.changed, k)) out[k] = cloneDoc(diff.changed[k]);
+    }
+    if (diff.atOnly && typeof diff.atOnly === "object") {
+      for (k in diff.atOnly) {
+        if (!Object.prototype.hasOwnProperty.call(diff.atOnly, k)) continue;
+        spec = diff.atOnly[k];
+        rec = out[k];
+        if (!rec || typeof rec !== "object" || spec == null) continue;
+        if (typeof spec === "number") {
+          rec.at = spec;
+          if (rec._f && typeof rec._f === "object") {
+            var F = {}, fk;
+            for (fk in rec._f) if (Object.prototype.hasOwnProperty.call(rec._f, fk)) F[fk] = spec;
+            rec._f = F;
+          }
+          continue;
+        }
+        if (typeof spec !== "object") continue;
+        if (Object.prototype.hasOwnProperty.call(spec, "at")) rec.at = spec.at;
+        if (Object.prototype.hasOwnProperty.call(spec, "_f")) rec._f = cloneVal(spec._f);
+      }
+    }
+    if (diff.removed && Array.isArray(diff.removed)) for (i = 0; i < diff.removed.length; i++) delete out[diff.removed[i]];
+    if (!diff.order || !diff.order.length) return out;
+    ordered = {};
+    for (i = 0; i < diff.order.length; i++) {
+      k = diff.order[i];
+      if (Object.prototype.hasOwnProperty.call(out, k)) ordered[k] = out[k];
+    }
+    for (k in out) if (!Object.prototype.hasOwnProperty.call(ordered, k)) ordered[k] = out[k];
+    return ordered;
+  }
+  function dataUsable(data) {
+    return !!data && typeof data === "object" && !Array.isArray(data);
+  }
+  /* A diff we cannot apply must be skipped. Guessing {} is what wiped a list. */
+  function diffUsable(diff) {
+    if (!diff || typeof diff !== "object" || Array.isArray(diff)) return false;
+    if (Object.prototype.hasOwnProperty.call(diff, "changed") && (!diff.changed || typeof diff.changed !== "object" || Array.isArray(diff.changed))) return false;
+    if (Object.prototype.hasOwnProperty.call(diff, "removed") && !Array.isArray(diff.removed)) return false;
+    if (Object.prototype.hasOwnProperty.call(diff, "atOnly") && (!diff.atOnly || typeof diff.atOnly !== "object" || Array.isArray(diff.atOnly))) return false;
+    if (Object.prototype.hasOwnProperty.call(diff, "order") && !Array.isArray(diff.order)) return false;
+    return true;
+  }
+  /* A row is a full copy (`data`) or a diff. Old saves walk forward from the oldest full copy.
+     New saves keep one full copy, the newest, and reverse diffs (`diff.rev`) back to older versions.
+     A row with no full copy and no applicable diff is left out. It is never turned into an empty list. */
+  function expandHistory(list) {
+    var rows = [], datas, ok, i, row, n, firstData, anyRev, base, y, k, out;
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      row = list[i];
+      if (row && typeof row === "object") rows.push(row);
+    }
+    n = rows.length;
+    datas = new Array(n);
+    ok = new Array(n);
+    firstData = -1;
+    anyRev = false;
+    for (i = 0; i < n; i++) {
+      row = rows[i];
+      if (dataUsable(row.data)) {
+        datas[i] = cloneDoc(row.data);
+        ok[i] = true;
+        if (firstData < 0) firstData = i;
+      }
+      if (row.diff && row.diff.rev) anyRev = true;
+    }
+    function isReverse(at) {
+      row = rows[at];
+      if (!row || !row.diff || ok[at]) return false;
+      if (!diffUsable(row.diff)) return false;
+      if (row.diff.rev) return true;
+      return !anyRev && firstData > 0 && at < firstData;
+    }
+    for (i = n - 1; i >= 0; i--) {
+      if (!isReverse(i)) continue;
+      base = i + 1 < n && ok[i + 1] ? datas[i + 1] : null;
+      if (!base) continue;
+      datas[i] = applyDiff(base, rows[i].diff);
+      ok[i] = true;
+    }
+    for (i = 0; i < n; i++) {
+      if (ok[i]) continue;
+      row = rows[i];
+      if (!row.diff || !diffUsable(row.diff) || isReverse(i)) continue;
+      if (!(i && ok[i - 1])) continue;
+      datas[i] = applyDiff(datas[i - 1], row.diff);
+      ok[i] = true;
+    }
+    out = [];
+    for (i = 0; i < n; i++) {
+      if (!ok[i]) continue;
+      y = {};
+      for (k in rows[i]) if (k !== "diff") y[k] = rows[i][k];
+      y.data = datas[i];
+      out.push(y);
+    }
+    return out;
+  }
+  function historyRow(row, data, diff) {
+    var y = {}, k;
+    for (k in row) if (k !== "data" && k !== "diff") y[k] = row[k];
+    if (diff) y.diff = diff;
+    else y.data = data;
+    return y;
+  }
+  /* Newest row is a full copy. Each older row is the reverse diff from the next newer row,
+     so trimming drops that oldest diff and does not make another full copy.
+     One row that is already over the cap is kept whole. */
+  function packHistory(list, maxBytes) {
+    var limit = typeof maxBytes === "number" ? maxBytes : HIST_BYTES;
+    var full = expandHistory(list), packed;
+    function emit(rows) {
+      var out, j, r, d, nextData;
+      if (!rows.length) return [];
+      out = new Array(rows.length);
+      r = rows[rows.length - 1];
+      out[rows.length - 1] = historyRow(r, cloneDoc(r.data || {}), null);
+      nextData = r.data || {};
+      for (j = rows.length - 2; j >= 0; j--) {
+        r = rows[j];
+        d = diffOf(nextData, r.data || {});
+        d.rev = 1;
+        out[j] = historyRow(r, null, d);
+        nextData = r.data || {};
+      }
+      return out;
+    }
+    packed = emit(full);
+    while (full.length > 1 && JSON.stringify(packed).length > limit) {
+      full.shift();
+      packed = emit(full);
+    }
+    return packed;
+  }
+  /* fmt 2 is the reverse-diff envelope. Old devices never see this object:
+     it lives under the history2 key, and the previous history key is left as it was. */
+  var HIST_FMT = 2;
+  function historyEnvelope(snaps) {
+    return { fmt: HIST_FMT, snaps: snaps || [] };
+  }
+  function readHistory(doc) {
+    if (!doc || typeof doc !== "object" || Array.isArray(doc)) return [];
+    if (doc.fmt !== HIST_FMT || !Array.isArray(doc.snaps)) return [];
+    return expandHistory(doc.snaps);
+  }
+  /* Full copies (one data object per row) and oldest-full + forward diffs. Also a
+     reverse-diff chain already stored on the old key. Unknown fmt is ignored. */
+  function readLegacyHistory(doc) {
+    if (doc == null) return [];
+    if (Array.isArray(doc)) return expandHistory(doc);
+    if (typeof doc !== "object") return [];
+    if (doc.fmt != null && doc.fmt !== HIST_FMT) return [];
+    if (!Array.isArray(doc.snaps)) return [];
+    return expandHistory(doc.snaps);
+  }
+  /* One cloud body per upload. Same HIST_BYTES cap: drop the oldest version, pack again.
+     The newest full copy stays; only older diffs are dropped. A single oversize copy is kept whole.
+     Lists, items, notes, and category records inside a kept version are not removed. */
+  function cloudHistoryPayload(list) {
+    var snaps = packHistory(list);
+    var payload = historyEnvelope(snaps);
+    var body = JSON.stringify(payload);
+    while (snaps.length > 1 && body.length > HIST_BYTES) {
+      var full = expandHistory(snaps);
+      if (full.length < 2) break;
+      full.shift();
+      var next = packHistory(full);
+      if (!next || next.length >= snaps.length) break;
+      snaps = next;
+      payload = historyEnvelope(snaps);
+      body = JSON.stringify(payload);
+    }
+    return payload;
+  }
+  function capList(list, maxN, maxBytes) {
+    var next = Array.isArray(list) ? list.slice() : [];
+    while (next.length > maxN) next.shift();
+    while (next.length > 1 && JSON.stringify(next).length > maxBytes) next.shift();
+    return next;
+  }
+  /* Backup rows only. A preupgrade row is the lists from before this upgrade and is kept while holdPreupgrade is set. */
+  function capBackups(list, maxN, maxBytes, holdPreupgrade) {
+    var held = [], rest = [], i, row;
+    list = Array.isArray(list) ? list : [];
+    for (i = 0; i < list.length; i++) {
+      row = list[i];
+      if (holdPreupgrade && row && row.preupgrade) held.push(row);
+      else rest.push(row);
+    }
+    return held.concat(capList(rest, maxN, maxBytes));
   }
   function planRestore(list, current, versionId, now) {
     var src = Array.isArray(list) ? list.slice() : [], hit = null, i;
@@ -340,13 +620,30 @@
     y._f = F;
     return y;
   }
-  function adoptRestore(snapshot, cloud, now) {
-    var out = {}, k, x, c;
+  function sameBody(a, b) {
+    if (!a || !b || typeof a !== "object" || typeof b !== "object") return false;
+    if (String(a.id || "") !== String(b.id || "")) return false;
+    return fmPlainRec(a) === fmPlainRec(b);
+  }
+  /* current is the list on screen. A record whose content already matches it, and
+     which still wins against the cloud, keeps that record's at/_f. Everything else
+     is stamped at `now` so the next merge cannot put the cloud copy back.
+     Without current, every restored record is stamped (the older call shape). */
+  function adoptRestore(snapshot, cloud, now, current) {
+    var out = {}, k, x, c, cur, merged;
     snapshot = snapshot && typeof snapshot === "object" ? snapshot : {};
     cloud = cloud && typeof cloud === "object" ? cloud : {};
+    current = current && typeof current === "object" ? current : null;
     for (k in snapshot) {
       x = snapshot[k];
       if (!x || typeof x !== "object" || typeof x.id !== "string") continue;
+      cur = current && current[k];
+      if (cur && typeof cur === "object" && sameBody(cur, x)) {
+        c = cloud[k];
+        if (!c || typeof c !== "object") { out[k] = cloneDoc(cur); continue; }
+        merged = mergeRecords(cur, c);
+        if (sameBody(merged, x)) { out[k] = cloneDoc(cur); continue; }
+      }
       out[k] = freshenRecord(x, now);
     }
     for (k in cloud) {
@@ -357,6 +654,16 @@
       else out[k] = { id: c.id || k, deleted: true, at: now, _f: { "~": now } };
     }
     return out;
+  }
+  /* An empty or near-empty restore must not set the overwrite bypass. The deletion
+     question (needsConfirm) then decides. A normal older version still bypasses it. */
+  function sparseRestore(next, baseline) {
+    var baseN = liveCount(baseline), nextN = liveCount(next);
+    if (baseN < 4) return false;
+    if (nextN === 0) return true;
+    if (nextN <= 2 && baseN >= 8) return true;
+    if (baseN >= 10 && nextN * 5 < baseN) return true;
+    return false;
   }
   /* A clash is the same field changed on both sides since the agreed base, or a
      published local edit that a later cloud value replaces. Different fields are not clashes.
@@ -464,7 +771,11 @@
   function mergeHistory(localList, cloudDoc, max) {
     var map = {}, all = [], i, s, id;
     var L = Array.isArray(localList) ? localList : (localList && localList.snaps) || [];
-    var C = cloudDoc && Array.isArray(cloudDoc.snaps) ? cloudDoc.snaps : [];
+    var C = [];
+    if (cloudDoc && typeof cloudDoc === "object" && !Array.isArray(cloudDoc)) {
+      if (cloudDoc.fmt != null && cloudDoc.fmt !== HIST_FMT) C = [];
+      else if (Array.isArray(cloudDoc.snaps)) C = cloudDoc.snaps;
+    }
     function add(row) {
       if (!row || typeof row.t !== "number") return;
       id = row.id || String(row.t);
@@ -476,6 +787,7 @@
     for (i = 0; i < C.length; i++) add(C[i]);
     all.sort(function (a, b) { return a.t - b.t; });
     max = max || HIST_CLOUD_MAX;
+    all = expandHistory(all);
     while (all.length > max) all.shift();
     return { v: 1, snaps: all };
   }
@@ -702,11 +1014,11 @@
     } catch (e) {}
   }
 
-  /* Page-local. The sandbox account helper calls fetchWithTimeout with REQ_MS for every
+  /* Page-local. The account helper calls fetchWithTimeout with REQ_MS for every
      call; timeoutFor still gives uploads 60s. A request that already carries a signal
      keeps that outer limit instead of starting a second 15s abort. */
   function installPageTimeout() {
-    if (typeof document === "undefined" || !root.fetch || root.fetch.__rgSbxIdeasTimeout) return;
+    if (typeof document === "undefined" || !root.fetch || root.fetch.__rgMyIdeasTimeout) return;
     var orig = root.fetch.bind(root);
     function wrapped(url, opts) {
       var href = "";
@@ -720,7 +1032,7 @@
       }
       return orig(url, opts);
     }
-    wrapped.__rgSbxIdeasTimeout = true;
+    wrapped.__rgMyIdeasTimeout = true;
     root.fetch = wrapped;
   }
 
@@ -755,9 +1067,21 @@
     STALE_MS: STALE_MS,
     HIST_MAX: HIST_MAX,
     HIST_CLOUD_MAX: HIST_CLOUD_MAX,
+    HIST_BYTES: HIST_BYTES,
+    BAK_BYTES: BAK_BYTES,
     pushHistory: pushHistory,
+    packHistory: packHistory,
+    HIST_FMT: HIST_FMT,
+    cloudHistoryPayload: cloudHistoryPayload,
+    historyEnvelope: historyEnvelope,
+    readHistory: readHistory,
+    readLegacyHistory: readLegacyHistory,
+    expandHistory: expandHistory,
+    capList: capList,
+    capBackups: capBackups,
     planRestore: planRestore,
     adoptRestore: adoptRestore,
+    sparseRestore: sparseRestore,
     fieldConflicts: fieldConflicts,
     sameDeviceEdits: sameDeviceEdits,
     clashSnap: clashSnap,
