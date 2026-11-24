@@ -266,6 +266,7 @@ async function main() {
     var keptOldest = await oldPage.evaluate(function (uid) {
       var raw = localStorage.getItem("rg-myideas-hist:" + uid);
       var rows = raw ? JSON.parse(raw) : [];
+      if (window.RGSyncStatus && RGSyncStatus.expandHistory) rows = RGSyncStatus.expandHistory(rows);
       var hasOld = false, hasNow = false, i;
       for (i = 0; i < rows.length; i++) {
         if (rows[i].id === "row-0") hasOld = true;

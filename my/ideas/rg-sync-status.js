@@ -322,36 +322,89 @@
     }
     return next;
   }
+  function ownKeys(obj) {
+    var keys = [], k;
+    obj = obj && typeof obj === "object" ? obj : {};
+    for (k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) keys.push(k);
+    return keys;
+  }
   function diffOf(prev, next) {
-    var changed = {}, removed = [], k, same = true;
+    var changed = {}, removed = [], k, i, prevKeys, nextKeys, orderDiff;
     prev = prev || {};
     next = next || {};
-    for (k in next) {
-      if (JSON.stringify(prev[k]) !== JSON.stringify(next[k])) { changed[k] = next[k]; same = false; }
+    prevKeys = ownKeys(prev);
+    nextKeys = ownKeys(next);
+    for (i = 0; i < nextKeys.length; i++) {
+      k = nextKeys[i];
+      if (JSON.stringify(prev[k]) !== JSON.stringify(next[k])) changed[k] = next[k];
     }
-    for (k in prev) if (!Object.prototype.hasOwnProperty.call(next, k)) { removed.push(k); same = false; }
-    return same ? { changed: {}, removed: [] } : { changed: changed, removed: removed };
+    for (i = 0; i < prevKeys.length; i++) {
+      k = prevKeys[i];
+      if (!Object.prototype.hasOwnProperty.call(next, k)) removed.push(k);
+    }
+    orderDiff = prevKeys.length !== nextKeys.length;
+    if (!orderDiff) for (i = 0; i < nextKeys.length; i++) if (prevKeys[i] !== nextKeys[i]) { orderDiff = true; break; }
+    var d = { changed: changed, removed: removed };
+    if (orderDiff) d.order = nextKeys;
+    return d;
   }
   function applyDiff(base, diff) {
-    var out = cloneDoc(base || {}), k, i;
+    var out = cloneDoc(base || {}), k, i, ordered;
     diff = diff || {};
     if (diff.changed) for (k in diff.changed) out[k] = cloneDoc(diff.changed[k]);
     if (diff.removed) for (i = 0; i < diff.removed.length; i++) delete out[diff.removed[i]];
-    return out;
+    if (!diff.order || !diff.order.length) return out;
+    ordered = {};
+    for (i = 0; i < diff.order.length; i++) {
+      k = diff.order[i];
+      if (Object.prototype.hasOwnProperty.call(out, k)) ordered[k] = out[k];
+    }
+    for (k in out) if (!Object.prototype.hasOwnProperty.call(ordered, k)) ordered[k] = out[k];
+    return ordered;
   }
-  /* Rows may be a full copy (`data`) or a diff from the previous row. Expand walks forward so restore still sees a whole list. */
+  /* A row is a full copy (`data`) or a diff. Old saves walk forward from the oldest full copy.
+     New saves keep one full copy, the newest, and reverse diffs (`diff.rev`) back to older versions. */
   function expandHistory(list) {
-    var out = [], i, row, data = null, y, k;
+    var rows = [], datas, i, row, n, firstData, anyRev, base, y, k, out;
     list = Array.isArray(list) ? list : [];
     for (i = 0; i < list.length; i++) {
       row = list[i];
-      if (!row || typeof row !== "object") continue;
-      if (row.data && typeof row.data === "object") data = cloneDoc(row.data);
-      else if (row.diff) data = applyDiff(data || {}, row.diff);
-      else data = data ? cloneDoc(data) : {};
+      if (row && typeof row === "object") rows.push(row);
+    }
+    n = rows.length;
+    datas = new Array(n);
+    firstData = -1;
+    anyRev = false;
+    for (i = 0; i < n; i++) {
+      row = rows[i];
+      if (row.data && typeof row.data === "object") {
+        datas[i] = cloneDoc(row.data);
+        if (firstData < 0) firstData = i;
+      }
+      if (row.diff && row.diff.rev) anyRev = true;
+    }
+    function isReverse(at) {
+      row = rows[at];
+      if (!row || !row.diff || datas[at]) return false;
+      if (row.diff.rev) return true;
+      return !anyRev && firstData > 0 && at < firstData;
+    }
+    for (i = n - 1; i >= 0; i--) {
+      if (!isReverse(i)) continue;
+      base = i + 1 < n ? datas[i + 1] : null;
+      datas[i] = applyDiff(base || {}, rows[i].diff);
+    }
+    for (i = 0; i < n; i++) {
+      if (datas[i]) continue;
+      row = rows[i];
+      if (row.diff) datas[i] = applyDiff(i ? datas[i - 1] : {}, row.diff);
+      else datas[i] = i && datas[i - 1] ? cloneDoc(datas[i - 1]) : {};
+    }
+    out = [];
+    for (i = 0; i < n; i++) {
       y = {};
-      for (k in row) if (k !== "diff") y[k] = row[k];
-      y.data = data || {};
+      for (k in rows[i]) if (k !== "diff") y[k] = rows[i][k];
+      y.data = datas[i] || {};
       out.push(y);
     }
     return out;
@@ -363,20 +416,25 @@
     else y.data = data;
     return y;
   }
-  /* Keep the newest rows. The oldest kept row is a full copy; later rows are only what changed. Always keeps the newest row. */
+  /* Newest row is a full copy. Each older row is the reverse diff from the next newer row,
+     so trimming drops that oldest diff and does not make another full copy.
+     One row that is already over the cap is kept whole. */
   function packHistory(list, maxBytes) {
     var limit = typeof maxBytes === "number" ? maxBytes : HIST_BYTES;
     var full = expandHistory(list), packed;
     function emit(rows) {
-      var out = [], p = null, j, r, d;
-      for (j = 0; j < rows.length; j++) {
+      var out, j, r, d, nextData;
+      if (!rows.length) return [];
+      out = new Array(rows.length);
+      r = rows[rows.length - 1];
+      out[rows.length - 1] = historyRow(r, cloneDoc(r.data || {}), null);
+      nextData = r.data || {};
+      for (j = rows.length - 2; j >= 0; j--) {
         r = rows[j];
-        if (j === 0 || j === rows.length - 1 || !p) out.push(historyRow(r, cloneDoc(r.data), null));
-        else {
-          d = diffOf(p, r.data);
-          out.push(historyRow(r, null, d));
-        }
-        p = r.data;
+        d = diffOf(nextData, r.data || {});
+        d.rev = 1;
+        out[j] = historyRow(r, null, d);
+        nextData = r.data || {};
       }
       return out;
     }
@@ -387,8 +445,9 @@
     }
     return packed;
   }
-  /* Cloud body for one upload. Same HIST_BYTES cap: drop the oldest version, repack, repeat.
-     Never replaces the whole history with only the newest, and never removes lists from a version. */
+  /* One cloud body per upload. Same HIST_BYTES cap: drop the oldest version, pack again.
+     The newest full copy stays; only older diffs are dropped. A single oversize copy is kept whole.
+     Lists, items, notes, and category records inside a kept version are not removed. */
   function cloudHistoryPayload(list) {
     var snaps = packHistory(list);
     var payload = { v: 1, snaps: snaps };

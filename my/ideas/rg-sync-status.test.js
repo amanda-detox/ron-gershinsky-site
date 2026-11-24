@@ -131,7 +131,10 @@ var wide = [], wv;
 for (wv = 0; wv < 12; wv++) wide = SS.pushHistory(wide, bigList(82, wv), 5000 + wv, true, { id: "row-" + wv });
 var uncapped = SS.packHistory(wide, 1000000000);
 var uncappedBody = JSON.stringify({ v: 1, snaps: uncapped });
-assert(SS.expandHistory(uncapped).length === 12 && uncappedBody.length > SS.HIST_BYTES, "twelve versions of a big list pack over the history cap (" + uncappedBody.length + ")");
+var uncappedFulls = 0, ui;
+for (ui = 0; ui < uncapped.length; ui++) if (uncapped[ui] && uncapped[ui].data) uncappedFulls++;
+assert(SS.expandHistory(uncapped).length === 12 && uncappedFulls === 1 && uncapped[uncapped.length - 1].data && !uncapped[0].data, "twelve versions pack as one newest full copy plus reverse diffs (" + uncappedBody.length + ")");
+assert(uncappedBody.length <= SS.HIST_BYTES, "one full copy of 82 long notes plus small diffs fits under 450K (" + uncappedBody.length + ")");
 var fitted = SS.cloudHistoryPayload(wide);
 var fittedRows = SS.expandHistory(fitted.snaps);
 var fittedIds = fittedRows.map(function (r) { return r.id; });
@@ -142,9 +145,117 @@ var listKept = !!(newestFit && newestFit.data && newestFit.data["c:shop"] && new
 var itemsKept = 0, fk;
 for (fk in newestFit.data) if (newestFit.data[fk] && newestFit.data[fk].sec === "shop") itemsKept++;
 var olderNote = fittedRows[0] && fittedRows[0].data && fittedRows[0].data.i0 && fittedRows[0].data.i0.note;
-assert(fittedRows.length >= 10 && JSON.stringify(fitted).length <= SS.HIST_BYTES, "oldest-first trim keeps at least 10 versions under 450K (" + fittedRows.length + ", " + JSON.stringify(fitted).length + ")");
+assert(fittedRows.length >= 10 && JSON.stringify(fitted).length <= SS.HIST_BYTES, "oldest-diff trim keeps at least 10 versions under 450K (" + fittedRows.length + ", " + JSON.stringify(fitted).length + ")");
 assert(fittedIds.join(",") === expectIds.join(",") && fittedIds[fittedIds.length - 1] === "row-11", "dropped versions are the oldest and the newest stays");
 assert(listKept && itemsKept === 82 && olderNote && olderNote.length === 2500, "trimming history does not delete lists or items");
+function sameDoc(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
+function fullCount(snaps) {
+  var n = 0, i;
+  snaps = snaps || [];
+  for (i = 0; i < snaps.length; i++) if (snaps[i] && snaps[i].data) n++;
+  return n;
+}
+function notedDoc(nItems, step, opts) {
+  var o = {}, i, note = new Array(2501).join("א"), mid;
+  opts = opts || {};
+  o["b:home"] = { id: "b:home", type: "box", box: "home", name: step % 5 === 3 ? ("קופסה " + step) : "בית", pos: 0, created: 1, at: 1 };
+  o["c:shop"] = { id: "c:shop", type: "cat", cat: "shop", name: step % 5 === 2 ? ("קניות " + step) : "קניות", kind: "task", box: "home", pos: 0, at: 1000 };
+  for (i = 0; i < nItems; i++) {
+    o["i" + i] = { id: "i" + i, sec: "shop", text: i === 0 ? ("עריכה " + step) : ("פריט " + i), note: i === 0 ? (note.slice(0, 2490) + step) : note, done: false, order: i, created: 1000, at: 1000 };
+  }
+  mid = "i" + Math.floor(nItems / 2);
+  if (!opts.stable && step % 4 === 1 && o[mid]) delete o[mid];
+  o["i-extra-" + step] = { id: "i-extra-" + step, sec: "shop", text: "נוסף " + step, note: note, done: false, order: 9000 + step, created: 2000 + step, at: 2000 + step };
+  return o;
+}
+function growHist(nItems, steps, idPrefix, opts) {
+  var hist = [], s;
+  for (s = 0; s < steps; s++) hist = SS.pushHistory(hist, notedDoc(nItems + s, s, opts), 8000 + s, true, { id: idPrefix + s });
+  return hist;
+}
+function versionsMatch(rows, hist) {
+  var i, j, hit, bad = [];
+  for (i = 0; i < rows.length; i++) {
+    hit = null;
+    for (j = 0; j < hist.length; j++) if (hist[j].id === rows[i].id) hit = hist[j];
+    if (!hit || !sameDoc(hit.data, rows[i].data)) bad.push(rows[i] && rows[i].id);
+  }
+  return bad;
+}
+var keptLine = [];
+[20, 60, 90, 100, 120].forEach(function (n) {
+  var hist = growHist(n, 12, "n" + n + "-");
+  var looseSnaps = SS.packHistory(hist, 1000000000);
+  var looseLen = JSON.stringify({ v: 1, snaps: looseSnaps }).length;
+  var payload = SS.cloudHistoryPayload(hist);
+  var rows = SS.expandHistory(payload.snaps);
+  var bad = versionsMatch(rows, hist);
+  var fits = looseLen <= SS.HIST_BYTES;
+  var onlyNewest = fullCount(payload.snaps) === 1 && payload.snaps[payload.snaps.length - 1].data && (payload.snaps.length === 1 || !payload.snaps[0].data);
+  keptLine.push(n + ":" + rows.length);
+  assert(onlyNewest, "N=" + n + " stores one full snapshot, the newest");
+  assert(!bad.length, "N=" + n + " kept versions restore byte-identical (" + bad.join(",") + ")");
+  assert(JSON.stringify(payload).length <= SS.HIST_BYTES || rows.length === 1, "N=" + n + " stays under 450K or is the single newest copy");
+  if (fits) assert(rows.length >= 10 && rows.length === hist.length, "N=" + n + " keeps every version when the newest full copy plus diffs fit (" + rows.length + "/" + hist.length + ", loose " + looseLen + ")");
+  else assert(rows.length >= 1 && rows[rows.length - 1].id === hist[hist.length - 1].id, "N=" + n + " keeps the newest when the chain does not fit");
+});
+assert(keptLine.length === 5, "kept versions per N [" + keptLine.join(", ") + "]");
+function oldForwardDiff(prev, next) {
+  var changed = {}, removed = [], k;
+  prev = prev || {};
+  next = next || {};
+  for (k in next) if (JSON.stringify(prev[k]) !== JSON.stringify(next[k])) changed[k] = next[k];
+  for (k in prev) if (!Object.prototype.hasOwnProperty.call(next, k)) removed.push(k);
+  return { changed: changed, removed: removed };
+}
+function packOldFormat(rows) {
+  var out = [], prev = null, j, r, y, k;
+  for (j = 0; j < rows.length; j++) {
+    r = rows[j];
+    y = {};
+    for (k in r) if (k !== "data" && k !== "diff") y[k] = r[k];
+    if (j === 0 || j === rows.length - 1) y.data = JSON.parse(JSON.stringify(r.data));
+    else y.diff = oldForwardDiff(prev, r.data);
+    out.push(y);
+    prev = r.data;
+  }
+  return out;
+}
+function oldUpload(label, nItems, versions) {
+  var hist = growHist(nItems, versions, label + "-", { stable: true });
+  var oldSnaps = packOldFormat(hist);
+  var oldRead = SS.expandHistory(oldSnaps);
+  var readBad = versionsMatch(oldRead, hist);
+  var edited = JSON.parse(JSON.stringify(hist[hist.length - 1].data));
+  edited.i0.text = "אחרי עריכה";
+  edited.i0.note = new Array(2501).join("ב");
+  edited["c:shop"].name = "אחרי";
+  edited["b:home"].name = "אחרי קופסה";
+  edited["i-new"] = { id: "i-new", sec: "shop", text: "חדש", note: new Array(2501).join("ג"), done: false, order: 1, created: 9, at: 9 };
+  var local = SS.pushHistory(oldRead, edited, 15000, true, { id: "edit-" + label });
+  var merged = SS.expandHistory(SS.packHistory(SS.mergeHistory(local, { v: 1, snaps: oldSnaps }, SS.HIST_MAX).snaps));
+  var payload = SS.cloudHistoryPayload(merged);
+  var back = SS.expandHistory(payload.snaps);
+  var missing = [], i, j, hit;
+  for (i = 0; i < hist.length; i++) {
+    hit = null;
+    for (j = 0; j < back.length; j++) if (back[j].id === hist[i].id) hit = back[j];
+    if (!hit || !sameDoc(hit.data, hist[i].data)) missing.push(hist[i].id);
+  }
+  hit = null;
+  for (j = 0; j < back.length; j++) if (back[j].id === "edit-" + label) hit = back[j];
+  var looseLen = JSON.stringify({ v: 1, snaps: SS.packHistory(local, 1000000000) }).length;
+  assert(!readBad.length && oldRead.length === hist.length, label + " old-format history is read byte-identical (" + versions + ")");
+  assert(fullCount(payload.snaps) === 1 && payload.snaps[payload.snaps.length - 1].data, label + " next write stores one newest full snapshot");
+  assert(hit && sameDoc(hit.data, edited), label + " the new edit is in that upload");
+  if (looseLen <= SS.HIST_BYTES) assert(!missing.length && back.length === local.length, label + " conversion keeps every previous version (" + back.length + "/" + local.length + ", " + JSON.stringify(payload).length + " chars, old " + JSON.stringify({ v: 1, snaps: oldSnaps }).length + ")");
+  else assert(!missing.length || missing[0] === hist[0].id, label + " conversion drops only oldest versions that do not fit");
+  return back.length;
+}
+var oldSevenKept = oldUpload("seven", 2, 7);
+var oldSmallKept = oldUpload("small", 3, 8);
+var oldLargeKept = oldUpload("large", 100, 12);
+assert(oldSevenKept === 8 && oldSmallKept === 9 && oldLargeKept === 13, "old-format rewrite kept seven " + oldSevenKept + ", small " + oldSmallKept + ", and large " + oldLargeKept);
 var alone = SS.pushHistory([], bigList(180, 0), 9, true, { id: "only" });
 var alonePayload = SS.cloudHistoryPayload(alone);
 var aloneRow = SS.expandHistory(alonePayload.snaps)[0];
@@ -152,7 +263,7 @@ var aloneCount = 0, ak;
 for (ak in aloneRow.data) if (aloneRow.data[ak] && aloneRow.data[ak].sec === "shop") aloneCount++;
 assert(alonePayload.snaps.length === 1 && aloneRow.id === "only" && aloneRow.data["c:shop"] && aloneCount === 180, "a single oversized version is kept whole");
 var pushBody = liveIdeas.slice(liveIdeas.indexOf("function pushHistoryCloud"), liveIdeas.indexOf("function hiddenCats"));
-assert(pushBody.indexOf("cloudHistoryPayload") !== -1 && pushBody.indexOf("slice(-1)") === -1 && pushBody.indexOf("450000") === -1 && pushBody.indexOf("480") === -1, "the upload uses the shared cap and does not replace the history");
+assert(pushBody.indexOf("cloudHistoryPayload(history)") !== -1 && pushBody.indexOf("HIST_CLOUD_MAX") === -1 && pushBody.indexOf("slice(-1)") === -1 && pushBody.indexOf("450000") === -1 && pushBody.indexOf("480") === -1, "the upload packs the merged history under the shared cap and does not replace it");
 assert((pushBody.match(/A\.set\(APP, "history"/g) || []).length === 1, "one edit still uploads history once");
 var sheetBody = liveIdeas.slice(liveIdeas.indexOf("function sheet("), liveIdeas.indexOf("function closeSheet"));
 var openBody = liveIdeas.slice(liveIdeas.indexOf("function openHistory"), liveIdeas.indexOf("setInterval"));
