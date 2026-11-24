@@ -76,7 +76,41 @@
     items = (c && c.items && typeof c.items === "object") ? c.items : {}; pending = !!(c && c.pending); seeded = !!(c && c.seeded); snap = stamp(items, null);
   }
   var snap = {};
-  function saveLocal() { snap = stamp(items, snap); if (uid) lsSet(cacheKey(uid), JSON.stringify({ items: items, pending: pending, seeded: seeded })); }
+  /* Current lists live in rg-sbx-ideas-v1:<user>. Quota recovery may drop history and backups. It never removes that key. */
+  function currentCacheKey() { return uid ? cacheKey(uid) : ""; }
+  function pruneFootprint() {
+    var SS = window.RGSyncStatus, b;
+    if (history.length > 1) history = history.slice(-1);
+    if (!uid) return;
+    try { localStorage.setItem(histKey(), JSON.stringify(SS && SS.packHistory ? SS.packHistory(history) : history.slice(-1))); }
+    catch (e) { try { localStorage.removeItem(histKey()); } catch (e2) {} }
+    b = jparse(lsGet(bakKey(uid)), []);
+    if (Array.isArray(b) && b.length > 1) {
+      try { localStorage.setItem(bakKey(uid), JSON.stringify(b.slice(-1))); }
+      catch (e3) { try { localStorage.removeItem(bakKey(uid)); } catch (e4) {} }
+    }
+    try { localStorage.removeItem(basePrevKey(uid)); } catch (e5) {}
+    try { localStorage.removeItem(ownKey()); } catch (e6) {}
+    try { localStorage.removeItem(cacheKey(uid) + "-signout"); } catch (e7) {}
+    try { localStorage.removeItem("rg-sbx-ideas-grp1-bak:" + uid); } catch (e8) {}
+  }
+  function writeLocal(key, json) {
+    var cur = currentCacheKey();
+    try { localStorage.setItem(key, json); return true; }
+    catch (e) {
+      pruneFootprint();
+      try { localStorage.setItem(key, json); return true; }
+      catch (e2) {
+        if (cur && key !== cur) { try { localStorage.removeItem(key); } catch (e3) {} }
+        return false;
+      }
+    }
+  }
+  function saveLocal() {
+    snap = stamp(items, snap);
+    if (!uid) return;
+    writeLocal(cacheKey(uid), JSON.stringify({ items: items, pending: pending, seeded: seeded }));
+  }
   window.addEventListener("storage", function (e) { if (uid && e.key === cacheKey(uid)) { loadLocal(); render(); } });
 
   /* ---------- merge (per field, since Oct 2026) ----------
@@ -296,7 +330,8 @@
     if (last && same(last.items || {}, cl)) return; // same as the newest backup
     l.push({ t: Date.now(), items: cl });
     while (l.length > BAK_N) l.shift();
-    try { localStorage.setItem(bakKey(uid), JSON.stringify(l)); } catch (e) { l.splice(0, l.length - 1); lsSet(bakKey(uid), JSON.stringify(l)); }
+    if (window.RGSyncStatus && RGSyncStatus.capList) l = RGSyncStatus.capList(l, BAK_N, RGSyncStatus.BAK_BYTES);
+    writeLocal(bakKey(uid), JSON.stringify(l));
   }
   function liveCount(m) { var n = 0; for (var k in m) { var x = m[k]; if (x && !x.deleted && !x.gone) n++; } return n; }
   function tooManyGone(next, cloud) {
@@ -367,7 +402,7 @@
     saveHistory();
     lsSet("rg-sbx-ideas-conflict:" + uid, t("clashNote"));
     paintConflict();
-    pushHistoryCloud();
+    scheduleHistoryPush();
   }
   function baseKey(id) { return "rg-sbx-ideas-base:" + id; }
   function basePrevKey(id) { return "rg-sbx-ideas-base-prev:" + id; }
@@ -375,7 +410,7 @@
     if (!uid) return;
     var cur = lsGet(baseKey(uid));
     if (cur) lsSet(basePrevKey(uid), cur);
-    try { localStorage.setItem(baseKey(uid), JSON.stringify(doc)); } catch (e) {}
+    writeLocal(baseKey(uid), JSON.stringify(doc));
   }
   function ownKey() { return "rg-sbx-ideas-own:" + (uid || ""); }
   function rememberOwn(doc) {
@@ -391,11 +426,17 @@
         list = own[k][f] || [];
         val = JSON.stringify(x[f]);
         if (!list.length || list[list.length - 1] !== val) list.push(val);
-        if (list.length > 12) list = list.slice(-12);
+        var cap = val.length > 400 ? 2 : 4;
+        if (list.length > cap) list = list.slice(-cap);
         own[k][f] = list;
       }
     }
-    try { localStorage.setItem(ownKey(), JSON.stringify(own)); } catch (e) {}
+    var ownJson = JSON.stringify(own);
+    if (ownJson.length > 256 * 1024) {
+      for (k in own) for (f in own[k]) if (own[k][f] && own[k][f].length) own[k][f] = own[k][f].slice(-1);
+      ownJson = JSON.stringify(own);
+    }
+    writeLocal(ownKey(), ownJson);
   }
   function ownValues(key, field, localText) {
     var own = jparse(lsGet(ownKey()), {}), list = (own[key] && own[key][field]) || [], i, out = [];
@@ -627,19 +668,30 @@
   function histKey() { return "rg-sbx-ideas-hist:" + (uid || ""); }
   function loadHistory() {
     var raw = uid ? jparse(lsGet(histKey()), []) : [];
-    history = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+    var list = Array.isArray(raw) ? raw : (raw && Array.isArray(raw.snaps) ? raw.snaps : []);
+    history = (window.RGSyncStatus && RGSyncStatus.expandHistory) ? RGSyncStatus.expandHistory(list) : list;
   }
   function saveHistory() {
     if (!uid) return;
-    try { localStorage.setItem(histKey(), JSON.stringify(history)); }
-    catch (e) { history = history.slice(-5); try { localStorage.setItem(histKey(), JSON.stringify(history)); } catch (e2) {} }
+    var SS = window.RGSyncStatus;
+    var packed = SS && SS.packHistory ? SS.packHistory(history) : history;
+    if (SS && SS.expandHistory) history = SS.expandHistory(packed);
+    writeLocal(histKey(), JSON.stringify(packed));
+  }
+  var histPushT = 0, histSent = "";
+  function scheduleHistoryPush() {
+    clearTimeout(histPushT);
+    histPushT = setTimeout(function () { pushHistoryCloud(); }, 1200);
   }
   function rememberSnap(force) {
-    var SS = window.RGSyncStatus;
+    var SS = window.RGSyncStatus, n, id;
     if (!uid || !SS) return;
+    n = history.length;
+    id = n ? history[n - 1].id : "";
     history = SS.pushHistory(history, items, Date.now(), !!force);
+    if (history.length === n && (!history.length || history[history.length - 1].id === id)) return;
     saveHistory();
-    pushHistoryCloud();
+    scheduleHistoryPush();
   }
   function pullHistory(done) {
     var SS = window.RGSyncStatus;
@@ -655,25 +707,33 @@
   }
   function pushHistoryCloud() {
     var SS = window.RGSyncStatus;
+    clearTimeout(histPushT);
     if (!uid || !A || !SS) return;
     if (histBusy) { histAgain = true; return; }
     histBusy = true;
     histAgain = false;
     A.get(APP, "history").then(function (cloud) {
       if (!uid) return;
-      var cloudSnaps = SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps;
       history = SS.mergeHistory(history, cloud, SS.HIST_MAX).snaps;
       saveHistory();
       noteIncomingClash(history);
-      var payload = { v: 1, snaps: cloudSnaps };
-      if (JSON.stringify(payload).length > 450000) payload.snaps = cloudSnaps.slice(-5);
+      var snaps = SS.packHistory(SS.mergeHistory(history, cloud, SS.HIST_CLOUD_MAX).snaps);
+      var payload = { v: 1, snaps: snaps };
+      var body = JSON.stringify(payload);
+      if (body.length > 450000) {
+        payload.snaps = SS.packHistory(snaps.slice(-1));
+        body = JSON.stringify(payload);
+      }
+      if (body === histSent) return;
+      histSent = body;
       return A.set(APP, "history", payload);
     }).then(function () {
       histBusy = false;
-      if (histAgain) pushHistoryCloud();
+      if (histAgain) { histAgain = false; scheduleHistoryPush(); }
     }, function () {
       histBusy = false;
-      if (histAgain) pushHistoryCloud();
+      histSent = "";
+      if (histAgain) { histAgain = false; scheduleHistoryPush(); }
     });
   }
   function hiddenCats() {
@@ -963,14 +1023,15 @@
   function row(x) { // ☰ on every item, open and selected (same look and place as Purchasify)
     if (editing === x.id) return '<li data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var sel = isSel(x), n = label(x), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
-    var cls = (sel ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g;
+    var cls = (sel ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g; if (x.note) cls = (cls ? cls + " " : "") + "has-note";
     var box = '<button type="button" class="ckbox' + (g ? " on-" + g : "") + '" data-a="ck" role="checkbox" aria-checked="' + (g === "ok" ? "true" : "false") + '" aria-label="' + esc((g === "no" ? t("markNo") : g === "ok" ? t("markOk") : t("check")) + ": " + n) + '">' + (g === "ok" ? "✓" : g === "no" ? "✕" : "") + "</button>";
     return '<li data-id="' + esc(x.id) + '"' + (cls ? ' class="' + cls + '"' : "") + '>' +
       '<span class="handle ihandle" title="' + esc(t("dragItem")) + '" aria-label="' + esc(t("dragItem") + ": " + n) + '">☰</span>' +
       box +
-      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span>" + (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '">' + hi(x.note) + "</span>" : "") + "</div>" +
+      '<div class="body" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '"><span class="txt">' + hi(n) + "</span></div>" +
       (x.note ? '<button type="button" class="notetog' + (noteHidden(x.id) ? "" : " on") + '" data-a="note" aria-pressed="' + (noteHidden(x.id) ? "false" : "true") + '" aria-label="' + esc((noteHidden(x.id) ? t("noteShow") : t("noteHide")) + ": " + n) + '">' + esc(t("noteWord")) + "</button>" : "") +
       (showP ? '<input class="pin" data-price="' + esc(x.id) + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (typeof x.price === "number" ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + n) + '">' : "") +
+      (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '" data-a="edit">' + hi(x.note) + "</span>" : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
   function panel(sec) {
