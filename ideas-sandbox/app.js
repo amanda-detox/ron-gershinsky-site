@@ -18,7 +18,8 @@
      (they have no "sec") but keep and sync them, because they merge every valid record.
    Grouping categories (sandbox): a category holds several lists. Stored as records { id: "b:<id>", type: "box", box, name, pos, gone?, created, at }
      in the same items map, so they sync with the lists. A list record may carry box: "<id>". No box (or a box the record does not know)
-     means the default category «כללי». Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
+     means the default category «כללי». Reordering stores pos on each box record and, for «כללי», on record id "b:" in this same items map. No new storage key.
+     Old app versions ignore type "box" (no "sec", not type "cat") and keep the extra box field on a list
      when they copy the record, so existing lists need no rewrite. Deleting a category clears that field and hides the box record. It does not delete lists.
      goals: progress 0-100 (100 = achieved), prev = progress before it was marked achieved.
    Merge: per item id and per field (see merge below); deletions are tombstones (deleted: true), pruned after 30 days.
@@ -246,6 +247,7 @@
 
   /* ---------- grouping categories (type "box"), above the lists. «כללי» is the absence of a box field.
      Renaming it stores the new name on record id "b:" (type "box", no box field) and does not move lists.
+     Reordering writes pos on each box record, and on "b:" for «כללי», inside the items map. No new key.
      Older builds skip that record. Delete stays blocked while it is the only category or still has lists. ---------- */
   var boxTab = lsGet("rg-sbx-ideas-box") || "";
   function boxRec(bid) { var r = items["b:" + bid]; return r && !r.deleted && r.type === "box" && typeof r.box === "string" ? r : null; }
@@ -301,11 +303,12 @@
     name = clean(name, 40); if (!name) return null;
     var again = hiddenBoxByName(name);
     if (again) { upBox(again, { gone: null }); return again; }
-    var l = boxes(), id = newId(), at = now(), pos = l.reduce(function (m, b) { return Math.max(m, b.pos); }, -1) + 1;
+    var l = boxViews(), id = newId(), at = now(), pos = l.reduce(function (m, b) { return Math.max(m, b.pos); }, -1) + 1;
     put({ id: "b:" + id, type: "box", box: id, name: name, pos: pos, created: at, at: at });
     return id;
   }
-  /* The default category's name lives inside the items map (id "b:"), not in a new storage key. */
+  /* The default category's name and order live inside the items map (id "b:"), not in a new storage key.
+     No record means pos -1, so «כללי» stays first until someone reorders it. */
   var DEFAULT_BOX_ID = "b:";
   function defaultRec() {
     var r = items[DEFAULT_BOX_ID];
@@ -352,6 +355,31 @@
     next = all.map(function (id) { return set[id] ? queue.shift() : id; });
     ids.forEach(function (id) { if (all.indexOf(id) < 0) next.push(id); });
     setOrder(next);
+  }
+  /* Visible categories in saved order. «כללי» is id "" and, with no record, pos -1 (first). */
+  function boxViews() {
+    var out = [];
+    if (!defaultHidden()) {
+      var dr = defaultRec();
+      out.push({ id: "", name: defaultBoxName(), pos: dr && typeof dr.pos === "number" ? dr.pos : -1, created: (dr && dr.created) || 0 });
+    }
+    boxes().forEach(function (b) { out.push({ id: b.box, name: b.name, pos: typeof b.pos === "number" ? b.pos : 0, created: b.created || 0 }); });
+    return out.sort(function (a, b) {
+      if (a.pos !== b.pos) return a.pos - b.pos;
+      if (a.created !== b.created) return a.created - b.created;
+      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+    });
+  }
+  function setBoxOrder(ids) {
+    ids.forEach(function (id, n) {
+      if (!id) {
+        var dr = defaultRec(), curp = dr && typeof dr.pos === "number" ? dr.pos : -1;
+        if (curp !== n) writeDefault({ pos: n });
+        return;
+      }
+      var r = boxRec(id);
+      if (r && r.pos !== n) upBox(id, { pos: n });
+    });
   }
   function curTab() {
     var l = listsNow();
@@ -1336,30 +1364,40 @@
     b.textContent = t(hiding ? "notesShow" : "notesHide");
     b.setAttribute("aria-pressed", hiding ? "true" : "false");
   }
-  var bmOpt = null;
+  var bmOpt = null, bmMove = false, bmSort = null;
   function boxMenuOpen() { var m = $("bmenu"); return m && !m.hidden; }
   function closeBoxMenu() {
-    bmOpt = null;
+    if (bmSort) return;
+    bmOpt = null; bmMove = false;
     var m = $("bmenu"), p = $("box-picker");
     if (m) m.hidden = true;
     if (p) p.setAttribute("aria-expanded", "false");
   }
+  /* Same reorder as the list menu: ⋮ «סידור», then ☰ drag or ▲▼, and «סיום». Order is pos on the box records. */
   function fillBoxMenu() {
-    var m = $("bmenu"), cur = curBox(); if (!m) return;
-    function row(id, name, on, canEdit) {
-      var open = canEdit && bmOpt === id, key = id || "all";
+    var m = $("bmenu"), cur = curBox(); if (!m || bmSort) return;
+    var list = boxViews(), st = m.querySelector(".pm-list") ? m.querySelector(".pm-list").scrollTop : 0;
+    var head = '<div class="pm-head"><span class="pm-title">' + esc(bmMove ? t("moveNote") : t("boxLabel")) + "</span>" +
+      (bmMove ? '<button type="button" class="pm-edit on" data-box="mvend">' + esc(t("editDone")) + "</button>" : "") + "</div>";
+    var rows = list.map(function (b, i) {
+      var id = b.id, name = b.name, key = id || "all", on = (id || "") === (cur || "");
+      if (bmMove) return '<li class="erow mvrow' + (on ? " cur" : "") + '" data-box="' + esc(key) + '"><span class="handle pm-h" aria-label="' + esc(t("dragHandle") + ": " + name) + '">☰</span>' +
+        '<span class="pm-mname">' + esc(name) + "</span>" +
+        '<button type="button" class="eic" data-box="upp:' + esc(id) + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + name) + '">▲</button>' +
+        '<button type="button" class="eic" data-box="dwn:' + esc(id) + '"' + (i === list.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown") + ": " + name) + '">▼</button></li>';
+      var open = bmOpt === id;
       return '<li class="erow' + (on ? " cur" : "") + '" data-box="' + esc(key) + '">' +
         '<button type="button" class="popt pm-name" role="option" data-box="' + esc(key) + '" aria-selected="' + on + '"><span class="pn">' + esc(name) + '</span><span class="pk" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>" +
-        (canEdit ? '<button type="button" class="eic pm-more' + (open ? " on" : "") + '" data-box="opt:' + esc(id) + '" aria-expanded="' + open + '" aria-label="' + esc(t("optMenu") + ": " + name) + '">⋮</button>' : "") +
-        "</li>" +
+        '<button type="button" class="eic pm-more' + (open ? " on" : "") + '" data-box="opt:' + esc(id) + '" aria-expanded="' + open + '" aria-label="' + esc(t("optMenu") + ": " + name) + '">⋮</button></li>' +
         (open ? '<li class="pm-opts" data-opts="' + esc(id) + '">' +
+          '<button type="button" class="pm-oi" data-box="mov:' + esc(id) + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
           '<button type="button" class="pm-oi" data-box="ren:' + esc(id) + '"><span aria-hidden="true">✏️</span>' + esc(t("renameShort")) + "</button>" +
           '<button type="button" class="pm-oi pm-del" data-box="del:' + esc(id) + '"><span aria-hidden="true">🗑</span>' + esc(t("boxDel")) + "</button></li>" : "");
-    }
-    var rows = defaultHidden() ? "" : row("", defaultBoxName(), !cur, true);
-    boxes().forEach(function (b) { rows += row(b.box, b.name, cur === b.box, true); });
-    m.innerHTML = '<div class="pm-head"><span class="pm-title">' + esc(t("boxLabel")) + "</span></div>" +
-      '<ul class="pm-list">' + rows + '</ul><button type="button" class="popt padd" data-box="+">' + esc("＋ " + t("boxAdd")) + "</button>";
+    }).join("");
+    m.innerHTML = head + '<ul class="pm-list' + (bmMove ? " editing" : "") + '">' + rows + "</ul>" +
+      (bmMove ? "" : '<button type="button" class="popt padd" data-box="+">' + esc("＋ " + t("boxAdd")) + "</button>");
+    var ul = m.querySelector(".pm-list"); if (ul) ul.scrollTop = st;
+    if (bmOpt != null && !bmMove) { var ob = m.querySelector(".pm-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e) {} }
   }
   function openBoxMenu() {
     hideHint(); closeMenu();
@@ -1391,6 +1429,17 @@
         if (!id) return;
         boxTab = id; lsSet("rg-sbx-ideas-box", id); closeBoxMenu(); changed();
       }, t("boxPh"));
+      return;
+    }
+    if (p === "mvend") { bmMove = false; fillBoxMenu(); syncSoon(); return; }
+    if (p.indexOf("mov:") === 0) { bmOpt = null; bmMove = true; fillBoxMenu(); return; }
+    if (p.indexOf("upp:") === 0 || p.indexOf("dwn:") === 0) {
+      var mid = p.slice(4), ids = boxViews().map(function (b) { return b.id; }), bi = ids.indexOf(mid), bj = p.indexOf("upp:") === 0 ? bi - 1 : bi + 1;
+      if (bi < 0 || bj < 0 || bj >= ids.length) return;
+      ids.splice(bj, 0, ids.splice(bi, 1)[0]); setBoxOrder(ids); changed();
+      var mb = $("bmenu").querySelector('button[data-box="' + p + '"]');
+      if (mb && !mb.disabled) mb.focus();
+      else { var li2 = $("bmenu").querySelector('li[data-box="' + (mid || "all") + '"]'); if (li2) li2.scrollIntoView({ block: "nearest" }); }
       return;
     }
     if (p.indexOf("opt:") === 0) { var oid = p.slice(4); bmOpt = bmOpt === oid ? null : oid; fillBoxMenu(); return; }
@@ -1513,6 +1562,24 @@
     }
     m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
   }
+  function bootBoxDrag() {
+    var m = $("bmenu"), sd = null; if (!m) return;
+    m.addEventListener("pointerdown", function (e) {
+      var h = e.target.closest(".pm-h"); if (!h || !bmMove || bmSort || (e.pointerType === "mouse" && e.button !== 0)) return;
+      e.preventDefault(); e.stopPropagation();
+      var list = m.querySelector(".pm-list"), li = h.closest("li"), rows = [].slice.call(list.children);
+      sd = { pid: e.pointerId }; bmSort = makeSorter(rows, li, e.clientY, list.scrollHeight > list.clientHeight + 2 ? list : null);
+      try { h.setPointerCapture(e.pointerId); } catch (e2) {}
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+    });
+    m.addEventListener("pointermove", function (e) { if (bmSort && sd && e.pointerId === sd.pid) { e.preventDefault(); bmSort.move(e.clientY); } });
+    function upE(e) {
+      if (!bmSort || !sd || e.pointerId !== sd.pid) return;
+      var r = bmSort.end(); bmSort = null; sd = null; noClick = true; setTimeout(function () { noClick = false; }, 350);
+      if (r.moved) { setBoxOrder(r.order.map(function (li) { var k = li.getAttribute("data-box"); return k === "all" ? "" : (k || ""); })); changed(); } else fillBoxMenu();
+    }
+    m.addEventListener("pointerup", upE); m.addEventListener("pointercancel", upE);
+  }
   function newList(after, g) {
     nameSheet(t("catAdd"), "", true, function (v) { var id = addCat(v, "task", g); if (id) { changed(); if (after) after(id); } });
   }
@@ -1594,7 +1661,8 @@
     if (bp) bp.addEventListener("click", function (e) { e.stopPropagation(); if (boxMenuOpen()) closeBoxMenu(); else openBoxMenu(); });
     var bm = $("bmenu");
     if (bm) bm.addEventListener("click", function (e) {
-      e.stopPropagation(); var b = e.target.closest("[data-box]"); if (!b) return;
+      e.stopPropagation(); if (noClick) { noClick = false; return; }
+      var b = e.target.closest("button[data-box]"); if (!b) return;
       boxAction(b.getAttribute("data-box"));
     });
     $("pmenu").addEventListener("click", function (e) {
@@ -1602,6 +1670,7 @@
       menuAction(b.getAttribute("data-pick"));
     });
     bootMenuDrag();
+    bootBoxDrag();
     document.addEventListener("click", function (e) { if (!e.target.closest(".listbars") && !e.target.closest("#sheet")) { if (menuOpen()) closeMenu(); if (boxMenuOpen()) closeBoxMenu(); } });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("sheet") && (menuOpen() || boxMenuOpen())) { closeMenu(); closeBoxMenu(); var focus = menuG ? pickerEl(menuG) : $("box-picker"); if (focus) focus.focus(); } });
   }

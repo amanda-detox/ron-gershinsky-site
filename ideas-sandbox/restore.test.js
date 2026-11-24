@@ -135,10 +135,10 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("version.js?v=7") !== -1 && page.indexOf("version.js?v=7") < page.indexOf("app.js?v=66") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=66") !== -1, "the sandbox page loads the shared version, then the bumped app");
-assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=7") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=66") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("version.js?v=8") !== -1 && page.indexOf("version.js?v=8") < page.indexOf("app.js?v=67") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=67") !== -1, "the sandbox page loads the shared version, then the bumped app");
+assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=8") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=67") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
 var verFile = fs.readFileSync(path.join(root, "version.js"), "utf8");
-assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v34"') !== -1 && sw.indexOf("rg-sbx-ideas-v34") === -1 && app.indexOf("rg-sbx-ideas-v34") === -1, "the cache name is written once, in version.js");
+assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v35"') !== -1 && sw.indexOf("rg-sbx-ideas-v35") === -1 && app.indexOf("rg-sbx-ideas-v35") === -1, "the cache name is written once, in version.js");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
@@ -170,6 +170,9 @@ var delBoxBody = app.slice(app.indexOf("function delBox"), app.indexOf("function
 assert(delBoxBody.indexOf("function delBox") === 0 && delBoxBody.indexOf("del(") === -1 && delBoxBody.indexOf("box: null") !== -1, "deleting a category clears the list link and does not delete lists");
 assert(app.indexOf("NOTE_MAX = 2500") !== -1 && app.indexOf("function cleanNote") !== -1 && app.indexOf("clean(note, 500)") === -1 && app.indexOf('maxlength="500"') === -1, "the note cap is 2500 and notes are not sliced");
 assert(page.indexOf("הגעת לאורך המרבי של הערה") !== -1 && page.indexOf('id="box-picker"') !== -1 && page.indexOf('boxDefault: "כללי"') !== -1 && page.indexOf('id="notes-all"') !== -1, "the category dropdown, the note toggles, and the max-length message are in the sandbox");
+var boxMenu = app.slice(app.indexOf("function fillBoxMenu"), app.indexOf("function openBoxMenu"));
+assert(boxMenu.indexOf('t("optMove")') !== -1 && boxMenu.indexOf('t("moveNote")') !== -1 && boxMenu.indexOf("pm-h") !== -1 && boxMenu.indexOf('t("editDone")') !== -1 && boxMenu.indexOf('data-box="mov:') !== -1, "every category, including כללי, gets סידור with the list reorder wording");
+assert(app.indexOf("function setBoxOrder") !== -1 && app.indexOf("writeDefault({ pos: n })") !== -1 && app.indexOf("boxorder") === -1 && app.indexOf("function boxViews") !== -1, "category order is a pos field on the existing box records");
 assert(page.indexOf("נחתך") === -1 && app.indexOf("נחתך") === -1 && page.indexOf("לחתוך") === -1 && app.indexOf("לחתוך") === -1, "the UI never says a note was cut");
 var longNote = new Array(2501).join("נ");
 var many = { "c:shop": { id: "c:shop", type: "cat", cat: "shop", name: "קניות", box: "brand", pos: 4, at: 5 }, "b:brand": { id: "b:brand", type: "box", box: "brand", name: "מיתוג", pos: 1, at: 6 }, s1: { id: "s1", sec: "shop", text: "חלב", note: longNote, done: false, order: 1, at: 7 } };
