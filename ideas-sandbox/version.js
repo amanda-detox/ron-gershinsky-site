@@ -1,2 +1,3 @@
-/* One name for the Listify sandbox cache. The service worker and the on-screen version both read this. */
-var RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v33";
+/* One name for the Listify sandbox cache. The service worker uses this name.
+   The on-screen label drops the leading "rg-". */
+var RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v34";

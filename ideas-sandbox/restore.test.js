@@ -135,10 +135,10 @@ assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf(">הדפסה</
 assert(page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"') && page.indexOf('backupLink: "גיבוי"') !== -1 && page.indexOf('backupLink: "Backup"') !== -1, "backup is a text link beside version history");
 assert(page.indexOf('restoreTitle: "Restore"') !== -1 && page.indexOf("Restore from file") === -1, "the English restore dialog title is Restore");
 assert(page.indexOf("z-index: 10001") !== -1, "the preview sheet sits above the install chip so the confirm button can be tapped");
-assert(page.indexOf("version.js?v=6") !== -1 && page.indexOf("version.js?v=6") < page.indexOf("app.js?v=65") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=65") !== -1, "the sandbox page loads the shared version, then the bumped app");
-assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=6") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=65") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
+assert(page.indexOf("version.js?v=7") !== -1 && page.indexOf("version.js?v=7") < page.indexOf("app.js?v=66") && page.indexOf("restore.js?v=2") !== -1 && page.indexOf("app.js?v=66") !== -1, "the sandbox page loads the shared version, then the bumped app");
+assert(sw.indexOf('var CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=7") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=66") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache version includes the new files");
 var verFile = fs.readFileSync(path.join(root, "version.js"), "utf8");
-assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v33"') !== -1 && sw.indexOf("rg-sbx-ideas-v33") === -1 && app.indexOf("rg-sbx-ideas-v33") === -1, "the cache name is written once, in version.js");
+assert(verFile.indexOf('RG_SBX_IDEAS_CACHE = "rg-sbx-ideas-v34"') !== -1 && sw.indexOf("rg-sbx-ideas-v34") === -1 && app.indexOf("rg-sbx-ideas-v34") === -1, "the cache name is written once, in version.js");
 assert(sw.indexOf("icon-maskable-192.png?v=20") !== -1 && sw.indexOf("icon-maskable-512.png?v=20") !== -1 && sw.indexOf("manifest.json?v=23") !== -1, "the sandbox cache includes the maskable icons");
 var manifest = fs.readFileSync(path.join(root, "manifest.json"), "utf8");
 var liveManifest = fs.readFileSync(path.join(root, "../my/ideas/manifest.json"), "utf8");
@@ -161,7 +161,7 @@ assert(app.indexOf("RGSbxRestore") !== -1 && app.indexOf("items = merged") !== -
 assert(app.indexOf("rg-myideas") === -1 && app.indexOf('APP = "myideas"') === -1 && app.indexOf('APP = "sbxmyideas"') !== -1, "the sandbox app still never names the live app or its key");
 assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-myideas') === -1 && helper.indexOf("setItem('rg-myideas") === -1, "the helper recognizes a live device key in a file and does not write that string");
 assert(live.indexOf("RGMyIdeasRestore") !== -1 && live.indexOf("RGSbxRestore") === -1 && live.indexOf("rg-sbx-ideas-") === -1, "live file restore uses the live helper and live keys");
-assert(liveHtml.indexOf("שחזור מקובץ") !== -1 && liveHtml.indexOf("ideas-sandbox/restore.js") === -1 && liveHtml.indexOf('src="restore.js?v=1"') !== -1, "the live page loads its own restore helper");
+assert(liveHtml.indexOf("ideas-sandbox/restore.js") === -1 && liveHtml.indexOf('src="restore.js?v=2"') !== -1 && liveHtml.indexOf('restoreBtn: "שיחזור"') !== -1, "the live page loads its own restore helper");
 assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear"') !== -1 && page.indexOf('id="actrow"') !== -1 && page.indexOf('id="print-btn"') !== -1, "search sits in the same row as print and restore");
 assert(liveHtml.indexOf('id="list-search"') !== -1 && live.indexOf("function searchView") !== -1 && live.indexOf('APP = "myideas"') !== -1 && live.indexOf("rg-sbx-ideas") === -1, "live Listify has search and still uses the live app id and keys");
 var searchBody = app.slice(app.indexOf("function searchView"), app.indexOf("function render"));
