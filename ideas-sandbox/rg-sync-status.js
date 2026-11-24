@@ -294,7 +294,8 @@
     return { hold: false, reason: "" };
   }
 
-  var HIST_MAX = 20, HIST_CLOUD_MAX = 12, HIST_BYTES = 480 * 1024, BAK_BYTES = 480 * 1024;
+  /* One cap for packed history and the cloud payload. 450K, not a second lower cutoff. */
+  var HIST_MAX = 20, HIST_CLOUD_MAX = 12, HIST_BYTES = 450000, BAK_BYTES = 480 * 1024;
   function cloneDoc(items) {
     try { return JSON.parse(JSON.stringify(items || {})); } catch (e) { return items || {}; }
   }
@@ -363,8 +364,9 @@
     return y;
   }
   /* Keep the newest rows. The oldest kept row is a full copy; later rows are only what changed. Always keeps the newest row. */
-  function packHistory(list) {
-    var full = expandHistory(list), packed, prev, i, row, diff;
+  function packHistory(list, maxBytes) {
+    var limit = typeof maxBytes === "number" ? maxBytes : HIST_BYTES;
+    var full = expandHistory(list), packed;
     function emit(rows) {
       var out = [], p = null, j, r, d;
       for (j = 0; j < rows.length; j++) {
@@ -379,11 +381,29 @@
       return out;
     }
     packed = emit(full);
-    while (full.length > 1 && JSON.stringify(packed).length > HIST_BYTES) {
+    while (full.length > 1 && JSON.stringify(packed).length > limit) {
       full.shift();
       packed = emit(full);
     }
     return packed;
+  }
+  /* Cloud body for one upload. Same HIST_BYTES cap: drop the oldest version, repack, repeat.
+     Never replaces the whole history with only the newest, and never removes lists from a version. */
+  function cloudHistoryPayload(list) {
+    var snaps = packHistory(list);
+    var payload = { v: 1, snaps: snaps };
+    var body = JSON.stringify(payload);
+    while (snaps.length > 1 && body.length > HIST_BYTES) {
+      var full = expandHistory(snaps);
+      if (full.length < 2) break;
+      full.shift();
+      var next = packHistory(full);
+      if (!next || next.length >= snaps.length) break;
+      snaps = next;
+      payload = { v: 1, snaps: snaps };
+      body = JSON.stringify(payload);
+    }
+    return payload;
   }
   function capList(list, maxN, maxBytes) {
     var next = Array.isArray(list) ? list.slice() : [];
@@ -833,6 +853,7 @@
     BAK_BYTES: BAK_BYTES,
     pushHistory: pushHistory,
     packHistory: packHistory,
+    cloudHistoryPayload: cloudHistoryPayload,
     expandHistory: expandHistory,
     capList: capList,
     planRestore: planRestore,

@@ -71,8 +71,8 @@ assert(loadBody.indexOf("loadCloudCopy") !== -1 && loadBody.indexOf("A.set") ===
 assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < html.indexOf('id="lastsync"') && html.indexOf('id="lastsync"') < html.indexOf('id="cloudat"'), "the clock sits directly under #status");
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
-assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=8") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=8") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=3") !== -1 && sw.indexOf("rg-sync-status.js?v=8") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=62") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
+assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=9") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=9") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
+assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=4") !== -1 && sw.indexOf("rg-sync-status.js?v=9") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=63") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build"') !== -1 && html.indexOf("rg-sbx-ideas-v21") === -1 && app.indexOf("RG_SBX_IDEAS_CACHE") !== -1 && app.indexOf("function paintBuild") !== -1, "the on-screen version is painted from the shared cache name");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
@@ -319,9 +319,48 @@ var snapBody = app.slice(app.indexOf("function rememberSnap"), app.indexOf("func
 assert(snapBody.indexOf("scheduleHistoryPush()") !== -1 && snapBody.indexOf("pushHistoryCloud()") === -1, "one edit schedules a single history upload");
 var pruneBody = app.slice(app.indexOf("function pruneFootprint"), app.indexOf("function writeLocal"));
 assert(pruneBody.indexOf("removeItem(cacheKey(uid))") === -1 && pruneBody.indexOf("removeItem(currentCacheKey") === -1 && app.indexOf("function writeLocal") !== -1, "a full disk drops history and backups and keeps the current lists");
+assert(SS.HIST_BYTES === 450000 && SS.BAK_BYTES === 480 * 1024, "history uses one 450K cap and backups keep theirs");
+function bigList(nItems, edit) {
+  var o = {}, i, note = new Array(2501).join("א");
+  o["c:shop"] = { id: "c:shop", type: "cat", cat: "shop", name: "קניות", kind: "task", pos: 0, at: 1000 };
+  for (i = 0; i < nItems; i++) o["i" + i] = { id: "i" + i, sec: "shop", text: "פריט " + i, note: note, done: false, order: i, created: 1000, at: 1000 };
+  o.i0.text = "עריכה " + edit;
+  return o;
+}
+var wide = [], wv;
+for (wv = 0; wv < 12; wv++) wide = SS.pushHistory(wide, bigList(82, wv), 5000 + wv, true, { id: "row-" + wv });
+var uncapped = SS.packHistory(wide, 1000000000);
+var uncappedBody = JSON.stringify({ v: 1, snaps: uncapped });
+assert(SS.expandHistory(uncapped).length === 12 && uncappedBody.length > SS.HIST_BYTES, "twelve versions of a big list pack over the history cap (" + uncappedBody.length + ")");
+var fitted = SS.cloudHistoryPayload(wide);
+var fittedRows = SS.expandHistory(fitted.snaps);
+var fittedIds = fittedRows.map(function (r) { return r.id; });
+var expectIds = [];
+for (wv = 12 - fittedRows.length; wv < 12; wv++) expectIds.push("row-" + wv);
+var newestFit = fittedRows[fittedRows.length - 1];
+var listKept = !!(newestFit && newestFit.data && newestFit.data["c:shop"] && newestFit.data["c:shop"].name === "קניות" && !newestFit.data["c:shop"].deleted);
+var itemsKept = 0, fk;
+for (fk in newestFit.data) if (newestFit.data[fk] && newestFit.data[fk].sec === "shop") itemsKept++;
+var olderNote = fittedRows[0] && fittedRows[0].data && fittedRows[0].data.i0 && fittedRows[0].data.i0.note;
+assert(fittedRows.length >= 10 && JSON.stringify(fitted).length <= SS.HIST_BYTES, "oldest-first trim keeps at least 10 versions under 450K (" + fittedRows.length + ", " + JSON.stringify(fitted).length + ")");
+assert(fittedIds.join(",") === expectIds.join(",") && fittedIds[fittedIds.length - 1] === "row-11", "dropped versions are the oldest and the newest stays");
+assert(listKept && itemsKept === 82 && olderNote && olderNote.length === 2500, "trimming history does not delete lists or items");
+var alone = SS.pushHistory([], bigList(180, 0), 9, true, { id: "only" });
+var alonePayload = SS.cloudHistoryPayload(alone);
+var aloneRow = SS.expandHistory(alonePayload.snaps)[0];
+var aloneCount = 0, ak;
+for (ak in aloneRow.data) if (aloneRow.data[ak] && aloneRow.data[ak].sec === "shop") aloneCount++;
+assert(alonePayload.snaps.length === 1 && aloneRow.id === "only" && aloneRow.data["c:shop"] && aloneCount === 180, "a single oversized version is kept whole");
+var pushBody = app.slice(app.indexOf("function pushHistoryCloud"), app.indexOf("function hiddenCats"));
+assert(pushBody.indexOf("cloudHistoryPayload") !== -1 && pushBody.indexOf("slice(-1)") === -1 && pushBody.indexOf("450000") === -1 && pushBody.indexOf("480") === -1, "the upload uses the shared cap and does not replace the history");
+assert((pushBody.match(/A\.set\(APP, "history"/g) || []).length === 1, "one edit still uploads history once");
+var sheetBody = app.slice(app.indexOf("function sheet("), app.indexOf("function closeSheet"));
+var openBody = app.slice(app.indexOf("function openHistory"), app.indexOf("setInterval"));
+assert(sheetBody.indexOf("opts.immediate") !== -1 && sheetBody.indexOf("< 450") !== -1, "other sheets still ignore the opening click");
+assert(openBody.indexOf("immediate: true") !== -1 && openBody.indexOf('data-s="r:') !== -1, "version history takes a restore click immediately");
 var pins = {
-  "ideas-sandbox/app.js": { v: 62, hash: "a5341cf456d14152" },
-  "ideas-sandbox/rg-sync-status.js": { v: 8, hash: "04fd8481ed83bf70" },
+  "ideas-sandbox/app.js": { v: 63, hash: "52ac37c129cf734f" },
+  "ideas-sandbox/rg-sync-status.js": { v: 9, hash: "efef942d535e3f1f" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
 Object.keys(pins).forEach(function (rel) {
