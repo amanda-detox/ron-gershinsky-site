@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/ideas-sandbox/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "sbx-ideas-v36"; });
-    check(true, "the on-screen label shows sbx-ideas-v36");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "sbx-ideas-v37"; });
+    check(true, "the on-screen label shows sbx-ideas-v37");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=68") !== -1 && srcs.indexOf("version.js?v=9") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=69") !== -1 && srcs.indexOf("version.js?v=10") !== -1 && srcs.indexOf("rg-sync-status.js?v=11") !== -1 && srcs.indexOf("rg-account.js?v=3") !== -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-sbx-ideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "sbx-ideas-v36"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "sbx-ideas-v37"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.click("#menu-btn");
@@ -361,27 +361,42 @@ async function main() {
     var before = await dataOf(searchPage);
     var fullIds = await idsOf(searchPage);
     check(fullIds.join(",") === "a1,a2,a3", "before a search the open list keeps its saved order");
-    var row0 = await geomOf(searchPage);
-    check(row0.search && row0.search.h >= 44 && row0.search.w >= 44, "the search field is at least 44px");
+    var closed = await searchPage.evaluate(function () {
+      var row = document.getElementById("actrow");
+      var form = document.querySelector(".addform");
+      var notes = document.getElementById("notesbar");
+      return { search: !!(row && row.hidden), add: !!(form && form.hidden), notes: !notes || getComputedStyle(notes).display === "none" };
+    });
+    check(closed.search && closed.add && closed.notes, "search, the add row, and הצג הערות stay off the main page");
+    await searchPage.setViewportSize({ width: 393, height: 780 });
     var menuGeom = await searchPage.evaluate(function () {
       document.getElementById("menu-btn").click();
       function box(id) {
         var el = document.getElementById(id);
         if (!el) return null;
         var b = el.getBoundingClientRect();
-        return { w: Math.round(b.width), h: Math.round(b.height), top: Math.round(b.top), left: Math.round(b.left) };
+        return { w: Math.round(b.width), h: Math.round(b.height), top: Math.round(b.top), left: Math.round(b.left), right: Math.round(b.right) };
       }
       var home = box("app-home"), menu = box("menu-btn"), print = box("print-btn"), restore = box("restore-file-btn");
       var bar = document.querySelector(".rgtb");
       var topbar = document.querySelector("header.topbar");
       var gap = home ? home.top : 0;
+      var menuEl = document.getElementById("appmenu");
+      var fits = menuEl.scrollHeight <= menuEl.clientHeight + 1;
+      var aligned = !!(print && restore && Math.abs(print.left - restore.left) <= 1 && Math.abs(print.right - restore.right) <= 1);
+      var acct = box("menu-acct");
       document.getElementById("menu-btn").click();
-      return { home: home, menu: menu, print: print, restore: restore, gap: gap, bar: bar ? bar.getBoundingClientRect().height : -1, topbar: topbar ? topbar.getBoundingClientRect().height : -1, iconRight: !!(home && menu && home.left > menu.left) };
+      return { home: home, menu: menu, print: print, restore: restore, gap: gap, bar: bar ? bar.getBoundingClientRect().height : -1, topbar: topbar ? topbar.getBoundingClientRect().height : -1, iconRight: !!(home && menu && home.left > menu.left), fits: fits, aligned: aligned, acct: acct };
     });
     check(menuGeom.home && menuGeom.home.h >= 44 && menuGeom.home.w >= 44 && menuGeom.iconRight, "the Listify icon is at least 44px and sits on the right");
     check(menuGeom.menu && menuGeom.menu.h >= 44 && menuGeom.menu.w >= 44, "the menu button is at least 44px");
-    check(menuGeom.print && menuGeom.print.h >= 44 && menuGeom.restore && menuGeom.restore.h >= 44, "print and restore stay at least 44px inside the menu");
+    check(menuGeom.print && menuGeom.print.h >= 40 && menuGeom.restore && menuGeom.restore.h >= 40 && menuGeom.aligned && menuGeom.acct && menuGeom.acct.h >= 40 && menuGeom.fits, "menu items stay at least 40px, שיחזור lines up, and the menu fits without scrolling");
     check(menuGeom.gap >= 7 && menuGeom.gap <= 10 && menuGeom.bar === 0 && menuGeom.topbar === 0, "the space above the icons is 8px and the old top bar takes no height");
+    await searchPage.setViewportSize({ width: 390, height: 844 });
+    await searchPage.click("#menu-btn");
+    await searchPage.click("#menu-search");
+    var row0 = await geomOf(searchPage);
+    check(row0.search && row0.search.h >= 40 && row0.search.w >= 44, "the menu reveals a search field at least 40px tall");
     check(row0.rowLeft >= -1 && row0.rowRight <= row0.iw + 1 && row0.sw <= row0.cw + 1, "the row fits the phone width");
     await searchPage.evaluate(function () { return document.fonts && document.fonts.ready; });
     async function placeholderFits() {
@@ -458,6 +473,8 @@ async function main() {
     check(after.rows === before.rows && after.tab === before.tab && after.live.length === 0, "clearing the search does not write lists or live keys");
     await searchPage.evaluate(function () { window.scrollTo(0, 0); });
     await searchPage.screenshot({ path: shotDir + "/listify_search_cleared.png" });
+    await searchPage.click("#menu-btn");
+    await searchPage.click("#menu-search");
     await searchPage.click("#picker");
     await searchPage.waitForSelector("#pmenu:not([hidden])");
     await searchPage.fill("#list-search", "Work");
@@ -523,14 +540,16 @@ async function main() {
     await featPage.reload({ waitUntil: "domcontentloaded" });
     await featPage.waitForFunction(function () { var n = document.querySelector('[data-id="a1"] .note'); return n && n.classList.contains("note-off"); });
     check(true, "the per-item note toggle is still hidden after reload");
-    await featPage.click("#notes-all");
+    await featPage.click("#menu-btn");
+    await featPage.click("#menu-notes");
     await featPage.waitForFunction(function () { return document.getElementById("notes-all") && document.getElementById("notes-all").textContent === "הצג הערות" && document.querySelectorAll("#panels .note.note-off").length >= 2; });
     var hiddenCount = await featPage.evaluate(function () { return document.querySelectorAll("#panels .note.note-off").length; });
     check(hiddenCount >= 2 && JSON.stringify(await noteMap(featPage)) === notesBefore, "the global toggle hides every note and writes nothing");
     await featPage.reload({ waitUntil: "domcontentloaded" });
     await featPage.waitForFunction(function () { return document.getElementById("notes-all") && document.getElementById("notes-all").textContent === "הצג הערות"; });
     check(true, "the global note toggle stays hidden after reload");
-    await featPage.click("#notes-all");
+    await featPage.click("#menu-btn");
+    await featPage.click("#menu-notes");
     await featPage.waitForFunction(function () { return document.querySelector('[data-id="a1"] .note') && !document.querySelector('[data-id="a1"] .note').classList.contains("note-off"); });
     await featPage.click("#box-picker");
     await featPage.waitForSelector('#bmenu:not([hidden]) [data-box="+"]');
@@ -610,9 +629,12 @@ async function main() {
       return doc.items && doc.items.s1 && doc.items.s1.note && doc.items.s1.note.length === 2500 && doc.items.keep.note.length === 500;
     }, UID);
     check(true, "saving a max-length note stores all 2500 characters and leaves the older note whole");
-    await featPage.click("#notes-all");
+    await featPage.click("#menu-btn");
+    await featPage.click("#menu-notes");
     await featPage.waitForFunction(function () { var n = document.querySelector('[data-id="s1"] .note'); return n && n.classList.contains("note-off"); });
     var storedHidden = JSON.stringify(await noteMap(featPage));
+    await featPage.click("#menu-btn");
+    await featPage.click("#menu-search");
     await featPage.fill("#list-search", "נננ");
     await featPage.waitForFunction(function () {
       var n = document.querySelector('[data-id="s1"] .note');
@@ -620,6 +642,8 @@ async function main() {
     });
     check(JSON.stringify(await noteMap(featPage)) === storedHidden, "search can show a hidden note without writing it");
     await featPage.click("#search-clear");
+    await featPage.click("#menu-btn");
+    await featPage.click("#menu-search");
     await featPage.fill("#list-search", "שורה 18");
     await featPage.waitForFunction(function () { return document.body.innerText.indexOf("שורה 18") !== -1 && document.body.innerText.indexOf("שורה 17") === -1; });
     check(true, "search still finds one row in a long list");
@@ -658,7 +682,8 @@ async function main() {
     await pageB2.click('[data-pick="shop"]');
     await pageB2.waitForSelector('[data-id="s1"] .note');
     var cloudSnap = JSON.stringify(featStore);
-    await pageB2.click("#notes-all");
+    await pageB2.click("#menu-btn");
+    await pageB2.click("#menu-notes");
     await pageB2.waitForFunction(function () { var n = document.querySelector('[data-id="s1"] .note'); return n && n.classList.contains("note-off"); });
     await new Promise(function (r) { setTimeout(r, 800); });
     check(JSON.stringify(featStore) === cloudSnap, "hiding notes on the other device does not write the cloud copy");
