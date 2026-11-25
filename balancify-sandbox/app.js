@@ -1261,6 +1261,7 @@
     if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
     if (act === "theme") { clickBar(".rgtb-theme"); return; }
     if (act === "colors") { clickBar(".rgtb-bg"); return; }
+    if (act === "acct") { setTimeout(function () { clickBar(".rgacc-btn"); }, 30); return; }
   }
   function route() {
     var id = decodeURIComponent((location.hash || "").replace(/^#/, ""));

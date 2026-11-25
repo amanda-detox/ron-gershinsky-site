@@ -52,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-sbx-balancify-v31"), "sbx-balancify-v31");
+assert.strictEqual(M.versionLabel("rg-sbx-balancify-v32"), "sbx-balancify-v32");
 assert.strictEqual(M.APP, "sbxbalancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -67,17 +67,21 @@ assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pe
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
 assert.ok(html.indexOf('class="histrow"') === -1, "history and backup left the footer");
 assert.ok(app.indexOf("sbxbalancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "sbxbalancify"') !== -1, "cloud app id is sbxbalancify");
-assert.ok(ver.indexOf("rg-sbx-balancify-v31") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v31");
-assert.ok(ver.indexOf("rg-sbx-balancify-v30") === -1, "the old cache name is not the current one");
-assert.ok(html.indexOf("app.js?v=15") !== -1 && sw.indexOf("app.js?v=15") !== -1, "app cache param is bumped");
-assert.ok(html.indexOf("style.css?v=14") !== -1 && sw.indexOf("style.css?v=14") !== -1, "style cache param is bumped");
-assert.ok(html.indexOf("version.js?v=3") !== -1 && sw.indexOf("version.js?v=3") !== -1, "version.js cache param is bumped");
+assert.ok(ver.indexOf("rg-sbx-balancify-v32") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v32");
+assert.ok(ver.indexOf("rg-sbx-balancify-v31") === -1, "the old cache name is not the current one");
+assert.ok(html.indexOf("app.js?v=16") !== -1 && sw.indexOf("app.js?v=16") !== -1, "app cache param is bumped");
+assert.ok(html.indexOf("style.css?v=15") !== -1 && sw.indexOf("style.css?v=15") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=4") !== -1 && sw.indexOf("version.js?v=4") !== -1, "version.js cache param is bumped");
 assert.ok(app.indexOf('x.mark === "ok" ? null : "ok"') !== -1, "a check toggles between chosen and empty");
 assert.ok(app.indexOf('=== "ok" ? "no"') === -1 && app.indexOf("on-no") === -1 && app.indexOf('? "✕"') === -1, "the skipped X state is not rendered");
 assert.ok(html.indexOf('id="menu-btn"') !== -1 && html.indexOf('id="appmenu"') !== -1, "one menu button opens the list tools");
-["חזרה", "הערות", "הוספה", "הדפסה", "חיפוש", "היסטוריה", "גיבוי", "שפה", "זום", "תצוגה", "צבעים"].forEach(function (word) {
+["חזרה", "הערות", "הוספה", "הדפסה", "חיפוש", "היסטוריה", "גיבוי", "שפה", "זום", "תצוגה", "צבעים", "חשבון"].forEach(function (word) {
   assert.ok(html.indexOf(word) !== -1, "menu has " + word);
 });
+assert.ok(html.indexOf('class="hero"') < html.indexOf('id="menu-btn"') && html.indexOf('id="menu-btn"') < html.indexOf('id="home"'), "the menu button is in the app header, before either screen");
+assert.ok(app.indexOf('clickBar(".rgacc-btn")') !== -1, "the account menu item clicks the shared pill");
+assert.ok(css.indexOf("grid-template-columns:44px 44px minmax(0,1fr) 44px") !== -1, "every item row uses the same fixed columns");
+assert.ok(css.indexOf(".irow.has-note{display:grid") === -1 && css.indexOf("margin-inline-end:-8px") === -1, "note rows and the handle margin no longer shift the checkbox");
 assert.ok(html.indexOf('class="homebtn"') === -1 && html.indexOf('class="addform"') === -1, "the old list header is gone");
 assert.ok(css.indexOf(".rgtb-bg") !== -1 && css.indexOf(".rgtb-theme") !== -1 && css.indexOf(".rgtb-zoom") !== -1 && css.indexOf(".rgtb-lang") !== -1, "sandbox css hides the shared top-bar icons");
 assert.ok(css.indexOf(".txt{display:block;font-size:28px") !== -1, "the item title is larger");
