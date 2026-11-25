@@ -1,9 +1,9 @@
 /* Offline cache for Balancify. Scope: balancify/.
    Drops older rg-balancify-* caches and keeps this one.
    The cache name lives in version.js. The on-screen label drops the leading "rg-". */
-importScripts("version.js?v=4");
+importScripts("version.js?v=5");
 var CACHE = RG_BALANCIFY_CACHE;
-var FILES = ["./", "index.html", "version.js?v=4", "model.js?v=2", "rg-sync-status.js?v=2", "app.js?v=16", "data.js?v=8", "style.css?v=15", "manifest.json?v=6", "icon.svg?v=5", "icon-192.png?v=5", "icon-512.png", "bg/sunset.webp", "../shared/rg-account.js", "../shared/rg-topbar.js?v=6", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2"];
+var FILES = ["./", "index.html", "version.js?v=5", "model.js?v=3", "rg-sync-status.js?v=3", "app.js?v=17", "data.js?v=9", "style.css?v=16", "manifest.json?v=7", "icon.svg?v=6", "icon-192.png?v=6", "icon-512.png", "bg/sunset.webp", "../shared/rg-account.js", "../shared/rg-topbar.js?v=7", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

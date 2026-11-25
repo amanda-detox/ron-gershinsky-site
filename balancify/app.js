@@ -1200,6 +1200,20 @@
     if (m) m.hidden = true;
     if (b) b.setAttribute("aria-expanded", "false");
   }
+  function goHome() {
+    closeMenu();
+    closeAdd();
+    closeSheet();
+    if ($("bg-sheet")) $("bg-sheet").hidden = true;
+    findQ = "";
+    if ($("search-q")) $("search-q").value = "";
+    if ($("searchrow")) $("searchrow").hidden = true;
+    editing = null;
+    openOpt = null;
+    moveMode = false;
+    if ((location.hash || "").replace(/^#/, "")) location.hash = "";
+    else render();
+  }
   function openMenu() {
     var m = $("appmenu"), b = $("menu-btn");
     if (!m) return;
@@ -1290,6 +1304,7 @@
     if ($("bg-sheet")) $("bg-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
     if ($("add-list")) $("add-list").onclick = function () { nameSheet(t("addList"), "", true, function (v) { var id = addList(v); if (id) location.hash = "#" + id; }); };
     if ($("move-done")) $("move-done").onclick = function () { moveMode = false; render(); syncSoon(); };
+    if ($("app-home")) $("app-home").onclick = function () { goHome(); };
     if ($("menu-btn")) $("menu-btn").onclick = function (e) {
       e.stopPropagation();
       if ($("appmenu") && $("appmenu").hidden) openMenu(); else closeMenu();
