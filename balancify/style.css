@@ -175,8 +175,12 @@ html[data-theme=dark] .sheet-in{background:#102454}
 .bgopt[aria-pressed=true]{border-color:#f5c542}
 .cf-body{margin:0 0 8px;color:var(--ink2);line-height:1.45}
 .ehead{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;display:flex;gap:12px;align-items:center;max-width:min(92vw,420px);padding:12px 16px;border-radius:14px;background:#0b2a6b;color:#fff;border:1px solid #f5c542;font:700 15px var(--sans)}
-.toast button{background:none;border:0;color:#f5c542;font:800 15px var(--sans)}
+.toast{position:fixed;left:0;right:0;width:calc(100% - 24px);max-width:640px;margin:0 auto;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;box-sizing:border-box;display:flex;gap:8px;align-items:center;padding:4px 8px 4px 12px;border-radius:14px;background:#0b2a6b;color:#fff;border:1px solid #f5c542;font:700 16px/1.2 var(--sans)}
+.toast .tmsg{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.toast .tmsg.clip{display:flex;align-items:center;text-overflow:clip}
+.toast .tname{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.toast .tq,.toast .tsuf{flex:none}
+.toast .tundo{flex:none;min-width:44px;min-height:44px;padding:0 12px;border:0;background:transparent;color:#f5c542;font:800 16px/1 var(--sans)}
 .sorting{box-shadow:0 0 0 2px #f5c542}
 /* Listify swipe. Right reveals delete on the physical left; left reveals move on the physical right.
    touch-action is not inherited, so every tappable part of the row keeps vertical scrolling. */
@@ -199,10 +203,8 @@ html[data-theme=light] .irow::before,html[data-theme=light] .irow::after,html[da
 .irow.sw-l.sw-go::after,.lrow.sw-l.sw-go::after{opacity:1;transform:scale(1.1)}
 body.idragging{-webkit-user-select:none;user-select:none}
 body.idragging .irow:not(.sorting),body.idragging .lrow:not(.sorting){pointer-events:none}
-.toast{bottom:calc(22px + env(safe-area-inset-bottom));transition:opacity .2s,transform .2s;touch-action:none}
+.toast{transition:opacity .2s,transform .2s;touch-action:none}
 .toast.drag{transition:none}
-.toast .tmsg{min-width:0;overflow-wrap:anywhere}
-.toast button{flex:none}
 [hidden]{display:none!important}
 :focus-visible{outline:3px solid rgba(245,197,66,.8);outline-offset:2px}
 @media (max-width:360px){
