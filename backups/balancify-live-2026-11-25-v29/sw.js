@@ -1,0 +1,38 @@
+/* Offline cache for Balancify. Scope: balancify/.
+   Drops older rg-balancify-* caches and keeps this one.
+   The cache name lives in version.js. The on-screen label drops the leading "rg-". */
+importScripts("version.js?v=1");
+var CACHE = RG_BALANCIFY_CACHE;
+var FILES = ["./", "index.html", "version.js?v=1", "model.js?v=1", "rg-sync-status.js?v=1", "app.js?v=13", "data.js?v=7", "style.css?v=12", "manifest.json?v=5", "icon.svg?v=4", "icon-192.png?v=4", "icon-512.png", "bg/sunset.webp", "../shared/rg-account.js", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2"];
+
+self.addEventListener("install", function (e) {
+  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
+});
+self.addEventListener("activate", function (e) {
+  e.waitUntil(caches.keys().then(function (keys) {
+    return Promise.all(keys.filter(function (k) { return k.indexOf("rg-balancify-") === 0 && k !== CACHE; }).map(function (k) { return caches.delete(k); }));
+  }).then(function () { return self.clients.claim(); }));
+});
+self.addEventListener("fetch", function (e) {
+  if (e.request.method !== "GET") return;
+  var url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return;
+  var isImg = /\/bg\/[^/]+\.webp$/.test(url.pathname);
+  if (isImg) {
+    e.respondWith(caches.match(e.request).then(function (m) {
+      return m || fetch(e.request).then(function (r) {
+        if (r.ok) { var copy = r.clone(); caches.open(CACHE).then(function (c) { c.put(e.request, copy); }); }
+        return r;
+      });
+    }));
+    return;
+  }
+  e.respondWith(fetch(e.request).then(function (r) {
+    if (r.ok) { var copy = r.clone(); caches.open(CACHE).then(function (c) { c.put(e.request, copy); }); }
+    return r;
+  }).catch(function () {
+    return caches.match(e.request, { ignoreSearch: true }).then(function (m) {
+      return m || (e.request.mode === "navigate" ? caches.match("./") : undefined);
+    });
+  }));
+});

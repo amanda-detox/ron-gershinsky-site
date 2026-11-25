@@ -43,6 +43,7 @@ assert.strictEqual(kept.items["b:stress:2"].mark, "ok");
 var tea = M.itemsInList(kept.items, "chaos").filter(function (x) { return x.he === "תה"; })[0];
 assert.strictEqual(tea && tea.mark, "ok", "a checked guideline is kept as a mark");
 
+var legacyRaw = getUserKey = null;
 var plan = M.planSync(fresh.items, null, SS.mergeRecords);
 assert.strictEqual(plan.upload, true, "first sync uploads");
 assert.strictEqual(plan.keptLocal, true, "first sync keeps every local record");
@@ -51,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-balancify-v29"), "balancify-v29");
+assert.strictEqual(M.versionLabel("rg-balancify-v30"), "balancify-v30");
 assert.strictEqual(M.APP, "balancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -64,9 +65,32 @@ assert.ok(app.indexOf('class="notetog') !== -1 && app.indexOf('class="handle iha
 assert.ok(app.indexOf('class="lmore') !== -1 && app.indexOf("optMove") !== -1 && app.indexOf("אשפה") !== -1, "each list has a ⋮ menu");
 assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pencil edit button is gone");
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
+assert.ok(html.indexOf('class="histrow"') === -1, "history and backup left the footer");
 assert.ok(app.indexOf("balancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "balancify"') !== -1, "cloud app id is balancify");
-assert.ok(ver.indexOf("rg-balancify-v29") !== -1 && sw.indexOf("RG_BALANCIFY_CACHE") !== -1, "cache version is v29");
-assert.ok(sw.indexOf("rg-balancify-v28") === -1, "the old cache name is not the current one");
+assert.ok(ver.indexOf("rg-balancify-v30") !== -1 && sw.indexOf("RG_BALANCIFY_CACHE") !== -1, "cache version is v30");
+assert.ok(ver.indexOf("rg-balancify-v29") === -1, "the old cache name is not the current one");
+assert.ok(html.indexOf("app.js?v=16") !== -1 && sw.indexOf("app.js?v=16") !== -1, "app cache param is bumped");
+assert.ok(html.indexOf("style.css?v=15") !== -1 && sw.indexOf("style.css?v=15") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=4") !== -1 && sw.indexOf("version.js?v=4") !== -1, "version.js cache param is bumped");
+assert.ok(app.indexOf('x.mark === "ok" ? null : "ok"') !== -1, "a check toggles between chosen and empty");
+assert.ok(app.indexOf('=== "ok" ? "no"') === -1 && app.indexOf("on-no") === -1 && app.indexOf('? "✕"') === -1, "the skipped X state is not rendered");
+assert.ok(html.indexOf('id="menu-btn"') !== -1 && html.indexOf('id="appmenu"') !== -1, "one menu button opens the list tools");
+["חזרה", "הערות", "הוספה", "הדפסה", "חיפוש", "היסטוריה", "גיבוי", "שפה", "זום", "תצוגה", "צבעים", "חשבון"].forEach(function (word) {
+  assert.ok(html.indexOf(word) !== -1, "menu has " + word);
+});
+assert.ok(html.indexOf('class="hero"') < html.indexOf('id="menu-btn"') && html.indexOf('id="menu-btn"') < html.indexOf('id="home"'), "the menu button is in the app header, before either screen");
+assert.ok(app.indexOf('clickBar(".rgacc-btn")') !== -1, "the account menu item clicks the shared pill");
+assert.ok(css.indexOf("grid-template-columns:44px 44px minmax(0,1fr) 44px") !== -1, "every item row uses the same fixed columns");
+assert.ok(css.indexOf(".irow.has-note{display:grid") === -1 && css.indexOf("margin-inline-end:-8px") === -1, "note rows and the handle margin no longer shift the checkbox");
+assert.ok(html.indexOf('class="homebtn"') === -1 && html.indexOf('class="addform"') === -1, "the old list header is gone");
+assert.ok(css.indexOf(".rgtb-bg") !== -1 && css.indexOf(".rgtb-theme") !== -1 && css.indexOf(".rgtb-zoom") !== -1 && css.indexOf(".rgtb-lang") !== -1, "the shared top-bar icons are hidden in this app");
+assert.ok(css.indexOf(".txt{display:block;font-size:28px") !== -1, "the item title is larger");
+assert.ok(css.indexOf("@media print") !== -1, "printing has its own stylesheet");
+assert.ok(app.indexOf('clickBar(".rgtb-theme")') !== -1 && app.indexOf('clickBar(".rgtb-bg")') !== -1 && app.indexOf('clickBar(".rgtb-lang > .rgtb-b")') !== -1 && app.indexOf('clickBar(".rgtb-zoom > .rgtb-b")') !== -1, "menu items call the top-bar buttons");
+assert.ok(app.indexOf("AXIS = 12") !== -1 && app.indexOf("SWIPE = 0.35") !== -1, "swipe thresholds match Listify");
+assert.ok(app.indexOf('closest(".notetog")') !== -1, "a swipe does not start on the note toggle");
+assert.ok(app.indexOf("delWithUndo") !== -1 && app.indexOf("delListWithUndo") !== -1, "a destructive swipe keeps undo");
+assert.ok(app.indexOf("rg-balancify") !== -1 && read("model.js").indexOf("balancify") !== -1, "storage keys and the app id stay");
 assert.ok(css.indexOf("width:36px") !== -1 && css.indexOf("height:36px") !== -1 && css.indexOf("overflow-wrap:anywhere") !== -1, "the i target is 36px and text can wrap");
 assert.ok(css.indexOf("#f4b183") === -1 && css.indexOf("#c4602e") === -1, "the old orange accents are gone");
 ["purple", "pink", "orange", "#888", "#999", "#ccc"].forEach(function (bad) {
@@ -88,8 +112,6 @@ assert.strictEqual(M.histKey(""), "rg-balancify-hist2:local");
 assert.strictEqual(M.lastKey("u1"), "rg-balancify-lastsync:u1");
 assert.strictEqual(M.noteKey("u1"), "rg-balancify-notefold:u1");
 assert.strictEqual(M.noteKey(""), "rg-balancify-notefold:local");
-assert.strictEqual(M.APP, "balancify");
-assert.strictEqual(M.versionLabel("rg-balancify-v29"), "balancify-v29");
 
 /* The current live app stores a v2 user record (order lives inside it), plus the
    older order key and the checked lists. All three are read. None are removed. */
@@ -150,11 +172,12 @@ assert.strictEqual(manJson.start_url, "./");
 assert.strictEqual(manJson.scope, "./");
 assert.ok(html.indexOf("rg-balancify-theme") !== -1 && html.indexOf("rg-balancify-bg") !== -1, "theme and background keys stay the live ones");
 assert.ok(html.indexOf('syncPrefs(["rg-lang", "rg-balancify-theme", "rg-balancify-bg"])') !== -1, "theme and background still sync with the account");
+assert.ok(html.indexOf("sandbox-tag") === -1, "the sandbox badge is gone");
 assert.ok(read("model.js").indexOf("removeItem") === -1, "adopting the old keys never deletes them");
 ["app.js", "model.js", "rg-sync-status.js", "index.html", "sw.js", "version.js", "manifest.json", "style.css", "data.js"].forEach(function (name) {
   var s = read(name);
-  assert.ok(s.toLowerCase().indexOf(["s", "b", "x"].join("")) === -1, name + " has no sandbox id");
-  assert.ok(s.toLowerCase().indexOf("sand" + "box") === -1, name + " is not labeled as a sandbox");
+  assert.ok(s.toLowerCase().indexOf("sbx") === -1, name + " has no sandbox id");
+  assert.ok(s.toLowerCase().indexOf("sandbox") === -1, name + " is not labeled as a sandbox");
 });
 
 console.log("balancify tests ok");
