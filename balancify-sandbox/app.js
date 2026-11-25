@@ -19,7 +19,7 @@
       save: "שמור", cancel: "ביטול", del: "מחק", add: "הוספה", phTitle: "כותרת פריט", phNote: "הערה",
       empty: "הרשימה ריקה. הוספת פריט דרך התפריט.", noLists: "אין רשימות עדיין. ＋ רשימה חדשה למטה.",
       noMatch: "אין פריטים תואמים", searchPh: "חיפוש ברשימה", searchClose: "ניקוי וסגירה", addDlg: "הוספת פריט",
-      confirmDel: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", deleted: "„{x}” נמחק", undo: "ביטול",
+      confirmDel: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", deleted: "«{x}» נמחק", delOpen: "«", delClose: "» נמחק", undo: "ביטול",
       dragItem: "גרירה לסידור הפריט", dragHandle: "גרירה לסידור", noteToggle: "הצג/הסתר הערה",
       notesHide: "הסתר הערות", notesShow: "הצג הערות", noteMax: "הגעת לאורך המרבי של הערה",
       chosen: "נבחרים", markOk: "סומן ✓", markNo: "סומן ✕", check: "סימון",
@@ -48,7 +48,7 @@
       save: "Save", cancel: "Cancel", del: "Delete", add: "Add", phTitle: "Item title", phNote: "Note",
       empty: "This list is empty. Add an item from the menu.", noLists: "No lists yet. ＋ New list below.",
       noMatch: "No matching items", searchPh: "Search this list", searchClose: "Clear and close", addDlg: "Add an item",
-      confirmDel: "Delete the list “{x}” and everything in it?", deleted: "“{x}” deleted", undo: "Undo",
+      confirmDel: "Delete the list “{x}” and everything in it?", deleted: "“{x}” deleted", delOpen: "“", delClose: "” deleted", undo: "Undo",
       dragItem: "Drag to reorder the item", dragHandle: "Drag to reorder", noteToggle: "Show/hide note",
       notesHide: "Hide notes", notesShow: "Show notes", noteMax: "This note is at its maximum length",
       chosen: "Chosen", markOk: "Marked ✓", markNo: "Marked ✕", check: "Mark",
@@ -256,18 +256,10 @@
       (hasNote(x) ? '<div class="note' + (hidden ? " note-off" : "") + '" data-a="edit">' + esc(note) + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "") +
       "</li>";
   }
+  /* Group labels stay on the records. They are not drawn, so a list is one plain sequence. */
   function grouped(arr) {
     if (!arr.length) return "";
-    var html = '<ul class="list">', last = "\0";
-    arr.forEach(function (x) {
-      var g = M.groupOf(x, lang);
-      if (g !== last) {
-        if (g) html += '<li class="sec">' + esc(g) + "</li>";
-        last = g;
-      }
-      html += row(x);
-    });
-    return html + "</ul>";
+    return '<ul class="list">' + arr.map(row).join("") + "</ul>";
   }
   function queryText() { return String(findQ || "").replace(/\s+/g, " ").trim().toLowerCase(); }
   function matchesQuery(x) {
@@ -377,10 +369,10 @@
     if (editing === id) editing = null;
     items[id] = M.editRec(x, { deleted: true }, now());
     changed();
-    toast(t("deleted").replace("{x}", M.textOf(keep, lang)), function () {
+    toast("", function () {
       items[id] = M.editRec(keep, { deleted: null }, now());
       changed();
-    });
+    }, M.textOf(keep, lang));
   }
   function applySubsetOrder(sec, ids) {
     var all = M.itemsInList(items, sec).map(function (x) { return x.id; });
@@ -464,14 +456,14 @@
     openOpt = null;
     if (current === cid) { current = ""; if (location.hash) location.hash = ""; }
     changed();
-    toast(t("deleted").replace("{x}", name), function () {
+    toast("", function () {
       var at2 = now();
       var back = M.editRec(keepC, { gone: null, deleted: null }, at2);
       if (window.RGSyncStatus && RGSyncStatus.noteGone) back = RGSyncStatus.noteGone(back, at2, false);
       items[keepC.id] = back;
       keepItems.forEach(function (x) { items[x.id] = M.editRec(x, { deleted: null }, at2); });
       changed();
-    });
+    }, name);
   }
   function moveItem(id, cid) {
     var x = items[id], c = catRec(cid);
@@ -552,7 +544,7 @@
       if (!on) return;
       dx = e.clientX - sx; dy = e.clientY - sy;
       var d = Math.sqrt(dx * dx + dy * dy);
-      el.style.transform = "translate(calc(-50% + " + dx + "px), " + dy + "px)";
+      el.style.transform = "translate(" + dx + "px, " + dy + "px)";
       el.style.opacity = String(Math.max(0.2, 1 - d / 160));
     });
     function end() {
@@ -560,7 +552,7 @@
       on = false;
       el.classList.remove("drag");
       if (Math.sqrt(dx * dx + dy * dy) >= 40) {
-        el.style.transform = "translate(calc(-50% + " + (dx * 3) + "px), " + (dy * 3) + "px)";
+        el.style.transform = "translate(" + (dx * 3) + "px, " + (dy * 3) + "px)";
         el.style.opacity = "0";
         setTimeout(hideToast, 200);
       } else {
@@ -572,28 +564,25 @@
     el.addEventListener("pointerup", end);
     el.addEventListener("pointercancel", end);
   }
-  function toast(msg, undo) {
+  function toast(msg, undo, clip) {
     var el = $("toast");
     if (!el) return;
     toastSwipe(el);
     el._undo = !!undo;
     el.style.transform = "";
     el.style.opacity = "";
-    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>";
+    if (clip) {
+      el.innerHTML = '<span class="tmsg clip"><span class="tq">' + esc(t("delOpen")) + '</span><span class="tname">' + esc(clip) + '</span><span class="tsuf">' + esc(t("delClose")) + "</span></span>";
+    } else {
+      el.innerHTML = '<span class="tmsg">' + esc(msg || "") + "</span>";
+    }
     if (undo) {
       var b = document.createElement("button");
       b.type = "button";
       b.className = "tundo";
       b.textContent = t("undo");
       b.onclick = function () { hideToast(); undo(); };
-      var x = document.createElement("button");
-      x.type = "button";
-      x.className = "tx";
-      x.setAttribute("aria-label", t("close"));
-      x.textContent = "✕";
-      x.onclick = function () { hideToast(); };
       el.appendChild(b);
-      el.appendChild(x);
     }
     el.hidden = false;
     clearTimeout(toastT);
