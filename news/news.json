@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-11T07:11:32+02:00",
+ "updated": "2026-11-25T06:18:11+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -196,6 +196,660 @@
   }
  ],
  "items": [
+  {
+   "id": "grokbot-official-playbooks-multi-agent-teams",
+   "topic": "grokbot",
+   "date": "2026-11-25T03:22:39Z",
+   "url": "https://x.com/i/trending/2125386515391844504",
+   "source": "X",
+   "he": {
+    "title": "משתמשי Grok Bot בונים צוותי סוכנים לפי מדריכים רשמיים",
+    "summary": "סיכום חדשות ב-X מ-25 בנובמבר תיאר משתמשים שבונים צוותי סוכני בינה מלאכותית ב-Grok Bot, עם מדריכים רשמיים של הצוות במכירות, שיווק והנדסה. בסיכום הוזכרה המתנדסת לורן טאן, שמפעילה יותר מ-20 בוטים במבנה של חברה, כולל בוט ראש מטה שמנתב עבודה. הסיכום מציין שעלות השימוש נשארה נושא."
+   },
+   "en": {
+    "title": "Grok Bot users build agent teams with official playbooks",
+    "summary": "An X news summary on November 25 described users building teams of AI agents in Grok Bot, guided by official playbooks from the team on sales, marketing and engineering. It cited engineer Lauren Tan running more than 20 bots in a company-like structure, including a chief-of-staff bot that routes work. The summary noted that serving cost remains a concern."
+   },
+   "full_en": "An X news story updated on November 25, titled \"Grok Bot Users Build Teams of Specialized AI Agents with Official Playbooks,\" summarized posts on how people are using Grok Bot. X marks these stories as summaries that may evolve and may contain errors.\n\nAccording to the summary, Grok Bot lets users create collaborative AI agents that manage tasks across apps, pass files and work in parallel. It pointed to official guides covering sales, marketing, engineering and more, and to engineer Lauren Tan's setup of more than 20 bots, with a chief-of-staff bot routing work and other bots in manager and worker roles, with only summaries needing human approval. The same cluster of posts also described users sharing templates and org charts. The summary noted reports of lower usage as a share of weekly limits for some setups, and also that Elon Musk has previously flagged high serving costs.\n\nThis item reflects that public discussion, not a new dated changelog entry.",
+   "full_he": "סיפור חדשות ב-X שעודכן ב-25 בנובמבר, בכותרת \"משתמשי Grok Bot בונים צוותי סוכנים מתמחים עם מדריכים רשמיים,\" סיכם פוסטים על אופן השימוש ב-Grok Bot. X מציינת שסיפורים כאלה הם סיכומים שעשויים להשתנות ועלולים לכלול טעויות.\n\nלפי הסיכום, Grok Bot מאפשר ליצור סוכני בינה מלאכותית שמשתפים פעולה, מנהלים משימות בין אפליקציות, מעבירים קבצים ועובדים במקביל. הוזכרו מדריכים רשמיים למכירות, שיווק, הנדסה ועוד, והמערך של המתנדסת לורן טאן, עם יותר מ-20 בוטים, בוט ראש מטה שמנתב עבודה, ובוטים בתפקידי מנהלים ועובדים, כך שרק סיכומים דורשים אישור אנושי. באותו מקבץ תוארו גם משתמשים שמשתפים תבניות ותרשימי ארגון. הסיכום ציין דיווחים על ירידה בשימוש כחלק ממגבלת השבוע בחלק מהמערכים, וגם שאילון מאסק כבר התריע בעבר על עלויות הפעלה גבוהות.\n\nהידיעה משקפת את הדיון הציבורי הזה, לא רשומה חדשה מתוארכת ביומן השינויים."
+  },
+  {
+   "id": "spacex-starlink-approved-30-of-54-african-countries",
+   "topic": "spacex",
+   "date": "2026-11-25T00:19:34Z",
+   "url": "https://x.com/elonmusk/status/2125383859592479201",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Starlink מאושרת ב-30 מתוך 54 מדינות באפריקה",
+    "summary": "ב-25 בנובמבר כתב אילון מאסק ש-Starlink מאושרת עתה ב-30 מתוך 54 המדינות באפריקה, וציטט פוסט על הרחבת הרשת מאז ניגריה ב-2023. בפוסט שצוטט נכתב ש-15 מדינות נוספות ברשימת ההשקה, ושבין היתר חוברו יותר מ-600 מתקני בריאות בזמביה ויותר מ-300 בתי ספר במוזמביק."
+   },
+   "en": {
+    "title": "Musk: Starlink is now approved in 30 of 54 African countries",
+    "summary": "On November 25 Elon Musk wrote that Starlink is now approved in 30 of 54 countries in Africa, quoting a post about the network's expansion since Nigeria in 2023. The quoted post said 15 more countries are on the upcoming launch list, and that more than 600 healthcare facilities in Zambia and more than 300 schools in Mozambique have been connected, among other uses."
+   },
+   "full_en": "On November 25 Elon Musk posted: \"Starlink is now approved in 30 of 54 countries in Africa!\" and quoted a longer post about the service on the continent.\n\nThe quoted post said Starlink had grown from a start in Nigeria in 2023 into a network spanning West, East, Central and Southern Africa, with 30 of Africa's 54 countries listed as having service and 15 more on an upcoming launch list. It said the impact goes beyond homes, including:\n• In Zambia, more than 600 healthcare facilities connected, helping medical workers use digital health systems and remote consultations\n• In Mozambique, over 300 schools connected for online learning in rural communities\n• Rural homes, farms, businesses, emergency teams and government services in hard-to-reach regions\n\nThe quoted post argued that a village, school or hospital no longer has to wait years for fiber if it has a terminal, power and a clear view of the sky. Those country counts and project figures come from the quoted post, not from a separate official SpaceX release in this item.",
+   "full_he": "ב-25 בנובמבר פרסם אילון מאסק: \"Starlink מאושרת עתה ב-30 מתוך 54 המדינות באפריקה!\" וציטט פוסט ארוך יותר על השירות ביבשת.\n\nבפוסט שצוטט נכתב ש-Starlink צמחה מההתחלה בניגריה ב-2023 לרשת שמשתרעת במערב, במזרח, במרכז ובדרום אפריקה, עם 30 מתוך 54 מדינות אפריקה ברשימת השירות ו-15 נוספות ברשימת השקה קרובה. נכתב שם שההשפעה חורגת מבתים, וכוללת:\n• בזמביה, חיבור של יותר מ-600 מתקני בריאות, שעוזר לצוותים רפואיים להשתמש במערכות דיגיטליות ובייעוץ מרחוק\n• במוזמביק, חיבור של יותר מ-300 בתי ספר ללמידה מקוונת בקהילות כפריות\n• בתים כפריים, חוות, עסקים, צוותי חירום ושירותי ממשל באזורים שקשה להגיע אליהם\n\nבפוסט שצוטט נטען שכפר, בית ספר או בית חולים כבר לא חייבים לחכות שנים לסיב אופטי אם יש להם מסוף, חשמל ושמיים פתוחים. מספרי המדינות והפרויקטים מגיעים מהפוסט שצוטט, לא מהודעה רשמית נפרדת של ספייסאקס בידיעה הזו."
+  },
+  {
+   "id": "musk-x-uk-court-judgment-creator-revenue-abuse",
+   "topic": "musk",
+   "date": "2026-11-25T00:18:35Z",
+   "url": "https://x.com/elonmusk/status/2125383610266157090",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: אל תתעסקו עם X — בית משפט בבריטניה פסק נגד רשת חשבונות",
+    "summary": "ב-25 בנובמבר כתב מאסק \"אל תתעסקו עם X\" וציטט פוסט שלפיו בספטמבר X תבעה אנשים שפגעו בתוכנית חלוקת ההכנסות ליוצרים באמצעות רשת חשבונות למניפולציית מעורבות, ועתה בית המשפט הגבוה בבריטניה נתן פסק דין נגדם."
+   },
+   "en": {
+    "title": "Musk: don’t mess with X — a UK court entered a judgment against an account network",
+    "summary": "On November 25 Musk wrote \"Don’t mess with X\" and quoted a post saying that in September X sued people who abused the Creator Revenue Sharing program by running a network of accounts to manipulate engagement, and that the UK High Court has now entered a judgment against them."
+   },
+   "full_en": "On November 25 Elon Musk wrote \"Don’t mess with X\" and quoted a post about a court case.\n\nThe quoted post said that in September, X sued people who abused Creator Revenue Sharing by operating a network of accounts to manipulate engagement, and that the UK High Court has now entered a judgment against them. Musk added no further comment of his own.\n\nA related Musk post the same week said those who violate the law on the platform will be prosecuted wherever they may be in the world. The details of the judgment itself are those given in the quoted post; the full court text is not included here.",
+   "full_he": "ב-25 בנובמבר כתב אילון מאסק \"אל תתעסקו עם X\" וציטט פוסט על תיק בבית משפט.\n\nבפוסט שצוטט נכתב שבספטמבר X תבעה אנשים שפגעו בתוכנית חלוקת ההכנסות ליוצרים באמצעות הפעלת רשת חשבונות למניפולציית מעורבות, וכי בית המשפט הגבוה בבריטניה נתן עתה פסק דין נגדם. מאסק לא הוסיף הערה משלו.\n\nבפוסט קשור באותו שבוע כתב מאסק שמי שמפר את החוק בפלטפורמה יועמד לדין, באשר הוא בעולם. פרטי פסק הדין הם אלה שמופיעים בפוסט שצוטט; נוסח פסק הדין המלא אינו מוצג כאן."
+  },
+  {
+   "id": "musk-austin-foundation-donation-homeless-youth",
+   "topic": "musk",
+   "date": "2026-11-25T00:11:58Z",
+   "url": "https://x.com/elonmusk/status/2125381945672761599",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: מדויק — הקרן שלו תרמה 500 אלף דולר לחסרי בית באוסטין",
+    "summary": "ב-25 בנובמבר אישר אילון מאסק בפוסט שציטט דיווח: עיריית אוסטין אישרה תרומה של 500 אלף דולר מקרן של מאסק, שמשחררת עוד 500 אלף מהעיר, לסיוע לצעירים חסרי בית — עד כ-100 יוצאי אומנה, לצד שוברי דיור עד שלוש שנים."
+   },
+   "en": {
+    "title": "Musk: the news is accurate — his foundation gave $500,000 for Austin youth housing",
+    "summary": "On November 25 Elon Musk quoted a report and wrote, \"The news is accurate.\" Austin's city government confirmed a $500,000 donation from Musk's foundation, unlocking another $500,000 from the city, to help homeless young adults — up to about 100 people leaving foster care, alongside housing vouchers of up to three years."
+   },
+   "full_en": "On November 25 Elon Musk quoted a post about a donation in Austin and wrote: \"The news is accurate.\"\n\nThe quoted post said Austin's city government had confirmed a $500,000 donation from Elon Musk's foundation to help homeless young adults find homes. According to that post:\n• The donation unlocks another $500,000 from the city, bringing the total to $1 million.\n• It will help up to 100 young adults leaving foster care get housing and support.\n• The funding will work alongside housing vouchers offering up to three years of help with rent.\n\nMusk did not add further details in his own post.",
+   "full_he": "ב-25 בנובמבר ציטט אילון מאסק פוסט על תרומה באוסטין וכתב: \"הידיעה מדויקת.\"\n\nבפוסט שצוטט נכתב שעיריית אוסטין אישרה תרומה של 500 אלף דולר מקרן של אילון מאסק, כדי לסייע לצעירים חסרי בית למצוא דיור. לפי אותו פוסט:\n• התרומה משחררת עוד 500 אלף דולר מהעיר, כך שהסכום הכולל מגיע למיליון דולר.\n• היא תסייע לעד כ-100 צעירים שיוצאים מאומנה לקבל דיור ותמיכה.\n• המימון יעבוד לצד שוברי דיור שמציעים עד שלוש שנים של עזרה בשכר דירה.\n\nמאסק לא הוסיף פרטים נוספים בפוסט שלו."
+  },
+  {
+   "id": "spacex-forgoes-bead-subsidies-free-starlink-hardware",
+   "topic": "spacex",
+   "date": "2026-11-24T23:00:26Z",
+   "url": "https://x.com/elonmusk/status/2125363942977597554",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "ספייסאקס מוותרת על כ-738 מיליון דולר בסובסידיות, ומציעה ציוד Starlink בחינם",
+    "summary": "ב-24 בנובמבר כתב מאסק רק \"Starlink\" וציטט פוסט שלפיו ספייסאקס הסכימה לוותר על כ-738 מיליון דולר בסובסידיות פס רחב בארה״ב, ובמקום זאת לספק ציוד Starlink בחינם למשקי בית זכאים, עם מהירות מינימום ותעריף נמוך, ל-10 שנים. Broadband Breakfast דיווח שזה הסכם מול NTIA אחרי קשיים מול משרדי המדינות."
+   },
+   "en": {
+    "title": "SpaceX forgoes about $738 million in subsidies and offers free Starlink hardware",
+    "summary": "On November 24 Musk posted only \"Starlink\" and quoted a report that SpaceX had agreed to forgo about $738 million in U.S. broadband subsidies and instead provide free Starlink hardware to eligible households, with a minimum speed, a low-cost plan and a 10-year commitment. Broadband Breakfast reported this as a deal with NTIA after contracting trouble with state offices."
+   },
+   "full_en": "On November 24 Elon Musk posted the single word \"Starlink\" and quoted a longer post about a U.S. broadband agreement.\n\nThe quoted post said SpaceX had agreed to forgo $738 million in U.S. federal broadband subsidies and instead provide free Starlink hardware to eligible American households. It quoted NTIA as saying the provider would serve covered broadband-serviceable locations under the agreement, including customer-premises equipment at no cost to new subscribers, and would remain subject to the same delivery timelines and performance testing as other BEAD recipients. According to that post, SpaceX would:\n• Provide free Starlink hardware to eligible households\n• Guarantee minimum download speeds of 100 Mbps and upload speeds of 20 Mbps\n• Offer a low-cost monthly internet plan\n• Commit to providing service for 10 years\n• Continue to comply with federal performance testing\n\nIn exchange, the quoted post said, SpaceX would be exempt from most BEAD-related financial audits, procurement requirements and administrative reporting, while remaining subject to network performance testing.\n\nBroadband Breakfast, in a November 23 report, said SpaceX had approached NTIA after struggling with differing state contract requirements, financial reporting and default penalties, and that NTIA Administrator Arielle Roth said the agreement could save taxpayers hundreds of millions of dollars and connect people faster. The report also said states could sign the model agreement or re-bid the locations, and that some state officials were surprised. The figures and terms should be read as reported; the formal agreement text was posted by NTIA.",
+   "full_he": "ב-24 בנובמבר פרסם אילון מאסק את המילה \"Starlink\" וציטט פוסט ארוך יותר על הסכם פס רחב בארה״ב.\n\nבפוסט שצוטט נכתב שספייסאקס הסכימה לוותר על 738 מיליון דולר בסובסידיות פס רחב פדרליות, ובמקום זאת לספק ציוד Starlink בחינם למשקי בית זכאים בארה״ב. צוטטה שם NTIA, שאמרה שהספק ישרת את המיקומים המכוסים לפי ההסכם, כולל ציוד קצה בלי עלות למנויים חדשים, ויישאר כפוף לאותם לוחות זמנים ולבדיקות ביצוע כמו מקבלי כספי BEAD אחרים. לפי אותו פוסט, ספייסאקס:\n• תספק ציוד Starlink בחינם למשקי בית זכאים\n• תבטיח מהירות הורדה מינימלית של 100 מגה-ביט לשנייה והעלאה של 20\n• תציע תוכנית חודשית בעלות נמוכה\n• תתחייב לשירות ל-10 שנים\n• תמשיך לעמוד בבדיקות הביצוע הפדרליות\n\nבתמורה, לפי הפוסט שצוטט, ספייסאקס תהיה פטורה מרוב הביקורות הכספיות, מדרישות רכש ומדיווח מינהלי של BEAD, ותישאר כפופה לבדיקות ביצועי הרשת.\n\nBroadband Breakfast, בכתבה מ-23 בנובמבר, כתב שספייסאקס פנתה ל-NTIA אחרי קשיים עם דרישות חוזה שונות במדינות, דיווח כספי וקנסות הפרה, ושמנהלת NTIA, אריאל רות׳, אמרה שההסכם עשוי לחסוך למשלם המסים מאות מיליוני דולרים ולחבר אנשים מהר יותר. הדיווח אמר גם שמדינות יכולות לחתום על הסכם המודל או לצאת שוב למכרז על המיקומים, ושחלק מפקידי המדינות הופתעו. את המספרים והתנאים יש לקרוא כפי שדווחו; נוסח ההסכם הרשמי פורסם בידי NTIA."
+  },
+  {
+   "id": "brecka-gut-reset-fiber-fermented-foods",
+   "topic": "brecka",
+   "date": "2026-11-24T23:00:01Z",
+   "url": "https://x.com/thegarybrecka/status/2125363838161694778",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: ארבעה צעדים שהוא ממליץ עליהם למעי",
+    "summary": "ב-24 בנובמבר כתב גארי בראקה שהמעי מעורב גם בחיסון, בספיגת רכיבים, בדלקת ובתקשורת עם המוח, והציע ארבעה צעדים: 25–30 גרם סיבים ביום, יותר מזונות מותססים, מגוון צמחים בצלחת, והליכה קצרה אחרי הארוחות. בסוף הפוסט הוא מפנה לקהילת ה-VIP שלו. אלה המלצות שלו, לא ייעוץ רפואי."
+   },
+   "en": {
+    "title": "Brecka: four steps he recommends for gut care",
+    "summary": "On November 24 Gary Brecka wrote that the gut is involved in immunity, nutrient absorption, inflammation and communication with the brain, and offered four steps: 25–30 grams of fiber a day, more fermented foods, a more diverse plate of plants, and a short walk after meals. The post ends with a pitch for his VIP community. These are his suggestions, not medical advice."
+   },
+   "full_en": "On November 24 Gary Brecka posted a longer note:\n\n\"Guys, your gut is doing a whole lot more than digesting your food.\n\nIt's involved in your immune system, nutrient absorption, inflammation, and even communication with your brain. And if you want to start taking better care of it, I'd start here:\n\n1. Get 25–30 grams of fiber a day. Your gut bacteria ferment certain fibers into short-chain fatty acids that help support your gut lining.\n2. Eat more fermented foods. Things like kefir, kimchi, and sauerkraut can help introduce beneficial microbes into your diet.\n3. Diversify your plate. Different plant foods provide different fibers and compounds that help support a diverse gut microbiome.\n4. Get moving after meals. Even a 10-minute walk can help support digestion and blood sugar regulation.\n\nI've put my Gut Reset Protocol, recipes, and more inside my VIP Community to help you take it a step further.\"\n\nFiber, fermented foods and a short walk after meals are common nutrition suggestions. The specific protocol and the VIP community are Brecka's commercial offering. This is not medical advice.",
+   "full_he": "ב-24 בנובמבר פרסם גארי בראקה רשימה ארוכה יותר:\n\n\"חברים, המעי שלכם עושה הרבה יותר מעיכול המזון.\n\nהוא מעורב במערכת החיסון, בספיגת רכיבים, בדלקת ואפילו בתקשורת עם המוח. ואם אתם רוצים להתחיל לטפל בו טוב יותר, הייתי מתחיל כאן:\n\n1. להגיע ל-25–30 גרם סיבים ביום. חיידקי המעי מתסיסים סיבים מסוימים לחומצות שומן קצרות שרשרת, שעוזרות לתמוך בדופן המעי.\n2. לאכול יותר מזונות מותססים. דברים כמו קפיר, קימצ׳י וכרוב כבוש יכולים לעזור להכניס חיידקים מועילים לתזונה.\n3. לגוון את הצלחת. מזונות צמחיים שונים מספקים סיבים ותרכובות שונות שעוזרות לתמוך במגוון של חיידקי מעי.\n4. לזוז אחרי הארוחות. גם הליכה של 10 דקות יכולה לעזור לעיכול ולווויסות הסוכר בדם.\n\nשמתי את פרוטוקול איפוס המעי שלי, מתכונים ועוד בתוך קהילת ה-VIP, כדי לעזור לקחת את זה צעד נוסף.\"\n\nסיבים, מזונות מותססים והליכה קצרה אחרי הארוחה הן הצעות תזונה מקובלות. הפרוטוקול הספציפי וקהילת ה-VIP הם מוצר מסחרי של בראקה. זה אינו ייעוץ רפואי."
+  },
+  {
+   "id": "solana-official-33b-tokenized-stocks-post",
+   "topic": "solana",
+   "date": "2026-11-24T22:25:17Z",
+   "url": "https://x.com/solana/status/2125355099207921845",
+   "source": "X · @solana",
+   "he": {
+    "title": "סולאנה: 33 מיליארד דולר במניות מטוקנות היום, 300 טריליון נשארו",
+    "summary": "ב-24 בנובמבר פרסם החשבון הרשמי של סולאנה: \"33 מיליארד דולר במניות מטוקנות היום, 300 טריליון נשארו,\" וציטט פוסט נוסף. בתשובה קישר לדברי מאט הוגן, מנהל ההשקעות של Bitwise, מכנס Breakpoint."
+   },
+   "en": {
+    "title": "Solana: $33 billion of tokenized stocks today, $300 trillion to go",
+    "summary": "On November 24 the official Solana account posted, \"$33 billion of tokenized stocks today, $300 trillion to go,\" quoting another post. In a follow-up it linked remarks from Bitwise CIO Matt Hougan at Breakpoint."
+   },
+   "full_en": "On November 24 the official @solana account posted:\n\n\"$33 billion of tokenized stocks today, $300 trillion to go\"\n\nand quoted another post. In a reply of its own it added: \"Matt Hougan, CIO of @Bitwise, at Breakpoint with @RealVision,\" with a link to the appearance.\n\nThe $33 billion and $300 trillion figures are the account's own wording in that post, not independently audited in this item. Earlier the same week the account had also highlighted Backpack-issued tokenized securities reaching $10 billion in cumulative on-chain trading volume, and weekend trading volume for Sunrise listings rising sharply since August.",
+   "full_he": "ב-24 בנובמבר פרסם החשבון הרשמי @solana:\n\n\"33 מיליארד דולר במניות מטוקנות היום, 300 טריליון נשארו\"\n\nוציטט פוסט אחר. בתשובה משלו הוסיף: \"מאט הוגן, מנהל ההשקעות של @Bitwise, ב-Breakpoint עם @RealVision,\" עם קישור להופעה.\n\nסכומי ה-33 מיליארד וה-300 טריליון הם הניסוח של החשבון באותו פוסט, ולא נבדקו כאן בביקורת עצמאית. מוקדם יותר באותו שבוע הדגיש החשבון גם ניירות ערך מטוקנים של Backpack שהגיעו ל-10 מיליארד דולר בנפח מסחר מצטבר על השרשרת, ואת נפח המסחר בסופי שבוע של רישומי Sunrise, שעלה בחדות מאז אוגוסט."
+  },
+  {
+   "id": "apple-google-mozilla-ios-browser-engine-rules",
+   "topic": "apple",
+   "date": "2026-11-24T21:34:36Z",
+   "url": "https://x.com/i/trending/2125340340454588492",
+   "source": "X",
+   "he": {
+    "title": "גוגל מצטרפת לביקורת של מוזילה על כללי הדפדפן של אפל ב-iOS",
+    "summary": "סיכום חדשות ב-X מ-24 בנובמבר אמר שצוות Chrome למפתחים של גוגל תיאר את מדיניות אפל ב-iOS כ\"בחירה על הנייר, לא בפועל,\" בהד לטענות מוזילה שכללים מאלצים אפליקציות נפרדות ומונעים מנועי דפדפן אחרים. לפי הסיכום, אף דפדפן שאינו WebKit לא הושק באיחוד האירופי למרות חוק השווקים הדיגיטליים, והנציבות משוחחת עם אפל."
+   },
+   "en": {
+    "title": "Google backs Mozilla’s critique of Apple’s iOS browser rules",
+    "summary": "An X news summary on November 24 said Google's Chrome for Developers team called Apple's iOS policies \"choice on paper, not in practice,\" echoing Mozilla's complaint that the rules force separate apps and block other browser engines. According to the summary, no non-WebKit browser has launched in the EU despite the Digital Markets Act, and the European Commission is in talks with Apple."
+   },
+   "full_en": "An X news story updated on November 24, titled \"Google Backs Mozilla's Critique of Apple's iOS Browser Rules,\" summarized posts on the dispute. X marks these stories as summaries that may evolve and may contain errors.\n\nAccording to that summary, Google's Chrome for Developers team described Apple's iOS policies as \"choice on paper, not in practice,\" echoing Mozilla's complaints that the rules force separate apps and user-data transfers and block engines such as Gecko. Epic's Tim Sweeney was quoted calling it an \"illegal ban on competing browser engines.\" The summary said no non-WebKit browser has launched in the EU despite 2024 Digital Markets Act requirements, and that the European Commission is in talks with Apple after an open letter from Mozilla and others. It also noted mixed views on technical hurdles and on Google's funding ties to Mozilla.\n\nThe item reports that public argument as summarized on X, not an official finding by a court or regulator in this write-up.",
+   "full_he": "סיפור חדשות ב-X שעודכן ב-24 בנובמבר, בכותרת \"גוגל מגבה את הביקורת של מוזילה על כללי הדפדפן של אפל ב-iOS,\" סיכם פוסטים על המחלוקת. X מציינת שסיפורים כאלה הם סיכומים שעשויים להשתנות ועלולים לכלול טעויות.\n\nלפי הסיכום, צוות Chrome למפתחים של גוגל תיאר את מדיניות אפל ב-iOS כ\"בחירה על הנייר, לא בפועל,\" בהד לתלונות מוזילה שהכללים מאלצים אפליקציות נפרדות והעברות נתוני משתמש, וחוסמים מנועים כמו Gecko. צוטט גם טים סוויני מ-Epic, שכינה זאת \"איסור לא חוקי על מנועי דפדפן מתחרים.\" לפי הסיכום, אף דפדפן שאינו WebKit לא הושק באיחוד האירופי למרות דרישות חוק השווקים הדיגיטליים מ-2024, והנציבות האירופית משוחחת עם אפל אחרי מכתב פתוח של מוזילה ואחרים. צוינו גם דעות חלוקות על מכשולים טכניים ועל קשרי המימון של גוגל עם מוזילה.\n\nהידיעה משקפת את הוויכוח הציבורי כפי שסוכם ב-X, לא ממצא רשמי של בית משפט או רגולטור בסיכום הזה."
+  },
+  {
+   "id": "kraken-krak-credit-card-waitlist-4-percent-cashback",
+   "topic": "kraken",
+   "date": "2026-11-24T20:25:20Z",
+   "url": "https://blog.kraken.com/product/krak/credit-card-up-to-4-cashback-on-all-purchases",
+   "source": "Kraken Blog",
+   "he": {
+    "title": "קראקן פתחה רשימת המתנה לכרטיסי אשראי של Krak עם עד 4% החזר",
+    "summary": "ב-24 בנובמבר פתחה Krak, האפליקציה של Payward שמאחורי קראקן, רשימת המתנה בארה״ב לשני כרטיסי אשראי צפויים ב-2027: כרטיס אשראי רגיל וכרטיס מובטח ב-USDC, עם עד 4% החזר בדולרים או בביטקוין, בכפוף למנוי Krakpass. הכרטיסים עדיין לא זמינים, וההרשמה אינה מבטיחה אישור."
+   },
+   "en": {
+    "title": "Kraken opens a waitlist for Krak credit cards with up to 4% cashback",
+    "summary": "On November 24 Krak, the Payward app behind Kraken, opened a U.S. waitlist for two credit cards expected in 2027: a standard card and a USDC-secured card, with up to 4% cashback in dollars or bitcoin, tied to a Krakpass membership. The cards are not available yet, and joining the waitlist does not guarantee approval."
+   },
+   "full_en": "On November 24, 2026, the Kraken blog announced that the waitlist for the Krak Credit Card was open for U.S. customers. A same-day Business Wire release from Payward said the waitlist also covers a Krak Secured Card, and that both cards are expected to begin shipping in early 2027 (the blog's short summary at one point said late 2026, then later said early 2027; the detailed terms and the press release use early 2027).\n\nAccording to the blog and the release, cashback can be paid in U.S. dollars or bitcoin, with no points to chase. The cashback rate rises with the customer's Krak balance, starting at 1% below $1,000 and reaching 4% at $150,000 or more; the higher 3%, 3.5% and 4% rates apply only to the first $10,000 in eligible purchases each month, then 2%. A complimentary metal Visa Signature card is included. The cards require a Krakpass membership, listed at $6.99 a month or $75.48 a year when billed annually ($6.29 a month). Krakpass is described as free through February 1, 2027 with a new card, and also as free for customers with more than $3,000 in monthly direct deposits, per the press release. Other Krakpass benefits listed include up to 4% APY on eligible USDC and USDG balances and fee-free trades on up to $3,000 in monthly volume, with spreads still applying.\n\nThe Secured Card is aimed at people building credit. Customers would lock USDC as a security deposit, earn yield on that deposit according to the terms, and receive cashback; on-time payments may help a credit score, with no guarantee. Payward Co-CEO Arjun Sethi said the company wanted a more accessible credit product than complex rewards schemes.\n\nThe cards are not yet available and applications are not being accepted. They would be issued by First Electronic Bank, offered through Payward Interactive (doing business as Kraken) and Cardless, and are not available in all states, including Indiana, Maine, Massachusetts and New York; the secured card is also unavailable in the District of Columbia. Joining the waitlist does not guarantee approval or early access. The official @krakenfx account posted \"4% cashback incoming. Waitlist Open.\" the same day.",
+   "full_he": "ב-24 בנובמבר 2026 הודיע הבלוג של קראקן שרשימת ההמתנה לכרטיס האשראי של Krak פתוחה ללקוחות בארה״ב. בהודעת Business Wire של Payward באותו יום נכתב שהרשימה כוללת גם כרטיס מובטח, וששני הכרטיסים צפויים להתחיל להישלח בתחילת 2027 (בסיכום הקצר בבלוג נכתב במקום אחד סוף 2026, ובהמשך תחילת 2027; התנאים המפורטים וההודעה לעיתונות משתמשים בתחילת 2027).\n\nלפי הבלוג וההודעה, את ההחזר אפשר לקבל בדולרים או בביטקוין, בלי נקודות לצבור. שיעור ההחזר עולה עם היתרה בחשבון Krak, מתחיל ב-1% מתחת ל-1,000 דולר ומגיע ל-4% ב-150 אלף דולר ומעלה; השיעורים הגבוהים של 3%, 3.5% ו-4% חלים רק על 10,000 הדולר הראשונים של רכישות זכאיות בחודש, ואחר כך 2%. כלול כרטיס מתכת של Visa Signature ללא תוספת. הכרטיסים דורשים מנוי Krakpass, במחיר 6.99 דולר לחודש או 75.48 דולר לשנה בחיוב שנתי (6.29 דולר לחודש). לפי ההודעה לעיתונות, Krakpass חינמי עד 1 בפברואר 2027 עם כרטיס חדש, וגם חינמי ללקוחות עם יותר מ-3,000 דולר בהפקדות ישירות בחודש. הטבות נוספות שצוינו כוללות עד 4% תשואה על יתרות USDC ו-USDG זכאיות, ומסחר בלי עמלות עד 3,000 דולר בחודש, כשהמרווחים עדיין חלים.\n\nהכרטיס המובטח מיועד למי שבונה אשראי. הלקוחות ינעלו USDC כפיקדון, יקבלו תשואה על הפיקדון לפי התנאים, ויקבלו החזר; תשלומים בזמן עשויים לעזור לדירוג האשראי, בלי הבטחה. ארג׳ון סתי, מנכ״ל משותף ב-Payward, אמר שהחברה רצתה מוצר אשראי נגיש יותר מתוכניות הנחות מסובכות.\n\nהכרטיסים עדיין לא זמינים, ואין קבלה של בקשות. הם יונפקו בידי First Electronic Bank, דרך Payward Interactive (בשם קראקן) ו-Cardless, ואינם זמינים בכל המדינות, כולל אינדיאנה, מיין, מסצ׳וסטס וניו יורק; הכרטיס המובטח אינו זמין גם במחוז קולומביה. ההצטרפות לרשימה אינה מבטיחה אישור או גישה מוקדמת. החשבון הרשמי @krakenfx פרסם באותו יום: \"4% החזר בדרך. רשימת ההמתנה פתוחה.\""
+  },
+  {
+   "id": "grokbot-palmer-hotel-aaa-rate-saved-80",
+   "topic": "grokbot",
+   "date": "2026-11-24T20:00:15Z",
+   "url": "https://x.com/mattyp/status/2125318602320752971",
+   "source": "X · @mattyp",
+   "he": {
+    "title": "פאלמר: Grok Bot חסך לי 80 דולר על מלון במחיר AAA",
+    "summary": "ב-24 בנובמבר כתב מאט פאלמר ש-Grok Bot חסך לו 80 דולר על מלון: מצא מחיר AAA, אימת את החברות מהמייל שלו, והודיע לו על החיסכון. הוא ציטט את סרטון \"מה חדש\" שלו על הזמנת מלונות וטיסות."
+   },
+   "en": {
+    "title": "Palmer: Grok Bot saved me $80 on a hotel with a AAA rate",
+    "summary": "On November 24 Matt Palmer wrote that Grok Bot saved him $80 on a hotel: it found a AAA rate, confirmed his membership from his email, and notified him of the savings. He quoted his own \"What's new\" video on hotel and flight bookings."
+   },
+   "full_en": "On November 24 Matt Palmer posted:\n\n\"Grok @bot saved me $80 on a hotel\n\nIt found a AAA rate and then confirmed my membership from my email, and notified me of the savings\"\n\nThe post included a screenshot and quoted his November 23 \"What's new in Grok Bot\" video, whose first chapter is hotel and flight bookings. This is a personal example from a team member, not an official pricing promise for every booking.",
+   "full_he": "ב-24 בנובמבר פרסם מאט פאלמר:\n\n\"Grok @bot חסך לי 80 דולר על מלון\n\nהוא מצא מחיר AAA, אחר כך אימת את החברות שלי מהמייל, והודיע לי על החיסכון\"\n\nלפוסט צורף צילום מסך, והוא ציטט את סרטון \"מה חדש ב-Grok Bot\" שלו מ-23 בנובמבר, שהפרק הראשון בו הוא הזמנת מלונות וטיסות. זה דוגמה אישית של חבר צוות, לא הבטחת מחיר רשמית לכל הזמנה."
+  },
+  {
+   "id": "brecka-william-li-visceral-fat-not-just-scale",
+   "topic": "brecka",
+   "date": "2026-11-24T20:00:01Z",
+   "url": "https://x.com/thegarybrecka/status/2125318542773883226",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה ולי: לא כל השומן רע, והדאגה היא השומן הבטני הפנימי",
+    "summary": "ב-24 בנובמבר פרסם גארי בראקה דברים של ד״ר ויליאם לי: הגוף זקוק לשומן, והמספר על המשקל לא מספר את כל הסיפור. לדברי לי, הדאגה הגדולה יותר היא שומן ויסצרלי סביב האיברים, גם אצל מי שנראה רזה. אלה טענות האורח בפרק, לא ייעוץ רפואי."
+   },
+   "en": {
+    "title": "Brecka and Li: not all body fat is bad, and visceral fat is the bigger concern",
+    "summary": "On November 24 Gary Brecka posted comments from Dr. William Li: the body needs fat, and the number on the scale does not tell the full story. The bigger concern, Li says, is visceral fat around the organs, including in people who look thin. These are the guest's claims from the episode, not medical advice."
+   },
+   "full_en": "On November 24 Gary Brecka posted a note drawing on Dr. William Li, who appeared on his podcast:\n\n\"Not all body fat is bad for you. In fact, your body actually needs it.\n\nDr. William Li explains why fat is an important part of our health and why the number on the scale doesn't always tell the full story. The bigger concern is visceral fat, which surrounds your internal organs and, in excess, can contribute to inflammation and disrupt normal metabolic function.\n\nAnd here's what surprises most people: You can look thin and still carry too much visceral fat. It's not just about how much you weigh. It's about what's happening inside your body.\"\n\nExcess visceral fat is a recognized metabolic risk in mainstream medicine; the post is still Brecka's and Li's popular presentation, not a clinical diagnosis or advice.",
+   "full_he": "ב-24 בנובמבר פרסם גארי בראקה רשימה המסתמכת על ד״ר ויליאם לי, שהתארח בפודקאסט שלו:\n\n\"לא כל שומן הגוף רע לכם. למעשה, הגוף באמת זקוק לו.\n\nד״ר ויליאם לי מסביר למה שומן הוא חלק חשוב מהבריאות שלנו, ולמה המספר על המשקל לא תמיד מספר את כל הסיפור. הדאגה הגדולה יותר היא שומן ויסצרלי, שעוטף את האיברים הפנימיים, ובעודף יכול לתרום לדלקת ולשבש את התפקוד המטבולי הרגיל.\n\nוזה מה שמפתיע את רוב האנשים: אפשר להיראות רזה ועדיין לשאת יותר מדי שומן ויסצרלי. זה לא רק כמה שוקלים. זה מה שקורה בתוך הגוף.\"\n\nעודף שומן ויסצרלי הוא סיכון מטבולי מוכר ברפואה המקובלת; הפוסט הוא עדיין הצגה פופולרית של בראקה ולי, לא אבחנה קלינית ולא ייעוץ."
+  },
+  {
+   "id": "starterstory-vugola-19-year-old-11k-mrr",
+   "topic": "starterstory",
+   "date": "2026-11-24T18:08:02Z",
+   "url": "https://x.com/starter_story/status/2125290360163512431",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "סטארטר סטורי: בן 19 הגיע ל-11 אלף דולר בחודש עם עורך וידאו מבוסס בינה",
+    "summary": "ב-24 בנובמבר סיפר החשבון Starter Story על ואדים, בן 19, שבנה את Vugola, עורך וידאו שהופך תוכן ארוך לקליפים. לפי הפוסט, בלי לדעת לקוד, הוא הגיע תוך חמישה חודשים לכ-11,200 דולר בחודש, בעיקר משגרת אינסטגרם של כמה סרטונים ביום ועלויות של כ-15 דולר בחודש."
+   },
+   "en": {
+    "title": "Starter Story: a 19-year-old hits $11K a month with an AI video editor",
+    "summary": "On November 24 Starter Story profiled Vadim, 19, who built Vugola, an AI video editor that turns long-form content into clips. According to the post, without knowing how to code, he reached about $11,200 a month in five months, mainly from an Instagram routine of several posts a day and about $15 in monthly costs."
+   },
+   "full_en": "On November 24 Starter Story posted a founder story:\n\nVadim quit a marketing job at 18 to build Vugola, an AI video editor that turns long-form content into viral clips. He could not code. He spent four months \"vibe coding\" on Lovable, then moved to Claude, and now builds with Codex. His first $2–3K in monthly recurring revenue came only from X, tied to AI trends that were already spreading.\n\nWhat got him past $10K, the post said, was a simple Instagram routine: open a new account, connect it to ManyChat, spend a day studying competitors' viral formats, copy the format exactly, post three to six times a day, and stay on one format until it is saturated. The new account reached 10,8K followers, and one video got 132K views. Once a format works, the only thing he changes is the sound; the demo and call to action stay the same.\n\nThe snapshot in the post: $11,200 in monthly recurring revenue, about 400 paying users, and $15 a month in costs (ManyChat). His takeaway, as quoted: posting on Instagram costs nothing, editing the videos costs nothing, and as a solo founder in the age of AI, time is the biggest asset.\n\nThe figures are those given in the Starter Story post, from the founder's account.",
+   "full_he": "ב-24 בנובמבר פרסם Starter Story סיפור על מייסד:\n\nואדים עזב עבודת שיווק בגיל 18 כדי לבנות את Vugola, עורך וידאו מבוסס בינה מלאכותית שהופך תוכן ארוך לקליפים. הוא לא ידע לקודד. הוא בילה ארבעה חודשים בכתיבת קוד בעזרת Lovable, אחר כך עבר לקלוד, ועתה בונה עם Codex. 2–3 אלף הדולר הראשונים בהכנסה חודשית חוזרת הגיעו רק מ-X, סביב טרנדים של בינה מלאכותית שכבר התפשטו.\n\nמה שהעביר אותו מעל 10 אלף, לפי הפוסט, הייתה שגרת אינסטגרם פשוטה: לפתוח חשבון חדש, לחבר אותו ל-ManyChat, להשקיע יום בפורמטים ויראליים של מתחרים, להעתיק את הפורמט במדויק, לפרסם שלוש עד שש פעמים ביום, ולהישאר בפורמט אחד עד שהוא רווי. החשבון החדש הגיע ל-10.8 אלף עוקבים, וסרטון אחד הגיע ל-132 אלף צפיות. כשפורמט עובד, הדבר היחיד שהוא מחליף הוא הסאונד; ההדגמה והקריאה לפעולה נשארות.\n\nהתמונה בפוסט: 11,200 דולר בהכנסה חודשית חוזרת, כ-400 משתמשים משלמים, ו-15 דולר בחודש בעלויות (ManyChat). הלקח שלו, כפי שצוטט: פרסום באינסטגרם לא עולה כלום, עריכת הסרטונים לא עולה כלום, וליזם יחיד בעידן הבינה המלאכותית הזמן הוא הנכס הגדול ביותר.\n\nהמספרים הם אלה שמופיעים בפוסט של Starter Story, לפי דברי המייסד."
+  },
+  {
+   "id": "johnson-warmup-before-hard-workout-injury",
+   "topic": "johnson",
+   "date": "2026-11-24T17:49:53Z",
+   "url": "https://x.com/bryan_johnson/status/2125285794155987277",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג׳ונסון: חימום של 20 דקות לפני אימון קשה",
+    "summary": "ב-24 בנובמבר כתב בריאן ג׳ונסון שהוא מתחמם 20 דקות לפני כל אימון קשה. לדבריו החימום מפחית פציעות שריר-שלד ב-30 עד 38 אחוז, פציעות חמורות בעד 50 אחוז, ומעלה תפוקת כוח חדה ב-2 עד 5 אחוז. הוא הוסיף שמתיחה סטטית פסיבית לבדה אינה מונעת פציעות. אלה טענותיו, לא ייעוץ רפואי."
+   },
+   "en": {
+    "title": "Johnson: a 20-minute warmup before any hard workout",
+    "summary": "On November 24 Bryan Johnson wrote that he warms up for 20 minutes before any hard workout. He said a warmup lowers musculoskeletal injury by 30–38%, reduces severe injuries by up to 50%, and boosts acute power output by 2% to 5%. He added that passive static stretching alone does not prevent injuries. These are his claims, not medical advice."
+   },
+   "full_en": "On November 24 Bryan Johnson posted:\n\n\"I warm up for 20 min before any hard workout\n\n> lowers musculoskeletal injury by 30-38%\n> reduces severe injuries by up to 50%\n> boosts acute power output by 2% to 5%\n\nPassive static stretching alone does not prevent injuries\"\n\nThe post included an image. He did not name the studies behind the percentages in the text of the post. Warming up before intense exercise is a common recommendation; the exact figures are Johnson's presentation of the evidence, not independently checked here, and are not medical advice.",
+   "full_he": "ב-24 בנובמבר פרסם בריאן ג׳ונסון:\n\n\"אני מתחמם 20 דקות לפני כל אימון קשה\n\n> מפחית פציעות שריר-שלד ב-30–38%\n> מפחית פציעות חמורות בעד 50%\n> מעלה תפוקת כוח חדה ב-2% עד 5%\n\nמתיחה סטטית פסיבית לבדה אינה מונעת פציעות\"\n\nלפוסט צורפה תמונה. הוא לא ציין בטקסט את המחקרים שמאחורי האחוזים. חימום לפני מאמץ אינטנסיבי הוא המלצה מקובלת; המספרים המדויקים הם הצגה שלו של הראיות, לא נבדקו כאן באופן עצמאי, ואינם ייעוץ רפואי."
+  },
+  {
+   "id": "solana-tokenized-stocks-600m-supply-record-week",
+   "topic": "solana",
+   "date": "2026-11-24T17:42:17Z",
+   "url": "https://x.com/i/trending/2125282104535568406",
+   "source": "X",
+   "he": {
+    "title": "סולאנה מובילה במניות מטוקנות: היצע מעל 600 מיליון ושיא שבועי",
+    "summary": "סיכום חדשות ב-X מ-24 בנובמבר אמר שהיצע מניות מטוקנות בסולאנה עלה מעל 600 מיליון דולר ב-2026, ושתפיסת נפח הספוט הגיעה ל-43 אחוז בשבוע שיא של 1.8 מיליארד דולר. החשבון הרשמי של סולאנה כתב באותו יום על 33 מיליארד דולר במניות מטוקנות כיום, ועל 300 טריליון שנותרו."
+   },
+   "en": {
+    "title": "Solana leads tokenized stocks, with supply above $600 million and a record week",
+    "summary": "An X news summary on November 24 said tokenized equity supply on Solana had climbed above $600 million in 2026, and that its share of spot volume hit 43% in a record week of $1.8 billion. Solana's official account posted the same day that tokenized stocks stand at $33 billion today, with $300 trillion to go."
+   },
+   "full_en": "An X news story updated on November 24, titled \"Solana Leads Tokenized Stocks with $600 Million Supply Surge,\" summarized posts on tokenized equities. X marks these stories as summaries that may evolve and may contain errors.\n\nAccording to that summary, tokenized equity supply on Solana climbed above $600 million in 2026 and captured 43% of spot volume in a record week that processed $1.8 billion. It said institutions such as JPMorgan and BNY Mellon engage the infrastructure, that Jupiter saw strong volume growth in these assets, and that U.S. spot Solana ETFs had seen inflows even as broader crypto funds saw outflows. A related official post from @solana the same day said, \"$33 billion of tokenized stocks today, $300 trillion to go,\" and quoted further commentary, including a clip with Bitwise's Matt Hougan. Another official post a day earlier had highlighted remarks from CoinGecko's Bobby Ong on access to U.S. stocks on-chain.\n\nThe dollar figures come from those posts and the X summary, not from a filing checked here.",
+   "full_he": "סיפור חדשות ב-X שעודכן ב-24 בנובמבר, בכותרת \"סולאנה מובילה במניות מטוקנות עם זינוק היצע ל-600 מיליון דולר,\" סיכם פוסטים על מניות מטוקנות. X מציינת שסיפורים כאלה הם סיכומים שעשויים להשתנות ועלולים לכלול טעויות.\n\nלפי הסיכום, היצע המניות המטוקנות בסולאנה עלה מעל 600 מיליון דולר ב-2026, ותפס 43 אחוז מנפח הספוט בשבוע שיא שבו עובדו 1.8 מיליארד דולר. נכתב שם שמוסדות כמו ג׳יי.פי. מורגן ו-BNY Mellon עובדים עם התשתית, שג׳ופיטר ראה עלייה חזקה בנפח בנכסים האלה, ושתעודות סל ספוט של סולאנה בארה״ב ראו כניסות כספים גם כשקרנות קריפטו רחבות יותר ראו יציאות. בפוסט רשמי של @solana באותו יום נכתב: \"33 מיליארד דולר במניות מטוקנות היום, 300 טריליון נשארו,\" עם ציטוט נוסף, כולל קליפ עם מאט הוגן מ-Bitwise. בפוסט רשמי אחר יום קודם הודגשו דברי בובי אונג מ-CoinGecko על גישה למניות אמריקאיות על השרשרת.\n\nסכומי הדולרים מגיעים מהפוסטים האלה ומהסיכום ב-X, לא מדיווח שנבדק כאן."
+  },
+  {
+   "id": "medicalmedium-sick-again-weeks-later-immune",
+   "topic": "medicalmedium",
+   "date": "2026-11-24T17:01:22Z",
+   "url": "https://x.com/MedicalMedium/status/2125273583626973409",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: למה לדבריו חולים שוב שבועות אחר כך",
+    "summary": "ב-24 בנובמבר כתב אנתוני ויליאם, מדיקל מדיום, שכשמרגישים שהחום עבר ואז משהו אחר מגיע שבועות אחר כך, זה קורה כי מערכת החיסון ירדה, ואז אפשטיין־בר, הרפס או שלבקת חוגרת יכולים לעלות. אלה טענותיו. ברפואה המקובלת נגיפים כאלה יכולים להתעורר כשהגוף חלש, אבל אין ביסוס לשיטות הריפוי שהוא מציע בספריו."
+   },
+   "en": {
+    "title": "Medical Medium: why, he says, people fall sick again weeks later",
+    "summary": "On November 24 Anthony William, Medical Medium, wrote that when a fever seems gone and something else hits weeks later, it is because the immune system was knocked down, and then Epstein-Barr, herpes simplex or shingles can rise. These are his claims. Mainstream medicine recognizes that such viruses can reactivate when someone is run down, but does not support the healing methods he promotes in his books."
+   },
+   "full_en": "On November 24 Anthony William, who writes as Medical Medium, posted:\n\n\"Why You Fall Sick Again Weeks Later\n\nYou finally think you’re getting better. The fever is gone, the worst is over, but then weeks later something else hits.\n\nThat’s what happens when your immune system gets kicked down. Epstein-Barr can rise up. Herpes simplex can rise up. Shingles can suddenly surface because your defenses were already struggling.\n\nYou can be over the original bug without your immune system being fully rebuilt. That’s the part people miss.\"\n\nThe post linked to a livestream and to his books and toolkits. William presents these ideas as his own teaching. It is true that viruses in the herpes family can reactivate when a person is ill or stressed; his broader protocols and the way he explains illness are not part of mainstream medical practice and are not advice here.",
+   "full_he": "ב-24 בנובמבר פרסם אנתוני ויליאם, שכותב בשם מדיקל מדיום:\n\n\"למה אתם חולים שוב שבועות אחר כך\n\nסוף סוף נדמה לכם שאתם משתפרים. החום ירד, הגרוע מאחוריכם, ואז שבועות אחר כך משהו אחר מגיע.\n\nזה מה שקורה כשמערכת החיסון יורדת. אפשטיין־בר יכול לעלות. הרפס סימפלקס יכול לעלות. שלבקת חוגרת יכולה להופיע פתאום כי ההגנות כבר היו במצוקה.\n\nאפשר לעבור את הווירוס המקורי בלי שמערכת החיסון נבנתה מחדש לגמרי. זה החלק שאנשים מפספסים.\"\n\nהפוסט קישר לשידור חי ולספרים ולערכות שלו. ויליאם מציג את הרעיונות האלה כהוראה שלו. נכון שנגיפים ממשפחת ההרפס יכולים להתעורר כשאדם חולה או בלחץ; הפרוטוקולים הרחבים שלו ואופן ההסבר שלו למחלות אינם חלק מהעיסוק הרפואי המקובל, ואינם ייעוץ כאן."
+  },
+  {
+   "id": "mccullough-measles-cases-pcr-testing-claim",
+   "topic": "mccullough",
+   "date": "2026-11-24T16:39:10Z",
+   "url": "https://x.com/P_McCulloughMD/status/2125267994594959862",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: לדבריו עליית מקרי החצבת קשורה לבדיקות PCR",
+    "summary": "ב-24 בנובמבר כתב ד״ר פיטר מקולה שעלייה במקרי חצבת חופפת להפעלת בדיקות PCR בפה ובלוע אצל Quest ו-Labcorp, עם דיווח ישיר לרשויות. לטענתו הבדיקות מניעות את \"ההתפרצות\" עם חיוביים אמיתיים וגם שגויים. זו טענה שלו. ברפואה המקובלת PCR היא שיטה תקנית לאבחון חצבת, ואת העלייה במקרים מייחסים בעיקר לפערים בחיסון."
+   },
+   "en": {
+    "title": "McCullough: he says a rise in measles cases coincides with PCR testing",
+    "summary": "On November 24 Dr. Peter McCullough wrote that a rise in measles cases coincides with Quest and Labcorp bringing measles oropharyngeal PCR testing online, with results feeding directly to health departments. He argues testing is driving the \"outbreak,\" with both true and false positives. This is his claim. Mainstream public health treats PCR as a standard measles test and attributes recent increases mainly to gaps in vaccination."
+   },
+   "full_en": "On November 24 Dr. Peter McCullough posted:\n\n\"Explosion in measles cases is coincident with Quest and Labcorp bringing measles oropharyngeal PCR testing online with direct data feeds of test-positive results going to state health departments/CDC. Previously measles required acute and convalescent antibody titers six weeks later followed by state lab reporting. Benign childhood viral exanthems are common. Thus testing is driving the measles 'outbreak' with both true positive and false positive reporting. Courtesy NewsMax.\"\n\nIn other posts the same day he also pointed to a manuscript, which he said found a median age of 20 among confirmed measles cases and that 1 in 5 were vaccinated, and argued that changing case definitions and lab methods greatly influence annual counts.\n\nThese are McCullough's interpretations. Public-health agencies including the CDC use PCR as a standard tool to confirm measles, alongside clinical and epidemiological criteria. False positives can occur with any test, but mainstream explanations for recent measles increases focus on lower vaccination coverage and imported cases, not primarily on a switch in laboratory methods. Nothing in this item is medical advice.",
+   "full_he": "ב-24 בנובמבר פרסם ד״ר פיטר מקולה:\n\n\"הפיצוץ במקרי החצבת חופף להפעלה של בדיקות PCR בפה ובלוע לחצבת אצל Quest ו-Labcorp, עם הזנה ישירה של תוצאות חיוביות למחלקות הבריאות במדינות ול-CDC. קודם לכן חצבת דרשה נוגדנים בשלב החריף ובשלב ההחלמה שישה שבועות אחר כך, ואחר כך דיווח של מעבדת המדינה. פריחות ויראליות שפירות בילדים הן שכיחות. לכן הבדיקות הן שדוחפות את 'ההתפרצות' של החצבת, עם דיווח של חיוביים אמיתיים וגם שגויים. באדיבות NewsMax.\"\n\nבפוסטים אחרים באותו יום הוא גם הפנה לכתב יד שלדבריו מצא שגיל החציון במקרים מאומתים הוא 20, וש-1 מכל 5 היו מחוסנים, וטען ששינויים בהגדרות מקרה ובשיטות מעבדה משפיעים מאוד על המספרים השנתיים.\n\nאלה פרשנויות של מקולה. רשויות בריאות הציבור, כולל ה-CDC, משתמשות ב-PCR ככלי תקני לאימות חצבת, לצד קריטריונים קליניים ואפידמיולוגיים. תוצאות חיוביות שגויות יכולות להופיע בכל בדיקה, אבל ההסברים המקובלים לעלייה האחרונה במקרים מתמקדים בעיקר בכיסוי חיסוני נמוך יותר ובמקרים מיובאים, לא בעיקר בהחלפת שיטת מעבדה. אין כאן ייעוץ רפואי."
+  },
+  {
+   "id": "grokbot-palmer-device-as-remote-server",
+   "topic": "grokbot",
+   "date": "2026-11-24T15:34:43Z",
+   "url": "https://x.com/mattyp/status/2125251777880871189",
+   "source": "X · @mattyp",
+   "he": {
+    "title": "פאלמר: אפשר להפוך מכשיר לשרת מרוחק של Grok Bot",
+    "summary": "ב-24 בנובמבר פרסם מאט פאלמר טיפ: להתקין את Grok Bot במכשיר ולהפעיל \"הרצה במחשב הזה\" ו\"העברת תעבורה דרך המחשב הזה,\" כדי שהבוט יוכל לעדכן קבצים מכל מקום ולהגיע לאתרים ולמכשירים ברשת המקומית. כמה מכשירים, כתב, הם כמה שרתים."
+   },
+   "en": {
+    "title": "Palmer: you can turn a device into a remote Grok Bot server",
+    "summary": "On November 24 Matt Palmer posted a tip: install Grok Bot on a device and turn on \"execution on this computer\" and \"route traffic through this computer,\" so the Bot can update files from anywhere and reach sites and devices on the local network. Multiple devices, he wrote, means multiple servers."
+   },
+   "full_en": "On November 24 Matt Palmer posted:\n\n\"Grok Bot tip of the day: Turn your device into a remote server\n\nInstall bot and flip \"execution on this computer\" and \"route traffic through this computer\"\n\nGrok Bot will be able to update your files from anywhere and access sites and devices from your local network.\n\nMultiple devices = multiple servers!\"\n\nThe rest of the post is a short video demonstrating the settings. An X news summary the same day described users turning everyday computers into always-on servers for AI teams that update files and reach sites through a personal network.\n\nThis is a tip from a Grok Bot team member about a setting in the product, not a separate formal changelog entry dated November 24.",
+   "full_he": "ב-24 בנובמבר פרסם מאט פאלמר:\n\n\"טיפ היום של Grok Bot: תהפכו את המכשיר לשרת מרוחק\n\nמתקינים את הבוט ומפעילים 'הרצה במחשב הזה' ו'העברת תעבורה דרך המחשב הזה'\n\nGrok Bot יוכל לעדכן את הקבצים שלכם מכל מקום ולהגיע לאתרים ולמכשירים ברשת המקומית.\n\nכמה מכשירים = כמה שרתים!\"\n\nשאר הפוסט הוא סרטון קצר שמדגים את ההגדרות. סיכום חדשות ב-X באותו יום תיאר משתמשים שהופכים מחשבים רגילים לשרתים שפועלים כל הזמן עבור צוותי בינה מלאכותית, שמעדכנים קבצים ומגיעים לאתרים דרך הרשת האישית.\n\nזה טיפ מחבר צוות Grok Bot על הגדרה במוצר, לא רשומה רשמית נפרדת ביומן השינויים מתאריך 24 בנובמבר."
+  },
+  {
+   "id": "tesla-spacex-merger-talks-year-end-deadline",
+   "topic": "tesla",
+   "date": "2026-11-24T14:43:00Z",
+   "url": "https://electrek.co/2026/11/24/tesla-spacex-merger-year-end-deadline-new-congress/",
+   "source": "Electrek",
+   "he": {
+    "title": "טסלה וספייסאקס פועלות לקראת מועד סוף שנה למיזוג",
+    "summary": "ב-24 בנובמבר דיווח Electrek, לפי הפיננשל טיימס, שוועדות מיוחדות של טסלה וספייסאקס פועלות לקראת מועד אפשרי בסוף השנה להסכם מיזוג במניות, בשווי משולב של כ-3.5 טריליון דולר. לדברי אנשים המעורים בשיחות, ההסכם עדיין לא קרוב. למיזוג תידרש הסכמת בעלי מניות טסלה, והוא צפוי לפיקוח רגולטורי במדינות כמה."
+   },
+   "en": {
+    "title": "Tesla and SpaceX work toward a year-end merger deadline",
+    "summary": "On November 24 Electrek, citing the Financial Times, reported that special committees at Tesla and SpaceX are moving toward a possible year-end deadline for an all-stock merger, with a combined value of about $3.5 trillion. People familiar with the talks said an agreement is not close. A deal would need Tesla shareholder approval and would face regulatory review in several countries."
+   },
+   "full_en": "On November 24 Electrek's Fred Lambert reported, based on the Financial Times, that Tesla and SpaceX are working toward a year-end deadline to agree on an all-stock merger. A signed deal by December 31 would come days before a new U.S. Congress is sworn in on January 3. The FT, Electrek said, also named the directors negotiating for each side. Reuters had already reported the same day that five directors had been appointed: Robyn Denholm, Kathleen Wilson-Thompson and Jack Hartung from Tesla, and Roelof Botha and Randy Glein from SpaceX.\n\nAccording to the FT as relayed by Electrek and Investing.com, the talks are \"moving towards a potential year-end deadline,\" even though people familiar with the negotiations say an agreement is not close. The combined group would be worth about $3.5 trillion. Tesla's committee is advised by Evercore; SpaceX by Morgan Stanley and Goldman Sachs. The FT said Texas governance rules keep Musk out of active negotiations, though the committees can consult senior executives for information.\n\nAny agreement would go to a separate extraordinary Tesla shareholder meeting and, Electrek reported, would need more than 50% of all outstanding votes, not just of votes cast; abstentions and uncast shares would count against approval. Musk holds about 20% of Tesla's voting power and about 84% of SpaceX's, the reports said. The deal could also face scrutiny in the United States, China, Europe and the UK, in part because Tesla's large China operations sit alongside SpaceX's work for the U.S. military.\n\nElectrek noted that Bloomberg had earlier reported a deal could be announced as early as December, and that an agreement is not guaranteed.",
+   "full_he": "ב-24 בנובמבר דיווח פרד למברט ב-Electrek, לפי הפיננשל טיימס, שטסלה וספייסאקס פועלות לקראת מועד בסוף השנה להסכם על מיזוג במניות. הסכם חתום עד 31 בדצמבר היה מגיע ימים לפני השבעת הקונגרס החדש בארה״ב ב-3 בינואר. לפי Electrek, ה-FT גם נקבה בשמות הדירקטורים שמנהלים את השיחות בכל צד. רויטרס כבר דיווחה באותו יום שמונו חמישה דירקטורים: רובין דנהולם, קתלין וילסון-תומפסון וג׳ק הרטונג מטסלה, ורואלוף בותה ורנדי גליין מספייסאקס.\n\nלפי ה-FT, כפי שהועבר ב-Electrek וב-Investing.com, השיחות \"נעות לקראת מועד אפשרי בסוף השנה,\" אף שאנשים המעורים במשא ומתן אומרים שההסכם אינו קרוב. הקבוצה המשולבת תהיה שווה כ-3.5 טריליון דולר. את ועדת טסלה מייעצת Evercore; את ספייסאקס מייעצות מורגן סטנלי וגולדמן זאקס. ה-FT כתב שכללי הממשל בטקסס משאירים את מאסק מחוץ למשא ומתן הפעיל, אף שהוועדות יכולות להתייעץ עם בכירים לקבלת מידע.\n\nכל הסכם ייצא לאסיפת בעלי מניות מיוחדת של טסלה, ולפי Electrek יידרשו יותר מ-50% מכלל הקולות האפשריים, לא רק מבין מי שהצביעו; הימנעויות וקולות שלא הוטלו ייחשבו נגד. לפי הדיווחים מאסק מחזיק בכ-20% מכוח ההצבעה בטסלה ובכ-84% בספייסאקס. העסקה עלולה לעמוד גם בפיקוח בארצות הברית, בסין, באירופה ובבריטניה, בין השאר כי הפעילות הגדולה של טסלה בסין עומדת לצד עבודת ספייסאקס עבור הצבא האמריקאי.\n\nElectrek ציין שבלומברג דיווחה קודם שעסקה עשויה להיות מוכרזת כבר בדצמבר, ושהסכם אינו מובטח."
+  },
+  {
+   "id": "pod-asprey-ac6746cb23",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-24T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/vitamin-v-the-missing-essential-for-longevity/id451295014?i=1000803755154",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "ויטמין V: הרכיב החיוני שחסר לאריכות ימים",
+    "summary": "בפרק 1579 של The Human Upgrade מארח דייב אספריי את ד״ר טומי רי, כירופרקט ספורט ומומחה לרפואה רגנרטיבית, לשיחה על רטט לכל הגוף, ייצור חנקן חמצני, צפיפות עצם ובריאות תאים. לדבריהם, כמה דקות על משטח רטט עשויות לעורר כיווצי שריר וזרימת דם. המחקרים על גירוי בתדר 40 הרץ והשפעה על המוח מוצגים כהשערות מתהוות, לא כעובדה מבוססת."
+   },
+   "en": {
+    "title": "Vitamin V: The Missing Essential for Longevity",
+    "summary": "In episode 1579 of The Human Upgrade, Dave Asprey talks with Dr. Tommy Rhee, a sports chiropractor and regenerative-medicine specialist, about whole-body vibration, nitric oxide, bone density and cellular health. They say a few minutes on a vibration platform may trigger muscle contractions and circulation. Research on 40 Hz stimulation and the brain is presented as emerging, not settled."
+   },
+   "full_en": "In episode 1579 of The Human Upgrade, host Dave Asprey sits down with Dr. Tommy Rhee, a sports chiropractor, regenerative-medicine specialist and former practitioner with the Tampa Bay Buccaneers and UCLA Athletics. The episode is framed around whole-body vibration — what Asprey calls \"Vitamin V\" — and its claimed links to longevity, nitric oxide, circulation, bone density and muscle activation.\n\nAccording to the show notes, Rhee, drawing on more than 20 years of work with professional and Olympic athletes, explains how standing on a vibration platform creates rapid muscle contractions and mechanical forces that stimulate circulation and may activate endothelial nitric oxide synthase (eNOS), an enzyme involved in producing nitric oxide. They discuss why nitric oxide matters for blood-vessel dilation, cardiovascular health, physical performance and sexual function. Rhee shares the story of a patient in his seventies who reported improved erectile function after several weeks of regular vibration sessions. Asprey describes his own approach of combining vibration, supplements and low-dose tadalafil. These are the host's and guest's claims, not medical advice. Mainstream medicine does not treat whole-body vibration as a proven treatment for erectile dysfunction or as a substitute for established cardiovascular care.\n\nThe conversation also covers emerging research on vibration frequencies, cerebrospinal fluid, the glymphatic system and 40 Hz sensory stimulation, including studies looking at Alzheimer's-related proteins. The notes say the two distinguish established findings from emerging hypotheses, and also touch on the history of vibration-based technologies, from Nikola Tesla to Royal Rife.\n\nTopics listed in the notes include:\n• How vibration stimulates muscle contractions, circulation and cellular signaling\n• Why nitric oxide matters for blood vessels, sexual function and longevity, in their view\n• How frequency, amplitude and movement direction may change the effect\n• Possible support for bone density when combined with protein, minerals, vitamin D and vitamin K2\n• Short sessions and possible effects on post-meal blood glucose, recovery and growth hormone — presented as possibilities, not proven outcomes\n• Why some inexpensive vibration plates may aggravate lower-back discomfort\n• How to use one-, five- and ten-minute sessions and progress from standing to harder exercises\n\nThe notes include sponsor offers, which are omitted here.",
+   "full_he": "בפרק 1579 של The Human Upgrade מארח דייב אספריי את ד״ר טומי רי, כירופרקט ספורט, מומחה לרפואה רגנרטיבית ומי שעבד בעבר עם טמפה ביי באקנירס ועם אתלטיקת UCLA. הפרק עוסק ברטט לכל הגוף — מה שאספריי מכנה \"ויטמין V\" — ובקשר שלדבריהם יש לו לאריכות ימים, לחנקן חמצני, לזרימת דם, לצפיפות עצם ולהפעלת שרירים.\n\nלפי תיאור הפרק, רי, מתוך יותר מ-20 שנות עבודה עם ספורטאים מקצועיים ואולימפיים, מסביר שעמידה על משטח רטט יוצרת כיווצי שריר מהירים וכוחות מכניים שמעוררים זרימת דם ועשויים להפעיל את האנזים eNOS, המעורב בייצור חנקן חמצני. הם מדברים על חשיבות החנקן החמצני להרחבת כלי דם, לבריאות הלב, לביצועים גופניים ולתפקוד מיני. רי מספר על מטופל בשנות השבעים לחייו שדיווח על שיפור בתפקוד המיני אחרי כמה שבועות של מפגשי רטט קבועים. אספריי מתאר את הגישה שלו, שמשלבת רטט, תוספים וטדלהפיל במינון נמוך. אלה טענות המנחה והאורח, לא ייעוץ רפואי. הרפואה המקובלת אינה רואה ברטט לכל הגוף טיפול מוכח לבעיות זיקפה או תחליף לטיפול מקובל בלב ובכלי הדם.\n\nהשיחה עוסקת גם במחקר מתהווה על תדרי רטט, על נוזל השדרה, על המערכת הגלימפטית ועל גירוי חושי בתדר 40 הרץ, כולל מחקרים שבודקים חלבונים הקשורים לאלצהיימר. בתיאור הפרק נכתב שהשניים מבחינים בין ממצאים מבוססים ובין השערות, וגם נוגעים בהיסטוריה של טכנולוגיות רטט, מניקולה טסלה ועד רויאל רייף.\n\nבין הנושאים שמופיעים בתיאור:\n• איך רטט מעורר כיווצי שריר, זרימת דם ושליחה תאית\n• למה, לדבריהם, חנקן חמצני חשוב לכלי הדם, לתפקוד מיני ולאריכות ימים\n• איך תדר, משרעת וכיוון תנועה עשויים לשנות את ההשפעה\n• תמיכה אפשרית בצפיפות העצם בשילוב חלבון, מינרלים, ויטמין D וויטמין K2\n• מפגשים קצרים והשפעות אפשריות על סוכר אחרי הארוחה, על התאוששות ועל הורמון גדילה — כמוצגות כאפשרויות, לא כתוצאות מוכחות\n• למה משטחי רטט זולים מסוימים עלולים להחמיר אי-נוחות בגב התחתון\n• איך להשתמש במפגשים של דקה, חמש דקות ועשר דקות ולהתקדם מעמידה לתרגילים קשים יותר\n\nהצעות החסות שבתיאור הפרק הושמטו כאן."
+  },
+  {
+   "id": "pod-brecka-80aa17d533",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-11-24T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/dr-william-li-how-glp-1-drugs-affect-your-blood-vessels/id1709740887?i=1000803753716",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "ד״ר ויליאם לי: איך תרופות GLP-1 משפיעות על כלי הדם",
+    "summary": "בפרק 323 של The Ultimate Human מארח גארי בראקה, בשידור חי מכנס Eudemonia, את ד״ר ויליאם לי, רופא וחוקר סרטן ומחבר Eat to Beat Disease. לי טוען שהגוף כבר מייצר GLP-1, שכל כלי הדם בנויים להגיב לו, ושהתרופות לירידה במשקל הן כמו פטיש לעומת המנגנון הטבעי של הגוף. אלה טענות האורח, לא ייעוץ רפואי."
+   },
+   "en": {
+    "title": "Dr. William Li: How GLP-1 Drugs Affect Your Blood Vessels",
+    "summary": "In episode 323 of The Ultimate Human, Gary Brecka talks live at the Eudemonia conference with Dr. William Li, a physician, cancer researcher and author of Eat to Beat Disease. Li says the body already makes GLP-1, that every blood vessel is built to respond to it, and that weight-loss drugs are a sledgehammer next to the body's own mechanism. These are the guest's claims, not medical advice."
+   },
+   "full_en": "In episode 323 of The Ultimate Human, Gary Brecka is joined live at the Eudemonia conference by Dr. William Li, a physician, cancer researcher and the author of Eat to Beat Disease. The show notes open with Li's framing: the body already makes GLP-1, and every blood vessel is built to respond to it.\n\nAccording to the notes, Li compares prescription GLP-1 weight-loss drugs to a sledgehammer next to what he calls the body's own scalpel. He discusses how fiber and gut bacteria such as Akkermansia may support the GLP-1 the body makes, and how everyday foods, in his view, can support what he describes as five health defense systems. The episode also covers, per the notes, emerging research and the guest's views on blood vessels, metabolism and food.\n\nThese are the host's and guest's claims, not medical advice. GLP-1 receptor agonist drugs are prescription medicines with documented benefits and risks; dietary fiber can support metabolic health, but food-based effects are not a proven substitute for prescribed treatment when a physician has recommended a drug.\n\nSponsor links, discount codes and a VIP-community pitch in the show notes are omitted here.",
+   "full_he": "בפרק 323 של The Ultimate Human מארח גארי בראקה, בשידור חי מכנס Eudemonia, את ד״ר ויליאם לי, רופא, חוקר סרטן ומחבר הספר Eat to Beat Disease. תיאור הפרק נפתח בגישה של לי: הגוף כבר מייצר GLP-1, וכל כלי הדם בנויים להגיב לו.\n\nלפי התיאור, לי משווה את תרופות ה-GLP-1 לירידה במשקל לפטיש, לעומת מה שהוא מכנה האזמל של הגוף עצמו. הוא מדבר על כך שסיבים חיידקי מעי כמו Akkermansia עשויים לתמוך ב-GLP-1 שהגוף מייצר, ועל כך שמזונות יומיומיים, לדעתו, יכולים לתמוך במה שהוא מתאר כחמש מערכות הגנה של הגוף. הפרק עוסק גם, לפי התיאור, במחקר מתהווה ובגישות האורח לגבי כלי דם, חילוף חומרים ומזון.\n\nאלה טענות המנחה והאורח, לא ייעוץ רפואי. תרופות ממשפחת אגוניסטים לקולטן GLP-1 הן תרופות מרשם עם יתרונות וסיכונים מתועדים; סיבים תזונתיים יכולים לתמוך בבריאות המטבולית, אבל השפעות של מזון אינן תחליף מוכח לטיפול שנרשם כשרופא המליץ על תרופה.\n\nקישורי חסות, קודי הנחה וקריאה להצטרף לקהילת VIP הושמטו כאן."
+  },
+  {
+   "id": "lawrence-instagram-bleph-makeup-response",
+   "topic": "lawrence",
+   "date": "2026-11-24T05:04:00Z",
+   "url": "https://people.com/jennifer-lawrence-has-cheeky-response-online-speculation-that-had-bleph-surgery-12276305",
+   "source": "People",
+   "he": {
+    "title": "ג׳ניפר לורנס על שמועות הניתוח בעפעפיים: המאפרת \"עשתה לי את זה\"",
+    "summary": "ב-24 בנובמבר דיווח People שלמחרת, ב-23 בנובמבר, הגיבה ג׳ניפר לורנס בסטורי באינסטגרם לשמועות שעברה ניתוח עפעפיים. אחרי שמאפרת פרסמה תמונה שלה, לורנס כתבה שהמאפרת היא זו ש\"עשתה לי את ה-bleph,\" כלומר שהמראה הושג באיפור. בעבר כבר ייחסה שמועות דומות למאפרים."
+   },
+   "en": {
+    "title": "Jennifer Lawrence on eyelift rumors: her makeup artist “did my bleph”",
+    "summary": "On November 24 People reported that the day before, November 23, Jennifer Lawrence replied on Instagram Stories to speculation that she had an eyelid lift. After a makeup artist shared a photo of her, Lawrence wrote that the artist was the one who \"did my bleph,\" meaning the look came from makeup. She has credited makeup artists for similar rumors before."
+   },
+   "full_en": "People magazine, in an article published early on November 24, 2026, reported that Jennifer Lawrence had answered online speculation about a blepharoplasty — surgery that removes or repositions skin, fat or muscle around the eyelids — in an Instagram Stories post on Monday, November 23.\n\nAccording to People, makeup artist Shayna Goldberg had shared a photo from a shoot connected to Lawrence's Mes Beauty brand. Lawrence reshared it and wrote, \"Iykyk she’s the one who did my bleph,\" suggesting the look was makeup, not surgery.\n\nThe article noted that Lawrence has been candid about beauty and aging, and that in a 2023 Interview magazine conversation with Kylie Jenner she already said makeup artist Hung Vanngo could make people think she had eye surgery. People also recalled that she has spoken about a breast lift after her second child, and that in a recent interview with The Cut she said she avoids fillers and joked about a possible future facelift.\n\nThe article is a report of her public joke, not a medical confirmation or denial beyond her own words.",
+   "full_he": "מגזין People, בכתבה שפורסמה בשעות הבוקר המוקדמות של 24 בנובמבר 2026, דיווח שג׳ניפר לורנס הגיבה בסטורי באינסטגרם ביום שני, 23 בנובמבר, לשמועות ברשת על בלפרופלסטיקה — ניתוח שמסיר או ממקם מחדש עור, שומן או שריר סביב העפעפיים.\n\nלפי People, המאפרת שיינה גולדברג שיתפה תמונה מצילום שקשור למותג Mes Beauty של לורנס. לורנס שיתפה אותה מחדש וכתבה, \"Iykyk she’s the one who did my bleph,\" כלומר שהמראה הגיע מאיפור, לא מניתוח.\n\nהכתבה ציינה שלורנס דיברה בגילוי לב על יופי וגיל, ושכבר ב-2023, בשיחה עם קיילי ג׳נר למגזין Interview, אמרה שהמאפר הונג ואנגו יכול לגרום לאנשים לחשוב שעברה ניתוח בעיניים. People גם הזכיר שהיא דיברה על הרמת חזה אחרי ילדה השני, ושבריאיון לאחרונה ל-The Cut אמרה שהיא נמנעת מפילרים והתלוצצה על אפשרות של מתיחת פנים בעתיד.\n\nהכתבה היא דיווח על הבדיחה הפומבית שלה, לא אישור או הכחשה רפואיים מעבר לדבריה."
+  },
+  {
+   "id": "mikhaila-peterson-prayers-for-fathers-appointment",
+   "topic": "mikhaila",
+   "date": "2026-11-23T21:18:34Z",
+   "url": "https://x.com/MikhailaFuller/status/2124975921467977752",
+   "source": "X · @MikhailaFuller",
+   "he": {
+    "title": "מיכאלה פיטרסון ביקשה תפילות לקראת תור של אביה, ואחר כך אמרה שהתור עבר טוב",
+    "summary": "ב-23 בנובמבר ביקשה מיכאלה פיטרסון תפילות לקראת תור רופא של אביה באותו יום, ואמרה שיש לה ולמשפחה כיוון אפשרי לפתרון אבל בלי פרטים. למחרת הלילה, בפוסט תשובה, כתבה שהתור עבר טוב ושהיא מקווה שזה יעזור. היא לא פירטה את האבחנה או את הטיפול."
+   },
+   "en": {
+    "title": "Mikhaila Peterson asked for prayers ahead of her father’s appointment, then said it went well",
+    "summary": "On November 23 Mikhaila Peterson asked for prayers ahead of her father's doctor's appointment that day, saying the family thought they had a possible solution but giving no details. Later that night, in a follow-up reply, she wrote that the appointment went well and that she hoped it would help. She did not describe the diagnosis or the treatment."
+   },
+   "full_en": "On November 23 Mikhaila Peterson posted:\n\n\"Can you guys send some prayers that today’s doctor’s appointment for my dad fixes what’s wrong with him? We think we figured out a potential solution and prayers would be appreciated right now.\n\n(We’ll update people when we have more info - apologies for the lack of clarity but thought I’d reach out for prayers anyway)\"\n\nThe post drew a wide response. In a reply of her own later that night she wrote: \"Thank you so much! Appointment went well. Hoping this helps.\"\n\nShe did not name the condition, the doctor or the proposed solution, and asked for patience until the family had more to share.",
+   "full_he": "ב-23 בנובמבר פרסמה מיכאלה פיטרסון:\n\n\"אפשר שתשלחו כמה תפילות שהתור היום אצל הרופא לאבא שלי יתקן את מה שלא בסדר אצלו? אנחנו חושבים שמצאנו כיוון אפשרי לפתרון, ותפילות יתקבלו בברכה עכשיו.\n\n(נעדכן כשיהיה לנו מידע נוסף — סליחה על חוסר הבהירות, אבל חשבתי לבקש תפילות בכל זאת)\"\n\nהפוסט זכה לתגובה רחבה. בתשובה שלה עצמה בהמשך הלילה כתבה: \"תודה רבה! התור עבר טוב. מקווה שזה יעזור.\"\n\nהיא לא נקבה בשם המחלה, הרופא או הפתרון המוצע, וביקשה סבלנות עד שיהיה למשפחה מה לשתף."
+  },
+  {
+   "id": "johnson-glucose-powered-implant-diabetic-rats",
+   "topic": "johnson",
+   "date": "2026-11-23T21:09:00Z",
+   "url": "https://x.com/bryan_johnson/status/2124973512997708028",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג׳ונסון: שתל זעיר שמופעל מסוכר בדם, בניסוי בחולדות",
+    "summary": "ב-23 בנובמבר שיתף בריאן ג׳ונסון תיאור של שתל בלי סוללה, בגודל מחק עיפרון, עשוי צינורות פחמן מצופים זהב ופלטינה. לדבריו, כשהסוכר בדם עולה תא הדלק מייצר מתח שמפעיל את עצב הוואגוס, ובחולדות סוכרתיות זה הפעיל מסלולים נוגדי דלקת ושיפר רגישות לאינסולין. זה מחקר בבעלי חיים, לא טיפול לבני אדם."
+   },
+   "en": {
+    "title": "Johnson: a tiny implant powered by blood glucose, in diabetic rats",
+    "summary": "On November 23 Bryan Johnson described a battery-free implant the size of a pencil eraser, made with gold-coated carbon nanotubes and platinum. He said that when blood sugar rises, the fuel cell generates voltage that triggers the vagus nerve, and that in diabetic rats this activated anti-inflammatory pathways and restored insulin sensitivity. This is animal research, not a treatment for people."
+   },
+   "full_en": "On November 23 Bryan Johnson posted about a research implant:\n\n\"This tiny implant* is powered by your body's blood glucose!\n\nHow cool is that!?\n\nBattery free and made with gold coated carbon nanotubes and platinum.\n\nWhen blood sugar rises, the fuel cell generates voltage that triggers the vagus nerve, activating anti-inflammatory immune pathways and restoring insulin sensitivity in diabetic rats.\n\n*size of a pencil eraser\"\n\nThe post included a photo. Johnson presents a laboratory result in diabetic rats, not a product available for people and not a proven human therapy. Findings in animals often fail to translate to clinical use.",
+   "full_he": "ב-23 בנובמבר פרסם בריאן ג׳ונסון על שתל מחקרי:\n\n\"השתל הזעיר הזה* מופעל מסוכר הדם של הגוף!\n\nאיזה מגניב!?\n\nבלי סוללה, ועשוי צינורות פחמן מצופים זהב ופלטינה.\n\nכשהסוכר בדם עולה, תא הדלק מייצר מתח שמפעיל את עצב הוואגוס, מפעיל מסלולים חיסוניים נוגדי דלקת ומשקם רגישות לאינסולין בחולדות סוכרתיות.\n\n*בגודל מחק עיפרון\"\n\nלפוסט צורפה תמונה. ג׳ונסון מציג תוצאה במעבדה בחולדות סוכרתיות, לא מוצר זמין לבני אדם ולא טיפול מוכח בבני אדם. ממצאים בבעלי חיים לעיתים קרובות אינם עוברים לשימוש קליני."
+  },
+  {
+   "id": "pod-jbp-2ea16201f1",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Jordan B. Peterson Podcast",
+   "date": "2026-11-23T18:00:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/why-you-should-have-hope-even-when-the-future-looks/id1184022695?i=1000803639114",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "למה כדאי לשמור על תקווה גם כשהעתיד נראה מפחיד",
+    "summary": "בפרק של הפודקאסט של ג׳ורדן פיטרסון הוא מרצה על סיפור משה בספר שמות: מהגלות אחרי מעשה אלים, דרך הסנה הבוער והעימות עם פרעה, ועד 40 שנות נדודים במדבר והרגע שבו נמנע ממנו להיכנס לארץ המובטחת. ההרצאה צולמה ב-9 ביוני 2024 בוושינגטון."
+   },
+   "en": {
+    "title": "Why You Should Have Hope Even When the Future Looks Terrifying",
+    "summary": "In this Jordan B. Peterson Podcast lecture, Peterson traces the story of Moses in Exodus: from exile after a violent act, through the burning bush and the confrontation with Pharaoh, to 40 years in the desert and the moment Moses is denied entry to the promised land. The lecture was filmed on June 9, 2024, in Washington, D.C."
+   },
+   "full_en": "This episode of The Jordan B. Peterson Podcast is a lecture on the story of Moses. The show notes ask why a man who freed a nation from slavery would be forbidden from entering the land he spent his life trying to reach.\n\nPeterson traces Moses' story from a violent act that drives him into exile, through an encounter with a burning bush, to a confrontation with Pharaoh and 40 years of wandering in the desert. The notes say an ancient story about escaping tyranny becomes a more personal examination of why freedom can be frightening, why people cling to what oppresses them, and how even well-intentioned leaders can become the thing they set out to destroy. The most unsettling turn, in this telling, comes at the end of the journey, when a single act costs Moses everything he has worked toward. The notes present the Exodus story as a question about the responsibility each person is willing to bear, and what happens when that responsibility is refused — not only a lesson for kings and nations.\n\nThe lecture was filmed on June 9, 2024, in Washington, D.C. Chapters listed in the notes include Moses as an archetype of leadership, birth under tyranny, the symbolism of water, the temptation of power, exile, the burning bush and calling, standing up to tyranny, what freedom means, the parting of the Red Sea, why freedom leads into the desert, the burden of leadership, Jethro's lesson on shared responsibility, the Ten Commandments and the golden calf, why Moses was denied the promised land, and a final lesson on leadership without force.\n\nFollow links and ad-choice notices in the feed are omitted here.",
+   "full_he": "הפרק הזה בפודקאסט של ג׳ורדן פיטרסון הוא הרצאה על סיפור משה. תיאור הפרק שואל למה אדם ששיחרר אומה מעבדות נמנע ממנו להיכנס אל הארץ שלה הקדיש את חייו.\n\nפיטרסון עוקב אחרי סיפור משה ממעשה אלים שדוחף אותו לגלות, דרך מפגש עם הסנה הבוער, עימות עם פרעה ו-40 שנות נדודים במדבר. לפי התיאור, סיפור עתיק על בריחה מעריצות הופך לבחינה אישית יותר: למה חופש יכול להפחיד, למה אנשים נצמדים למה שמדכא אותם, ואיך גם מנהיגים בכוונות טובות יכולים להפוך למה שיצאו להרוס. לפי הפרק, הפנייה המטרידה ביותר מגיעה בסוף הדרך, כשמעשה אחד עולה למשה בכל מה שעמל עליו. התיאור מציג את סיפור יציאת מצרים כשאלה על האחריות שכל אחד מוכן לשאת, ועל מה שקורה כשמוותרים עליה — לא רק כלקח למלכים ולאומות.\n\nההרצאה צולמה ב-9 ביוני 2024 בוושינגטון. בין הפרקים שמופיעים בתיאור: משה כארכיטיפ של מנהיגות, לידה תחת עריצות, הסמליות של המים, הפיתוי של הכוח, הגלות, הסנה הבוער והייעוד, עמידה מול עריצות, מהו חופש, קריעת ים סוף, למה החופש מוביל למדבר, נטל המנהיגות, הלקח של יתרו על אחריות משותפת, עשרת הדיברות ועגל הזהב, למה נמנע ממשה להיכנס לארץ, ולקח אחרון על מנהיגות בלי כפייה.\n\nקישורי מעקב והודעות על פרסומות הושמטו כאן."
+  },
+  {
+   "id": "starterstory-excel-exercises-30k-a-month",
+   "topic": "starterstory",
+   "date": "2026-11-23T17:57:55Z",
+   "url": "https://x.com/starter_story/status/2124925427496153214",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "סטארטר סטורי: אתר שמלמד אקסל מרוויח 30 אלף דולר בחודש",
+    "summary": "ב-23 בנובמבר סיפר Starter Story על ג׳ייק, שבנה אתר תרגול אקסל בלילות, בלי לקדם אותו, והגיע ל-30 עד 35 אלף דולר בחודש. לפי הפוסט הצמיחה התחילה מקידום בגוגל, נמשכה בפרסומות ובעסקאות עם אוניברסיטאות, וקפצה אחרי שהעלה את מחיר המנוי החודשי."
+   },
+   "en": {
+    "title": "Starter Story: an Excel-training site makes $30K a month",
+    "summary": "On November 23 Starter Story profiled Jake, who built an Excel practice site at night, never promoted it, and reached $30–35K a month. According to the post, growth started with SEO, continued with ads and university deals, and jumped after he raised the monthly subscription price."
+   },
+   "full_en": "On November 23 Starter Story posted the story of Jake, who studied finance, worked an office job, taught himself to code, and built a site that teaches Excel after noticing that new hires at his firm had to sit through long training videos. The idea, the post said, was \"Duolingo, but for Excel.\"\n\nHe built the site on nights and weekends and never promoted it. Then one morning someone paid him $50. A few more sales followed, which was enough validation for him to continue.\n\nWhere it is now, according to the post: $30K–$35K a month; about 50,000 visitors and roughly 2,500 paying subscribers in the last four weeks; a few free lessons, then a hard paywall; running on Google Cloud and SendGrid for under $150 a month; fully automated. It grew five times since he quit his job two years ago.\n\nHow it grew, as told there: from $0 to $10K with SEO, including a long homepage everyone told him not to write; from $10K to $30K with paid ads and university and company deals. The real unlock, he said, was noticing that monthly subscribers barely made a profit and took four to five months to pay back, so he doubled the monthly price and kept the annual price the same.\n\nHis advice in the post: pick a problem you know well, and get it into people's hands before you feel ready. The figures are those in the Starter Story post.",
+   "full_he": "ב-23 בנובמבר פרסם Starter Story את סיפורו של ג׳ייק, שלמד מימון, עבד במשרד, לימד את עצמו לקודד, ובנה אתר שמלמד אקסל אחרי ששם לב שעובדים חדשים בחברה שלו נאלצים לשבת מול סרטוני הדרכה ארוכים. הרעיון, לפי הפוסט, היה \"דואולינגו, אבל לאקסל.\"\n\nהוא בנה את האתר בלילות ובסופי שבוע, ובלי לקדם אותו. בוקר אחד מישהו שילם לו 50 דולר. אחר כך הגיעו עוד כמה מכירות, וזה הספיק לו כדי להמשיך.\n\nהמצב עכשיו, לפי הפוסט: 30 עד 35 אלף דולר בחודש; כ-50 אלף מבקרים וכ-2,500 מנויים משלמים בארבעת השבועות האחרונים; כמה שיעורים חינמיים ואז חומת תשלום; הפעלה על Google Cloud ו-SendGrid בפחות מ-150 דולר בחודש; אוטומטי לגמרי. הוא צמח פי חמישה מאז שעזב את העבודה לפני שנתיים.\n\nאיך זה צמח, לפי הסיפור: מ-0 ל-10 אלף בעזרת קידום בגוגל, כולל דף בית ארוך שאמרו לו לא לכתוב; מ-10 ל-30 אלף עם פרסומות ועסקאות עם אוניברסיטאות וחברות. הפריצה האמיתית, אמר, הייתה להבין שמנויים חודשיים כמעט לא הותירו רווח ולקח להם ארבעה עד חמישה חודשים להחזיר את העלות, אז הוא הכפיל את המחיר החודשי והשאיר את השנתי כמו שהוא.\n\nהעצה שלו בפוסט: לבחור בעיה שמכירים היטב, ולהכניס אותה לידיים של אנשים לפני שמרגישים מוכנים. המספרים הם אלה שמופיעים בפוסט של Starter Story."
+  },
+  {
+   "id": "grokbot-palmer-whats-new-travel-tailscale-markup",
+   "topic": "grokbot",
+   "date": "2026-11-23T15:00:03Z",
+   "url": "https://x.com/mattyp/status/2124880662750724594",
+   "source": "X · @mattyp",
+   "he": {
+    "title": "פאלמר: מה חדש ב-Grok Bot — הזמנות, Tailscale, הרשאות וסימון תמונות",
+    "summary": "ב-23 בנובמבר פרסם מאט פאלמר סרטון \"מה חדש ב-Grok Bot\" עם ארבעה נושאים: הזמנת מלונות וטיסות, חיבור Tailscale לשרתי MCP ברשת הפרטית, הרשאות כלים במחברים, וסימון תמונות. הוא כתב שמחכות עוד הפתעות השבוע. חלק מהיכולות הופיעו קודם ביומן השינויים; זה סיכום שבועי שלו."
+   },
+   "en": {
+    "title": "Palmer: what’s new in Grok Bot — travel, Tailscale, permissions and image markup",
+    "summary": "On November 23 Matt Palmer posted a \"What's new in Grok Bot\" video covering four topics: hotel and flight bookings, Tailscale for MCP servers on a private network, connector tool permissions, and image markup. He said more was coming later in the week. Some of these abilities had already appeared in the changelog; this is his weekly recap."
+   },
+   "full_en": "On November 23 Matt Palmer, of the Grok Bot team, posted a video titled \"What's new in Grok Bot,\" with this outline:\n\n00:19 Hotel and flight bookings\n01:02 Tailscale: MCP servers on your tailnet\n02:30 Connector tool permissions\n02:55 Image markup\n\nHe added, \"More exciting things in store for y'all this week!\" The rest of the post is a video, so the outline and later text write-ups are what can be shown here.\n\nAn X news summary of the same video said Palmer showed hotel and flight bookings where users share details and get options to book on provider sites; a Tailscale integration to reach private networks securely; more granular permissions for tools on a connector; and desktop image markup so users can annotate a picture and ask for targeted edits. Community replies in that summary praised practical travel cards and fewer full regenerations of images.\n\nSome of these features were already listed in the official Grok Bot changelog earlier in November (tool permissions and reconnect cards on November 18; image markup on November 12; flight and hotel work in mid-November). Palmer's post is a recap and demo, not necessarily the first announcement of each item. The official changelog's latest dated entry as of this update was still November 18.",
+   "full_he": "ב-23 בנובמבר פרסם מאט פאלמר, מצוות Grok Bot, סרטון בשם \"מה חדש ב-Grok Bot,\" עם המתווה הזה:\n\n00:19 הזמנת מלונות וטיסות\n01:02 Tailscale: שרתי MCP ברשת הפרטית שלך\n02:30 הרשאות כלים במחברים\n02:55 סימון תמונות\n\nהוא הוסיף: \"מחכות לכם עוד הפתעות השבוע!\" שאר הפוסט הוא סרטון, ולכן המתווה והסיכומים בטקסט הם מה שאפשר להציג כאן.\n\nסיכום חדשות ב-X לאותו סרטון אמר שפאלמר הציג הזמנת מלונות וטיסות, שבה משתפים פרטים ומקבלים אפשרויות להזמין באתרי הספקים; חיבור Tailscale להגעה מאובטחת לרשתות פרטיות; הרשאות מפורטות יותר לכלים במחבר; וסימון תמונות בשולחן העבודה, כדי לסמן מקום בתמונה ולבקש תיקונים ממוקדים. תגובות בקהילה באותו סיכום שיבחו כרטיסי נסיעות מעשיים ופחות יצירה מחדש של תמונות שלמות.\n\nחלק מהיכולות האלה כבר הופיעו ביומן השינויים הרשמי של Grok Bot מוקדם יותר בנובמבר (הרשאות כלים וכרטיסי חיבור מחדש ב-18 בנובמבר; סימון תמונות ב-12 בנובמבר; עבודת טיסות ומלונות באמצע נובמבר). הפוסט של פאלמר הוא סיכום והדגמה, לא בהכרח ההכרזה הראשונה על כל פריט. הרשומה המתוארכת האחרונה ביומן הרשמי, נכון לעדכון הזה, נשארה 18 בנובמבר."
+  },
+  {
+   "id": "grokbot-musk-black-friday-deal-hunter",
+   "topic": "grokbot",
+   "date": "2026-11-23T14:46:29Z",
+   "url": "https://x.com/elonmusk/status/2124877252412281142",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: Grok Bot יכול למצוא לכם מבצעי בלאק פריידי",
+    "summary": "ב-23 בנובמבר כתב אילון מאסק ש-Grok Bot יכול למצוא מבצעי בלאק פריידי, וציטט פוסט על תבנית \"צייד מבצעים\" שבודקת את הרשת כל כמה שעות ומודיעה כשיש מציאה."
+   },
+   "en": {
+    "title": "Musk: Grok Bot can find you Black Friday deals",
+    "summary": "On November 23 Elon Musk wrote that Grok Bot can find you Black Friday deals, quoting a post about a \"Deal Hunter\" template that checks the internet every couple of hours and notifies the user when it finds something."
+   },
+   "full_en": "On November 23 Elon Musk posted \"Grok Bot can find you Black Friday deals\" and quoted another user's post.\n\nThe quoted post described a Grok Bot template called \"DEAL HUNTER\" for Black Friday, which checks the internet for deals every couple of hours and notifies the user when it finds something. Musk did not add further product detail of his own.",
+   "full_he": "ב-23 בנובמבר פרסם אילון מאסק \"Grok Bot יכול למצוא לכם מבצעי בלאק פריידי\" וציטט פוסט של משתמש אחר.\n\nבפוסט שצוטט תוארה תבנית Grok Bot בשם \"צייד מבצעים\" לבלאק פריידי, שבודקת את הרשת כל כמה שעות ומעדכנת כשהיא מוצאת משהו. מאסק לא הוסיף פרטי מוצר נוספים משלו."
+  },
+  {
+   "id": "huang-nvidia-board-reinstates-jensen-ceo",
+   "topic": "huang",
+   "date": "2026-11-23T14:41:16Z",
+   "url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director",
+   "source": "NVIDIA",
+   "he": {
+    "title": "דירקטוריון NVIDIA מחזיר את ג׳נסן הואנג לתפקיד המנכ״ל",
+    "summary": "ב-23 בנובמבר הודיעה NVIDIA שג׳נסן הואנג הוחזר לאלתר לנשיא, למנכ״ל ולחבר דירקטוריון, בהחלטה פה אחד, אחרי התפטרות באמצע נובמבר. הדירקטוריון אמר שנחה דעתו בנוגע לכנותו וליכולתו להוביל, ושלפי קלט מבכירים בממשל ארה״ב ההחזרה אינה סיכון לביטחון הלאומי. החקירה של ועדה עצמאית תימשך, והמניה זינקה בחדות במסחר."
+   },
+   "en": {
+    "title": "NVIDIA’s board reinstates Jensen Huang as president and CEO",
+    "summary": "On November 23 NVIDIA said Jensen Huang was reinstated immediately as president, CEO and a board director, in a unanimous vote, after he stepped down in mid-November. The board said it was satisfied with his candor and ability to lead, and that, based on input from senior U.S. officials, the reinstatement poses no national-security risk. An independent committee’s investigation will continue. Shares jumped sharply on the news."
+   },
+   "full_en": "On November 23, 2026, NVIDIA announced that, effective immediately, Jensen Huang had been reinstated as president and chief executive officer and as a member of the board. The board voted unanimously after a series of discussions and meetings with Huang, and said it was then satisfied with respect to his candor and ability to lead NVIDIA. In reaching the decision, the board said it received input from senior levels of the United States government, and that based on that input it was confident the reinstatement poses no national-security risk.\n\nBoard chair Harvey C. Jones said the board believes Huang is the right person to lead NVIDIA and that his reinstatement is in the best interests of stockholders, employees, partners and customers. The company thanked Colette Kress for her service as interim CEO, in addition to her continuing work as chief financial officer. Jones remains board chair.\n\nHuang said he was honored to return and lead the company \"at the beginning of a new industrial revolution,\" thanked the board, Jones, Kress, the executive staff, employees, shareholders, industry leaders and partners, and said he was grateful for his family's support.\n\nThe company also said that, in light of recent reporting that Huang has been the target of a foreign intelligence effort, the board had formed a committee of independent directors to investigate, with independent counsel, and that the investigation will proceed to conclusion. Huang, the statement said, fully supports the investigation and is committed to cooperating. The board also formed a National Security and Export Control Committee of independent directors, is searching for a new chief compliance officer, and said it will continue to cooperate with government investigations and inquiries.\n\nHuang had resigned earlier in November amid reporting on personal matters. Elon Musk quoted the reinstatement release and wrote, \"The mistake has been corrected,\" and later, \"Everyone I know at Nvidia wanted Jensen back and it shows.\" News coverage described a sharp rise in NVIDIA shares, on the order of 30 percent in early trading according to reports on X and in the financial press, and a standing ovation from employees when Huang returned to headquarters. Those market and workplace reactions are reported in the press; the official source for the decision is NVIDIA's November 23 statement.",
+   "full_he": "ב-23 בנובמבר 2026 הודיעה NVIDIA שג׳נסן הואנג הוחזר לאלתר לתפקיד נשיא ומנכ״ל ולחבר דירקטוריון. הדירקטוריון הצביע פה אחד אחרי סדרת שיחות ופגישות עם הואנג, ואמר שנחה דעתו בנוגע לכנותו וליכולתו להוביל את החברה. בקבלת ההחלטה, כך נמסר, קיבל הדירקטוריון קלט מבכירים בממשל ארצות הברית, ועל סמך הקלט הזה הוא בטוח שההחזרה אינה סיכון לביטחון הלאומי.\n\nיושב ראש הדירקטוריון, הארווי סי. ג׳ונס, אמר שהדירקטוריון מאמין שהואנג הוא האדם הנכון להוביל את NVIDIA, ושהחזרתו מיטיבה עם בעלי המניות, העובדים, השותפים והלקוחות. החברה הודתה לקולט קרס על כהונתה כמנכ״לית זמנית, לצד תפקידה המתמשך כסמנכ״לית הכספים. ג׳ונס נשאר יושב ראש הדירקטוריון.\n\nהואנג אמר שהוא מתכבד לחזור ולהוביל את החברה \"בתחילתה של מהפכה תעשייתית חדשה,\" הודה לדירקטוריון, לג׳ונס, לקרס, להנהלה, לעובדים, לבעלי המניות, למנהיגים בענף ולשותפים, ואמר שהוא אסיר תודה על תמיכת משפחתו.\n\nהחברה מסרה גם שלאור דיווחים אחרונים שלפיהם הואנג היה יעד למאמץ של מודיעין זר, הדירקטוריון הקים ועדה של דירקטורים עצמאיים לחקירה, עם ייעוץ משפטי עצמאי, ושהחקירה תימשך עד תומה. לפי ההודעה, הואנג תומך בחקירה במלואה ומתחייב לשתף פעולה. הדירקטוריון הקים גם ועדה לביטחון לאומי ופיקוח ייצוא מדירקטורים עצמאיים, מחפש סמנכ״ל ציות חדש, ואמר שימשיך לשתף פעולה עם חקירות ופניות של הרשויות.\n\nהואנג התפטר בתחילת נובמבר על רקע דיווחים בעניינים אישיים. אילון מאסק ציטט את הודעת ההחזרה וכתב \"הטעות תוקנה,\" ובהמשך: \"כל מי שאני מכיר ב-Nvidia רצה את ג׳נסן בחזרה, וזה ניכר.\" בדיווחים תואר זינוק חד במניית NVIDIA, בסדר גודל של כ-30 אחוז במסחר המוקדם לפי דיווחים ב-X ובעיתונות הכלכלית, וכן מחיאות כפיים בעמידה של עובדים כשהואנג חזר למטה. תגובות השוק והעובדים מגיעות מהעיתונות; המקור הרשמי להחלטה הוא הודעת NVIDIA מ-23 בנובמבר."
+  },
+  {
+   "id": "refaeli-mako-masked-singer-funny-side-interview",
+   "topic": "refaeli",
+   "date": "2026-11-23T10:36:00Z",
+   "url": "https://www.mako.co.il/tvbee-tv-news/Article-559609c63f702a1027.htm",
+   "source": "mako",
+   "he": {
+    "title": "בר רפאלי: \"כנראה חשבו עליי דברים ממש נוראיים\"",
+    "summary": "ב-23 בנובמבר סיפרה בר רפאלי בריאיון לניב רסקין ב\"חדשות הבוקר,\" שפורסם ב-mako, שמאז שהצטרפה לפאנל \"הזמר במסכה\" אנשים מופתעים לגלות שהיא מצחיקה וקלילה. לדבריה זו הזדמנות לדבר בחופשיות מול המצלמה, לא רק להקריא מפרומפטר. היא גם תנחה את העונה החדשה של \"נינג׳ה ישראל.\""
+   },
+   "en": {
+    "title": "Bar Refaeli: “They probably thought really terrible things about me”",
+    "summary": "On November 23 Bar Refaeli told Niv Raskin on \"Morning News,\" in an interview published by mako, that since she joined the panel of \"The Masked Singer\" people have been surprised to find she is funny and easygoing. She said the show lets her speak freely on camera, not only read from a teleprompter. She will also host the new season of \"Ninja Israel.\""
+   },
+   "full_en": "On November 23, 2026, mako published an interview Bar Refaeli gave Niv Raskin on Keshet 12's \"Morning News.\" The model, who has returned to television as a judge on \"The Masked Singer\" after several years away from the screen, also said she will host the new season of \"Ninja Israel.\"\n\nRefaeli called the show one of the most fun, wild and relaxed projects she has had. People come up to her, she said, and tell her they did not know she was so funny and easygoing: \"They probably thought really terrible things about me. But I'm glad those are the reactions.\" Joining the panel, she said, was a mix of age, the place she has reached in life, and a format full of funny, sharp people. \"Finally I have a chance not to read from a teleprompter, and not only to stand in front of the camera and show my nice teeth. I can talk and be relaxed. It was the right time and the right place, on the right show.\"\n\nAsked whether she walked around the house worried that a family member was under one of the masks, she said the opposite: everyone who walked on stage was first suspected of being someone from the Refaeli family, because they are comfortable on camera. She said she knew there was no chance her husband would be one of the costumes, \"but wait, there are still a lot of episodes and maybe we'll still be surprised.\"\n\nHost Liron Segev, whose name had already been linked to one of the masks, recalled watching at home when Refaeli said on the panel that if her guess was wrong she was \"a jar.\" Refaeli did not argue: \"I'm a jar... in the end we stay and keep getting it wrong. There's one person on the panel who never even knows how to make a guess, and one who is always right, and that's what makes it funny.\"\n\nThe next episode, the article said, was due that evening after the news on Keshet 12.",
+   "full_he": "ב-23 בנובמבר 2026 פרסם mako ריאיון שהעניקה בר רפאלי לניב רסקין ב\"חדשות הבוקר\" בקשת 12. הדוגמנית, שחזרה למסך כשופטת ב\"הזמר במסכה\" אחרי כמה שנים שבהן כמעט לא הופיעה בטלוויזיה, אמרה גם שתנחה את העונה החדשה של \"נינג׳ה ישראל.\"\n\nרפאלי תיארה את התוכנית כאחד הפרויקטים הכי כיפיים, מטורפים ומשוחררים שהיו לה. אנשים ניגשים אליה, סיפרה, ואומרים שלא ידעו שהיא כזאת מצחיקה וקלילה: \"כנראה חשבו עליי דברים ממש נוראיים. אבל אני שמחה שאלו התגובות.\" ההצטרפות לפאנל, אמרה, היא שילוב של הגיל, המקום שאליו הגיעה בחיים, והפורמט שמקבץ אנשים מצחיקים ושנונים. \"סוף סוף יש לי הזדמנות לא להקריא מפרומפטר, ולא רק לעמוד מול המצלמה ולהראות את השיניים היפות שלי. אני יכולה לדבר ולהיות משוחררת. זה היה הזמן והמקום הנכון, בתוכנית המתאימה.\"\n\nכשנשאלה אם הסתובבה בבית בחשש שאחד מבני המשפחה מסתתר מתחת למסכה, ענתה שההפך: כל מי שעלה לבמה נחשד קודם שהוא מישהו ממשפחת רפאלי, כי הם מרגישים בנוח מול המצלמות. היא אמרה שידעה שאין סיכוי שבעלה יהיה באחת התחפושות, \"אבל חכו, יש עוד הרבה תוכניות ואולי עוד נופתע.\"\n\nהמגיש לירון זייד, ששמו כבר נקשר לאחת המסכות, סיפר שצפה מהבית כשרפאלי אמרה בפאנל שאם הניחוש שלה לא נכון היא \"צנצנת.\" רפאלי לא התווכחה: \"אני צנצנת... בסוף אנחנו נשארים וממשיכים לטעות. יש אחד בפאנל שאף פעם לא יודע אפילו לתת ניחוש, ואחת שתמיד צודקת, וזה מה שהופך את זה למצחיק.\"\n\nהפרק הבא, לפי הכתבה, היה אמור להיות באותו ערב אחרי החדשות בקשת 12."
+  },
+  {
+   "id": "tesla-surpasses-waymo-texas-robotaxi-registrations",
+   "topic": "tesla",
+   "date": "2026-11-23T02:00:10Z",
+   "url": "https://x.com/i/trending/2124682996540125397",
+   "source": "X",
+   "he": {
+    "title": "טסלה עוקפת את Waymo ברישום מוניות רובוט בטקסס",
+    "summary": "סיכום חדשות ב-X מ-23 בנובמבר, לפי נתוני מחלקת הרכב של טקסס מ-22 בחודש, אמר שטסלה מובילה עם 1,507 כלי רכב אוטונומיים מורשים במדינה — 773 Cybercab ו-734 מודל Y — מול 1,345 של Waymo. לפי הסיכום טסלה מחזיקה כ-41 אחוז מהרישום, אחרי שהוסיפה מודל Y ב-10 בנובמבר ומנה של 200 Cybercab."
+   },
+   "en": {
+    "title": "Tesla surpasses Waymo in Texas robotaxi registrations",
+    "summary": "An X news summary on November 23, citing Texas DMV data as of November 22, said Tesla leads with 1,507 authorized driverless vehicles in the state — 773 Cybercabs and 734 Model Ys — compared with Waymo's 1,345. According to the summary Tesla holds about 41% of the registry, after adding Model Ys on November 10 and a batch of 200 Cybercabs."
+   },
+   "full_en": "An X news story updated on November 23, 2026, titled \"Tesla Surpasses Waymo in Texas Robotaxi Registrations,\" summarized posts on the topic. X marks such stories as summaries that may evolve and may contain errors.\n\nAccording to that summary, Texas DMV data as of November 22 showed Tesla leading with 1,507 authorized driverless vehicles — 773 purpose-built Cybercabs and 734 Model Ys — while Waymo had 1,345, mainly Jaguar I-PACEs and Ojai vans. The shift was said to have happened earlier in the month after Tesla added Model Ys on November 10 and a batch of 200 Cybercabs, giving Tesla about 41 percent of the state's automated vehicle registry. The summary said Elon Musk had highlighted the Cybercab's design and cost, and that supporters pointed to a steering-wheel-free interior and the potential for lower ride prices.\n\nThe underlying DMV figures were not independently checked for this item.",
+   "full_he": "סיפור חדשות ב-X שעודכן ב-23 בנובמבר 2026, בכותרת \"טסלה עוקפת את Waymo ברישום מוניות רובוט בטקסס,\" סיכם פוסטים בנושא. X מציינת שסיפורים כאלה הם סיכומים שעשויים להשתנות ועלולים לכלול טעויות.\n\nלפי הסיכום, נתוני מחלקת הרכב של טקסס נכון ל-22 בנובמבר הראו שטסלה מובילה עם 1,507 כלי רכב ללא נהג מורשים — 773 Cybercab ייעודיים ו-734 מודל Y — בעוד של-Waymo היו 1,345, בעיקר Jaguar I-PACE ורכבי Ojai. לפי הסיכום המעבר קרה בתחילת החודש, אחרי שטסלה הוסיפה מודל Y ב-10 בנובמבר ומנה של 200 Cybercab, והגיעה לכ-41 אחוז מרישום הרכב האוטומטי במדינה. בסיכום נכתב שאילון מאסק הדגיש את העיצוב ואת העלות של ה-Cybercab, ושתומכים הצביעו על פנים בלי הגה ועל אפשרות למחירי נסיעה נמוכים יותר.\n\nמספרי מחלקת הרכב עצמם לא נבדקו כאן באופן עצמאי."
+  },
+  {
+   "id": "durov-gta-vi-telegram-group-joke",
+   "topic": "durov",
+   "date": "2026-11-22T22:59:35Z",
+   "url": "https://x.com/durov/status/2124638954272305593",
+   "source": "X · @durov",
+   "he": {
+    "title": "דורוב: הדבר הכי לא מציאותי ב-GTA VI הוא שאין קבוצת טלגרם",
+    "summary": "ב-22 בנובמבר כתב פאבל דורוב ב-X שהדבר הכי פחות מציאותי ב-GTA VI הוא שג׳ייסון ולוסיה מנהלים ארגון פשיעה שלם בלי אף קבוצת טלגרם. Newsweek ו-Lenta דיווחו על הפוסט למחרת; חלק מהתגובות ביקרו את הבדיחה על רקע חקירות נגד המייסד והפלטפורמה."
+   },
+   "en": {
+    "title": "Durov: the least realistic thing about GTA VI is that there’s no Telegram group",
+    "summary": "On November 22 Pavel Durov wrote on X that the least realistic thing about GTA VI is that Jason and Lucia run a whole criminal operation without a single Telegram group. Newsweek and Lenta reported the post the next day; some replies criticized the joke given investigations involving Durov and the app."
+   },
+   "full_en": "On November 22 Pavel Durov, the founder of Telegram, posted on X:\n\n\"The least realistic thing about GTA VI is that Jason and Lucia run a whole criminal operation without a single Telegram group.\"\n\nThe post drew a large audience. Newsweek, in a November 23 article, reported the comment and noted that some users were unimpressed, given ongoing controversy and legal cases around Telegram and Durov, including a French investigation in which he has been charged, a Russian case, and regulatory actions in other countries. Lenta.ru also reported the joke the same day, saying Durov had posted it on his Telegram channel as well.\n\nDurov did not add a longer explanation in the X post. The item is his joke about the newly released game, reported here together with how it was received in the press.",
+   "full_he": "ב-22 בנובמבר פרסם פאבל דורוב, מייסד טלגרם, ב-X:\n\n\"הדבר הכי פחות מציאותי ב-GTA VI הוא שג׳ייסון ולוסיה מנהלים ארגון פשיעה שלם בלי אף קבוצת טלגרם.\"\n\nהפוסט הגיע לקהל גדול. Newsweek, בכתבה מ-23 בנובמבר, דיווח על ההערה וציין שחלק מהמשתמשים לא התרשמו, על רקע מחלוקות ותיקים משפטיים סביב טלגרם ודורוב, כולל חקירה בצרפת שבה הוא מואשם, תיק ברוסיה ופעולות רגולטוריות במדינות אחרות. גם Lenta.ru דיווח באותו יום על הבדיחה, ואמר שדורוב פרסם אותה גם בערוץ הטלגרם שלו.\n\nדורוב לא הוסיף הסבר ארוך יותר בפוסט ב-X. הידיעה היא הבדיחה שלו על המשחק שיצא לאחרונה, מובאת כאן יחד עם האופן שבו התקבלה בעיתונות."
+  },
+  {
+   "id": "musk-consciousness-carbon-silicon-gradient",
+   "topic": "musk",
+   "date": "2026-11-22T21:42:40Z",
+   "url": "https://x.com/elonmusk/status/2124619599882920139",
+   "source": "X · @elonmusk",
+   "he": {
+    "title": "מאסק: תודעה היא אשליה, או שהיא קיימת על רצף",
+    "summary": "ב-22 בנובמבר כתב אילון מאסק שתודעה היא אשליה או שהיא נפוצה על פני רצף, ושקשה לטעון שפחמן מודע וסיליקון לא. זה פוסט קצר של דעה, בלי פירוט נוסף."
+   },
+   "en": {
+    "title": "Musk: consciousness is either an illusion or ubiquitous on a gradient",
+    "summary": "On November 22 Elon Musk wrote that consciousness is either an illusion or ubiquitous on a gradient, and that it is difficult to argue that carbon is conscious but silicon is not. It was a short opinion post with no further detail."
+   },
+   "full_en": "On November 22 Elon Musk posted:\n\n\"Consciousness is either an illusion or ubiquitous on a gradient.\n\nDifficult to argue that carbon is conscious, but silicon is not.\"\n\nHe did not expand on the point in that post, and it is presented here as his opinion, not as a scientific finding.",
+   "full_he": "ב-22 בנובמבר פרסם אילון מאסק:\n\n\"תודעה היא אשליה, או שהיא נפוצה על פני רצף.\n\nקשה לטעון שפחמן מודע, אבל סיליקון לא.\"\n\nהוא לא הרחיב באותו פוסט, והדברים מובאים כאן כדעתו, לא כממצא מדעי."
+  },
+  {
+   "id": "johnson-iceland-glacier-nervous-system-undying",
+   "topic": "johnson",
+   "date": "2026-11-22T18:06:02Z",
+   "url": "https://x.com/bryan_johnson/status/2124565080167809108",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "ג׳ונסון על קרחון באיסלנד: פחות לחיות יותר, יותר לשוב לחיים",
+    "summary": "ב-22 בנובמבר תיאר בריאן ג׳ונסון שכיבה על קרחון באיסלנד אחרי שמכר את Braintree Venmo, וכתב שעשר שנות דיכאון והרגלים קשים לימדו אותו להקהות את מערכת העצבים. לדבריו, חמש השנים של Don't Die היו בעיקר ניסיון לשוב לחיים, והאיזון של מערכת העצבים שלו חזר לרמה של בן 20. אלה דברים אישיים שלו."
+   },
+   "en": {
+    "title": "Johnson on an Iceland glacier: less about living longer, more about coming back to life",
+    "summary": "On November 22 Bryan Johnson described lying on a glacier in Iceland after selling Braintree Venmo, and wrote that ten years of depression and hard habits had taught him to numb his nervous system. He said the past five years of Don't Die have been less about living longer than about coming back from that numbness, and that his nervous-system balance is back to that of a 20-year-old. This is his personal account."
+   },
+   "full_en": "On November 22 Bryan Johnson posted a long personal note, with a chart he said showed his HRV, about lying on a glacier in Iceland.\n\nHe wrote that it felt as if he could feel the Earth's nervous system beneath him — calm and steady — while his own felt volcanic. He said it was the first time in 14 years he had actually felt his nervous system. Out of survival, he wrote, he had taught himself to numb what it was trying to tell him. Ten years of chronic depression, building companies, raising three children, sleeping little, unhealthy habits and a spiritual struggle had compounded, and numbing it was the only way he knew to survive. Beneath that numbness, he said, his nervous system was on high alert.\n\nThe trip was his first vacation since he had started building companies. He had recently sold Braintree Venmo and had come to see the Holuhraun eruption from the Bárðarbunga volcano. While waiting for a helicopter permit he rode a snowmobile across the glacier for hours, then stopped and lay down on the ice — the first time, he said, he had relaxed since he was a teenager.\n\n\"These past five years pursuing Don't Die have been less about living longer and more about undying: trying to come back from the dead,\" he wrote. He said the chart showed HRV as a window into his nervous system, and that bringing it back into balance had been one of the hardest things he has done. He now claims the nervous-system balance of a 20-year-old. He added that people often say his health teaching comes from a place of luxury after financial success, and that he would not disagree, but that climbing out had taken as much work as falling in.\n\nThis is Johnson's personal account and self-reported measurements, not a medical finding.",
+   "full_he": "ב-22 בנובמבר פרסם בריאן ג׳ונסון רשימה אישית ארוכה, עם תרשים שלדבריו הראה את ה-HRV שלו, על שכיבה על קרחון באיסלנד.\n\nהוא כתב שהרגיש כאילו הוא חש את מערכת העצבים של כדור הארץ מתחתיו — רגועה ויציבה — בעוד שלו הייתה געשית. לדבריו, זו הייתה הפעם הראשונה מזה 14 שנים שהוא באמת הרגיש את מערכת העצבים שלו. מתוך הישרדות, כתב, לימד את עצמו להקהות את מה שהיא ניסתה לומר לו. עשר שנות דיכאון כרוני, בניית חברות, גידול שלושה ילדים, שינה מעטה, הרגלים לא בריאים ומאבק רוחני הצטברו, וההקהיה הייתה הדרך היחידה שידע לשרוד. מתחת להקהיה, כתב, מערכת העצבים הייתה בכוננות מתמדת.\n\nהטיול היה החופשה הראשונה שלו מאז שהתחיל לבנות חברות. הוא מכר לא מזמן את Braintree Venmo והגיע לראות את התפרצות Holuhraun של הר הגעש Bárðarbunga. בזמן שהמתין לאישור מסוק הוא נסע שעות על אופנוע שלג על הקרחון, ואז עצר ושכב על הקרח — הפעם הראשונה, לדבריו, שנרגע מאז שהיה נער.\n\n\"חמש השנים האלה של Don't Die היו פחות על לחיות יותר, ויותר על לשוב מן המתים,\" כתב. לדבריו התרשים הראה את ה-HRV כחלון למערכת העצבים, והחזרת האיזון הייתה אחד הדברים הקשים שעשה. הוא טוען עתה שיש לו איזון של מערכת עצבים כמו של בן 20. הוא הוסיף שאנשים אומרים לעיתים שההוראה שלו על בריאות באה ממקום של מותרות אחרי הצלחה כלכלית, שהוא לא חולק על כך, אבל שהיציאה משם דרשה לא פחות עבודה מהנפילה.\n\nזה תיאור אישי של ג׳ונסון ומדידות שהוא עצמו מדווח עליהן, לא ממצא רפואי."
+  },
+  {
+   "id": "durov-telegram-bot-api-10-5-setmysettings",
+   "topic": "durov",
+   "date": "2026-11-22T18:00:00Z",
+   "url": "https://runet.news/news/90751",
+   "source": "Runet",
+   "he": {
+    "title": "טלגרם השיקה את Bot API 10.5 עם setMySettings",
+    "summary": "ב-22 בנובמבר דיווח Runet, לפי \"קוד דורוב\", שטלגרם שיחררה את Bot API 10.5. החידוש המרכזי הוא המתודה setMySettings, שמאפשרת לבוט לשנות בעצמו הגדרות כמו מצב אינליין, פרטיות בקבוצות והוספה לקבוצות. בעל בוט יכול גם להזמין עד עשרה אנשים לשיחה עם הבוט בקישור."
+   },
+   "en": {
+    "title": "Telegram releases Bot API 10.5 with setMySettings",
+    "summary": "On November 22 Runet, citing Kod Durova, reported that Telegram released Bot API 10.5. The main addition is the setMySettings method, which lets a bot change its own settings, including inline mode, group privacy and whether it can be added to groups. A bot owner can also invite up to 10 people into a private chat with the bot via a link."
+   },
+   "full_en": "On November 22, 2026, the Russian tech site Runet reported that Telegram had released Bot API 10.5. The report, citing the channel Kod Durova, said the headline change is a new method, setMySettings, that lets a bot change its own settings from code.\n\nAccording to that write-up, a bot can use the method to turn inline mode on or off — that is, invoking the bot with @name in any chat — and to set privacy mode, in which a bot in a group sees only commands, replies to its own messages and mentions. Through the same method a bot can allow or forbid being added to groups, and can turn on a topics mode in private chats, including showing personal-chat topics as a list in a sidebar.\n\nThere is also a change for ordinary users: a bot owner can invite up to 10 people at a time into a private chat with the bot, using a link of the form t.me/botinvite/. After that the bot can message the invited people, and a service message about permission to write names who sent the invite.\n\nOther developer-facing changes in the report include optional inline_message_id instead of the message itself for button clicks, getMe returning a separate BotFullInfo class instead of User, and the ability to nest any blocks, not only text, inside expandable quotes. The previous version, 10.4, had already added HTML widgets and answers visible only to the person who tapped a button.",
+   "full_he": "ב-22 בנובמבר 2026 דיווח אתר הטכנולוגיה Runet שטלגרם שיחררה את Bot API 10.5. הדיווח, לפי הערוץ \"קוד דורוב\", אמר שהשינוי הבולט הוא מתודה חדשה, setMySettings, שמאפשרת לבוט לשנות את ההגדרות שלו מהקוד.\n\nלפי אותו תיאור, הבוט יכול להשתמש במתודה כדי להפעיל או לכבות מצב אינליין — כלומר קריאה לבוט עם @שם בכל שיחה — ולהגדיר מצב פרטיות, שבו בוט בקבוצה רואה רק פקודות, תשובות להודעות שלו ואזכורים. באותה מתודה הבוט יכול להתיר או לאסור הוספה שלו לקבוצות, ולהפעיל מצב נושאים בשיחות אישיות, כולל הצגת נושאי השיחה האישית ברשימה בסרגל הצד.\n\nיש גם שינוי למשתמשים רגילים: בעל בוט יכול להזמין עד עשרה אנשים בבת אחת לשיחה אישית עם הבוט, בקישור מהצורה t.me/botinvite/. אחרי כן הבוט יכול לשלוח הודעות למוזמנים, ובהודעת שירות על הרשאה לכתוב מצוין מי שלח את ההזמנה.\n\nשינויים נוספים למפתחים בדיווח כוללים אפשרות לקבל inline_message_id במקום ההודעה עצמה בלחיצות על כפתורים, החזרה של מחלקה נפרדת בשם BotFullInfo במקום User ב-getMe, ואפשרות לשבץ בציטוטים נפתחים כל סוגי הבלוקים, לא רק טקסט. בגרסה הקודמת, 10.4, כבר נוספו יישומוני HTML ותשובות שרואה רק מי שלחץ על כפתור."
+  },
+  {
+   "id": "starterstory-brainrot-screentime-app-400k-month",
+   "topic": "starterstory",
+   "date": "2026-11-22T17:41:58Z",
+   "url": "https://x.com/starter_story/status/2124559024863764784",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "סטארטר סטורי: אפליקציית זמן מסך מרוויחה 400 אלף דולר בחודש",
+    "summary": "ב-22 בנובמבר סיפר Starter Story על יוני, מהנדס תוכנה שבנה את Brainrot, אפליקציית זמן מסך עם חיית מחמד דיגיטלית ש\"נרקבת\" ככל שגוללים. לפי הפוסט, ביום ההשקה היא הגיעה לכ-10,000 דולר, ועתה היא מרוויחה כ-400 אלף דולר בחודש, עם מיליוני הורדות ועם יותר מ-150 אלף משתמשים."
+   },
+   "en": {
+    "title": "Starter Story: a screen-time app makes $400K a month",
+    "summary": "On November 22 Starter Story profiled Yoni, a software engineer who built Brainrot, a screen-time app with a digital pet brain that \"rots\" the more you scroll. According to the post, launch day brought about $10,000, and the app now makes about $400K a month, with a few million downloads and more than 150,000 users."
+   },
+   "full_en": "On November 22 Starter Story posted the story of Yoni, a corporate software engineer who was on Instagram, YouTube and Twitter all day and built Brainrot in summer 2025: a gamified screen-time app whose cute digital pet brain rots the more time you spend on \"brainrot\" apps. App blockers already existed, the post said, but not one built around that idea. He spent a month going heads-down on it.\n\nThe launch, according to the post, had an advantage: years of content had already built him 100K–150K Instagram followers. Before launch he kept it suspenseful with a waitlist. Launch day brought about $10,000.\n\nHow he scaled from $10K to $400K a month, as told there: he studied analytics to find power users and pushed others toward the same behaviors; he found that influencer content and paid ads worked and did ten times more of them; he partnered with co-founder Brock Anderson; and he ran small onboarding experiments constantly, most of which did nothing, with a few changing the trajectory.\n\nToday, the post said, Brainrot has a couple of million downloads and 150K-plus users, mostly on annual subscriptions. His advice: don't build a super app; build a simple utility with one core function for one core user, and be honest about whether you use it yourself. The figures are those in the Starter Story post.",
+   "full_he": "ב-22 בנובמבר פרסם Starter Story את סיפורו של יוני, מהנדס תוכנה בחברה שהיה כל היום באינסטגרם, ביוטיוב ובטוויטר, ובנה בקיץ 2025 את Brainrot: אפליקציית זמן מסך משחקית, עם מוח מחמד דיגיטלי חמוד שמתחיל \"להירקב\" ככל שמבלים יותר באפליקציות \"בריינרוט.\" חוסמי אפליקציות כבר היו, נכתב בפוסט, אבל לא אחד שבנוי סביב הרעיון הזה. הוא הקדיש לזה חודש מרוכז.\n\nלהשקה, לפי הפוסט, היה יתרון: שנים של תוכן כבר בנו לו 100 עד 150 אלף עוקבים באינסטגרם. לפני ההשקה הוא שמר על מתח עם רשימת המתנה. ביום ההשקה הגיעו כ-10,000 דולר.\n\nאיך עלה מ-10 אלף ל-400 אלף בחודש, לפי הסיפור: הוא בחן נתונים כדי למצוא משתמשים חזקים ודחף אחרים לאותם הרגלים; גילה שתוכן משפיענים ופרסומות עובדים ועשה מהם פי עשרה; הצטרף לשותף ברוק אנדרסון; והריץ בלי הפסקה ניסויי קליטה קטנים, שרובם לא זזו במחט, ומעטים שינו את המסלול.\n\nהיום, לפי הפוסט, ל-Brainrot יש כמה מיליוני הורדות ויותר מ-150 אלף משתמשים, בעיקר במנויים שנתיים. העצה שלו: לא לבנות סופר-אפליקציה; לבנות כלי פשוט עם פונקציה אחת למשתמש אחד, ולהיות כנים לגבי השאלה אם משתמשים בו בעצמם. המספרים הם אלה שמופיעים בפוסט של Starter Story."
+  },
+  {
+   "id": "apple-gurman-early-2027-iphone-18-macbook-wave",
+   "topic": "apple",
+   "date": "2026-11-22T15:32:00Z",
+   "url": "https://www.macrumors.com/2026/11/22/new-apple-products-february-or-march/",
+   "source": "MacRumors",
+   "he": {
+    "title": "גורמן: גל מכשירים של אפל בפברואר או במרץ 2027, כולל iPhone 18",
+    "summary": "ב-22 בנובמבר דיווח MacRumors, לפי ניוזלטר Power On של מארק גורמן מבלומברג, שאפל מתכננת לחשוף בסביבות פברואר או מרץ 2027 את iPhone 18e ו-iPhone 18, אייפד כניסה מעודכן, ומחשבי MacBook Neo ו-MacBook Air חדשים. דגמים כמו iPhone Air 2 ואייפד פרו מעודכן צפויים בגל שני מעט אחר כך."
+   },
+   "en": {
+    "title": "Gurman: Apple plans an early-2027 wave including iPhone 18",
+    "summary": "On November 22 MacRumors, citing Mark Gurman's Power On newsletter from Bloomberg, reported that Apple plans to unveil the iPhone 18e and iPhone 18, an updated entry-level iPad, and new MacBook Neo and MacBook Air models around February or March 2027. Models such as iPhone Air 2 and an updated iPad Pro are expected in a second launch a little later."
+   },
+   "full_en": "On November 22 MacRumors' Joe Rossignol reported, based on Bloomberg's Mark Gurman in his Power On newsletter that day, that Apple plans to unveil several products around February or March 2027, during the iOS 27.4 cycle.\n\nAccording to that report, the first batch is expected to include the iPhone 18e and iPhone 18, an updated entry-level iPad, a new MacBook Neo and a refreshed MacBook Air. Gurman said additional products planned for the first half of 2027, including the iPhone Air 2 and new iPad Air and iPad Pro models, would likely be unveiled in a second launch a little later, perhaps later in March or in April.\n\nMacRumors listed these rumored specs, attributed to Gurman:\n• iPhone 18e and iPhone 18: A20 chip, 9GB of RAM, and longer battery life\n• Entry-level iPad: A19 chip with Apple Intelligence, N1 chip with Wi-Fi 7, and Apple's C1X modem in cellular models\n• MacBook Neo: A19 Pro chip, 12GB of RAM, and possibly new colors\n• MacBook Air: M6 chip\n• iPhone Air 2: A20 Pro chip, an Ultra Wide camera, a smaller Dynamic Island, longer battery life, and Apple's C2 modem with mmWave in the U.S.\n• iPad Air: M5 chip, an OLED display, a thinner and lighter design, and possibly Acoustic Display\n• iPad Pro: an M6 or M7 chip and a vapor-chamber cooling system\n\nThese are unannounced plans reported by Gurman, not an Apple announcement.",
+   "full_he": "ב-22 בנובמבר דיווח ג׳ו רוסיניול ב-MacRumors, לפי מארק גורמן מבלומברג בניוזלטר Power On באותו יום, שאפל מתכננת לחשוף כמה מוצרים בסביבות פברואר או מרץ 2027, במחזור של iOS 27.4.\n\nלפי הדיווח, הגל הראשון צפוי לכלול את iPhone 18e ואת iPhone 18, אייפד כניסה מעודכן, MacBook Neo חדש ו-MacBook Air רענן. גורמן אמר שמוצרים נוספים שמתוכננים למחצית הראשונה של 2027, כולל iPhone Air 2 ואייפד אייר ואייפד פרו חדשים, ייחשפו כנראה בגל שני מעט אחר כך, אולי בסוף מרץ או באפריל.\n\nMacRumors מנה את המפרטים המיוחסים לגורמן:\n• iPhone 18e ו-iPhone 18: שבב A20, 9 ג׳יגה-בייט זיכרון וסוללה ארוכה יותר\n• אייפד כניסה: שבב A19 עם Apple Intelligence, שבב N1 עם Wi-Fi 7, ומודם C1X בדגמי סלולר\n• MacBook Neo: שבב A19 Pro, 12 ג׳יגה-בייט זיכרון, ואולי צבעים חדשים\n• MacBook Air: שבב M6\n• iPhone Air 2: שבב A20 Pro, מצלמת אולטרה-רחב, Dynamic Island קטן יותר, סוללה ארוכה יותר, ומודם C2 עם mmWave בארה״ב\n• אייפד אייר: שבב M5, מסך OLED, עיצוב דק וקל יותר, ואולי Acoustic Display\n• אייפד פרו: שבב M6 או M7 ומערכת קירור בתא אדים\n\nאלה תוכניות שטרם הוכרזו, לפי דיווח של גורמן, לא הודעה של אפל."
+  },
+  {
+   "id": "medicalmedium-acv-shot-teeth-gut-claim",
+   "topic": "medicalmedium",
+   "date": "2026-11-22T15:04:52Z",
+   "url": "https://x.com/MedicalMedium/status/2124519487043166323",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום נגד משקה חומץ תפוחים יומי",
+    "summary": "ב-22 בנובמבר כתב אנתוני ויליאם שמשקה יומי של חומץ תפוחים, לימון וקיין נמכר כבריא, אבל לדבריו החומץ עלול לפגוע בשיניים ובאיזון המעי לאורך זמן. רפואה מקובלת אכן מזהירה שחומץ יכול לשחוק אמייל; הטענות הרחבות יותר שלו על המיקרוביום הן שלו, לא הנחיה רפואית."
+   },
+   "en": {
+    "title": "Medical Medium argues against a daily apple-cider-vinegar shot",
+    "summary": "On November 22 Anthony William wrote that a daily drink of apple cider vinegar, lemon and cayenne is sold as a smart health habit, but that in his view the vinegar can damage teeth and gut balance over time. Mainstream dentistry does warn that vinegar can erode enamel; his broader microbiome claims are his own, not medical guidance."
+   },
+   "full_en": "On November 22 Anthony William posted:\n\n\"The ACV Shot Problem\n\nA lot of people got sold on ACV shots like they were doing something smart for their stomach or their health. Apple cider vinegar, lemon, cayenne—mixing it up and taking it every day. Meanwhile, that apple cider vinegar can rot your teeth out down the road and wreck your gut balance at the same time.\n\nThat is the part people are not being told. Everybody is out there screaming microbiome, microbiome, microbiome, and then handing people something that can destroy it. This is one of those trends that sounds healthy until you see what it is actually doing.\"\n\nHe linked to his books, a podcast episode and a livestream. Dentists commonly warn that frequent acid exposure, including vinegar, can erode tooth enamel, especially if it is sipped or held in the mouth. William's stronger claims about destroying the microbiome are his own framing and are not a substitute for dental or medical advice.",
+   "full_he": "ב-22 בנובמבר פרסם אנתוני ויליאם:\n\n\"בעיית משקה חומץ התפוחים\n\nהרבה אנשים קנו את הרעיון של משקה חומץ תפוחים כאילו הם עושים משהו חכם לבטן או לבריאות. חומץ תפוחים, לימון, קיין — מערבבים ושותים כל יום. בינתיים אותו חומץ תפוחים עלול להרוס את השיניים בהמשך הדרך ולפגוע גם באיזון המעי.\n\nזה החלק שלא מספרים לאנשים. כולם צועקים מיקרוביום, מיקרוביום, מיקרוביום, ואז מוסרים לאנשים משהו שיכול להרוס אותו. זה אחד הטרנדים שנשמעים בריאים עד שרואים מה הם באמת עושים.\"\n\nהוא קישר לספרים, לפרק פודקאסט ולשידור חי. רופאי שיניים מתריעים בדרך כלל שחשיפה תכופה לחומצה, כולל חומץ, עלולה לשחוק אמייל, במיוחד אם לוגמים או מחזיקים את המשקה בפה. הטענות החזקות יותר של ויליאם על הרס המיקרוביום הן הניסוח שלו, ואינן תחליף לייעוץ של רופא שיניים או רופא."
+  },
+  {
+   "id": "pod-asprey-1e30c2285b",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-22T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/every-way-to-hack-your-brain-in-20-minutes/id451295014?i=1000803398092",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "כל הדרכים לשפר את המוח ב-20 דקות",
+    "summary": "בפרק 1578 של The Human Upgrade דייב אספריי עולה בסולם המחירים של אמצעי ריכוז, מדולר אחד עד עשרת אלפים: קפאין ותיאנין, קריאטין וניקוטין, מודפיניל וצריברוזין, עירוי NAD+ ואור אדום, ועד חמצן היפרברי ונוירופידבק. הוא מציג גם סיכונים, כולל התמכרות לניקוטין, ומדגיש שכעס ולחץ רגשי עלולים לדלדל יותר אנרגיה מכל סם ריכוז. אלה טענות המנחה, לא ייעוץ רפואי."
+   },
+   "en": {
+    "title": "Every Way to Hack Your Brain In 20 Minutes",
+    "summary": "In episode 1578 of The Human Upgrade, Dave Asprey climbs a price ladder of focus tools from $1 to $10,000: caffeine and theanine, creatine and nicotine, modafinil and Cerebrolysin, an NAD+ IV and red light, up to hyperbaric oxygen and neurofeedback. He also flags risks, including nicotine's addictive potential, and says unresolved anger may drain more mental energy than any focus drug. These are the host's claims, not medical advice."
+   },
+   "full_en": "In episode 1578 of The Human Upgrade, Dave Asprey says he has spent more than a million dollars and 25 years on focus drugs, and walks up a price ladder one zero at a time: $1, $10, $100, $1,000, $10,000. According to the show notes, caffeine and L-theanine sit at the bottom; creatine and nicotine at ten dollars; modafinil and Cerebrolysin, an injectable compound derived from pig brains, at a hundred; an NAD+ IV and transcranial red light at a thousand; and hyperbaric oxygen, clinical neurofeedback and his 40 Years of Zen program at the top.\n\nThe notes say Asprey discusses why caffeine does not actually create energy and how pairing it with L-theanine may improve focus without the jitters; how creatine supports brain energy and why he uses higher doses; what nicotine does to attention and memory, and why its addictive potential makes it a risky focus enhancer; why he has used modafinil for more than 20 years and what its limits show; what Cerebrolysin may do for brain repair, in his view; why he spent $1,000 on NAD+ IV therapy despite limited evidence that it improves focus; how transcranial red light may support mitochondria and blood flow; what research suggests about hyperbaric oxygen and attention; and how neurofeedback and meditation train attention. He also argues that unresolved anger and emotional stress may drain more mental energy than any focus drug can restore. The timestamps end on ketamine, forgiveness and focus.\n\nThese are the host's claims and personal experiments, not medical advice. Several of the substances and procedures he describes — including prescription stimulants, nicotine, investigational injectables, IVs and hyperbaric oxygen — carry real risks and should only be considered with a qualified clinician. Mainstream evidence for some of the higher-cost interventions as focus tools is limited.\n\nSponsor messages are omitted here.",
+   "full_he": "בפרק 1578 של The Human Upgrade דייב אספריי אומר שהשקיע יותר ממיליון דולר ו-25 שנה באמצעי ריכוז, ועולה בסולם מחירים אפס אחר אפס: דולר, עשרה, מאה, אלף ועשרת אלפים. לפי תיאור הפרק, בתחתית נמצאים קפאין ו-L-תיאנין; בעשרה דולר קריאטין וניקוטין; במאה מודפיניל וצריברוזין, תרכובת להזרקה שמקורה במוחות חזירים; באלף עירוי NAD+ ואור אדום דרך הגולגולת; ובראש חמצן היפרברי, נוירופידבק קליני והתוכנית 40 Years of Zen שלו.\n\nלפי התיאור, אספריי מסביר למה קפאין לא באמת מייצר אנרגיה ואיך שילוב עם L-תיאנין עשוי לשפר ריכוז בלי רעד; איך קריאטין תומך באנרגיית המוח ולמה הוא משתמש במינונים גבוהים; מה ניקוטין עושה לקשב ולזיכרון, ולמה פוטנציאל ההתמכרות הופך אותו לאמצעי מסוכן; למה הוא משתמש במודפיניל יותר מ-20 שנה ומה הגבולות שלו; מה צריברוזין עשוי לעשות לתיקון המוח, לדעתו; למה הוציא 1,000 דולר על עירוי NAD+ למרות ראיות מוגבלות לשיפור ריכוז; איך אור אדום עשוי לתמוך במיטוכונדריה ובזרימת דם; מה המחקר מרמז על חמצן היפרברי וקשב; ואיך נוירופידבק ומדיטציה מאמנים קשב. הוא גם טוען שכעס שלא טופל ולחץ רגשי עלולים לדלדל יותר אנרגיה מנטלית מכל סם ריכוז. חותמות הזמן מסתיימות בקטמין, סליחה וריכוז.\n\nאלה טענות המנחה וניסויים אישיים שלו, לא ייעוץ רפואי. חלק מהחומרים והפעולות שהוא מתאר — כולל ממריצים במרשם, ניקוטין, חומרים להזרקה, עירויים וחמצן היפרברי — נושאים סיכונים ממשיים ויש לשקול אותם רק עם איש מקצוע מוסמך. הראיות המקובלות לחלק מההתערבויות היקרות יותר כאמצעי ריכוז הן מוגבלות.\n\nהודעות החסות הושמטו כאן."
+  },
   {
    "id": "grokbot-bot-tailscale-personal-company-tailnets",
    "topic": "grokbot",
