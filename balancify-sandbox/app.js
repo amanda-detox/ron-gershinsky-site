@@ -103,6 +103,8 @@
   var moveMode = false;
   var current = "";
   var dragging = false;
+  var idrag = null;
+  var noClick = false;
   var needRender = false;
   var lastT = 0;
   var soonT = 0;
@@ -425,6 +427,29 @@
       changed();
     });
   }
+  /* Swipe-delete, same as Listify: the list is removed at once and the toast can put it back for 5 seconds. */
+  function delListWithUndo(cid) {
+    var c = catRec(cid); if (!c || c.gone) return;
+    var name = M.nameOf(c, lang);
+    var keepC = M.clone(c);
+    var keepItems = M.itemsInList(items, cid).map(function (x) { return M.clone(x); });
+    var at = now();
+    keepItems.forEach(function (x) { items[x.id] = M.editRec(items[x.id], { deleted: true }, at); });
+    var y = M.editRec(c, { gone: 1 }, at);
+    if (window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, at, true);
+    items[c.id] = y;
+    openOpt = null;
+    if (current === cid) { current = ""; if (location.hash) location.hash = ""; }
+    changed();
+    toast(t("deleted").replace("{x}", name), function () {
+      var at2 = now();
+      var back = M.editRec(keepC, { gone: null, deleted: null }, at2);
+      if (window.RGSyncStatus && RGSyncStatus.noteGone) back = RGSyncStatus.noteGone(back, at2, false);
+      items[keepC.id] = back;
+      keepItems.forEach(function (x) { items[x.id] = M.editRec(x, { deleted: null }, at2); });
+      changed();
+    });
+  }
   function moveItem(id, cid) {
     var x = items[id], c = catRec(cid);
     if (!x || !c || x.sec === cid) return;
@@ -481,20 +506,75 @@
       done(v);
     });
   }
+  function hideToast() {
+    var el = $("toast"); if (!el) return;
+    clearTimeout(toastT);
+    el.hidden = true;
+    el.classList.remove("drag");
+    el.style.transform = "";
+    el.style.opacity = "";
+  }
+  /* Same toast swipe as Listify: any direction, 40px dismisses without undoing. */
+  function toastSwipe(el) {
+    if (el._sw) return; el._sw = 1;
+    var sx = 0, sy = 0, dx = 0, dy = 0, on = false;
+    el.addEventListener("pointerdown", function (e) {
+      if (el.hidden || e.target.closest("button")) return;
+      on = true; sx = e.clientX; sy = e.clientY; dx = dy = 0;
+      el.classList.add("drag");
+      clearTimeout(toastT);
+      try { el.setPointerCapture(e.pointerId); } catch (x) {}
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!on) return;
+      dx = e.clientX - sx; dy = e.clientY - sy;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      el.style.transform = "translate(calc(-50% + " + dx + "px), " + dy + "px)";
+      el.style.opacity = String(Math.max(0.2, 1 - d / 160));
+    });
+    function end() {
+      if (!on) return;
+      on = false;
+      el.classList.remove("drag");
+      if (Math.sqrt(dx * dx + dy * dy) >= 40) {
+        el.style.transform = "translate(calc(-50% + " + (dx * 3) + "px), " + (dy * 3) + "px)";
+        el.style.opacity = "0";
+        setTimeout(hideToast, 200);
+      } else {
+        el.style.transform = "";
+        el.style.opacity = "";
+        toastT = setTimeout(hideToast, el._undo ? 5000 : 2200);
+      }
+    }
+    el.addEventListener("pointerup", end);
+    el.addEventListener("pointercancel", end);
+  }
   function toast(msg, undo) {
     var el = $("toast");
     if (!el) return;
-    el.innerHTML = "<span>" + esc(msg) + "</span>";
+    toastSwipe(el);
+    el._undo = !!undo;
+    el.style.transform = "";
+    el.style.opacity = "";
+    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>";
     if (undo) {
       var b = document.createElement("button");
       b.type = "button";
+      b.className = "tundo";
       b.textContent = t("undo");
-      b.onclick = function () { el.hidden = true; undo(); };
+      b.onclick = function () { hideToast(); undo(); };
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "tx";
+      x.setAttribute("aria-label", t("close"));
+      x.textContent = "✕";
+      x.onclick = function () { hideToast(); };
       el.appendChild(b);
+      el.appendChild(x);
     }
     el.hidden = false;
     clearTimeout(toastT);
-    toastT = setTimeout(function () { el.hidden = true; }, undo ? 5000 : 2200);
+    toastT = setTimeout(hideToast, undo ? 5000 : 2200);
   }
   function makeSorter(rows, el, y0) {
     function sy() { return window.scrollY || window.pageYOffset || 0; }
@@ -536,34 +616,262 @@
       }
     };
   }
-  function bootDrag() {
-    document.addEventListener("pointerdown", function (e) {
-      var h = e.target.closest && e.target.closest(".ihandle, .lhandle");
-      if (!h || (e.button != null && e.button !== 0)) return;
-      var li = h.closest(".irow, .lrow");
-      if (!li || li.classList.contains("editing")) return;
-      e.preventDefault();
-      var sel = h.classList.contains("lhandle") ? ".lrow" : ".irow";
-      var rows = [].filter.call(li.parentNode.children, function (n) { return n.matches(sel); });
-      var sorter = makeSorter(rows, li, e.clientY);
-      dragging = true;
-      function move(ev) { sorter.move(ev.clientY); }
-      function up() {
-        document.removeEventListener("pointermove", move);
-        document.removeEventListener("pointerup", up);
-        document.removeEventListener("pointercancel", up);
-        var res = sorter.end();
-        dragging = false;
-        if (res.moved) {
-          var ids = res.order.map(function (r) { return r.getAttribute("data-id") || r.getAttribute("data-cat"); });
-          if (h.classList.contains("lhandle")) setListOrder(ids);
-          else applySubsetOrder(current, ids);
-        } else if (needRender) { needRender = false; render(); }
+  /* ---------- rows: Listify's swipe (my/ideas app.js).
+     Physical right = delete, with the 5-second undo. Physical left = move
+     (an item asks which list; a list enters סידור). Same numbers as Listify:
+     12px before the axis locks, the clearer axis must lead by 1.5×, and the
+     swipe commits at 35% of the row width. Directions are physical clientX,
+     so RTL does not flip them. A vertical drag stays vertical (page scroll),
+     except on ☰, which reorders. The note toggle is not a swipe. ---------- */
+  function bootGestures() {
+    var AXIS = 12, SWIPE = 0.35, swipeGen = 0, noteGuard = null;
+    function reset() {
+      if (idrag) {
+        unswipe();
+        if (idrag.sorter) idrag.sorter.end();
       }
-      document.addEventListener("pointermove", move);
-      document.addEventListener("pointerup", up);
-      document.addEventListener("pointercancel", up);
+      document.body.classList.remove("idragging");
+      idrag = null;
+      dragging = false;
+      if (needRender) { needRender = false; render(); }
+    }
+    function clearKids(li) {
+      if (!li) return;
+      var kids = li.children, i;
+      for (i = 0; i < kids.length; i++) { kids[i].style.transition = ""; kids[i].style.transform = ""; }
+    }
+    function unswipe() {
+      var li = idrag && idrag.li;
+      if (!li) return;
+      var sx = li.style.getPropertyValue("--sx");
+      var kids = [].slice.call(li.children);
+      var gen = ++swipeGen;
+      li.classList.remove("swiping", "sw-r", "sw-l", "sw-go");
+      li.style.removeProperty("--sx");
+      if (!sx || sx === "0px") { clearKids(li); return; }
+      var i;
+      for (i = 0; i < kids.length; i++) {
+        kids[i].style.transition = "none";
+        kids[i].style.transform = "translateX(" + sx + ")";
+      }
+      void li.offsetWidth;
+      for (i = 0; i < kids.length; i++) {
+        kids[i].style.transition = "transform .18s ease";
+        kids[i].style.transform = "";
+      }
+      setTimeout(function () {
+        if (gen !== swipeGen) return;
+        clearKids(li);
+      }, 220);
+    }
+    function clearSel() {
+      var sl = window.getSelection && window.getSelection();
+      if (sl && !sl.isCollapsed) sl.removeAllRanges();
+    }
+    function capturePtr() {
+      var el = idrag.cap && idrag.cap.setPointerCapture ? idrag.cap : idrag.li;
+      try { el.setPointerCapture(idrag.pid); } catch (e2) { try { idrag.li.setPointerCapture(idrag.pid); } catch (e3) {} }
+    }
+    function armH() {
+      if (!idrag || idrag.swipe || idrag.lifted) return;
+      if (idrag.fromText) clearSel();
+      swipeGen++;
+      clearKids(idrag.li);
+      idrag.swipe = true;
+      idrag.axis = "h";
+      idrag.li.classList.add("swiping");
+      capturePtr();
+    }
+    function paintH(dx) {
+      var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
+      idrag.li.style.setProperty("--sx", dx + "px");
+      idrag.li.classList.toggle("sw-r", dx > 0);
+      idrag.li.classList.toggle("sw-l", dx < 0);
+      idrag.li.classList.toggle("sw-go", go);
+    }
+    function beginLift() {
+      if (!idrag || idrag.lifted || idrag.swipe) return;
+      var li = idrag.li, ul = li.parentNode;
+      if (!ul) return;
+      var sel = idrag.kind === "list" ? ".lrow" : ".irow";
+      var rows = [].filter.call(ul.children, function (n) { return n.matches(sel); });
+      if (rows.indexOf(li) < 0) return;
+      swipeGen++;
+      clearKids(li);
+      idrag.lifted = true;
+      idrag.axis = "v";
+      idrag.sorter = makeSorter(rows, li, idrag.y);
+      document.body.classList.add("idragging");
+      capturePtr();
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+    }
+    function follow(dx, dy) {
+      if (!idrag || idrag.handled) return "";
+      idrag._dx = dx;
+      idrag._dy = dy;
+      if (idrag.lifted) return "v";
+      if (idrag.swipe) { paintH(dx); return "h"; }
+      var adx = Math.abs(dx), ady = Math.abs(dy);
+      if (!idrag.axis) {
+        if (adx < AXIS && ady < AXIS) return "";
+        if (adx > ady * 1.5) idrag.axis = "h";
+        else if (ady > adx * 1.5) idrag.axis = "v";
+        else return "";
+      }
+      if (idrag.axis === "v") {
+        if (idrag.fromHandle && !idrag.sawCancel) { beginLift(); return idrag.lifted ? "v" : ""; }
+        return "";
+      }
+      armH();
+      paintH(dx);
+      return "h";
+    }
+    function rowFrom(target) {
+      if (!target || !target.closest) return null;
+      return target.closest(".irow[data-id], .lrow[data-cat]");
+    }
+    function track(e, li, fromHandle) {
+      reset();
+      var kind = li.classList.contains("lrow") ? "list" : "item";
+      idrag = {
+        li: li,
+        id: kind === "list" ? li.getAttribute("data-cat") : li.getAttribute("data-id"),
+        kind: kind,
+        x: e.clientX,
+        y: e.clientY,
+        pid: e.pointerId,
+        type: e.pointerType,
+        lifted: false,
+        axis: "",
+        fromHandle: !!fromHandle,
+        fromText: e.pointerType === "mouse" && !!(e.target.closest && e.target.closest(".txt, .note, .lname, input, textarea")),
+        cap: e.target && e.target.setPointerCapture ? e.target : li,
+        _dx: 0,
+        _dy: 0
+      };
+      dragging = true;
+    }
+    function endSwipe(d, sdx) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true;
+      setTimeout(function () { noClick = false; }, 400);
+      var w = (d.li && d.li.offsetWidth) || 1, kind = d.kind, sid = d.id;
+      reset();
+      if (Math.abs(sdx) < w * SWIPE) return;
+      if (kind === "list") {
+        if (sdx > 0) {
+          delListWithUndo(sid);
+          if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+        } else if (!moveMode) { openOpt = null; moveMode = true; render(); }
+        return;
+      }
+      var x = items[sid];
+      if (sdx > 0 && x && !x.deleted) {
+        delWithUndo(sid);
+        if (navigator.vibrate) try { navigator.vibrate(10); } catch (e4) {}
+      } else if (sdx < 0 && x && !x.deleted) moveMenu(sid);
+    }
+    function endLift(d) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true;
+      setTimeout(function () { noClick = false; }, 400);
+      var r = d.sorter ? d.sorter.end() : { moved: false, order: [] };
+      var kind = d.kind, sec = current;
+      d.sorter = null;
+      reset();
+      if (!r.moved) return;
+      var ids = r.order.map(function (li) { return li.getAttribute(kind === "list" ? "data-cat" : "data-id"); });
+      if (kind === "list") setListOrder(ids);
+      else applySubsetOrder(sec, ids);
+    }
+    document.addEventListener("pointerdown", function (e) {
+      if (e.target.closest && e.target.closest(".notetog")) {
+        noteGuard = { x: e.clientX, y: e.clientY, pid: e.pointerId, moved: false };
+        return;
+      }
+      var li = rowFrom(e.target);
+      if (!li || li.querySelector(".ed") || (li.classList.contains("irow") && editing)) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest && e.target.closest(".sheet, #bg-sheet, #toast")) return;
+      var h = e.target.closest && e.target.closest(".ihandle, .lhandle");
+      if (h) { e.preventDefault(); track(e, li, true); return; }
+      track(e, li, false);
     });
+    document.addEventListener("pointermove", function (e) {
+      if (noteGuard && e.pointerId === noteGuard.pid) {
+        if (Math.abs(e.clientX - noteGuard.x) + Math.abs(e.clientY - noteGuard.y) > 8) noteGuard.moved = true;
+      }
+      if (!idrag || e.pointerId !== idrag.pid) return;
+      if (idrag.sawCancel && !idrag.swipe && !idrag.lifted) return;
+      if (idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
+      var act = follow(e.clientX - idrag.x, e.clientY - idrag.y);
+      if (idrag && idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
+      if (act === "h" || act === "v") e.preventDefault();
+    });
+    function up(e) {
+      if (noteGuard && e.pointerId === noteGuard.pid) {
+        if (noteGuard.moved) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+        noteGuard = null;
+      }
+      if (!idrag || e.pointerId !== idrag.pid || idrag.handled) return;
+      var d = idrag;
+      if (d.type === "touch" && e.type === "pointercancel") {
+        d.sawCancel = true;
+        if (!d.swipe && !d.lifted) d.axis = "v";
+        return;
+      }
+      if (d.swipe || d.axis === "h") {
+        var sdx = (e.type === "pointerup" && typeof e.clientX === "number") ? e.clientX - d.x : (d._dx || 0);
+        endSwipe(d, sdx);
+        return;
+      }
+      if (d.lifted) { endLift(d); return; }
+      var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
+      var sl = window.getSelection && window.getSelection();
+      if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+      d.handled = true;
+      reset();
+    }
+    document.addEventListener("pointerup", up);
+    document.addEventListener("pointercancel", up);
+    document.addEventListener("touchend", function (e) {
+      if (!idrag || idrag.handled) return;
+      var tch = e.changedTouches && e.changedTouches[0]; if (!tch) return;
+      var dx = tch.clientX - idrag.x, dy = tch.clientY - idrag.y, d = idrag;
+      d._dx = dx; d._dy = dy;
+      if (d.type !== "touch" && !d.sawCancel) return;
+      if (d.lifted) { if (d.sawCancel) endLift(d); return; }
+      if (d.swipe || d.axis === "h") { if (d.sawCancel) endSwipe(d, dx); return; }
+      if (Math.abs(dx) + Math.abs(dy) > 8) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+      d.handled = true;
+      reset();
+    }, { passive: true });
+    document.addEventListener("touchmove", function (e) {
+      if (!idrag || idrag.handled || idrag.sawCancel) return;
+      var tch = e.touches && e.touches[0]; if (!tch) return;
+      if (idrag.lifted && idrag.sorter) { idrag.sorter.move(tch.clientY); return; }
+      follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
+      if (idrag && idrag.lifted && idrag.sorter) idrag.sorter.move(tch.clientY);
+    }, { passive: true });
+    document.addEventListener("selectstart", function (e) {
+      if (!idrag || idrag.handled) return;
+      if (idrag.swipe || idrag.axis === "h" || idrag.lifted || idrag.fromHandle) e.preventDefault();
+    }, true);
+    document.addEventListener("dragstart", function (e) {
+      if (idrag && e.target.closest && (e.target.closest(".irow") || e.target.closest(".lrow"))) e.preventDefault();
+    });
+    document.addEventListener("contextmenu", function (e) {
+      if (idrag && (idrag.swipe || idrag.lifted) && e.target.closest && e.target.closest(".irow, .lrow")) e.preventDefault();
+    });
+    document.addEventListener("click", function (e) {
+      if (!noClick) return;
+      if (e.target.closest && e.target.closest("#toast")) return;
+      e.preventDefault();
+      e.stopPropagation();
+      noClick = false;
+    }, true);
   }
 
   /* ---------- history + backup ---------- */
@@ -877,7 +1185,7 @@
     loadHistory();
     paintChrome();
     route();
-    bootDrag();
+    bootGestures();
     if ($("lang-he")) $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, "he"); paintChrome(); render(); };
     if ($("lang-en")) $("lang-en").onclick = function () { lang = "en"; set(LANG_KEY, "en"); paintChrome(); render(); };
     if ($("theme-btn")) $("theme-btn").onclick = function () { theme = theme === "light" ? "dark" : "light"; set(THEME_KEY, theme); applyTheme(); };

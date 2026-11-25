@@ -156,6 +156,31 @@ html[data-theme=dark] .sheet-in{background:#102454}
 .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;display:flex;gap:12px;align-items:center;max-width:min(92vw,420px);padding:12px 16px;border-radius:14px;background:#0b2a6b;color:#fff;border:1px solid #f5c542;font:700 15px var(--sans)}
 .toast button{background:none;border:0;color:#f5c542;font:800 15px var(--sans)}
 .sorting{box-shadow:0 0 0 2px #f5c542}
+/* Listify swipe. Right reveals delete on the physical left; left reveals move on the physical right.
+   touch-action is not inherited, so every tappable part of the row keeps vertical scrolling. */
+.irow,.lrow{position:relative;touch-action:pan-y;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.irow .txt,.irow .note,.irow textarea,.lrow .lname{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+@media (pointer:coarse){
+  .irow .txt,.irow .note,.irow textarea,.lrow .lname{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+}
+.irow .body,.irow .txt,.irow .note,.irow .ckbox,.irow .notetog,.irow .ilink,.lrow .lname,.lrow .lmore,.lrow .step{touch-action:pan-y}
+.irow > *,.lrow > *{transition:transform .18s ease}
+.irow.swiping,.lrow.swiping{overflow:hidden}
+.irow.swiping > *,.lrow.swiping > *{transition:none;transform:translateX(var(--sx,0))}
+.irow.swiping,.irow.swiping *,.lrow.swiping,.lrow.swiping *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.irow::before,.irow::after,.lrow::before,.lrow::after{content:"";position:absolute;top:50%;width:28px;height:28px;margin-top:-14px;opacity:0;pointer-events:none;transition:opacity .12s,transform .12s;transform:scale(.8);background:#f5c542}
+html[data-theme=light] .irow::before,html[data-theme=light] .irow::after,html[data-theme=light] .lrow::before,html[data-theme=light] .lrow::after{background:#8a6a10}
+.irow::before,.lrow::before{left:12px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M9 7V4h6v3'/%3E%3Cpath d='M6 7l1 14h10l1-14'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7h16'/%3E%3Cpath d='M9 7V4h6v3'/%3E%3Cpath d='M6 7l1 14h10l1-14'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3C/svg%3E") center/contain no-repeat}
+.irow::after,.lrow::after{right:12px;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5'/%3E%3Cpath d='M15 12H4'/%3E%3Cpath d='M8 8l-4 4 4 4'/%3E%3C/svg%3E") center/contain no-repeat}
+.irow.sw-r::before,.lrow.sw-r::before,.irow.sw-l::after,.lrow.sw-l::after{opacity:.55}
+.irow.sw-r.sw-go::before,.lrow.sw-r.sw-go::before{opacity:1;transform:scale(1.15)}
+.irow.sw-l.sw-go::after,.lrow.sw-l.sw-go::after{opacity:1;transform:scale(1.1)}
+body.idragging{-webkit-user-select:none;user-select:none}
+body.idragging .irow:not(.sorting),body.idragging .lrow:not(.sorting){pointer-events:none}
+.toast{bottom:calc(22px + env(safe-area-inset-bottom));transition:opacity .2s,transform .2s;touch-action:none}
+.toast.drag{transition:none}
+.toast .tmsg{min-width:0;overflow-wrap:anywhere}
+.toast button{flex:none}
 [hidden]{display:none!important}
 :focus-visible{outline:3px solid rgba(245,197,66,.8);outline-offset:2px}
 @media (max-width:360px){

@@ -52,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-sbx-balancify-v29"), "sbx-balancify-v29");
+assert.strictEqual(M.versionLabel("rg-sbx-balancify-v30"), "sbx-balancify-v30");
 assert.strictEqual(M.APP, "sbxbalancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -66,8 +66,15 @@ assert.ok(app.indexOf('class="lmore') !== -1 && app.indexOf("optMove") !== -1 &&
 assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pencil edit button is gone");
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
 assert.ok(app.indexOf("sbxbalancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "sbxbalancify"') !== -1, "cloud app id is sbxbalancify");
-assert.ok(ver.indexOf("rg-sbx-balancify-v29") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v29");
-assert.ok(sw.indexOf("rg-sbx-balancify-v28") === -1, "the old cache name is not the current one");
+assert.ok(ver.indexOf("rg-sbx-balancify-v30") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v30");
+assert.ok(sw.indexOf("rg-sbx-balancify-v29") === -1, "the old cache name is not the current one");
+assert.ok(html.indexOf("app.js?v=14") !== -1 && sw.indexOf("app.js?v=14") !== -1, "app cache param is bumped");
+assert.ok(html.indexOf("style.css?v=13") !== -1 && sw.indexOf("style.css?v=13") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=2") !== -1 && sw.indexOf("version.js?v=2") !== -1, "version.js cache param is bumped");
+assert.ok(app.indexOf("AXIS = 12") !== -1 && app.indexOf("SWIPE = 0.35") !== -1, "swipe thresholds match Listify");
+assert.ok(app.indexOf('closest(".notetog")') !== -1, "a swipe does not start on the note toggle");
+assert.ok(app.indexOf("delWithUndo") !== -1 && app.indexOf("delListWithUndo") !== -1, "a destructive swipe keeps undo");
+assert.ok(app.indexOf("rg-sbx-balancify") !== -1 && read("model.js").indexOf("sbxbalancify") !== -1, "storage keys and the app id stay");
 assert.ok(css.indexOf("width:36px") !== -1 && css.indexOf("height:36px") !== -1 && css.indexOf("overflow-wrap:anywhere") !== -1, "the i target is 36px and text can wrap");
 assert.ok(css.indexOf("#f4b183") === -1 && css.indexOf("#c4602e") === -1, "the old orange accents are gone");
 ["purple", "pink", "orange", "#888", "#999", "#ccc"].forEach(function (bad) {
