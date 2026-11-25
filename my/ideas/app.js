@@ -1159,13 +1159,14 @@
       (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '" data-a="edit">' + hi(x.note) + "</span>" : "") +
       "</li>"; // swipe right deletes, swipe left moves (no row icons, so the text gets the room)
   }
+  var addOpen = false, searchOpen = false;
   function panel(sec) {
     showP = hasPrices(sec); showC = isChk(sec);
     var act = live(sec).sort(byOrder), cked = [], chosen = [];
     if (showC) { cked = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist: the existing checked section
     else { chosen = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); } // ✓ moves into נבחרים; clearing it returns the item
     var done = []; // old "done" נבחר stays off (Ron 31.10). ✓ uses mark, which already syncs.
-    return '<form class="addform" data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + "</button></div>" +
+    return '<form class="addform"' + (addOpen ? "" : " hidden") + ' data-add="' + esc(sec) + '" autocomplete="off"><div class="addrow"><textarea name="text" class="grow" rows="1" maxlength="200" enterkeyhint="done" placeholder="' + esc(t("phTitle")) + '" aria-label="' + esc(t("phTitle")) + '"></textarea><button type="submit">' + esc(t("add")) + '</button><button type="button" class="addx" data-addx aria-label="' + esc(t("addClose")) + '">✕</button></div>' +
       '<div class="addextra"><div class="notewrap"><textarea name="note" class="notein" rows="2" maxlength="' + NOTE_MAX + '" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("phNote")) + '"></textarea><p class="notemax" hidden></p></div>' +
       (showP ? '<input type="text" name="price" class="addprice" inputmode="decimal" maxlength="10" enterkeyhint="done" placeholder="₪" aria-label="' + esc(t("priceLabel")) + '">' : "") + "</div></form>" +
       (done.length ? '<details class="donebox" data-sec="' + esc(sec) + '"' + (doneOpen[sec] !== false ? " open" : "") + '><summary>' + esc(t("doneHead")) + "</summary>" +
@@ -1385,15 +1386,12 @@
     bp.classList.toggle("empty", !(br && !br.gone));
   }
   function paintNotesAll() {
-    var bar = $("notesbar"), b = $("notes-all"), any = false, pool, hiding, mb;
-    if (!bar || !b) return;
-    pool = searchRaw() ? cats() : listsNow();
-    pool.forEach(function (c) { if (any) return; live(c.cat).forEach(function (x) { if (x.note) any = true; }); });
-    hiding = !!notePrefs().all;
+    var bar = $("notesbar"), b = $("notes-all"), hiding, mb;
+    if (bar) bar.hidden = true;
+    hiding = !!(uid && notePrefs().all);
     mb = $("menu-notes");
     if (mb) mb.setAttribute("aria-pressed", hiding ? "true" : "false");
-    if (!uid || (!any && !hiding)) { bar.hidden = true; return; }
-    bar.hidden = false;
+    if (!b) return;
     b.textContent = t(hiding ? "notesShow" : "notesHide");
     b.setAttribute("aria-pressed", hiding ? "true" : "false");
   }
@@ -2052,15 +2050,17 @@
     if (!el) return;
     function sync() {
       var on = !!String(el.value || "");
+      if (!on) searchOpen = false;
       if (x) x.hidden = !on;
       if (box) box.classList.toggle("hasq", on);
+      var row = $("actrow"); if (row) row.hidden = !searchOpen;
       render();
     }
     el.addEventListener("input", sync);
     el.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && el.value) { e.preventDefault(); el.value = ""; sync(); }
+      if (e.key === "Escape") { e.preventDefault(); el.value = ""; sync(); }
     });
-    if (x) x.addEventListener("click", function () { el.value = ""; sync(); el.focus(); });
+    if (x) x.addEventListener("click", function () { el.value = ""; sync(); });
   }
   /* The bottom גיבוי link saves a file from what is already on screen. It does not ask to sign in and it does not wait for the network. */
   function backupHasRows() {
@@ -2108,26 +2108,33 @@
     closeMenu();
     closeBoxMenu();
     editing = null;
-    var s = $("list-search");
-    if (s && String(s.value || "").replace(/^\s+|\s+$/g, "")) {
-      s.value = "";
-      s.dispatchEvent(new Event("input", { bubbles: true }));
-    } else render();
+    addOpen = false;
+    searchOpen = false;
+    var s = $("list-search"); if (s) s.value = "";
+    var row = $("actrow"); if (row) row.hidden = true;
+    var x = $("search-clear"); if (x) x.hidden = true;
+    render();
     try { window.scrollTo({ top: 0 }); } catch (e) {}
   }
-  function focusSearch() {
+  function openSearch() {
+    addOpen = false;
+    searchOpen = true;
+    render();
+    var row = $("actrow"); if (row) row.hidden = false;
     var el = $("list-search");
     if (!el) return;
+    var clr = $("search-clear"); if (clr) clr.hidden = !el.value;
     try { el.scrollIntoView({ block: "center" }); } catch (e) {}
     el.focus();
   }
   function focusAdd() {
-    var s = $("list-search");
-    if (s && String(s.value || "").replace(/^\s+|\s+$/g, "")) {
-      s.value = "";
-      s.dispatchEvent(new Event("input", { bubbles: true }));
-    }
-    var el = document.querySelector('.addform textarea[name="text"]');
+    searchOpen = false;
+    var s = $("list-search"); if (s) s.value = "";
+    var row = $("actrow"); if (row) row.hidden = true;
+    var clr = $("search-clear"); if (clr) clr.hidden = true;
+    addOpen = true;
+    render();
+    var el = document.querySelector(".addform textarea[name=text]");
     if (!el) return;
     try { el.scrollIntoView({ block: "center" }); } catch (e2) {}
     el.focus();
@@ -2144,7 +2151,7 @@
     if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
     if (act === "night") { if (!clickBar(".rgtb-theme")) clickBar("#theme-btn"); return; }
     if (act === "theme") { setTimeout(function () { clickBar(".rgtb-bg"); }, 30); return; }
-    if (act === "search") { focusSearch(); return; }
+    if (act === "search") { openSearch(); return; }
     if (act === "notes") { toggleAllNotes(); return; }
     if (act === "add") { focusAdd(); return; }
     if (act === "acct") { setTimeout(function () { if (!clickBar(".rgtb .rgacc-btn")) clickBar(".rgacc-btn"); }, 30); return; }
@@ -2184,10 +2191,11 @@
       var nf = f.querySelector('[name="note"]'), pf = f.querySelector('[name="price"]'), pr = pf ? parsePrice(pf.value) : null;
       if (typeof pr === "number" && isNaN(pr)) { pf.focus(); pf.select(); return; }
       add(sec, ti.value, nf ? nf.value : "", pr); f.reset(); f.querySelectorAll("input,textarea").forEach(function (i) { i.value = ""; }); growAll();
-      changed(); var n = document.querySelector('.addform[data-add="' + sec + '"] [name="text"]'); if (n) n.focus();
+      addOpen = false; changed();
     });
     main.addEventListener("keydown", function (e) {
       var f = e.target.closest && e.target.closest(".addform");
+      if (f && e.key === "Escape") { e.preventDefault(); addOpen = false; render(); return; }
       if (f && e.key === "Enter" && e.target.name === "text" && !e.isComposing) { e.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true })); }
       if (e.target.classList && e.target.classList.contains("body") && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); e.target.click(); }
       var ed = e.target.closest && e.target.closest("[data-ed]");
@@ -2210,6 +2218,7 @@
     main.addEventListener("input", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-price")) { e.target.classList.remove("bad"); sumNow(); } });
     main.addEventListener("toggle", function (e) { if (e.target.classList && e.target.classList.contains("donebox")) doneOpen[e.target.getAttribute("data-sec")] = e.target.open; }, true);
     main.addEventListener("click", function (e) {
+      if (e.target.closest && e.target.closest("[data-addx]")) { e.preventDefault(); addOpen = false; render(); return; }
       if (noClick && e.target.closest(".list")) { noClick = false; e.preventDefault(); return; }
       var b = e.target.closest("[data-a]"); if (!b) return;
       var a = b.getAttribute("data-a");
