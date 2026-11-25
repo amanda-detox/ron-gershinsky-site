@@ -137,19 +137,19 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "myideas-v60"; });
-    check(true, "the on-screen label shows myideas-v60");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "myideas-v61"; });
+    check(true, "the on-screen label shows myideas-v61");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=60") !== -1 && srcs.indexOf("version.js?v=3") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=61") !== -1 && srcs.indexOf("version.js?v=4") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-myideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v60"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v61"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
-    await signPage.waitForSelector("[data-rg-account] button");
-    await signPage.click("[data-rg-account] button");
+    await signPage.click("#menu-btn");
+    await signPage.click("#menu-acct");
     await signPage.waitForSelector(".rgacc-back [data-a=out]");
     await signPage.click(".rgacc-back [data-a=out]");
     await signPage.waitForSelector("#rg-choice-back");
@@ -203,11 +203,13 @@ async function main() {
       return el && el.textContent.indexOf(note) !== -1;
     }, CLASH);
     check(true, "the device that synced first shows the same clash notice");
+    await pageB.click("#menu-btn");
     await pageB.click("#hist-btn");
     await pageB.waitForFunction(function () {
       var sheet = document.getElementById("sheet");
       return sheet && sheet.textContent.indexOf("התנגשות:") !== -1 && sheet.textContent.indexOf("מ-ב") !== -1;
     });
+    await pageA.click("#menu-btn");
     await pageA.click("#hist-btn");
     await pageA.waitForFunction(function () {
       var sheet = document.getElementById("sheet");
@@ -237,7 +239,7 @@ async function main() {
       "localStorage.setItem('rg-myideas-hist:" + UID + "'," + JSON.stringify(JSON.stringify(snaps)) + ");"
     ));
     await oldPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
-    await oldPage.waitForSelector("#hist-btn");
+    await oldPage.waitForSelector("#hist-btn", { state: "attached" });
     var earlyRestore = await oldPage.evaluate(function () {
       var open = document.getElementById("hist-btn");
       if (!open) return "no-history";
@@ -254,7 +256,7 @@ async function main() {
     });
     check(earlyRestore === "ok", "שחזר works on the first click (" + earlyRestore + ")");
     await oldPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
-    await oldPage.waitForSelector("#hist-btn");
+    await oldPage.click("#menu-btn");
     await oldPage.click("#hist-btn");
     await oldPage.waitForSelector('[data-s="r:row-0"]');
     await oldPage.waitForTimeout(300);
@@ -361,9 +363,25 @@ async function main() {
     check(fullIds.join(",") === "a1,a2,a3", "before a search the open list keeps its saved order");
     var row0 = await geomOf(searchPage);
     check(row0.search && row0.search.h >= 44 && row0.search.w >= 44, "the search field is at least 44px");
-    check(row0.print && row0.print.h >= 44 && row0.print.w >= 44, "print stays at least 44px");
-    check(row0.restore && row0.restore.h >= 44 && row0.restore.w >= 44, "restore stays at least 44px");
-    check(Math.abs(row0.search.top - row0.print.top) <= 8 && Math.abs(row0.print.top - row0.restore.top) <= 8, "search, print, and restore sit on one row");
+    var menuGeom = await searchPage.evaluate(function () {
+      document.getElementById("menu-btn").click();
+      function box(id) {
+        var el = document.getElementById(id);
+        if (!el) return null;
+        var b = el.getBoundingClientRect();
+        return { w: Math.round(b.width), h: Math.round(b.height), top: Math.round(b.top), left: Math.round(b.left) };
+      }
+      var home = box("app-home"), menu = box("menu-btn"), print = box("print-btn"), restore = box("restore-file-btn");
+      var bar = document.querySelector(".rgtb");
+      var topbar = document.querySelector("header.topbar");
+      var gap = home ? home.top : 0;
+      document.getElementById("menu-btn").click();
+      return { home: home, menu: menu, print: print, restore: restore, gap: gap, bar: bar ? bar.getBoundingClientRect().height : -1, topbar: topbar ? topbar.getBoundingClientRect().height : -1, iconRight: !!(home && menu && home.left > menu.left) };
+    });
+    check(menuGeom.home && menuGeom.home.h >= 44 && menuGeom.home.w >= 44 && menuGeom.iconRight, "the Listify icon is at least 44px and sits on the right");
+    check(menuGeom.menu && menuGeom.menu.h >= 44 && menuGeom.menu.w >= 44, "the menu button is at least 44px");
+    check(menuGeom.print && menuGeom.print.h >= 44 && menuGeom.restore && menuGeom.restore.h >= 44, "print and restore stay at least 44px inside the menu");
+    check(menuGeom.gap >= 7 && menuGeom.gap <= 10 && menuGeom.bar === 0 && menuGeom.topbar === 0, "the space above the icons is 8px and the old top bar takes no height");
     check(row0.rowLeft >= -1 && row0.rowRight <= row0.iw + 1 && row0.sw <= row0.cw + 1, "the row fits the phone width");
     await searchPage.evaluate(function () { return document.fonts && document.fonts.ready; });
     async function placeholderFits() {
@@ -452,7 +470,7 @@ async function main() {
     check(menuData.rows === before.rows, "filtering the menu does not write the lists");
     await searchPage.setViewportSize({ width: 320, height: 700 });
     var narrow = await geomOf(searchPage);
-    check(narrow.search && narrow.search.h >= 44 && narrow.print.h >= 44 && narrow.restore.h >= 44 && narrow.clear && narrow.clear.h >= 44 && narrow.clear.w >= 44, "phone-narrow controls stay at least 44px tall");
+    check(narrow.search && narrow.search.h >= 44 && narrow.clear && narrow.clear.h >= 44 && narrow.clear.w >= 44, "phone-narrow search controls stay at least 44px tall");
     check(narrow.rowLeft >= -1 && narrow.rowRight <= narrow.iw + 1 && narrow.sw <= narrow.cw + 1, "the row still fits a 320px-wide phone");
     check(searchErr.length === 0, "search runs without a console error");
     if (searchErr.length) console.error(searchErr.join(" | "));
@@ -572,7 +590,7 @@ async function main() {
     await featPage.evaluate(function () { document.documentElement.style.zoom = "1.2"; });
     await featPage.setViewportSize({ width: 320, height: 700 });
     var fitDark = await featPage.evaluate(function () {
-      return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, search: document.getElementById("list-search").getAttribute("placeholder"), print: document.getElementById("print-btn").textContent, restore: document.querySelector("#restore-file-btn span").textContent };
+      return { sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, search: document.getElementById("list-search").getAttribute("placeholder"), print: (document.querySelector("#print-btn .mlab") || {}).textContent || "", restore: (document.querySelector("#restore-file-btn .mlab") || {}).textContent || "" };
     });
     check(fitDark.sw <= fitDark.cw + 1 && fitDark.search === "חיפוש" && fitDark.print.replace(/\s/g, "") === "הדפסה" && fitDark.restore.replace(/\s/g, "") === "שיחזור", "at 320px and 120% the dark page fits and the toolbar stays");
     await featPage.screenshot({ path: "/opt/cursor/artifacts/listify-note-max-dark.png" });

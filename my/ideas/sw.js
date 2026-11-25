@@ -1,9 +1,9 @@
 /* Offline cache for private Listify (my/ideas/). Scope: my/ideas/ only.
    Does not delete caches used by other apps. Personal data is not stored here.
    The cache name lives in version.js. */
-importScripts("version.js?v=3");
+importScripts("version.js?v=4");
 var CACHE = RG_MYIDEAS_CACHE;
-var FILES = ["./", "index.html", "version.js?v=3", "rg-sync-status.js?v=9", "restore.js?v=2", "app.js?v=60", "manifest.json?v=58", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=56", "icon-maskable-512.png?v=56", "../common.css", "../common.js",
+var FILES = ["./", "index.html", "version.js?v=4", "rg-sync-status.js?v=9", "restore.js?v=2", "app.js?v=61", "manifest.json?v=58", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=56", "icon-maskable-512.png?v=56", "../common.css", "../common.js",
   "../../shared/rg-account.js", "../../shared/rg-install.js?v=1", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));

@@ -72,7 +72,7 @@ assert(html.indexOf('id="lastsync"') !== -1 && html.indexOf('id="status"') < htm
 assert(html.indexOf("סונכרן לאחרונה ב-{t}") !== -1 && html.indexOf('loadCloud: "טען מהענן"') !== -1, "the Hebrew clock and the account action use the exact words");
 assert(html.indexOf("<title>Listify</title>") !== -1 && html.indexOf('doc: "Listify"') !== -1, "the browser tab stays Listify in English");
 assert(html.indexOf("../sandbox-shared/rg-sync-status.js") !== -1 && html.indexOf("rg-sync-status.js?v=11") > html.indexOf("../sandbox-shared/rg-sync-status.js") && html.indexOf("rg-sync-status.js?v=11") < html.indexOf("../sandbox-shared/rg-account.js"), "the sandbox helper replaces the shared one before account calls");
-assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=8") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=67") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
+assert(sw.indexOf('CACHE = RG_SBX_IDEAS_CACHE') !== -1 && sw.indexOf("version.js?v=9") !== -1 && sw.indexOf("rg-sync-status.js?v=11") !== -1 && sw.indexOf("restore.js?v=2") !== -1 && sw.indexOf("app.js?v=68") !== -1 && sw.indexOf("rg-account.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox service worker cache was bumped");
 assert(html.indexOf('id="build"') !== -1 && html.indexOf("rg-sbx-ideas-v21") === -1 && app.indexOf("RG_SBX_IDEAS_CACHE") !== -1 && app.indexOf("function paintBuild") !== -1, "the on-screen version is painted from the shared cache name");
 assert(html.indexOf('updateViaCache:"none"') !== -1 && html.indexOf("controllerchange") !== -1 && html.indexOf("visibilitychange") !== -1 && html.indexOf("r.update") !== -1, "the sandbox checks for a new service worker without using the HTTP cache");
 assert(html.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1 && html.indexOf("if(!had)") !== -1, "a new version waits for sync and does not reload on the first install");
@@ -662,7 +662,7 @@ assert(SS.sparseRestore(notedList(19, 1, 9000), emptyBase) === false, "a normal 
 assert(SS.needsConfirm(SS.dropReport(notedList(8, 1, 9000), emptyBase), { now: 9000, overwriteUntil: 9000 + 60000 }).hold === false, "a chosen restore that is not near-empty can still overwrite");
 
 var pins = {
-  "ideas-sandbox/app.js": { v: 67, hash: "495526f80eaf22d3" },
+  "ideas-sandbox/app.js": { v: 68, hash: "91f5a7387cc3de85" },
   "ideas-sandbox/rg-sync-status.js": { v: 11, hash: "03552d2f94cf7fb6" },
   "sandbox-shared/rg-account.js": { v: 3, hash: "d87f8ad4da2f5de3" }
 };
