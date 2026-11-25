@@ -17,7 +17,8 @@
       addList: "＋ רשימה חדשה", listPh: "שם הרשימה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optDelete: "אשפה",
       moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה", editDone: "סיום",
       save: "שמור", cancel: "ביטול", del: "מחק", add: "הוספה", phTitle: "כותרת פריט", phNote: "הערה",
-      empty: "הרשימה ריקה. כתוב למעלה את הפריט הראשון.", noLists: "אין רשימות עדיין. ＋ רשימה חדשה למטה.",
+      empty: "הרשימה ריקה. הוספת פריט דרך התפריט.", noLists: "אין רשימות עדיין. ＋ רשימה חדשה למטה.",
+      noMatch: "אין פריטים תואמים", searchPh: "חיפוש ברשימה", searchClose: "ניקוי וסגירה", addDlg: "הוספת פריט",
       confirmDel: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", deleted: "„{x}” נמחק", undo: "ביטול",
       dragItem: "גרירה לסידור הפריט", dragHandle: "גרירה לסידור", noteToggle: "הצג/הסתר הערה",
       notesHide: "הסתר הערות", notesShow: "הצג הערות", noteMax: "הגעת לאורך המרבי של הערה",
@@ -45,7 +46,8 @@
       addList: "＋ New list", listPh: "List name", optMenu: "Options", optMove: "Reorder", optRename: "Edit", optDelete: "Trash",
       moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Up", moveDown: "Down", editDone: "Done",
       save: "Save", cancel: "Cancel", del: "Delete", add: "Add", phTitle: "Item title", phNote: "Note",
-      empty: "This list is empty. Write the first item above.", noLists: "No lists yet. ＋ New list below.",
+      empty: "This list is empty. Add an item from the menu.", noLists: "No lists yet. ＋ New list below.",
+      noMatch: "No matching items", searchPh: "Search this list", searchClose: "Clear and close", addDlg: "Add an item",
       confirmDel: "Delete the list “{x}” and everything in it?", deleted: "“{x}” deleted", undo: "Undo",
       dragItem: "Drag to reorder the item", dragHandle: "Drag to reorder", noteToggle: "Show/hide note",
       notesHide: "Hide notes", notesShow: "Show notes", noteMax: "This note is at its maximum length",
@@ -103,6 +105,8 @@
   var moveMode = false;
   var current = "";
   var dragging = false;
+  var idrag = null;
+  var noClick = false;
   var needRender = false;
   var lastT = 0;
   var soonT = 0;
@@ -110,6 +114,7 @@
   var retryT = 0;
   var toastT = 0;
   var pollT = 0;
+  var findQ = "";
 
   function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 6); }
@@ -238,12 +243,14 @@
   function row(x) {
     if (editing === x.id) return '<li class="irow editing" data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var name = M.textOf(x, lang), note = M.noteOf(x, lang), links = linksHtml(x);
-    var g = x.mark === "no" ? "no" : x.mark === "ok" ? "ok" : "";
-    var cls = "irow" + (hasNote(x) ? " has-note" : "") + (g ? " mk-" + g : "");
+    /* A stored "no" mark is an old skipped state. It renders as an empty box. */
+    var on = x.mark === "ok";
+    var cls = "irow" + (hasNote(x) ? " has-note" : "") + (on ? " mk-ok" : "");
     var hidden = noteHidden(x.id);
-    var box = '<button type="button" class="ckbox' + (g ? " on-" + g : "") + '" data-a="ck" aria-label="' + esc((g === "no" ? t("markNo") : g === "ok" ? t("markOk") : t("check")) + ": " + name) + '">' + (g === "ok" ? "✓" : g === "no" ? "✕" : "") + "</button>";
+    var box = '<button type="button" class="ckbox' + (on ? " on-ok" : "") + '" data-a="ck" aria-pressed="' + (on ? "true" : "false") + '" aria-label="' + esc((on ? t("markOk") : t("check")) + ": " + name) + '"><span class="ckface" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>";
+    var grip = '<svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true" focusable="false"><path d="M5 8.5h18M5 14h18M5 19.5h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
     return '<li class="' + cls + '" data-id="' + esc(x.id) + '">' +
-      '<span class="handle ihandle" aria-label="' + esc(t("dragItem") + ": " + name) + '">☰</span>' + box +
+      '<span class="handle ihandle" aria-label="' + esc(t("dragItem") + ": " + name) + '">' + grip + "</span>" + box +
       '<div class="body" role="button" tabindex="0" data-a="edit"><span class="txt">' + esc(name) + "</span></div>" +
       (hasNote(x) ? '<button type="button" class="notetog' + (hidden ? "" : " on") + '" data-a="note" aria-pressed="' + (hidden ? "false" : "true") + '" aria-label="' + esc(t("noteToggle")) + '">i</button>' : "") +
       (hasNote(x) ? '<div class="note' + (hidden ? " note-off" : "") + '" data-a="edit">' + esc(note) + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "") +
@@ -262,26 +269,38 @@
     });
     return html + "</ul>";
   }
+  function queryText() { return String(findQ || "").replace(/\s+/g, " ").trim().toLowerCase(); }
+  function matchesQuery(x) {
+    var q = queryText();
+    if (!q) return true;
+    return (M.textOf(x, lang) + "\n" + M.noteOf(x, lang)).toLowerCase().indexOf(q) !== -1;
+  }
   function panel(sec) {
-    var all = M.itemsInList(items, sec);
+    var allItems = M.itemsInList(items, sec);
+    var all = allItems.filter(matchesQuery);
     var chosen = all.filter(function (x) { return x.mark === "ok"; });
     var act = all.filter(function (x) { return x.mark !== "ok"; });
     var html = "";
     if (chosen.length) html += '<div class="ckhead"><span aria-hidden="true">✓</span> ' + esc(t("chosen")) + " (" + chosen.length + ")</div>" + '<ul class="list">' + chosen.map(row).join("") + "</ul>";
     html += grouped(act);
-    if (!all.length) html += '<div class="empty"><p>' + esc(t("empty")) + "</p></div>";
+    if (!allItems.length) html += '<div class="empty"><p>' + esc(t("empty")) + "</p></div>";
+    else if (queryText() && !all.length) html += '<div class="empty"><p>' + esc(t("noMatch")) + "</p></div>";
     return html;
   }
   function paintNotes() {
-    var bar = $("notesbar"), b = $("notes-all");
-    if (!bar || !b) return;
-    if (!current) { bar.hidden = true; return; }
-    var any = M.itemsInList(items, current).some(hasNote);
-    if (!any && !notePrefs().all) { bar.hidden = true; return; }
-    bar.hidden = false;
-    var hiding = !!notePrefs().all;
-    b.textContent = t(hiding ? "notesShow" : "notesHide");
-    b.setAttribute("aria-pressed", hiding ? "true" : "false");
+    var b = $("notes-all");
+    if (!b) return;
+    var shown = !notePrefs().all;
+    b.classList.toggle("on", shown);
+    b.setAttribute("aria-pressed", shown ? "true" : "false");
+    var label = t(shown ? "notesHide" : "notesShow");
+    b.setAttribute("aria-label", label);
+    b.title = label;
+  }
+  function paintSearch() {
+    var b = $("search-open");
+    var open = !!($("searchrow") && !$("searchrow").hidden);
+    if (b) b.setAttribute("aria-pressed", open ? "true" : "false");
   }
   function paintNoteMax(el) {
     if (!el) return;
@@ -304,6 +323,12 @@
     if ($("move-done")) $("move-done").textContent = t("editDone");
     if ($("lists")) $("lists").innerHTML = listRows();
     if ($("add-list")) $("add-list").textContent = t("addList");
+    document.querySelectorAll(".onlylist").forEach(function (el) { el.hidden = !current; });
+    if ($("print-title")) {
+      var cat = current ? catRec(current) : null;
+      $("print-title").textContent = cat ? M.nameOf(cat, lang) : "";
+    }
+    paintSearch();
     if (current && $("panels")) {
       var ae = document.activeElement, edVals = null;
       var ed = editing && document.querySelector('[data-ed="' + editing + '"]');
@@ -342,7 +367,7 @@
   }
   function cycleMark(id) {
     var x = items[id]; if (!x) return;
-    var m = x.mark === "ok" ? "no" : x.mark === "no" ? null : "ok";
+    var m = x.mark === "ok" ? null : "ok";
     items[id] = M.editRec(x, { mark: m }, now());
     changed();
   }
@@ -425,6 +450,29 @@
       changed();
     });
   }
+  /* Swipe-delete, same as Listify: the list is removed at once and the toast can put it back for 5 seconds. */
+  function delListWithUndo(cid) {
+    var c = catRec(cid); if (!c || c.gone) return;
+    var name = M.nameOf(c, lang);
+    var keepC = M.clone(c);
+    var keepItems = M.itemsInList(items, cid).map(function (x) { return M.clone(x); });
+    var at = now();
+    keepItems.forEach(function (x) { items[x.id] = M.editRec(items[x.id], { deleted: true }, at); });
+    var y = M.editRec(c, { gone: 1 }, at);
+    if (window.RGSyncStatus && RGSyncStatus.noteGone) y = RGSyncStatus.noteGone(y, at, true);
+    items[c.id] = y;
+    openOpt = null;
+    if (current === cid) { current = ""; if (location.hash) location.hash = ""; }
+    changed();
+    toast(t("deleted").replace("{x}", name), function () {
+      var at2 = now();
+      var back = M.editRec(keepC, { gone: null, deleted: null }, at2);
+      if (window.RGSyncStatus && RGSyncStatus.noteGone) back = RGSyncStatus.noteGone(back, at2, false);
+      items[keepC.id] = back;
+      keepItems.forEach(function (x) { items[x.id] = M.editRec(x, { deleted: null }, at2); });
+      changed();
+    });
+  }
   function moveItem(id, cid) {
     var x = items[id], c = catRec(cid);
     if (!x || !c || x.sec === cid) return;
@@ -481,20 +529,75 @@
       done(v);
     });
   }
+  function hideToast() {
+    var el = $("toast"); if (!el) return;
+    clearTimeout(toastT);
+    el.hidden = true;
+    el.classList.remove("drag");
+    el.style.transform = "";
+    el.style.opacity = "";
+  }
+  /* Same toast swipe as Listify: any direction, 40px dismisses without undoing. */
+  function toastSwipe(el) {
+    if (el._sw) return; el._sw = 1;
+    var sx = 0, sy = 0, dx = 0, dy = 0, on = false;
+    el.addEventListener("pointerdown", function (e) {
+      if (el.hidden || e.target.closest("button")) return;
+      on = true; sx = e.clientX; sy = e.clientY; dx = dy = 0;
+      el.classList.add("drag");
+      clearTimeout(toastT);
+      try { el.setPointerCapture(e.pointerId); } catch (x) {}
+    });
+    el.addEventListener("pointermove", function (e) {
+      if (!on) return;
+      dx = e.clientX - sx; dy = e.clientY - sy;
+      var d = Math.sqrt(dx * dx + dy * dy);
+      el.style.transform = "translate(calc(-50% + " + dx + "px), " + dy + "px)";
+      el.style.opacity = String(Math.max(0.2, 1 - d / 160));
+    });
+    function end() {
+      if (!on) return;
+      on = false;
+      el.classList.remove("drag");
+      if (Math.sqrt(dx * dx + dy * dy) >= 40) {
+        el.style.transform = "translate(calc(-50% + " + (dx * 3) + "px), " + (dy * 3) + "px)";
+        el.style.opacity = "0";
+        setTimeout(hideToast, 200);
+      } else {
+        el.style.transform = "";
+        el.style.opacity = "";
+        toastT = setTimeout(hideToast, el._undo ? 5000 : 2200);
+      }
+    }
+    el.addEventListener("pointerup", end);
+    el.addEventListener("pointercancel", end);
+  }
   function toast(msg, undo) {
     var el = $("toast");
     if (!el) return;
-    el.innerHTML = "<span>" + esc(msg) + "</span>";
+    toastSwipe(el);
+    el._undo = !!undo;
+    el.style.transform = "";
+    el.style.opacity = "";
+    el.innerHTML = '<span class="tmsg">' + esc(msg) + "</span>";
     if (undo) {
       var b = document.createElement("button");
       b.type = "button";
+      b.className = "tundo";
       b.textContent = t("undo");
-      b.onclick = function () { el.hidden = true; undo(); };
+      b.onclick = function () { hideToast(); undo(); };
+      var x = document.createElement("button");
+      x.type = "button";
+      x.className = "tx";
+      x.setAttribute("aria-label", t("close"));
+      x.textContent = "✕";
+      x.onclick = function () { hideToast(); };
       el.appendChild(b);
+      el.appendChild(x);
     }
     el.hidden = false;
     clearTimeout(toastT);
-    toastT = setTimeout(function () { el.hidden = true; }, undo ? 5000 : 2200);
+    toastT = setTimeout(hideToast, undo ? 5000 : 2200);
   }
   function makeSorter(rows, el, y0) {
     function sy() { return window.scrollY || window.pageYOffset || 0; }
@@ -536,34 +639,262 @@
       }
     };
   }
-  function bootDrag() {
-    document.addEventListener("pointerdown", function (e) {
-      var h = e.target.closest && e.target.closest(".ihandle, .lhandle");
-      if (!h || (e.button != null && e.button !== 0)) return;
-      var li = h.closest(".irow, .lrow");
-      if (!li || li.classList.contains("editing")) return;
-      e.preventDefault();
-      var sel = h.classList.contains("lhandle") ? ".lrow" : ".irow";
-      var rows = [].filter.call(li.parentNode.children, function (n) { return n.matches(sel); });
-      var sorter = makeSorter(rows, li, e.clientY);
-      dragging = true;
-      function move(ev) { sorter.move(ev.clientY); }
-      function up() {
-        document.removeEventListener("pointermove", move);
-        document.removeEventListener("pointerup", up);
-        document.removeEventListener("pointercancel", up);
-        var res = sorter.end();
-        dragging = false;
-        if (res.moved) {
-          var ids = res.order.map(function (r) { return r.getAttribute("data-id") || r.getAttribute("data-cat"); });
-          if (h.classList.contains("lhandle")) setListOrder(ids);
-          else applySubsetOrder(current, ids);
-        } else if (needRender) { needRender = false; render(); }
+  /* ---------- rows: Listify's swipe (my/ideas app.js).
+     Physical right = delete, with the 5-second undo. Physical left = move
+     (an item asks which list; a list enters סידור). Same numbers as Listify:
+     12px before the axis locks, the clearer axis must lead by 1.5×, and the
+     swipe commits at 35% of the row width. Directions are physical clientX,
+     so RTL does not flip them. A vertical drag stays vertical (page scroll),
+     except on ☰, which reorders. The note toggle is not a swipe. ---------- */
+  function bootGestures() {
+    var AXIS = 12, SWIPE = 0.35, swipeGen = 0, noteGuard = null;
+    function reset() {
+      if (idrag) {
+        unswipe();
+        if (idrag.sorter) idrag.sorter.end();
       }
-      document.addEventListener("pointermove", move);
-      document.addEventListener("pointerup", up);
-      document.addEventListener("pointercancel", up);
+      document.body.classList.remove("idragging");
+      idrag = null;
+      dragging = false;
+      if (needRender) { needRender = false; render(); }
+    }
+    function clearKids(li) {
+      if (!li) return;
+      var kids = li.children, i;
+      for (i = 0; i < kids.length; i++) { kids[i].style.transition = ""; kids[i].style.transform = ""; }
+    }
+    function unswipe() {
+      var li = idrag && idrag.li;
+      if (!li) return;
+      var sx = li.style.getPropertyValue("--sx");
+      var kids = [].slice.call(li.children);
+      var gen = ++swipeGen;
+      li.classList.remove("swiping", "sw-r", "sw-l", "sw-go");
+      li.style.removeProperty("--sx");
+      if (!sx || sx === "0px") { clearKids(li); return; }
+      var i;
+      for (i = 0; i < kids.length; i++) {
+        kids[i].style.transition = "none";
+        kids[i].style.transform = "translateX(" + sx + ")";
+      }
+      void li.offsetWidth;
+      for (i = 0; i < kids.length; i++) {
+        kids[i].style.transition = "transform .18s ease";
+        kids[i].style.transform = "";
+      }
+      setTimeout(function () {
+        if (gen !== swipeGen) return;
+        clearKids(li);
+      }, 220);
+    }
+    function clearSel() {
+      var sl = window.getSelection && window.getSelection();
+      if (sl && !sl.isCollapsed) sl.removeAllRanges();
+    }
+    function capturePtr() {
+      var el = idrag.cap && idrag.cap.setPointerCapture ? idrag.cap : idrag.li;
+      try { el.setPointerCapture(idrag.pid); } catch (e2) { try { idrag.li.setPointerCapture(idrag.pid); } catch (e3) {} }
+    }
+    function armH() {
+      if (!idrag || idrag.swipe || idrag.lifted) return;
+      if (idrag.fromText) clearSel();
+      swipeGen++;
+      clearKids(idrag.li);
+      idrag.swipe = true;
+      idrag.axis = "h";
+      idrag.li.classList.add("swiping");
+      capturePtr();
+    }
+    function paintH(dx) {
+      var w = idrag.li.offsetWidth || 1, go = Math.abs(dx) >= w * SWIPE;
+      idrag.li.style.setProperty("--sx", dx + "px");
+      idrag.li.classList.toggle("sw-r", dx > 0);
+      idrag.li.classList.toggle("sw-l", dx < 0);
+      idrag.li.classList.toggle("sw-go", go);
+    }
+    function beginLift() {
+      if (!idrag || idrag.lifted || idrag.swipe) return;
+      var li = idrag.li, ul = li.parentNode;
+      if (!ul) return;
+      var sel = idrag.kind === "list" ? ".lrow" : ".irow";
+      var rows = [].filter.call(ul.children, function (n) { return n.matches(sel); });
+      if (rows.indexOf(li) < 0) return;
+      swipeGen++;
+      clearKids(li);
+      idrag.lifted = true;
+      idrag.axis = "v";
+      idrag.sorter = makeSorter(rows, li, idrag.y);
+      document.body.classList.add("idragging");
+      capturePtr();
+      if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+    }
+    function follow(dx, dy) {
+      if (!idrag || idrag.handled) return "";
+      idrag._dx = dx;
+      idrag._dy = dy;
+      if (idrag.lifted) return "v";
+      if (idrag.swipe) { paintH(dx); return "h"; }
+      var adx = Math.abs(dx), ady = Math.abs(dy);
+      if (!idrag.axis) {
+        if (adx < AXIS && ady < AXIS) return "";
+        if (adx > ady * 1.5) idrag.axis = "h";
+        else if (ady > adx * 1.5) idrag.axis = "v";
+        else return "";
+      }
+      if (idrag.axis === "v") {
+        if (idrag.fromHandle && !idrag.sawCancel) { beginLift(); return idrag.lifted ? "v" : ""; }
+        return "";
+      }
+      armH();
+      paintH(dx);
+      return "h";
+    }
+    function rowFrom(target) {
+      if (!target || !target.closest) return null;
+      return target.closest(".irow[data-id], .lrow[data-cat]");
+    }
+    function track(e, li, fromHandle) {
+      reset();
+      var kind = li.classList.contains("lrow") ? "list" : "item";
+      idrag = {
+        li: li,
+        id: kind === "list" ? li.getAttribute("data-cat") : li.getAttribute("data-id"),
+        kind: kind,
+        x: e.clientX,
+        y: e.clientY,
+        pid: e.pointerId,
+        type: e.pointerType,
+        lifted: false,
+        axis: "",
+        fromHandle: !!fromHandle,
+        fromText: e.pointerType === "mouse" && !!(e.target.closest && e.target.closest(".txt, .note, .lname, input, textarea")),
+        cap: e.target && e.target.setPointerCapture ? e.target : li,
+        _dx: 0,
+        _dy: 0
+      };
+      dragging = true;
+    }
+    function endSwipe(d, sdx) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true;
+      setTimeout(function () { noClick = false; }, 400);
+      var w = (d.li && d.li.offsetWidth) || 1, kind = d.kind, sid = d.id;
+      reset();
+      if (Math.abs(sdx) < w * SWIPE) return;
+      if (kind === "list") {
+        if (sdx > 0) {
+          delListWithUndo(sid);
+          if (navigator.vibrate) try { navigator.vibrate(10); } catch (e3) {}
+        } else if (!moveMode) { openOpt = null; moveMode = true; render(); }
+        return;
+      }
+      var x = items[sid];
+      if (sdx > 0 && x && !x.deleted) {
+        delWithUndo(sid);
+        if (navigator.vibrate) try { navigator.vibrate(10); } catch (e4) {}
+      } else if (sdx < 0 && x && !x.deleted) moveMenu(sid);
+    }
+    function endLift(d) {
+      if (!d || d.handled) return;
+      d.handled = true;
+      noClick = true;
+      setTimeout(function () { noClick = false; }, 400);
+      var r = d.sorter ? d.sorter.end() : { moved: false, order: [] };
+      var kind = d.kind, sec = current;
+      d.sorter = null;
+      reset();
+      if (!r.moved) return;
+      var ids = r.order.map(function (li) { return li.getAttribute(kind === "list" ? "data-cat" : "data-id"); });
+      if (kind === "list") setListOrder(ids);
+      else applySubsetOrder(sec, ids);
+    }
+    document.addEventListener("pointerdown", function (e) {
+      if (e.target.closest && e.target.closest(".notetog")) {
+        noteGuard = { x: e.clientX, y: e.clientY, pid: e.pointerId, moved: false };
+        return;
+      }
+      var li = rowFrom(e.target);
+      if (!li || li.querySelector(".ed") || (li.classList.contains("irow") && editing)) return;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      if (e.target.closest && e.target.closest(".sheet, #bg-sheet, #toast")) return;
+      var h = e.target.closest && e.target.closest(".ihandle, .lhandle");
+      if (h) { e.preventDefault(); track(e, li, true); return; }
+      track(e, li, false);
     });
+    document.addEventListener("pointermove", function (e) {
+      if (noteGuard && e.pointerId === noteGuard.pid) {
+        if (Math.abs(e.clientX - noteGuard.x) + Math.abs(e.clientY - noteGuard.y) > 8) noteGuard.moved = true;
+      }
+      if (!idrag || e.pointerId !== idrag.pid) return;
+      if (idrag.sawCancel && !idrag.swipe && !idrag.lifted) return;
+      if (idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
+      var act = follow(e.clientX - idrag.x, e.clientY - idrag.y);
+      if (idrag && idrag.lifted) { e.preventDefault(); if (idrag.sorter) idrag.sorter.move(e.clientY); return; }
+      if (act === "h" || act === "v") e.preventDefault();
+    });
+    function up(e) {
+      if (noteGuard && e.pointerId === noteGuard.pid) {
+        if (noteGuard.moved) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+        noteGuard = null;
+      }
+      if (!idrag || e.pointerId !== idrag.pid || idrag.handled) return;
+      var d = idrag;
+      if (d.type === "touch" && e.type === "pointercancel") {
+        d.sawCancel = true;
+        if (!d.swipe && !d.lifted) d.axis = "v";
+        return;
+      }
+      if (d.swipe || d.axis === "h") {
+        var sdx = (e.type === "pointerup" && typeof e.clientX === "number") ? e.clientX - d.x : (d._dx || 0);
+        endSwipe(d, sdx);
+        return;
+      }
+      if (d.lifted) { endLift(d); return; }
+      var moved = Math.abs(d._dx || 0) + Math.abs(d._dy || 0) > 8;
+      var sl = window.getSelection && window.getSelection();
+      if (moved || (sl && !sl.isCollapsed && String(sl).trim())) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+      d.handled = true;
+      reset();
+    }
+    document.addEventListener("pointerup", up);
+    document.addEventListener("pointercancel", up);
+    document.addEventListener("touchend", function (e) {
+      if (!idrag || idrag.handled) return;
+      var tch = e.changedTouches && e.changedTouches[0]; if (!tch) return;
+      var dx = tch.clientX - idrag.x, dy = tch.clientY - idrag.y, d = idrag;
+      d._dx = dx; d._dy = dy;
+      if (d.type !== "touch" && !d.sawCancel) return;
+      if (d.lifted) { if (d.sawCancel) endLift(d); return; }
+      if (d.swipe || d.axis === "h") { if (d.sawCancel) endSwipe(d, dx); return; }
+      if (Math.abs(dx) + Math.abs(dy) > 8) { noClick = true; setTimeout(function () { noClick = false; }, 400); }
+      d.handled = true;
+      reset();
+    }, { passive: true });
+    document.addEventListener("touchmove", function (e) {
+      if (!idrag || idrag.handled || idrag.sawCancel) return;
+      var tch = e.touches && e.touches[0]; if (!tch) return;
+      if (idrag.lifted && idrag.sorter) { idrag.sorter.move(tch.clientY); return; }
+      follow(tch.clientX - idrag.x, tch.clientY - idrag.y);
+      if (idrag && idrag.lifted && idrag.sorter) idrag.sorter.move(tch.clientY);
+    }, { passive: true });
+    document.addEventListener("selectstart", function (e) {
+      if (!idrag || idrag.handled) return;
+      if (idrag.swipe || idrag.axis === "h" || idrag.lifted || idrag.fromHandle) e.preventDefault();
+    }, true);
+    document.addEventListener("dragstart", function (e) {
+      if (idrag && e.target.closest && (e.target.closest(".irow") || e.target.closest(".lrow"))) e.preventDefault();
+    });
+    document.addEventListener("contextmenu", function (e) {
+      if (idrag && (idrag.swipe || idrag.lifted) && e.target.closest && e.target.closest(".irow, .lrow")) e.preventDefault();
+    });
+    document.addEventListener("click", function (e) {
+      if (!noClick) return;
+      if (e.target.closest && e.target.closest("#toast")) return;
+      e.preventDefault();
+      e.stopPropagation();
+      noClick = false;
+    }, true);
   }
 
   /* ---------- history + backup ---------- */
@@ -850,25 +1181,98 @@
     document.title = he ? "איזוניפיי" : "Balancify";
     if ($("title")) $("title").textContent = (D.APP_NAME && (D.APP_NAME[lang] || D.APP_NAME.he)) || "";
     if ($("tagline")) $("tagline").textContent = (D.subtitle && (D.subtitle[lang] || D.subtitle.he)) || "";
-    if ($("home-btn")) $("home-btn").textContent = t("home");
     if ($("bg-btn")) $("bg-btn").textContent = t("bg");
     if ($("bg-title")) $("bg-title").textContent = t("bgTitle");
     if ($("bg-close")) $("bg-close").setAttribute("aria-label", t("close"));
     if ($("add-text")) { $("add-text").placeholder = t("phTitle"); $("add-text").setAttribute("aria-label", t("phTitle")); }
     if ($("add-note")) { $("add-note").placeholder = t("phNote"); $("add-note").setAttribute("aria-label", t("phNote")); }
     if ($("add-btn")) $("add-btn").textContent = t("add");
-    if ($("hist-btn")) $("hist-btn").textContent = t("history");
-    if ($("backup-link")) $("backup-link").textContent = t("backupLink");
+    if ($("add-dlg-title")) $("add-dlg-title").textContent = t("addDlg");
+    if ($("search-q")) { $("search-q").placeholder = t("searchPh"); $("search-q").setAttribute("aria-label", t("searchPh")); }
+    if ($("search-x")) { $("search-x").setAttribute("aria-label", t("searchClose")); $("search-x").title = t("searchClose"); }
     if ($("lang-he")) $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
     if ($("lang-en")) $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     applyTheme();
     renderBg();
   }
+  function closeMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (m) m.hidden = true;
+    if (b) b.setAttribute("aria-expanded", "false");
+  }
+  function openMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (!m) return;
+    paintNotes();
+    m.hidden = false;
+    if (b) b.setAttribute("aria-expanded", "true");
+  }
+  function openSearch() {
+    if (!current) return;
+    var row = $("searchrow");
+    if (!row) return;
+    row.hidden = false;
+    paintSearch();
+    var q = $("search-q");
+    if (q) setTimeout(function () { q.focus(); }, 30);
+  }
+  function closeSearch() {
+    findQ = "";
+    if ($("search-q")) $("search-q").value = "";
+    if ($("searchrow")) $("searchrow").hidden = true;
+    paintSearch();
+    render();
+  }
+  function openAdd() {
+    if (!current) return;
+    var s = $("add-sheet");
+    if (!s) return;
+    s.hidden = false;
+    if ($("add-dlg-title")) $("add-dlg-title").textContent = t("addDlg");
+    if ($("add-text")) {
+      $("add-text").placeholder = t("phTitle");
+      $("add-text").setAttribute("aria-label", t("phTitle"));
+      setTimeout(function () { $("add-text").focus(); }, 30);
+    }
+    if ($("add-note")) {
+      $("add-note").placeholder = t("phNote");
+      $("add-note").setAttribute("aria-label", t("phNote"));
+    }
+    if ($("add-btn")) $("add-btn").textContent = t("add");
+  }
+  function closeAdd() {
+    if ($("add-sheet")) $("add-sheet").hidden = true;
+    if ($("menu-btn")) $("menu-btn").focus();
+  }
+  function clickBar(sel) {
+    var n = document.querySelector(sel);
+    if (n) n.click();
+  }
+  function runMenu(act) {
+    closeMenu();
+    if (act === "back") { location.hash = ""; return; }
+    if (act === "notes") { toggleAllNotes(); return; }
+    if (act === "add") { openAdd(); return; }
+    if (act === "print") { window.print(); return; }
+    if (act === "search") { openSearch(); return; }
+    if (act === "hist") { openHistory(); return; }
+    if (act === "bak") { downloadBackup(); return; }
+    if (act === "lang") { setTimeout(function () { clickBar(".rgtb-lang > .rgtb-b"); }, 30); return; }
+    if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
+    if (act === "theme") { clickBar(".rgtb-theme"); return; }
+    if (act === "colors") { clickBar(".rgtb-bg"); return; }
+    if (act === "acct") { setTimeout(function () { clickBar(".rgacc-btn"); }, 30); return; }
+  }
   function route() {
     var id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
     var known = M.lists(items).some(function (c) { return c.cat === id; });
     var next = known ? id : "";
-    if (next !== current) { editing = null; openOpt = null; }
+    if (next !== current) {
+      editing = null; openOpt = null; findQ = "";
+      if ($("search-q")) $("search-q").value = "";
+      if ($("searchrow")) $("searchrow").hidden = true;
+      closeMenu();
+    }
     current = next;
     render();
   }
@@ -877,25 +1281,45 @@
     loadHistory();
     paintChrome();
     route();
-    bootDrag();
+    bootGestures();
     if ($("lang-he")) $("lang-he").onclick = function () { lang = "he"; set(LANG_KEY, "he"); paintChrome(); render(); };
     if ($("lang-en")) $("lang-en").onclick = function () { lang = "en"; set(LANG_KEY, "en"); paintChrome(); render(); };
     if ($("theme-btn")) $("theme-btn").onclick = function () { theme = theme === "light" ? "dark" : "light"; set(THEME_KEY, theme); applyTheme(); };
     if ($("bg-btn")) $("bg-btn").onclick = function () { $("bg-sheet").hidden = false; };
     if ($("bg-close")) $("bg-close").onclick = function () { $("bg-sheet").hidden = true; };
     if ($("bg-sheet")) $("bg-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
-    if ($("home-btn")) $("home-btn").onclick = function () { location.hash = ""; };
     if ($("add-list")) $("add-list").onclick = function () { nameSheet(t("addList"), "", true, function (v) { var id = addList(v); if (id) location.hash = "#" + id; }); };
     if ($("move-done")) $("move-done").onclick = function () { moveMode = false; render(); syncSoon(); };
-    if ($("notes-all")) $("notes-all").onclick = function () { toggleAllNotes(); };
-    if ($("hist-btn")) $("hist-btn").onclick = function () { openHistory(); };
-    if ($("backup-link")) $("backup-link").onclick = function () { downloadBackup(); };
+    if ($("menu-btn")) $("menu-btn").onclick = function (e) {
+      e.stopPropagation();
+      if ($("appmenu") && $("appmenu").hidden) openMenu(); else closeMenu();
+    };
+    if ($("appmenu")) $("appmenu").addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-menu]");
+      if (!b) return;
+      e.stopPropagation();
+      runMenu(b.getAttribute("data-menu"));
+    });
+    document.addEventListener("click", function (e) {
+      var menu = $("appmenu");
+      if (!menu || menu.hidden) return;
+      if (e.target.closest && (e.target.closest("#appmenu") || e.target.closest("#menu-btn"))) return;
+      closeMenu();
+    });
+    if ($("add-close")) $("add-close").onclick = function () { closeAdd(); };
+    if ($("add-sheet")) $("add-sheet").addEventListener("click", function (e) { if (e.target === this) closeAdd(); });
+    if ($("search-x")) $("search-x").onclick = function () { closeSearch(); };
+    if ($("search-q")) $("search-q").addEventListener("input", function () { findQ = this.value; render(); });
     var form = $("add-form");
     if (form) form.addEventListener("submit", function (e) {
       e.preventDefault();
-      addItem($("add-text").value, $("add-note").value);
-      form.reset();
-      if ($("add-text")) $("add-text").style.height = "";
+      var text = $("add-text").value;
+      if (!clean(text, 200)) { $("add-text").focus(); return; }
+      addItem(text, $("add-note").value);
+      $("add-text").value = "";
+      $("add-note").value = "";
+      paintNoteMax($("add-note"));
+      $("add-text").focus();
     });
     if ($("add-note")) $("add-note").addEventListener("input", function () { paintNoteMax($("add-note")); });
     document.addEventListener("input", function (e) {
@@ -938,10 +1362,30 @@
       if (a === "move") { moveMenu(iid); return; }
     });
     document.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey && e.target && (e.target.id === "add-text" || e.target.id === "add-note") && $("add-sheet") && !$("add-sheet").hidden) {
+        e.preventDefault();
+        if ($("add-form")) $("add-form").requestSubmit();
+        return;
+      }
+      if (e.key === "Escape") {
+        if ($("add-sheet") && !$("add-sheet").hidden) { closeAdd(); return; }
+        if ($("appmenu") && !$("appmenu").hidden) { closeMenu(); return; }
+        if ($("searchrow") && !$("searchrow").hidden && e.target && e.target.id === "search-q") { closeSearch(); return; }
+      }
       var ed = e.target.closest && e.target.closest("[data-ed]");
       if (!ed) return;
       if (e.key === "Escape") { editing = null; render(); }
       else if (e.key === "Enter" && !e.shiftKey && e.target.classList.contains("e-text")) { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
+    });
+    window.addEventListener("beforeprint", function () {
+      if (!findQ) return;
+      findQ = "";
+      render();
+    });
+    window.addEventListener("afterprint", function () {
+      var q = $("search-q");
+      findQ = q ? q.value : "";
+      render();
     });
     window.addEventListener("hashchange", function () { closeSheet(); route(); });
     window.addEventListener("online", function () { if (uid) sync(); });
