@@ -1354,13 +1354,15 @@
     bp.classList.toggle("empty", !(br && !br.gone));
   }
   function paintNotesAll() {
-    var bar = $("notesbar"), b = $("notes-all"), any = false, pool;
+    var bar = $("notesbar"), b = $("notes-all"), any = false, pool, hiding, mb;
     if (!bar || !b) return;
     pool = searchRaw() ? cats() : listsNow();
     pool.forEach(function (c) { if (any) return; live(c.cat).forEach(function (x) { if (x.note) any = true; }); });
-    if (!uid || (!any && !notePrefs().all)) { bar.hidden = true; return; }
+    hiding = !!notePrefs().all;
+    mb = $("menu-notes");
+    if (mb) mb.setAttribute("aria-pressed", hiding ? "true" : "false");
+    if (!uid || (!any && !hiding)) { bar.hidden = true; return; }
     bar.hidden = false;
-    var hiding = !!notePrefs().all;
     b.textContent = t(hiding ? "notesShow" : "notesHide");
     b.setAttribute("aria-pressed", hiding ? "true" : "false");
   }
@@ -2054,10 +2056,94 @@
     if (a.parentNode) a.parentNode.removeChild(a);
     setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
   }
+  function closeAppMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (m) m.hidden = true;
+    if (b) b.setAttribute("aria-expanded", "false");
+  }
+  function openAppMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (!m) return;
+    if (menuOpen()) closeMenu();
+    if (boxMenuOpen()) closeBoxMenu();
+    m.hidden = false;
+    if (b) b.setAttribute("aria-expanded", "true");
+  }
+  /* The icon returns to the lists: close a sheet, a picker, the menu, and a search. */
+  function goAppHome() {
+    closeAppMenu();
+    closeSheet();
+    var bg = $("rgbg-sheet"); if (bg) bg.hidden = true;
+    closeMenu();
+    closeBoxMenu();
+    editing = null;
+    var s = $("list-search");
+    if (s && String(s.value || "").replace(/^\s+|\s+$/g, "")) {
+      s.value = "";
+      s.dispatchEvent(new Event("input", { bubbles: true }));
+    } else render();
+    try { window.scrollTo({ top: 0 }); } catch (e) {}
+  }
+  function focusSearch() {
+    var el = $("list-search");
+    if (!el) return;
+    try { el.scrollIntoView({ block: "center" }); } catch (e) {}
+    el.focus();
+  }
+  function focusAdd() {
+    var s = $("list-search");
+    if (s && String(s.value || "").replace(/^\s+|\s+$/g, "")) {
+      s.value = "";
+      s.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+    var el = document.querySelector('.addform textarea[name="text"]');
+    if (!el) return;
+    try { el.scrollIntoView({ block: "center" }); } catch (e2) {}
+    el.focus();
+  }
+  function clickBar(sel) {
+    var n = document.querySelector(sel);
+    if (!n) return false;
+    n.click();
+    return true;
+  }
+  function runAppMenu(act) {
+    closeAppMenu();
+    if (act === "lang") { setTimeout(function () { clickBar(".rgtb-lang > .rgtb-b"); }, 30); return; }
+    if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
+    if (act === "night") { if (!clickBar(".rgtb-theme")) clickBar("#theme-btn"); return; }
+    if (act === "theme") { setTimeout(function () { clickBar(".rgtb-bg"); }, 30); return; }
+    if (act === "search") { focusSearch(); return; }
+    if (act === "notes") { toggleAllNotes(); return; }
+    if (act === "add") { focusAdd(); return; }
+    if (act === "acct") { setTimeout(function () { if (!clickBar(".rgtb .rgacc-btn")) clickBar(".rgacc-btn"); }, 30); return; }
+  }
+  function bootAppMenu() {
+    var home = $("app-home"), btn = $("menu-btn"), menu = $("appmenu");
+    if (home) home.addEventListener("click", function () { goAppHome(); });
+    if (btn) btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (menu && menu.hidden) openAppMenu(); else closeAppMenu();
+    });
+    if (menu) menu.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-menu]");
+      if (b) { e.stopPropagation(); runAppMenu(b.getAttribute("data-menu")); return; }
+      if (e.target.closest && e.target.closest("#print-btn, #restore-file-btn, #hist-btn, #backup-link")) closeAppMenu();
+    });
+    document.addEventListener("click", function (e) {
+      if (!menu || menu.hidden) return;
+      if (e.target.closest && (e.target.closest("#appmenu") || e.target.closest("#menu-btn"))) return;
+      closeAppMenu();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu && !menu.hidden && !$("sheet")) { closeAppMenu(); if (btn) btn.focus(); }
+    });
+  }
   function boot() {
     var main = document.querySelector("main");
     if (!main) return;
     try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
+    try { bootAppMenu(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootSearch(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootLists(); } catch (e) { setTimeout(function () { throw e; }); } // the lists still load and show even if a control fails
     try { bootItemDrag(); } catch (e) { setTimeout(function () { throw e; }); }
