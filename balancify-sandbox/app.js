@@ -17,7 +17,8 @@
       addList: "＋ רשימה חדשה", listPh: "שם הרשימה", optMenu: "אפשרויות", optMove: "סידור", optRename: "עריכה", optDelete: "אשפה",
       moveNote: "סידור: גרירה ב-☰ או ▲▼", moveUp: "למעלה", moveDown: "למטה", editDone: "סיום",
       save: "שמור", cancel: "ביטול", del: "מחק", add: "הוספה", phTitle: "כותרת פריט", phNote: "הערה",
-      empty: "הרשימה ריקה. כתוב למעלה את הפריט הראשון.", noLists: "אין רשימות עדיין. ＋ רשימה חדשה למטה.",
+      empty: "הרשימה ריקה. הוספת פריט דרך התפריט.", noLists: "אין רשימות עדיין. ＋ רשימה חדשה למטה.",
+      noMatch: "אין פריטים תואמים", searchPh: "חיפוש ברשימה", searchClose: "ניקוי וסגירה", addDlg: "הוספת פריט",
       confirmDel: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", deleted: "„{x}” נמחק", undo: "ביטול",
       dragItem: "גרירה לסידור הפריט", dragHandle: "גרירה לסידור", noteToggle: "הצג/הסתר הערה",
       notesHide: "הסתר הערות", notesShow: "הצג הערות", noteMax: "הגעת לאורך המרבי של הערה",
@@ -45,7 +46,8 @@
       addList: "＋ New list", listPh: "List name", optMenu: "Options", optMove: "Reorder", optRename: "Edit", optDelete: "Trash",
       moveNote: "Reorder: drag ☰ or use ▲▼", moveUp: "Up", moveDown: "Down", editDone: "Done",
       save: "Save", cancel: "Cancel", del: "Delete", add: "Add", phTitle: "Item title", phNote: "Note",
-      empty: "This list is empty. Write the first item above.", noLists: "No lists yet. ＋ New list below.",
+      empty: "This list is empty. Add an item from the menu.", noLists: "No lists yet. ＋ New list below.",
+      noMatch: "No matching items", searchPh: "Search this list", searchClose: "Clear and close", addDlg: "Add an item",
       confirmDel: "Delete the list “{x}” and everything in it?", deleted: "“{x}” deleted", undo: "Undo",
       dragItem: "Drag to reorder the item", dragHandle: "Drag to reorder", noteToggle: "Show/hide note",
       notesHide: "Hide notes", notesShow: "Show notes", noteMax: "This note is at its maximum length",
@@ -112,6 +114,7 @@
   var retryT = 0;
   var toastT = 0;
   var pollT = 0;
+  var findQ = "";
 
   function now() { lastT = Math.max(Date.now(), lastT + 1); return lastT; }
   function newId() { return now().toString(36) + Math.random().toString(36).slice(2, 6); }
@@ -240,12 +243,14 @@
   function row(x) {
     if (editing === x.id) return '<li class="irow editing" data-id="' + esc(x.id) + '">' + editor(x) + "</li>";
     var name = M.textOf(x, lang), note = M.noteOf(x, lang), links = linksHtml(x);
-    var g = x.mark === "no" ? "no" : x.mark === "ok" ? "ok" : "";
-    var cls = "irow" + (hasNote(x) ? " has-note" : "") + (g ? " mk-" + g : "");
+    /* A stored "no" mark is an old skipped state. It renders as an empty box. */
+    var on = x.mark === "ok";
+    var cls = "irow" + (hasNote(x) ? " has-note" : "") + (on ? " mk-ok" : "");
     var hidden = noteHidden(x.id);
-    var box = '<button type="button" class="ckbox' + (g ? " on-" + g : "") + '" data-a="ck" aria-label="' + esc((g === "no" ? t("markNo") : g === "ok" ? t("markOk") : t("check")) + ": " + name) + '">' + (g === "ok" ? "✓" : g === "no" ? "✕" : "") + "</button>";
+    var box = '<button type="button" class="ckbox' + (on ? " on-ok" : "") + '" data-a="ck" aria-pressed="' + (on ? "true" : "false") + '" aria-label="' + esc((on ? t("markOk") : t("check")) + ": " + name) + '"><span class="ckface" aria-hidden="true">' + (on ? "✓" : "") + "</span></button>";
+    var grip = '<svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true" focusable="false"><path d="M5 8.5h18M5 14h18M5 19.5h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
     return '<li class="' + cls + '" data-id="' + esc(x.id) + '">' +
-      '<span class="handle ihandle" aria-label="' + esc(t("dragItem") + ": " + name) + '">☰</span>' + box +
+      '<span class="handle ihandle" aria-label="' + esc(t("dragItem") + ": " + name) + '">' + grip + "</span>" + box +
       '<div class="body" role="button" tabindex="0" data-a="edit"><span class="txt">' + esc(name) + "</span></div>" +
       (hasNote(x) ? '<button type="button" class="notetog' + (hidden ? "" : " on") + '" data-a="note" aria-pressed="' + (hidden ? "false" : "true") + '" aria-label="' + esc(t("noteToggle")) + '">i</button>' : "") +
       (hasNote(x) ? '<div class="note' + (hidden ? " note-off" : "") + '" data-a="edit">' + esc(note) + (links ? '<div class="ilinks">' + links + "</div>" : "") + "</div>" : "") +
@@ -264,26 +269,38 @@
     });
     return html + "</ul>";
   }
+  function queryText() { return String(findQ || "").replace(/\s+/g, " ").trim().toLowerCase(); }
+  function matchesQuery(x) {
+    var q = queryText();
+    if (!q) return true;
+    return (M.textOf(x, lang) + "\n" + M.noteOf(x, lang)).toLowerCase().indexOf(q) !== -1;
+  }
   function panel(sec) {
-    var all = M.itemsInList(items, sec);
+    var allItems = M.itemsInList(items, sec);
+    var all = allItems.filter(matchesQuery);
     var chosen = all.filter(function (x) { return x.mark === "ok"; });
     var act = all.filter(function (x) { return x.mark !== "ok"; });
     var html = "";
     if (chosen.length) html += '<div class="ckhead"><span aria-hidden="true">✓</span> ' + esc(t("chosen")) + " (" + chosen.length + ")</div>" + '<ul class="list">' + chosen.map(row).join("") + "</ul>";
     html += grouped(act);
-    if (!all.length) html += '<div class="empty"><p>' + esc(t("empty")) + "</p></div>";
+    if (!allItems.length) html += '<div class="empty"><p>' + esc(t("empty")) + "</p></div>";
+    else if (queryText() && !all.length) html += '<div class="empty"><p>' + esc(t("noMatch")) + "</p></div>";
     return html;
   }
   function paintNotes() {
-    var bar = $("notesbar"), b = $("notes-all");
-    if (!bar || !b) return;
-    if (!current) { bar.hidden = true; return; }
-    var any = M.itemsInList(items, current).some(hasNote);
-    if (!any && !notePrefs().all) { bar.hidden = true; return; }
-    bar.hidden = false;
-    var hiding = !!notePrefs().all;
-    b.textContent = t(hiding ? "notesShow" : "notesHide");
-    b.setAttribute("aria-pressed", hiding ? "true" : "false");
+    var b = $("notes-all");
+    if (!b) return;
+    var shown = !notePrefs().all;
+    b.classList.toggle("on", shown);
+    b.setAttribute("aria-pressed", shown ? "true" : "false");
+    var label = t(shown ? "notesHide" : "notesShow");
+    b.setAttribute("aria-label", label);
+    b.title = label;
+  }
+  function paintSearch() {
+    var b = $("search-open");
+    var open = !!($("searchrow") && !$("searchrow").hidden);
+    if (b) b.setAttribute("aria-pressed", open ? "true" : "false");
   }
   function paintNoteMax(el) {
     if (!el) return;
@@ -306,6 +323,12 @@
     if ($("move-done")) $("move-done").textContent = t("editDone");
     if ($("lists")) $("lists").innerHTML = listRows();
     if ($("add-list")) $("add-list").textContent = t("addList");
+    document.querySelectorAll(".onlylist").forEach(function (el) { el.hidden = !current; });
+    if ($("print-title")) {
+      var cat = current ? catRec(current) : null;
+      $("print-title").textContent = cat ? M.nameOf(cat, lang) : "";
+    }
+    paintSearch();
     if (current && $("panels")) {
       var ae = document.activeElement, edVals = null;
       var ed = editing && document.querySelector('[data-ed="' + editing + '"]');
@@ -344,7 +367,7 @@
   }
   function cycleMark(id) {
     var x = items[id]; if (!x) return;
-    var m = x.mark === "ok" ? "no" : x.mark === "no" ? null : "ok";
+    var m = x.mark === "ok" ? null : "ok";
     items[id] = M.editRec(x, { mark: m }, now());
     changed();
   }
@@ -1158,25 +1181,97 @@
     document.title = he ? "איזוניפיי" : "Balancify";
     if ($("title")) $("title").textContent = (D.APP_NAME && (D.APP_NAME[lang] || D.APP_NAME.he)) || "";
     if ($("tagline")) $("tagline").textContent = (D.subtitle && (D.subtitle[lang] || D.subtitle.he)) || "";
-    if ($("home-btn")) $("home-btn").textContent = t("home");
     if ($("bg-btn")) $("bg-btn").textContent = t("bg");
     if ($("bg-title")) $("bg-title").textContent = t("bgTitle");
     if ($("bg-close")) $("bg-close").setAttribute("aria-label", t("close"));
     if ($("add-text")) { $("add-text").placeholder = t("phTitle"); $("add-text").setAttribute("aria-label", t("phTitle")); }
     if ($("add-note")) { $("add-note").placeholder = t("phNote"); $("add-note").setAttribute("aria-label", t("phNote")); }
     if ($("add-btn")) $("add-btn").textContent = t("add");
-    if ($("hist-btn")) $("hist-btn").textContent = t("history");
-    if ($("backup-link")) $("backup-link").textContent = t("backupLink");
+    if ($("add-dlg-title")) $("add-dlg-title").textContent = t("addDlg");
+    if ($("search-q")) { $("search-q").placeholder = t("searchPh"); $("search-q").setAttribute("aria-label", t("searchPh")); }
+    if ($("search-x")) { $("search-x").setAttribute("aria-label", t("searchClose")); $("search-x").title = t("searchClose"); }
     if ($("lang-he")) $("lang-he").setAttribute("aria-pressed", he ? "true" : "false");
     if ($("lang-en")) $("lang-en").setAttribute("aria-pressed", he ? "false" : "true");
     applyTheme();
     renderBg();
   }
+  function closeMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (m) m.hidden = true;
+    if (b) b.setAttribute("aria-expanded", "false");
+  }
+  function openMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (!m) return;
+    paintNotes();
+    m.hidden = false;
+    if (b) b.setAttribute("aria-expanded", "true");
+  }
+  function openSearch() {
+    if (!current) return;
+    var row = $("searchrow");
+    if (!row) return;
+    row.hidden = false;
+    paintSearch();
+    var q = $("search-q");
+    if (q) setTimeout(function () { q.focus(); }, 30);
+  }
+  function closeSearch() {
+    findQ = "";
+    if ($("search-q")) $("search-q").value = "";
+    if ($("searchrow")) $("searchrow").hidden = true;
+    paintSearch();
+    render();
+  }
+  function openAdd() {
+    if (!current) return;
+    var s = $("add-sheet");
+    if (!s) return;
+    s.hidden = false;
+    if ($("add-dlg-title")) $("add-dlg-title").textContent = t("addDlg");
+    if ($("add-text")) {
+      $("add-text").placeholder = t("phTitle");
+      $("add-text").setAttribute("aria-label", t("phTitle"));
+      setTimeout(function () { $("add-text").focus(); }, 30);
+    }
+    if ($("add-note")) {
+      $("add-note").placeholder = t("phNote");
+      $("add-note").setAttribute("aria-label", t("phNote"));
+    }
+    if ($("add-btn")) $("add-btn").textContent = t("add");
+  }
+  function closeAdd() {
+    if ($("add-sheet")) $("add-sheet").hidden = true;
+    if ($("menu-btn")) $("menu-btn").focus();
+  }
+  function clickBar(sel) {
+    var n = document.querySelector(sel);
+    if (n) n.click();
+  }
+  function runMenu(act) {
+    closeMenu();
+    if (act === "back") { location.hash = ""; return; }
+    if (act === "notes") { toggleAllNotes(); return; }
+    if (act === "add") { openAdd(); return; }
+    if (act === "print") { window.print(); return; }
+    if (act === "search") { openSearch(); return; }
+    if (act === "hist") { openHistory(); return; }
+    if (act === "bak") { downloadBackup(); return; }
+    if (act === "lang") { setTimeout(function () { clickBar(".rgtb-lang > .rgtb-b"); }, 30); return; }
+    if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
+    if (act === "theme") { clickBar(".rgtb-theme"); return; }
+    if (act === "colors") { clickBar(".rgtb-bg"); return; }
+  }
   function route() {
     var id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
     var known = M.lists(items).some(function (c) { return c.cat === id; });
     var next = known ? id : "";
-    if (next !== current) { editing = null; openOpt = null; }
+    if (next !== current) {
+      editing = null; openOpt = null; findQ = "";
+      if ($("search-q")) $("search-q").value = "";
+      if ($("searchrow")) $("searchrow").hidden = true;
+      closeMenu();
+    }
     current = next;
     render();
   }
@@ -1192,18 +1287,38 @@
     if ($("bg-btn")) $("bg-btn").onclick = function () { $("bg-sheet").hidden = false; };
     if ($("bg-close")) $("bg-close").onclick = function () { $("bg-sheet").hidden = true; };
     if ($("bg-sheet")) $("bg-sheet").onclick = function (e) { if (e.target === this) this.hidden = true; };
-    if ($("home-btn")) $("home-btn").onclick = function () { location.hash = ""; };
     if ($("add-list")) $("add-list").onclick = function () { nameSheet(t("addList"), "", true, function (v) { var id = addList(v); if (id) location.hash = "#" + id; }); };
     if ($("move-done")) $("move-done").onclick = function () { moveMode = false; render(); syncSoon(); };
-    if ($("notes-all")) $("notes-all").onclick = function () { toggleAllNotes(); };
-    if ($("hist-btn")) $("hist-btn").onclick = function () { openHistory(); };
-    if ($("backup-link")) $("backup-link").onclick = function () { downloadBackup(); };
+    if ($("menu-btn")) $("menu-btn").onclick = function (e) {
+      e.stopPropagation();
+      if ($("appmenu") && $("appmenu").hidden) openMenu(); else closeMenu();
+    };
+    if ($("appmenu")) $("appmenu").addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-menu]");
+      if (!b) return;
+      e.stopPropagation();
+      runMenu(b.getAttribute("data-menu"));
+    });
+    document.addEventListener("click", function (e) {
+      var menu = $("appmenu");
+      if (!menu || menu.hidden) return;
+      if (e.target.closest && (e.target.closest("#appmenu") || e.target.closest("#menu-btn"))) return;
+      closeMenu();
+    });
+    if ($("add-close")) $("add-close").onclick = function () { closeAdd(); };
+    if ($("add-sheet")) $("add-sheet").addEventListener("click", function (e) { if (e.target === this) closeAdd(); });
+    if ($("search-x")) $("search-x").onclick = function () { closeSearch(); };
+    if ($("search-q")) $("search-q").addEventListener("input", function () { findQ = this.value; render(); });
     var form = $("add-form");
     if (form) form.addEventListener("submit", function (e) {
       e.preventDefault();
-      addItem($("add-text").value, $("add-note").value);
-      form.reset();
-      if ($("add-text")) $("add-text").style.height = "";
+      var text = $("add-text").value;
+      if (!clean(text, 200)) { $("add-text").focus(); return; }
+      addItem(text, $("add-note").value);
+      $("add-text").value = "";
+      $("add-note").value = "";
+      paintNoteMax($("add-note"));
+      $("add-text").focus();
     });
     if ($("add-note")) $("add-note").addEventListener("input", function () { paintNoteMax($("add-note")); });
     document.addEventListener("input", function (e) {
@@ -1246,10 +1361,30 @@
       if (a === "move") { moveMenu(iid); return; }
     });
     document.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && !e.shiftKey && e.target && (e.target.id === "add-text" || e.target.id === "add-note") && $("add-sheet") && !$("add-sheet").hidden) {
+        e.preventDefault();
+        if ($("add-form")) $("add-form").requestSubmit();
+        return;
+      }
+      if (e.key === "Escape") {
+        if ($("add-sheet") && !$("add-sheet").hidden) { closeAdd(); return; }
+        if ($("appmenu") && !$("appmenu").hidden) { closeMenu(); return; }
+        if ($("searchrow") && !$("searchrow").hidden && e.target && e.target.id === "search-q") { closeSearch(); return; }
+      }
       var ed = e.target.closest && e.target.closest("[data-ed]");
       if (!ed) return;
       if (e.key === "Escape") { editing = null; render(); }
       else if (e.key === "Enter" && !e.shiftKey && e.target.classList.contains("e-text")) { e.preventDefault(); saveEdit(ed.getAttribute("data-ed")); }
+    });
+    window.addEventListener("beforeprint", function () {
+      if (!findQ) return;
+      findQ = "";
+      render();
+    });
+    window.addEventListener("afterprint", function () {
+      var q = $("search-q");
+      findQ = q ? q.value : "";
+      render();
     });
     window.addEventListener("hashchange", function () { closeSheet(); route(); });
     window.addEventListener("online", function () { if (uid) sync(); });
