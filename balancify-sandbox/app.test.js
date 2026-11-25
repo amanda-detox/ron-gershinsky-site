@@ -52,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-sbx-balancify-v34"), "sbx-balancify-v34");
+assert.strictEqual(M.versionLabel("rg-sbx-balancify-v35"), "sbx-balancify-v35");
 assert.strictEqual(M.APP, "sbxbalancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -67,11 +67,11 @@ assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pe
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
 assert.ok(html.indexOf('class="histrow"') === -1, "history and backup left the footer");
 assert.ok(app.indexOf("sbxbalancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "sbxbalancify"') !== -1, "cloud app id is sbxbalancify");
-assert.ok(ver.indexOf("rg-sbx-balancify-v34") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v34");
-assert.ok(ver.indexOf("rg-sbx-balancify-v33") === -1, "the old cache name is not the current one");
-assert.ok(html.indexOf("app.js?v=18") !== -1 && sw.indexOf("app.js?v=18") !== -1, "app cache param is bumped");
-assert.ok(html.indexOf("style.css?v=17") !== -1 && sw.indexOf("style.css?v=17") !== -1, "style cache param is bumped");
-assert.ok(html.indexOf("version.js?v=6") !== -1 && sw.indexOf("version.js?v=6") !== -1, "version.js cache param is bumped");
+assert.ok(ver.indexOf("rg-sbx-balancify-v35") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v35");
+assert.ok(ver.indexOf("rg-sbx-balancify-v34") === -1, "the old cache name is not the current one");
+assert.ok(html.indexOf("app.js?v=19") !== -1 && sw.indexOf("app.js?v=19") !== -1, "app cache param is bumped");
+assert.ok(html.indexOf("style.css?v=18") !== -1 && sw.indexOf("style.css?v=18") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=7") !== -1 && sw.indexOf("version.js?v=7") !== -1, "version.js cache param is bumped");
 assert.ok(app.indexOf('x.mark === "ok" ? null : "ok"') !== -1, "a check toggles between chosen and empty");
 assert.ok(app.indexOf('=== "ok" ? "no"') === -1 && app.indexOf("on-no") === -1 && app.indexOf('? "✕"') === -1, "the skipped X state is not rendered");
 assert.ok(html.indexOf('id="menu-btn"') !== -1 && html.indexOf('id="appmenu"') !== -1, "one menu button opens the list tools");
@@ -85,6 +85,7 @@ assert.ok(css.indexOf(".irow.has-note{display:grid") === -1 && css.indexOf("marg
 assert.ok(html.indexOf('class="homebtn"') === -1 && html.indexOf('class="addform"') === -1, "the old list header is gone");
 assert.ok(css.indexOf(".rgtb-bg") !== -1 && css.indexOf(".rgtb-theme") !== -1 && css.indexOf(".rgtb-zoom") !== -1 && css.indexOf(".rgtb-lang") !== -1, "sandbox css hides the shared top-bar icons");
 assert.ok(css.indexOf(".txt{display:block;font-size:18px;font-weight:400") !== -1, "the item title is 18px and not bold");
+assert.ok(css.indexOf(".note{display:block;margin:0 0 6px;padding:0 5px;") !== -1, "an open note has 5px of padding on each side");
 assert.ok(app.indexOf('class="sec"') === -1, "group headings are not rendered");
 assert.ok(read("model.js").indexOf("groupHe") !== -1, "group labels stay stored on the items");
 assert.ok(css.indexOf("width:calc(100% - 24px)") !== -1 && css.indexOf("max-width:640px") !== -1, "the undo bar is full width");
