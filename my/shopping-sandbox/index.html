@@ -98,14 +98,14 @@
     .addform { grid-template-columns: 96px minmax(0, 1fr); }
     .addform #add-input { grid-column: 1 / -1; }
   }
-  .sum { box-sizing: border-box; width: 100%; max-width: 100%; margin: 10px 0 0; padding: 0 9px; display: flex; flex-wrap: nowrap; align-items: baseline; justify-content: space-between; gap: 4px; font-size: 13px; font-weight: 800; line-height: 1.2; color: var(--fg); white-space: nowrap; overflow: hidden; }
-  .sum > span { flex: 0 1 auto; min-width: 0; overflow: visible; text-overflow: clip; text-align: center; white-space: nowrap; }
-  .sum .sl { color: var(--fg); font-weight: 800; }
+  .sum { box-sizing: border-box; width: 100%; max-width: 100%; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; align-items: stretch; gap: 6px; font-size: calc(13px * 1.4); font-weight: 800; line-height: 1.35; color: #5B8DEF; white-space: normal; overflow: visible; }
+  .sum > span { display: block; width: 100%; min-width: 0; overflow: visible; text-overflow: clip; text-align: start; white-space: nowrap; color: #5B8DEF; font-weight: 800; }
+  .sum .sl { color: #5B8DEF; font-weight: 800; }
   .sum .sp { color: #f5c542; font-weight: 900; unicode-bidi: isolate; direction: ltr; display: inline-block; }
-  .sum .sel { color: #5B8DEF; font-weight: 800; }
-  .sum .sel .sp { color: #5B8DEF; }
+  html[data-theme="light"] .sum,
+  html[data-theme="light"] .sum > span,
+  html[data-theme="light"] .sum .sl { color: #1A47A0; }
   html[data-theme="light"] .sum .sp { color: #8a6a10; }
-  html[data-theme="light"] .sum .sel, html[data-theme="light"] .sum .sel .sp { color: #1A47A0; }
   .ckbox { flex: none; align-self: center; width: 28px; height: 28px; margin-inline-end: 4px; border: 2px solid var(--line2); border-radius: 7px; background: transparent; color: transparent; font-size: 17px; font-weight: 900; line-height: 1; padding: 0; cursor: pointer; }
   .ckbox.on-ok { color: #e6c15a; border-color: #e6c15a; background: color-mix(in srgb, #e6c15a 20%, transparent); }
   .ckbox.on-no { color: #5B8DEF; border-color: #5B8DEF; background: transparent; }
@@ -337,6 +337,10 @@
   .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: #5B8DEF; font-size: 12px; line-height: 1.35; opacity: 1; }
   .lastsync:empty { display: none; }
   html[data-theme="light"] .lastsync { color: #1A47A0; }
+  .privnote { display: block; margin: 18px 0 0; padding: 0 12px; color: var(--faint); font-size: 12.5px; line-height: 1.45; text-align: center; }
+  .privnote .rg-lock { width: 14px; height: 14px; vertical-align: -2px; margin-inline-end: 4px; color: #f5c542; }
+  html[data-theme="light"] .privnote .rg-lock { color: #8a6a10; }
+  footer { margin-top: 26px; text-align: center; color: var(--faint); font-size: 12.5px; line-height: 1.45; }
   .hrow { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
   .histwhen { font-weight: 800; font-size: 16px; }
   .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -446,8 +450,8 @@
   <p class="lastsync" id="lastsync"></p>
   <p class="lastsync" id="cloudat"></p>
   <p class="lastsync" id="build"></p>
-  <p class="privnote" data-i18n="privNote"></p>
-  <footer data-i18n="footer"></footer>
+  <p class="privnote"><svg class="rg-lock" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>הנתונים באזור הזה נשמרים בחשבון שלך, ורק אתה יכול לראות אותם.</p>
+  <footer>© כל הזכויות שמורות לשפעלי בניית אפליקציות בע"מ 2026</footer>
 </div>
 <script>
 window.RGMY_SW = "sw.js";
@@ -498,13 +502,13 @@ window.RGMY_STRINGS = {
         syncSave: "Saving…", syncOk: "Synced", syncWait: "Waiting to sync…", syncOut: "Signed out" }
 };
 </script>
-<script src="version.js?v=3"></script>
+<script src="version.js?v=4"></script>
 <script src="rg-sync-status.js?v=3"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
 <script src="lists.js?v=3"></script>
 <script src="restore.js?v=1"></script>
-<script src="app.js?v=58"></script>
+<script src="app.js?v=59"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}</script>
