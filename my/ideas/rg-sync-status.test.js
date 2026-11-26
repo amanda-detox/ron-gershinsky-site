@@ -109,15 +109,16 @@ assert(liveSw.indexOf("var CACHE = RG_MYIDEAS_CACHE") !== -1 && liveSw.indexOf('
 assert(liveHtml.indexOf('updateViaCache:"none"') !== -1 && liveHtml.indexOf("גרסה חדשה מוכנה, תתעדכן אחרי הסנכרון") !== -1, "a new version reloads only when local edits are safe");
 assert(liveHtml.indexOf('id="print-btn"') !== -1 && liveHtml.indexOf("window.print()") !== -1 && liveHtml.indexOf('print: "הדפסה"') !== -1 && liveHtml.indexOf('print: "Print"') !== -1, "private Listify prints through the browser dialog");
 assert(liveHtml.indexOf('id="hist-btn"') !== -1 && liveHtml.indexOf('id="restore-file"') !== -1, "version history and file restore are on the live page");
-assert(liveSw.indexOf("rg-sync-status.js?v=9") !== -1 && liveSw.indexOf("app.js?v=62") !== -1 && liveSw.indexOf("restore.js?v=2") !== -1 && liveSw.indexOf("version.js?v=6") !== -1, "the service worker precaches the new helper and app");
+assert(liveSw.indexOf("rg-sync-status.js?v=9") !== -1 && liveSw.indexOf("app.js?v=63") !== -1 && liveSw.indexOf("restore.js?v=2") !== -1 && liveSw.indexOf("version.js?v=7") !== -1, "the service worker precaches the new helper and app");
 assert(liveHtml.indexOf('id="list-search"') !== -1 && liveIdeas.indexOf("function searchView") !== -1, "search is on the live page and does not replace the app id");
 assert(liveSw.indexOf("icon-maskable-192.png?v=56") !== -1 && liveSw.indexOf("icon-maskable-512.png?v=56") !== -1, "maskable icons are precached under the live cache");
 assert(liveIdeas.indexOf("sbxmyideas") === -1 && liveIdeas.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("rg-sbx-ideas") === -1 && liveHtml.indexOf("sandbox-tag") === -1, "live keeps its own keys and has no sandbox banner");
 var verFile = fs.readFileSync(path.join(__dirname, "version.js"), "utf8");
-assert(verFile.indexOf('RG_MYIDEAS_CACHE = "rg-myideas-v63"') !== -1 && liveSw.indexOf("rg-myideas-v63") === -1 && liveIdeas.indexOf("rg-myideas-v63") === -1, "the cache name is written once, in version.js");
-assert(liveHtml.indexOf("version.js?v=6") !== -1 && liveHtml.indexOf("version.js?v=6") < liveHtml.indexOf("app.js?v=62") && liveIdeas.indexOf("RG_MYIDEAS_CACHE") !== -1 && liveIdeas.indexOf('BUILD.slice(3)') !== -1, "the on-screen version is painted from version.js without the rg- prefix");
+assert(verFile.indexOf('RG_MYIDEAS_CACHE = "rg-myideas-v64"') !== -1 && liveSw.indexOf("rg-myideas-v64") === -1 && liveIdeas.indexOf("rg-myideas-v64") === -1, "the cache name is written once, in version.js");
+assert(liveHtml.indexOf("version.js?v=7") !== -1 && liveHtml.indexOf("version.js?v=7") < liveHtml.indexOf("app.js?v=63") && liveIdeas.indexOf("RG_MYIDEAS_CACHE") !== -1 && liveIdeas.indexOf('BUILD.slice(3)') !== -1, "the on-screen version is painted from version.js without the rg- prefix");
 assert(liveHtml.indexOf('id="backup-link"') !== -1 && liveHtml.indexOf('backupLink: "גיבוי"') !== -1 && liveHtml.indexOf('restoreBtn: "שיחזור"') !== -1 && liveHtml.indexOf('id="box-picker"') !== -1 && liveHtml.indexOf('id="notes-all"') !== -1, "backup, restore, categories, and note toggles are on the live page");
-assert(liveHtml.indexOf('dismissKey:"rg-inst-off"') !== -1 && liveHtml.indexOf("underMyHub:true") !== -1 && liveHtml.indexOf("../../shared/rg-install.js?v=1") !== -1, "the install button stays the shared live one");
+assert(liveHtml.indexOf('class="rg-install"') === -1 && liveHtml.indexOf('id="rg-inst"') === -1 && liveHtml.indexOf('data-menu="install"') !== -1 && liveHtml.indexOf('menuInstall: "התקנה למסך הבית"') !== -1, "install is a menu item, not a blue button");
+assert(liveHtml.indexOf('dismissKey:"rg-inst-off"') !== -1 && liveHtml.indexOf("underMyHub:true") !== -1 && liveHtml.indexOf("../../shared/rg-install.js?v=1") !== -1, "the menu still uses the shared install flow");
 assert(SS.LAST_PREFIX === "rg-myideas-lastsync:" && SS.formatSyncTime(new Date(2026, 0, 5, 9, 4).getTime()) === "05/01 09:04", "the sync clock stays on the live key and shows the exact time");
 assert(typeof SS.capBackups === "function" && SS.HIST_BYTES === 450000 && SS.BAK_BYTES === 480 * 1024, "history uses one 450K cap and backups keep theirs");
 function bigList(nItems, edit) {

@@ -137,15 +137,15 @@ async function main() {
     await signPage.route("https://fra.cloud.appwrite.io/**", function (route) { route.abort(); });
     await signPage.addInitScript(userScript(cacheScript("QA-UNSYNCED", Date.now(), true)));
     await signPage.goto("http://127.0.0.1:" + PORT + "/my/ideas/", { waitUntil: "domcontentloaded" });
-    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "myideas-v62"; });
-    check(true, "the on-screen label shows myideas-v62");
+    await signPage.waitForFunction(function () { return document.getElementById("build") && document.getElementById("build").textContent === "myideas-v64"; });
+    check(true, "the on-screen label shows myideas-v64");
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=62") !== -1 && srcs.indexOf("version.js?v=6") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=63") !== -1 && srcs.indexOf("version.js?v=7") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-myideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
-    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v62"; });
+    await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v64"; });
     check(true, "the running script rewrites a stale v8 label");
     await sign.setOffline(true);
     await signPage.click("#menu-btn");

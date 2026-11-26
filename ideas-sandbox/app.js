@@ -2123,10 +2123,30 @@
     if (act === "search") { openSearch(); return; }
     if (act === "notes") { toggleAllNotes(); return; }
     if (act === "add") { focusAdd(); return; }
+    if (act === "install") { if (window.__rgInstall && __rgInstall.click) __rgInstall.click(); return; }
     if (act === "acct") { setTimeout(function () { if (!clickBar(".rgtb .rgacc-btn")) clickBar(".rgacc-btn"); }, 30); return; }
+  }
+  function installedDisplay() {
+    try {
+      if (navigator.standalone === true) return true;
+      if (!window.matchMedia) return false;
+      return window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches || window.matchMedia("(display-mode: minimal-ui)").matches;
+    } catch (e) { return false; }
+  }
+  function paintInstallItem() {
+    var b = $("menu-install");
+    if (b) b.hidden = installedDisplay();
   }
   function bootAppMenu() {
     var home = $("app-home"), btn = $("menu-btn"), menu = $("appmenu");
+    paintInstallItem();
+    if (window.matchMedia) {
+      ["standalone", "fullscreen", "minimal-ui"].forEach(function (mode) {
+        var mq = window.matchMedia("(display-mode: " + mode + ")");
+        if (mq.addEventListener) mq.addEventListener("change", paintInstallItem);
+        else if (mq.addListener) mq.addListener(paintInstallItem);
+      });
+    }
     if (home) home.addEventListener("click", function () { goAppHome(); });
     if (btn) btn.addEventListener("click", function (e) {
       e.stopPropagation();

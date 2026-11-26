@@ -1,5 +1,5 @@
 /* Offline cache for Wealthify (שפעלי). */
-var CACHE = "rg-wealth-v26";
+var CACHE = "rg-wealth-v27";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js?v=6", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "manifest.json", "icon.svg?v=26", "icon-192.png?v=26", "icon-512.png?v=26"];
 
 self.addEventListener("install", function (e) {

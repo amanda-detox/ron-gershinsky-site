@@ -28,12 +28,14 @@ assert(live.indexOf("<title>Wealthify</title>") !== -1 && live.indexOf('doc: "We
 assert(live.indexOf('id="app-home"') !== -1 && live.indexOf('id="menu-btn"') !== -1 && live.indexOf('src="icon-192.png?v=26"') !== -1, "the home button uses the app icon");
 assert(live.indexOf(".hero-home,.menubtn{width:56px;height:56px;min-width:56px;min-height:56px;box-sizing:border-box}") !== -1 && sbx.indexOf(".hero-home,.menubtn{width:56px;height:56px;min-width:56px;min-height:56px;box-sizing:border-box}") !== -1, "the home icon and the hamburger are the same 56px box");
 assert(live.indexOf("icons-preview") === -1 && live.indexOf("wealthify/icons/") === -1, "no separate icon set or preview page");
-assert(liveSw.indexOf('var CACHE = "rg-wealth-v26"') !== -1 && live.indexOf("sw.js?v=26") !== -1 && live.indexOf('cache: "rg-wealth-v26"') !== -1, "live cache is rg-wealth-v26");
+assert(liveSw.indexOf('var CACHE = "rg-wealth-v27"') !== -1 && live.indexOf("sw.js?v=27") !== -1 && live.indexOf('cache: "rg-wealth-v27"') !== -1, "live cache is rg-wealth-v27");
 assert(backupSw.indexOf('var CACHE = "rg-wealth-v22"') !== -1, "the backup keeps the previous live cache");
 assert(sbx.indexOf('ansKey: "rg-wealth-sbx-answers-v1"') !== -1 && sbx.indexOf("rg-wealth-answers-v2") === -1, "sandbox answers stay on their own key");
 assert(sbx.indexOf('data-theme-key="rg-wealth-sbx-theme"') !== -1 && sbx.indexOf("rg-wealthify-theme") === -1, "sandbox theme key stays separate");
 assert(sbx.indexOf("<title>Wealthify Sandbox</title>") !== -1, "sandbox tab title still says Sandbox");
-assert(sbxSw.indexOf('var CACHE = "rg-wealth-sbx-v6"') !== -1 && sbx.indexOf("sw.js?v=6") !== -1 && sbx.indexOf('cache: "rg-wealth-sbx-v6"') !== -1, "sandbox cache is the next sbx version");
+assert(sbxSw.indexOf('var CACHE = "rg-wealth-sbx-v7"') !== -1 && sbx.indexOf("sw.js?v=7") !== -1 && sbx.indexOf('cache: "rg-wealth-sbx-v7"') !== -1, "sandbox cache is the next sbx version");
+assert(live.indexOf('src="../shared/rg-account.js"') < live.indexOf("function onAccount") && live.indexOf("onAccount(A.user())") !== -1, "Wealthify applies an existing account session to the footer");
+assert(sbx.indexOf('src="../shared/rg-account.js"') < sbx.indexOf("function onAccount") && sbx.indexOf("onAccount(A.user())") !== -1, "the sandbox applies an existing account session the same way");
 assert(live.indexOf('cloudApp: "wealthify"') !== -1 && sbx.indexOf('cloudApp: "sbxwealthify"') !== -1 && sbx.indexOf('A.set(app, "answers"') !== -1 && live.indexOf('A.set(app, "lists"') !== -1, "live and sandbox sync through their own Appwrite app ids");
 assert(live.indexOf('listsKey: "rg-wealth-lists"') !== -1 && live.indexOf('listPrefix: "rg-wealth-list-"') !== -1 && live.indexOf('id="add-list"') !== -1 && live.indexOf('"+ רשימה חדשה"') !== -1, "home can add a list stored on an rg-wealth index");
 assert(sbx.indexOf('listsKey: "rg-wealth-sbx-lists"') !== -1 && sbx.indexOf('listPrefix: "rg-wealth-sbx-list-"') !== -1 && sbx.indexOf('listsKey: "rg-wealth-lists"') === -1, "sandbox lists stay in the sandbox namespace");

@@ -1,7 +1,7 @@
 /* Offline cache for the Wealthify sandbox only (שפעלי sandbox).
-   Cache name is rg-wealth-sbx-v6 so it does not share the live app cache (rg-wealth-v26).
+   Cache name is rg-wealth-sbx-v7 so it does not share the live app cache (rg-wealth-v27).
    This worker deletes only older rg-wealth-sbx- caches. It never deletes rg-wealth-v* . */
-var CACHE = "rg-wealth-sbx-v6";
+var CACHE = "rg-wealth-sbx-v7";
 var FILES = ["./", "index.html", "../shared/rg-account.js", "../shared/rg-topbar.js?v=6", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js", "manifest.json", "icon.svg?v=6", "icon-192.png?v=6", "icon-512.png?v=6"];
 
 self.addEventListener("install", function (e) {
