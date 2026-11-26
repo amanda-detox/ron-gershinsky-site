@@ -14,8 +14,8 @@
 <meta name="description" content="שפעלי · עותק ניסוי. Wealthify Sandbox, a trial copy for prosperity and financial freedom.">
 <title>Wealthify Sandbox</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png?v=4" type="image/png">
-<link rel="apple-touch-icon" href="icon-192.png?v=4">
+<link rel="icon" href="icon-192.png?v=5" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png?v=5">
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../shared/rg-site.css">
@@ -280,7 +280,7 @@ html body .rgtb .rgtb-lang .rgtb-menu{position:fixed !important;top:56px !import
 .hero-home img{width:56px;height:56px;margin:0;border-radius:16px;box-shadow:none;display:block}
 .hero .menubar{margin-inline-start:auto;flex:none}
 .menubar{position:relative;display:flex;justify-content:flex-start;margin:0;z-index:45}
-.menubtn{padding:0;border-radius:16px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(11,31,77,.35);cursor:pointer}
+.menubtn{padding:0;border-radius:16px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:none;cursor:pointer}
 html[data-theme=light] .menubtn{background:#f6f2ea;color:#8a6a10;border-color:#c4a046;box-shadow:none}
 .menubtn svg{width:26px;height:26px;display:block}
 .menubtn[aria-expanded=true]{background:#f5c542;color:#0b2a6b}
@@ -321,10 +321,47 @@ html[data-theme=light] .myhead{color:#8a6a10}
 .soon-text{margin:14px 0 0;color:var(--mute);font-size:18px}
 .nomatch{margin:14px 0;text-align:center;color:var(--mute)}
 .nomatch[hidden]{display:none !important}
-.syncbox{margin-top:18px;min-width:0}
-.lastsync{display:block;text-align:center;margin:0 auto 2px;padding:0 8px;color:#5B8DEF;font:600 12.5px/1.45 "Heebo",system-ui,sans-serif;overflow-wrap:anywhere;white-space:normal}
+.syncbox{margin-top:22px;min-width:0}
+.status{display:block;text-align:center;margin:14px auto 2px;padding:0 12px;color:#5B8DEF;font:600 12.5px/1.45 "Heebo",system-ui,sans-serif;white-space:normal;overflow-wrap:anywhere}
+.status:empty{display:none}
+.status.local{color:#5B8DEF;font-weight:700}
+html[data-theme=light] .status.local{color:#1A47A0}
+.status .status-txt{display:inline}
+.lastsync{display:block;text-align:center;margin:0 auto 2px;padding:0 12px;color:#5B8DEF;font:600 12.5px/1.45 "Heebo",system-ui,sans-serif;overflow-wrap:anywhere;white-space:normal}
 html[data-theme=light] .lastsync{color:#1A47A0}
 .lastsync:empty{display:none}
+.privnote{margin:18px 0 0;color:var(--dim);font:400 12.5px/1.45 "Heebo",system-ui,sans-serif;text-align:center}
+.privnote .lk{display:inline-flex;vertical-align:-2px;margin-inline-end:4px;color:#f5c542}
+.privnote .lk svg{width:14px;height:14px;display:block}
+footer{margin-top:26px;text-align:center;color:var(--dim);font-size:12.5px;letter-spacing:0}
+#s-list .listhead{font-size:clamp(26px,7vw,36px);margin:8px 0 12px;padding-bottom:.06em}
+#s-list .list{list-style:none;margin:0;padding:6px 0;min-width:0;border:1px solid rgba(245,197,66,.45);border-radius:18px;background:rgba(11,31,77,.72)}
+html[data-theme=light] #s-list .list{background:rgba(255,253,248,.92)}
+#s-list .irow{display:grid;grid-template-columns:44px 44px minmax(0,1fr) 44px;align-items:center;min-height:54px;padding:4px 0;border-bottom:1px solid rgba(245,197,66,.28)}
+#s-list .irow:last-child{border-bottom:0}
+#s-list .irow.editing{display:block;padding:8px}
+#s-list .ihandle{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;color:#f5c542;cursor:grab;touch-action:none}
+html[data-theme=light] #s-list .ihandle{color:#8a6a10}
+#s-list .ihandle svg{width:28px;height:28px;display:block}
+#s-list .ckbox{width:44px;height:44px;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer}
+#s-list .ckface{width:28px;height:28px;box-sizing:border-box;border:2px solid #1A47A0;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;color:transparent;font:900 16px/1 "Heebo",system-ui,sans-serif}
+#s-list .ckbox.on .ckface{color:#f5c542;border-color:#f5c542;background:rgba(245,197,66,.22)}
+#s-list .body{min-width:0;padding:8px 4px 8px 10px;cursor:pointer;text-align:start}
+#s-list .txt{display:block;font:400 18px/1.35 "Heebo",system-ui,sans-serif;overflow-wrap:anywhere}
+#s-list .wnote{display:block;grid-column:1 / -1;grid-row:2;margin:0 8px 8px;padding:0 5px;color:#f6edd4;font:400 14px/1.45 "Heebo",system-ui,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}
+html[data-theme=light] #s-list .wnote{color:#0b1f4d}
+#s-list .wnote.note-off{display:none}
+html.notes-off #s-list .wnote{display:none !important}
+#s-list .notetog{width:36px;height:36px;border:0;background:transparent;color:#1A47A0;font:700 18px/1 "Heebo",system-ui,sans-serif;cursor:pointer}
+#s-list .notetog.on{color:#f5c542}
+html[data-theme=light] #s-list .notetog.on{color:#8a6a10}
+#s-list .ed{display:flex;flex-direction:column;gap:8px}
+#s-list .ed textarea{width:100%;box-sizing:border-box;border-radius:14px;border:1.5px solid #1A47A0;background:rgba(255,255,255,.04);color:var(--ink);font:600 16px/1.4 "Heebo",system-ui,sans-serif;padding:10px 12px}
+#s-list .ed .row{display:flex;flex-wrap:wrap;gap:8px}
+#s-list .lbtn{min-height:40px;padding:0 14px;border-radius:999px;border:1px solid #f5c542;background:transparent;color:#f5c542;font:800 14.5px "Heebo",system-ui,sans-serif;cursor:pointer}
+#s-list .lbtn.pri{background:#f5c542;color:#0b1f4d}
+#s-list .lempty{margin:12px 0;text-align:center;color:var(--mute)}
+#s-list .sorting{box-shadow:inset 0 0 0 2px #f5c542}
 .toast{position:fixed;left:0;right:0;width:calc(100% - 24px);max-width:640px;margin:0 auto;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;box-sizing:border-box;padding:10px 14px;border-radius:14px;background:#0b2a6b;color:#fff;border:1px solid #f5c542;font:700 15px/1.35 "Heebo",system-ui,sans-serif;text-align:center}
 html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .disc,html.notes-off .saved,html.notes-off .method .md,html.notes-off .method .risk,html.notes-off .method .who,html.notes-off .method .mp,html.notes-off .providers,html.notes-off .inote{display:none !important}
 #add-text,#add-note{width:100%;min-width:0;box-sizing:border-box;border-radius:14px;border:1.5px solid var(--line2);background:rgba(255,255,255,.04);color:var(--ink);font:600 16px/1.4 var(--sans);padding:10px 12px}
@@ -359,7 +396,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     </div>
   </header>
   <div class="hero">
-    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="שפעלי, מסך הבית" title="שפעלי, מסך הבית"><img src="icon-192.png?v=4" alt="" width="56" height="56"></button>
+    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="שפעלי, מסך הבית" title="שפעלי, מסך הבית"><img src="icon-192.png?v=5" alt="" width="56" height="56"></button>
     <div class="menubar">
       <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" data-i18n-label="menuBtn" aria-label="תפריט" title="תפריט">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -458,15 +495,20 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       <p class="disc" data-i18n="disc"></p>
       <p class="nomatch" id="res-empty" hidden></p>
     </section>
-    <section class="screen soon" id="s-soon" hidden>
-      <h2 class="goldtext" id="soon-title" tabindex="-1"></h2>
-      <p class="soon-text" id="soon-text"></p>
-      <p class="nomatch" id="soon-empty" hidden></p>
+    <section class="screen" id="s-list" hidden>
+      <h2 class="goldtext listhead" id="list-title" tabindex="-1"></h2>
+      <p class="lempty" id="list-none" hidden></p>
+      <ul class="list" id="list-items"></ul>
+      <p class="nomatch" id="list-empty" hidden></p>
     </section>
   </main>
   <div class="syncbox">
+    <div class="status local" id="status" role="status" aria-live="polite"></div>
+    <p class="lastsync" id="lastsync"></p>
+    <p class="lastsync" id="cloudat"></p>
     <p class="lastsync" id="build"></p>
   </div>
+  <p class="privnote"><span class="lk" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>הנתונים באזור הזה נשמרים בחשבון שלך, ורק אתה יכול לראות אותם.</p>
   <div class="sheet-bg" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <div class="sheet">
       <div class="grab" aria-hidden="true"></div>
@@ -632,7 +674,10 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       sub: "חמש שאלות קצרות כדי להבין מאיפה אתה מתחיל, ומשם נבנה יחד את הדרך קדימה.",
       start: "בוא נתחיל",
       meta: "פחות מדקה · התשובות נשמרות רק במכשיר שלך",
-      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות למיסטיפיי סטודיו 2026",
+      install: "📲 התקנה למסך הבית", foot: "© כל הזכויות שמורות לשפעלי בניית אפליקציות בע\"מ 2026",
+      localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", lastSync: "סונכרן לאחרונה ב-{t}", cloudAt: "עודכן בענן ב-{t}",
+      listEmpty: "אין פריטים עדיין. הוסף פריט מהתפריט.", save: "שמור", addNeed: "פתח רשימה כדי להוסיף פריט", addedList: "הפריט נוסף",
+      noteBtn: "הצג/הסתר הערה", dragItem: "גרירה לסידור", checkItem: "סימון",
       sheetTitle: "התקנה למסך הבית",
       close: "הבנתי",
       iosSafari: "<ol><li>לוחצים על כפתור השיתוף <b>(□↑)</b> בסרגל של Safari.</li><li>גוללים ובוחרים <b>„הוסף למסך הבית”</b>.</li><li>לוחצים <b>„הוסף”</b>. האייקון של שפעלי יופיע במסך הבית.</li></ol>",
@@ -674,7 +719,10 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       sub: "Five short questions to understand where you're starting from, so we can map the road ahead together.",
       start: "Begin",
       meta: "Under a minute · answers stay on your device",
-      install: "📲 Install to home screen", foot: "© 2026 Mystify Studio. All rights reserved.",
+      install: "📲 Install to home screen", foot: "© כל הזכויות שמורות לשפעלי בניית אפליקציות בע\"מ 2026",
+      localOnly: "Saved on this device only, without an account", lastSync: "Last synced at {t}", cloudAt: "Cloud copy updated at {t}",
+      listEmpty: "No items yet. Add one from the menu.", save: "Save", addNeed: "Open a list to add an item", addedList: "Item added",
+      noteBtn: "Show/hide note", dragItem: "Drag to reorder", checkItem: "Mark",
       sheetTitle: "Install to home screen",
       close: "Got it",
       iosSafari: "<ol><li>Tap the Share button <b>(□↑)</b> in Safari's toolbar.</li><li>Scroll and choose <b>“Add to Home Screen”</b>.</li><li>Tap <b>“Add”</b>. The Wealthify icon will appear on your home screen.</li></ol>",
@@ -725,13 +773,15 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     itemsKey: "rg-wealth-sbx-items-v1",
     histKey: "rg-wealth-sbx-hist-v1",
     notesKey: "rg-wealth-sbx-notefold",
-    cache: "rg-wealth-sbx-v4"
+    listKeys: { wealth: "rg-wealth-sbx-list-wealth-v1", freedom: "rg-wealth-sbx-list-freedom-v1" },
+    stampKey: "rg-wealth-sbx-lastlocal-v1",
+    cache: "rg-wealth-sbx-v5"
   };
-  /* One object per home tile, in order. open "flow" is the existing questionnaire. open "soon" is a placeholder ready for content. */
+  /* One object per home tile, in order. open "flow" keeps the questionnaire. open "list" is a Balancify-style list. seed is written only when that list key does not exist yet. */
   var HOME = [
     { id: "diagnosis", icon: "quiz", he: "שאלון אבחון", en: "Diagnosis questionnaire", open: "flow" },
-    { id: "wealth", icon: "wealth", he: "דרכים ליצירת הון", en: "Ways to create wealth", open: "soon" },
-    { id: "freedom", icon: "freedom", he: "דרכים ליצירת חופש", en: "Ways to create freedom", open: "soon" }
+    { id: "wealth", icon: "wealth", he: "דרכים ליצירת הון", en: "Ways to create wealth", open: "list", seed: ["מסחר במימון מלא", "למידת סקיל של הכנסה גבוהה", "להציע שירות או מוצר או פלטפורמה או אפליקציה"] },
+    { id: "freedom", icon: "freedom", he: "דרכים ליצירת חופש", en: "Ways to create freedom", open: "list", seed: ["הורדת תשלומי מס ל-0% חוקית לגמרי", "הקמת מבנה ארגוני שמגן על נכסיך", "השגת ויזות, דרכונים ואזרחויות נוספות", "ביזור ההון שלך בכמה בנקים מתקדמים בכמה מדינות מתאימות", "השגת מגוון כרטיסי אשראי איכותיים עם הטבות מהממות"] }
   ];
   var TILE_ICONS = {
     quiz: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.2" width="12" height="17.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3.2h6a1 1 0 0 1 1 1V6H8V4.2a1 1 0 0 1 1-1z" fill="#0b1f4d" stroke="currentColor" stroke-width="1.4"/><path d="M9 10h6M9 13.4h6M9 16.8h3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
@@ -743,7 +793,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   var lang = "he";
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
 
-  var answers = {}, step = 0, view = "home", completed = false, items = [], hist = [], notesOn = true, findQ = "", soonId = "", skipSnap = false, askYes = null;
+  var answers = {}, step = 0, view = "home", completed = false, items = [], hist = [], notesOn = true, findQ = "", listId = "", lists = {}, editingId = null, skipSnap = false, askYes = null;
   function load() {
     try {
       var s = JSON.parse(localStorage.getItem(ANS_KEY) || "null");
@@ -752,6 +802,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   }
   function save() {
     try { localStorage.setItem(ANS_KEY, JSON.stringify({ v: 1, answers: answers, completed: completed, updated: new Date().toISOString() })); } catch (e) {}
+    markStamp();
     if (!skipSnap) remember();
   }
   function loadItems() {
@@ -799,7 +850,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
 
   function show(v) {
     view = v;
-    ["home", "welcome", "quiz", "results", "soon"].forEach(function (k) { var el = $("s-" + k); if (el) el.hidden = k !== v; });
+    ["home", "welcome", "quiz", "results", "list"].forEach(function (k) { var el = $("s-" + k); if (el) el.hidden = k !== v; });
     window.scrollTo(0, 0);
     applySearch();
   }
@@ -1022,11 +1073,10 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
     $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
     $("sheet-body").innerHTML = L[installKey()];
-    var bld = $("build");
-    if (bld) bld.textContent = CFG.cache.indexOf("rg-") === 0 ? CFG.cache.slice(3) : CFG.cache;
+    paintStatus();
     paintNotes();
     if (view === "home") renderHome();
-    if (view === "soon") renderSoon();
+    if (view === "list") renderList();
     if (view === "welcome") {
       var w = $("s-welcome");
       if (w) w.querySelectorAll("h1, .tagline, .sub, .meta, #start").forEach(function (el) { el.setAttribute("data-find", el.textContent || ""); });
@@ -1109,8 +1159,35 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   }
 
   function tileIcon(name) { return TILE_ICONS[name] || TILE_ICONS.quiz; }
+  function homeById(id) { var found = null; HOME.forEach(function (o) { if (o.id === id) found = o; }); return found; }
+  function markStamp() {
+    var t = Date.now();
+    try { localStorage.setItem(CFG.stampKey, String(t)); } catch (e) {}
+    return t;
+  }
+  function stampMs() {
+    var n = 0;
+    try { n = parseInt(localStorage.getItem(CFG.stampKey) || "", 10) || 0; } catch (e) {}
+    if (!n) n = markStamp();
+    return n;
+  }
+  function paintStatus() {
+    var L = T[lang], s = $("status"), when = fmtTime(stampMs());
+    if (s) {
+      s.className = "status local";
+      while (s.firstChild) s.removeChild(s.firstChild);
+      var span = document.createElement("span");
+      span.className = "status-txt";
+      span.textContent = L.localOnly;
+      s.appendChild(span);
+    }
+    if ($("lastsync")) $("lastsync").textContent = L.lastSync.replace("{t}", when);
+    if ($("cloudat")) $("cloudat").textContent = L.cloudAt.replace("{t}", when);
+    var bld = $("build");
+    if (bld) bld.textContent = CFG.cache.indexOf("rg-") === 0 ? CFG.cache.slice(3) : CFG.cache;
+  }
   function renderHome() {
-    var L = T[lang], ul = $("home-tiles");
+    var ul = $("home-tiles");
     if (!ul) return;
     ul.innerHTML = "";
     HOME.forEach(function (opt) {
@@ -1125,41 +1202,83 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       li.appendChild(b);
       ul.appendChild(li);
     });
-    var head = $("my-head"), list = $("my-items");
-    if (head) { head.hidden = !items.length; head.textContent = L.myItems; }
-    if (!list) return;
-    list.innerHTML = "";
-    items.forEach(function (it) {
+    var head = $("my-head"), mine = $("my-items");
+    if (head) head.hidden = true;
+    if (mine) { mine.innerHTML = ""; mine.hidden = true; }
+  }
+  function writeList(id) {
+    var key = CFG.listKeys && CFG.listKeys[id];
+    if (!key) return;
+    try { localStorage.setItem(key, JSON.stringify({ v: 1, items: lists[id] || [] })); } catch (e) {}
+    markStamp();
+  }
+  function ensureList(id) {
+    if (lists[id]) return lists[id];
+    var key = CFG.listKeys && CFG.listKeys[id];
+    var raw = null;
+    try { raw = key ? localStorage.getItem(key) : null; } catch (e) {}
+    if (raw == null) {
+      var opt = homeById(id);
+      lists[id] = ((opt && opt.seed) || []).map(function (text, i) {
+        return { id: id + "-" + i, text: text, note: "", mark: null, noteOff: false };
+      });
+      writeList(id);
+      return lists[id];
+    }
+    try {
+      var s = JSON.parse(raw);
+      lists[id] = (s && Array.isArray(s.items)) ? s.items : [];
+    } catch (e2) { lists[id] = []; }
+    return lists[id];
+  }
+  function gripSvg() {
+    return '<svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 8.5h18M5 14h18M5 19.5h18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>';
+  }
+  function renderList() {
+    var L = T[lang], opt = homeById(listId), ul = $("list-items"), none = $("list-none");
+    if (!ul || !opt) return;
+    ensureList(listId);
+    if ($("list-title")) $("list-title").textContent = opt[lang] || opt.he;
+    var arr = lists[listId] || [];
+    if (none) { none.hidden = !!arr.length; none.textContent = L.listEmpty; }
+    ul.innerHTML = "";
+    arr.forEach(function (it) {
       var li = document.createElement("li");
-      li.className = "myitem";
+      li.className = "irow" + (editingId === it.id ? " editing" : "");
+      li.setAttribute("data-id", it.id);
       li.setAttribute("data-find", (it.text || "") + " " + (it.note || ""));
-      li.innerHTML = '<div class="mybody"><div class="mytitle"></div><div class="inote"></div></div><button type="button" class="mydel"></button>';
-      li.querySelector(".mytitle").textContent = it.text;
-      var note = li.querySelector(".inote");
-      note.textContent = it.note || "";
-      note.hidden = !it.note;
-      var del = li.querySelector(".mydel");
-      del.textContent = L.delItem;
-      del.setAttribute("aria-label", L.delItem + ": " + it.text);
-      del.onclick = function () { askDelete(it); };
-      list.appendChild(li);
+      if (editingId === it.id) {
+        li.innerHTML = '<div class="ed" data-ed="' + esc(it.id) + '"><textarea class="e-text" maxlength="200"></textarea><textarea class="e-note" maxlength="500"></textarea><div class="row"><button type="button" class="lbtn pri" data-a="save"></button><button type="button" class="lbtn" data-a="cancel"></button><button type="button" class="lbtn" data-a="del"></button></div></div>';
+        li.querySelector(".e-text").value = it.text || "";
+        li.querySelector(".e-note").value = it.note || "";
+        li.querySelector('[data-a="save"]').textContent = L.save;
+        li.querySelector('[data-a="cancel"]').textContent = L.cancel;
+        li.querySelector('[data-a="del"]').textContent = L.delItem;
+      } else {
+        var on = it.mark === "ok";
+        var shown = !it.noteOff && !!it.note;
+        li.innerHTML = '<span class="ihandle" role="button" tabindex="0">' + gripSvg() + '</span><button type="button" class="ckbox' + (on ? " on" : "") + '" data-a="ck" aria-pressed="' + (on ? "true" : "false") + '"><span class="ckface" aria-hidden="true">' + (on ? "✓" : "") + "</span></button><div class=\"body\" role=\"button\" tabindex=\"0\" data-a=\"edit\"><span class=\"txt\"></span></div>" + (it.note ? '<button type="button" class="notetog' + (shown ? " on" : "") + '" data-a="note" aria-pressed="' + (shown ? "true" : "false") + '">i</button><div class="wnote' + (shown ? "" : " note-off") + '"></div>' : "");
+        li.querySelector(".txt").textContent = it.text || "";
+        li.querySelector(".ihandle").setAttribute("aria-label", L.dragItem + ": " + (it.text || ""));
+        li.querySelector(".ckbox").setAttribute("aria-label", L.checkItem + ": " + (it.text || ""));
+        var noteEl = li.querySelector(".wnote");
+        if (noteEl) noteEl.textContent = it.note || "";
+        var nb = li.querySelector(".notetog");
+        if (nb) nb.setAttribute("aria-label", L.noteBtn);
+      }
+      ul.appendChild(li);
     });
   }
-  function renderSoon() {
-    var opt = null, L = T[lang];
-    HOME.forEach(function (o) { if (o.id === soonId) opt = o; });
-    if (!opt) opt = HOME[1];
-    var find = (opt.he || "") + " " + (opt.en || "") + " " + L.soonText;
-    $("soon-title").textContent = opt[lang] || opt.he;
-    $("soon-title").setAttribute("data-find", find);
-    $("soon-text").textContent = L.soonText;
-    $("soon-text").setAttribute("data-find", find);
+  function listItem(id) {
+    var arr = lists[listId] || [], i;
+    for (i = 0; i < arr.length; i++) if (arr[i].id === id) return arr[i];
+    return null;
   }
   function openOption(id) {
-    var opt = null;
-    HOME.forEach(function (o) { if (o.id === id) opt = o; });
+    var opt = homeById(id);
     if (!opt) return;
     closeMenu();
+    editingId = null;
     if (opt.open === "flow") {
       editingOne = false;
       view = (completed && isComplete()) ? "results" : "welcome";
@@ -1167,11 +1286,82 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       show(view);
       return;
     }
-    soonId = opt.id;
-    view = "soon";
-    render();
-    show("soon");
-    try { $("soon-title").focus({ preventScroll: true }); } catch (e) {}
+    if (opt.open === "list") {
+      listId = opt.id;
+      ensureList(listId);
+      view = "list";
+      render();
+      show("list");
+      try { $("list-title").focus({ preventScroll: true }); } catch (e) {}
+    }
+  }
+  function onListClick(e) {
+    var b = e.target.closest && e.target.closest("[data-a]");
+    if (!b || view !== "list") return;
+    var li = b.closest(".irow");
+    var id = li && li.getAttribute("data-id");
+    var it = id && listItem(id);
+    var act = b.getAttribute("data-a");
+    var L = T[lang];
+    if (act === "ck" && it) { it.mark = it.mark === "ok" ? null : "ok"; writeList(listId); renderList(); return; }
+    if (act === "note" && it) { it.noteOff = !it.noteOff; writeList(listId); renderList(); return; }
+    if (act === "edit" && it) { editingId = it.id; renderList(); var ta = document.querySelector(".e-text"); if (ta) ta.focus(); return; }
+    if (act === "cancel") { editingId = null; renderList(); return; }
+    if (act === "save" && it) {
+      var ed = li.querySelector(".ed");
+      var text = String(ed.querySelector(".e-text").value || "").replace(/\s+/g, " ").trim().slice(0, 200);
+      if (!text) { ed.querySelector(".e-text").focus(); return; }
+      it.text = text;
+      it.note = String(ed.querySelector(".e-note").value || "").trim().slice(0, 500);
+      editingId = null;
+      writeList(listId);
+      renderList();
+      return;
+    }
+    if (act === "del" && it) {
+      ask(L.delItem, L.delAsk.replace("{x}", it.text), L.delItem, function () {
+        lists[listId] = (lists[listId] || []).filter(function (x) { return x.id !== it.id; });
+        editingId = null;
+        writeList(listId);
+        render();
+      });
+    }
+  }
+  function onListDown(e) {
+    var h = e.target.closest && e.target.closest(".ihandle");
+    var ul = $("list-items");
+    if (!h || !ul || (e.button != null && e.button !== 0)) return;
+    var row = h.closest(".irow");
+    if (!row) return;
+    e.preventDefault();
+    var startY = e.clientY;
+    row.classList.add("sorting");
+    function move(ev) {
+      var rows = [].slice.call(ul.querySelectorAll(".irow"));
+      var target = null;
+      rows.forEach(function (r) {
+        if (r === row) return;
+        var b = r.getBoundingClientRect();
+        if (ev.clientY >= b.top && ev.clientY <= b.bottom) target = r;
+      });
+      if (!target) return;
+      var mid = target.getBoundingClientRect().top + target.getBoundingClientRect().height / 2;
+      if (ev.clientY < mid) ul.insertBefore(row, target);
+      else ul.insertBefore(row, target.nextSibling);
+    }
+    function up() {
+      document.removeEventListener("pointermove", move);
+      document.removeEventListener("pointerup", up);
+      row.classList.remove("sorting");
+      var order = [].map.call(ul.querySelectorAll(".irow"), function (r) { return r.getAttribute("data-id"); });
+      var byId = {};
+      (lists[listId] || []).forEach(function (it) { byId[it.id] = it; });
+      lists[listId] = order.map(function (id) { return byId[id]; }).filter(Boolean);
+      writeList(listId);
+    }
+    document.addEventListener("pointermove", move);
+    document.addEventListener("pointerup", up);
+    if (Math.abs(e.clientY - startY) < 0) return;
   }
   function goHome() {
     closeMenu();
@@ -1182,6 +1372,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     var bg = document.getElementById("rgbg-sheet");
     if (bg) bg.hidden = true;
     editingOne = false;
+    editingId = null;
     findQ = "";
     if ($("search-q")) $("search-q").value = "";
     if ($("searchrow")) $("searchrow").hidden = true;
@@ -1200,10 +1391,10 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
       nodes[i].hidden = !ok;
       if (ok) shown++;
     }
-    ["home-empty", "welcome-empty", "q-empty", "res-empty", "soon-empty"].forEach(function (id) {
+    ["home-empty", "welcome-empty", "q-empty", "res-empty", "list-empty"].forEach(function (id) {
       var el = $(id);
       if (!el) return;
-      var mine = (id === "home-empty" && view === "home") || (id === "welcome-empty" && view === "welcome") || (id === "q-empty" && view === "quiz") || (id === "res-empty" && view === "results") || (id === "soon-empty" && view === "soon");
+      var mine = (id === "home-empty" && view === "home") || (id === "welcome-empty" && view === "welcome") || (id === "q-empty" && view === "quiz") || (id === "res-empty" && view === "results") || (id === "list-empty" && view === "list");
       el.hidden = !(mine && q && !shown);
       if (mine) el.textContent = L.searchEmpty;
     });
@@ -1248,6 +1439,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   function closeAdd() { if ($("add-sheet")) $("add-sheet").hidden = true; }
   function openAdd() {
     var L = T[lang], s = $("add-sheet");
+    if (view !== "list" || !listId) { toast(L.addNeed); return; }
     if (!s) return;
     $("add-title").textContent = L.addTitle;
     $("add-text").placeholder = L.addPh;
@@ -1281,7 +1473,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   function fmtTime(ms) {
     var d = new Date(ms);
     function z(n) { return (n < 10 ? "0" : "") + n; }
-    return z(d.getDate()) + "/" + z(d.getMonth() + 1) + " " + z(d.getHours()) + ":" + z(d.getMinutes());
+    return "\u200E" + z(d.getDate()) + "/" + z(d.getMonth() + 1) + " " + z(d.getHours()) + ":" + z(d.getMinutes());
   }
   function openHistory() {
     var L = T[lang], box = $("hist-list"), s = $("hist-sheet");
@@ -1429,7 +1621,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js?v=4", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=5", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
   if ($("app-home")) $("app-home").onclick = function () { goHome(); };
   if ($("menu-btn")) $("menu-btn").onclick = function (e) {
@@ -1452,13 +1644,22 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   if ($("search-x")) $("search-x").onclick = function () { findQ = ""; $("search-q").value = ""; $("searchrow").hidden = true; applySearch(); };
   if ($("add-form")) $("add-form").addEventListener("submit", function (e) {
     e.preventDefault();
-    if (!addItem($("add-text").value, $("add-note").value)) { $("add-text").focus(); return; }
+    if (view !== "list" || !listId) { toast(T[lang].addNeed); return; }
+    var text = String($("add-text").value || "").replace(/\s+/g, " ").trim().slice(0, 200);
+    var note = String($("add-note").value || "").trim().slice(0, 500);
+    if (!text) { $("add-text").focus(); return; }
+    ensureList(listId);
+    lists[listId].push({ id: listId + "-" + Date.now(), text: text, note: note, mark: null, noteOff: false });
+    writeList(listId);
     closeAdd();
-    toast(T[lang].added);
-    if (view !== "home") { view = "home"; }
+    toast(T[lang].addedList);
     render();
-    show("home");
+    show("list");
   });
+  if ($("list-items")) {
+    $("list-items").addEventListener("click", onListClick);
+    $("list-items").addEventListener("pointerdown", onListDown);
+  }
   if ($("add-cancel")) $("add-cancel").onclick = closeAdd;
   if ($("add-sheet")) $("add-sheet").addEventListener("click", function (e) { if (e.target === this) closeAdd(); });
   if ($("hist-btn")) $("hist-btn").onclick = function () { openHistory(); };
