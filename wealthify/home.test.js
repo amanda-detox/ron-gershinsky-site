@@ -26,6 +26,7 @@ assert(live.indexOf("שאלון אבחון") < live.indexOf("דרכים ליצי
 assert(live.indexOf('open: "flow"') !== -1 && live.indexOf('open: "soon"') !== -1, "tiles are data-driven, with the questionnaire and placeholders");
 assert(live.indexOf("<title>Wealthify</title>") !== -1 && live.indexOf('doc: "Wealthify"') !== -1, "the live tab title stays Wealthify");
 assert(live.indexOf('id="app-home"') !== -1 && live.indexOf('id="menu-btn"') !== -1 && live.indexOf('src="icon.svg"') !== -1, "the existing app icon is the home button");
+assert(live.indexOf(".hero-home,.menubtn{width:56px;height:56px;min-width:56px;min-height:56px;box-sizing:border-box}") !== -1 && sbx.indexOf(".hero-home,.menubtn{width:56px;height:56px;min-width:56px;min-height:56px;box-sizing:border-box}") !== -1, "the home icon and the hamburger are the same 56px box");
 assert(live.indexOf("icons-preview") === -1 && live.indexOf("wealthify/icons/") === -1, "no separate icon set or preview page");
 assert(liveSw.indexOf('var CACHE = "rg-wealth-v23"') !== -1 && live.indexOf("sw.js?v=23") !== -1, "live cache is rg-wealth-v23");
 assert(backupSw.indexOf('var CACHE = "rg-wealth-v22"') !== -1, "the backup keeps the previous live cache");

@@ -274,11 +274,12 @@ html body .rgtb .rgtb-lang{position:absolute !important;width:0 !important;heigh
 html body .rgtb .rgtb-zoom .rgtb-menu,
 html body .rgtb .rgtb-lang .rgtb-menu{position:fixed !important;top:56px !important;inset-inline-start:12px !important;inset-inline-end:auto !important;z-index:80 !important}
 .hero{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0;padding:0 0 6px;min-width:0}
-.hero-home{width:56px;height:56px;min-width:44px;min-height:44px;padding:0;border:0;border-radius:16px;background:transparent;flex:none;cursor:pointer}
+.hero-home,.menubtn{width:56px;height:56px;min-width:56px;min-height:56px;box-sizing:border-box}
+.hero-home{padding:0;border:0;border-radius:16px;background:transparent;flex:none;cursor:pointer}
 .hero-home img{width:56px;height:56px;margin:0;border-radius:16px;box-shadow:none;display:block}
 .hero .menubar{margin-inline-start:auto;flex:none}
 .menubar{position:relative;display:flex;justify-content:flex-start;margin:0;z-index:45}
-.menubtn{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:14px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(11,31,77,.35);cursor:pointer}
+.menubtn{padding:0;border-radius:16px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(11,31,77,.35);cursor:pointer}
 html[data-theme=light] .menubtn{background:#f6f2ea;color:#8a6a10;border-color:#c4a046;box-shadow:none}
 .menubtn svg{width:26px;height:26px;display:block}
 .menubtn[aria-expanded=true]{background:#f5c542;color:#0b2a6b}
