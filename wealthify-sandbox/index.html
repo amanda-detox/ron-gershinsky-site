@@ -595,6 +595,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   <footer data-i18n="foot"></footer>
 </div>
 
+<script src="../shared/rg-account.js"></script>
 <script>
 (function () {
   "use strict";
@@ -828,7 +829,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     cloudApp: "sbxwealthify",
     lastSyncPrefix: "rg-wealth-sbx-lastsync:",
     cloudAtPrefix: "rg-wealth-sbx-cloudat:",
-    cache: "rg-wealth-sbx-v6"
+    cache: "rg-wealth-sbx-v7"
   };
   /* One object per home tile, in order. open "flow" keeps the questionnaire. open "list" is a Balancify-style list. seed is written only when that list key does not exist yet. */
   var HOME = [
@@ -2114,17 +2115,25 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     if (uid) syncCloud();
     else { syncPending = false; syncOffline = false; paintStatus(); }
   }
-  if (window.RGAccount) {
-    if (RGAccount.onChange) RGAccount.onChange(onAccount);
-    RGAccount.ready.then(function () { onAccount(RGAccount.user()); }, function () { accountReady = true; paintStatus(); });
-  } else accountReady = true;
+  function bindAccount() {
+    var A = window.RGAccount;
+    if (!A) { accountReady = true; paintStatus(); return; }
+    if (!bindAccount.bound) {
+      bindAccount.bound = true;
+      if (A.onChange) A.onChange(onAccount);
+      if (A.ready && A.ready.then) A.ready.then(function () { onAccount(A.user()); }, function () { accountReady = true; paintStatus(); });
+    }
+    if (A.user) onAccount(A.user());
+  }
+  bindAccount();
+  window.addEventListener("rg-account-ready", bindAccount);
   if (hasUserData() && (!hist.length || hist[0].stamp !== stamp())) remember();
   view = "home";
   render();
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js?v=6", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=7", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
   if ($("app-home")) $("app-home").onclick = function () { goHome(); };
   if ($("menu-btn")) $("menu-btn").onclick = function (e) {
@@ -2199,7 +2208,6 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   if ($("ask")) $("ask").addEventListener("click", function (e) { if (e.target === this) closeAsk(true); });
 })();
 </script>
-<script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang"].concat(window.RGBg ? RGBg.keys : []), function (c) { return window.RGBg ? RGBg.apply(c) : false; });</script>
 <script src="../shared/rg-topbar.js?v=6" data-nohome="1" data-slot="header.top"></script>
 </body>
