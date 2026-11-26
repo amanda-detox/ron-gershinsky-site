@@ -1,93 +1,171 @@
-/* Lists inside a Purchasify category.
-   item.list stays the category (missing = "main"). Old apps already read that field.
-   item.grp is the list inside the category. Missing grp = the default list "d:" + category.
-   A default list has no record until someone renames, reorders, or deletes it.
-   List records are type "grp" inside the existing cats row. Older apps skip any type
-   other than "cat" and still merge the row by id, so the records are not dropped.
-   Nothing here writes storage, stamps items, or removes an item. */
+/* View of Purchasify categories and lists.
+   Stored shape is unchanged: item.list is the old category (missing = "main").
+   item.grp is an optional list id. Cats stay in the existing cats row.
+   On screen, every old category (no real:1 flag) is a LIST inside one category, "קניות".
+   A category the user creates later is marked real:1 and stays a category.
+   This file never writes storage and never changes the maps it is given. */
 (function (root) {
   "use strict";
+  var HOME = "shop";
 
-  function catIdOf(item) {
-    return item && typeof item.list === "string" && item.list ? item.list : "main";
-  }
-  function defaultId(catId) {
-    return "d:" + (catId || "main");
-  }
   function own(obj) {
     var out = [], k;
     if (!obj || typeof obj !== "object") return out;
     for (k in obj) if (Object.prototype.hasOwnProperty.call(obj, k)) out.push(k);
     return out;
   }
-  function defaultGone(catsMap, catId) {
-    var def = defaultId(catId), keys = own(catsMap), i, r;
+  function catIdOf(item) {
+    return item && typeof item.list === "string" && item.list ? item.list : "main";
+  }
+  function defaultId(catId) {
+    return "d:" + (catId || "main");
+  }
+  function isRealRec(r) {
+    return !!(r && !r.deleted && !r.gone && r.type === "cat" && r.real === 1 && typeof r.cat === "string");
+  }
+  function realRec(catsMap, id) {
+    var r = catsMap && catsMap["c:" + id];
+    return isRealRec(r) ? r : null;
+  }
+  function byPos(a, b) {
+    if (a.pos !== b.pos) return a.pos - b.pos;
+    if ((a.created || 0) !== (b.created || 0)) return (a.created || 0) - (b.created || 0);
+    return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
+  }
+  /* Old categories, in their saved order, as lists. Built-ins come from `builtins`.
+     A real:1 record is a new category and is not listed here. Gone categories drop out.
+     No extra list is invented with the parent category's name. */
+  function legacyLists(catsMap, builtins) {
+    var map = {}, i, b, keys, r, id;
+    catsMap = catsMap && typeof catsMap === "object" ? catsMap : {};
+    builtins = builtins || [];
+    for (i = 0; i < builtins.length; i++) {
+      b = builtins[i];
+      if (!b || !b.cat || b.gone) continue;
+      map[b.cat] = { id: b.cat, name: b.name || b.cat, pos: typeof b.pos === "number" ? b.pos : i, created: 0, legacy: true };
+    }
+    keys = own(catsMap);
     for (i = 0; i < keys.length; i++) {
       r = catsMap[keys[i]];
-      if (r && !r.deleted && r.type === "grp" && r.cat === catId && r.grp === def && r.gone) return true;
+      if (!r || r.deleted || r.type !== "cat" || typeof r.cat !== "string" || isRealRec(r)) continue;
+      id = r.cat;
+      if (r.gone) { delete map[id]; continue; }
+      b = map[id] || { id: id, name: id, pos: typeof r.pos === "number" ? r.pos : 1000, created: r.created || 0, legacy: true };
+      if (typeof r.name === "string" && r.name) b.name = r.name;
+      if (typeof r.pos === "number") b.pos = r.pos;
+      if (typeof r.created === "number") b.created = r.created;
+      b.legacy = true;
+      map[id] = b;
     }
-    return false;
+    return own(map).map(function (k) { return map[k]; }).sort(byPos);
   }
-  /* Visible lists for one category. The virtual default is first (pos -1) until a record exists. */
-  function listsFor(catsMap, catId, fallbackName) {
-    var def = defaultId(catId), out = [], seen = {}, keys, i, r, hasDef = false, name;
-    catsMap = catsMap && typeof catsMap === "object" ? catsMap : {};
-    catId = catId || "main";
-    name = fallbackName || "רשימה 1";
+  function grpLists(catsMap, catId) {
+    var out = [], seen = {}, keys, i, r;
     keys = own(catsMap);
     for (i = 0; i < keys.length; i++) {
       r = catsMap[keys[i]];
       if (!r || r.deleted || r.gone || r.type !== "grp" || r.cat !== catId || typeof r.grp !== "string" || seen[r.grp]) continue;
       seen[r.grp] = 1;
-      if (r.grp === def) hasDef = true;
       out.push({
         id: r.grp,
-        name: typeof r.name === "string" && r.name ? r.name : name,
+        name: typeof r.name === "string" && r.name ? r.name : "רשימה 1",
         pos: typeof r.pos === "number" ? r.pos : 0,
         created: typeof r.created === "number" ? r.created : 0,
+        legacy: false,
         virtual: false
       });
     }
-    if (!hasDef && !defaultGone(catsMap, catId)) {
-      out.push({ id: def, name: name, pos: -1, created: 0, virtual: true });
-    }
-    out.sort(function (a, b) {
-      if (a.pos !== b.pos) return a.pos - b.pos;
-      if (a.created !== b.created) return a.created - b.created;
-      return a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
-    });
     return out;
   }
-  /* Where one item shows. Missing grp is the default list. An unknown grp still shows, once, on the first list. */
-  function grpOf(item, lists) {
-    var cid = catIdOf(item), def = defaultId(cid), want = item && typeof item.grp === "string" && item.grp ? item.grp : "", i;
-    if (!lists || !lists.length) return want || def;
-    if (!want) {
-      for (i = 0; i < lists.length; i++) if (lists[i].id === def) return def;
-      return lists[0].id;
+  /* Lists under one category. The home category's lists are the old categories.
+     A newer category gets only the lists that were created in it, or one "רשימה 1"
+     that is not named after the category. */
+  function listsFor(catsMap, catId, builtins, fallbackName) {
+    var extra, legacy, seen, i, out;
+    catsMap = catsMap && typeof catsMap === "object" ? catsMap : {};
+    fallbackName = fallbackName || "רשימה 1";
+    if (!catId || catId === HOME) {
+      legacy = legacyLists(catsMap, builtins);
+      seen = {};
+      legacy.forEach(function (l) { seen[l.id] = 1; });
+      extra = [];
+      own(catsMap).forEach(function (k) {
+        var r = catsMap[k];
+        if (!r || r.deleted || r.gone || r.type !== "grp" || typeof r.grp !== "string" || seen[r.grp]) return;
+        if (realRec(catsMap, r.cat)) return;
+        seen[r.grp] = 1;
+        extra.push({
+          id: r.grp,
+          name: typeof r.name === "string" && r.name ? r.name : fallbackName,
+          pos: typeof r.pos === "number" ? r.pos : 0,
+          created: typeof r.created === "number" ? r.created : 0,
+          legacy: false,
+          virtual: false
+        });
+      });
+      legacy.sort(byPos);
+      extra.sort(byPos);
+      return legacy.concat(extra);
     }
-    for (i = 0; i < lists.length; i++) if (lists[i].id === want) return want;
-    return lists[0].id;
+    out = grpLists(catsMap, catId);
+    if (!out.length) out.push({ id: defaultId(catId), name: fallbackName, pos: -1, created: 0, legacy: false, virtual: true });
+    return out.sort(byPos);
   }
-  /* One pass. Each live item is returned once, under its category and its list. Input maps are not changed. */
-  function place(items, catsMap, nameOf) {
-    var byCat = {}, seen = {}, keys, i, x, cid, lists, gid, bucket, n = 0;
+  function categories(catsMap, homeName) {
+    var out = [{ id: HOME, name: homeName || "קניות", pos: -1, home: true }], keys, i, r;
+    catsMap = catsMap && typeof catsMap === "object" ? catsMap : {};
+    keys = own(catsMap);
+    for (i = 0; i < keys.length; i++) {
+      r = catsMap[keys[i]];
+      if (!isRealRec(r)) continue;
+      out.push({
+        id: r.cat,
+        name: typeof r.name === "string" && r.name ? r.name : "…",
+        pos: typeof r.pos === "number" ? r.pos : 0,
+        created: typeof r.created === "number" ? r.created : 0,
+        home: false
+      });
+    }
+    return out.sort(function (a, b) {
+      if (a.home !== b.home) return a.home ? -1 : 1;
+      return byPos(a, b);
+    });
+  }
+  function hasId(lists, id) {
+    var i;
+    for (i = 0; i < lists.length; i++) if (lists[i].id === id) return true;
+    return false;
+  }
+  /* Where one item shows. Old rows keep their category id as the list id. */
+  function viewOf(item, catsMap, builtins, fallbackName) {
+    var raw = catIdOf(item), grp = item && typeof item.grp === "string" && item.grp ? item.grp : "", lists, lid;
+    catsMap = catsMap && typeof catsMap === "object" ? catsMap : {};
+    if (realRec(catsMap, raw)) {
+      lists = listsFor(catsMap, raw, builtins, fallbackName);
+      lid = grp && hasId(lists, grp) ? grp : (lists[0] ? lists[0].id : defaultId(raw));
+      return { cat: raw, list: lid };
+    }
+    lists = listsFor(catsMap, HOME, builtins, fallbackName);
+    if (grp && hasId(lists, grp)) return { cat: HOME, list: grp };
+    if (hasId(lists, raw)) return { cat: HOME, list: raw };
+    return { cat: HOME, list: lists[0] ? lists[0].id : "main" };
+  }
+  function place(items, catsMap, builtins, fallbackName) {
+    var byCat = {}, seen = {}, keys, i, x, v, bucket, n = 0;
     items = items && typeof items === "object" ? items : {};
     keys = own(items);
     for (i = 0; i < keys.length; i++) {
       x = items[keys[i]];
       if (!x || x.deleted || x.type === "cat" || x.type === "grp" || x.type === "meta" || seen[x.id || keys[i]]) continue;
       seen[x.id || keys[i]] = 1;
-      cid = catIdOf(x);
-      if (!byCat[cid]) byCat[cid] = { lists: {}, order: [] };
-      lists = listsFor(catsMap, cid, nameOf ? nameOf(cid) : "");
-      gid = grpOf(x, lists);
-      bucket = byCat[cid];
-      if (!bucket.lists[gid]) { bucket.lists[gid] = []; bucket.order.push(gid); }
-      bucket.lists[gid].push(x);
+      v = viewOf(x, catsMap, builtins, fallbackName);
+      if (!byCat[v.cat]) byCat[v.cat] = { lists: {}, order: [] };
+      bucket = byCat[v.cat];
+      if (!bucket.lists[v.list]) { bucket.lists[v.list] = []; bucket.order.push(v.list); }
+      bucket.lists[v.list].push(x);
       n++;
     }
-    return { byCat: byCat, count: n };
+    return { byCat: byCat, count: n, home: HOME };
   }
   function isSelected(item, checklist) {
     if (!item) return false;
@@ -108,24 +186,35 @@
       if (isSelected(x, checklist)) { sel++; priceSel += p; }
     }
     return {
-      all: all,
-      sel: sel,
-      unsel: all - sel,
-      anyPrice: anyPrice,
-      priceAll: priceAll,
-      priceSel: priceSel,
-      priceUnsel: priceAll - priceSel
+      all: all, sel: sel, unsel: all - sel, anyPrice: anyPrice,
+      priceAll: priceAll, priceSel: priceSel, priceUnsel: priceAll - priceSel
     };
+  }
+  /* Short shekel text: ₪12, ₪1.6, and ₪1.6k once the amount reaches 1000. */
+  function fmtSum(n) {
+    var sign = "", body, k;
+    if (typeof n !== "number" || !isFinite(n)) n = 0;
+    if (n < 0) { sign = "-"; n = -n; }
+    n = Math.round(n * 10) / 10;
+    if (n >= 1000) {
+      k = Math.round(n / 100) / 10;
+      body = String(k).replace(/\.0$/, "") + "k";
+    } else body = String(n).replace(/\.0$/, "");
+    return sign + "₪" + body;
   }
 
   var api = {
+    HOME: HOME,
     catIdOf: catIdOf,
     defaultId: defaultId,
+    legacyLists: legacyLists,
     listsFor: listsFor,
-    grpOf: grpOf,
+    categories: categories,
+    viewOf: viewOf,
     place: place,
     isSelected: isSelected,
-    totals: totals
+    totals: totals,
+    fmtSum: fmtSum
   };
   root.RGShopLists = api;
   if (typeof module !== "undefined" && module.exports) module.exports = api;

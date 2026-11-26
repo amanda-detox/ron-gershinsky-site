@@ -52,7 +52,7 @@ assert(sHtml.indexOf('class="cathead"') !== -1 && sHtml.indexOf("</main>") < sHt
 assert(sHtml.indexOf('id="syncslot"') === -1 && sHtml.indexOf('id="sync-tog"') === -1, "the top collapse toggle is gone");
 assert(sHtml.indexOf('statusPeek: "שים לב"') !== -1, "private shopping uses the same short notice");
 assert(sHtml.indexOf("rg-sync-status.js?v=1") < sHtml.indexOf("../../shared/rg-account.js"), "the shopping helper loads before the account script");
-assert(sSw.indexOf('CACHE = "rg-myshop-v21"') !== -1 && sSw.indexOf("app.js?v=50") !== -1, "the private shopping cache was bumped");
+assert(sSw.indexOf('CACHE = "rg-myshop-v22"') !== -1 && sSw.indexOf("app.js?v=51") !== -1, "the private shopping cache was bumped");
 assert(sApp.indexOf("לחתוך") === -1 && sHtml.indexOf("לחתוך") === -1, "shopping copy has no violent Hebrew");
 
 if (failed) { console.error(failed + " failed"); process.exit(1); }
