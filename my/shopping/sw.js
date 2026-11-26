@@ -1,7 +1,7 @@
 /* Offline cache for the private "Purchasify" app (my/shopping/). Scope: my/shopping/ only.
    Only the app shell is cached; personal data lives in the account (Appwrite, cross-origin, never cached here) and in localStorage. */
-var CACHE = "rg-myshop-v22";
-var FILES = ["./", "index.html", "version.js?v=2", "rg-sync-status.js?v=1", "lists.js?v=2", "restore.js?v=1", "app.js?v=51", "manifest.json?v=21", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../common.css", "../common.js",
+var CACHE = "rg-myshop-v23";
+var FILES = ["./", "index.html", "version.js?v=3", "rg-sync-status.js?v=1", "lists.js?v=3", "restore.js?v=1", "app.js?v=52", "manifest.json?v=22", "icon-header.png", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../common.css", "../common.js",
   "../../shared/rg-account.js", "../../shared/rg-install.js?v=1", "../../shared/rg-topbar.js", "../../shared/fonts/heebo.css", "../../shared/rg-site.css", "../../shared/fonts/heebo-hebrew.woff2", "../../shared/fonts/heebo-latin.woff2", "../../shared/fonts/heebo-latin-ext.woff2", "../../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {

@@ -684,9 +684,9 @@
       if (live && live.id === x.id) { var y = {}; for (var f in x) y[f] = x[f]; y.price = live.v; rows.push(y); } else rows.push(x); }
     sums = LISTS ? LISTS.totals(rows, openIsChk()) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
     sum = $("sum"); if (!sum) return; sum.hidden = !sums.all || !!(searchOpen && searchRaw());
-    sum.innerHTML = '<span class="tot"><bdi class="sl">' + esc(t("sumTotal")) + "</bdi> <bdi>" + sums.all + "</bdi>" + (sums.anyPrice ? ' <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceAll)) + "</bdi>" : "") + "</span>" +
-      '<span class="sel"><bdi class="sl">' + esc(t("sumSel")) + "</bdi> <bdi>" + sums.sel + "</bdi>" + (sums.anyPrice ? ' <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceSel)) + "</bdi>" : "") + "</span>" +
-      '<span class="sel"><bdi class="sl">' + esc(t("sumUnsel")) + "</bdi> <bdi>" + sums.unsel + "</bdi>" + (sums.anyPrice ? ' <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceUnsel)) + "</bdi>" : "") + "</span>";
+    sum.innerHTML = '<span class="tot"><bdi class="sl">' + esc(t("sumTotal")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceAll)) + "</bdi></span>" +
+      '<span class="sel"><bdi class="sl">' + esc(t("sumSel")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceSel)) + "</bdi></span>" +
+      '<span class="sel"><bdi class="sl">' + esc(t("sumUnsel")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceUnsel)) + "</bdi></span>";
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;

@@ -616,12 +616,10 @@
       if (live && live.id === x.id) { var y = {}; for (var f in x) y[f] = x[f]; y.price = live.v; rows.push(y); } else rows.push(x); }
     sums = LISTS ? LISTS.totals(rows, openIsChk()) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
     sum = $("sum"); if (!sum) return; sum.hidden = !sums.all;
-    bit = function (label, n, price, cls) {
-      var s = '<span class="' + cls + '"><bdi class="sl">' + esc(label) + "</bdi> <bdi>" + n + "</bdi>";
-      if (sums.anyPrice) s += ' <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(price)) + "</bdi>";
-      return s + "</span>";
+    bit = function (label, price, cls) {
+      return '<span class="' + cls + '"><bdi class="sl">' + esc(label) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(price)) + "</bdi></span>";
     };
-    sum.innerHTML = bit(t("sumTotal"), sums.all, sums.priceAll, "tot") + bit(t("sumSel"), sums.sel, sums.priceSel, "sel") + bit(t("sumUnsel"), sums.unsel, sums.priceUnsel, "sel");
+    sum.innerHTML = bit(t("sumTotal"), sums.priceAll, "tot") + bit(t("sumSel"), sums.priceSel, "sel") + bit(t("sumUnsel"), sums.priceUnsel, "sel");
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
