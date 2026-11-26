@@ -279,7 +279,7 @@ html body .rgtb .rgtb-lang .rgtb-menu{position:fixed !important;top:56px !import
 .hero-home img{width:56px;height:56px;margin:0;border-radius:16px;box-shadow:none;display:block}
 .hero .menubar{margin-inline-start:auto;flex:none}
 .menubar{position:relative;display:flex;justify-content:flex-start;margin:0;z-index:45}
-.menubtn{padding:0;border-radius:16px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:none;cursor:pointer}
+.menubtn{width:46px;height:48px;min-width:46px;min-height:48px;margin-top:3px;padding:0;border-radius:16px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:none;cursor:pointer}
 html[data-theme=light] .menubtn{background:#f6f2ea;color:#8a6a10;border-color:#c4a046;box-shadow:none}
 .menubtn svg{width:26px;height:26px;display:block}
 .menubtn[aria-expanded=true]{background:#f5c542;color:#0b2a6b}
@@ -773,7 +773,6 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     histKey: "rg-wealth-hist-v1",
     notesKey: "rg-wealth-notefold",
     listKeys: { wealth: "rg-wealth-list-wealth-v1", freedom: "rg-wealth-list-freedom-v1" },
-    stampKey: "rg-wealth-lastlocal-v1",
     cache: "rg-wealth-v25"
   };
   /* One object per home tile, in order. open "flow" keeps the questionnaire. open "list" is a Balancify-style list. seed is written only when that list key does not exist yet. */
@@ -801,7 +800,6 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   }
   function save() {
     try { localStorage.setItem(ANS_KEY, JSON.stringify({ v: 1, answers: answers, completed: completed, updated: new Date().toISOString() })); } catch (e) {}
-    markStamp();
     if (!skipSnap) remember();
   }
   function loadItems() {
@@ -1159,19 +1157,8 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
 
   function tileIcon(name) { return TILE_ICONS[name] || TILE_ICONS.quiz; }
   function homeById(id) { var found = null; HOME.forEach(function (o) { if (o.id === id) found = o; }); return found; }
-  function markStamp() {
-    var t = Date.now();
-    try { localStorage.setItem(CFG.stampKey, String(t)); } catch (e) {}
-    return t;
-  }
-  function stampMs() {
-    var n = 0;
-    try { n = parseInt(localStorage.getItem(CFG.stampKey) || "", 10) || 0; } catch (e) {}
-    if (!n) n = markStamp();
-    return n;
-  }
   function paintStatus() {
-    var L = T[lang], s = $("status"), when = fmtTime(stampMs());
+    var L = T[lang], s = $("status"), when = "—";
     if (s) {
       s.className = "status local";
       while (s.firstChild) s.removeChild(s.firstChild);
@@ -1209,7 +1196,6 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     var key = CFG.listKeys && CFG.listKeys[id];
     if (!key) return;
     try { localStorage.setItem(key, JSON.stringify({ v: 1, items: lists[id] || [] })); } catch (e) {}
-    markStamp();
   }
   function ensureList(id) {
     if (lists[id]) return lists[id];
