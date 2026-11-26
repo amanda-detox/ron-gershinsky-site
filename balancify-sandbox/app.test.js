@@ -52,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-sbx-balancify-v36"), "sbx-balancify-v36");
+assert.strictEqual(M.versionLabel("rg-sbx-balancify-v37"), "sbx-balancify-v37");
 assert.strictEqual(M.APP, "sbxbalancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -67,15 +67,16 @@ assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pe
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
 assert.ok(html.indexOf('class="histrow"') === -1, "history and backup left the footer");
 assert.ok(app.indexOf("sbxbalancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "sbxbalancify"') !== -1, "cloud app id is sbxbalancify");
-assert.ok(ver.indexOf("rg-sbx-balancify-v36") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v36");
-assert.ok(ver.indexOf("rg-sbx-balancify-v34") === -1, "the old cache name is not the current one");
-assert.ok(html.indexOf("app.js?v=19") !== -1 && sw.indexOf("app.js?v=19") !== -1, "app cache param is bumped");
-assert.ok(html.indexOf("style.css?v=19") !== -1 && sw.indexOf("style.css?v=19") !== -1, "style cache param is bumped");
-assert.ok(html.indexOf("version.js?v=8") !== -1 && sw.indexOf("version.js?v=8") !== -1, "version.js cache param is bumped");
+assert.ok(ver.indexOf("rg-sbx-balancify-v37") !== -1 && sw.indexOf("RG_SBX_BALANCIFY_CACHE") !== -1, "cache version is v37");
+assert.ok(ver.indexOf("rg-sbx-balancify-v36") === -1, "the old cache name is not the current one");
+assert.ok(html.indexOf("app.js?v=20") !== -1 && sw.indexOf("app.js?v=20") !== -1, "app cache param is bumped");
+assert.ok(html.indexOf("style.css?v=20") !== -1 && sw.indexOf("style.css?v=20") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=9") !== -1 && sw.indexOf("version.js?v=9") !== -1, "version.js cache param is bumped");
+assert.ok(html.indexOf("contact.js?v=1") !== -1 && sw.indexOf("contact.js?v=1") !== -1, "contact script is cached");
 assert.ok(app.indexOf('x.mark === "ok" ? null : "ok"') !== -1, "a check toggles between chosen and empty");
 assert.ok(app.indexOf('=== "ok" ? "no"') === -1 && app.indexOf("on-no") === -1 && app.indexOf('? "✕"') === -1, "the skipped X state is not rendered");
 assert.ok(html.indexOf('id="menu-btn"') !== -1 && html.indexOf('id="appmenu"') !== -1, "one menu button opens the list tools");
-["חזרה", "הערות", "הוספה", "הדפסה", "חיפוש", "היסטוריה", "גיבוי", "שפה", "זום", "תצוגה", "צבעים", "חשבון"].forEach(function (word) {
+["חזרה", "הערות", "הוספה", "הדפסה", "חיפוש", "היסטוריה", "גיבוי", "שפה", "זום", "תצוגה", "צבעים", "חשבון", "צור קשר"].forEach(function (word) {
   assert.ok(html.indexOf(word) !== -1, "menu has " + word);
 });
 assert.ok(html.indexOf('class="hero"') < html.indexOf('id="menu-btn"') && html.indexOf('id="menu-btn"') < html.indexOf('id="home"'), "the menu button is in the app header, before either screen");
@@ -103,6 +104,41 @@ assert.ok(css.indexOf("#f4b183") === -1 && css.indexOf("#c4602e") === -1, "the o
 ["purple", "pink", "orange", "#888", "#999", "#ccc"].forEach(function (bad) {
   assert.ok(css.toLowerCase().indexOf(bad) === -1, "css has no " + bad);
 });
+
+var C = require("./contact.js");
+var contactOk = { name: "רון גרשינסקי", email: "ron@example.com", kind: "באג", subject: "הכפתור", body: "הכפתור לא נלחץ" };
+assert.strictEqual(C.BODY_MAX, 1000);
+assert.deepStrictEqual(C.KINDS, ["באג", "הצעה לשיפור", "כללי"]);
+assert.strictEqual(C.validateContact(contactOk).ok, true);
+var missing = C.validateContact({ name: "  ", email: "not-an-email", kind: "", subject: " ", body: " " });
+assert.strictEqual(missing.ok, false);
+assert.ok(missing.errors.name && missing.errors.email && missing.errors.kind && missing.errors.subject && missing.errors.body);
+assert.strictEqual(C.validateContact(Object.assign({}, contactOk, { email: "a@b" })).ok, false);
+assert.strictEqual(C.validateContact(Object.assign({}, contactOk, { kind: "אחר" })).ok, false);
+var maxBody = new Array(1001).join("א");
+assert.strictEqual(maxBody.length, 1000);
+assert.strictEqual(C.validateContact(Object.assign({}, contactOk, { body: maxBody })).ok, true);
+var overBody = maxBody + "ב";
+assert.strictEqual(overBody.length, 1001);
+var over = C.validateContact(Object.assign({}, contactOk, { body: overBody }));
+assert.strictEqual(over.ok, false);
+assert.ok(over.errors.body.indexOf("1000") !== -1);
+var opened = "";
+var sent = C.sendContact(Object.assign({}, contactOk, { subject: "נושא & יותר", body: "שורה אחת\nשורה שנייה" }), function (href) { opened = href; });
+assert.strictEqual(sent.ok, true);
+assert.ok(opened.indexOf("mailto:detoxify.ai@proton.me?") === 0);
+assert.ok(opened.indexOf("subject=" + encodeURIComponent("[איזוניפיי] באג: נושא & יותר")) !== -1);
+var bodyPart = decodeURIComponent(opened.split("&body=")[1]);
+["שם מלא: רון גרשינסקי", "מייל עיקרי: ron@example.com", "סוג פנייה: באג", "נושא: נושא & יותר", "פנייה:", "שורה אחת\nשורה שנייה"].forEach(function (line) {
+  assert.ok(bodyPart.indexOf(line) !== -1, "mailto body has " + line);
+});
+var blocked = false;
+var refused = C.sendContact({ name: "", email: "nope", kind: "כללי", subject: "x", body: "y" }, function () { blocked = true; });
+assert.strictEqual(refused.ok, false);
+assert.strictEqual(blocked, false);
+assert.ok(read("contact.js").indexOf("TODO:") !== -1 && read("contact.js").indexOf("sendContact") !== -1, "sendContact is the swap point");
+assert.ok(html.indexOf('id="contact-menu"') !== -1 && html.indexOf('id="contact-count">0/1000') !== -1, "the menu opens a contact form with a counter");
+assert.ok(app.indexOf("rg-account-user") !== -1 && app.indexOf("BALContact.sendContact") !== -1, "the form prefills the shared account and sends through sendContact");
 
 var adopted = M.adopt(data, function (k) { return k === M.DOC_KEY ? JSON.stringify(fresh) : null; });
 assert.strictEqual(adopted.fresh, false, "an existing document is kept");

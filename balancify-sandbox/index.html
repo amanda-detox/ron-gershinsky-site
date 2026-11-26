@@ -20,7 +20,7 @@
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../shared/rg-site.css">
-<link rel="stylesheet" href="style.css?v=19">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 <div class="scene" aria-hidden="true"></div>
@@ -57,6 +57,7 @@
       <button type="button" role="menuitem" id="theme-menu" data-menu="theme" aria-label="תצוגה" title="תצוגה"><span class="mic"><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5v2M12 18.5v2M5.1 5.1l1.4 1.4M17.5 17.5l1.4 1.4M3.5 12h2M18.5 12h2M5.1 18.9l1.4-1.4M17.5 6.5l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4 6.4 6.4 0 0 0 20 14.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>תצוגה</button>
       <button type="button" role="menuitem" id="color-menu" data-menu="colors" aria-label="צבעים" title="צבעים"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.7-.8 1.7-1.7 0-.5-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16.8a3.6 3.6 0 0 0 3.7-3.6A6.9 6.9 0 0 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="10.5" r="1" fill="currentColor"/><circle cx="10.2" cy="7.2" r="1" fill="currentColor"/><circle cx="14" cy="7" r="1" fill="currentColor"/><circle cx="16.4" cy="10" r="1" fill="currentColor"/></svg></span>צבעים</button>
       <button type="button" role="menuitem" id="acct-menu" data-menu="acct" aria-label="חשבון" title="חשבון"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 19.2c1.3-2.8 3.5-4.2 6.5-4.2s5.2 1.4 6.5 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>חשבון</button>
+      <button type="button" role="menuitem" id="contact-menu" data-menu="contact" aria-label="צור קשר" title="צור קשר"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5.5" width="17" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.5 7.5l7.5 5.5 7.5-5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>צור קשר</button>
     </div>
     </div>
   </div>
@@ -112,11 +113,50 @@
   </div>
 </div>
 
+<div class="sheet addsheet" id="contact-sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="contact-title" lang="he" dir="rtl">
+    <div class="sheet-head">
+      <h3 id="contact-title">צור קשר</h3>
+      <button type="button" class="x" id="contact-close" aria-label="סגירה" title="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <form id="contact-form" autocomplete="on" novalidate>
+      <label class="cf-lab" for="contact-name">שם מלא
+        <input type="text" id="contact-name" name="name" required maxlength="120" autocomplete="name" enterkeyhint="next">
+      </label>
+      <label class="cf-lab" for="contact-email">מייל עיקרי
+        <input type="email" id="contact-email" name="email" required maxlength="254" autocomplete="email" inputmode="email" enterkeyhint="next">
+      </label>
+      <fieldset class="contact-kinds" id="contact-kinds">
+        <legend>סוג פנייה</legend>
+        <div class="kind-list">
+          <label><input type="radio" name="kind" value="באג" required> באג</label>
+          <label><input type="radio" name="kind" value="הצעה לשיפור"> הצעה לשיפור</label>
+          <label><input type="radio" name="kind" value="כללי"> כללי</label>
+        </div>
+      </fieldset>
+      <label class="cf-lab" for="contact-subject">נושא
+        <input type="text" id="contact-subject" name="subject" required maxlength="120" enterkeyhint="next">
+      </label>
+      <label class="cf-lab" for="contact-body">פנייה
+        <textarea id="contact-body" name="body" required maxlength="1000" rows="5" aria-describedby="contact-count"></textarea>
+        <span id="contact-count">0/1000</span>
+      </label>
+      <p class="contact-error" id="contact-error" hidden role="alert"></p>
+      <p class="contact-done" id="contact-done" hidden role="status">נפתחה אפליקציית המייל. שלחו את הפנייה משם.</p>
+      <div class="row" id="contact-actions">
+        <button type="submit" class="btn pri" id="contact-send">שלח</button>
+        <button type="button" class="btn" id="contact-cancel">ביטול</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="data.js?v=11"></script>
-<script src="version.js?v=8"></script>
+<script src="version.js?v=9"></script>
 <script src="model.js?v=5"></script>
 <script src="rg-sync-status.js?v=5"></script>
-<script src="app.js?v=19"></script>
+<script src="contact.js?v=1"></script>
+<script src="app.js?v=20"></script>
 <script src="../shared/rg-account.js"></script>
 <script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-sbx-balancify-theme", "rg-sbx-balancify-bg"]);</script>
 <script src="../shared/rg-topbar.js?v=9" data-nohome="1" data-slot="header.top"></script>
