@@ -1192,6 +1192,7 @@
   function goHome() {
     closeMenu();
     closeAdd();
+    closeContact();
     closeSheet();
     if ($("bg-sheet")) $("bg-sheet").hidden = true;
     findQ = "";
@@ -1247,6 +1248,101 @@
     if ($("add-sheet")) $("add-sheet").hidden = true;
     if ($("menu-btn")) $("menu-btn").focus();
   }
+  function contactFields() {
+    var picked = document.querySelector('#contact-form input[name="kind"]:checked');
+    return {
+      name: $("contact-name") ? $("contact-name").value : "",
+      email: $("contact-email") ? $("contact-email").value : "",
+      kind: picked ? picked.value : "",
+      subject: $("contact-subject") ? $("contact-subject").value : "",
+      body: $("contact-body") ? $("contact-body").value : ""
+    };
+  }
+  function accountContact() {
+    var u = null;
+    try {
+      if (window.RGAccount && typeof RGAccount.user === "function") u = RGAccount.user();
+    } catch (e) {}
+    if (!u || (!u.name && !u.email)) {
+      try { u = JSON.parse(localStorage.getItem("rg-account-user") || "null"); } catch (e2) { u = null; }
+    }
+    u = u || {};
+    return { name: String(u.name || "").replace(/^\s+|\s+$/g, ""), email: String(u.email || "").replace(/^\s+|\s+$/g, "") };
+  }
+  function paintContactCount() {
+    var el = $("contact-body"), out = $("contact-count");
+    if (!el || !out) return;
+    if (el.value.length > 1000) el.value = el.value.slice(0, 1000);
+    var n = el.value.length;
+    out.textContent = n + "/1000";
+    out.classList.toggle("atmax", n >= 1000);
+  }
+  function paintContactErrors(errors) {
+    errors = errors || {};
+    var ids = { name: "contact-name", email: "contact-email", subject: "contact-subject", body: "contact-body" };
+    Object.keys(ids).forEach(function (k) {
+      var el = $(ids[k]);
+      if (!el) return;
+      el.classList.toggle("bad", !!errors[k]);
+      if (errors[k]) el.setAttribute("aria-invalid", "true");
+      else el.removeAttribute("aria-invalid");
+    });
+    var kinds = $("contact-kinds");
+    if (kinds) kinds.classList.toggle("bad", !!errors.kind);
+    var msg = errors.name || errors.email || errors.kind || errors.subject || errors.body || "";
+    var p = $("contact-error");
+    if (p) { p.hidden = !msg; p.textContent = msg; }
+  }
+  function paintContactDone(on) {
+    var p = $("contact-done");
+    if (p) p.hidden = !on;
+  }
+  function openContact() {
+    var s = $("contact-sheet");
+    if (!s) return;
+    if ($("add-sheet")) $("add-sheet").hidden = true;
+    if ($("bg-sheet")) $("bg-sheet").hidden = true;
+    var pre = accountContact();
+    var name = $("contact-name"), email = $("contact-email");
+    if (name && !String(name.value || "").replace(/^\s+|\s+$/g, "") && pre.name) name.value = pre.name;
+    if (email && !String(email.value || "").replace(/^\s+|\s+$/g, "") && pre.email) email.value = pre.email;
+    paintContactDone(false);
+    paintContactCount();
+    s.hidden = false;
+    setTimeout(function () {
+      var first = name && !String(name.value || "").replace(/^\s+|\s+$/g, "") ? name : email;
+      if (first && !String(first.value || "").replace(/^\s+|\s+$/g, "")) first.focus();
+      else if ($("contact-subject")) $("contact-subject").focus();
+    }, 30);
+  }
+  function closeContact() {
+    var s = $("contact-sheet");
+    var wasOpen = s && !s.hidden;
+    if (s) s.hidden = true;
+    paintContactDone(false);
+    if (wasOpen && $("menu-btn")) $("menu-btn").focus();
+  }
+  function submitContact(e) {
+    if (e) e.preventDefault();
+    if (!window.BALContact) return;
+    var res = window.BALContact.sendContact(contactFields());
+    if (!res.ok) {
+      paintContactDone(false);
+      paintContactErrors(res.errors);
+      var order = ["contact-name", "contact-email", "contact-subject", "contact-body"];
+      for (var i = 0; i < order.length; i++) {
+        var el = $(order[i]);
+        if (el && el.classList.contains("bad")) { el.focus(); return; }
+      }
+      var kind = document.querySelector('#contact-form input[name="kind"]');
+      if (kind && res.errors && res.errors.kind) kind.focus();
+      return;
+    }
+    paintContactErrors({});
+    paintContactDone(true);
+    var done = $("contact-done");
+    if (done && done.scrollIntoView) done.scrollIntoView({ block: "nearest" });
+  }
   function clickBar(sel) {
     var n = document.querySelector(sel);
     if (n) n.click();
@@ -1265,6 +1361,7 @@
     if (act === "theme") { clickBar(".rgtb-theme"); return; }
     if (act === "colors") { clickBar(".rgtb-bg"); return; }
     if (act === "acct") { setTimeout(function () { clickBar(".rgacc-btn"); }, 30); return; }
+    if (act === "contact") { openContact(); return; }
   }
   function route() {
     var id = decodeURIComponent((location.hash || "").replace(/^#/, ""));
@@ -1312,6 +1409,34 @@
     });
     if ($("add-close")) $("add-close").onclick = function () { closeAdd(); };
     if ($("add-sheet")) $("add-sheet").addEventListener("click", function (e) { if (e.target === this) closeAdd(); });
+    if ($("contact-close")) $("contact-close").onclick = function () { closeContact(); };
+    if ($("contact-cancel")) $("contact-cancel").onclick = function () { closeContact(); };
+    if ($("contact-sheet")) $("contact-sheet").addEventListener("click", function (e) { if (e.target === this) closeContact(); });
+    if ($("contact-form")) $("contact-form").addEventListener("submit", submitContact);
+    if ($("contact-body")) $("contact-body").addEventListener("input", function () {
+      this.classList.remove("bad");
+      this.removeAttribute("aria-invalid");
+      paintContactCount();
+      paintContactDone(false);
+      if ($("contact-error")) $("contact-error").hidden = true;
+    });
+    ["contact-name", "contact-email", "contact-subject"].forEach(function (id) {
+      if (!$(id)) return;
+      $(id).addEventListener("input", function () {
+        this.classList.remove("bad");
+        this.removeAttribute("aria-invalid");
+        paintContactDone(false);
+        if ($("contact-error")) $("contact-error").hidden = true;
+      });
+    });
+    [].forEach.call(document.querySelectorAll('#contact-form input[name="kind"]'), function (input) {
+      input.addEventListener("change", function () {
+        var kinds = $("contact-kinds");
+        if (kinds) kinds.classList.remove("bad");
+        paintContactDone(false);
+        if ($("contact-error")) $("contact-error").hidden = true;
+      });
+    });
     if ($("search-x")) $("search-x").onclick = function () { closeSearch(); };
     if ($("search-q")) $("search-q").addEventListener("input", function () { findQ = this.value; render(); });
     var form = $("add-form");
@@ -1372,6 +1497,7 @@
         return;
       }
       if (e.key === "Escape") {
+        if ($("contact-sheet") && !$("contact-sheet").hidden) { closeContact(); return; }
         if ($("add-sheet") && !$("add-sheet").hidden) { closeAdd(); return; }
         if ($("appmenu") && !$("appmenu").hidden) { closeMenu(); return; }
         if ($("searchrow") && !$("searchrow").hidden && e.target && e.target.id === "search-q") { closeSearch(); return; }

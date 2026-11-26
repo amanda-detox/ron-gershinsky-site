@@ -1,9 +1,9 @@
 /* Offline cache for the Balancify sandbox only. Scope: balancify-sandbox/.
    Does not delete rg-balancify-* caches used by the live app.
    The cache name lives in version.js. The on-screen label drops the leading "rg-". */
-importScripts("version.js?v=8");
+importScripts("version.js?v=9");
 var CACHE = RG_SBX_BALANCIFY_CACHE;
-var FILES = ["./", "index.html", "version.js?v=8", "model.js?v=5", "rg-sync-status.js?v=5", "app.js?v=19", "data.js?v=11", "style.css?v=19", "manifest.json?v=9", "icon.svg?v=8", "icon-192.png?v=8", "icon-512.png", "bg/sunset.webp", "../shared/rg-account.js", "../shared/rg-topbar.js?v=9", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2"];
+var FILES = ["./", "index.html", "version.js?v=9", "model.js?v=5", "rg-sync-status.js?v=5", "contact.js?v=1", "app.js?v=20", "data.js?v=11", "style.css?v=20", "manifest.json?v=9", "icon.svg?v=8", "icon-192.png?v=8", "icon-512.png", "bg/sunset.webp", "../shared/rg-account.js", "../shared/rg-topbar.js?v=9", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(FILES); }).then(function () { return self.skipWaiting(); }));
