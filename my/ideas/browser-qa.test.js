@@ -142,7 +142,7 @@ async function main() {
     var srcs = await signPage.evaluate(function () {
       return Array.prototype.map.call(document.scripts, function (s) { return s.src || ""; }).join("\n");
     });
-    check(srcs.indexOf("app.js?v=62") !== -1 && srcs.indexOf("version.js?v=5") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
+    check(srcs.indexOf("app.js?v=62") !== -1 && srcs.indexOf("version.js?v=6") !== -1 && srcs.indexOf("rg-sync-status.js?v=9") !== -1 && srcs.indexOf("shared/rg-account.js") !== -1 && srcs.indexOf("sandbox-shared") === -1, "the page loads the bumped scripts");
     await signPage.evaluate(function () { document.getElementById("build").textContent = "rg-myideas-v8"; });
     await signPage.evaluate(function () { window.dispatchEvent(new Event("online")); });
     await signPage.waitForFunction(function () { return document.getElementById("build").textContent === "myideas-v62"; });

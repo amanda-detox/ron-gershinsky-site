@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<script>/* display size (rg-zoom, set from the top bar) before first paint */(function(){try{var z=+localStorage.getItem("rg-zoom");if([75,90,110,125,150].indexOf(z)>-1)document.documentElement.style.zoom=z/100;}catch(e){}})();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d2a6b">
+<meta name="color-scheme" content="dark light">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="איזוניפיי">
+<meta name="description" content="איזוניפיי · הרגעה, איזון וזרימה. Balancify, calm, balance and flow.">
+<script>/* before first paint: theme (dark default), background, language */(function(){var d=document.documentElement,t="dark",b="sunset";try{t=localStorage.getItem("rg-balancify-theme")==="light"?"light":"dark";b=localStorage.getItem("rg-balancify-bg")||"sunset";if(!/^[a-z]+$/.test(b))b="sunset";}catch(e){}d.setAttribute("data-theme",t);d.style.setProperty("--bgimg",'url("bg/'+b+'.webp")');var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="light"?"#f4efe9":"#0d2a6b");try{if(localStorage.getItem("rg-lang")==="en"){d.lang="en";d.dir="ltr";}}catch(e){}})();</script>
+<title>איזוניפיי · Balancify</title>
+<link rel="manifest" href="manifest.json?v=9">
+<link rel="icon" href="icon.svg?v=8" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png?v=8">
+<link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../shared/fonts/heebo.css">
+<link rel="stylesheet" href="../shared/rg-site.css">
+<link rel="stylesheet" href="style.css?v=18">
+</head>
+<body>
+<div class="scene" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <a hidden class="back" id="back" href="../index.html"></a>
+    <div class="tools">
+      <span data-rg-account style="display:inline-flex;min-width:0"></span>
+      <button type="button" class="pill" id="bg-btn"></button>
+      <button type="button" class="pill" id="theme-btn"><span class="ti"></span><span class="tl"></span></button>
+      <div class="lang" role="group" aria-label="Language / שפה">
+        <button type="button" id="lang-he" aria-pressed="true">עב</button>
+        <button type="button" id="lang-en" aria-pressed="false">EN</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <button type="button" class="hero-home" id="app-home" aria-label="חזרה לרשימות" title="חזרה לרשימות"><img src="icon.svg?v=8" alt="" width="56" height="56"></button>
+    <div class="menubar">
+    <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" aria-label="תפריט" title="תפריט">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </button>
+    <div class="menu" id="appmenu" hidden role="menu">
+      <button type="button" role="menuitem" class="onlylist" id="home-btn" data-menu="back" aria-label="חזרה" title="חזרה"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>חזרה</button>
+      <button type="button" role="menuitem" class="onlylist" id="notes-all" data-menu="notes" aria-pressed="true" aria-label="הערות" title="הערות"><span class="mic"><svg class="nshow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.2L19 8.2V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3.5V8.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="nhide" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h7.2L19 8.2V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3.5V8.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 13h7M8.5 16.5h5M5 19L19 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>הערות</button>
+      <button type="button" role="menuitem" class="onlylist" id="add-open" data-menu="add" aria-label="הוספה" title="הוספה"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>הוספה</button>
+      <button type="button" role="menuitem" class="onlylist" id="print-btn" data-menu="print" aria-label="הדפסה" title="הדפסה"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3.5h10V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 17H4.8A1.8 1.8 0 0 1 3 15.2v-5A1.8 1.8 0 0 1 4.8 8.4h14.4A1.8 1.8 0 0 1 21 10.2v5a1.8 1.8 0 0 1-1.8 1.8H18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 13.5h10V21H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>הדפסה</button>
+      <button type="button" role="menuitem" class="onlylist" id="search-open" data-menu="search" aria-pressed="false" aria-label="חיפוש" title="חיפוש"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20.5 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>חיפוש</button>
+      <button type="button" role="menuitem" id="hist-btn" data-menu="hist" aria-label="היסטוריה" title="היסטוריה"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v4.5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>היסטוריה</button>
+      <button type="button" role="menuitem" id="backup-link" data-menu="bak" aria-label="גיבוי" title="גיבוי"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>גיבוי</button>
+      <button type="button" role="menuitem" id="lang-menu" data-menu="lang" aria-label="שפה" title="שפה"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8s-1.1 5.6-3.3 8c-2.2-2.4-3.3-5.1-3.3-8s1.1-5.6 3.3-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>שפה</button>
+      <button type="button" role="menuitem" id="zoom-menu" data-menu="zoom" aria-label="זום" title="זום"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.2 15.2L20.5 20.5M10.5 8v5M8 10.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>זום</button>
+      <button type="button" role="menuitem" id="theme-menu" data-menu="theme" aria-label="תצוגה" title="תצוגה"><span class="mic"><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5v2M12 18.5v2M5.1 5.1l1.4 1.4M17.5 17.5l1.4 1.4M3.5 12h2M18.5 12h2M5.1 18.9l1.4-1.4M17.5 6.5l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.2A8 8 0 1 1 9.8 4 6.4 6.4 0 0 0 20 14.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>תצוגה</button>
+      <button type="button" role="menuitem" id="color-menu" data-menu="colors" aria-label="צבעים" title="צבעים"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.7-.8 1.7-1.7 0-.5-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16.8a3.6 3.6 0 0 0 3.7-3.6A6.9 6.9 0 0 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="10.5" r="1" fill="currentColor"/><circle cx="10.2" cy="7.2" r="1" fill="currentColor"/><circle cx="14" cy="7" r="1" fill="currentColor"/><circle cx="16.4" cy="10" r="1" fill="currentColor"/></svg></span>צבעים</button>
+      <button type="button" role="menuitem" id="acct-menu" data-menu="acct" aria-label="חשבון" title="חשבון"><span class="mic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 19.2c1.3-2.8 3.5-4.2 6.5-4.2s5.2 1.4 6.5 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>חשבון</button>
+    </div>
+    </div>
+  </div>
+
+  <main id="home">
+    <p class="movebar" id="movebar" hidden><span id="move-note"></span><button type="button" class="btn pri" id="move-done"></button></p>
+    <ul class="lists" id="lists"></ul>
+    <button type="button" class="addlist" id="add-list"></button>
+  </main>
+
+  <main id="list" hidden>
+    <div class="searchrow" id="searchrow" hidden>
+      <input type="text" id="search-q" maxlength="80" enterkeyhint="search" autocomplete="off" placeholder="חיפוש" aria-label="חיפוש ברשימה">
+      <button type="button" class="searchx" id="search-x" aria-label="ניקוי וסגירה" title="ניקוי וסגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <h2 class="print-title" id="print-title"></h2>
+    <div id="panels"></div>
+  </main>
+
+  <div class="syncbox">
+    <div class="status" id="status" role="status" aria-live="polite"></div>
+    <p class="lastsync" id="lastsync"></p>
+    <p class="lastsync" id="cloudat"></p>
+    <p class="lastsync" id="build"></p>
+  </div>
+  <footer>
+    <p class="rg-copy"><span lang="he" dir="rtl">© כל הזכויות שמורות לחברת היליפיי בע"מ 2026</span><span lang="en" dir="ltr">© 2026 Healify Ltd. All rights reserved.</span></p>
+  </footer>
+</div>
+
+<div class="sheet" id="bg-sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="bg-title">
+    <div class="sheet-head"><h3 id="bg-title"></h3><button type="button" class="x" id="bg-close" aria-label="Close">✕</button></div>
+    <div class="bg-grid" id="bg-grid"></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<div class="sheet addsheet" id="add-sheet" hidden>
+  <div class="sheet-in" role="dialog" aria-modal="true" aria-labelledby="add-dlg-title">
+    <div class="sheet-head">
+      <h3 id="add-dlg-title">הוספת פריט</h3>
+      <button type="button" class="x" id="add-close" aria-label="סגירה" title="סגירה"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7l10 10M17 7L7 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+    <form id="add-form" autocomplete="off">
+      <input type="text" id="add-text" maxlength="200" enterkeyhint="done" placeholder="כותרת פריט" aria-label="כותרת פריט">
+      <textarea id="add-note" class="notein" rows="3" maxlength="2500" placeholder="הערה" aria-label="הערה"></textarea>
+      <p class="notemax" id="add-max" hidden></p>
+      <button type="submit" class="btn pri" id="add-btn">הוספה</button>
+    </form>
+  </div>
+</div>
+
+<script src="data.js?v=11"></script>
+<script src="version.js?v=7"></script>
+<script src="model.js?v=5"></script>
+<script src="rg-sync-status.js?v=5"></script>
+<script src="app.js?v=19"></script>
+<script src="../shared/rg-account.js"></script>
+<script>if (window.RGAccount) RGAccount.syncPrefs(["rg-lang", "rg-balancify-theme", "rg-balancify-bg"]);</script>
+<script src="../shared/rg-topbar.js?v=9" data-nohome="1" data-slot="header.top"></script>
+
+<!-- rg-install v3: button only when the browser offers a real install prompt -->
+<style>#rg-inst-w{position:fixed;bottom:14px;inset-inline-start:14px;z-index:9999;font:14px/1.4 Heebo,system-ui,sans-serif}#rg-inst-w[hidden]{display:none}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
+<div id="rg-inst-w" hidden><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div>
+<script>(function(){
+if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}
+var K="rg-inst-off",w=document.getElementById("rg-inst-w"),b=document.getElementById("rg-inst"),x=document.getElementById("rg-inst-x"),dp=null;
+var T={he:{b:"📲 התקנה למסך הבית",x:"סגירה"},en:{b:"📲 Install app",x:"Close"}};
+function L(){var l="";try{l=localStorage.getItem("rg-lang")||"";}catch(e){}if(l!=="en"&&l!=="he")l=/^en/i.test(document.documentElement.lang)?"en":"he";return l;}
+function R(){var t=T[L()];b.textContent=t.b;x.title=t.x;x.setAttribute("aria-label",t.x);}
+function sa(){return(window.matchMedia&&(matchMedia("(display-mode: standalone)").matches||matchMedia("(display-mode: fullscreen)").matches||matchMedia("(display-mode: minimal-ui)").matches))||navigator.standalone===true;}
+function off(){try{return localStorage.getItem(K)==="1";}catch(e){return false;}}
+function U(){w.hidden=!(dp&&!sa()&&!off());}
+R();U();
+addEventListener("storage",function(e){if(e.key==="rg-lang")R();});addEventListener("rg-lang",R);
+new MutationObserver(R).observe(document.documentElement,{attributes:true,attributeFilter:["lang","dir"]});
+addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;U();});
+addEventListener("appinstalled",function(){dp=null;U();});
+b.onclick=function(){if(!dp)return;var d=dp;dp=null;U();d.prompt();};
+x.onclick=function(){try{localStorage.setItem(K,"1");}catch(e){}U();};
+})();</script>
+</body>
+</html>

@@ -52,7 +52,7 @@ var cloud = { items: { extra: { id: "extra", sec: "stress", he: "מהענן", at
 var both = M.planSync(fresh.items, cloud, SS.mergeRecords);
 assert.ok(both.items.extra && both.items["b:stress:1"], "cloud and local records are both kept");
 assert.strictEqual(both.keptLocal, true);
-assert.strictEqual(M.versionLabel("rg-balancify-v33"), "balancify-v33");
+assert.strictEqual(M.versionLabel("rg-balancify-v34"), "balancify-v34");
 assert.strictEqual(M.APP, "balancify");
 assert.strictEqual(M.KEY, "items");
 
@@ -67,11 +67,11 @@ assert.ok(app.indexOf("nbtn") === -1 && app.indexOf("M16.5 3.5") === -1, "the pe
 assert.ok(html.indexOf('id="status"') !== -1 && html.indexOf('id="hist-btn"') !== -1 && html.indexOf('id="backup-link"') !== -1, "sync, history, and backup are on the page");
 assert.ok(html.indexOf('class="histrow"') === -1, "history and backup left the footer");
 assert.ok(app.indexOf("balancify") !== -1 && read("rg-sync-status.js").indexOf('appName !== "balancify"') !== -1, "cloud app id is balancify");
-assert.ok(ver.indexOf("rg-balancify-v33") !== -1 && sw.indexOf("RG_BALANCIFY_CACHE") !== -1, "cache version is v33");
+assert.ok(ver.indexOf("rg-balancify-v34") !== -1 && sw.indexOf("RG_BALANCIFY_CACHE") !== -1, "cache version is v34");
 assert.ok(ver.indexOf("rg-balancify-v32") === -1, "the old cache name is not the current one");
 assert.ok(html.indexOf("app.js?v=19") !== -1 && sw.indexOf("app.js?v=19") !== -1, "app cache param is bumped");
-assert.ok(html.indexOf("style.css?v=18") !== -1 && sw.indexOf("style.css?v=18") !== -1, "style cache param is bumped");
-assert.ok(html.indexOf("version.js?v=7") !== -1 && sw.indexOf("version.js?v=7") !== -1, "version.js cache param is bumped");
+assert.ok(html.indexOf("style.css?v=19") !== -1 && sw.indexOf("style.css?v=19") !== -1, "style cache param is bumped");
+assert.ok(html.indexOf("version.js?v=8") !== -1 && sw.indexOf("version.js?v=8") !== -1, "version.js cache param is bumped");
 assert.ok(app.indexOf('x.mark === "ok" ? null : "ok"') !== -1, "a check toggles between chosen and empty");
 assert.ok(app.indexOf('=== "ok" ? "no"') === -1 && app.indexOf("on-no") === -1 && app.indexOf('? "✕"') === -1, "the skipped X state is not rendered");
 assert.ok(html.indexOf('id="menu-btn"') !== -1 && html.indexOf('id="appmenu"') !== -1, "one menu button opens the list tools");

@@ -1,8 +1,8 @@
 /* Offline cache for the private Listify sandbox only. Scope: ideas-sandbox/.
    Does not delete caches used by the live app. The cache name lives in version.js. */
-importScripts("version.js?v=10");
+importScripts("version.js?v=11");
 var CACHE = RG_SBX_IDEAS_CACHE;
-var FILES = ["./", "index.html", "version.js?v=10", "rg-sync-status.js?v=11", "restore.js?v=2", "app.js?v=69", "manifest.json?v=23", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../my/common.css", "../my/common.js",
+var FILES = ["./", "index.html", "version.js?v=11", "rg-sync-status.js?v=11", "restore.js?v=2", "app.js?v=69", "manifest.json?v=23", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-192.png?v=20", "icon-maskable-512.png?v=20", "../my/common.css", "../my/common.js",
   "../sandbox-shared/rg-sync-status.js", "../sandbox-shared/rg-account.js?v=3", "../sandbox-shared/rg-install.js?v=1", "../shared/rg-topbar.js", "../shared/fonts/heebo.css", "../shared/rg-site.css", "../shared/fonts/heebo-hebrew.woff2", "../shared/fonts/heebo-latin.woff2", "../shared/fonts/heebo-latin-ext.woff2", "../shared/rg-bg.js"];
 
 self.addEventListener("install", function (e) {
