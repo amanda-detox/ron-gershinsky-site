@@ -45,13 +45,14 @@ assert(jApp.indexOf("לחתוך") === -1 && jStr.indexOf("לחתוך") === -1, "
 
 assert(sApp.indexOf('APP = "shopping"') !== -1 && sApp.indexOf('return "rg-my-shopping:" + id') !== -1, "private shopping keeps its app id and storage key");
 assert(sApp.indexOf("pubpurchasify") === -1 && sApp.indexOf("rg-pub-purchasify") === -1, "private shopping does not use the public list");
-assert(sApp.indexOf("rg-my-shopping-stat") !== -1 && sApp.indexOf("restoreBlocked") !== -1 && sApp.indexOf("keepGone: true") !== -1, "private shopping folds the status and can restore items or categories");
+assert(sApp.indexOf("restoreBlocked") !== -1 && sApp.indexOf("keepGone: true") !== -1, "private shopping can restore items or categories");
 assert(sHtml.indexOf("<title>Purchasify</title>") !== -1, "the private shopping tab title is Purchasify");
 assert(sHtml.indexOf('doc: "Purchasify"') !== -1 && sHtml.indexOf('title: "קניותיפיי"') !== -1, "Hebrew sessions keep the tab in English and the in-page name קניותיפיי");
-assert(sHtml.indexOf('class="cathead"') !== -1 && sHtml.indexOf('id="status"') < sHtml.indexOf("</main>"), "the status sits beside the category heading");
+assert(sHtml.indexOf('class="cathead"') !== -1 && sHtml.indexOf("</main>") < sHtml.indexOf('id="status"') && sHtml.indexOf('id="status"') < sHtml.indexOf('id="lastsync"') && sHtml.indexOf('id="lastsync"') < sHtml.indexOf('id="cloudat"'), "the full sync status sits at the bottom, after the list");
+assert(sHtml.indexOf('id="syncslot"') === -1 && sHtml.indexOf('id="sync-tog"') === -1, "the top collapse toggle is gone");
 assert(sHtml.indexOf('statusPeek: "שים לב"') !== -1, "private shopping uses the same short notice");
 assert(sHtml.indexOf("rg-sync-status.js?v=1") < sHtml.indexOf("../../shared/rg-account.js"), "the shopping helper loads before the account script");
-assert(sSw.indexOf('CACHE = "rg-myshop-v20"') !== -1 && sSw.indexOf("app.js?v=49") !== -1, "the private shopping cache was bumped");
+assert(sSw.indexOf('CACHE = "rg-myshop-v21"') !== -1 && sSw.indexOf("app.js?v=50") !== -1, "the private shopping cache was bumped");
 assert(sApp.indexOf("לחתוך") === -1 && sHtml.indexOf("לחתוך") === -1, "shopping copy has no violent Hebrew");
 
 if (failed) { console.error(failed + " failed"); process.exit(1); }

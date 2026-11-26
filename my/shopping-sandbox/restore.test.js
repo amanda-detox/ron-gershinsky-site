@@ -112,19 +112,19 @@ var sw = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 var helper = fs.readFileSync(path.join(root, "restore.js"), "utf8");
 var liveHtml = fs.readFileSync(path.join(root, "../shopping/index.html"), "utf8");
 var liveApp = fs.readFileSync(path.join(root, "../shopping/app.js"), "utf8");
-assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear"') !== -1 && page.indexOf('id="actrow"') !== -1, "search sits in the options row");
+assert(page.indexOf('id="list-search"') !== -1 && page.indexOf('id="search-clear"') !== -1 && page.indexOf('id="actrow"') !== -1 && page.indexOf('id="actrow" hidden') !== -1, "search stays in the page and starts hidden");
 assert(page.indexOf('id="backup-btn"') === -1 && page.indexOf('id="syncline"') === -1, "the toolbar backup button and the old sync line are gone");
-assert(page.indexOf('id="list-search"') < page.indexOf('id="print-btn"') && page.indexOf('id="print-btn"') < page.indexOf('id="restore-file-btn"'), "the row order is search, print, restore");
+assert(page.indexOf('id="menu-lang"') < page.indexOf('id="menu-zoom"') && page.indexOf('id="print-btn"') < page.indexOf('id="restore-file-btn"') && page.indexOf('id="restore-file-btn"') < page.indexOf('id="menu-search"') && page.indexOf('id="menu-install"') < page.indexOf('id="menu-acct"'), "the menu order is language, zoom, then print, restore, search, and install before account");
 assert(page.indexOf('print: "הדפסה"') !== -1 && page.indexOf('restoreBtn: "שיחזור"') !== -1 && page.indexOf('restoreTitle: "שיחזור"') !== -1 && page.indexOf('searchPh: "חיפוש"') !== -1, "the Hebrew labels are חיפוש, הדפסה, and שיחזור");
 assert(page.indexOf('print: "Print"') !== -1 && page.indexOf('searchPh: "Search"') !== -1 && page.indexOf('restoreBtn: "Restore"') !== -1, "the English labels are Search, Print, and Restore");
-assert(page.indexOf('id="add-form"') < page.indexOf('id="status"') && page.indexOf('id="status"') < page.indexOf('id="lastsync"') && page.indexOf('id="lastsync"') < page.indexOf('id="cloudat"') && page.indexOf('id="cloudat"') < page.indexOf('id="hist-btn"') && page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"'), "sync times sit at the bottom, and backup is a link beside version history");
+assert(page.indexOf('id="add-form"') < page.indexOf('id="status"') && page.indexOf('id="status"') < page.indexOf('id="lastsync"') && page.indexOf('id="lastsync"') < page.indexOf('id="cloudat"') && page.indexOf('id="cloudat"') < page.indexOf('id="build"') && page.indexOf('id="menu-btn"') < page.indexOf('id="hist-btn"') && page.indexOf('id="hist-btn"') < page.indexOf('id="backup-link"'), "sync times sit at the bottom, and history and backup live in the menu");
 assert(page.indexOf('lastSync: "סונכרן לאחרונה ב-{t}"') !== -1 && page.indexOf('cloudAt: "עודכן בענן ב-{t}"') !== -1 && page.indexOf('localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון"') !== -1, "the status uses Listify's wording");
 assert(page.indexOf('id="syncslot"') === -1 && page.indexOf("לא מסונכרן") === -1, "the waiting state does not use לא מסונכרן");
 var printCss = page.slice(page.indexOf(".printbtn {"), page.indexOf(".printbtn {") + 320);
 assert(printCss.indexOf("padding: 0 18px") !== -1, "print uses Listify's 18px padding");
 var searchCss = page.slice(page.indexOf(".searchin {"), page.indexOf(".searchin:focus"));
 assert(searchCss.indexOf("text-align: start") !== -1 && page.indexOf(".searchin:placeholder-shown { text-align: center; }") !== -1, "only the search placeholder is centered");
-assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v8"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=55") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
+assert(sw.indexOf('var CACHE = "rg-sbx-shopping-v9"') !== -1 && sw.indexOf("restore.js?v=1") !== -1 && sw.indexOf("app.js?v=56") !== -1 && sw.indexOf("lists.js?v=1") !== -1 && sw.indexOf("rg-sync-status.js?v=3") !== -1 && sw.indexOf("rg-install.js?v=1") !== -1, "the sandbox cache name includes the new files");
 var bakBody = app.slice(app.indexOf("function downloadBackup"), app.indexOf("function openHistory"));
 assert(bakBody.indexOf("backupEmpty") !== -1 && bakBody.indexOf("restoreNeed") === -1, "an empty backup shows a short message and does not ask to sign in");
 assert(page.indexOf('backupEmpty: "אין עדיין מה לגבות"') !== -1 && page.indexOf("ממתין לסנכרון…") !== -1 && page.indexOf("#4A78DC") !== -1 && page.indexOf("#1E3A8A") !== -1 && page.indexOf("#5B8DEF") !== -1, "waiting is deep blue and the backup link uses the synced blue");
@@ -137,11 +137,11 @@ assert(SS.shouldStampSync({ downloaded: true, blocked: true, failed: false, pend
 assert(app.indexOf('APP = "sbxshopping"') !== -1 && app.indexOf('APP = "shopping"') === -1 && app.indexOf("rg-my-shopping") === -1, "the sandbox app still never names the live app or its key");
 assert(app.indexOf('if (APP !== "sbxshopping")') !== -1, "sync refuses to run unless the app id is the sandbox");
 assert(helper.indexOf(LIVE_NEEDLE()) !== -1 && helper.indexOf('setItem("rg-my-shopping') === -1 && helper.indexOf("setItem('rg-my-shopping") === -1, "the helper recognizes a live device key in a file and does not write it");
-assert(liveHtml.indexOf("list-search") === -1 && liveHtml.indexOf("syncline") === -1 && liveApp.indexOf("function searchView") === -1, "live Purchasify has no search row and no moved sync line");
+assert(liveHtml.indexOf("list-search") !== -1 && liveHtml.indexOf('id="actrow" hidden') !== -1 && liveHtml.indexOf("syncline") === -1 && liveApp.indexOf("function searchView") !== -1 && liveApp.indexOf('APP = "shopping"') !== -1, "live Purchasify search starts hidden and keeps its app id");
 var searchBody = app.slice(app.indexOf("function searchView"), app.indexOf("function render"));
 assert(searchBody.indexOf("saveLocal") === -1 && searchBody.indexOf("changed(") === -1 && searchBody.indexOf("localStorage") === -1 && searchBody.indexOf("setOrder") === -1 && searchBody.indexOf("upd(") === -1, "the search view does not write or reorder");
 var loadBody = app.slice(app.indexOf("function loadRestore"), app.indexOf("function bootRestore"));
-assert(loadBody.indexOf("R.commit") !== -1 && loadBody.indexOf("restoreDoc") !== -1 && loadBody.indexOf("sync()") !== -1, "a confirmed file restore commits, then syncs");
+assert(loadBody.indexOf("R.commit") !== -1 && loadBody.indexOf("merge(") !== -1 && loadBody.indexOf("restoreDoc") !== -1 && loadBody.indexOf("sync()") !== -1, "a confirmed file restore merges, commits, then syncs");
 assert(loadBody.indexOf('A.set("shopping"') === -1 && loadBody.indexOf("rg-my-shopping") === -1, "the confirm path does not target the live app");
 
 function LIVE_NEEDLE() { return "rg-" + "my-shopping:"; }
