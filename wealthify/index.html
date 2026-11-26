@@ -13,8 +13,8 @@
 <meta name="description" content="שפעלי · אפליקציה לשגשוג וחופש כלכלי. Wealthify, an app for prosperity and financial freedom.">
 <title>Wealthify</title>
 <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="icon-192.png?v=24" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png?v=24">
 <link rel="preload" href="../shared/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="../shared/fonts/heebo.css">
 <link rel="stylesheet" href="../shared/rg-site.css">
@@ -358,7 +358,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     </div>
   </header>
   <div class="hero">
-    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="שפעלי, מסך הבית" title="שפעלי, מסך הבית"><img src="icon.svg" alt="" width="56" height="56"></button>
+    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="שפעלי, מסך הבית" title="שפעלי, מסך הבית"><img src="icon-192.png?v=24" alt="" width="56" height="56"></button>
     <div class="menubar">
       <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" data-i18n-label="menuBtn" aria-label="תפריט" title="תפריט">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -724,7 +724,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
     itemsKey: "rg-wealth-items-v1",
     histKey: "rg-wealth-hist-v1",
     notesKey: "rg-wealth-notefold",
-    cache: "rg-wealth-v23"
+    cache: "rg-wealth-v24"
   };
   /* One object per home tile, in order. open "flow" is the existing questionnaire. open "soon" is a placeholder ready for content. */
   var HOME = [
@@ -1428,7 +1428,7 @@ html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .di
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js?v=23", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=24", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
   if ($("app-home")) $("app-home").onclick = function () { goHome(); };
   if ($("menu-btn")) $("menu-btn").onclick = function (e) {
