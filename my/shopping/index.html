@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0a1a3f">
 <meta name="robots" content="noindex">
 <title>Purchasify</title>
-<link rel="manifest" href="manifest.json?v=19">
+<link rel="manifest" href="manifest.json?v=20">
 <link rel="icon" href="icon-192.png?v=6" type="image/png">
 <link rel="apple-touch-icon" href="icon-192.png?v=6">
 <meta name="mobile-web-app-capable" content="yes">
@@ -89,21 +89,25 @@
   .ebox { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 4px 0; }
   .enote { width: 100%; min-width: 0; box-sizing: border-box; min-height: 56px; padding: 8px 10px; border-radius: 10px; border: 2px solid var(--line2); background: var(--bg); color: var(--fg); font: inherit; font-size: 15px; line-height: 1.4; resize: vertical; outline: none; }
   .enote:focus { border-color: var(--accent); }
-  .txt .note { display: block; margin-top: 3px; color: var(--muted); font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  .txt .note { display: block; margin-top: 3px; color: #f6edd4; font-size: 14px; line-height: 1.4; overflow-wrap: anywhere; white-space: pre-line; }
+  html[data-theme="light"] .txt .note { color: #0b1f4d; }
+  .txt .note.note-off { display: none; }
   .txt .addnote { display: block; margin-top: 2px; color: var(--faint); font-size: 12.5px; font-weight: 600; }
   .addform input.price-in { padding: 0 6px; text-align: center; direction: ltr; font-size: 16px; }
   @media (max-width: 480px) { /* phones: the name gets the whole first row, price + add below it */
     .addform { grid-template-columns: 96px minmax(0, 1fr); }
     .addform #add-input { grid-column: 1 / -1; }
   }
-  .sum { margin: 14px 4px 0; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 16px; font-weight: 800; color: var(--fg); }
+  .sum { margin: 10px 2px 0; display: flex; flex-wrap: nowrap; align-items: baseline; gap: 8px; font-size: 12.5px; font-weight: 800; line-height: 1.2; color: var(--fg); white-space: nowrap; overflow: hidden; }
+  .sum span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .sum b { color: var(--accent); font-weight: 900; }
-  .sum .sel { color: var(--muted); font-weight: 700; }
+  .sum .sel { color: #5B8DEF; font-weight: 800; }
+  html[data-theme="light"] .sum .sel { color: #1A47A0; }
   .ckbox { flex: none; align-self: center; width: 28px; height: 28px; margin-inline-end: 4px; border: 2px solid var(--line2); border-radius: 7px; background: transparent; color: transparent; font-size: 17px; font-weight: 900; line-height: 1; padding: 0; cursor: pointer; }
   .ckbox.on-ok { color: #e6c15a; border-color: #e6c15a; background: color-mix(in srgb, #e6c15a 20%, transparent); }
-  .ckbox.on-no { color: #8eaddb; border-color: #8eaddb; background: transparent; }
+  .ckbox.on-no { color: #5B8DEF; border-color: #5B8DEF; background: transparent; }
   html[data-theme="light"] .ckbox.on-ok { color: #8a6a10; border-color: #c4a046; }
-  html[data-theme="light"] .ckbox.on-no { color: #5c6e90; border-color: #7d92b3; }
+  html[data-theme="light"] .ckbox.on-no { color: #1A47A0; border-color: #1A47A0; }
   .ckd .ckbox.on-ok { background: color-mix(in srgb, #e6c15a 28%, transparent); }
   .ckd .txt, .ckd .note { text-decoration: none; opacity: 1; }
   /* fixed price column on every row: type the price right in the list */
@@ -211,6 +215,88 @@
     .list li { overflow: visible; break-inside: avoid; }
     .list li::before, .list li::after { content: none !important; display: none !important; }
   }
+  /* Listify header. The old top bar stays so language, zoom, night mode, theme, and account still work, and it takes no height. */
+  .wrap { padding-top: calc(8px + env(safe-area-inset-top)); }
+  header.topbar { display: none !important; height: 0 !important; min-height: 0 !important; margin: 0 !important; padding: 0 !important; overflow: hidden !important; border: 0 !important; }
+  html body .rgtb { min-height: 0 !important; height: 0 !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+  html body .rgtb .rgtb-acct,
+  html body .rgtb .rgacc-btn,
+  html body .rgtb .rgtb-bg,
+  html body .rgtb .rgtb-theme,
+  html body .rgtb .rgtb-zoom > .rgtb-b,
+  html body .rgtb .rgtb-lang > .rgtb-b { position: absolute !important; width: 1px !important; height: 1px !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; border: 0 !important; pointer-events: none !important; }
+  html body .rgtb .rgtb-zoom,
+  html body .rgtb .rgtb-lang { position: absolute !important; width: 0 !important; height: 0 !important; min-width: 0 !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; border: 0 !important; }
+  html body .rgtb .rgtb-zoom .rgtb-menu,
+  html body .rgtb .rgtb-lang .rgtb-menu { position: fixed !important; top: 56px !important; inset-inline-start: 12px !important; inset-inline-end: auto !important; z-index: 80 !important; }
+  .hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0; padding: 0 0 6px; min-width: 0; }
+  .hero-home { width: 56px; height: 56px; min-width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 16px; background: transparent; flex: none; }
+  .hero-home img { width: 56px; height: 56px; margin: 0; border-radius: 16px; box-shadow: none; display: block; }
+  .hero .menubar { margin-inline-start: auto; flex: none; }
+  .menubar { position: relative; display: flex; justify-content: flex-start; margin: 0; z-index: 45; }
+  .menubtn { width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border-radius: 14px; border: 2px solid #f5c542; background: color-mix(in srgb, #0b2a6b 78%, #f5c542); color: #f5c542; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(11, 31, 77, .35); }
+  html[data-theme="light"] .menubtn { background: #f6f2ea; color: #8a6a10; border-color: #c4a046; box-shadow: none; }
+  .menubtn svg { width: 26px; height: 26px; display: block; }
+  .menubtn[aria-expanded="true"] { background: #f5c542; color: #0b2a6b; }
+  #appmenu { position: absolute; z-index: 50; inset-inline-end: 0; inset-inline-start: auto; top: calc(100% + 4px); min-width: 232px; max-height: none; overflow: hidden; margin: 0; padding: 4px; border-radius: 16px; border: 1.5px solid #f5c542; background: #102454; box-shadow: 0 14px 36px rgba(0, 0, 0, .4); }
+  html[data-theme="light"] #appmenu { background: #f6f2ea; }
+  #appmenu button, #appmenu .restorebtn { display: flex; align-items: center; justify-content: flex-start; gap: 8px; width: 100%; box-sizing: border-box; min-height: 36px; height: 36px; min-width: 36px; margin: 0; padding: 0 8px; border: 0; border-radius: 10px; background: transparent; color: #fff; font: 700 14.5px/1 var(--sans); text-align: start; text-decoration: none; box-shadow: none; white-space: nowrap; cursor: pointer; }
+  html[data-theme="light"] #appmenu button, html[data-theme="light"] #appmenu .restorebtn { color: #0b1f4d; }
+  #appmenu button:hover, #appmenu button:focus-visible, #appmenu .restorebtn:hover, #appmenu .restorebtn:focus-visible { background: color-mix(in srgb, #f5c542 18%, transparent); }
+  #appmenu .mic { width: 20px; height: 20px; flex: none; color: #f5c542; display: inline-flex; align-items: center; justify-content: center; }
+  html[data-theme="light"] #appmenu .mic { color: #8a6a10; }
+  #appmenu .mic svg { width: 20px; height: 20px; display: block; }
+  #menu-night .ic-moon { display: none; }
+  html[data-theme="light"] #menu-night .ic-sun { display: none; }
+  html[data-theme="light"] #menu-night .ic-moon { display: block; }
+  #appmenu .restore-row { display: contents; }
+  #appmenu .restorebtn .mlab { display: inline; flex: none; }
+  .addform .addx { flex: none; width: 44px; height: 44px; min-width: 44px; min-height: 44px; padding: 0; border: 0; border-radius: 12px; background: transparent; color: #f5c542; font: 800 18px/1 var(--sans); }
+  html[data-theme="light"] .addform .addx { color: #8a6a10; }
+  .listpick { margin-top: 8px; }
+  .catpick { margin-top: 8px; }
+  .actrow { display: flex; align-items: center; gap: 8px; margin: 2px 0 0; min-width: 0; }
+  .actrow[hidden] { display: none !important; }
+  .searchbox { position: relative; flex: 1 1 auto; min-width: 0; display: flex; align-items: center; }
+  .searchin { box-sizing: border-box; width: 100%; min-height: 44px; min-width: 0; padding: 0 12px; border-radius: 14px; border: 1px solid var(--line2); background: var(--card); color: var(--fg); font: 800 16px/1 var(--sans); text-align: start; }
+  .searchbox.hasq .searchin { padding-inline-end: 44px; }
+  .searchin:placeholder-shown { text-align: center; }
+  .searchin::placeholder { color: var(--faint); font-weight: 700; text-align: center; }
+  .searchin:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .searchx { position: absolute; inset-inline-end: 0; top: 0; bottom: 0; width: 44px; min-height: 44px; border: 0; border-radius: 14px; background: transparent; color: var(--fg); font: 800 18px/1 var(--sans); cursor: pointer; padding: 0; }
+  .searchx[hidden] { display: none; }
+  mark.qhit { background: var(--accent); color: var(--accentink); border-radius: 4px; padding: 0 1px; }
+  .srchhead { margin: 14px 4px 0; font-size: 16px; font-weight: 800; line-height: 1.35; color: var(--fg); }
+  .status { display: block; text-align: center; margin: 14px auto 2px; padding: 0 12px; color: var(--muted); font-size: 12px; line-height: 1.4; opacity: .85; white-space: normal; overflow-wrap: anywhere; }
+  .status:empty { display: none; }
+  .status.save { color: var(--accent); font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.ok { color: #5B8DEF; font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.wait { color: #4A78DC; font-weight: 700; opacity: 1; }
+  html[data-theme="dark"] .status.local { color: #5B8DEF; font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.save { color: #8a6a10; }
+  html[data-theme="light"] .status.ok { color: #1A47A0; font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.wait { color: #1E3A8A; font-weight: 700; opacity: 1; }
+  html[data-theme="light"] .status.local { color: #1A47A0; font-weight: 700; opacity: 1; }
+  .status.ok { display: flex; justify-content: center; align-items: baseline; gap: 4px; }
+  .syncmark { color: var(--accent); font-weight: 900; }
+  html[data-theme="light"] .syncmark { color: #8a6a10; }
+  .status.off { color: var(--accent); font-weight: 600; opacity: 1; }
+  html[data-theme="light"] .status.off { color: #8a5a00; }
+  .status .status-txt { display: inline; }
+  .lastsync { display: block; text-align: center; margin: 0 auto 2px; padding: 0 12px; color: #5B8DEF; font-size: 12px; line-height: 1.35; opacity: 1; }
+  .lastsync:empty { display: none; }
+  html[data-theme="light"] .lastsync { color: #1A47A0; }
+  .hrow { display: flex; flex-direction: column; gap: 4px; margin: 0 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .histwhen { font-weight: 800; font-size: 16px; }
+  .restore-file { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+  .restore-note { margin: 0; color: #5B8DEF; font-size: 13.5px; line-height: 1.45; }
+  html[data-theme="light"] .restore-note { color: #1A47A0; }
+  .restore-meta { margin: 0; color: var(--fg); font-size: 15.5px; font-weight: 800; }
+  .restore-lines { list-style: none; margin: 0; padding: 0; max-height: 38vh; overflow-y: auto; }
+  .restore-lines li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-height: 40px; padding: 6px 2px; border-bottom: 1px solid var(--line); font-size: 15.5px; font-weight: 700; }
+  @media (max-width: 393px) {
+    #appmenu button, #appmenu .restorebtn { min-height: 34px; height: 34px; font-size: 14px; padding: 0 8px; gap: 8px; }
+  }
 </style>
 <script src="../../shared/rg-bg.js" data-app="my" data-slot=".topbar .tools" data-before="#theme-btn"></script>
 </head>
@@ -223,8 +309,38 @@
       <button type="button" class="themebtn" id="theme-btn"></button>
     </div>
   </header>
-  <!-- hero (logo, title, description) removed from the main view at Ron's request 2026-10-28; candidate for a future About -->
-  <div class="printrow"><button type="button" class="printbtn" id="print-btn" data-i18n="print" onclick="window.print()">הדפס</button></div>
+  <div class="hero">
+    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="קניותיפיי, מסך הבית" title="קניותיפיי, מסך הבית"><img src="icon.svg" alt="" width="56" height="56"></button>
+    <div class="menubar">
+      <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" data-i18n-label="menuBtn" aria-label="תפריט" title="תפריט">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+      <div class="menu" id="appmenu" hidden role="menu">
+        <button type="button" role="menuitem" id="menu-lang" data-menu="lang"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8s-1.1 5.6-3.3 8c-2.2-2.4-3.3-5.1-3.3-8s1.1-5.6 3.3-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuLang">שפה</span></button>
+        <button type="button" role="menuitem" id="menu-zoom" data-menu="zoom"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.2 15.2L20.5 20.5M10.5 8v5M8 10.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuZoom">זום</span></button>
+        <button type="button" role="menuitem" id="menu-night" data-menu="night"><span class="mic" aria-hidden="true"><svg class="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5v2M12 18.5v2M5.1 5.1l1.4 1.4M17.5 17.5l1.4 1.4M3.5 12h2M18.5 12h2M5.1 18.9l1.4-1.4M17.5 6.5l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="ic-moon" viewBox="0 0 24 24"><path d="M20 14.2A8 8 0 1 1 9.8 4 6.4 6.4 0 0 0 20 14.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuNight">מצב לילה</span></button>
+        <button type="button" role="menuitem" id="menu-theme" data-menu="theme"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.7-.8 1.7-1.7 0-.5-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16.8a3.6 3.6 0 0 0 3.7-3.6A6.9 6.9 0 0 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="10.5" r="1" fill="currentColor"/><circle cx="10.2" cy="7.2" r="1" fill="currentColor"/><circle cx="14" cy="7" r="1" fill="currentColor"/><circle cx="16.4" cy="10" r="1" fill="currentColor"/></svg></span><span class="mlab" data-i18n="menuTheme">ערכת נושא</span></button>
+        <button type="button" role="menuitem" class="printbtn" id="print-btn" onclick="window.print()"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 8V3.5h10V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 17H4.8A1.8 1.8 0 0 1 3 15.2v-5A1.8 1.8 0 0 1 4.8 8.4h14.4A1.8 1.8 0 0 1 21 10.2v5a1.8 1.8 0 0 1-1.8 1.8H18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 13.5h10V21H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="print">הדפסה</span></button>
+        <div class="restore-row">
+          <label class="restorebtn" id="restore-file-btn" for="restore-file" tabindex="0" role="menuitem" data-i18n-label="restoreBtnLabel"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="restoreBtn">שיחזור</span></label>
+          <input id="restore-file" class="restore-file" type="file" accept="application/json,.json">
+        </div>
+        <button type="button" role="menuitem" id="menu-search" data-menu="search"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20.5 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="searchPh">חיפוש</span></button>
+        <button type="button" role="menuitem" id="menu-notes" data-menu="notes" aria-pressed="false"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.2L19 8.2V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3.5V8.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuNotes">הצג/הסתר הערות</span></button>
+        <button type="button" role="menuitem" id="menu-add" data-menu="add"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuAdd">הוסף פריט</span></button>
+        <button type="button" role="menuitem" class="histbtn" id="hist-btn"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v4.5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuHistory">היסטוריה</span></button>
+        <button type="button" role="menuitem" class="baklink" id="backup-link"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="backupLink">גיבוי</span></button>
+        <button type="button" role="menuitem" id="menu-install" data-menu="install"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 8h2M12 11v5M9.5 13.5 12 16l2.5-2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuInstall">התקנה למסך הבית</span></button>
+        <button type="button" role="menuitem" id="menu-acct" data-menu="acct"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 19.2c1.3-2.8 3.5-4.2 6.5-4.2s5.2 1.4 6.5 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuAccount">חשבון</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="actrow" id="actrow" hidden>
+    <div class="searchbox" id="searchbox" role="search">
+      <input id="list-search" class="searchin" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" data-i18n-ph="searchPh" data-i18n-label="searchLabel" placeholder="חיפוש" aria-label="חיפוש ברשימות ובפריטים">
+      <button type="button" class="searchx" id="search-clear" hidden data-i18n-label="searchClear" aria-label="ניקוי החיפוש">✕</button>
+    </div>
+  </div>
 
   <section class="card gate" data-when="out" hidden>
     <div class="lock" aria-hidden="true">🔒</div>
@@ -237,7 +353,6 @@
     <div class="catpick" id="catpick">
       <div class="cathead">
       <button type="button" class="catbtn" id="cat-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="cat-panel"><span class="cb-name" id="cat-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="syncslot" id="syncslot"><div class="status" id="status" role="status" aria-live="polite"></div><span class="syncpeek" id="syncpeek"></span><button type="button" class="synctog" id="sync-tog" aria-expanded="true" aria-controls="status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
       </div>
       <div class="catpanel" id="cat-panel" hidden>
         <div class="cp-head"><span class="cp-title" id="cp-title"></span></div>
@@ -245,11 +360,22 @@
         <button type="button" class="cp-new" id="cat-new"></button>
       </div>
     </div>
+    <div class="catpick listpick" id="lstpick">
+      <div class="cathead">
+      <button type="button" class="catbtn" id="lst-btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="lst-panel"><span class="cb-name" id="lst-name"></span><svg class="cb-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <div class="catpanel" id="lst-panel" hidden>
+        <div class="cp-head"><span class="cp-title" id="lp-title"></span></div>
+        <ul class="cp-list" id="lst-list"></ul>
+        <button type="button" class="cp-new" id="lst-new"></button>
+      </div>
+    </div>
     <p class="cathint" id="cathint" hidden></p>
-    <form class="addform" id="add-form" autocomplete="off">
+    <form class="addform" id="add-form" autocomplete="off" hidden>
       <input id="add-input" type="text" maxlength="200" enterkeyhint="done" data-i18n-ph="ph" data-i18n-label="ph">
       <input id="add-price" class="price-in" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" data-i18n-ph="pricePh" data-i18n-label="priceLabel">
       <button type="submit" data-i18n="add"></button>
+      <button type="button" class="addx" id="add-x" data-i18n-label="addClose" aria-label="סגירה">✕</button>
       <input id="add-note" class="note-in" type="text" maxlength="500" enterkeyhint="done" data-i18n-ph="phNote" data-i18n-label="note">
     </form>
     <div class="card empty" id="empty" hidden><p id="empty-p"></p><button type="button" class="suggest" id="suggest" data-i18n="suggest"></button></div>
@@ -258,10 +384,14 @@
       <div class="donehead"><h2 id="done-h"></h2></div>
       <div class="card listcard"><ul class="list" id="done"></ul></div>
     </div>
+    <div id="search-out" hidden></div>
     <div class="card listcard" id="active-card" style="margin-top:14px"><ul class="list" id="active"></ul></div>
   </main>
+  <div class="status" id="status" role="status" aria-live="polite"></div>
+  <p class="lastsync" id="lastsync"></p>
+  <p class="lastsync" id="cloudat"></p>
+  <p class="lastsync" id="build"></p>
   <p class="privnote" data-i18n="privNote"></p>
-  <div class="rg-install-wrap" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install"></button><div class="rg-install-hint" id="install-hint" hidden></div></div>
   <footer data-i18n="footer"></footer>
 </div>
 <script>
@@ -279,7 +409,19 @@ window.RGMY_STRINGS = {
         catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה.",
         markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
-        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "סה״כ", sumSel: "נבחר", sumUnsel: "לא נבחר", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה." },
+        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "הכול", sumSel: "נבחרים", sumUnsel: "לא נבחרים", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה.",
+        print: "הדפסה", searchPh: "חיפוש", searchLabel: "חיפוש ברשימות ובפריטים", searchClear: "ניקוי החיפוש", searchEmpty: "אין התאמה",
+        listDefault: "רשימה 1", pickList: "בחר רשימה", newList: "＋ רשימה חדשה", listAdd: "רשימה חדשה", listPh: "שם הרשימה", renameList: "שינוי שם הרשימה", confirmDelList: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", lastList: "צריכה להישאר לפחות רשימה אחת.",
+        menuBtn: "תפריט", homeBtn: "קניותיפיי, מסך הבית", menuLang: "שפה", menuZoom: "זום", menuNight: "מצב לילה", menuTheme: "ערכת נושא", menuNotes: "הצג/הסתר הערות", menuAdd: "הוסף פריט", addClose: "סגירה", menuHistory: "היסטוריה", menuAccount: "חשבון", menuInstall: "התקנה למסך הבית",
+        restoreBtn: "שיחזור", restoreBtnLabel: "שיחזור", restoreTitle: "שיחזור", backupLink: "גיבוי", backupEmpty: "אין עדיין מה לגבות",
+        restoreOnly: "הפריטים מהקובץ מתווספים למה שכבר כאן. שום דבר לא נמחק בלי אישור.",
+        restoreList: "רשימה", restoreLists: "רשימות", restoreItem: "פריט", restoreItems: "פריטים",
+        restoreNewest: "התאריך החדש ביותר", restoreFileDate: "תאריך הקובץ", restoreEmpty: "אין רשימות גלויות בקובץ.",
+        restoreHidden: "מוסתרות בקובץ", restoreLoad: "מזג לרשימות", restoreBad: "הקובץ הזה אינו קובץ שחזור של קניותיפיי.",
+        restoreRead: "לא הצלחתי לקרוא את הקובץ.", restoreNeed: "צריך להיות מחובר כדי למזג.",
+        restoreDone: "הקובץ מוזג. מה שהיה כאן נשמר כגיבוי במכשיר הזה.", restoreFail: "השמירה לא הצליחה.",
+        waiting: "ממתין לסנכרון…", localOnly: "נשמר במכשיר הזה בלבד, בלי חשבון", lastSync: "סונכרן לאחרונה ב-{t}", cloudAt: "עודכן בענן ב-{t}",
+        history: "היסטוריה", historyEmpty: "עדיין אין שינויים שמורים.", historyBack: "סגור", historyDownload: "הורד", historyRestore: "החזר", deletedHead: "נמחקו לאחרונה" },
   en: { doc: "Purchasify", title: "Purchasify", sub: "Updates live on all your devices", ph: "What do you need to buy?", add: "Add", print: "Print", phNote: "Note (optional)", note: "Note", addNote: "+ Add a note",
         tabMain: "Shopping", tabTea: "Tea", phTea: "Which tea to buy?", emptyTea: "No tea on the list yet. Write above which tea you need to buy.",
         empty: "The list is empty.", suggest: "Add suggested items",  bought: "Selected", check: "Mark as selected", uncheck: "Back to the list",
@@ -292,20 +434,31 @@ window.RGMY_STRINGS = {
         catHint: "Tip: tap the category name to see all categories. In each row: ☰ drag to reorder, ✏️ rename, 🗑 delete. ☰ next to an item: drag to reorder. Swipe an item right: delete · left: move or trash.",
         markOk: "Marked ✓", markNo: "Marked ✕",
         delItem: "🗑 Delete", deleted: "“{x}” deleted", undo: "Undo",
-        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "Total", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there." }
+        pricePh: "₪", priceLabel: "Price (₪, optional)", handleItem: "Drag to reorder", sumTotal: "All", sumSel: "Selected", sumUnsel: "Not selected", sumChk: "Checked", sumUnchk: "Not checked", optToCheck: "Turn into a checklist", optToList: "Turn into a regular list", moveTo: "Move to another category", moveTitle: "Move to which category?", movedTo: "Moved to {x}", noOther: "There's no other category yet. You can create one and move the item there.",
+        print: "Print", searchPh: "Search", searchLabel: "Search lists and items", searchClear: "Clear search", searchEmpty: "No matches",
+        listDefault: "List 1", pickList: "Choose a list", newList: "＋ New list", listAdd: "New list", listPh: "List name", renameList: "Rename list", confirmDelList: "Delete the list “{x}” and everything in it?", lastList: "At least one list has to stay.",
+        menuBtn: "Menu", homeBtn: "Purchasify, home", menuLang: "Language", menuZoom: "Zoom", menuNight: "Night mode", menuTheme: "Theme", menuNotes: "Show/hide notes", menuAdd: "Add item", addClose: "Close", menuHistory: "History", menuAccount: "Account", menuInstall: "Install to home screen",
+        restoreBtn: "Restore", restoreBtnLabel: "Restore", restoreTitle: "Restore", backupLink: "Backup", backupEmpty: "Nothing to back up yet.",
+        restoreOnly: "Items from the file are merged into what is already here. Nothing is deleted without a confirmation.",
+        restoreList: "list", restoreLists: "lists", restoreItem: "item", restoreItems: "items",
+        restoreNewest: "Newest date", restoreFileDate: "File date", restoreEmpty: "No visible lists in this file.",
+        restoreHidden: "Hidden in the file", restoreLoad: "Merge into the lists", restoreBad: "This file is not a Purchasify restore file.",
+        restoreRead: "The file could not be read.", restoreNeed: "Sign in to merge this file.",
+        restoreDone: "The file was merged. What was here was kept as a backup on this device.", restoreFail: "Could not save.",
+        waiting: "Waiting to sync…", localOnly: "Saved on this device only, until you sign in", lastSync: "Last synced at {t}", cloudAt: "Cloud copy updated at {t}",
+        history: "History", historyEmpty: "No saved changes yet.", historyBack: "Close", historyDownload: "Download", historyRestore: "Bring back", deletedHead: "Recently deleted" }
 };
 </script>
+<script src="version.js?v=1"></script>
 <script src="rg-sync-status.js?v=1"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="app.js?v=49"></script>
+<script src="lists.js?v=1"></script>
+<script src="restore.js?v=1"></script>
+<script src="app.js?v=50"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
-<!-- install: prompt() when Chrome offers it; Hebrew guidance otherwise, including inside היליפיי -->
-<style>#rg-inst-w{position:fixed;bottom:max(14px,env(safe-area-inset-bottom));inset-inline-start:14px;z-index:9999;font:14px/1.45 Heebo,system-ui,sans-serif;max-width:min(92vw,24rem)}#rg-inst-w[hidden]{display:none !important}#rg-inst-w:not([hidden]){display:flex;flex-direction:column;align-items:flex-start;gap:8px}#rg-inst-h{margin:0;padding:10px 12px;border-radius:14px;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:600 14px/1.45 Heebo,system-ui,sans-serif;max-height:42vh;overflow:auto}#rg-inst-h[hidden]{display:none !important}#rg-inst-h a{display:inline-block;margin-top:8px;color:#fff6dc;font-weight:800}#install-hint{color:#f5d27a;background:#0b1a3f;border:1.5px solid #d4af37;max-height:42vh;overflow:auto}#rg-inst-row{position:relative;display:inline-block}#rg-inst{display:block;font:600 15px/1.2 Heebo,system-ui,sans-serif;background:linear-gradient(135deg,#0b2a6b,#1e4fd1);color:#f5d27a;border:1.5px solid #d4af37;border-radius:22px;padding:9px 40px 9px 14px;box-shadow:0 4px 14px rgba(0,0,0,.35);cursor:pointer}[dir=rtl] #rg-inst{padding:9px 14px 9px 40px}#rg-inst-x{position:absolute;top:-10px;right:-10px;width:32px;height:32px;border-radius:50%;border:1.5px solid #d4af37;background:#0b1a3f;color:#f5d27a;font:700 18px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.4);padding:0}[dir=rtl] #rg-inst-x{right:auto;left:-10px}</style>
-<div id="rg-inst-w" hidden><p id="rg-inst-h" hidden></p><div id="rg-inst-row"><button id="rg-inst" type="button"></button><button id="rg-inst-x" type="button">✕</button></div></div>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}</script>
 <script src="../../shared/rg-install.js?v=1"></script>
-<script>RGInstall.attach({nameHe:"קניותיפיי",nameEn:"Purchasify",dismissKey:"rg-inst-off",underMyHub:true});</script>
 </body>
 </html>

@@ -156,6 +156,54 @@
   function delCat(cid) { liveIn(cid).forEach(function (x) { del(x.id); }); upCat(cid, { gone: 1 }); }
   function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
 
+  /* Lists live under a category. item.grp is the list. Missing grp is the default list.
+     Reading this never writes a record and never changes an item, so the first sync cannot replace the cloud copy. */
+  var LISTS = window.RGShopLists, grpTab = "", addOpen = false, searchOpen = false, notesOff = false;
+  function noteKey() { return "rg-sbx-shopping-notes:" + (uid || "local"); }
+  function loadNotes() { notesOff = lsGet(noteKey()) === "1"; var b = $("menu-notes"); if (b) b.setAttribute("aria-pressed", notesOff ? "true" : "false"); }
+  function defaultGrp(cid) { return LISTS ? LISTS.defaultId(cid || "main") : "d:" + (cid || "main"); }
+  function listsFor(cid) { var c = catOf(cid); return LISTS ? LISTS.listsFor(catsMap, cid, c ? catName(c) : t("listDefault")) : [{ id: defaultGrp(cid), name: t("listDefault"), pos: -1, virtual: true }]; }
+  function curGrp() {
+    var cid = curTab(), lists = listsFor(cid), i;
+    for (i = 0; i < lists.length; i++) if (lists[i].id === grpTab) return grpTab;
+    grpTab = lists.length ? lists[0].id : defaultGrp(cid);
+    return grpTab;
+  }
+  function itemGrp(x) { var lists = listsFor(listOf(x)); return LISTS ? LISTS.grpOf(x, lists) : (x && x.grp) || defaultGrp(listOf(x)); }
+  function inOpenList(x) { return listOf(x) === curTab() && itemGrp(x) === curGrp(); }
+  function grpRec(cid, gid) {
+    var k, r;
+    for (k in catsMap) { r = catsMap[k]; if (r && !r.deleted && r.type === "grp" && r.cat === cid && r.grp === gid) return r; }
+    return null;
+  }
+  function writeGrp(cid, gid, patch) {
+    var r = grpRec(cid, gid), y = {}, k, at = now(), lists = listsFor(cid), i, cur = null;
+    for (i = 0; i < lists.length; i++) if (lists[i].id === gid) cur = lists[i];
+    if (r) { for (k in r) y[k] = r[k]; }
+    else y = { id: "g:" + gid, type: "grp", cat: cid, grp: gid, name: cur ? cur.name : t("listDefault"), pos: cur ? cur.pos : 0, created: at };
+    for (k in patch) { if (patch[k] == null || patch[k] === "") delete y[k]; else y[k] = patch[k]; }
+    y.id = r ? r.id : "g:" + gid; y.type = "grp"; y.cat = cid; y.grp = gid; y.at = at;
+    putCat(y);
+  }
+  function addGrp(cid, name) {
+    name = clean(name, 40); if (!name) return null;
+    var lists = listsFor(cid), id = newId(), at = now(), pos = lists.reduce(function (m, g) { return Math.max(m, g.pos); }, -1) + 1;
+    putCat({ id: "g:" + id, type: "grp", cat: cid, grp: id, name: name, pos: pos, created: at, at: at });
+    return id;
+  }
+  function setGrpOrder(cid, ids) { ids.forEach(function (gid, n) { var r = grpRec(cid, gid); if (!r || r.pos !== n) writeGrp(cid, gid, { pos: n }); }); }
+  function delGrp(cid, gid) {
+    var lists = listsFor(cid), i, name = gid;
+    if (lists.length <= 1) { window.alert(t("lastList")); return false; }
+    for (i = 0; i < lists.length; i++) if (lists[i].id === gid) name = lists[i].name;
+    if (!window.confirm(t("confirmDelList").replace("{x}", name))) return false;
+    bulkOk = Date.now() + 60000;
+    for (var k in items) { var x = items[k]; if (x && !x.deleted && listOf(x) === cid && itemGrp(x) === gid) del(x.id); }
+    writeGrp(cid, gid, { gone: 1 });
+    if (grpTab === gid) grpTab = "";
+    return true;
+  }
+
   /* ---------- safety net ---------- */
   // Before every cloud write, the cloud copy that is about to be replaced is kept on this device (last BAK_N versions),
   // so nothing is ever lost even if a bug writes something wrong: rg-sbx-shopping-bak:<user id> = [{ t, items, cats }, ...]
@@ -204,7 +252,12 @@
     lsSet(lastSyncKey(uid), String(Date.now()));
     paintLastSync();
   }
+  function paintBuild() {
+    var el = $("build"), name = window.RG_SBX_SHOP_CACHE || "";
+    if (el) el.textContent = name.indexOf("rg-") === 0 ? name.slice(3) : name;
+  }
   function paintLastSync() {
+    paintBuild();
     var el = $("lastsync"), cl = $("cloudat"), SS = window.RGSyncStatus;
     if (!uid) {
       if (el) el.textContent = "";
@@ -514,17 +567,29 @@
     if (typeof price === "number" && isFinite(price)) items[id].price = price;
     note = clean(note || "", 500); if (note) items[id].note = note; // optional short note (like Listify); old items simply have none
     cid = cid || curTab(); if (cid && cid !== "main") items[id].list = cid;
-    items[id].ord = topOrd(cid || "main", id);
+    var g = curGrp();
+    if (g && g !== defaultGrp(cid || "main")) items[id].grp = g; // missing grp stays the default list, so old rows are not rewritten
+    items[id].ord = topOrd(cid || "main", id, g);
   }
-  /* a new (or moved) item goes to the TOP of its category (Ron, 2026-10-30): one step before the smallest order there */
-  function topOrd(cid, skip) {
+  function topOrd(cid, skip, gid) {
     var m = Infinity;
-    for (var k in items) { var y = items[k]; if (k !== skip && y && !y.deleted && !y.done && y.type !== "cat" && listOf(y) === cid) m = Math.min(m, ordOf(y)); }
+    gid = gid || defaultGrp(cid);
+    for (var k in items) { var y = items[k]; if (k !== skip && y && !y.deleted && !y.done && y.type !== "cat" && y.type !== "grp" && listOf(y) === cid && itemGrp(y) === gid) m = Math.min(m, ordOf(y)); }
     return m === Infinity ? 1000 : m - 1000;
   }
   function upd(id, patch) { var x = items[id]; if (!x || x.deleted) return; var y = {}, k; for (k in x) y[k] = x[k]; for (k in patch) { if (patch[k] == null) delete y[k]; else y[k] = patch[k]; } y.at = now(); items[id] = y; }
-  function del(id) { var x = items[id]; if (!x) return; items[id] = { id: id, deleted: true, at: now() }; }
-  function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid, ord: topOrd(cid, id) }); return true; }
+  function del(id) {
+    var x = items[id]; if (!x) return;
+    var y = { id: id, deleted: true, at: now() };
+    ["text", "note", "list", "grp", "price", "mark"].forEach(function (f) { if (x[f] != null && x[f] !== "") y[f] = x[f]; });
+    items[id] = y;
+  }
+  function undelete(id) {
+    var x = items[id]; if (!x || !x.deleted || !x.text) return false;
+    var y = {}, k; for (k in x) y[k] = x[k];
+    delete y.deleted; y.at = now(); items[id] = y; return true;
+  }
+  function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid, grp: null, ord: topOrd(cid, id, defaultGrp(cid)) }); return true; }
 
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -539,6 +604,7 @@
     if (!q) return false;
     return fold(text).indexOf(fold(q)) !== -1;
   }
+  function noteFolded(x) { if (!x || !x.note) return false; if (searchRaw() && hit(x.note, searchRaw())) return false; return notesOff; }
   function hi(text) {
     var raw = String(text == null ? "" : text), q = searchRaw(), re, out, last, m;
     if (!q) return esc(raw);
@@ -560,7 +626,7 @@
       ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
         '<textarea class="enote" data-enote="' + id + '" maxlength="500" rows="2" placeholder="' + esc(t("phNote")) + '" aria-label="' + esc(t("note")) + '">' + esc(x.note || "") + "</textarea></div>"
       : '<span class="txt" role="button" tabindex="0" data-a="edit" title="' + esc(t("edit")) + '">' + hi(x.text) +
-        (x.note ? '<span class="note">' + hi(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
+        (x.note ? '<span class="note' + (noteFolded(x) ? " note-off" : "") + '">' + hi(x.note) + "</span>" : '<span class="addnote">' + esc(t("addNote")) + "</span>") + "</span>";
     // the price column: always an input, typed right in the list (saved on Enter / leaving the field)
     var pin = '<input class="pin" data-price="' + id + '" type="text" inputmode="decimal" maxlength="10" enterkeyhint="done" autocomplete="off" placeholder="₪" value="' + (hasP ? esc(String(x.price)) : "") + '" aria-label="' + esc(t("priceLabel") + ": " + x.text) + '">';
     var cls = (x.done ? "done" : (showC && x.ck) ? "ckd" : ""); if (g) cls = (cls ? cls + " " : "") + "mk-" + g;
@@ -568,16 +634,16 @@
     return '<li data-id="' + id + '"' + (cls ? ' class="' + cls + '"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
       box + txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
-  function sumNow() { // the total line; a price being typed counts live, before it is saved
-    var cur = curTab(), chk = isChk(cur), tot = 0, sel = 0, any = false, ae = document.activeElement, live = null;
+  function sumNow() {
+    var rows = [], ae = document.activeElement, live = null, k, x, sums, sum;
     if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) live = { id: ae.getAttribute("data-price"), v: v || 0 }; }
-    if (uid) for (var k in items) { var x = items[k]; if (x.deleted || listOf(x) !== cur) continue; any = true;
-      var p = live && live.id === x.id ? live.v : priceOf(x); tot += p; if (chk ? x.ck : x.done) sel += p; }
-    var sum = $("sum"); if (!sum) return; sum.hidden = !any;
-    // Ron 1.11: total of the whole list + selected + not selected (in a checklist: checked / not checked)
-    sum.innerHTML = '<span class="tot">' + esc(t("sumTotal")) + ': <b>' + esc(fmtPrice(tot)) + " ₪</b></span>" + (chk ?
-      '<span class="sel">' + esc(t("sumSel")) + ': <b>' + esc(fmtPrice(sel)) + " ₪</b></span>" +
-      '<span class="sel">' + esc(t("sumUnsel")) + ': <b>' + esc(fmtPrice(tot - sel)) + " ₪</b></span>" : "");
+    if (uid) for (k in items) { x = items[k]; if (!x || x.deleted || x.type === "cat" || x.type === "grp" || !inOpenList(x)) continue;
+      if (live && live.id === x.id) { var y = {}; for (var f in x) y[f] = x[f]; y.price = live.v; rows.push(y); } else rows.push(x); }
+    sums = LISTS ? LISTS.totals(rows, isChk(curTab())) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
+    sum = $("sum"); if (!sum) return; sum.hidden = !sums.all || !!(searchOpen && searchRaw());
+    sum.innerHTML = "<span>" + esc(t("sumTotal")) + " " + sums.all + (sums.anyPrice ? " · <b>" + esc(fmtPrice(sums.priceAll)) + " ₪</b>" : "") + "</span>" +
+      '<span class="sel">' + esc(t("sumSel")) + " " + sums.sel + (sums.anyPrice ? " · <b>" + esc(fmtPrice(sums.priceSel)) + " ₪</b>" : "") + "</span>" +
+      '<span class="sel">' + esc(t("sumUnsel")) + " " + sums.unsel + (sums.anyPrice ? " · <b>" + esc(fmtPrice(sums.priceUnsel)) + " ₪</b>" : "") + "</span>";
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
@@ -622,9 +688,12 @@
     var cur = curTab(), c = catOf(cur) || {};
     var act = [], done = [];
     var unm = false; // one list only (Ron 31.10): items once marked "נבחר" are unmarked and stay in the regular list
-    if (uid) for (var k in items) { var x = items[k]; if (x.deleted || x.type === "cat") continue; if (x.done) { upd(k, { done: false, dord: null }); x = items[k]; unm = true; } if (listOf(x) === cur) act.push(x); }
+    if (uid) for (var k in items) { var x = items[k]; if (x.deleted || x.type === "cat" || x.type === "grp" || x.type === "meta") continue; if (x.done) { upd(k, { done: false, dord: null }); x = items[k]; unm = true; } if (inOpenList(x)) act.push(x); }
     if (unm) { pending = true; saveLocal(); syncSoon(); }
     renderCats();
+    renderLists();
+    var form = $("add-form"); if (form) form.hidden = !addOpen;
+    var rowS = $("actrow"); if (rowS) rowS.hidden = !searchOpen;
     var hint = $("cathint"); hint.textContent = t("catHint"); hint.hidden = !uid || !!lsGet("rg-sbx-shopping-hint2");
     var ph = c.ph || "ph", ai = $("add-input");
     ai.setAttribute("data-i18n-ph", ph); ai.setAttribute("data-i18n-label", ph); ai.placeholder = t(ph); ai.setAttribute("aria-label", t(ph));
@@ -1086,13 +1155,14 @@
     var R = window.RGSbxShopRestore, staged, wrote, k, x, vis, found;
     if (!R || !parsed || !parsed.ok) return;
     if (!uid) { toast(t("restoreNeed")); return; }
-    staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, currentCats: catsMap, nextItems: parsed.items, nextCats: parsed.cats, now: Date.now() });
+    var mergedI = merge(items, parsed.items || {}), mergedC = merge(catsMap, parsed.cats || {});
+    staged = R.stage({ storage: localStorage, uid: uid, currentItems: items, currentCats: catsMap, nextItems: mergedI, nextCats: mergedC, now: Date.now() });
     wrote = staged && staged.ok ? R.commit(localStorage, staged) : null;
     if (!wrote || !wrote.ok) { toast(t("restoreFail")); return; }
     fileGen++;
-    restoreDoc = { items: staged.items, cats: staged.cats };
-    items = adoptMap(staged.items, {}, Date.now());
-    catsMap = adoptMap(staged.cats, {}, Date.now());
+    restoreDoc = null;
+    items = mergedI;
+    catsMap = mergedC;
     snap = stamp(items, null); csnap = stamp(catsMap, null);
     pending = true;
     editing = null;
@@ -1101,7 +1171,6 @@
     blockedCats = null;
     syncErr = "";
     offline = false;
-    bulkOk = Date.now() + ((window.RGSyncStatus && window.RGSyncStatus.BULK_MS) || 60000);
     lastT = 0;
     for (k in items) { x = items[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
     for (k in catsMap) { x = catsMap[k]; if (x && typeof x.at === "number" && x.at > lastT) lastT = x.at; }
@@ -1167,8 +1236,14 @@
       raw = jparse(lsGet(bakKey(uid)), []);
       if (Array.isArray(raw)) rows = raw.filter(function (s) { return s && typeof s.t === "number"; }).sort(function (a, b) { return b.t - a.t; });
     }
+    var dead = [], k, x;
+    for (k in items) { x = items[k]; if (x && x.deleted && x.text) dead.push(x); }
+    dead.sort(function (a, b) { return (b.at || 0) - (a.at || 0); });
     html = '<div class="ehead"><h3>' + esc(t("history")) + '</h3><button type="button" class="btn" data-s="x">' + esc(t("historyBack")) + "</button></div>";
-    if (!rows.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
+    if (dead.length) html += "<h3>" + esc(t("deletedHead")) + "</h3>" + dead.slice(0, 12).map(function (it) {
+      return '<div class="hrow"><div class="histwhen">' + esc(it.text) + '</div><div class="row"><button type="button" class="btn pri" data-s="u:' + esc(it.id) + '">' + esc(t("historyRestore")) + "</button></div></div>";
+    }).join("");
+    if (!rows.length && !dead.length) html += '<p class="mnote">' + esc(t("historyEmpty")) + "</p>";
     else html += rows.map(function (s, i) {
       var when = SS && SS.formatSyncTime ? SS.formatSyncTime(s.t) : (R && R.formatWhen ? R.formatWhen(s.t) : "");
       return '<div class="hrow"><div class="histwhen">' + esc(when) + '</div><div class="row"><button type="button" class="btn" data-s="d:' + i + '">' + esc(t("historyDownload")) + "</button></div></div>";
@@ -1176,6 +1251,7 @@
     sheet(html, function (a) {
       var i, snap, file, stamp;
       if (a === "x") { closeSheet(); return; }
+      if (a.indexOf("u:") === 0) { if (undelete(a.slice(2))) { closeSheet(); changed(); } return; }
       if (a.indexOf("d:") !== 0 || !R || !R.buildFile) return;
       i = parseInt(a.slice(2), 10);
       snap = rows[i];
@@ -1190,26 +1266,161 @@
     if (!el) return;
     function paint() {
       var on = !!String(el.value || "");
+      if (!on) searchOpen = false;
       if (x) x.hidden = !on;
       if (box) box.classList.toggle("hasq", on);
+      var row = $("actrow"); if (row) row.hidden = !searchOpen;
       render();
     }
     el.addEventListener("input", paint);
     el.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && el.value) { e.preventDefault(); el.value = ""; paint(); }
+      if (e.key === "Escape") { e.preventDefault(); el.value = ""; paint(); }
     });
     if (x) x.addEventListener("click", function () { el.value = ""; paint(); el.focus(); });
+  }
+  var lstOpen = false, lstOpt = null, lstMove = false, lstShut = 0;
+  function renderLists() {
+    var cid = curTab(), g = curGrp(), lists = listsFor(cid), cur = null, i, btn = $("lst-btn"), panel = $("lst-panel");
+    for (i = 0; i < lists.length; i++) if (lists[i].id === g) cur = lists[i];
+    if ($("lst-name")) $("lst-name").textContent = cur ? cur.name : "";
+    if ($("lstpick")) $("lstpick").hidden = !uid;
+    if (btn) { btn.setAttribute("aria-expanded", lstOpen ? "true" : "false"); btn.setAttribute("aria-label", t("pickList") + ": " + (cur ? cur.name : "")); }
+    if (!panel) return;
+    panel.hidden = !lstOpen || !uid;
+    var bk = $("lst-back");
+    if (lstOpen && uid && !bk) { bk = document.createElement("div"); bk.id = "lst-back"; bk.className = "cp-back"; document.body.appendChild(bk); bk.addEventListener("pointerdown", function (e) { e.preventDefault(); lstShut = Date.now(); closeLists(); }); }
+    else if ((!lstOpen || !uid) && bk) bk.parentNode.removeChild(bk);
+    if (!lstOpen || !uid || !$("lst-list")) return;
+    if ($("lp-title")) $("lp-title").textContent = lstMove ? t("moveNote") : t("pickList");
+    if ($("lst-new")) $("lst-new").textContent = lstMove ? t("editDone") : t("newList");
+    var list = $("lst-list"), st = list.scrollTop;
+    list.classList.toggle("editing", lstMove);
+    list.innerHTML = lists.map(function (cc, n) {
+      var nm = esc(cc.name), id = esc(cc.id), on = cc.id === g;
+      if (lstMove) return '<li data-grp="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '">☰</span><span class="nm">' + nm + "</span>" +
+        '<button type="button" class="cp-act" data-lup="' + id + '"' + (n === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp")) + '">▲</button>' +
+        '<button type="button" class="cp-act" data-ldn="' + id + '"' + (n === lists.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown")) + '">▼</button></li>';
+      var open = lstOpt === cc.id;
+      return '<li data-grp="' + id + '"' + (on ? ' class="cur"' : "") + '><button type="button" class="cp-pick" data-lpick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button>" +
+        '<button type="button" class="cp-more' + (open ? " on" : "") + '" data-lopt="' + id + '" aria-expanded="' + open + '" aria-label="' + esc(t("optMenu") + ": " + cc.name) + '">⋮</button></li>' +
+        (open ? '<li class="cp-opts"><button type="button" class="cp-oi" data-lmov="' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + '</button><button type="button" class="cp-oi" data-lren="' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + '</button><button type="button" class="cp-oi" data-ldel="' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
+    }).join("");
+    list.scrollTop = st;
+  }
+  function openLists() { lstOpen = true; lstMove = false; lstOpt = null; render(); }
+  function closeLists() { if (drag) return; lstOpen = false; lstMove = false; lstOpt = null; render(); }
+  function bootLists() {
+    var list = $("lst-list"); if (!list) return;
+    on("lst-btn", "click", function () { if (lstOpen) closeLists(); else if (Date.now() - lstShut < 700) return; else { closeCats(); openLists(); } });
+    on("lst-new", "click", function () {
+      if (lstMove) { lstMove = false; render(); syncSoon(); return; }
+      nameSheet(t("listAdd"), "", true, function (v) { var id = addGrp(curTab(), v); if (!id) return; grpTab = id; lstOpen = false; changed(); }, "listPh");
+    });
+    list.addEventListener("click", function (e) {
+      if (noClick) { noClick = false; e.preventDefault(); return; }
+      var b = e.target.closest("[data-lpick],[data-lopt],[data-lmov],[data-lren],[data-ldel],[data-lup],[data-ldn]"); if (!b) return;
+      var cid = curTab();
+      if (b.hasAttribute("data-lopt")) { var oc = b.getAttribute("data-lopt"); lstOpt = lstOpt === oc ? null : oc; render(); return; }
+      if (b.hasAttribute("data-lmov")) { lstOpt = null; lstMove = true; render(); return; }
+      if (b.hasAttribute("data-lup") || b.hasAttribute("data-ldn")) {
+        var up = b.hasAttribute("data-lup"), id = b.getAttribute(up ? "data-lup" : "data-ldn"), ids = listsFor(cid).map(function (x) { return x.id; }), i = ids.indexOf(id), j = up ? i - 1 : i + 1;
+        if (i < 0 || j < 0 || j >= ids.length) return;
+        ids.splice(j, 0, ids.splice(i, 1)[0]); setGrpOrder(cid, ids); changed(); return;
+      }
+      if (b.hasAttribute("data-lpick")) { grpTab = b.getAttribute("data-lpick"); lstOpen = false; editing = null; render(); return; }
+      if (b.hasAttribute("data-lren")) {
+        var gid = b.getAttribute("data-lren"), lists = listsFor(cid), cur = null, n;
+        for (n = 0; n < lists.length; n++) if (lists[n].id === gid) cur = lists[n];
+        lstOpt = null;
+        nameSheet(t("renameList"), cur ? cur.name : "", false, function (v) { if (cur && v !== cur.name) { writeGrp(cid, gid, { name: v }); changed(); } }, "listPh");
+        return;
+      }
+      if (b.hasAttribute("data-ldel")) { lstOpt = null; if (delGrp(cid, b.getAttribute("data-ldel"))) changed(); }
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lstOpen && !$("sheet")) closeLists(); });
+    sortable({ list: list, scroller: list, hold: 300, edge: 44, rowSel: "li", idAttr: "data-grp",
+      canStart: function (e) { return lstMove && !e.target.closest("button"); },
+      onDrop: function (ids) { setGrpOrder(curTab(), ids); changed(); } });
+  }
+  function closeAppMenu() { var m = $("appmenu"), b = $("menu-btn"); if (m) m.hidden = true; if (b) b.setAttribute("aria-expanded", "false"); }
+  function openAppMenu() { var m = $("appmenu"), b = $("menu-btn"); if (!m) return; closeCats(); closeLists(); m.hidden = false; if (b) b.setAttribute("aria-expanded", "true"); }
+  function goAppHome() {
+    closeAppMenu(); closeSheet(); closeCats(); closeLists();
+    var bg = $("rgbg-sheet"); if (bg) bg.hidden = true;
+    editing = null; addOpen = false; searchOpen = false;
+    var s = $("list-search"); if (s) s.value = "";
+    var row = $("actrow"); if (row) row.hidden = true;
+    render();
+    try { window.scrollTo({ top: 0 }); } catch (e) {}
+  }
+  function openSearch() {
+    addOpen = false; searchOpen = true; render();
+    var el = $("list-search"); if (!el) return;
+    var clr = $("search-clear"); if (clr) clr.hidden = !el.value;
+    try { el.focus(); } catch (e) {}
+  }
+  function focusAdd() {
+    searchOpen = false; var s = $("list-search"); if (s) s.value = "";
+    addOpen = true; render();
+    var el = $("add-input"); if (el) { try { el.focus(); } catch (e) {} }
+  }
+  function clickBar(sel) { var n = document.querySelector(sel); if (!n) return false; n.click(); return true; }
+  function runAppMenu(act) {
+    closeAppMenu();
+    if (act === "lang") { setTimeout(function () { clickBar(".rgtb-lang > .rgtb-b"); }, 30); return; }
+    if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
+    if (act === "night") { if (!clickBar(".rgtb-theme")) clickBar("#theme-btn"); return; }
+    if (act === "theme") { setTimeout(function () { clickBar(".rgtb-bg"); }, 30); return; }
+    if (act === "search") { openSearch(); return; }
+    if (act === "notes") { notesOff = !notesOff; lsSet(noteKey(), notesOff ? "1" : "0"); loadNotes(); render(); return; }
+    if (act === "add") { focusAdd(); return; }
+    if (act === "install") { installFromMenu(); return; }
+    if (act === "acct") { setTimeout(function () { if (!clickBar(".rgtb .rgacc-btn")) clickBar(".rgacc-btn"); }, 30); }
+  }
+  function installFromMenu() {
+    var RG = window.RGInstall, he = document.documentElement.lang !== "en", plan, text;
+    if (window.__rgBip && typeof window.__rgBip.prompt === "function") {
+      var d = window.__rgBip; window.__rgBip = null;
+      try { d.prompt(); return; } catch (e) {}
+    }
+    plan = RG && RG.plan ? RG.plan({
+      lang: he ? "he" : "en",
+      appName: he ? "קניותיפיי" : "Purchasify",
+      platform: /iPhone|iPad|iPod/.test(navigator.userAgent) ? "ios" : (/Android/i.test(navigator.userAgent) ? "android" : "desktop"),
+      standalone: !!(window.matchMedia && (window.matchMedia("(display-mode: standalone)").matches || window.matchMedia("(display-mode: fullscreen)").matches)),
+      hasPrompt: false, installed: false, underMyHub: true
+    }) : null;
+    text = plan && plan.text ? plan.text : t("menuInstall");
+    sheet('<h3>' + esc(t("menuInstall")) + '</h3><p class="restore-note">' + esc(text) + '</p><div class="row"><button type="button" class="btn" data-s="x">' + esc(t("cancel")) + "</button></div>", function () { closeSheet(); });
+  }
+  function bootAppMenu() {
+    var home = $("app-home"), btn = $("menu-btn"), menu = $("appmenu");
+    if (home) home.addEventListener("click", function () { goAppHome(); });
+    if (btn) btn.addEventListener("click", function (e) { e.stopPropagation(); if (menu && menu.hidden) openAppMenu(); else closeAppMenu(); });
+    if (menu) menu.addEventListener("click", function (e) {
+      var b = e.target.closest && e.target.closest("[data-menu]");
+      if (b) { e.stopPropagation(); runAppMenu(b.getAttribute("data-menu")); return; }
+      if (e.target.closest && e.target.closest("#print-btn, #restore-file-btn, #hist-btn, #backup-link")) closeAppMenu();
+    });
+    document.addEventListener("click", function (e) {
+      if (!menu || menu.hidden) return;
+      if (e.target.closest && (e.target.closest("#appmenu") || e.target.closest("#menu-btn"))) return;
+      closeAppMenu();
+    });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu && !menu.hidden && !$("sheet")) { closeAppMenu(); if (btn) btn.focus(); } });
   }
   function boot() {
     try { bootUI(); } catch (e) { setTimeout(function () { throw e; }); } // the list still loads and shows even if a control fails
     startData();
   }
   function bootUI() {
+    try { bootAppMenu(); } catch (e0) { setTimeout(function () { throw e0; }); }
     try { bootRestore(); } catch (e) { setTimeout(function () { throw e; }); }
     try { bootSearch(); } catch (e) { setTimeout(function () { throw e; }); }
     on("backup-link", "click", function () { downloadBackup(); });
     on("hist-btn", "click", function () { openHistory(); });
     bootCats();
+    try { bootLists(); } catch (e3) { setTimeout(function () { throw e3; }); }
     bootItemDrag();
     sortable({ list: $("active"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id",
       canStart: function () { return !editing; },
@@ -1221,8 +1432,10 @@
       e.preventDefault(); var i = $("add-input"), pi = $("add-price"), ni = $("add-note"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
       if (!i.value.trim()) { i.focus(); return; }
-      add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; changed(); i.focus();
+      add(i.value, null, pr, ni ? ni.value : ""); i.value = ""; pi.value = ""; if (ni) ni.value = ""; addOpen = false; changed();
     });
+    on("add-x", "click", function () { addOpen = false; render(); });
+    on("add-form", "keydown", function (e) { if (e.key === "Escape") { e.preventDefault(); addOpen = false; render(); } });
     on("suggest", "click", function () { SUGGESTED.forEach(function (s) { add(s); }); changed(); });
     var main = document.querySelector("main");
     main.addEventListener("click", function (e) {
@@ -1269,7 +1482,7 @@
         var c = jparse(lsGet(cacheKey(uid)), null); if (!c || !c.pending) lsSet(cacheKey(uid), null);
       }
       fileGen++; restoreDoc = null;
-      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; bulkOk = 0; blockedItems = null; blockedCats = null; loadLocal(); render();
+      uid = id; editing = null; offline = false; syncErr = ""; failN = 0; holdBlocked = false; bulkOk = 0; blockedItems = null; blockedCats = null; loadLocal(); loadNotes(); render();
       if (uid) sync();
     }
     onUser(A.user());
