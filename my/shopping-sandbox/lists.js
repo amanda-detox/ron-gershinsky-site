@@ -190,17 +190,12 @@
       priceAll: priceAll, priceSel: priceSel, priceUnsel: priceAll - priceSel
     };
   }
-  /* Short shekel text: ₪12, ₪1.6, and ₪1.6k once the amount reaches 1000. */
+  /* Shekel amount with a real decimal point, number then ₪, safe to place in an LTR isolate. */
   function fmtSum(n) {
-    var sign = "", body, k;
+    var sign = "";
     if (typeof n !== "number" || !isFinite(n)) n = 0;
     if (n < 0) { sign = "-"; n = -n; }
-    n = Math.round(n * 10) / 10;
-    if (n >= 1000) {
-      k = Math.round(n / 100) / 10;
-      body = String(k).replace(/\.0$/, "") + "k";
-    } else body = String(n).replace(/\.0$/, "");
-    return sign + "₪" + body;
+    return sign + (Math.round(n * 100) / 100).toFixed(2) + " \u20aa";
   }
 
   var api = {

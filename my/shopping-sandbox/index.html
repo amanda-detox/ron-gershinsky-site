@@ -98,10 +98,10 @@
     .addform { grid-template-columns: 96px minmax(0, 1fr); }
     .addform #add-input { grid-column: 1 / -1; }
   }
-  .sum { margin: 10px 0 0; display: flex; flex-wrap: nowrap; align-items: baseline; gap: 0; font-size: 13px; font-weight: 800; line-height: 1.2; color: var(--fg); white-space: nowrap; overflow: visible; }
-  .sum span { flex: 1 1 0; min-width: 0; overflow: visible; text-overflow: clip; text-align: center; white-space: nowrap; }
+  .sum { box-sizing: border-box; width: 100%; max-width: 100%; margin: 10px 0 0; padding: 0 9px; display: flex; flex-wrap: nowrap; align-items: baseline; justify-content: space-between; gap: 4px; font-size: 13px; font-weight: 800; line-height: 1.2; color: var(--fg); white-space: nowrap; overflow: hidden; }
+  .sum > span { flex: 0 1 auto; min-width: 0; overflow: visible; text-overflow: clip; text-align: center; white-space: nowrap; }
   .sum .sl { color: var(--fg); font-weight: 800; }
-  .sum .sp { color: #f5c542; font-weight: 900; unicode-bidi: isolate; }
+  .sum .sp { color: #f5c542; font-weight: 900; unicode-bidi: isolate; direction: ltr; display: inline-block; }
   .sum .sel { color: #5B8DEF; font-weight: 800; }
   .sum .sel .sp { color: #5B8DEF; }
   html[data-theme="light"] .sum .sp { color: #8a6a10; }
@@ -280,9 +280,9 @@
   html body .rgtb .rgtb-zoom .rgtb-menu,
   html body .rgtb .rgtb-lang .rgtb-menu { position: fixed !important; top: 56px !important; inset-inline-start: 12px !important; inset-inline-end: auto !important; z-index: 80 !important; }
   .hero { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin: 0; padding: 0 0 6px; min-width: 0; }
-  .hero-home, .menubtn { width: 56px; height: 56px; min-width: 56px; min-height: 56px; box-sizing: border-box; }
-  .hero-home { padding: 0; border: 0; border-radius: 16px; background: transparent; flex: none; }
-  .hero-home img { width: 56px; height: 56px; margin: 0; border-radius: 16px; box-shadow: none; display: block; }
+  .hero-home, .menubtn { width: 36px; height: 36px; min-width: 36px; min-height: 36px; box-sizing: border-box; }
+  .hero-home { padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; flex: none; }
+  .hero-home img { width: 36px; height: 36px; margin: 0; border-radius: 0; background: transparent; box-shadow: none; display: block; }
   .hero .menubar { margin-inline-start: auto; flex: none; }
   .menubar { position: relative; display: flex; justify-content: flex-start; margin: 0; z-index: 45; }
   .menubtn { padding: 0; border-radius: 16px; border: 2px solid #f5c542; background: color-mix(in srgb, #0b2a6b 78%, #f5c542); color: #f5c542; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px rgba(11, 31, 77, .35); }
@@ -363,7 +363,7 @@
     </div>
   </header>
   <div class="hero">
-    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="קניותיפיי, מסך הבית" title="קניותיפיי, מסך הבית"><img src="icon.svg" alt="" width="56" height="56"></button>
+    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="קניותיפיי, מסך הבית" title="קניותיפיי, מסך הבית"><img src="icon-header.png" alt="" width="36" height="36"></button>
     <div class="menubar">
       <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" data-i18n-label="menuBtn" aria-label="תפריט" title="תפריט">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -464,7 +464,7 @@ window.RGMY_STRINGS = {
         catHint: "טיפ: לחיצה על שם הקטגוריה פותחת את כל הקטגוריות. בכל שורה: ☰ גרירה לסידור, ✏️ שינוי שם, 🗑 מחיקה. ☰ ליד פריט: גרירה לשינוי הסדר. החלקת פריט ימינה: מחיקה · שמאלה: העברה או אשפה.",
         markOk: "סומן ✓", markNo: "סומן ✕",
         delItem: "🗑 מחיקה", deleted: "„{x}” נמחק", undo: "ביטול",
-        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "הכול", sumSel: "נבחרים", sumUnsel: "לא נבחרים", listDefault: "רשימה 1", pickList: "בחר רשימה", newList: "＋ רשימה חדשה", listAdd: "רשימה חדשה", listPh: "שם הרשימה", renameList: "שינוי שם הרשימה", confirmDelList: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", lastList: "צריכה להישאר לפחות רשימה אחת.", menuBtn: "תפריט", homeBtn: "קניותיפיי, מסך הבית", menuLang: "שפה", menuZoom: "זום", menuNight: "מצב לילה", menuTheme: "ערכת נושא", menuNotes: "הצג/הסתר הערות", menuAdd: "הוסף פריט", addClose: "סגירה", menuHistory: "היסטוריה", menuAccount: "חשבון", menuInstall: "התקנה למסך הבית", historyRestore: "החזר", deletedHead: "נמחקו לאחרונה", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה.",
+        pricePh: "₪", priceLabel: "מחיר (₪, לא חובה)", handleItem: "גרירה לשינוי הסדר", sumTotal: "הכל", sumSel: "נבחרים", sumUnsel: "לא נבחרים", listDefault: "רשימה 1", pickList: "בחר רשימה", newList: "＋ רשימה חדשה", listAdd: "רשימה חדשה", listPh: "שם הרשימה", renameList: "שינוי שם הרשימה", confirmDelList: "למחוק את הרשימה „{x}” וכל מה שבתוכה?", lastList: "צריכה להישאר לפחות רשימה אחת.", menuBtn: "תפריט", homeBtn: "קניותיפיי, מסך הבית", menuLang: "שפה", menuZoom: "זום", menuNight: "מצב לילה", menuTheme: "ערכת נושא", menuNotes: "הצג/הסתר הערות", menuAdd: "הוסף פריט", addClose: "סגירה", menuHistory: "היסטוריה", menuAccount: "חשבון", menuInstall: "התקנה למסך הבית", historyRestore: "החזר", deletedHead: "נמחקו לאחרונה", sumChk: "סומן", sumUnchk: "לא סומן", optToCheck: "הפיכה לצ'קליסט", optToList: "הפיכה לרשימה רגילה", moveTo: "העבר לקטגוריה אחרת", moveTitle: "להעביר לאיזו קטגוריה?", movedTo: "הועבר ל-{x}", noOther: "אין עוד קטגוריה. אפשר ליצור אחת חדשה ולהעביר אליה.",
         searchPh: "חיפוש", searchLabel: "חיפוש ברשימות ובפריטים", searchClear: "ניקוי החיפוש", searchEmpty: "אין התאמה",
         restoreBtn: "שיחזור", restoreBtnLabel: "שיחזור. עותק הניסוי בלבד", restoreTitle: "שיחזור", backupLink: "גיבוי",
         restoreOnly: "הפריטים מהקובץ מתווספים לעותק הניסוי. שום דבר לא נמחק בלי אישור. קניותיפיי הרגיל לא משתנה.",
@@ -498,13 +498,13 @@ window.RGMY_STRINGS = {
         syncSave: "Saving…", syncOk: "Synced", syncWait: "Waiting to sync…", syncOut: "Signed out" }
 };
 </script>
-<script src="version.js?v=2"></script>
+<script src="version.js?v=3"></script>
 <script src="rg-sync-status.js?v=3"></script>
 <script src="../../shared/rg-account.js"></script>
 <script src="../common.js"></script>
-<script src="lists.js?v=2"></script>
+<script src="lists.js?v=3"></script>
 <script src="restore.js?v=1"></script>
-<script src="app.js?v=57"></script>
+<script src="app.js?v=58"></script>
 <script src="../../shared/rg-topbar.js?v=5" data-nohome="1" data-slot=".topbar"></script>
 
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(function(){});}</script>

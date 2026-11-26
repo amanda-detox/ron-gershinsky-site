@@ -50,7 +50,7 @@ assert(L.categories(dated, "קניות")[0].name === "קניות" && L.categorie
 var fresh = L.listsFor({ "c:new": { id: "c:new", type: "cat", cat: "new", name: "מתנות", real: 1, pos: 1, at: 5 } }, "new", builtins, "רשימה 1");
 assert(fresh.length === 1 && fresh[0].virtual && fresh[0].name === "רשימה 1", "a new category starts with רשימה 1, not a copy of its name");
 assert(L.categories({ "c:new": { id: "c:new", type: "cat", cat: "new", name: "מתנות", real: 1, pos: 1, at: 5 } }, "קניות").some(function (c) { return c.id === "new" && c.name === "מתנות"; }), "a real:1 category stays a category");
-assert(L.fmtSum(1.6) === "₪1.6" && L.fmtSum(12) === "₪12" && L.fmtSum(1600) === "₪1.6k", "sums use a short shekel form");
+assert(L.fmtSum(4.9) === "4.90 \u20aa" && L.fmtSum(12) === "12.00 \u20aa" && L.fmtSum(1600) === "1600.00 \u20aa" && L.fmtSum(4.9).indexOf(".") > 0, "sums keep a decimal point before the shekel sign");
 assert(L.viewOf({ id: "z", text: "זר", grp: "missing" }, cats, builtins, "רשימה 1").list === "main", "an unknown grp still shows once, on the old category list");
 
 var sums = L.totals([
