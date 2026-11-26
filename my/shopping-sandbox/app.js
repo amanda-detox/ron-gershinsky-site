@@ -684,9 +684,9 @@
       if (live && live.id === x.id) { var y = {}; for (var f in x) y[f] = x[f]; y.price = live.v; rows.push(y); } else rows.push(x); }
     sums = LISTS ? LISTS.totals(rows, openIsChk()) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
     sum = $("sum"); if (!sum) return; sum.hidden = !sums.all || !!(searchOpen && searchRaw());
-    sum.innerHTML = '<span class="tot"><bdi class="sl">' + esc(t("sumTotal")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceAll)) + "</bdi></span>" +
-      '<span class="sel"><bdi class="sl">' + esc(t("sumSel")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceSel)) + "</bdi></span>" +
-      '<span class="sel"><bdi class="sl">' + esc(t("sumUnsel")) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceUnsel)) + "</bdi></span>";
+    sum.innerHTML = '<span class="tot"><bdi class="sl">סך כל הפריטים:</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceAll)) + "</bdi></span>" +
+      '<span class="sel"><bdi class="sl">סך הפריטים שנבחרו:</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceSel)) + "</bdi></span>" +
+      '<span class="rest"><bdi class="sl">סך שאר הפריטים:</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(sums.priceUnsel)) + "</bdi></span>";
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
@@ -718,8 +718,7 @@
       }
       function vis(arr) { return nameHit ? arr : arr.filter(function (it) { return itemHit(it, q); }); }
       var doneV = vis(done), actV = vis(act);
-      var head = chkM ? "✓ " + (document.documentElement.lang !== "en" ? "סומנו" : "Checked") : (document.documentElement.lang !== "en" ? "נבחרים" : "Chosen");
-      var body = (doneV.length ? '<div class="donehead"><h2>' + esc(head) + " (" + doneV.length + ')</h2></div><div class="card listcard"><ul class="list">' + doneV.map(row).join("") + "</ul></div>" : "") +
+      var body = (doneV.length ? '<div class="card listcard"><ul class="list">' + doneV.map(row).join("") + "</ul></div>" : "") +
         (actV.length ? '<div class="card listcard"><ul class="list">' + actV.map(row).join("") + "</ul></div>" : "");
       if (!body) body = '<div class="card empty"><p>' + esc(t("emptyCat")) + "</p></div>";
       html += '<section class="srchsec"><h2 class="srchhead">' + hi(cname) + " · " + hi(g.name) + "</h2>" + body + "</section>";
@@ -761,7 +760,8 @@
     $("active-card").hidden = !act.length;
     $("done").innerHTML = done.map(row).join("");
     $("done-wrap").hidden = !done.length;
-    $("done-h").textContent = chkM ? "✓ " + (document.documentElement.lang !== "en" ? "סומנו" : "Checked") + " (" + done.length + ")" : (document.documentElement.lang !== "en" ? "נבחרים" : "Chosen") + " (" + done.length + ")";
+    var dh = $("done-h");
+    if (dh) { dh.textContent = ""; if (dh.parentNode) dh.parentNode.hidden = true; }
     sumNow();
     $("empty").hidden = !!(act.length || done.length);
     if (editing) {

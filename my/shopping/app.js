@@ -609,7 +609,7 @@
     return '<li data-id="' + id + '"' + (cls ? ' class="' + cls + '"' : "") + '>' + (editing === x.id ? "" : '<span class="hdl" aria-label="' + esc(t("handleItem")) + '" title="' + esc(t("handleItem")) + '">☰</span>') +
       box + txt + (x.url && /^https?:\/\//i.test(x.url) && editing !== x.id ? '<a class="ulink" href="' + esc(x.url) + '" target="_blank" rel="noopener" title="' + esc(x.url) + '" aria-label="' + esc(x.text) + ' (link)">🔗</a>' : "") + pin + "</li>";
   }
-  function sumNow() { // one line: all, selected, not selected. A price being typed counts live.
+  function sumNow() { // three money lines. A price being typed counts live.
     var rows = [], ae = document.activeElement, live = null, k, x, sums, sum, bit;
     if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) live = { id: ae.getAttribute("data-price"), v: v || 0 }; }
     if (uid) for (k in items) { x = items[k]; if (!x || x.deleted || x.type === "cat" || x.type === "grp" || !inOpenList(x)) continue;
@@ -619,7 +619,7 @@
     bit = function (label, price, cls) {
       return '<span class="' + cls + '"><bdi class="sl">' + esc(label) + '</bdi> <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(price)) + "</bdi></span>";
     };
-    sum.innerHTML = bit(t("sumTotal"), sums.priceAll, "tot") + bit(t("sumSel"), sums.priceSel, "sel") + bit(t("sumUnsel"), sums.priceUnsel, "sel");
+    sum.innerHTML = bit("סך כל הפריטים:", sums.priceAll, "tot") + bit("סך הפריטים שנבחרו:", sums.priceSel, "sel") + bit("סך שאר הפריטים:", sums.priceUnsel, "rest");
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
@@ -664,7 +664,8 @@
     $("active-card").hidden = !act.length;
     $("done").innerHTML = done.map(row).join("");
     $("done-wrap").hidden = !done.length;
-    $("done-h").textContent = chkM ? "✓ " + (document.documentElement.lang !== "en" ? "סומנו" : "Checked") + " (" + done.length + ")" : (document.documentElement.lang !== "en" ? "נבחרים" : "Chosen") + " (" + done.length + ")";
+    var dh = $("done-h");
+    if (dh) { dh.textContent = ""; if (dh.parentNode) dh.parentNode.hidden = true; }
     sumNow();
     $("empty").hidden = !!(act.length || done.length);
     if (editing) {
