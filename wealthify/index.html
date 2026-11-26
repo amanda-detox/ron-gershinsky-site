@@ -258,6 +258,88 @@ html[data-theme=light] .dust i{background:var(--g4);box-shadow:0 0 6px 1px rgba(
 /* a picked background replaces the black/ivory base layer (body::before) */
 html:not([data-theme=light]):not([data-rgbg="0"]) body::before,html[data-theme=light]:not([data-rglbg="0"]) body::before{display:none}
 html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),html:not([data-theme=light]):not([data-rgbg="0"]) .card{background:rgba(10,8,14,.55);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+
+/* Header and menu, same chrome as Listify / Balancify. The old top bar stays in the page so its buttons still work, and it takes no height. */
+.wrap{padding-top:calc(8px + env(safe-area-inset-top))}
+header.top{display:none !important;height:0 !important;min-height:0 !important;margin:0 !important;padding:0 !important;overflow:hidden !important;border:0 !important}
+html body .rgtb{min-height:0 !important;height:0 !important;margin:0 !important;padding:0 !important;overflow:visible !important}
+html body .rgtb .rgtb-acct,
+html body .rgtb .rgacc-btn,
+html body .rgtb .rgtb-bg,
+html body .rgtb .rgtb-theme,
+html body .rgtb .rgtb-zoom > .rgtb-b,
+html body .rgtb .rgtb-lang > .rgtb-b{position:absolute !important;width:1px !important;height:1px !important;min-width:0 !important;padding:0 !important;margin:0 !important;overflow:hidden !important;clip:rect(0,0,0,0) !important;border:0 !important;pointer-events:none !important}
+html body .rgtb .rgtb-zoom,
+html body .rgtb .rgtb-lang{position:absolute !important;width:0 !important;height:0 !important;min-width:0 !important;margin:0 !important;padding:0 !important;overflow:visible !important;border:0 !important}
+html body .rgtb .rgtb-zoom .rgtb-menu,
+html body .rgtb .rgtb-lang .rgtb-menu{position:fixed !important;top:56px !important;inset-inline-start:12px !important;inset-inline-end:auto !important;z-index:80 !important}
+.hero{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin:0;padding:0 0 6px;min-width:0}
+.hero-home{width:56px;height:56px;min-width:44px;min-height:44px;padding:0;border:0;border-radius:16px;background:transparent;flex:none;cursor:pointer}
+.hero-home img{width:56px;height:56px;margin:0;border-radius:16px;box-shadow:none;display:block}
+.hero .menubar{margin-inline-start:auto;flex:none}
+.menubar{position:relative;display:flex;justify-content:flex-start;margin:0;z-index:45}
+.menubtn{width:44px;height:44px;min-width:44px;min-height:44px;padding:0;border-radius:14px;border:2px solid #f5c542;background:color-mix(in srgb,#0b2a6b 78%,#f5c542);color:#f5c542;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px rgba(11,31,77,.35);cursor:pointer}
+html[data-theme=light] .menubtn{background:#f6f2ea;color:#8a6a10;border-color:#c4a046;box-shadow:none}
+.menubtn svg{width:26px;height:26px;display:block}
+.menubtn[aria-expanded=true]{background:#f5c542;color:#0b2a6b}
+#appmenu{position:absolute;z-index:50;inset-inline-end:0;inset-inline-start:auto;top:calc(100% + 4px);min-width:220px;max-height:calc(100dvh - 64px - env(safe-area-inset-top));overflow:auto;margin:0;padding:4px;border-radius:16px;border:1.5px solid #f5c542;background:#102454;box-shadow:0 14px 36px rgba(0,0,0,.4);font-family:"Heebo",system-ui,sans-serif}
+html[data-theme=light] #appmenu{background:#f6f2ea}
+#appmenu button,#appmenu .restorebtn{display:flex;align-items:center;justify-content:flex-start;gap:8px;width:100%;box-sizing:border-box;min-height:40px;min-width:40px;margin:0;padding:0 10px;border:0;border-radius:10px;background:transparent;color:#fff;font:700 15px/1 "Heebo",system-ui,sans-serif;text-align:start;text-decoration:none;box-shadow:none;white-space:nowrap;cursor:pointer}
+html[data-theme=light] #appmenu button,html[data-theme=light] #appmenu .restorebtn{color:#0b1f4d}
+#appmenu button:hover,#appmenu button:focus-visible,#appmenu .restorebtn:hover,#appmenu .restorebtn:focus-visible{background:color-mix(in srgb,#f5c542 18%,transparent)}
+#appmenu .mic{width:20px;height:20px;flex:none;color:#f5c542;display:inline-flex;align-items:center;justify-content:center}
+html[data-theme=light] #appmenu .mic{color:#8a6a10}
+#appmenu .mic svg{width:20px;height:20px;display:block}
+#menu-night .ic-moon{display:none}
+html[data-theme=light] #menu-night .ic-sun{display:none}
+html[data-theme=light] #menu-night .ic-moon{display:block}
+#appmenu .restore-row{display:contents}
+#appmenu .restorebtn .mlab{display:inline;flex:none}
+#appmenu button[hidden],#appmenu .restorebtn[hidden]{display:none !important}
+.searchrow{display:flex;align-items:center;gap:6px;margin:0 0 8px}
+.searchrow[hidden]{display:none !important}
+.searchrow input{flex:1;min-width:0;height:44px;border-radius:12px;border:1.5px solid #f5c542;background:rgba(255,255,255,.04);color:var(--ink);font:600 16px/1.3 "Heebo",system-ui,sans-serif;padding:0 12px}
+html[data-theme=light] .searchrow input{background:#fffaf0}
+.searchx{width:44px;height:44px;flex:none;border-radius:12px;border:1.5px solid #f5c542;background:transparent;color:#f5c542;cursor:pointer}
+.hometiles,.myitems{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.htile{display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:10px 14px;border:1px solid rgba(245,197,66,.45);border-radius:16px;background:rgba(11,31,77,.72);color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.28);font:800 18px/1.3 "Heebo",system-ui,sans-serif;text-align:start;cursor:pointer}
+html[data-theme=light] .htile{background:rgba(255,253,248,.92);color:#0b1f4d;box-shadow:0 8px 22px rgba(11,31,77,.12)}
+.htile .tic{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#f5c542;background:linear-gradient(160deg,#1A47A0,#0b1f4d);border:1px solid #f5c542;box-shadow:inset 0 1px 0 rgba(245,210,122,.35)}
+html[data-theme=light] .htile .tic{color:#8a6a10;background:linear-gradient(160deg,#e8eefc,#f6f2ea);border-color:#c4a046}
+.htile .tic svg{width:26px;height:26px;display:block}
+.myhead{margin:18px 0 0;color:#f5c542;font:800 14px/1.3 "Heebo",system-ui,sans-serif}
+html[data-theme=light] .myhead{color:#8a6a10}
+.myitem{display:flex;align-items:flex-start;gap:8px;padding:12px 14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03)}
+.myitem .mybody{flex:1;min-width:0}
+.myitem .mytitle{font:700 16px/1.35 var(--sans);overflow-wrap:anywhere}
+.myitem .inote{margin-top:4px;color:var(--mute);font-size:14px;line-height:1.4;white-space:pre-wrap;overflow-wrap:anywhere}
+.mydel{flex:none;min-height:40px;padding:0 10px;border:0;border-radius:10px;background:transparent;color:#f5c542;font:700 14px/1 "Heebo",system-ui,sans-serif;cursor:pointer}
+.soon{justify-content:center;text-align:center;padding:28px 8px}
+.soon h2{font-size:clamp(28px,8vw,40px);padding-bottom:.08em}
+.soon-text{margin:14px 0 0;color:var(--mute);font-size:18px}
+.nomatch{margin:14px 0;text-align:center;color:var(--mute)}
+.nomatch[hidden]{display:none !important}
+.syncbox{margin-top:18px;min-width:0}
+.lastsync{display:block;text-align:center;margin:0 auto 2px;padding:0 8px;color:#5B8DEF;font:600 12.5px/1.45 "Heebo",system-ui,sans-serif;overflow-wrap:anywhere;white-space:normal}
+html[data-theme=light] .lastsync{color:#1A47A0}
+.lastsync:empty{display:none}
+.toast{position:fixed;left:0;right:0;width:calc(100% - 24px);max-width:640px;margin:0 auto;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;box-sizing:border-box;padding:10px 14px;border-radius:14px;background:#0b2a6b;color:#fff;border:1px solid #f5c542;font:700 15px/1.35 "Heebo",system-ui,sans-serif;text-align:center}
+html.notes-off .hint,html.notes-off .sub,html.notes-off .meta,html.notes-off .disc,html.notes-off .saved,html.notes-off .method .md,html.notes-off .method .risk,html.notes-off .method .who,html.notes-off .method .mp,html.notes-off .providers,html.notes-off .inote{display:none !important}
+#add-text,#add-note{width:100%;min-width:0;box-sizing:border-box;border-radius:14px;border:1.5px solid var(--line2);background:rgba(255,255,255,.04);color:var(--ink);font:600 16px/1.4 var(--sans);padding:10px 12px}
+#add-note{min-height:72px;resize:vertical;display:block}
+#add-form{display:flex;flex-direction:column;gap:8px}
+.hrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.histwhen{font-weight:800;overflow-wrap:anywhere}
+.histmeta{color:var(--mute);font-size:13.5px;line-height:1.4}
+.hrest{flex:none;min-height:40px;padding:0 12px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--ink);font:800 14px/1 var(--sans);cursor:pointer}
+@media (min-width:760px){
+  .wrap{padding-top:calc(8px + env(safe-area-inset-top))}
+}
+@media print{
+  .dust,.hero,.menubar,#appmenu,.searchrow,.syncbox,footer,.toast,.sheet-bg,.rgtb,header.top{display:none !important}
+  html,body,.wrap{background:#fff !important;color:#0b1f4d !important}
+}
+[hidden]{display:none !important}
 </style>
 <script src="../shared/rg-bg.js" data-app="wealthify" data-theme-key="rg-wealthify-theme" data-light-color="#f6efe0" data-slot=".top .tools" data-before=".lang"></script>
 </head>
@@ -274,9 +356,46 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     </div>
     </div>
   </header>
+  <div class="hero">
+    <button type="button" class="hero-home" id="app-home" data-i18n-label="homeBtn" aria-label="שפעלי, מסך הבית" title="שפעלי, מסך הבית"><img src="icon.svg" alt="" width="56" height="56"></button>
+    <div class="menubar">
+      <button type="button" class="menubtn" id="menu-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="appmenu" data-i18n-label="menuBtn" aria-label="תפריט" title="תפריט">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6.5h18M3 12h18M3 17.5h18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      </button>
+      <div class="menu" id="appmenu" hidden role="menu">
+        <button type="button" role="menuitem" id="menu-lang" data-menu="lang"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 12h16M12 4c2.2 2.4 3.3 5.1 3.3 8s-1.1 5.6-3.3 8c-2.2-2.4-3.3-5.1-3.3-8s1.1-5.6 3.3-8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuLang">שפה</span></button>
+        <button type="button" role="menuitem" id="menu-zoom" data-menu="zoom"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.2 15.2L20.5 20.5M10.5 8v5M8 10.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuZoom">זום</span></button>
+        <button type="button" role="menuitem" id="menu-night" data-menu="night"><span class="mic" aria-hidden="true"><svg class="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5v2M12 18.5v2M5.1 5.1l1.4 1.4M17.5 17.5l1.4 1.4M3.5 12h2M18.5 12h2M5.1 18.9l1.4-1.4M17.5 6.5l1.4-1.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><svg class="ic-moon" viewBox="0 0 24 24"><path d="M20 14.2A8 8 0 1 1 9.8 4 6.4 6.4 0 0 0 20 14.2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuNight">מצב לילה</span></button>
+        <button type="button" role="menuitem" id="menu-theme" data-menu="theme"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1 0 1.7-.8 1.7-1.7 0-.5-.2-.8-.5-1.1-.3-.3-.5-.7-.5-1.2 0-.9.7-1.6 1.6-1.6H16.8a3.6 3.6 0 0 0 3.7-3.6A6.9 6.9 0 0 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="10.5" r="1" fill="currentColor"/><circle cx="10.2" cy="7.2" r="1" fill="currentColor"/><circle cx="14" cy="7" r="1" fill="currentColor"/><circle cx="16.4" cy="10" r="1" fill="currentColor"/></svg></span><span class="mlab" data-i18n="menuTheme">ערכת נושא</span></button>
+        <button type="button" role="menuitem" class="printbtn" id="print-btn" onclick="window.print()"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 8V3.5h10V8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 17H4.8A1.8 1.8 0 0 1 3 15.2v-5A1.8 1.8 0 0 1 4.8 8.4h14.4A1.8 1.8 0 0 1 21 10.2v5a1.8 1.8 0 0 1-1.8 1.8H18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 13.5h10V21H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="print">הדפסה</span></button>
+        <div class="restore-row">
+          <label class="restorebtn" id="restore-file-btn" for="restore-file" tabindex="0" role="menuitem" data-i18n-label="restoreBtnLabel"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4.5 4.5V9H9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="restoreBtn">שיחזור</span></label>
+          <input id="restore-file" class="restore-file" type="file" accept="application/json,.json" hidden>
+        </div>
+        <button type="button" role="menuitem" id="menu-search" data-menu="search"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5L20.5 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="searchPh">חיפוש</span></button>
+        <button type="button" role="menuitem" id="menu-notes" data-menu="notes" aria-pressed="true"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3.5h7.2L19 8.2V20a1.5 1.5 0 0 1-1.5 1.5h-10A1.5 1.5 0 0 1 6 20V5A1.5 1.5 0 0 1 7.5 3.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M14 3.5V8.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8.5 13h7M8.5 16.5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuNotes">הצג/הסתר הערות</span></button>
+        <button type="button" role="menuitem" id="menu-add" data-menu="add"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuAdd">הוסף פריט</span></button>
+        <button type="button" role="menuitem" class="histbtn" id="hist-btn"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v4.5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuHistory">היסטוריה</span></button>
+        <button type="button" role="menuitem" class="baklink" id="backup-link"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 11l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="backupLink">גיבוי</span></button>
+        <button type="button" role="menuitem" class="inst" id="install-btn"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 8h2M12 11v5M9.5 13.5 12 16l2.5-2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mlab" data-i18n="menuInstall">התקנה למסך הבית</span></button>
+        <button type="button" role="menuitem" id="menu-acct" data-menu="acct"><span class="mic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5.5 19.2c1.3-2.8 3.5-4.2 6.5-4.2s5.2 1.4 6.5 4.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="mlab" data-i18n="menuAccount">חשבון</span></button>
+      </div>
+    </div>
+  </div>
+  <div class="searchrow" id="searchrow" hidden>
+    <input id="search-q" type="text" inputmode="search" enterkeyhint="search" autocomplete="off" data-i18n-ph="searchPh" placeholder="חיפוש" aria-label="חיפוש">
+    <button type="button" class="searchx" id="search-x" data-i18n-label="searchClear" aria-label="ניקוי החיפוש">✕</button>
+  </div>
   <main>
+    <!-- Home: one object in HOME per tile, in order. open "flow" is the questionnaire; open "soon" is a placeholder. -->
+    <section class="screen" id="s-home">
+      <ul class="hometiles" id="home-tiles"></ul>
+      <p class="nomatch" id="home-empty" hidden></p>
+      <p class="myhead" id="my-head" hidden></p>
+      <ul class="myitems" id="my-items"></ul>
+    </section>
     <!-- 1. Welcome -->
-    <section class="screen welcome" id="s-welcome">
+    <section class="screen welcome" id="s-welcome" hidden>
       <div class="crest" aria-hidden="true">
         <svg viewBox="0 0 120 120"><defs>
           <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset=".45" stop-color="#e9bd5c"/><stop offset="1" stop-color="#9c6a22"/></linearGradient></defs>
@@ -294,6 +413,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       <p class="sub" data-i18n="sub"></p>
       <button type="button" class="btn" id="start" data-i18n="start"></button>
       <div class="meta" data-i18n="meta"></div>
+      <p class="nomatch" id="welcome-empty" hidden></p>
     </section>
 
     <!-- 2. Questionnaire -->
@@ -309,6 +429,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       <div class="opts" id="q-opts" role="radiogroup"></div>
       <div class="extra" id="q-extra" hidden></div>
       <p class="hint" id="q-hint" data-i18n="hint"></p>
+      <p class="nomatch" id="q-empty" hidden></p>
       <button type="button" class="btn q-next" id="q-next" hidden data-i18n="cont"></button>
     </section>
 
@@ -333,8 +454,17 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       </div>
       <p class="saved" data-i18n="saved"></p>
       <p class="disc" data-i18n="disc"></p>
+      <p class="nomatch" id="res-empty" hidden></p>
+    </section>
+    <section class="screen soon" id="s-soon" hidden>
+      <h2 class="goldtext" id="soon-title" tabindex="-1"></h2>
+      <p class="soon-text" id="soon-text"></p>
+      <p class="nomatch" id="soon-empty" hidden></p>
     </section>
   </main>
+  <div class="syncbox">
+    <p class="lastsync" id="build"></p>
+  </div>
   <div class="sheet-bg" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
     <div class="sheet">
       <div class="grab" aria-hidden="true"></div>
@@ -343,7 +473,36 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       <button type="button" class="btn ghost" id="sheet-close" data-i18n="close"></button>
     </div>
   </div>
-  <div class="rg-install-wrap inst" id="install-wrap"><button type="button" class="rg-install" id="install-btn" data-i18n="install">📲 התקנה למסך הבית</button><div class="rg-install-hint" id="install-hint" hidden></div></div>
+  <div class="sheet-bg" id="add-sheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="add-title">
+      <div class="grab" aria-hidden="true"></div>
+      <h3 class="goldtext" id="add-title"></h3>
+      <form id="add-form" autocomplete="off">
+        <input id="add-text" type="text" maxlength="200">
+        <textarea id="add-note" maxlength="500"></textarea>
+        <button type="submit" class="btn" id="add-save"></button>
+        <button type="button" class="btn ghost" id="add-cancel"></button>
+      </form>
+    </div>
+  </div>
+  <div class="sheet-bg" id="hist-sheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="hist-title">
+      <div class="grab" aria-hidden="true"></div>
+      <h3 class="goldtext" id="hist-title"></h3>
+      <div id="hist-list"></div>
+      <button type="button" class="btn ghost" id="hist-close"></button>
+    </div>
+  </div>
+  <div class="sheet-bg" id="ask" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="ask-title">
+      <div class="grab" aria-hidden="true"></div>
+      <h3 class="goldtext" id="ask-title"></h3>
+      <p id="ask-body"></p>
+      <button type="button" class="btn" id="ask-yes"></button>
+      <button type="button" class="btn ghost" id="ask-no"></button>
+    </div>
+  </div>
+  <div class="toast" id="toast" hidden role="status"></div>
   <footer data-i18n="foot"></footer>
 </div>
 
@@ -493,7 +652,16 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       retake: "מילוי השאלון מחדש",
       change: "שינוי",
       saved: "התשובות נשמרו במכשיר הזה בלבד ולא נשלחות לשום מקום.",
-      disc: "התוכן באפליקציה הוא מידע כללי בלבד, ואינו מהווה ייעוץ פיננסי, משפטי או מיסויי אישי."
+      disc: "התוכן באפליקציה הוא מידע כללי בלבד, ואינו מהווה ייעוץ פיננסי, משפטי או מיסויי אישי.",
+      menuBtn: "תפריט", homeBtn: "שפעלי, מסך הבית", menuLang: "שפה", menuZoom: "זום", menuNight: "מצב לילה", menuTheme: "ערכת נושא", menuNotes: "הצג/הסתר הערות", menuAdd: "הוסף פריט", menuHistory: "היסטוריה", menuAccount: "חשבון", menuInstall: "התקנה למסך הבית",
+      print: "הדפסה", searchPh: "חיפוש", searchClear: "ניקוי החיפוש", searchEmpty: "אין התאמה",
+      restoreBtn: "שיחזור", restoreBtnLabel: "שיחזור", backupLink: "גיבוי",
+      soonText: "בקרוב", myItems: "הפריטים שלי", addTitle: "הוסף פריט", addPh: "פריט", notePh: "הערה", addBtn: "הוסף", cancel: "ביטול", added: "הפריט נוסף למסך הבית",
+      delItem: "מחיקה", delAsk: "למחוק את „{x}”?",
+      histTitle: "היסטוריה", histEmpty: "עדיין אין גרסאות שמורות.", histRestore: "שחזר", histOne: "תשובה אחת", histAnswers: "{n} תשובות", histDone: "שאלון מולא",
+      histAsk: "לשחזר את הגרסה הזו? התשובות הנוכחיות יוחלפו, והן יישמרו בהיסטוריה.",
+      backupEmpty: "אין עדיין מה לגבות", restoreAsk: "לשחזר את הנתונים מהקובץ? התשובות שבמכשיר הזה יוחלפו. מה שיש עכשיו יישמר בהיסטוריה.",
+      restoreBad: "הקובץ הזה אינו גיבוי של שפעלי.", restoreRead: "לא הצלחתי לקרוא את הקובץ.", restoreDone: "הנתונים שוחזרו."
     },
     en: {
       doc: "Wealthify",
@@ -526,7 +694,16 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       retake: "Retake questionnaire",
       change: "Change",
       saved: "Your answers are saved on this device only and are never sent anywhere.",
-      disc: "Content in this app is general information only and is not personal financial, legal or tax advice."
+      disc: "Content in this app is general information only and is not personal financial, legal or tax advice.",
+      menuBtn: "Menu", homeBtn: "Wealthify, home", menuLang: "Language", menuZoom: "Zoom", menuNight: "Night mode", menuTheme: "Theme", menuNotes: "Show/hide notes", menuAdd: "Add item", menuHistory: "History", menuAccount: "Account", menuInstall: "Install to home screen",
+      print: "Print", searchPh: "Search", searchClear: "Clear search", searchEmpty: "No matches",
+      restoreBtn: "Restore", restoreBtnLabel: "Restore", backupLink: "Backup",
+      soonText: "Coming soon", myItems: "Your items", addTitle: "Add item", addPh: "Item", notePh: "Note", addBtn: "Add", cancel: "Cancel", added: "The item was added on the home screen",
+      delItem: "Delete", delAsk: "Delete “{x}”?",
+      histTitle: "History", histEmpty: "No saved versions yet.", histRestore: "Restore", histOne: "1 answer", histAnswers: "{n} answers", histDone: "Questionnaire completed",
+      histAsk: "Restore this version? The current answers will be replaced, and they will be kept in history.",
+      backupEmpty: "Nothing to back up yet", restoreAsk: "Restore the data from this file? The answers on this device will be replaced. What is here now will be kept in history.",
+      restoreBad: "This file is not a Wealthify backup.", restoreRead: "The file could not be read.", restoreDone: "The data was restored."
     }
   };
 
@@ -538,12 +715,33 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     income: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1.2"/></svg>'
   };
 
-  var ANS_KEY = "rg-wealth-answers-v2", LANG_KEY = "rg-lang";
+  /* Identity and storage. Answers stay on ANS_KEY in the same shape as before. */
+  var CFG = {
+    app: "wealthify",
+    doc: "Wealthify",
+    ansKey: "rg-wealth-answers-v2",
+    itemsKey: "rg-wealth-items-v1",
+    histKey: "rg-wealth-hist-v1",
+    notesKey: "rg-wealth-notefold",
+    cache: "rg-wealth-v23"
+  };
+  /* One object per home tile, in order. open "flow" is the existing questionnaire. open "soon" is a placeholder ready for content. */
+  var HOME = [
+    { id: "diagnosis", icon: "quiz", he: "שאלון אבחון", en: "Diagnosis questionnaire", open: "flow" },
+    { id: "wealth", icon: "wealth", he: "דרכים ליצירת הון", en: "Ways to create wealth", open: "soon" },
+    { id: "freedom", icon: "freedom", he: "דרכים ליצירת חופש", en: "Ways to create freedom", open: "soon" }
+  ];
+  var TILE_ICONS = {
+    quiz: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="3.2" width="12" height="17.6" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 3.2h6a1 1 0 0 1 1 1V6H8V4.2a1 1 0 0 1 1-1z" fill="#0b1f4d" stroke="currentColor" stroke-width="1.4"/><path d="M9 10h6M9 13.4h6M9 16.8h3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+    wealth: '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="6.2" ry="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M5.8 7v4c0 1.4 2.8 2.5 6.2 2.5s6.2-1.1 6.2-2.5V7M5.8 11v4c0 1.4 2.8 2.5 6.2 2.5s6.2-1.1 6.2-2.5v-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+    freedom: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8.2" cy="9" r="3.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M11 11.4 18.2 18.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14.6 16.2h3.2V19.4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+  var ANS_KEY = CFG.ansKey, LANG_KEY = "rg-lang";
   var $ = function (id) { return document.getElementById(id); };
   var lang = "he";
   try { if (localStorage.getItem(LANG_KEY) === "en") lang = "en"; } catch (e) {}
 
-  var answers = {}, step = 0, view = "welcome", completed = false;
+  var answers = {}, step = 0, view = "home", completed = false, items = [], hist = [], notesOn = true, findQ = "", soonId = "", skipSnap = false, askYes = null;
   function load() {
     try {
       var s = JSON.parse(localStorage.getItem(ANS_KEY) || "null");
@@ -552,7 +750,42 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   }
   function save() {
     try { localStorage.setItem(ANS_KEY, JSON.stringify({ v: 1, answers: answers, completed: completed, updated: new Date().toISOString() })); } catch (e) {}
+    if (!skipSnap) remember();
   }
+  function loadItems() {
+    try {
+      var s = JSON.parse(localStorage.getItem(CFG.itemsKey) || "null");
+      if (s && Array.isArray(s.items)) items = s.items.filter(function (x) { return x && typeof x.text === "string" && x.text; });
+    } catch (e) {}
+  }
+  function saveItems() {
+    try { localStorage.setItem(CFG.itemsKey, JSON.stringify({ v: 1, items: items })); } catch (e) {}
+    if (!skipSnap) remember();
+  }
+  function loadHist() {
+    try {
+      var s = JSON.parse(localStorage.getItem(CFG.histKey) || "null");
+      if (Array.isArray(s)) hist = s.filter(function (x) { return x && x.record && x.record.answers && typeof x.record.answers === "object"; });
+    } catch (e) {}
+  }
+  function saveHist() {
+    try { localStorage.setItem(CFG.histKey, JSON.stringify(hist.slice(0, 20))); } catch (e) {}
+  }
+  function stamp() { return JSON.stringify({ a: answers, c: !!completed, i: items }); }
+  function remember() {
+    var now = stamp();
+    if (hist[0] && hist[0].stamp === now) return;
+    hist.unshift({ t: Date.now(), stamp: now, record: { v: 1, answers: JSON.parse(JSON.stringify(answers)), completed: !!completed }, items: JSON.parse(JSON.stringify(items)) });
+    hist = hist.slice(0, 20);
+    saveHist();
+  }
+  function loadNotes() {
+    try { notesOn = localStorage.getItem(CFG.notesKey) !== "0"; } catch (e) { notesOn = true; }
+    document.documentElement.classList.toggle("notes-off", !notesOn);
+  }
+  function plain(html) { var d = document.createElement("div"); d.innerHTML = html == null ? "" : String(html); return d.textContent || ""; }
+  function qtext() { return String(findQ || "").replace(/\s+/g, " ").trim().toLowerCase(); }
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function findOpt(q, id) { for (var i = 0; i < q.options.length; i++) if (q.options[i].id === id) return q.options[i]; return null; }
   function qAnswered(q) {
     if (!findOpt(q, answers[q.id])) return false;
@@ -564,8 +797,9 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
 
   function show(v) {
     view = v;
-    ["welcome", "quiz", "results"].forEach(function (k) { $("s-" + k).hidden = k !== v; });
+    ["home", "welcome", "quiz", "results", "soon"].forEach(function (k) { var el = $("s-" + k); if (el) el.hidden = k !== v; });
     window.scrollTo(0, 0);
+    applySearch();
   }
 
   function renderQuiz(focus) {
@@ -584,6 +818,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       b.type = "button"; b.className = "opt"; b.setAttribute("role", "radio");
       b.setAttribute("aria-checked", String(answers[q.id] === o.id));
       b.dataset.id = o.id;
+      b.setAttribute("data-find", plain(q[lang]) + " " + plain(o[lang]));
       b.style.animationDelay = (i * 35) + "ms";
       b.innerHTML = '<span class="dot" aria-hidden="true"></span><span class="txt">' + o[lang] + "</span>";
       b.onclick = function () { choose(q, o, b); };
@@ -592,6 +827,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     renderExtra(q);
     $("q-hint").textContent = q.extra ? L.hintBanks : L.hint;
     if (focus) { try { $("q-title").focus({ preventScroll: true }); } catch (e) {} }
+    applySearch();
   }
 
   function renderExtra(q) {
@@ -616,6 +852,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       b.setAttribute("role", "radio");
       b.setAttribute("aria-checked", String(answers[q.extra.id] === o.id));
       b.dataset.id = o.id;
+      b.setAttribute("data-find", plain(q[lang]) + " " + plain(q.extra[lang]) + " " + plain(o[lang]));
       var iso = document.createElement("bdi");
       iso.dir = "ltr";
       iso.textContent = o[lang];
@@ -677,6 +914,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     QUESTIONS.forEach(function (q, qi) {
       if (!qAnswered(q)) return;
       var d = document.createElement("div"); d.className = "card"; d.style.animationDelay = (qi * 90) + "ms";
+      d.setAttribute("data-find", q[lang]);
       d.innerHTML = '<div class="ic" aria-hidden="true">' + (ICONS[q.icon] || ICONS.coin) + '</div><div><div class="q"></div><div class="a"></div></div><button type="button" class="edit"></button>';
       d.querySelector(".q").textContent = q[lang];
       var ans = d.querySelector(".a");
@@ -688,6 +926,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
         ks[0].textContent = L.banksShort; ns[0].textContent = bank[lang].replace(/<[^>]+>/g, "");
         ks[1].textContent = L.countriesShort; ns[1].textContent = country[lang];
       } else ans.innerHTML = findOpt(q, answers[q.id])[lang];
+      d.setAttribute("data-find", (d.getAttribute("data-find") || "") + " " + (ans.textContent || ""));
       var e = d.querySelector(".edit"); e.textContent = L.change; e.setAttribute("aria-label", L.change + ": " + q[lang]);
       e.onclick = function () { editingOne = true; step = qi; renderQuiz(true); show("quiz"); };
       cards.appendChild(d);
@@ -699,7 +938,8 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     var el = $("plan-body"), recs = recommendations(lang);
     el.innerHTML = "";
     el.className = recs.length ? "recs" : "body";
-    if (!recs.length) { el.textContent = L.planSoon; return; }
+    if (!recs.length) { el.textContent = L.planSoon; el.setAttribute("data-find", L.planSoon); return; }
+    el.removeAttribute("data-find");
     recs.forEach(function (r) { el.appendChild(renderRec(r)); });
   }
   function addP(parent, cls, text) {
@@ -711,6 +951,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   function renderRec(r) {
     var box = document.createElement("section");
     box.className = "rec";
+    box.setAttribute("data-find", "");
     var h = document.createElement("h4");
     h.textContent = r.title;
     box.appendChild(h);
@@ -728,6 +969,7 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
       box.appendChild(d);
     });
     if (r.providers) box.appendChild(providersLine());
+    box.setAttribute("data-find", box.textContent || "");
     return box;
   }
   function ltr(text) {
@@ -755,17 +997,41 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
 
   function render() {
     var L = T[lang];
+    L.doc = CFG.doc;
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
-    document.title = L.doc;
+    document.title = CFG.doc;
     var els = document.querySelectorAll("[data-i18n]");
-    for (var i = 0; i < els.length; i++) els[i].innerHTML = L[els[i].getAttribute("data-i18n")];
+    for (var i = 0; i < els.length; i++) {
+      var key = els[i].getAttribute("data-i18n");
+      if (L[key] != null) els[i].innerHTML = L[key];
+    }
+    document.querySelectorAll("[data-i18n-label]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-label");
+      if (L[key] == null) return;
+      el.setAttribute("aria-label", L[key]);
+      if (el.title) el.title = L[key];
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-ph");
+      if (L[key] != null) el.placeholder = L[key];
+    });
     $("back").textContent = L.back;
     $("lang-he").setAttribute("aria-pressed", String(lang === "he"));
     $("lang-en").setAttribute("aria-pressed", String(lang === "en"));
     $("sheet-body").innerHTML = L[installKey()];
+    var bld = $("build");
+    if (bld) bld.textContent = CFG.cache.indexOf("rg-") === 0 ? CFG.cache.slice(3) : CFG.cache;
+    paintNotes();
+    if (view === "home") renderHome();
+    if (view === "soon") renderSoon();
+    if (view === "welcome") {
+      var w = $("s-welcome");
+      if (w) w.querySelectorAll("h1, .tagline, .sub, .meta, #start").forEach(function (el) { el.setAttribute("data-find", el.textContent || ""); });
+    }
     if (view === "quiz") renderQuiz();
     if (view === "results") renderResults();
+    applySearch();
   }
   function setLang(l) { lang = l === "en" ? "en" : "he"; try { localStorage.setItem(LANG_KEY, lang); } catch (e) {} render(); }
   $("lang-he").onclick = function () { setLang("he"); };
@@ -815,7 +1081,14 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
   $("install-btn").onclick = onInstallTap;
   $("sheet-close").onclick = closeSheet;
   $("sheet").addEventListener("click", function (e) { if (e.target === $("sheet")) closeSheet(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if ($("ask") && !$("ask").hidden) { closeAsk(true); return; }
+    if ($("add-sheet") && !$("add-sheet").hidden) { closeAdd(); return; }
+    if ($("hist-sheet") && !$("hist-sheet").hidden) { closeHist(); return; }
+    if ($("sheet") && !$("sheet").hidden) { closeSheet(); return; }
+    if ($("appmenu") && !$("appmenu").hidden) { closeMenu(); if ($("menu-btn")) $("menu-btn").focus(); }
+  });
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; updateInstall(); });
   window.addEventListener("appinstalled", function () { deferred = null; installedNow = true; updateInstall(); });
   if (window.matchMedia) { var mq = window.matchMedia("(display-mode: standalone)"); if (mq.addEventListener) mq.addEventListener("change", updateInstall); else if (mq.addListener) mq.addListener(updateInstall); }
@@ -833,14 +1106,370 @@ html:not([data-theme=light]):not([data-rgbg="0"]) .opt:not([aria-checked=true]),
     dust.innerHTML = html;
   }
 
+  function tileIcon(name) { return TILE_ICONS[name] || TILE_ICONS.quiz; }
+  function renderHome() {
+    var L = T[lang], ul = $("home-tiles");
+    if (!ul) return;
+    ul.innerHTML = "";
+    HOME.forEach(function (opt) {
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "htile";
+      b.setAttribute("data-find", opt.he + " " + opt.en);
+      b.innerHTML = '<span class="tic" aria-hidden="true">' + tileIcon(opt.icon) + '</span><span class="tname"></span>';
+      b.querySelector(".tname").textContent = opt[lang] || opt.he;
+      b.onclick = function () { openOption(opt.id); };
+      li.appendChild(b);
+      ul.appendChild(li);
+    });
+    var head = $("my-head"), list = $("my-items");
+    if (head) { head.hidden = !items.length; head.textContent = L.myItems; }
+    if (!list) return;
+    list.innerHTML = "";
+    items.forEach(function (it) {
+      var li = document.createElement("li");
+      li.className = "myitem";
+      li.setAttribute("data-find", (it.text || "") + " " + (it.note || ""));
+      li.innerHTML = '<div class="mybody"><div class="mytitle"></div><div class="inote"></div></div><button type="button" class="mydel"></button>';
+      li.querySelector(".mytitle").textContent = it.text;
+      var note = li.querySelector(".inote");
+      note.textContent = it.note || "";
+      note.hidden = !it.note;
+      var del = li.querySelector(".mydel");
+      del.textContent = L.delItem;
+      del.setAttribute("aria-label", L.delItem + ": " + it.text);
+      del.onclick = function () { askDelete(it); };
+      list.appendChild(li);
+    });
+  }
+  function renderSoon() {
+    var opt = null, L = T[lang];
+    HOME.forEach(function (o) { if (o.id === soonId) opt = o; });
+    if (!opt) opt = HOME[1];
+    var find = (opt.he || "") + " " + (opt.en || "") + " " + L.soonText;
+    $("soon-title").textContent = opt[lang] || opt.he;
+    $("soon-title").setAttribute("data-find", find);
+    $("soon-text").textContent = L.soonText;
+    $("soon-text").setAttribute("data-find", find);
+  }
+  function openOption(id) {
+    var opt = null;
+    HOME.forEach(function (o) { if (o.id === id) opt = o; });
+    if (!opt) return;
+    closeMenu();
+    if (opt.open === "flow") {
+      editingOne = false;
+      view = (completed && isComplete()) ? "results" : "welcome";
+      render();
+      show(view);
+      return;
+    }
+    soonId = opt.id;
+    view = "soon";
+    render();
+    show("soon");
+    try { $("soon-title").focus({ preventScroll: true }); } catch (e) {}
+  }
+  function goHome() {
+    closeMenu();
+    closeSheet();
+    closeAdd();
+    closeHist();
+    closeAsk();
+    var bg = document.getElementById("rgbg-sheet");
+    if (bg) bg.hidden = true;
+    editingOne = false;
+    findQ = "";
+    if ($("search-q")) $("search-q").value = "";
+    if ($("searchrow")) $("searchrow").hidden = true;
+    view = "home";
+    render();
+    show("home");
+  }
+  function applySearch() {
+    var q = qtext(), L = T[lang];
+    var root = $("s-" + view);
+    if (!root) return;
+    var nodes = root.querySelectorAll("[data-find]");
+    var shown = 0;
+    for (var i = 0; i < nodes.length; i++) {
+      var ok = !q || String(nodes[i].getAttribute("data-find") || "").toLowerCase().indexOf(q) !== -1;
+      nodes[i].hidden = !ok;
+      if (ok) shown++;
+    }
+    ["home-empty", "welcome-empty", "q-empty", "res-empty", "soon-empty"].forEach(function (id) {
+      var el = $(id);
+      if (!el) return;
+      var mine = (id === "home-empty" && view === "home") || (id === "welcome-empty" && view === "welcome") || (id === "q-empty" && view === "quiz") || (id === "res-empty" && view === "results") || (id === "soon-empty" && view === "soon");
+      el.hidden = !(mine && q && !shown);
+      if (mine) el.textContent = L.searchEmpty;
+    });
+  }
+  function paintNotes() {
+    document.documentElement.classList.toggle("notes-off", !notesOn);
+    var b = $("menu-notes");
+    if (!b) return;
+    b.setAttribute("aria-pressed", notesOn ? "true" : "false");
+  }
+  function toggleNotes() {
+    notesOn = !notesOn;
+    try { localStorage.setItem(CFG.notesKey, notesOn ? "1" : "0"); } catch (e) {}
+    paintNotes();
+  }
+  function toast(msg) {
+    var el = $("toast");
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { el.hidden = true; }, 2400);
+  }
+  function closeMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (m) m.hidden = true;
+    if (b) b.setAttribute("aria-expanded", "false");
+  }
+  function openMenu() {
+    var m = $("appmenu"), b = $("menu-btn");
+    if (!m) return;
+    m.hidden = false;
+    if (b) b.setAttribute("aria-expanded", "true");
+  }
+  function openSearch() {
+    var row = $("searchrow");
+    if (!row) return;
+    row.hidden = false;
+    var q = $("search-q");
+    if (q) setTimeout(function () { q.focus(); }, 30);
+  }
+  function closeAdd() { if ($("add-sheet")) $("add-sheet").hidden = true; }
+  function openAdd() {
+    var L = T[lang], s = $("add-sheet");
+    if (!s) return;
+    $("add-title").textContent = L.addTitle;
+    $("add-text").placeholder = L.addPh;
+    $("add-text").setAttribute("aria-label", L.addPh);
+    $("add-note").placeholder = L.notePh;
+    $("add-note").setAttribute("aria-label", L.notePh);
+    $("add-save").textContent = L.addBtn;
+    $("add-cancel").textContent = L.cancel;
+    $("add-text").value = "";
+    $("add-note").value = "";
+    s.hidden = false;
+    setTimeout(function () { $("add-text").focus(); }, 30);
+  }
+  function addItem(text, note) {
+    text = String(text || "").replace(/\s+/g, " ").trim().slice(0, 200);
+    note = String(note || "").trim().slice(0, 500);
+    if (!text) return false;
+    items.unshift({ id: "i" + Date.now(), text: text, note: note, t: Date.now() });
+    saveItems();
+    return true;
+  }
+  function askDelete(it) {
+    var L = T[lang];
+    ask(L.delItem, L.delAsk.replace("{x}", it.text), L.delItem, function () {
+      items = items.filter(function (x) { return x.id !== it.id; });
+      saveItems();
+      render();
+    });
+  }
+  function closeHist() { if ($("hist-sheet")) $("hist-sheet").hidden = true; }
+  function fmtTime(ms) {
+    var d = new Date(ms);
+    function z(n) { return (n < 10 ? "0" : "") + n; }
+    return z(d.getDate()) + "/" + z(d.getMonth() + 1) + " " + z(d.getHours()) + ":" + z(d.getMinutes());
+  }
+  function openHistory() {
+    var L = T[lang], box = $("hist-list"), s = $("hist-sheet");
+    if (!box || !s) return;
+    $("hist-title").textContent = L.histTitle;
+    $("hist-close").textContent = L.close;
+    box.innerHTML = "";
+    if (!hist.length) {
+      var p = document.createElement("p");
+      p.className = "restore-note";
+      p.textContent = L.histEmpty;
+      box.appendChild(p);
+    }
+    hist.forEach(function (h, idx) {
+      var row = document.createElement("div");
+      row.className = "hrow";
+      var meta = document.createElement("div");
+      var n = h.record && h.record.answers ? Object.keys(h.record.answers).length : 0;
+      meta.innerHTML = '<div class="histwhen"></div><div class="histmeta"></div>';
+      meta.querySelector(".histwhen").textContent = fmtTime(h.t);
+      meta.querySelector(".histmeta").textContent = (h.record && h.record.completed ? L.histDone + " · " : "") + (n === 1 ? L.histOne : L.histAnswers.replace("{n}", n));
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "hrest";
+      btn.textContent = L.histRestore;
+      btn.onclick = function () { confirmHist(idx); };
+      row.appendChild(meta);
+      row.appendChild(btn);
+      box.appendChild(row);
+    });
+    s.hidden = false;
+  }
+  function applyRecord(rec, nextItems) {
+    skipSnap = true;
+    answers = JSON.parse(JSON.stringify(rec.answers || {}));
+    completed = !!rec.completed;
+    save();
+    if (Array.isArray(nextItems)) {
+      items = JSON.parse(JSON.stringify(nextItems));
+      saveItems();
+    }
+    skipSnap = false;
+    editingOne = false;
+    step = 0;
+  }
+  function confirmHist(idx) {
+    var h = hist[idx];
+    if (!h || !h.record) return;
+    var L = T[lang];
+    ask(L.histTitle, L.histAsk, L.histRestore, function () {
+      remember();
+      applyRecord(h.record, h.items);
+      closeHist();
+      view = "home";
+      render();
+      show("home");
+      toast(L.restoreDone);
+    });
+  }
+  function hasUserData() { return Object.keys(answers).length > 0 || completed || items.length > 0; }
+  function downloadBackup() {
+    var L = T[lang];
+    if (!hasUserData()) { toast(L.backupEmpty); return; }
+    var when = new Date();
+    var file = { app: CFG.app, v: 1, exported: when.toISOString(), record: { v: 1, answers: answers, completed: !!completed, updated: when.toISOString() }, items: items };
+    var blob = new Blob([JSON.stringify(file, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    function z(n) { return (n < 10 ? "0" : "") + n; }
+    var stamp = when.getFullYear() + z(when.getMonth() + 1) + z(when.getDate()) + "-" + z(when.getHours()) + z(when.getMinutes());
+    a.href = URL.createObjectURL(blob);
+    a.download = CFG.app + "-" + stamp + ".json";
+    document.body.appendChild(a);
+    a.click();
+    if (a.parentNode) a.parentNode.removeChild(a);
+    setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 1000);
+  }
+  function validBackup(data) {
+    if (!data || typeof data !== "object") return false;
+    if (data.app !== "wealthify" && data.app !== "wealthify-sandbox") return false;
+    if (!data.record || typeof data.record !== "object" || !data.record.answers || typeof data.record.answers !== "object" || Array.isArray(data.record.answers)) return false;
+    return true;
+  }
+  function onRestoreFile(file) {
+    var L = T[lang], input = $("restore-file");
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onerror = function () { toast(L.restoreRead); if (input) input.value = ""; };
+    reader.onload = function () {
+      var data = null;
+      try { data = JSON.parse(String(reader.result || "")); } catch (e) { data = null; }
+      if (!validBackup(data)) { toast(L.restoreBad); if (input) input.value = ""; return; }
+      ask(L.restoreBtn, L.restoreAsk, L.restoreBtn, function () {
+        remember();
+        applyRecord(data.record, Array.isArray(data.items) ? data.items : null);
+        if (input) input.value = "";
+        view = "home";
+        render();
+        show("home");
+        toast(L.restoreDone);
+      }, function () { if (input) input.value = ""; });
+    };
+    reader.readAsText(file);
+  }
+  function closeAsk(runNo) {
+    if ($("ask")) $("ask").hidden = true;
+    var no = askYes && askYes.no;
+    askYes = null;
+    if (runNo && no) no();
+  }
+  function ask(title, body, ok, onYes, onNo) {
+    askYes = { yes: onYes, no: onNo || null };
+    $("ask-title").textContent = title;
+    $("ask-body").textContent = body;
+    $("ask-yes").textContent = ok;
+    $("ask-no").textContent = T[lang].cancel;
+    $("ask").hidden = false;
+    try { $("ask-no").focus(); } catch (e) {}
+  }
+  function clickBar(sel) {
+    var n = document.querySelector(sel);
+    if (!n) return false;
+    n.click();
+    return true;
+  }
+  function runMenu(act) {
+    closeMenu();
+    if (act === "lang") { setTimeout(function () { clickBar(".rgtb-lang > .rgtb-b"); }, 30); return; }
+    if (act === "zoom") { setTimeout(function () { clickBar(".rgtb-zoom > .rgtb-b"); }, 30); return; }
+    if (act === "night") { if (!clickBar(".rgtb-theme")) clickBar("#theme-btn"); return; }
+    if (act === "theme") { setTimeout(function () { clickBar(".rgtb-bg"); }, 30); return; }
+    if (act === "search") { openSearch(); return; }
+    if (act === "notes") { toggleNotes(); return; }
+    if (act === "add") { openAdd(); return; }
+    if (act === "install") { onInstallTap(); return; }
+    if (act === "acct") { setTimeout(function () { if (!clickBar(".rgtb .rgacc-btn")) clickBar(".rgacc-btn"); }, 30); return; }
+  }
+
   load();
-  if (completed && isComplete()) { view = "results"; }
+  loadItems();
+  loadHist();
+  loadNotes();
+  if (hasUserData() && (!hist.length || hist[0].stamp !== stamp())) remember();
+  view = "home";
   render();
   show(view);
   updateInstall();
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
-    navigator.serviceWorker.register("sw.js?v=22", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
+    navigator.serviceWorker.register("sw.js?v=23", { scope: "./", updateViaCache: "none" }).then(function (reg) { if (reg.update) reg.update(); }).catch(function () {});
   }
+  if ($("app-home")) $("app-home").onclick = function () { goHome(); };
+  if ($("menu-btn")) $("menu-btn").onclick = function (e) {
+    e.stopPropagation();
+    if ($("appmenu") && $("appmenu").hidden) openMenu(); else closeMenu();
+  };
+  if ($("appmenu")) $("appmenu").addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-menu]");
+    if (b) { e.stopPropagation(); runMenu(b.getAttribute("data-menu")); return; }
+    if (e.target.closest && e.target.closest("#restore-file-btn")) { setTimeout(closeMenu, 0); return; }
+    if (e.target.closest && e.target.closest("#print-btn, #hist-btn, #backup-link, #install-btn")) closeMenu();
+  });
+  document.addEventListener("click", function (e) {
+    var menu = $("appmenu");
+    if (!menu || menu.hidden) return;
+    if (e.target.closest && (e.target.closest("#appmenu") || e.target.closest("#menu-btn"))) return;
+    closeMenu();
+  });
+  if ($("search-q")) $("search-q").addEventListener("input", function () { findQ = this.value; applySearch(); });
+  if ($("search-x")) $("search-x").onclick = function () { findQ = ""; $("search-q").value = ""; $("searchrow").hidden = true; applySearch(); };
+  if ($("add-form")) $("add-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!addItem($("add-text").value, $("add-note").value)) { $("add-text").focus(); return; }
+    closeAdd();
+    toast(T[lang].added);
+    if (view !== "home") { view = "home"; }
+    render();
+    show("home");
+  });
+  if ($("add-cancel")) $("add-cancel").onclick = closeAdd;
+  if ($("add-sheet")) $("add-sheet").addEventListener("click", function (e) { if (e.target === this) closeAdd(); });
+  if ($("hist-btn")) $("hist-btn").onclick = function () { openHistory(); };
+  if ($("hist-close")) $("hist-close").onclick = closeHist;
+  if ($("hist-sheet")) $("hist-sheet").addEventListener("click", function (e) { if (e.target === this) closeHist(); });
+  if ($("backup-link")) $("backup-link").onclick = function () { downloadBackup(); };
+  if ($("restore-file")) $("restore-file").addEventListener("change", function () { onRestoreFile(this.files && this.files[0]); });
+  if ($("restore-file-btn")) $("restore-file-btn").addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("restore-file").click(); }
+  });
+  if ($("ask-yes")) $("ask-yes").onclick = function () { var fn = askYes && askYes.yes; closeAsk(false); if (fn) fn(); };
+  if ($("ask-no")) $("ask-no").onclick = function () { closeAsk(true); };
+  if ($("ask")) $("ask").addEventListener("click", function (e) { if (e.target === this) closeAsk(true); });
 })();
 </script>
 <script src="../shared/rg-account.js"></script>
