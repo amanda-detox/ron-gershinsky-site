@@ -140,7 +140,7 @@
   function addCat(name) {
     name = clean(name, 40); if (!name) return null;
     var l = cats(), id = newId(), at = now(), pos = l.reduce(function (m, c) { return Math.max(m, c.pos); }, -1) + 1;
-    putCat({ id: "c:" + id, type: "cat", cat: id, name: name, pos: pos, created: at, at: at });
+    putCat({ id: "c:" + id, type: "cat", cat: id, name: name, pos: pos, created: at, at: at, real: 1 });
     return id;
   }
   function setOrder(ids) { ids.forEach(function (cid, n) { var c = catOf(cid); if (c && c.pos !== n) upCat(cid, { pos: n }); }); }
@@ -150,23 +150,44 @@
   }
   function liveIn(cid) { var r = []; for (var k in items) { var x = items[k]; if (!x.deleted && listOf(x) === cid) r.push(x); } return r; }
   function delCat(cid) { liveIn(cid).forEach(function (x) { del(x.id); }); upCat(cid, { gone: 1 }); }
-  function curTab() { var l = cats(); if (!l.some(function (c) { return c.cat === tab; })) tab = l.length ? l[0].cat : ""; return tab; }
+  function curTab() {
+    var v = viewCats(), i;
+    for (i = 0; i < v.length; i++) if (v[i].cat === tab) return tab;
+    if (tab && LISTS && tab !== LISTS.HOME && catOf(tab) && !isRealId(tab) && !grpTab) grpTab = tab;
+    tab = v.length ? v[0].cat : (LISTS ? LISTS.HOME : "main");
+    return tab;
+  }
 
-  /* Lists live under a category. item.grp is the list. Missing grp is the default list.
-     Reading this never writes a record and never changes an item, so the first sync cannot replace the cloud copy. */
+  /* Old categories are lists inside one category. Reading this never writes.
+     A category created from here is marked real:1 so it stays a category. */
   var LISTS = window.RGShopLists, grpTab = "", addOpen = false, searchOpen = false, notesOff = false;
   function noteKey() { return "rg-my-shopping-notes:" + (uid || "local"); }
   function loadNotes() { notesOff = lsGet(noteKey()) === "1"; var b = $("menu-notes"); if (b) b.setAttribute("aria-pressed", notesOff ? "true" : "false"); }
+  function isRealId(id) { var r = catsMap["c:" + id]; return !!(r && r.type === "cat" && r.real === 1 && !r.deleted && !r.gone); }
+  function homeName() { var r = catsMap["h:shop"]; return (r && !r.deleted && r.name) || t("homeCat") || "קניות"; }
+  function builtinSpecs() {
+    return BUILTIN.map(function (s) {
+      var rec = catsMap["c:" + s.cat], c = catOf(s.cat);
+      return { cat: s.cat, pos: c ? c.pos : s.pos, name: c ? catName(c) : t(s.def), gone: !!(rec && rec.gone) };
+    });
+  }
+  function viewCats() {
+    var home = { cat: LISTS ? LISTS.HOME : "shop", name: homeName(), pos: -1, home: 1, ph: "ph", empty: "emptyCat" };
+    return [home].concat(cats().filter(function (c) { return isRealId(c.cat); }));
+  }
+  function viewCatById(id) { var v = viewCats(), i; for (i = 0; i < v.length; i++) if (v[i].cat === id) return v[i]; return null; }
   function defaultGrp(cid) { return LISTS ? LISTS.defaultId(cid || "main") : "d:" + (cid || "main"); }
-  function listsFor(cid) { var c = catOf(cid); return LISTS ? LISTS.listsFor(catsMap, cid, c ? catName(c) : t("listDefault")) : [{ id: defaultGrp(cid), name: t("listDefault"), pos: -1, virtual: true }]; }
+  function listsFor(cid) { return LISTS ? LISTS.listsFor(catsMap, cid, builtinSpecs(), t("listDefault")) : []; }
   function curGrp() {
     var cid = curTab(), lists = listsFor(cid), i;
     for (i = 0; i < lists.length; i++) if (lists[i].id === grpTab) return grpTab;
     grpTab = lists.length ? lists[0].id : defaultGrp(cid);
     return grpTab;
   }
-  function itemGrp(x) { var lists = listsFor(listOf(x)); return LISTS ? LISTS.grpOf(x, lists) : (x && x.grp) || defaultGrp(listOf(x)); }
-  function inOpenList(x) { return listOf(x) === curTab() && itemGrp(x) === curGrp(); }
+  function itemView(x) { return LISTS ? LISTS.viewOf(x, catsMap, builtinSpecs(), t("listDefault")) : { cat: listOf(x), list: listOf(x) }; }
+  function itemGrp(x) { return itemView(x).list; }
+  function inOpenList(x) { var v = itemView(x); return v.cat === curTab() && v.list === curGrp(); }
+  function openIsChk() { var g = curGrp(); if (curTab() === (LISTS && LISTS.HOME) && catOf(g)) return isChk(g); return isChk(curTab()); }
   function grpRec(cid, gid) {
     var k, r;
     for (k in catsMap) { r = catsMap[k]; if (r && !r.deleted && r.type === "grp" && r.cat === cid && r.grp === gid) return r; }
@@ -187,14 +208,20 @@
     putCat({ id: "g:" + id, type: "grp", cat: cid, grp: id, name: name, pos: pos, created: at, at: at });
     return id;
   }
-  function setGrpOrder(cid, ids) { ids.forEach(function (gid, n) { var r = grpRec(cid, gid); if (!r || r.pos !== n) writeGrp(cid, gid, { pos: n }); }); }
+  function setGrpOrder(cid, ids) {
+    ids.forEach(function (gid, n) {
+      if (cid === (LISTS && LISTS.HOME) && catOf(gid) && !isRealId(gid)) { if (catOf(gid).pos !== n) upCat(gid, { pos: n }); return; }
+      var r = grpRec(cid, gid); if (!r || r.pos !== n) writeGrp(cid, gid, { pos: n });
+    });
+  }
   function delGrp(cid, gid) {
-    var lists = listsFor(cid), i, name = gid;
+    var lists = listsFor(cid), i, name = gid, legacy = cid === (LISTS && LISTS.HOME) && catOf(gid) && !isRealId(gid);
     if (lists.length <= 1) { window.alert(t("lastList")); return false; }
     for (i = 0; i < lists.length; i++) if (lists[i].id === gid) name = lists[i].name;
     if (!window.confirm(t("confirmDelList").replace("{x}", name))) return false;
     bulkOk = Date.now() + 60000;
-    for (var k in items) { var x = items[k]; if (x && !x.deleted && listOf(x) === cid && itemGrp(x) === gid) del(x.id); }
+    if (legacy) { delCat(gid); if (grpTab === gid) grpTab = ""; return true; }
+    for (var k in items) { var x = items[k]; if (x && !x.deleted && itemGrp(x) === gid) del(x.id); }
     writeGrp(cid, gid, { gone: 1 });
     if (grpTab === gid) grpTab = "";
     return true;
@@ -509,16 +536,24 @@
     var id = newId(), at = now(); items[id] = { id: id, text: text, done: false, created: at, at: at };
     if (typeof price === "number" && isFinite(price)) items[id].price = price;
     note = clean(note || "", 500); if (note) items[id].note = note; // optional short note (like Listify); old items simply have none
-    cid = cid || curTab(); if (cid && cid !== "main") items[id].list = cid;
-    var g = curGrp();
-    if (g && g !== defaultGrp(cid || "main")) items[id].grp = g; // missing grp stays the default list, so old rows are not rewritten
-    items[id].ord = topOrd(cid || "main", id, g);
+    var view = cid || curTab(), g = curGrp();
+    if (view === (LISTS && LISTS.HOME)) {
+      if (catOf(g) && !isRealId(g)) { if (g !== "main") items[id].list = g; }
+      else if (g) items[id].grp = g;
+    } else {
+      if (view && view !== "main") items[id].list = view;
+      if (g && g !== defaultGrp(view)) items[id].grp = g;
+    }
+    items[id].ord = topOrd(view, id, g);
   }
-  /* a new (or moved) item goes to the TOP of its list: one step before the smallest order there */
-  function topOrd(cid, skip, gid) {
-    var m = Infinity;
-    gid = gid || defaultGrp(cid);
-    for (var k in items) { var y = items[k]; if (k !== skip && y && !y.deleted && !y.done && y.type !== "cat" && y.type !== "grp" && listOf(y) === cid && itemGrp(y) === gid) m = Math.min(m, ordOf(y)); }
+  function topOrd(view, skip, gid) {
+    var m = Infinity, k, y, v;
+    for (k in items) {
+      y = items[k];
+      if (k === skip || !y || y.deleted || y.done || y.type === "cat" || y.type === "grp") continue;
+      v = itemView(y);
+      if (v.cat === view && v.list === gid) m = Math.min(m, ordOf(y));
+    }
     return m === Infinity ? 1000 : m - 1000;
   }
   function upd(id, patch) { var x = items[id]; if (!x || x.deleted) return; var y = {}, k; for (k in x) y[k] = x[k]; for (k in patch) { if (patch[k] == null) delete y[k]; else y[k] = patch[k]; } y.at = now(); items[id] = y; }
@@ -533,7 +568,14 @@
     var y = {}, k; for (k in x) y[k] = x[k];
     delete y.deleted; y.at = now(); items[id] = y; return true;
   }
-  function moveItem(id, cid) { var x = items[id]; if (!x || x.deleted || listOf(x) === cid) return false; upd(id, { list: cid === "main" ? null : cid, grp: null, ord: topOrd(cid, id, defaultGrp(cid)) }); return true; }
+  function moveItem(id, dest) {
+    var x = items[id]; if (!x || x.deleted) return false;
+    if (itemView(x).list === dest) return false;
+    if (catOf(dest) && !isRealId(dest)) { upd(id, { list: dest === "main" ? null : dest, grp: null, ord: topOrd(LISTS.HOME, id, dest) }); return true; }
+    if (isRealId(dest)) { upd(id, { list: dest, grp: null, ord: topOrd(dest, id, defaultGrp(dest)) }); return true; }
+    upd(id, { list: null, grp: dest, ord: topOrd(LISTS.HOME, id, dest) });
+    return true;
+  }
 
   /* ---------- render ---------- */
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -553,7 +595,7 @@
   }
   function noteFolded(x) { if (!x || !x.note) return false; if (searchRaw() && hit(x.note, searchRaw())) return false; return notesOff; }
   function row(x) {
-    var showC = isChk(curTab()), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
+    var showC = openIsChk(), g = x.mark === "no" ? "no" : showingOk(x) ? "ok" : "";
     var hasP = typeof x.price === "number" && isFinite(x.price), id = esc(x.id);
     var txt = editing === x.id
       ? '<div class="ebox"><input class="edit" data-edit="' + id + '" maxlength="200" enterkeyhint="done" value="' + esc(x.text) + '" aria-label="' + esc(t("edit")) + '">' +
@@ -572,14 +614,14 @@
     if (ae && ae.getAttribute && ae.getAttribute("data-price")) { var v = parsePrice(ae.value); if (!(typeof v === "number" && isNaN(v))) live = { id: ae.getAttribute("data-price"), v: v || 0 }; }
     if (uid) for (k in items) { x = items[k]; if (!x || x.deleted || x.type === "cat" || x.type === "grp" || !inOpenList(x)) continue;
       if (live && live.id === x.id) { var y = {}; for (var f in x) y[f] = x[f]; y.price = live.v; rows.push(y); } else rows.push(x); }
-    sums = LISTS ? LISTS.totals(rows, isChk(curTab())) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
+    sums = LISTS ? LISTS.totals(rows, openIsChk()) : { all: rows.length, sel: 0, unsel: rows.length, anyPrice: false, priceAll: 0, priceSel: 0, priceUnsel: 0 };
     sum = $("sum"); if (!sum) return; sum.hidden = !sums.all;
-    bit = function (label, n, price) {
-      var s = esc(label) + " " + n;
-      if (sums.anyPrice) s += " · <b>" + esc(fmtPrice(price)) + " ₪</b>";
-      return "<span>" + s + "</span>";
+    bit = function (label, n, price, cls) {
+      var s = '<span class="' + cls + '"><bdi class="sl">' + esc(label) + "</bdi> <bdi>" + n + "</bdi>";
+      if (sums.anyPrice) s += ' <bdi class="sp" dir="ltr">' + esc(LISTS.fmtSum(price)) + "</bdi>";
+      return s + "</span>";
     };
-    sum.innerHTML = bit(t("sumTotal"), sums.all, sums.priceAll) + '<span class="sel">' + esc(t("sumSel")) + " " + sums.sel + (sums.anyPrice ? " · <b>" + esc(fmtPrice(sums.priceSel)) + " ₪</b>" : "") + "</span>" + '<span class="sel">' + esc(t("sumUnsel")) + " " + sums.unsel + (sums.anyPrice ? " · <b>" + esc(fmtPrice(sums.priceUnsel)) + " ₪</b>" : "") + "</span>";
+    sum.innerHTML = bit(t("sumTotal"), sums.all, sums.priceAll, "tot") + bit(t("sumSel"), sums.sel, sums.priceSel, "sel") + bit(t("sumUnsel"), sums.unsel, sums.priceUnsel, "sel");
   }
   function commitPrice(inp) {
     var id = inp.getAttribute("data-price"), x = items[id]; if (!x || x.deleted) return true;
@@ -609,7 +651,7 @@
     $("empty-p").textContent = c.empty ? t(c.empty) : t("emptyCat");
     $("suggest").hidden = cur !== "main";
     act.sort(function (a, b) { return (ordOf(a) - ordOf(b)) || ((a.created || 0) - (b.created || 0)); }); // Ron's priority order (☰ drag), new items at the top
-    var chkM = isChk(cur);
+    var chkM = openIsChk();
     if (chkM) { done = act.filter(function (x) { return !!x.ck; }); act = act.filter(function (x) { return !x.ck; }); } // checklist: existing checked section above
     else { done = act.filter(function (x) { return x.mark === "ok"; }); act = act.filter(function (x) { return x.mark !== "ok"; }); } // ✓ moves into נבחרים; clearing it returns the item
     if (!chkM) done.sort(function (a, b) { var p = dordOf(a), q = dordOf(b); return p !== q ? (p < q ? -1 : 1) : ((a.at || 0) - (b.at || 0)); });
@@ -644,19 +686,19 @@
   function searchView() {
     var q = searchRaw(), html = "", any = false, placed, cid, lists, gi, g, rows, shown;
     if (!LISTS) return "";
-    placed = LISTS.place(items, catsMap, function (id) { var c = catOf(id); return c ? catName(c) : ""; });
-    cats().forEach(function (c) {
+    placed = LISTS.place(items, catsMap, builtinSpecs(), t("listDefault"));
+    viewCats().forEach(function (c) {
       cid = c.cat;
+      var cname = c.home ? homeName() : catName(c);
       lists = listsFor(cid);
       lists.forEach(function (g) {
         rows = (placed.byCat[cid] && placed.byCat[cid].lists[g.id]) || [];
-        shown = rows.filter(function (it) { return hit(it.text, q) || hit(it.note || "", q) || hit(catName(c), q) || hit(g.name, q); });
-        if (!shown.length && !hit(catName(c), q) && !hit(g.name, q)) return;
+        shown = rows.filter(function (it) { return hit(it.text, q) || hit(it.note || "", q) || hit(cname, q) || hit(g.name, q); });
+        if (!shown.length && !hit(cname, q) && !hit(g.name, q)) return;
         if (!shown.length) shown = rows;
-        if (!shown.length && !hit(g.name, q) && !hit(catName(c), q)) return;
         if (!shown.length) return;
         any = true;
-        html += '<section class="srchsec"><h2 class="srchhead">' + hi(catName(c)) + " · " + hi(g.name) + '</h2><div class="card listcard"><ul class="list">' + shown.map(row).join("") + "</ul></div></section>";
+        html += '<section class="srchsec"><h2 class="srchhead">' + hi(cname) + " · " + hi(g.name) + '</h2><div class="card listcard"><ul class="list">' + shown.map(row).join("") + "</ul></div></section>";
       });
     });
     if (!any) return '<div class="card empty"><p>' + esc(t("searchEmpty")) + "</p></div>";
@@ -727,21 +769,22 @@
     toast(t("deleted").replace("{x}", keep.text), function () { keep.at = now(); items[id] = keep; changed(); });
   }
   function moveTo(id, cid) {
-    var c = catOf(cid); if (!c) return;
+    var lists = listsFor(curTab()), i, name = cid;
+    for (i = 0; i < lists.length; i++) if (lists[i].id === cid) name = lists[i].name;
     if (editing === id) editing = null;
-    if (moveItem(id, cid)) { changed(); toast(t("movedTo").replace("{x}", catName(c))); }
+    if (moveItem(id, cid)) { changed(); toast(t("movedTo").replace("{x}", name)); }
   }
   function moveMenu(id) {
     var x = items[id]; if (!x || x.deleted) return;
-    var from = listOf(x), others = cats().filter(function (c) { return c.cat !== from; });
+    var from = itemView(x).list, others = listsFor(curTab()).filter(function (c) { return c.id !== from; });
     var html = '<h3>' + esc(t("moveTitle")) + '</h3><p class="mnote">' + esc(x.text) + "</p>";
-    if (others.length) html += '<div class="mlist">' + others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.cat) + '"><span class="mn">' + esc(catName(c)) + '</span><span class="mc">' + liveIn(c.cat).length + "</span></button>"; }).join("") + "</div>";
-    else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("catAdd")) + "</button>";
+    if (others.length) html += '<div class="mlist">' + others.map(function (c) { return '<button type="button" class="mi" data-s="to:' + esc(c.id) + '"><span class="mn">' + esc(c.name) + "</span></button>"; }).join("") + "</div>";
+    else html += '<p class="mnote">' + esc(t("noOther")) + '</p><button type="button" class="mi big" data-s="new">' + esc("＋ " + t("listAdd")) + "</button>";
     html += '<div class="mrow"><button type="button" class="mi" data-s="x">' + esc(t("cancel")) + '</button><button type="button" class="mi dng" data-s="del">' + esc(t("delItem")) + "</button></div>";
     sheet(html, function (a) {
       if (a === "x") { closeSheet(); return; }
       if (a === "del") { closeSheet(); delWithUndo(id); return; }
-      if (a === "new") { nameSheet(t("catAdd"), "", true, function (v) { var nid = addCat(v); if (nid) moveTo(id, nid); }); return; }
+      if (a === "new") { nameSheet(t("listAdd"), "", true, function (v) { var nid = addGrp(curTab(), v); if (nid) moveTo(id, nid); }, "listPh"); return; }
       if (a.indexOf("to:") === 0) { closeSheet(); moveTo(id, a.slice(3)); }
     });
   }
@@ -843,10 +886,11 @@
      shift live to show the drop spot and the list auto-scrolls at its edges. ✏️ rename, 🗑 delete. ✓ ends edit mode.
      Every drop is saved at once (local copy + sync), so nothing is lost if the list is closed without ✓. ---------- */
   var catShut = 0, catOpen = false, catEdit = false, catOpt = null, catMove = false;
+  function vName(c) { return c && c.home ? homeName() : (c ? catName(c) : ""); }
   function renderCats() {
-    var cur = curTab(), c = catOf(cur);
-    $("cat-name").textContent = c ? catName(c) : "";
-    var btn = $("cat-btn"); btn.setAttribute("aria-expanded", catOpen ? "true" : "false"); btn.setAttribute("aria-label", t("chooseCat") + ": " + (c ? catName(c) : ""));
+    var cur = curTab(), c = viewCatById(cur);
+    $("cat-name").textContent = vName(c);
+    var btn = $("cat-btn"); btn.setAttribute("aria-expanded", catOpen ? "true" : "false"); btn.setAttribute("aria-label", t("chooseCat") + ": " + vName(c));
     $("catpick").hidden = !uid;
     var panel = $("cat-panel"); panel.hidden = !catOpen || !uid;
     var bk = $("cat-back"); if (catOpen && uid && !bk) { bk = document.createElement("div"); bk.id = "cat-back"; bk.className = "cp-back"; document.body.appendChild(bk); bk.addEventListener("pointerdown", function (e) { e.preventDefault(); catShut = Date.now(); closeCats(); }); }
@@ -859,18 +903,18 @@
     /* v32: row = name (tap = open) + one ⋮ options button → ↕ reorder · ✏️ rename · 🗑 delete. Reorder = move mode: ☰ drag or ▲▼. */
     $("cp-title").textContent = catMove ? t("moveNote") : t("pickTitle");
     $("cat-new").textContent = catMove ? t("editDone") : t("newCat");
-    var all = cats();
+    var all = viewCats();
     list.innerHTML = all.map(function (cc, i) {
-      var nm = esc(catName(cc)), id = esc(cc.cat), on = cc.cat === cur;
+      var nm = esc(vName(cc)), id = esc(cc.cat), on = cc.cat === cur;
       if (catMove) return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><span class="cp-handle hdl" aria-label="' + esc(t("handle")) + '" title="' + esc(t("handle")) + '">☰</span><span class="nm">' + nm + "</span>" +
-        '<button type="button" class="cp-act" data-up="' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + catName(cc)) + '">▲</button>' +
-        '<button type="button" class="cp-act" data-dn="' + id + '"' + (i === all.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown") + ": " + catName(cc)) + '">▼</button></li>';
+        '<button type="button" class="cp-act" data-up="' + id + '"' + (i === 0 ? " disabled" : "") + ' aria-label="' + esc(t("moveUp") + ": " + vName(cc)) + '">▲</button>' +
+        '<button type="button" class="cp-act" data-dn="' + id + '"' + (i === all.length - 1 ? " disabled" : "") + ' aria-label="' + esc(t("moveDown") + ": " + vName(cc)) + '">▼</button></li>';
       var open = catOpt === cc.cat;
       return '<li data-cat="' + id + '"' + (on ? ' class="cur"' : "") + '><button type="button" class="cp-pick" data-pick="' + id + '" aria-current="' + on + '"><span class="nm">' + nm + "</span>" + (on ? '<span class="ck" aria-hidden="true">✓</span>' : "") + "</button>" +
         '<button type="button" class="cp-more' + (open ? " on" : "") + '" data-opt="' + id + '" aria-expanded="' + open + '" title="' + esc(t("optMenu")) + '" aria-label="' + esc(t("optMenu") + ": " + catName(cc)) + '">⋮</button></li>' +
         (open ? '<li class="cp-opts">' +
           '<button type="button" class="cp-oi" data-mov="' + id + '"><span aria-hidden="true">↕</span>' + esc(t("optMove")) + "</button>" +
-          '<button type="button" class="cp-oi" data-chk="' + id + '"><span aria-hidden="true">' + (cc.check ? "☰" : "☑") + "</span>" + esc(t(cc.check ? "optToList" : "optToCheck")) + "</button>" +
+          (cc.home ? "" : '<button type="button" class="cp-oi" data-chk="' + id + '"><span aria-hidden="true">' + (cc.check ? "☰" : "☑") + "</span>" + esc(t(cc.check ? "optToList" : "optToCheck")) + "</button>") +
           '<button type="button" class="cp-oi" data-ren="' + id + '"><span aria-hidden="true">✏️</span>' + esc(t("optRename")) + "</button>" +
           '<button type="button" class="cp-oi" data-del="' + id + '"><span aria-hidden="true">🗑</span>' + esc(t("optDelete")) + "</button></li>" : "");
     }).join("");
@@ -894,7 +938,7 @@
       if (b.hasAttribute("data-opt")) { var oc = b.getAttribute("data-opt"); catOpt = catOpt === oc ? null : oc; render(); var ob = $("cat-list").querySelector(".cp-opts"); if (ob) try { ob.scrollIntoView({ block: "nearest" }); } catch (e2) {} return; }
       if (b.hasAttribute("data-mov")) { catOpt = null; catMove = true; catEdit = true; render(); return; }
       if (b.hasAttribute("data-up") || b.hasAttribute("data-dn")) {
-        var up = b.hasAttribute("data-up"), mc = b.getAttribute(up ? "data-up" : "data-dn"), ids = cats().map(function (x) { return x.cat; }), i = ids.indexOf(mc), j = up ? i - 1 : i + 1;
+        var up = b.hasAttribute("data-up"), mc = b.getAttribute(up ? "data-up" : "data-dn"), ids = viewCats().map(function (x) { return x.cat; }), i = ids.indexOf(mc), j = up ? i - 1 : i + 1;
         if (i < 0 || j < 0 || j >= ids.length) return;
         ids.splice(j, 0, ids.splice(i, 1)[0]); setOrder(ids); changed();
         var nb = $("cat-list").querySelector(up ? '[data-up="' + mc + '"]' : '[data-dn="' + mc + '"]'); if (nb && !nb.disabled) nb.focus();
@@ -902,7 +946,11 @@
       }
       if (b.hasAttribute("data-ren")) catOpt = null;
       if (b.hasAttribute("data-pick")) { catOpen = false; selectTab(b.getAttribute("data-pick")); }
-      else if (b.hasAttribute("data-ren")) renameCat(b.getAttribute("data-ren"));
+      else if (b.hasAttribute("data-ren")) {
+        var rid = b.getAttribute("data-ren");
+        if (rid === (LISTS && LISTS.HOME)) nameSheet(t("renameTitle"), homeName(), false, function (v) { if (v !== homeName()) { putCat({ id: "h:shop", type: "meta", name: v, at: now() }); changed(); } });
+        else renameCat(rid);
+      } else if (b.getAttribute("data-del") === (LISTS && LISTS.HOME)) window.alert(t("lastCat"));
       else deleteCat(b.getAttribute("data-del"));
     });
     list.addEventListener("contextmenu", function (e) { if (catEdit) e.preventDefault(); });
@@ -1145,7 +1193,8 @@
     if (menu) menu.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest("[data-menu]");
       if (b) { e.stopPropagation(); runAppMenu(b.getAttribute("data-menu")); return; }
-      if (e.target.closest && e.target.closest("#print-btn, #restore-file-btn, #hist-btn, #backup-link")) closeAppMenu();
+      if (e.target.closest && e.target.closest("#print-btn")) { e.preventDefault(); closeAppMenu(); setTimeout(function () { window.print(); }, 60); return; }
+      if (e.target.closest && e.target.closest("#restore-file-btn, #hist-btn, #backup-link")) closeAppMenu();
     });
     document.addEventListener("click", function (e) {
       if (!menu || menu.hidden) return;
@@ -1275,7 +1324,7 @@
       onDrop: function (ids) { setItemOrder(ids); changed(); } });
     sortable({ list: $("done"), scroller: null, hold: 0, edge: 70, rowSel: "li", idAttr: "data-id", // "נבחר" items: same ☰ drag
       canStart: function () { return !editing; },
-      onDrop: function (ids) { setItemOrder(ids, isChk(curTab()) ? "ord" : "dord"); changed(); } });
+      onDrop: function (ids) { setItemOrder(ids, openIsChk() ? "ord" : "dord"); changed(); } });
     on("add-form", "submit", function (e) {
       e.preventDefault(); var i = $("add-input"), pi = $("add-price"), ni = $("add-note"), pr = parsePrice(pi.value);
       if (pr !== null && isNaN(pr)) { pi.focus(); pi.select(); return; }
