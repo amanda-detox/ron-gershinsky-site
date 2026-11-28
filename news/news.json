@@ -1,6 +1,6 @@
 {
  "version": 1,
- "updated": "2026-11-25T06:18:11+02:00",
+ "updated": "2026-11-28T06:27:56+02:00",
  "topics": [
   {
    "id": "podcasts",
@@ -15748,6 +15748,724 @@
    },
    "full_he": "אפשר עכשיו לשאול את ChatGPT \"כמה הרווחתי היום?\" או \"איפה הפסדתי כסף החודש?\" על חשבון ה־Kraken שלך.\n\nמחירים, גרפים וחדשות לא דורשים התחברות. החשבון שלך זמין לקריאה בלבד, כך ש־ChatGPT לא יכול לבצע עסקאות או להעביר כסף.\n\nKraken זמינה עכשיו ב־ChatGPT.\n\nהתגובה של Kraken מתחת לפוסט: לא ייעוץ השקעות. מסחר בקריפטו כרוך בסיכון להפסד. חלות הגבלות גאוגרפיות.",
    "full_en": "You can now ask ChatGPT “What did I make today?” or “Where did I lose money this month?” about your Kraken account.\n\nPrices, charts and news need no login. Your account is read-only, so ChatGPT can’t place trades or move money.\n\nKraken is live in ChatGPT:\n\nThe author's own reply under the post: Not investment advice. Crypto trading involves risk of loss. Geographic restrictions apply."
+  },
+  {
+   "id": "pod-asprey-49d6ad45ec",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Human Upgrade",
+   "date": "2026-11-26T09:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/what-thanksgiving-dinner-does-to-your-body/id451295014?i=1000804162871",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "מה ארוחת חג ההודיה עושה לגוף שלך",
+    "summary": "בפרק 1580 של The Human Upgrade מארח דייב אספריי את ד״ר פיטר אוסבורן, מומחה לתזונה קלינית ומחבר הספר No Grain, No Pain, לשיחה על רגישות לגלוטן, דלקת כרונית, בריאות המעי ותשוקה למזון. הדברים מוצגים כעמדות המארח והאורח."
+   },
+   "en": {
+    "title": "What Thanksgiving Dinner Does to Your Body",
+    "summary": "In episode 1580 of The Human Upgrade, Dave Asprey talks with Dr. Peter Osborne, a clinical nutrition expert and author of No Grain, No Pain, about gluten sensitivity, chronic inflammation, gut health and food cravings. The points are presented as the host's and guest's views."
+   },
+   "full_he": "בפרק 1580 של The Human Upgrade, פרק מיוחד לחג ההודיה, מארח דייב אספריי את ד״ר פיטר אוסבורן, מומחה לתזונה קלינית, מייסד Gluten Free Society ומחבר הספר No Grain, No Pain. הם מערערים על החשיבה המקובלת לגבי דגנים, מסבירים את ההבדל בין צליאק לבין רגישות לגלוטן שאינה צליאק, ובוחנים מדוע מזונות מסוימים עשויים לתרום לבעיות בריאות גם כשאין תסמיני עיכול מיידיים.\n\nלפי תיאור הפרק, אוסבורן מסביר כיצד עיכול גלוטן יוצר פפטידים הנקראים גלוטומורפינים, ומדבר על קשר אפשרי שלהם לקולטני אופיואידים, לתשוקות למזון ולהתנהגות אכילה. אספריי משתף בחוויות אישיות עם גלוטן, ערפל מוחי ותשוקה מתמשכת לפחמימות, ובוחן את הקשר בין חשיפה לעובש סביבתי, תפקוד לקוי של מערכת החיסון ורגישויות למזון. הם דנים גם בהשפעה אפשרית של גליפוסט, שיטות חקלאות, מיקוטוקסינים וזני חיטה על התגובה לדגנים, ובשאלה מדוע אנשים מדווחים שהם סובלים לחם טוב יותר בחו״ל מאשר בארצות הברית.\n\nהשיחה בוחנת את תעשיית המזון נטול הגלוטן, את ההיסטוריה של דגני הבוקר המעובדים ואת ניגודי האינטרסים האפשריים בין יצרני מזון למחקר תזונתי. אספריי ואוסבורן חלוקים בשאלה אם סוכר או חיטה מדאיגים יותר, ומדברים על אוקסלטים, חלבוני חלב, סויה והתרבות יתר של קנדידה, על מגבלות של דיאטות מגבילות כמו הדיאטה הטורפנית, ועל דרכים מעשיות לזהות מזונות בעייתיים ולהתאים תזונה אישית.\n\nנושאים שמופיעים בתיאור הפרק:\n• ההבדל בין צליאק לרגישות לגלוטן שאינה צליאק, ומדוע תגובות למזון יכולות להופיע גם בלי תסמיני עיכול ברורים\n• כיצד גלוטומורפינים מתקשרים עם קולטני אופיואידים ומה הקשר האפשרי שלהם לתשוקה ללחם ולהתמכרות למזון\n• מדוע לאספריי היה ערפל מוחי מאוחר ותשוקה מתמשכת לפחמימות אחרי אכילת גלוטן\n• כיצד חשיפה לעובש רעיל, מיקוטוקסינים ולחצים סביבתיים עשויים להשפיע על תפקוד החיסון ועל רגישויות למזון\n• מדוע אנשים מדווחים שהם סובלים חיטה טוב יותר באירופה, ואיך גליפוסט, דשנים ושיטות חקלאות עשויים לתרום לכך\n• מדוע אוסבורן מפקפק בדיאטות נטולות גלוטן רגילות ובשימוש בתירס, אורז ושיבולת שועל במוצרים מעובדים\n• כיצד תעשיית דגני הבוקר עיצבה הרגלי תזונה ומסרים תזונתיים\n• מדוע השניים חלוקים אם סוכר או חיטה מדאיגים יותר\n• כיצד התרבות יתר של קנדידה עשויה להשפיע על פחמימות, תגובות חיסוניות וייצור אוקסלט\n• מה אספריי למד מניסוי בדיאטה הטורפנית ואיך צריכת פחמימות עשויה להשפיע על שינה והורמוני לחץ\n• איך מדברים בפרק על חומצה קפרילית, שמן C8 MCT, ברברין וטיפולים מקובלים נגד פטריות בהקשר של קנדידה\n• ששת היסודות הבלתי מתפשרים של בריאות האדם לפי אוסבורן\n• איך לגשת בצורה אישית יותר לתזונה, לרגישויות למזון ולעבודה עם אנשי מקצוע\n\nציוני זמן: 00:00 גלוטן ותשוקות · 05:51 עובש ותגובות למזון · 11:27 מלכודת המזון נטול הגלוטן · 21:39 חיטה וגליפוסט · 27:58 סוכר, פחמימות ושינה · 36:26 אוקסלטים ודיאטה טורפנית · 45:00 בריאות בתקציב · 52:05 ערפל מוחי וארוחות רמאות · 57:59 טיפולים נגד פטריות · 01:05:17 אמון בבריאות וברפואה.\n\nאלה דברי המארח והאורח, לא ייעוץ רפואי. כמה מהטענות, למשל על גלוטומורפינים כגורם לתשוקה ללחם ועל קשר בין גלוטן לערפל מוחי אצל אנשים בלי צליאק, אינן מקובלות כקונצנזוס רפואי; הרפואה המקובלת מכירה בצליאק וברגישות לגלוטן, אך הראיות לטענות הרחבות יותר מוגבלות.",
+   "full_en": "In episode 1580 of The Human Upgrade, a special Thanksgiving episode, host Dave Asprey sits down with Dr. Peter Osborne, a clinical nutrition expert, founder of the Gluten Free Society and author of No Grain, No Pain. They challenge conventional thinking about grains, explain the difference between celiac disease and non-celiac gluten sensitivity, and examine why certain foods may contribute to health problems even when people have no immediate digestive symptoms.\n\nAccording to the show notes, Osborne explains how digesting gluten produces peptides called gluteomorphins and discusses their potential relationship with opioid receptors, food cravings and eating behavior. Asprey shares personal experiences with gluten, brain fog and persistent carbohydrate cravings, and looks at the relationship between environmental mold exposure, immune dysfunction and food sensitivities. They explore how glyphosate, agricultural practices, mycotoxins and different varieties of wheat may influence individual reactions to grains, and why some people report tolerating bread better overseas than in the United States.\n\nThe conversation examines the gluten-free food industry, the history of processed breakfast cereals and the potential conflicts of interest between food manufacturers and nutrition research. Asprey and Osborne debate whether sugar or wheat poses the greater health concern, discuss oxalates, dairy proteins, soy and Candida overgrowth, and explore the limits of restrictive diets such as the carnivore diet. They also share practical strategies for identifying problematic foods, personalizing nutrition and building a foundation for better energy, cognitive performance and longevity.\n\nTopics listed in the notes:\n• How celiac disease and non-celiac gluten sensitivity differ, and why some food reactions may occur without obvious digestive symptoms\n• How gluteomorphins interact with opioid receptors and their potential relationship with bread cravings and food addiction\n• Why Dave experienced delayed brain fog and persistent carbohydrate cravings after eating gluten\n• How toxic mold exposure, mycotoxins and environmental stressors may influence immune function and food sensitivities\n• Why some people report tolerating wheat better in Europe, and how glyphosate, fertilizers and agricultural practices may contribute\n• Why Peter questions conventional gluten-free diets and the use of corn, rice and oats in processed gluten-free products\n• How the breakfast cereal industry shaped modern dietary habits and nutritional messaging\n• Why Dave and Peter disagree about whether sugar or wheat poses the greater health concern\n• How Candida overgrowth may interact with dietary carbohydrates, immune responses and oxalate production\n• Why gluten-free alternatives such as almond flour may present different nutritional challenges for sensitive people\n• What Dave learned from experimenting with the carnivore diet, and how carbohydrate intake may influence sleep and stress hormones\n• What Dave and Peter say about gluten exposure, cheat meals and the persistence of immune responses in gluten-sensitive people\n• How caprylic acid, C8 MCT oil, berberine and conventional antifungal treatments are discussed in the context of Candida overgrowth\n• Peter's six non-negotiable fundamentals of human health, and why addressing them together matters\n• How to take a more personalized approach to nutrition, food sensitivities and working with healthcare practitioners\n\nTimestamps: 00:00 Gluten sensitivity & cravings · 05:51 Mold & food reactions · 11:27 The gluten-free trap · 21:39 Wheat & glyphosate · 27:58 Sugar, carbs & sleep · 36:26 Oxalates & carnivore · 45:00 Health on a budget · 52:05 Brain fog & cheat meals · 57:59 Antifungal treatments · 01:05:17 Health & medical trust.\n\nThese are the host's and guest's claims, not medical advice. Some of them, such as gluteomorphins driving bread cravings or gluten causing brain fog in people without celiac disease, are not established medical consensus; mainstream medicine recognizes celiac disease and non-celiac gluten sensitivity, but the evidence for the broader claims is limited."
+  },
+  {
+   "id": "pod-brecka-ed525c0d05",
+   "topic": "podcasts",
+   "kind": "podcast",
+   "show": "The Ultimate Human",
+   "date": "2026-11-26T08:30:00Z",
+   "url": "https://podcasts.apple.com/us/podcast/gratitude-and-dopamine-how-to-rewire-your-brains/id1709740887?i=1000804151330",
+   "source": "Apple Podcasts",
+   "he": {
+    "title": "תודה והדופמין: איך מתכנתים מחדש את מרכזי התגמול במוח",
+    "summary": "בפרק 325 של The Ultimate Human גארי בראקה מסביר, לדבריו, איך הכרת תודה מפעילה אזורים במוח שמווסתים דופמין וסרוטונין, ונותן שלוש דרכים פשוטות להתחיל."
+   },
+   "en": {
+    "title": "Gratitude and Dopamine: How to Rewire Your Brain's Reward Centers",
+    "summary": "In episode 325 of The Ultimate Human, Gary Brecka explains, in his words, how gratitude activates brain regions that regulate dopamine and serotonin, and offers three simple ways to start."
+   },
+   "full_he": "הכרת תודה היא יותר מנימוס, אומר גארי בראקה בתיאור הפרק, היא מצב ביולוגי. בפרק 325 של The Ultimate Human הוא מסביר לדבריו כיצד התמקדות בהערכה מפעילה את האזורים במוח שמווסתים דופמין וסרוטונין, מדוע אמירת «תודה» בקול רם מעלה אוקסיטוצין, וכיצד תרגול קבוע של הכרת תודה יכול לסייע בהפחתת הורמוני לחץ. בפרק גם שלוש דרכים פשוטות להתחיל כבר היום, ומדוע חשוב לרשום את הסיבה מאחורי כל דבר שאתה אסיר תודה עליו. «אל תנחש, תבדוק», מסכם בראקה.\n\nנושאי הפרק:\n• למה הכרת תודה עושה יותר ממה שנדמה\n• איך הערכה מפעילה דופמין וסרוטונין\n• מה אומר המחקר על הכרת תודה ושביעות רצון מהחיים\n• הכרת תודה בעבודה ולחץ נמוך יותר\n• יומן הכרת תודה: שלושה דברים וסיבה אחת לכל אחד\n• אוקסיטוצין ואמירת תודה בקול, גם בעבודה\n• למה הכרת תודה היא מצב ביולוגי, ואתגר בוקר של 7 ימים\n\nאלה דבריו של בראקה, לא ייעוץ רפואי. הפרק נועד למידע כללי בלבד, ויש להתייעץ עם איש מקצוע מוסמך לפני החלטות בריאותיות. הוא מקדם גם מוצרי צד שלישי.",
+   "full_en": "Gratitude is more than good manners; it's a biological state, says Gary Brecka in the episode description. In episode 325 of The Ultimate Human he explains how focusing on appreciation activates the parts of the brain that regulate dopamine and serotonin, why saying thank you out loud raises oxytocin, and how a regular gratitude practice can help support lower stress hormones. The episode also gives three simple ways to start today, and explains why writing down the reason behind each thing you're grateful for matters. \"Don't guess, test,\" Brecka sums up.\n\nTopics in the episode:\n• Why gratitude does more than you think\n• How appreciation activates dopamine and serotonin\n• What the research says about gratitude and life satisfaction\n• Gratitude at work and lower stress\n• Gratitude journaling with three things and one reason why\n• Oxytocin and saying thanks out loud, including at work\n• Why gratitude is a biological state, plus the 7-day morning challenge\n\nThese are Brecka's own claims, not medical advice. The podcast says it is for information only and that you should consult a licensed healthcare professional before making health decisions. Brecka's company also promotes third-party products, so statements on the show may be promotional."
+  },
+  {
+   "id": "brecka-read-the-back-of-the-package",
+   "topic": "brecka",
+   "date": "2026-11-27T18:11:48Z",
+   "url": "https://x.com/thegarybrecka/status/2126378473426186354",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "גארי בראקה: קרא את גב האריזה, לא את החזית",
+    "summary": "בראקה כותב ש«טבעי», «בריא» ו«דל שומן» הם מונחי שיווק ולא ערובה לאיכות תזונתית, ומציע להשוות סוכר ונתרן בין מוצרים."
+   },
+   "en": {
+    "title": "Gary Brecka: read the back of the package, not the front",
+    "summary": "Brecka writes that \"natural,\" \"healthy\" and \"low-fat\" are marketing terms, not guarantees of nutritional quality, and suggests comparing sugar and sodium between products."
+   },
+   "full_he": "גארי בראקה כותב:\n\nתתחיל לקרוא את גב אריזת המזון, לא את החזית.\n\n«טבעי». «בריא». «דל שומן». «עתיר חלבון».\n\nאלה מונחי שיווק, לא ערובה לאיכות תזונתית.\n\nמכאן הייתי מתחיל:\n• להשוות סוכר מוסף ונתרן בין מוצרים.\n• לבחור מזונות בלי צבעים מלאכותיים מיותרים.\n• להימנע משמנים מוחלשים חלקית (hydrogenated).\n• לתת עדיפות למזונות שלמים ומעובדים כמה שפחות.\n\nאלה המלצותיו האישיות של בראקה, לא ייעוץ רפואי. לא נמצאו בשרשור המשכים נוספים של בראקה.",
+   "full_en": "Gary Brecka writes:\n\nStart reading the BACK of your food packaging, not the front.\n\n\"Natural.\" \"Healthy.\" \"Low-fat.\" \"High-protein.\"\n\nThose are marketing terms, not guarantees of nutritional quality.\n\nHere's where I'd start:\n• Compare added sugar and sodium between products.\n• Choose foods without unnecessary artificial colors.\n• Avoid partially hydrogenated oils.\n• Prioritize whole, minimally processed foods.\n\nThese are Brecka's personal recommendations, not medical advice. No further self-replies by Brecka were found in the thread."
+  },
+  {
+   "id": "brecka-muscle-mass-longevity",
+   "topic": "brecka",
+   "date": "2026-11-27T17:50:33Z",
+   "url": "https://x.com/thegarybrecka/status/2126373125344649317",
+   "source": "X · @thegarybrecka",
+   "he": {
+    "title": "בראקה: מסת שריר היא כלי לאריכות ימים",
+    "summary": "לדברי בראקה, אובדן שריר עם הגיל תורם לשבריריות, נפילות ואובדן עצמאות, ואימוני כוח הם לא רק לספורטאים."
+   },
+   "en": {
+    "title": "Brecka: muscle mass is a longevity tool",
+    "summary": "Brecka says age-related muscle loss contributes to frailty, falls and loss of independence, and that strength training isn't just for athletes."
+   },
+   "full_he": "גארי בראקה כותב:\n\nאם אתה רוצה לחיות יותר זמן, תתחיל לקחת ברצינות את מסת השריר שלך.\n\nאובדן שריר הקשור לגיל הוא גורם מרכזי לשבריריות, לנפילות ולאובדן עצמאות.\n\nאימוני כוח הם לא רק לספורטאים. הם לכל מי שרוצה להישאר מסוגל פיזית בגיל 70, 80 ו-90.\n\nשריר הוא כלי לאריכות ימים. תבנה אותו לפני שתצטרך אותו.\n\nזו עמדתו של בראקה. הקשר בין מסת שריר וכוח לבין עצמאות בגיל מבוגר מקובל בספרות הרפואית, וכדאי להתאים אימונים לגילך ולמצבך בעזרת איש מקצוע.",
+   "full_en": "Gary Brecka writes:\n\nIf you want to live longer, start taking your muscle mass seriously.\n\nAge-related muscle loss is a major contributor to frailty, falls and loss of independence.\n\nStrength training is not just for athletes. It's for anyone who wants to remain physically capable in their 70s, 80s and 90s.\n\nMuscle is a longevity tool. Build it before you need it.\n\nThis is Brecka's view. The link between muscle mass and strength and independence in old age is broadly accepted in the medical literature; it's worth matching any training to your age and condition with a professional."
+  },
+  {
+   "id": "asprey-morning-light-clouds",
+   "topic": "asprey",
+   "date": "2026-11-26T16:36:05Z",
+   "url": "https://x.com/daveasprey/status/2125991994333790508",
+   "source": "X · @daveasprey",
+   "he": {
+    "title": "דייב אספריי: האור של השעה הראשונה קובע את שעת השינה",
+    "summary": "אספריי כותב שהמוח קובע את שעת השינה לפי מה שהעיניים רואות בשעה הראשונה של היום, ושהוא יוצא החוצה כל בוקר גם בענן."
+   },
+   "en": {
+    "title": "Dave Asprey: first-hour light sets bedtime",
+    "summary": "Asprey writes that the brain sets bedtime from what the eyes see in the first hour of the day, and that he goes outside every morning, even when it's cloudy."
+   },
+   "full_he": "דייב אספריי כותב:\n\nהמוח שלך קובע את שעת השינה של הלילה לפי מה שהעיניים שלך רואות בשעה הראשונה של היום.\n\nאני יוצא החוצה כל בוקר, גם כשמעונן, כי אני רוצה שהשעון הביולוגי שלי יהיה מעוגן לפני שהיום מתמלא. גם בענן מקבלים הרבה יותר אור מאשר בכל חדר סגור.\n\nשמור את זה לבוקר, ושלח לחבר שתמיד עייף ב-15:00 ודרוך בחצות.\n\nאלה דברי אספריי. חשיפה לאור בוקר נחשבת בספרות המדעית כמסייעת לתזמון השעון הביולוגי, אבל «המוח קובע את שעת השינה בשעה הראשונה» הוא ניסוח פשטני.",
+   "full_en": "Dave Asprey writes:\n\nYour brain sets tonight's bedtime based on what your eyes see in the first hour of the day.\n\nI get outside every morning, even when it's cloudy, because I want my body clock anchored before the day gets busy. Clouds still give you far more light than any indoor room does.\n\nSave this for tomorrow morning and send it to the friend who is always tired at 3pm and wired at midnight.\n\nThese are Asprey's words. Morning light is widely described in the scientific literature as helping to time the body clock, but \"the brain sets bedtime in the first hour\" is a simplification."
+  },
+  {
+   "id": "mikhaila-gratitude-america",
+   "topic": "mikhaila",
+   "date": "2026-11-26T19:25:24Z",
+   "url": "https://x.com/MikhailaFuller/status/2126034607749673409",
+   "source": "X · @MikhailaFuller",
+   "he": {
+    "title": "מיכאלה פיטרסון: «אני אוהבת את אמריקה», רשימת תודות לחג",
+    "summary": "בפוסט לחג ההודיה היא מפרטת מה היא אסירת תודה עליו בסקוטסדייל ובארצות הברית: ביטחון, שמש, יזמים ושירותים זמינים."
+   },
+   "en": {
+    "title": "Mikhaila Peterson: \"I love America,\" a Thanksgiving gratitude list",
+    "summary": "In a Thanksgiving post she lists what she's grateful for in Scottsdale and the U.S.: safety, sun, entrepreneurs and easy access to services."
+   },
+   "full_he": "מיכאלה פיטרסון כותבת:\n\nאני אוהבת את אמריקה. פשוט אי אפשר להגיד את זה מספיק. גרתי בנאשוויל, במיאמי ועכשיו בסקוטסדייל, וכולן היו נהדרות מסיבות שונות. אני אסירת תודה להיות כאן.\n\nרשימת תודות, בעיקר לסקוטסדייל (ולאמריקה):\n• אפשר להשיג כמעט כל דבר כמעט מיד.\n• זה בטוח להפליא.\n• אנשים רגועים ושמחים, אין אווירה כללית של לחץ.\n• זה יפה (כן, התרגלתי לקקטוסים).\n• יש שמש כל הזמן, וזה מצוין אחרי קנדה.\n• הסערות מגניבות ודי נדירות.\n• יזמים בכל מקום.\n• מעודדים אנשים להקים עסקים ולצמוח, ולא שונאים אותם על זה.\n• מעודדים משפחות ותינוקות.\n• יש מקומות מצוינים לאכול ולהתרווח.\n• יש מומחים שאפשר באמת ללכת אליהם, ואפשר פשוט לקנות בדיקות דם ולנתח בעצמך.\n• כל מוצר שאתה רוצה כמעט תמיד נמכר כאן.\n• בית הספר של הילד שלי לא «ווק» ומצוין.\n• בכל פעם שאני עוזבת וחוזרת, אני נרגעת ושמחה לחזור.\n\nזה רק מה שעלה לי בראש, ובטח הייתי יכולה לחשוב על עוד. אלוהים יברך את אמריקה. תודה שקיבלתם את הקנדית הזאת. חג הודיה שמח!\n\nאלה דעותיה האישיות של מיכאלה.",
+   "full_en": "Mikhaila Peterson writes:\n\nI LOVE AMERICA. I literally cannot say that enough. I've lived in Nashville, Miami and now Scottsdale and they were all fantastic for different reasons. I am SO grateful to be here.\n\nList of gratitudes for Scottsdale in particular (and America):\n• You can get basically anything you can buy almost instantly. This is unbelievable.\n• It is crazily safe.\n• People are calm and happy (there's not a general air of stress).\n• It's beautiful (yes, I got used to cactuses).\n• There's sun all the time (so good coming from Canada).\n• The storms are cool and fairly rare.\n• There are entrepreneurs everywhere.\n• People are encouraged to make businesses and pursue growth. (Encouraged, rather than hated for it.)\n• Families and babies are encouraged.\n• There are great places to eat and hang out at.\n• There are specialists you can actually go see. You can just buy blood work to analyze yourself.\n• Any product you want is basically just for sale here.\n• My kid's school isn't woke and is amazing.\n• Every time I leave here and come back, I relax and am just happy to be back.\n\nThat's all just off the top of my head, I'm sure I could think of a lot more. God Bless America. Thanks for taking this Canadian. Happy Thanksgiving!\n\nThese are Mikhaila's personal opinions."
+  },
+  {
+   "id": "mccullough-cdc-measles-infodemic",
+   "topic": "mccullough",
+   "date": "2026-11-27T13:52:18Z",
+   "url": "https://x.com/P_McCulloughMD/status/2126313167525482766",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: «אסטרטגיית אינפודמיה» של ה-CDC סביב החצבת",
+    "summary": "מקולה מצטט דיווח של Rebel News וטוען שה-CDC מסתמך על בדיקות PCR לא מאומתות. הטענה שנויה במחלוקת ומנוגדת לעמדת הרשויות."
+   },
+   "en": {
+    "title": "McCullough: the CDC's measles \"infodemic strategy\"",
+    "summary": "McCullough shares a Rebel News report and claims the CDC relies on unconfirmed PCR results. The claim is disputed and contradicts the health authorities' position."
+   },
+   "full_he": "פיטר מקולה כותב:\n\nאסטרטגיית האינפודמיה של ה-CDC בנושא החצבת\n• הזנות מעבדה של תוצאות PCR חיוביות לא מאושרות לחצבת (Quest, Labcorp)\n• אין הכרעה בלתי תלויה בנוגע למקרה\n• אין בדיקה פיזית של רישומי החיסון\n• משפט קבוע: «95% אינם מחוסנים, או שמצב החיסון לא ידוע»\n• קריאה לפעולה: «תתחסן ב-MMR»\n\nמשלמי המסים מממנים את ה-CDC ב-9 מיליארד דולר בשנה בשביל זה? באדיבות תמרה אוגוליני, Rebel News.\n\nהערה: אלה טענות של מקולה, והן מנוגדות לקונצנזוס הרפואי ולעמדת ה-CDC. חיסון MMR נחשב יעיל ובטוח בקרב הרשויות הרפואיות, ובדיקות PCR משמשות לצד אבחון קליני ואפידמיולוגי.",
+   "full_en": "Peter McCullough writes:\n\nCDC Measles Infodemic Strategy\n• Laboratory feeds of unconfirmed measles PCR test positives (Quest, Labcorp)\n• No independent adjudication of case\n• No in-person review of vaccine records\n• Boilerplate \"95% are unvaccinated, or vaccine status unknown\"\n• Call to action: \"get MMR vaccinated\"\n\nTaxpayers fund CDC with $9B annually for this? Courtesy Tamara Ugolini, Rebel News.\n\nNote: these are McCullough's claims and contradict medical consensus and the CDC's position. Health authorities regard the MMR vaccine as effective and safe, and PCR testing is used alongside clinical and epidemiological assessment."
+  },
+  {
+   "id": "mccullough-flu-what-cdc-doesnt-tell",
+   "topic": "mccullough",
+   "date": "2026-11-27T13:59:00Z",
+   "url": "https://x.com/P_McCulloughMD/status/2126314852708655396",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: מה ה-CDC «לא מספר» על שפעת",
+    "summary": "מקולה מפרט סיכוני שפעת ומגביל את תועלת החיסון, וטוען שטיפול ביום הראשון יעיל מאוד. הטענות לא מתיישבות עם ההמלצות הרשמיות."
+   },
+   "en": {
+    "title": "McCullough: what the CDC \"does NOT tell you\" about influenza",
+    "summary": "McCullough lists flu risks, downplays the vaccine's benefit and says treatment on day 1 is very effective. The claims don't match official recommendations."
+   },
+   "full_he": "פיטר מקולה כותב:\n\nמה ה-CDC לא מספר לכם על שפעת:\n• הסיכון השנתי לחלות הוא כ-4%, ולמות פחות מ-1%\n• חיסון מקטין את הסיכון לחלות ל-כ-3%\n• מניעה באמצעות תרסיסי אף/גרון וגרגורים\n• הטיפול יעיל מאוד אם מתחילים ביום הראשון עם ערכת טיפול ביתית\n\nבאדיבות תמרה אוגוליני, Rebel News.\n\nהערה: אלה טענות של מקולה. ה-CDC והרשויות הרפואיות ממליצים על חיסון שפעת שנתי, ולא הוכחה יעילות של תרסיסים וגרגורים כמניעה או כטיפול. טיפול אנטי-ויראלי מוכר קיים ביום הראשון להופעת התסמינים, בהכוונת רופא.",
+   "full_en": "Peter McCullough writes:\n\nWhat CDC does NOT tell you about influenza:\n• Annual illness risk is ~4%, death < 1%\n• Vaccination reduces illness risk to ~3%\n• Prevention with nasal/throat sprays/gargles\n• Treatment is very effective if started on day 1 with a home treatment kit\n\nCourtesy Tamara Ugolini, Rebel News.\n\nNote: these are McCullough's claims. The CDC and medical authorities recommend annual flu vaccination, and sprays and gargles haven't been shown effective for prevention or treatment. Antiviral treatment is a recognized option early after symptoms start, under a doctor's guidance."
+  },
+  {
+   "id": "mccullough-autism-risk-factor-report",
+   "topic": "mccullough",
+   "date": "2026-11-27T13:20:19Z",
+   "url": "https://x.com/P_McCulloughMD/status/2126305118153068688",
+   "source": "X · @P_McCulloughMD",
+   "he": {
+    "title": "מקולה: דוח הקרן שלו מגדיר חיסונים משולבים כ«גורם סיכון» לאוטיזם",
+    "summary": "מקולה מפרסם דוח של קרן מקולה וטוען שחיסון משולב שגרתי בילדות הוא «גורם סיכון» לאוטיזם. הטענה מנוגדת לקונצנזוס המדעי."
+   },
+   "en": {
+    "title": "McCullough: his foundation's report calls combination vaccines an autism \"risk factor\"",
+    "summary": "McCullough shares a McCullough Foundation report claiming routine combination childhood vaccination is an autism \"risk factor.\" The claim contradicts scientific consensus."
+   },
+   "full_he": "פיטר מקולה כותב:\n\nדוח קרן מקולה: הגורמים להפרעות בספקטרום האוטיזם. מצאנו שחיסון משולב שגרתי בילדות הוא «גורם סיכון» לאוטיזם.\n\nהפוסט שהוא ציטט (מהקרן):\n«'סיבה' ו'גורם סיכון' הם דברים שונים, וההבדל ניתן לבדיקה. סיבה מייצרת את התוצאה. גורם סיכון הוא קשר שורד כל ניסיון רציני להסביר אותו, והסעיף הזה הוא כל המבחן. אל תשאל אם גורם מוצע הוא סביר. שאל אם מישהו בדק כראוי: בקנה מידה גדול, בתכנון שיכול לגלות אותו, בתת-הקבוצות שבהן הוא אמור להיות חזק ביותר. כך נראה הרקורד של גורם אמיתי.»\n\nהערה: אלה טענות של מקולה והקרן שלו. מחקרים גדולים ורשויות הבריאות המובילות (כולל ה-CDC ו-WHO) לא מצאו קשר בין חיסוני ילדות לאוטיזם. לפי הפוסט עצמו, הדוח אינו מציג כאן נתונים, ולכן לא ניתן לבדוק את הטענה מהפוסט בלבד.",
+   "full_en": "Peter McCullough writes:\n\nMcCullough Foundation Report: Determinants of Autism Spectrum Disorder. We found routine combination childhood vaccination is a \"risk factor\" for autism.\n\nThe quoted post (from the foundation):\n\"'Cause' and 'Risk Factor' Mean Different Things, and the Difference Is Testable. A cause produces the outcome. A RISK FACTOR is an association that survives every serious attempt to explain it away, and that clause is the whole test. Don't ask whether a proposed determinant is plausible. Ask whether anyone looked properly: at scale, with a design that could detect it, in the subgroups where it should be strongest. That's what a real determinant's record looks like.\"\n\nNote: these are the claims of McCullough and his foundation. Large studies and leading health authorities (including the CDC and WHO) have found no link between childhood vaccines and autism. The post itself presents no data here, so the claim can't be checked from the post alone."
+  },
+  {
+   "id": "medicalmedium-eczema-lymphatic-drainage",
+   "topic": "medicalmedium",
+   "date": "2026-11-27T02:23:05Z",
+   "url": "https://x.com/MedicalMedium/status/2126139719759343948",
+   "source": "X · @MedicalMedium",
+   "he": {
+    "title": "מדיקל מדיום: למה ניקוז לימפתי לא יפתור אקזמה",
+    "summary": "אנתוני ויליאם טוען שאקזמה נגרמת מזן של וירוס אפשטיין-בר בכבד שניזון ממתכות כבדות. טענה זו אינה מבוססת רפואית."
+   },
+   "en": {
+    "title": "Medical Medium: why lymphatic drainage won't fix eczema",
+    "summary": "Anthony William claims eczema is caused by a strain of Epstein-Barr virus in the liver feeding on heavy metals. This is not medically established."
+   },
+   "full_he": "מדיקל מדיום כותב (בפוסט עם סרטון):\n\nלמה ניקוז לימפתי לא יפתור אקזמה\n\nאפשר לעבוד על ניקוז לימפתי כמה שרוצים, אבל אם אתה לא מבין מה יוצר את הבעיה, אתה מפספס את המקור ולא תוכל לטפל בשורש האקזמה.\n\nמידע מדיקל מדיום מציג שאקזמה נגרמת ממגוון של אפשטיין-בר בתוך הכבד, שניזון ממתכות כבדות רעילות, במיוחד נחושת, ואז משחרר דרמטוקסין על בסיס נחושת.\n\nככל שהכבד נעשה סתום, עומד ואיטי יותר מהצטברות רעלים ופתוגנים, הם גולשים מהכבד אל המערכת הלימפתית, והיא נעשית איטית ועמוסה גם כן.\n\nכדי לטפל במערכת הלימפתית, הכבד צריך עזרה, ויש לטפל בשורשי האקזמה.\n\nבפוסט יש קישורים לשידור חי, למדריכי ריפוי חינמיים לאקצמה ולפסוריאזיס (באתר medicalmedium.com) ולספר הפרוטוקולים «Cleanse To Heal».\n\nשאר הפוסט הוא סרטון, ולכן אין עוד טקסט להציג.\n\nאלה טענותו של אנתוני ויליאם, שאינו רופא מוסמך. הטענות על אפשטיין-בר, נחושת ו«דרמטוקסין» אינן מבוססות בספרות הרפואית, ואקזמה מוכרת ברפואה כמחלת עור דלקתית עם גורמים גנטיים וסביבתיים. כדאי להתייעץ עם רופא עור.",
+   "full_en": "Medical Medium writes (post with a video):\n\nWhy Lymphatic Drainage Won't Fix Eczema\n\nYou can work on lymphatic drainage all you want, but if you don't understand what's creating the problem, you're missing the source you won't be able to address the root cause of eczema.\n\nMedical Medium information shares that eczema is caused by a variety of Epstein-Barr inside the liver feeding on toxic heavy metals, especially copper, and then releasing a copper-based dermatoxin.\n\nAs the liver becomes more and more clogged, stagnant, and sluggish from a buildup of toxins and pathogens, they then spill out of the liver into the lymphatic system, causing it to become sluggish and overburdened also.\n\nTo address the lymphatic system, the liver needs help and the root causes of eczema need to be addressed.\n\nThe post links a livestream, free healing guides for acne and for eczema and psoriasis (on medicalmedium.com), and the \"Cleanse To Heal\" protocols book.\n\nThe rest of the post is a video, so there's no more text to show.\n\nThese are the claims of Anthony William, who is not a licensed medical practitioner. The claims about Epstein-Barr, copper and a \"dermatoxin\" are not established in the medical literature; eczema is recognized in medicine as an inflammatory skin condition with genetic and environmental factors. It's worth consulting a dermatologist."
+  },
+  {
+   "id": "johnson-becoming-weird",
+   "topic": "johnson",
+   "date": "2026-11-27T17:21:53Z",
+   "url": "https://x.com/bryan_johnson/status/2126365909157920934",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: «להפוך למוזר זה הדבר הכי טוב שעשיתי»",
+    "summary": "ג'ונסון כותב שפרויקט האריכות ימים שחרר אותו מפחד מדחייה חברתית, ושדווקא זה פתח לו דלתות במעגלים בעלי סטטוס גבוה."
+   },
+   "en": {
+    "title": "Bryan Johnson: \"Becoming weird is the best thing I've ever done\"",
+    "summary": "Johnson writes that his longevity project freed him from fear of social rejection, and that it opened doors in high-status circles."
+   },
+   "full_he": "בריאן ג'ונסון כותב:\n\nלהפוך למוזר זה הדבר הכי טוב שעשיתי.\n\nאנשים נשארים קשורים בשרשרת לנורמות חברתיות כי הם חוששים לאבד סטטוס, ולכן מצמצמים את היצירתיות, השובבות והפוטנציאל שלהם.\n\nשמרתי על המודל ההתנהגותי הזה ב-42 השנים הראשונות של חיי, מבועת מכך שהקבוצה תסתייג ותדחה.\n\nפרויקט האריכות ימים שלי שחרר אותי מהאילוץ הזה. שיניתי דרמטית את המראה הפיזי שלי, ניסיתי בפומבי, פרסמתי דברים מוזרים והזמנתי ללעג בשמחה.\n\nזה היה שמח להפליא כי קייט הייתה לצדי, וכל מה שעניין אותנו היה למקסם חקירה ומשחק.\n\nהשתחררנו מהעדר של הקונפורמיות.\n\nהנחתי שהבטחתי לעצמי מקום קבוע ב«ספסל העונשין החברתי», מנודה מקשרים בעלי סטטוס גבוה. הייתי בסדר עם החלפה הזאת.\n\nואז, להפתעתי הרבה, קרה ההפך: מעגלים בעלי סטטוס גבוה הזמינו אותנו בהתלהבות.\n\nשני עקרונות מסבירים זאת.\n\nהראשון הוא «אשראי הייחוד» של הולנדר («מרחב נשימה»): מרחב התמרון שמרוויחים באמצעות כשירות כדי לסטות מנורמות הקבוצה בלי לאבד סטטוס.\n\nהשני הוא עקרון הנכות של זהבי: הזמנה גלויה ללעג דרך מוזרות או הקנטה עצמית משמשת אות יקר לביטחון פנימי.\n\nבמילים אחרות, אפשר להפוך לחריג לכלל ולזכות בזכויות התנהגות מיוחדות.\n\nחברים שלי משתפים אותי בפרטיות במתח בין השאיפות שלהם לבין הפחד מנידוי שבטי. הם לא רוצים לאבד סטטוס או להישאר בחוץ, אבל רוצים גם למצוא מקום ייחודי ולעשות דברים חדשים.\n\nאפשר לסטות מהסטטוס קוו ולמצוא חתימה ייחודית בעולם. אפשר להפוך לדפוס שלא דומה לאף אחד אחר.\n\nזה לא נוח ומסוכן, וצריך סבולת להתמיד ולחזור על התהליך שנים. הכי כדאי לעשות את זה כשאתה מרגיש בטוח בתוך עצמך, כי העולם החיצון ינסה לרסק את הסטייה החברתית.\n\nתתגבר על הבוז של העדר, ותגיע לצורה הגבוהה ביותר של כוח: משחק שלא מפריע לו כלום.\n\nאלה דעותיו האישיות של ג'ונסון.",
+   "full_en": "Bryan Johnson writes:\n\nBecoming weird is the best thing I've ever done.\n\nPeople stay leashed to social norms because they fear losing status, constraining their creativity, playfulness, and potential.\n\nI maintained this behavioral model for the first 42 years of my life, mortified that the in-group would disapprove and reject.\n\nMy longevity project released me from this constraint. I dramatically altered my physical appearance, experimented openly in public, posted weird things, and gleefully invited ridicule.\n\nIt was wonderfully joyful because Kate was by my side and all we cared about was maximizing exploration and play.\n\nWe became unleashed from the mob of conformity.\n\nI assumed I'd guaranteed myself a permanent spot in the social penalty box, banned from high-status associations. I was okay with that tradeoff.\n\nThen, to my great surprise, the opposite happened: high status circles eagerly invited us in.\n\nTwo principles explain this.\n\nFirst is Hollander's idiosyncrasy credit (\"elbow room\"): the leeway earned through competence to deviate from group norms without losing status.\n\nSecond is Zahavi's handicap principle: openly inviting ridicule via weirdness or self deprecation acts as a costly signal of internal security.\n\nIn other words, you can become an exception to the rule and earn special behavioral privileges.\n\nMy friends privately confide in me the tension between their ambitions and their fear of tribal ostracization. They don't want to lose status or be left out but they also want to find unique space for themselves and do novel things.\n\nYou can deviate from the status quo and find a singular signature for yourself in the world. You can become a pattern unlike anyone else.\n\nIt is uncomfortable and risky and you need the stamina to persist and iterate for years. It's best done when you feel secure internally as the outside world will try to crush the social deviation.\n\nOvercome the herd's contempt, and you arrive at the highest form of power: unbothered play.\n\nThese are Johnson's personal views."
+  },
+  {
+   "id": "johnson-skin-age-9-years-younger",
+   "topic": "johnson",
+   "date": "2026-11-27T21:21:24Z",
+   "url": "https://x.com/bryan_johnson/status/2126426186306015399",
+   "source": "X · @bryan_johnson",
+   "he": {
+    "title": "בריאן ג'ונסון: לבת הזוג שלו יש «עור בן 21»",
+    "summary": "ג'ונסון טוען שהוא וקייט הם חריגים עם עור צעיר ב-9 שנים מגילם, ומצטט פוסט שבו הוא מפרט את מה שעשה לעורו."
+   },
+   "en": {
+    "title": "Bryan Johnson: his partner has \"21-year-old skin\"",
+    "summary": "Johnson claims he and Kate are outliers with skin 9 years younger than their age, and quotes a post listing what he's done for his skin."
+   },
+   "full_he": "בריאן ג'ונסון כותב:\n\nלבת הזוג שלי יש עור בן 21.\n\nקייט ואני עובדים קשה על בריאות העור. אנחנו מודדים אנשים באופן שגרתי עם מכשיר העור «תקן הזהב» שלנו, והיא ואני חריגים, ושנינו עם עור צעיר ב-9 שנים מהגיל הכרונולוגי. עוד לא מדדנו אף אחד שעובר 9 שנים.\n\nהפוסט שהוא ציטט:\n«הפחתתי את גיל העור שלי ב-9 שנים. בגיל 30 גיל העור שלי היה 21. להלן כל מה שעשיתי עבור העור שלי, בהווה ובעבר:\n• מיקרו-מינון של אקוטן\n• תוסף חומצה היאלורונית\n• תוסף ויטמין C\n• תוסף אומגה 3\n• תוסף נחושת\n• תוסף ויטמין D\n• הימנעות מקרני UV\n• שינה טובה יותר\n• תזונה טובה יותר\n• פעילות גופנית טובה יותר\n• BHA\n• ניאצינאמיד\n• חומצה אזלאית\n• טרטינואין\n• טיפול באור אדום\n• מיקרונידלינג\n• IPL (BBL)\n• Sculptra\n• לייזר 1550nm\n• Sofwave\n• לייזר צבע פועם 595nm\n\nהשגתי את התוצאות האלה (עור בגיל 21) בלי בוטוקס ובלי חומרי מילוי. גם אתה יכול.»\n\nבהמשך הוא מצטט בתגובה עצמית נוספת פוסט מאפריל שמתאר טיפולי לייזר ו-RF ותוצאות במכשיר הדמיה (VISIA); בפוסט המצוטט כתוב שגיל העור הוא 39 לעומת גיל כרונולוגי 48.\n\nאלה טענות אישיות ולא ייעוץ רפואי. חלק מהטיפולים הם מרשמיים או פולשניים (למשל אקוטן וטרטינואין), ודורשים ייעוץ רפואי. אין הוכחה שהשיטה מתאימה לכל אדם.",
+   "full_en": "Bryan Johnson writes:\n\nmy girl has 21 yr old skin\n\nkate and I work hard on skin health. we routinely measure people with our gold standard skin device and she and I are outliers, both of us with skin that is 9 yrs younger than our chronological age. we've not yet measured anyone who exceeds 9 yrs\n\nThe quoted post:\n\"I reversed my skin age by 9 years. At age 30, my skin age was 21. Below is everything I've done for my skin. It includes both present and past:\n• Microdose of accutane\n• Hyaluronic acid supplement\n• Vitamin C supplement\n• Omega-3 supplement\n• Copper supplement\n• Vitamin D supplement\n• Avoid sun UV rays\n• Better sleep\n• Better nutrition\n• Better exercise\n• BHA, beta hydroxy acid\n• Niacinamide\n• Azelaic acid\n• Tretinoin\n• Red light therapy\n• Microneedling\n• IPL (BBL)\n• Sculptra\n• 1550nm\n• Sofwave\n• 595 nm pulsed dye laser\n\nI achieved these results (age 21 skin) without botox and filler. You can too.\"\n\nIn a further self-reply he quotes an April post describing laser and RF treatments and results on a VISIA imaging device; that quoted post says skin age 39 versus a chronological age of 48.\n\nThese are personal claims, not medical advice. Some of the treatments are prescription or invasive (for example accutane and tretinoin) and require medical advice. There's no evidence that the approach suits everyone."
+  },
+  {
+   "id": "durov-ios-update-warning",
+   "topic": "durov",
+   "date": "2026-11-27T23:08:38Z",
+   "url": "https://x.com/durov/status/2126453172403355908",
+   "source": "X · @durov",
+   "he": {
+    "title": "דורוב: «משתמשי אייפון נפרצים בהיקף נרחב», אזהרה לגרסאות iOS ישנות",
+    "summary": "דורוב מזהיר שמשתמשי אייפון עם iOS לא מעודכן חשופים לפריצה, ושטלגרם שולחת אזהרה לכל המשתמשים בגרסאות ישנות."
+   },
+   "en": {
+    "title": "Durov: \"iPhone users are being hacked on a massive scale,\" a warning for older iOS",
+    "summary": "Durov warns that iPhone users on outdated iOS are exposed to hacking, and that Telegram is sending a warning to all users on older versions."
+   },
+   "full_he": "פאבל דורוב כותב:\n\n🚨 משתמשי אייפון נפרצים בהיקף נרחב.\n\nאם ה-iOS שלך אפילו קצת לא מעודכן, כל הנתונים שלך בסיכון.\n\nמספיק לפתוח אתר כדי להיפרץ.\n\nאנחנו שולחים את האזהרה הזאת לכל המשתמשים שלנו בגרסאות iOS ישנות:\n\nהתמונה המצורפת היא הודעה מטלגרם:\n«⚠️ עדכן את ה-iOS כדי להגן על הטלפון שלך. גרסת ה-iOS שלך אינה מעודכנת ומכילה פרצות אבטחה שמעמידות את הנתונים והחשבונות שלך בסיכון.\nעדכן עכשיו:\n• פתח את הגדרות בטלפון\n• עבור אל כללי ← עדכון תוכנה\n• התקן את עדכון ה-iOS האחרון שזמין»\n\nהפוסט אינו מפרט אילו פרצות או באילו גרסאות מדובר.",
+   "full_en": "Pavel Durov writes:\n\n🚨 iPhone users are being hacked on a massive scale.\n\nIf your iOS is even slightly outdated, all your data is at risk.\n\nJust opening a website can be enough to get you hacked.\n\nWe're sending this warning to all our users on older iOS versions:\n\nThe attached image is a Telegram message:\n\"⚠️ Update iOS to protect your phone. Your version of iOS is outdated and contains security vulnerabilities that put your data and accounts at risk.\nUpdate now:\n• Open Settings on your phone\n• Go to General → Software Update\n• Install the latest available iOS update\"\n\nThe post doesn't say which vulnerabilities or which versions are involved."
+  },
+  {
+   "id": "durov-telegram-gifts-onchain",
+   "topic": "durov",
+   "date": "2026-11-26T15:35:03Z",
+   "url": "https://x.com/durov/status/2125976637795893711",
+   "source": "X · @durov",
+   "he": {
+    "title": "דורוב: מתנות טלגרם הן «ה-NFT היחידים שעדיין חיים»",
+    "summary": "לדברי דורוב, מתנות טלגרם עלו פי 2.5 מאז ההנפקה, ומסחר P2P בהן עבר השבוע לשרשרת בלוקצ'יין, עם עמלות נמוכות יותר."
+   },
+   "en": {
+    "title": "Durov: Telegram gifts are \"the only NFTs still alive\"",
+    "summary": "According to Durov, Telegram gifts are up 2.5x since issuance, and P2P trading in them moved on-chain this week, with lower fees."
+   },
+   "full_he": "פאבל דורוב כותב:\n\nמתנות טלגרם הן ה-NFT היחידים שעדיין חיים.\n\nהן עלו פי 2.5 מאז ההנפקה לפני שנה-שנתיים, למרות חורף הקריפטו.\n\nהשבוע, מסחר P2P במתנות בטלגרם עבר לשרשרת (on-chain):\n• מכירות והצעות רצות על חוזים חכמים\n• Grams מועברים מיד לארנקי המוכרים\n• העמלות ירדו מ-10% ל-2%\n\nאלה נתונים שדורוב מביא ללא מקור בפוסט.",
+   "full_en": "Pavel Durov writes:\n\nTelegram gifts are the only NFTs still alive.\n\nThey are up 2.5x since issuance 1–2 years ago, despite crypto winter.\n\nThis week, P2P gift trading on TG moved on-chain:\n• Sales & offers run on smart contracts\n• Grams go instantly to sellers' wallets\n• Fees cut from 10% to 2%\n\nThese are figures Durov gives without a source in the post."
+  },
+  {
+   "id": "cook-thanksgiving-2026",
+   "topic": "cook",
+   "date": "2026-11-26T14:00:00Z",
+   "url": "https://x.com/tim_cook/status/2125952715759268130",
+   "source": "X · @tim_cook",
+   "he": {
+    "title": "טים קוק: «אסיר תודה על משפחה, חברים וצוותי אפל»",
+    "summary": "ברכת חג ההודיה של קוק לצוותי אפל וללקוחות ברחבי העולם."
+   },
+   "en": {
+    "title": "Tim Cook: \"Grateful for family, friends, and our Apple teams\"",
+    "summary": "Cook's Thanksgiving message to Apple's teams and customers around the world."
+   },
+   "full_he": "טים קוק כותב:\n\nאסיר תודה על משפחה, חברים, וצוותי אפל והלקוחות שלנו ברחבי העולם. חג הודיה שמח!\n\nזה כל הפוסט.",
+   "full_en": "Tim Cook writes:\n\nGrateful for family, friends, and our Apple teams and customers around the world. Happy Thanksgiving!\n\nThat's the whole post."
+  },
+  {
+   "id": "starterstory-filip-bazzly-40k",
+   "topic": "starterstory",
+   "date": "2026-11-27T18:12:12Z",
+   "url": "https://x.com/starter_story/status/2126378574118883641",
+   "source": "X · @starter_story",
+   "he": {
+    "title": "Starter Story: 7 שנים בלי הכנסה, ואז SaaS ל-40 אלף דולר בחודש",
+    "summary": "פיליפ, מפתח תוכנה, בנה את Bazzly, כלי שיווק ל-Reddit, והגיע ל-40 אלף דולר MRR אחרי שהתחיל לשווק ולדבר עם משתמשים שנטשו."
+   },
+   "en": {
+    "title": "Starter Story: 7 years with $0, then a SaaS at $40K a month",
+    "summary": "Filip, a software developer, built Bazzly, a Reddit marketing tool, and reached $40K MRR after he started marketing and talking to churned users."
+   },
+   "full_he": "Starter Story כותבת (פוסט ארוך עם שתי תמונות):\n\nהוא בילה 7 שנים בבניית מוצרים והרוויח בדיוק 0 דולר. אחר כך ה-SaaS הבא שלו הגיע ל-15 אלף דולר בחודש, ושלושה שבועות אחר כך כבר ל-40 אלף.\n\nפיליפ הוא מפתח תוכנה. במשך 7 שנים הוא עשה את אותה טעות: השקיע את כל הזמן בבנייה כמעט בלי שיווק.\n\nאז הוא עשה את הדבר שהוא שנא. הוא אף פעם לא היה באינסטגרם או בטיקטוק, אבל התחיל להראות את הפנים ולבנות בפומבי ב-X.\n\nהמוצר: Bazzly, כלי שיווק ל-Reddit. הוא מוצא פוסטים שבהם אנשים מתארים את הבעיה שהמוצר שלך פותר, ואז ממליץ על ה-SaaS שלך באופן אוטומטי. תוכנית אחת: 199 דולר לחודש.\n\nלפני שכתב שורת קוד, הוא העלה דף רשימת המתנה ושלח הודעות פרטיות קרות באיקס. כשהמשיכו להגיד כן, בנה MVP על Supabase, Vercel ו-Railway (5 דולר לחודש).\n\nאיך גדל:\n• חודש 1: 100 דולר MRR מהודעות פרטיות ב-X ומשימוש בכלי שלו ב-Reddit, אבל נטישה של 40% ומעבר מניסיון לתשלום של 2%.\n• הוא לא הוסיף שיווק. הוא בילה 6 חודשים בשיחות עם משתמשים שנטשו. הנטישה ירדה ל-25% והמעבר לתשלום עלה ל-14%, וזה לקח אותו מ-100 דולר ל-1,000 דולר MRR בחודשיים.\n• ב-1,000 דולר הוא ציפה להגיע רק ל-3,000 עד סוף השנה, וזה היה איטי מדי, אז הציע לטיבו, אגדה של אינדי האקינג ב-X, שותפות של 50%.\n• הם שינו את המיצוב כך ש-Bazzly מביא לקוחות מ-Reddit בעזרת חשבונות ותיקים שלו, כדי שהחשבון שלך לא ייחסם. הם הגיעו ל-3,000 דולר MRR בחודשיים, ופיליפ אומר שלבד זה היה לוקח לו 8.\n• מ-3,000 ל-7,000 בחודש אחד בלי ערוצים חדשים. המעבר לתשלום הגיע ל-50%.\n• הביקוש גדל מעבר למלאי חשבונות Reddit שלהם, אז הם סגרו הרשמה, פתחו רשימת המתנה והכניסו משתמשים מדי שבוע. הם צמחו בהדרגה ל-15 אלף.\n\nהעדכון: אחרי ההקלטה, הנטישה ירדה מ-20% ל-12%, וערך הלקוח לאורך זמן (LTV) עלה מ-800 ל-1,500 דולר. הם הסירו את רשימת ההמתנה, התחילו לפרסם בלינקדאין, קידמו את תוכנית השותפים והגיעו ל-40 אלף דולר MRR.\n\nהלקח שלו: לבנות קודם עמוד שדרה וממשק מכירה מצוינים, ואז להוסיף ערוצי שיווק אחד אחד.\n\nזה סיפור שמסופר ב-Starter Story והמספרים הם של המרואיין. בתגובות העצמיות של הפרופיל יש קישורים לרשימות רעיונות ממותגות, שלא נכללו כאן.",
+   "full_en": "Starter Story writes (a long post with two images):\n\nHe spent 7 years building products and made exactly $0. Then his next SaaS hit $15K/month, and 3 weeks later it was at $40K/month.\n\nFilip is a software developer. For 7 years he made the same mistake: he spent all his time building and almost none of it marketing.\n\nSo he did the thing he hated. He'd never had Instagram or TikTok, but he started showing his face and building in public on X.\n\nThe product: Bazzly, a Reddit marketing tool. It finds posts where people describe the problem your product solves, then recommends your SaaS on autopilot. One plan: $199/month.\n\nBefore he wrote any code, he put up a waitlist page and cold DMed people on X. Once they kept saying yes, he built the MVP on Supabase, Vercel and Railway ($5/month).\n\nHow he grew it:\n• Month 1: $100 MRR from X DMs and using his own tool on Reddit. But churn was 40% and trial-to-paid was 2%.\n• He didn't add more marketing. He spent 6 months talking to users who churned. Churn dropped to 25% and trial-to-paid rose to 14%. That took him from $100 to $1K MRR in 2 months.\n• At $1K he expected to reach only $3K by the end of the year, which was too slow. So he offered Tibo, an indie hacking legend on X, a 50% partnership.\n• They repositioned Bazzly to get you customers from Reddit using its own aged accounts, so your account never gets banned. They hit $3K MRR in 2 months. Filip says that would have taken him 8 on his own.\n• $3K → $7K in 1 month with no new channels. Trial-to-paid hit 50%.\n• Demand got bigger than their supply of Reddit accounts. So they closed signups, started a waitlist and let users in weekly. They grew steadily to $15K.\n\nThe update: after recording, churn fell from 20% to 12% and LTV went from $800 to $1.5K. They removed the waitlist, started posting on LinkedIn, pushed the affiliate program and hit $40K MRR.\n\nHis lesson: build a great backbone and funnel first. Then add marketing channels one by one.\n\nThis is a Starter Story feature and the numbers are the interviewee's. The account's own follow-up replies link to its branded idea lists, which are not included here."
+  },
+  {
+   "id": "musk-spacex-shares-every-american-child",
+   "topic": "musk",
+   "date": "2026-11-28T03:33:40Z",
+   "url": "https://x.com/i/trending/2126177412891160650",
+   "source": "X",
+   "he": {
+    "title": "מאסק: שתי מניות ספייסאקס לכל ילד אמריקאי",
+    "summary": "מאסק הודיע שיעניק לכל ילד אמריקאי מתחת לגיל 18 שתי מניות ספייסאקס, אחת מהחברה ואחת ממנו, בשווי כולל של כ-18 מיליארד דולר."
+   },
+   "en": {
+    "title": "Musk: two SpaceX shares for every American child",
+    "summary": "Musk announced he'd give every U.S. child under 18 two SpaceX shares, one from the company and one from him, worth about $18 billion in total."
+   },
+   "full_he": "מיד לפני חג ההודיה הודיע אילון מאסק שיעניק לכל ילד אמריקאי מתחת לגיל 18 שתי מניות ספייסאקס: אחת מהחברה ואחת ממנו אישית, בשווי כולל של כ-18 מיליארד דולר.\n\nההתחייבות קשורה לתוכנית «חשבונות טראמפ», ומאסק הוסיף שיתרום עוד מניה בכל שנה כדי לבנות בעלות לטווח ארוך אצל הילדים. תומכים שיבחו זאת כפילנטרופיה וולונטרית שעוקפת בזבוז ממשלתי; מבקרים אמרו שמדובר בחלוקה מחדש לא מותאמת או הטילו ספק במניעים. פוסט אחד תפס את האירוניה: בימין התלהבו מהעברת העושר, ובשמאל רצו שזה ייעשה דרך מדיניות. מאסק מעודד להחזיק במניות כדי לתמוך בעתידה של ספייסאקס.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Just before Thanksgiving, Elon Musk announced he'd give every U.S. child under 18 two SpaceX shares: one from the company and one from him personally, worth about $18 billion in total.\n\nThe pledge ties into the Trump Accounts program, and Musk added he'd donate another share each year to build long-term ownership for kids. Supporters hailed it as voluntary philanthropy that skips government waste; critics called it mismatched redistribution or questioned its motives. One post captured the irony: right-wingers cheered the wealth transfer, left-wingers wanted it done through policy instead. Musk encourages holding the shares to support SpaceX's future.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "musk-tom-mueller-test-to-failure",
+   "topic": "musk",
+   "date": "2026-11-27T10:27:58Z",
+   "url": "https://x.com/i/trending/2126260500338299332",
+   "source": "X",
+   "he": {
+    "title": "טום מולר: גישת «לבדוק עד שזה נשבר» של מאסק",
+    "summary": "העובד הראשון של ספייסאקס מספר שמאסק הפך את תפיסת בדיקות הרקטות: לדחוף עד שזה נשבר, לתקן ולדחוף חזק יותר."
+   },
+   "en": {
+    "title": "Tom Mueller: Musk's test-to-failure philosophy",
+    "summary": "SpaceX's first employee says Musk flipped the script on rocket testing: push until it breaks, then fix and push harder."
+   },
+   "full_he": "טום מולר, העובד הראשון של ספייסאקס, נזכר באיך מאסק הפך את תפיסת בדיקות הרקטות: לדחוף עד שזה נשבר, לתקן ולדחוף חזק יותר.\n\nבראיון עדכני הוא הנגיד את הכלל בעבודתו הקודמת, «לעולם לא לפוצץ מנוע», לגישה הנועזת של מאסק: למצוא את נקודות השבירה כדי להתקדם מהר. התפיסה הזאת האיצה את ההתקדמות במנועי Merlin, שעדיין משמשים את Falcon 9, ועזרה להתגבר על כישלונות Falcon 1 המוקדמים בדרך להשבה ושימוש חוזר.\n\nמולר סיפר שמאסק זיהה את כישרונו בשיחה מקרית ב-2002 על רקטות חובבים, וכך נשכר, ונוצרה תרבות שמתמקדת ביעדי מאדים. כיום הוא מוביל את Impulse Space ונושא איתו את לקחי לקיחת הסיכון.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Tom Mueller, SpaceX's first employee, remembered Elon Musk flipping the script on rocket testing: push until it breaks, then fix and push harder.\n\nIn a recent interview, Mueller contrasted his old job's safe \"never blow up an engine\" rule with Musk's bold approach of finding breaking points to iterate fast. That mindset fueled rapid progress on the Merlin engines, still used on Falcon 9 today, and helped overcome early Falcon 1 failures on the way to reusability.\n\nMueller said Musk spotted his talent during a casual 2002 chat about amateur rockets, leading to his hiring and a culture focused on Mars goals. Now leading Impulse Space, Mueller carries those risk-embracing lessons forward.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "tesla-tops-german-private-ev-switches",
+   "topic": "tesla",
+   "date": "2026-11-26T17:52:44Z",
+   "url": "https://x.com/i/trending/2126009411193778450",
+   "source": "X",
+   "he": {
+    "title": "טסלה במקום הראשון בגרמניה בקרב נהגים פרטיים שעוברים לחשמלי",
+    "summary": "לפי ה-E-Barometer של HUK-COBURG, טסלה תפסה 10.1% מההחלפות ממנועי בעירה בגרמניה, לראשונה בראש הדירוג."
+   },
+   "en": {
+    "title": "Tesla tops German private EV switches for the first time",
+    "summary": "HUK-COBURG's E-Barometer shows Tesla taking 10.1% of switches from combustion cars in Germany, its first lead in the ranking."
+   },
+   "full_he": "בלב מעצמת הרכב של גרמניה, נהגים פרטיים שנפרדו ממכוניות בנזין ודיזל בחרו בטסלה יותר מכל מותג אחר השנה.\n\nה-E-Barometer העדכני של HUK-COBURG, שעוקב אחרי נתוני ביטוח של 14.5 מיליון כלי רכב עד ספטמבר 2026, מראה שטסלה תפסה 10.1% מההחלפות ממנועי בעירה, יותר מכפול מחלקה ב-2025 ולפני סקודה עם 9.8%. זו הפעם הראשונה שטסלה מובילה בדירוג, עם תוצאות חזקות עוד יותר במזרח גרמניה, כמעט 16%, בעוד פולקסווגן ירדה ל-4.5% במקום העשירי. מחירי דלק גבוהים יותר וחזרת תמריצים הניעו את העלייה הכללית בבחירת רכב חשמלי בקרב קונים פרטיים.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "In the heart of Germany's auto powerhouse, private drivers ditching petrol and diesel cars picked Tesla more than any other brand this year.\n\nHUK-COBURG's latest E-Barometer, tracking insurance data from 14.5 million vehicles through September 2026, shows Tesla grabbing 10.1% of switches from combustion engines, more than double its 2025 share and ahead of Škoda at 9.8%. This marks Tesla's first lead in the rankings, with even stronger results in eastern Germany at nearly 16%, while Volkswagen slipped to 4.5% in tenth place. Higher fuel prices and returning incentives fueled the overall rise in EV choices among private buyers.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "tesla-emag-asset-purchase-optimus",
+   "topic": "tesla",
+   "date": "2026-11-28T02:08:49Z",
+   "url": "https://x.com/i/trending/2126293952034725946",
+   "source": "X",
+   "he": {
+    "title": "טסלה מבקשת לרכוש נכסים של EMAG הגרמנית עבור אופטימוס",
+    "summary": "ב-23 בנובמבר הגישה טסלה לרשות ההגבלים הגרמנית בקשה לרכוש נכסים של EMAG, יצרנית מכונות דיוק, לייצור רכיבי הרובוט."
+   },
+   "en": {
+    "title": "Tesla files to acquire EMAG assets for Optimus production",
+    "summary": "On November 23 Tesla filed with Germany's cartel office to buy assets from EMAG, a precision-machine maker, for robot components."
+   },
+   "full_he": "ב-23 בנובמבר הגישה טסלה לרשות ההגבלים העסקיים הגרמנית תוכנית לרכוש נכסים של EMAG, יצרנית בת 157 שנים של מכונות דיוק לחריטה, שחיקה וחיתוך גלגלי שיניים, שמתאימות לרכיבי רובוט כמו flexsplines וגלגלי שיניים פלנטריים. העסקה כוללת ציוד לעיבוד בלייזר, וכ-220 עובדי EMAG בסלאך עשויים לעבור לטסלה, שרשמה שם חברה חדשה.\n\nזה משתלב באסטרטגיית טסלה לשלוט באיכות ובעלויות הייצור של אופטימוס, במיוחד ידי הרובוט, על רקע הקשיים האחרונים של EMAG בהאטה בענף הרכב. הבדיקה ההגבלית רק מתחילה, והחלטה צפויה בתוך חודש.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "On November 23, Tesla filed plans with Germany's Federal Cartel Office to buy assets from EMAG, a 157-year-old maker of high-precision turning, grinding and gear-cutting machines ideal for robot components like flexsplines and planetary gears. The deal includes equipment for laser processing and could see around 220 EMAG employees in Salach join Tesla, which has registered a new company there.\n\nThis fits Tesla's strategy of controlling Optimus production quality and costs, especially for dexterous robot hands, amid EMAG's recent challenges in the automotive slowdown. The antitrust review is just starting, with a decision expected within a month.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "tesla-stock-400-close-merger-talks",
+   "topic": "tesla",
+   "date": "2026-11-28T03:11:55Z",
+   "url": "https://x.com/i/trending/2126455708312801357",
+   "source": "X",
+   "he": {
+    "title": "מניית טסלה נסגרה בדיוק על 400 דולר, על רקע שיחות המיזוג עם ספייסאקס",
+    "summary": "ב-27 בנובמבר עלתה המניה 5.22% ל-400 דולר. ההתלהבות התערבבה עם דיבורים על שיחות מיזוג שטרם הגיעו להסכם."
+   },
+   "en": {
+    "title": "Tesla stock closes at exactly $400 amid SpaceX merger talks",
+    "summary": "On Nov. 27 the stock rose 5.22% to $400. Excitement mixed with talk of merger discussions that have not reached a deal."
+   },
+   "full_he": "מניית טסלה סיימה את ה-27 בנובמבר בדיוק על 400.00 דולר, מספר עגול שגרם למשקיעים לעודד אחרי שבועות של עליות וירידות.\n\nהמניה עלתה 5.22% מ-380.14 דולר, בנפח של 26.6 מיליון מניות, וחיזקה את ההתלהבות בקרב מחזיקים קמעונאיים. השלב קשור לשיחות מיזוג מתמשכות בין טסלה לספייסאקס הפרטית, שבהן ועדות מיוחדות שכרו בנקים לבחון תנאים; לא נקבעה עסקה, והיא תחייב אישור של יותר מ-50% מבעלי המניות. בשיח עלו יחסי חילופין כמו 3.5 מניות ספייסאקס לכל מניית טסלה, דרישות לפרמיה סביב 500 דולר, והערה של אילון מאסק שהשווי המשותף של ספייסאקס צפוי לגדול משמעותית.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Tesla shares wrapped up November 27 at precisely $400.00, a round number that had investors cheering after weeks of ups and downs.\n\nThe stock rose 5.22% from $380.14, on volume of 26.6 million shares, fueling excitement among retail holders. The move coincided with ongoing merger discussions between Tesla and private SpaceX, where special committees hired banks to explore terms; no deal is set and it would need over 50% shareholder approval. Chatter focused on exchange ratios like 3.5 SpaceX shares per Tesla share, premium demands around $500, and Elon Musk's note that a combined SpaceX market cap would likely grow substantially larger.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "spacex-fcc-approves-starmind",
+   "topic": "spacex",
+   "date": "2026-11-27T15:05:10Z",
+   "url": "https://x.com/i/trending/2125631919014707426",
+   "source": "X",
+   "he": {
+    "title": "ה-FCC אישרה למיליון לווייני מרכזי נתונים מסלוליים של ספייסאקס",
+    "summary": "ב-25 בנובמבר אישרה ה-FCC את קבוצת הלוויינים Starmind: עד מיליון לוויינים לעיבוד נתונים במסלול."
+   },
+   "en": {
+    "title": "FCC approves SpaceX's million-satellite orbital data centers",
+    "summary": "On Nov. 25 the FCC approved the Starmind constellation: up to one million satellites for data processing in orbit."
+   },
+   "full_he": "ב-25 בנובמבר 2026 אישרה ה-FCC את קבוצת הלוויינים Starmind של ספייסאקס, שמתירה עד מיליון לוויינים במסלול נמוך לעיבוד נתונים. הלוויינים יפעלו באנרגיית שמש רציפה, יעבדו נתונים על הלוויין וישלחו תוצאות בקישורי לייזר לרשת Starlink.\n\nיו״ר ה-FCC ברנדן קאר הציג זאת כצעד להובלה אמריקאית בבינה על-אנושית, ואילון מאסק קרא לזה נכס גדול לאמריקה ולעולם. מבקרים חוששים מפסולת חלל, זיהום אור והתנגשויות, אך ה-FCC דחתה אתגרים אלה כמחוץ לתחום סמכותה והציבה אבני דרך קשיחות לפריסה עד 2040.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "On November 25, 2026, the FCC greenlit SpaceX's Starmind constellation, allowing up to one million satellites in low Earth orbit for data processing. The satellites will use continuous solar power, process data onboard, and send results back via laser links to the Starlink network.\n\nFCC Chairman Brendan Carr hailed it as a step toward U.S. leadership in super intelligence, and Elon Musk called it a great asset to America and the world. Critics worry about orbital debris, light pollution and collisions, but the FCC dismissed those challenges as outside its scope, setting strict deployment milestones through 2040.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "spacex-mexico-seeks-talks-debris",
+   "topic": "spacex",
+   "date": "2026-11-28T01:53:44Z",
+   "url": "https://x.com/i/trending/2125995650776994269",
+   "source": "X",
+   "he": {
+    "title": "מקסיקו מבקשת שיחות עם ארה״ב על המרחב האווירי והפסולת של ספייסאקס",
+    "summary": "הנשיאה שיינבאום ביקשה פגישה בין סוכנויות החלל על שימוש ספייסאקס במרחב האווירי המקסיקני, תדירות שיגורים ופסולת רקטות."
+   },
+   "en": {
+    "title": "Mexico seeks U.S. talks on SpaceX airspace and debris",
+    "summary": "President Sheinbaum asked for a meeting of the space agencies on SpaceX's use of Mexican airspace, launch frequency and rocket debris."
+   },
+   "full_he": "חלקי רקטות משיגורי ספייסאקס בטקסס נסחפו לחופי מקסיקו, והנשיאה קלאודיה שיינבאום קראה לשיחות רשמיות עם הרשויות בארה״ב.\n\nבמסיבת העיתונאים הבוקר הודיעה שיינבאום שמקסיקו מבקשת פגישה בין סוכנויות החלל של שתי המדינות כדי לדון בשימוש ספייסאקס במרחב האווירי המקסיקני, במגבלות על תדירות השיגורים ובבעיות פסולת מ-Starbase ליד הגבול. פקידי סביבה אספו שברים מטיסת הבדיקה של Starship מ-13 בנובמבר בחוף Playa Bagdad בטמאוליפס. המאמץ מתמקד בתיאום בין ממשלות ולא במגע ישיר עם ספייסאקס, ואין עדיין תוכניות לעצור שיגורים או להעביר את האתר.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Rocket pieces from SpaceX's Texas launches have washed up on Mexican beaches, prompting President Claudia Sheinbaum to call for formal talks with U.S. authorities.\n\nDuring her morning press conference, Sheinbaum announced that Mexico is requesting a meeting between U.S. and Mexican space agencies to discuss SpaceX's use of Mexican airspace, launch frequency limits and rocket debris from Starbase near the border. Environmental officials recovered fragments from a November 13 Starship test flight on Playa Bagdad in Tamaulipas. The effort focuses on government coordination rather than direct talks with SpaceX, with no plans yet to stop launches or relocate the site.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "spacex-ship-42-booster-22-stack",
+   "topic": "spacex",
+   "date": "2026-11-28T03:47:03Z",
+   "url": "https://x.com/i/trending/2126442821519552612",
+   "source": "X",
+   "he": {
+    "title": "סרטון זמן: Ship 42 מורכבת על Booster 22 בסטארבייס",
+    "summary": "סרטון מואץ מראה את Ship 42 מורמת ומוצמדת ל-Booster 22; מאסק אמר שהתהליך יהיה בקרוב אוטומטי וימשך פחות מחמש דקות."
+   },
+   "en": {
+    "title": "Time-lapse: Ship 42 stacks onto Booster 22 at Starbase",
+    "summary": "A time-lapse shows Ship 42 lifted and mated to Booster 22; Musk said the process will soon be automated and take under five minutes."
+   },
+   "full_he": "סרטון מואץ מסטארבייס בטקסס מציג את Ship 42 מורמת בזרועות מכניות ומוצמדת בדיוק על Booster 22, תהליך שאילון מאסק מכנה «הנדסה יפה».\n\nהקליפ מתעד את ההרמה הראשית שנמשכת כ-30 דקות ועוד זמן ליישור, על הרקטה המסלולית הגדולה בעולם שגובהה 408 רגל כשהיא מורכבת. מאסק ציין שהתהליך יהיה בקרוב אוטומטי לגמרי ויימשך פחות מחמש דקות. מעריצים חגגו עשור של התקדמות מרעיון לחומרה אמיתית, וקשרו זאת ליעדי ספייסאקס לשימוש חוזר מהיר ולשיגורים תכופים, בעוד חלקם פקפקו באמינות האוטומציה.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "A mesmerizing time-lapse from Starbase in Texas shows Ship 42 being lifted by mechanical arms and precisely docked onto Booster 22, a process Elon Musk calls \"beautiful engineering.\"\n\nThe clip captures the 30-minute main lift plus extra time for alignment on the world's largest orbital rocket, standing 408 feet tall when stacked. Musk noted the process will soon be fully automated and under five minutes. Fans celebrated the decade of progress from concept to real hardware, tying it to SpaceX's goals for rapid reusability and frequent launches, though some questioned automation's reliability.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "grok-4-8-cpp-rewrite",
+   "topic": "grok",
+   "date": "2026-11-27T14:07:49Z",
+   "url": "https://x.com/i/trending/2126139918422581463",
+   "source": "X",
+   "he": {
+    "title": "מאסק מרמז על כתיבה מחדש של Grok 4.8 ב-C++ לשיפור יעילות",
+    "summary": "SpaceXAI בנתה מחדש את Grok 4.8 בקוד נמוך-רמה במקום מסגרות סטנדרטיות, ומאסק ענה «תראו» לשאלות על הסיבה."
+   },
+   "en": {
+    "title": "Musk teases Grok 4.8's custom C++ rewrite for efficiency",
+    "summary": "SpaceXAI rebuilt Grok 4.8 in low-level code instead of standard frameworks, and Musk replied \"You'll see\" when asked why."
+   },
+   "full_he": "התשובה הקצרה של אילון מאסק, «תראו», מסקרנת אנשים לגבי הסיבה שהצוות שלו בנה מחדש את Grok 4.8 מהיסוד ב-C ו-C++.\n\nלפי הסיכום, SpaceXAI זנחה מסגרות סטנדרטיות כמו JAX לטובת קוד נמוך-רמה מותאם, בהובלת מהנדסי Starlink, כדי לשלוט בדיוק בזיכרון ובנתונים על חומרת Nvidia. המודל, בן 2.5 טריליון פרמטרים, סיים אימון מקדים בנובמבר אך נתקל בעיכובים בגלל הכתיבה מחדש, ונשאר בבטא. מאסק אומר שהוא «עדיין לא מדהים» ומביט להובלה עם Grok 5 בקרוב. בקנה מידה המתוכנן של ספייסאקס, 13 גיגה-וואט ב-2027, שיפורי היעילות האלה יכולים לפתוח כוח חישוב של גיגה-וואטים בלי חומרה חדשה, אבל עדיין אין מבחני ביצועים.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Elon Musk's simple reply, \"You'll see,\" has people buzzing about why his team rebuilt Grok 4.8 from the ground up in C and C++.\n\nAccording to the summary, SpaceXAI ditched standard frameworks like JAX for custom low-level code, led by Starlink engineers, to gain precise control over memory and data on Nvidia hardware. The 2.5-trillion-parameter model finished pre-training in November but faced delays from the rewrite, remaining in beta; Musk calls it \"not yet incredible\" while eyeing leadership with Grok 5 soon. At SpaceX's planned 13-gigawatt scale by 2027, these efficiency boosts could unlock compute power equal to gigawatts without new hardware, though benchmarks are still pending.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "grok-musk-defends-spacex-ai-compute-pivot",
+   "topic": "grok",
+   "date": "2026-11-25T15:46:27Z",
+   "url": "https://x.com/i/trending/2124933166935007507",
+   "source": "X",
+   "he": {
+    "title": "מאסק מגן על המעבר של SpaceXAI להשכרת כוח חישוב",
+    "summary": "דיווח של ה-New York Times על קשיי ה-AI של ספייסאקס: מאסק אמר שזה «ברור» וביקש לתעדף השכרת GPU להכנסות."
+   },
+   "en": {
+    "title": "Musk defends SpaceX AI pivot to renting compute",
+    "summary": "A New York Times report on SpaceX's AI struggles: Musk called it \"obvious\" and pushed staff to focus on renting out GPUs for revenue."
+   },
+   "full_he": "אילון מאסק התייחס לדיווח של ה-New York Times על קשיי ה-AI של ספייסאקס כאל חדשות «ברורות», וחשף את הדחיפה שלו שהעובדים יתמקדו בהשכרת GPU לצורכי הכנסה.\n\nהדיווח תיאר הודעות פנימיות של מאסק שבהן הודה שספייסאקס מפגרת אחרי יריבות ב-AI, ושינה שם של קבוצת צ'אט ל-«למכור חישוב כי אנחנו לא יכולים להתחרות», והזהיר מהנדסים להצדיק שימוש ב-GPU או לעזוב. יחידת ה-AI של ספייסאקס מביאה כיום יותר ממחצית הכנסות החברה, בעיקר מעסקאות של 3.1 מיליארד דולר בחודש עם Anthropic ו-800 מיליון עם גוגל, ומממנת פרויקטים כמו מרכז הנתונים Colossus במרפיס. בין צמצום מאמצים פנימיים, כמו פירוק צוות Grok Imagine בן 60 איש, מאסק הדגיש סדרי עדיפויות מעשיים וחישוב כגורם מגביל ב-AI.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Elon Musk called a New York Times report on SpaceX's AI struggles just \"obvious\" news, while revealing his push for employees to focus on renting out GPUs for revenue.\n\nThe report detailed Musk's internal messages admitting SpaceX trails AI rivals, leading him to rename a group chat \"Sell compute because we can't compete\" and warn engineers to justify GPU use or leave. SpaceX's AI unit now brings in over half the company's revenue, mainly from $3.1 billion monthly deals with Anthropic and $800 million with Google, funding projects like the Colossus data center in Memphis. Amid scaling back some in-house efforts, like disbanding a 60-person Grok Imagine team, Musk emphasized practical priorities and compute as the key limiter in AI development.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "grokbot-gavin-baker-chatgpt-moment",
+   "topic": "grokbot",
+   "date": "2026-11-27T22:14:56Z",
+   "url": "https://x.com/i/trending/2126437475656806631",
+   "source": "X",
+   "he": {
+    "title": "גיווין בייקר: Grok Bot הוא «רגע ChatGPT» נוסף",
+    "summary": "ב-a16z סיפר המשקיע גיווין בייקר שבנה ב-Grok Bot כלים שלקחו לו שעות עם Claude Code, כל אחד תוך 7-12 שניות."
+   },
+   "en": {
+    "title": "Gavin Baker hails Grok Bot as another ChatGPT moment",
+    "summary": "In an a16z interview, investor Gavin Baker said he built tools in Grok Bot that took hours with Claude Code, each in 7-12 seconds."
+   },
+   "full_he": "המשקיע הוותיק גיווין בייקר בנה כלים בשניות עם Grok Bot, כלים שפעם לקחו לו שעות עם Claude Code, וקרא לזה משנה משחק, כמו הגעת ChatGPT מחדש.\n\nבראיון ל-a16z סיפר בייקר, מנהל ההשקעות הראשי של Atreides Management, ש-Grok Bot יצר מסכם פודקאסטים, מסכם Substack, מסכם X ומנטר סנטימנט, כל אחד תוך 7-12 שניות, מהר ובאיכות טובה בהרבה משעות עם Claude Code של Anthropic. עם 27 שנים בהשקעות בטכנולוגיה, הוא התפעל מהשפה הטבעית של צעירים עם AI, ואמר שהוא לעולם לא ישיג אותם עד הסוף למרות מאמציו. אילון מאסק שיתף את הקליפ וציין ש-Grok Bot ממשיך להשתפר, ומפתחים ומשקיעים מדגישים את המעבר שלו לחברי צוות דיגיטליים מעשיים למשימות כמו מייל ופגישות.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Veteran investor Gavin Baker built tools in seconds with Grok Bot that once took him hours using Claude Code. He called it a game-changer, like ChatGPT's arrival all over again.\n\nIn an a16z interview, Atreides Management CIO Gavin Baker shared how Grok Bot created a podcast summarizer, Substack summarizer, X summarizer and sentiment tracker, each in 7-12 seconds, far faster and better than hours with Anthropic's Claude Code. With 27 years in tech investing, Baker marveled at young users' native fluency with AI, feeling he'll never quite catch up despite his efforts. Elon Musk shared the clip, noting Grok Bot keeps improving, as developers and investors highlight its shift toward practical digital teammates for workflows like email and meetings.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "grokbot-v1-3-0-bot-handoffs",
+   "topic": "grokbot",
+   "date": "2026-11-27T23:15:26Z",
+   "url": "https://x.com/i/trending/2125741643605459003",
+   "source": "X",
+   "he": {
+    "title": "Grok Bot 1.3.0: העברת משימות בין בוטים ושיפורי עבודת צוות",
+    "summary": "עדכון מ-24 בנובמבר מוסיף העברות בין בוטים בהודעות פרטיות, הערות שם בקבוצות, התראות חידוש מלאי וחיבורים חדשים."
+   },
+   "en": {
+    "title": "Grok Bot 1.3.0 rolls out with team collaboration boosts",
+    "summary": "The Nov. 24 update adds bot-to-bot hand-offs in DMs, name wake-ups in group chats, restock alerts and new connectors."
+   },
+   "full_he": "אילון מאסק שיתף ש-Grok Bot משתפר מדי שבוע, ועכשיו מאפשר לצוותי סוכני AI להעביר משימות זה לזה בצורה חלקה ישר בשיחות.\n\nעדכון 24 בנובמבר 2026 מוסיף העברות בין בוטים עם כפתורי Connect בהודעות פרטיות, יקיצה לפי שם בצ'אטים קבוצתיים, התראות על חידוש מלאי וחיבורים חדשים כמו Ashby לגיוס ו-QuickBooks. משתמשים אוהבים איך הבוטים הקבועים האלה מטפלים במחקר, הזמנות, מכירות ועוד, והופכים שעות עבודה לשניות. אחד קרא לזה הסוכן האוטונומי הראשון שלו שעדיין בשימוש יומיומי אחרי חודשים. מאסק ציין שיש שיפורים גדולים כל שבוע, ומדריכים חינמיים עוזרים להקים בוטים ייעודיים לתפקידים כמו ראש מטה והנדסה, שחולקים זיכרון ופועלים בשגרות עצמאיות.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Elon Musk shared that Grok Bot keeps improving weekly, now letting teams of AI agents hand off tasks seamlessly right in your chats.\n\nThe November 24, 2026 update adds bot-to-bot hand-offs with Connect buttons in DMs, name-wakeups in group chats, restock alerts and new connectors like Ashby for recruiting and QuickBooks. Users love how these persistent bots handle research, bookings, sales and more, turning hours of work into seconds; one called it their first autonomous agent still in daily use after months. Musk noted major enhancements every week, with free guides helping set up specialized bots for roles like chief of staff or engineering that share memory and run routines independently.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "grokbot-11-percent-more-usage",
+   "topic": "grokbot",
+   "date": "2026-11-28T03:55:04Z",
+   "url": "https://x.com/i/trending/2126082898680029490",
+   "source": "X",
+   "he": {
+    "title": "משתמשי Grok Bot מקבלים 11% יותר שימוש מאופטימיזציות חדשות",
+    "summary": "סם סוקולין הודיע ב-26 בנובמבר שחידודים במערכת השגרות חוסכים חישובים מיותרים, ומוסיפים 11% שימוש, ועד 50% לשגרות."
+   },
+   "en": {
+    "title": "Grok Bot subscribers gain 11% more usage from latest optimizations",
+    "summary": "Sam Sokolin announced on Nov. 26 that refinements to the routine system skip unnecessary computations, adding 11% usage, up to 50% for routines."
+   },
+   "full_he": "משתמשי Grok Bot קיבלו חיזוק: 11% קילומטראז' נוסף מהחבילות, ועד 50% יותר לשגרות, בזכות טיפול חכם יותר במשימות חוזרות.\n\nסם סוקולין הודיע ב-26 בנובמבר שחידודים במערכת השגרות מדלגים על חישובים מיותרים, ומתווספים לשיפורים קודמים של 7% בשימוש כללי ו-15% בשגרות. אילון מאסק ממליץ לבנות בוטים ייעודיים כמו צוות בחברה, עם בוט מנהל שמתאם כדי למנוע עומס, בדיוק כמו אצל עובדים אנושיים. משתמשים כבר מפעילים עשרות בוטים למשימות כמו מחקר וקוד, והופכים את Grok Bot לכוח עבודה דיגיטלי מלא שמרגיש כמו צוות אמיתי.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Grok Bot users just got a welcome boost: 11% extra mileage from their plans, and up to 50% more for routines, thanks to smarter handling of repetitive tasks.\n\nSam Sokolin announced on November 26 that refinements to the routine system skip unnecessary computations, stacking on prior gains of 7% general usage and 15% for routines. Elon Musk advises building specialized bots like a company team, with a manager bot coordinating to avoid overload, just as with human workers. Users are already running dozens for tasks like research and coding, turning Grok Bot into a full digital workforce that feels like a real team.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "apple-iphone-duo-one-month-owners",
+   "topic": "apple",
+   "date": "2026-11-28T03:03:27Z",
+   "url": "https://x.com/i/trending/2126065060632199188",
+   "source": "X",
+   "he": {
+    "title": "בעלי iPhone Duo אחרי חודש: הסנטימנט הפך חיובי",
+    "summary": "חודש אחרי ההשקה, בעלי הטלפון המתקפל של אפל משבחים את העיצוב והפרודוקטיביות, אף שחלקם מתגעגעים לעדשת הזום."
+   },
+   "en": {
+    "title": "iPhone Duo owners embrace the foldable after a month",
+    "summary": "A month after launch, owners of Apple's foldable praise its design and productivity, though some miss the zoom lens."
+   },
+   "full_he": "חודש אחרי ההשקה, בעלי iPhone Duo מתיישבים בחיים עם מכשיר מתקפל, ומגלים דרכים חדשות לקרוא, לעבוד ולעבור בין משימות בלי גלילה חסרת מחשבה.\n\niPhone Duo של אפל, שיצא ב-23 באוקטובר 2026, מתחיל ב-1,999 דולר, עם מסך חיצוני של 5.4 אינץ' שנפתח ל-7.6 אינץ', שבב A20 Pro ושתי מצלמות 48MP. משתמשים כמו הסוקר Yash והסופר Michael Hyatt קוראים לו האייפון האהוב עליהם עד כה, ומשבחים את מבנה הטיטניום, עבודה חלקה באפליקציות כמו Slack וקמט כמעט בלתי מורגש. חלקם מתגעגעים לעדשת הזום ומציינים התאמות באפליקציות, אבל הסנטימנט הפך חיובי כשהשימוש הממושך חושף את קסמו כהיבריד כיס בין טלפון לטאבלט קטן.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "A month after launch, iPhone Duo owners are settling into the foldable life, discovering fresh ways to read, work and switch tasks without mindless scrolling.\n\nApple's iPhone Duo, released October 23, 2026, starts at $1,999 with a 5.4-inch outer screen that unfolds to 7.6 inches, powered by the A20 Pro chip and dual 48MP cameras. Early users like reviewer Yash and author Michael Hyatt call it their favorite iPhone yet, praising the titanium build, smooth productivity in apps like Slack, and a barely noticeable crease. While some miss the zoom lens and note app tweaks, sentiment has turned positive as hands-on time reveals its appeal as a pocketable mini-tablet hybrid.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "apple-iphone-duo-keyboard-case-debate",
+   "topic": "apple",
+   "date": "2026-11-26T02:23:57Z",
+   "url": "https://x.com/i/trending/2125673407496823028",
+   "source": "X",
+   "he": {
+    "title": "מארז מקלדת ב-249 דולר ל-iPhone Duo מעורר ויכוח",
+    "summary": "מארז Nøord הופך את הטלפון המתקפל לסטאפ דמוי מחשב נייד; מבקרים רואים בכך חוסר טעם, ואחרים משבחים נוחות."
+   },
+   "en": {
+    "title": "A $249 keyboard case for the iPhone Duo divides opinion",
+    "summary": "The Nøord case turns the foldable into a laptop-like setup; critics call it redundant, others praise the convenience."
+   },
+   "full_he": "בעלי iPhone Duo הראשונים מתלהבים מהעיצוב הדק שנפתח למסך גדול לעבודה בדרכים. אבל מארז מקלדת חדש ב-249 דולר גורם לחלק לתהות אם הוא מחמיץ את מטרת המכשיר המתקפל.\n\nה-iPhone Duo, שהושק באוקטובר עם מסך חיצוני של 5.4 אינץ' ופנימי של 7.6 אינץ', מתחיל ב-1,999 דולר ופועל על שבב A20 Pro. מארז Nøord מחזיק אותו פתוח מעל מקלדת מלאה וטראקפד לחוויה דמוית מחשב נייד. ביקורת: Noah Cat אומר שזה מיותר לעומת iPad mini, בעוד מעריצים, וגם מארק גורמן מבלומברג, משבחים את הנוחות של מכשיר אחד לפרודוקטיביות ולריבוי משימות. משתמשים מדגישים את מסך ה-nano-texture הפרימיום ואת הגמישות, אך שינויי תוכנה ועיכובי אספקה נשארים נושאי שיחה.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Early iPhone Duo owners are raving about its slim design that unfolds into a big screen for work on the go. But a new $249 keyboard case has some questioning if it misses the point of a foldable.\n\nApple's iPhone Duo, launched in October with a 5.4-inch outer screen and 7.6-inch inner display, starts at $1,999 and runs on the A20 Pro chip. The Nøord keyboard case props it open over a full keyboard and trackpad for a laptop-like setup, sparking debate: critics like Noah Cat call it redundant compared to an iPad mini, while fans and Bloomberg's Mark Gurman praise the single-device convenience for productivity and multitasking. Users highlight the premium nano-texture display and versatility, though software tweaks and supply delays remain talking points.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "ternus-cityam-new-boss-feels-familiar",
+   "topic": "ternus",
+   "date": "2026-11-24T05:20:00Z",
+   "url": "https://www.cityam.com/john-ternus-did-you-even-notice-apple-has-a-new-boss/",
+   "source": "City AM",
+   "he": {
+    "title": "טרנוס אחרי שלושה חודשים: מנכ״ל חדש שמרגיש מוכר",
+    "summary": "מאמר דעה ב-City AM מציין ששלושה חודשים אחרי שהחל, טרנוס פיקח על טלפון מתקפל, מסך בית חכם ומקבוק פרו עם מסך מגע, ובכל זאת מעט מרגיש שונה."
+   },
+   "en": {
+    "title": "Ternus three months in: a new CEO who feels familiar",
+    "summary": "A City AM opinion piece notes that three months in, Ternus has overseen a foldable iPhone, a smart-home display and a touchscreen MacBook Pro, yet little feels different."
+   },
+   "full_he": "במאמר דעה ב-City AM (24 בנובמבר) כותב ניל ווסט, לשעבר ראש המוזיקה של אפל, על שלושת החודשים הראשונים של ג'ון טרנוס כמנכ״ל.\n\nבשלושה חודשים עמוסים פיקח טרנוס על השקת טלפון מתקפל, מסך בית חכם ומקבוק פרו עם מסך מגע. אחרי שנים של ביקורת שאפל איבדה את התיאבון לצעדים נועזים, נראה שהחברה מוכנה להרפתקנות יותר. ובכל זאת, כותב ווסט, כשהוא צופה בטרנוס על הבמה, בראיונות ובסלפי עם לקוחות בחנויות, הוא מתרשם כמה מעט השתנה: הוא נראה ונשמע כמנהל אפל, מדבר על אותם ערכים ומרגיש בבית בטקסי ההשקה של אפל.\n\nהוא חושד שזה לא מקרה: אפל רוצה לרגש לקוחות במוצרים חדשים ובו בזמן להרגיע שהחברה שהם סומכים עליה לא עומדת להפוך לבלתי ניתנת לזיהוי. הנאום הראשון של טרנוס הדגיש המשכיות ולא חזון גדול חדש, והוא מדבר על מצוינות, פשטות ומוצרים מעולים, כמו קודמיו. ווסט מסכם שמוקדם לשפוט את הנהגתו, אבל יש כאן לקח למנהלים שמנהלים שינוי: ככל שהעתיד שאתה מבקש מאנשים לאמץ הרפתקני יותר, כך כדאי להשקיע יותר כדי שהכול סביבו ירגיש מוכר.\n\nזו דעתו של כותב המאמר ולא דיווח חדשותי.",
+   "full_en": "In a City AM opinion piece (November 24), Neil West, a former Apple music chief, looks at John Ternus's first three months as CEO.\n\nIn a busy three months Ternus has overseen the launch of a foldable iPhone, a smart-home display and a touchscreen MacBook Pro. After years of criticism that Apple had lost its appetite for bold moves, the company seems ready to be more adventurous. And yet, West writes, watching Ternus on stage, giving interviews and posing for selfies with customers in Apple Stores, he's struck by how little seems to have changed: he looks and sounds like an Apple executive, talks about the same values and appears perfectly at home in the rituals of an Apple product launch.\n\nWest suspects that's no accident: Apple wants to excite customers with new products while reassuring them that the company they trust isn't about to become something unrecognisable. Ternus's first keynote emphasised continuity rather than a grand new vision, and he talks about excellence, simplicity and making great products, just as his predecessors did. West concludes it's too early to judge his leadership, but there's a lesson for leaders managing change: the more adventurous the future you're asking people to embrace, the harder you should work to make everything around it feel familiar.\n\nThis is the author's opinion, not a news report."
+  },
+  {
+   "id": "huang-reinstated-as-nvidia-ceo",
+   "topic": "huang",
+   "date": "2026-11-25T16:53:39Z",
+   "url": "https://x.com/i/trending/2124936188419260899",
+   "source": "X",
+   "he": {
+    "title": "הדירקטוריון של אנבידיה החזיר את ג'נסן הואנג לתפקיד המנכ״ל",
+    "summary": "ימים אחרי שפרש בעקבות גילויים על בגידות, הדירקטוריון החליט פה אחד להחזיר אותו; ביקורת מהדמוקרטים והתייחסות של טראמפ."
+   },
+   "en": {
+    "title": "Nvidia reinstates Jensen Huang as CEO after a quick reversal",
+    "summary": "Days after he stepped down over disclosures of extramarital affairs, the board voted unanimously to bring him back; Democrats criticized the move and Trump claimed a role."
+   },
+   "full_he": "ההתפטרות של ג'נסן הואנג נמשכה רק ימים לפני שהדירקטוריון החזיר אותו, על רקע דיווחים על מעורבות ישירה של הנשיא טראמפ ועלייה במניה.\n\nדירקטוריון אנבידיה הצביע פה אחד להחזיר את המנכ״ל ג'נסן הואנג ימים אחרי שהתפטר בעקבות גילויים על בגידות, כולל אחת עם אישה שסומנה כבעלת קשרים אפשריים למודיעין סיני. ההחלטה באה אחרי לחץ מהנשיא טראמפ, שטען שדיבר עם הדירקטוריון ועם נשיא סין שי ג'ינפינג, ושציין מידע מפקידי ממשל אמריקאים שלפיו אין סיכון ביטחוני. דמוקרטים כמו חקים ג'פריס ואליזבת וורן ביקרו את המהלך כמעקף של אחריותיות; מניית אנבידיה זינקה ואז נסוגה, ואילון מאסק ביקר את הואנג במטה עם ילדיו. הואנג עתיד להעיד בקונגרס בשבוע הבא.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Jensen Huang's resignation lasted just days before the board brought him back, amid reports of President Trump's direct involvement and a stock surge that turned heads.\n\nNvidia's board unanimously voted to reinstate CEO Jensen Huang days after he stepped down over disclosures of extramarital affairs, including one with a woman flagged for possible Chinese intelligence ties. The decision followed pressure from President Trump, who claimed credit for speaking with the board and Chinese President Xi Jinping, while citing input from U.S. government officials who said no national security risk exists. Democrats like Hakeem Jeffries and Elizabeth Warren criticized the move for sidelining accountability, as Nvidia shares jumped then pulled back, and Elon Musk visited Huang at headquarters with his children. Huang faces congressional testimony next week.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "huang-daily-therapy-all-hands",
+   "topic": "huang",
+   "date": "2026-11-26T00:10:18Z",
+   "url": "https://x.com/i/trending/2125741645161464265",
+   "source": "X",
+   "he": {
+    "title": "הואנג בפגישת עובדים: 90 דקות טיפול נפשי ביום אחרי החזרה",
+    "summary": "בפגישה הראשונה אחרי החזרה הוא התנצל בפני אשתו והחברה, התחייב ליותר אחריותיות וסיפר על טיפול יומי."
+   },
+   "en": {
+    "title": "Huang reveals daily 90-minute therapy after ouster and return",
+    "summary": "At his first all-hands after returning he apologized to his wife and the company, pledged more accountability and shared a daily therapy routine."
+   },
+   "full_he": "ג'נסן הואנג סיפר לעובדי אנבידיה על שגרה חדשה: 90 דקות טיפול נפשי ביום, צעד שלדבריו עזר לו אחרי ההתפטרות הדרמטית והחזרה המהירה.\n\nהואנג התפטר לפני 11 ימים בעקבות גילויים על בגידות שהפרו את קוד ההתנהגות של אנבידיה, כולל אחת הקשורה לחשד לקשרי מודיעין סיניים. הדירקטוריון הסיר אותו אך החזיר אותו ביום שני אחרי בדיקה נוספת והבטחות מממשל טראמפ בנושא ביטחון לאומי. בפגישת העובדים הראשונה שלו ביום שלישי הוא התנצל בפני אשתו לורי ובפני החברה, התחייב ליותר אחריותיות ושיתף בהתחייבות לטיפול, על רקע זינוק של 30% במניה ואחריו ירידות. תגובות ברשת שילבו תמיכה בצעדי בריאות הנפש עם בדיחות, ספקנות לגבי החזרה המהירה ושאלות על ההנהגה בתחום ה-AI.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Jensen Huang opened up to Nvidia employees about his new routine: 90 minutes of therapy each day, a step he's found helpful after his dramatic resignation and quick reinstatement.\n\nHuang resigned 11 days ago amid revelations of extramarital affairs that violated Nvidia's code of conduct, including one linked to suspected Chinese intelligence ties. The board removed him but reinstated him Monday after further review and assurances from the Trump administration on national security. In his first all-hands meeting Tuesday, he apologized to his wife Lori and the company, pledged more accountability and shared his therapy commitment amid a 30% stock surge followed by declines. Online reactions blended support for mental health steps with jokes, skepticism over the rapid return, and questions about leadership in AI.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "solana-playground-ai-agent",
+   "topic": "solana",
+   "date": "2026-11-27T13:41:32Z",
+   "url": "https://x.com/i/trending/2125628612418355456",
+   "source": "X",
+   "he": {
+    "title": "סולאנה משיקה Playground בדפדפן עם עוזר קוד מבוסס AI",
+    "summary": "Solana Playground, שהושק ב-25 בנובמבר, מאפשר לפתח ולפרוס תוכניות ישר בדפדפן, עם סוכן AI שמסייע בקוד."
+   },
+   "en": {
+    "title": "Solana launches browser-based Playground with an AI coding helper",
+    "summary": "Solana Playground, launched Nov. 25, lets developers build and deploy programs right in the browser, with an AI agent helping with code."
+   },
+   "full_he": "דמיין שאתה קופץ לפיתוח על סולאנה ישר בדפדפן, עם עוזר AI שמסביר קוד ומשנה אותו לצדך, בלי שום הגדרות.\n\nSolana Playground, שהושק ב-25 בנובמבר, מאפשר למפתחים ללמוד, לבנות ולפרוס תוכניות ישירות באינטרנט, בעזרת מסגרות כמו Anchor או קוד נייטיב, עם מדריכים מודרכים ופרויקטים לדוגמה. סוכן AI משולב משתף פעולה בעריכות קוד ובהסברים, והתיעוד המחודש מוסיף דוגמאות שניתן להריץ והנחיות מאומנות AI. בוני מוצרים שיבחו את זרימת העבודה בלי שרשרת כלים כמשנה משחק לקליטת מפתחים חדשים, על בסיס בטא מ-2022.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Imagine jumping into Solana development right in your browser, with an AI sidekick explaining code and tweaking it alongside you, no setup required.\n\nSolana Playground, launched November 25, lets developers learn, build and deploy programs directly online using frameworks like Anchor or native code, complete with guided tutorials and sample projects. An integrated AI agent collaborates on code edits and explanations, while refreshed documentation adds runnable examples and AI-trained guidance. Builders praised the no-toolchain workflow as a game-changer for onboarding, building on a 2022 beta.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "solana-ledger-clear-signing",
+   "topic": "solana",
+   "date": "2026-11-26T16:12:15Z",
+   "url": "https://x.com/i/trending/2125984593064890506",
+   "source": "X",
+   "he": {
+    "title": "סולאנה מוסיפה Clear Signing בארנקי Ledger לעסקאות קריאות",
+    "summary": "ארנקי Ledger מציגים כעת עסקאות סולאנה בשפה פשוטה, ומסיימים את «החתימה העיוורת»."
+   },
+   "en": {
+    "title": "Solana adds Clear Signing to Ledger wallets for readable transactions",
+    "summary": "Ledger wallets now display Solana transactions in plain language, ending \"blind signing.\""
+   },
+   "full_he": "דמיין שאתה חותם על חוזה בלי לקרוא את האותיות הקטנות. תכונת ה-clear signing החדשה של סולאנה במכשירי Ledger מציגה עכשיו בדיוק מה כל עסקה עושה, בשפה פשוטה.\n\nארנקי חומרה של Ledger מציגים עסקאות סולאנה במונחים פשוטים, כמו אסימונים שנשלחו, התקבלו והרשאות שניתנו, ומסיימים את בעיית ה-«blind signing» הישנה שבה המשתמש ראה רק נתונים גולמיים. התכונה פותחה עם קרן סולאנה, Anza, Jupiter ו-Kamino, ותומכת בתשע אפליקציות וב-18 פעולות נפוצות, ומקצרת החלפות מורכבות ב-Jupiter מ-13 מסכים לשלושה. נדרשת גרסת אפליקציית סולאנה 1.17.0 ומעלה, עם אזהרות גיבוי להוראות לא נתמכות.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Imagine signing a contract without reading the fine print. Solana's new clear signing feature on Ledger devices now shows exactly what each transaction does in plain language.\n\nLedger hardware wallets now display Solana transactions in simple terms, like tokens sent, received and permissions granted, ending the old \"blind signing\" problem where users saw only raw data. Developed with the Solana Foundation, Anza, Jupiter and Kamino, it supports nine apps and 18 common actions, shrinking complex Jupiter swaps from 13 screens to three. Users need the latest Solana app version 1.17.0 or later, with fallback warnings for unsupported instructions.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "solana-holds-70-tokenized-assets-boom",
+   "topic": "solana",
+   "date": "2026-11-27T14:46:40Z",
+   "url": "https://x.com/i/trending/2126006610732458451",
+   "source": "X",
+   "he": {
+    "title": "SOL סביב 73 דולר, בזמן שמניות מטוקנות בשיא",
+    "summary": "SOL נסחר סביב 73.28 דולר, ירידה של 75% מהשיא ב-2025, כשהתמיכה ב-70 מחזיקה ואחזקות מניות מטוקנות מזנקות."
+   },
+   "en": {
+    "title": "SOL holds near $73 amid a tokenized assets boom",
+    "summary": "SOL trades around $73.28, down 75% from its 2025 peak, with $70 support holding and tokenized equities surging."
+   },
+   "full_he": "מחיר סולאנה מתייצב סביב 73 דולר אחרי שבועות של לחץ, בזמן שמגזר המניות המטוקנות פוגע בשיאים.\n\nSOL נסחר ב-73.28 דולר בקירוב, עם שווי שוק של 43.4 מיליארד דולר, ירידה של 75% מהשיא של 293 דולר ב-2025, אבל התמיכה ב-70 החזיקה. מניות מטוקנות ברשת זינקו עם 1.8 מיליארד דולר בנפח ספוט שבועי, 43% מכל הרשתות, ו-1.22 מיליארד דולר בשווי מניות, בהנעת פלטפורמות כמו Ondo Finance ו-Backpack. חברי הקהילה אופטימיים וקוראים לזה «מטבע של 500 דולר ב-70», ותרשימים מראים אותות MACD חיוביים ויעדים אפשריים של 84-98 דולר, בעוד ספקנים מצביעים על סיכון לירידה ל-50-60 דולר.\n\nזה אינו ייעוץ השקעות.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Solana's price steadies around $73 after weeks of pressure, with traders watching closely as its tokenized stocks sector hits record highs.\n\nSOL trades at about $73.28 with a $43.4 billion market cap, down 75% from its 2025 peak of $293, but support at $70 has held firm. The network's tokenized equities exploded with $1.8 billion in weekly spot volume, 43% of all chains, and $1.22 billion in stock value, fueled by platforms like Ondo Finance and Backpack. Community members express optimism, calling it \"a $500 coin at $70,\" while charts show bullish MACD signals and potential targets of $84-$98, though skeptics eye risks of a drop to $50-$60.\n\nThis is not investment advice.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "kraken-pro-ink-points-luxury-rewards-tease",
+   "topic": "kraken",
+   "date": "2026-11-27T19:53:19Z",
+   "url": "https://x.com/i/trending/2126401271917588516",
+   "source": "X",
+   "he": {
+    "title": "קראקן Pro: רמז לפרסי יוקרה תמורת נקודות Ink",
+    "summary": "צילומי מסך של עמוד «בקרוב, תוציא את הנקודות» הראו פרסים כמו מכוניות ושעונים; העמוד נעלם, ולא אושר רשמית."
+   },
+   "en": {
+    "title": "Kraken Pro Ink Points tease luxury rewards",
+    "summary": "Screenshots of a \"Coming soon, spend your points\" page showed prizes like cars and watches; the page vanished and nothing is officially confirmed."
+   },
+   "full_he": "סוחרים התלהבו מצילומי מסך של לוח «בקרוב» בלוח המחוונים של Kraken Pro: למבורגיני סגולה לצד שעון Patek Philippe, שניתנים למימוש עם נקודות Ink.\n\nתוכנית הנאמנות Ink Points של Kraken Pro, שהושקה מוקדם יותר ב-2026, רומזת לפי הצילומים על מערכת מימוש עם פרסי יוקרה כמו מכוניות, מטילי זהב, ערכות גיימינג, טיולים ליפן וקופסאות הפתעה. משתמשים עם כ-212 אלף נקודות הציצו בממשק תחת הכותרת «בקרוב, הוציאו את הנקודות», עם תמונה של בובת תמנון סגולה על למבורגיני אמיתית. העמוד נעלם אחר כך, מה שמעורר ספקולציות על ערך אמיתי לקראת אפשרות להשקת טוקן $INK, שבו נקודות שנצברו ממסחר, החזקה וסטייקינג עשויות להפוך לתגמולים מוחשיים.\n\nהמידע מבוסס על צילומי מסך ברשת ולא על הודעה רשמית של Kraken.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "Traders are buzzing over screenshots of a \"coming soon\" rewards grid on their Kraken Pro dashboard: a purple Lamborghini next to a Patek Philippe watch, all redeemable with Ink Points.\n\nKraken Pro's Ink Points loyalty program, launched earlier in 2026, now hints, per the screenshots, at a redemption system featuring high-end prizes like luxury cars, gold bars, gaming setups, Japan trips and mystery boxes. Users with around 212,000 points glimpsed the interface under a \"Coming soon — spend your points\" header, complete with a photo of a cheerful purple octopus plush on a real Lamborghini. The page later vanished, fueling speculation about real value ahead of a possible $INK token launch, as points earned from trading, holding and staking could soon turn into tangible rewards.\n\nThe information rests on screenshots shared online, not an official Kraken announcement.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "kraken-zcash-whale-exit",
+   "topic": "kraken",
+   "date": "2026-11-26T10:23:42Z",
+   "url": "https://x.com/i/trending/2125896595816239609",
+   "source": "X",
+   "he": {
+    "title": "לווייתן Zcash התעורר אחרי תשע שנים ושלח 11 מיליון דולר לקראקן",
+    "summary": "ארנק ששמר ZEC מאז 2017 העביר 15,750 ZEC לקראקן, בערך 11.39 מיליון דולר."
+   },
+   "en": {
+    "title": "Zcash whale awakens after nine years, sends $11M to Kraken",
+    "summary": "A wallet that held ZEC since 2017 sent 15,750 ZEC to Kraken, about $11.39 million."
+   },
+   "full_he": "מחזיק סבלני של Zcash התעורר סוף סוף אחרי תשע שנים, ושלח 15,750 ZEC בשווי 11.39 מיליון דולר לקראקן, התנועה הראשונה מאז הרכישה ב-2017.\n\nהארנק רכש במקור 23,412 ZEC ב-5.04 מיליון דולר, בכ-215 דולר למטבע, והפך חלק מהם לרווח של מעל 12 מיליון דולר תוך שמירת 7,662 ZEC. נתוני שרשרת מראים שהמטבעות הגיעו מהבריכה המוגנת של Zcash במנות קטנות, חלק נשלח לכתובת חדשה וחלק לקראקן, ביציאה מדודה. זה מגיע על רקע מעברי בריכת פרטיות ב-Zcash, בקשת ETF חדשה של Bitwise ו-ZEC שנסחר סביב 749 דולר אחרי תנודתיות. חברי הקהילה שיבחו את ההחזקה לאורך קריסות ושווקי דובים.\n\nהסיכום נוצר על ידי Grok מפוסטים ב-X ועלול להכיל טעויות.",
+   "full_en": "A patient Zcash holder finally stirred after nine years, sending 15,750 ZEC worth $11.39 million to Kraken, their first move since buying in 2017.\n\nThe wallet originally purchased 23,412 ZEC for $5.04 million at around $215 each, turning a portion into over $12 million profit while keeping 7,662 ZEC. On-chain data shows the coins came from Zcash's shielded pool in small batches, with part sent to a new address and part to Kraken in a measured exit. This comes amid Zcash privacy pool migrations, a new ETF filing by Bitwise, and ZEC trading near $749 after recent volatility. Community members praised the nine-year hold through crashes and bear markets.\n\nThis story is a summary of posts on X generated by Grok and may contain mistakes."
+  },
+  {
+   "id": "lawrence-hunger-games-reunion-epilogue",
+   "topic": "lawrence",
+   "date": "2026-11-22T12:30:00Z",
+   "url": "https://people.com/hunger-games-sotr-director-says-jennifer-lawrence-josh-hutcherson-reunion-was-special-exclusive-12266796",
+   "source": "People",
+   "he": {
+    "title": "במאי «עלות השחר על הקציר»: האיחוד של לורנס והאצ'רסון היה מיוחד",
+    "summary": "פרנסיס לורנס מספר שג'ניפר לורנס, ג'וש האצ'רסון וודי הארלסון חזרו לסצנת הסיום של הפריקוול שבו הם גרים כשכנים."
+   },
+   "en": {
+    "title": "Sunrise on the Reaping director: the Lawrence-Hutcherson reunion was special",
+    "summary": "Francis Lawrence says Jennifer Lawrence, Josh Hutcherson and Woody Harrelson returned for the prequel's epilogue, living as neighbors."
+   },
+   "full_he": "כמעט שום דבר לא היה מונע מהשמש לעלות על האיחוד בסט בין כוכבי משחקי הרעב ג'ניפר לורנס וג'וש האצ'רסון, כותב PEOPLE (22 בנובמבר).\n\nפרנסיס לורנס, במאי הפריקוול «משחקי הרעב: עלות השחר על הקציר» ושל ארבעה מהסרטים האחרים בסדרה, אמר ל-PEOPLE בראיון בלעדי בהקרנת הבכורה בניו יורק ב-16 בנובמבר שהחזרה של השניים, יחד איתו ועם ודי הארלסון, לצילום סצנת הסיום של הפריקוול הייתה «פנטסטית». «האמת היא שכולנו בקשר, כי עשיתי ארבעה סרטים עם ג'ן והיא קרובה מאוד לוודי ולג'וש. אז היינו בקשר, אבל לראות את שלושתם יחד שוב בהקשר של עשיית אחד מהסרטים האלה… זה ממש מיוחד.»\n\nהסרט, שיצא לאקרנים ב-20 בנובמבר, מספר על הייימיץ' אבנתי הצעיר (ג'וזף זאדה) ב-Quarter Quell השני. לורנס (36), האצ'רסון (34) והארלסון (65) התאחדו בשנה שעברה בסתר כדי לצלם את סיום הפריקוול, אפילוג קפיצת זמן שבו שלוש הדמויות חיות כשכנים בכפר המנצחים אחרי שהפילו את הקפיטול. הצוות מאחורי המצלמה זהה: צלם, במאי, מפיקה, עוזר במאי ומצלם סטילס. המפיקה נינה ג'ייקובסון סיפרה: «הכול היה סודי, וכל הזמן פחדנו שיגלו, וזה היה מדהים. הדבר הכי כיפי היה הלילה שבו הם הגיעו, כשפרנסיס ראה את ג'ן וג'וש שותים בירה בבר, ואחד אחד כולם התחילו להיכנס. כמו איחוד משפחתי».",
+   "full_en": "Nothing was going to keep the sun from rising on the on-set reunion between Hunger Games stars Jennifer Lawrence and Josh Hutcherson, PEOPLE writes (November 22).\n\nFrancis Lawrence, director of the prequel The Hunger Games: Sunrise on the Reaping and four of the other five Hunger Games films, told PEOPLE in an exclusive interview at the New York premiere on November 16 that having the two reunite, along with him and Woody Harrelson, to film the prequel's time-jump epilogue was \"fantastic.\" \"The truth is that we all keep in touch because, you know, I've made four movies with Jen and she's very close with Woody and Josh. So we've been in contact, but the fact that we see the three of them together again in the context of making one of these movies again... is really special.\"\n\nThe film, which opened in theaters on November 20, tells the story of a young Haymitch Abernathy (Joseph Zada) in the 2nd Quarter Quell. Lawrence (36), Hutcherson (34) and Harrelson (65) reunited secretly last year to film the prequel's ending, a time-jump epilogue showing their three characters living as neighbors in the Victors' Village after they overthrew the Capitol. The crew behind the camera is the same: cinematographer, director, producer, first AD and still photographer. Producer Nina Jacobson said: \"It was all so secretive, and we kept being afraid people would find out, and it was incredible. The most fun thing was the night that they arrived, when Francis noticed Jen and Josh having a beer at the bar, and one by one everyone started to come in. It was like a family reunion.\""
+  },
+  {
+   "id": "emilyblunt-indiewire-ten-moments-disclosure-day",
+   "topic": "emilyblunt",
+   "date": "2026-11-23T20:45:00Z",
+   "url": "https://www.indiewire.com/awards/consider-this/emily-blunt-breaks-down-oppenheimer-disclosure-day-devil-wears-prada-1235230010/",
+   "source": "IndieWire",
+   "he": {
+    "title": "אמילי בלאנט על הרגעים הבלתי נשכחים שלה, מ«אופנהיימר» ל«Disclosure Day»",
+    "summary": "ב-IndieWire מספרת בלאנט על סצנת הטייק היחיד של ארבע וחצי דקות בסרט של שפילברג, שבה הדמות שלה מתפרקת ומתחילה לדבר בשפת החייזרים."
+   },
+   "en": {
+    "title": "Emily Blunt on her unforgettable moments, from Oppenheimer to Disclosure Day",
+    "summary": "In IndieWire, Blunt describes the four-and-a-half-minute single-take scene in Spielberg's film where her character unravels and starts speaking the alien language."
+   },
+   "full_he": "אמילי בלאנט, שמקדמת כעת את תפקידה כמטאורולוגית דוברת שפות בסרט «Disclosure Day» של סטיבן שפילברג, שיתפה ב-IndieWire (23 בנובמבר) רגעים בלתי נשכחים מהקריירה שלה.\n\nבלאנט מספרת על סצנת הטייק היחיד של ארבע וחצי דקות בסרט: «מה שיעזור לי מאוד הוא אם תיתן לי לסחרר את עצמי לאיבוד בטייק אחד, מהרגע שבו אני מגיעה, נכנסת לחדר האיפור, יוצאת ומדברת קוריאנית, היא בסחרור לא קוהרנטי, ואז רואים אותה מתפרקת במהלך הסצנה. והיא עולה לשם כדי למסור את התחזית, ומתחילה לדבר בשפת החייזרים. אפשר לנסות את זה כטייק אחד?» שפילברג צפה בה עושה את זה. «עד שהגעתי למסור את התחזית, הרגליים שלי רעדו. נשפתי בכבדות, הייתי מחוץ לעצמי, והוא אהב. והוא אמר: נעשה את זה כטייק אחד. וסיימנו ב-14:00 כי הוא תכנן לצלם את הכול כל היום.» לדבריה, שפילברג לא רק יצר את הסביבה שאפשרה לה לעשות זאת בלי לצלם יותר מדי כיסויים, אלא ראה בכך יתרון קולנועי.\n\nהכתבה היא רשימה של עשרה רגעים מרכזיים מהקריירה של בלאנט, מ«אופנהיימר» עד «Disclosure Day».",
+   "full_en": "Emily Blunt, who's on the circuit these days talking about her role as a language-spouting meteorologist in Steven Spielberg's Disclosure Day, told IndieWire (November 23) about memorable scenes from her career.\n\nBlunt describes the film's four-and-a-half-minute single take: \"What would help me so much is if you could let me whirlwind out of control in one take from the moment I pull up, going into the makeup room, coming out speaking Korean, she's in this incoherent tailspin, and then you see her disintegrate over the course of it. And she gets up there to deliver the weather, and she starts to speak in the alien language. Can we just try it as a oner, just for me to see where I've got to get to?\" Spielberg watched her do it. \"By the time I got up there to do the weather, my legs were shaking. I was out of breath, beside myself, and he loved it. And he goes, 'We're going to do it as a oner.' And we were done by 2 pm because he planned to shoot it all day.\" She says Spielberg was not only intentional about creating the environment for her to do that, so he didn't overcover it, but saw a cinematic advantage.\n\nThe piece is a list of ten key moments from Blunt's career, from Oppenheimer to Disclosure Day."
+  },
+  {
+   "id": "emmawatson-gloria-steinem-memorial",
+   "topic": "emmawatson",
+   "date": "2026-11-22T00:30:00Z",
+   "url": "https://www.yahoo.com/entertainment/celebrity/deaths-obituaries/articles/emma-watson-sings-gloria-steinems-003016973.html",
+   "source": "Yahoo Entertainment",
+   "he": {
+    "title": "אמה ווטסון שרה באזכרה של גלוריה שטיינם",
+    "summary": "ווטסון הופיעה נדירות בפומבי כדי לשיר במקהלה באירוע לזכר פעילת הפמיניזם, שנפטרה ב-2 בספטמבר בגיל 92."
+   },
+   "en": {
+    "title": "Emma Watson sings at Gloria Steinem's memorial",
+    "summary": "Watson made a rare public appearance to sing in the choir at a tribute to the feminist activist, who died on Sept. 2 aged 92."
+   },
+   "full_he": "אמה ווטסון הופיעה בפומבי, בהופעה נדירה, כדי לשיר באזכרה של גלוריה שטיינם, פעילה שהחברות איתה עיצבה את הבנתה את הפמיניזם.\n\nשחקנית «הארי פוטר» בת ה-36 עלתה לבמה ב-Park Avenue Armory בניו יורק ביום רביעי, 18 בנובמבר, כפי שדיווח PEOPLE. כ-1,000 אורחים השתתפו, כולל מישל אובמה, הילרי קלינטון וג'יל ביידן. חברי שטיינם אמרו שרצתה מפגש שמח, והתוכנית שילבה מוזיקה, שירה וזיכרונות אישיים. שטיינם נפטרה ב-2 בספטמבר בגיל 92, עיתונאית ופעילה שסייעה להקים את מגזין Ms.\n\nווטסון הייתה אחת מ-12 זמרים שביצעו את «Hold On» מאת היידי אן וילסון במקהלה Gloria's Choir שפתחה את האירוע. ב-2016 ראיינה ווטסון את שטיינם בלונדון בנוגע לספרה «My Life on the Road». במאמר ב-New Yorker מ-7 בספטמבר, «Gloria Steinem Gave It All», נזכרה ווטסון בביקורם האחרון ב-15 ביולי בביתה של שטיינם במנהטן: כשביקשה חיבוק פרידה, הרגישה שלא יפגשו שוב. היא נזכרה גם בחשש שלא קראה או למדה מספיק כדי להשתייך לתנועה, ושטיינם הרגיעה אותה: «לא הייתי צריכה להגיע כשאני כבר יודעת הכול כדי להשתייך».\n\nאורחים עודדו לתמוך ב-Gloria's Foundation, שפועל לשמר את הנכס והארכיונים כמרכז קבוע לארגון פמיניסטי.",
+   "full_en": "Emma Watson made a rare public appearance to sing at Gloria Steinem's memorial, joining a tribute to the activist whose friendship helped shape her understanding of feminism.\n\nThe 36-year-old Harry Potter actress took the stage at New York City's Park Avenue Armory on Wednesday, November 18, as PEOPLE reported. Approximately 1,000 guests attended, including Michelle Obama, Hillary Clinton and Jill Biden. Steinem's friends said she had wanted a joyful gathering, and the program brought together music, poetry and personal memories. Steinem died September 2 at 92; a journalist and organizer, she helped establish Ms. magazine.\n\nWatson was one of 12 singers performing Heidi Ann Wilson's \"Hold On\" in the ensemble Gloria's Choir that opened the celebration. Watson interviewed Steinem in London in 2016 about My Life on the Road. In her September 7 New Yorker essay, \"Gloria Steinem Gave It All,\" Watson recalled their final visit on July 15 at Steinem's Manhattan brownstone: when she asked for a goodbye hug, she sensed they would not meet again. She also remembered worrying that she had not read or learned enough to belong in the feminist movement, and Steinem reassured her: \"I didn't have to arrive already knowing everything in order to belong.\"\n\nGuests were encouraged to support Gloria's Foundation, which is working to preserve the property and its archives as a permanent center for feminist organizing and activism."
   }
  ]
 }
